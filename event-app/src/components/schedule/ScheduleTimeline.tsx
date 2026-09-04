@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { detailHref } from "@/routing/viewParams";
 import cn from "classnames";
 import { Clock3, ClockArrowDown, Star, User, X } from "lucide-react";
 import type { Session } from "@/data/models";
 import { Link } from "@/routing";
-import { isDesktopNow, useIsDesktop } from "@/hooks/useIsDesktop";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import {
   buildTimeline,
   DESKTOP_METRICS,
@@ -45,7 +46,7 @@ function TimelineSession({
   compact: boolean;
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
-  /** Desktop: open the details side panel instead of navigating (as cards do). */
+  /** Open the details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
 }) {
   const theme = getTrackTheme(session.track);
@@ -57,12 +58,12 @@ function TimelineSession({
 
   return (
     <Link
-      href={`/schedule/${session.id}`}
+      href={detailHref("session", session.id)}
       // No viewport prefetch (see SpeakerCard) — client page on cached data.
       prefetch={false}
       title={`${session.title} — ${session.room?.name ?? ""}`}
       onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
+        if (onOpen) {
           e.preventDefault();
           onOpen(session.id);
         }

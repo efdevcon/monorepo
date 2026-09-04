@@ -1,12 +1,9 @@
-// Export types and interfaces
-export type { IEventDataProvider, SessionFilters } from "./provider-interface";
-
-// Export base provider class
-export { BaseProvider } from "./provider-interface";
+// Export the provider contract
+export type { IEventDataProvider } from "./provider-interface";
 
 // Export providers
+export { DevconApiProvider } from "./devcon-api.provider";
 export { DummyProvider } from "./dummy.provider";
-export { DevconProvider } from "./devcon.provider";
 
 // Export validation utilities
 export { validateWithToast } from "./validation";

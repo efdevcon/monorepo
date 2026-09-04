@@ -4,11 +4,15 @@ import { usePathname } from "next/navigation";
 import cn from "classnames";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
-import { Link, BackButton } from "@/routing";
+import { Link } from "@/routing";
+import { closeDetail, useDetailView } from "@/routing/detailParam";
+import { handleTabClick } from "@/components/paneContext";
+import type { DetailKind } from "@/routing/viewParams";
 import { useUser } from "@/data/auth/useUser";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { NAV_ITEMS, isNavActive } from "@/components/Nav";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
+import { OfflineIndicator } from "./OfflineIndicator";
 
 /**
  * Pages render their own header buttons (filter, jump-to-now, …) into this
@@ -37,18 +41,14 @@ export const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 interface RouteChrome {
   title: string;
-  /** Detail pages show a back arrow instead of the logomark. */
-  back?: boolean;
-  /** Where the back arrow lands when there is no history (deep link). */
-  backFallback?: string;
+  /** Detail views show a back arrow (closing the view) instead of the logomark. */
+  back?: DetailKind;
 }
 
-function routeChrome(pathname: string): RouteChrome {
-  if (pathname.startsWith("/schedule/"))
-    return { title: "Session details", back: true, backFallback: "/schedule" };
+function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
+  if (detail === "session") return { title: "Session details", back: "session" };
+  if (detail === "speaker") return { title: "Speaker details", back: "speaker" };
   if (pathname.startsWith("/schedule")) return { title: "Schedule" };
-  if (pathname.startsWith("/speakers/"))
-    return { title: "Speaker details", back: true, backFallback: "/speakers" };
   if (pathname.startsWith("/speakers")) return { title: "Speakers" };
   if (pathname.startsWith("/map")) return { title: "Map" };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
@@ -72,6 +72,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const { attempt: markAttempt, markFailed: markLogoFailed } =
     useRetryOnReconnect();
   const pathname = usePathname();
+  const { kind: detailKind } = useDetailView();
   const { user } = useUser();
   const { unreadCount } = useAnnouncements({
     enabled:
@@ -84,7 +85,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   }
 
   const items = NAV_ITEMS.filter((i) => i.enabled);
-  const { title, back, backFallback } = routeChrome(pathname);
+  const { title, back } = routeChrome(pathname, detailKind);
 
   return (
     <header className="sticky top-0 z-30 font-heading">
@@ -93,12 +94,17 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
       <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
         <div className="flex min-w-0 items-center gap-2">
           {back ? (
-            <BackButton
-              fallbackHref={backFallback}
+            // Closes the in-page detail view: history.back() when we pushed
+            // it, otherwise (deep link) drops the param in place. Never
+            // leaves the app.
+            <button
+              type="button"
+              onClick={() => closeDetail(back)}
+              aria-label="Back"
               className="-m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center p-1"
             >
               <ArrowLeft className="size-5 text-dc-fg2" />
-            </BackButton>
+            </button>
           ) : (
             <span className="flex size-7 shrink-0 items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -114,6 +120,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
             {title}
           </span>
+          <OfflineIndicator />
         </div>
         <div
           id={HEADER_ACTIONS_ID}
@@ -149,6 +156,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
                 // Full prefetch (RSC included) so the SW caches each route's
                 // payload — enables smooth offline navigation between routes.
                 prefetch
+                onClick={(e) => handleTabClick(e, item.href, pathname)}
                 className={cn(
                   "flex items-center gap-2 border-b-2 px-2 pb-2 pt-3 text-[16px] leading-none tracking-[-0.25px] transition-colors",
                   active

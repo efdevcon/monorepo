@@ -2,12 +2,14 @@
 
 import type { Session } from "@/data/models";
 import { CloseButton } from "@/components/Buttons";
+import { ShareButton } from "@/components/ShareButton";
 import { SessionDetailsContent } from "./SessionDetailsContent";
 
 /**
  * Desktop session-details side panel (Figma "Session Details - Side Menu"):
  * a 360px right column rendered from the in-memory session (no extra fetch),
- * with the white header + close. The mobile flow uses /schedule/[id] instead.
+ * with the white header carrying share + close. Mobile renders the same
+ * content in a full-screen layer (SessionDetailsView).
  */
 export function SessionDetailsPanel({
   session,
@@ -26,11 +28,19 @@ export function SessionDetailsPanel({
         <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Session
         </span>
-        <CloseButton onClick={onClose} aria-label="Close session details" />
+        <div className="flex items-center gap-2">
+          <ShareButton
+            kind="session"
+            id={session.id}
+            title={session.title}
+            variant="panel"
+          />
+          <CloseButton onClick={onClose} aria-label="Close session details" />
+        </div>
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SessionDetailsContent session={session}>
-          {/* Q&A teaser per design; the full Q&A flow lives on the session page */}
+          {/* Q&A teaser per design; the full Q&A flow lives in the mobile view */}
           <div className="flex flex-col gap-3">
             <h2 className="text-[14px] leading-5 text-dc-fg2">
               <span className="font-bold">Live Q&amp;A</span> – Powered by

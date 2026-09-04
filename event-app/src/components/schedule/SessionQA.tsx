@@ -1,99 +1,28 @@
 "use client";
 
-import { useSession } from "@/data/hooks";
-import APP_CONFIG from "@/CONFIG";
-import { use, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import { CalendarPlus } from "lucide-react";
+import { useState } from "react";
 import { Link } from "@/routing";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
-import {
-  SessionDetailsContent,
-  downloadSessionIcs,
-} from "@/components/schedule/SessionDetailsContent";
-import type { Session as SessionModel } from "@/data/models";
 import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 import {
   MeerkatProvider,
   useQuestions,
   useSessionUrl,
 } from "@meerkat-events/react";
 
-interface SessionClientProps {
-  params?: Promise<{ id: string }>;
-  id?: string;
-}
-
-export default function Session({ params, id: directId }: SessionClientProps) {
-  const id = directId ?? use(params!).id;
-
-  const { session, isLoading, isError, error } = useSession(id);
-
-  if (!APP_CONFIG.SCHEDULE_ENABLED) {
-    return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
-  }
-
-  if (isLoading) {
-    return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
-  }
-
-  if (isError || !session) {
-    return (
-      <div className="p-4 py-12 text-center font-heading text-dc-red">
-        {error?.message || "Session not found"}
-      </div>
-    );
-  }
-
+/** Live Q&A block (Meerkat). Owns its provider so callers just drop it in. */
+export function SessionQA({ sessionId }: { sessionId: string }) {
   return (
-    <main className="expand font-heading text-dc-fg">
-      {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
-          at z -10 and the content) so the surface fills the whole viewport —
-          the content block alone ends at its own height, which left the
-          gradient showing below short sessions. Same fix as speaker.tsx. */}
-      <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
-      <CalendarHeaderAction session={session} />
-      <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
-        <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
-          <SessionDetailsContent session={session}>
-            <MeerkatProvider>
-              <SessionQA sessionId={id} />
-            </MeerkatProvider>
-          </SessionDetailsContent>
-        </div>
-      </div>
-    </main>
+    <MeerkatProvider>
+      <SessionQAInner sessionId={sessionId} />
+    </MeerkatProvider>
   );
 }
 
-/**
- * Portals the "Add to Calendar" circle button into the app header (Figma
- * fullscreen session details keeps it top-right in the 56px bar).
- */
-function CalendarHeaderAction({ session }: { session: SessionModel }) {
-  const [target, setTarget] = useState<Element | null>(null);
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_ACTIONS_ID));
-  }, []);
-  if (!target) return null;
-  return (
-    <>
-      {createPortal(
-    <button
-      onClick={() => downloadSessionIcs(session)}
-      aria-label="Add to calendar"
-      className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
-    >
-      <CalendarPlus className="size-4 text-dc-purple" />
-    </button>,
-        target
-      )}
-    </>
-  );
-}
-
-function SessionQA({ sessionId }: { sessionId: string }) {
+function SessionQAInner({ sessionId }: { sessionId: string }) {
+  const online = useOnline();
   const { user } = useUser();
   // WIP: realtime disabled until Meerkat integration is avaiable
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
@@ -150,6 +79,18 @@ function SessionQA({ sessionId }: { sessionId: string }) {
     } finally {
       setIsGenerating(false);
     }
+  }
+
+  // Live-only feature: one quiet line offline, recovers on reconnect.
+  if (!online) {
+    return (
+      <div>
+        <h2 className="mb-3 text-[14px] leading-5 text-dc-fg2">
+          <span className="font-bold">Live Q&amp;A</span> – Powered by Meerkat
+        </h2>
+        <NeedsConnection what="Live Q&A" />
+      </div>
+    );
   }
 
   return (

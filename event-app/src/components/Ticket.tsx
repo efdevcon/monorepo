@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
@@ -116,10 +117,11 @@ function HeaderSignOut({
   disabled: boolean;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
+  const paneActive = usePaneActive();
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
-  if (!target) return null;
+  if (!target || !paneActive) return null;
   return (
     <>
       {createPortal(

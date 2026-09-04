@@ -1,4 +1,13 @@
 import Dexie, { Table } from "dexie";
+import type {
+  EventMetaRow,
+  RoomRow,
+  SessionRow,
+  SpeakerRow,
+} from "../store/types";
+
+/** SWR keys of the pre-store catalogue caches, e.g. `@"devcon-7","sessions",`. */
+const LEGACY_CATALOGUE_KEY = /"(sessions|speakers|rooms|event)"/;
 
 interface CacheEntry {
   key: string;
@@ -108,6 +117,12 @@ class CacheDB extends Dexie {
   seenAnnouncements!: Table<SeenAnnouncement, string>;
   interested!: Table<InterestedSession, [string, string]>;
   interestedSpeakers!: Table<InterestedSpeaker, [string, string]>;
+  // v7: normalised event catalogue (EventStore). One row per session /
+  // speaker / room per event, plus one meta row (version, sync times).
+  eventSessions!: Table<SessionRow, [string, string]>;
+  eventSpeakers!: Table<SpeakerRow, [string, string]>;
+  eventRooms!: Table<RoomRow, [string, string]>;
+  eventMeta!: Table<EventMetaRow, string>;
 
   constructor() {
     super("SWRCacheDB");
@@ -135,6 +150,23 @@ class CacheDB extends Dexie {
     this.version(6).stores({
       interestedSpeakers: "&[eventId+speakerId], eventId",
     });
+    // v7: EventStore tables. The upgrade also deletes the old catalogue blobs
+    // from the SWR `cache` table (keys like `@"devcon-7","sessions",`), which
+    // were up to 1.8 MB per event and are superseded by these rows. Other
+    // `cache` rows (announcements, tickets) are untouched.
+    this.version(7)
+      .stores({
+        eventSessions: "&[eventId+id], eventId",
+        eventSpeakers: "&[eventId+id], eventId",
+        eventRooms: "&[eventId+id], eventId",
+        eventMeta: "&eventId",
+      })
+      .upgrade((tx) =>
+        tx
+          .table("cache")
+          .filter((row: { key: string }) => LEGACY_CATALOGUE_KEY.test(row.key))
+          .delete()
+      );
   }
 }
 

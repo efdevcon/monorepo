@@ -10,6 +10,11 @@ import {
   Serwist,
   StaleWhileRevalidate,
 } from "serwist";
+import {
+  IGNORED_URL_PARAMS,
+  legacyDetailRedirect,
+  stripIgnoredParams,
+} from "./routing/viewParams";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -17,6 +22,18 @@ declare global {
   }
 }
 declare const self: ServiceWorkerGlobalScope;
+
+/**
+ * Cache-key normaliser for shell HTML and RSC payloads: a request that differs
+ * only in view/debug params (`?speaker=x`, `?dataset=…`) is the same shell, so
+ * a client navigation from a session view to `/speakers?speaker=x` must hit
+ * the cached `/speakers` payload offline instead of missing and forcing a hard
+ * navigation.
+ */
+const ignoreViewParams = {
+  cacheKeyWillBeUsed: async ({ request }: { request: Request }) =>
+    stripIgnoredParams(new URL(request.url)).toString(),
+};
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
@@ -27,7 +44,23 @@ const serwist = new Serwist({
   // running an older build's assets. Do NOT set both to true.
   clientsClaim: true,
   navigationPreload: false,
+  // Precache lookups ignore view/debug params: `/schedule?session=x` is served
+  // from the precached `/schedule` shell, online and offline.
+  precacheOptions: { ignoreURLParametersMatching: IGNORED_URL_PARAMS },
   runtimeCaching: [
+    // Legacy detail URLs (`/schedule/<id>`, `/speakers/<id>`) still arrive
+    // from old push notifications, calendar entries and shared links. Answer
+    // navigations to them with a redirect to the query-param form so they
+    // resolve offline too (next.config redirects cover loads before the SW
+    // is installed).
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin &&
+        request.mode === "navigate" &&
+        legacyDetailRedirect(url) !== null,
+      handler: async ({ url }) =>
+        Response.redirect(legacyDetailRedirect(url)!.toString(), 302),
+    },
     // Next.js App Router fetches RSC payloads (header `RSC: 1`) for client-side
     // navigation and reconciliation. These are NOT `destination: "document"`
     // requests, so without dedicated rules they'd hit the network and fail
@@ -49,6 +82,7 @@ const serwist = new Serwist({
         // shell is identical anyway (all data is client-side via SWR).
         networkTimeoutSeconds: 2,
         plugins: [
+          ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
         ],
@@ -61,6 +95,7 @@ const serwist = new Serwist({
         cacheName: "pages-rsc",
         networkTimeoutSeconds: 2,
         plugins: [
+          ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
         ],
@@ -72,6 +107,7 @@ const serwist = new Serwist({
         cacheName: "pages",
         networkTimeoutSeconds: 5,
         plugins: [
+          ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({
             maxEntries: 50,

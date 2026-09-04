@@ -47,7 +47,7 @@ const socialLink =
  * speaker's sessions. Featured speakers get a marigold ring, a FEATURED tag
  * under the avatar and a peach band; everyone else a purple ring and a
  * lavender band. Used by both the desktop side panel and the mobile
- * /speakers/[id] page (SessionDetailsContent pattern).
+ * detail layer (SessionDetailsContent pattern).
  */
 export function SpeakerDetailsContent({
   decorated,
@@ -157,7 +157,7 @@ export function SpeakerDetailsContent({
             {speaker.description && (
               // No section title: the header already names the person, so the
               // bio reads as theirs without a "Profile" label above it.
-              <p className="text-[14px] leading-5 text-dc-fg2">
+              <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
                 {speaker.description}
               </p>
             )}

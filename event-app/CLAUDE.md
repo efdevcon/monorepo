@@ -9,6 +9,7 @@ pnpm dev          # next dev --turbopack (no service worker — see below)
 pnpm preview      # build + serve, the only faithful way to test offline/PWA
 pnpm typecheck    # tsc --noEmit, run before considering a task complete
 pnpm lint
+pnpm data:test    # pure-function tests: EventStore normalise/materialise/sync decision, routing helpers
 ```
 
 **Testing offline / the service worker.** Use `pnpm preview` (`next build
@@ -20,15 +21,28 @@ isn't a useful stand-in — precache is thin there (`injectManifest` has no buil
 output to glob) and webpack dev is slow, so it misleads on exactly the
 install/precache behaviour you'd want to check.
 
-Most offline behaviour needs **no** SW at all, though: the Dexie/SWR layer covers
-cached API data, so the announcements inbox, schedule and speakers can be tested
-offline under plain `pnpm dev` with DevTools offline. Only SW-owned behaviour
-(image caching, precached routes, the `/offline` fallback, push) needs
-`pnpm preview`.
+Most offline behaviour needs **no** SW at all, though: the EventStore and the
+Dexie/SWR layer cover cached data, so the announcements inbox, schedule and
+speakers can be tested offline under plain `pnpm dev` with DevTools offline. Only
+SW-owned behaviour (image caching, precached routes, the `/offline` fallback,
+push, the offline redirect of `/schedule/<id>` links) needs `pnpm preview`.
+
+The end-to-end check is `node scripts/offline-sweep.mjs --port <preview port>`
+from the repo root against a running `pnpm preview`: it warms the SW and the
+store, goes offline, hard-loads every core route and detail deep link, and fails
+on any offline fallback, broken image, or document reload during client
+navigation. Note that Chromium's DevTools/CDP offline emulation does not flip
+`navigator.onLine` for documents loaded after it was switched on, so the
+`useOnline`-driven UI (pill, "needs a connection" lines) won't show in such a
+harness unless `navigator.onLine` is overridden; real devices in airplane mode
+report it correctly.
 
 ## Hard rules
 
-- **Offline-first data**: all persisted state goes through the Dexie/IndexedDB-backed SWR layer, never ad-hoc fetch + useState for API data. `/api/*` stays `NetworkOnly` in the service worker; API caching is owned by the SWR/Dexie layer, not the SW.
+- **Catalogue data goes through the EventStore** (`src/data/store/`): sessions, speakers, rooms and the event record are one bundle from `GET /events/:id/bundle`, stored normalised in Dexie and synced only when `GET /events/:id/version` changes (60 bytes). Read it through the hooks in `src/data/hooks/` (`useSessions`, `useSpeaker`, …); never fetch catalogue data anywhere else. Adding a field means updating devcon-api's bundle allowlist, `store/types.ts`, `normalize.ts`, `materialize.ts` and the `data:test` fixture. Other persisted state (announcements, tickets, stars) goes through the Dexie-backed SWR layer, never ad-hoc fetch + useState. `/api/*` stays `NetworkOnly` in the service worker and the devcon-api origin is never cached by it.
+- **The five bottom-bar tabs are persistent panes** (`src/components/TabPanes.tsx`): their route `page.tsx` files render nothing and the layout keeps each visited pane mounted, toggling `hidden` on tab switches (a page mount of the speakers list cost ~800 ms on a mid-range phone; a toggle is a few ms) and restoring each tab's scroll position. Consequences: anything that portals into the app header or measures the window on scroll must check `usePaneActive()` (`src/components/paneContext.ts`), or every mounted pane does it at once; long lists render group by group with `RenderOnApproach` so first mount stays cheap; the schedule jumps to "live now" only on app open. Tab taps give a haptic tick: Android via the Vibration API (`utils/haptics.ts`), iOS via a transparent `<input type="checkbox" switch>` overlay inside each tab link (`IosHapticOverlay`; the only path left since iOS 26.5 closed programmatic ticks, an undocumented side effect that may stop working, failing silently). Re-tapping the active tab resets its pane like a native tab bar (`handleTabClick` + `useTabReselect` in `paneContext.ts`): smooth scroll to top by default, the schedule jumps to "now", the map resets filters and view (`resetView` in VenueMap); with a detail open the tap closes the detail instead.
+- **No dynamic routes for content that must work offline.** Detail views are query params on a precached shell (`/schedule?session=<id>`, `/speakers?speaker=<id>`) opened with `useDetailParam` (`src/routing/detailParam.ts`: Next-integrated `history.pushState`, no RSC fetch). A `/foo/[id]` page cannot be precached, so a never-visited id fails offline; that is exactly the bug class this prevents. Build hrefs with `detailHref(kind, id)` and share links with `shareHref` (`src/routing/viewParams.ts`, also imported by the SW). Legacy `/schedule/<id>` links redirect (next.config + SW). `/room-screens/[id]` is the deliberate exception (TV kiosk, always online).
+- **Live-only features degrade, never error**: gate Q&A, streams, chat, sign-in, push and refresh on `useOnline()` and render `<NeedsConnection what="…" />` in the feature's slot.
 - **Service worker**: precache stays limited to the app-shell routes. Never enable `skipWaiting`; updates are opt-in via the update toast (`ServiceWorkerUpdater.tsx`).
 - **Current time**: never call `Date.now()` / `new Date()` directly in components. Use the shared `useNow`/`useNowMs` hooks (`src/hooks/useNow.ts`) so time can be mocked with `?mockNow=` / `?mockSpeed=` query params. For content dated against the real world rather than event time (announcements), use `useRealWorldNowMs` — it opts out of the per-deployment event-start auto-mock, which would otherwise let the selected dataset (e.g. devcon-7 → Nov 2024) decide whether today's announcements are visible.
 - **Event timezone**: the API serves session times as plain UTC instants with no timezone; all wall-clock rendering and day grouping must go through the venue-timezone helpers in `src/data/eventTime.ts` (`eventFmt`, `eventDayKey`, …). Never format session times with a bare `Intl.DateTimeFormat` or local `Date` getters — that shifts the schedule with the viewer's system timezone. Announcements are the exception (real-world-dated, intentionally viewer-local).
@@ -87,6 +101,12 @@ Do **not** drop `loading="lazy"` to force caching. It works, but rasterizing
 hundreds of images down a tall page is the mechanism behind the iOS
 content-process crash the speakers page already hit once. Warm via `fetch`, which
 keeps the images out of the render tree.
+
+Warm concurrency stays at 6 (`CONCURRENCY` in `use-warm-images.ts`), decided
+2026-09-04: the full devcon-7 set warms in about 16 s, which is acceptable, and
+more parallel fetches during the first minute risk slowing low-end phones and
+competing with the images the user is actually looking at. Don't bump it
+without re-checking on a slow device.
 
 Warming is incremental on purpose: it reads the `static-images` cache and fetches
 only the difference, so reopening the app with nothing changed costs nothing.
