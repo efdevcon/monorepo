@@ -93,10 +93,15 @@ function Pane({
   return (
     <PaneActiveContext.Provider value={active}>
       <PanePathContext.Provider value={path}>
-        {/* `contents` so the pane never becomes the `.section` grid child (the
-            page's own `main.expand` must stay the direct grid item); `hidden`
-            is display:none !important and wins when inactive. */}
-        <div hidden={!active} className="contents">
+        {/* The pane spans the outer `.section` grid (`expand`) and is itself a
+            `.section` grid, so the page root inside it matches the same
+            `.section > *` / `.section > .expand` placement rules as a normal
+            route child. (`display: contents` was tried first: it removes the
+            pane's box but the page root is still a grandchild in the DOM, so
+            those child selectors no longer match and the page auto-places
+            into the 16px gutter column.) `hidden` is display:none !important
+            and wins when inactive. */}
+        <div hidden={!active} className="section expand">
           <ScrollRestorer active={active} activeRef={activeRef} saved={savedScroll} />
           {children}
         </div>

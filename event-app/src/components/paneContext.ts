@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useRef, type MouseEvent } from "react";
 import { isTabPath, VIEW_PARAMS } from "@/routing/viewParams";
+import { tapHaptic } from "@/utils/haptics";
 
 /**
  * Whether the enclosing persistent tab pane (see TabPanes.tsx) is the visible
@@ -51,16 +52,19 @@ export function useTabReselect(handler: () => void): void {
 }
 
 /**
- * Tab link click handler. Tapping the tab you are already on resets the pane
- * instead of navigating, unless a detail view is open: then the normal
- * navigation to the bare tab URL is what closes it.
+ * Tab link click handler. Every tab tap gives a haptic tick where the platform
+ * allows it (see utils/haptics.ts). Tapping the tab you are already on resets
+ * the pane instead of navigating, unless a detail view is open: then the
+ * normal navigation to the bare tab URL is what closes it.
  */
 export function handleTabClick(
   event: MouseEvent<HTMLAnchorElement>,
   href: string,
   pathname: string
 ): void {
-  if (!isTabPath(href) || pathname !== href) return;
+  if (!isTabPath(href)) return;
+  tapHaptic();
+  if (pathname !== href) return;
   const params = new URLSearchParams(window.location.search);
   if (VIEW_PARAMS.some((p) => params.has(p))) return;
   event.preventDefault();

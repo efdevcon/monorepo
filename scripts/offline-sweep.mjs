@@ -64,6 +64,18 @@ async function noOfflineFallback(label) {
   check(`${label}: not the offline fallback`, !/offline/i.test(heading ?? ""), heading ?? "");
 }
 
+// Layout guard: a page root squeezed into a gutter column (a grid-placement
+// regression) renders "fine" to every DOM count check but is unusable.
+async function contentFillsViewport(label) {
+  const w = await page.evaluate(() => {
+    const main = document.querySelector("main");
+    return main ? Math.round(main.getBoundingClientRect().width) : null;
+  });
+  if (w === null) return; // routes without a <main> (map) are exempt
+  const viewport = page.viewportSize()?.width ?? 390;
+  check(`${label}: content fills the viewport`, w >= viewport * 0.8, `main width ${w}px of ${viewport}`);
+}
+
 async function noBrokenImages(label) {
   const broken = await page.evaluate(() =>
     [...document.images].filter((img) => img.src && img.complete && img.naturalWidth === 0).map((img) => img.src)
@@ -109,6 +121,7 @@ for (const route of routes) {
   await page.goto(`${base}${route}?${q}`, { waitUntil: "load" });
   await page.waitForTimeout(500);
   await noOfflineFallback(`hard load ${route}`);
+  await contentFillsViewport(`hard load ${route}`);
   await noBrokenImages(`hard load ${route}`);
 }
 
