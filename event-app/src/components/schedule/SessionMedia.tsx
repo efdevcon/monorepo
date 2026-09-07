@@ -67,7 +67,7 @@ export function SessionMedia({ session }: { session: Session }) {
 
   return (
     // No own margins — the details layout's gaps own the spacing around media.
-    <div>
+    <div className="flex flex-col gap-2">
       {streamSrc && (
         <p className="mb-1 text-sm font-semibold text-dc-red">Livestream</p>
       )}
@@ -95,11 +95,13 @@ export function SessionMedia({ session }: { session: Session }) {
           />
         ))}
       {translationUrl && (
+        // Centered under the thumbnail (Figma); same text-link recipe as the
+        // Q&A "Sign in to ask a question" link.
         <a
           href={translationUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 inline-block text-sm font-semibold text-dc-purple underline"
+          className="self-center text-center text-sm font-bold text-dc-purple hover:underline"
         >
           Live translation available
         </a>

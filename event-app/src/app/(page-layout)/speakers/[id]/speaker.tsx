@@ -76,7 +76,7 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
           <button
             type="button"
             onClick={() => closeDetail("speaker")}
-            className="mb-3 flex cursor-pointer items-center gap-1.5 text-[14px] font-bold leading-none text-dc-purple hover:underline"
+            className="mb-4 flex cursor-pointer items-center gap-2 text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-purple hover:underline"
           >
             <ArrowLeft className="size-4" />
             Back
