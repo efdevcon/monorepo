@@ -87,6 +87,33 @@ export interface TimeGroup {
 }
 
 /** Sort sessions by start time and group consecutive ones by start time. */
+export interface DayGroup {
+  /** Venue-timezone day key, e.g. "2025-11-12". */
+  key: string;
+  /** "Tue, Nov 12" — same formatter as the details meta chip. */
+  label: string;
+  sessions: Session[];
+}
+
+/**
+ * Group an already time-sorted session list by venue day, preserving order.
+ * Used by the speaker details views so a speaker's sessions read under
+ * small date headers (Figma "Expanded Speaker Details" 5114:4183).
+ */
+export function groupSessionsByDay(sessions: Session[]): DayGroup[] {
+  const groups: DayGroup[] = [];
+  for (const session of sessions) {
+    const key = dayKey(session);
+    const last = groups[groups.length - 1];
+    if (last && last.key === key) {
+      last.sessions.push(session);
+    } else {
+      groups.push({ key, label: formatDayLabel(session), sessions: [session] });
+    }
+  }
+  return groups;
+}
+
 export function groupByTime(sessions: Session[]): TimeGroup[] {
   const sorted = [...sessions].sort((a, b) => a.start - b.start);
   const groups: TimeGroup[] = [];

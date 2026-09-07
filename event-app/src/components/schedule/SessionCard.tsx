@@ -25,6 +25,7 @@ export function SessionCard({
   session,
   selected = false,
   compact = false,
+  dense = false,
   onOpen,
 }: {
   session: Session;
@@ -32,6 +33,12 @@ export function SessionCard({
   selected?: boolean;
   /** Desktop 2-up grid cell: drops the inline FEATURED badge (Figma 4325). */
   compact?: boolean;
+  /**
+   * Desktop list inside a detail page (Figma "Expanded Speaker Details"
+   * 5114:4036): 14px/20 title with a 12px title→meta gap, instead of the
+   * schedule list's 16px/24 + 8px.
+   */
+  dense?: boolean;
   /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
 }) {
@@ -81,9 +88,14 @@ export function SessionCard({
       </div>
 
       <div className="flex min-w-0 flex-1 items-center gap-4 py-4 pl-0 pr-4">
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
+        <div className={cn("flex min-w-0 flex-1 flex-col", dense ? "gap-3" : "gap-2")}>
           <div className="flex min-w-0 items-center gap-2">
-            <h3 className="line-clamp-2 min-w-0 text-[14px] font-bold leading-5 text-dc-fg lg:text-[16px] lg:leading-6 lg:text-dc-fg2">
+            <h3
+              className={cn(
+                "line-clamp-2 min-w-0 text-[14px] font-bold leading-5 text-dc-fg lg:text-dc-fg2",
+                !dense && "lg:text-[16px] lg:leading-6"
+              )}
+            >
               {session.title}
             </h3>
             {featured && !compact && (
