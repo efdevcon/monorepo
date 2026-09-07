@@ -33,8 +33,19 @@ const poppinsDevanagari = Poppins({
 });
 
 export const metadata: Metadata = {
+  // Absolute base for og:url / og:image so link previews resolve. APP_ORIGIN
+  // must be set to the public domain in Netlify (falls back to the
+  // netlify.app URL).
+  metadataBase: new URL(APP_CONFIG.APP_ORIGIN),
   title: APP_CONFIG.APP_NAME,
   description: APP_CONFIG.APP_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: APP_CONFIG.APP_NAME,
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
   // Devcon icon set (copied from the devcon site).
   icons: {
     icon: [

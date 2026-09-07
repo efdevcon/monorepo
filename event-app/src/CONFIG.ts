@@ -20,6 +20,11 @@ const APP_CONFIG = {
   // incoming request's own URL isn't reliable behind Netlify's serverless
   // function proxying, which doesn't necessarily preserve the public host.
   APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
+  // Host of the server-rendered social cards (og:image). The renderers,
+  // fonts, brand art and Supabase render cache live on devcon.org
+  // (devcon/src/pages/api/social/*), so the app only links to them.
+  SOCIAL_CARD_ORIGIN:
+    process.env.NEXT_PUBLIC_SOCIAL_CARD_ORIGIN || "https://devcon.org",
 
   // Feature flags - enable/disable routes
   SCHEDULE_ENABLED: true, // /schedule, /schedule/[id]
