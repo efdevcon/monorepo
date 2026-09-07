@@ -8,6 +8,7 @@ import themes from '../../themes.module.scss'
 // import { VerificationModal } from 'components/domain/tickets/VerificationModal'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { RedeemVoucherModal } from 'components/domain/tickets/RedeemVoucherModal'
+import { PatronCard } from 'components/domain/tickets/PatronCard'
 import { Input } from '@/components/ui/input'
 import {
   ArrowLeft,
@@ -616,6 +617,9 @@ function StoreContent({
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
+
+            {/* ─── Patron (free-price item, hidden when not configured/available) ─── */}
+            <PatronCard variant="store" />
 
             {/* ─── Community (self-claim discounts) ─── */}
             <section className={css['section']} id="community">

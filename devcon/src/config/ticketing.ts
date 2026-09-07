@@ -98,6 +98,15 @@ const ENV_CONFIG = {
     questions: {
       goalsIdentifier: 'devcon-goals',
     },
+    // Patron ticket: a Pretix free-price item (the buyer picks the amount).
+    // /tickets/store/patron/ hands the chosen amount to Pretix's cart; Pretix
+    // enforces the item's default price as the minimum. `itemId: null` shows
+    // the page in its "not available" state. Preset amounts are plain POC
+    // examples, adjust before launch.
+    patron: {
+      itemId: 163 as number | null,
+      presets: [2000, 3000, 5000],
+    },
     overrides: {
       soldOut: false,
     },
@@ -192,6 +201,15 @@ const ENV_CONFIG = {
     },
     questions: {
       goalsIdentifier: 'FNXHWF39',
+    },
+    // Patron ticket: a Pretix free-price item (the buyer picks the amount).
+    // /tickets/store/patron/ hands the chosen amount to Pretix's cart; Pretix
+    // enforces the item's default price as the minimum. `itemId: null` shows
+    // the page in its "not available" state. Preset amounts are plain POC
+    // examples, adjust before launch.
+    patron: {
+      itemId: null as number | null,
+      presets: [2000, 3000, 5000],
     },
     overrides: {
       soldOut: false,

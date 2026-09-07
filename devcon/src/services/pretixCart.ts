@@ -31,6 +31,19 @@ export interface PretixCartItem {
   /** Pretix item id */
   id: number
   quantity: number
+  /** Buyer-chosen gross unit price for a Pretix *free-price* item (Pretix's
+   *  `price_<item>` form field). Pretix rejects anything below the item's
+   *  default price and ignores the field for fixed-price items. Decimal
+   *  string or number; numbers are sent with two decimals. */
+  price?: string | number
+}
+
+export interface PretixCartHandoffOptions {
+  /** Where Pretix sends the buyer once the cart is filled. `shop` (default)
+   *  is the namespaced product list with the cart summary on top, which is
+   *  what a multi-item selection expects. `checkout` skips straight to the
+   *  first checkout step, for single-item flows such as the patron ticket. */
+  destination?: 'shop' | 'checkout'
 }
 
 /**
@@ -39,7 +52,7 @@ export interface PretixCartItem {
  * call ends by navigating away. No-op when given no positive-quantity items or
  * when run outside the browser.
  */
-export function addItemsToPretixCartAndRedirect(items: PretixCartItem[]): void {
+export function addItemsToPretixCartAndRedirect(items: PretixCartItem[], options: PretixCartHandoffOptions = {}): void {
   if (typeof document === 'undefined') return
   const positive = items.filter(i => i.quantity > 0)
   if (positive.length === 0) return
@@ -48,8 +61,13 @@ export function addItemsToPretixCartAndRedirect(items: PretixCartItem[]): void {
   // https://tickets.devcon.org/ (prod, custom domain).
   const namespaced = `${pretixEventUrl('/')}w/${makeNonce(16)}/`
   // After the add completes Pretix returns the buyer to the (namespaced) shop
-  // with their cart populated.
-  const action = `${namespaced}cart/add?next=${encodeURIComponent(namespaced)}`
+  // with their cart populated, or straight into checkout when asked. `next`
+  // MUST be a path, not an absolute URL: Pretix validates it with
+  // `url_has_allowed_host_and_scheme(..., allowed_hosts=None)`, which rejects
+  // any URL carrying a host and silently falls back to the shop index.
+  const namespacedPath = new URL(namespaced).pathname
+  const next = options.destination === 'checkout' ? `${namespacedPath}checkout/start` : namespacedPath
+  const action = `${namespaced}cart/add?next=${encodeURIComponent(next)}`
 
   const form = document.createElement('form')
   form.method = 'POST'
@@ -64,7 +82,12 @@ export function addItemsToPretixCartAndRedirect(items: PretixCartItem[]): void {
     form.appendChild(input)
   }
 
-  for (const item of positive) addField(`item_${item.id}`, String(item.quantity))
+  for (const item of positive) {
+    addField(`item_${item.id}`, String(item.quantity))
+    if (item.price !== undefined) {
+      addField(`price_${item.id}`, typeof item.price === 'number' ? item.price.toFixed(2) : item.price)
+    }
+  }
   addField('widget_data', '{}')
 
   document.body.appendChild(form)
