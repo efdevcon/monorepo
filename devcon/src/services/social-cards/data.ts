@@ -15,6 +15,18 @@ export async function getSession(id: string): Promise<any | null> {
   return data ?? null
 }
 
+/**
+ * Speaker with every session they appear in (all events, each stamped with
+ * `eventId`) — the speaker share card filters that list itself, so one
+ * round-trip covers name, avatar, session count, tags and the featured flag.
+ */
+export async function getSpeaker(id: string): Promise<any | null> {
+  const res = await fetch(`${devconApiUrl()}/speakers/${id}`)
+  if (!res.ok) return null
+  const { data } = await res.json()
+  return data ?? null
+}
+
 const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
 // Events worth asking Pretalx about when the API misses (newest first).
 const PRETALX_FALLBACK_EVENTS = ['devcon8']
@@ -78,33 +90,40 @@ export async function getAccountSchedule(id: string): Promise<any | null> {
   return body.user ?? body.data ?? null
 }
 
+/**
+ * Fetch one avatar and normalize it to a square PNG data URL, or null.
+ * PNG because satori cannot decode webp, and the mirrored speaker avatars are
+ * webp since 2026-08-25 — embedding them raw made every render throw, so
+ * cards silently served stale pre-mirror copies forever (found via the 8GH8TR
+ * card, 2026-08-26). Resized to card scale while at it: full-resolution PNGs
+ * ballooned the satori SVG past libxml2's 10MB cap on multi-speaker cards.
+ * data: avatars are generated blockies — skipped so the card template's own
+ * makeBlockie fallback draws the identicon.
+ */
+export async function avatarDataUrl(url: string | undefined, px: number): Promise<string | null> {
+  if (!url || url.startsWith('data:')) return null
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(4000) })
+    if (!r.ok) return null
+    const png = await sharp(Buffer.from(await r.arrayBuffer()))
+      .resize(px, px, { fit: 'cover' })
+      .png()
+      .toBuffer()
+    return `data:image/png;base64,${png.toString('base64')}`
+  } catch {
+    return null
+  }
+}
+
 /** Prefetch speaker avatars to data URLs; failures omit the avatar, never fail the render. */
 export async function speakerImageDataUrls(session: any): Promise<Map<string, string>> {
   const out = new Map<string, string>()
   const speakers: any[] = session?.speakers ?? []
   await Promise.all(
     speakers.map(async s => {
-      // data: avatars are generated blockies — skip them and let the card
-      // template's own makeBlockie fallback draw the identicon.
-      if (!s?.avatar || s.avatar.startsWith('data:')) return
-      try {
-        const r = await fetch(s.avatar, { signal: AbortSignal.timeout(4000) })
-        if (!r.ok) return
-        // Normalize to PNG: satori cannot decode webp, and the mirrored
-        // speaker avatars are webp since 2026-08-25 — embedding them raw made
-        // every render throw, so cards silently served stale pre-mirror
-        // copies forever (found via the 8GH8TR card, 2026-08-26).
-        // Resize to card scale while at it: full-resolution PNGs ballooned the
-        // satori SVG past libxml2's 10MB cap on multi-speaker cards (avatars
-        // render at ≤176px, so 384px covers every card at 2x).
-        const png = await sharp(Buffer.from(await r.arrayBuffer()))
-          .resize(384, 384, { fit: 'cover' })
-          .png()
-          .toBuffer()
-        out.set(s.id, `data:image/png;base64,${png.toString('base64')}`)
-      } catch {
-        /* omit avatar */
-      }
+      // Session-card avatars render at ≤176px, so 384px covers every card at 2x.
+      const url = await avatarDataUrl(s?.avatar, 384)
+      if (url) out.set(s.id, url)
     })
   )
   return out

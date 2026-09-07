@@ -52,6 +52,17 @@ assets per event (`session.eventId === 'devcon8'` vs everything else):
 - devcon8 sessions missing from devcon-api are fetched live from Pretalx as a
   fallback (`getSessionFromPretalx`) — requires the organizer-level
   PRETALX_API_KEY on Netlify.
+- Speaker share card (`/api/social/speaker/[id]/`, `renderDc8SpeakerCard` in
+  `services/social-cards/dc8-speaker-card.tsx`, Figma Dev Handoff 5118:6111):
+  consumed as og:image by the event app's `/speakers/[id]` pages (the app only
+  emits metadata; all rendering lives here). Mumbai KV backdrop + floating
+  gradient card, 224px ringed avatar (marigold ring + FEATURED for speakers
+  with a featured devcon8 session, purple-300 otherwise), session count and up
+  to three topic tags derived from the speaker's devcon8 sessions (one
+  `/speakers/:id` call — the payload embeds every session with its eventId).
+  Adds Poppins SemiBold (`public/fonts/Poppins-SemiBold.ttf`) to
+  `poppinsFonts()`. Cache key `social-cards/speaker/{id}.jpg`. Outside
+  production `?event=devcon-7` previews the card against older data.
 
 Open items before the DC8 card is final:
 - Re-enable the og-cache read + write lines in `services/og-cache.ts`
