@@ -198,9 +198,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                 {customError ? (
                   <p className={picker['error']}>{t('custom_error', { min })}</p>
                 ) : (
-                  <p className={picker['hint']}>
-                    {t('hint', { vat: TICKETING.tax.vatPercent, label: TICKETING.tax.label })}
-                  </p>
+                  <p className={picker['hint']}>{t('hint')}</p>
                 )}
               </>
             )}
@@ -270,6 +268,11 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
           </div>
         </div>
       </div>
+      {available && (
+        <p className={css['gst-note']}>
+          {t('gst_note', { vat: TICKETING.tax.vatPercent, label: TICKETING.tax.label })}
+        </p>
+      )}
     </section>
   )
 }
