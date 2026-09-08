@@ -9,20 +9,9 @@ import themes from '../../themes.module.scss'
 import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { RedeemVoucherModal } from 'components/domain/tickets/RedeemVoucherModal'
 import { PatronCard } from 'components/domain/tickets/PatronCard'
+import { StoreSidebar } from 'components/domain/tickets/StoreSidebar'
 import { Input } from '@/components/ui/input'
-import {
-  ArrowLeft,
-  ArrowRight,
-  CalendarDays,
-  MapPin,
-  Minus,
-  Plus,
-  Ticket,
-  Coffee,
-  Ribbon,
-  TicketPercent,
-  Loader2,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, Minus, Plus, TicketPercent, Loader2 } from 'lucide-react'
 import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
@@ -80,7 +69,6 @@ const CardPrice = ({ eth, fiat, combined }: { eth?: string; fiat?: string; combi
   </span>
 )
 import { TicketInfo } from 'types/pretix'
-import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
@@ -439,51 +427,12 @@ function StoreContent({
   return (
     <>
       <div className={css['store-layout']}>
-        <aside className={css['sidebar']}>
-          <Link to="/tickets" className={css['sidebar-back']}>
-            <ArrowLeft size={20} />
-            Back to Tickets
-          </Link>
-          <div className={css['sidebar-content']}>
-            <div className={css['sidebar-top']}>
-              <div className={css['sidebar-logo']}>
-                <Image src={StoreSidebarLogo} alt="Devcon India" height={56} width={127} />
-              </div>
-              <h2 className={css['sidebar-title']}>Ticket Store</h2>
-              <p className={css['sidebar-description']}>
-                Secure your place at Devcon India, where the people behind decentralized systems come together to learn,
-                build, and connect.
-              </p>
-              <div className={css['sidebar-includes']}>
-                <p className={css['sidebar-includes-label']}>Included in ticket:</p>
-                <ul className={css['sidebar-includes-list']}>
-                  <li className={css['sidebar-includes-item']}>
-                    <Ticket size={20} strokeWidth={1.5} aria-hidden="true" />
-                    Full conference access
-                  </li>
-                  <li className={css['sidebar-includes-item']}>
-                    <Coffee size={20} strokeWidth={1.5} aria-hidden="true" />
-                    Catering all week
-                  </li>
-                  <li className={css['sidebar-includes-item']}>
-                    <Ribbon size={20} strokeWidth={1.5} aria-hidden="true" />
-                    Event swag bag
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <ul className={css['sidebar-details']}>
-              <li className={css['sidebar-details-item']}>
-                <CalendarDays size={20} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
-                3–6 November 2026
-              </li>
-              <li className={css['sidebar-details-item']}>
-                <MapPin size={20} color="#1a0d33" strokeWidth={1.5} aria-hidden="true" />
-                Jio World Centre, Mumbai, India
-              </li>
-            </ul>
-          </div>
-        </aside>
+        <StoreSidebar
+          backHref="/tickets"
+          backLabel="Back to Tickets"
+          title="Ticket Store"
+          description="Secure your place at Devcon India, where the people behind decentralized systems come together to learn, build, and connect."
+        />
 
         <div className={css['content-wrapper']}>
           <div className={css['content']}>
