@@ -24,6 +24,34 @@ the Devcon blog is pulled from the ethereum blog via RSS
 
 you can fetch all our blogposts via the "Event" category, then you can further filter by the "Subcategory" which can be either Devcon or Devconnect - if this isn't working, its likely because the blog doesn't have the proper tags upstream in the blog repo - whoever handles the post submissions to the blog repo (historically Rose/Joe) would need to fix that / be aware of these categories - you can also create PRs there yourself, should be trivial to figure out how it works by inspecting the blog repo
 
+# patron ticket
+
+A "pay what you choose" admission ticket whose surplus above the minimum is
+donated to Nepal Relief (https://nepalrelief.org/). It is a Pretix *free-price*
+item: the buyer picks the amount and Pretix enforces the item's `default_price`
+as the floor, so Pretix remains the final gate on price and availability.
+
+- Config: `src/config/ticketing.ts` -> `patron.itemId` (per env; `null` hides
+  the store section and shows the standalone page in its unavailable state) and
+  `patron.presets` (suggested amounts above the minimum, max four shown).
+- Data: `/api/tickets/patron-info/` (`src/pages/api/tickets/patron-info.ts`)
+  returns the item's minimum, free-price flag, suggestion and per-order cap plus
+  a fresh quota check. Fails closed (`available: false`) on any error; edge
+  cached 30s.
+- UI: `src/components/domain/tickets/PatronCard.tsx`, mounted twice — inside
+  `/tickets/store/` (`variant="store"`, section `#patron`, auto-hides when not
+  sellable) and on the shareable `/tickets/store/patron/` (`variant="page"`,
+  explicit unavailable state). Both pages share `StoreSidebar.tsx`.
+- Checkout: `addItemsToPretixCartAndRedirect(..., { destination: 'checkout' })`
+  in `src/services/pretixCart.ts` POSTs `item_<id>` + `price_<id>` to Pretix's
+  namespaced widget cart and lands on Pretix's hosted checkout. The Patron flow
+  never touches the site's `/tickets/store/checkout` page, its localStorage
+  cart, or the voucher/discount machinery.
+- Copy: `content/en/intl/tickets.json` -> `patron` (ICU placeholders `{min}`,
+  `{vat}`, `{label}`, `{count}`; `<link>` wraps the Nepal Relief anchor).
+  hi/mr come from the translation workflow, never hand-edit.
+- Nothing links to `/tickets/store/patron/` yet; it is a share-by-URL landing.
+
 # social cards (og images) — DC8 asset layout
 
 The session/AV cards (`/api/social/schedule/[id]`, `/api/social/av/[id]`) pick

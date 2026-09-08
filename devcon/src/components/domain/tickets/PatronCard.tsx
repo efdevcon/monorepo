@@ -1,16 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { ArrowRight, Loader2, ExternalLink, Minus, Plus } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
+import { ArrowRight, Loader2, Minus, Plus } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Input } from '@/components/ui/input'
 import css from 'pages/tickets/store/store.module.scss'
 import picker from './PatronCard.module.scss'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
+import { EthGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
 import type { PatronInfoResponse } from 'pages/api/tickets/patron-info'
 
-// Patron ticket section (POC). The Pretix item is a *free-price* item: the
-// buyer picks the amount and Pretix enforces the item's default price as the
-// floor. Pretix's own free-price UI is a bare number field pre-filled with the
+// Patron ticket section. The Pretix item is a *free-price* item: the buyer
+// picks the amount and Pretix enforces the item's default price as the floor.
+// Pretix's own free-price UI is a bare number field pre-filled with the
 // minimum, so this card makes the choice explicit (presets + custom amount)
 // and hands the chosen amount to Pretix's cart via the same namespaced-cart
 // POST the GA card uses. Payment (card or ETH) happens in Pretix's checkout.
@@ -18,6 +19,10 @@ import type { PatronInfoResponse } from 'pages/api/tickets/patron-info'
 // Rendered inside the store page (`variant="store"`, hidden when the item is
 // not configured or not purchasable) and on /tickets/store/patron/
 // (`variant="page"`, shows an explicit unavailable state).
+//
+// Copy lives in content/en/intl/tickets.json under `patron` (translated to
+// hi/mr by the content workflow); only the item's minimum price, availability
+// and per-order cap come from Pretix via /api/tickets/patron-info/.
 
 export const PATRON_RELIEF_URL = 'https://nepalrelief.org/'
 
@@ -25,7 +30,16 @@ const fmt = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0,
 
 type Selection = { kind: 'preset'; amount: number } | { kind: 'custom' }
 
+export function PatronReliefLink({ children }: { children: React.ReactNode }) {
+  return (
+    <a className={css['inline-link']} href={PATRON_RELIEF_URL} target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  )
+}
+
 export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }) {
+  const t = useTranslations('tickets.patron')
   const configured = TICKETING.patron.itemId != null
   const [info, setInfo] = useState<PatronInfoResponse | null>(null)
   const [loadError, setLoadError] = useState(false)
@@ -90,8 +104,6 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
   const clampQty = (n: number) => Math.max(1, maxQty != null ? Math.min(maxQty, n) : n)
   const total = amount != null ? amount * qty : null
 
-  const shopUrl = pretixEventUrl(item ? `/?item=${item.id}` : '/')
-
   const handleCheckout = () => {
     if (!item || amount == null || submitting) return
     setSubmitting(true)
@@ -101,7 +113,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
       // CORS block / network failure: fall back to the plain shop, filtered to
       // the patron item, so the buyer can still purchase.
       console.error('Pretix cart handoff failed, falling back to shop:', err)
-      window.location.href = shopUrl
+      window.location.href = pretixEventUrl(`/?item=${item.id}`)
     }
   }
 
@@ -110,54 +122,39 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
   // In the store the section simply disappears when there is nothing to sell.
   if (variant === 'store' && (!configured || loadError || (info !== null && !available))) return null
 
+  const min = fmt(minPrice)
+
   return (
     <section className={css['section']} id="patron">
       <div className={css['section-header']}>
         <div className={css['section-title-row']}>
-          <h3 className={css['section-title']}>Patron</h3>
-          {available && <span className={css['open-badge']}>OPEN</span>}
+          <h3 className={css['section-title']}>{t('section_title')}</h3>
+          {available && <span className={css['open-badge']}>{t('open_badge')}</span>}
         </div>
         <p className={css['section-subtitle']}>
-          Pick the amount you want to give. Everything above the minimum goes to{' '}
-          <a className={css['inline-link']} href={PATRON_RELIEF_URL} target="_blank" rel="noreferrer">
-            Nepal relief
-          </a>
-          , and you pay by card or with ETH in the ticket shop.
+          {t.rich('intro', { link: chunks => <PatronReliefLink>{chunks}</PatronReliefLink> })}
         </p>
       </div>
 
       <div className={css['card']}>
         <div className={css['card-stacked']}>
           <div className={css['card-details']}>
-            <h3 className={css['discount-card-title']}>{item?.name ?? 'Patron Ticket'}</h3>
+            <h3 className={css['discount-card-title']}>{t('card_title')}</h3>
             {available && (
               <p className={css['discount-card-meta']}>
-                {fixedPrice ? `$${fmt(minPrice)}` : `Pay what you want, from $${fmt(minPrice)}`}
+                {fixedPrice ? t('card_meta_fixed', { min }) : t('card_meta', { min })}
               </p>
             )}
-            {item?.description ? (
-              // Pretix descriptions are markdown.
-              <div className={`${css['discount-card-desc']} ${picker['description']}`}>
-                <ReactMarkdown>{item.description}</ReactMarkdown>
-              </div>
-            ) : (
-              <p className={css['discount-card-desc']}>
-                Same access as General Admission. The amount above the minimum is passed on to Nepal relief.
-              </p>
-            )}
+            <p className={css['discount-card-desc']}>{t('card_description')}</p>
 
-            {loading && <Loader2 className={css['ga-loading']} size={24} aria-label="Loading patron ticket" />}
+            {loading && <Loader2 className={css['ga-loading']} size={24} aria-label={t('loading_label')} />}
 
-            {!loading && !available && (
-              <p className={picker['unavailable']}>
-                Patron tickets are not available right now. You can still check the ticket shop directly.
-              </p>
-            )}
+            {!loading && !available && <p className={picker['unavailable']}>{t('unavailable')}</p>}
 
             {available && !fixedPrice && (
               <>
-                <p className={picker['amount-label']}>Choose your amount per ticket</p>
-                <div className={picker['presets']} role="group" aria-label="Contribution amount">
+                <p className={picker['amount-label']}>{t('amount_label')}</p>
+                <div className={picker['presets']} role="group" aria-label={t('amount_group_label')}>
                   {presets.map(p => (
                     <button
                       type="button"
@@ -167,7 +164,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                       onClick={() => setSelection({ kind: 'preset', amount: p })}
                     >
                       ${fmt(p)}
-                      {p === minPrice && <span className={picker['preset-sub']}>Minimum</span>}
+                      {p === minPrice && <span className={picker['preset-sub']}>{t('preset_minimum')}</span>}
                     </button>
                   ))}
                   <button
@@ -176,8 +173,8 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                     aria-pressed={selection?.kind === 'custom'}
                     onClick={() => setSelection({ kind: 'custom' })}
                   >
-                    Custom
-                    <span className={picker['preset-sub']}>Any amount</span>
+                    {t('preset_custom')}
+                    <span className={picker['preset-sub']}>{t('preset_custom_sub')}</span>
                   </button>
                 </div>
                 {selection?.kind === 'custom' && (
@@ -189,21 +186,20 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                       className={picker['custom-input']}
                       min={minPrice}
                       step="1"
-                      placeholder={`${fmt(minPrice)} or more`}
+                      placeholder={t('custom_placeholder', { min })}
                       value={custom}
                       onChange={e => setCustom(e.target.value)}
-                      aria-label="Custom amount in USD"
+                      aria-label={t('custom_input_label')}
                       aria-invalid={customError}
                       autoFocus
                     />
                   </div>
                 )}
                 {customError ? (
-                  <p className={picker['error']}>The minimum for a Patron ticket is ${fmt(minPrice)}.</p>
+                  <p className={picker['error']}>{t('custom_error', { min })}</p>
                 ) : (
                   <p className={picker['hint']}>
-                    You will see the amount again before paying. Prices include {TICKETING.tax.vatPercent}%{' '}
-                    {TICKETING.tax.label}.
+                    {t('hint', { vat: TICKETING.tax.vatPercent, label: TICKETING.tax.label })}
                   </p>
                 )}
               </>
@@ -214,11 +210,17 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
             {available ? (
               <>
                 <div className={picker['total']}>
-                  <span className={picker['total-value']}>{total != null ? `$${fmt(total)}` : 'Enter an amount'}</span>
-                  {total != null && (
-                    <span className={picker['total-label']}>
-                      for {qty} {qty === 1 ? 'ticket' : 'tickets'}
-                    </span>
+                  {total != null ? (
+                    <>
+                      <span className={picker['total-tiles']}>
+                        <EthGlyphTile size={20} />
+                        <FiatGlyphTile size={20} />
+                      </span>
+                      <span className={picker['total-value']}>${fmt(total)}</span>
+                      <span className={picker['total-label']}>{t('total_for', { count: qty })}</span>
+                    </>
+                  ) : (
+                    <span className={picker['total-value']}>{t('total_empty')}</span>
                   )}
                 </div>
                 <div className={css['ga-actions']}>
@@ -228,7 +230,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                       className={css['quantity-btn']}
                       onClick={() => setQty(q => clampQty(q - 1))}
                       disabled={qty <= 1}
-                      aria-label="Decrease quantity"
+                      aria-label={t('quantity_decrease')}
                     >
                       <Minus size={16} />
                     </button>
@@ -239,14 +241,14 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                       min={1}
                       max={maxQty ?? undefined}
                       onChange={e => setQty(clampQty(parseInt(e.target.value, 10) || 1))}
-                      aria-label="Number of tickets"
+                      aria-label={t('quantity_label')}
                     />
                     <button
                       type="button"
                       className={css['quantity-btn']}
                       onClick={() => setQty(q => clampQty(q + 1))}
                       disabled={maxQty != null && qty >= maxQty}
-                      aria-label="Increase quantity"
+                      aria-label={t('quantity_increase')}
                     >
                       <Plus size={16} />
                     </button>
@@ -257,23 +259,16 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
                     onClick={handleCheckout}
                     disabled={amount == null || submitting}
                   >
-                    {submitting ? 'Loading…' : 'Continue to checkout'}
+                    {submitting ? t('checkout_loading') : t('checkout')}
                     <ArrowRight size={16} strokeWidth={2.5} />
                   </button>
                 </div>
               </>
             ) : loading ? null : (
-              <span className={css['sold-out-badge']}>Unavailable</span>
+              <span className={css['sold-out-badge']}>{t('unavailable_badge')}</span>
             )}
           </div>
         </div>
-      </div>
-
-      <div className={picker['footer-note']}>
-        <a className={picker['shop-link']} href={shopUrl}>
-          Prefer the ticket shop? Open it directly
-          <ExternalLink size={14} aria-hidden="true" />
-        </a>
       </div>
     </section>
   )
