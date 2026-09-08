@@ -12,6 +12,11 @@ alongside this doc) which states the AV enrichment pipeline was never built beca
 the AV team wasn't formed at the time. This document maps what actually exists,
 separates live from dormant, and lists what will break for DC8 if untouched.
 
+For what happened during Devcon SEA's event week itself (livestream player built the day
+before, the monitor page, pipeline write-backs that erased YouTube ids and Swarm hashes,
+schedule publish cadence), see
+[`devcon-sea-event-week-retro.md`](https://github.com/efdevcon/monorepo/blob/main/docs/av/devcon-sea-event-week-retro.md).
+
 Sections 1-9 are assessment only; §10 suggests sequencing and §11 records the
 architecture recommendations from the review discussion. Decisions belong with the
 AV team.
