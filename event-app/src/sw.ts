@@ -274,6 +274,37 @@ const serwist: Serwist = new Serwist({
 
 serwist.addEventListeners();
 
+/**
+ * Warm the runtime page cache with /ticket at install, so the ticket QR
+ * opens offline on a phone that never visited the page online (venue
+ * entrance, no signal). It is deliberately NOT precached: precache serves
+ * cache-first, and /ticket must be server-rendered fresh whenever possible
+ * because its <link rel="manifest"> is personalised from the session cookie
+ * (see next.config.ts and PersonalizedManifestLink). The `documents`
+ * NetworkFirst route above owns this cache, so online loads refresh the copy
+ * and offline loads fall back to it. Best effort: a failure here must not
+ * fail the install.
+ */
+const WARM_PAGES = ["/ticket"];
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    (async () => {
+      try {
+        const cache = await caches.open("pages");
+        await Promise.all(
+          WARM_PAGES.map(async (path) => {
+            const request = new Request(path, { credentials: "same-origin" });
+            const response = await fetch(request);
+            if (response.ok) await cache.put(request, response);
+          })
+        );
+      } catch {
+        // Offline at install time: the page caches itself on first online visit.
+      }
+    })()
+  );
+});
+
 self.addEventListener("message", (event) => {
   if (event.data?.type === "SKIP_WAITING") {
     self.skipWaiting();

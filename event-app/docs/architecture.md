@@ -2,9 +2,13 @@
 
 The service worker is built with **`@serwist/next`** (`src/sw.ts`, compiled to `public/sw.js`).
 Precaching is deliberately light — only the **app-shell routes** (`/`, `/schedule`, `/speakers`,
-`/map`, `/announcements`, `/ticket`, `/room-screens`, `/offline`) plus a few small chrome assets,
+`/map`, `/announcements`, `/room-screens`, `/offline`) plus a few small chrome assets,
 revisioned by git commit hash so a new deploy busts the shell. Keep in mind when testing the
 production build locally as this will currently look like no changes happens between edits.
+`/ticket` is the exception: it is warmed into the runtime page cache at install and served
+network-first, never precached, because its `<link rel="manifest">` is personalised from the session
+cookie (the install sign-in bridge) and Safari reads that tag from the HTML it was handed; a copy
+frozen at install time installed a signed-out app.
 
 The precache is light on purpose because if you try to make the whole app function offline on first
 install, you'd have to precache every single session and speaker, which delays the time-to-update and

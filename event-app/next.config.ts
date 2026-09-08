@@ -27,11 +27,14 @@ const withSerwist = withSerwistInit({
     { url: "/speakers", revision },
     { url: "/map", revision },
     { url: "/announcements", revision },
-    // Ticket QR must work at the venue entrance with no signal: the ticket data
-    // is already Dexie-cached and the QR is generated client-side from the
-    // secret, so only this shell was missing — without it an offline attendee
-    // got the offline fallback instead of their ticket.
-    { url: "/ticket", revision },
+    // NOT /ticket. Its HTML must come from the server whenever the network is
+    // there: the root layout's <link rel="manifest"> is personalised from the
+    // session cookie (PersonalizedManifestLink), and Safari reads that tag
+    // from the HTML it was given when "Add to Home Screen" runs. A precached
+    // copy is frozen at SW install (usually signed out), so installing from
+    // the ticket page lost the sign-in bridge and the installed app opened
+    // signed out. Offline, the ticket QR still works: src/sw.ts warms the
+    // runtime page cache with /ticket at install and serves it network-first.
     { url: "/room-screens", revision },
     // NOTE: only list routes that actually exist. A single 404 here fails the
     // SW install event on every device (the worker never activates, offline
