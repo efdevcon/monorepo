@@ -10,7 +10,7 @@ import {
   type RefObject,
 } from "react";
 import { PaneActiveContext, PanePathContext } from "./paneContext";
-import { isTabPath } from "@/routing/viewParams";
+import { tabPathOf } from "@/routing/viewParams";
 
 /**
  * Persistent tab panes for the bottom-bar destinations. Each pane mounts
@@ -20,9 +20,11 @@ import { isTabPath } from "@/routing/viewParams";
  * a few milliseconds, and each tab keeps its own scroll position like a
  * native tab bar.
  *
- * Routes and URLs are unchanged (precache, deep links, redirects and
- * metadata all still hang off them): the tab routes' page.tsx files render
- * nothing and this layout-level component renders the pane for the pathname.
+ * Routes and URLs are unchanged (precache, deep links and metadata all still
+ * hang off them): the tab routes' page.tsx files render nothing and this
+ * layout-level component renders the pane for the pathname. Detail pages
+ * (`/schedule/<id>`, `/speakers/<id>`) belong to their list tab's pane, which
+ * renders the detail over or instead of its list (routing/detailRoute.ts).
  * Non-tab routes (announcements, room screens, admin) render through the
  * layout's children as before, with every pane hidden.
  */
@@ -50,7 +52,7 @@ const TABS: { path: string; Component: ComponentType }[] = [
 ];
 
 export function TabPanes({ pathname }: { pathname: string }) {
-  const active = isTabPath(pathname) ? pathname : null;
+  const active = tabPathOf(pathname);
   // Panes mount on first visit and are never unmounted. Derived state during
   // render (guarded), so the newly visited pane mounts in this same render.
   const [visited, setVisited] = useState<string[]>(() => (active ? [active] : []));

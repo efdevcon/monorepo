@@ -1,28 +1,135 @@
 "use client";
 
-import { useState } from "react";
+import { useSession } from "@/data/hooks";
+import APP_CONFIG from "@/CONFIG";
+import { use, useState } from "react";
+import { ArrowLeft, CalendarPlus } from "lucide-react";
 import { Link } from "@/routing";
+import { closeDetail } from "@/routing/detailRoute";
+import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
+import { NeedsConnection } from "@/components/NeedsConnection";
+import { ShareButton } from "@/components/ShareButton";
+import { useOnline } from "@/hooks/useOnline";
+import {
+  SessionDetailsContent,
+  downloadSessionIcs,
+} from "@/components/schedule/SessionDetailsContent";
+import type { Session as SessionModel } from "@/data/models";
 import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
-import { useOnline } from "@/hooks/useOnline";
-import { NeedsConnection } from "@/components/NeedsConnection";
 import {
   MeerkatProvider,
   useQuestions,
   useSessionUrl,
 } from "@meerkat-events/react";
 
-/** Live Q&A block (Meerkat). Owns its provider so callers just drop it in. */
-export function SessionQA({ sessionId }: { sessionId: string }) {
+interface SessionClientProps {
+  params?: Promise<{ id: string }>;
+  id?: string;
+}
+
+/**
+ * Fullscreen session details. Rendered by the Schedule tab's persistent pane
+ * for `/schedule/<id>` (mobile: over the list; desktop: instead of it), from
+ * the local store, so it works offline for any session once the event has
+ * synced. `params` is kept for direct use as a route page component.
+ */
+export default function Session({ params, id: directId }: SessionClientProps) {
+  const id = directId ?? use(params!).id;
+
+  const { session, isLoading, error } = useSession(id);
+  const online = useOnline();
+
+  if (!APP_CONFIG.SCHEDULE_ENABLED) {
+    return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
+  }
+
+  if (!session) {
+    // Loading only while nothing has ever been synced; otherwise the id is
+    // unknown (stale link, other dataset) or the first sync failed.
+    if (isLoading) {
+      return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
+    }
+    return (
+      <DetailNotFound
+        label={error?.message || "Session not found"}
+        onBack={() => closeDetail("session")}
+      />
+    );
+  }
+
   return (
-    <MeerkatProvider>
-      <SessionQAInner sessionId={sessionId} />
-    </MeerkatProvider>
+    <main className="expand font-heading text-dc-fg">
+      {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
+          at z -10 and the content) so the surface fills the whole viewport —
+          the content block alone ends at its own height, which left the
+          gradient showing below short sessions. Same fix as speaker.tsx. */}
+      <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
+      <HeaderActions session={session} />
+      <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
+        {/* Desktop-only back control (the mobile header carries the arrow):
+            same recipe as the speaker page. Closes the page in place, never
+            leaves the app. */}
+        <div className="hidden lg:block">
+          <button
+            type="button"
+            onClick={() => closeDetail("session")}
+            className="mb-3 flex cursor-pointer items-center gap-1.5 text-[14px] font-bold leading-none text-dc-purple hover:underline"
+          >
+            <ArrowLeft className="size-4" />
+            Back
+          </button>
+        </div>
+        <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
+          <SessionDetailsContent session={session}>
+            {online ? (
+              <MeerkatProvider>
+                <SessionQA sessionId={id} />
+              </MeerkatProvider>
+            ) : (
+              <SessionQAOffline />
+            )}
+          </SessionDetailsContent>
+        </div>
+      </div>
+    </main>
   );
 }
 
-function SessionQAInner({ sessionId }: { sessionId: string }) {
-  const online = useOnline();
+/**
+ * Share and "Add to Calendar" circle buttons in the app header (Figma
+ * fullscreen session details keeps the actions top-right in the 56px bar).
+ * The portal is gated on the pane being visible, so a hidden tab's detail
+ * never injects buttons into another tab's header.
+ */
+function HeaderActions({ session }: { session: SessionModel }) {
+  return (
+    <HeaderActionsPortal>
+      <ShareButton kind="session" id={session.id} title={session.title} />
+      <button
+        onClick={() => downloadSessionIcs(session)}
+        aria-label="Add to calendar"
+        className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
+      >
+        <CalendarPlus className="size-4 text-dc-purple" />
+      </button>
+    </HeaderActionsPortal>
+  );
+}
+
+/** Live-only feature: one quiet line offline, recovers on reconnect. */
+function SessionQAOffline() {
+  return (
+    <div>
+      <h2 className="mb-3 text-[14px] leading-5 text-dc-fg2">
+        <span className="font-bold">Live Q&amp;A</span> – Powered by Meerkat
+      </h2>
+      <NeedsConnection what="Live Q&A" />
+    </div>
+  );
+}
+
+function SessionQA({ sessionId }: { sessionId: string }) {
   const { user } = useUser();
   // WIP: realtime disabled until Meerkat integration is avaiable
   const { data: questions, isLoading, error } = useQuestions({ sessionId, sort: "popular", realtime: false });
@@ -79,18 +186,6 @@ function SessionQAInner({ sessionId }: { sessionId: string }) {
     } finally {
       setIsGenerating(false);
     }
-  }
-
-  // Live-only feature: one quiet line offline, recovers on reconnect.
-  if (!online) {
-    return (
-      <div>
-        <h2 className="mb-3 text-[14px] leading-5 text-dc-fg2">
-          <span className="font-bold">Live Q&amp;A</span> – Powered by Meerkat
-        </h2>
-        <NeedsConnection what="Live Q&A" />
-      </div>
-    );
   }
 
   return (

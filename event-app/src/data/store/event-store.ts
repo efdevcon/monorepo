@@ -63,6 +63,28 @@ export function isBundleShaped(x: unknown): x is EventBundle {
 const BACKOFF_MS = [15_000, 30_000, 60_000];
 /** Matches the API's 60 s CDN TTL: polling faster can't observe a change sooner. */
 const POLL_MS = 60_000;
+/**
+ * IndexedDB can hang without failing (upgrade blocked by another tab, some
+ * private modes). The write is best effort: past this the bundle is served
+ * from memory for the session and the sync completes instead of wedging.
+ */
+const PERSIST_TIMEOUT_MS = 8_000;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, what: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`${what} timed out after ${ms} ms`)), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      }
+    );
+  });
+}
 
 /**
  * Catalogue store for the active event. Rows live in Dexie (one row per
@@ -143,13 +165,28 @@ export class EventStore {
 
   private async run(dataset: Dataset, force: boolean): Promise<SyncResult> {
     const { eventId } = dataset;
+    // Known offline: don't flash "syncing" then fail once a minute (the
+    // reconnect trigger runs a sync the moment the network is back). A forced
+    // sync still tries, so the debug panel can prove the point.
+    if (!force && typeof navigator !== "undefined" && navigator.onLine === false) {
+      this.set({ status: "offline" });
+      return "failed";
+    }
     this.set({ status: "syncing" });
     try {
       const remote = await this.source.getVersion(dataset);
       const meta = this.state.meta?.eventId === eventId ? this.state.meta : null;
-      const haveRows = this.state.snapshot.sessions.length > 0;
+      // Gate on the meta row alone, not on "having sessions": an event that is
+      // published with zero sessions yet (the app ships before the schedule)
+      // is a legitimate synced state, not a reason to re-download the bundle
+      // on every poll. Rows and meta are written in one transaction, so they
+      // cannot disagree. An empty or absent remote version cannot mean
+      // "changed" either: treat it as unchanged when a synced copy exists.
+      const remoteKnown = remote !== "" && remote !== "null" && remote !== "undefined";
+      const unchanged =
+        meta !== null && !force && (!remoteKnown || !shouldFetch(remote, meta.version, false));
 
-      if (meta && haveRows && !shouldFetch(remote, meta.version, force)) {
+      if (meta && unchanged) {
         const checked: EventMetaRow = { ...meta, checkedAt: Date.now() };
         await cacheDB?.eventMeta.put(checked).catch(() => undefined);
         this.failures = 0;
@@ -168,10 +205,17 @@ export class EventStore {
       );
       const rows = normalizeBundle(bundle, eventId, Date.now());
 
+      // Publish first, persist second: the UI gets the new schedule the
+      // moment it is parsed, and a slow or stuck IndexedDB write (blocked
+      // upgrade, quota) can neither delay nor lose it for this session.
+      const snapshot = materialize(rows, eventId);
+      this.failures = 0;
+      this.set({ snapshot, meta: rows.meta, status: "idle", lastError: null });
+
       if (cacheDB) {
         const db = cacheDB;
-        await db
-          .transaction(
+        await withTimeout(
+          db.transaction(
             "rw",
             [db.eventSessions, db.eventSpeakers, db.eventRooms, db.eventMeta],
             async () => {
@@ -187,16 +231,16 @@ export class EventStore {
                 db.eventMeta.put(rows.meta),
               ]);
             }
-          )
-          .catch((err) => {
-            // Quota / private mode: keep serving from memory for this session.
-            console.warn("[event-store] persist failed, keeping data in memory:", err);
-          });
+          ),
+          PERSIST_TIMEOUT_MS,
+          "IndexedDB write"
+        ).catch((err) => {
+          // Quota / private mode / blocked upgrade: keep serving from memory
+          // for this session.
+          console.warn("[event-store] persist failed, keeping data in memory:", err);
+        });
       }
 
-      const snapshot = materialize(rows, eventId);
-      this.failures = 0;
-      this.set({ snapshot, meta: rows.meta, status: "idle", lastError: null });
       return "updated";
     } catch (err) {
       const offline =

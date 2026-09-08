@@ -1,31 +1,32 @@
 /**
- * URL params that select an in-page view or a debug mode on a precached
- * shell route. Shared by the app and the service worker (src/sw.ts imports
- * this file relatively), so both agree on what a URL's identity is: the HTML
- * and RSC payload of `/speakers?speaker=x` are the ones of `/speakers`.
+ * Route shapes shared by the app and the service worker (src/sw.ts imports
+ * this file relatively), so both agree on what a URL's identity is.
+ *
+ * Detail pages are real paths (`/schedule/<id>`, `/speakers/<id>`): the URLs
+ * people share, crawlers fetch (per-item social metadata is rendered there)
+ * and push notifications open. In the app they open in place: the list tab
+ * stays mounted and the URL changes with `history.pushState` (routing/
+ * detailRoute.ts), and offline the service worker answers a navigation to a
+ * detail path with the precached tab shell, which renders the detail from the
+ * local store. So a `/schedule/[id]` page never has to be precached per id.
  *
  * Pure module: no DOM, no React.
  */
 
 export type DetailKind = "session" | "speaker";
 
-/** Detail views: `?session=<id>` on /schedule, `?speaker=<id>` on /speakers. */
-export const VIEW_PARAMS = ["session", "speaker"] as const satisfies readonly DetailKind[];
-
 /** Debug/editor params carried across navigation (routing/index.tsx, DebugPanel, announcements preview). */
 export const DEBUG_PARAMS = ["dataset", "mockNow", "mockSpeed", "debug", "preview"] as const;
 
 /**
- * For Serwist `ignoreURLParametersMatching` and our RSC cache-key plugin: a
- * request differing only in these params maps to the same cached shell.
+ * Shell cache-key policy for the service worker: HTML and RSC payloads are
+ * identical whatever the query string (all data is client-side), so every
+ * param is ignored when looking up a shell. Only Next's `_rsc` marker stays,
+ * since it distinguishes an RSC payload request from the document.
  */
-export const IGNORED_URL_PARAMS: RegExp[] = [
-  ...[...VIEW_PARAMS, ...DEBUG_PARAMS].map((p) => new RegExp(`^${p}$`)),
-  /^utm_/,
-  /^fbclid$/,
-];
+export const IGNORED_URL_PARAMS: RegExp[] = [/^(?!_rsc$).*/];
 
-/** Copy of `url` without the ignored params (the input is not mutated). */
+/** Copy of `url` reduced to its shell identity (the input is not mutated). */
 export function stripIgnoredParams(url: URL): URL {
   const out = new URL(url.toString());
   for (const key of [...out.searchParams.keys()]) {
@@ -50,34 +51,41 @@ export const DETAIL_ROUTES: Record<DetailKind, string> = {
   speaker: "/speakers",
 };
 
-/** In-app href of a detail view (opens in place, works offline). */
+/** Canonical href of a detail page (in-app open, share link, deep link). */
 export function detailHref(kind: DetailKind, id: string): string {
-  return `${DETAIL_ROUTES[kind]}?${kind}=${encodeURIComponent(id)}`;
-}
-
-/**
- * Shareable href of a detail view: the short path form. Browsers and crawlers
- * are redirected to `detailHref` (next.config online, the service worker
- * offline), and the shell there serves per-item social metadata.
- */
-export function shareHref(kind: DetailKind, id: string): string {
   return `${DETAIL_ROUTES[kind]}/${encodeURIComponent(id)}`;
 }
 
 /**
- * Legacy `/schedule/<id>` and `/speakers/<id>` → their query-param form,
- * preserving any query string. Null for everything else. The "no dot" rule
- * keeps `/schedule/devcon8-logo.svg` and friends (static files) out; ids are
- * slugs without dots, slashes or percent signs.
+ * `/schedule/<id>` and `/speakers/<id>` (optional trailing slash). The "no
+ * dot" rule keeps `/schedule/devcon8-logo.svg` and friends (static files)
+ * out; ids are slugs without dots, slashes or percent signs.
  */
-const LEGACY_DETAIL = /^\/(schedule|speakers)\/([^/.]+)\/?$/;
+const DETAIL_PATH = /^\/(schedule|speakers)\/([^/.]+)\/?$/;
 
-export function legacyDetailRedirect(url: URL): URL | null {
-  const match = LEGACY_DETAIL.exec(url.pathname);
+export function parseDetailPath(pathname: string): { kind: DetailKind; id: string } | null {
+  const match = DETAIL_PATH.exec(pathname);
   if (!match) return null;
-  const kind: DetailKind = match[1] === "schedule" ? "session" : "speaker";
-  const out = new URL(DETAIL_ROUTES[kind], url.origin);
-  url.searchParams.forEach((value, key) => out.searchParams.set(key, value));
-  out.searchParams.set(kind, decodeURIComponent(match[2]));
-  return out;
+  let id = match[2];
+  try {
+    id = decodeURIComponent(id);
+  } catch {
+    // Malformed escape: keep the raw segment, the lookup simply misses.
+  }
+  return { kind: match[1] === "schedule" ? "session" : "speaker", id };
+}
+
+export function isDetailPath(pathname: string): boolean {
+  return parseDetailPath(pathname) !== null;
+}
+
+/**
+ * The tab pane that renders `pathname`: the tab itself, or the list tab a
+ * detail page belongs to. Null for routes outside the tab bar (announcements,
+ * room screens, admin), which render through the layout's children.
+ */
+export function tabPathOf(pathname: string): string | null {
+  if (isTabPath(pathname)) return pathname;
+  const detail = parseDetailPath(pathname);
+  return detail ? DETAIL_ROUTES[detail.kind] : null;
 }

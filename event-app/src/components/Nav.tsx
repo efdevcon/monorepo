@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
-import { useDetailView } from "@/routing/detailParam";
+import { useDetailView } from "@/routing/detailRoute";
 import { handleTabClick } from "@/components/paneContext";
 import { IosHapticOverlay } from "@/components/IosHapticOverlay";
 

@@ -7,7 +7,7 @@ import cn from "classnames";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
-import { useDetailView } from "@/routing/detailParam";
+import { useDetailView } from "@/routing/detailRoute";
 import { TabPanes } from "@/components/TabPanes";
 
 /**

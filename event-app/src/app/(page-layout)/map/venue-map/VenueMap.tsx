@@ -76,7 +76,9 @@ export const VenueMap = () => {
 
   // Re-tapping the Map tab resets the map like the Home control: filters
   // cleared, view back to the initial position and zoom, and any URL
-  // selection dropped (replaceState is Next-integrated, no fetch).
+  // selection dropped (replaceState is Next-integrated, no fetch). Only the
+  // `filter` param goes; dataset / mockNow / debug params are carried across
+  // the whole app and must survive.
   const resetView = () => {
     reset();
     if (panzoomInstance) {
@@ -85,7 +87,11 @@ export const VenueMap = () => {
       panzoomInstance.zoomAbs(0, 0, 1);
       panzoomInstance.resume();
     }
-    if (selection) window.history.replaceState({}, '', '/map');
+    if (selection) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('filter');
+      window.history.replaceState({}, '', url.toString());
+    }
   };
   useTabReselect(resetView);
 

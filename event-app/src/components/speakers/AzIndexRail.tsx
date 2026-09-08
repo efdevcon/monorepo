@@ -58,6 +58,10 @@ export function AzIndexRail({
   useLayoutEffect(() => {
     const measure = () => {
       const el = activeSection ? cellRefs.current.get(activeSection) : null;
+      // Inside a hidden tab pane (display:none) every cell measures 0×0;
+      // keep the last real position instead of parking the pill at the top,
+      // which made it sweep down the rail on every return to the tab.
+      if (el && el.offsetHeight === 0) return;
       setPill(el ? { y: el.offsetTop, h: el.offsetHeight } : null);
     };
     measure();

@@ -7,9 +7,10 @@ import { shouldFetch, isBundleShaped } from "../src/data/store/event-store";
 import type { EventBundle } from "../src/data/store/types";
 import {
   detailHref,
-  shareHref,
-  legacyDetailRedirect,
+  isDetailPath,
+  parseDetailPath,
   stripIgnoredParams,
+  tabPathOf,
 } from "../src/routing/viewParams";
 
 let failed = 0;
@@ -122,24 +123,29 @@ function testSyncDecision() {
 
 function testRouting() {
   const origin = "https://app.example";
-  check("detailHref session", detailHref("session", "a b") === "/schedule?session=a%20b");
-  check("detailHref speaker", detailHref("speaker", "bob") === "/speakers?speaker=bob");
-  check("shareHref is the pretty path", shareHref("session", "my-talk") === "/schedule/my-talk" && shareHref("speaker", "bob") === "/speakers/bob");
+  check("detailHref session", detailHref("session", "a b") === "/schedule/a%20b");
+  check("detailHref speaker", detailHref("speaker", "bob") === "/speakers/bob");
 
-  const stripped = stripIgnoredParams(new URL(`${origin}/speakers?speaker=x&dataset=devcon-7&mockNow=1&_rsc=abc&utm_source=t`));
-  check("stripIgnoredParams keeps only unknown params", stripped.search === "?_rsc=abc", stripped.search);
-  const input = new URL(`${origin}/a?session=1`);
+  // Shell cache keys: the query never changes a shell, only Next's RSC marker
+  // tells a payload request from the document.
+  const stripped = stripIgnoredParams(new URL(`${origin}/speakers?dataset=devcon-7&mockNow=1&_rsc=abc&utm_source=t&igshid=z`));
+  check("stripIgnoredParams keeps only the RSC marker", stripped.search === "?_rsc=abc", stripped.search);
+  const input = new URL(`${origin}/a?dataset=1`);
   stripIgnoredParams(input);
-  check("stripIgnoredParams does not mutate input", input.search === "?session=1");
+  check("stripIgnoredParams does not mutate input", input.search === "?dataset=1");
 
-  const r1 = legacyDetailRedirect(new URL(`${origin}/schedule/my-talk`));
-  check("legacy session route redirects", r1?.pathname === "/schedule" && r1?.searchParams.get("session") === "my-talk");
-  const r2 = legacyDetailRedirect(new URL(`${origin}/speakers/alice/?dataset=devcon-7`));
-  check("legacy speaker route keeps query", r2?.pathname === "/speakers" && r2?.searchParams.get("speaker") === "alice" && r2?.searchParams.get("dataset") === "devcon-7");
-  check("static files under /schedule are not redirected", legacyDetailRedirect(new URL(`${origin}/schedule/devcon8-logo.svg`)) === null);
-  check("nested static paths are not redirected", legacyDetailRedirect(new URL(`${origin}/schedule/gems/security.webp`)) === null);
-  check("shell routes are not redirected", legacyDetailRedirect(new URL(`${origin}/schedule`)) === null && legacyDetailRedirect(new URL(`${origin}/speakers/`)) === null);
-  check("other routes are not redirected", legacyDetailRedirect(new URL(`${origin}/room-screens/stage-1`)) === null);
+  check("parseDetailPath session", eq(parseDetailPath("/schedule/my-talk"), { kind: "session", id: "my-talk" }));
+  check("parseDetailPath speaker, trailing slash", eq(parseDetailPath("/speakers/alice/"), { kind: "speaker", id: "alice" }));
+  check("parseDetailPath decodes the id", parseDetailPath("/schedule/a%20b")?.id === "a b");
+  check("static files under /schedule are not details", parseDetailPath("/schedule/devcon8-logo.svg") === null);
+  check("nested static paths are not details", parseDetailPath("/schedule/gems/security.webp") === null);
+  check("shell routes are not details", parseDetailPath("/schedule") === null && parseDetailPath("/speakers/") === null);
+  check("other routes are not details", parseDetailPath("/room-screens/stage-1") === null);
+  check("isDetailPath", isDetailPath("/speakers/bob") && !isDetailPath("/speakers"));
+
+  check("tabPathOf tab routes", tabPathOf("/schedule") === "/schedule" && tabPathOf("/") === "/");
+  check("tabPathOf detail pages map to their list tab", tabPathOf("/schedule/my-talk") === "/schedule" && tabPathOf("/speakers/bob") === "/speakers");
+  check("tabPathOf other routes", tabPathOf("/announcements") === null && tabPathOf("/room-screens/x") === null);
 }
 
 async function main() {

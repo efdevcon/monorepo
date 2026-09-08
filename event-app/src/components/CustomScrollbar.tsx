@@ -25,6 +25,9 @@ export function CustomScrollbar() {
   const drag = useRef<{ startY: number; startScroll: number } | null>(null);
 
   useEffect(() => {
+    // Nothing renders on mobile: skip the scroll/resize listeners and the
+    // per-scroll state updates too.
+    if (suppressed) return;
     const doc = document.documentElement;
 
     const measure = () => {
@@ -49,7 +52,7 @@ export function CustomScrollbar() {
       window.removeEventListener("resize", measure);
       ro.disconnect();
     };
-  }, []);
+  }, [suppressed]);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {

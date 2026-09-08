@@ -5,17 +5,41 @@ import { WifiOff } from "lucide-react";
 
 /**
  * Offline fallback, served by the service worker for a document navigation it
- * can't fulfil offline. Every app route is a precached shell (details are
- * query params on those shells), so this only shows for routes that aren't
- * part of the app shell at all. The address bar keeps the original URL, so
- * reconnecting reloads the page the user actually wanted.
+ * can't fulfil offline. Every app route is a precached shell and detail pages
+ * fall back to their list tab's shell, so this only shows for routes that
+ * aren't part of the app shell at all. The address bar keeps the original
+ * URL, so reconnecting reloads the page the user actually wanted.
+ *
+ * If the page mounts while the browser already reports online (the
+ * connection came back before this loaded, or the server itself failed), it
+ * reloads once right away; a repeat within 30 s is left alone so a failing
+ * server can't spin the tab in a reload loop.
  */
+const RELOAD_GUARD_KEY = "dc-offline-reload";
+const RELOAD_GUARD_MS = 30_000;
+
+function reloadOnce(): boolean {
+  try {
+    const last = Number(sessionStorage.getItem(RELOAD_GUARD_KEY) ?? 0);
+    if (Date.now() - last < RELOAD_GUARD_MS) return false;
+    sessionStorage.setItem(RELOAD_GUARD_KEY, String(Date.now()));
+  } catch {
+    // Storage blocked: reload anyway, the online event is a one-off.
+  }
+  window.location.reload();
+  return true;
+}
+
 export default function OfflinePage() {
   const [online, setOnline] = useState(false);
 
   useEffect(() => {
+    if (navigator.onLine && reloadOnce()) return;
     setOnline(navigator.onLine);
-    const onOnline = () => window.location.reload();
+    const onOnline = () => {
+      setOnline(true);
+      reloadOnce();
+    };
     const onOffline = () => setOnline(false);
     window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOffline);
@@ -35,7 +59,7 @@ export default function OfflinePage() {
         <h1 className="text-xl font-bold text-gray-900">You&apos;re offline</h1>
         <p className="text-sm text-gray-500">
           {online
-            ? "You're back online, reloading…"
+            ? "This page couldn't be loaded. Try again, or head back to the app."
             : "This page isn't available offline. Reconnect to load it, or head back to the app."}
         </p>
       </div>

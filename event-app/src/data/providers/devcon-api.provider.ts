@@ -2,8 +2,21 @@ import type { Dataset } from "../dataset";
 import type { EventBundle } from "../store/types";
 import type { IEventDataProvider } from "./provider-interface";
 
+/**
+ * Hard cap per request. Without it one hung request (captive-portal wifi
+ * answers the TCP handshake and then nothing, and `navigator.onLine` stays
+ * true) keeps the store's single in-flight sync pending forever: no retry
+ * backoff, every trigger returns the same stuck promise, and the UI shows
+ * "Loading schedule…" until the tab is closed.
+ */
+const REQUEST_TIMEOUT_MS = 10_000;
+
 async function getJson<T>(url: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(url, init);
+  const signal =
+    typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function"
+      ? AbortSignal.timeout(REQUEST_TIMEOUT_MS)
+      : undefined;
+  const res = await fetch(url, { ...init, signal });
   if (!res.ok) throw new Error(`DevconAPI ${res.status}: ${url}`);
   const json = (await res.json()) as { data: T };
   return json.data;

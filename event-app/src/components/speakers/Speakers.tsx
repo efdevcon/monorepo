@@ -26,18 +26,14 @@ import {
   safeTopNow,
 } from "@/hooks/useIsDesktop";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { useDetailParam } from "@/routing/detailParam";
-import {
-  DetailLayer,
-  DetailNotFound,
-  HeaderActionsPortal,
-} from "@/components/DetailLayer";
-import { ShareButton } from "@/components/ShareButton";
-import { RenderOnApproach } from "@/components/RenderOnApproach";
+import { useDetailRoute } from "@/routing/detailRoute";
+import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
+import { ListLoadState } from "@/components/ListLoadState";
+import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveReveal";
+import Speaker from "@/app/(page-layout)/speakers/[id]/speaker";
 import { useSpeakersData, type DecoratedSpeaker } from "./useSpeakersData";
 import { useSpeakersState } from "./useSpeakersState";
 import { SpeakerCard } from "./SpeakerCard";
-import { SpeakerDetailsContent } from "./SpeakerDetailsContent";
 import { TopicPills } from "./TopicPills";
 import { TypeTabs, typeLabel } from "./TypeTabs";
 import { TopicSheet } from "./TopicSheet";
@@ -150,7 +146,6 @@ export function Speakers() {
     typeOptions,
     isLoading,
     isError,
-    error,
   } = useSpeakersData();
   // Single interested subscription for the whole page — memoized cards get
   // plain `interested`/`onToggleInterested` props instead of each running
@@ -179,8 +174,7 @@ export function Speakers() {
   // measurements belong to the visible pane only (see TabPanes).
   const paneActive = usePaneActive();
   const { id: detailId, open: openDetail, close: closeDetail } =
-    useDetailParam("speaker");
-  const selectedSpeakerId = detailId;
+    useDetailRoute("speaker");
   const [topicSheetOpen, setTopicSheetOpen] = useState(false);
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
@@ -197,37 +191,54 @@ export function Speakers() {
     topics.forEach((t) => toggleTopic(t));
   }, [topics, toggleTopic]);
 
-  // Selection lives in the URL (?speaker=<id>) on every viewport: desktop
-  // renders it in the side panel, mobile in a full-screen layer over the list.
-  // Card callbacks read the URL directly so they stay referentially stable
-  // (memoized cards would otherwise re-render on every selection).
+  // Two selections. The fullscreen speaker page is the URL (`/speakers/<id>`,
+  // detailId, see routing/detailRoute.ts): mobile renders it as a layer over
+  // the list, desktop in place of the list. The desktop side panel is local
+  // state, like a native split view, so browsing speakers there never touches
+  // history; the panel's expand action and shared links use the URL form.
+  // Card callbacks read a ref so they stay referentially stable (memoized
+  // cards would otherwise re-render on every selection).
+  const [panelSpeakerId, setPanelSpeakerId] = useState<string | null>(null);
+  const panelSpeakerIdRef = useRef<string | null>(null);
+  panelSpeakerIdRef.current = panelSpeakerId;
+  const selectedSpeakerId = isDesktop ? panelSpeakerId : detailId;
   const selectSpeaker = useCallback(
     (id: string | null) => {
-      if (id) openDetail(id);
+      if (isDesktop) setPanelSpeakerId(id);
+      else if (id) openDetail(id);
       else closeDetail();
     },
-    [openDetail, closeDetail]
+    [isDesktop, openDetail, closeDetail]
   );
-  // Clicking the already-selected card closes the panel.
+  // Desktop: clicking the already-selected card closes the panel.
   const onOpenCard = useCallback(
     (id: string) => {
-      const current = new URLSearchParams(window.location.search).get("speaker");
-      selectSpeaker(id === current ? null : id);
+      if (isDesktop) selectSpeaker(id === panelSpeakerIdRef.current ? null : id);
+      else openDetail(id);
     },
-    [selectSpeaker]
+    [isDesktop, selectSpeaker, openDetail]
   );
 
   // The sheet only exists below lg; a stale open flag would otherwise pop it
-  // open uninvited when the viewport narrows back.
+  // open uninvited when the viewport narrows back. It belongs to the list, so
+  // a speaker page opening closes it too.
   useEffect(() => {
-    if (isDesktop) setTopicSheetOpen(false);
-  }, [isDesktop]);
+    if (isDesktop || detailId) setTopicSheetOpen(false);
+  }, [isDesktop, detailId]);
 
   const selectedSpeaker = useMemo(
     () => (selectedSpeakerId ? (byId.get(selectedSpeakerId) ?? null) : null),
     [byId, selectedSpeakerId]
   );
-  useDocumentTitle(selectedSpeaker?.speaker.name ?? null);
+  const routeSpeaker = detailId ? (byId.get(detailId) ?? null) : null;
+  useDocumentTitle(routeSpeaker?.speaker.name ?? null);
+  // Desktop renders the speaker page in place of the list: remember where
+  // the list was and put it back on close (mobile's layer keeps the list as
+  // is underneath).
+  useListScrollAcrossDetail(isDesktop && !!detailId);
+  // The list is on screen: this pane is the visible one and no fullscreen
+  // page replaces it. Window measurements wait for it.
+  const listVisible = paneActive && !(isDesktop && detailId);
 
   const sidePanelOpen = isDesktop && !!selectedSpeaker;
 
@@ -259,7 +270,18 @@ export function Speakers() {
   const spyTargetRef = useRef<string | null>(null);
   const spyTimeoutRef = useRef(0);
 
+  // Letter groups render progressively (first mount costs a screenful of
+  // cards, the rest fill in over the next second or two); a jump completes
+  // the list first so it measures real heights and lands exactly.
+  const { visible: revealedSections, revealAll } = useProgressiveReveal(
+    sections.length,
+    2
+  );
+  const revealAllRef = useRef(revealAll);
+  revealAllRef.current = revealAll;
+
   const jumpToSection = useCallback((section: string) => {
+    revealAllRef.current();
     const el = letterRefs.current.get(section);
     if (!el) return;
     spyTargetRef.current = section;
@@ -296,7 +318,7 @@ export function Speakers() {
   // Heights/vars mutate the DOM directly so per-frame scrolling doesn't
   // re-render the (large) speaker list; only the rare boolean/letter flips do.
   useEffect(() => {
-    if (!paneActive) return;
+    if (!listVisible) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -434,49 +456,50 @@ export function Speakers() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [sidePanelOpen, sections, paneActive]);
+  }, [sidePanelOpen, sections, listVisible]);
 
   const filtersActive =
     activeFilterCount > 0 || interestedOnly || search.trim().length > 0;
 
-  // Cards render as their letter group approaches the viewport (a placeholder
-  // of about the right height holds the place until then), so mounting the
-  // page costs a screenful of cards instead of all 700+.
-  const renderGrid = (speakers: DecoratedSpeaker[]) => (
-    <RenderOnApproach
-      estimatedHeight={Math.max(
-        0,
-        (isDesktop && !sidePanelOpen
-          ? Math.ceil(speakers.length / 2)
-          : speakers.length) *
-          92 -
-          12
-      )}
-    >
-    <div
-      className={cn(
-        "grid grid-cols-1 gap-3",
-        !sidePanelOpen && "lg:grid-cols-2"
-      )}
-    >
-      {speakers.map((d) => (
-        <SpeakerCard
-          key={d.speaker.id}
-          decorated={d}
-          selected={d.speaker.id === selectedSpeakerId}
-          interested={interestedIds.has(d.speaker.id)}
-          onOpen={onOpenCard}
-          onToggleInterested={toggleInterestedSpeaker}
-        />
-      ))}
-    </div>
-    </RenderOnApproach>
-  );
+  // Groups past the progressive-reveal frontier hold their place with a
+  // placeholder of about the right height (see useProgressiveReveal); their
+  // section and heading stay real so the rail and the scroll-spy work.
+  const renderGrid = (speakers: DecoratedSpeaker[], sectionIndex: number) => {
+    if (sectionIndex >= revealedSections) {
+      const rows =
+        isDesktop && !sidePanelOpen ? Math.ceil(speakers.length / 2) : speakers.length;
+      // Card pitch (card + 12px gap): ~92px on desktop, ~108px on mobile
+      // where the tag row wraps under the meta line.
+      return <GroupPlaceholder height={Math.max(0, rows * (isDesktop ? 92 : 108) - 12)} />;
+    }
+    return (
+      <div
+        className={cn(
+          "grid grid-cols-1 gap-3",
+          !sidePanelOpen && "lg:grid-cols-2"
+        )}
+      >
+        {speakers.map((d) => (
+          <SpeakerCard
+            key={d.speaker.id}
+            decorated={d}
+            selected={d.speaker.id === selectedSpeakerId}
+            interested={interestedIds.has(d.speaker.id)}
+            onOpen={onOpenCard}
+            onToggleInterested={toggleInterestedSpeaker}
+          />
+        ))}
+      </div>
+    );
+  };
+  const letterSectionOffset = featuredSpeakers.length > 0 ? 1 : 0;
 
   return (
     <main className="expand font-heading text-dc-fg">
-      {/* The detail layer owns the header on mobile (back arrow + share). */}
-      {!(detailId && !isDesktop) && (
+      {/* The speaker page owns the header while open (back arrow + share);
+          the list's actions and its search drawer step aside and come back,
+          query intact, when it closes. */}
+      {!detailId && (
         <HeaderActions
           searchOpen={headerSearch.searchOpen}
           searchActive={headerSearch.searchOpen}
@@ -487,47 +510,38 @@ export function Speakers() {
           onOpenFilters={() => setTopicSheetOpen(true)}
         />
       )}
-      <HeaderSearchDrawer
-        open={headerSearch.searchOpen}
-        onClose={headerSearch.closeSearch}
-        value={search}
-        onChange={setSearch}
-        placeholder="Find a speaker"
-        inputRef={headerSearch.inputRef}
-        drawerRef={headerSearch.drawerRef}
-      />
+      {!detailId && (
+        <HeaderSearchDrawer
+          open={headerSearch.searchOpen}
+          onClose={headerSearch.closeSearch}
+          value={search}
+          onChange={setSearch}
+          placeholder="Find a speaker"
+          inputRef={headerSearch.inputRef}
+          drawerRef={headerSearch.drawerRef}
+        />
+      )}
 
-      {/* Mobile: speaker details as a layer over the (still mounted) list. */}
-      {!isDesktop && detailId && (
-        <DetailLayer label="Speaker details">
-          {selectedSpeaker ? (
-            <>
-              <HeaderActionsPortal>
-                <ShareButton
-                  kind="speaker"
-                  id={selectedSpeaker.speaker.id}
-                  title={selectedSpeaker.speaker.name}
-                />
-              </HeaderActionsPortal>
-              <SpeakerDetailsContent
-                decorated={selectedSpeaker}
-                className="min-h-full"
-              />
-            </>
-          ) : (
-            <DetailNotFound label="Speaker not found" onBack={closeDetail} />
-          )}
+      {/* Fullscreen speaker page for `/speakers/<id>`: mobile as a layer over
+          the (still mounted) list, desktop in place of it. Keyed by id so a
+          chained open (session → speaker) starts at the top. */}
+      {detailId && !isDesktop && (
+        <DetailLayer key={detailId} label="Speaker details" onClose={closeDetail}>
+          <Speaker id={detailId} />
         </DetailLayer>
       )}
+      {detailId && isDesktop && <Speaker key={detailId} id={detailId} />}
 
       <div
         className={cn(
           "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
-          // Under the detail layer: keep layout + scroll position, stop the
+          // Under the mobile layer: keep layout + scroll position, stop the
           // sticky rows and the A-Z rail from painting through, block input.
           !isDesktop && detailId && "invisible"
         )}
-        inert={(!isDesktop && !!detailId) || undefined}
+        // Desktop: the page takes the list's place in the document flow.
+        hidden={(isDesktop && !!detailId) || undefined}
+        inert={!!detailId || undefined}
       >
         {/* Desktop page title */}
         <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
@@ -601,14 +615,13 @@ export function Speakers() {
               )}
             >
               {isLoading ? (
-                <p className="py-12 text-center text-dc-muted">
-                  Loading speakers…
-                </p>
+                <ListLoadState kind="speakers" state="loading" />
               ) : isError ? (
-                <p className="py-12 text-center text-dc-red">
-                  {(error as Error | undefined)?.message ??
-                    "Failed to load speakers."}
-                </p>
+                <ListLoadState kind="speakers" state="error" />
+              ) : decorated.length === 0 ? (
+                // Synced fine, nothing published yet. Distinct from "no
+                // results" for a query or filter.
+                <ListLoadState kind="speakers" state="unpublished" />
               ) : (
                 <div className="flex items-stretch">
                   <div className="flex min-w-0 flex-1 flex-col gap-6 px-4 py-6">
@@ -687,7 +700,7 @@ export function Speakers() {
                             <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
                               Featured speakers
                             </h2>
-                            {renderGrid(featuredSpeakers)}
+                            {renderGrid(featuredSpeakers, 0)}
                           </section>
                         )}
                         <div
@@ -698,7 +711,7 @@ export function Speakers() {
                               "border-t border-dc-hairline pt-6"
                           )}
                         >
-                          {letterGroups.map((group) => (
+                          {letterGroups.map((group, i) => (
                             <section
                               key={group.letter}
                               ref={(el) => {
@@ -709,7 +722,7 @@ export function Speakers() {
                               <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
                                 {group.letter}
                               </h3>
-                              {renderGrid(group.speakers)}
+                              {renderGrid(group.speakers, i + letterSectionOffset)}
                             </section>
                           ))}
                         </div>

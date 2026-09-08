@@ -76,6 +76,11 @@ export function SessionMedia({ session }: { session: Session }) {
         (online ? (
           <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
             <iframe
+              // Keyed by src: swapping `src` on a live iframe navigates it,
+              // which adds a history entry, so closing a detail after
+              // viewing several sessions needed one back() per video.
+              // Remounting instead keeps history clean.
+              key={src}
               src={src}
               title={session.title}
               className="h-full w-full border-0"

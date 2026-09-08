@@ -12,27 +12,34 @@ time-to-install significantly (we had this problem in Devcon Bogota; precaching 
 blocking, so ~500-1000 dynamic entries makes install slow and the worker doesn't activate until it's
 done).
 
-**Detail views are not routes.** Sessions and speakers open as `?session=<id>` / `?speaker=<id>` on
-the precached `/schedule` and `/speakers` shells (`src/routing/detailParam.ts`), pushed with
-`history.pushState`, which Next's App Router integrates with `useSearchParams` without fetching an RSC
-payload. The service worker ignores those params (and the debug params) when matching the precache
-and when keying the RSC caches (`src/routing/viewParams.ts` is shared by app and SW), so any detail
-opens offline, hard reload included. Mobile renders the detail as a full-screen layer over the list
-(`DetailLayer`), desktop as the side panel. The short share form `/schedule/<id>` and
-`/speakers/<id>` redirects: next.config online, the SW offline. Crawlers follow the redirect and read
-per-item social tags served by the shells (`src/data/share-metadata.ts`, images from devcon.org's
-social-card generator).
+**Detail pages are real paths that open in place.** `/schedule/<id>` and `/speakers/<id>` are the
+canonical URLs (shared links, crawlers, push notifications). The route files hold `generateMetadata`
+(per-item social tags, `src/data/share-metadata.ts`, images from devcon.org's social-card generator)
+and render nothing on the client; the list tab's persistent pane renders the page from the local store
+(`schedule/[id]/session.tsx`, `speakers/[id]/speaker.tsx`): mobile as a full-screen layer over the list
+(`DetailLayer`), desktop in place of the list (the desktop side panel is local state and never changes
+the URL; its expand action and shared links use the path). In the app a detail opens with
+`history.pushState` (`src/routing/detailRoute.ts`), which Next's App Router integrates with
+`usePathname` without fetching an RSC payload; cards are `DetailLink` plain anchors, so cmd-click still
+opens a tab and no per-card RSC prefetch fires. Offline, the service worker answers a navigation to a
+detail path with the precached shell of its list tab (`src/sw.ts`; the app hydrates from `location`),
+so any detail opens offline, hard reload included, and no `/schedule/[id]` page is ever precached per
+id. Shell cache keys ignore the whole query string (`src/routing/viewParams.ts` is shared by app and
+SW), so tracking params on shared links can't defeat the cache.
 
 **Tab switches** do not mount pages. The five bottom-bar destinations (`/`, `/schedule`, `/speakers`,
 `/map`, `/ticket`) are persistent panes rendered by the layout (`src/components/TabPanes.tsx`): the
 route pages render nothing, a pane mounts lazily on its first visit (code-split, client-only) and then
 stays mounted, hidden with `display: none` while another tab shows, keeping its own scroll position.
-Header portals and window-scroll measurements inside pages are gated on `usePaneActive()`. Long lists
-(speaker letter groups, schedule time groups) render as they approach the viewport via
-`RenderOnApproach`, so even a first mount costs a screenful of cards rather than all of them, and the
-speakers × sessions join is memoised per store snapshot rather than per mount. Re-tapping the active
-tab resets its pane (scroll to top; the schedule jumps to "now"), unless a detail is open, in which case
-the tap closes the detail.
+Header portals and window-scroll measurements inside pages are gated on `usePaneActive()`, and
+IntersectionObserver callbacks ignore the 0×0 rects a hidden pane reports. Long lists (speaker letter
+groups, schedule time groups) render progressively (`src/hooks/useProgressiveReveal.ts`): the first
+render is a screenful of cards, the rest fill in one group per frame, and jumps (A–Z rail, "jump to
+now") complete the list first so they land on real heights. The speakers × sessions join is memoised
+per store snapshot rather than per mount. Every vertical page jump is instant, never smooth (WebKit
+rasterises everything a smooth scroll passes over). Re-tapping the active tab resets its pane (scroll
+to top; the schedule jumps to "now"); with a detail page open the tap navigates to the bare tab URL,
+which closes it.
 
 # data architecture
 

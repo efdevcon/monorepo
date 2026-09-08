@@ -8,36 +8,15 @@ import Speakers from "@/app/(page-layout)/speakers/speakers";
 import Schedule from "@/app/(page-layout)/schedule/schedule";
 import RoomScreens from "@/app/(page-layout)/room-screens/room-screens";
 import RoomScreen from "@/app/(page-layout)/room-screens/[id]/room-screen";
-import { SessionDetailsView } from "@/components/schedule/SessionDetailsView";
-import { SpeakerDetailsContent } from "@/components/speakers/SpeakerDetailsContent";
-import { useSpeakersData } from "@/components/speakers/useSpeakersData";
-import { useSession } from "@/data/hooks";
-
-/** Detail views resolve from the EventStore snapshot; nothing is fetched. */
-function NativeSession({ id }: { id: string }) {
-  const { session } = useSession(id);
-  if (!session) return <div className="p-4 text-dc-muted">Session not found</div>;
-  return <SessionDetailsView session={session} />;
-}
-
-function NativeSpeaker({ id }: { id: string }) {
-  const { byId } = useSpeakersData();
-  const decorated = byId.get(id);
-  if (!decorated) return <div className="p-4 text-dc-muted">Speaker not found</div>;
-  return <SpeakerDetailsContent decorated={decorated} />;
-}
+import Session from "@/app/(page-layout)/schedule/[id]/session";
+import Speaker from "@/app/(page-layout)/speakers/[id]/speaker";
+import { parseDetailPath } from "@/routing/viewParams";
 
 /**
- * Detail hrefs come in the in-app form (`/schedule?session=<id>`, from
- * detailHref) and the share form (`/schedule/<id>`); both render the detail.
+ * Detail pages resolve from the EventStore snapshot; nothing is fetched.
+ * Hrefs are the web app's (`/schedule/<id>`, `/speakers/<id>`, from
+ * detailHref).
  */
-function detailId(url: URL, section: "schedule" | "speakers", param: "session" | "speaker") {
-  const fromQuery = url.searchParams.get(param);
-  if (url.pathname === `/${section}` && fromQuery) return fromQuery;
-  const fromPath = new RegExp(`^/${section}/([^/]+)/?$`).exec(url.pathname);
-  return fromPath ? decodeURIComponent(fromPath[1]) : null;
-}
-
 function renderRoute(href: string) {
   const url = new URL(href, "http://native.local");
 
@@ -46,16 +25,13 @@ function renderRoute(href: string) {
     return <Home />;
   }
 
-  // Speakers
-  const speakerId = detailId(url, "speakers", "speaker");
-  if (speakerId) return <NativeSpeaker id={speakerId} />;
+  const detail = parseDetailPath(url.pathname);
+  if (detail?.kind === "speaker") return <Speaker id={detail.id} />;
+  if (detail?.kind === "session") return <Session id={detail.id} />;
+
   if (url.pathname === "/speakers") {
     return <Speakers />;
   }
-
-  // Schedule
-  const sessionId = detailId(url, "schedule", "session");
-  if (sessionId) return <NativeSession id={sessionId} />;
   if (url.pathname === "/schedule") {
     return <Schedule />;
   }

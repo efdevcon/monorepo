@@ -11,7 +11,7 @@ import { isTabPath } from "./viewParams";
 // needed. See DebugPanel and src/data/dataset.ts / hooks/useNow.ts.
 const CARRIED_PARAMS = ["dataset", "mockNow", "mockSpeed", "debug"];
 
-function withCarriedParams(href: string): string {
+export function withCarriedParams(href: string): string {
   if (typeof window === "undefined") return href;
   // Only touch internal, non-anchor paths.
   if (/^([a-z]+:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) {

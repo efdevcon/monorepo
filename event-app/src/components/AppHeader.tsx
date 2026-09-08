@@ -5,7 +5,7 @@ import cn from "classnames";
 import { ArrowLeft, Sparkles } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
-import { closeDetail, useDetailView } from "@/routing/detailParam";
+import { closeDetail, useDetailView } from "@/routing/detailRoute";
 import { handleTabClick } from "@/components/paneContext";
 import type { DetailKind } from "@/routing/viewParams";
 import { useUser } from "@/data/auth/useUser";
@@ -183,6 +183,11 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
             </button>
           )}
         </nav>
+        {/* Same offline marker as the mobile bar: laptops on venue wifi drop
+            out too, and the schedule they show may be from an earlier sync. */}
+        <div className="ml-auto flex shrink-0 items-center">
+          <OfflineIndicator />
+        </div>
         </div>
       </div>
     </header>

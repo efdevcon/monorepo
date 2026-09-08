@@ -1,9 +1,8 @@
 "use client";
 
 import { Speech } from "lucide-react";
-import { detailHref } from "@/routing/viewParams";
 import type { Speaker } from "@/data/models";
-import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { Avatar } from "@/components/Avatar";
 
 /**
@@ -20,10 +19,9 @@ export function SessionSpeakerCard({ speaker }: { speaker: Speaker }) {
   const tags = (speaker.tracks ?? []).slice(0, 2);
 
   return (
-    <Link
-      href={detailHref("speaker", speaker.id)}
-      // No viewport prefetch (see SpeakerCard) — client page on cached data.
-      prefetch={false}
+    <DetailLink
+      kind="speaker"
+      id={speaker.id}
       className="flex items-center gap-4 rounded-lg border border-dc-hairline bg-white p-3 transition-colors hover:border-dc-purple/40"
     >
       <Avatar name={speaker.name} src={speaker.avatar || undefined} size={48} />
@@ -50,6 +48,6 @@ export function SessionSpeakerCard({ speaker }: { speaker: Speaker }) {
           </div>
         )}
       </div>
-    </Link>
+    </DetailLink>
   );
 }

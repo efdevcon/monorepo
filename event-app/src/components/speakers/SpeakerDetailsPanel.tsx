@@ -1,17 +1,19 @@
 "use client";
 
+import { Maximize2 } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { ShareButton } from "@/components/ShareButton";
+import { openDetail } from "@/routing/detailRoute";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 import { SpeakerDetailsContent } from "./SpeakerDetailsContent";
 
 /**
  * Desktop speaker-details side panel (Figma "Speaker details - Side Menu"):
  * a 360px right column rendered from the in-memory join (no extra fetch).
- * The white header carries share + the close circle; the panel is the detail
- * view (there is no separate page), so the body needs no footer bar
- * (PR #112 feedback: avoid unnecessary scroll). Mobile renders the same
- * content in a full-screen layer.
+ * The white header carries expand (the fullscreen page `/speakers/<id>`,
+ * opened in place), share and the close circle; the body needs no footer bar
+ * (PR #112 feedback: avoid unnecessary scroll). Mobile renders the fullscreen
+ * page directly (speakers/[id]/speaker.tsx).
  */
 export function SpeakerDetailsPanel({
   decorated,
@@ -32,6 +34,16 @@ export function SpeakerDetailsPanel({
           Speaker
         </span>
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => openDetail("speaker", decorated.speaker.id)}
+            aria-label="Expand speaker details"
+            // CloseButton's circular recipe (Buttons.tsx), same as ShareButton's
+            // panel variant.
+            className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full bg-dc-panel transition-colors duration-150 ease-out hover:bg-dc-purple-soft"
+          >
+            <Maximize2 className="size-4 text-dc-fg2" />
+          </button>
           <ShareButton
             kind="speaker"
             id={decorated.speaker.id}

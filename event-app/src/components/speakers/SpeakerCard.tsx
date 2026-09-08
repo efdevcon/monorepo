@@ -1,10 +1,9 @@
 "use client";
 
 import { memo } from "react";
-import { detailHref } from "@/routing/viewParams";
 import { Speech, Star } from "lucide-react";
 import cn from "classnames";
-import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { Avatar } from "@/components/Avatar";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 
@@ -39,7 +38,7 @@ export const SpeakerCard = memo(function SpeakerCard({
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
   interested: boolean;
-  /** Open the speaker details in place (side panel on desktop, layer on mobile). */
+  /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
   onToggleInterested: (id: string, name: string) => void;
 }) {
@@ -48,19 +47,10 @@ export const SpeakerCard = memo(function SpeakerCard({
   const tagChip = (tag: string) => <SpeakerTagChip key={tag} tag={tag} />;
 
   return (
-    <Link
-      href={detailHref("speaker", speaker.id)}
-      // No viewport prefetch: hundreds of cards sweeping past the shared link
-      // observer during an A–Z jump fire an RSC prefetch request storm
-      // that thrashes the SW prefetch cache and crashes iOS Safari — and the
-      // target is a client page reading the same Dexie/SWR join anyway.
-      prefetch={false}
-      onClick={(e) => {
-        if (onOpen) {
-          e.preventDefault();
-          onOpen(speaker.id);
-        }
-      }}
+    <DetailLink
+      kind="speaker"
+      id={speaker.id}
+      onOpen={onOpen}
       className={cn(
         "group relative flex items-center gap-4 overflow-clip rounded-lg border bg-white p-4 transition-colors duration-150 ease-out",
         selected
@@ -142,6 +132,6 @@ export const SpeakerCard = memo(function SpeakerCard({
           Featured
         </span>
       )}
-    </Link>
+    </DetailLink>
   );
 });

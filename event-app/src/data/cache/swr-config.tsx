@@ -2,6 +2,7 @@
 
 import { SWRConfig, type Cache } from "swr";
 import { ReactNode, useEffect, useState, useRef } from "react";
+import { toast } from "sonner";
 import { createDexieCacheProvider } from "./indexeddb-cache";
 import { eventStore } from "../store/event-store";
 import { getActiveDataset } from "../dataset";
@@ -44,6 +45,16 @@ export function DataProvider({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Boot never blocks for long. IndexedDB can hang without failing: the same
+ * app open in another tab on an older schema blocks the version upgrade
+ * (Dexie "blocked"), and some private modes stall `open()` indefinitely. A
+ * gate with no timeout then meant a permanent white screen. After this long
+ * the app renders with whatever is in memory (an empty snapshot; the network
+ * sync fills it) and says why nothing is saved.
+ */
+const BOOT_TIMEOUT_MS = 3_000;
+
 function useBoot() {
   const providerRef = useRef<Map<string, unknown> | null>(null);
   const [ready, setReady] = useState(false);
@@ -51,9 +62,27 @@ function useBoot() {
   useEffect(() => {
     const { cache, initPromise } = createDexieCacheProvider();
     providerRef.current = cache;
-    Promise.all([initPromise, eventStore.hydrate(getActiveDataset())]).then(
-      () => setReady(true)
-    );
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      setReady(true);
+    };
+    const timer = setTimeout(() => {
+      if (done) return;
+      console.warn("[boot] storage did not answer in time, starting without it");
+      toast.warning("Storage is busy in another tab. Close other Devcon tabs so the schedule can be saved offline.", {
+        duration: 8_000,
+      });
+      finish();
+    }, BOOT_TIMEOUT_MS);
+    Promise.all([initPromise, eventStore.hydrate(getActiveDataset())])
+      .catch((err) => console.warn("[boot] hydrate failed, starting empty:", err))
+      .then(() => {
+        clearTimeout(timer);
+        finish();
+      });
+    return () => clearTimeout(timer);
   }, []);
 
   return { ready, cacheProvider: providerRef.current };

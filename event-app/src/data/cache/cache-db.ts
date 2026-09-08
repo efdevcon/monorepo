@@ -173,3 +173,19 @@ class CacheDB extends Dexie {
 // Only create Dexie instance in browser environment
 export const cacheDB =
   typeof window !== "undefined" ? new CacheDB() : (null as unknown as CacheDB);
+
+if (cacheDB) {
+  // Two tabs on different app versions: the newer one needs this connection
+  // closed to run its schema upgrade, otherwise it hangs "blocked" (its boot
+  // gate times out and it runs without storage). Close here; every Dexie
+  // call in this tab already tolerates failure (memory-only for the session).
+  cacheDB.on("versionchange", () => {
+    cacheDB.close();
+    console.warn(
+      "[cache-db] closed: a newer app version upgraded the database in another tab; reload to reopen storage"
+    );
+  });
+  cacheDB.on("blocked", () => {
+    console.warn("[cache-db] schema upgrade blocked by another open tab of this app");
+  });
+}

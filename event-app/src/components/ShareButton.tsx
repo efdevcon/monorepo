@@ -4,11 +4,11 @@ import { Share2 } from "lucide-react";
 import cn from "classnames";
 import { toast } from "sonner";
 import APP_CONFIG from "@/CONFIG";
-import { shareHref, type DetailKind } from "@/routing/viewParams";
+import { detailHref, type DetailKind } from "@/routing/viewParams";
 
-/** Absolute share URL: the short path form, which redirects into the app. */
+/** Absolute share URL of the detail page (`/schedule/<id>`, `/speakers/<id>`). */
 export function shareUrl(kind: DetailKind, id: string): string {
-  const path = shareHref(kind, id);
+  const path = detailHref(kind, id);
   const origin =
     typeof window !== "undefined" ? window.location.origin : APP_CONFIG.APP_ORIGIN;
   return new URL(path, origin).toString();
@@ -16,8 +16,7 @@ export function shareUrl(kind: DetailKind, id: string): string {
 
 /**
  * Native share sheet where the platform has one (mobile, Safari), otherwise
- * copy the link. Works offline: nothing here needs a network, and the pasted
- * link resolves for the recipient through the server redirect.
+ * copy the link. Works offline: nothing here needs a network.
  */
 export async function shareDetail(opts: {
   kind: DetailKind;

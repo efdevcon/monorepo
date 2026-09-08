@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, type MouseEvent } from "react";
-import { isTabPath, VIEW_PARAMS } from "@/routing/viewParams";
+import { isTabPath } from "@/routing/viewParams";
 import { tapHaptic } from "@/utils/haptics";
 
 /**
@@ -22,8 +22,11 @@ export const PanePathContext = createContext<string | null>(null);
 
 // ---------------------------------------------------------------------------
 // Re-tapping the active tab (native tab-bar behaviour): the pane resets to its
-// initial state. Default is a smooth scroll to the top; a pane registers its
+// initial state. Default is an instant scroll to the top; a pane registers its
 // own reset when "initial" means something else (the schedule jumps to "now").
+// Instant, never smooth: a smooth scroll from the bottom of the speakers list
+// animates through ~90 viewports and WebKit rasterises everything it passes
+// (PR #112 crash class). Teleporting is also what native tab bars do.
 // ---------------------------------------------------------------------------
 
 const reselectHandlers = new Map<string, () => void>();
@@ -31,7 +34,7 @@ const reselectHandlers = new Map<string, () => void>();
 export function emitTabReselect(path: string): void {
   const handler = reselectHandlers.get(path);
   if (handler) handler();
-  else window.scrollTo({ top: 0, behavior: "smooth" });
+  else window.scrollTo({ top: 0, behavior: "auto" });
 }
 
 /** Register what "reset to initial state" means for the enclosing pane. */
@@ -54,8 +57,9 @@ export function useTabReselect(handler: () => void): void {
 /**
  * Tab link click handler. Every tab tap gives a haptic tick where the platform
  * allows it (see utils/haptics.ts). Tapping the tab you are already on resets
- * the pane instead of navigating, unless a detail view is open: then the
- * normal navigation to the bare tab URL is what closes it.
+ * the pane instead of navigating. With a detail page open the pathname is
+ * `/schedule/<id>`, not the tab's, so the normal navigation to the bare tab
+ * URL runs and is what closes the detail.
  */
 export function handleTabClick(
   event: MouseEvent<HTMLAnchorElement>,
@@ -65,8 +69,6 @@ export function handleTabClick(
   if (!isTabPath(href)) return;
   tapHaptic();
   if (pathname !== href) return;
-  const params = new URLSearchParams(window.location.search);
-  if (VIEW_PARAMS.some((p) => params.has(p))) return;
   event.preventDefault();
   emitTabReselect(href);
 }

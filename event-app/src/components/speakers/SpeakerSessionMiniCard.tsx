@@ -1,10 +1,9 @@
 "use client";
 
 import { Clock3, MapPin, Star, User } from "lucide-react";
-import { detailHref } from "@/routing/viewParams";
 import cn from "classnames";
 import type { Session } from "@/data/models";
-import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { useInterested } from "@/data/interested/useInterested";
 import { formatTimeRange } from "@/components/schedule/utils";
 import {
@@ -30,10 +29,9 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
   const interested = isInterested(session.id);
 
   return (
-    <Link
-      href={detailHref("session", session.id)}
-      // No viewport prefetch (see SpeakerCard) — client page on cached data.
-      prefetch={false}
+    <DetailLink
+      kind="session"
+      id={session.id}
       className="group relative flex gap-4 overflow-clip rounded-lg border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:border-dc-purple/40"
     >
       {/* 8px track-colored accent rail */}
@@ -110,6 +108,6 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
       >
         {trackBadgeLabel(session.track)}
       </span>
-    </Link>
+    </DetailLink>
   );
 }

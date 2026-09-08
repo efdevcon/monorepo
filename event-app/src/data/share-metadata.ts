@@ -4,16 +4,16 @@ import { DATASETS, DEFAULT_DATASET_KEY, type DatasetKey } from "./dataset";
 import type { DetailKind } from "@/routing/viewParams";
 
 /**
- * Per-item social metadata for the shell routes, read by link crawlers (X,
- * Telegram, WhatsApp, Slack, iMessage, Facebook). Crawlers run no JavaScript
- * and have no service worker: they fetch `/schedule?session=<id>` (directly,
- * or after the redirect from the short `/schedule/<id>` share form) and read
- * the tags the server rendered. Without the param the shells keep the app's
- * generic metadata.
+ * Per-item social metadata for the detail pages (`/schedule/[id]`,
+ * `/speakers/[id]`), read by link crawlers (X, Telegram, WhatsApp, Slack,
+ * iMessage, Facebook). Crawlers run no JavaScript and have no service worker:
+ * they fetch the page and read the tags the server rendered. The page body
+ * itself is rendered on the client from the local store (see the route files).
  *
  * Session cards come from devcon.org's existing generator
  * (`/api/social/schedule/<id>/`, 1200x630, DC8 design, cached in Storage);
  * speakers use their avatar. Server-only: runs inside `generateMetadata`.
+ * `?dataset=` is honoured so preview links describe the right event.
  */
 
 const DEVCON_ORG = "https://devcon.org";
@@ -51,10 +51,11 @@ async function getJson<T>(url: string): Promise<T | null> {
 
 export async function detailMetadata(
   kind: DetailKind,
+  id: string,
   searchParams: SearchParams
 ): Promise<Metadata> {
-  const id = param(searchParams, kind);
-  if (!id) return {};
+  // Ids are slugs; anything else can't be a real item, so skip the API call.
+  if (!/^[a-zA-Z0-9_-]{1,120}$/.test(id)) return {};
   const dataset = datasetFor(searchParams);
   const encoded = encodeURIComponent(id);
 

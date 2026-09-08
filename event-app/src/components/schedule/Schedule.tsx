@@ -37,10 +37,11 @@ import {
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { useDetailParam } from "@/routing/detailParam";
-import { RenderOnApproach } from "@/components/RenderOnApproach";
-import { DetailLayer, DetailNotFound } from "@/components/DetailLayer";
-import { SessionDetailsView } from "./SessionDetailsView";
+import { useDetailRoute } from "@/routing/detailRoute";
+import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveReveal";
+import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
+import { ListLoadState } from "@/components/ListLoadState";
+import Session from "@/app/(page-layout)/schedule/[id]/session";
 import { ghostPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -52,7 +53,7 @@ import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
-import { formatDayHeading, ms } from "./utils";
+import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   useIsDesktop,
@@ -337,10 +338,14 @@ function GroupHeader({
     // inset, matching the +var(--safe-top) in those sticky classes.
     const pinLine = headerOffsetNow() + (isDesktop ? 54 : 48);
     const observer = new IntersectionObserver(
-      ([entry]) =>
-        setStuck(
-          !entry.isIntersecting && entry.boundingClientRect.top < pinLine
-        ),
+      ([entry]) => {
+        // A hidden tab pane (display:none) reports a 0×0 rect that is "not
+        // intersecting" and "above the pin line": ignore it, or every header
+        // flips to stuck while another tab shows and flashes back on return.
+        const r = entry.boundingClientRect;
+        if (r.width === 0 && r.height === 0) return;
+        setStuck(!entry.isIntersecting && r.top < pinLine);
+      },
       { rootMargin: `-${pinLine}px 0px 0px 0px` }
     );
     observer.observe(el);
@@ -418,10 +423,10 @@ function GroupHeader({
  * details as 360px right columns. Data hooks and shapes are untouched.
  */
 export function Schedule() {
-  const { sessions, isLoading, isError, error } = useSessions();
+  const { sessions, isLoading, isError } = useSessions();
   const { ids: interestedIds } = useInterested();
   const { id: detailId, open: openDetail, close: closeDetail } =
-    useDetailParam("session");
+    useDetailRoute("session");
   const {
     now,
     days,
@@ -476,21 +481,25 @@ export function Schedule() {
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
-  // Selection lives in the URL (?session=<id>) on every viewport: desktop
-  // renders it in the side panel, mobile in a full-screen layer over the list.
-  // Opening pushes a history entry (Next-integrated, no RSC fetch) so back /
-  // swipe closes it; see routing/detailParam.ts.
-  const selectedSessionId = detailId;
+  // Two selections. The fullscreen session page is the URL (`/schedule/<id>`,
+  // detailId, see routing/detailRoute.ts): mobile renders it as a layer over
+  // the list, desktop in place of the list. The desktop side panel is local
+  // state, like a native split view, so browsing sessions there never touches
+  // history; the panel's expand action and shared links use the URL form.
+  const [panelSessionId, setPanelSessionId] = useState<string | null>(null);
+  const selectedSessionId = isDesktop ? panelSessionId : detailId;
   const selectSession = useCallback(
     (id: string | null) => {
-      if (id) {
-        setFiltersOpen(false);
+      if (id) setFiltersOpen(false);
+      if (isDesktop) {
+        setPanelSessionId(id);
+      } else if (id) {
         openDetail(id);
       } else {
         closeDetail();
       }
     },
-    [openDetail, closeDetail]
+    [isDesktop, openDetail, closeDetail]
   );
 
   const selectedSession = useMemo(
@@ -500,12 +509,41 @@ export function Schedule() {
         : null,
     [sessions, selectedSessionId]
   );
-  useDocumentTitle(selectedSession?.title ?? null);
+  const routeSession = useMemo(
+    () => (detailId ? (sessions.find((s) => s.id === detailId) ?? null) : null),
+    [sessions, detailId]
+  );
+  useDocumentTitle(routeSession?.title ?? null);
+  // Desktop renders the session page in place of the list: remember where
+  // the list was and put it back on close (mobile's layer keeps the list as
+  // is underneath).
+  useListScrollAcrossDetail(isDesktop && !!detailId);
+  // The filter sheet belongs to the list.
+  useEffect(() => {
+    if (detailId) setFiltersOpen(false);
+  }, [detailId]);
+  // The list is on screen: this pane is the visible one and no fullscreen
+  // page replaces it. Window measurements and the landing jump wait for it.
+  const listVisible = paneActive && !(isDesktop && detailId);
 
   const openFilters = () => {
     setFiltersOpen(true);
     if (isDesktop) selectSession(null);
   };
+
+  // Time groups render progressively (see useProgressiveReveal): the first
+  // render includes the landing group ("live now", else the next one) so the
+  // initial jump measures a real element; the rest fill in over the next
+  // frames. Jumps complete the list first so they land exactly.
+  const landingIndex = useMemo(() => {
+    const i = visibleGroups.findIndex((g) => g.isLive);
+    if (i >= 0) return i;
+    const j = visibleGroups.findIndex((g) => g.isOngoing);
+    if (j >= 0) return j;
+    return Math.max(0, visibleGroups.findIndex((g) => !g.isPast));
+  }, [visibleGroups]);
+  const { visible: revealedGroups, revealAll: revealAllGroups } =
+    useProgressiveReveal(visibleGroups.length, 3, landingIndex + 1);
 
   const jumpToNow = () => {
     // Cross days first: land on the day containing "now" (both view modes only
@@ -518,6 +556,7 @@ export function Schedule() {
       setTimelineJumpSignal((n) => n + 1);
       return;
     }
+    revealAllGroups();
     setListJumpSignal((n) => n + 1);
   };
   // Re-tapping the Schedule tab resets to the landing state: today, at "now".
@@ -539,7 +578,12 @@ export function Schedule() {
   };
   useEffect(() => {
     if (listJumpSignal === 0) return;
-    scrollListToNow("smooth");
+    // Instant, never smooth: a smooth jump across a day's list animates
+    // through every screen between here and "now" and WebKit rasterises all
+    // of it (PR #112 crash class, see Speakers' A–Z jumps). Falls back to the
+    // top when nothing is left to land on (all done, or a filter with no
+    // results), so a re-tap is never a silent no-op.
+    if (!scrollListToNow("auto")) window.scrollTo({ top: 0, behavior: "auto" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listJumpSignal]);
 
@@ -656,12 +700,37 @@ export function Schedule() {
       ? visibleGroups.length > 0 || completedGroups.length > 0
       : daySessions.length > 0);
   const landedRef = useRef(false);
+  // Deep link (`/schedule/<id>` on app open): the list behind the page shows
+  // the session's day, and once the page closes it reveals the session
+  // itself rather than landing on "live now". Consumes the landing.
+  const revealOnCloseRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!routeSession || landedRef.current) return;
+    landedRef.current = true;
+    revealOnCloseRef.current = routeSession.id;
+    const key = dayKey(routeSession);
+    if (key !== selectedDay) setSelectedDay(key);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routeSession]);
   useLayoutEffect(() => {
-    if (landedRef.current || !contentReady) return;
+    // Only while the list is on screen: scrollIntoView on a hidden
+    // (display:none) element is a no-op that would still consume the landing.
+    if (landedRef.current || !contentReady || !listVisible) return;
     landedRef.current = true;
     if (view === "list") scrollListToNow("auto");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contentReady]);
+  }, [contentReady, listVisible]);
+  const prevDetailRef = useRef(detailId);
+  useLayoutEffect(() => {
+    const prev = prevDetailRef.current;
+    prevDetailRef.current = detailId;
+    if (!listVisible || detailId || !prev || revealOnCloseRef.current !== prev) return;
+    revealOnCloseRef.current = null;
+    const group = visibleGroups.find((g) => g.sessions.some((s) => s.id === prev));
+    const el = group ? groupRefs.current.get(group.key) : null;
+    el?.scrollIntoView({ behavior: "auto", block: "start" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detailId, listVisible]);
 
   // Mobile timeline fullscreen: auto in landscape, or by the toggle button.
   // `null` follows orientation; a rotation always resets to the auto rule, so
@@ -673,6 +742,9 @@ export function Schedule() {
   useOrientationChange(() => setFullscreenOverride(null));
   const isLandscape = useIsLandscape();
   const timelineFullscreen =
+    // Never from a hidden pane or under a detail page: the fullscreen
+    // timeline locks body scroll, which would freeze whatever is on screen.
+    listVisible &&
     !isDesktop &&
     view === "timeline" &&
     // The timeline renders nothing without sessions — never lock the page
@@ -705,7 +777,12 @@ export function Schedule() {
     // tabs), not merely inside the viewport, which the sticky bars cover.
     const pin = Math.round(headerOffsetNow() + 48);
     const io = new IntersectionObserver(
-      ([entry]) => setHeadingToggleVisible(entry.isIntersecting),
+      ([entry]) => {
+        // Hidden tab pane: 0×0 rect, not a real "scrolled away" (see GroupHeader).
+        const r = entry.boundingClientRect;
+        if (r.width === 0 && r.height === 0) return;
+        setHeadingToggleVisible(entry.isIntersecting);
+      },
       { rootMargin: `-${pin}px 0px 0px 0px`, threshold: 0 }
     );
     io.observe(node);
@@ -739,7 +816,7 @@ export function Schedule() {
   // The var mutates the DOM directly so per-frame scrolling doesn't
   // re-render the (large) session list.
   useEffect(() => {
-    if (!sidePanelOpen || !paneActive) return;
+    if (!sidePanelOpen || !listVisible) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -770,7 +847,7 @@ export function Schedule() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [sidePanelOpen, paneActive]);
+  }, [sidePanelOpen, listVisible]);
 
   // Side-panel content, kept mounted through the 300ms exit transition so the
   // closing panel doesn't collapse into an empty box.
@@ -820,45 +897,52 @@ export function Schedule() {
       )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
-      {/* 2+ sessions in a timeslot: 2-col on desktop (collapses while the
-          side panel narrows the main column). */}
-      {/* Cards render as the group approaches the viewport (placeholder of
-          about one card-row height each until then); the section and its
-          header stay real so jumps and sticky headers work. */}
-      <RenderOnApproach
-        estimatedHeight={
-          (group.sessions.length > 1 && !sidePanelOpen && isDesktop
-            ? Math.ceil(group.sessions.length / 2)
-            : group.sessions.length) * 116
-        }
-      >
-      <div
-        className={cn(
-          "mt-3 flex flex-col gap-3",
-          group.sessions.length > 1 && !sidePanelOpen && "lg:grid lg:grid-cols-2"
-        )}
-      >
-        {group.sessions.map((session) => (
-          <SessionCard
-            key={session.id}
-            session={session}
-            // Compact 2-up cells drop the inline FEATURED badge (Figma 4325).
-            compact={group.sessions.length > 1 && !sidePanelOpen}
-            selected={session.id === selectedSessionId}
-            // Clicking the already-selected card closes the panel (matches
-            // the timeline-view toggle behavior).
-            onOpen={(id) => selectSession(id === selectedSessionId ? null : id)}
-          />
-        ))}
-      </div>
-      </RenderOnApproach>
+      {/* Groups past the progressive-reveal frontier, and completed groups
+          while their panel is collapsed, hold their place with a placeholder
+          of about one card-row height each; the section and its header stay
+          real so jumps and sticky headers work. 2+ sessions in a timeslot:
+          2-col on desktop (collapses while the side panel narrows the main
+          column). */}
+      {(opts.inPanel ? !completedOpen : visibleGroups.indexOf(group) >= revealedGroups) ? (
+        <GroupPlaceholder
+          height={
+            (group.sessions.length > 1 && !sidePanelOpen && isDesktop
+              ? Math.ceil(group.sessions.length / 2)
+              : group.sessions.length) *
+              98 +
+            12
+          }
+        />
+      ) : (
+        <div
+          className={cn(
+            "mt-3 flex flex-col gap-3",
+            group.sessions.length > 1 && !sidePanelOpen && "lg:grid lg:grid-cols-2"
+          )}
+        >
+          {group.sessions.map((session) => (
+            <SessionCard
+              key={session.id}
+              session={session}
+              // Compact 2-up cells drop the inline FEATURED badge (Figma 4325).
+              compact={group.sessions.length > 1 && !sidePanelOpen}
+              selected={session.id === selectedSessionId}
+              // Clicking the already-selected card closes the panel (matches
+              // the timeline-view toggle behavior).
+              onOpen={(id) => selectSession(id === selectedSessionId ? null : id)}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 
   return (
     <main className="expand font-heading text-dc-fg">
-      {/* The detail layer owns the header on mobile (back arrow, share, calendar). */}
-      {!(detailId && !isDesktop) && (
+      {/* The session page owns the header while open (back arrow, share,
+          calendar); the list's actions and its search drawer step aside and
+          come back, query intact, when it closes. */}
+      {!detailId && (
         <HeaderActions
           searchOpen={headerSearch.searchOpen}
           searchActive={headerSearch.searchOpen}
@@ -870,35 +954,38 @@ export function Schedule() {
           onOpenFilters={openFilters}
         />
       )}
-      <HeaderSearchDrawer
-        open={headerSearch.searchOpen}
-        onClose={headerSearch.closeSearch}
-        value={search}
-        onChange={setSearch}
-        placeholder="Search by session, speaker or topic"
-        inputRef={headerSearch.inputRef}
-        drawerRef={headerSearch.drawerRef}
-      />
+      {!detailId && (
+        <HeaderSearchDrawer
+          open={headerSearch.searchOpen}
+          onClose={headerSearch.closeSearch}
+          value={search}
+          onChange={setSearch}
+          placeholder="Search by session, speaker or topic"
+          inputRef={headerSearch.inputRef}
+          drawerRef={headerSearch.drawerRef}
+        />
+      )}
 
-      {/* Mobile: session details as a layer over the (still mounted) list. */}
-      {!isDesktop && detailId && (
-        <DetailLayer label="Session details">
-          {selectedSession ? (
-            <SessionDetailsView session={selectedSession} />
-          ) : (
-            <DetailNotFound label="Session not found" onBack={closeDetail} />
-          )}
+      {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
+          the (still mounted) list, desktop in place of it. Keyed by id so a
+          chained open (speaker → session) starts at the top. */}
+      {detailId && !isDesktop && (
+        <DetailLayer key={detailId} label="Session details" onClose={closeDetail}>
+          <Session id={detailId} />
         </DetailLayer>
       )}
+      {detailId && isDesktop && <Session key={detailId} id={detailId} />}
 
       <div
         className={cn(
           "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
-          // Under the detail layer: keep layout + scroll position, stop the
+          // Under the mobile layer: keep layout + scroll position, stop the
           // sticky day bar from painting through, block interaction.
           !isDesktop && detailId && "invisible"
         )}
-        inert={(!isDesktop && !!detailId) || undefined}
+        // Desktop: the page takes the list's place in the document flow.
+        hidden={(isDesktop && !!detailId) || undefined}
+        inert={!!detailId || undefined}
       >
         {/* Desktop page title */}
         <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
@@ -1027,13 +1114,13 @@ export function Schedule() {
               </div>
 
               {isLoading && sessions.length === 0 ? (
-                <p className="py-12 text-center text-dc-muted">
-                  Loading schedule…
-                </p>
+                <ListLoadState kind="schedule" state="loading" />
               ) : isError ? (
-                <p className="py-12 text-center text-dc-red">
-                  {error?.message ?? "Failed to load the schedule."}
-                </p>
+                <ListLoadState kind="schedule" state="error" />
+              ) : sessions.length === 0 ? (
+                // Synced fine, nothing published yet (the app ships before
+                // the schedule does). Distinct from "no results".
+                <ListLoadState kind="schedule" state="unpublished" />
               ) : selectedDay === null ? null : resultCount === 0 ? (
                 // selectedDay is null only pre-data — rendering the empty
                 // state then flashes "Nothing matches the current filters"

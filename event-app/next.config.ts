@@ -94,29 +94,6 @@ const nextConfig: NextConfig = {
     // worker's NetworkFirst rule, a stall on bad wifi).
     staleTimes: { static: 3600 },
   },
-  // Short detail URLs (`/schedule/<id>`, `/speakers/<id>`) are the share form
-  // and still arrive from old links. Hard loads before the service worker is
-  // installed get this server redirect; installed clients get the same
-  // redirect from the SW (offline too). Crawlers follow it and read the
-  // per-item social metadata the shell serves for `?session=` / `?speaker=`.
-  // The `[^.]+` guard leaves the static files under /schedule/ (logos, gems)
-  // alone; ids never contain dots.
-  ...(!isStaticExport && {
-    async redirects() {
-      return [
-        {
-          source: "/schedule/:id([^.]+)",
-          destination: "/schedule?session=:id",
-          permanent: false,
-        },
-        {
-          source: "/speakers/:id([^.]+)",
-          destination: "/speakers?speaker=:id",
-          permanent: false,
-        },
-      ];
-    },
-  }),
   ...(isStaticExport && { output: "export" }),
   // Static export: only .native-app.tsx (single catch-all router for Capacitor)
   // Web build: normal .tsx files with full Next.js routing
