@@ -85,6 +85,25 @@ const serwist: Serwist = new Serwist({
   // from the precached `/schedule` shell, online and offline.
   precacheOptions: { ignoreURLParametersMatching: IGNORED_URL_PARAMS },
   runtimeCaching: [
+    // Installed-app launches. An app installed with the personalised manifest
+    // (iOS) starts at /api/auth/bridge?bridge=<token>, which needs the
+    // server. With no network that navigation used to end on the /offline
+    // page; instead open the ticket page from the cache (the session from the
+    // first launch is already in the app's own storage), and give a slow
+    // network 5 s before doing the same. Must precede the document rule.
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin && request.mode === "navigate" && url.pathname === "/api/auth/bridge",
+      handler: async ({ request }): Promise<Response> => {
+        try {
+          const signal =
+            typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(5_000) : undefined;
+          return await fetch(request, { signal });
+        } catch {
+          return Response.redirect(`${self.location.origin}/ticket`, 302);
+        }
+      },
+    },
     // Detail pages (`/schedule/<id>`, `/speakers/<id>`): network first (the
     // server renders per-item social metadata), and when that fails (offline,
     // captive portal) the precached shell of the list tab. The app hydrates
@@ -152,21 +171,13 @@ const serwist: Serwist = new Serwist({
       matcher: ({ request }) => request.destination === "document",
       handler: documents,
     },
-    {
-      // SWR handles API data caching — keep SW out of the way. Plain fetch
-      // rather than NetworkOnly: the strategy rejects its promise when the
-      // network is down, which Chromium reports as an "Uncaught (in promise)
-      // no-response" in the worker console on every offline API call. A
-      // network-error Response gives the page the same failure, quietly.
-      matcher: /\/api\/.*/i,
-      handler: async ({ request }) => {
-        try {
-          return await fetch(request);
-        } catch {
-          return Response.error();
-        }
-      },
-    },
+    // No rule for `/api/*` on purpose: those requests fall through to the
+    // browser untouched. SWR owns API data caching, and routing them through
+    // the worker only added a failure mode: Safari cold-starts an idle worker
+    // for the first request after a pause, and a worker fetch that dies there
+    // reaches the page as "Load failed" (seen right after signing in). The
+    // RSC and document rules above exclude `/api/` so nothing else catches
+    // them; /api/auth/bridge navigations are the one exception, handled first.
     {
       matcher: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
       handler: new CacheFirst({

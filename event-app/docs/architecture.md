@@ -50,7 +50,8 @@ which closes it.
 
 # data architecture
 
-**`/api/*` is `NetworkOnly`** in the service worker, and the devcon-api origin is never cached by it
+**`/api/*` is not handled by the service worker** (no rule; the browser fetches natively, which avoids
+a Safari cold-started worker failing the first request after a pause), and the devcon-api origin is never cached by it
 either: API caching is owned by the app, so the app shell (what keeps the app booting offline and
 installing fast) and the data stay strictly separate. Mixing the two gets hard to reason about.
 
@@ -138,7 +139,7 @@ flowchart TD
     end
     subgraph SW["Service worker (Serwist)"]
         SHELL[Precache app-shell routes<br/>git-hash revisioned, view params ignored]
-        RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* NetworkOnly]
+        RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* untouched]
         REDIR[/schedule/<id> → /schedule?session=<id>]
         UPD[New SW installs] --> TOAST[Update toast] -->|user clicks Reload| SKIP[SKIP_WAITING → activate → reload]
     end

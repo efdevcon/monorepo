@@ -12,6 +12,7 @@ import {
   stripIgnoredParams,
   tabPathOf,
 } from "../src/routing/viewParams";
+import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -148,11 +149,40 @@ function testRouting() {
   check("tabPathOf other routes", tabPathOf("/announcements") === null && tabPathOf("/room-screens/x") === null);
 }
 
+async function testRetryOnce() {
+  const noSleep = async () => {};
+  let calls = 0;
+  const flaky = async () => {
+    calls++;
+    if (calls === 1) throw new TypeError("Load failed");
+    return "ok";
+  };
+  check("retryOnce: network failure retried once", (await retryOnce(flaky, isTransientFetchError, 0, noSleep)) === "ok" && calls === 2);
+
+  calls = 0;
+  const appError = async () => {
+    calls++;
+    throw new Error("Invalid or expired session");
+  };
+  const err = await retryOnce(appError, isTransientFetchError, 0, noSleep).catch((e: Error) => e);
+  check("retryOnce: application error not retried", err instanceof Error && err.message === "Invalid or expired session" && calls === 1);
+
+  calls = 0;
+  const dead = async () => {
+    calls++;
+    throw new SyntaxError("Unexpected token <");
+  };
+  const err2 = await retryOnce(dead, isTransientFetchError, 0, noSleep).catch((e: Error) => e);
+  check("retryOnce: second failure propagates after one retry", err2 instanceof SyntaxError && calls === 2);
+  check("isTransientFetchError classifies", isTransientFetchError(new TypeError("x")) && isTransientFetchError(new SyntaxError("x")) && !isTransientFetchError(new Error("x")));
+}
+
 async function main() {
   testNormalize();
   testMaterialize();
   testSyncDecision();
   testRouting();
+  await testRetryOnce();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }
