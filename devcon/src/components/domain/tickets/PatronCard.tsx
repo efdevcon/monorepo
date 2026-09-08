@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Loader2, Minus, Plus } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
 import css from 'pages/tickets/store/store.module.scss'
 import picker from './PatronCard.module.scss'
@@ -21,8 +22,8 @@ import type { PatronInfoResponse } from 'pages/api/tickets/patron-info'
 // (`variant="page"`, shows an explicit unavailable state).
 //
 // Copy lives in content/en/intl/tickets.json under `patron` (translated to
-// hi/mr by the content workflow); only the item's minimum price, availability
-// and per-order cap come from Pretix via /api/tickets/patron-info/.
+// hi/mr by the content workflow); the product name, minimum price,
+// availability and per-order cap come from Pretix via /api/tickets/patron-info/.
 
 export const PATRON_RELIEF_URL = 'https://nepalrelief.org/'
 
@@ -40,6 +41,7 @@ export function PatronReliefLink({ children }: { children: React.ReactNode }) {
 
 export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }) {
   const t = useTranslations('tickets.patron')
+  const { locale } = useRouter()
   const configured = TICKETING.patron.itemId != null
   const [info, setInfo] = useState<PatronInfoResponse | null>(null)
   const [loadError, setLoadError] = useState(false)
@@ -51,7 +53,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
   useEffect(() => {
     if (!configured) return
     let cancelled = false
-    fetch('/api/tickets/patron-info/')
+    fetch(`/api/tickets/patron-info/?locale=${encodeURIComponent(locale ?? 'en')}`)
       .then(r => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json() as Promise<PatronInfoResponse>
@@ -65,7 +67,7 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
     return () => {
       cancelled = true
     }
-  }, [configured])
+  }, [configured, locale])
 
   const item = info?.item ?? null
   const available = Boolean(info?.available && item)
@@ -139,7 +141,8 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
       <div className={css['card']}>
         <div className={css['card-stacked']}>
           <div className={css['card-details']}>
-            <h3 className={css['discount-card-title']}>{t('card_title')}</h3>
+            {/* Product name comes from Pretix (localized server-side), not from intl copy. */}
+            {item && <h3 className={css['discount-card-title']}>{item.name}</h3>}
             {available && (
               <p className={css['discount-card-meta']}>
                 {fixedPrice ? t('card_meta_fixed', { min }) : t('card_meta', { min })}
