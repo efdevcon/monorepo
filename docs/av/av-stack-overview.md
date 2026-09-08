@@ -125,7 +125,8 @@ Details that matter:
   refreshes even if no schedule is published.
 - The devcon-7 sync additionally runs `createPresentations()` (Google Slides) and a
   glossary build - gated `if (eventId === 'devcon-7')` in
-  [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts).
+  [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts). The
+  slides pipeline end to end is in §2d.
 - **Speaker emails never leave the sync**: each speaker gets
   `hash = HMAC-SHA256(EMAIL_SECRET, email)`
   ([`pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/clients/pretalx.ts))
@@ -200,7 +201,7 @@ by hand. "Manual" means someone runs a pnpm script locally.
 | `pnpm stats:v` ([`stats-video.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/stats-video.ts)) | AV source-coverage report | Manual | ✅ Takes an event id since 2026-08 (§12) | Manual |
 | devcon.org social/OG routes | On-demand edge-rendered cards with a Supabase render cache (see §4) | HTTP, `devcon.org/api/social/*` | DC7 placeholder art in `dc8/` (asset swap pending, #6) | Live (§12d) |
 | [`generate-images.yml`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/.github/workflows/generate-images.yml) (nested `.github`) | DC6 lower-thirds + social cards | Hourly cron in a nested `.github` GitHub never executes | DC6 | Dead (§8) |
-| `pnpm slides` ([`slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/slides.ts)) | Google Slides migration | Manual | `data/slides/` gone → throws | Dead (§9) |
+| `pnpm slides` ([`slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/slides.ts)) | Google Slides PDF export + Drive migration (§2d) | Manual | `data/slides/` gone → throws | Dead (§9) |
 
 ## 2c. The app question: devcon-app (DC7) vs event-app (DC8 PWA)
 
@@ -250,6 +251,75 @@ devcon-app stays DC7-only; its blocker #3 is moot.
   the devcon-ai RAG stack (per the handover doc).
 - devcon-app meanwhile shows a dismissable "Devcon 8 prep" banner but is otherwise
   still fully DC7-wired.
+
+## 2d. Speaker slides pipeline (Google Slides, DC7)
+
+How every DC7 speaker got a pre-made deck and how the archive got its PDFs. Built by
+Wesley between Oct and Dec 2024; everything lives in devcon-api plus one devcon.org page.
+Nothing is written back to Pretalx, it only supplies titles, codes and speaker emails.
+
+1. **Deck creation** - [`clients/slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/clients/slides.ts)
+   `CreatePresentationFromTemplate(title, pretalxCode, speakerEmails)`: the EF Google
+   service account copies one template deck into a shared-Drive folder, names it
+   `<title> [<PRETALX_CODE>]` and grants each speaker email `writer` access with the
+   Drive notification email off (`sendEmails = false`). A `name contains '[code]'`
+   lookup makes it idempotent. The first bulk run was manual (`pnpm slides`, 2024-10-11).
+   The Drive, folder and template ids are constants in that file; keep them out of docs.
+2. **Wired into the Pretalx sync** -
+   [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts) `createPresentations()`
+   (2024-10-28): for every `data/sessions/devcon-7/*.json` without `resources_presentation`
+   it creates the deck and writes `https://docs.google.com/presentation/d/<id>` into the
+   JSON. `runPermissions()` (2024-11-09) re-grants writer access to the current speaker
+   emails on existing decks, which covers speakers added later. Both run inside the
+   Pretalx Sync GitHub Action with the Google credentials as secrets, so during DC7 every
+   schedule publish also created decks for new talks. Gated `if (eventId === 'devcon-7')`.
+3. **Speaker-facing link** -
+   [`devcon/src/pages/sea/presentation/[code].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon/src/pages/sea/presentation/%5Bcode%5D.tsx)
+   (2024-10-15): `devcon.org/sea/presentation/<code>` fetches
+   `api.devcon.org/sessions/<code>` (slug or Pretalx code both resolve) and redirects
+   client-side to `resources_presentation`; without a link it shows "No presentation
+   link found. Please contact the organisers." Pages build on demand
+   (`fallback: 'blocking'`). The path is referenced nowhere else in the repo, so the
+   link was handed to speakers from Pretalx mail templates or the speaker guide
+   (inference).
+4. **Event-eve nudge** - `RunPermissions` (commit `553ca239a`, 2024-11-12 00:59 Bangkok)
+   reads the deck's `lastModifyingUser`. If the last editor is still the service
+   account, meaning the speaker never opened the deck, it sends a notification email;
+   otherwise it returns silently.
+5. **Post-event export to the archive** -
+   [`scripts/slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/slides.ts) (2024-12-09 to 12):
+   `exportSlides()` pulled each deck as PDF through the Slides export URL into
+   `data/slides/devcon-7/<id>.pdf` and set `resources_slides` to the API URL;
+   `cleanupSlides()` deleted PDFs that were empty or byte-for-byte the untouched
+   template (size heuristic); `migrateSlides()` uploaded the remaining PDFs to Drive,
+   rewrote `resources_slides` to `https://drive.google.com/file/d/<id>/view` and removed
+   the local files. That is why `data/slides/` no longer exists and the script is dead
+   today (§9). The archive still cannot show these links because of the `slidesUrl`
+   field mismatch (§7.1).
+
+**When slides were visible during DC7** (from git; the slides client never held an
+`anyone` grant at any point in its history, so read access was never changed by code):
+
+| Date | What became visible, and to whom |
+|---|---|
+| 2024-10-15 | Redirect route `devcon.org/sea/presentation/<code>` live, used by speakers |
+| 2024-10-28 | Deck URLs committed to the public repo and served by the public API for all sessions; the decks themselves stayed restricted to speaker emails plus shared-drive members |
+| 12 to 15 Nov 2024 | No change. Neither devcon-app nor the archive displayed deck or slide links to attendees |
+| 2024-12-09 to 12 | PDF exports published as `resources_slides`, first API-hosted, then Drive links |
+| Since then | Still not rendered in the archive because of the `slidesUrl` mismatch (§7.1) |
+
+A stranger following the public URL hit Google's request-access screen before, during
+and after the talk. The only way a deck could be read early was a speaker changing its
+sharing themselves, which git cannot show. Slide content reached the public only in
+December, about four weeks after the event.
+
+For DC8 the recommendation is to keep this pipeline, keep decks private until after the
+event as in 2024, and enforce that instead of leaving it to each deck's sharing setting:
+speakers write, the AV team reads from creation, the public reads only after the event
+(§11.9). Reuse checklist: lift the `devcon-7` gate in the sync, point the template and
+folder constants at a DC8 deck and folder, add the permissions pass, and either rename
+the redirect route (DC7-branded by path, hardcodes `api.devcon.org`) or add a DC8
+equivalent.
 
 ## 3. Devcon 8 blockers - independent hardcodes that fail silently
 
@@ -592,6 +662,44 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    storage (they're read-rarely blobs, not schedule data) and prune `devcon/public/`
    - halves every clone in the org. Not urgent for DC8, but do it before the repo
    grows another gig of DC8 media.
+
+9. **Slides for DC8: keep the per-talk Google decks, keep them private until after the
+   event, and enforce it (§2d).** Keep the decks because the AV team needs every deck
+   URL in advance to pre-load and cue, a deck that exists from day one is why 527 of
+   ~650 DC7 sessions ended with slides, and the archive fills itself. Keep them private
+   because that is what DC7 did in practice (§2d timeline: slide content reached the
+   public only in December) and it removes the pre-talk leak question entirely. What
+   was wrong last year is that privacy relied on nobody touching a deck's sharing
+   setting, and grants only ever accumulated. The URL being public everywhere (API,
+   repo, one swap from the social link) is fine as long as read access is what the
+   pipeline controls. Desired state, enforced by a scheduled permissions pass (an
+   extension of `runPermissions()` plus `permissions.list`), run daily during the event
+   and on every sync:
+   - **Speakers: writer** from creation, as today. Revoke when a speaker is removed
+     from the talk in Pretalx.
+   - **AV team: reader** from creation, through one Google Group (or shared-drive
+     membership), so they hold URL and content ahead of everyone else.
+   - **Public: nothing until the event is over.** Any `anyone` grant found on a deck
+     during the event is removed, whoever added it. A speaker can re-share their deck,
+     and `writersCanShare` is not available for shared-drive files, so reconciliation
+     is the only control.
+   - **Never `anyone` writer**, before or after the event. Strip it whenever found.
+   - **Publish once, after the event:** a single scheduled run exports every deck to
+     PDF into `resources_slides` with the existing export code, so later speaker edits
+     do not change the on-record version, and optionally adds `type: anyone`,
+     `role: reader`, `allowFileDiscovery: false` on the decks themselves. This replaces
+     the manual December 2024 pass.
+   Prerequisites: confirm the Workspace or shared-drive policy allows "anyone with the
+   link" sharing if the decks themselves are to be opened after the event (per-user
+   external grants already work, link sharing is a separate setting); lift the
+   `devcon-7` gate and point the template and folder constants at DC8; rename the
+   `/sea/presentation/` redirect (DC7-branded path, hardcodes `api.devcon.org`) or add
+   a DC8 route. Alternative if stage AV does not project from the decks and the Drive
+   infra should go: a private Pretalx **file** question (not the native Resources
+   feature, which is public on the talk page as soon as the schedule is), released by
+   the sync into `resources_slides` after the event, since anything in a session JSON
+   is public on landing and the Pretalx file URL is unauthenticated once known. Either
+   way the archive needs the `slidesUrl` fix (§7.1) or nothing renders.
 
 ## 12. Changelog: fixes implemented 2026-08-04
 
