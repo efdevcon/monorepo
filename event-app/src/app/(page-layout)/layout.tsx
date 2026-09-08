@@ -3,11 +3,9 @@
 import { Suspense, useState } from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
-import cn from "classnames";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
-import { useDetailView } from "@/routing/detailRoute";
 import { TabPanes } from "@/components/TabPanes";
 
 /**
@@ -30,7 +28,6 @@ export default function PageLayout({
 function PageLayoutInner({ children }: { children: React.ReactNode }) {
   const [devaBotOpen, setDevaBotOpen] = useState(false);
   const pathname = usePathname();
-  const { kind: detailKind } = useDetailView();
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
   const isKiosk = pathname.startsWith("/room-screens/");
@@ -41,17 +38,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
       <div className="app-bg" aria-hidden />
       <AppHeader onOpenAI={() => setDevaBotOpen(true)} />
       {/* `section` restrains content width (centered column + gutters);
-          bottom padding on mobile clears the bottom nav bar, except on detail
-          views, where the bar is hidden and a slimmer breathing space is
-          enough. */}
-      <div
-        className={cn(
-          "section lg:pb-0",
-          detailKind !== null
-            ? "pb-[calc(2rem+env(safe-area-inset-bottom))]"
-            : "pb-28"
-        )}
-      >
+          bottom padding on mobile clears the bottom nav bar, which stays on
+          session and speaker pages too. */}
+      <div className="section pb-28 lg:pb-0">
         {/* Bottom-bar tabs stay mounted across switches (TabPanes); their
             route pages render nothing. Other routes render as children. */}
         <TabPanes pathname={pathname} />

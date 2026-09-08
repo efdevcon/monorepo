@@ -3,6 +3,7 @@
 import { SWRConfig, type Cache } from "swr";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
+import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
 import { eventStore } from "../store/event-store";
 import { getActiveDataset } from "../dataset";
@@ -37,6 +38,14 @@ export function DataProvider({ children }: { children: ReactNode }) {
         shouldRetryOnError: true,
         errorRetryCount: 3,
         errorRetryInterval: 5000,
+        // No retries while the browser knows it is offline: they can only
+        // fail (three more console errors per hook), and revalidateOnReconnect
+        // already refetches the moment the network is back.
+        onErrorRetry: (_err, _key, config, revalidate, { retryCount }) => {
+          if (!isOnlineNow()) return;
+          if (retryCount >= (config.errorRetryCount ?? 3)) return;
+          setTimeout(() => void revalidate({ retryCount }), config.errorRetryInterval);
+        },
         provider: () => cacheProvider as unknown as Cache,
       }}
     >

@@ -89,7 +89,9 @@ export function DetailLayer({
       // below the app header (z-30).
       className="fixed inset-0 z-[25] overflow-x-hidden overflow-y-auto overscroll-contain bg-dc-panel outline-none lg:hidden"
     >
-      <div className="min-h-full pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[calc(3.5rem+var(--safe-top))]">
+      {/* pb-28 clears the bottom tab bar, which stays visible on detail
+          pages (same clearance as the layout gives the lists). */}
+      <div className="min-h-full pb-28 pt-[calc(3.5rem+var(--safe-top))]">
         {children}
       </div>
     </div>

@@ -6,7 +6,6 @@ import {
   CacheFirst,
   ExpirationPlugin,
   NetworkFirst,
-  NetworkOnly,
   Serwist,
   StaleWhileRevalidate,
 } from "serwist";
@@ -151,9 +150,19 @@ const serwist: Serwist = new Serwist({
       handler: documents,
     },
     {
-      // SWR handles API data caching — keep SW out of the way
+      // SWR handles API data caching — keep SW out of the way. Plain fetch
+      // rather than NetworkOnly: the strategy rejects its promise when the
+      // network is down, which Chromium reports as an "Uncaught (in promise)
+      // no-response" in the worker console on every offline API call. A
+      // network-error Response gives the page the same failure, quietly.
       matcher: /\/api\/.*/i,
-      handler: new NetworkOnly(),
+      handler: async ({ request }) => {
+        try {
+          return await fetch(request);
+        } catch {
+          return Response.error();
+        }
+      },
     },
     {
       matcher: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,

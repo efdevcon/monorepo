@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
-import { useDetailView } from "@/routing/detailRoute";
 import { handleTabClick } from "@/components/paneContext";
 import { IosHapticOverlay } from "@/components/IosHapticOverlay";
 
@@ -131,20 +130,20 @@ function NavTab({
  */
 export function Nav() {
   const pathname = usePathname();
-  const { kind: detailKind } = useDetailView();
   const navRef = useRef<HTMLElement | null>(null);
 
-  // No nav on the full-screen room-screen kiosk or on mobile detail views
-  // (session / speaker layers read as focused, single-purpose screens; the
-  // header back arrow is the way out). The layout trims its clearance too.
-  const hidden = pathname.startsWith("/room-screens/") || detailKind !== null;
+  // No nav on the full-screen room-screen kiosk only. Session and speaker
+  // pages keep the bar, like a detail screen inside a native tab: it says
+  // which tab you are in, the other tabs stay one tap away, and tapping the
+  // current tab closes the page (it navigates to the bare tab URL).
+  const hidden = pathname.startsWith("/room-screens/");
 
   // Publish the bar's rendered height as --nav-clearance so bottom-anchored
   // overlays outside the layout flow (map controls, debug FAB) can sit above
   // it. Measured, not hardcoded: the height varies between browser tab and
   // installed PWA with env(safe-area-inset-bottom). 0 wherever the bar isn't
-  // rendered (desktop's lg:hidden, detail views, kiosk), so those overlays
-  // fall back to the screen edge.
+  // rendered (desktop's lg:hidden, kiosk), so those overlays fall back to
+  // the screen edge.
   useEffect(() => {
     const root = document.documentElement;
     const el = navRef.current;

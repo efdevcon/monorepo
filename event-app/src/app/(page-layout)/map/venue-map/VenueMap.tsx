@@ -423,7 +423,6 @@ export const VenueMap = () => {
     }
   };
 
-  console.log(currentFilters.selection, 'currentFilters.selection');
 
   const onSVGElementClick = (
     id: string,
