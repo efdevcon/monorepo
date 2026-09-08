@@ -36,7 +36,10 @@ const ignoreViewParams = {
 
 const documents = new NetworkFirst({
   cacheName: "pages",
-  networkTimeoutSeconds: 5,
+  // 3 s, not 5: "/" and /ticket are served through this route on every app
+  // open (they are not precached, see the install listener below), and on
+  // flaky venue wifi a longer wait before the cached copy reads as a hang.
+  networkTimeoutSeconds: 3,
   plugins: [
     ignoreViewParams,
     new CacheableResponsePlugin({ statuses: [200] }),
@@ -275,17 +278,18 @@ const serwist: Serwist = new Serwist({
 serwist.addEventListeners();
 
 /**
- * Warm the runtime page cache with /ticket at install, so the ticket QR
- * opens offline on a phone that never visited the page online (venue
- * entrance, no signal). It is deliberately NOT precached: precache serves
- * cache-first, and /ticket must be server-rendered fresh whenever possible
- * because its <link rel="manifest"> is personalised from the session cookie
+ * Warm the runtime page cache with "/" and /ticket at install, so both open
+ * offline on a phone that never visited them online (the ticket QR at the
+ * venue entrance, no signal). They are deliberately NOT precached: precache
+ * serves cache-first, and these two pages (the ones carrying the install
+ * button and the sign-in) must be server-rendered fresh whenever possible,
+ * because the <link rel="manifest"> is personalised from the session cookie
  * (see next.config.ts and PersonalizedManifestLink). The `documents`
  * NetworkFirst route above owns this cache, so online loads refresh the copy
  * and offline loads fall back to it. Best effort: a failure here must not
  * fail the install.
  */
-const WARM_PAGES = ["/ticket"];
+const WARM_PAGES = ["/", "/ticket"];
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
