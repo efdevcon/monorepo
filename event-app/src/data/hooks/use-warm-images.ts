@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { whenControlled } from "@/utils/serviceWorkerControl";
 
 /**
  * Pre-fetch remote images so they're in the service worker's image cache before
@@ -22,6 +23,14 @@ import { useEffect } from "react";
  * fetches the difference. A restart with nothing changed does no work at all,
  * and a handful of new avatars costs a handful of requests — so this never turns
  * into a full re-download because the app was reopened.
+ *
+ * Waits for the service worker on a cold visit: the store publishes every image
+ * URL within a second or two of the first load, while the worker is still
+ * precaching the shell and only claims the page once it activates (about ten
+ * seconds on a phone against the CDN). Giving up when no worker controlled the
+ * page yet left the whole first session with no pre-cached images, so the
+ * speakers grid came up blank offline until the app had been opened online a
+ * second time.
  */
 
 /**
@@ -278,13 +287,23 @@ export function useWarmImages(tiers: (string | null | undefined)[][]): void {
 
   useEffect(() => {
     if (candidates.length === 0) return;
-    // Without a controlling service worker nothing would cache the responses,
-    // so warming would be pure waste. Also covers dev, where the SW is off.
-    if (!navigator.serviceWorker?.controller) return;
     if (!connectionAllowsWarming()) return;
-    // No cleanup/abort on purpose: the queue is app-wide and idle-chunked, and
-    // aborting on every dataset arrival is exactly what broke the cold warm.
-    enqueue(groups);
+    // Without a controlling service worker nothing would cache the responses,
+    // so wait for one to claim the page (see whenControlled) instead of
+    // bailing. In dev, where the SW is off, the wait never resolves and
+    // nothing is fetched, as before.
+    //
+    // The running queue is never aborted (aborting on every dataset arrival
+    // is exactly what broke the cold warm); `stale` only drops a *pending*
+    // enqueue when a newer set has superseded it while we were still waiting,
+    // since the newest set is the one worth warming.
+    let stale = false;
+    void whenControlled().then((controlled) => {
+      if (controlled && !stale) enqueue(groups);
+    });
+    return () => {
+      stale = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 }
