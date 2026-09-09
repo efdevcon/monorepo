@@ -208,7 +208,7 @@ const ENV_CONFIG = {
     // the page in its "not available" state. Preset amounts are plain POC
     // examples, adjust before launch.
     patron: {
-      itemId: null as number | null,
+      itemId: 70 as number | null,
       presets: [2000, 3000, 5000],
     },
     overrides: {
