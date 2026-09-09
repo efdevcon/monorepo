@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Loader2, Minus, Plus } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from 'next/router'
 import { Input } from '@/components/ui/input'
 import css from 'pages/tickets/store/store.module.scss'
 import picker from './PatronCard.module.scss'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { EthGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
-import type { PatronInfoResponse } from 'pages/api/tickets/patron-info'
+import { usePatronInfo, formatPatronAmount as fmt } from 'hooks/usePatronInfo'
 
 // Patron ticket section. The Pretix item is a *free-price* item: the buyer
 // picks the amount and Pretix enforces the item's default price as the floor.
@@ -27,8 +26,6 @@ import type { PatronInfoResponse } from 'pages/api/tickets/patron-info'
 
 export const PATRON_RELIEF_URL = 'https://nepalrelief.org/'
 
-const fmt = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 })
-
 type Selection = { kind: 'preset'; amount: number } | { kind: 'custom' }
 
 export function PatronReliefLink({ children }: { children: React.ReactNode }) {
@@ -41,38 +38,11 @@ export function PatronReliefLink({ children }: { children: React.ReactNode }) {
 
 export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }) {
   const t = useTranslations('tickets.patron')
-  const { locale } = useRouter()
-  const configured = TICKETING.patron.itemId != null
-  const [info, setInfo] = useState<PatronInfoResponse | null>(null)
-  const [loadError, setLoadError] = useState(false)
+  const { configured, info, item, available, minPrice, fixedPrice, loading, loadError } = usePatronInfo()
   const [selection, setSelection] = useState<Selection | null>(null)
   const [custom, setCustom] = useState('')
   const [qty, setQty] = useState(1)
   const [submitting, setSubmitting] = useState(false)
-
-  useEffect(() => {
-    if (!configured) return
-    let cancelled = false
-    fetch(`/api/tickets/patron-info/?locale=${encodeURIComponent(locale ?? 'en')}`)
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`)
-        return r.json() as Promise<PatronInfoResponse>
-      })
-      .then(data => {
-        if (!cancelled) setInfo(data)
-      })
-      .catch(() => {
-        if (!cancelled) setLoadError(true)
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [configured, locale])
-
-  const item = info?.item ?? null
-  const available = Boolean(info?.available && item)
-  const minPrice = item ? Number(item.minPrice) : 0
-  const fixedPrice = Boolean(item && !item.freePrice)
 
   // Minimum first, then the configured presets above it (deduped), max four.
   const presets = useMemo(() => {
@@ -118,8 +88,6 @@ export function PatronCard({ variant = 'store' }: { variant?: 'store' | 'page' }
       window.location.href = pretixEventUrl(`/?item=${item.id}`)
     }
   }
-
-  const loading = configured && info === null && !loadError
 
   // In the store the section simply disappears when there is nothing to sell.
   if (variant === 'store' && (!configured || loadError || (info !== null && !available))) return null

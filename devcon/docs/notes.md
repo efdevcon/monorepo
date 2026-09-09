@@ -41,7 +41,10 @@ as the floor, so Pretix remains the final gate on price and availability.
 - UI: `src/components/domain/tickets/PatronCard.tsx`, mounted twice — inside
   `/tickets/store/` (`variant="store"`, section `#patron`, auto-hides when not
   sellable) and on the shareable `/tickets/store/patron/` (`variant="page"`,
-  explicit unavailable state). Both pages share `StoreSidebar.tsx`.
+  explicit unavailable state). Both pages share `StoreSidebar.tsx`. The
+  availability fetch lives in `src/hooks/usePatronInfo.ts`, which `/tickets/`
+  also uses to append a "Patron" row (min amount, link to `#patron`) to the
+  General Admission table once Pretix reports the item purchasable.
 - Checkout: `addItemsToPretixCartAndRedirect(..., { destination: 'checkout' })`
   in `src/services/pretixCart.ts` POSTs `item_<id>` + `price_<id>` to Pretix's
   namespaced widget cart and lands on Pretix's hosted checkout. The Patron flow
