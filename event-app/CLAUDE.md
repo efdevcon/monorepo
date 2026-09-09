@@ -92,7 +92,13 @@ requirements. All remote images are served from our own Supabase Storage
    so it only ever holds what the browser actually requested. Anything behind
    `loading="lazy"`, a carousel, or a route the user may not visit is *not*
    cached just because its data is. Add its URLs to `useWarmImages`
-   (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`).
+   (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`). The warmer
+   waits for the service worker to claim the page before fetching
+   (`src/utils/serviceWorkerControl.ts`): on a cold visit the data is in hand
+   after a couple of seconds while the shell precache takes ~10 s on a phone,
+   and giving up at that point left the whole first session with no pre-cached
+   images. Keep that wait; never gate warming on `serviceWorker.controller`
+   at effect time.
 
 5. **Never render a broken image.** Wire `onError` to `useRetryOnReconnect`
    (`src/hooks/useRetryOnReconnect.ts`) and fall back to a placeholder — initials

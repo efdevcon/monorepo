@@ -13,6 +13,7 @@ import {
   tabPathOf,
 } from "../src/routing/viewParams";
 import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
+import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -177,12 +178,47 @@ async function testRetryOnce() {
   check("isTransientFetchError classifies", isTransientFetchError(new TypeError("x")) && isTransientFetchError(new SyntaxError("x")) && !isTransientFetchError(new Error("x")));
 }
 
+/** Fake navigator.serviceWorker: a controller slot plus a `claim()` that fires controllerchange. */
+function fakeContainer(controller: object | null) {
+  const listeners: Array<() => void> = [];
+  const fake = {
+    controller,
+    addEventListener: (_type: string, cb: () => void) => {
+      listeners.push(cb);
+    },
+    claim() {
+      fake.controller = {};
+      for (const cb of listeners.splice(0)) cb();
+    },
+  };
+  return fake;
+}
+const asControl = (fake: ReturnType<typeof fakeContainer>) => fake as unknown as ServiceWorkerControl;
+
+async function testWhenControlled() {
+  check("whenControlled: no container resolves false", (await whenControlled(undefined)) === false);
+  check("whenControlled: already controlled resolves true", (await whenControlled(asControl(fakeContainer({})))) === true);
+
+  // Cold visit: nothing controls the page yet; the worker claims it later.
+  const cold = fakeContainer(null);
+  let settled: boolean | null = null;
+  void whenControlled(asControl(cold)).then((v) => {
+    settled = v;
+  });
+  await Promise.resolve();
+  check("whenControlled: waits while no worker controls the page", settled === null);
+  cold.claim();
+  await Promise.resolve();
+  check("whenControlled: resolves true once the worker claims the page", settled === true);
+}
+
 async function main() {
   testNormalize();
   testMaterialize();
   testSyncDecision();
   testRouting();
   await testRetryOnce();
+  await testWhenControlled();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }
