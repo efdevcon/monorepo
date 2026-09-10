@@ -7,7 +7,7 @@ import type { BuyerOrder } from "@/data/tickets/primary";
  * Nudge for a buyer whose order still holds several tickets under their own
  * email: set each holder's email on their ticket in Pretix so the holders sign
  * in with it, find their ticket loaded, and never need to choose or upload.
- * One chip per ticket, labelled like the select rows ("Order KXQFQ · Ticket
+ * One chip per ticket, labelled like the select rows ("Order ABCDE · Ticket
  * #1"); Pretix has no per-ticket page on this instance, so each opens the
  * order's "change details" form (<order url>/modify), which covers every
  * ticket on it. Renders nothing when there is no such order.

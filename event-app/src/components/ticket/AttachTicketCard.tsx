@@ -215,10 +215,10 @@ export function ChooseTicketCard({
 
   /**
    * Line 1, bold: the identifier, the one thing that differs between rows
-   * ("Order KXQFQ · Ticket #1", the order only when several are involved). Line 2: the
+   * ("Order ABCDE · Ticket #1", the order only when several are involved). Line 2: the
    * ticket type, a holder other than you, and the status note. Line 3: swag.
    */
-  // Non-breaking spaces keep "Order KXQFQ" and "Ticket #1" whole when the line wraps.
+  // Non-breaking spaces keep "Order ABCDE" and "Ticket #1" whole when the line wraps.
   const reference = (choice: TicketChoice) =>
     severalOrders
       ? `Order\u00a0${choice.orderCode} · Ticket\u00a0#${choice.ordinal}`

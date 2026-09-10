@@ -94,7 +94,7 @@ export function TicketSections({
 }) {
   const [modal, setModal] = useState<QrModalTarget | null>(null);
 
-  // "Order KXQFQ · Ticket #1" under each QR: the identifier shared with the
+  // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
   // select rows and the Pretix order page.
   const ordinals = ticketOrdinals(tickets);
   const orderCodeBySecret = new Map<string, string>();

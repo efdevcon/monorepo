@@ -205,7 +205,7 @@ sole email match, else the tab asks.
   Pretix email. Footer: "Not your ticket? Attach yours" replaces an
   email-matched ticket, "Wrong ticket? Choose another" (or "Remove it from this
   account" when no select would follow) detaches an attached one. Tickets are
-  numbered for people as "Order KXQFQ · Ticket #1" (`ticketOrdinals`: 1..n per
+  numbered for people as "Order ABCDE · Ticket #1" (`ticketOrdinals`: 1..n per
   order over the tickets the account sees, so Pretix position gaps never show),
   the same string on the card, the select rows and the buyer links.
 - **Buyer nudge** (`BuyerOrdersHint`): whenever the account is the order email
