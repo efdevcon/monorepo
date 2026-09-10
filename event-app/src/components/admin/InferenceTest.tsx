@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { detailHref } from "@/routing/viewParams";
 import Markdown from "react-markdown";
 import cn from "classnames";
 import type { Components } from "react-markdown";
@@ -63,12 +64,12 @@ function resolveDocLink(doc: InferenceSource): DocLink | null {
         ? path.slice("sessions/".length)
         : null;
   if (sessionId) {
-    return { href: `/schedule/${sessionId}`, label: `Session ${sessionId}`, external: false };
+    return { href: detailHref("session", sessionId), label: `Session ${sessionId}`, external: false };
   }
 
   if (path.startsWith("speakers/")) {
     const id = path.slice("speakers/".length);
-    return { href: `/speakers/${id}`, label: `Speaker ${id}`, external: false };
+    return { href: detailHref("speaker", id), label: `Speaker ${id}`, external: false };
   }
 
   const base = doc.source_repo ? GITHUB_CMS_BASE[doc.source_repo] : undefined;
@@ -89,8 +90,8 @@ function resolveDocLink(doc: InferenceSource): DocLink | null {
 function resolveSourceUri(href: string): string | null {
   if (!href.startsWith("source:")) return null;
   const path = stripChunk(href.slice("source:".length));
-  if (path.startsWith("sessions/")) return `/schedule/${path.slice("sessions/".length)}`;
-  if (path.startsWith("speakers/")) return `/speakers/${path.slice("speakers/".length)}`;
+  if (path.startsWith("sessions/")) return detailHref("session", path.slice("sessions/".length));
+  if (path.startsWith("speakers/")) return detailHref("speaker", path.slice("speakers/".length));
   return null;
 }
 

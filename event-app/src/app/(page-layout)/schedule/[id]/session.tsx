@@ -2,11 +2,14 @@
 
 import { useSession } from "@/data/hooks";
 import APP_CONFIG from "@/CONFIG";
-import { use, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import { CalendarPlus } from "lucide-react";
+import { use, useState } from "react";
+import { ArrowLeft, CalendarPlus } from "lucide-react";
 import { Link } from "@/routing";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import { closeDetail } from "@/routing/detailRoute";
+import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
+import { NeedsConnection } from "@/components/NeedsConnection";
+import { ShareButton } from "@/components/ShareButton";
+import { useOnline } from "@/hooks/useOnline";
 import {
   SessionDetailsContent,
   downloadSessionIcs,
@@ -25,24 +28,33 @@ interface SessionClientProps {
   id?: string;
 }
 
+/**
+ * Fullscreen session details. Rendered by the Schedule tab's persistent pane
+ * for `/schedule/<id>` (mobile: over the list; desktop: instead of it), from
+ * the local store, so it works offline for any session once the event has
+ * synced. `params` is kept for direct use as a route page component.
+ */
 export default function Session({ params, id: directId }: SessionClientProps) {
   const id = directId ?? use(params!).id;
 
-  const { session, isLoading, isError, error } = useSession(id);
+  const { session, isLoading, error } = useSession(id);
+  const online = useOnline();
 
   if (!APP_CONFIG.SCHEDULE_ENABLED) {
     return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
   }
 
-  if (isLoading) {
-    return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
-  }
-
-  if (isError || !session) {
+  if (!session) {
+    // Loading only while nothing has ever been synced; otherwise the id is
+    // unknown (stale link, other dataset) or the first sync failed.
+    if (isLoading) {
+      return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
+    }
     return (
-      <div className="p-4 py-12 text-center font-heading text-dc-red">
-        {error?.message || "Session not found"}
-      </div>
+      <DetailNotFound
+        label={error?.message || "Session not found"}
+        onBack={() => closeDetail("session")}
+      />
     );
   }
 
@@ -53,13 +65,30 @@ export default function Session({ params, id: directId }: SessionClientProps) {
           the content block alone ends at its own height, which left the
           gradient showing below short sessions. Same fix as speaker.tsx. */}
       <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
-      <CalendarHeaderAction session={session} />
+      <HeaderActions session={session} />
       <div className="lg:mx-auto lg:w-full lg:max-w-[720px] lg:py-8">
+        {/* Desktop-only back control (the mobile header carries the arrow):
+            same recipe as the speaker page. Closes the page in place, never
+            leaves the app. */}
+        <div className="hidden lg:block">
+          <button
+            type="button"
+            onClick={() => closeDetail("session")}
+            className="mb-3 flex cursor-pointer items-center gap-1.5 text-[14px] font-bold leading-none text-dc-purple hover:underline"
+          >
+            <ArrowLeft className="size-4" />
+            Back
+          </button>
+        </div>
         <div className="lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
           <SessionDetailsContent session={session}>
-            <MeerkatProvider>
-              <SessionQA sessionId={id} />
-            </MeerkatProvider>
+            {online ? (
+              <MeerkatProvider>
+                <SessionQA sessionId={id} />
+              </MeerkatProvider>
+            ) : (
+              <SessionQAOffline />
+            )}
           </SessionDetailsContent>
         </div>
       </div>
@@ -68,28 +97,35 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 }
 
 /**
- * Portals the "Add to Calendar" circle button into the app header (Figma
- * fullscreen session details keeps it top-right in the 56px bar).
+ * Share and "Add to Calendar" circle buttons in the app header (Figma
+ * fullscreen session details keeps the actions top-right in the 56px bar).
+ * The portal is gated on the pane being visible, so a hidden tab's detail
+ * never injects buttons into another tab's header.
  */
-function CalendarHeaderAction({ session }: { session: SessionModel }) {
-  const [target, setTarget] = useState<Element | null>(null);
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_ACTIONS_ID));
-  }, []);
-  if (!target) return null;
+function HeaderActions({ session }: { session: SessionModel }) {
   return (
-    <>
-      {createPortal(
-    <button
-      onClick={() => downloadSessionIcs(session)}
-      aria-label="Add to calendar"
-      className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
-    >
-      <CalendarPlus className="size-4 text-dc-purple" />
-    </button>,
-        target
-      )}
-    </>
+    <HeaderActionsPortal>
+      <ShareButton kind="session" id={session.id} title={session.title} />
+      <button
+        onClick={() => downloadSessionIcs(session)}
+        aria-label="Add to calendar"
+        className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white"
+      >
+        <CalendarPlus className="size-4 text-dc-purple" />
+      </button>
+    </HeaderActionsPortal>
+  );
+}
+
+/** Live-only feature: one quiet line offline, recovers on reconnect. */
+function SessionQAOffline() {
+  return (
+    <div>
+      <h2 className="mb-3 text-[14px] leading-5 text-dc-fg2">
+        <span className="font-bold">Live Q&amp;A</span> – Powered by Meerkat
+      </h2>
+      <NeedsConnection what="Live Q&A" />
+    </div>
   );
 }
 

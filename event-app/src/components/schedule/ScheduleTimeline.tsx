@@ -4,8 +4,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import cn from "classnames";
 import { Clock3, ClockArrowDown, Star, User, X } from "lucide-react";
 import type { Session } from "@/data/models";
-import { Link } from "@/routing";
-import { isDesktopNow, useIsDesktop } from "@/hooks/useIsDesktop";
+import { DetailLink } from "@/routing/DetailLink";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import {
   buildTimeline,
   DESKTOP_METRICS,
@@ -45,7 +45,7 @@ function TimelineSession({
   compact: boolean;
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
-  /** Desktop: open the details side panel instead of navigating (as cards do). */
+  /** Open the details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
 }) {
   const theme = getTrackTheme(session.track);
@@ -56,17 +56,11 @@ function TimelineSession({
   const padX = compact ? 6 : 12;
 
   return (
-    <Link
-      href={`/schedule/${session.id}`}
-      // No viewport prefetch (see SpeakerCard) — client page on cached data.
-      prefetch={false}
+    <DetailLink
+      kind="session"
+      id={session.id}
+      onOpen={onOpen}
       title={`${session.title} — ${session.room?.name ?? ""}`}
-      onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
-          e.preventDefault();
-          onOpen(session.id);
-        }
-      }}
       style={{
         left: left + m.blockInset,
         top: m.blockInset,
@@ -139,7 +133,7 @@ function TimelineSession({
           </span>
         )}
       </div>
-    </Link>
+    </DetailLink>
   );
 }
 
@@ -287,13 +281,18 @@ export function ScheduleTimeline({
     handledSignalRef.current = jumpToNowSignal ?? 0;
     const el = scrollRef.current;
     if (!el || !nowVisible) return;
+    // The grid's own horizontal scroll may animate (one row of blocks, cheap
+    // to paint); the page scroll to the grid is instant, like every other
+    // vertical jump in the app (WebKit rasterises everything a smooth page
+    // scroll passes over). Reduced motion turns the horizontal one off too.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.scrollTo({
       left: Math.max(0, m.roomCol + nowLeft - el.clientWidth / 2),
-      behavior: "smooth",
+      behavior: reduce ? "auto" : "smooth",
     });
     // Page is locked in fullscreen (and the grid already fills it).
     if (!fullscreen) {
-      rootRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      rootRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jumpToNowSignal]);

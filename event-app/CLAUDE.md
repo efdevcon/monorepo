@@ -9,6 +9,7 @@ pnpm dev          # next dev --turbopack (no service worker — see below)
 pnpm preview      # build + serve, the only faithful way to test offline/PWA
 pnpm typecheck    # tsc --noEmit, run before considering a task complete
 pnpm lint
+pnpm data:test    # pure-function tests: EventStore normalise/materialise/sync decision, routing helpers
 ```
 
 **Testing offline / the service worker.** Use `pnpm preview` (`next build
@@ -20,16 +21,34 @@ isn't a useful stand-in — precache is thin there (`injectManifest` has no buil
 output to glob) and webpack dev is slow, so it misleads on exactly the
 install/precache behaviour you'd want to check.
 
-Most offline behaviour needs **no** SW at all, though: the Dexie/SWR layer covers
-cached API data, so the announcements inbox, schedule and speakers can be tested
-offline under plain `pnpm dev` with DevTools offline. Only SW-owned behaviour
-(image caching, precached routes, the `/offline` fallback, push) needs
-`pnpm preview`.
+Most offline behaviour needs **no** SW at all, though: the EventStore and the
+Dexie/SWR layer cover cached data, so the announcements inbox, schedule and
+speakers can be tested offline under plain `pnpm dev` with DevTools offline. Only
+SW-owned behaviour (image caching, precached routes, the `/offline` fallback,
+push, serving `/schedule/<id>` offline from the tab shell) needs `pnpm preview`.
+
+The end-to-end check is `node scripts/offline-sweep.mjs --port <preview port>`
+from the repo root against a running `pnpm preview`: it warms the SW and the
+store, goes offline, hard-loads every core route and detail deep link (phone and
+desktop viewports), and fails on any offline fallback, broken image, layout
+squeezed into a gutter, or document reload during client navigation. Go offline
+with Playwright's `context.setOffline(true)`: a raw CDP
+`Network.emulateNetworkConditions` on the page target leaves the service
+worker's own fetches online, so "offline" document loads were served from the
+server and proved nothing. CDP emulation also does not flip `navigator.onLine`
+for documents loaded after it was switched on, so `useOnline`-driven UI (pill,
+"needs a connection" lines) won't show in such a harness unless
+`navigator.onLine` is overridden; real devices in airplane mode report it
+correctly.
 
 ## Hard rules
 
-- **Offline-first data**: all persisted state goes through the Dexie/IndexedDB-backed SWR layer, never ad-hoc fetch + useState for API data. `/api/*` stays `NetworkOnly` in the service worker; API caching is owned by the SWR/Dexie layer, not the SW.
-- **Service worker**: precache stays limited to the app-shell routes. Never enable `skipWaiting`; updates are opt-in via the update toast (`ServiceWorkerUpdater.tsx`).
+- **Catalogue data goes through the EventStore** (`src/data/store/`): sessions, speakers, rooms and the event record are one bundle from `GET /events/:id/bundle`, stored normalised in Dexie and synced only when `GET /events/:id/version` changes (60 bytes). Read it through the hooks in `src/data/hooks/` (`useSessions`, `useSpeaker`, …); never fetch catalogue data anywhere else. Adding a field means updating devcon-api's bundle allowlist, `store/types.ts`, `normalize.ts`, `materialize.ts` and the `data:test` fixture. Other persisted state (announcements, tickets, stars) goes through the Dexie-backed SWR layer, never ad-hoc fetch + useState. The service worker has no rule for `/api/*` (requests reach the browser untouched; routing them through the worker made Safari's cold-started worker fail the first request after a pause) and the devcon-api origin is never cached by it.
+- **The five bottom-bar tabs are persistent panes** (`src/components/TabPanes.tsx`): their route `page.tsx` files render nothing and the layout keeps each visited pane mounted, toggling `hidden` on tab switches (a page mount of the speakers list cost ~800 ms on a mid-range phone; a toggle is a few ms) and restoring each tab's scroll position. Consequences: anything that portals into the app header or measures the window on scroll must check `usePaneActive()` (`src/components/paneContext.ts`), or every mounted pane does it at once, and IntersectionObserver callbacks must ignore 0×0 rects (a hidden pane's elements); long lists render group by group in the background with `useProgressiveReveal` (`src/hooks/useProgressiveReveal.ts`) so first mount costs a screenful, and jumps call `revealAll()` first so they measure real heights (never render-on-viewport-approach: A–Z jumps then landed on placeholders and the content shifted under the finger); the schedule jumps to "live now" only on app open. Every vertical page jump is instant (`behavior: "auto"`), never smooth: WebKit rasterises everything a smooth scroll passes over and a rapid series crashed iOS (PR #112). Tab taps give a haptic tick: Android via the Vibration API (`utils/haptics.ts`), iOS via a transparent `<input type="checkbox" switch>` overlay inside each tab link (`IosHapticOverlay`; the only path left since iOS 26.5 closed programmatic ticks, an undocumented side effect that may stop working, failing silently). Re-tapping the active tab resets its pane like a native tab bar (`handleTabClick` + `useTabReselect` in `paneContext.ts`): instant scroll to top by default, the schedule jumps to "now", the map resets filters and view (`resetView` in VenueMap); with a detail page open the tap navigates to the bare tab URL, which closes it.
+- **Detail pages are real paths that open in place.** `/schedule/<id>` and `/speakers/<id>` are the only detail URLs (shared, crawled, pushed). The route files (`schedule/[id]/page.tsx`, `speakers/[id]/page.tsx`) exist for the URL and its `generateMetadata` and render nothing on the client: the list tab's pane renders the page (`session.tsx` / `speaker.tsx`, mobile as a `DetailLayer` over the list, desktop in place of it; the desktop side panel is local state, not the URL). In the app a detail opens with `openDetail` / `useDetailRoute` (`src/routing/detailRoute.ts`: Next-integrated `history.pushState`, no RSC fetch), links are `DetailLink` (a plain anchor with the real href; never `next/link`, which prefetches per card). Offline, the SW answers a navigation to a detail path with the precached tab shell (`src/sw.ts`), so a never-visited id works too; `/schedule/[id]` is never precached per id. Build hrefs with `detailHref(kind, id)` (`src/routing/viewParams.ts`, also imported by the SW). `/room-screens/[id]` is the deliberate exception (TV kiosk, always online).
+- **Live-only features degrade, never error**: gate Q&A, streams, chat, sign-in, push and refresh on `useOnline()` and render `<NeedsConnection what="…" />` in the feature's slot.
+- **Service worker**: precache stays limited to the app-shell routes, and never `/` or `/ticket`: precache is cache-first, and those two pages (install button, sign-in) must be server-rendered fresh because the root layout's `<link rel="manifest">` is personalised from the session cookie (the install sign-in bridge; a stale copy installs a signed-out app). Both are warmed into the runtime page cache at SW install instead and served network-first (`src/sw.ts`). Never enable `skipWaiting`; updates are opt-in via the update toast (`ServiceWorkerUpdater.tsx`).
+- **Sign-in state must reach the server.** The browser session lives in localStorage (auth-js), but the install bridge is decided server-side from the auth cookie. `useUser` mirrors every sign-in and token refresh into that cookie through `POST /api/auth/session` and clears it on sign-out (`src/data/auth/sessionCookie.ts`); after an OTP sign-in in an iOS browser tab it reloads the page so Safari's "Add to Home Screen" sees the personalised manifest. Don't add sign-in paths that skip this.
 - **Current time**: never call `Date.now()` / `new Date()` directly in components. Use the shared `useNow`/`useNowMs` hooks (`src/hooks/useNow.ts`) so time can be mocked with `?mockNow=` / `?mockSpeed=` query params. For content dated against the real world rather than event time (announcements), use `useRealWorldNowMs` — it opts out of the per-deployment event-start auto-mock, which would otherwise let the selected dataset (e.g. devcon-7 → Nov 2024) decide whether today's announcements are visible.
 - **Event timezone**: the API serves session times as plain UTC instants with no timezone; all wall-clock rendering and day grouping must go through the venue-timezone helpers in `src/data/eventTime.ts` (`eventFmt`, `eventDayKey`, …). Never format session times with a bare `Intl.DateTimeFormat` or local `Date` getters — that shifts the schedule with the viewer's system timezone. Announcements are the exception (real-world-dated, intentionally viewer-local).
 - **Code style**: double quotes, semicolons (unlike the devcon package).
@@ -73,7 +92,13 @@ requirements. All remote images are served from our own Supabase Storage
    so it only ever holds what the browser actually requested. Anything behind
    `loading="lazy"`, a carousel, or a route the user may not visit is *not*
    cached just because its data is. Add its URLs to `useWarmImages`
-   (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`).
+   (`src/data/hooks/use-warm-images.ts`, wired up in `CacheWarmer`). The warmer
+   waits for the service worker to claim the page before fetching
+   (`src/utils/serviceWorkerControl.ts`): on a cold visit the data is in hand
+   after a couple of seconds while the shell precache takes ~10 s on a phone,
+   and giving up at that point left the whole first session with no pre-cached
+   images. Keep that wait; never gate warming on `serviceWorker.controller`
+   at effect time.
 
 5. **Never render a broken image.** Wire `onError` to `useRetryOnReconnect`
    (`src/hooks/useRetryOnReconnect.ts`) and fall back to a placeholder — initials
@@ -87,6 +112,12 @@ Do **not** drop `loading="lazy"` to force caching. It works, but rasterizing
 hundreds of images down a tall page is the mechanism behind the iOS
 content-process crash the speakers page already hit once. Warm via `fetch`, which
 keeps the images out of the render tree.
+
+Warm concurrency stays at 6 (`CONCURRENCY` in `use-warm-images.ts`), decided
+2026-09-04: the full devcon-7 set warms in about 16 s, which is acceptable, and
+more parallel fetches during the first minute risk slowing low-end phones and
+competing with the images the user is actually looking at. Don't bump it
+without re-checking on a slow device.
 
 Warming is incremental on purpose: it reads the `static-images` cache and fetches
 only the difference, so reopening the app with nothing changed costs nothing.

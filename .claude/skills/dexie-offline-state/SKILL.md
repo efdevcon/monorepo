@@ -19,11 +19,31 @@ the cache layer.
 
 ## The rule
 
-All app data/state that should survive going offline **must** flow through the
+All app data/state that should survive going offline **must** flow through
+Dexie: catalogue data through the EventStore, everything else through the
 Dexie-backed SWR cache. Do **not** add a parallel persistence mechanism
 (`localStorage`, another IndexedDB wrapper, in-memory-only stores) for such data.
 
-## Default path: write an SWR hook
+## Catalogue data (sessions, speakers, rooms, event): the EventStore
+
+Sessions, speakers, rooms and the event record come from one
+`GET /events/:id/bundle` and live in the EventStore (`src/data/store/`), in their
+own Dexie tables, synced only when `GET /events/:id/version` changes. Read them
+through `src/data/hooks/` (`useSessions`, `useSession(id)`, `useSpeakers`,
+`useRoom`, `useEvent`, `useSyncStatus`). Never write an SWR hook for this data
+and never fetch it elsewhere.
+
+Adding a catalogue field touches five places: devcon-api's bundle allowlist
+(`devcon-api/src/controllers/events.ts`), `store/types.ts` (wire + row types),
+`store/normalize.ts`, `store/materialize.ts`, and the fixture in
+`scripts/test-data.ts` (`pnpm data:test`).
+
+Routing rule that goes with it: content that must work offline never gets a
+dynamic route. Detail views are `?session=` / `?speaker=` on the precached
+shells, opened with `useDetailParam` (`src/routing/detailParam.ts`); build hrefs
+with `detailHref` / `shareHref` from `src/routing/viewParams.ts`.
+
+## Default path for everything else: write an SWR hook
 
 The SWR cache provider _is_ Dexie (`src/data/cache/`), so anything fetched via an
 SWR hook is automatically persisted and offline-available — no per-hook work.
@@ -58,7 +78,7 @@ the 24h cache window. Keep all persistence in that DB.
 
 - `cacheDB` is `null` on the server/static export — guard with
   `typeof window !== "undefined"`.
-- Anything reading the cache must render under `SWRConfigProvider`
-  (`src/app/layout.tsx`), which waits for IndexedDB hydration.
+- Anything reading the cache or the EventStore must render under `DataProvider`
+  (`src/app/layout.tsx`), which waits for IndexedDB hydration of both.
 - Under `STATIC_EXPORT` (Capacitor native) there are no API routes; hooks hitting
   `/api/*` must target the deployed web origin.

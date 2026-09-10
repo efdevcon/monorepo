@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { isOnlineNow, subscribeOnline } from "./useOnline";
 
 /**
  * Retry a failed image (or any resource) once the connection is back.
@@ -13,22 +14,9 @@ import { useCallback, useEffect, useState } from "react";
  * Deliberately not a cache-busting query param: that would change the URL, miss
  * the service worker's cached copy, and pile up duplicate cache entries.
  *
- * One shared `online` listener for the whole app, and only failed components
- * subscribe — with ~700 avatars on screen, a listener each would be wasteful.
+ * Only failed components subscribe, through the shared connectivity
+ * subscription in useOnline.ts (one window listener for the whole app).
  */
-
-const subscribers = new Set<() => void>();
-let listening = false;
-
-function ensureListener(): void {
-  if (listening || typeof window === "undefined") return;
-  listening = true;
-  window.addEventListener("online", () => {
-    // Copy first: a callback may unsubscribe while we iterate.
-    for (const notify of [...subscribers]) notify();
-  });
-}
-
 export function useRetryOnReconnect() {
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
@@ -37,15 +25,11 @@ export function useRetryOnReconnect() {
 
   useEffect(() => {
     if (!failed) return;
-    ensureListener();
-    const retry = () => {
+    return subscribeOnline(() => {
+      if (!isOnlineNow()) return;
       setFailed(false);
       setAttempt((n) => n + 1);
-    };
-    subscribers.add(retry);
-    return () => {
-      subscribers.delete(retry);
-    };
+    });
   }, [failed]);
 
   return { failed, attempt, markFailed };

@@ -5,11 +5,20 @@ import useSWR from "swr";
 import QRCode from "qrcode";
 import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
+import { isTransientFetchError, retryOnce } from "@/utils/retryOnce";
 import type { Order, TicketsResponse } from "./types";
+
+/** Pause before the single automatic retry of a dropped first request. */
+const RETRY_DELAY_MS = 1_000;
 
 /**
  * Fetch the signed-in user's tickets from `/api/tickets`, sending the Supabase
- * access token so the server can derive the email and query Pretix.
+ * access token so the server can derive the email and query Pretix. A request
+ * that never reaches a JSON response (Safari's "Load failed", a cold edge
+ * answering with an HTML error page) is retried once after a second before
+ * the hook reports an error: right after sign-in the screen has no cached
+ * tickets, so a single dropped request used to flash red before the next
+ * attempt succeeded. Application errors are not retried.
  */
 async function fetchTickets(): Promise<{ tickets: Order[] }> {
   if (!supabase) throw new Error("Supabase not initialized");
@@ -19,14 +28,20 @@ async function fetchTickets(): Promise<{ tickets: Order[] }> {
   const token = session?.access_token;
   if (!token) throw new Error("Not signed in");
 
-  const res = await fetch("/api/tickets", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  const json: TicketsResponse = await res.json();
-  if (!json.success || !json.data) {
-    throw new Error(json.error || "Failed to load tickets");
-  }
-  return json.data;
+  return retryOnce(
+    async () => {
+      const res = await fetch("/api/tickets", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const json: TicketsResponse = await res.json();
+      if (!json.success || !json.data) {
+        throw new Error(json.error || "Failed to load tickets");
+      }
+      return json.data;
+    },
+    isTransientFetchError,
+    RETRY_DELAY_MS
+  );
 }
 
 /**

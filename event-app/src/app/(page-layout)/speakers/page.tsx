@@ -1,5 +1,4 @@
-import Speakers from "./speakers";
-
+/** Speakers tab: rendered by the layout's persistent TabPanes (see speakers.tsx). */
 export default function SpeakersPage() {
-  return <Speakers />;
+  return null;
 }

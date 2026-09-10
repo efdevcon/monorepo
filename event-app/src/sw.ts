@@ -6,10 +6,15 @@ import {
   CacheFirst,
   ExpirationPlugin,
   NetworkFirst,
-  NetworkOnly,
   Serwist,
   StaleWhileRevalidate,
 } from "serwist";
+import {
+  DETAIL_ROUTES,
+  IGNORED_URL_PARAMS,
+  parseDetailPath,
+  stripIgnoredParams,
+} from "./routing/viewParams";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -18,7 +23,56 @@ declare global {
 }
 declare const self: ServiceWorkerGlobalScope;
 
-const serwist = new Serwist({
+/**
+ * Cache-key normaliser for shell HTML and RSC payloads: the query string never
+ * changes a shell (`?dataset=…`, `?mockNow=…`, tracking params on shared
+ * links), so a request that differs only in params maps to the one cached
+ * shell instead of missing offline and forcing a hard navigation.
+ */
+const ignoreViewParams = {
+  cacheKeyWillBeUsed: async ({ request }: { request: Request }) =>
+    stripIgnoredParams(new URL(request.url)).toString(),
+};
+
+const documents = new NetworkFirst({
+  cacheName: "pages",
+  // 3 s, not 5: "/" and /ticket are served through this route on every app
+  // open (they are not precached, see the install listener below), and on
+  // flaky venue wifi a longer wait before the cached copy reads as a hang.
+  networkTimeoutSeconds: 3,
+  plugins: [
+    ignoreViewParams,
+    new CacheableResponsePlugin({ statuses: [200] }),
+    new ExpirationPlugin({
+      maxEntries: 50,
+      maxAgeSeconds: 30 * 24 * 60 * 60,
+    }),
+  ],
+});
+
+/**
+ * Detail pages (`/schedule/<id>`, `/speakers/<id>`) get their own strategy
+ * instance, on purpose NOT the one registered for documents below: Serwist
+ * attaches the `/offline` fallback plugin to every strategy listed in
+ * `runtimeCaching`, which makes a failed `handle()` resolve with the offline
+ * page instead of throwing. This instance is only ever called from the detail
+ * route's handler, so its failures propagate and the handler can answer with
+ * the precached tab shell instead.
+ */
+const detailDocuments = new NetworkFirst({
+  cacheName: "pages-detail",
+  networkTimeoutSeconds: 5,
+  plugins: [
+    ignoreViewParams,
+    new CacheableResponsePlugin({ statuses: [200] }),
+    new ExpirationPlugin({
+      maxEntries: 50,
+      maxAgeSeconds: 30 * 24 * 60 * 60,
+    }),
+  ],
+});
+
+const serwist: Serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: false,
   // Take control of the page as soon as this worker activates, so offline works
@@ -27,7 +81,52 @@ const serwist = new Serwist({
   // running an older build's assets. Do NOT set both to true.
   clientsClaim: true,
   navigationPreload: false,
+  // Precache lookups ignore the query string: `/schedule?dataset=x` is served
+  // from the precached `/schedule` shell, online and offline.
+  precacheOptions: { ignoreURLParametersMatching: IGNORED_URL_PARAMS },
   runtimeCaching: [
+    // Installed-app launches. An app installed with the personalised manifest
+    // (iOS) starts at /api/auth/bridge?bridge=<token>, which needs the
+    // server. With no network that navigation used to end on the /offline
+    // page; instead open the ticket page from the cache (the session from the
+    // first launch is already in the app's own storage), and give a slow
+    // network 5 s before doing the same. Must precede the document rule.
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin && request.mode === "navigate" && url.pathname === "/api/auth/bridge",
+      handler: async ({ request }): Promise<Response> => {
+        try {
+          const signal =
+            typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(5_000) : undefined;
+          return await fetch(request, { signal });
+        } catch {
+          return Response.redirect(`${self.location.origin}/ticket`, 302);
+        }
+      },
+    },
+    // Detail pages (`/schedule/<id>`, `/speakers/<id>`): network first (the
+    // server renders per-item social metadata), and when that fails (offline,
+    // captive portal) the precached shell of the list tab. The app hydrates
+    // from `location`, so the shell renders the detail for the id in the URL
+    // from the local store. Never falls through to the /offline page: a
+    // never-visited id must work offline too. Must precede the document rule.
+    {
+      matcher: ({ request, url, sameOrigin }) =>
+        sameOrigin &&
+        request.mode === "navigate" &&
+        parseDetailPath(url.pathname) !== null,
+      handler: async ({ request, event, url }): Promise<Response> => {
+        try {
+          return await detailDocuments.handle({ request, event });
+        } catch {
+          const kind = parseDetailPath(url.pathname)!.kind;
+          const shell: Response | undefined = await serwist.matchPrecache(
+            DETAIL_ROUTES[kind]
+          );
+          return shell ?? Response.error();
+        }
+      },
+    },
     // Next.js App Router fetches RSC payloads (header `RSC: 1`) for client-side
     // navigation and reconciliation. These are NOT `destination: "document"`
     // requests, so without dedicated rules they'd hit the network and fail
@@ -49,6 +148,7 @@ const serwist = new Serwist({
         // shell is identical anyway (all data is client-side via SWR).
         networkTimeoutSeconds: 2,
         plugins: [
+          ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
         ],
@@ -61,6 +161,7 @@ const serwist = new Serwist({
         cacheName: "pages-rsc",
         networkTimeoutSeconds: 2,
         plugins: [
+          ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
         ],
@@ -68,23 +169,15 @@ const serwist = new Serwist({
     },
     {
       matcher: ({ request }) => request.destination === "document",
-      handler: new NetworkFirst({
-        cacheName: "pages",
-        networkTimeoutSeconds: 5,
-        plugins: [
-          new CacheableResponsePlugin({ statuses: [200] }),
-          new ExpirationPlugin({
-            maxEntries: 50,
-            maxAgeSeconds: 30 * 24 * 60 * 60,
-          }),
-        ],
-      }),
+      handler: documents,
     },
-    {
-      // SWR handles API data caching — keep SW out of the way
-      matcher: /\/api\/.*/i,
-      handler: new NetworkOnly(),
-    },
+    // No rule for `/api/*` on purpose: those requests fall through to the
+    // browser untouched. SWR owns API data caching, and routing them through
+    // the worker only added a failure mode: Safari cold-starts an idle worker
+    // for the first request after a pause, and a worker fetch that dies there
+    // reaches the page as "Load failed" (seen right after signing in). The
+    // RSC and document rules above exclude `/api/` so nothing else catches
+    // them; /api/auth/bridge navigations are the one exception, handled first.
     {
       matcher: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
       handler: new CacheFirst({
@@ -194,6 +287,38 @@ const serwist = new Serwist({
 });
 
 serwist.addEventListeners();
+
+/**
+ * Warm the runtime page cache with "/" and /ticket at install, so both open
+ * offline on a phone that never visited them online (the ticket QR at the
+ * venue entrance, no signal). They are deliberately NOT precached: precache
+ * serves cache-first, and these two pages (the ones carrying the install
+ * button and the sign-in) must be server-rendered fresh whenever possible,
+ * because the <link rel="manifest"> is personalised from the session cookie
+ * (see next.config.ts and PersonalizedManifestLink). The `documents`
+ * NetworkFirst route above owns this cache, so online loads refresh the copy
+ * and offline loads fall back to it. Best effort: a failure here must not
+ * fail the install.
+ */
+const WARM_PAGES = ["/", "/ticket"];
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    (async () => {
+      try {
+        const cache = await caches.open("pages");
+        await Promise.all(
+          WARM_PAGES.map(async (path) => {
+            const request = new Request(path, { credentials: "same-origin" });
+            const response = await fetch(request);
+            if (response.ok) await cache.put(request, response);
+          })
+        );
+      } catch {
+        // Offline at install time: the page caches itself on first online visit.
+      }
+    })()
+  );
+});
 
 self.addEventListener("message", (event) => {
   if (event.data?.type === "SKIP_WAITING") {

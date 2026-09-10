@@ -1,5 +1,5 @@
-// Export SWR configuration provider
-export { SWRConfigProvider } from "./swr-config";
+// Data boot gate (SWR cache + EventStore hydration)
+export { DataProvider } from "./swr-config";
 
 // Export Dexie cache provider for monitoring/debugging
 export {

@@ -5,6 +5,11 @@
 > **IndexedDB via Dexie**. Do not introduce a second persistence mechanism
 > (`localStorage`, a different IDB wrapper, an in-memory-only store) for data
 > that should be available offline.
+>
+> **Catalogue data is the exception to the SWR path.** Sessions, speakers,
+> rooms and the event record live in the EventStore (`src/data/store/`), in
+> their own Dexie tables of this same database, and are read through
+> `src/data/hooks/`. Never add an SWR hook for catalogue data.
 
 ## Why Dexie
 
@@ -30,9 +35,9 @@ SWR in-memory cache  ──persisted to──▶  Dexie (IndexedDB)
 
 | File | Role |
 |------|------|
-| `cache-db.ts` | Declares the Dexie database (`SWRCacheDB`) and its tables. Browser-only (`null` on the server). |
+| `cache-db.ts` | Declares the Dexie database (`SWRCacheDB`) and its tables: the SWR `cache`, the user-state tables, and the EventStore tables (`eventSessions`, `eventSpeakers`, `eventRooms`, `eventMeta`, v7). Browser-only (`null` on the server). |
 | `indexeddb-cache.ts` | Wraps a `Map` so every `set`/`delete`/`clear` is mirrored to Dexie, and hydrates the map from Dexie on boot. Exposes `createDexieCacheProvider()` and `cleanupOldCacheEntries()`. |
-| `swr-config.tsx` | `SWRConfigProvider` wires that Dexie-backed map in as SWR's `provider`. **Waits for IndexedDB to hydrate before rendering** (`cacheReady`) to avoid a race where Dexie's async load overwrites SWR state. Mounted in `src/app/layout.tsx`. |
+| `swr-config.tsx` | `DataProvider` wires that Dexie-backed map in as SWR's `provider` and hydrates the EventStore in parallel. **Waits for both before rendering** to avoid a race where Dexie's async load overwrites SWR state and to give the first paint data. Then starts the store's sync triggers. Mounted in `src/app/layout.tsx`. |
 
 Because the SWR cache provider _is_ Dexie, **any data fetched through an SWR
 hook is automatically persisted and offline-available** — no extra work per
@@ -63,8 +68,9 @@ export function useThing(id: string) {
 - Derived/ephemeral values (e.g. QR codes generated from cached secrets) can
   live in component state — they regenerate from the cached source offline.
 
-Reference implementations: `src/data/hooks/use-sessions.ts`,
-`src/data/tickets/useTickets.ts`.
+Reference implementations: `src/data/tickets/useTickets.ts`,
+`src/data/announcements/useAnnouncements.ts`. (`src/data/hooks/use-sessions.ts`
+is NOT an SWR hook anymore: it reads the EventStore snapshot.)
 
 ## When to add a dedicated Dexie table
 
@@ -91,7 +97,8 @@ one documented place.
 
 - **Browser-only.** `cacheDB` is `null` during SSR/static export; always guard
   with `typeof window !== "undefined"`.
-- **Don't render before hydration.** Anything reading the cache must sit under
-  `SWRConfigProvider`, which blocks render until `cacheReady`.
+- **Don't render before hydration.** Anything reading the cache or the
+  EventStore must sit under `DataProvider`, which blocks render until both have
+  hydrated.
 - **Native build.** Under `STATIC_EXPORT` (Capacitor) there are no API routes —
   data hooks that hit `/api/*` must point at the deployed web origin.

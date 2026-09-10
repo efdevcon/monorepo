@@ -3,6 +3,7 @@
 import NextLink from "next/link";
 import { useRouter as useNextRouter } from "next/navigation";
 import { ReactNode, useContext, createContext, useCallback, useEffect, useState } from "react";
+import { isTabPath } from "./viewParams";
 
 // Debug/dev query params that should follow the user across internal navigation
 // so a selected dataset and mocked time persist between pages. These live only
@@ -10,7 +11,7 @@ import { ReactNode, useContext, createContext, useCallback, useEffect, useState 
 // needed. See DebugPanel and src/data/dataset.ts / hooks/useNow.ts.
 const CARRIED_PARAMS = ["dataset", "mockNow", "mockSpeed", "debug"];
 
-function withCarriedParams(href: string): string {
+export function withCarriedParams(href: string): string {
   if (typeof window === "undefined") return href;
   // Only touch internal, non-anchor paths.
   if (/^([a-z]+:)?\/\//i.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")) {
@@ -88,8 +89,14 @@ export function Link({ href, children, className, ...nextLinkProps }: LinkProps 
     );
   }
 
+  // Tab routes are persistent panes that restore their own scroll position;
+  // Next's default scroll-to-top after navigation would override that (it runs
+  // after the pane's restore). Callers can still pass `scroll` explicitly.
+  const scroll =
+    nextLinkProps.scroll ?? !isTabPath(href.split(/[?#]/)[0] || "/");
+
   return (
-    <NextLink href={finalHref} className={className} {...nextLinkProps}>
+    <NextLink href={finalHref} className={className} {...nextLinkProps} scroll={scroll}>
       {children}
     </NextLink>
   );

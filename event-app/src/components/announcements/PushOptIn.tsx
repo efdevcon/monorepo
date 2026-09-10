@@ -3,6 +3,8 @@
 import { Bell, BellOff, BellRing, Share } from "lucide-react";
 import cn from "classnames";
 import { usePushSubscription } from "@/data/push/usePushSubscription";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 
 /**
  * Tap-to-enable push toggle, shown at the top of the announcements inbox —
@@ -12,6 +14,8 @@ import { usePushSubscription } from "@/data/push/usePushSubscription";
 export function PushOptIn() {
   const { signedIn, state, busy, error, subscribe, unsubscribe } =
     usePushSubscription();
+  // Subscribing/unsubscribing talks to the push service and our API.
+  const online = useOnline();
 
   // Nothing useful to offer: still detecting, or a context that can never
   // push (desktop browsers without push, dev mode, signed-out users).
@@ -43,7 +47,7 @@ export function PushOptIn() {
           </p>
           <button
             onClick={subscribe}
-            disabled={busy}
+            disabled={busy || !online}
             className={cn(
               "rounded-full bg-dc-purple px-4 py-1.5 font-heading text-sm font-bold text-dc-purple-fg transition-colors",
               busy ? "opacity-60" : "hover:bg-dc-purple-600"
@@ -62,7 +66,7 @@ export function PushOptIn() {
           </p>
           <button
             onClick={unsubscribe}
-            disabled={busy}
+            disabled={busy || !online}
             className="text-sm font-medium text-dc-muted underline-offset-2 hover:underline"
           >
             {busy ? "Turning off…" : "Turn off"}
@@ -71,6 +75,12 @@ export function PushOptIn() {
       )}
 
       {error && <p className="w-full text-xs text-dc-error">{error}</p>}
+      {!online && (
+        <NeedsConnection
+          what="Changing notification settings"
+          className="w-full"
+        />
+      )}
     </div>
   );
 }

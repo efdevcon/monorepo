@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import type { DetailKind } from "@/routing/viewParams";
+import { DetailLink } from "@/routing/DetailLink";
+import { openDetail } from "@/routing/detailRoute";
 import type { Components } from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
 import Markdown, { defaultUrlTransform } from "react-markdown";
@@ -20,6 +23,7 @@ import {
 import { supabase } from "@/data/auth/supabase";
 import { useConversations } from "@/data/ai/useConversations";
 import type { Conversation } from "@/data/cache/cache-db";
+import { isOnlineNow, useOnline } from "@/hooks/useOnline";
 
 interface Message {
   role: "user" | "assistant";
@@ -75,17 +79,17 @@ function citationUrlTransform(url: string): string {
 // link it. We only link structured app data — sessions and speakers, which have
 // real routes here. CMS/website content is too unstructured to map to a reliable
 // page, so it's rendered as plain text rather than a guessed/broken link.
-function resolveSourceUri(href: string): string | null {
+function resolveSourceUri(href: string): { kind: DetailKind; id: string } | null {
   if (!href.startsWith("source:")) return null;
   const path = href
     .slice("source:".length)
     .replace(/#chunk-\d+$/, "")
     .replace(/#\d+$/, "");
   if (path.startsWith("sessions/")) {
-    return `/schedule/${path.slice("sessions/".length)}`;
+    return { kind: "session", id: path.slice("sessions/".length) };
   }
   if (path.startsWith("speakers/")) {
-    return `/speakers/${path.slice("speakers/".length)}`;
+    return { kind: "speaker", id: path.slice("speakers/".length) };
   }
   return null;
 }
@@ -110,6 +114,8 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  // Chat is live-only: the composer disables itself offline (history stays readable).
+  const online = useOnline();
   const [streamingMessage, setStreamingMessage] = useState("");
   const [error, setError] = useState("");
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -128,14 +134,19 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
         }
         const resolved = resolveSourceUri(href);
         if (resolved) {
+          // In-place open (no document reload, works offline); closes the chat.
           return (
-            <a
-              href={resolved}
-              onClick={() => onToggle(false)}
+            <DetailLink
+              kind={resolved.kind}
+              id={resolved.id}
+              onOpen={(id) => {
+                onToggle(false);
+                openDetail(resolved.kind, id);
+              }}
               className="font-medium text-[#7D52F4] underline decoration-[#7D52F4]/40 underline-offset-2 transition-colors hover:decoration-[#7D52F4]"
             >
               {children}
-            </a>
+            </DetailLink>
           );
         }
         // A `source:` citation we deliberately don't link (CMS/website content
@@ -281,7 +292,7 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
   }, [toggled]);
 
   const handleSend = async () => {
-    if (isLoading || !query.trim()) return;
+    if (isLoading || !query.trim() || !isOnlineNow()) return;
 
     const userMessage: Message = { role: "user", content: query.trim() };
     const newMessages = [...messages, userMessage];
@@ -649,9 +660,15 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
                       handleSend();
                     }
                   }}
-                  placeholder={isLoading ? "Waiting for response…" : "Ask me anything…"}
+                  placeholder={
+                    !online
+                      ? "Deva needs a connection"
+                      : isLoading
+                        ? "Waiting for response…"
+                        : "Ask me anything…"
+                  }
                   className="flex-1 bg-transparent text-sm outline-none"
-                  disabled={isLoading}
+                  disabled={isLoading || !online}
                 />
                 {query && !isLoading && (
                   <button
@@ -667,7 +684,7 @@ export default function DevaBot({ toggled, onToggle }: DevaBotProps) {
                 )}
                 <button
                   onClick={handleSend}
-                  disabled={isLoading || !query.trim()}
+                  disabled={isLoading || !query.trim() || !online}
                   aria-label="Send"
                   className={cn(
                     "flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors",

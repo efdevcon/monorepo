@@ -3,9 +3,8 @@
 import { memo } from "react";
 import { Speech, Star } from "lucide-react";
 import cn from "classnames";
-import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { Avatar } from "@/components/Avatar";
-import { isDesktopNow } from "@/hooks/useIsDesktop";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 
 /** Outlined uppercase topic-tag chip, shared by the card and details views. */
@@ -39,10 +38,7 @@ export const SpeakerCard = memo(function SpeakerCard({
   /** Desktop side-panel selection highlight. */
   selected?: boolean;
   interested: boolean;
-  /**
-   * Desktop: open the speaker details side panel instead of navigating.
-   * Mobile keeps the normal link navigation to /speakers/[id].
-   */
+  /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
   onToggleInterested: (id: string, name: string) => void;
 }) {
@@ -51,19 +47,10 @@ export const SpeakerCard = memo(function SpeakerCard({
   const tagChip = (tag: string) => <SpeakerTagChip key={tag} tag={tag} />;
 
   return (
-    <Link
-      href={`/speakers/${speaker.id}`}
-      // No viewport prefetch: hundreds of cards sweeping past the shared link
-      // observer during an A–Z jump fire an /speakers/[id]?_rsc= request storm
-      // that thrashes the SW prefetch cache and crashes iOS Safari — and the
-      // target is a client page reading the same Dexie/SWR join anyway.
-      prefetch={false}
-      onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
-          e.preventDefault();
-          onOpen(speaker.id);
-        }
-      }}
+    <DetailLink
+      kind="speaker"
+      id={speaker.id}
+      onOpen={onOpen}
       className={cn(
         "group relative flex items-center gap-4 overflow-clip rounded-lg border bg-white p-4 transition-colors duration-150 ease-out",
         selected
@@ -145,6 +132,6 @@ export const SpeakerCard = memo(function SpeakerCard({
           Featured
         </span>
       )}
-    </Link>
+    </DetailLink>
   );
 });

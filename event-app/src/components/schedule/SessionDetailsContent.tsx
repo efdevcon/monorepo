@@ -114,7 +114,10 @@ export function SessionDetailsContent({
           </h1>
           <div className="flex flex-col gap-3">
             {session.description && (
-              <p className="text-[14px] leading-5 text-dc-fg2">
+              // [overflow-wrap:anywhere]: descriptions carry long unbroken
+              // URLs, which otherwise widen the fixed detail layer past the
+              // viewport (iOS Safari then widens the whole layout viewport).
+              <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
                 {session.description}
               </p>
             )}

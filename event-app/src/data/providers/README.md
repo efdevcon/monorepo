@@ -1,48 +1,55 @@
 # Data Providers
 
-The provider system enforces data contracts and optionally validates responses using Zod schemas.
+A provider is the one place that knows how to *fetch* an event's catalogue. Everything else
+(caching, offline persistence, sync timing, the read model) is owned by the EventStore in
+`src/data/store/`, so a provider is tiny and the app can run on another event's data by
+swapping it.
 
-## Purpose
+## Contract (`provider-interface.ts`)
 
-Providers fetch data from various sources (APIs, databases, static files) and ensure all data conforms to the defined models through (optional) runtime validation.
-
-The structure allows us to easily switch out the data provider so long as it conforms to the models, with the goal of democraticing the event app/let users easily fork and run the app for their own events using their own data sources.
-
-## Architecture
-
-- **`provider-interface.ts`** - Defines the `IEventDataProvider` interface and `BaseProvider` class
-- **`provider.ts`** - Singleton provider instance (currently `DummyProvider`)
-- **`dummy.provider.ts`** - Sample implementation with hardcoded data
-
-## Usage
-
-Components don't use providers directly. Instead, use the hooks from `@/data/hooks`:
-
-```typescript
-import { useSessions, useSpeakers, useRooms } from "@/data/hooks";
-```
-
-The hooks handle provider interaction, caching, and data fetching automatically.
-
-## Creating a New Provider
-
-Extend `BaseProvider` and implement the required methods:
-
-```typescript
-import { BaseProvider, type SessionFilters } from "./provider-interface";
-
-class MyProvider extends BaseProvider {
-  async getSessions(filters?: SessionFilters) {
-    const rawData = await fetch("/api/sessions").then((r) => r.json());
-    return this.validateSessions(rawData); // Zod validation
-  }
-
-  // Implement other required methods...
+```ts
+interface IEventDataProvider {
+  getVersion(dataset: Dataset): Promise<string>;      // cheap change probe (60 bytes on devcon-api)
+  getBundle(dataset: Dataset): Promise<EventBundle>;  // the whole catalogue in one response
 }
 ```
 
-Then update `provider.ts` to use your new provider:
+`EventBundle` (`src/data/store/types.ts`) is `{ version, event, rooms, speakers, sessions }` with
+sessions referencing speakers and rooms by id (`speakerIds`, `slot_roomId`), never embedding them.
+The store refetches the bundle only when `getVersion` returns something other than the stored
+version.
 
-```typescript
-export const provider = new MyProvider();
+## Implementations
+
+- **`devcon-api.provider.ts`** (active, see `provider.ts`): `GET {api}/events/:id/version` and
+  `GET {api}/events/:id/bundle`. The version probe is fetched with `cache: "no-cache"` so the browser
+  revalidates instead of serving its own 60 s copy.
+- **`dummy.provider.ts`**: a fixed three-session bundle for development and tests.
+
+## Usage
+
+Components never touch providers. Use the hooks from `@/data/hooks`:
+
+```ts
+import { useSessions, useSpeaker, useRooms, useEvent } from "@/data/hooks";
 ```
+
+## Creating a new provider
+
+```ts
+import type { Dataset } from "../dataset";
+import type { EventBundle } from "../store/types";
+import type { IEventDataProvider } from "./provider-interface";
+
+export class MyProvider implements IEventDataProvider {
+  async getVersion(dataset: Dataset) {
+    return (await fetch(`https://my.api/${dataset.eventId}/version`)).text();
+  }
+  async getBundle(dataset: Dataset): Promise<EventBundle> {
+    return (await fetch(`https://my.api/${dataset.eventId}/bundle`)).json();
+  }
+}
+```
+
+Then point `provider.ts` at it. In development the bundle is validated with zod
+(`BundleSchema`); in production a structural check (`isBundleShaped`) runs on every sync.

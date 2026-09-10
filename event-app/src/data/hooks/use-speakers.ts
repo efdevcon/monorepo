@@ -1,83 +1,43 @@
-import useSWR from "swr";
-import { provider } from "../providers/provider";
-import { getActiveDatasetKey } from "../dataset";
-import type { Speaker } from "../models";
+"use client";
 
-/**
- * Fetcher function for SWR
- */
-async function speakersFetcher(): Promise<Speaker[]> {
-  return provider.getSpeakers();
-}
+import { useCallback, useMemo } from "react";
+import { useEventStore } from "../store/use-event-store";
+import { forceSync, statusFlags } from "./use-sessions";
 
-/**
- * Hook to fetch all speakers for the active dataset.
- *
- * Scoped to the active `?dataset` (like sessions/rooms) and keyed by it, so
- * speakers from one edition never leak into another — switching datasets serves
- * a separate cache entry. Each speaker is stamped with its `eventId`/`eventLabel`
- * so provenance is verifiable.
- */
+/** All speakers of the active event, from the EventStore snapshot. */
 export function useSpeakers() {
-  const { data, error, isLoading, mutate } = useSWR(
-    [getActiveDatasetKey(), "speakers"],
-    speakersFetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: true,
-    }
-  );
-
+  const state = useEventStore();
+  const flags = statusFlags(state, state.snapshot.speakers.length > 0);
+  const mutate = useCallback(() => forceSync(), []);
   return {
-    speakers: data ?? [],
-    isLoading,
-    // Offline-first: a failed background revalidation must not hide data we
-    // already have cached. Only report an error when there's no data at all
-    // (`data` is undefined until the first successful fetch — an empty array
-    // means a successful fetch that returned nothing).
-    isError: data !== undefined ? undefined : error,
-    error: data !== undefined ? undefined : error,
+    speakers: state.snapshot.speakers,
+    isLoading: flags.isLoading,
+    isError: flags.error,
+    error: flags.error,
     mutate,
   };
 }
 
-/**
- * Hook to fetch a single speaker by ID.
- *
- * Derives from the cached speakers list rather than fetching `/speakers/:id`
- * on its own. That single network call per id meant a detail page never opened
- * while online had no cached entry and failed offline; sharing the list cache
- * makes every speaker available offline once the list has loaded once.
- */
 export function useSpeaker(id: string) {
-  const { speakers, isLoading, error, mutate } = useSpeakers();
-  const speaker = id ? speakers.find((s) => s.id === id) ?? null : null;
-
+  const state = useEventStore();
+  const speaker = id ? (state.snapshot.speakerById.get(id) ?? null) : null;
+  const flags = statusFlags(state, state.snapshot.speakers.length > 0);
+  const mutate = useCallback(() => forceSync(), []);
   return {
     speaker,
-    // Only "loading" while we have nothing to show yet.
-    isLoading: isLoading && !speaker,
-    // Offline-first: don't surface an error if we have cached data to render.
-    isError: speaker ? undefined : error,
-    error: speaker ? undefined : error,
+    isLoading: flags.isLoading && !speaker,
+    isError: speaker ? undefined : flags.error,
+    error: speaker ? undefined : flags.error,
     mutate,
   };
 }
 
-/**
- * Hook to search speakers by query string. Filters the cached list client-side
- * so search works offline too.
- */
 export function useSearchSpeakers(query: string) {
   const { speakers, isLoading, error, mutate } = useSpeakers();
   const q = query.trim().toLowerCase();
-  const results = q ? speakers.filter((s) => s.name.toLowerCase().includes(q)) : [];
-
-  return {
-    speakers: results,
-    isLoading,
-    isError: error,
-    error,
-    mutate,
-  };
+  const results = useMemo(
+    () => (q ? speakers.filter((s) => s.name.toLowerCase().includes(q)) : []),
+    [speakers, q]
+  );
+  return { speakers: results, isLoading, isError: error, error, mutate };
 }

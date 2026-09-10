@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { headerOffsetNow } from "@/hooks/useIsDesktop";
@@ -44,11 +45,13 @@ export function DayTabs({
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
+  // Hidden tab panes must not measure on every scroll of another tab.
+  const paneActive = usePaneActive();
 
   // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
   // the offset, so <= offset+1 means stuck.)
   useEffect(() => {
-    if (!pinned) return;
+    if (!pinned || !paneActive) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -67,7 +70,7 @@ export function DayTabs({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pinned]);
+  }, [pinned, paneActive]);
 
   if (days.length === 0) return null;
 

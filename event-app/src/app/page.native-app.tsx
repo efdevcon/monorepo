@@ -5,41 +5,42 @@ import { NativeRouter } from "@/native/NativeRouter";
 // Import all client components
 import { Home } from "@/components/home/Home";
 import Speakers from "@/app/(page-layout)/speakers/speakers";
-import Speaker from "@/app/(page-layout)/speakers/[id]/speaker";
 import Schedule from "@/app/(page-layout)/schedule/schedule";
-import Session from "@/app/(page-layout)/schedule/[id]/session";
 import RoomScreens from "@/app/(page-layout)/room-screens/room-screens";
 import RoomScreen from "@/app/(page-layout)/room-screens/[id]/room-screen";
+import Session from "@/app/(page-layout)/schedule/[id]/session";
+import Speaker from "@/app/(page-layout)/speakers/[id]/speaker";
+import { parseDetailPath } from "@/routing/viewParams";
 
+/**
+ * Detail pages resolve from the EventStore snapshot; nothing is fetched.
+ * Hrefs are the web app's (`/schedule/<id>`, `/speakers/<id>`, from
+ * detailHref).
+ */
 function renderRoute(href: string) {
+  const url = new URL(href, "http://native.local");
+
   // Home
-  if (href === "/") {
+  if (url.pathname === "/") {
     return <Home />;
   }
 
-  // Speakers
-  if (href === "/speakers") {
+  const detail = parseDetailPath(url.pathname);
+  if (detail?.kind === "speaker") return <Speaker id={detail.id} />;
+  if (detail?.kind === "session") return <Session id={detail.id} />;
+
+  if (url.pathname === "/speakers") {
     return <Speakers />;
   }
-  const speakerMatch = href.match(/^\/speakers\/(.+)$/);
-  if (speakerMatch) {
-    return <Speaker id={speakerMatch[1]} />;
-  }
-
-  // Schedule
-  if (href === "/schedule") {
+  if (url.pathname === "/schedule") {
     return <Schedule />;
-  }
-  const sessionMatch = href.match(/^\/schedule\/(.+)$/);
-  if (sessionMatch) {
-    return <Session id={sessionMatch[1]} />;
   }
 
   // Room Screens
-  if (href === "/room-screens") {
+  if (url.pathname === "/room-screens") {
     return <RoomScreens />;
   }
-  const roomMatch = href.match(/^\/room-screens\/(.+)$/);
+  const roomMatch = url.pathname.match(/^\/room-screens\/(.+)$/);
   if (roomMatch) {
     return <RoomScreen id={roomMatch[1]} />;
   }

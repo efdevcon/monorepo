@@ -3,9 +3,8 @@
 import { Clock3, MapPin, Star, User } from "lucide-react";
 import cn from "classnames";
 import type { Session } from "@/data/models";
-import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { useInterested } from "@/data/interested/useInterested";
-import { isDesktopNow } from "@/hooks/useIsDesktop";
 import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
@@ -33,10 +32,7 @@ export function SessionCard({
   selected?: boolean;
   /** Desktop 2-up grid cell: drops the inline FEATURED badge (Figma 4325). */
   compact?: boolean;
-  /**
-   * Desktop: open the session details side panel instead of navigating.
-   * Mobile keeps the normal link navigation to /schedule/[id].
-   */
+  /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
 }) {
   const theme = getTrackTheme(session.track);
@@ -46,16 +42,10 @@ export function SessionCard({
   const interested = isInterested(session.id);
 
   return (
-    <Link
-      href={`/schedule/${session.id}`}
-      // No viewport prefetch (see SpeakerCard) — client page on cached data.
-      prefetch={false}
-      onClick={(e) => {
-        if (onOpen && isDesktopNow()) {
-          e.preventDefault();
-          onOpen(session.id);
-        }
-      }}
+    <DetailLink
+      kind="session"
+      id={session.id}
+      onOpen={onOpen}
       className={cn(
         "group relative flex gap-4 overflow-clip rounded-lg border bg-white transition-colors duration-150 ease-out",
         selected
@@ -182,6 +172,6 @@ export function SessionCard({
       >
         {badge}
       </span>
-    </Link>
+    </DetailLink>
   );
 }

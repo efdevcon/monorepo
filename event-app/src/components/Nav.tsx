@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
+import { handleTabClick } from "@/components/paneContext";
+import { IosHapticOverlay } from "@/components/IosHapticOverlay";
 
 export type NavItem = {
   href: string;
@@ -90,17 +92,6 @@ export function isNavActive(pathname: string, href: string): boolean {
 }
 
 /**
- * Mobile detail views (session / speaker details) hide the bottom bar so
- * they read as focused, single-purpose screens — the header back arrow is
- * the way out. The layout also trims its nav clearance on these routes.
- */
-export function isDetailView(pathname: string): boolean {
-  return (
-    pathname.startsWith("/schedule/") || pathname.startsWith("/speakers/")
-  );
-}
-
-/**
  * One tab's icon + label. Rendered inside the Link so `useLinkStatus` can
  * read that Link's pending navigation: the tapped tab lights up on the tap
  * itself, not when the route commits (that gap is what read as a sluggish
@@ -141,16 +132,18 @@ export function Nav() {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement | null>(null);
 
-  // No nav on the full-screen room-screen kiosk or on mobile detail views.
-  const hidden =
-    pathname.startsWith("/room-screens/") || isDetailView(pathname);
+  // No nav on the full-screen room-screen kiosk only. Session and speaker
+  // pages keep the bar, like a detail screen inside a native tab: it says
+  // which tab you are in, the other tabs stay one tap away, and tapping the
+  // current tab closes the page (it navigates to the bare tab URL).
+  const hidden = pathname.startsWith("/room-screens/");
 
   // Publish the bar's rendered height as --nav-clearance so bottom-anchored
   // overlays outside the layout flow (map controls, debug FAB) can sit above
   // it. Measured, not hardcoded: the height varies between browser tab and
   // installed PWA with env(safe-area-inset-bottom). 0 wherever the bar isn't
-  // rendered (desktop's lg:hidden, detail views, kiosk), so those overlays
-  // fall back to the screen edge.
+  // rendered (desktop's lg:hidden, kiosk), so those overlays fall back to
+  // the screen edge.
   useEffect(() => {
     const root = document.documentElement;
     const el = navRef.current;
@@ -196,9 +189,14 @@ export function Nav() {
           key={item.href}
           href={item.href}
           prefetch
-          className="flex min-w-px flex-1"
+          // Re-tapping the active tab resets its pane (top / "now") instead
+          // of navigating, like a native tab bar.
+          onClick={(e) => handleTabClick(e, item.href, pathname)}
+          // `relative`: the iOS haptic overlay positions itself over the tab.
+          className="relative flex min-w-px flex-1"
         >
           <NavTab item={item} active={isNavActive(pathname, item.href)} />
+          <IosHapticOverlay />
         </Link>
       ))}
     </nav>

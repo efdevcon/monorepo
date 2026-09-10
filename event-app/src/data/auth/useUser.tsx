@@ -12,6 +12,11 @@ import useSWR from "swr";
 import type { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { supabase } from "./supabase";
+import {
+  clearSessionCookie,
+  installManifestNeedsReload,
+  syncSessionCookie,
+} from "./sessionCookie";
 
 /**
  * Last user auth-js handed us, persisted through the Dexie-backed SWR cache so
@@ -108,10 +113,17 @@ function useUserState(): UseUserResult {
       (event, session) => {
         if (event === "SIGNED_OUT") {
           void setLastUser(null, { revalidate: false });
+          void clearSessionCookie();
           setUser(null);
           setLoading(false);
           setHasInitialized(true);
           return;
+        }
+        // Mirror the session into the server's cookie (install sign-in
+        // bridge, see sessionCookie.ts); refreshes rotate the tokens, so
+        // the mirror follows them.
+        if (event === "SIGNED_IN" || event === "TOKEN_REFRESHED") {
+          void syncSessionCookie(session);
         }
         settle(session?.user ?? null);
       }
@@ -168,12 +180,23 @@ function useUserState(): UseUserResult {
       setLoading("Verifying code...");
       setError(null);
 
-      const { error } = await supabase.auth.verifyOtp({
+      const { data, error } = await supabase.auth.verifyOtp({
         email,
         token,
         type: "email",
       });
       if (error) throw error;
+
+      // Make the server aware before anything else: PersonalizedManifestLink
+      // decides the install sign-in bridge from this cookie. In an iOS browser
+      // tab the page must then be re-rendered by the server so a following
+      // "Add to Home Screen" picks up the personalised manifest (Safari reads
+      // the tag from the HTML it was handed, not from later DOM changes).
+      const mirrored = await syncSessionCookie(data.session);
+      if (mirrored && installManifestNeedsReload()) {
+        window.location.reload();
+        return true;
+      }
 
       toast.success("Signed in. Welcome to Devcon India!");
       return true;

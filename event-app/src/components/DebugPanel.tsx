@@ -6,11 +6,14 @@ import { Link } from "@/routing";
 import {
   DATASETS,
   DEFAULT_DATASET_KEY,
+  getActiveDataset,
   getActiveDatasetKey,
   type DatasetKey,
 } from "@/data/dataset";
 import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
 import { useNowMs } from "@/hooks/useNow";
+import { useSyncStatus } from "@/data/hooks";
+import { eventStore } from "@/data/store/event-store";
 
 /**
  * Dev-only debug panel: mock the current time (`mockNow`/`mockSpeed`) and swap
@@ -39,6 +42,35 @@ function DebugClock({ tz, speed }: { tz: string; speed: number }) {
       {d}/{m}/{y} {time}
       {speed !== 1 && <span className="ml-1 font-semibold">×{speed}</span>}
     </span>
+  );
+}
+
+/** EventStore readout + force sync (the old SWR mutate has no UI otherwise). */
+function SyncDebug() {
+  const { status, version, syncedAt, checkedAt, hydrateMs, lastError } =
+    useSyncStatus();
+  // Stored timestamps, not "now": plain formatting is fine here.
+  const fmt = (ms: number | null) =>
+    ms ? new Date(ms).toLocaleTimeString() : "never";
+  return (
+    <div className="mb-4 rounded-lg border border-[#E1E4EA] p-2 text-xs text-gray-600">
+      <p className="mb-1 font-medium text-gray-500">Event data</p>
+      <p>
+        status: {status} · version: {version ?? "none"}
+      </p>
+      <p>
+        synced: {fmt(syncedAt)} · checked: {fmt(checkedAt)} · hydrate:{" "}
+        {hydrateMs ?? "?"} ms
+      </p>
+      {lastError && <p className="text-red-600">{lastError}</p>}
+      <button
+        type="button"
+        onClick={() => eventStore.sync(getActiveDataset(), { force: true })}
+        className="mt-2 rounded-full border border-[#E1E4EA] px-3 py-1 font-medium text-gray-600 hover:bg-gray-50"
+      >
+        Force sync
+      </button>
+    </div>
   );
 }
 
@@ -193,6 +225,8 @@ export function DebugPanel() {
               </option>
             ))}
           </select>
+
+          <SyncDebug />
 
           <div className="flex gap-2">
             <button
