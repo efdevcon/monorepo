@@ -136,3 +136,18 @@ export function trackBadgeLabel(track: string | undefined): string {
   if (key === "entertainment") return DEVCON_THEME.badge;
   return raw;
 }
+
+/**
+ * Full track name for the details views (side panel, expanded page, mobile
+ * page) — list/timeline cards keep `trackBadgeLabel`. Returns the session's
+ * own track name (as the details banner caption already does) so DC7 aliases
+ * don't get relabelled with a DC8 name; only the "[CLS]" prefix is stripped.
+ */
+export function trackFullLabel(track: string | undefined): string {
+  const raw = track?.trim();
+  if (!raw) return DEVCON_THEME.name;
+  if (raw.startsWith("[CLS]")) {
+    return raw.slice("[CLS]".length).trim() || CLS_THEME.name;
+  }
+  return raw;
+}

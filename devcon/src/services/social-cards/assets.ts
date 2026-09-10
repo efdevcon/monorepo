@@ -21,12 +21,20 @@ export function interFonts() {
 }
 
 // DC8 cards are set in Poppins — Regular 400 + Medium 500 (titles on the
-// YT/OG cards, Figma 5068:1684) + Bold 700.
-let poppins: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer }
+// YT/OG cards, Figma 5068:1684) + SemiBold 600 (speaker-card tags, Figma
+// 5118:6111) + Bold 700.
+export interface PoppinsFonts {
+  regular: ArrayBuffer
+  medium: ArrayBuffer
+  semibold: ArrayBuffer
+  bold: ArrayBuffer
+}
+let poppins: PoppinsFonts
 try {
   poppins = {
     regular: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Regular.ttf'))),
     medium: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-500.ttf'))),
+    semibold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-SemiBold.ttf'))),
     bold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Bold.ttf'))),
   }
 } catch (error) {

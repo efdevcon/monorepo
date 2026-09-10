@@ -5,6 +5,9 @@ import cn from "classnames";
 import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
+import { SessionCard } from "@/components/schedule/SessionCard";
+import { groupSessionsByDay } from "@/components/schedule/utils";
+import type { Session } from "@/data/models";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 import { SpeakerTagChip } from "./SpeakerCard";
 import { SpeakerSessionMiniCard } from "./SpeakerSessionMiniCard";
@@ -41,23 +44,130 @@ const socialLink =
   "flex size-6 items-center justify-center text-dc-purple transition-opacity hover:opacity-80";
 
 /**
- * Speaker details body (Figma "Speaker details" 5102:774 / 1000 / 887 / 2919):
- * a header band — name (wraps up to three lines) with X / GitHub / website
- * links, and a 96px ringed avatar — then Profile + action pills, then the
- * speaker's sessions. Featured speakers get a marigold ring, a FEATURED tag
- * under the avatar and a peach band; everyone else a purple ring and a
- * lavender band. Used by both the desktop side panel and the mobile
- * detail layer (SessionDetailsContent pattern).
+ * Two typographic scales share one structure:
+ * - `sm` — the 360px side panel and the mobile page (Figma 5114:4920 / 4702 /
+ *   4811): 20px name, 96px avatar, 14px bio, 9px tags, full-width pills.
+ * - `lg` — the desktop expanded page's 520px speaker card (Figma 5114:4036):
+ *   24px name, 120px avatar, 16px bio, 11px tags, auto-width pills.
  */
-export function SpeakerDetailsContent({
+type Scale = "sm" | "lg";
+
+/**
+ * Header band: name (wraps) with X / GitHub / website links, and a ringed
+ * avatar. Featured speakers get a marigold ring, a FEATURED tag under the
+ * avatar and a peach band; everyone else a purple ring and a lavender band.
+ * The tint fades into the panel grey over the top 80% (Figma stop at 20%).
+ */
+function SpeakerHeaderBand({
   decorated,
-  className,
+  scale,
 }: {
   decorated: DecoratedSpeaker;
-  /** Extra root classes — the mobile page stretches the panel surface. */
-  className?: string;
+  scale: Scale;
 }) {
-  const { speaker, sessions, tags, isFeatured } = decorated;
+  const { speaker, isFeatured } = decorated;
+  const lg = scale === "lg";
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-4 bg-gradient-to-t from-[rgba(249,248,250,0)] from-20%",
+        lg ? "p-4" : "px-4 pb-2 pt-4",
+        // Featured: peach (marigold tint); otherwise lavender (purple tint).
+        isFeatured ? "to-[#ffe3d1]" : "to-[#e2d5fb]"
+      )}
+    >
+      <div className={cn("flex min-w-0 flex-1 flex-col", lg ? "gap-3" : "gap-2")}>
+        <h1
+          className={cn(
+            "font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 [overflow-wrap:anywhere]",
+            lg ? "text-[24px]" : "text-[20px]"
+          )}
+        >
+          {speaker.name}
+        </h1>
+        {(speaker.twitter || speaker.github || speaker.website) && (
+          // 20px glyphs in 24px boxes, 12px apart (Figma order: X, GitHub, web)
+          <div className="flex items-center gap-3">
+            {speaker.twitter && (
+              <a
+                href={`https://x.com/${speaker.twitter}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${speaker.name} on X`}
+                className={socialLink}
+              >
+                <XIcon className="size-5" />
+              </a>
+            )}
+            {speaker.github && (
+              <a
+                href={`https://github.com/${speaker.github}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${speaker.name} on GitHub`}
+                className={socialLink}
+              >
+                <GithubIcon className="size-5" />
+              </a>
+            )}
+            {speaker.website && (
+              <a
+                href={speaker.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${speaker.name}’s website`}
+                className={socialLink}
+              >
+                <Globe className="size-5" />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+      <div className="relative shrink-0">
+        {/* 96px (panel) / 120px (expanded) circle with a 2px ring: marigold
+            for featured, purple-300 (#b08df5, not a dc-* token yet)
+            otherwise. Avatar handles photo / identicon / initials; the size
+            fills the ring's inner box. */}
+        <div
+          className={cn(
+            "flex items-center justify-center overflow-clip rounded-full border-2",
+            lg ? "size-[120px]" : "size-24",
+            isFeatured ? "border-dc-featured" : "border-[#b08df5]"
+          )}
+        >
+          <Avatar
+            name={speaker.name}
+            src={speaker.avatar || undefined}
+            size={lg ? 116 : 92}
+          />
+        </div>
+        {isFeatured && (
+          // Centred under the avatar, overlapping its bottom edge by 8px.
+          <span
+            className={cn(
+              "absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[2px] bg-dc-featured px-1.5 py-[3px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+              lg ? "text-[12px]" : "text-[10px]"
+            )}
+          >
+            Featured
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Bio, topic-tag recap and the Interested / Copy-name pills. */
+function SpeakerProfile({
+  decorated,
+  scale,
+}: {
+  decorated: DecoratedSpeaker;
+  scale: Scale;
+}) {
+  const { speaker, tags } = decorated;
+  const lg = scale === "lg";
   const { isInterested, toggle } = useInterestedSpeakers();
   const interested = isInterested(speaker.id);
 
@@ -75,146 +185,195 @@ export function SpeakerDetailsContent({
     }
   };
 
+  const pill =
+    "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2";
+
   return (
-    <div className={cn("flex flex-col bg-dc-panel", className)}>
-      {/* Header band: name + links left, ringed avatar right. The tint fades
-          into the panel grey over the top 80% (Figma gradient stop at 20%). */}
-      <div
-        className={cn(
-          "flex items-center gap-4 bg-gradient-to-t from-[rgba(249,248,250,0)] from-20% px-4 pb-2 pt-4",
-          // Featured: peach (marigold tint); otherwise lavender (purple tint).
-          isFeatured ? "to-[#ffe3d1]" : "to-[#e2d5fb]"
-        )}
-      >
-        <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <h1 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 [overflow-wrap:anywhere]">
-            {speaker.name}
-          </h1>
-          {(speaker.twitter || speaker.github || speaker.website) && (
-            // 20px glyphs in 24px boxes, 12px apart (Figma order: X, GitHub, web)
-            <div className="flex items-center gap-3">
-              {speaker.twitter && (
-                <a
-                  href={`https://x.com/${speaker.twitter}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${speaker.name} on X`}
-                  className={socialLink}
-                >
-                  <XIcon className="size-5" />
-                </a>
+    <div className="flex flex-col gap-4 p-4">
+      {(speaker.description || tags.length > 0) && (
+        <div className={cn("flex flex-col", lg ? "gap-4" : "gap-2")}>
+          {speaker.description && (
+            // No section title: the header already names the person, so the
+            // bio reads as theirs without a "Profile" label above it.
+            <p
+              className={cn(
+                // [overflow-wrap:anywhere]: bios carry long unbroken URLs,
+                // which otherwise widen the fixed detail layer past the
+                // viewport (iOS Safari then widens the whole layout viewport).
+                "text-dc-fg2 [overflow-wrap:anywhere]",
+                lg ? "text-[16px] leading-6" : "text-[14px] leading-5"
               )}
-              {speaker.github && (
-                <a
-                  href={`https://github.com/${speaker.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${speaker.name} on GitHub`}
-                  className={socialLink}
-                >
-                  <GithubIcon className="size-5" />
-                </a>
+            >
+              {speaker.description}
+            </p>
+          )}
+          {/* Topic-tag recap — the list clips these, so the details view
+              spells them out (PR #112 feedback). Same 3-tag cap as the
+              desktop card row. */}
+          {tags.length > 0 && (
+            <div
+              className={cn(
+                "flex flex-wrap items-center",
+                lg ? "gap-2" : "gap-1 pt-1"
               )}
-              {speaker.website && (
-                <a
-                  href={speaker.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${speaker.name}’s website`}
-                  className={socialLink}
-                >
-                  <Globe className="size-5" />
-                </a>
+            >
+              {tags.slice(0, 3).map((tag) =>
+                lg ? (
+                  <span
+                    key={tag}
+                    className="whitespace-nowrap rounded-[2px] border border-dc-muted px-2 py-1 text-[11px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-muted"
+                  >
+                    {tag}
+                  </span>
+                ) : (
+                  <SpeakerTagChip key={tag} tag={tag} />
+                )
               )}
             </div>
           )}
         </div>
-        <div className="relative shrink-0">
-          {/* 96px circle with a 2px ring: marigold for featured, purple-300
-              (#b08df5, not a dc-* token yet) otherwise. Avatar handles photo /
-              identicon / initials; 92px fills the ring's inner box. */}
-          <div
-            className={cn(
-              "flex size-24 items-center justify-center overflow-clip rounded-full border-2",
-              isFeatured ? "border-dc-featured" : "border-[#b08df5]"
-            )}
-          >
-            <Avatar name={speaker.name} src={speaker.avatar || undefined} size={92} />
-          </div>
-          {isFeatured && (
-            // Centred under the avatar, overlapping its bottom edge by 8px.
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-              Featured
-            </span>
+      )}
+      {/* Panel/mobile: two equal pills; expanded: auto-width pills, 12px apart. */}
+      <div className={cn(lg ? "flex items-center gap-3" : "grid grid-cols-2 gap-3")}>
+        <button
+          onClick={() => void toggle(speaker.id, speaker.name)}
+          className={cn(
+            pill,
+            interested
+              ? "border-dc-purple bg-dc-lavender"
+              : "border-dc-hairline bg-white"
           )}
-        </div>
-      </div>
-
-      {/* Profile + actions */}
-      <div className="flex flex-col gap-4 border-b border-dc-hairline p-4">
-        {(speaker.description || tags.length > 0) && (
-          <div className="flex flex-col gap-2">
-            {speaker.description && (
-              // No section title: the header already names the person, so the
-              // bio reads as theirs without a "Profile" label above it.
-              <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
-                {speaker.description}
-              </p>
-            )}
-            {/* Topic-tag recap — the list clips these, so the details view
-                spells them out (PR #112 feedback). Same 3-tag cap as the
-                desktop card row. */}
-            {tags.length > 0 && (
-              <div className="flex flex-wrap items-center gap-1 pt-1">
-                {tags.slice(0, 3).map((tag) => (
-                  <SpeakerTagChip key={tag} tag={tag} />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            onClick={() => void toggle(speaker.id, speaker.name)}
+        >
+          <Star
             className={cn(
-              "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2",
-              interested
-                ? "border-dc-purple bg-dc-lavender"
-                : "border-dc-hairline bg-white"
+              "size-4 text-dc-purple",
+              interested ? "fill-dc-purple" : "fill-transparent"
             )}
-          >
-            <Star
-              className={cn(
-                "size-4 text-dc-purple",
-                interested ? "fill-dc-purple" : "fill-transparent"
-              )}
-            />
-            {interested ? "Interested" : "Add to Interests"}
-          </button>
-          <button
-            onClick={() => void copyName()}
-            className="flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border border-dc-hairline bg-white px-2 py-1 text-[12px] leading-none text-dc-fg2"
-          >
-            <Copy className="size-4 text-dc-purple" />
-            Copy name
-          </button>
+          />
+          {interested ? "Interested" : "Add to Interests"}
+        </button>
+        <button
+          onClick={() => void copyName()}
+          className={cn(pill, "border-dc-hairline bg-white")}
+        >
+          <Copy className="size-4 text-dc-purple" />
+          Copy name
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * "Sessions (N)" heading + the speaker's sessions under small day headers
+ * ("Tue, Nov 12", 14px medium muted). `renderCard` picks the card: the
+ * mobile mini card for the panel/mobile page, the desktop SessionCard for
+ * the expanded page.
+ */
+function SpeakerSessionsByDay({
+  sessions,
+  renderCard,
+  groupGap,
+}: {
+  sessions: Session[];
+  renderCard: (session: Session) => React.ReactNode;
+  /** Gap between heading and groups (Figma: 12 in the panel, 20 expanded). */
+  groupGap: "sm" | "lg";
+}) {
+  const groups = groupSessionsByDay(sessions);
+  return (
+    <div className={cn("flex flex-col", groupGap === "lg" ? "gap-5" : "gap-3")}>
+      <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+        Sessions <span className="font-normal">({sessions.length})</span>
+      </h2>
+      {groups.length > 0 ? (
+        groups.map((group) => (
+          <div key={group.key} className="flex flex-col gap-3">
+            <h3 className="text-[14px] font-medium leading-5 text-dc-muted">
+              {group.label}
+            </h3>
+            {group.sessions.map(renderCard)}
+          </div>
+        ))
+      ) : (
+        <p className="text-[14px] leading-5 text-dc-muted">
+          No sessions listed yet.
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Single-column speaker details (Figma "Speaker details" 5114:4920 / 4702 /
+ * 4811): header band, profile + pills, then sessions grouped by day using the
+ * mobile mini card. Used by the desktop side panel and the mobile detail
+ * layer at /speakers/<id> — the two surfaces are continuous (no gap between
+ * the profile and the session list).
+ */
+export function SpeakerDetailsContent({
+  decorated,
+  className,
+}: {
+  decorated: DecoratedSpeaker;
+  /** Extra root classes — the mobile page stretches the panel surface. */
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex flex-col bg-dc-panel", className)}>
+      <SpeakerHeaderBand decorated={decorated} scale="sm" />
+      <div className="border-b border-dc-hairline">
+        <SpeakerProfile decorated={decorated} scale="sm" />
+      </div>
+      <div className="p-4">
+        <SpeakerSessionsByDay
+          sessions={decorated.sessions}
+          groupGap="sm"
+          renderCard={(session) => (
+            <SpeakerSessionMiniCard key={session.id} session={session} />
+          )}
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Desktop "Expanded Speaker Details" (Figma 5114:4036 / 4507 / 4183): a
+ * 520px speaker card beside a flex-1 sessions card, both on the panel grey
+ * with a 16px radius. Sessions use the desktop SessionCard (gem rail, inline
+ * badges) at the dense 14px title scale, grouped under day headers.
+ *
+ * The left column (Back link + speaker card) is sticky so a long session
+ * list never scrolls the person — or the way back — out of view. It pins
+ * 16px under the 65px desktop header, like the list pages' side panels.
+ */
+export function SpeakerDetailsExpanded({
+  decorated,
+  back,
+}: {
+  decorated: DecoratedSpeaker;
+  /** The page's Back control; rendered inside the sticky column. */
+  back: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-start gap-4">
+      <div className="sticky top-[calc(81px+var(--safe-top))] flex w-[520px] shrink-0 flex-col gap-4">
+        {back}
+        <div className="flex flex-col overflow-clip rounded-2xl border border-dc-hairline bg-dc-panel">
+          <SpeakerHeaderBand decorated={decorated} scale="lg" />
+          <SpeakerProfile decorated={decorated} scale="lg" />
         </div>
       </div>
-
-      {/* Sessions */}
-      <div className="flex flex-col gap-3 p-4">
-        <h2 className="text-[14px] leading-5 text-dc-fg2">
-          <span className="font-bold">Sessions</span> ({sessions.length})
-        </h2>
-        {sessions.length > 0 ? (
-          sessions.map((session) => (
-            <SpeakerSessionMiniCard key={session.id} session={session} />
-          ))
-        ) : (
-          <p className="text-[14px] leading-5 text-dc-muted">
-            No sessions listed yet.
-          </p>
-        )}
+      {/* Offset by the Back row (16px) + gap so the two cards' tops align. */}
+      <div className="mt-8 min-w-0 flex-1 rounded-2xl border border-dc-hairline bg-dc-panel p-4">
+        <SpeakerSessionsByDay
+          sessions={decorated.sessions}
+          groupGap="lg"
+          renderCard={(session) => (
+            <SessionCard key={session.id} session={session} dense />
+          )}
+        />
       </div>
     </div>
   );
