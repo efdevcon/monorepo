@@ -210,7 +210,9 @@ sole email match, else the tab asks.
   the same string on the card, the select rows and the buyer links.
 - **Buyer nudge** (`BuyerOrdersHint`): whenever the account is the order email
   and holds more than one ticket in total, one chip per ticket links to the
-  Pretix order page so holders get their own email there.
+  Pretix order page so holders get their own email there. The same nudge goes
+  out by email before the event from the devcon package
+  (`pnpm run send-attendee-email-reminder`, dry run by default).
 - **Swag** shows "Collected" from a Pretix entry check-in on the add-on or
   merchandise position (`positionCollected`); no list configuration, since
   Pretix only records a scan against a list that includes that product.
