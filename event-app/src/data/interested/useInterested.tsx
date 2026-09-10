@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { toast } from "sonner";
 import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
+import { requestInterestSync } from "./sync";
 
 /**
  * "Interested" session stars. Browser-local user state persisted in the
@@ -24,7 +25,8 @@ export function useInterested() {
         .where("eventId")
         .equals(eventId)
         .toArray();
-      return rows.map((r) => r.sessionId);
+      // Tombstones (unstarred, kept for sync) are not stars.
+      return rows.filter((r) => r.interested !== false).map((r) => r.sessionId);
     },
     { revalidateOnFocus: false }
   );
@@ -46,16 +48,18 @@ export function useInterested() {
         cacheDB.interested,
         async () => {
           const existing = await cacheDB.interested.get(key);
-          if (existing) {
-            await cacheDB.interested.delete(key);
-            return false;
-          }
+          // Never delete: an unstar becomes a tombstone so the removal syncs
+          // to the account and wins by time on other devices (merge.ts).
+          const nowOn = !(existing?.interested ?? false);
           await cacheDB.interested.put({
             eventId,
             sessionId,
-            addedAt: Date.now(),
+            addedAt: existing?.addedAt ?? Date.now(),
+            interested: nowOn,
+            updatedAt: Date.now(),
+            pending: 1,
           });
-          return true;
+          return nowOn;
         }
       );
       if (added && title)
@@ -68,6 +72,7 @@ export function useInterested() {
           </span>
         );
       await mutate();
+      requestInterestSync();
     },
     [eventId, mutate]
   );

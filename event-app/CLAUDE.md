@@ -43,7 +43,7 @@ correctly.
 
 ## Hard rules
 
-- **Catalogue data goes through the EventStore** (`src/data/store/`): sessions, speakers, rooms and the event record are one bundle from `GET /events/:id/bundle`, stored normalised in Dexie and synced only when `GET /events/:id/version` changes (60 bytes). Read it through the hooks in `src/data/hooks/` (`useSessions`, `useSpeaker`, …); never fetch catalogue data anywhere else. Adding a field means updating devcon-api's bundle allowlist, `store/types.ts`, `normalize.ts`, `materialize.ts` and the `data:test` fixture. Other persisted state (announcements, tickets, stars) goes through the Dexie-backed SWR layer, never ad-hoc fetch + useState. The service worker has no rule for `/api/*` (requests reach the browser untouched; routing them through the worker made Safari's cold-started worker fail the first request after a pause) and the devcon-api origin is never cached by it.
+- **Catalogue data goes through the EventStore** (`src/data/store/`): sessions, speakers, rooms and the event record are one bundle from `GET /events/:id/bundle`, stored normalised in Dexie and synced only when `GET /events/:id/version` changes (60 bytes). Read it through the hooks in `src/data/hooks/` (`useSessions`, `useSpeaker`, …); never fetch catalogue data anywhere else. Adding a field means updating devcon-api's bundle allowlist, `store/types.ts`, `normalize.ts`, `materialize.ts` and the `data:test` fixture. Other persisted state (announcements, tickets, stars) goes through the Dexie-backed SWR layer, never ad-hoc fetch + useState. Interested stars additionally sync to the account when signed in (`src/data/interested/sync.ts`, `POST /api/interests/sync`, table `devcon8_interests`): Dexie rows carry `interested` (false is a tombstone), `updatedAt` and `pending`; never delete a star row, put a tombstone; conflicts are last-write-wins per item; stars stay on the device after sign-out by decision. The service worker has no rule for `/api/*` (requests reach the browser untouched; routing them through the worker made Safari's cold-started worker fail the first request after a pause) and the devcon-api origin is never cached by it.
 - **The five bottom-bar tabs are persistent panes** (`src/components/TabPanes.tsx`): their route `page.tsx` files render nothing and the layout keeps each visited pane mounted, toggling `hidden` on tab switches (a page mount of the speakers list cost ~800 ms on a mid-range phone; a toggle is a few ms) and restoring each tab's scroll position. Consequences: anything that portals into the app header or measures the window on scroll must check `usePaneActive()` (`src/components/paneContext.ts`), or every mounted pane does it at once, and IntersectionObserver callbacks must ignore 0×0 rects (a hidden pane's elements); long lists render group by group in the background with `useProgressiveReveal` (`src/hooks/useProgressiveReveal.ts`) so first mount costs a screenful, and jumps call `revealAll()` first so they measure real heights (never render-on-viewport-approach: A–Z jumps then landed on placeholders and the content shifted under the finger); the schedule jumps to "live now" only on app open. Every vertical page jump is instant (`behavior: "auto"`), never smooth: WebKit rasterises everything a smooth scroll passes over and a rapid series crashed iOS (PR #112). Tab taps give a haptic tick: Android via the Vibration API (`utils/haptics.ts`), iOS via a transparent `<input type="checkbox" switch>` overlay inside each tab link (`IosHapticOverlay`; the only path left since iOS 26.5 closed programmatic ticks, an undocumented side effect that may stop working, failing silently). Re-tapping the active tab resets its pane like a native tab bar (`handleTabClick` + `useTabReselect` in `paneContext.ts`): instant scroll to top by default, the schedule jumps to "now", the map resets filters and view (`resetView` in VenueMap); with a detail page open the tap navigates to the bare tab URL, which closes it.
 - **Detail pages are real paths that open in place.** `/schedule/<id>` and `/speakers/<id>` are the only detail URLs (shared, crawled, pushed). The route files (`schedule/[id]/page.tsx`, `speakers/[id]/page.tsx`) exist for the URL and its `generateMetadata` and render nothing on the client: the list tab's pane renders the page (`session.tsx` / `speaker.tsx`, mobile as a `DetailLayer` over the list, desktop in place of it; the desktop side panel is local state, not the URL). In the app a detail opens with `openDetail` / `useDetailRoute` (`src/routing/detailRoute.ts`: Next-integrated `history.pushState`, no RSC fetch), links are `DetailLink` (a plain anchor with the real href; never `next/link`, which prefetches per card). Offline, the SW answers a navigation to a detail path with the precached tab shell (`src/sw.ts`), so a never-visited id works too; `/schedule/[id]` is never precached per id. Build hrefs with `detailHref(kind, id)` (`src/routing/viewParams.ts`, also imported by the SW). `/room-screens/[id]` is the deliberate exception (TV kiosk, always online).
 - **Live-only features degrade, never error**: gate Q&A, streams, chat, sign-in, push and refresh on `useOnline()` and render `<NeedsConnection what="…" />` in the feature's slot.
@@ -163,3 +163,59 @@ Three things not to undo: the signer address is never carried in the proof link
 is a *salted* HMAC of the ticket secret (the secret is the QR payload, so a bare
 hash would deanonymise claims), and the signing key is dedicated and funds-free
 (never the payment relayer key).
+
+## Attached tickets (which ticket is yours)
+
+Sign-in stays the email OTP. `/api/tickets` returns tickets matched by the
+session email plus positions the account attached (`devcon8_ticket_links`,
+service-role only). Attached tickets come first and carry `attached: true`;
+every ticket carries its Pretix `positionId`. The client derives one primary
+ticket and which prompt to show with the pure helpers in
+`src/data/tickets/primary.ts` (`pnpm data:test`): an attached ticket, else the
+sole email match, else the tab asks.
+
+- **Two proofs, one endpoint** (`POST /api/tickets/attach`): `{ positionId }`
+  chooses one of the account's own email-matched admission positions (the
+  email match is the proof); `{ code }` is the QR payload of a ticket not under
+  this email, verified against Pretix (`getPositionBySecret`, this event, paid,
+  live, not an add-on). The link records its `proof` (`email` or `qr`) and a
+  SHA-256 of the secret, never the secret. `DELETE { positionId }` detaches.
+- **Upload formats**, all decoded on the device (`src/data/tickets/qrFromFile.ts`,
+  imported dynamically): a screenshot or photo (jsQR, `qrDecode.ts`,
+  `pnpm qr:test`), a `.pkpass` wallet pass (payload is text in its `pass.json`,
+  `passBarcode.ts`), or the ticket PDF (pages rendered with pdf.js, loaded on
+  demand). No camera scanner, no deep links; never log the code.
+- **Re-verification on every fetch**: gone, canceled or unpaid positions are
+  dropped, and so is an `email`-proof link whose attendee email no longer
+  matches the account (the buyer reassigned it); `removedAttachments` drives
+  the one-line notice. Link reads are best effort: a Supabase error falls back
+  to email-matched tickets, never a failed tab.
+- **Redaction**: a `qr`-proof ticket comes back with the buyer's identity
+  replaced by the account (`redactBuyerIdentity`: order email, attendee and
+  add-on names, order page URL), since the QR proves possession, not who paid.
+  The Pretix order page URL (`Order.url`, carries the order secret) is exposed
+  only when the account email is the order email.
+- **Two accounts may attach the same ticket** (the door arbitrates, not us):
+  such tickets carry `sharedWith` and the card and select rows say so.
+- **The tab**: several email-matched tickets and none chosen shows the select
+  ("Which ticket is yours?", "This one is mine") with the upload as a fallback,
+  and no QR codes until chosen; offline it falls back to showing the saved
+  tickets. No ticket under the email shows the upload card. Only the primary is
+  shown, with its add-ons and its perk; the buyer's other tickets stay in the
+  Pretix email. Footer: "Not your ticket? Attach yours" replaces an
+  email-matched ticket, "Wrong ticket? Choose another" (or "Remove it from this
+  account" when no select would follow) detaches an attached one. Tickets are
+  numbered for people as "Order KXQFQ · Ticket #1" (`ticketOrdinals`: 1..n per
+  order over the tickets the account sees, so Pretix position gaps never show),
+  the same string on the card, the select rows and the buyer links.
+- **Buyer nudge** (`BuyerOrdersHint`): whenever the account is the order email
+  and holds more than one ticket in total, one chip per ticket links to the
+  Pretix order page so holders get their own email there.
+- **Swag** shows "Collected" from a Pretix entry check-in on the add-on or
+  merchandise position (`positionCollected`); no list configuration, since
+  Pretix only records a scan against a list that includes that product.
+- **Q&A eligibility** (`/api/meerkat`) counts attached tickets.
+- **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live
+  on their own `TEST-<code>` order, are flagged `test`, carry negative
+  synthetic position ids so they can be chosen (the server skips Pretix for
+  those), and the first one holds the fake shirt and collected chess set.

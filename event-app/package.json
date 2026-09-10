@@ -20,7 +20,8 @@
     "otp:test": "tsx scripts/test-otp-input.ts",
     "proof:test": "tsx scripts/test-ticket-proof.ts",
     "proof:demo-link": "tsx scripts/make-demo-proof.ts",
-    "data:test": "tsx scripts/test-data.ts"
+    "data:test": "tsx scripts/test-data.ts",
+    "qr:test": "tsx scripts/test-qr-decode.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
@@ -36,11 +37,14 @@
     "@supabase/supabase-js": "^2.106.2",
     "classnames": "^2.5.1",
     "dexie": "^4.2.1",
+    "fflate": "^0.8.3",
     "framer-motion": "12.0.0-alpha.1",
+    "jsqr": "^1.4.0",
     "lib": "workspace:*",
     "lucide-react": "^1.17.0",
     "next": "16.1.1",
     "panzoom": "^9.4.3",
+    "pdfjs-dist": "^6.3.289",
     "qrcode": "^1.5.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",

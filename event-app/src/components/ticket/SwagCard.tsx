@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { Gift, QrCode } from "lucide-react";
+import { Check, Gift, QrCode } from "lucide-react";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import type { QrModalTarget } from "./QrModals";
 import { displayItemName } from "./ticketTheme";
@@ -21,12 +21,15 @@ export function SwagCard({
   title,
   imageUrl,
   qr,
+  collected = false,
   onQrClick,
   shelfOnDesktop = false,
 }: {
   title: string;
   imageUrl?: string;
   qr?: string;
+  /** Handed over at the swag station (Pretix check-in on the position). */
+  collected?: boolean;
   onQrClick: (target: QrModalTarget) => void;
   shelfOnDesktop?: boolean;
 }) {
@@ -40,7 +43,7 @@ export function SwagCard({
 
   return (
     <button
-      onClick={qr ? () => onQrClick({ kind: "swag", qr, title: name }) : undefined}
+      onClick={qr ? () => onQrClick({ kind: "swag", qr, title: name, collected }) : undefined}
       disabled={!qr}
       className={cn(
         // outline (not border) so the stroke sits just OUTSIDE the card
@@ -82,6 +85,13 @@ export function SwagCard({
             <Gift className="size-10 text-dc-purple-soft" aria-hidden="true" />
           </div>
         )}
+        {collected && (
+          // Same pill as the ticket's "Checked in" (sonner success palette).
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2 shadow-sm">
+            <Check className="size-3.5" />
+            Collected
+          </span>
+        )}
       </div>
       <div
         className="flex w-full items-center gap-6 px-4 py-5"
@@ -92,7 +102,7 @@ export function SwagCard({
             {name}
           </p>
           <p className="text-[12px] font-medium leading-none text-[#9256d2]">
-            Swag
+            {collected ? "Swag · Collected" : "Swag"}
           </p>
         </div>
         <span className="flex size-8 shrink-0 items-center justify-center">

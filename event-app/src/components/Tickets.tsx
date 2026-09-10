@@ -9,6 +9,7 @@ import {
   TicketSections,
 } from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
+import { useOnline } from "@/hooks/useOnline";
 
 /** Home-page tickets section: signed in it renders the shared My Devcon
  *  layout (TicketSections); signed out it becomes the key-art sign-in banner
@@ -19,10 +20,13 @@ export function Tickets() {
     markFailed: markBannerFailed,
   } = useRetryOnReconnect();
   const { user } = useUser();
-  const { tickets, qrCodes, isLoading, isRefreshing, error, refresh } =
+  const { tickets, primary, prompt, qrCodes, isLoading, isRefreshing, error, refresh } =
     useTickets();
+  const online = useOnline();
 
   const hasTickets = tickets.length > 0;
+  // Offline the choice cannot be made, so the saved tickets show as before.
+  const askToChoose = prompt === "choose" && online;
 
   return (
     <section className="w-full text-left">
@@ -30,7 +34,7 @@ export function Tickets() {
           the "Your tickets" header only fronts the states that render without
           them, and keeps refresh reachable for signed-in users so a just-paid
           order can be refetched without a reload. */}
-      {(isLoading || !user || !hasTickets) && (
+      {(isLoading || !user || !hasTickets || askToChoose) && (
         <div className="mb-4">
           <TicketSectionHeader
             title="Your tickets"
@@ -109,6 +113,21 @@ export function Tickets() {
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}
         </p>
+      ) : askToChoose ? (
+        /* Several tickets under this email and none chosen yet: the ticket
+           tab asks which is theirs; no QR codes until then. */
+        <div className="flex flex-col gap-3 rounded-xl border border-dc-hairline bg-white p-4">
+          <h3 className="font-heading text-[16px] font-bold leading-6 text-dc-fg2">
+            Which ticket is yours?
+          </h3>
+          <p className="text-[14px] leading-5 text-dc-fg2">
+            Several tickets are under this email.{" "}
+            <Link href="/ticket" className="font-bold text-dc-purple hover:underline">
+              Pick yours
+            </Link>{" "}
+            to see its QR code.
+          </p>
+        </div>
       ) : !hasTickets ? (
         <div className="relative overflow-hidden rounded-xl p-6 text-white">
           {/* Real banner art from devcon.org/tickets + gradient for legibility */}
@@ -132,6 +151,13 @@ export function Tickets() {
             >
               Get tickets
             </a>
+            {/* Ticket bought by someone else: the attach flow lives on the tab. */}
+            <p className="mt-3 text-sm text-white/90">
+              Have your ticket?{" "}
+              <Link href="/ticket" className="font-bold underline underline-offset-2">
+                Attach it on My Devcon
+              </Link>
+            </p>
           </div>
         </div>
       ) : (
@@ -143,9 +169,15 @@ export function Tickets() {
               Couldn&apos;t refresh tickets. Showing your saved ones.
             </p>
           )}
+          {prompt === "choose" && !online && (
+            <p className="mb-2 text-xs text-dc-muted">
+              Pick which ticket is yours when you&apos;re back online.
+            </p>
+          )}
           <TicketSections
             tickets={tickets}
             qrCodes={qrCodes}
+            primary={primary}
             onRefresh={refresh}
             isRefreshing={isRefreshing}
             refreshDisabled={isLoading || isRefreshing}

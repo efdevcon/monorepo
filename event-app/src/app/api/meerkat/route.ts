@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { getPaidTicketsByEmail, getStoreFromEnv } from "../tickets/pretix";
+import { listLinks } from "../tickets/links";
+import { getStoreFromEnv, getTicketsForUser } from "../tickets/pretix";
 import { generateHandoverToken } from "./verification";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -11,8 +12,9 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
  *
  * Gated on two checks so we never hand a token to someone who shouldn't have
  * one: (1) a valid Supabase session, and (2) ownership of at least one paid
- * Pretix ticket for the configured event. The email baked into the JWT is the
- * verified session email — never client-supplied.
+ * Pretix ticket for the configured event, matched by email or attached by QR
+ * proof (see tickets/attach). The email baked into the JWT is the verified
+ * session email — never client-supplied.
  */
 export async function POST(request: NextRequest) {
   if (!supabaseUrl || !supabaseAnonKey) {
@@ -50,8 +52,13 @@ export async function POST(request: NextRequest) {
 
   let ownsTicket = false;
   try {
-    const orders = await getPaidTicketsByEmail(user.email, store);
-    ownsTicket = orders.some((order) => order.tickets.length > 0);
+    const { orders } = await getTicketsForUser(
+      { email: user.email, links: await listLinks(user.id, store.eventSlug) },
+      store
+    );
+    ownsTicket = orders.some((order) =>
+      order.tickets.some((ticket) => ticket.admission !== false)
+    );
   } catch (err) {
     console.error("[/api/meerkat] ticket lookup failed:", err);
     return NextResponse.json(

@@ -76,8 +76,16 @@ Catalogue data (sessions, speakers, rooms, the event record) lives in the **Even
   parallel and renders children when both are ready, so the first paint has data and no flash.
 
 SWR + the Dexie `cache` table remain for the small, differently-shaped state: announcements,
-tickets, and browser-local user state (interested stars, announcement read state). Dexie is used
+tickets, and browser-local user state (interested stars, which also sync to the account when signed
+in via `POST /api/interests/sync`; announcement read state). Dexie is used
 because IndexedDB has far larger limits than localStorage; abstract it away behind hooks.
+
+Ticket identity: the Supabase account (email OTP) is the identity; `/api/tickets` returns tickets
+matched by email plus positions the account attached (`devcon8_ticket_links`), attached first. The
+client derives one primary ticket (`src/data/tickets/primary.ts`): an attached ticket, else the sole
+email match, else the tab asks (a select among the email-matched tickets, or an upload of the ticket
+as a screenshot, PDF or `.pkpass`, decoded on the device). Only the primary is shown; see `CLAUDE.md`
+for the rules.
 
 Offline UX: `useOnline` (`src/hooks/useOnline.ts`) is the single connectivity source. The header
 marker is an icon-only pill whose tooltip/aria-label reads "Offline, schedule from HH:MM" (last sync time), image retries hang off the same

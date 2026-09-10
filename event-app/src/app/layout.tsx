@@ -4,6 +4,7 @@ import "./globals.css";
 import { DataProvider } from "@/data/cache";
 import { UserProvider } from "@/data/auth/useUser";
 import { CacheWarmer } from "@/components/CacheWarmer";
+import { InterestSync } from "@/data/interested/InterestSync";
 import { IOSViewportHealer } from "@/components/IOSViewportHealer";
 import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
@@ -211,6 +212,7 @@ export default function RootLayout({
         <DataProvider>
           <UserProvider>
             <CacheWarmer />
+            <InterestSync />
             {children}
           </UserProvider>
         </DataProvider>
