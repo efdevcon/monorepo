@@ -276,6 +276,18 @@ function testPrimary() {
   const attendeeOnly = order("Y", [ticket("y1", { positionId: 41, positionNumber: 1 })]);
   check("buyer orders: several single-ticket orders count together; a ticket bought by someone else does not", eq(buyerOrdersToAssign([d, e, attendeeOnly]).map((o) => o.orderCode), ["D", "E"]));
   check("buyer orders: one ticket in total, no hint", buyerOrdersToAssign([d]).length === 0);
+
+  // Rows and chips share one order: orders as placed, tickets by position,
+  // whatever the payload order (a chosen ticket's order moves to the front).
+  const older = order("OLD", [ticket("o2", { positionId: 2, positionNumber: 2 }), ticket("o1", { positionId: 1, positionNumber: 1 })]);
+  older.orderDate = "2026-01-01T00:00:00Z"; older.url = "https://tickets.example/order/OLD/s/";
+  const newer = order("NEW", [ticket("n1", { positionId: 3, positionNumber: 1 })]);
+  newer.orderDate = "2026-02-01T00:00:00Z"; newer.url = "https://tickets.example/order/NEW/s/";
+  const rows = ticketChoices([older, newer]).map((c) => c.secret);
+  const chips = buyerOrdersToAssign([older, newer]).flatMap((o) => o.tickets.map((t) => t.secret));
+  check("display order: rows are chronological by order, tickets by position", eq(rows, ["o1", "o2", "n1"]));
+  check("display order: chips follow the rows", eq(chips, rows));
+  check("display order: unchanged when the payload is reordered", eq(ticketChoices([newer, older]).map((c) => c.secret), rows));
   check("choices: other holders flagged", choices[1].sharedWith === 1 && choices[0].sharedWith === undefined);
   check("choices: admission tickets only, in order", eq(choices.map((c) => c.secret), ["s1", "s2", "fixture"]));
   check("choices: holder, add-ons and order carried", choices[0].holder === "Ada" && eq(choices[0].addons, ["Shirt - L"]) && choices[0].orderCode === "A");

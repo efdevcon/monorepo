@@ -29,6 +29,33 @@ export function ticketPrompt(orders: Order[]): TicketPrompt {
 }
 
 /**
+ * One display order for every list of tickets (select rows, buyer chips):
+ * orders in the order they were placed, then by code, then tickets by Pretix
+ * position. Derived
+ * from the data rather than the payload order, so a chosen ticket moving to
+ * the front of the payload never reorders what people see.
+ */
+export function displayRank(orders: Order[]): Map<string, number> {
+  const info = new Map<string, { date: string; code: string }>();
+  for (const order of orders) {
+    if (!info.has(order.orderCode)) info.set(order.orderCode, { date: order.orderDate, code: order.orderCode });
+  }
+  // Chronological (oldest order first); same date (or none) falls back to the code.
+  const codes = [...info.values()]
+    .sort((a, b) => (a.date === b.date ? a.code.localeCompare(b.code) : a.date < b.date ? -1 : 1))
+    .map((entry) => entry.code);
+  const rank = new Map<string, number>();
+  for (const order of orders) {
+    const base = codes.indexOf(order.orderCode) * 1000;
+    order.tickets.forEach((ticket, index) => {
+      // Numbered tickets by position; unnumbered ones (fixture, stale cache) after them, in payload order.
+      rank.set(ticket.secret, base + (ticket.positionNumber ?? 100 + index));
+    });
+  }
+  return rank;
+}
+
+/**
  * User-facing ticket numbers, 1..n per order over every admission ticket the
  * account sees on that order (chosen one included, so numbers do not shift
  * after a choice). Pretix's own position numbers can have gaps once a ticket
@@ -75,10 +102,15 @@ export interface TicketChoice {
  */
 export function ticketChoices(orders: Order[]): TicketChoice[] {
   const ordinals = ticketOrdinals(orders);
-  return orders.flatMap((order) =>
-    order.tickets
-      .filter((ticket) => isAdmission(ticket) && !ticket.attached)
-      .map((ticket) => ({
+  const rank = displayRank(orders);
+  return orders
+    .flatMap((order) =>
+      order.tickets
+        .filter((ticket) => isAdmission(ticket) && !ticket.attached)
+        .map((ticket) => ({ order, ticket }))
+    )
+    .sort((a, b) => (rank.get(a.ticket.secret) ?? 0) - (rank.get(b.ticket.secret) ?? 0))
+    .map(({ order, ticket }) => ({
         positionId: ticket.positionId,
         ordinal: ordinals.get(ticket.secret) ?? 1,
         secret: ticket.secret,
@@ -88,8 +120,7 @@ export function ticketChoices(orders: Order[]): TicketChoice[] {
         orderCode: order.orderCode,
         sharedWith: ticket.sharedWith,
         test: ticket.test,
-      }))
-  );
+    }));
 }
 
 /** An order the account bought that still holds several admission tickets under its own email. */
@@ -112,6 +143,7 @@ export interface BuyerOrder {
  */
 export function buyerOrdersToAssign(orders: Order[]): BuyerOrder[] {
   const ordinals = ticketOrdinals(orders);
+  const rank = displayRank(orders);
   const byCode = new Map<string, BuyerOrder>();
   let total = 0;
   for (const order of orders) {
@@ -126,10 +158,13 @@ export function buyerOrdersToAssign(orders: Order[]): BuyerOrder[] {
     byCode.set(order.orderCode, entry);
   }
   if (total < 2) return [];
+  const firstRank = (entry: BuyerOrder) =>
+    Math.min(...entry.tickets.map((t) => rank.get(t.secret) ?? 0));
   return [...byCode.values()]
     .filter((entry) => entry.tickets.length > 0)
     .map((entry) => ({
       ...entry,
       tickets: [...entry.tickets].sort((a, b) => a.ordinal - b.ordinal),
-    }));
+    }))
+    .sort((a, b) => firstRank(a) - firstRank(b));
 }

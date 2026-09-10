@@ -9,9 +9,12 @@ import type { BuyerOrder } from "@/data/tickets/primary";
  * in with it, find their ticket loaded, and never need to choose or upload.
  * One chip per ticket, labelled like the select rows ("Order KXQFQ · Ticket
  * #1"); Pretix has no per-ticket page on this instance, so each opens the
- * order page, where every ticket has its own "change details". Renders
- * nothing when there is no such order.
+ * order's "change details" form (<order url>/modify), which covers every
+ * ticket on it. Renders nothing when there is no such order.
  */
+/** The Pretix order's attendee-details form, straight from the chip. */
+const modifyUrl = (orderUrl: string) => `${orderUrl.replace(/\/?$/, "/")}modify`;
+
 export function BuyerOrdersHint({ orders }: { orders: BuyerOrder[] }) {
   if (orders.length === 0) return null;
   const severalOrders = orders.length > 1;
@@ -27,7 +30,7 @@ export function BuyerOrdersHint({ orders }: { orders: BuyerOrder[] }) {
           order.tickets.map((ticket) => (
             <a
               key={ticket.secret}
-              href={order.url}
+              href={modifyUrl(order.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-7 items-center gap-1 whitespace-nowrap rounded-full border border-dc-hairline bg-white px-2.5 text-[12px] font-semibold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
