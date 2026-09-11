@@ -40,6 +40,26 @@ const HEIGHTS = [
   [/discussion-corner|community-hub|coffee-station|snack/i, 2],
 ];
 const heightFor = (id) => HEIGHTS.find(([re]) => re.test(id))?.[1] ?? 30;
+
+/** Icon sprite (public/maps/devcon-8/icons/<name>.png) shown at each footprint's centre. */
+const ICONS = [
+  [/^stage-1/i, "fan"],
+  [/^stage-2/i, "lantern"],
+  [/^st(a)?ge-3/i, "mats"],
+  [/^stage-4/i, "leaf"],
+  [/^stage-5/i, "hat"],
+  [/^stage-6/i, "kite"],
+  [/^main-stage/i, "mask"],
+  [/coffee-station/i, "coffee"],
+  [/community-hub/i, "community-hub"],
+  [/^cowork/i, "cowork"],
+  [/discussion-corner/i, "discussion-corner"],
+  [/^toilets/i, "toilets"],
+  [/impact/i, "impact"],
+  [/snack/i, "snack"],
+];
+const iconFor = (id) => ICONS.find(([re]) => re.test(id))?.[1] ?? null;
+const iconFiles = new Set(fs.readdirSync(path.join(root, "public/maps/devcon-8/icons")).map((f) => f.replace(/\.png$/, "")));
 const kindFor = (id, height) => (height <= 3 ? "mat" : /^wall/i.test(id) ? "wall" : "block");
 
 // ---------------------------------------------------------------------------
@@ -109,6 +129,19 @@ function pathToPolygons(d) {
   return polys;
 }
 
+/** Area-weighted centroid of a simple polygon (falls back to the vertex mean for degenerate input). */
+function polygonCentroid(poly) {
+  let a = 0, cx = 0, cy = 0;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const f = poly[j][0] * poly[i][1] - poly[i][0] * poly[j][1];
+    a += f;
+    cx += (poly[j][0] + poly[i][0]) * f;
+    cy += (poly[j][1] + poly[i][1]) * f;
+  }
+  if (Math.abs(a) < 1e-6) return [poly.reduce((s, p) => s + p[0], 0) / poly.length, poly.reduce((s, p) => s + p[1], 0) / poly.length];
+  return [cx / (3 * a), cy / (3 * a)];
+}
+
 function polygonArea(poly) {
   let a = 0;
   for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) a += (poly[j][0] + poly[i][0]) * (poly[j][1] - poly[i][1]);
@@ -161,6 +194,9 @@ for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
   const height = isSlab ? SLAB_DEPTH : heightFor(id);
   const area = isSlab ? null : areaFor(id);
   const kind = isSlab ? "slab" : kindFor(id, height);
+  const outline = [...ground].sort((p, q) => polygonArea(q) - polygonArea(p))[0];
+  const icon = isSlab || /^wall/i.test(id) ? null : iconFor(id);
+  if (icon && !iconFiles.has(icon)) console.warn(`  ! no icon file for "${icon}" (${id})`);
   shapes.push({
     id,
     kind,
@@ -168,6 +204,8 @@ for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
     description: area?.description ?? "",
     tappable: kind === "block" || kind === "mat",
     polygons: ground,
+    centroid: polygonCentroid(outline).map(round),
+    icon: icon && iconFiles.has(icon) ? icon : null,
     height: round(height * PLAN_SCALE),
     fill: a.fill ?? "#cccccc",
     stroke: a.stroke ?? null,
@@ -193,4 +231,4 @@ fs.writeFileSync(outPath, JSON.stringify(out));
 console.log(`${path.relative(root, sourcePath)} → ${path.relative(root, outPath)} (${(Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(0)} KB)`);
 console.log(`shapes: ${shapes.length}; by kind:`, Object.fromEntries(["slab", "wall", "block", "mat"].map((k) => [k, shapes.filter((s) => s.kind === k).length])));
 console.log(`bounds (ground px):`, bounds, `fit (screen px):`, fit);
-for (const s of shapes) if (s.kind !== "wall") console.log(`  ${s.kind.padEnd(5)} ${s.id.padEnd(26)} h=${s.height} area=${Math.round(polygonArea(s.polygons[0]))} → "${s.name}"${s.description ? "" : "  (no description)"}`);
+for (const s of shapes) if (s.kind !== "wall") console.log(`  ${s.kind.padEnd(5)} ${s.id.padEnd(26)} h=${s.height} icon=${(s.icon ?? "-").padEnd(17)} → "${s.name}"${s.description ? "" : "  (no description)"}`);

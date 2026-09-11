@@ -49,6 +49,10 @@ export type PlanShape = {
   tappable: boolean;
   /** Footprint polygons in ground px (X, Z); the largest is the outline, the rest are holes. */
   polygons: [number, number][][];
+  /** Centre of the outline polygon in ground px: where the icon sprite stands. */
+  centroid: [number, number];
+  /** Icon sprite name under public/maps/devcon-8/icons/, or null. */
+  icon: string | null;
   /** Extrusion height in ground px (the slab extrudes downwards). */
   height: number;
   fill: string;

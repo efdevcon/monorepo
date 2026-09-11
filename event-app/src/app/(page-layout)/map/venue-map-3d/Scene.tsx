@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type MutableRefObject } from "react";
+import { Suspense, useMemo, useRef, useState, type MutableRefObject } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
 import { INITIAL_AZIMUTH, groundFromScreen, PX } from "./isoMath";
@@ -9,6 +9,7 @@ import { Slab } from "./Slab";
 import { Blocks } from "./Blocks";
 import { Props } from "./Props";
 import { PlanShapes } from "./PlanShapes";
+import { PlanIcons } from "./PlanIcons";
 import type { Area, GroundBounds, MapSettings, PlanScene, SceneData } from "./types";
 
 type SceneProps = {
@@ -70,7 +71,14 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
       <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
       <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} azimuthRef={azimuthRef} resetRef={resetRef} />
       {usePlan ? (
-        <PlanShapes shapes={plan.shapes} selectedId={selectedId} onSelect={onSelect} setHover={setHover} />
+        <>
+          <PlanShapes shapes={plan.shapes} selectedId={selectedId} onSelect={onSelect} setHover={setHover} />
+          {settings.showProps && (
+            <Suspense fallback={null}>
+              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHover={setHover} />
+            </Suspense>
+          )}
+        </>
       ) : (
         <>
           <Slab scene={scene} />
