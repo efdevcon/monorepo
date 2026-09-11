@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { getPaidTicketsByEmail, getStoreFromEnv } from "../tickets/pretix";
+import { listLinks } from "../tickets/links";
+import { getStoreFromEnv, getTicketsForUser } from "../tickets/pretix";
 import { getRequestOrigin } from "../_lib/origin";
 import {
   classifyTier,
@@ -107,8 +108,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Confirm the requested ticket is one of this user's event tickets.
-    const orders = await getPaidTicketsByEmail(user.email, store);
+    // 3. Confirm the requested ticket is one of this user's event tickets:
+    // matched by email or attached by proof (a QR-attached ticket is not
+    // under the account's email, yet its perk card is the one shown).
+    const { orders } = await getTicketsForUser(
+      { email: user.email, links: await listLinks(user.id, store.eventSlug) },
+      store
+    );
     const match = orders
       .flatMap((order) => order.tickets)
       .find((ticket) => ticket.secret === ticketSecret);

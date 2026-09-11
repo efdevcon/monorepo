@@ -471,6 +471,16 @@ export function isAttachablePosition(
 }
 
 /**
+ * What a Pretix lookup by id means for a link: "missing" (404) proves the
+ * position or order is gone and the link is dead; any other failure is
+ * Pretix's problem (429, 5xx, network) and must throw so nothing is deleted.
+ */
+export function pretixLookupOutcome(res: { ok: boolean; status: number }): "ok" | "missing" | "failed" {
+  if (res.ok) return "ok";
+  return res.status === 404 ? "missing" : "failed";
+}
+
+/**
  * Everything the account may see: attached positions first (flagged), then
  * email-matched orders. Each link is re-verified against Pretix: a position
  * that is gone, on an unpaid order, or canceled is reported in `deadLinks` so
@@ -488,13 +498,20 @@ export async function getTicketsForUser(
   const attachedRaw: Array<{ order: PretixOrder; positionId: number; proof: LinkProof }> = [];
 
   // Several attached positions can share an order; fetch each order once.
+  // Null only for a 404 (order gone): a transient Pretix error throws, so a
+  // 429 or 500 can never be mistaken for a dead link and delete it.
   const orderCache = new Map<string, Promise<PretixOrder | null>>();
   const fetchOrder = (code: string): Promise<PretixOrder | null> => {
     let pending = orderCache.get(code);
     if (!pending) {
       pending = fetch(`${baseFor(store)}/orders/${encodeURIComponent(code)}/`, {
         headers,
-      }).then((r) => (r.ok ? (r.json() as Promise<PretixOrder>) : null));
+      }).then((r) => {
+        const outcome = pretixLookupOutcome(r);
+        if (outcome === "missing") return null;
+        if (outcome === "failed") throw new Error(`Pretix API error: ${r.status}`);
+        return r.json() as Promise<PretixOrder>;
+      });
       orderCache.set(code, pending);
     }
     return pending;
@@ -510,11 +527,12 @@ export async function getTicketsForUser(
       const res = await fetch(`${baseFor(store)}/orderpositions/${positionId}/`, {
         headers,
       });
-      if (res.status === 404) {
+      const outcome = pretixLookupOutcome(res);
+      if (outcome === "missing") {
         deadLinks.push(positionId);
         return;
       }
-      if (!res.ok) throw new Error(`Pretix API error: ${res.status}`);
+      if (outcome === "failed") throw new Error(`Pretix API error: ${res.status}`);
       const position: PretixPosition = await res.json();
       const order = await fetchOrder(position.order);
       if (!order || !isAttachablePosition(position, order, itemsMap)) {

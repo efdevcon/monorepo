@@ -188,7 +188,8 @@ sole email match, else the tab asks.
 - **Re-verification on every fetch**: gone, canceled or unpaid positions are
   dropped, and so is an `email`-proof link whose attendee email no longer
   matches the account (the buyer reassigned it); `removedAttachments` drives
-  the one-line notice. Link reads are best effort: a Supabase error falls back
+  the one-line notice. Only a 404 counts as gone (`pretixLookupOutcome`); any
+  other Pretix failure throws so a 429 or 500 can never delete a link. Link reads are best effort: a Supabase error falls back
   to email-matched tickets, never a failed tab.
 - **Redaction**: a `qr`-proof ticket comes back with the buyer's identity
   replaced by the account (`redactBuyerIdentity`: order email, attendee and
@@ -216,7 +217,8 @@ sole email match, else the tab asks.
 - **Swag** shows "Collected" from a Pretix entry check-in on the add-on or
   merchandise position (`positionCollected`); no list configuration, since
   Pretix only records a scan against a list that includes that product.
-- **Q&A eligibility** (`/api/meerkat`) counts attached tickets.
+- **Q&A eligibility** (`/api/meerkat`) and the ENS perk (`/api/ticket-proof`)
+  resolve tickets with `getTicketsForUser`, so attached tickets count.
 - **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live
   on their own `TEST-<code>` order, are flagged `test`, carry negative
   synthetic position ids so they can be chosen (the server skips Pretix for

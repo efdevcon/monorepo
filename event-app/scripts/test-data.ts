@@ -17,7 +17,7 @@ import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceW
 import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
-import { positionCollected, positionMatchesEmail, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
+import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
@@ -317,6 +317,10 @@ function testPrimary() {
   check("collected: a scan with no type is an entry", positionCollected({ checkins: [{ list: 1 }] }));
   check("collected: an exit scan does not count", !positionCollected({ checkins: [{ list: 1, type: "exit" }] }));
   check("collected: no scans", !positionCollected({ checkins: [] }) && !positionCollected({}));
+
+  check("link re-verification: 200 is ok", pretixLookupOutcome({ ok: true, status: 200 }) === "ok");
+  check("link re-verification: 404 means the position or order is gone", pretixLookupOutcome({ ok: false, status: 404 }) === "missing");
+  check("link re-verification: 429 and 500 fail without deleting anything", pretixLookupOutcome({ ok: false, status: 429 }) === "failed" && pretixLookupOutcome({ ok: false, status: 500 }) === "failed");
 }
 
 function testRateLimiter() {
