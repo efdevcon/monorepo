@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { Hero } from 'components/domain/index/hero'
 import { SessionSharing } from 'components/domain/session-sharing'
+import { twitterTitle } from 'config/social'
 import { cleanDc8SessionType } from 'services/social-cards/track-images'
 import { isPublicSubmissionState } from 'services/social-cards/submission-state'
 
@@ -83,7 +84,7 @@ const SpeakerCard = (props: any) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" key="twitter:title" content={title} />
+        <meta name="twitter:title" key="twitter:title" content={twitterTitle('session', title)} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         <meta name="twitter:image" key="twitter:image" content={imageUrl} />
         <meta name="theme-color" key="theme-color" content="#221144" />
