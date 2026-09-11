@@ -36,8 +36,7 @@ const HEIGHTS = [
   [/^classroom/i, 38],
   [/^toilets/i, 30],
   [/^press-room/i, 30],
-  [/^cowork/i, 32],
-  [/discussion-corner|community-hub|coffee-station|snack/i, 2],
+  [/discussion-corner|community-hub|coffee-station|snack|^cowork/i, 2],
 ];
 const heightFor = (id) => HEIGHTS.find(([re]) => re.test(id))?.[1] ?? 30;
 

@@ -5,7 +5,7 @@ import cn from "classnames";
 import type { MapSource } from "./types";
 
 const OPTIONS: { source: MapSource; label: string }[] = [
-  { source: "iso", label: "Iso native import" },
+  { source: "iso", label: "ISO import" },
   { source: "plan", label: "Top-down redraw" },
 ];
 
