@@ -43,7 +43,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
   const groundBounds = usePlan ? plan.bounds : scene.bounds;
   const fit = usePlan ? plan.fit : { width: scene.viewBox[2], height: scene.viewBox[3] };
   const pannable = usePlan;
-  const cursor = hoveredId ? "pointer" : settings.view === "top" || pannable ? "grab" : "grab";
+  const cursor = hoveredId ? "pointer" : "grab";
 
   return (
     <Canvas

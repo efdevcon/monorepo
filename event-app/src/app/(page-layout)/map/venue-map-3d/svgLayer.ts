@@ -2,7 +2,7 @@ import { BufferGeometry, Color, ShapeGeometry } from "three";
 import { SVGLoader, type StrokeStyle } from "three/examples/jsm/loaders/SVGLoader.js";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
-export type LayerPart = {
+type LayerPart = {
   geometry: BufferGeometry;
   color: Color;
   opacity: number;
@@ -28,7 +28,7 @@ type PathStyle = Partial<StrokeStyle> & {
  * stroke draws after every fill, which is the right answer for an outlined
  * illustration and keeps a ~5k-path drawing at a few dozen draw calls.
  */
-export function buildLayerParts(svgText: string): LayerPart[] {
+function buildLayerParts(svgText: string): LayerPart[] {
   const { paths } = new SVGLoader().parse(svgText);
   const groups = new Map<string, { geometries: BufferGeometry[]; color: Color; opacity: number; order: number }>();
   let index = 0;

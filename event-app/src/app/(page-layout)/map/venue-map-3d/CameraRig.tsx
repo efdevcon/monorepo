@@ -4,7 +4,7 @@ import { useEffect, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, TOUCH, Vector2, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
+import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import type { CameraPose, GroundBounds, MapSettings } from "./types";
 
 type CameraRigProps = {
@@ -152,8 +152,6 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     fitRef.current = computeFit();
     camera.near = 0.1;
     camera.far = 500;
-    camera.position.copy(center).addScaledVector(VIEW_DIR, fitRef.current.radius);
-    controls.target.copy(center);
     applyView(startView());
 
     resetRef.current = () => {

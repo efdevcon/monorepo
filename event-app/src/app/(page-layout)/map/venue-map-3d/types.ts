@@ -27,11 +27,9 @@ export type SceneBlock = {
 
 export type SceneProp = {
   id: string;
-  layer: string;
   bbox: [number, number, number, number];
   /** Bottom-centre of the bbox in SVG px: where the upright decal touches the floor. */
   anchor: [number, number];
-  tappable: boolean;
   svg: string;
 };
 

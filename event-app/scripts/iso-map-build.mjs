@@ -427,6 +427,7 @@ const slabChildren = [baseLayer];
 const floorFlat = { type: "g", attrs: { id: "Floor-Layer-flat" }, children: [] };
 let anon = 0;
 const tappable = new Set(areas.filter((a) => a.prop).map((a) => a.prop));
+let tappableCount = 0;
 function collectProps(layer, { flatPathsTo }) {
   for (const child of layer.children) {
     if (child.type === "path" && flatPathsTo) {
@@ -436,12 +437,11 @@ function collectProps(layer, { flatPathsTo }) {
     const id = isNamed(child.attrs.id) ? child.attrs.id : `anon-${++anon}`;
     const bbox = bboxOf([child]);
     if (!bbox) continue;
+    if (tappable.has(id)) tappableCount++;
     props.push({
       id,
-      layer: layer.attrs.id,
       bbox,
       anchor: [Math.round((bbox[0] + bbox[2] / 2) * 10) / 10, Math.round((bbox[1] + bbox[3]) * 10) / 10],
-      tappable: tappable.has(id),
       svg: wrap([child]),
     });
   }
@@ -484,7 +484,7 @@ for (const f of topFaces) {
   console.log(`  ${used ? "✓" : " "} ${f.node.attrs.id.padEnd(11)} ${f.kind.padEnd(10)} fill ${f.node.attrs.fill.padEnd(8)} centre ${c.join(",").padEnd(9)} bbox ${f.bbox.map(Math.round).join(",")}${used ? ` → ${used.id} h=${used.height}` : ""}`);
 }
 console.log(`blocks resolved: ${blocks.length}; slab paths removed under blocks: ${removed.size} (fills ${JSON.stringify(removedSideFills)})`);
-console.log(`props: ${props.length} (${props.filter((p) => p.tappable).length} tappable, ${props.filter((p) => p.id.startsWith("anon")).length} anonymous); flat floor paths kept in slab: ${floorFlat.children.length}`);
+console.log(`props: ${props.length} (${tappableCount} tappable, ${props.filter((p) => p.id.startsWith("anon")).length} anonymous); flat floor paths kept in slab: ${floorFlat.children.length}`);
 console.log(`named props: ${props.filter((p) => !p.id.startsWith("anon")).map((p) => p.id).join(", ")}`);
 if (unresolved.length) {
   console.log("UNRESOLVED:");

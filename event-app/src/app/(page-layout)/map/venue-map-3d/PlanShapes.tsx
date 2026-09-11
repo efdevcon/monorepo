@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import type { ThreeEvent } from "@react-three/fiber";
 import { DoubleSide, EdgesGeometry, ExtrudeGeometry, Path, Shape, Vector2 } from "three";
 import { PX, scaleHex } from "./isoMath";
-import { TAP_SLOP_PX } from "./Blocks";
+import { noRaycast, TAP_SLOP_PX } from "./interaction";
 import type { Area, PlanShape } from "./types";
 
 type PlanShapesProps = {
@@ -34,12 +34,6 @@ export function PlanShapes({ shapes, selectedId, hoveredId, onSelect, setHovered
 }
 
 const OUTLINE = "#333A7F";
-/**
- * Outlines must not raycast: three's default Line threshold is 1 world unit
- * (~45 px here), which gave every edge an invisible halo that stole hovers and
- * taps from neighbouring footprints.
- */
-const noRaycast = () => null;
 const HIGHLIGHT_OUTLINE = "#7235ed"; // dc-purple
 
 function polygonArea(poly: Vector2[]): number {

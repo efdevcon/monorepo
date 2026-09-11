@@ -6,7 +6,7 @@ import { DoubleSide, Quaternion, Vector3, type Group } from "three";
 import { billboardMatrix, groundFromScreen, INITIAL_AZIMUTH, POLAR_ANGLE } from "./isoMath";
 import { getLayerParts } from "./svgLayer";
 import { LAYER_STEP } from "./Slab";
-import { TAP_SLOP_PX } from "./Blocks";
+import { TAP_SLOP_PX } from "./interaction";
 import type { Area, CameraPose, SceneProp } from "./types";
 
 type PropsProps = {

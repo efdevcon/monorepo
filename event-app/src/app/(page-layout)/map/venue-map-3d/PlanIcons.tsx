@@ -4,7 +4,7 @@ import { useCallback, useMemo, useRef } from "react";
 import { useLoader, type ThreeEvent } from "@react-three/fiber";
 import { SRGBColorSpace, Sprite, TextureLoader, type Intersection, type Raycaster, type Texture } from "three";
 import { PX } from "./isoMath";
-import { TAP_SLOP_PX } from "./Blocks";
+import { TAP_SLOP_PX } from "./interaction";
 import type { Area, PlanShape } from "./types";
 
 type PlanIconsProps = {

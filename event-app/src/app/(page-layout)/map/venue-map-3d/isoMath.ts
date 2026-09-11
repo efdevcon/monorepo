@@ -17,7 +17,7 @@ const SQRT3 = Math.sqrt(3);
  * a uniform scale, so the artwork stays exact but appears this much smaller
  * per world unit. Used when fitting the camera.
  */
-export const ISO_FORESHORTENING = Math.sqrt(2 / 3);
+const ISO_FORESHORTENING = Math.sqrt(2 / 3);
 /** Screen pixels one SVG pixel occupies at camera zoom 1. */
 export const SCREEN_PX_PER_SVG_PX = PX * ISO_FORESHORTENING;
 
@@ -65,15 +65,6 @@ export function billboardMatrix(anchorU: number, anchorV: number): Matrix4 {
     SCREEN_RIGHT.z, SCREEN_DOWN.z, VIEW_DIR.z, t.z,
     0, 0, 0, 1
   );
-}
-
-/** Axis-aligned floor rectangle covered by the artwork's viewBox. */
-export function groundBounds(viewBox: number[]) {
-  const [, , w, h] = viewBox;
-  const corners = [groundFromScreen(0, 0), groundFromScreen(w, 0), groundFromScreen(0, h), groundFromScreen(w, h)];
-  const xs = corners.map((c) => c[0]);
-  const zs = corners.map((c) => c[1]);
-  return { minX: Math.min(...xs), maxX: Math.max(...xs), minZ: Math.min(...zs), maxZ: Math.max(...zs) };
 }
 
 /** Multiply an sRGB hex colour's channels (0..1 darkens, >1 brightens). */

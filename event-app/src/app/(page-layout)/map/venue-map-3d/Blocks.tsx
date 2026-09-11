@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import type { ThreeEvent } from "@react-three/fiber";
 import { BoxGeometry, EdgesGeometry } from "three";
 import { groundFromScreen, PX, scaleHex } from "./isoMath";
+import { noRaycast, TAP_SLOP_PX } from "./interaction";
 import type { Area, SceneBlock } from "./types";
 
 type BlocksProps = {
@@ -37,10 +38,6 @@ export function Blocks({ blocks, areaById, selectedId, hoveredId, lit, onSelect,
 }
 
 const OUTLINE = "#40469C";
-/** Outlines never raycast (see PlanShapes: the default Line threshold is ~45 px of halo). */
-const noRaycast = () => null;
-/** Pointer travel (px) above which a press counts as a drag rather than a tap. */
-export const TAP_SLOP_PX = 8;
 
 function Block({
   block,
