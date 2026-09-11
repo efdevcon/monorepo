@@ -216,6 +216,29 @@ for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
   });
 }
 
+// Walls drawn as strips against a stage block are stage fronts: drop them so the stages stand clear (Scott, 2026-09-11).
+const bboxOf = (shape) => {
+  const pts = shape.polygons.flat();
+  return [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
+};
+const touches = (a, b, gap = 3 * PLAN_SCALE) =>
+  a[0] <= b[2] + gap && b[0] <= a[2] + gap && a[1] <= b[3] + gap && b[1] <= a[3] + gap;
+const planCentreX = (viewBox[2] / 2) * PLAN_SCALE;
+const stageBoxes = shapes.filter((s) => /^(st(a)?ge-|main-stage)/i.test(s.id)).map(bboxOf);
+// "In front" = beside the stage (overlapping in y) on the side facing away from the venue centre; the atrium-side walls stay.
+const stageFronts = shapes.filter((s) => {
+  if (s.kind !== "wall") return false;
+  const w = bboxOf(s);
+  const wx = (w[0] + w[2]) / 2;
+  return stageBoxes.some((b) => {
+    const sx = (b[0] + b[2]) / 2;
+    const besides = touches(w, b) && w[1] < b[3] && b[1] < w[3] && (w[2] <= b[0] + 3 * PLAN_SCALE || w[0] >= b[2] - 3 * PLAN_SCALE);
+    return besides && Math.abs(wx - planCentreX) > Math.abs(sx - planCentreX);
+  });
+});
+for (const wall of stageFronts) shapes.splice(shapes.indexOf(wall), 1);
+console.log(`stage-front walls removed: ${stageFronts.map((s) => s.id).join(", ") || "none"}`);
+
 const all = shapes.flatMap((s) => s.polygons.flat());
 const bounds = {
   minX: Math.min(...all.map((p) => p[0])),
