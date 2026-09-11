@@ -6,7 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
-import { DEFAULT_SETTINGS, type Area, type MapSettings, type PlanScene, type SceneData } from "./types";
+import { SourceToggle } from "./SourceToggle";
+import { DEFAULT_SETTINGS, type Area, type MapSettings, type MapSource, type PlanScene, type SceneData } from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
 import areasJson from "./areas.json";
@@ -25,7 +26,7 @@ const areas = areasJson as Area[];
  * 3D venue map prototype for the Map tab. Two sources: the isometric Figma
  * artwork un-projected onto a floor with real boxes for the stages and
  * classrooms (default), or everything extruded from the top-down plan SVG
- * (`?source=plan`, also in the ?debug panel).
+ * (`?source=plan`); the SourceToggle under the header switches between them.
  * Drag / swipe turns the floor (horizontal only, clamped), pinch or wheel
  * zooms, double-tap zooms in on a point, a tap on an area opens AreaCard, and
  * re-tapping the Map tab resets the view (useTabReselect).
@@ -48,6 +49,11 @@ export function VenueMap3D() {
   }, []);
   useTabReselect(reset);
 
+  const setSource = useCallback((source: MapSource) => {
+    setSelected(null);
+    setSettings((s) => ({ ...s, source }));
+  }, []);
+
   return (
     <div className="relative flex-1">
       <Scene
@@ -61,6 +67,7 @@ export function VenueMap3D() {
         onSelect={setSelected}
         resetRef={resetRef}
       />
+      <SourceToggle value={settings.source} onChange={setSource} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
       {debug && <DebugPanel settings={settings} onChange={setSettings} />}
     </div>
