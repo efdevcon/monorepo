@@ -24,7 +24,7 @@ type CameraRigProps = {
 const ORTHO_RADIUS = 60;
 const FIT_MARGIN = 0.9;
 /** Top-down fills the viewport's height, and the canvas runs under the sticky header: leave more room. */
-const FIT_MARGIN_TOP = 0.78;
+const FIT_MARGIN_TOP = 0.68;
 const TWEEN_MS = 350;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
@@ -222,8 +222,9 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
       tweenTo(startView());
       return;
     }
+    // Recentre on the floor: a pan or cursor-anchored zoom may have moved the target off-centre.
     const cur = currentView();
-    tweenTo({ ...cur, azimuth: baseAzimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius });
+    tweenTo({ ...cur, target: center.clone(), azimuth: baseAzimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetPolar]);
 

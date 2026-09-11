@@ -60,7 +60,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
           <PlanShapes shapes={plan.shapes} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
           {settings.showProps && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHovered={setHoveredId} />
+              <PlanIcons shapes={plan.shapes} />
             </Suspense>
           )}
         </>
