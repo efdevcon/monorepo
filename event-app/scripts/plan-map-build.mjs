@@ -26,7 +26,7 @@ const areas = JSON.parse(fs.readFileSync(path.join(root, "src/app/(page-layout)/
 
 /** Plan px → ground px (the isometric floor is ~2500 ground px across; this plan is 1438 wide). */
 const PLAN_SCALE = 1.75;
-const SLAB_DEPTH = 8;
+const SLAB_DEPTH = 24;
 
 /** Heights in plan px by id prefix; the plan carries no heights. First match wins. */
 const HEIGHTS = [
