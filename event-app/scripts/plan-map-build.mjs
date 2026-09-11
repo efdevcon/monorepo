@@ -59,6 +59,10 @@ const ICONS = [
   [/snack/i, "snack"],
 ];
 const iconFor = (id) => ICONS.find(([re]) => re.test(id))?.[1] ?? null;
+
+/** Fill overrides by id: the plan's colours are schematic, these follow the artwork. */
+const FILLS = [[/community-hub/i, "#F1BB52"]];
+const fillFor = (id, fallback) => FILLS.find(([re]) => re.test(id))?.[1] ?? fallback;
 const iconFiles = new Set(fs.readdirSync(path.join(root, "public/maps/devcon-8/icons")).map((f) => f.replace(/\.png$/, "")));
 const kindFor = (id, height) => (height <= 3 ? "mat" : /^wall/i.test(id) ? "wall" : "block");
 
@@ -207,7 +211,7 @@ for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
     centroid: polygonCentroid(outline).map(round),
     icon: icon && iconFiles.has(icon) ? icon : null,
     height: round(height * PLAN_SCALE),
-    fill: a.fill ?? "#cccccc",
+    fill: fillFor(id, a.fill ?? "#cccccc"),
     stroke: a.stroke ?? null,
   });
 }
