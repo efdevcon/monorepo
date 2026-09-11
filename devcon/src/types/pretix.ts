@@ -76,6 +76,9 @@ export interface PretixItem {
   position: number
   default_price: string
   free_price: boolean
+  /** Pre-filled amount Pretix shows for free-price items (may exceed
+   *  `default_price`, which acts as the minimum). */
+  free_price_suggestion?: string | null
   admission: boolean
   available_from: string | null
   available_until: string | null

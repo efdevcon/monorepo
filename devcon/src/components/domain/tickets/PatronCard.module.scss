@@ -1,0 +1,156 @@
+@use 'assets/css/partials/index' as *;
+
+/* Amount picker for the Patron ticket (Pretix free-price item). Layout, card
+   and sidebar styles come from store.module.scss; only the picker lives here. */
+
+.amount-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #160b2b;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
+
+/* On narrow screens the odd fifth button (Custom) takes the full row. */
+.preset-custom {
+  @media (max-width: 639px) {
+    grid-column: 1 / -1;
+  }
+}
+
+.preset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 64px;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid #dddae2;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #160b2b;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    border-color: #8b6fd6;
+  }
+
+  &[aria-pressed='true'] {
+    border-color: #6c4ad1;
+    background: #f3eeff;
+    box-shadow: inset 0 0 0 1px #6c4ad1;
+  }
+}
+
+.preset-sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #594d73;
+}
+
+.custom {
+  position: relative;
+  margin-top: 0.75rem;
+}
+
+.custom-currency {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  color: #594d73;
+  pointer-events: none;
+}
+
+.custom-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 0.875rem 0 1.875rem;
+  border: 1px solid #dddae2;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #160b2b;
+  -moz-appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #6c4ad1;
+    box-shadow: 0 0 0 1px #6c4ad1;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: #b00020;
+  }
+}
+
+.hint {
+  font-size: 0.8125rem;
+  color: #594d73;
+  margin: 0.5rem 0 0;
+  line-height: 1.4;
+}
+
+.error {
+  font-size: 0.8125rem;
+  color: #b00020;
+  margin: 0.5rem 0 0;
+  line-height: 1.4;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ETH + fiat tiles, same 20px tiles and 4px spacing as the GA card's price. */
+.total-tiles {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.total-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #160b2b;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.total-label {
+  font-size: 0.8125rem;
+  color: #594d73;
+}
+
+.unavailable {
+  font-size: 0.9375rem;
+  color: #1a0d33;
+  line-height: 1.5;
+  margin: 0;
+}

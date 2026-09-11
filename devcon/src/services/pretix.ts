@@ -125,7 +125,7 @@ function getHeaders() {
   }
 }
 
-function getLocalizedString(obj: Record<string, string> | null, locale = 'en'): string {
+export function getLocalizedString(obj: Record<string, string> | null, locale = 'en'): string {
   if (!obj) return ''
   return obj[locale] || obj['en'] || Object.values(obj)[0] || ''
 }

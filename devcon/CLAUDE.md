@@ -50,6 +50,7 @@ Recoil for global state (`src/state/main.ts`). React Context for Web3Modal/AppKi
 ### Ticketing & Payments
 
 - **Pretix** — Ticket management backend. Service at `src/services/pretix.ts` with built-in TTL caching, request deduplication, and retry logic.
+- **Patron ticket** — Pretix *free-price* item (buyer picks the amount, Pretix enforces the minimum). Config in `src/config/ticketing.ts` (`patron.itemId`, `patron.presets`), UI in `src/components/domain/tickets/PatronCard.tsx` (on `/tickets/store/#patron` and `/tickets/store/patron/`), item data via `/api/tickets/patron-info/`. Checkout hands off straight to Pretix's hosted checkout via `services/pretixCart.ts` and bypasses the site's own checkout. Copy lives in `content/en/intl/tickets.json` under `patron`. See `docs/notes.md`.
 - **x402 Protocol** — Crypto payments (USDC, USDT0, ETH) on Ethereum, Optimism, Arbitrum, Base. Full x402 v2 compliance with dual-mode: spec-compliant for SDK clients, multi-step checkout for frontend. See `src/pages/api/x402/README.md` for full API docs.
 - **Supabase** — PostgreSQL for order tracking (`src/services/ticketStore.ts`).
 - **Gasless relayer** — EIP-3009 `transferWithAuthorization` for gas-sponsored USDC payments.

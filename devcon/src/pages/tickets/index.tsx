@@ -9,6 +9,7 @@ import { LaunchBanner } from 'components/domain/tickets/LaunchBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsCtaLabel, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
+import { usePatronInfo, formatPatronAmount } from 'hooks/usePatronInfo'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 import { useNow } from 'hooks/useNow'
 import { getFaqData } from 'services/faq'
@@ -262,6 +263,32 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
     }
     return withDetails(row)
   })
+
+  // Patron: the pay-what-you-choose General Admission ticket. Appended as the
+  // last row once Pretix confirms it is purchasable; nothing renders while
+  // loading, when the env has no Patron item, or when it is sold out. Same
+  // amount via ETH or fiat (the free-price item carries no fiat markup).
+  const patron = usePatronInfo()
+  if (patron.available) {
+    const amount = `$${formatPatronAmount(patron.minPrice)}${patron.fixedPrice ? '' : '+'}`
+    generalRows.push({
+      name: t('patron.landing.row_name'),
+      detail: patron.fixedPrice ? undefined : t('patron.landing.row_detail'),
+      ethPrice: amount,
+      fiatPrice: amount,
+      status: 'open',
+      action: patron.fixedPrice ? t('patron.landing.row_action_fixed') : t('patron.landing.row_action'),
+      actionHref: `${storeUrl}/#patron`,
+      // Plain text only: the whole row is a link to the store, so a nested
+      // anchor here would fire both. The Nepal Relief link lives on the card.
+      richContent: (
+        <p className="text-sm leading-5 text-[#594d73]">
+          {t('patron.landing.row_note')}
+          {!patron.fixedPrice && ` ${t('patron.landing.row_note_relief')}`}
+        </p>
+      ),
+    })
+  }
   // Community self-claiming discounts open at the global ticket launch.
   // Before launch their rows show the launch date instead of "Get started"
   // (and the overview card / comparison column read COMING SOON); from the
