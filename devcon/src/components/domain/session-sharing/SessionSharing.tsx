@@ -34,9 +34,15 @@ interface SessionSharingProps {
   shareBaseUrl: string
   /** Same-origin path of the rendered card (matches the <Head> preload). */
   cardImageUrl: string
+  /**
+   * Show the share actions. True on the speaker's own link (no cache-buster,
+   * the URL from the acceptance email); false on a shared, busted link, where
+   * a visitor only gets the Get tickets CTA. Same split as /ticket's `share`.
+   */
+  share?: boolean
 }
 
-export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionSharingProps) {
+export function SessionSharing({ talk, shareBaseUrl, cardImageUrl, share = true }: SessionSharingProps) {
   const { containerRef, requestGyroPermission } = useTilt()
   const [showGyroPrompt, setShowGyroPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -192,47 +198,49 @@ export function SessionSharing({ talk, shareBaseUrl, cardImageUrl }: SessionShar
 
       <div className={css.bottomFade} />
 
-      {/* Get tickets CTA + share actions, aligned to the card's width */}
-      <div className={css.actions}>
+      {/* Get tickets CTA + share actions (speaker's own link only), aligned to the card's width */}
+      <div className={cn(css.actions, !share && css.actionsSolo)}>
         <Link href="/tickets" passHref className={cn(css.ctaButton, 'select-none')}>
           Get tickets
           <ArrowRight />
         </Link>
-        <div className={css.shareSection}>
-          <span className={css.shareLabel}>Share</span>
-          <div className={css.shareIcons}>
-            <a
-              href={xHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={rollShareNonce}
-              className={css.shareIcon}
-            >
-              <IconTwitter />
-            </a>
-            <a
-              href={farcasterHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={rollShareNonce}
-              className={css.shareIcon}
-            >
-              <IconWarpcast />
-            </a>
-            <button
-              className={css.shareIcon}
-              onClick={() => {
-                navigator.clipboard.writeText(shareUrlFor('copy'))
-                rollShareNonce()
-                setCopied(true)
-                setTimeout(() => setCopied(false), 2000)
-              }}
-            >
-              <Copy size={20} />
-            </button>
+        {share && (
+          <div className={css.shareSection}>
+            <span className={css.shareLabel}>Share</span>
+            <div className={css.shareIcons}>
+              <a
+                href={xHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={rollShareNonce}
+                className={css.shareIcon}
+              >
+                <IconTwitter />
+              </a>
+              <a
+                href={farcasterHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={rollShareNonce}
+                className={css.shareIcon}
+              >
+                <IconWarpcast />
+              </a>
+              <button
+                className={css.shareIcon}
+                onClick={() => {
+                  navigator.clipboard.writeText(shareUrlFor('copy'))
+                  rollShareNonce()
+                  setCopied(true)
+                  setTimeout(() => setCopied(false), 2000)
+                }}
+              >
+                <Copy size={20} />
+              </button>
+            </div>
+            {copied && <span className={css.copiedToast}>Copied!</span>}
           </div>
-          {copied && <span className={css.copiedToast}>Copied!</span>}
-        </div>
+        )}
       </div>
 
       {showGyroPrompt && (

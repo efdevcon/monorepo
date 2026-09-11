@@ -218,6 +218,12 @@
   justify-content: space-between;
 }
 
+// Shared (busted) link: no share row, so the lone CTA sits centered under the
+// card instead of hugging its left edge. Same treatment as /ticket's CTA.
+.actionsSolo {
+  justify-content: center;
+}
+
 .ctaButton {
   display: inline-flex;
   align-items: center;

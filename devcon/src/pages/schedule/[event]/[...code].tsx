@@ -20,8 +20,10 @@ import { isPublicSubmissionState } from 'services/social-cards/submission-state'
  * failed or half-rendered one — so re-posting the same link keeps serving the
  * dead preview. The page's share buttons therefore mint a fresh token per
  * click (see SessionSharing), and it rides through to the og:image path too.
- * It changes nothing about what the page renders, and the card route keys its
- * cache by session code, so a busted URL is not an extra render.
+ * The buster also tells the two audiences apart, as on /ticket: the plain URL
+ * is the speaker's own link and shows the share actions, a busted URL is what
+ * they shared and shows visitors only the Get tickets CTA. The card route
+ * keys its cache by session code, so a busted URL is not an extra render.
  *
  * Data comes LIVE from Pretalx (not api.devcon.org): acceptance emails go out
  * before the schedule is published/synced, so the API doesn't know these
@@ -96,6 +98,7 @@ const SpeakerCard = (props: any) => {
         talk={props.talk}
         shareBaseUrl={`${props.origin}${props.sharePageBase}`}
         cardImageUrl={props.cardPath}
+        share={props.share}
       />
     </>
   )
@@ -178,6 +181,9 @@ export async function getServerSideProps(context: any) {
       cardPath: `/api/social/schedule/${code}/${busterSegment}`,
       // Buster-free base the share buttons mint fresh links from.
       sharePageBase: `/schedule/${context.params.event}/${code}/`,
+      // Speaker's own (buster-free) link gets the share actions; a shared,
+      // busted link does not.
+      share: !cacheBuster,
       talk: {
         id: code,
         title: data.title ?? '',
