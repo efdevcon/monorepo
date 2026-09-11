@@ -8,6 +8,7 @@ import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
 import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
+import { ControlsHelp } from "./ControlsHelp";
 import { DEFAULT_SETTINGS, type Area, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
@@ -44,15 +45,18 @@ export function VenueMap3D() {
   const resetRef = useRef<() => void>(() => {});
   const active = usePaneActive();
 
+  // Map-tab re-tap: back to the 3D start view (the rig finishes the reset once the pitch change lands).
   const reset = useCallback(() => {
     setSelected(null);
+    setSettings((s) => (s.view === "3d" ? s : { ...s, view: "3d" }));
     resetRef.current();
   }, []);
   useTabReselect(reset);
 
+  // The top-down camera only makes sense on the redraw; the artwork always shows in 3D.
   const setSource = useCallback((source: MapSource) => {
     setSelected(null);
-    setSettings((s) => ({ ...s, source }));
+    setSettings((s) => ({ ...s, source, view: source === "plan" ? s.view : "3d" }));
   }, []);
   const setView = useCallback((view: MapView) => setSettings((s) => ({ ...s, view })), []);
 
@@ -70,7 +74,8 @@ export function VenueMap3D() {
         resetRef={resetRef}
       />
       <SourceToggle value={settings.source} onChange={setSource} />
-      <ViewToggle value={settings.view} onChange={setView} />
+      {settings.source === "plan" && <ViewToggle value={settings.view} onChange={setView} />}
+      <ControlsHelp view={settings.view} pannable={settings.source === "plan"} hidden={selected !== null} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
       {debug && <DebugPanel settings={settings} onChange={setSettings} />}
     </div>

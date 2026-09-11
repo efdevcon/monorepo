@@ -54,6 +54,7 @@ const ICONS = [
   [/^cowork/i, "cowork"],
   [/discussion-corner/i, "discussion-corner"],
   [/^toilets/i, "toilets"],
+  [/^press/i, "press"],
   [/impact/i, "impact"],
   [/snack/i, "snack"],
 ];

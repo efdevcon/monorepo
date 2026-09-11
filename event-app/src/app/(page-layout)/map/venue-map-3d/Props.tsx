@@ -13,8 +13,9 @@ type PropsProps = {
   props: SceneProp[];
   areaByProp: Map<string, Area>;
   poseRef: MutableRefObject<CameraPose>;
+  hoveredId: string | null;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 };
 
 const Y_AXIS = new Vector3(0, 1, 0);
@@ -30,7 +31,7 @@ const tiltQ = new Quaternion();
  * viewer, like sprites in an isometric game, and when the camera pitches
  * towards top-down they lean back with it so they never turn edge-on.
  */
-export function Props({ props, areaByProp, poseRef, onSelect, setHover }: PropsProps) {
+export function Props({ props, areaByProp, poseRef, hoveredId, onSelect, setHovered }: PropsProps) {
   return (
     <>
       {props.map((prop) => (
@@ -39,8 +40,9 @@ export function Props({ props, areaByProp, poseRef, onSelect, setHover }: PropsP
           prop={prop}
           area={areaByProp.get(prop.id)}
           poseRef={poseRef}
+          hovered={hoveredId === (areaByProp.get(prop.id)?.id ?? null)}
           onSelect={onSelect}
-          setHover={setHover}
+          setHovered={setHovered}
         />
       ))}
     </>
@@ -51,14 +53,16 @@ function Prop({
   prop,
   area,
   poseRef,
+  hovered,
   onSelect,
-  setHover,
+  setHovered,
 }: {
   prop: SceneProp;
   area: Area | undefined;
   poseRef: MutableRefObject<CameraPose>;
+  hovered: boolean;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 }) {
   const parts = getLayerParts(`prop:${prop.id}`, prop.svg);
   const [x, z] = groundFromScreen(prop.anchor[0], prop.anchor[1]);
@@ -71,6 +75,9 @@ function Prop({
     yawQ.setFromAxisAngle(Y_AXIS, azimuth - INITIAL_AZIMUTH);
     tiltQ.setFromAxisAngle(TILT_AXIS, POLAR_ANGLE - polar);
     pivot.current.quaternion.copy(yawQ).multiply(tiltQ);
+    // Hover: grow a touch around the base.
+    const s = hovered ? 1.08 : 1;
+    pivot.current.scale.setScalar(s);
   });
 
   const [bx, by, bw, bh] = prop.bbox;
@@ -85,9 +92,9 @@ function Prop({
         },
         onPointerOver: (e: ThreeEvent<PointerEvent>) => {
           e.stopPropagation();
-          setHover(true);
+          setHovered(area.id);
         },
-        onPointerOut: () => setHover(false),
+        onPointerOut: () => setHovered(null),
       }
     : {};
 
@@ -107,9 +114,9 @@ function Prop({
           </mesh>
         ))}
         {area && (
-          // Generous invisible hit area behind the decal, so small icons are tappable.
+          // Invisible hit plane behind the decal so thin strokes and gaps still register; kept to the drawn bbox.
           <mesh position={[bx + bw / 2, by + bh / 2, -0.002]}>
-            <planeGeometry args={[Math.max(bw, 40), Math.max(bh, 40)]} />
+            <planeGeometry args={[Math.max(bw, 28), Math.max(bh, 28)]} />
             <meshBasicMaterial transparent opacity={0} depthWrite={false} />
           </mesh>
         )}

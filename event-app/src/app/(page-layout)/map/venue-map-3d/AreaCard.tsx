@@ -3,6 +3,7 @@
 import { useState } from "react";
 import cn from "classnames";
 import { CloseButton } from "@/components/Buttons";
+import { iconFor, iconUrl } from "./icons";
 import type { Area } from "./types";
 
 /**
@@ -15,6 +16,7 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
   const open = area !== null;
+  const icon = shown ? (shown.icon ?? iconFor(shown.id)) : null;
 
   return (
     <div
@@ -29,7 +31,11 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
-      <div className="min-w-0 flex-1">
+      {icon && (
+        // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
+        <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
+      )}
+      <div className="min-w-0 flex-1 self-center">
         <p className="text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
         {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
       </div>

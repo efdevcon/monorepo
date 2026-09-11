@@ -10,13 +10,14 @@ type BlocksProps = {
   blocks: SceneBlock[];
   areaById: Map<string, Area>;
   selectedId: string | null;
+  hoveredId: string | null;
   lit: boolean;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 };
 
 /** Real cuboids for the stages, classrooms and cowork desk resolved by the build script. */
-export function Blocks({ blocks, areaById, selectedId, lit, onSelect, setHover }: BlocksProps) {
+export function Blocks({ blocks, areaById, selectedId, hoveredId, lit, onSelect, setHovered }: BlocksProps) {
   return (
     <>
       {blocks.map((block) => (
@@ -25,9 +26,10 @@ export function Blocks({ blocks, areaById, selectedId, lit, onSelect, setHover }
           block={block}
           area={areaById.get(block.id)}
           selected={block.id === selectedId}
+          hovered={block.id === hoveredId}
           lit={lit}
           onSelect={onSelect}
-          setHover={setHover}
+          setHovered={setHovered}
         />
       ))}
     </>
@@ -42,16 +44,18 @@ function Block({
   block,
   area,
   selected,
+  hovered,
   lit,
   onSelect,
-  setHover,
+  setHovered,
 }: {
   block: SceneBlock;
   area: Area | undefined;
   selected: boolean;
+  hovered: boolean;
   lit: boolean;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 }) {
   const { center, geometry, edges } = useMemo(() => {
     // The top face is drawn at height h; adding h to v drops it onto the floor.
@@ -69,7 +73,7 @@ function Block({
     };
   }, [block]);
 
-  const highlight = selected ? 1.18 : 1;
+  const highlight = selected ? 1.18 : hovered ? 1.1 : 1;
   const top = scaleHex(block.fill, highlight);
   // +z faces screen-left, +x faces screen-right at the start view (see isoMath).
   const left = scaleHex(block.fill, 0.86 * highlight);
@@ -88,9 +92,9 @@ function Block({
         },
         onPointerOver: (e: ThreeEvent<PointerEvent>) => {
           e.stopPropagation();
-          setHover(true);
+          setHovered(block.id);
         },
-        onPointerOut: () => setHover(false),
+        onPointerOut: () => setHovered(null),
       }
     : {};
 

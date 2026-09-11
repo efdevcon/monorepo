@@ -10,22 +10,31 @@ import type { Area, PlanShape } from "./types";
 type PlanShapesProps = {
   shapes: PlanShape[];
   selectedId: string | null;
+  hoveredId: string | null;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 };
 
 /** Everything extruded from the top-down plan: slab, walls, blocks and floor mats. */
-export function PlanShapes({ shapes, selectedId, onSelect, setHover }: PlanShapesProps) {
+export function PlanShapes({ shapes, selectedId, hoveredId, onSelect, setHovered }: PlanShapesProps) {
   return (
     <>
       {shapes.map((shape) => (
-        <PlanShapeMesh key={shape.id} shape={shape} selected={shape.id === selectedId} onSelect={onSelect} setHover={setHover} />
+        <PlanShapeMesh
+          key={shape.id}
+          shape={shape}
+          selected={shape.id === selectedId}
+          hovered={shape.id === hoveredId}
+          onSelect={onSelect}
+          setHovered={setHovered}
+        />
       ))}
     </>
   );
 }
 
 const OUTLINE = "#333A7F";
+const HIGHLIGHT_OUTLINE = "#7235ed"; // dc-purple
 
 function polygonArea(poly: Vector2[]): number {
   let a = 0;
@@ -36,13 +45,15 @@ function polygonArea(poly: Vector2[]): number {
 function PlanShapeMesh({
   shape,
   selected,
+  hovered,
   onSelect,
-  setHover,
+  setHovered,
 }: {
   shape: PlanShape;
   selected: boolean;
+  hovered: boolean;
   onSelect: (area: Area) => void;
-  setHover: (on: boolean) => void;
+  setHovered: (id: string | null) => void;
 }) {
   const { geometry, edges, y } = useMemo(() => {
     // Shape space is (X, −Z); rotateX(−90°) then maps (x, y, depth) → (x, depth, −y), i.e. up = +Y, and world z = Z.
@@ -57,7 +68,7 @@ function PlanShapeMesh({
     return { geometry, edges: new EdgesGeometry(geometry, 15), y: shape.kind === "slab" ? -depth : 0 };
   }, [shape]);
 
-  const highlight = selected ? 1.15 : 1;
+  const highlight = selected ? 1.15 : hovered ? 1.08 : 1;
   const cap = scaleHex(shape.fill, highlight);
   const side = scaleHex(shape.fill, 0.82 * highlight);
 
@@ -66,13 +77,13 @@ function PlanShapeMesh({
         onClick: (e: ThreeEvent<MouseEvent>) => {
           if (e.delta > TAP_SLOP_PX) return;
           e.stopPropagation();
-          onSelect({ id: shape.id, name: shape.name, description: shape.description });
+          onSelect({ id: shape.id, name: shape.name, description: shape.description, icon: shape.icon });
         },
         onPointerOver: (e: ThreeEvent<PointerEvent>) => {
           e.stopPropagation();
-          setHover(true);
+          setHovered(shape.id);
         },
-        onPointerOut: () => setHover(false),
+        onPointerOut: () => setHovered(null),
       }
     : {};
 
@@ -83,9 +94,9 @@ function PlanShapeMesh({
         <meshStandardMaterial attach="material-0" color={cap} roughness={0.9} metalness={0} side={DoubleSide} />
         <meshStandardMaterial attach="material-1" color={side} roughness={0.9} metalness={0} side={DoubleSide} />
       </mesh>
-      {shape.kind !== "mat" && (
+      {(shape.kind !== "mat" || hovered || selected) && (
         <lineSegments geometry={edges}>
-          <lineBasicMaterial color={shape.stroke ?? OUTLINE} toneMapped={false} />
+          <lineBasicMaterial color={hovered || selected ? HIGHLIGHT_OUTLINE : shape.stroke ?? OUTLINE} toneMapped={false} />
         </lineSegments>
       )}
     </group>

@@ -9,6 +9,8 @@ export type Area = {
   height?: number;
   /** Figma layer id of a Floor-/Decoration-Layer group that is this area's tap target. */
   prop?: string;
+  /** Theme icon name; derived from the id when absent (see icons.ts). */
+  icon?: string | null;
 };
 
 export type SceneBlock = {
@@ -91,8 +93,9 @@ export type MapSettings = {
   lit: boolean;
   showProps: boolean;
   showBlocks: boolean;
-  /** How far the floor can be turned each way from the isometric start, in degrees. */
-  azimuthLimitDeg: number;
+  /** How far the floor can be turned from the start view, in degrees (dragging left turns it left). */
+  rotateLeftDeg: number;
+  rotateRightDeg: number;
   /** Zoom factor applied per double tap. */
   zoomStep: number;
 };
@@ -104,6 +107,7 @@ export const DEFAULT_SETTINGS: MapSettings = {
   lit: false,
   showProps: true,
   showBlocks: true,
-  azimuthLimitDeg: 60,
+  rotateLeftDeg: 100,
+  rotateRightDeg: 60,
   zoomStep: 1.8,
 };

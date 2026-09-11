@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { MathUtils, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, Vector2, Vector3 } from "three";
+import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, TOUCH, Vector2, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
 import type { CameraPose, GroundBounds, MapSettings } from "./types";
@@ -13,6 +13,8 @@ type CameraRigProps = {
   /** Screen extent of the floor at the start view, in px: what "fit" means. */
   fit: { width: number; height: number };
   settings: MapSettings;
+  /** Right-drag / two-finger pan in the 3D view (top-down always pans). */
+  pannable: boolean;
   /** Current orbit azimuth + polar angle, read every frame by the props. */
   poseRef: MutableRefObject<CameraPose>;
   /** Filled with a function that animates back to the start view (Map tab re-tap). */
@@ -41,7 +43,7 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<{ from: ViewState; to: ViewState; start: number } | null>(null);
@@ -59,6 +61,11 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
   const targetPolar = isTop ? TOP_POLAR : POLAR_ANGLE;
   // Top-down reads like the plan drawing: X to the right, Z downwards (camera offset along +Z).
   const baseAzimuth = isTop ? 0 : INITIAL_AZIMUTH;
+  // Latest per-view values for callbacks created in the mount effect (reset).
+  const latest = useRef({ targetPolar, baseAzimuth });
+  latest.current = { targetPolar, baseAzimuth };
+  // Set by reset() when the view is also changing; the view effect then finishes the reset.
+  const pendingResetRef = useRef(false);
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
   const computeFit = (polar = targetPolar) => {
@@ -117,8 +124,8 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
 
   const startView = (): ViewState => ({
     target: center.clone(),
-    azimuth: baseAzimuth,
-    polar: targetPolar,
+    azimuth: latest.current.baseAzimuth,
+    polar: latest.current.targetPolar,
     zoom: fitRef.current.zoom,
     radius: fitRef.current.radius,
   });
@@ -127,8 +134,8 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
   useEffect(() => {
     const controls = new OrbitControls(camera, gl.domElement);
     controlsRef.current = controls;
-    controls.enablePan = false;
     controls.enableDamping = true;
+    controls.zoomToCursor = true; // wheel / pinch zoom anchors on the pointer, not the screen centre
     controls.dampingFactor = 0.12;
     controls.rotateSpeed = 0.7;
     controls.zoomSpeed = 0.8;
@@ -149,6 +156,7 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
 
     resetRef.current = () => {
       interactedRef.current = false;
+      pendingResetRef.current = true;
       tweenTo(startView());
     };
 
@@ -165,9 +173,23 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
-    const limit = MathUtils.degToRad(settings.azimuthLimitDeg);
-    controls.minAzimuthAngle = baseAzimuth - limit;
-    controls.maxAzimuthAngle = baseAzimuth + limit;
+    // Dragging left increases the azimuth (OrbitControls rotateLeft), so "left" is the max side.
+    controls.minAzimuthAngle = baseAzimuth - MathUtils.degToRad(settings.rotateRightDeg);
+    controls.maxAzimuthAngle = baseAzimuth + MathUtils.degToRad(settings.rotateLeftDeg);
+    if (isTop) {
+      // Fixed orientation: the primary pointer pans, pinch / wheel zooms.
+      controls.enableRotate = false;
+      controls.enablePan = true;
+      controls.screenSpacePanning = true;
+      controls.mouseButtons = { LEFT: MOUSE.PAN, MIDDLE: MOUSE.DOLLY, RIGHT: MOUSE.PAN };
+      controls.touches = { ONE: TOUCH.PAN, TWO: TOUCH.DOLLY_PAN };
+    } else {
+      controls.enableRotate = true;
+      controls.enablePan = pannable;
+      controls.screenSpacePanning = false; // pan along the floor
+      controls.mouseButtons = { LEFT: MOUSE.ROTATE, MIDDLE: MOUSE.DOLLY, RIGHT: MOUSE.PAN };
+      controls.touches = { ONE: TOUCH.ROTATE, TWO: TOUCH.DOLLY_PAN };
+    }
     fitRef.current = computeFit();
     if (isOrtho) {
       controls.minZoom = fitRef.current.zoom * 0.85;
@@ -180,13 +202,13 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
     else controls.update();
     invalidate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.azimuthLimitDeg, size.width, size.height, isOrtho, baseAzimuth]);
+  }, [settings.rotateLeftDeg, settings.rotateRightDeg, size.width, size.height, isOrtho, baseAzimuth, isTop, pannable]);
 
   // 3D ↔ top-down: pitch the camera over the same target, square it up, and refit the zoom.
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls || size.width === 0) return;
-    if (Math.abs(controls.getPolarAngle() - targetPolar) < 1e-4) return;
+    if (Math.abs(controls.getPolarAngle() - targetPolar) < 1e-4 && !pendingResetRef.current) return;
     fitRef.current = computeFit(targetPolar);
     if (isOrtho) {
       controls.minZoom = fitRef.current.zoom * 0.85;
@@ -194,6 +216,11 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
     } else {
       controls.minDistance = fitRef.current.radius / 6;
       controls.maxDistance = fitRef.current.radius * 1.2;
+    }
+    if (pendingResetRef.current) {
+      pendingResetRef.current = false;
+      tweenTo(startView());
+      return;
     }
     const cur = currentView();
     tweenTo({ ...cur, azimuth: baseAzimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius });
@@ -217,17 +244,16 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
       raycaster.setFromCamera(ndc, camera);
       const hit = new Vector3();
       if (!raycaster.ray.intersectPlane(floor, hit)) return;
-      hit.x = MathUtils.clamp(hit.x, bounds.minX, bounds.maxX);
-      hit.z = MathUtils.clamp(hit.z, bounds.minZ, bounds.maxZ);
       const cur = currentView();
       interactedRef.current = true;
-      tweenTo({
-        target: hit,
-        azimuth: cur.azimuth,
-        polar: cur.polar,
-        zoom: isOrtho ? Math.min(controls.maxZoom, cur.zoom * settings.zoomStep) : cur.zoom,
-        radius: isOrtho ? cur.radius : Math.max(controls.minDistance, cur.radius / settings.zoomStep),
-      });
+      const zoom = isOrtho ? Math.min(controls.maxZoom, cur.zoom * settings.zoomStep) : cur.zoom;
+      const radius = isOrtho ? cur.radius : Math.max(controls.minDistance, cur.radius / settings.zoomStep);
+      // Keep the tapped floor point under the finger: move the target towards it by the zoom factor.
+      const factor = isOrtho ? zoom / cur.zoom : cur.radius / radius;
+      const target = hit.clone().add(cur.target.clone().sub(hit).divideScalar(factor));
+      target.x = MathUtils.clamp(target.x, bounds.minX, bounds.maxX);
+      target.z = MathUtils.clamp(target.z, bounds.minZ, bounds.maxZ);
+      tweenTo({ target, azimuth: cur.azimuth, polar: cur.polar, zoom, radius });
     };
 
     const onDown = (e: PointerEvent) => {
@@ -285,9 +311,23 @@ export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: Ca
         zoom: MathUtils.lerp(tween.from.zoom, tween.to.zoom, p),
         radius: MathUtils.lerp(tween.from.radius, tween.to.radius, p),
       });
-      if (t >= 1) tweenRef.current = null;
+      if (t >= 1) {
+        tweenRef.current = null;
+        pendingResetRef.current = false;
+      }
       invalidate();
     } else if (controls.update(delta)) {
+      invalidate();
+    }
+    // Panning never leaves the floor.
+    const t = controls.target;
+    const dx = MathUtils.clamp(t.x, bounds.minX, bounds.maxX) - t.x;
+    const dz = MathUtils.clamp(t.z, bounds.minZ, bounds.maxZ) - t.z;
+    if (dx !== 0 || dz !== 0) {
+      t.x += dx;
+      t.z += dz;
+      camera.position.x += dx;
+      camera.position.z += dz;
       invalidate();
     }
     poseRef.current.azimuth = controls.getAzimuthalAngle();

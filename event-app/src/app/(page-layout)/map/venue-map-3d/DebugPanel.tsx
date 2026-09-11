@@ -42,18 +42,17 @@ export function DebugPanel({ settings, onChange }: { settings: MapSettings; onCh
           <input type="checkbox" checked={settings[key]} onChange={(e) => set(key, e.target.checked)} />
         </label>
       ))}
-      <label className="mb-1 block">
-        Rotation limit ±{settings.azimuthLimitDeg}°
-        <input
-          type="range"
-          min={10}
-          max={180}
-          step={5}
-          className="w-full"
-          value={settings.azimuthLimitDeg}
-          onChange={(e) => set("azimuthLimitDeg", Number(e.target.value))}
-        />
-      </label>
+      {(
+        [
+          ["rotateLeftDeg", "Rotate left"],
+          ["rotateRightDeg", "Rotate right"],
+        ] as const
+      ).map(([key, label]) => (
+        <label key={key} className="mb-1 block">
+          {label} {settings[key]}°
+          <input type="range" min={0} max={180} step={5} className="w-full" value={settings[key]} onChange={(e) => set(key, Number(e.target.value))} />
+        </label>
+      ))}
       <label className="block">
         Double-tap zoom ×{settings.zoomStep.toFixed(1)}
         <input

@@ -27,7 +27,7 @@ type SceneProps = {
 /** The R3F canvas: floor artwork, 3D blocks, upright props and the camera rig. Client-only (three needs WebGL). */
 export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, onSelect, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
-  const [hover, setHover] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const areaById = useMemo(() => new Map(areas.map((a) => [a.id, a])), [areas]);
   const areaByProp = useMemo(
     () => new Map(areas.filter((a) => a.prop).map((a) => [a.prop as string, a])),
@@ -38,6 +38,8 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
   const lit = usePlan || settings.lit;
   const groundBounds = usePlan ? plan.bounds : scene.bounds;
   const fit = usePlan ? plan.fit : { width: scene.viewBox[2], height: scene.viewBox[3] };
+  const pannable = usePlan;
+  const cursor = hoveredId ? "pointer" : settings.view === "top" || pannable ? "grab" : "grab";
 
   return (
     <Canvas
@@ -48,17 +50,17 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       onPointerMissed={() => onSelect(null)}
-      style={{ touchAction: "none", cursor: hover ? "pointer" : "grab" }}
+      style={{ touchAction: "none", cursor }}
     >
       <ambientLight intensity={lit ? 1.6 : 0} />
       <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
-      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} poseRef={poseRef} resetRef={resetRef} />
+      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} poseRef={poseRef} resetRef={resetRef} />
       {usePlan ? (
         <>
-          <PlanShapes shapes={plan.shapes} selectedId={selectedId} onSelect={onSelect} setHover={setHover} />
+          <PlanShapes shapes={plan.shapes} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
           {settings.showProps && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHover={setHover} />
+              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHovered={setHoveredId} />
             </Suspense>
           )}
         </>
@@ -66,10 +68,10 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
         <>
           <Slab scene={scene} />
           {settings.showBlocks && (
-            <Blocks blocks={scene.blocks} areaById={areaById} selectedId={selectedId} lit={settings.lit} onSelect={onSelect} setHover={setHover} />
+            <Blocks blocks={scene.blocks} areaById={areaById} selectedId={selectedId} hoveredId={hoveredId} lit={settings.lit} onSelect={onSelect} setHovered={setHoveredId} />
           )}
           {settings.showProps && (
-            <Props props={scene.props} areaByProp={areaByProp} poseRef={poseRef} onSelect={onSelect} setHover={setHover} />
+            <Props props={scene.props} areaByProp={areaByProp} poseRef={poseRef} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
           )}
         </>
       )}
