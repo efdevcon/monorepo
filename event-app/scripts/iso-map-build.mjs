@@ -450,9 +450,22 @@ collectProps(floorLayer, { flatPathsTo: floorFlat });
 collectProps(decoLayer, { flatPathsTo: null });
 if (floorFlat.children.length) slabChildren.push(floorFlat);
 
+// Ground footprint of the floor slab (path id="floor"), un-projected: the top-down camera fits to this.
+const SQRT3 = Math.sqrt(3);
+const floorNode = basePaths.find((p) => p.attrs.id === "floor") ?? basePaths.find((p) => p.attrs.id === "Vector_8");
+const floorPts = floorNode ? pathInfo(floorNode.attrs.d).subpaths.flat() : [[0, 0], [viewBox[2], 0], [0, viewBox[3]], [viewBox[2], viewBox[3]]];
+const groundPts = floorPts.map(([u, v]) => [u / SQRT3 + v, v - u / SQRT3]);
+const bounds = {
+  minX: Math.round(Math.min(...groundPts.map((p) => p[0]))),
+  maxX: Math.round(Math.max(...groundPts.map((p) => p[0]))),
+  minZ: Math.round(Math.min(...groundPts.map((p) => p[1]))),
+  maxZ: Math.round(Math.max(...groundPts.map((p) => p[1]))),
+};
+
 const out = {
   generatedFrom: path.relative(root, sourcePath),
   viewBox,
+  bounds,
   slabSvg: wrap(slabChildren),
   blocks,
   props,
@@ -462,6 +475,7 @@ fs.writeFileSync(outPath, JSON.stringify(out));
 // 5. report
 const kb = (s) => `${(Buffer.byteLength(s) / 1024).toFixed(0)} KB`;
 console.log(`source ${kb(source)} → ${path.relative(root, outPath)} ${kb(JSON.stringify(out))}`);
+console.log(`floor ground bounds (px):`, bounds);
 console.log(`gradients flattened: ${gradientRefs} refs / ${gradients.size} defs; mask definitions dropped: ${masksDropped}`);
 console.log(`top-face candidates in Base-Layer: ${topFaces.length}`);
 for (const f of topFaces) {

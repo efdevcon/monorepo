@@ -7,7 +7,8 @@ import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
 import { SourceToggle } from "./SourceToggle";
-import { DEFAULT_SETTINGS, type Area, type MapSettings, type MapSource, type PlanScene, type SceneData } from "./types";
+import { ViewToggle } from "./ViewToggle";
+import { DEFAULT_SETTINGS, type Area, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
 import areasJson from "./areas.json";
@@ -53,6 +54,7 @@ export function VenueMap3D() {
     setSelected(null);
     setSettings((s) => ({ ...s, source }));
   }, []);
+  const setView = useCallback((view: MapView) => setSettings((s) => ({ ...s, view })), []);
 
   return (
     <div className="relative flex-1">
@@ -68,6 +70,7 @@ export function VenueMap3D() {
         resetRef={resetRef}
       />
       <SourceToggle value={settings.source} onChange={setSource} />
+      <ViewToggle value={settings.view} onChange={setView} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
       {debug && <DebugPanel settings={settings} onChange={setSettings} />}
     </div>

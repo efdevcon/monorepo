@@ -36,6 +36,8 @@ export type SceneProp = {
 export type SceneData = {
   generatedFrom: string;
   viewBox: number[];
+  /** Ground footprint of the floor slab in ground px (top-down fit). */
+  bounds: GroundBounds;
   slabSvg: string;
   blocks: SceneBlock[];
   props: SceneProp[];
@@ -75,10 +77,16 @@ export type PlanScene = {
 export type GroundBounds = { minX: number; maxX: number; minZ: number; maxZ: number };
 
 export type MapSource = "iso" | "plan";
+/** Camera pitch: the isometric orbit, or straight down. */
+export type MapView = "3d" | "top";
+
+/** Live camera orientation, written by CameraRig every frame and read by the props. */
+export type CameraPose = { azimuth: number; polar: number };
 
 export type MapSettings = {
   /** "iso": artwork un-projected + boxes; "plan": everything extruded from the top-down plan. */
   source: MapSource;
+  view: MapView;
   projection: "ortho" | "perspective";
   lit: boolean;
   showProps: boolean;
@@ -91,6 +99,7 @@ export type MapSettings = {
 
 export const DEFAULT_SETTINGS: MapSettings = {
   source: "iso",
+  view: "3d",
   projection: "ortho",
   lit: false,
   showProps: true,

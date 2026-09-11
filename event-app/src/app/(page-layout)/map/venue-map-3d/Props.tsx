@@ -2,28 +2,35 @@
 
 import { useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
-import { DoubleSide, type Group } from "three";
-import { billboardMatrix, groundFromScreen, INITIAL_AZIMUTH } from "./isoMath";
+import { DoubleSide, Quaternion, Vector3, type Group } from "three";
+import { billboardMatrix, groundFromScreen, INITIAL_AZIMUTH, POLAR_ANGLE } from "./isoMath";
 import { getLayerParts } from "./svgLayer";
 import { LAYER_STEP } from "./Slab";
 import { TAP_SLOP_PX } from "./Blocks";
-import type { Area, SceneProp } from "./types";
+import type { Area, CameraPose, SceneProp } from "./types";
 
 type PropsProps = {
   props: SceneProp[];
   areaByProp: Map<string, Area>;
-  azimuthRef: MutableRefObject<number>;
+  poseRef: MutableRefObject<CameraPose>;
   onSelect: (area: Area) => void;
   setHover: (on: boolean) => void;
 };
 
+const Y_AXIS = new Vector3(0, 1, 0);
+/** Axis that pitches the decal plane from the isometric view direction towards straight up (screen-left at the start view). */
+const TILT_AXIS = new Vector3(-1, 0, 1).normalize();
+const yawQ = new Quaternion();
+const tiltQ = new Quaternion();
+
 /**
- * Icons, people and room decals stand upright on the floor as paper cut-outs
- * facing the camera. At the start view they land exactly where the artwork
- * drew them; when the floor turns they pivot around their base to keep facing
- * the viewer, like sprites in an isometric game.
+ * Icons, people and room decals stand on the floor as paper cut-outs facing
+ * the camera. At the start view they land exactly where the artwork drew
+ * them; when the floor turns they pivot around their base to keep facing the
+ * viewer, like sprites in an isometric game, and when the camera pitches
+ * towards top-down they lean back with it so they never turn edge-on.
  */
-export function Props({ props, areaByProp, azimuthRef, onSelect, setHover }: PropsProps) {
+export function Props({ props, areaByProp, poseRef, onSelect, setHover }: PropsProps) {
   return (
     <>
       {props.map((prop) => (
@@ -31,7 +38,7 @@ export function Props({ props, areaByProp, azimuthRef, onSelect, setHover }: Pro
           key={prop.id}
           prop={prop}
           area={areaByProp.get(prop.id)}
-          azimuthRef={azimuthRef}
+          poseRef={poseRef}
           onSelect={onSelect}
           setHover={setHover}
         />
@@ -43,13 +50,13 @@ export function Props({ props, areaByProp, azimuthRef, onSelect, setHover }: Pro
 function Prop({
   prop,
   area,
-  azimuthRef,
+  poseRef,
   onSelect,
   setHover,
 }: {
   prop: SceneProp;
   area: Area | undefined;
-  azimuthRef: MutableRefObject<number>;
+  poseRef: MutableRefObject<CameraPose>;
   onSelect: (area: Area) => void;
   setHover: (on: boolean) => void;
 }) {
@@ -59,7 +66,11 @@ function Prop({
   const pivot = useRef<Group>(null);
 
   useFrame(() => {
-    if (pivot.current) pivot.current.rotation.y = azimuthRef.current - INITIAL_AZIMUTH;
+    if (!pivot.current) return;
+    const { azimuth, polar } = poseRef.current;
+    yawQ.setFromAxisAngle(Y_AXIS, azimuth - INITIAL_AZIMUTH);
+    tiltQ.setFromAxisAngle(TILT_AXIS, POLAR_ANGLE - polar);
+    pivot.current.quaternion.copy(yawQ).multiply(tiltQ);
   });
 
   const [bx, by, bw, bh] = prop.bbox;

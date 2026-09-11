@@ -4,8 +4,8 @@ import { useEffect, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { MathUtils, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, Vector2, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { INITIAL_AZIMUTH, ISO_FORESHORTENING, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
-import type { GroundBounds, MapSettings } from "./types";
+import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
+import type { CameraPose, GroundBounds, MapSettings } from "./types";
 
 type CameraRigProps = {
   /** Floor rectangle in ground px: orbit centre and double-tap target clamp. */
@@ -13,20 +13,24 @@ type CameraRigProps = {
   /** Screen extent of the floor at the start view, in px: what "fit" means. */
   fit: { width: number; height: number };
   settings: MapSettings;
-  /** Current orbit azimuth, read every frame by the upright props. */
-  azimuthRef: MutableRefObject<number>;
+  /** Current orbit azimuth + polar angle, read every frame by the props. */
+  poseRef: MutableRefObject<CameraPose>;
   /** Filled with a function that animates back to the start view (Map tab re-tap). */
   resetRef: MutableRefObject<() => void>;
 };
 
 const ORTHO_RADIUS = 60;
 const FIT_MARGIN = 0.9;
+/** Top-down fills the viewport's height, and the canvas runs under the sticky header: leave more room. */
+const FIT_MARGIN_TOP = 0.78;
 const TWEEN_MS = 350;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
 const TAP_MOVE_PX = 10;
+/** Straight down; OrbitControls needs a hair above zero to keep a defined azimuth. */
+const TOP_POLAR = 0.0005;
 
-type ViewState = { target: Vector3; azimuth: number; zoom: number; radius: number };
+type ViewState = { target: Vector3; azimuth: number; polar: number; zoom: number; radius: number };
 
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
@@ -37,7 +41,7 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<{ from: ViewState; to: ViewState; start: number } | null>(null);
@@ -51,25 +55,41 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
   };
   const center = new Vector3((bounds.minX + bounds.maxX) / 2, 0, (bounds.minZ + bounds.maxZ) / 2);
   const isOrtho = camera instanceof OrthographicCamera;
+  const isTop = settings.view === "top";
+  const targetPolar = isTop ? TOP_POLAR : POLAR_ANGLE;
+  // Top-down reads like the plan drawing: X to the right, Z downwards (camera offset along +Z).
+  const baseAzimuth = isTop ? 0 : INITIAL_AZIMUTH;
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
-  const computeFit = () => {
-    const { width: w, height: h } = fit;
+  const computeFit = (polar = targetPolar) => {
+    // World extent to show: the floor's axis-aligned footprint from above, or the
+    // artwork's screen extent (`fit`, measured at the isometric pitch) in 3D.
+    let worldW: number;
+    let worldH: number;
+    if (polar < 0.01) {
+      worldW = bounds.maxX - bounds.minX;
+      worldH = bounds.maxZ - bounds.minZ;
+    } else {
+      worldW = fit.width * SCREEN_PX_PER_SVG_PX;
+      worldH = ((fit.height * Math.cos(polar)) / Math.cos(POLAR_ANGLE)) * SCREEN_PX_PER_SVG_PX;
+    }
+    const margin = polar < 0.01 ? FIT_MARGIN_TOP : FIT_MARGIN;
     if (isOrtho) {
-      const k = Math.min(size.width / w, size.height / h) * FIT_MARGIN;
-      return { zoom: k / SCREEN_PX_PER_SVG_PX, radius: ORTHO_RADIUS };
+      return { zoom: Math.min(size.width / worldW, size.height / worldH) * margin, radius: ORTHO_RADIUS };
     }
     const fov = MathUtils.degToRad((camera as PerspectiveCamera).fov);
     const aspect = size.width / size.height;
-    const worldH = (Math.max(h * PX, (w * PX) / aspect) * ISO_FORESHORTENING) / FIT_MARGIN;
-    return { zoom: 1, radius: worldH / (2 * Math.tan(fov / 2)) };
+    const visibleH = Math.max(worldH, worldW / aspect) / margin;
+    return { zoom: 1, radius: visibleH / (2 * Math.tan(fov / 2)) };
   };
 
   const applyView = (v: ViewState) => {
     const controls = controlsRef.current;
     if (!controls) return;
     controls.target.copy(v.target);
-    const offset = new Vector3().setFromSpherical(new Spherical(v.radius, POLAR_ANGLE, v.azimuth));
+    controls.minPolarAngle = v.polar;
+    controls.maxPolarAngle = v.polar;
+    const offset = new Vector3().setFromSpherical(new Spherical(v.radius, v.polar, v.azimuth));
     camera.position.copy(v.target).add(offset);
     if (isOrtho) {
       camera.zoom = v.zoom;
@@ -84,6 +104,7 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
     return {
       target: controls.target.clone(),
       azimuth: controls.getAzimuthalAngle(),
+      polar: controls.getPolarAngle(),
       zoom: camera.zoom,
       radius: camera.position.distanceTo(controls.target),
     };
@@ -96,7 +117,8 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
 
   const startView = (): ViewState => ({
     target: center.clone(),
-    azimuth: INITIAL_AZIMUTH,
+    azimuth: baseAzimuth,
+    polar: targetPolar,
     zoom: fitRef.current.zoom,
     radius: fitRef.current.radius,
   });
@@ -110,8 +132,6 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
     controls.dampingFactor = 0.12;
     controls.rotateSpeed = 0.7;
     controls.zoomSpeed = 0.8;
-    controls.minPolarAngle = POLAR_ANGLE;
-    controls.maxPolarAngle = POLAR_ANGLE;
     const onChange = () => invalidate();
     const onStart = () => {
       interactedRef.current = true;
@@ -146,8 +166,8 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
     const controls = controlsRef.current;
     if (!controls) return;
     const limit = MathUtils.degToRad(settings.azimuthLimitDeg);
-    controls.minAzimuthAngle = INITIAL_AZIMUTH - limit;
-    controls.maxAzimuthAngle = INITIAL_AZIMUTH + limit;
+    controls.minAzimuthAngle = baseAzimuth - limit;
+    controls.maxAzimuthAngle = baseAzimuth + limit;
     fitRef.current = computeFit();
     if (isOrtho) {
       controls.minZoom = fitRef.current.zoom * 0.85;
@@ -160,7 +180,25 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
     else controls.update();
     invalidate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.azimuthLimitDeg, size.width, size.height, isOrtho]);
+  }, [settings.azimuthLimitDeg, size.width, size.height, isOrtho, baseAzimuth]);
+
+  // 3D ↔ top-down: pitch the camera over the same target, square it up, and refit the zoom.
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls || size.width === 0) return;
+    if (Math.abs(controls.getPolarAngle() - targetPolar) < 1e-4) return;
+    fitRef.current = computeFit(targetPolar);
+    if (isOrtho) {
+      controls.minZoom = fitRef.current.zoom * 0.85;
+      controls.maxZoom = fitRef.current.zoom * 6;
+    } else {
+      controls.minDistance = fitRef.current.radius / 6;
+      controls.maxDistance = fitRef.current.radius * 1.2;
+    }
+    const cur = currentView();
+    tweenTo({ ...cur, azimuth: baseAzimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [targetPolar]);
 
   // Double-click / double-tap: zoom in on the tapped floor point.
   useEffect(() => {
@@ -186,6 +224,7 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
       tweenTo({
         target: hit,
         azimuth: cur.azimuth,
+        polar: cur.polar,
         zoom: isOrtho ? Math.min(controls.maxZoom, cur.zoom * settings.zoomStep) : cur.zoom,
         radius: isOrtho ? cur.radius : Math.max(controls.minDistance, cur.radius / settings.zoomStep),
       });
@@ -242,6 +281,7 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
       applyView({
         target: tween.from.target.clone().lerp(tween.to.target, p),
         azimuth: MathUtils.lerp(tween.from.azimuth, tween.to.azimuth, p),
+        polar: MathUtils.lerp(tween.from.polar, tween.to.polar, p),
         zoom: MathUtils.lerp(tween.from.zoom, tween.to.zoom, p),
         radius: MathUtils.lerp(tween.from.radius, tween.to.radius, p),
       });
@@ -250,7 +290,8 @@ export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }:
     } else if (controls.update(delta)) {
       invalidate();
     }
-    azimuthRef.current = controls.getAzimuthalAngle();
+    poseRef.current.azimuth = controls.getAzimuthalAngle();
+    poseRef.current.polar = controls.getPolarAngle();
   });
 
   return null;
