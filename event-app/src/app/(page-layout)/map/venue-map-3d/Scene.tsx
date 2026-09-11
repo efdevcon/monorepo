@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useRef, useState, type MutableRefObject } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
 import { INITIAL_AZIMUTH, POLAR_ANGLE } from "./isoMath";
@@ -28,6 +28,10 @@ type SceneProps = {
 export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, onSelect, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  // ?debug: expose the hovered target for hit-testing scripts.
+  useEffect(() => {
+    if (debug) (window as unknown as { __mapHover?: string | null }).__mapHover = hoveredId;
+  }, [debug, hoveredId]);
   const areaById = useMemo(() => new Map(areas.map((a) => [a.id, a])), [areas]);
   const areaByProp = useMemo(
     () => new Map(areas.filter((a) => a.prop).map((a) => [a.prop as string, a])),
@@ -60,7 +64,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
           <PlanShapes shapes={plan.shapes} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
           {settings.showProps && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={plan.shapes} />
+              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHovered={setHoveredId} />
             </Suspense>
           )}
         </>

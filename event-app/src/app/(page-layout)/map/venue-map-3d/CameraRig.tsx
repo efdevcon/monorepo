@@ -66,6 +66,8 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
   latest.current = { targetPolar, baseAzimuth };
   // Set by reset() when the view is also changing; the view effect then finishes the reset.
   const pendingResetRef = useRef(false);
+  // ?debug: publish the camera state for hit-testing scripts.
+  const debugRef = useRef(typeof window !== "undefined" && window.location.search.includes("debug"));
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
   const computeFit = (polar = targetPolar) => {
@@ -173,9 +175,9 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
-    // Dragging left increases the azimuth (OrbitControls rotateLeft), so "left" is the max side.
-    controls.minAzimuthAngle = baseAzimuth - MathUtils.degToRad(settings.rotateRightDeg);
-    controls.maxAzimuthAngle = baseAzimuth + MathUtils.degToRad(settings.rotateLeftDeg);
+    // "Left" is the side that shows more of the venue's front (lower azimuth); the higher side looks at the empty back.
+    controls.minAzimuthAngle = baseAzimuth - MathUtils.degToRad(settings.rotateLeftDeg);
+    controls.maxAzimuthAngle = baseAzimuth + MathUtils.degToRad(settings.rotateRightDeg);
     if (isTop) {
       // Fixed orientation: the primary pointer pans, pinch / wheel zooms.
       controls.enableRotate = false;
@@ -333,6 +335,17 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     }
     poseRef.current.azimuth = controls.getAzimuthalAngle();
     poseRef.current.polar = controls.getPolarAngle();
+    if (debugRef.current) {
+      (window as unknown as { __mapCamera?: object }).__mapCamera = {
+        zoom: camera.zoom,
+        position: camera.position.toArray(),
+        target: controls.target.toArray(),
+        azimuth: poseRef.current.azimuth,
+        polar: poseRef.current.polar,
+        size: [size.width, size.height],
+        canvas: [gl.domElement.width, gl.domElement.height, gl.domElement.clientWidth, gl.domElement.clientHeight],
+      };
+    }
   });
 
   return null;

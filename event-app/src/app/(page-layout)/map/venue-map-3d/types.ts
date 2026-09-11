@@ -93,7 +93,7 @@ export type MapSettings = {
   lit: boolean;
   showProps: boolean;
   showBlocks: boolean;
-  /** How far the floor can be turned from the start view, in degrees (dragging left turns it left). */
+  /** How far the floor can be turned from the start view, in degrees: left = lower azimuth (venue front), right = higher (empty back). */
   rotateLeftDeg: number;
   rotateRightDeg: number;
   /** Zoom factor applied per double tap. */

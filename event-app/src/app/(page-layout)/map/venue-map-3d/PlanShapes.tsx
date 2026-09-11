@@ -34,6 +34,12 @@ export function PlanShapes({ shapes, selectedId, hoveredId, onSelect, setHovered
 }
 
 const OUTLINE = "#333A7F";
+/**
+ * Outlines must not raycast: three's default Line threshold is 1 world unit
+ * (~45 px here), which gave every edge an invisible halo that stole hovers and
+ * taps from neighbouring footprints.
+ */
+const noRaycast = () => null;
 const HIGHLIGHT_OUTLINE = "#7235ed"; // dc-purple
 
 function polygonArea(poly: Vector2[]): number {
@@ -95,7 +101,7 @@ function PlanShapeMesh({
         <meshStandardMaterial attach="material-1" color={side} roughness={0.9} metalness={0} side={DoubleSide} />
       </mesh>
       {(shape.kind !== "mat" || hovered || selected) && (
-        <lineSegments geometry={edges}>
+        <lineSegments geometry={edges} raycast={noRaycast}>
           <lineBasicMaterial color={hovered || selected ? HIGHLIGHT_OUTLINE : shape.stroke ?? OUTLINE} toneMapped={false} />
         </lineSegments>
       )}
