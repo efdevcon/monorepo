@@ -4,11 +4,14 @@ import { useEffect, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { MathUtils, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, Vector2, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { groundBounds, INITIAL_AZIMUTH, ISO_FORESHORTENING, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
-import type { MapSettings } from "./types";
+import { INITIAL_AZIMUTH, ISO_FORESHORTENING, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX, VIEW_DIR } from "./isoMath";
+import type { GroundBounds, MapSettings } from "./types";
 
 type CameraRigProps = {
-  viewBox: number[];
+  /** Floor rectangle in ground px: orbit centre and double-tap target clamp. */
+  groundBounds: GroundBounds;
+  /** Screen extent of the floor at the start view, in px: what "fit" means. */
+  fit: { width: number; height: number };
   settings: MapSettings;
   /** Current orbit azimuth, read every frame by the upright props. */
   azimuthRef: MutableRefObject<number>;
@@ -34,19 +37,24 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ viewBox, settings, azimuthRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, azimuthRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<{ from: ViewState; to: ViewState; start: number } | null>(null);
   const interactedRef = useRef(false);
   const fitRef = useRef<{ zoom: number; radius: number }>({ zoom: 1, radius: ORTHO_RADIUS });
-  const bounds = groundBounds(viewBox);
+  const bounds = {
+    minX: groundBounds.minX * PX,
+    maxX: groundBounds.maxX * PX,
+    minZ: groundBounds.minZ * PX,
+    maxZ: groundBounds.maxZ * PX,
+  };
   const center = new Vector3((bounds.minX + bounds.maxX) / 2, 0, (bounds.minZ + bounds.maxZ) / 2);
   const isOrtho = camera instanceof OrthographicCamera;
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
   const computeFit = () => {
-    const [, , w, h] = viewBox;
+    const { width: w, height: h } = fit;
     if (isOrtho) {
       const k = Math.min(size.width / w, size.height / h) * FIT_MARGIN;
       return { zoom: k / SCREEN_PX_PER_SVG_PX, radius: ORTHO_RADIUS };

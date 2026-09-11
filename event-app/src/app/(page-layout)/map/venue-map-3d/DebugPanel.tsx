@@ -9,6 +9,17 @@ export function DebugPanel({ settings, onChange }: { settings: MapSettings; onCh
     <div className="fixed right-4 top-20 z-20 w-56 rounded-xl bg-white/95 p-3 text-[12px] leading-tight text-dc-fg shadow-lg backdrop-blur">
       <p className="mb-2 font-bold">3D map debug</p>
       <label className="mb-2 flex items-center justify-between gap-2">
+        Source
+        <select
+          className="rounded border border-dc-border px-1 py-0.5"
+          value={settings.source}
+          onChange={(e) => set("source", e.target.value as MapSettings["source"])}
+        >
+          <option value="iso">iso artwork</option>
+          <option value="plan">top-down plan</option>
+        </select>
+      </label>
+      <label className="mb-2 flex items-center justify-between gap-2">
         Projection
         <select
           className="rounded border border-dc-border px-1 py-0.5"
