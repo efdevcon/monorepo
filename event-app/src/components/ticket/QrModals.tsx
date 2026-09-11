@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import type { TicketStyle } from "@/data/tickets/types";
+import type { TicketReference } from "./EventTicketCard";
 import { CloseButton } from "@/components/Buttons";
 import { TICKET_THEMES } from "./ticketTheme";
 
@@ -17,8 +18,16 @@ export type QrModalTarget =
       style: TicketStyle;
       /** Pretix has seen this ticket scanned at venue check-in. */
       checkedIn?: boolean;
+      /** Order code and the ticket's number in it, printed under the QR. */
+      reference?: TicketReference;
     }
-  | { kind: "swag"; qr: string; title: string };
+  | {
+      kind: "swag";
+      qr: string;
+      title: string;
+      /** Pretix has a check-in on the swag position: already handed over. */
+      collected?: boolean;
+    };
 
 const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
 
@@ -86,6 +95,12 @@ export function QrModal({
               </div>
             </div>
 
+            {target.kind === "ticket" && target.reference && (
+              <p className="mt-2 text-[12px] font-semibold leading-4 text-dc-muted">
+                Order {target.reference.orderCode} · Ticket #{target.reference.ordinal}
+              </p>
+            )}
+
             <div className="flex w-full flex-col items-center gap-4 px-4 py-6 text-center">
               <div className="flex w-full flex-col gap-2">
                 <p className="text-[16px] font-bold leading-6 text-dc-fg2">
@@ -112,13 +127,23 @@ export function QrModal({
                       </span>
                     )}
                   </>
+                ) : target.collected ? (
+                  <>
+                    <p className="text-[14px] leading-5 text-dc-fg2">
+                      Already collected at the Swag Station
+                    </p>
+                    <span className="mt-1 inline-flex items-center gap-1 self-center rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2">
+                      <Check className="size-3.5" />
+                      Collected
+                    </span>
+                  </>
                 ) : (
                   <p className="text-[14px] leading-5 text-dc-fg2">
                     Present this QR at the Swag Station to claim
                   </p>
                 )}
               </div>
-              {target.kind === "swag" && (
+              {target.kind === "swag" && !target.collected && (
                 // Figma annotation: "Will link to Swag Station location on
                 // in-app map (future iteration)" — closes the modal until the
                 // station has a map POI. Sized per the design's Button-Small

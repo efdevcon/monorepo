@@ -185,9 +185,23 @@ check("unknown route offline shows the fallback", /offline/i.test((await page.lo
 // Cross-section trip with no document reload. A marker on `window` survives
 // pushState/popstate navigations but not a real document load, so its
 // presence at the end proves every step was a client-side transition.
-await page.goto(`${base}/schedule?${q}`, { waitUntil: "load" });
+const tripResponse = await page.goto(`${base}/schedule?${q}`, { waitUntil: "load" });
 await page.waitForFunction((sel) => document.querySelectorAll(sel).length > 0, SESSION_LINK, { timeout: 15000 }).catch(async () => {
   console.log("DIAG offline /schedule without cards:", await page.evaluate(() => document.body.innerText.slice(0, 300).replace(/\n+/g, " | ")));
+  console.log("DIAG response:", tripResponse ? `${tripResponse.status()} fromSW=${tripResponse.fromServiceWorker()}` : "none");
+  console.log("DIAG caches:", JSON.stringify(await page.evaluate(async () => {
+    const out = {};
+    for (const name of await caches.keys()) {
+      const keys = await (await caches.open(name)).keys();
+      const paths = keys.map((r) => new URL(r.url).pathname);
+      out[name] = { count: keys.length, hasSchedule: paths.includes("/schedule"), hasOffline: paths.includes("/offline") };
+    }
+    out.matchSchedule = !!(await caches.match(`${location.origin}/schedule`, { ignoreSearch: true }));
+    out.controller = navigator.serviceWorker?.controller?.scriptURL ?? null;
+    const reg = await navigator.serviceWorker?.getRegistration();
+    out.states = reg ? { active: reg.active?.state, waiting: reg.waiting?.state, installing: reg.installing?.state } : null;
+    return out;
+  })));
 });
 await page.evaluate(() => {
   window.__dcSweep = true;

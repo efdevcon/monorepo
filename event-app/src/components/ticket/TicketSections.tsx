@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import cn from "classnames";
 import { RefreshCw } from "lucide-react";
 import type { Order, Ticket } from "@/data/tickets/types";
+import { ticketOrdinals } from "@/data/tickets/primary";
 import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
 import { SwagCard } from "./SwagCard";
@@ -72,18 +73,50 @@ export function TicketSections({
   onRefresh,
   isRefreshing = false,
   refreshDisabled = false,
+  primary = null,
+  onReplace,
+  onDetach,
+  leadSlot,
 }: {
   tickets: Order[];
   qrCodes: Record<string, string>;
   onRefresh?: () => void;
   isRefreshing?: boolean;
   refreshDisabled?: boolean;
+  /** "My ticket" (data/tickets/primary.ts): the only ticket shown; the rest stay in the Pretix email. */
+  primary?: Ticket | null;
+  /** Ticket tab only: "Not your ticket? Attach yours" on an email-matched ticket, opens the replace card. */
+  onReplace?: () => void;
+  /** Ticket tab only: "Wrong ticket?" on an attached ticket (detach). */
+  onDetach?: (positionId: number) => void;
+  /** Ticket tab only: rendered right under the shown ticket (the replace card), where the link was tapped. */
+  leadSlot?: ReactNode;
 }) {
   const [modal, setModal] = useState<QrModalTarget | null>(null);
 
+  // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
+  // select rows and the Pretix order page.
+  const ordinals = ticketOrdinals(tickets);
+  const orderCodeBySecret = new Map<string, string>();
+  for (const order of tickets) for (const t of order.tickets) orderCodeBySecret.set(t.secret, order.orderCode);
+  const referenceOf = (ticket: Ticket) => {
+    const orderCode = orderCodeBySecret.get(ticket.secret);
+    const ordinal = ordinals.get(ticket.secret);
+    return orderCode && ordinal ? { orderCode, ordinal } : undefined;
+  };
+
   const admissionTickets: Ticket[] = [];
-  const swagItems: Array<{ secret: string; title: string; imageUrl?: string }> =
-    [];
+  const swagItems: Array<{
+    secret: string;
+    title: string;
+    imageUrl?: string;
+    /** The admission ticket this swag goes with (itself for standalone merchandise). */
+    ownerSecret: string;
+    standalone: boolean;
+    orderCode: string;
+    /** Scanned at the swag station (a Pretix check-in on the position). */
+    collected: boolean;
+  }> = [];
   for (const order of tickets) {
     for (const ticket of order.tickets) {
       // `admission === false` is a Pretix item explicitly marked as
@@ -94,6 +127,10 @@ export function TicketSections({
           secret: ticket.secret,
           title: ticket.itemName,
           imageUrl: ticket.imageUrl,
+          ownerSecret: ticket.secret,
+          standalone: true,
+          orderCode: order.orderCode,
+          collected: ticket.hasCheckedIn === true,
         });
       } else {
         admissionTickets.push(ticket);
@@ -103,15 +140,72 @@ export function TicketSections({
           secret: addon.secret,
           title: addon.itemName,
           imageUrl: addon.imageUrl,
+          ownerSecret: ticket.secret,
+          standalone: false,
+          orderCode: order.orderCode,
+          collected: addon.collected === true,
         });
       }
     }
   }
 
+  // With a primary ticket only it is shown (decided 2026-09-09: the buyer's
+  // other tickets were forwarded to their holders and stay in the Pretix
+  // email). Swag and the perk follow the ticket shown: its add-ons, plus
+  // merchandise sold as its own position on the same order. Without a
+  // primary, today's layout: every ticket, every swag item.
+  const lead = primary
+    ? (admissionTickets.find((t) => t.secret === primary.secret) ?? null)
+    : null;
+  const shownTickets = lead ? [lead] : admissionTickets;
+  const leadOrderCode = lead
+    ? tickets.find((order) => order.tickets.some((t) => t.secret === lead.secret))?.orderCode
+    : undefined;
+  const shownSwag = lead
+    ? swagItems.filter(
+        (item) =>
+          item.ownerSecret === lead.secret ||
+          (item.standalone && item.orderCode === leadOrderCode)
+      )
+    : swagItems;
+  const leadPositionId = lead?.positionId;
+
   // With several tickets, both tickets and swag become full-width horizontal
   // carousels stacked vertically; with one, the ticket sits beside the swag
   // shelf in the Figma two-column layout.
-  const multiTicket = admissionTickets.length > 1;
+  const multiTicket = shownTickets.length > 1;
+
+  // Under the shown card (ticket tab only), one way out. An attached ticket
+  // can be detached: with two or more email-matched tickets left the select
+  // comes back ("Choose another"), otherwise the upload does or the one
+  // remaining ticket takes over ("Remove it"). An email-matched ticket can be
+  // replaced by uploading the right ticket's QR, which then takes its place
+  // (attached wins in derivePrimary).
+  const emailMatched = admissionTickets.filter((t) => !t.attached).length;
+  const leadFooter =
+    lead &&
+    (lead.attached
+      ? leadPositionId !== undefined &&
+        onDetach && (
+          <button
+            type="button"
+            onClick={() => leadPositionId !== undefined && onDetach(leadPositionId)}
+            className="self-start text-[14px] leading-5 text-dc-purple hover:underline"
+          >
+            {emailMatched >= 2
+              ? "Wrong ticket? Choose another"
+              : "Wrong ticket? Remove it from this account"}
+          </button>
+        )
+      : onReplace && (
+          <button
+            type="button"
+            onClick={onReplace}
+            className="self-start text-[14px] leading-5 text-dc-purple hover:underline"
+          >
+            Not your ticket? Attach yours
+          </button>
+        ));
 
   const ticketHeader = (
     <TicketSectionHeader
@@ -141,7 +235,7 @@ export function TicketSections({
     <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
   );
 
-  const swagSection = swagItems.length > 0 && (
+  const swagSection = shownSwag.length > 0 && (
     <section
       className={cn(
         "flex w-full flex-col gap-4",
@@ -160,12 +254,13 @@ export function TicketSections({
         )}
       >
         <div className={cn(scrollerBase, "lg:absolute lg:-inset-3 lg:p-3")}>
-          {swagItems.map((item) => (
+          {shownSwag.map((item) => (
             <SwagCard
               key={item.secret}
               title={item.title}
               imageUrl={item.imageUrl}
               qr={qrCodes[item.secret]}
+              collected={item.collected}
               onQrClick={setModal}
               shelfOnDesktop
             />
@@ -188,7 +283,7 @@ export function TicketSections({
                 shadow beyond the 1.03 scale. Each wrapper is a flex box so
                 the stretched cards equalize to the tallest. */}
             <div className={cn(scrollerBase, "lg:-m-5 lg:p-5")}>
-              {admissionTickets.map((ticket) => (
+              {shownTickets.map((ticket) => (
                 <div
                   key={ticket.secret}
                   className="w-full lg:flex lg:w-[400px] lg:shrink-0"
@@ -196,6 +291,7 @@ export function TicketSections({
                   <EventTicketCard
                     ticket={ticket}
                     qr={qrCodes[ticket.secret]}
+                    reference={referenceOf(ticket)}
                     onQrClick={setModal}
                   />
                 </div>
@@ -211,29 +307,40 @@ export function TicketSections({
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
           <section className="flex w-full flex-col gap-4 lg:w-[400px] lg:shrink-0">
             {ticketHeader}
-            {admissionTickets.map((ticket) => (
+            {shownTickets.map((ticket) => (
               <EventTicketCard
                 key={ticket.secret}
                 ticket={ticket}
                 qr={qrCodes[ticket.secret]}
+                reference={referenceOf(ticket)}
                 onQrClick={setModal}
               />
             ))}
+            {lead?.sharedWith ? (
+              // Two accounts on one ticket is allowed; the door decides, so
+              // say it here rather than surprise anyone there.
+              <p className="text-[12px] leading-4 text-dc-muted">
+                Also attached to another account. Only one person can enter the venue with this ticket.
+              </p>
+            ) : null}
+            {leadFooter}
+            {leadSlot}
           </section>
           {swagSection}
         </div>
       )}
 
-      {/* One ENS perk per event ticket (see TicketProofButton). */}
-      {admissionTickets.length > 0 && (
+      {/* One ENS perk per ticket shown (see TicketProofButton): with a primary
+          that is one card, never the buyer's colleagues' perks. */}
+      {shownTickets.length > 0 && (
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="My Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
-            {admissionTickets.map((ticket) => (
+            {shownTickets.map((ticket) => (
               <EnsPerkCard
                 key={ticket.secret}
                 ticket={ticket}
-                showTicketLabel={admissionTickets.length > 1}
+                showTicketLabel={shownTickets.length > 1}
               />
             ))}
           </div>

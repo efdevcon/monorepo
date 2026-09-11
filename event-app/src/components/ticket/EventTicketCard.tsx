@@ -18,13 +18,21 @@ import {
  * tear line with punched notches (`.ticket-notch-*` masks in globals.css);
  * the shadow is a drop-shadow on the wrapper so it follows the cutouts.
  */
+/** Human identifier printed under the QR: the order and the ticket's number in it (see ticketOrdinals). */
+export interface TicketReference {
+  orderCode: string;
+  ordinal: number;
+}
+
 export function EventTicketCard({
   ticket,
   qr,
+  reference,
   onQrClick,
 }: {
   ticket: Ticket;
   qr?: string;
+  reference?: TicketReference;
   onQrClick: (target: QrModalTarget) => void;
 }) {
   const { attempt: logoAttempt, markFailed: markLogoFailed } =
@@ -54,6 +62,7 @@ export function EventTicketCard({
                 title: modalTitle,
                 style,
                 checkedIn: ticket.hasCheckedIn,
+                reference,
               })
           : undefined
       }
@@ -93,6 +102,13 @@ export function EventTicketCard({
             >
               {holder}
             </p>
+            {reference && (
+              // Third line of the identity block (what, who, which): the same
+              // identifier the select rows and the Pretix order page use.
+              <p className="text-[11px] font-semibold leading-none text-dc-muted">
+                Order {reference.orderCode} · Ticket #{reference.ordinal}
+              </p>
+            )}
           </div>
         </div>
         <p className="mt-auto text-[10px] font-bold leading-none text-dc-muted">

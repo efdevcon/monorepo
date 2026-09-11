@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { toast } from "sonner";
 import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
+import { requestInterestSync } from "./sync";
 
 /**
  * "Interested" speaker stars (speakers page). Mirrors useInterested (session
@@ -23,7 +24,8 @@ export function useInterestedSpeakers() {
         .where("eventId")
         .equals(eventId)
         .toArray();
-      return rows.map((r) => r.speakerId);
+      // Tombstones (unstarred, kept for sync) are not stars.
+      return rows.filter((r) => r.interested !== false).map((r) => r.speakerId);
     },
     { revalidateOnFocus: false }
   );
@@ -45,16 +47,18 @@ export function useInterestedSpeakers() {
         cacheDB.interestedSpeakers,
         async () => {
           const existing = await cacheDB.interestedSpeakers.get(key);
-          if (existing) {
-            await cacheDB.interestedSpeakers.delete(key);
-            return false;
-          }
+          // Never delete: an unstar becomes a tombstone so the removal syncs
+          // to the account and wins by time on other devices (merge.ts).
+          const nowOn = !(existing?.interested ?? false);
           await cacheDB.interestedSpeakers.put({
             eventId,
             speakerId,
-            addedAt: Date.now(),
+            addedAt: existing?.addedAt ?? Date.now(),
+            interested: nowOn,
+            updatedAt: Date.now(),
+            pending: 1,
           });
-          return true;
+          return nowOn;
         }
       );
       if (added && name)
@@ -67,6 +71,7 @@ export function useInterestedSpeakers() {
           </span>
         );
       await mutate();
+      requestInterestSync();
     },
     [eventId, mutate]
   );

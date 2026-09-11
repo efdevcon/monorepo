@@ -96,7 +96,14 @@ export interface SeenAnnouncement {
 export interface InterestedSession {
   eventId: string;
   sessionId: string;
+  /** When the star was first set on this device. */
   addedAt: number;
+  /** False is a tombstone: unstarred, kept so the removal syncs and wins by time. */
+  interested: boolean;
+  /** Device time of the last change (ms); last write wins across devices. */
+  updatedAt: number;
+  /** 1 until the account has this change (0 once pushed, or when it came from the account). */
+  pending: number;
 }
 
 /**
@@ -108,6 +115,16 @@ export interface InterestedSpeaker {
   eventId: string;
   speakerId: string;
   addedAt: number;
+  interested: boolean;
+  updatedAt: number;
+  pending: number;
+}
+
+/** Per account and event: the server cursor of the last completed interests sync. */
+export interface InterestSyncMeta {
+  /** `<userId>|<eventId>` */
+  key: string;
+  lastSyncAt: number;
 }
 
 class CacheDB extends Dexie {
@@ -117,6 +134,7 @@ class CacheDB extends Dexie {
   seenAnnouncements!: Table<SeenAnnouncement, string>;
   interested!: Table<InterestedSession, [string, string]>;
   interestedSpeakers!: Table<InterestedSpeaker, [string, string]>;
+  interestSync!: Table<InterestSyncMeta, string>;
   // v7: normalised event catalogue (EventStore). One row per session /
   // speaker / room per event, plus one meta row (version, sync times).
   eventSessions!: Table<SessionRow, [string, string]>;
@@ -167,6 +185,24 @@ class CacheDB extends Dexie {
           .filter((row: { key: string }) => LEGACY_CATALOGUE_KEY.test(row.key))
           .delete()
       );
+    // v8: stars sync to the account (data/interested/sync.ts). Rows gain a
+    // tombstone flag, a change time and a pending flag; existing stars become
+    // pending so a first sign-in pushes them. `interestSync` holds the cursor.
+    this.version(8)
+      .stores({
+        interested: "&[eventId+sessionId], eventId, pending",
+        interestedSpeakers: "&[eventId+speakerId], eventId, pending",
+        interestSync: "&key",
+      })
+      .upgrade(async (tx) => {
+        const stamp = (row: { addedAt?: number; interested?: boolean; updatedAt?: number; pending?: number }) => {
+          row.interested = true;
+          row.updatedAt = row.addedAt ?? Date.now();
+          row.pending = 1;
+        };
+        await tx.table("interested").toCollection().modify(stamp);
+        await tx.table("interestedSpeakers").toCollection().modify(stamp);
+      });
   }
 }
 
