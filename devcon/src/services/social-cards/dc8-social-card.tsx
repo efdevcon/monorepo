@@ -27,7 +27,11 @@ import {
  * - white DC8 logomark watermark at 50% opacity (468×797 @ x611, v-centered)
  * - 380px octagon badge bleeding off the bottom-right (bottom −32)
  * - title + speaker names centered between the header (bottom y104) and the
- *   footer (top y494 @630) regardless of line count
+ *   avatar row regardless of line count
+ * - the avatar stack sits above the footer line, not on it: X paints its
+ *   twitter:title label over the bottom-left of large-image cards, so the
+ *   stack is raised past that band while the Format+Track pill stays at the
+ *   bottom-right (short labels never reach it)
  * - CLS sessions use the share card's default design instead: gradient bg,
  *   the colored Devcon glyph, no watermark, "CLS – <format>" chip + CLS name
  * - unmapped tracks (Invited speaker, Art & Culture…) also fall back to the
@@ -64,12 +68,19 @@ export function renderDc8SocialCard(
 
   const speakers: any[] = session.speakers ?? []
   const speakerNames = speakers.map((sp: any) => sp.name).join(', ')
-  // Same conventions as the share page: avatars without an image collapse out
-  // of the stack; 5+ speakers shrink it.
+  // Same convention as the share page: avatars without an image collapse out
+  // of the stack. Size stays 80px whatever the count; the raised row has the
+  // whole card width to itself, so large groups do not need to shrink.
   const avatars = speakers.map((sp: any) => speakerImages.get(sp.id)).filter(Boolean) as string[]
-  const many = avatars.length > 4
-  const avatarSize = many ? s(56) : s(80)
-  const overlap = many ? s(-16) : s(-24)
+  const avatarSize = s(80)
+  const overlap = s(-24)
+
+  // X's title label covers roughly the bottom 56px of a 630-tall card (label
+  // plus its margin). The avatar stack is lifted past it, and the centered
+  // title zone ends 16px above the stack so long titles cannot run into it.
+  const X_LABEL_BAND = 56
+  const AVATAR_BOTTOM = 40 + X_LABEL_BAND
+  const COLUMN_BOTTOM = AVATAR_BOTTOM + 80 + 16
 
   return new ImageResponse(
     (
@@ -141,7 +152,7 @@ export function renderDc8SocialCard(
             position: 'absolute',
             left: s(40),
             top: s(104),
-            height: s(H - 136 - 104),
+            height: s(H - COLUMN_BOTTOM - 104),
             width: s(745),
             display: 'flex',
             flexDirection: 'column',
@@ -178,7 +189,7 @@ export function renderDc8SocialCard(
           )}
         </div>
 
-        {/* Footer: avatar stack left, Format+Track pill right, bottom-aligned */}
+        {/* Footer: avatar stack left (raised above X's label band), Format+Track pill bottom-right */}
         <div
           style={{
             position: 'absolute',
@@ -191,7 +202,7 @@ export function renderDc8SocialCard(
           }}
         >
           {avatars.length > 0 && (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: s(AVATAR_BOTTOM - 40) }}>
               {avatars.map((src, index) => (
                 <img
                   key={index}

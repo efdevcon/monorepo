@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import { TicketSharing } from 'components/domain/ticket-sharing'
-import { twitterTitle } from 'config/social'
 import type { GetServerSidePropsContext } from 'next'
 
 interface TicketProps {
@@ -48,7 +47,7 @@ const Ticket = (props: TicketProps) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
         <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" key="twitter:title" content={twitterTitle('ticket', title)} />
+        <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         <meta name="twitter:image" key="twitter:image" content={props.imageUrl} />
         <meta name="twitter:image:alt" key="twitter:image:alt" content={`${props.name} - Devcon India Ticket`} />
