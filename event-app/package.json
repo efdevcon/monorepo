@@ -21,7 +21,8 @@
     "proof:test": "tsx scripts/test-ticket-proof.ts",
     "proof:demo-link": "tsx scripts/make-demo-proof.ts",
     "data:test": "tsx scripts/test-data.ts",
-    "qr:test": "tsx scripts/test-qr-decode.ts"
+    "qr:test": "tsx scripts/test-qr-decode.ts",
+    "map:build": "node scripts/iso-map-build.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
