@@ -12,7 +12,7 @@ const OPTIONS: { view: MapView; label: string; Icon: typeof Box }[] = [
 
 /**
  * 3D / top-down camera switch, top right. Same segmented pattern as
- * SourceToggle; on phones it drops to a second row so the two never collide.
+ * SourceToggle, sharing its row (source left, view right).
  */
 export function ViewToggle({ value, onChange }: { value: MapView; onChange: (v: MapView) => void }) {
   const buttonRefs = useRef(new Map<MapView, HTMLButtonElement | null>());
@@ -28,7 +28,7 @@ export function ViewToggle({ value, onChange }: { value: MapView; onChange: (v: 
     <div
       role="radiogroup"
       aria-label="Map view"
-      className="fixed right-4 top-[calc(3.5rem+var(--safe-top)+64px)] z-20 flex h-10 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:right-6 lg:top-[80px] lg:bg-dc-panel"
+      className="fixed right-4 top-[calc(3.5rem+var(--safe-top)+12px)] z-20 flex h-10 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:right-6 lg:top-[80px] lg:bg-dc-panel"
     >
       <div
         aria-hidden
