@@ -7,7 +7,7 @@ import type { MapView } from "./types";
 
 const OPTIONS: { view: MapView; label: string; Icon: typeof Box }[] = [
   { view: "3d", label: "3D", Icon: Box },
-  { view: "top", label: "Top-down", Icon: MapIcon },
+  { view: "top", label: "Flat", Icon: MapIcon },
 ];
 
 /**
