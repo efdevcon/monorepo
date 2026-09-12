@@ -40,14 +40,19 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
-      <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} className="absolute right-2 top-2" />
+      {/* Centred on the dialog's top-right corner, half outside it (Scott); white + shadow so it reads against the map. */}
+      <CloseButton
+        onClick={onClose}
+        tabIndex={open ? 0 : -1}
+        className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 bg-white shadow-[0_2px_8px_rgba(22,11,43,0.18)]"
+      />
       <div className="flex items-start gap-3">
         {icon && (
           // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
           <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
         )}
-        {/* pr-7 keeps the title row (and its tag) clear of the 28px close button in the corner. */}
-        <div className="min-w-0 flex-1 self-center pr-7">
+        {/* pr-3 keeps the tag clear of the close button's inner half. */}
+        <div className="min-w-0 flex-1 self-center pr-3">
           <div className="flex items-center justify-between gap-2">
             <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
             {live && (
