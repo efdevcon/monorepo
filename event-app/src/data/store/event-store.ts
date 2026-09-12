@@ -188,7 +188,6 @@ export class EventStore {
 
       if (meta && unchanged) {
         const checked: EventMetaRow = { ...meta, checkedAt: Date.now() };
-        await cacheDB?.eventMeta.put(checked).catch(() => undefined);
         this.failures = 0;
         this.set({ status: "idle", meta: checked, lastError: null });
         return "unchanged";
