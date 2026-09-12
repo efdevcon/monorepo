@@ -32,8 +32,8 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       aria-hidden={!open}
       className={cn(
         "fixed right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
-        // The icon disc is centred on the top edge, half above the card: pad the body down past its lower half.
-        icon && "pt-[52px]",
+        // The icon disc rides the top edge, mostly above the card: the body only needs to clear its lower ~22px.
+        icon && "pt-6",
         // Full width on phones. Development only: clear the app's 44px debug trigger (components/DebugPanel,
         // bottom-left, z-100), which would otherwise float over the session block.
         process.env.NODE_ENV === "development" ? "left-[76px]" : "left-4",
@@ -43,8 +43,9 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
       {icon && (
-        // Theme icon in a white disc riding the top edge (Scott's "POI idea" mock), so the text below can share one left edge.
-        <div className="pointer-events-none absolute left-1/2 top-0 flex size-[72px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(22,11,43,0.12)]">
+        // Theme icon in a flat white disc riding the top edge, ~70% above it (Scott's "POI idea" mock), so the text
+        // below shares one left edge and long titles can run under the disc's lower edge.
+        <div className="pointer-events-none absolute left-1/2 top-0 flex size-[72px] -translate-x-1/2 -translate-y-[70%] items-center justify-center rounded-full bg-white/95 backdrop-blur">
           {/* eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted */}
           <img src={iconUrl(icon)} alt="" className="size-14 object-contain" />
         </div>
