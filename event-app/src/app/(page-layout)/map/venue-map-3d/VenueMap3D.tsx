@@ -12,6 +12,8 @@ import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
 import { LevelToggle } from "./LevelToggle";
 import { ControlsHelp } from "./ControlsHelp";
+import { areaOf } from "./planArea";
+import { AREA_PARAM, parseAreaParam } from "./roomAreas";
 import { DEFAULT_SETTINGS, type Area, type LevelId, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
@@ -58,6 +60,23 @@ export function VenueMap3D() {
     resetRef.current();
   }, []);
   useTabReselect(reset);
+
+  // Deep link from the schedule ("Show on Map"): `?area=<level>/<layer id>` opens
+  // that floor on the redraw and highlights the footprint. Derived state during
+  // render (guarded), same as AreaCard: keyed on the param and on the pane being
+  // active, so a second visit with the same param re-highlights.
+  const areaParam = searchParams.get(AREA_PARAM);
+  const areaVisit = areaParam && active ? areaParam : null;
+  const [handledAreaVisit, setHandledAreaVisit] = useState<string | null>(null);
+  if (areaVisit !== handledAreaVisit) {
+    setHandledAreaVisit(areaVisit);
+    const target = areaVisit ? parseAreaParam(areaVisit) : null;
+    const shape = target && plan.levels.find((l) => l.id === target.level)?.shapes.find((s) => s.id === target.id);
+    if (shape) {
+      setSettings((s) => ({ ...s, source: "plan", level: shape.level }));
+      setSelected(areaOf(shape));
+    }
+  }
 
   // The top-down camera only makes sense on the redraw; the artwork always shows in 3D.
   const setSource = useCallback((source: MapSource) => {

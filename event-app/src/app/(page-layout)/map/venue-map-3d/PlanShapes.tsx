@@ -5,6 +5,7 @@ import type { ThreeEvent } from "@react-three/fiber";
 import { DoubleSide, EdgesGeometry, ExtrudeGeometry, Path, Shape, Vector2 } from "three";
 import { PX, scaleHex } from "./isoMath";
 import { noRaycast, TAP_SLOP_PX } from "./interaction";
+import { areaOf, shapeKey } from "./planArea";
 import type { Area, PlanShape } from "./types";
 
 type PlanShapesProps = {
@@ -16,10 +17,6 @@ type PlanShapesProps = {
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 };
-
-/** Selection / hover key: layer ids repeat across floors, so scope them by level. */
-export const shapeKey = (shape: PlanShape) => `${shape.level}/${shape.id}`;
-export const areaOf = (shape: PlanShape): Area => ({ id: shapeKey(shape), name: shape.name, description: shape.description, icon: shape.icon, level: shape.level });
 
 /** Everything extruded from one floor's plan: slab, walls, blocks and floor mats. */
 export function PlanShapes({ shapes, interactive, selectedId, hoveredId, onSelect, setHovered }: PlanShapesProps) {

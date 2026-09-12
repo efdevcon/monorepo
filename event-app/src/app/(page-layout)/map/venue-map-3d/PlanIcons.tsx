@@ -1,17 +1,20 @@
 "use client";
 
-import { useCallback, useMemo, useRef } from "react";
-import { useLoader, type ThreeEvent } from "@react-three/fiber";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useFrame, useLoader, useThree, type ThreeEvent } from "@react-three/fiber";
 import { SRGBColorSpace, Sprite, TextureLoader, type Intersection, type Raycaster, type Texture } from "three";
 import { PX } from "./isoMath";
 import { TAP_SLOP_PX } from "./interaction";
-import { areaOf, shapeKey } from "./PlanShapes";
+import { areaOf, shapeKey } from "./planArea";
 import type { Area, PlanShape } from "./types";
 
 type PlanIconsProps = {
   shapes: PlanShape[];
   /** False while every floor is stacked (taps pick a floor instead). */
   interactive: boolean;
+  /** Footprint whose icon bobs (selection key, see planArea.ts). */
+  selectedId: string | null;
+  reducedMotion: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 };
@@ -48,15 +51,25 @@ function useAlphaMask(texture: Texture) {
 /** Sprite height in world units (blocks are ~0.85 tall). */
 const ICON_HEIGHT: Record<PlanShape["kind"], number> = { block: 1.15, mat: 0.95, wall: 0.6, slab: 0 };
 const ICON_LIFT = 0.04;
+/** Selected icon: a gentle bob so the highlighted footprint reads at a glance (a deep link lands with it selected). */
+const BOB_AMPLITUDE = 0.12; // Scott: "a little more verticality" than 0.07
+const BOB_PERIOD_S = 1.8;
 
 /** The theme icons, standing on the centre of each footprint and always facing the camera. */
-export function PlanIcons({ shapes, interactive, onSelect, setHovered }: PlanIconsProps) {
+export function PlanIcons({ shapes, interactive, selectedId, reducedMotion, onSelect, setHovered }: PlanIconsProps) {
   return (
     <>
       {shapes
         .filter((s) => s.icon)
         .map((shape) => (
-          <PlanIcon key={shape.id} shape={shape} interactive={interactive} onSelect={onSelect} setHovered={setHovered} />
+          <PlanIcon
+            key={shape.id}
+            shape={shape}
+            interactive={interactive}
+            bob={shapeKey(shape) === selectedId && !reducedMotion}
+            onSelect={onSelect}
+            setHovered={setHovered}
+          />
         ))}
     </>
   );
@@ -65,11 +78,13 @@ export function PlanIcons({ shapes, interactive, onSelect, setHovered }: PlanIco
 function PlanIcon({
   shape,
   interactive,
+  bob,
   onSelect,
   setHovered,
 }: {
   shape: PlanShape;
   interactive: boolean;
+  bob: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 }) {
@@ -95,6 +110,26 @@ function PlanIcon({
   const w = h * aspect;
   const [cx, cz] = shape.centroid;
   const y = shape.height * PX + ICON_LIFT + h / 2;
+
+  // Bob while selected. The canvas renders on demand, so each frame asks for the
+  // next; the sine starts at rest so selecting doesn't jump the icon.
+  const { invalidate } = useThree();
+  const bobStart = useRef<number | null>(null);
+  useEffect(() => {
+    bobStart.current = bob ? performance.now() : null;
+    const sprite = spriteRef.current;
+    if (!bob && sprite) {
+      sprite.position.y = y;
+      invalidate();
+    } else if (bob) invalidate();
+  }, [bob, y, invalidate]);
+  useFrame(() => {
+    const sprite = spriteRef.current;
+    if (!sprite || bobStart.current === null) return;
+    const t = (performance.now() - bobStart.current) / 1000;
+    sprite.position.y = y + BOB_AMPLITUDE * Math.sin((t / BOB_PERIOD_S) * Math.PI * 2);
+    invalidate();
+  });
 
   const handlers =
     shape.tappable && interactive

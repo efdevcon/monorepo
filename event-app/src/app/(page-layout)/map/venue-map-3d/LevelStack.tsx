@@ -166,7 +166,7 @@ export function LevelStack({
           <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHovered} />
           {showIcons && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={l.shapes} interactive={!stacked} onSelect={onSelect} setHovered={setHovered} />
+              <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
             </Suspense>
           )}
         </group>
