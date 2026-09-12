@@ -7,6 +7,7 @@ import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
+import { DebugCorner, DebugToggle } from "./DebugToggle";
 import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
 import { LevelToggle } from "./LevelToggle";
@@ -39,7 +40,9 @@ const areas = areasJson as Area[];
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
   const searchParams = useSearchParams();
-  const debug = searchParams.get("debug") !== null;
+  // Tuning panel + stats, toggled from the top-left button (not a URL param: the
+  // app-wide dev panel owns `?debug` and carries it across every link).
+  const [debug, setDebug] = useState(false);
   const [settings, setSettings] = useState<MapSettings>(() => ({
     ...DEFAULT_SETTINGS,
     source: searchParams.get("source") === "iso" ? "iso" : "plan",
@@ -96,7 +99,10 @@ export function VenueMap3D() {
       )}
       <ControlsHelp view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
-      {debug && <DebugPanel settings={settings} onChange={setSettings} />}
+      <DebugCorner>
+        <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
+        {debug && <DebugPanel settings={settings} onChange={setSettings} />}
+      </DebugCorner>
     </div>
   );
 }

@@ -2,11 +2,11 @@
 
 import { LEVEL_ORDER, type MapSettings } from "./types";
 
-/** `?debug` tuning panel for the look-and-feel experiment. Not part of the product UI. */
+/** Tuning panel for the look-and-feel experiment, opened from DebugToggle in DebugCorner (top left). Not part of the product UI. */
 export function DebugPanel({ settings, onChange }: { settings: MapSettings; onChange: (s: MapSettings) => void }) {
   const set = <K extends keyof MapSettings>(key: K, value: MapSettings[K]) => onChange({ ...settings, [key]: value });
   return (
-    <div className="fixed right-4 top-20 z-20 w-56 rounded-xl bg-white/95 p-3 text-[12px] leading-tight text-dc-fg shadow-lg backdrop-blur">
+    <div className="w-56 rounded-xl bg-white/95 p-3 text-[12px] leading-tight text-dc-fg shadow-lg backdrop-blur">
       <p className="mb-2 font-bold">3D map debug</p>
       <label className="mb-2 flex items-center justify-between gap-2">
         Source

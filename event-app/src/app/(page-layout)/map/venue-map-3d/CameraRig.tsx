@@ -19,6 +19,8 @@ type CameraRigProps = {
   /** Floors stacked around y = 0 (count and world-unit gap), or null when one floor shows: widens the fit. */
   stack: { count: number; gap: number } | null;
   reducedMotion: boolean;
+  /** Publish the camera state on window.__mapCamera for hit-testing scripts. */
+  debug: boolean;
   /** Current orbit azimuth + polar angle, read every frame by the props. */
   poseRef: MutableRefObject<CameraPose>;
   /** Filled with a function that animates back to the start view (Map tab re-tap). */
@@ -49,7 +51,7 @@ const easeOutCubic: Easing = (t) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ groundBounds, fit, settings, pannable, stack, reducedMotion, poseRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, pannable, stack, reducedMotion, debug, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<Tween | null>(null);
@@ -72,8 +74,8 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
   latest.current = { targetPolar, baseAzimuth, stack };
   // Set by reset() when the view is also changing; the view effect then finishes the reset.
   const pendingResetRef = useRef(false);
-  // ?debug: publish the camera state for hit-testing scripts.
-  const debugRef = useRef(typeof window !== "undefined" && window.location.search.includes("debug"));
+  const debugRef = useRef(debug);
+  debugRef.current = debug;
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
   const computeFit = (polar = targetPolar, stacked = latest.current.stack) => {

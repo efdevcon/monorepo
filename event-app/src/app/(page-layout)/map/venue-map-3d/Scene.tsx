@@ -29,7 +29,7 @@ type SceneProps = {
 export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, reducedMotion, onSelect, onSelectLevel, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  // ?debug: expose the hovered target for hit-testing scripts.
+  // Debug: expose the hovered target for hit-testing scripts.
   useEffect(() => {
     if (debug) (window as unknown as { __mapHover?: string | null }).__mapHover = hoveredId;
   }, [debug, hoveredId]);
@@ -61,7 +61,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
     >
       <ambientLight intensity={lit ? 1.6 : 0} />
       <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
-      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} poseRef={poseRef} resetRef={resetRef} />
+      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} debug={debug} poseRef={poseRef} resetRef={resetRef} />
       {usePlan ? (
         <LevelStack
           levels={plan.levels}
