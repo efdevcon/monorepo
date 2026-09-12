@@ -13,7 +13,7 @@ import type { Area } from "./types";
 /**
  * The bottom card that opens when an area is tapped: name and a short
  * description, plus — for footprints backed by a schedule room (roomAreas.ts)
- * — the session running there right now, tagged Ongoing like the schedule's
+ * — the session running there right now, tagged "Live now" like the schedule's
  * time groups. Stays mounted so it can slide out; the last area is kept while
  * it fades.
  */
@@ -32,6 +32,8 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       aria-hidden={!open}
       className={cn(
         "fixed right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
+        // The icon disc is centred on the top edge, half above the card: pad the body down past its lower half.
+        icon && "pt-[52px]",
         // Full width on phones. Development only: clear the app's 44px debug trigger (components/DebugPanel,
         // bottom-left, z-100), which would otherwise float over the session block.
         process.env.NODE_ENV === "development" ? "left-[76px]" : "left-4",
@@ -40,30 +42,30 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
+      {icon && (
+        // Theme icon in a white disc riding the top edge (Scott's "POI idea" mock), so the text below can share one left edge.
+        <div className="pointer-events-none absolute left-1/2 top-0 flex size-[72px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-[0_2px_8px_rgba(22,11,43,0.12)]">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted */}
+          <img src={iconUrl(icon)} alt="" className="size-14 object-contain" />
+        </div>
+      )}
       {/* Centred on the dialog's top-right corner, half outside it (Scott); white + shadow so it reads against the map. */}
       <CloseButton
         onClick={onClose}
         tabIndex={open ? 0 : -1}
         className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 bg-white shadow-[0_2px_8px_rgba(22,11,43,0.18)]"
       />
-      <div className="flex items-start gap-3">
-        {icon && (
-          // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
-          <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
-        )}
-        {/* pr-3 keeps the tag clear of the close button's inner half. */}
-        <div className="min-w-0 flex-1 self-center pr-3">
-          <div className="flex items-center justify-between gap-2">
-            <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
-            {live && (
-              // Same tag as the schedule's ongoing time group (Schedule.tsx).
-              <span className="shrink-0 rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
-                Ongoing
-              </span>
-            )}
-          </div>
-          {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+      <div className="flex flex-col pr-3">
+        <div className="flex items-center justify-between gap-2">
+          <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
+          {live && (
+            // The schedule's live tag (Schedule.tsx), outlined and a size down for the card.
+            <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
+              Live now
+            </span>
+          )}
         </div>
+        {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
       </div>
 
       {live && (
