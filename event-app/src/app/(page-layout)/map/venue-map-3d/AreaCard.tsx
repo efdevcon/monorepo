@@ -40,24 +40,29 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
+      <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} className="absolute right-3 top-3" />
       <div className="flex items-start gap-3">
         {icon && (
           // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
           <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
         )}
-        <div className="min-w-0 flex-1 self-center">
-          <p className="text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
+        {/* pr-7 keeps the title row (and its tag) clear of the 28px close button in the corner. */}
+        <div className="min-w-0 flex-1 self-center pr-7">
+          <div className="flex items-center justify-between gap-2">
+            <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
+            {live && (
+              // Same tag as the schedule's ongoing time group (Schedule.tsx).
+              <span className="shrink-0 rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
+                Ongoing
+              </span>
+            )}
+          </div>
           {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
         </div>
-        <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} />
       </div>
 
       {live && (
         <div className="flex flex-col gap-2 border-t border-dc-hairline pt-3">
-          {/* Same tag as the schedule's ongoing time group (Schedule.tsx). */}
-          <span className="self-start rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
-            Ongoing
-          </span>
           {/* Opens the session in place (schedule pane), where the livestream and Q&A live. */}
           <DetailLink kind="session" id={live.id} className="group -mx-1 flex items-center gap-1 rounded-md px-1 py-0.5 transition-colors hover:bg-dc-lavender">
             <span className="line-clamp-2 min-w-0 flex-1 text-[14px] font-bold leading-5 text-dc-fg2 group-hover:text-dc-purple">{live.title}</span>
