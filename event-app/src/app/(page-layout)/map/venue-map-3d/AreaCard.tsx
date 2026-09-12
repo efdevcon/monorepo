@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import cn from "classnames";
-import { Clock3, User } from "lucide-react";
+import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
+import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
 import { iconFor, iconUrl } from "./icons";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
@@ -53,19 +54,26 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
 
       {live && (
         <div className="flex flex-col gap-2 border-t border-dc-hairline pt-3">
-          <div className="flex items-center gap-2">
-            {/* Same tag as the schedule's ongoing time group (Schedule.tsx). */}
-            <span className="shrink-0 rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
-              Ongoing
-            </span>
-            {live.type && <span className="truncate text-[12px] leading-none text-dc-muted">{live.type}</span>}
-          </div>
-          <p className="line-clamp-2 text-[14px] font-bold leading-5 text-dc-fg2">{live.title}</p>
+          {/* Same tag as the schedule's ongoing time group (Schedule.tsx). */}
+          <span className="self-start rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
+            Ongoing
+          </span>
+          {/* Opens the session in place (schedule pane), where the livestream and Q&A live. */}
+          <DetailLink kind="session" id={live.id} className="group -mx-1 flex items-center gap-1 rounded-md px-1 py-0.5 transition-colors hover:bg-dc-lavender">
+            <span className="line-clamp-2 min-w-0 flex-1 text-[14px] font-bold leading-5 text-dc-fg2 group-hover:text-dc-purple">{live.title}</span>
+            <ChevronRight className="size-4 shrink-0 text-dc-muted transition-colors group-hover:text-dc-purple" />
+          </DetailLink>
           <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2">
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
               <Clock3 className="size-3.5 shrink-0" />
-              {formatTimeRange(live)} · {Math.round((live.end - live.start) / 60)} min
+              {formatTimeRange(live)}
             </span>
+            {live.type && (
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+                <Presentation className="size-3.5 shrink-0" />
+                {live.type}
+              </span>
+            )}
             {live.speakers.length > 0 && (
               <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-none text-dc-muted">
                 <User className="size-3.5 shrink-0" />
