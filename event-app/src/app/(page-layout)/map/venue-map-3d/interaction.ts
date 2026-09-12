@@ -12,16 +12,10 @@ export const noRaycast = () => null;
 export const LEVEL_SWITCH_MS = 800;
 
 /**
- * Strong ease-out (≈ cubic-bezier(0.22, 1, 0.36, 1)) for floors arriving on
- * screen: a whole floor is a big, heavy element, so it arrives fast and
- * settles gently.
+ * Strong ease-out (≈ cubic-bezier(0.22, 1, 0.36, 1)) for every floor move: a
+ * whole floor is a big, heavy element, so it moves fast and settles gently.
+ * (An ease-in-out for the leaving floors was tried on 2026-09-12; Scott wanted
+ * to compare against ease-out — see commit 18ff7fa0d for that variant.)
  */
 export const easeOutQuint = (t: number) => 1 - Math.pow(1 - t, 5);
 
-/**
- * Ease-in-out (≈ cubic-bezier(0.645, 0.045, 0.355, 1)) for floors leaving the
- * screen. An ease-out exit is over in a few frames with the settle happening
- * off-screen, which read as instant; this keeps the departure visible and lets
- * the floor accelerate away.
- */
-export const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);

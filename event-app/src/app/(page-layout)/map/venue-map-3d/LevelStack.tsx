@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Group, MathUtils, OrthographicCamera, PerspectiveCamera } from "three";
 import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
-import { easeInOutCubic, easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
+import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
 import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
@@ -28,7 +28,7 @@ type LevelStackProps = {
 };
 
 type LevelAnim = { y: number; visible: boolean };
-type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; ease: (t: number) => number; hideAtEnd: boolean };
+type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; hideAtEnd: boolean };
 
 /**
  * Positions the floors and animates floor changes. Rest poses: every floor
@@ -37,9 +37,8 @@ type Tween = { level: LevelId; fromY: number; toY: number; start: number; durati
  * floors below). A change tweens each floor that is visible before or after
  * to its new rest pose, so the leaving floor always moves away from the
  * entering one: G → L1 drops G and lowers L1 in from the top; leaving the
- * stack sends higher floors up and lower floors down. Arriving floors ease
- * out, leaving floors ease in-out (their settle would be off-screen). Floors
- * hidden on both ends snap so they never cross the screen. The flat view
+ * stack sends higher floors up and lower floors down. Floors hidden on both
+ * ends snap so they never cross the screen. The flat view
  * can't show vertical travel, so any change there is instant. Refs only; no
  * per-frame React.
  */
@@ -100,7 +99,7 @@ export function LevelStack({
         continue;
       }
       a.visible = true;
-      tweens.push({ level: id, fromY: a.y, toY, start: now, duration, ease: showAfter ? easeOutQuint : easeInOutCubic, hideAtEnd: !showAfter });
+      tweens.push({ level: id, fromY: a.y, toY, start: now, duration, hideAtEnd: !showAfter });
     }
     tweensRef.current = tweens;
     invalidate();
@@ -121,7 +120,7 @@ export function LevelStack({
     for (const tw of tweensRef.current) {
       const a = anims.get(tw.level)!;
       const t = tw.duration === 0 ? 1 : Math.min(1, (now - tw.start) / tw.duration);
-      a.y = MathUtils.lerp(tw.fromY, tw.toY, tw.ease(t));
+      a.y = MathUtils.lerp(tw.fromY, tw.toY, easeOutQuint(t));
       if (t >= 1) {
         if (tw.hideAtEnd) a.visible = false;
       } else remaining.push(tw);

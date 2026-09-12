@@ -128,7 +128,18 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
   };
 
   const tweenTo = (to: ViewState, duration = TWEEN_MS, ease: Easing = easeOutCubic) => {
-    tweenRef.current = { from: currentView(), to, start: performance.now(), duration, ease };
+    const from = currentView();
+    tweenRef.current = { from, to, start: performance.now(), duration, ease };
+    // OrbitControls.update() clamps the camera to min/max zoom every frame, so a
+    // tween that starts outside freshly tightened clamps (stack → one floor) would
+    // snap to the clamp before easing. Loosen them to cover both ends until it lands.
+    const controls = controlsRef.current;
+    if (controls) {
+      controls.minZoom = Math.min(controls.minZoom, from.zoom, to.zoom);
+      controls.maxZoom = Math.max(controls.maxZoom, from.zoom, to.zoom);
+      controls.minDistance = Math.min(controls.minDistance, from.radius, to.radius);
+      controls.maxDistance = Math.max(controls.maxDistance, from.radius, to.radius);
+    }
     invalidate();
   };
 
@@ -164,7 +175,10 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     const onChange = () => invalidate();
     const onStart = () => {
       interactedRef.current = true;
-      tweenRef.current = null;
+      if (tweenRef.current) {
+        tweenRef.current = null;
+        applyZoomClamps(); // a tween loosens the clamps until it lands; the user grabbing the camera ends it early
+      }
     };
     controls.addEventListener("change", onChange);
     controls.addEventListener("start", onStart);
@@ -341,6 +355,7 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
       if (t >= 1) {
         tweenRef.current = null;
         pendingResetRef.current = false;
+        applyZoomClamps(); // strict clamps again now that the camera is inside them
       }
       invalidate();
     } else if (controls.update(delta)) {
