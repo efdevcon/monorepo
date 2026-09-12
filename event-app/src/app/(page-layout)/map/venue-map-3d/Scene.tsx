@@ -9,7 +9,7 @@ import { Slab } from "./Slab";
 import { Blocks } from "./Blocks";
 import { Props } from "./Props";
 import { LevelStack } from "./LevelStack";
-import type { Area, CameraPose, LevelId, MapSettings, PlanScene, SceneData } from "./types";
+import type { Area, CameraFocus, CameraPose, LevelId, MapSettings, PlanScene, SceneData } from "./types";
 
 type SceneProps = {
   scene: SceneData;
@@ -20,13 +20,14 @@ type SceneProps = {
   active: boolean;
   debug: boolean;
   reducedMotion: boolean;
+  focus: CameraFocus | null;
   onSelect: (area: Area | null) => void;
   onSelectLevel: (level: LevelId) => void;
   resetRef: MutableRefObject<() => void>;
 };
 
 /** The R3F canvas: the stacked plan floors (or the iso artwork) and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, reducedMotion, onSelect, onSelectLevel, resetRef }: SceneProps) {
+export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Debug: expose the hovered target for hit-testing scripts.
@@ -61,7 +62,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
     >
       <ambientLight intensity={lit ? 1.6 : 0} />
       <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
-      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} debug={debug} poseRef={poseRef} resetRef={resetRef} />
+      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} focus={focus} debug={debug} poseRef={poseRef} resetRef={resetRef} />
       {usePlan ? (
         <LevelStack
           levels={plan.levels}

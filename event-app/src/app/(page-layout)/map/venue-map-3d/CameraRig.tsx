@@ -6,7 +6,7 @@ import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycast
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS } from "./interaction";
-import type { CameraPose, GroundBounds, MapSettings } from "./types";
+import type { CameraFocus, CameraPose, GroundBounds, MapSettings } from "./types";
 
 type CameraRigProps = {
   /** Floor rectangle in ground px: orbit centre and double-tap target clamp. */
@@ -19,6 +19,8 @@ type CameraRigProps = {
   /** Floors stacked around y = 0 (count and world-unit gap), or null when one floor shows: widens the fit. */
   stack: { count: number; gap: number } | null;
   reducedMotion: boolean;
+  /** Centre + zoom on a footprint (schedule deep link); a new `key` re-runs it. */
+  focus: CameraFocus | null;
   /** Publish the camera state on window.__mapCamera for hit-testing scripts. */
   debug: boolean;
   /** Current orbit azimuth + polar angle, read every frame by the props. */
@@ -51,7 +53,7 @@ const easeOutCubic: Easing = (t) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ groundBounds, fit, settings, pannable, stack, reducedMotion, debug, poseRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, pannable, stack, reducedMotion, focus, debug, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<Tween | null>(null);
@@ -269,6 +271,21 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     tweenTo({ ...cur, target: center.clone(), zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackKey]);
+
+  // Deep link: centre on the footprint and zoom past the fit. Declared after the
+  // stack / view effects so, when a floor opens in the same commit, this tween
+  // is the one that runs (same clock as the floors sliding in).
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!focus || !controls || size.width === 0) return;
+    interactedRef.current = true; // a resize must not snap back to the start view
+    const target = new Vector3(MathUtils.clamp(focus.x * PX, bounds.minX, bounds.maxX), 0, MathUtils.clamp(focus.z * PX, bounds.minZ, bounds.maxZ));
+    const cur = currentView();
+    const zoom = isOrtho ? Math.min(controls.maxZoom, fitRef.current.zoom * focus.zoom) : cur.zoom;
+    const radius = isOrtho ? fitRef.current.radius : Math.max(controls.minDistance, fitRef.current.radius / focus.zoom);
+    tweenTo({ target, azimuth: baseAzimuth, polar: targetPolar, zoom, radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focus?.key]);
 
   // Double-click / double-tap: zoom in on the tapped floor point.
   useEffect(() => {

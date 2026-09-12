@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
-import { useMediaQuery } from "@/hooks/useIsDesktop";
+import { isDesktopNow, useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
 import { DebugCorner, DebugToggle } from "./DebugToggle";
@@ -14,7 +14,17 @@ import { LevelToggle } from "./LevelToggle";
 import { ControlsHelp } from "./ControlsHelp";
 import { areaOf } from "./planArea";
 import { AREA_PARAM, parseAreaParam } from "./roomAreas";
-import { DEFAULT_SETTINGS, type Area, type LevelId, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
+import {
+  DEFAULT_SETTINGS,
+  type Area,
+  type CameraFocus,
+  type LevelId,
+  type MapSettings,
+  type MapSource,
+  type MapView,
+  type PlanScene,
+  type SceneData,
+} from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
 import areasJson from "./areas.json";
@@ -29,6 +39,10 @@ const scene = sceneJson as unknown as SceneData;
 const plan = planJson as unknown as PlanScene;
 const areas = areasJson as Area[];
 
+/** Deep-link zoom over the fitted floor: phones need the footprint pulled in, desktop only a nudge (Scott, 2026-09-12). */
+const FOCUS_ZOOM_MOBILE = 2.2;
+const FOCUS_ZOOM_DESKTOP = 1.35;
+
 /**
  * 3D venue map prototype for the Map tab. Default source: the three floors
  * (G, L1, L2) extruded from the top-down plan SVGs, stacked in 3D until a
@@ -41,6 +55,7 @@ const areas = areasJson as Area[];
  */
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
+  const [focus, setFocus] = useState<CameraFocus | null>(null);
   const searchParams = useSearchParams();
   // Tuning panel + stats, toggled from the top-left button (not a URL param: the
   // app-wide dev panel owns `?debug` and carries it across every link).
@@ -56,6 +71,7 @@ export function VenueMap3D() {
   // Map-tab re-tap: back to the stacked 3D start view (the rig finishes the reset once the pitch change lands).
   const reset = useCallback(() => {
     setSelected(null);
+    setFocus(null);
     setSettings((s) => (s.view === "3d" && s.level === null ? s : { ...s, view: "3d", level: null }));
     resetRef.current();
   }, []);
@@ -75,6 +91,8 @@ export function VenueMap3D() {
     if (shape) {
       setSettings((s) => ({ ...s, source: "plan", level: shape.level }));
       setSelected(areaOf(shape));
+      const [x, z] = shape.centroid;
+      setFocus({ x, z, zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, key: areaVisit as string });
     }
   }
 
@@ -105,6 +123,7 @@ export function VenueMap3D() {
         active={active}
         debug={debug}
         reducedMotion={reducedMotion}
+        focus={focus}
         onSelect={setSelected}
         onSelectLevel={setLevel}
         resetRef={resetRef}
