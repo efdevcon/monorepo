@@ -5,16 +5,18 @@ import { useMediaQuery } from "@/hooks/useIsDesktop";
 import type { MapView } from "./types";
 
 /** One-line hint of what the pointer does in the current view. Hidden while the area card is open. */
-export function ControlsHelp({ view, pannable, hidden }: { view: MapView; pannable: boolean; hidden: boolean }) {
+export function ControlsHelp({ view, pannable, stacked, hidden }: { view: MapView; pannable: boolean; stacked: boolean; hidden: boolean }) {
   const touch = useMediaQuery("(pointer: coarse)");
+  const press = touch ? "Tap" : "Click";
+  const target = stacked ? `${press} a floor to open it` : `${press} an area for details`;
   const parts =
     view === "top"
       ? touch
-        ? ["Drag to pan", "Pinch to zoom", "Double-tap to zoom in", "Tap an area for details"]
-        : ["Drag to pan", "Scroll to zoom", "Double-click to zoom in", "Click an area for details"]
+        ? ["Drag to pan", "Pinch to zoom", "Double-tap to zoom in", target]
+        : ["Drag to pan", "Scroll to zoom", "Double-click to zoom in", target]
       : touch
-        ? ["Swipe to rotate", pannable && "Two fingers to pan", "Pinch to zoom", "Double-tap to zoom in", "Tap an area for details"]
-        : ["Drag to rotate", pannable && "Right-drag to pan", "Scroll to zoom", "Double-click to zoom in", "Click an area for details"];
+        ? [stacked && target, "Swipe to rotate", pannable && "Two fingers to pan", "Pinch to zoom", "Double-tap to zoom in", !stacked && target]
+        : [stacked && target, "Drag to rotate", pannable && "Right-drag to pan", "Scroll to zoom", "Double-click to zoom in", !stacked && target];
 
   return (
     <p

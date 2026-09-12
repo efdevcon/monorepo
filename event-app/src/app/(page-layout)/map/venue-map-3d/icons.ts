@@ -15,6 +15,13 @@ const ICON_RULES: [RegExp, string][] = [
   [/^press/i, "press"],
   [/impact/i, "impact"],
   [/snack/i, "snack"],
+  [/^food-area/i, "food-area"],
+  [/^decompression-zone/i, "decompression"],
+  [/^hacker-cave/i, "hacker-cave"],
+  [/^playground/i, "playground"],
+  [/^registration/i, "registration-wristband"],
+  [/^swag-station/i, "swag-station"],
+  [/^frog-crypto/i, "frogcrypto"],
 ];
 
 export function iconFor(id: string): string | null {

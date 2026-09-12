@@ -5,10 +5,13 @@ import { useLoader, type ThreeEvent } from "@react-three/fiber";
 import { SRGBColorSpace, Sprite, TextureLoader, type Intersection, type Raycaster, type Texture } from "three";
 import { PX } from "./isoMath";
 import { TAP_SLOP_PX } from "./interaction";
+import { areaOf, shapeKey } from "./PlanShapes";
 import type { Area, PlanShape } from "./types";
 
 type PlanIconsProps = {
   shapes: PlanShape[];
+  /** False while every floor is stacked (taps pick a floor instead). */
+  interactive: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 };
@@ -47,19 +50,29 @@ const ICON_HEIGHT: Record<PlanShape["kind"], number> = { block: 1.15, mat: 0.95,
 const ICON_LIFT = 0.04;
 
 /** The theme icons, standing on the centre of each footprint and always facing the camera. */
-export function PlanIcons({ shapes, onSelect, setHovered }: PlanIconsProps) {
+export function PlanIcons({ shapes, interactive, onSelect, setHovered }: PlanIconsProps) {
   return (
     <>
       {shapes
         .filter((s) => s.icon)
         .map((shape) => (
-          <PlanIcon key={shape.id} shape={shape} onSelect={onSelect} setHovered={setHovered} />
+          <PlanIcon key={shape.id} shape={shape} interactive={interactive} onSelect={onSelect} setHovered={setHovered} />
         ))}
     </>
   );
 }
 
-function PlanIcon({ shape, onSelect, setHovered }: { shape: PlanShape; onSelect: (area: Area) => void; setHovered: (id: string | null) => void }) {
+function PlanIcon({
+  shape,
+  interactive,
+  onSelect,
+  setHovered,
+}: {
+  shape: PlanShape;
+  interactive: boolean;
+  onSelect: (area: Area) => void;
+  setHovered: (id: string | null) => void;
+}) {
   const texture = useLoader(TextureLoader, `/maps/devcon-8/icons/${shape.icon}.png`);
   const alphaAt = useAlphaMask(texture);
   const spriteRef = useRef<Sprite>(null);
@@ -83,20 +96,21 @@ function PlanIcon({ shape, onSelect, setHovered }: { shape: PlanShape; onSelect:
   const [cx, cz] = shape.centroid;
   const y = shape.height * PX + ICON_LIFT + h / 2;
 
-  const handlers = shape.tappable
-    ? {
-        onClick: (e: ThreeEvent<MouseEvent>) => {
-          if (e.delta > TAP_SLOP_PX) return;
-          e.stopPropagation();
-          onSelect({ id: shape.id, name: shape.name, description: shape.description, icon: shape.icon });
-        },
-        onPointerOver: (e: ThreeEvent<PointerEvent>) => {
-          e.stopPropagation();
-          setHovered(shape.id);
-        },
-        onPointerOut: () => setHovered(null),
-      }
-    : {};
+  const handlers =
+    shape.tappable && interactive
+      ? {
+          onClick: (e: ThreeEvent<MouseEvent>) => {
+            if (e.delta > TAP_SLOP_PX) return;
+            e.stopPropagation();
+            onSelect(areaOf(shape));
+          },
+          onPointerOver: (e: ThreeEvent<PointerEvent>) => {
+            e.stopPropagation();
+            setHovered(shapeKey(shape));
+          },
+          onPointerOut: () => setHovered(null),
+        }
+      : {};
 
   return (
     <sprite ref={spriteRef} position={[cx * PX, y, cz * PX]} scale={[w, h, 1]} raycast={raycast} {...handlers}>

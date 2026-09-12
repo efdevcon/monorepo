@@ -11,6 +11,10 @@ export type Area = {
   prop?: string;
   /** Theme icon name; derived from the id when absent (see icons.ts). */
   icon?: string | null;
+  /** Numbered copies keep their number in the name ("Meeting Room 7"); set on the generic entry. */
+  numbered?: boolean;
+  /** Floor the area sits on (plan source only). */
+  level?: LevelId;
 };
 
 export type SceneBlock = {
@@ -44,11 +48,15 @@ export type SceneData = {
 };
 
 export type PlanShape = {
+  /** Layer id from the plan SVG; unique within a level only (walls repeat on every floor). */
   id: string;
+  level: LevelId;
   kind: "slab" | "wall" | "block" | "mat";
   name: string;
   description: string;
   tappable: boolean;
+  /** Draw the edge lines (false for the flat floor colour patch). */
+  outline: boolean;
   /** Footprint polygons in ground px (X, Z); the largest is the outline, the rest are holes. */
   polygons: [number, number][][];
   /** Centre of the outline polygon in ground px: where the icon sprite stands. */
@@ -61,16 +69,33 @@ export type PlanShape = {
   stroke: string | null;
 };
 
-/** Output of scripts/plan-map-build.mjs: geometry extruded from a top-down plan SVG. */
-export type PlanScene = {
-  source: "plan";
+/** Floors, bottom to top. Matches LEVELS in scripts/plan-map-build.mjs. */
+export const LEVEL_ORDER = ["G", "L1", "L2"] as const;
+export type LevelId = (typeof LEVEL_ORDER)[number];
+export const levelIndex = (id: LevelId) => LEVEL_ORDER.indexOf(id);
+
+/** One floor of the plan bundle: geometry extruded from its top-down SVG. */
+export type PlanLevel = {
+  id: LevelId;
+  /** Pill label ("G", "L1"). */
+  label: string;
+  /** Spoken name ("Ground floor"). */
+  name: string;
   generatedFrom: string;
   viewBox: number[];
-  planScale: number;
   bounds: GroundBounds;
   /** Screen extent of the floor at the start view, in px, for the camera fit. */
   fit: { width: number; height: number };
   shapes: PlanShape[];
+};
+
+/** Output of scripts/plan-map-build.mjs: every floor plus the union footprint the camera fits to. */
+export type PlanScene = {
+  source: "plan";
+  planScale: number;
+  bounds: GroundBounds;
+  fit: { width: number; height: number };
+  levels: PlanLevel[];
 };
 
 /** Axis-aligned floor rectangle in ground px. */
@@ -84,9 +109,13 @@ export type MapView = "3d" | "top";
 export type CameraPose = { azimuth: number; polar: number };
 
 export type MapSettings = {
-  /** "iso": artwork un-projected + boxes; "plan": everything extruded from the top-down plan. */
+  /** "plan" (default): everything extruded from the top-down plans; "iso": the artwork import demo. */
   source: MapSource;
   view: MapView;
+  /** Floor shown on the redraw; null = every floor stacked (3D only). */
+  level: LevelId | null;
+  /** Vertical gap between stacked floors, in world units. */
+  levelGap: number;
   projection: "ortho" | "perspective";
   lit: boolean;
   showProps: boolean;
@@ -99,8 +128,10 @@ export type MapSettings = {
 };
 
 export const DEFAULT_SETTINGS: MapSettings = {
-  source: "iso",
+  source: "plan",
   view: "3d",
+  level: null,
+  levelGap: 6,
   projection: "ortho",
   lit: false,
   showProps: true,

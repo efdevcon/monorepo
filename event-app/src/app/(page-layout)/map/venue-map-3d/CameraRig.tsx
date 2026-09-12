@@ -5,6 +5,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycaster, Spherical, TOUCH, Vector2, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { INITIAL_AZIMUTH, POLAR_ANGLE, PX, SCREEN_PX_PER_SVG_PX } from "./isoMath";
+import { easeOutQuint, LEVEL_SWITCH_MS } from "./interaction";
 import type { CameraPose, GroundBounds, MapSettings } from "./types";
 
 type CameraRigProps = {
@@ -15,6 +16,9 @@ type CameraRigProps = {
   settings: MapSettings;
   /** Right-drag / two-finger pan in the 3D view (top-down always pans). */
   pannable: boolean;
+  /** Floors stacked around y = 0 (count and world-unit gap), or null when one floor shows: widens the fit. */
+  stack: { count: number; gap: number } | null;
+  reducedMotion: boolean;
   /** Current orbit azimuth + polar angle, read every frame by the props. */
   poseRef: MutableRefObject<CameraPose>;
   /** Filled with a function that animates back to the start view (Map tab re-tap). */
@@ -33,8 +37,10 @@ const TAP_MOVE_PX = 10;
 const TOP_POLAR = 0.0005;
 
 type ViewState = { target: Vector3; azimuth: number; polar: number; zoom: number; radius: number };
+type Easing = (t: number) => number;
+type Tween = { from: ViewState; to: ViewState; start: number; duration: number; ease: Easing };
 
-const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+const easeOutCubic: Easing = (t) => 1 - Math.pow(1 - t, 3);
 
 /**
  * Orbit camera with the interaction rules of the venue map: horizontal
@@ -43,10 +49,10 @@ const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
  * double-tap to zoom in on a point, and an animated reset. Panning is off so
  * the floor never drifts away.
  */
-export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, fit, settings, pannable, stack, reducedMotion, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
-  const tweenRef = useRef<{ from: ViewState; to: ViewState; start: number } | null>(null);
+  const tweenRef = useRef<Tween | null>(null);
   const interactedRef = useRef(false);
   const fitRef = useRef<{ zoom: number; radius: number }>({ zoom: 1, radius: ORTHO_RADIUS });
   const bounds = {
@@ -62,17 +68,18 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
   // Top-down reads like the plan drawing: X to the right, Z downwards (camera offset along +Z).
   const baseAzimuth = isTop ? 0 : INITIAL_AZIMUTH;
   // Latest per-view values for callbacks created in the mount effect (reset).
-  const latest = useRef({ targetPolar, baseAzimuth });
-  latest.current = { targetPolar, baseAzimuth };
+  const latest = useRef({ targetPolar, baseAzimuth, stack });
+  latest.current = { targetPolar, baseAzimuth, stack };
   // Set by reset() when the view is also changing; the view effect then finishes the reset.
   const pendingResetRef = useRef(false);
   // ?debug: publish the camera state for hit-testing scripts.
   const debugRef = useRef(typeof window !== "undefined" && window.location.search.includes("debug"));
 
   // Zoom (ortho) or distance (perspective) at which the whole floor fits the viewport.
-  const computeFit = (polar = targetPolar) => {
+  const computeFit = (polar = targetPolar, stacked = latest.current.stack) => {
     // World extent to show: the floor's axis-aligned footprint from above, or the
-    // artwork's screen extent (`fit`, measured at the isometric pitch) in 3D.
+    // artwork's screen extent (`fit`, measured at the isometric pitch) in 3D, plus
+    // the vertical spread of the stack (world y projects at sin(polar)).
     let worldW: number;
     let worldH: number;
     if (polar < 0.01) {
@@ -81,6 +88,7 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     } else {
       worldW = fit.width * SCREEN_PX_PER_SVG_PX;
       worldH = ((fit.height * Math.cos(polar)) / Math.cos(POLAR_ANGLE)) * SCREEN_PX_PER_SVG_PX;
+      if (stacked) worldH += (stacked.count - 1) * stacked.gap * Math.sin(polar);
     }
     const margin = polar < 0.01 ? FIT_MARGIN_TOP : FIT_MARGIN;
     if (isOrtho) {
@@ -119,9 +127,21 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     };
   };
 
-  const tweenTo = (to: ViewState) => {
-    tweenRef.current = { from: currentView(), to, start: performance.now() };
+  const tweenTo = (to: ViewState, duration = TWEEN_MS, ease: Easing = easeOutCubic) => {
+    tweenRef.current = { from: currentView(), to, start: performance.now(), duration, ease };
     invalidate();
+  };
+
+  const applyZoomClamps = () => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    if (isOrtho) {
+      controls.minZoom = fitRef.current.zoom * 0.85;
+      controls.maxZoom = fitRef.current.zoom * 6;
+    } else {
+      controls.minDistance = fitRef.current.radius / 6;
+      controls.maxDistance = fitRef.current.radius * 1.2;
+    }
   };
 
   const startView = (): ViewState => ({
@@ -191,13 +211,7 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
       controls.touches = { ONE: TOUCH.ROTATE, TWO: TOUCH.DOLLY_PAN };
     }
     fitRef.current = computeFit();
-    if (isOrtho) {
-      controls.minZoom = fitRef.current.zoom * 0.85;
-      controls.maxZoom = fitRef.current.zoom * 6;
-    } else {
-      controls.minDistance = fitRef.current.radius / 6;
-      controls.maxDistance = fitRef.current.radius * 1.2;
-    }
+    applyZoomClamps();
     if (!interactedRef.current && size.width > 0) applyView(startView());
     else controls.update();
     invalidate();
@@ -210,13 +224,7 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     if (!controls || size.width === 0) return;
     if (Math.abs(controls.getPolarAngle() - targetPolar) < 1e-4 && !pendingResetRef.current) return;
     fitRef.current = computeFit(targetPolar);
-    if (isOrtho) {
-      controls.minZoom = fitRef.current.zoom * 0.85;
-      controls.maxZoom = fitRef.current.zoom * 6;
-    } else {
-      controls.minDistance = fitRef.current.radius / 6;
-      controls.maxDistance = fitRef.current.radius * 1.2;
-    }
+    applyZoomClamps();
     if (pendingResetRef.current) {
       pendingResetRef.current = false;
       tweenTo(startView());
@@ -227,6 +235,24 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     tweenTo({ ...cur, target: center.clone(), azimuth: baseAzimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetPolar]);
+
+  // Stack ↔ single floor: refit the zoom on the floors' clock so the camera and the floors move as one.
+  const stackKey = stack ? `${stack.count}:${stack.gap}` : "";
+  const stackMounted = useRef(false);
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls || size.width === 0) return;
+    if (!stackMounted.current) {
+      stackMounted.current = true; // the mount effect already applied the start view
+      return;
+    }
+    fitRef.current = computeFit(targetPolar, stack);
+    applyZoomClamps();
+    if (pendingResetRef.current || isTop) return; // the view effect / reset handles the tween
+    const cur = currentView();
+    tweenTo({ ...cur, target: center.clone(), zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stackKey]);
 
   // Double-click / double-tap: zoom in on the tapped floor point.
   useEffect(() => {
@@ -303,8 +329,8 @@ export function CameraRig({ groundBounds, fit, settings, pannable, poseRef, rese
     if (!controls) return;
     const tween = tweenRef.current;
     if (tween) {
-      const t = Math.min(1, (performance.now() - tween.start) / TWEEN_MS);
-      const p = easeOutCubic(t);
+      const t = tween.duration === 0 ? 1 : Math.min(1, (performance.now() - tween.start) / tween.duration);
+      const p = tween.ease(t);
       applyView({
         target: tween.from.target.clone().lerp(tween.to.target, p),
         azimuth: MathUtils.lerp(tween.from.azimuth, tween.to.azimuth, p),

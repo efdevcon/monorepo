@@ -4,12 +4,14 @@ import dynamic from "next/dynamic";
 import { useCallback, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
+import { useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
 import { DebugPanel } from "./DebugPanel";
 import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
+import { LevelToggle } from "./LevelToggle";
 import { ControlsHelp } from "./ControlsHelp";
-import { DEFAULT_SETTINGS, type Area, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
+import { DEFAULT_SETTINGS, type Area, type LevelId, type MapSettings, type MapSource, type MapView, type PlanScene, type SceneData } from "./types";
 import sceneJson from "./scene.generated.json";
 import planJson from "./plan.generated.json";
 import areasJson from "./areas.json";
@@ -25,30 +27,31 @@ const plan = planJson as unknown as PlanScene;
 const areas = areasJson as Area[];
 
 /**
- * 3D venue map prototype for the Map tab. Two sources: the isometric Figma
- * artwork un-projected onto a floor with real boxes for the stages and
- * classrooms (default), or everything extruded from the top-down plan SVG
- * (`?source=plan`); the SourceToggle under the header switches between them.
- * Drag / swipe turns the floor (horizontal only, clamped), pinch or wheel
- * zooms, double-tap zooms in on a point, a tap on an area opens AreaCard, and
- * re-tapping the Map tab resets the view (useTabReselect).
+ * 3D venue map prototype for the Map tab. Default source: the three floors
+ * (G, L1, L2) extruded from the top-down plan SVGs, stacked in 3D until a
+ * floor is picked (tap it, or a G/L1/L2 pill); the flat view shows one floor
+ * at a time. `?source=iso` opens the isometric-artwork import, kept only to
+ * show that importing in that style doesn't work. Drag / swipe turns the
+ * floor (horizontal only, clamped), pinch or wheel zooms, double-tap zooms in
+ * on a point, a tap on an area opens AreaCard, and re-tapping the Map tab
+ * resets the view (useTabReselect).
  */
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
   const searchParams = useSearchParams();
   const debug = searchParams.get("debug") !== null;
-  // ?source=plan opens the geometry built from the top-down plan instead of the artwork.
   const [settings, setSettings] = useState<MapSettings>(() => ({
     ...DEFAULT_SETTINGS,
-    source: searchParams.get("source") === "plan" ? "plan" : "iso",
+    source: searchParams.get("source") === "iso" ? "iso" : "plan",
   }));
   const resetRef = useRef<() => void>(() => {});
   const active = usePaneActive();
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
-  // Map-tab re-tap: back to the 3D start view (the rig finishes the reset once the pitch change lands).
+  // Map-tab re-tap: back to the stacked 3D start view (the rig finishes the reset once the pitch change lands).
   const reset = useCallback(() => {
     setSelected(null);
-    setSettings((s) => (s.view === "3d" ? s : { ...s, view: "3d" }));
+    setSettings((s) => (s.view === "3d" && s.level === null ? s : { ...s, view: "3d", level: null }));
     resetRef.current();
   }, []);
   useTabReselect(reset);
@@ -58,7 +61,16 @@ export function VenueMap3D() {
     setSelected(null);
     setSettings((s) => ({ ...s, source, view: source === "plan" ? s.view : "3d" }));
   }, []);
-  const setView = useCallback((view: MapView) => setSettings((s) => ({ ...s, view })), []);
+  // The flat view shows one floor: ground unless one was already chosen.
+  const setView = useCallback(
+    (view: MapView) => setSettings((s) => ({ ...s, view, level: view === "top" && s.level === null ? "G" : s.level })),
+    []
+  );
+  // Pills and floor taps; re-tapping the active pill returns to the stack (3D only).
+  const setLevel = useCallback((level: LevelId) => {
+    setSelected(null);
+    setSettings((s) => ({ ...s, level: s.level === level ? (s.view === "3d" ? null : level) : level }));
+  }, []);
 
   return (
     <div className="relative flex-1">
@@ -70,12 +82,19 @@ export function VenueMap3D() {
         selectedId={selected?.id ?? null}
         active={active}
         debug={debug}
+        reducedMotion={reducedMotion}
         onSelect={setSelected}
+        onSelectLevel={setLevel}
         resetRef={resetRef}
       />
       <SourceToggle value={settings.source} onChange={setSource} />
-      {settings.source === "plan" && <ViewToggle value={settings.view} onChange={setView} />}
-      <ControlsHelp view={settings.view} pannable={settings.source === "plan"} hidden={selected !== null} />
+      {settings.source === "plan" && (
+        <>
+          <ViewToggle value={settings.view} onChange={setView} />
+          <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} />
+        </>
+      )}
+      <ControlsHelp view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
       {debug && <DebugPanel settings={settings} onChange={setSettings} />}
     </div>

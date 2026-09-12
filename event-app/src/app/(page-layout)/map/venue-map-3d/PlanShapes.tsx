@@ -9,22 +9,29 @@ import type { Area, PlanShape } from "./types";
 
 type PlanShapesProps = {
   shapes: PlanShape[];
+  /** False while every floor is stacked: taps then pick a floor (LevelStack), not an area. */
+  interactive: boolean;
   selectedId: string | null;
   hoveredId: string | null;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 };
 
-/** Everything extruded from the top-down plan: slab, walls, blocks and floor mats. */
-export function PlanShapes({ shapes, selectedId, hoveredId, onSelect, setHovered }: PlanShapesProps) {
+/** Selection / hover key: layer ids repeat across floors, so scope them by level. */
+export const shapeKey = (shape: PlanShape) => `${shape.level}/${shape.id}`;
+export const areaOf = (shape: PlanShape): Area => ({ id: shapeKey(shape), name: shape.name, description: shape.description, icon: shape.icon, level: shape.level });
+
+/** Everything extruded from one floor's plan: slab, walls, blocks and floor mats. */
+export function PlanShapes({ shapes, interactive, selectedId, hoveredId, onSelect, setHovered }: PlanShapesProps) {
   return (
     <>
       {shapes.map((shape) => (
         <PlanShapeMesh
           key={shape.id}
           shape={shape}
-          selected={shape.id === selectedId}
-          hovered={shape.id === hoveredId}
+          selected={shapeKey(shape) === selectedId}
+          hovered={shapeKey(shape) === hoveredId}
+          interactive={interactive}
           onSelect={onSelect}
           setHovered={setHovered}
         />
@@ -46,12 +53,14 @@ function PlanShapeMesh({
   shape,
   selected,
   hovered,
+  interactive,
   onSelect,
   setHovered,
 }: {
   shape: PlanShape;
   selected: boolean;
   hovered: boolean;
+  interactive: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 }) {
@@ -72,20 +81,21 @@ function PlanShapeMesh({
   const cap = scaleHex(shape.fill, highlight);
   const side = scaleHex(shape.fill, 0.82 * highlight);
 
-  const handlers = shape.tappable
-    ? {
-        onClick: (e: ThreeEvent<MouseEvent>) => {
-          if (e.delta > TAP_SLOP_PX) return;
-          e.stopPropagation();
-          onSelect({ id: shape.id, name: shape.name, description: shape.description, icon: shape.icon });
-        },
-        onPointerOver: (e: ThreeEvent<PointerEvent>) => {
-          e.stopPropagation();
-          setHovered(shape.id);
-        },
-        onPointerOut: () => setHovered(null),
-      }
-    : {};
+  const handlers =
+    shape.tappable && interactive
+      ? {
+          onClick: (e: ThreeEvent<MouseEvent>) => {
+            if (e.delta > TAP_SLOP_PX) return;
+            e.stopPropagation();
+            onSelect(areaOf(shape));
+          },
+          onPointerOver: (e: ThreeEvent<PointerEvent>) => {
+            e.stopPropagation();
+            setHovered(shapeKey(shape));
+          },
+          onPointerOut: () => setHovered(null),
+        }
+      : {};
 
   return (
     <group position={[0, y, 0]} {...handlers}>
@@ -94,7 +104,7 @@ function PlanShapeMesh({
         <meshStandardMaterial attach="material-0" color={cap} roughness={0.9} metalness={0} side={DoubleSide} />
         <meshStandardMaterial attach="material-1" color={side} roughness={0.9} metalness={0} side={DoubleSide} />
       </mesh>
-      {(shape.kind !== "mat" || hovered || selected) && (
+      {shape.outline && (shape.kind !== "mat" || hovered || selected) && (
         <lineSegments geometry={edges} raycast={noRaycast}>
           <lineBasicMaterial color={hovered || selected ? HIGHLIGHT_OUTLINE : shape.stroke ?? OUTLINE} toneMapped={false} />
         </lineSegments>

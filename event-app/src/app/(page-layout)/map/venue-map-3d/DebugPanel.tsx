@@ -1,6 +1,6 @@
 "use client";
 
-import type { MapSettings } from "./types";
+import { LEVEL_ORDER, type MapSettings } from "./types";
 
 /** `?debug` tuning panel for the look-and-feel experiment. Not part of the product UI. */
 export function DebugPanel({ settings, onChange }: { settings: MapSettings; onChange: (s: MapSettings) => void }) {
@@ -29,6 +29,25 @@ export function DebugPanel({ settings, onChange }: { settings: MapSettings; onCh
           <option value="ortho">orthographic</option>
           <option value="perspective">perspective</option>
         </select>
+      </label>
+      <label className="mb-2 flex items-center justify-between gap-2">
+        Floor
+        <select
+          className="rounded border border-dc-border px-1 py-0.5"
+          value={settings.level ?? "all"}
+          onChange={(e) => set("level", e.target.value === "all" ? null : (e.target.value as MapSettings["level"]))}
+        >
+          <option value="all">all (stacked)</option>
+          {LEVEL_ORDER.map((id) => (
+            <option key={id} value={id}>
+              {id}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="mb-1 block">
+        Stack gap {settings.levelGap.toFixed(1)}
+        <input type="range" min={2} max={12} step={0.5} className="w-full" value={settings.levelGap} onChange={(e) => set("levelGap", Number(e.target.value))} />
       </label>
       {(
         [

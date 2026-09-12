@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
 import { INITIAL_AZIMUTH, POLAR_ANGLE } from "./isoMath";
@@ -8,9 +8,8 @@ import { CameraRig } from "./CameraRig";
 import { Slab } from "./Slab";
 import { Blocks } from "./Blocks";
 import { Props } from "./Props";
-import { PlanShapes } from "./PlanShapes";
-import { PlanIcons } from "./PlanIcons";
-import type { Area, CameraPose, MapSettings, PlanScene, SceneData } from "./types";
+import { LevelStack } from "./LevelStack";
+import type { Area, CameraPose, LevelId, MapSettings, PlanScene, SceneData } from "./types";
 
 type SceneProps = {
   scene: SceneData;
@@ -20,12 +19,14 @@ type SceneProps = {
   selectedId: string | null;
   active: boolean;
   debug: boolean;
+  reducedMotion: boolean;
   onSelect: (area: Area | null) => void;
+  onSelectLevel: (level: LevelId) => void;
   resetRef: MutableRefObject<() => void>;
 };
 
-/** The R3F canvas: floor artwork, 3D blocks, upright props and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, onSelect, resetRef }: SceneProps) {
+/** The R3F canvas: the stacked plan floors (or the iso artwork) and the camera rig. Client-only (three needs WebGL). */
+export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, reducedMotion, onSelect, onSelectLevel, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // ?debug: expose the hovered target for hit-testing scripts.
@@ -44,6 +45,8 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
   const fit = usePlan ? plan.fit : { width: scene.viewBox[2], height: scene.viewBox[3] };
   const pannable = usePlan;
   const cursor = hoveredId ? "pointer" : "grab";
+  // Every floor stacked: the camera fits the whole pile.
+  const stack = usePlan && settings.level === null ? { count: plan.levels.length, gap: settings.levelGap } : null;
 
   return (
     <Canvas
@@ -58,16 +61,22 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
     >
       <ambientLight intensity={lit ? 1.6 : 0} />
       <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
-      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} poseRef={poseRef} resetRef={resetRef} />
+      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} poseRef={poseRef} resetRef={resetRef} />
       {usePlan ? (
-        <>
-          <PlanShapes shapes={plan.shapes} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
-          {settings.showProps && (
-            <Suspense fallback={null}>
-              <PlanIcons shapes={plan.shapes} onSelect={onSelect} setHovered={setHoveredId} />
-            </Suspense>
-          )}
-        </>
+        <LevelStack
+          levels={plan.levels}
+          level={settings.level}
+          view={settings.view}
+          gap={settings.levelGap}
+          fit={plan.fit}
+          showIcons={settings.showProps}
+          reducedMotion={reducedMotion}
+          selectedId={selectedId}
+          hoveredId={hoveredId}
+          onSelect={onSelect}
+          onSelectLevel={onSelectLevel}
+          setHovered={setHoveredId}
+        />
       ) : (
         <>
           <Slab scene={scene} />
