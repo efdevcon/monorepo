@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 /**
- * Builds the "plan" 3D scene from a top-down floor-plan SVG whose shapes are
- * named footprints (rects and axis-aligned paths).
+ * Builds the "plan" 3D scene from the top-down floor-plan SVGs (one per
+ * level) whose shapes are named footprints (rects and axis-aligned paths).
  *
- *   pnpm map:build:plan [plan.svg]
+ *   pnpm map:build:plan
  *
- * Input:  public/maps/devcon-8/source/top-down-geometry-test.svg
+ * Input:  public/maps/devcon-8/source/{G.svg, top-down-geometry-test.svg (L1), L2.svg}
  * Output: src/app/(page-layout)/map/venue-map-3d/plan.generated.json
  *
  * Every shape becomes an extruded footprint; heights come from a name-prefix
- * table (the plan has no heights) and colours from the shape fills. The
- * first shape is treated as the slab (extruded downwards). Coordinates are
+ * table (the plans carry no heights) and colours from the shape fills. The
+ * first shape of each SVG is the slab (extruded downwards). Coordinates are
  * scaled into the same ground-pixel unit the isometric scene uses so the
- * camera rig and materials behave identically for both sources.
+ * camera rig and materials behave identically for both sources. All levels
+ * share one outline, so the bundle also carries the union bounds / fit.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -20,27 +21,54 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
-const sourcePath = process.argv[2] ?? path.join(root, "public/maps/devcon-8/source/top-down-geometry-test.svg");
 const outPath = path.join(root, "src/app/(page-layout)/map/venue-map-3d/plan.generated.json");
 const areas = JSON.parse(fs.readFileSync(path.join(root, "src/app/(page-layout)/map/venue-map-3d/areas.json"), "utf8"));
 
-/** Plan px → ground px (the isometric floor is ~2500 ground px across; this plan is 1438 wide). */
+/** Floors, bottom to top. `id` matches LevelId in types.ts. */
+const LEVELS = [
+  { id: "G", label: "G", name: "Ground floor", source: "public/maps/devcon-8/source/G.svg" },
+  { id: "L1", label: "L1", name: "Level 1", source: "public/maps/devcon-8/source/top-down-geometry-test.svg" },
+  { id: "L2", label: "L2", name: "Level 2", source: "public/maps/devcon-8/source/L2.svg" },
+];
+
+/** Plan px → ground px (the isometric floor is ~2500 ground px across; the plans are 1438 wide). */
 const PLAN_SCALE = 1.75;
 const SLAB_DEPTH = 24;
 
+/**
+ * Provisional fixes for layer names in the Figma plans (typos, duplicate
+ * suffixes, unnamed vectors). Logged on every build so they get fixed at the
+ * source; the entries can go once the SVGs are re-exported.
+ */
+const ID_FIXES = {
+  "[layground": "playground",
+  "music stage": "music-stage",
+  "breakout-room-1_2": "breakout-room-2",
+  "meeting-room-9_2": "meeting-room-12",
+  // G: unnamed atrium floor colour and its entry / exit arrows (Scott, 2026-09-12).
+  "Vector 5": "floor-patch",
+  "Vector 1": "arrow-1",
+  "Vector 2": "arrow-2",
+  "Vector 3": "arrow-3",
+  "Vector 4": "arrow-4",
+};
+
 /** Heights in plan px by id prefix; the plan carries no heights. First match wins. */
 const HEIGHTS = [
+  [/^door/i, 6],
   [/^wall/i, 16],
   [/^main-stage/i, 48],
   [/^st(a)?ge-/i, 48],
-  [/^classroom/i, 38],
+  [/^classroom|^meeting-room|^breakout-room|^speakers-space/i, 38],
   [/^toilets/i, 30],
-  [/^press-room/i, 30],
-  [/discussion-corner|community-hub|coffee-station|snack|^cowork/i, 2],
+  [/^press-room|^music-stage/i, 30],
+  [/^badge-station|^cursive|^swag-station|^registration|^frog-crypto/i, 20],
+  [/discussion-corner|community-hub|coffee-station|snack|^cowork|^food-area|^decompression-zone|^hacker-cave|^food-garden|^playground|^arrow/i, 2],
+  [/^floor-patch/i, 1],
 ];
 const heightFor = (id) => HEIGHTS.find(([re]) => re.test(id))?.[1] ?? 30;
 
-/** Icon sprite (public/maps/devcon-8/icons/<name>.png) shown at each footprint's centre. */
+/** Icon sprite (public/maps/devcon-8/icons/<name>.png) shown at each footprint's centre. Mirrors icons.ts. */
 const ICONS = [
   [/^stage-1/i, "fan"],
   [/^stage-2/i, "lantern"],
@@ -57,6 +85,13 @@ const ICONS = [
   [/^press/i, "press"],
   [/impact/i, "impact"],
   [/snack/i, "snack"],
+  [/^food-area/i, "food-area"],
+  [/^decompression-zone/i, "decompression"],
+  [/^hacker-cave/i, "hacker-cave"],
+  [/^playground/i, "playground"],
+  [/^registration/i, "registration-wristband"],
+  [/^swag-station/i, "swag-station"],
+  [/^frog-crypto/i, "frogcrypto"],
 ];
 const iconFor = (id) => ICONS.find(([re]) => re.test(id))?.[1] ?? null;
 
@@ -64,7 +99,9 @@ const iconFor = (id) => ICONS.find(([re]) => re.test(id))?.[1] ?? null;
 const FILLS = [[/community-hub/i, "#F1BB52"]];
 const fillFor = (id, fallback) => FILLS.find(([re]) => re.test(id))?.[1] ?? fallback;
 const iconFiles = new Set(fs.readdirSync(path.join(root, "public/maps/devcon-8/icons")).map((f) => f.replace(/\.png$/, "")));
-const kindFor = (id, height) => (height <= 3 ? "mat" : /^wall/i.test(id) ? "wall" : "block");
+const kindFor = (id, height) => (height <= 3 ? "mat" : /^wall|^door/i.test(id) ? "wall" : "block");
+/** Flat decoration that is drawn but never a tap target. */
+const DECORATION = /^floor-patch|^arrow-/i;
 
 // ---------------------------------------------------------------------------
 
@@ -133,6 +170,29 @@ function pathToPolygons(d) {
   return polys;
 }
 
+/**
+ * Applies an SVG `transform` attribute to a point. Figma emits `rotate(a cx cy)`
+ * for rotated rects (L2 wall_6 / wall_7); `translate(tx ty)` is handled too.
+ */
+function applyTransform(transform, [x, y]) {
+  if (!transform) return [x, y];
+  let p = [x, y];
+  for (const m of transform.matchAll(/(rotate|translate)\(([^)]*)\)/g)) {
+    const args = m[2].trim().split(/[\s,]+/).map(Number);
+    if (m[1] === "translate") {
+      p = [p[0] + (args[0] ?? 0), p[1] + (args[1] ?? 0)];
+    } else {
+      const a = ((args[0] ?? 0) * Math.PI) / 180;
+      const cx = args[1] ?? 0;
+      const cy = args[2] ?? 0;
+      const dx = p[0] - cx;
+      const dy = p[1] - cy;
+      p = [cx + dx * Math.cos(a) - dy * Math.sin(a), cy + dx * Math.sin(a) + dy * Math.cos(a)];
+    }
+  }
+  return p;
+}
+
 /** Area-weighted centroid of a simple polygon (falls back to the vertex mean for degenerate input). */
 function polygonCentroid(poly) {
   let a = 0, cx = 0, cy = 0;
@@ -161,7 +221,7 @@ function humanise(id) {
     .join(" ");
 }
 
-/** areas.json entry for a plan id: exact id, then the normalised stage/classroom id. */
+/** areas.json entry for a plan id: exact id, the normalised stage id, then the id without its number. */
 function areaFor(id) {
   const lower = id.toLowerCase().replace(/^stge-/, "stage-").replace(/-mask$/, "");
   const stage = /^(stage-\d+)/.exec(lower)?.[1];
@@ -173,89 +233,117 @@ function areaFor(id) {
   return null;
 }
 
-// ---------------------------------------------------------------------------
-
-const svg = fs.readFileSync(sourcePath, "utf8");
-const viewBox = /viewBox="([^"]+)"/.exec(svg)[1].split(/\s+/).map(Number);
-const shapes = [];
 const round = (v) => Math.round(v * 10) / 10;
-let first = true;
-for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
-  const [, tag, raw] = m;
-  const a = parseAttrs(raw);
-  const id = a.id ?? `shape-${shapes.length}`;
-  let polygons;
-  if (tag === "rect") {
-    const x = Number(a.x ?? 0), y = Number(a.y ?? 0), w = Number(a.width), h = Number(a.height);
-    polygons = [[[x, y], [x + w, y], [x + w, y + h], [x, y + h]]];
-  } else {
-    polygons = pathToPolygons(a.d);
-  }
-  // Ground px: plan x → X, plan y → Z (same handedness as the isometric floor).
-  const ground = polygons.map((poly) => poly.map(([x, y]) => [round(x * PLAN_SCALE), round(y * PLAN_SCALE)]));
-  const isSlab = first;
-  first = false;
-  const height = isSlab ? SLAB_DEPTH : heightFor(id);
-  const area = isSlab ? null : areaFor(id);
-  const kind = isSlab ? "slab" : kindFor(id, height);
-  const outline = [...ground].sort((p, q) => polygonArea(q) - polygonArea(p))[0];
-  const icon = isSlab || /^wall/i.test(id) ? null : iconFor(id);
-  if (icon && !iconFiles.has(icon)) console.warn(`  ! no icon file for "${icon}" (${id})`);
-  shapes.push({
-    id,
-    kind,
-    name: area?.name ?? humanise(id),
-    description: area?.description ?? "",
-    tappable: kind === "block" || kind === "mat",
-    polygons: ground,
-    centroid: polygonCentroid(outline).map(round),
-    icon: icon && iconFiles.has(icon) ? icon : null,
-    height: round(height * PLAN_SCALE),
-    fill: fillFor(id, a.fill ?? "#cccccc"),
-    stroke: a.stroke ?? null,
-  });
-}
 
-// Walls drawn as strips against a stage block are stage fronts: drop them so the stages stand clear (Scott, 2026-09-11).
 const bboxOf = (shape) => {
   const pts = shape.polygons.flat();
   return [Math.min(...pts.map((p) => p[0])), Math.min(...pts.map((p) => p[1])), Math.max(...pts.map((p) => p[0])), Math.max(...pts.map((p) => p[1]))];
 };
 const touches = (a, b, gap = 3 * PLAN_SCALE) =>
   a[0] <= b[2] + gap && b[0] <= a[2] + gap && a[1] <= b[3] + gap && b[1] <= a[3] + gap;
-const planCentreX = (viewBox[2] / 2) * PLAN_SCALE;
-const stageBoxes = shapes.filter((s) => /^(st(a)?ge-|main-stage)/i.test(s.id)).map(bboxOf);
-// "In front" = beside the stage (overlapping in y) on the side facing away from the venue centre; the atrium-side walls stay.
-const stageFronts = shapes.filter((s) => {
-  if (s.kind !== "wall") return false;
-  const w = bboxOf(s);
-  const wx = (w[0] + w[2]) / 2;
-  return stageBoxes.some((b) => {
-    const sx = (b[0] + b[2]) / 2;
-    const besides = touches(w, b) && w[1] < b[3] && b[1] < w[3] && (w[2] <= b[0] + 3 * PLAN_SCALE || w[0] >= b[2] - 3 * PLAN_SCALE);
-    return besides && Math.abs(wx - planCentreX) > Math.abs(sx - planCentreX);
+
+/** Screen extent of a ground rectangle in the start (isometric) view, in the same px unit: u = (X − Z)cos30°, v = (X + Z)/2. */
+function isoFit(bounds) {
+  const corners = [[bounds.minX, bounds.minZ], [bounds.maxX, bounds.minZ], [bounds.minX, bounds.maxZ], [bounds.maxX, bounds.maxZ]];
+  const us = corners.map(([x, z]) => (x - z) * Math.cos(Math.PI / 6));
+  const vs = corners.map(([x, z]) => (x + z) / 2);
+  return { width: round(Math.max(...us) - Math.min(...us)), height: round(Math.max(...vs) - Math.min(...vs)) };
+}
+
+// ---------------------------------------------------------------------------
+
+function buildLevel(level) {
+  const sourcePath = path.join(root, level.source);
+  const svg = fs.readFileSync(sourcePath, "utf8");
+  const viewBox = /viewBox="([^"]+)"/.exec(svg)[1].split(/\s+/).map(Number);
+  const shapes = [];
+  const seen = new Set();
+  let first = true;
+  for (const m of svg.matchAll(/<(rect|path)([^>]*)\/>/g)) {
+    const [, tag, raw] = m;
+    const a = parseAttrs(raw);
+    const rawId = a.id ?? `shape-${shapes.length}`;
+    let id = ID_FIXES[rawId] ?? rawId;
+    if (id !== rawId) console.warn(`  ! ${level.id}: layer "${rawId}" renamed to "${id}" (fix in Figma)`);
+    if (seen.has(id)) console.warn(`  ! ${level.id}: duplicate id "${id}"`);
+    seen.add(id);
+    let polygons;
+    if (tag === "rect") {
+      const x = Number(a.x ?? 0), y = Number(a.y ?? 0), w = Number(a.width), h = Number(a.height);
+      polygons = [[[x, y], [x + w, y], [x + w, y + h], [x, y + h]].map((p) => applyTransform(a.transform, p))];
+    } else {
+      polygons = pathToPolygons(a.d).map((poly) => poly.map((p) => applyTransform(a.transform, p)));
+    }
+    // Ground px: plan x → X, plan y → Z (same handedness as the isometric floor).
+    const ground = polygons.map((poly) => poly.map(([x, y]) => [round(x * PLAN_SCALE), round(y * PLAN_SCALE)]));
+    const isSlab = first;
+    first = false;
+    const height = isSlab ? SLAB_DEPTH : heightFor(id);
+    const area = isSlab ? null : areaFor(id);
+    const kind = isSlab ? "slab" : kindFor(id, height);
+    const decoration = DECORATION.test(id);
+    const outline = [...ground].sort((p, q) => polygonArea(q) - polygonArea(p))[0];
+    const icon = isSlab || kind === "wall" || decoration ? null : iconFor(id);
+    if (icon && !iconFiles.has(icon)) console.warn(`  ! ${level.id}: no icon file for "${icon}" (${id})`);
+    shapes.push({
+      id,
+      level: level.id,
+      kind,
+      name: area ? (area.numbered ? `${area.name} ${/(\d+)$/.exec(id)?.[1] ?? ""}`.trim() : area.name) : humanise(id),
+      description: area?.description ?? "",
+      tappable: (kind === "block" || kind === "mat") && !decoration,
+      // The floor patch is a colour only; everything else keeps its drawn edge.
+      outline: id !== "floor-patch",
+      polygons: ground,
+      centroid: polygonCentroid(outline).map(round),
+      icon: icon && iconFiles.has(icon) ? icon : null,
+      height: round(height * PLAN_SCALE),
+      fill: fillFor(id, a.fill ?? "#cccccc"),
+      stroke: a.stroke ?? null,
+    });
+  }
+
+  // Walls drawn as strips against a stage block are stage fronts: drop them so the stages stand clear (Scott, 2026-09-11).
+  const planCentreX = (viewBox[2] / 2) * PLAN_SCALE;
+  const stageBoxes = shapes.filter((s) => /^(st(a)?ge-|main-stage)/i.test(s.id)).map(bboxOf);
+  // "In front" = beside the stage (overlapping in y) on the side facing away from the venue centre; the atrium-side walls stay.
+  const stageFronts = shapes.filter((s) => {
+    if (s.kind !== "wall") return false;
+    const w = bboxOf(s);
+    const wx = (w[0] + w[2]) / 2;
+    return stageBoxes.some((b) => {
+      const sx = (b[0] + b[2]) / 2;
+      const besides = touches(w, b) && w[1] < b[3] && b[1] < w[3] && (w[2] <= b[0] + 3 * PLAN_SCALE || w[0] >= b[2] - 3 * PLAN_SCALE);
+      return besides && Math.abs(wx - planCentreX) > Math.abs(sx - planCentreX);
+    });
   });
-});
-for (const wall of stageFronts) shapes.splice(shapes.indexOf(wall), 1);
-console.log(`stage-front walls removed: ${stageFronts.map((s) => s.id).join(", ") || "none"}`);
+  for (const wall of stageFronts) shapes.splice(shapes.indexOf(wall), 1);
 
-const all = shapes.flatMap((s) => s.polygons.flat());
+  const all = shapes.flatMap((s) => s.polygons.flat());
+  const bounds = {
+    minX: Math.min(...all.map((p) => p[0])),
+    maxX: Math.max(...all.map((p) => p[0])),
+    minZ: Math.min(...all.map((p) => p[1])),
+    maxZ: Math.max(...all.map((p) => p[1])),
+  };
+
+  console.log(`\n${level.id} (${level.name}) ← ${level.source}`);
+  console.log(`  stage-front walls removed: ${stageFronts.map((s) => s.id).join(", ") || "none"}`);
+  console.log(`  shapes: ${shapes.length}; by kind:`, Object.fromEntries(["slab", "wall", "block", "mat"].map((k) => [k, shapes.filter((s) => s.kind === k).length])));
+  for (const s of shapes) if (s.kind !== "wall" && s.kind !== "slab") console.log(`  ${s.kind.padEnd(5)} ${s.id.padEnd(26)} h=${String(s.height).padEnd(5)} icon=${(s.icon ?? "-").padEnd(22)} → "${s.name}"${s.tappable ? "" : "  (decoration)"}${s.description || !s.tappable ? "" : "  (no description)"}`);
+
+  return { id: level.id, label: level.label, name: level.name, generatedFrom: level.source, viewBox, bounds, fit: isoFit(bounds), shapes };
+}
+
+const levels = LEVELS.map(buildLevel);
 const bounds = {
-  minX: Math.min(...all.map((p) => p[0])),
-  maxX: Math.max(...all.map((p) => p[0])),
-  minZ: Math.min(...all.map((p) => p[1])),
-  maxZ: Math.max(...all.map((p) => p[1])),
+  minX: Math.min(...levels.map((l) => l.bounds.minX)),
+  maxX: Math.max(...levels.map((l) => l.bounds.maxX)),
+  minZ: Math.min(...levels.map((l) => l.bounds.minZ)),
+  maxZ: Math.max(...levels.map((l) => l.bounds.maxZ)),
 };
-// Screen extent of the floor in the start (isometric) view, in the same px unit: u = (X − Z)cos30°, v = (X + Z)/2.
-const corners = [[bounds.minX, bounds.minZ], [bounds.maxX, bounds.minZ], [bounds.minX, bounds.maxZ], [bounds.maxX, bounds.maxZ]];
-const us = corners.map(([x, z]) => (x - z) * Math.cos(Math.PI / 6));
-const vs = corners.map(([x, z]) => (x + z) / 2);
-const fit = { width: round(Math.max(...us) - Math.min(...us)), height: round(Math.max(...vs) - Math.min(...vs)) };
-
-const out = { source: "plan", generatedFrom: path.relative(root, sourcePath), viewBox, planScale: PLAN_SCALE, bounds, fit, shapes };
+const out = { source: "plan", planScale: PLAN_SCALE, bounds, fit: isoFit(bounds), levels };
 fs.writeFileSync(outPath, JSON.stringify(out));
 
-console.log(`${path.relative(root, sourcePath)} → ${path.relative(root, outPath)} (${(Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(0)} KB)`);
-console.log(`shapes: ${shapes.length}; by kind:`, Object.fromEntries(["slab", "wall", "block", "mat"].map((k) => [k, shapes.filter((s) => s.kind === k).length])));
-console.log(`bounds (ground px):`, bounds, `fit (screen px):`, fit);
-for (const s of shapes) if (s.kind !== "wall") console.log(`  ${s.kind.padEnd(5)} ${s.id.padEnd(26)} h=${s.height} icon=${(s.icon ?? "-").padEnd(17)} → "${s.name}"${s.description ? "" : "  (no description)"}`);
+console.log(`\n→ ${path.relative(root, outPath)} (${(Buffer.byteLength(JSON.stringify(out)) / 1024).toFixed(0)} KB)`);
+console.log(`union bounds (ground px):`, bounds, `fit (screen px):`, out.fit);
