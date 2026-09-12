@@ -20,7 +20,7 @@
     "otp:test": "tsx scripts/test-otp-input.ts",
     "proof:test": "tsx scripts/test-ticket-proof.ts",
     "proof:demo-link": "tsx scripts/make-demo-proof.ts",
-    "data:test": "tsx scripts/test-data.ts",
+    "data:test": "tsx scripts/test-data.ts && tsx scripts/test-event-store-persistence.ts",
     "qr:test": "tsx scripts/test-qr-decode.ts"
   },
   "dependencies": {
