@@ -45,9 +45,9 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       {icon && (
         // Theme icon in a flat white disc riding the top edge, ~70% above it (Scott's "POI idea" mock), so the text
         // below shares one left edge and long titles can run under the disc's lower edge.
-        <div className="pointer-events-none absolute left-1/2 top-0 flex size-[72px] -translate-x-1/2 -translate-y-[70%] items-center justify-center rounded-full bg-white/95 backdrop-blur">
+        <div className="pointer-events-none absolute left-1/2 top-0 flex size-16 -translate-x-1/2 -translate-y-[70%] items-center justify-center rounded-full bg-white/95 backdrop-blur">
           {/* eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted */}
-          <img src={iconUrl(icon)} alt="" className="size-14 object-contain" />
+          <img src={iconUrl(icon)} alt="" className="size-12 object-contain" />
         </div>
       )}
       {/* Centred on the dialog's top-right corner, half outside it (Scott); white + shadow so it reads against the map. */}
