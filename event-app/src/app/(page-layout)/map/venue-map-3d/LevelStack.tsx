@@ -2,9 +2,9 @@
 
 import { Suspense, useEffect, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Group, MathUtils, Mesh, OrthographicCamera, PerspectiveCamera, Sprite, type Material } from "three";
+import { Group, MathUtils, OrthographicCamera, PerspectiveCamera } from "three";
 import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
-import { easeOutQuint, LEVEL_FADE_MS, LEVEL_FADE_REDUCED_MS, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
+import { easeInOutCubic, easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
 import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
@@ -27,17 +27,8 @@ type LevelStackProps = {
   setHovered: (id: string | null) => void;
 };
 
-type LevelAnim = { y: number; opacity: number; visible: boolean };
-type Tween = {
-  level: LevelId;
-  fromY: number;
-  toY: number;
-  fromOpacity: number;
-  toOpacity: number;
-  start: number;
-  duration: number;
-  hideAtEnd: boolean;
-};
+type LevelAnim = { y: number; visible: boolean };
+type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; ease: (t: number) => number; hideAtEnd: boolean };
 
 /**
  * Positions the floors and animates floor changes. Rest poses: every floor
@@ -46,9 +37,11 @@ type Tween = {
  * floors below). A change tweens each floor that is visible before or after
  * to its new rest pose, so the leaving floor always moves away from the
  * entering one: G → L1 drops G and lowers L1 in from the top; leaving the
- * stack sends higher floors up and lower floors down. Floors hidden on both
- * ends snap so they never cross the screen. The flat view can't show
- * vertical travel, so it crossfades instead. Refs only; no per-frame React.
+ * stack sends higher floors up and lower floors down. Arriving floors ease
+ * out, leaving floors ease in-out (their settle would be off-screen). Floors
+ * hidden on both ends snap so they never cross the screen. The flat view
+ * can't show vertical travel, so any change there is instant. Refs only; no
+ * per-frame React.
  */
 export function LevelStack({
   levels,
@@ -67,14 +60,11 @@ export function LevelStack({
   const { camera, size, invalidate } = useThree();
   const groupRefs = useRef(new Map<LevelId, Group>());
   const tweensRef = useRef<Tween[]>([]);
-  const fadingRef = useRef(new Set<LevelId>());
   const prevRef = useRef<{ level: LevelId | null; view: MapView }>({ level, view });
   const stackY = (id: LevelId) => (levelIndex(id) - (levels.length - 1) / 2) * gap;
   const animRef = useRef<Map<LevelId, LevelAnim> | null>(null);
   if (animRef.current === null) {
-    animRef.current = new Map(
-      levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, opacity: 1, visible: level === null || l.id === level }])
-    );
+    animRef.current = new Map(levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, visible: level === null || l.id === level }]));
   }
   const anims = animRef.current;
 
@@ -97,39 +87,20 @@ export function LevelStack({
     const now = performance.now();
     const tweens: Tween[] = [];
     const parked = (id: LevelId, shown: LevelId, exit: number) => Math.sign(levelIndex(id) - levelIndex(shown)) * exit;
-
-    if (view === "top" && prev.level !== null && level !== null) {
-      // Crossfade: both floors at y = 0.
-      const duration = reducedMotion ? LEVEL_FADE_REDUCED_MS : LEVEL_FADE_MS;
-      for (const [id, a] of anims) {
-        a.y = 0;
-        if (id === prev.level) tweens.push({ level: id, fromY: 0, toY: 0, fromOpacity: a.opacity, toOpacity: 0, start: now, duration, hideAtEnd: true });
-        else if (id === level) {
-          a.visible = true;
-          if (!fadingRef.current.has(id)) a.opacity = 0;
-          tweens.push({ level: id, fromY: 0, toY: 0, fromOpacity: a.opacity, toOpacity: 1, start: now, duration, hideAtEnd: false });
-        } else {
-          a.visible = false;
-          a.opacity = 1;
-        }
-        fadingRef.current.add(id);
+    // Flat view (entering it, or switching floors inside it) shows no vertical travel: swap at once.
+    const duration = reducedMotion || view === "top" || prev.view === "top" ? 0 : LEVEL_SWITCH_MS;
+    const exit = exitOffset();
+    // Floors hidden so far sit parked on their side of the floor that was showing.
+    if (prev.level !== null) for (const [id, a] of anims) if (!a.visible) a.y = parked(id, prev.level, exit);
+    for (const [id, a] of anims) {
+      const showAfter = level === null || id === level;
+      const toY = level === null ? stackY(id) : id === level ? 0 : parked(id, level, exit);
+      if (!a.visible && !showAfter) {
+        a.y = toY; // never on screen: snap
+        continue;
       }
-    } else {
-      const duration = reducedMotion ? 0 : LEVEL_SWITCH_MS;
-      const exit = exitOffset();
-      // Floors hidden so far sit parked on their side of the floor that was showing (or at y = 0 after a flat-view fade).
-      if (prev.level !== null) for (const [id, a] of anims) if (!a.visible) a.y = parked(id, prev.level, exit);
-      for (const [id, a] of anims) {
-        const showAfter = level === null || id === level;
-        const toY = level === null ? stackY(id) : id === level ? 0 : parked(id, level, exit);
-        if (!a.visible && !showAfter) {
-          a.y = toY; // never on screen: snap
-          continue;
-        }
-        a.visible = true;
-        a.opacity = 1;
-        tweens.push({ level: id, fromY: a.y, toY, fromOpacity: 1, toOpacity: 1, start: now, duration, hideAtEnd: !showAfter });
-      }
+      a.visible = true;
+      tweens.push({ level: id, fromY: a.y, toY, start: now, duration, ease: showAfter ? easeOutQuint : easeInOutCubic, hideAtEnd: !showAfter });
     }
     tweensRef.current = tweens;
     invalidate();
@@ -150,13 +121,9 @@ export function LevelStack({
     for (const tw of tweensRef.current) {
       const a = anims.get(tw.level)!;
       const t = tw.duration === 0 ? 1 : Math.min(1, (now - tw.start) / tw.duration);
-      const p = easeOutQuint(t);
-      a.y = MathUtils.lerp(tw.fromY, tw.toY, p);
-      a.opacity = MathUtils.lerp(tw.fromOpacity, tw.toOpacity, p);
+      a.y = MathUtils.lerp(tw.fromY, tw.toY, tw.ease(t));
       if (t >= 1) {
         if (tw.hideAtEnd) a.visible = false;
-        a.opacity = 1;
-        fadingRef.current.delete(tw.level);
       } else remaining.push(tw);
     }
     tweensRef.current = remaining;
@@ -165,8 +132,6 @@ export function LevelStack({
       if (!group) continue;
       group.position.y = a.y;
       group.visible = a.visible;
-      if (fadingRef.current.has(id)) setOpacity(group, a.opacity, true);
-      else if (group.userData.faded) setOpacity(group, 1, false);
     }
     if (remaining.length) invalidate();
   });
@@ -209,18 +174,4 @@ export function LevelStack({
       ))}
     </>
   );
-}
-
-/** Applies a crossfade opacity to every material under a floor; `transparent` only while fading (depth sorting otherwise suffers). */
-function setOpacity(group: Group, opacity: number, fading: boolean) {
-  group.traverse((obj) => {
-    if (!(obj instanceof Mesh) && !(obj instanceof Sprite)) return;
-    const mats: Material[] = Array.isArray(obj.material) ? obj.material : [obj.material];
-    for (const m of mats) {
-      m.opacity = opacity;
-      // Sprites are always transparent; the extruded shapes only during a fade.
-      if (!(obj instanceof Sprite)) m.transparent = fading;
-    }
-  });
-  group.userData.faded = fading;
 }
