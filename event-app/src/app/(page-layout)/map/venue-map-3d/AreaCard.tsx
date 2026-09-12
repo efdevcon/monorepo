@@ -2,14 +2,19 @@
 
 import { useState } from "react";
 import cn from "classnames";
+import { Clock3, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
+import { formatTimeRange } from "@/components/schedule/utils";
 import { iconFor, iconUrl } from "./icons";
+import { useLiveSessionForArea } from "./useLiveSessionForArea";
 import type { Area } from "./types";
 
 /**
- * The small bottom card that opens when an area is tapped: name and a short
- * description, nothing more. Stays mounted so it can slide out; the last area
- * is kept while it fades.
+ * The bottom card that opens when an area is tapped: name and a short
+ * description, plus — for footprints backed by a schedule room (roomAreas.ts)
+ * — the session running there right now, tagged Ongoing like the schedule's
+ * time groups. Stays mounted so it can slide out; the last area is kept while
+ * it fades.
  */
 export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => void }) {
   // Keep the last area while the card slides out (derived state from a prop).
@@ -17,6 +22,7 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
   if (area && area !== shown) setShown(area);
   const open = area !== null;
   const icon = shown ? (shown.icon ?? iconFor(shown.id)) : null;
+  const live = useLiveSessionForArea(shown?.id ?? null);
 
   return (
     <div
@@ -24,22 +30,51 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       aria-label={shown?.name}
       aria-hidden={!open}
       className={cn(
-        // left-[76px] clears the 44px dev DebugPanel trigger (left-4) that shares this corner on mobile.
-        "fixed right-4 left-[76px] z-20 flex items-start gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-96",
+        "fixed right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
+        // Full width on phones. Development only: clear the app's 44px debug trigger (components/DebugPanel,
+        // bottom-left, z-100), which would otherwise float over the session block.
+        process.env.NODE_ENV === "development" ? "left-[76px]" : "left-4",
         "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
         open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
-      {icon && (
-        // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
-        <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
-      )}
-      <div className="min-w-0 flex-1 self-center">
-        <p className="text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
-        {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+      <div className="flex items-start gap-3">
+        {icon && (
+          // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
+          <img src={iconUrl(icon)} alt="" className="size-14 shrink-0 object-contain" />
+        )}
+        <div className="min-w-0 flex-1 self-center">
+          <p className="text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
+          {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+        </div>
+        <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} />
       </div>
-      <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} />
+
+      {live && (
+        <div className="flex flex-col gap-2 border-t border-dc-hairline pt-3">
+          <div className="flex items-center gap-2">
+            {/* Same tag as the schedule's ongoing time group (Schedule.tsx). */}
+            <span className="shrink-0 rounded-[2px] border border-dc-red px-2 py-1 text-[12px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">
+              Ongoing
+            </span>
+            {live.type && <span className="truncate text-[12px] leading-none text-dc-muted">{live.type}</span>}
+          </div>
+          <p className="line-clamp-2 text-[14px] font-bold leading-5 text-dc-fg2">{live.title}</p>
+          <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+              <Clock3 className="size-3.5 shrink-0" />
+              {formatTimeRange(live)} · {Math.round((live.end - live.start) / 60)} min
+            </span>
+            {live.speakers.length > 0 && (
+              <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-none text-dc-muted">
+                <User className="size-3.5 shrink-0" />
+                <span className="truncate">{live.speakers.map((s) => s.name).join(", ")}</span>
+              </span>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

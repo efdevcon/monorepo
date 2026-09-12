@@ -83,16 +83,18 @@ export function VenueMap3D() {
   // active, so a second visit with the same param re-highlights.
   const areaParam = searchParams.get(AREA_PARAM);
   const areaVisit = areaParam && active ? areaParam : null;
-  const [handledAreaVisit, setHandledAreaVisit] = useState<string | null>(null);
-  if (areaVisit !== handledAreaVisit) {
-    setHandledAreaVisit(areaVisit);
+  // `n` counts visits so the camera focus re-runs for the same room (its effect is keyed on `focus.key`).
+  const [handledVisit, setHandledVisit] = useState<{ area: string | null; n: number }>({ area: null, n: 0 });
+  if (areaVisit !== handledVisit.area) {
+    const n = handledVisit.n + 1;
+    setHandledVisit({ area: areaVisit, n });
     const target = areaVisit ? parseAreaParam(areaVisit) : null;
     const shape = target && plan.levels.find((l) => l.id === target.level)?.shapes.find((s) => s.id === target.id);
     if (shape) {
       setSettings((s) => ({ ...s, source: "plan", level: shape.level }));
       setSelected(areaOf(shape));
       const [x, z] = shape.centroid;
-      setFocus({ x, z, zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, key: areaVisit as string });
+      setFocus({ x, z, zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, key: `${areaVisit}#${n}` });
     }
   }
 

@@ -18,6 +18,11 @@ export function mapHrefForRoom(roomId: string | null | undefined): string {
   return area ? `/map?${AREA_PARAM}=${encodeURIComponent(`${area.level}/${area.id}`)}` : "/map";
 }
 
+/** Schedule room id behind a footprint (selection key `<level>/<layer id>`), or null when the map knows none. */
+export function roomIdForArea(areaKey: string): string | null {
+  return Object.entries(ROOM_AREAS).find(([, a]) => `${a.level}/${a.id}` === areaKey)?.[0] ?? null;
+}
+
 /** Splits an `area` param back into its floor and layer id. */
 export function parseAreaParam(value: string): { level: string; id: string } | null {
   const slash = value.indexOf("/");
