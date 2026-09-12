@@ -40,7 +40,7 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       )}
       style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
-      <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} className="absolute right-3 top-3" />
+      <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} className="absolute right-2 top-2" />
       <div className="flex items-start gap-3">
         {icon && (
           // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
