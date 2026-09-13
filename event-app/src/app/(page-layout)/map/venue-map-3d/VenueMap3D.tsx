@@ -184,6 +184,11 @@ export function VenueMap3D() {
     },
     [select]
   );
+  // "All" pill: every floor stacked. The stack only exists in 3D, so from the flat view it also pitches back.
+  const showAll = useCallback(() => {
+    select(null);
+    setSettings((s) => (s.level === null && s.view === "3d" ? s : { ...s, view: "3d", level: null }));
+  }, [select]);
   // Keyboard: G / 1 / 2 always land on that floor (no toggle back to the stack); Esc is the tab re-tap reset.
   const showLevel = useCallback(
     (level: LevelId) => {
@@ -216,13 +221,19 @@ export function VenueMap3D() {
       {settings.source === "plan" && (
         <>
           <ViewToggle value={settings.view} onChange={setView} />
-          <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} />
+          <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} onAll={showAll} />
         </>
       )}
-      <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
+      {/* Bottom controls: Find pill over the legend on phones (Scott), side by side on the pill's row from lg up. */}
+      <div
+        className="pointer-events-none fixed inset-x-4 z-10 flex flex-col items-start gap-2 lg:inset-x-6 lg:block"
+        style={{ bottom: desktop ? "1.5rem" : "calc(var(--nav-clearance) + 12px)" }}
+      >
+        {settings.source === "plan" && <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : setFindOpen(true))} />}
+        <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
+      </div>
       {settings.source === "plan" && (
         <>
-          <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : setFindOpen(true))} />
           {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
           {desktop ? (
             <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
