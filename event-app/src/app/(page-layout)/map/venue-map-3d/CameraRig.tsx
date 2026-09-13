@@ -280,7 +280,15 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     }
     if (isTop) return; // the view effect handles the tween
     const cur = currentView();
-    tweenTo({ ...cur, target: center.clone(), zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+    // Flat → "All" changes the pitch in the same commit: the view effect above just
+    // aimed at the 3D pitch, so aim there too (the user's rotation is meaningless
+    // coming from top-down) instead of freezing the camera at the current pitch.
+    const pitching = Math.abs(cur.polar - targetPolar) > 1e-4;
+    tweenTo(
+      { target: center.clone(), azimuth: pitching ? baseAzimuth : cur.azimuth, polar: targetPolar, zoom: fitRef.current.zoom, radius: fitRef.current.radius },
+      reducedMotion ? 0 : LEVEL_SWITCH_MS,
+      easeOutQuint
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackKey]);
 
