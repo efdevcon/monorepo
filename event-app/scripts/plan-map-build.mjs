@@ -233,6 +233,18 @@ function areaFor(id) {
   return null;
 }
 
+/**
+ * Display name: the areas.json name, numbered copies keep their number
+ * ("Meeting Room 7"), and the numbered stages keep the theme drawn in the layer
+ * id ("Stage-1-Fans" → "Stage 1 - Fans"; Scott, 2026-09-13). Unknown ids are humanised.
+ */
+function nameFor(id, area) {
+  if (!area) return humanise(id);
+  const theme = /^st(?:a)?ge-\d+-(.+)$/i.exec(id)?.[1];
+  if (theme) return `${area.name} - ${humanise(theme)}`;
+  return area.numbered ? `${area.name} ${/(\d+)$/.exec(id)?.[1] ?? ""}`.trim() : area.name;
+}
+
 const round = (v) => Math.round(v * 10) / 10;
 
 const bboxOf = (shape) => {
@@ -289,7 +301,7 @@ function buildLevel(level) {
       id,
       level: level.id,
       kind,
-      name: area ? (area.numbered ? `${area.name} ${/(\d+)$/.exec(id)?.[1] ?? ""}`.trim() : area.name) : humanise(id),
+      name: nameFor(id, area),
       description: area?.description ?? "",
       tappable: (kind === "block" || kind === "mat") && !decoration,
       // The floor patch is a colour only; everything else keeps its drawn edge.
