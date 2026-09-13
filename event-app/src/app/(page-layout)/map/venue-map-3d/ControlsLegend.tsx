@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import cn from "classnames";
 import { Hand, Mouse, MousePointerClick, Move, Pointer, Rotate3d, ZoomIn, type LucideIcon } from "lucide-react";
-import { useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
+import { useMediaQuery } from "@/hooks/useIsDesktop";
 import type { MapView } from "./types";
 
 type Item = { Icon: LucideIcon; label: string };
@@ -25,7 +25,6 @@ function Kbd({ children }: { children: ReactNode }) {
  */
 export function ControlsLegend({ view, pannable, stacked, hidden }: { view: MapView; pannable: boolean; stacked: boolean; hidden: boolean }) {
   const touch = useMediaQuery("(pointer: coarse)");
-  const desktop = useIsDesktop();
   const target: Item = touch
     ? { Icon: Pointer, label: stacked ? "Tap a floor" : "Tap an area" }
     : { Icon: Pointer, label: stacked ? "Click a floor" : "Click an area" };
@@ -74,8 +73,9 @@ export function ControlsLegend({ view, pannable, stacked, hidden }: { view: MapV
               {label}
             </span>
           ))}
-        {desktop && !touch && (
-          <>
+        {!touch && (
+          // Key chips from lg up (CSS, so the first paint is right without waiting for a media-query effect).
+          <span className="hidden lg:contents">
             <span aria-hidden className="h-4 w-px bg-dc-hairline" />
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
               <Kbd>G</Kbd>
@@ -91,7 +91,7 @@ export function ControlsLegend({ view, pannable, stacked, hidden }: { view: MapV
               <Kbd>Esc</Kbd>
               Reset
             </span>
-          </>
+          </span>
         )}
       </div>
     </div>

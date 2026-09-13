@@ -147,6 +147,16 @@ redraw is the default. Its `Blocks.tsx` still renders double-sided.
   hovered (no new `onPointerOver` follows). The level group checks `e.intersections` — R3F
   8.18's `cancelPointer` passes the *new* hits on the out event — for one of its own
   descendants before clearing. Without this the hover dropped over every block, wall and mat.
+- **Unmounting objects fire no pointer-out.** Opening a floor removes the stack handlers and hit
+  planes; the hovered floor would stay hovered (pointer cursor stuck). `LevelStack` clears the
+  hover on every level change.
+- **A grab must abandon a pending reset.** `pendingResetRef` is otherwise only cleared when a
+  tween lands; interrupting the reset tween left it up and the next floor change finished the
+  reset instead of keeping the user's rotation. The controls' `start` handler clears it.
+- **Breakpoint-dependent layout goes in CSS, not `useIsDesktop()`.** The hook is `false` until
+  hydration, so an inline style chosen by it paints the phone value first and jumps. The
+  bottom wrapper and the legend's key chips use `lg:` classes; `useIsDesktop()` only chooses
+  which Find shell mounts (invisible while closed).
 - **Raycast through holes.** A pointer over a floor's atrium hits the floor beneath. Each
   stacked floor carries `FloorHitPlane`, an invisible `ShapeGeometry` of the slab outline with
   the holes filled (`colorWrite` off). Objects without handlers are still hit because the
@@ -174,8 +184,9 @@ redraw is the default. Its `Blocks.tsx` still renders double-sided.
 - **Never a fresh `Set` per render.** `highlighted` is state set once per change.
 - **drei `Html` steals the pointer** unless `style={{ pointerEvents: "none" }}`; its
   `zIndexRange` defaults above every overlay.
-- **Tailwind arbitrary classes added mid-session** have been missing from the dev CSS after
-  HMR. Per-breakpoint bottom offsets use an inline `style` chosen with `useIsDesktop()`.
+- **Tailwind arbitrary classes added mid-session** have once been missing from the dev CSS after
+  HMR; prefer classes that already exist in the tree (`bottom-[calc(var(--nav-clearance)+12px)]`)
+  and restart the dev server if a new one does not apply.
 - **Verification is headless** (`scripts/shot.mjs`, one-off playwright-core scripts in
   `monorepo/scripts/`, deleted after). `window.__mapCamera` / `__mapHover` are published when
   the wrench is on. A 16px pointer-grid scan logging `__mapHover` with the nulls drawn on a

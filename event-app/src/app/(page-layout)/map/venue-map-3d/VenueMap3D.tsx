@@ -232,10 +232,7 @@ export function VenueMap3D() {
         </>
       )}
       {/* Bottom controls: Find pill over the legend on phones (Scott), side by side on the pill's row from lg up. */}
-      <div
-        className="pointer-events-none fixed inset-x-4 z-10 flex flex-col items-start gap-2 lg:inset-x-6 lg:block"
-        style={{ bottom: desktop ? "1.5rem" : "calc(var(--nav-clearance) + 12px)" }}
-      >
+      <div className="pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex flex-col items-start gap-2 lg:inset-x-6 lg:bottom-6 lg:block">
         {settings.source === "plan" && <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />}
         <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
       </div>

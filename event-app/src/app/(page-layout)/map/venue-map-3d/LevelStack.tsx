@@ -86,6 +86,9 @@ export function LevelStack({
     const prev = prevRef.current;
     prevRef.current = { level, view };
     if (prev.level === level) return;
+    // The stacked-view handlers and hit planes come and go with the level: R3F fires no
+    // pointer-out for objects that unmount, so a floor hover would otherwise stay stuck.
+    setHovered(null);
     const now = performance.now();
     const tweens: Tween[] = [];
     const parked = (id: LevelId, shown: LevelId, exit: number) => Math.sign(levelIndex(id) - levelIndex(shown)) * exit;

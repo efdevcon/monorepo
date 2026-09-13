@@ -5,14 +5,8 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import { Group, Shape, ShapeGeometry, Vector2, Vector3 } from "three";
 import cn from "classnames";
-import { PX } from "./isoMath";
+import { polygonArea, PX } from "./isoMath";
 import type { PlanLevel } from "./types";
-
-function ringArea(poly: Vector2[]): number {
-  let a = 0;
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) a += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
-  return Math.abs(a / 2);
-}
 
 /**
  * Invisible plane over a stacked floor's whole footprint (slab outline, holes
@@ -26,7 +20,7 @@ export function FloorHitPlane({ level }: { level: PlanLevel }) {
     const slab = level.shapes.find((s) => s.kind === "slab");
     if (!slab) return null;
     // Same shape space as PlanShapes: (X, −Z), rotated onto the ground; outline only, no holes.
-    const rings = slab.polygons.map((poly) => poly.map(([x, z]) => new Vector2(x * PX, -z * PX))).sort((a, b) => ringArea(b) - ringArea(a));
+    const rings = slab.polygons.map((poly) => poly.map(([x, z]) => new Vector2(x * PX, -z * PX))).sort((a, b) => polygonArea(b) - polygonArea(a));
     const g = new ShapeGeometry(new Shape(rings[0]));
     g.rotateX(-Math.PI / 2);
     return g;

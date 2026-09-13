@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import cn from "classnames";
-import { FIND_PANEL_ID } from "./FindButton";
+
+const FIND_PANEL_ID = "map-find-panel";
 
 /** Structural ref type (see SearchInput.tsx). */
 type InputRef = { current: HTMLInputElement | null };

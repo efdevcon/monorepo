@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import type { ThreeEvent } from "@react-three/fiber";
 import { EdgesGeometry, ExtrudeGeometry, Path, Shape, Vector2 } from "three";
-import { PX, scaleHex } from "./isoMath";
+import { polygonArea, PX, scaleHex } from "./isoMath";
 import { noRaycast, TAP_SLOP_PX } from "./interaction";
 import { areaOf, shapeKey } from "./planArea";
 import type { Area, PlanShape } from "./types";
@@ -52,12 +52,6 @@ function mixHex(a: string, b: string, t: number): string {
   const pb = parseInt(b.slice(1), 16);
   const ch = (shift: number) => Math.round(((pa >> shift) & 255) * (1 - t) + ((pb >> shift) & 255) * t);
   return `#${((ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).padStart(6, "0")}`;
-}
-
-function polygonArea(poly: Vector2[]): number {
-  let a = 0;
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) a += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
-  return Math.abs(a / 2);
 }
 
 function PlanShapeMesh({

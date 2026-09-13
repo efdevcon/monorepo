@@ -77,3 +77,10 @@ export function scaleHex(hex: string, factor: number): string {
   });
   return `#${out.join("")}`;
 }
+
+/** Shoelace area of a closed ring (any point type with x/y). */
+export function polygonArea(poly: readonly { x: number; y: number }[]): number {
+  let a = 0;
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) a += (poly[j].x + poly[i].x) * (poly[j].y - poly[i].y);
+  return Math.abs(a / 2);
+}

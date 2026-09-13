@@ -240,7 +240,7 @@ function areaFor(id) {
  */
 function nameFor(id, area) {
   if (!area) return humanise(id);
-  const theme = /^st(?:a)?ge-\d+-(.+)$/i.exec(id)?.[1];
+  const theme = /^st(?:a)?ge-\d+-(.+)$/i.exec(id.replace(/-mask$/i, ""))?.[1];
   if (theme) return `${area.name} - ${humanise(theme)}`;
   return area.numbered ? `${area.name} ${/(\d+)$/.exec(id)?.[1] ?? ""}`.trim() : area.name;
 }

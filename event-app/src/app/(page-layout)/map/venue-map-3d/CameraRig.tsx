@@ -181,6 +181,7 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     const onChange = () => invalidate();
     const onStart = () => {
       interactedRef.current = true;
+      pendingResetRef.current = false; // a grab abandons a reset in flight; otherwise the next floor change would finish it
       if (tweenRef.current) {
         tweenRef.current = null;
         applyZoomClamps(); // a tween loosens the clamps until it lands; the user grabbing the camera ends it early
