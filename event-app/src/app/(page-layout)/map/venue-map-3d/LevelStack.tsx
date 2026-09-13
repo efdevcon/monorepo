@@ -28,7 +28,11 @@ type LevelStackProps = {
   setHovered: (id: string | null) => void;
 };
 
-type LevelAnim = { y: number; visible: boolean };
+/** `lift`: hover offset above the rest pose (stacked view), eased per frame. */
+type LevelAnim = { y: number; visible: boolean; lift: number };
+/** How far a hovered floor rises in the stack (world units; the gap is 6) and how fast it settles (s, ~150ms feel). */
+const HOVER_LIFT = 0.6;
+const HOVER_LIFT_TAU = 0.05;
 type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; hideAtEnd: boolean };
 
 /**
@@ -65,7 +69,7 @@ export function LevelStack({
   const stackY = (id: LevelId) => (levelIndex(id) - (levels.length - 1) / 2) * gap;
   const animRef = useRef<Map<LevelId, LevelAnim> | null>(null);
   if (animRef.current === null) {
-    animRef.current = new Map(levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, visible: level === null || l.id === level }]));
+    animRef.current = new Map(levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, visible: level === null || l.id === level, lift: 0 }]));
   }
   const anims = animRef.current;
 
@@ -116,7 +120,15 @@ export function LevelStack({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gap]);
 
-  useFrame(() => {
+  const stacked = level === null;
+  const hoveredLevel = stacked && hoveredId?.startsWith("level:") ? (hoveredId.slice("level:".length) as LevelId) : null;
+  const hoveredRef = useRef<LevelId | null>(null);
+  useEffect(() => {
+    hoveredRef.current = hoveredLevel;
+    invalidate(); // start easing the lift on hover changes (the canvas renders on demand)
+  }, [hoveredLevel, invalidate]);
+
+  useFrame((_, delta) => {
     const now = performance.now();
     const remaining: Tween[] = [];
     for (const tw of tweensRef.current) {
@@ -128,16 +140,21 @@ export function LevelStack({
       } else remaining.push(tw);
     }
     tweensRef.current = remaining;
+    // Hover lift (stacked view): ease each floor towards its target offset.
+    let lifting = false;
+    const k = 1 - Math.exp(-delta / HOVER_LIFT_TAU);
     for (const [id, a] of anims) {
+      const target = id === hoveredRef.current ? HOVER_LIFT : 0;
+      const next = a.lift + (target - a.lift) * k;
+      a.lift = Math.abs(next - target) < 0.002 ? target : next;
+      if (a.lift !== target) lifting = true;
       const group = groupRefs.current.get(id);
       if (!group) continue;
-      group.position.y = a.y;
+      group.position.y = a.y + a.lift;
       group.visible = a.visible;
     }
-    if (remaining.length) invalidate();
+    if (remaining.length || lifting) invalidate();
   });
-
-  const stacked = level === null;
 
   return (
     <>
@@ -165,7 +182,7 @@ export function LevelStack({
               }
             : {})}
         >
-          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} onSelect={onSelect} setHovered={setHovered} />
+          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
