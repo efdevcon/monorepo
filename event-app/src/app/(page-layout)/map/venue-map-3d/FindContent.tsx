@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
-import { ChevronDown, type LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, Layers, type LucideIcon } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { SearchInput } from "@/components/SearchInput";
 import { iconUrl } from "./icons";
@@ -17,6 +17,8 @@ type FindContentProps = {
   query: string;
   onQueryChange: (q: string) => void;
   onPick: (entry: FindEntry) => void;
+  /** The query named a whole floor and the user chose it: open that floor. */
+  onPickFloor: (level: LevelId) => void;
   onClose: () => void;
   inputRef?: InputRef;
 };
@@ -28,13 +30,16 @@ const FLOOR_TAG: Record<LevelId, string> = { G: "G", L1: "L1", L2: "L2" };
  * Body of Find, shared by the phone sheet and the desktop panel: title row,
  * search field, then either the category accordion (one open at a time, places
  * grouped by floor, expanded body on the dc-panel neutral) or, while typing, a
- * flat list of matches with floor tags. The shell provides the flex column;
- * the list scrolls inside it.
+ * flat list of matches with floor tags. A floor in the query ("level 1",
+ * "toilets l1") scopes the list to it; a bare floor also gets a row that opens
+ * it. The shell provides the flex column; the list scrolls inside it.
  */
-export function FindContent({ groups, query, onQueryChange, onPick, onClose, inputRef }: FindContentProps) {
+export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor, onClose, inputRef }: FindContentProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
   const searching = query.trim().length > 0;
-  const hits = searching ? searchFind(groups, query) : [];
+  const { floor, hits } = searching ? searchFind(groups, query) : { floor: null, hits: [] };
+  // A bare floor query ("level 1") lists the floor: offer to open it above its places.
+  const wholeFloor = floor !== null && floor.count === hits.length;
 
   return (
     <>
@@ -43,22 +48,38 @@ export function FindContent({ groups, query, onQueryChange, onPick, onClose, inp
         <CloseButton onClick={onClose} />
       </div>
       <div className="px-4 pb-3 pt-3">
-        <SearchInput value={query} onChange={onQueryChange} placeholder="Search rooms, stages, food…" inputRef={inputRef} />
+        <SearchInput value={query} onChange={onQueryChange} placeholder="Search rooms, food, floors…" inputRef={inputRef} />
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto border-t border-dc-hairline">
         {searching ? (
-          hits.length === 0 ? (
-            <p className="px-4 py-6 text-center text-[14px] text-dc-muted">No places match “{query.trim()}”</p>
-          ) : (
-            <ul className="py-1">
-              {hits.map((hit) => (
-                <li key={hit.key}>
-                  <EntryRow entry={hit} Icon={hit.category.Icon} floorTag onPick={onPick} />
-                </li>
-              ))}
-            </ul>
-          )
+          <>
+            {floor && wholeFloor && (
+              <button
+                type="button"
+                onClick={() => onPickFloor(floor.level)}
+                className="flex w-full cursor-pointer items-center gap-3 border-b border-dc-hairline px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
+              >
+                <Layers className="size-4 shrink-0 text-dc-purple" aria-hidden />
+                <span className="min-w-0 flex-1 text-[14px] font-semibold leading-none text-dc-fg2">{floor.name}</span>
+                <span className="text-[12px] leading-none text-dc-muted">
+                  {floor.count} {floor.count === 1 ? "place" : "places"}
+                </span>
+                <ChevronRight className="size-4 shrink-0 text-dc-muted" aria-hidden />
+              </button>
+            )}
+            {hits.length === 0 ? (
+              <p className="px-4 py-6 text-center text-[14px] text-dc-muted">No places match “{query.trim()}”</p>
+            ) : (
+              <ul className="py-1">
+                {hits.map((hit) => (
+                  <li key={hit.key}>
+                    <EntryRow entry={hit} Icon={hit.category.Icon} floorTag onPick={onPick} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         ) : (
           groups.map(({ category, count, floors }) => {
             const open = expanded === category.id;

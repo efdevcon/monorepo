@@ -163,7 +163,6 @@ export function VenueMap3D() {
     showShapes(entry.shapes, `find:${entry.key}#${Date.now()}`);
     closeFind();
   };
-
   // The top-down camera only makes sense on the redraw; the artwork always shows in 3D.
   const setSource = useCallback(
     (source: MapSource) => {
@@ -198,6 +197,11 @@ export function VenueMap3D() {
     },
     [select]
   );
+  // Find "Level 1" row: just open the floor.
+  const pickFloor = (level: LevelId) => {
+    showLevel(level);
+    closeFind();
+  };
   // Find owns Escape while open (and the user may be typing "1" into its field).
   const openFind = useCallback(() => setFindOpen(true), []);
   const closeCard = useCallback(() => select(null), [select]);
@@ -240,11 +244,11 @@ export function VenueMap3D() {
           {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
           {desktop ? (
             <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
-              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onClose={closeFind} inputRef={findInputRef} />
+              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} inputRef={findInputRef} />
             </FindPanel>
           ) : (
             <FindSheet open={findOpen} onOpenChange={(open) => (open ? setFindOpen(true) : closeFind())}>
-              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onClose={closeFind} />
+              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} />
             </FindSheet>
           )}
         </>

@@ -74,18 +74,65 @@ export function buildFindGroups(plan: PlanScene): FindGroup[] {
 
 export type FindHit = FindEntry & { category: FindCategory };
 
-/** Case-insensitive substring match on the place name or its category, floors in building order. */
-export function searchFind(groups: FindGroup[], query: string): FindHit[] {
-  const q = query.trim().toLowerCase();
-  if (!q) return [];
+/** How people write a floor; longest alias first so "level 1" wins over "l1"-style prefixes. */
+const FLOOR_ALIASES: [LevelId, string][] = (
+  [
+    ["G", ["ground floor", "groundfloor", "ground", "gf", "g"]],
+    ["L1", ["first floor", "1st floor", "floor 1", "level 1", "level1", "l1"]],
+    ["L2", ["second floor", "2nd floor", "floor 2", "level 2", "level2", "l2"]],
+  ] as [LevelId, string[]][]
+)
+  .flatMap(([level, aliases]) => aliases.map((a) => [level, a] as [LevelId, string]))
+  .sort((a, b) => b[1].length - a[1].length);
+
+/**
+ * Splits a floor off the query (someone may only know "it's on level 1"):
+ * "level 2" → L2 and nothing else, "toilets l1" / "l1 toilets" → L1 + "toilets".
+ * Bare digits are never a floor ("meeting room 1" stays a name search).
+ */
+export function parseFloorQuery(query: string): { level: LevelId | null; rest: string } {
+  const q = query.trim().toLowerCase().replace(/\s+/g, " ");
+  for (const [level, alias] of FLOOR_ALIASES) {
+    if (q === alias) return { level, rest: "" };
+    if (q.startsWith(`${alias} `)) return { level, rest: q.slice(alias.length + 1) };
+    if (q.endsWith(` ${alias}`)) return { level, rest: q.slice(0, -alias.length - 1) };
+  }
+  return { level: null, rest: q };
+}
+
+export type FindSearch = {
+  /** The floor the query named, with every place on it counted; shown as a row that opens the floor. */
+  floor: { level: LevelId; name: string; count: number } | null;
+  hits: FindHit[];
+};
+
+/**
+ * Case-insensitive substring match on the place name or its category. A floor
+ * in the query scopes the search to it, or lists the whole floor in category
+ * order when it is the whole query; text searches sort by name, floors in
+ * building order.
+ */
+export function searchFind(groups: FindGroup[], query: string): FindSearch {
+  const { level, rest } = parseFloorQuery(query);
+  if (!level && !rest) return { floor: null, hits: [] };
   const hits: FindHit[] = [];
+  let floorName = level ?? "";
+  let floorCount = 0;
   for (const group of groups) {
-    const categoryHit = group.category.label.toLowerCase().includes(q);
+    const categoryHit = rest !== "" && group.category.label.toLowerCase().includes(rest);
     for (const floor of group.floors) {
+      if (level && floor.level !== level) continue;
+      if (level) {
+        floorName = floor.name;
+        floorCount += floor.entries.length;
+      }
       for (const entry of floor.entries) {
-        if (categoryHit || entry.name.toLowerCase().includes(q)) hits.push({ ...entry, category: group.category });
+        if (rest === "" || categoryHit || entry.name.toLowerCase().includes(rest)) hits.push({ ...entry, category: group.category });
       }
     }
   }
-  return hits.sort((a, b) => byName(a, b) || levelIndex(a.level) - levelIndex(b.level));
+  return {
+    floor: level ? { level, name: floorName, count: floorCount } : null,
+    hits: rest === "" ? hits : hits.sort((a, b) => byName(a, b) || levelIndex(a.level) - levelIndex(b.level)),
+  };
 }
