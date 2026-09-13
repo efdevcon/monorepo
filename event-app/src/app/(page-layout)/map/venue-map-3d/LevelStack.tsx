@@ -22,6 +22,7 @@ type LevelStackProps = {
   reducedMotion: boolean;
   selectedId: string | null;
   hoveredId: string | null;
+  highlightedIds: ReadonlySet<string> | null;
   onSelect: (area: Area) => void;
   onSelectLevel: (level: LevelId) => void;
   setHovered: (id: string | null) => void;
@@ -52,6 +53,7 @@ export function LevelStack({
   reducedMotion,
   selectedId,
   hoveredId,
+  highlightedIds,
   onSelect,
   onSelectLevel,
   setHovered,
@@ -163,10 +165,10 @@ export function LevelStack({
               }
             : {})}
         >
-          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHovered} />
+          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} onSelect={onSelect} setHovered={setHovered} />
           {showIcons && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
+              <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
             </Suspense>
           )}
         </group>

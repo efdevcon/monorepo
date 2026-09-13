@@ -14,6 +14,8 @@ type PlanIconsProps = {
   interactive: boolean;
   /** Footprint whose icon bobs (selection key, see planArea.ts). */
   selectedId: string | null;
+  /** Found group: every member's icon bobs too. */
+  highlightedIds: ReadonlySet<string> | null;
   reducedMotion: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
@@ -56,7 +58,7 @@ const BOB_AMPLITUDE = 0.12; // Scott: "a little more verticality" than 0.07
 const BOB_PERIOD_S = 1.8;
 
 /** The theme icons, standing on the centre of each footprint and always facing the camera. */
-export function PlanIcons({ shapes, interactive, selectedId, reducedMotion, onSelect, setHovered }: PlanIconsProps) {
+export function PlanIcons({ shapes, interactive, selectedId, highlightedIds, reducedMotion, onSelect, setHovered }: PlanIconsProps) {
   return (
     <>
       {shapes
@@ -66,7 +68,7 @@ export function PlanIcons({ shapes, interactive, selectedId, reducedMotion, onSe
             key={shape.id}
             shape={shape}
             interactive={interactive}
-            bob={shapeKey(shape) === selectedId && !reducedMotion}
+            bob={!reducedMotion && (shapeKey(shape) === selectedId || (highlightedIds?.has(shapeKey(shape)) ?? false))}
             onSelect={onSelect}
             setHovered={setHovered}
           />

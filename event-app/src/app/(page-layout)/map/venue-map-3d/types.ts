@@ -105,8 +105,13 @@ export type MapSource = "iso" | "plan";
 /** Camera pitch: the isometric orbit, or straight down. */
 export type MapView = "3d" | "top";
 
-/** Camera destination for a deep-linked footprint: ground-px point + zoom multiplier over the fitted view. */
-export type CameraFocus = { x: number; z: number; zoom: number; key: string };
+/**
+ * Camera destination for a deep-linked or found footprint: ground-px point +
+ * zoom multiplier over the fitted view. `bounds` (a group of footprints, e.g.
+ * every toilet on a floor) makes the rig fit that rectangle instead, never
+ * closer than the single-footprint zoom.
+ */
+export type CameraFocus = { x: number; z: number; zoom: number; key: string; bounds?: GroundBounds };
 
 /** Live camera orientation, written by CameraRig every frame and read by the props. */
 export type CameraPose = { azimuth: number; polar: number };

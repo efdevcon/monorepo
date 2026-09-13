@@ -17,6 +17,8 @@ type SceneProps = {
   areas: Area[];
   settings: MapSettings;
   selectedId: string | null;
+  /** Found group (plan source): highlighted like a hover, icons bobbing. */
+  highlightedIds?: ReadonlySet<string> | null;
   active: boolean;
   debug: boolean;
   reducedMotion: boolean;
@@ -27,7 +29,7 @@ type SceneProps = {
 };
 
 /** The R3F canvas: the stacked plan floors (or the iso artwork) and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ scene, plan, areas, settings, selectedId, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
+export default function Scene({ scene, plan, areas, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Debug: expose the hovered target for hit-testing scripts.
@@ -74,6 +76,7 @@ export default function Scene({ scene, plan, areas, settings, selectedId, active
           reducedMotion={reducedMotion}
           selectedId={selectedId}
           hoveredId={hoveredId}
+          highlightedIds={highlightedIds}
           onSelect={onSelect}
           onSelectLevel={onSelectLevel}
           setHovered={setHoveredId}

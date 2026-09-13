@@ -33,6 +33,8 @@ const ORTHO_RADIUS = 60;
 const FIT_MARGIN = 0.9;
 /** Top-down fills the viewport's height, and the canvas runs under the sticky header: leave more room. */
 const FIT_MARGIN_TOP = 0.68;
+/** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
+const GROUP_FIT_MARGIN = 0.55;
 const TWEEN_MS = 350;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
@@ -272,16 +274,24 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackKey]);
 
-  // Deep link: centre on the footprint and zoom past the fit. Declared after the
-  // stack / view effects so, when a floor opens in the same commit, this tween
-  // is the one that runs (same clock as the floors sliding in).
+  // Deep link / Find: centre on the footprint and zoom past the fit. Declared
+  // after the stack / view effects so, when a floor opens in the same commit,
+  // this tween is the one that runs (same clock as the floors sliding in).
   useEffect(() => {
     const controls = controlsRef.current;
     if (!focus || !controls || size.width === 0) return;
     interactedRef.current = true; // a resize must not snap back to the start view
     const target = new Vector3(MathUtils.clamp(focus.x * PX, bounds.minX, bounds.maxX), 0, MathUtils.clamp(focus.z * PX, bounds.minZ, bounds.maxZ));
     const cur = currentView();
-    const zoom = isOrtho ? Math.min(controls.maxZoom, fitRef.current.zoom * focus.zoom) : cur.zoom;
+    let zoom = isOrtho ? Math.min(controls.maxZoom, fitRef.current.zoom * focus.zoom) : cur.zoom;
+    if (isOrtho && focus.bounds) {
+      // A group of footprints: fit its ground rectangle. The diagonal stands in for
+      // the screen extent whatever the azimuth; the margin leaves room for the card.
+      // Never closer than the single-footprint zoom, never wider than the floor fit.
+      const diagonal = Math.hypot(focus.bounds.maxX - focus.bounds.minX, focus.bounds.maxZ - focus.bounds.minZ) * PX;
+      const groupZoom = (Math.min(size.width, size.height) / Math.max(diagonal, 1e-3)) * GROUP_FIT_MARGIN;
+      zoom = MathUtils.clamp(groupZoom, fitRef.current.zoom, zoom);
+    }
     const radius = isOrtho ? fitRef.current.radius : Math.max(controls.minDistance, fitRef.current.radius / focus.zoom);
     tweenTo({ target, azimuth: baseAzimuth, polar: targetPolar, zoom, radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
