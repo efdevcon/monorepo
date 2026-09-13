@@ -31,12 +31,10 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
       aria-label={shown?.name}
       aria-hidden={!open}
       className={cn(
-        "fixed right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
+        // Full width on phones (the app's dev trigger docks under the map wrench on /map, so nothing to dodge).
+        "fixed left-4 right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
         // The icon disc rides the top edge, mostly above the card: the body only needs to clear its lower ~22px.
         icon && "pt-6",
-        // Full width on phones. Development only: clear the app's 44px debug trigger (components/DebugPanel,
-        // bottom-left, z-100), which would otherwise float over the session block.
-        process.env.NODE_ENV === "development" ? "left-[76px]" : "left-4",
         "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
         open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       )}

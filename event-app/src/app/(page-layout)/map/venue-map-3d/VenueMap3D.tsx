@@ -139,9 +139,8 @@ export function VenueMap3D() {
       )}
       <ControlsHelp view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
-      <DebugCorner>
+      <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
-        {debug && <DebugPanel settings={settings} onChange={setSettings} />}
       </DebugCorner>
     </div>
   );

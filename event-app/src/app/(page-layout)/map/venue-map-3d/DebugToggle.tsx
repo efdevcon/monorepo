@@ -3,6 +3,7 @@
 import type React from "react";
 import cn from "classnames";
 import { Wrench } from "lucide-react";
+import { appDebugEnabled } from "@/components/DebugPanel";
 
 /**
  * Opens the 3D map tuning panel (DebugPanel). Styled like the app-wide dev
@@ -32,7 +33,16 @@ export function DebugToggle({ pressed, onToggle }: { pressed: boolean; onToggle:
 /**
  * Top-left corner of the map: under the source switch's caption on phones, the
  * free corner from lg up. Holds the toggle with the panel opening beneath it.
+ * The app-wide dev trigger (components/DebugPanel) docks itself under the
+ * wrench on /map with `fixed` positioning, so the column keeps a 44px slot for
+ * it whenever that trigger is available; the tuning panel then opens below both.
  */
-export function DebugCorner({ children }: { children: React.ReactNode }) {
-  return <div className="fixed left-4 top-[calc(3.5rem+var(--safe-top)+76px)] z-20 flex flex-col items-start gap-3 lg:left-6 lg:top-[80px]">{children}</div>;
+export function DebugCorner({ children, panel }: { children: React.ReactNode; panel?: React.ReactNode }) {
+  return (
+    <div className="fixed left-4 top-[calc(3.5rem+var(--safe-top)+76px)] z-20 flex flex-col items-start gap-3 lg:left-6 lg:top-[80px]">
+      {children}
+      {appDebugEnabled() && <div aria-hidden className="h-11 w-11" />}
+      {panel}
+    </div>
+  );
 }
