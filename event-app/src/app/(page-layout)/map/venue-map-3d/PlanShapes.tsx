@@ -16,14 +16,12 @@ type PlanShapesProps = {
   hoveredId: string | null;
   /** Found group (Find picks "Toilets · Level 1"): every member reads like a hover. */
   highlightedIds: ReadonlySet<string> | null;
-  /** The whole floor is hovered in the stacked view: its slab reads like a hovered area (purple edge). */
-  floorHovered?: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 };
 
 /** Everything extruded from one floor's plan: slab, walls, blocks and floor mats. */
-export function PlanShapes({ shapes, interactive, selectedId, hoveredId, highlightedIds, floorHovered = false, onSelect, setHovered }: PlanShapesProps) {
+export function PlanShapes({ shapes, interactive, selectedId, hoveredId, highlightedIds, onSelect, setHovered }: PlanShapesProps) {
   return (
     <>
       {shapes.map((shape) => (
@@ -31,7 +29,7 @@ export function PlanShapes({ shapes, interactive, selectedId, hoveredId, highlig
           key={shape.id}
           shape={shape}
           selected={shapeKey(shape) === selectedId}
-          hovered={shapeKey(shape) === hoveredId || (highlightedIds?.has(shapeKey(shape)) ?? false) || (floorHovered && shape.kind === "slab")}
+          hovered={shapeKey(shape) === hoveredId || (highlightedIds?.has(shapeKey(shape)) ?? false)}
           interactive={interactive}
           onSelect={onSelect}
           setHovered={setHovered}

@@ -7,7 +7,6 @@ import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
-import { FloorShadow } from "./FloorShadow";
 import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
 
 type LevelStackProps = {
@@ -118,8 +117,6 @@ export function LevelStack({
   }, [gap]);
 
   const stacked = level === null;
-  // Hovered floor in the stack: its slab tints (PlanShapes) and a drop shadow appears under it (FloorShadow), instantly.
-  const hoveredLevel = stacked && hoveredId?.startsWith("level:") ? (hoveredId.slice("level:".length) as LevelId) : null;
 
   useFrame(() => {
     const now = performance.now();
@@ -168,9 +165,7 @@ export function LevelStack({
               }
             : {})}
         >
-          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
-          {/* Lands on the floor below (its slab top is one gap down); the bottom floor gets a short drop into the void. */}
-          <FloorShadow level={l} dropY={levelIndex(l.id) > 0 ? gap - 0.02 : 0.8} visible={hoveredLevel === l.id} />
+          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} onSelect={onSelect} setHovered={setHovered} />
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
