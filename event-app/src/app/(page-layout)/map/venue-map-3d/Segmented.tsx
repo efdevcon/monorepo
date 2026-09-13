@@ -10,6 +10,8 @@ export type SegmentedOption<T extends string> = {
   children?: ReactNode;
   /** Extra classes on the button (padding, widths). */
   className?: string;
+  /** Native tooltip (e.g. the keyboard shortcut). */
+  title?: string;
 };
 
 type SegmentedProps<T extends string> = {
@@ -64,6 +66,7 @@ export function Segmented<T extends string>({ value, options, onChange, ariaLabe
           role="radio"
           aria-checked={value === option.value}
           aria-label={option.label}
+          title={option.title}
           ref={(el) => {
             buttonRefs.current.set(option.value, el);
           }}

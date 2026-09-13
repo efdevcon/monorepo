@@ -12,6 +12,7 @@ import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
 import { LevelToggle } from "./LevelToggle";
 import { ControlsLegend } from "./ControlsLegend";
+import { useMapShortcuts } from "./useMapShortcuts";
 import { areaOf } from "./planArea";
 import { AREA_PARAM, parseAreaParam } from "./roomAreas";
 import {
@@ -113,6 +114,12 @@ export function VenueMap3D() {
     setSelected(null);
     setSettings((s) => ({ ...s, level: s.level === level ? (s.view === "3d" ? null : level) : level }));
   }, []);
+  // Keyboard: G / 1 / 2 always land on that floor (no toggle back to the stack); Esc is the tab re-tap reset.
+  const showLevel = useCallback((level: LevelId) => {
+    setSelected(null);
+    setSettings((s) => (s.level === level ? s : { ...s, level }));
+  }, []);
+  useMapShortcuts({ showLevel, reset }, { enabled: settings.source === "plan" });
 
   return (
     <div className="relative flex-1">
