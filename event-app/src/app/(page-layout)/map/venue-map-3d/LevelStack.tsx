@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Group, MathUtils, OrthographicCamera, PerspectiveCamera } from "three";
+import { Group, MathUtils, OrthographicCamera, PerspectiveCamera, type Object3D } from "three";
 import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
@@ -164,7 +164,18 @@ export function LevelStack({
                   e.stopPropagation();
                   setHovered(`level:${l.id}`);
                 },
-                onPointerOut: () => setHovered(null),
+                // R3F tracks hover per hit object, so leaving a block fires the group's out while the pointer
+                // is still on this floor's hit plane (which stays hovered, so no fresh over follows) — the
+                // hover dropped on every block, wall and mat. The out event carries the new hits: keep the
+                // hover while any of them is still one of ours.
+                onPointerOut: (e: ThreeEvent<PointerEvent>) => {
+                  const g = groupRefs.current.get(l.id);
+                  const stillOurs = e.intersections.some((hit) => {
+                    for (let o: Object3D | null = hit.object; o; o = o.parent) if (o === g) return true;
+                    return false;
+                  });
+                  if (!stillOurs) setHovered(null);
+                },
               }
             : {})}
         >

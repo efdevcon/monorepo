@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
-import { Shape, ShapeGeometry, Vector2 } from "three";
+import { Group, Shape, ShapeGeometry, Vector2, Vector3 } from "three";
 import cn from "classnames";
 import { PX } from "./isoMath";
 import type { PlanLevel } from "./types";
@@ -38,37 +39,58 @@ export function FloorHitPlane({ level }: { level: PlanLevel }) {
   );
 }
 
-/**
- * The floor's right-most corner on screen at the start orientation (+X / −Z in
- * the isometric view; ground px → world): where the hover label starts, so it
- * sits beside the floor rather than on it.
- */
-function rightCorner(level: PlanLevel): [number, number] {
+/** The four corners of the floor's footprint (level-local world units). */
+function corners(level: PlanLevel): Vector3[] {
   const b = level.bounds;
-  return [b.maxX * PX, b.minZ * PX];
+  return [
+    new Vector3(b.minX * PX, 0.3, b.minZ * PX),
+    new Vector3(b.maxX * PX, 0.3, b.minZ * PX),
+    new Vector3(b.maxX * PX, 0.3, b.maxZ * PX),
+    new Vector3(b.minX * PX, 0.3, b.maxZ * PX),
+  ];
 }
 
 /**
- * Floor name that slides out to the right from the floor's right-hand edge
+ * Floor name that slides out to the right from the floor's right-hand side
  * while the floor is hovered in the stack. Big, bold and in the muted
  * foreground colour with no surface behind it, so it reads as part of the
- * backdrop rather than a control (Scott). Stays mounted so it can slide back;
- * never takes the pointer.
+ * backdrop rather than a control (Scott). Anchored each frame at whichever
+ * footprint corner is right-most on screen, so it stays beside the floor as
+ * the stack is turned. Stays mounted so it can slide back; never takes the
+ * pointer.
  */
 export function FloorLabel({ level, shown }: { level: PlanLevel; shown: boolean }) {
-  const [x, z] = rightCorner(level);
+  const anchor = useRef<Group>(null);
+  const pts = useMemo(() => corners(level), [level]);
+  const scratch = useMemo(() => new Vector3(), []);
+  useFrame(({ camera }) => {
+    const g = anchor.current;
+    if (!g?.parent) return;
+    let best = pts[0];
+    let bestX = -Infinity;
+    for (const p of pts) {
+      const sx = g.parent.localToWorld(scratch.copy(p)).project(camera).x;
+      if (sx > bestX) {
+        bestX = sx;
+        best = p;
+      }
+    }
+    g.position.copy(best);
+  });
   return (
-    <Html position={[x, 0.3, z]} zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
-      <p
-        aria-hidden={!shown}
-        className={cn(
-          "pointer-events-none -translate-y-1/2 whitespace-nowrap font-heading text-[40px] font-bold leading-none tracking-[-0.5px] text-dc-muted",
-          "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
-          shown ? "translate-x-6 opacity-100" : "translate-x-0 opacity-0"
-        )}
-      >
-        {level.name}
-      </p>
-    </Html>
+    <group ref={anchor} position={pts[1]}>
+      <Html zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
+        <p
+          aria-hidden={!shown}
+          className={cn(
+            "pointer-events-none -translate-y-1/2 whitespace-nowrap font-heading text-[40px] font-bold leading-none tracking-[-0.5px] text-dc-muted",
+            "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
+            shown ? "translate-x-6 opacity-100" : "translate-x-0 opacity-0"
+          )}
+        >
+          {level.name}
+        </p>
+      </Html>
+    </group>
   );
 }
