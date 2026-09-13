@@ -27,8 +27,9 @@ const FLOOR_TAG: Record<LevelId, string> = { G: "G", L1: "L1", L2: "L2" };
 /**
  * Body of Find, shared by the phone sheet and the desktop panel: title row,
  * search field, then either the category accordion (one open at a time, places
- * grouped by floor) or, while typing, a flat list of matches with floor tags.
- * The shell provides the flex column; the list scrolls inside it.
+ * grouped by floor, expanded body on the dc-panel neutral) or, while typing, a
+ * flat list of matches with floor tags. The shell provides the flex column;
+ * the list scrolls inside it.
  */
 export function FindContent({ groups, query, onQueryChange, onPick, onClose, inputRef }: FindContentProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -75,7 +76,7 @@ export function FindContent({ groups, query, onQueryChange, onPick, onClose, inp
                   <ChevronDown className={cn("size-4 shrink-0 text-dc-muted transition-transform duration-200 ease-out motion-reduce:transition-none", open && "rotate-180")} aria-hidden />
                 </button>
                 {open && (
-                  <div className="bg-dc-lavender pb-1">
+                  <div className="bg-dc-panel pb-1">
                     {floors.map((floor) => (
                       <div key={floor.level}>
                         <p className="px-4 pb-1 pt-2.5 text-[11px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-muted">{floor.name}</p>
@@ -104,7 +105,8 @@ function EntryRow({ entry, Icon, floorTag, onPick }: { entry: FindEntry; Icon: L
     <button
       type="button"
       onClick={() => onPick(entry)}
-      className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-white/70"
+      // Same hover as the category rows (Scott): a white tint on the panel fill was invisible.
+      className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
     >
       <span className="flex size-7 shrink-0 items-center justify-center">
         {entry.icon ? (
