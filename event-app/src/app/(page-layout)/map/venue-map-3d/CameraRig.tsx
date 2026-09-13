@@ -246,7 +246,9 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     fitRef.current = computeFit(targetPolar);
     applyZoomClamps();
     if (pendingResetRef.current) {
-      pendingResetRef.current = false;
+      // Re-aim the reset at the refitted start view. The flag stays up: a reset
+      // that also re-stacks the floors is finished by the stack effect below
+      // (same commit), otherwise the tween's landing clears it.
       tweenTo(startView());
       return;
     }
@@ -268,7 +270,15 @@ export function CameraRig({ groundBounds, fit, settings, pannable, stack, reduce
     }
     fitRef.current = computeFit(targetPolar, stack);
     applyZoomClamps();
-    if (pendingResetRef.current || isTop) return; // the view effect / reset handles the tween
+    if (pendingResetRef.current) {
+      // Reset from an open floor (Map-tab re-tap, Esc): resetRef tweened with the
+      // floor's fit before this render, so re-aim at the stack's fit on the
+      // floors' clock. Without this the stack landed at the single-floor zoom.
+      pendingResetRef.current = false;
+      tweenTo(startView(), reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+      return;
+    }
+    if (isTop) return; // the view effect handles the tween
     const cur = currentView();
     tweenTo({ ...cur, target: center.clone(), zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
