@@ -7,6 +7,7 @@ import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
+import { FloorHitPlane, FloorLabel } from "./FloorHover";
 import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
 
 type LevelStackProps = {
@@ -117,6 +118,8 @@ export function LevelStack({
   }, [gap]);
 
   const stacked = level === null;
+  // Hovered floor in the stack: light slab tint (PlanShapes) + its name sliding out from the centre (FloorLabel).
+  const hoveredLevel = stacked && hoveredId?.startsWith("level:") ? (hoveredId.slice("level:".length) as LevelId) : null;
 
   useFrame(() => {
     const now = performance.now();
@@ -165,7 +168,9 @@ export function LevelStack({
               }
             : {})}
         >
-          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} onSelect={onSelect} setHovered={setHovered} />
+          <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
+          {stacked && <FloorHitPlane level={l} />}
+          {stacked && <FloorLabel level={l} shown={hoveredLevel === l.id} />}
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
