@@ -75,7 +75,8 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
  * on a point, a tap on an area opens AreaCard, and re-tapping the Map tab
  * resets the view (useTabReselect). Find (bottom-left) lists every footprint
  * by category and floor and jumps to one — or to every "Toilets" on a floor at
- * once. Desktop: G / 1 / 2 open a floor, Esc resets (useMapShortcuts).
+ * once. Desktop: G / 1 / 2 open a floor, F opens Find, Esc closes the card or
+ * resets (useMapShortcuts).
  */
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
@@ -198,7 +199,9 @@ export function VenueMap3D() {
     [select]
   );
   // Find owns Escape while open (and the user may be typing "1" into its field).
-  useMapShortcuts({ showLevel, reset }, { enabled: settings.source === "plan" && !findOpen });
+  const openFind = useCallback(() => setFindOpen(true), []);
+  const closeCard = useCallback(() => select(null), [select]);
+  useMapShortcuts({ showLevel, reset, openFind, closeCard }, { enabled: settings.source === "plan" && !findOpen, hasCard: selected !== null });
 
   return (
     <div className="relative flex-1">
@@ -229,7 +232,7 @@ export function VenueMap3D() {
         className="pointer-events-none fixed inset-x-4 z-10 flex flex-col items-start gap-2 lg:inset-x-6 lg:block"
         style={{ bottom: desktop ? "1.5rem" : "calc(var(--nav-clearance) + 12px)" }}
       >
-        {settings.source === "plan" && <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : setFindOpen(true))} />}
+        {settings.source === "plan" && <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />}
         <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
       </div>
       {settings.source === "plan" && (

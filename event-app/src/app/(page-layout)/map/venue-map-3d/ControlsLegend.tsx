@@ -84,6 +84,10 @@ export function ControlsLegend({ view, pannable, stacked, hidden }: { view: MapV
               Floors
             </span>
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+              <Kbd>F</Kbd>
+              Find
+            </span>
+            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
               <Kbd>Esc</Kbd>
               Reset
             </span>
