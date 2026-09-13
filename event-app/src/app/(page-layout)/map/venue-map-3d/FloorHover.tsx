@@ -38,32 +38,37 @@ export function FloorHitPlane({ level }: { level: PlanLevel }) {
   );
 }
 
-/** Slab centre (ground px → world), where the hover label starts. */
-function slabCentre(level: PlanLevel): [number, number] {
-  const slab = level.shapes.find((s) => s.kind === "slab");
-  const [x, z] = slab?.centroid ?? [(level.bounds.minX + level.bounds.maxX) / 2, (level.bounds.minZ + level.bounds.maxZ) / 2];
-  return [x * PX, z * PX];
+/**
+ * The floor's right-most corner on screen at the start orientation (+X / −Z in
+ * the isometric view; ground px → world): where the hover label starts, so it
+ * sits beside the floor rather than on it.
+ */
+function rightCorner(level: PlanLevel): [number, number] {
+  const b = level.bounds;
+  return [b.maxX * PX, b.minZ * PX];
 }
 
 /**
- * Floor name that slides out from the floor's centre to the right while the
- * floor is hovered in the stack (Scott). Stays mounted so it can slide back;
+ * Floor name that slides out to the right from the floor's right-hand edge
+ * while the floor is hovered in the stack. Big, bold and in the muted
+ * foreground colour with no surface behind it, so it reads as part of the
+ * backdrop rather than a control (Scott). Stays mounted so it can slide back;
  * never takes the pointer.
  */
 export function FloorLabel({ level, shown }: { level: PlanLevel; shown: boolean }) {
-  const [x, z] = slabCentre(level);
+  const [x, z] = rightCorner(level);
   return (
     <Html position={[x, 0.3, z]} zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
-      <div
+      <p
         aria-hidden={!shown}
         className={cn(
-          "pointer-events-none -translate-y-1/2 whitespace-nowrap rounded-full bg-white/90 px-3 py-1.5 font-heading text-[13px] font-bold leading-none text-dc-fg2 shadow-[0_2px_8px_rgba(22,11,43,0.18)] backdrop-blur",
+          "pointer-events-none -translate-y-1/2 whitespace-nowrap font-heading text-[40px] font-bold leading-none tracking-[-0.5px] text-dc-muted",
           "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
-          shown ? "translate-x-4 opacity-100" : "translate-x-0 opacity-0"
+          shown ? "translate-x-6 opacity-100" : "translate-x-0 opacity-0"
         )}
       >
         {level.name}
-      </div>
+      </p>
     </Html>
   );
 }
