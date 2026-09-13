@@ -11,7 +11,7 @@ import { DebugCorner, DebugToggle } from "./DebugToggle";
 import { SourceToggle } from "./SourceToggle";
 import { ViewToggle } from "./ViewToggle";
 import { LevelToggle } from "./LevelToggle";
-import { ControlsHelp } from "./ControlsHelp";
+import { ControlsLegend } from "./ControlsLegend";
 import { areaOf } from "./planArea";
 import { AREA_PARAM, parseAreaParam } from "./roomAreas";
 import {
@@ -137,7 +137,7 @@ export function VenueMap3D() {
           <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} />
         </>
       )}
-      <ControlsHelp view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
+      <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
       <AreaCard area={selected} onClose={() => setSelected(null)} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
