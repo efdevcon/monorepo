@@ -1,11 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
-import { isDesktopNow, useMediaQuery } from "@/hooks/useIsDesktop";
+import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
+import { FindButton } from "./FindButton";
+import { FindContent } from "./FindContent";
+import { FindPanel } from "./FindPanel";
+import { FindSheet } from "./FindSheet";
+import { buildFindGroups, type FindEntry } from "./pois";
 import { DebugPanel } from "./DebugPanel";
 import { DebugCorner, DebugToggle } from "./DebugToggle";
 import { SourceToggle } from "./SourceToggle";
@@ -68,7 +73,9 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
  * show that importing in that style doesn't work. Drag / swipe turns the
  * floor (horizontal only, clamped), pinch or wheel zooms, double-tap zooms in
  * on a point, a tap on an area opens AreaCard, and re-tapping the Map tab
- * resets the view (useTabReselect).
+ * resets the view (useTabReselect). Find (bottom-left) lists every footprint
+ * by category and floor and jumps to one — or to every "Toilets" on a floor at
+ * once. Desktop: G / 1 / 2 open a floor, Esc resets (useMapShortcuts).
  */
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
@@ -91,14 +98,26 @@ export function VenueMap3D() {
   const resetRef = useRef<() => void>(() => {});
   const active = usePaneActive();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const desktop = useIsDesktop();
+
+  // Find: every tappable footprint by category and floor (the plan is static, so build it once).
+  const findGroups = useMemo(() => buildFindGroups(plan), []);
+  const [findOpen, setFindOpen] = useState(false);
+  const [findQuery, setFindQuery] = useState("");
+  const findInputRef = useRef<HTMLInputElement | null>(null);
+  const closeFind = useCallback(() => {
+    setFindOpen(false);
+    setFindQuery("");
+  }, []);
 
   // Map-tab re-tap: back to the stacked 3D start view (the rig finishes the reset once the pitch change lands).
   const reset = useCallback(() => {
     select(null);
     setFocus(null);
+    closeFind();
     setSettings((s) => (s.view === "3d" && s.level === null ? s : { ...s, view: "3d", level: null }));
     resetRef.current();
-  }, [select]);
+  }, [select, closeFind]);
   useTabReselect(reset);
 
   /**
@@ -138,6 +157,12 @@ export function VenueMap3D() {
     if (shape) showShapes([shape], `${areaVisit}#${n}`);
   }
 
+  // Find pick: the same path as the deep link, keyed per pick so re-choosing the same row re-focuses.
+  const pickFind = (entry: FindEntry) => {
+    showShapes(entry.shapes, `find:${entry.key}#${Date.now()}`);
+    closeFind();
+  };
+
   // The top-down camera only makes sense on the redraw; the artwork always shows in 3D.
   const setSource = useCallback(
     (source: MapSource) => {
@@ -167,7 +192,8 @@ export function VenueMap3D() {
     },
     [select]
   );
-  useMapShortcuts({ showLevel, reset }, { enabled: settings.source === "plan" });
+  // Find owns Escape while open (and the user may be typing "1" into its field).
+  useMapShortcuts({ showLevel, reset }, { enabled: settings.source === "plan" && !findOpen });
 
   return (
     <div className="relative flex-1">
@@ -193,7 +219,22 @@ export function VenueMap3D() {
           <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} />
         </>
       )}
-      <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null} />
+      <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
+      {settings.source === "plan" && (
+        <>
+          <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : setFindOpen(true))} />
+          {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
+          {desktop ? (
+            <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
+              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onClose={closeFind} inputRef={findInputRef} />
+            </FindPanel>
+          ) : (
+            <FindSheet open={findOpen} onOpenChange={(open) => (open ? setFindOpen(true) : closeFind())}>
+              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onClose={closeFind} />
+            </FindSheet>
+          )}
+        </>
+      )}
       <AreaCard area={selected} onClose={() => select(null)} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
