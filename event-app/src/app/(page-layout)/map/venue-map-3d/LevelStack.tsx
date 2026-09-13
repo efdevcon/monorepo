@@ -7,6 +7,7 @@ import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
+import { FloorShadow } from "./FloorShadow";
 import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
 
 type LevelStackProps = {
@@ -28,11 +29,7 @@ type LevelStackProps = {
   setHovered: (id: string | null) => void;
 };
 
-/** `lift`: hover offset above the rest pose (stacked view), eased per frame. */
-type LevelAnim = { y: number; visible: boolean; lift: number };
-/** How far a hovered floor rises in the stack (world units; the gap is 6) and how fast it settles (s, ~150ms feel). */
-const HOVER_LIFT = 0.6;
-const HOVER_LIFT_TAU = 0.05;
+type LevelAnim = { y: number; visible: boolean };
 type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; hideAtEnd: boolean };
 
 /**
@@ -69,7 +66,7 @@ export function LevelStack({
   const stackY = (id: LevelId) => (levelIndex(id) - (levels.length - 1) / 2) * gap;
   const animRef = useRef<Map<LevelId, LevelAnim> | null>(null);
   if (animRef.current === null) {
-    animRef.current = new Map(levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, visible: level === null || l.id === level, lift: 0 }]));
+    animRef.current = new Map(levels.map((l) => [l.id, { y: level === null ? stackY(l.id) : 0, visible: level === null || l.id === level }]));
   }
   const anims = animRef.current;
 
@@ -121,14 +118,10 @@ export function LevelStack({
   }, [gap]);
 
   const stacked = level === null;
+  // Hovered floor in the stack: its slab tints (PlanShapes) and a drop shadow appears under it (FloorShadow), instantly.
   const hoveredLevel = stacked && hoveredId?.startsWith("level:") ? (hoveredId.slice("level:".length) as LevelId) : null;
-  const hoveredRef = useRef<LevelId | null>(null);
-  useEffect(() => {
-    hoveredRef.current = hoveredLevel;
-    invalidate(); // start easing the lift on hover changes (the canvas renders on demand)
-  }, [hoveredLevel, invalidate]);
 
-  useFrame((_, delta) => {
+  useFrame(() => {
     const now = performance.now();
     const remaining: Tween[] = [];
     for (const tw of tweensRef.current) {
@@ -140,20 +133,13 @@ export function LevelStack({
       } else remaining.push(tw);
     }
     tweensRef.current = remaining;
-    // Hover lift (stacked view): ease each floor towards its target offset.
-    let lifting = false;
-    const k = 1 - Math.exp(-delta / HOVER_LIFT_TAU);
     for (const [id, a] of anims) {
-      const target = id === hoveredRef.current ? HOVER_LIFT : 0;
-      const next = a.lift + (target - a.lift) * k;
-      a.lift = Math.abs(next - target) < 0.002 ? target : next;
-      if (a.lift !== target) lifting = true;
       const group = groupRefs.current.get(id);
       if (!group) continue;
-      group.position.y = a.y + a.lift;
+      group.position.y = a.y;
       group.visible = a.visible;
     }
-    if (remaining.length || lifting) invalidate();
+    if (remaining.length) invalidate();
   });
 
   return (
@@ -183,6 +169,8 @@ export function LevelStack({
             : {})}
         >
           <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
+          {/* Lands on the floor below (its slab top is one gap down); the bottom floor gets a short drop into the void. */}
+          <FloorShadow level={l} dropY={levelIndex(l.id) > 0 ? gap - 0.02 : 0.8} visible={hoveredLevel === l.id} />
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
