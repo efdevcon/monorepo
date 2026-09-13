@@ -7,8 +7,12 @@ import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
 import { iconFor, iconUrl } from "./icons";
+import { roomIdForArea } from "./roomAreas";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
 import type { Area } from "./types";
+
+/** Rooms whose card drops its own blurb and divider while a session is live, so the session is the whole story (Scott: Main Stage). */
+const SESSION_ONLY_ROOMS = new Set(["main-stage"]);
 
 /**
  * The bottom card that opens when an area is tapped: name and a short
@@ -24,6 +28,7 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
   const open = area !== null;
   const icon = shown ? (shown.icon ?? iconFor(shown.id)) : null;
   const live = useLiveSessionForArea(shown?.id ?? null);
+  const sessionOnly = live !== null && shown !== null && SESSION_ONLY_ROOMS.has(roomIdForArea(shown.id) ?? "");
 
   return (
     <div
@@ -64,11 +69,11 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
             </span>
           )}
         </div>
-        {shown?.description && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+        {shown?.description && !sessionOnly && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
       </div>
 
       {live && (
-        <div className="flex flex-col gap-2 border-t border-dc-hairline pt-3">
+        <div className={cn("flex flex-col gap-2", !sessionOnly && "border-t border-dc-hairline pt-3")}>
           {/* Opens the session in place (schedule pane), where the livestream and Q&A live. */}
           <DetailLink kind="session" id={live.id} className="group -mx-1 flex items-center gap-1 rounded-md px-1 py-0.5 transition-colors hover:bg-dc-lavender">
             <span className="line-clamp-2 min-w-0 flex-1 text-[14px] font-bold leading-5 text-dc-fg2 group-hover:text-dc-purple">{live.title}</span>
