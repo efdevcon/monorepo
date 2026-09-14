@@ -900,6 +900,14 @@
   border: 1px dashed #f59e0b;
 }
 
+// Paid order with a refund already on it (canceled positions refunded).
+// Indigo: distinct from the red action badges and the green paid pill.
+.admin-badge-partial-refund {
+  @extend %admin-pill;
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
 .admin-badge-overpaid {
   @extend %admin-pill;
   background: #fee2e2;
@@ -983,6 +991,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+// Explains a partial refund (paid order with canceled positions) so the
+// operator sees why the amount is below the payment before signing.
+.modal-note {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #92400e;
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: -12px 0 24px;
 }
 
 .modal-label {

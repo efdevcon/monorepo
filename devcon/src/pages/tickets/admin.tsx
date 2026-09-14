@@ -450,9 +450,30 @@ function TestModeBadge({ on }: { on?: boolean }) {
   return <span className={css['admin-badge-test']}>TEST</span>
 }
 
-function OverpaidBadge({ amount }: { amount?: string | null }) {
-  if (!amount) return null
-  return <span className={css['admin-badge-overpaid']} title="Buyer paid more than the order total — refund the difference">OVERPAID +${amount}</span>
+/** Paid order with a refund already recorded (canceled positions, or a
+ *  refunded overpayment): the remaining tickets are live, so the row stays
+ *  in the Paid table and this tag says what went back. */
+function PartialRefundBadge({ order }: { order: CompletedOrder }) {
+  if (order.pretixStatus !== 'p' || !order.refundedAmount) return null
+  const symbol = order.tokenSymbol || 'USDC'
+  const share = tokenShare(order, order.refundedAmount)
+  const amount = share ? `${formatCryptoAmount(share.raw, symbol, 4)} ${symbol}` : `$${order.refundedAmount}`
+  const title = share
+    ? `${amount} ($${order.refundedAmount}) refunded on this order; the remaining tickets are live`
+    : `$${order.refundedAmount} refunded on this order; the remaining tickets are live`
+  return <span className={css['admin-badge-partial-refund']} title={title}>PARTIAL REFUND {amount}</span>
+}
+
+function OverpaidBadge({ order }: { order: CompletedOrder }) {
+  if (!order.overpaidUsd) return null
+  // Shown in the token the buyer paid with, since that is what goes back
+  // on-chain; the USD figure Pretix books stays in the tooltip.
+  const owed = refundOwed(order)
+  const amount = owed ? `${formatCryptoAmount(owed.raw, owed.symbol, 4)} ${owed.symbol}` : `$${order.overpaidUsd}`
+  const title = owed
+    ? `Buyer paid ${amount} ($${order.overpaidUsd}) more than the order now costs, refund the difference`
+    : `Buyer paid $${order.overpaidUsd} more than the order now costs, refund the difference`
+  return <span className={css['admin-badge-overpaid']} title={title}>OVERPAID {amount}</span>
 }
 
 function formatGasCost(wei?: string, chainId?: number, prices?: { ETH: number | null; POL: number | null } | null) {
@@ -516,7 +537,7 @@ function ChainCell({ chainId }: { chainId?: number }) {
  *  literal syntax so we don't have to bump the shared base tsconfig
  *  `target: es6`. Constructor calls compile fine on any target where the
  *  BigInt runtime exists (Node 10.4+, all modern browsers). */
-function formatCryptoAmount(raw: string, tokenSymbol: string): string {
+function formatCryptoAmount(raw: string, tokenSymbol: string, maxDecimals?: number): string {
   const decimals = tokenSymbol === 'ETH' ? 18 : 6
   try {
     const n = BigInt(raw)
@@ -526,9 +547,23 @@ function formatCryptoAmount(raw: string, tokenSymbol: string): string {
     const whole = n / base
     const frac = n % base
     if (frac === ZERO) return whole.toString()
-    // Trim trailing zeros on the fractional part.
-    const fracStr = frac.toString().padStart(decimals, '0').replace(/0+$/, '')
-    return `${whole}.${fracStr}`
+    const fracFull = frac.toString().padStart(decimals, '0')
+    if (maxDecimals === undefined || maxDecimals >= decimals) return `${whole}.${fracFull.replace(/0+$/, '')}`
+    // Compact form for badges and button labels (18 places are noise there;
+    // the refund modal shows the exact amount): cut to `maxDecimals`, and
+    // mark a shortened value with "~". A dust-sized amount that the cut
+    // would turn into "0" (test payments) shows two significant digits
+    // instead, so it never reads as nothing.
+    const cut = fracFull.slice(0, maxDecimals).replace(/0+$/, '')
+    if (!cut && whole === ZERO) {
+      const firstNonZero = fracFull.search(/[1-9]/)
+      const sig = fracFull.slice(0, firstNonZero + 2).replace(/0+$/, '')
+      return `~0.${sig}`
+    }
+    const shortened = fracFull.slice(maxDecimals).replace(/0+$/, '') !== ''
+    const approx = shortened ? '~' : ''
+    if (!cut) return `${approx}${whole}`
+    return `${approx}${whole}.${cut}`
   } catch {
     // Fallback: if `raw` isn't an integer string (shouldn't happen from the
     // plugin, but legacy rows may not have one), show it verbatim.
@@ -801,6 +836,54 @@ function exportCsv(filename: string, headers: string[], rows: string[][]) {
   URL.revokeObjectURL(url)
 }
 
+/** USD amount string ("12.50") to integer cents, exact. */
+function usdCents(s: string | null | undefined): bigint {
+  const [whole, frac = ''] = String(s ?? '0').trim().split('.')
+  return BigInt(whole || '0') * BigInt(100) + BigInt((frac + '00').slice(0, 2))
+}
+
+/** The part of the crypto the buyer sent that corresponds to `usd` of the
+ *  USD paid, in token base units, plus whether that is less than the whole
+ *  payment.
+ *
+ *  Tickets are priced in USD but the buyer paid ETH, and a Pretix position
+ *  carries no ETH price, so token amounts are derived from the payment
+ *  itself: the same share of the crypto sent as `usd` is of the USD paid.
+ *  Cancel positions worth a tenth of the order and a tenth of the ETH
+ *  received comes back, whatever ETH trades at today. The USD paid is
+ *  rebuilt from the plugin's
+ *  own figures (overpaid + refunded + what the order still owes) so the
+ *  ratio matches its accounting. Null when the row lacks the figures. */
+function tokenShare(order: CompletedOrder, usd: string | null | undefined): { raw: string; partial: boolean } | null {
+  if (!usd || !order.cryptoAmount) return null
+  const ZERO = BigInt(0)
+  const part = usdCents(usd)
+  const stillOwed = order.pretixStatus === 'c' ? ZERO : usdCents(order.pretixTotal ?? order.totalUsd)
+  const paid = usdCents(order.overpaidUsd) + usdCents(order.refundedAmount) + stillOwed
+  if (part <= ZERO || paid <= ZERO) return null
+  const sent = (() => {
+    try {
+      return BigInt(order.cryptoAmount as string)
+    } catch {
+      return null
+    }
+  })()
+  if (sent === null) return null
+  const partial = part < paid
+  return { raw: (partial ? (sent * part) / paid : sent).toString(), partial }
+}
+
+/** Refund owed on an order, in the token the buyer paid with: the
+ *  overpayment the plugin reports (paid minus refunds minus what the order
+ *  now costs; the whole net payment for a canceled order), converted with
+ *  tokenShare. A fully canceled order comes back as the exact amount sent,
+ *  as before. Null when nothing is owed or the row lacks the figures. */
+function refundOwed(order: CompletedOrder): { usd: string; raw: string; symbol: string; partial: boolean } | null {
+  const share = tokenShare(order, order.overpaidUsd)
+  if (!share || !order.overpaidUsd) return null
+  return { usd: order.overpaidUsd, raw: share.raw, symbol: order.tokenSymbol || 'USDC', partial: share.partial }
+}
+
 // ─── Refund Modal ────────────────────────────────────────────────
 
 function RefundModal({
@@ -823,24 +906,32 @@ function RefundModal({
   const [error, setError] = useState<string | null>(null)
 
   const refundChainId = order.chainId || 8453
-  // Mirror the original payment exactly — same token, same network, same
-  // base-units amount. `order.cryptoAmount` is the raw integer in token
-  // base units (wei for ETH, 1e6-units for USDC/USDT0), recorded at
-  // verify time. Falling back to a USDC equivalent of totalUsd is the
-  // legacy behavior for very old rows that don't have `cryptoAmount`
-  // populated — kept as a fallback for backward compat but never the
-  // happy path for new payments.
+  // Refund what is owed, in the token the buyer paid with, on the same
+  // network. For a canceled order that is the exact base-units amount sent
+  // (`order.cryptoAmount`: wei for ETH, 1e6-units for USDC/USDT0, recorded
+  // at verify time). For a still-paid order with canceled positions it is
+  // the matching share of that amount (see refundOwed): the order stays
+  // paid and the remaining tickets valid. Rows without an overpayment
+  // figure fall back to the full amount; very old rows without
+  // `cryptoAmount` to a USDC equivalent of the USD total (legacy behavior,
+  // never the happy path for new payments).
+  const owed = refundOwed(order)
+  const isPartial = !!owed?.partial
   const refundSymbol = order.tokenSymbol || 'USDC'
-  const refundRawAmount = order.cryptoAmount
+  const refundRawAmount = owed?.raw ?? order.cryptoAmount
   // Pretix OrderRefund.amount is always in event currency (USD), separate
-  // from the on-chain token amount. The backend uses this for accounting;
-  // unchanged from before.
-  const refundUsd = order.totalUsd || '0'
+  // from the on-chain token amount. The backend uses this for accounting.
+  const refundUsd = owed?.usd ?? order.totalUsd ?? '0'
   const usdcConfig = getUsdcConfigForChainId(refundChainId)
   // Resolve the actual ERC20 contract for non-ETH refunds. ETH refunds use
   // sendTransaction (no contract) so the lookup returns null.
   const refundTokenAddress = getTokenAddressForChainSymbol(refundChainId, refundSymbol)
   const isX402 = order.source === 'x402'
+  // The x402 refund ledger is one-shot and books the order's full USD total
+  // in Pretix on confirm, so a partial refund through it would misrecord the
+  // order. Until the plugin takes an amount, partial x402 refunds are done
+  // by hand in Pretix.
+  const partialUnsupported = isPartial && isX402
 
   // x402 path uses an initiate/confirm/fail CAS endpoint that gates
   // against the X402CompletedOrder row. Legacy WC rows have no such
@@ -867,9 +958,12 @@ function RefundModal({
         refund_tx_hash: refundTxHash,
         chain_id: refundChainId,
         // Pretix OrderRefund.amount is event-currency (USD), not token
-        // base units. Unchanged from before — the on-chain token amount
-        // is recorded separately on `info_data` via record_pretix_refund.
+        // base units. The on-chain figure travels separately: what was
+        // actually sent, so the plugin can show the buyer the ETH amount
+        // (email + Pretix refund detail) next to the USD it books.
         amount: refundUsd,
+        token_amount: refundRawAmount ?? parseUnits(refundUsd, 6).toString(),
+        token_symbol: refundRawAmount ? refundSymbol : 'USDC',
       }),
     })
     const json = await res.json()
@@ -1076,7 +1170,7 @@ function RefundModal({
         >
           <X size={18} />
         </button>
-        <h3 className={css['modal-title']}>Refund Order</h3>
+        <h3 className={css['modal-title']}>{isPartial ? 'Partial Refund' : 'Refund Order'}</h3>
         <div className={css['modal-details']}>
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Pretix Order</span>
@@ -1103,15 +1197,31 @@ function RefundModal({
           </div>
         </div>
 
+        {isPartial && order.cryptoAmount && (
+          <div className={css['modal-note']}>
+            Partial refund: the order stays paid and its remaining tickets stay valid. The buyer sent{' '}
+            {formatCryptoAmount(order.cryptoAmount, refundSymbol)} {refundSymbol} in total; this returns the share
+            that the order no longer owes, at the rate of the original payment.
+            {partialUnsupported &&
+              ' x402 orders cannot take a partial refund here yet (the plugin books the full amount), so refund this one by hand in Pretix.'}
+          </div>
+        )}
+
         {step === 'confirm' && (
           <div className={css['modal-actions']}>
             <button className={css['modal-cancel']} onClick={onClose}>Cancel</button>
             <button
               className={css['modal-confirm']}
               onClick={handleRefund}
-              disabled={!address || !usdcConfig}
+              disabled={!address || !usdcConfig || partialUnsupported}
             >
-              {!address ? 'Connect Wallet First' : !usdcConfig ? 'Unsupported Chain' : 'Send Refund'}
+              {!address
+                ? 'Connect Wallet First'
+                : !usdcConfig
+                ? 'Unsupported Chain'
+                : partialUnsupported
+                ? 'Partial x402 refund: do it in Pretix'
+                : 'Send Refund'}
             </button>
           </div>
         )}
@@ -1161,16 +1271,16 @@ function RefundActionCell({
     return <span className={css['badge-pending']}>Processing...</span>
   }
 
-  // "Fully refunded" = a Pretix OrderRefund exists AND nothing more is
-  // owed. Hide the Refund button entirely and show a green badge —
-  // the on-chain tx link sits above the amount line so admins can
-  // verify the refund without leaving the table. Both x402 and
-  // wc_attempt rows surface `refundTxHash` now (the wc path extracts
-  // it from the Pretix OrderRefund.info JSON, see views_admin.py).
-  // Partial-refund case (refunded > 0 AND still overpaid) leaves the
-  // urgent button visible — there's more to refund.
-  const isFullyRefunded = !!order.refundedAmount && !order.overpaidUsd
-  if (isFullyRefunded) {
+  // "Settled" = a Pretix OrderRefund exists AND nothing more is owed.
+  // Hide the Refund button entirely and show a green badge with the
+  // on-chain tx link so admins can verify the refund without leaving the
+  // table. Both x402 and wc_attempt rows surface `refundTxHash` now (the
+  // wc path extracts it from the Pretix OrderRefund.info JSON, see
+  // views_admin.py). On a still-PAID order this is a settled partial
+  // refund and the row stays in the Paid table. Refunded > 0 AND still
+  // overpaid leaves the urgent button visible: more to refund.
+  const isSettled = !!order.refundedAmount && !order.overpaidUsd
+  if (isSettled) {
     // When we have the on-chain refund tx, the link is the more useful
     // affordance — clicking it shows the actual confirmed amount on the
     // explorer. The "Refunded $X" line only shows as a fallback when
@@ -1227,7 +1337,11 @@ function RefundActionCell({
   // the label so an operator scanning a long table immediately sees
   // both "this row needs a refund" and "for how much".
   const isOverpaid = !!order.overpaidUsd
-  const buttonLabel = isOverpaid ? `Refund $${order.overpaidUsd}` : 'Refund'
+  // Owed amount in the paid token, i.e. what actually goes back on-chain;
+  // legacy rows without a crypto amount fall back to the USD figure.
+  const owed = refundOwed(order)
+  const owedLabel = owed ? `${formatCryptoAmount(owed.raw, owed.symbol, 4)} ${owed.symbol}` : `$${order.overpaidUsd}`
+  const buttonLabel = isOverpaid ? `Refund ${owedLabel}` : 'Refund'
   const buttonClass = isOverpaid ? css['refund-btn-urgent'] : css['refund-btn']
   const buttonTitle = !isConnected
     ? 'Connect wallet to refund'
@@ -1236,7 +1350,7 @@ function RefundActionCell({
     : !order.pretixOrderCode
     ? 'No Pretix order code to record refund against'
     : isOverpaid
-    ? `This order is overpaid by $${order.overpaidUsd} — refund owed to buyer`
+    ? `This order is overpaid by ${owedLabel} ($${order.overpaidUsd}), refund owed to buyer`
     : `Refund ${order.tokenSymbol || 'USDC'} on chain ${order.chainId || '?'}`
 
   return (
@@ -2002,6 +2116,7 @@ function AdminContent() {
     wcUnpaid: false,
     refunded: false,
     cancelled: false,
+    partialDue: false,
   })
   const toggleSection = (k: string) => setSectionsOpen(s => ({ ...s, [k]: !s[k] }))
   // Orphan panel: test dust (tiny ETH transfers used for wallet testing) is
@@ -2294,12 +2409,16 @@ function AdminContent() {
     return list
   }, [data?.completed, q, dateFrom, dateTo, completedSort, completedSortDir])
 
-  // Fully refunded = a completed Pretix OrderRefund covers everything owed.
-  // Source-agnostic: matches the row badge's logic, so WalletConnect refunds
+  // Fully refunded = a completed Pretix OrderRefund covers everything owed
+  // AND the order is no longer live. Source-agnostic: WalletConnect refunds
   // and manual refunds recorded in Pretix count too, not just the legacy x402
-  // CAS flow (kept only as a fallback signal for historical rows).
+  // CAS flow (kept only as a fallback signal for historical rows). A PAID
+  // order with a refund on it is a partial refund (canceled positions, or a
+  // refunded overpayment): its remaining tickets are live, so it is not
+  // "refunded" here; it stays in the Paid table and in revenue at its
+  // current Pretix total (or in Partial Refunds Due while more is owed).
   const isOrderFullyRefunded = (o: CompletedOrder) =>
-    o.refundStatus === 'confirmed' || (!!o.refundedAmount && !o.overpaidUsd)
+    o.refundStatus === 'confirmed' || (!!o.refundedAmount && !o.overpaidUsd && o.pretixStatus !== 'p')
 
   // Split completed into active (non-refunded) and refunded — the same
   // predicate on both sides so the stats always sum back to the full list.
@@ -2321,8 +2440,20 @@ function AdminContent() {
   // "Orders" figure that excludes them. Fully-refunded cancelled orders are
   // already in refundedOrders, not here.
   const cancelledOrders = useMemo(() => activeCompleted.filter(o => o.pretixStatus === 'c'), [activeCompleted])
-  // What the main Completed table shows: paid, live, not refunded.
-  const liveCompleted = useMemo(() => activeCompleted.filter(o => o.pretixStatus !== 'c'), [activeCompleted])
+  // Paid orders owed a partial refund: positions were canceled (or the buyer
+  // overpaid) and the excess has not gone back yet. The work queue for
+  // partial refunds, as Cancelled Orders is for full ones; each row keeps
+  // its red Refund button. An order refunded once and owed again after
+  // further cancellations comes back here, not to the settled list below.
+  const isPartialRefundDue = (o: CompletedOrder) => o.pretixStatus === 'p' && !!o.overpaidUsd
+  const partialRefundsDue = useMemo(() => activeCompleted.filter(isPartialRefundDue), [activeCompleted])
+  // What the main Completed table shows: paid, live, nothing owed. A paid
+  // order whose partial refund is settled stays here (its tickets are live);
+  // its Actions cell links to the refund tx.
+  const liveCompleted = useMemo(
+    () => activeCompleted.filter(o => o.pretixStatus !== 'c' && !isPartialRefundDue(o)),
+    [activeCompleted]
+  )
   // Render cap: the paid table approaches 1000+ rows as the sale grows and a
   // full-DOM render makes the page sluggish. Search/sort/stats/export always
   // operate on the FULL list — only the visible rows are capped.
@@ -2340,9 +2471,18 @@ function AdminContent() {
     [activeCompleted]
   )
 
+  // Everything refunded so far: the recorded refund sum where Pretix has one
+  // (includes partial refunds on still-paid orders), the paid total for
+  // legacy fully-refunded rows that predate the refundedAmount field.
   const totalRefunded = useMemo(
-    () => refundedOrders.reduce((sum, o) => sum + (o.totalUsd ? parseFloat(o.totalUsd) : 0), 0),
-    [refundedOrders]
+    () =>
+      filteredCompleted.reduce((sum, o) => {
+        if (o.refundedAmount) return sum + parseFloat(o.refundedAmount)
+        if (isOrderFullyRefunded(o) && o.totalUsd) return sum + parseFloat(o.totalUsd)
+        return sum
+      }, 0),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filteredCompleted]
   )
 
   // Both wallet panels carry the same `prices` block (fetched once on the
@@ -2767,14 +2907,18 @@ function AdminContent() {
     exportCsv(`x402-orphans-${date}.csv`, headers, rows)
   }
 
-  // Whether the Paid table needs its Actions column at all: after the
-  // healthy-paid gating the only actionable rows there are overpaid ones
-  // (refund the excess) and legacy in-flight refunds. When none are visible
-  // the whole column is dashes, so it's dropped to save width.
+  // Whether the Paid table needs its Actions column at all: overpaid paid
+  // orders have their own Partial Refunds Due section, so after the
+  // healthy-paid gating the rows with something to show here are settled
+  // partial refunds (tx link) and legacy in-flight x402 refunds. When none
+  // are visible the whole column is dashes, so it's dropped to save width.
   // Read-only sessions never get an Actions column (here or in the Cancelled /
   // Pending / Unpaid tables below) — the API would reject the calls anyway.
   const paidHasActions =
-    !readOnly && liveCompleted.some(o => !!o.overpaidUsd || (o.source === 'x402' && o.refundStatus === 'pending'))
+    !readOnly &&
+    liveCompleted.some(
+      o => !!o.overpaidUsd || !!o.refundedAmount || (o.source === 'x402' && o.refundStatus === 'pending')
+    )
 
   // Shared row renderer for the Paid and Cancelled order tables — same
   // columns, badges, dup-detection, and Refund action in both (cancelled-but-
@@ -2800,7 +2944,8 @@ function AdminContent() {
       <td className={css['admin-badge-cell']}>
         <StatusBadge code={o.pretixStatus} />
         <TestModeBadge on={o.pretixTestmode} />
-        <OverpaidBadge amount={o.overpaidUsd} />
+        <OverpaidBadge order={o} />
+        <PartialRefundBadge order={o} />
       </td>
       <td>
         {o.email ?? '—'}
@@ -3304,6 +3449,10 @@ function AdminContent() {
               <p className={css['stat-value']}>{cancelledCount}</p>
             </div>
             <div className={css['stat-card']}>
+              <p className={css['stat-label']}>Partial refunds due</p>
+              <p className={css['stat-value']}>{partialRefundsDue.length}</p>
+            </div>
+            <div className={css['stat-card']}>
               <p className={css['stat-label']}>Refunded</p>
               <p className={css['stat-value']}>{refundedOrders.length}</p>
             </div>
@@ -3522,6 +3671,49 @@ function AdminContent() {
                 {/* Explicit arrow: .map(renderCompletedRow) would pass the array
                     index as the withActions param. */}
                 <tbody>{cancelledOrders.map(o => renderCompletedRow(o, !readOnly))}</tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Partial Refunds Due — paid orders that are overpaid after
+          cancellations (or a genuine overpayment) and not refunded yet: the
+          partial-refund work queue, each row with its red Refund button
+          showing the token amount owed. Sits right after Cancelled Orders so
+          both actionable queues come first. */}
+      {partialRefundsDue.length > 0 && (
+        <div className={css.section}>
+          <div className={css['section-header']}>
+            <h2
+              className={css['section-title']}
+              onClick={() => toggleSection('partialDue')}
+              style={{ cursor: 'pointer', userSelect: 'none' }}
+            >
+              {sectionsOpen.partialDue ? '▾' : '▸'} Partial Refunds Due ({partialRefundsDue.length})
+              <span style={{ marginLeft: 8, fontSize: 12, fontWeight: 400, color: '#8a8a8a' }}>
+                paid orders with canceled positions, to refund with EOA
+              </span>
+            </h2>
+          </div>
+          {sectionsOpen.partialDue && (
+            <div className={css['table-wrap']}>
+              <table className={css.table}>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Pretix Order</th>
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Amount</th>
+                    <th>Crypto Amount</th>
+                    <th>Tx Hash</th>
+                    <th>Payer</th>
+                    <th>Completed At</th>
+                    {!readOnly && <th>Actions</th>}
+                  </tr>
+                </thead>
+                <tbody>{partialRefundsDue.map(o => renderCompletedRow(o, !readOnly))}</tbody>
               </table>
             </div>
           )}
