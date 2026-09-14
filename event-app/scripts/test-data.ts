@@ -19,6 +19,7 @@ import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
 import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
+import { isSessionId, meerkatSessionUrl } from "../src/app/api/meerkat/handover";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -368,8 +369,17 @@ function testPassBarcode() {
   check("photo format: PNG, JPEG and PDF are not", !isUnsupportedPhotoFormat(blob("shot.png", "image/png")) && !isUnsupportedPhotoFormat(blob("p.jpg", "image/jpeg")) && !isUnsupportedPhotoFormat(blob("t.pdf", "application/pdf")));
 }
 
+function testMeerkatHandover() {
+  check("meerkat: slug session ids pass", isSessionId("opening-ceremony") && isSessionId("Session_01"));
+  check("meerkat: empty, path-like or oversized ids fail", !isSessionId("") && !isSessionId("a/b") && !isSessionId("../x") && !isSessionId("-lead") && !isSessionId("x".repeat(200)));
+  const url = new URL(meerkatSessionUrl("opening-ceremony", "a.b.c"));
+  check("meerkat: hand-off lands on the session's Q&A page", url.origin === "https://app.meerkat.events" && url.pathname === "/e/opening-ceremony/qa");
+  check("meerkat: token travels as the token query param", url.searchParams.get("token") === "a.b.c");
+}
+
 async function main() {
   testNormalize();
+  testMeerkatHandover();
   testPassBarcode();
   testMaterialize();
   testSyncDecision();

@@ -6,20 +6,25 @@ import { CloseButton } from "@/components/Buttons";
 import { ShareButton } from "@/components/ShareButton";
 import { openDetail } from "@/routing/detailRoute";
 import { SessionDetailsContent } from "./SessionDetailsContent";
+import { SessionQA } from "./SessionQA";
 
 /**
  * Desktop session-details side panel (Figma "Session Details - Side Menu"):
  * a 360px right column rendered from the in-memory session (no extra fetch).
  * The white header carries expand (the fullscreen page `/schedule/<id>`,
  * opened in place), share and close. Mobile renders the fullscreen page
- * directly (schedule/[id]/session.tsx).
+ * directly (schedule/[id]/session.tsx). `showQa` is false while the list is
+ * off screen (the fullscreen page replaces it, or another tab is active) so
+ * only one Q&A feed for a session holds the Meerkat hooks at a time.
  */
 export function SessionDetailsPanel({
   session,
   onClose,
+  showQa = true,
 }: {
   session: Session;
   onClose: () => void;
+  showQa?: boolean;
 }) {
   return (
     // The var (set by Schedule's scroll handler) keeps a 16px gap to the
@@ -53,14 +58,7 @@ export function SessionDetailsPanel({
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SessionDetailsContent session={session}>
-          {/* Q&A teaser per design; the full Q&A flow lives in the mobile view */}
-          <div className="flex flex-col gap-3">
-            <h2 className="text-[14px] leading-5 text-dc-fg2">
-              <span className="font-bold">Live Q&amp;A</span> – Powered by
-              Meerkat
-            </h2>
-            <div className="h-[364px] w-full rounded-lg bg-[#dfdfdf]" />
-          </div>
+          {showQa && <SessionQA sessionId={session.id} size="sm" />}
         </SessionDetailsContent>
       </div>
     </div>

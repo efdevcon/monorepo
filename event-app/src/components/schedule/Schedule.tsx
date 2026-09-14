@@ -855,6 +855,7 @@ export function Schedule() {
     <SessionDetailsPanel
       session={selectedSession}
       onClose={() => selectSession(null)}
+      showQa={listVisible}
     />
   ) : filtersOpen ? (
     // Same growth var as the details panels: the filter column keeps

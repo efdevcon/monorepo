@@ -240,7 +240,7 @@ export function SessionSpeakers({
 /**
  * Single-column session details: summary section, then speakers + Q&A. The
  * Q&A block is passed as children so its logic stays owned by the page.
- * - `panel` (desktop side panel): "Speakers" caption first, then Q&A teaser.
+ * - `panel` (desktop side panel): "Speakers" caption first, then Q&A.
  * - `page` (mobile fullscreen): Q&A first, then "Speakers (N)".
  */
 export function SessionDetailsContent({

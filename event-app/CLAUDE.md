@@ -217,7 +217,7 @@ sole email match, else the tab asks.
 - **Swag** shows "Collected" from a Pretix entry check-in on the add-on or
   merchandise position (`positionCollected`); no list configuration, since
   Pretix only records a scan against a list that includes that product.
-- **Q&A eligibility** (`/api/meerkat`) and the ENS perk (`/api/ticket-proof`)
+- **Q&A eligibility** (`/api/meerkat/go`, a cookie-authenticated redirect) and the ENS perk (`/api/ticket-proof`)
   resolve tickets with `getTicketsForUser`, so attached tickets count.
 - **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live
   on their own `TEST-<code>` order, are flagged `test`, carry negative
