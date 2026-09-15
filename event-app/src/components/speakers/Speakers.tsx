@@ -368,9 +368,6 @@ export function Speakers() {
       setRowsStuck(rowsRect !== undefined && rowsRect.top <= headerOffset + 1);
 
       if (rail) {
-        // The rail pins just below the filter rows, whose height varies by
-        // breakpoint — position it directly rather than via static classes.
-        rail.style.top = `${pinnedOffset}px`;
         // Compact = the natural cell stack (24px cells + 8px paddings):
         // 26 letters + the featured cell + the optional "#" cell.
         const compact = (sections.includes("#") ? 28 : 27) * 24 + 16;
@@ -378,10 +375,14 @@ export function Speakers() {
         if (!isDesktopNow()) {
           // Mobile: the rail is `fixed` (see the wrapper's max-lg: classes),
           // so its geometry is derived from the viewport alone — never from
-          // scroll position or the column's height. `pinnedOffset` is the
-          // rows' *height*, not their position, so it doesn't move as you
-          // scroll: the rail looks identical at the top of the list, deep
-          // into it, and when a filter leaves only a couple of results.
+          // scroll position or the column's height. It starts at the filter
+          // rows' live bottom edge: pinned, that is header + rows height
+          // (constant as you scroll, so the rail looks identical at the top
+          // of the list, deep into it, and with two results); with the
+          // in-flow search panel open above the rows it follows them down,
+          // instead of poking out under the panel.
+          const railTop = Math.max(pinnedOffset, rowsRect?.bottom ?? 0);
+          rail.style.top = `${railTop}px`;
           // Room is reserved for the floating bottom nav pill (24px offset +
           // ~52px pill + safe-area headroom); on viewports too short for the
           // full stack the cells flex-shrink evenly rather than clipping.
@@ -394,12 +395,14 @@ export function Speakers() {
           rail.style.height = "";
           rail.style.setProperty(
             "--az-rail-stack-h",
-            `${Math.max(200, Math.min(compact, viewportH - pinnedOffset - 96))}px`
+            `${Math.max(200, Math.min(compact, viewportH - railTop - 96))}px`
           );
         } else {
-          // Desktop: sticky in the lavender column, compact at rest and
-          // stretching to fill the viewport once pinned. Space is measured
-          // from the rail's live top and capped by the column bottom.
+          // Desktop: sticky in the lavender column, pinned just below the
+          // filter rows (whose height varies by breakpoint), compact at rest
+          // and stretching to fill the viewport once pinned. Space is
+          // measured from the rail's live top and capped by the column bottom.
+          rail.style.top = `${pinnedOffset}px`;
           rail.style.removeProperty("--az-rail-stack-h");
           const stuck = colTop <= pinnedOffset;
           const stackTop = Math.max(pinnedOffset, colTop);
@@ -447,12 +450,21 @@ export function Speakers() {
     measure();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+    // The in-flow search panel grows/shrinks above the rows over ~200ms
+    // without any scroll or resize event; track its box so the fixed rail
+    // follows the rows through the fold-out (and back).
+    const drawer = headerSearch.drawerRef.current;
+    const ro = drawer ? new ResizeObserver(schedule) : null;
+    if (drawer) ro?.observe(drawer);
     return () => {
       if (raf) cancelAnimationFrame(raf);
       window.clearTimeout(spyTimeoutRef.current);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      ro?.disconnect();
     };
+    // headerSearch.drawerRef is a stable ref object.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sidePanelOpen, sections, listVisible]);
 
   const filtersActive =
