@@ -64,9 +64,10 @@ export function HeaderPill({
   /** Shown as a bubble when > 0. */
   count?: number;
   /**
-   * Transient "+1" bubble beside the label (see interestPulse.ts): mounts
-   * per `key`, plays once (1.4s, house curve), then `onPulseEnd` clears it.
-   * Absolutely positioned off the label so the text never shifts.
+   * Transient "+1" bubble nested in the pill's right end (see
+   * interestPulse.ts): mounts per `key`, plays once (1.4s, house curve) while
+   * the pill itself pops to 1.03, then `onPulseEnd` clears it. Overlaid, so
+   * the label never shifts.
    */
   pulse?: { key: number; label: string } | null;
   onPulseEnd?: () => void;
@@ -78,27 +79,34 @@ export function HeaderPill({
       className={cn(
         "relative flex min-h-8 cursor-pointer items-center justify-center gap-2 rounded-full border py-1 pl-[10px] pr-3 text-[12px] leading-none text-dc-fg transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-['']",
         active ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline bg-white",
+        // The whole pill pops to 1.03 and settles as the bubble lands.
+        pulse && "animate-interest-pop motion-reduce:animate-none",
         className
       )}
     >
       <span className="flex size-4 shrink-0 items-center justify-center [&>svg]:size-4 [&>svg]:text-dc-purple">
         {icon}
       </span>
-      {/* Truncation on the inner span only: overflow-hidden on the bubble's
-          positioning parent would clip it. */}
-      <span className="relative min-w-0">
-        <span className="block truncate">{label}</span>
-        {pulse && (
+      <span className="truncate">{label}</span>
+      {pulse && (
+        // Clipped to the pill's own rounded box (an overlay, not overflow on
+        // the button — that would also clip the before: tap-target extension),
+        // so the bubble rises out of the bottom edge and leaves through the
+        // top. It rests nested in the rounded end: 16px in a 32px pill, 8px
+        // from the top, right and bottom (7px + the 1px border on the right).
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
+        >
           <span
             key={pulse.key}
-            aria-hidden
             onAnimationEnd={onPulseEnd}
-            className="absolute left-full top-1/2 ml-1.5 flex h-4 min-w-4 -translate-y-1/2 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
+            className="absolute right-[7px] top-1/2 flex h-4 min-w-4 -translate-y-1/2 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
           >
             {pulse.label}
           </span>
-        )}
-      </span>
+        </span>
+      )}
       {count != null && count > 0 && (
         <span className="absolute -right-1 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-[5px] text-[11px] font-semibold leading-none tabular-nums tracking-[-0.25px] text-white ring-1 ring-white">
           {count}
