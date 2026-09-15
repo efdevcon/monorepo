@@ -6,6 +6,7 @@ import { Clock3, ClockArrowDown, Star, User, X } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
   DESKTOP_METRICS,
@@ -20,10 +21,11 @@ import {
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /**
- * A session block in a room lane (Figma): pastel tile with title + meta.
- * `compact` (mobile metrics) keeps only a two-line title — the details page
- * carries the rest, and colour already encodes the track. No star here (the
- * list cards and details page have it): on a dense grid it ate the tile.
+ * A session block in a room lane (Figma): pastel tile with title + meta and
+ * the interest star (desktop). `compact` (mobile metrics) keeps only a
+ * two-line title — the details page carries the rest, colour already encodes
+ * the track, and on the dense mobile grid the star ate the tile (mobile
+ * timeline UX is being iterated separately).
  *
  * The text column is `sticky` inside the block (Devcon SEA behaviour): as a
  * long session scrolls under the room column its title stays at the visible
@@ -51,6 +53,8 @@ function TimelineSession({
   const theme = getTrackTheme(session.track);
   const { left, width } = sessionBox(session, startMs, m.slotWidth);
   const featured = session.featured === true;
+  const { isInterested, toggle } = useInterested();
+  const interested = isInterested(session.id);
   // 1.5 slots = 15 min: room for the time/speakers/Featured meta (desktop).
   const wide = width >= m.slotWidth * 1.5;
   const padX = compact ? 6 : 12;
@@ -133,6 +137,32 @@ function TimelineSession({
           </span>
         )}
       </div>
+      {/* Desktop only (see above). Sits at the block's right end; the sticky
+          text column shrinks (min-w-0) to make room on short blocks. Inside
+          the anchor, so the click must not open the session. */}
+      {!compact && (
+        <button
+          aria-label={
+            interested ? "Remove from interested" : "Add to interested"
+          }
+          aria-pressed={interested}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            void toggle(session.id, session.title);
+          }}
+          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
+        >
+          <Star
+            className={cn(
+              "size-4 transition-colors",
+              interested
+                ? "fill-dc-purple text-dc-purple"
+                : "fill-transparent text-dc-muted group-hover/star:text-dc-purple"
+            )}
+          />
+        </button>
+      )}
     </DetailLink>
   );
 }
