@@ -29,15 +29,17 @@ const glass =
   "bg-white/20 shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out hover:bg-white/30 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none";
 
 /**
- * Top-of-page "install the app" hero for browser visitors (desktop included),
- * on Home and My Devcon: a key-art band up top with the copy and CTA on a
- * white panel beneath it (mobile), art on the right beside the copy (desktop)
+ * Top-of-page "install the app" hero for mobile browser visitors (the same
+ * gate as the bottom-of-page buttons; desktop never sees it), on Home and My
+ * Devcon: a key-art band up top with the copy and CTA on a
+ * white panel beneath it; from lg (tablets in landscape) the art sits on the
+ * right beside the copy
  * — the HighlightCard shell, with a dismiss × on the art.
  * Renders nothing once installed, in the native shell, or after dismissal;
  * hosts wrap it in `empty:hidden`.
  */
 export function InstallHeroCard() {
-  const shouldShow = useShouldShowInstall(true);
+  const shouldShow = useShouldShowInstall();
   const isDismissed = useSyncExternalStore(
     subscribe,
     () => dismissed,

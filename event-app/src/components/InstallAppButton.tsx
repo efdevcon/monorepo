@@ -11,13 +11,7 @@ import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
-import {
-  isDesktopBrowser,
-  isIOS,
-  isMacSafari,
-  isSafari,
-  isStandalone,
-} from "@/utils/platform";
+import { isIOS, isSafari, isStandalone } from "@/utils/platform";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -98,20 +92,17 @@ export function useOpenInSafari(): () => Promise<void> {
 }
 
 /**
- * Show install UI only in a browser tab before install — never inside the
- * native (Capacitor) app or an already-installed standalone PWA. Mobile web
- * only by default (the small bottom-of-page buttons); `includeDesktop` for
- * the top-of-page hero, which asks desktop visitors too.
+ * Show install UI only on mobile web before install — never inside the
+ * native (Capacitor) app or an already-installed standalone PWA, and never
+ * on desktop (the install nudge is a phone thing by decision).
  */
-export function useShouldShowInstall(includeDesktop = false): boolean {
+export function useShouldShowInstall(): boolean {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => {
     if (isStandalone() || Capacitor.isNativePlatform()) return;
     if (typeof navigator === "undefined") return;
-    setShouldShow(
-      includeDesktop || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-    );
-  }, [includeDesktop]);
+    setShouldShow(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+  }, []);
   return shouldShow;
 }
 
@@ -161,40 +152,8 @@ function manualInstructions(): { intro: string; steps: ReactNode[] } {
       ],
     };
   }
-  if (isDesktopBrowser()) {
-    if (isMacSafari()) {
-      return {
-        intro: `Add ${APP_CONFIG.APP_NAME} to your Dock for the full experience.`,
-        steps: [
-          <>
-            Click the <Share className="inline-block h-4 w-4 align-text-bottom" />{" "}
-            Share button in Safari&apos;s toolbar (or open the <b>File</b> menu).
-          </>,
-          <>
-            Choose <b>“Add to Dock”</b>.
-          </>,
-        ],
-      };
-    }
-    const firefox = /Firefox/.test(navigator.userAgent);
-    return {
-      intro: firefox
-        ? "Firefox can't install web apps — open this page in Chrome, Edge or Safari to install it."
-        : `Install ${APP_CONFIG.APP_NAME} for the full experience.`,
-      steps: [
-        <>
-          Open your browser&apos;s menu{" "}
-          <MoreVertical className="inline-block h-4 w-4 align-text-bottom" /> (or
-          click the install icon in the address bar).
-        </>,
-        <>
-          Choose <b>“Install app”</b> or <b>“Install page as app”</b>.
-        </>,
-      ],
-    };
-  }
-  // Android browsers that don't fire `beforeinstallprompt` (e.g. Firefox, or
-  // hardened Chromium builds that gate installs).
+  // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
+  // Firefox, or hardened Chromium builds that gate installs).
   return {
     intro: "Add this app to your home screen for the full experience.",
     steps: [
