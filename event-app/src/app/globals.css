@@ -35,13 +35,12 @@
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
   /* "+1" bubble in the mobile My Interests pill (HeaderPill): rises into the
-     pill's rounded end, rests, then slides on up and fades while the pill
-     pops. The reduced-motion variant only fades. Declared here so the keyframes ship with the
+     pill's rounded end, rests, then slides on up and fades. The reduced-
+     motion variant only fades. Declared here so the keyframes ship with the
      utility (Tailwind v4 drops @keyframes it can't see a use for). */
   /* 1.65s: ~310ms rise, ~920ms rest, ~420ms exit. */
   --animate-interest-pulse: interest-pulse 1.65s cubic-bezier(0.32, 0.72, 0, 1) both;
   --animate-interest-pulse-fade: interest-pulse-fade 1.65s ease-out both;
-  --animate-interest-pop: interest-pop 1.65s cubic-bezier(0.32, 0.72, 0, 1) both;
   @keyframes interest-pulse {
     0% {
       opacity: 0;
@@ -55,19 +54,6 @@
     100% {
       opacity: 0;
       transform: translateY(-16px);
-    }
-  }
-  /* The pill under the bubble: swells as the bubble rises, settles as it rests. */
-  @keyframes interest-pop {
-    0% {
-      transform: scale(1);
-    }
-    19% {
-      transform: scale(1.03);
-    }
-    38%,
-    100% {
-      transform: scale(1);
     }
   }
   @keyframes interest-pulse-fade {

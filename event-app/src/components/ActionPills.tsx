@@ -42,7 +42,7 @@ export function InterestedPill({
 
 /**
  * Mobile app-header pill (Figma "New Top Nav"): 32px white hairline pill,
- * 16px purple icon, 12px label; lavender fill + purple border when active,
+ * 16px purple icon, 13px label (design's 12px read small on device); lavender fill + purple border when active,
  * with an optional 16px count bubble on the top-right corner (widens to a
  * pill for two digits). Replaced the
  * icon-only circles — testers didn't read the star and clock glyphs.
@@ -65,8 +65,8 @@ export function HeaderPill({
   count?: number;
   /**
    * Transient "+1" bubble nested in the pill's right end (see
-   * interestPulse.ts): mounts per `key`, plays once (1.65s, house curve) while
-   * the pill itself pops to 1.03, then `onPulseEnd` clears it. Overlaid, so
+   * interestPulse.ts): mounts per `key`, plays once (1.65s, house curve),
+   * then `onPulseEnd` clears it. Overlaid, so
    * the label never shifts.
    */
   pulse?: { key: number; label: string } | null;
@@ -77,10 +77,8 @@ export function HeaderPill({
       type="button"
       {...props}
       className={cn(
-        "relative flex min-h-8 cursor-pointer items-center justify-center gap-2 rounded-full border py-1 pl-[10px] pr-3 text-[12px] leading-none text-dc-fg transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-['']",
+        "relative flex min-h-8 cursor-pointer items-center justify-center gap-2 rounded-full border py-1 pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-['']",
         active ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline bg-white",
-        // The whole pill pops to 1.03 and settles as the bubble lands.
-        pulse && "animate-interest-pop motion-reduce:animate-none",
         className
       )}
     >
