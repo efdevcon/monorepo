@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from "react";
 import { Download, X } from "lucide-react";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
+import { PrimaryButton } from "./Buttons";
 import { useInstallFlow, useShouldShowInstall } from "./InstallAppButton";
 
 // Dismissal is session-scoped and shared: Home and My Devcon are persistent
@@ -23,15 +24,17 @@ function dismiss() {
   listeners.forEach((cb) => cb());
 }
 
-/** The banner pill's glass recipe (Tickets.tsx), shared by CTA and dismiss. */
+/** The banner pill's glass recipe (Tickets.tsx) — the dismiss × over the art. */
 const glass =
   "bg-white/20 shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out hover:bg-white/30 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none";
 
 /**
  * Top-of-page "install the app" hero for browser visitors (desktop included),
- * on Home and My Devcon. The key-art recipe of the home sign-in banner, one
- * size down, with a dismiss ×. Renders nothing once installed, in the native
- * shell, or after dismissal; hosts wrap it in `empty:hidden`.
+ * on Home and My Devcon: a key-art band up top with the copy and CTA on a
+ * white panel beneath it (mobile), art on the right beside the copy (desktop)
+ * — the HighlightCard shell, with a dismiss × on the art.
+ * Renders nothing once installed, in the native shell, or after dismissal;
+ * hosts wrap it in `empty:hidden`.
  */
 export function InstallHeroCard() {
   const shouldShow = useShouldShowInstall(true);
@@ -48,50 +51,48 @@ export function InstallHeroCard() {
   return (
     <section
       aria-label="Install the Devcon app"
-      // Content-sized on mobile (title may wrap to two lines beside the ×);
-      // the Figma banner height on desktop.
-      className="relative flex min-h-[208px] flex-col justify-end overflow-hidden rounded-xl bg-[#160b2b] p-5 font-heading lg:h-[160px] lg:flex-row lg:items-end lg:justify-between lg:gap-6 lg:p-6"
+      // DOM order is art first (mobile: on top); row-reverse puts it on the
+      // right on desktop without reordering for AT.
+      className="overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading lg:flex lg:flex-row-reverse lg:min-h-[220px]"
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        // Retries itself when the connection returns (see Tickets.tsx); the
-        // bg fallback keeps the text legible if the art fails or is evicted.
-        key={attempt}
-        src="/tickets-hero.jpg"
-        onError={markFailed}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(22,11,43,0.9)] via-[rgba(22,11,43,0.5)] to-transparent" />
-      <button
-        type="button"
-        onClick={dismiss}
-        aria-label="Dismiss"
-        // z-10: the text column below is `relative` and later in the DOM, so
-        // without it a wrapped title paints over (and blocks) the ×.
-        className={`absolute right-4 top-4 z-10 flex size-8 cursor-pointer items-center justify-center rounded-full ${glass}`}
-      >
-        <X className="size-4 text-dc-purple-fg" />
-      </button>
-      {/* pr-10 keeps a wrapped title clear of the × (mobile: the column
-          runs the card's full width). "Devcon app", not APP_NAME: the dev
-          config's "Devcon App v2" read as "…App v2 app". */}
-      <div className="relative min-w-0 pr-10 [text-shadow:0_2px_4px_rgba(22,11,43,0.4)] lg:pr-0">
-        <h2 className="text-2xl font-extrabold leading-[1.2] tracking-[-0.5px] text-dc-purple-fg">
-          Install the Devcon app
-        </h2>
-        <p className="mt-1 text-base leading-6 text-dc-purple-fg">
-          Your schedule, tickets and announcements — offline, one tap away.
-        </p>
+      {/* Art band. bg fallback keeps the band a solid surface if the art
+          fails or is evicted; the img retries when the connection returns
+          (see Tickets.tsx). */}
+      <div className="relative h-[160px] bg-[#160b2b] lg:h-auto lg:w-[42%] lg:shrink-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={attempt}
+          src="/tickets-hero.jpg"
+          onError={markFailed}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+        />
+        <button
+          type="button"
+          onClick={dismiss}
+          aria-label="Dismiss"
+          className={`absolute right-4 top-4 flex size-8 cursor-pointer items-center justify-center rounded-full ${glass}`}
+        >
+          <X className="size-4 text-dc-purple-fg" />
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={install}
-        className={`relative mt-4 flex h-10 w-fit shrink-0 cursor-pointer items-center gap-2 rounded-full px-6 text-sm font-bold text-dc-purple-fg lg:mt-0 ${glass}`}
-      >
-        <Download className="size-4" />
-        Install app
-      </button>
+
+      {/* Copy + CTA: stacked on mobile, one row on desktop. "Devcon app",
+          not APP_NAME: the dev config's "Devcon App v2" read as "…App v2 app". */}
+      <div className="flex flex-col gap-4 p-4 lg:flex-1 lg:justify-center lg:gap-6 lg:p-8">
+        <div className="min-w-0">
+          <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:text-2xl lg:font-extrabold lg:leading-[1.2]">
+            Install the Devcon app
+          </h2>
+          <p className="mt-1 text-[14px] leading-5 text-dc-muted lg:mt-2 lg:max-w-[640px] lg:text-base lg:leading-6">
+            Your schedule, tickets and announcements — offline, one tap away.
+          </p>
+        </div>
+        <PrimaryButton onClick={install} className="w-full shrink-0 lg:w-fit">
+          <Download className="size-4" />
+          Install app
+        </PrimaryButton>
+      </div>
       {modal}
     </section>
   );
