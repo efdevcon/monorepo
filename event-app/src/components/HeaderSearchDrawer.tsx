@@ -1,10 +1,6 @@
 "use client";
 
-import { usePaneActive } from "@/components/paneContext";
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import cn from "classnames";
-import { HEADER_DRAWER_ID } from "@/components/AppHeader";
 import { SearchInput } from "@/components/SearchInput";
 
 /** Structural ref type — see SearchInput.tsx for why this isn't React.Ref. */
@@ -24,11 +20,11 @@ type PanelProps = {
   /** From useHeaderSearch — the wrapper whose `inert` the hook lifts. */
   drawerRef: DrawerRef;
   /**
-   * In-flow variant (Schedule): rendered by the page itself above its day
-   * tabs, so opening it pushes the tabs and list down instead of covering the
-   * tabs — the overlay left no way to switch days mid-search. Lavender strip
-   * that fuses with the DayTabs band; mobile only (desktop has its toolbar
-   * field).
+   * In-flow variant (Schedule, Speakers): rendered by the page itself above
+   * its tab strip, so opening it pushes the tabs and list down instead of
+   * covering them — the old header overlay left no way to switch days
+   * mid-search. Lavender strip that fuses with the tabs band; mobile only
+   * (desktop has its toolbar field). The portal-into-header variant is gone.
    */
   inline?: boolean;
   /** See SearchInput — "N results" beside the clear ×. */
@@ -107,20 +103,4 @@ export function SearchDrawerPanel({
       </div>
     </div>
   );
-}
-
-/**
- * The panel portaled into the header's fold-out slot (#header-drawer), where
- * it overlays the page below the bar (Speakers). Schedule renders the panel
- * inline instead — see `inline` above.
- */
-export function HeaderSearchDrawer(props: Omit<PanelProps, "inline">) {
-  const [target, setTarget] = useState<Element | null>(null);
-  const paneActive = usePaneActive();
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_DRAWER_ID));
-  }, []);
-  if (!target || !paneActive) return null;
-
-  return <>{createPortal(<SearchDrawerPanel {...props} />, target)}</>;
 }

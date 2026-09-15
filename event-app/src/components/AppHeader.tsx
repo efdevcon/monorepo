@@ -20,15 +20,6 @@ import { OfflineIndicator } from "./OfflineIndicator";
  */
 export const HEADER_ACTIONS_ID = "header-actions";
 
-/**
- * Mobile fold-out slot directly under the header bar (the Speakers search
- * drawer; Schedule renders its search inline above the day tabs instead). An
- * absolutely-positioned overlay inside the sticky header, so opening it never
- * changes the header's height — every hardcoded sticky offset below
- * (top-14, top-[103px], scroll margins, the speakers rail math) stays valid.
- */
-export const HEADER_DRAWER_ID = "header-drawer";
-
 /** Circular 32px glass icon button used in the app header (Figma). Border
  *  and fill are applied per-usage (resting vs active) — Tailwind resolves
  *  same-property conflicts by stylesheet order, not class order, so an
@@ -141,10 +132,6 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           )}
         />
       </div>
-
-      {/* Mobile fold-out drawer slot (search) — overlays the content below
-          the bar rather than growing the header. */}
-      <div id={HEADER_DRAWER_ID} className="absolute inset-x-0 top-full lg:hidden" />
 
       {/* Desktop: full-bleed glass bar, content centered at ~1440px.
           --safe-top matters here too (iPad PWA). */}

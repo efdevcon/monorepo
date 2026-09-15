@@ -9,7 +9,7 @@ import {
   HEADER_ACTIONS_ID,
 } from "@/components/AppHeader";
 import {
-  HeaderSearchDrawer,
+  SearchDrawerPanel,
   HEADER_SEARCH_PANEL_ID,
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -508,17 +508,6 @@ export function Speakers() {
           onOpenFilters={() => setTopicSheetOpen(true)}
         />
       )}
-      {!detailId && (
-        <HeaderSearchDrawer
-          open={headerSearch.searchOpen}
-          onClose={headerSearch.closeSearch}
-          value={search}
-          onChange={setSearch}
-          placeholder="Find a speaker"
-          inputRef={headerSearch.inputRef}
-          drawerRef={headerSearch.drawerRef}
-        />
-      )}
 
       {/* Fullscreen speaker page for `/speakers/<id>`: mobile as a layer over
           the (still mounted) list, desktop in place of it. Keyed by id so a
@@ -553,6 +542,26 @@ export function Speakers() {
             ref={mainCardRef}
             className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
           >
+            {/* Mobile search, in flow (same contract as Schedule): opening it
+                pushes the format tabs and list down instead of covering them.
+                Not sticky, so the rows below still pin at 56px and the rail /
+                scrollspy math on headerOffsetNow() stays valid. Unmounted
+                under a speaker page and in hidden panes (one
+                #header-search-panel in the DOM at a time). */}
+            {!detailId && paneActive && (
+              <SearchDrawerPanel
+                inline
+                open={headerSearch.searchOpen}
+                onClose={headerSearch.closeSearch}
+                value={search}
+                onChange={setSearch}
+                placeholder="Find a speaker"
+                inputRef={headerSearch.inputRef}
+                drawerRef={headerSearch.drawerRef}
+                resultCount={search.trim() ? resultCount : null}
+              />
+            )}
+
             {/* Header rows, sticky under the app header: the desktop search +
                 topic toolbar (Figma "Top Bar") and the format tabs. Mobile
                 filters topics via the header button + bottom sheet instead. */}
