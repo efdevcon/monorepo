@@ -3,6 +3,7 @@
 import { useCallback, useMemo } from "react";
 import useSWR from "swr";
 import { toast } from "sonner";
+import { emitInterestAdded } from "./interestPulse";
 import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
 import { requestInterestSync } from "./sync";
@@ -61,6 +62,7 @@ export function useInterestedSpeakers() {
           return nowOn;
         }
       );
+      if (added) emitInterestAdded("speaker");
       if (added && name)
         toast(
           // Single wrapping span: sonner's title slot is a flex row, so

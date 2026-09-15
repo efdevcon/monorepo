@@ -42,6 +42,7 @@ import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
 import { ghostPill, HeaderPill, InterestedPill } from "@/components/ActionPills";
+import { useInterestPulse } from "@/data/interested/interestPulse";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -108,6 +109,8 @@ function HeaderActions({
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
+  // "+1" bubble on My Interests when a session is starred from this page.
+  const [pulse, clearPulse] = useInterestPulse("session", paneActive);
   if (!target || !paneActive) return null;
 
   return (
@@ -133,6 +136,8 @@ function HeaderActions({
             label="My Interests"
             active={interestedOnly}
             count={interestedOnly ? interestedCount : undefined}
+            pulse={pulse}
+            onPulseEnd={clearPulse}
             onClick={onToggleInterested}
             aria-pressed={interestedOnly}
             className="min-w-0 flex-1"

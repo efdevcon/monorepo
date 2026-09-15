@@ -53,6 +53,8 @@ export function HeaderPill({
   label,
   active = false,
   count,
+  pulse,
+  onPulseEnd,
   className,
   ...props
 }: ComponentProps<"button"> & {
@@ -61,6 +63,13 @@ export function HeaderPill({
   active?: boolean;
   /** Shown as a bubble when > 0. */
   count?: number;
+  /**
+   * Transient "+1" bubble beside the label (see interestPulse.ts): mounts
+   * per `key`, plays once (1.4s, house curve), then `onPulseEnd` clears it.
+   * Absolutely positioned off the label so the text never shifts.
+   */
+  pulse?: { key: number; label: string } | null;
+  onPulseEnd?: () => void;
 }) {
   return (
     <button
@@ -75,7 +84,21 @@ export function HeaderPill({
       <span className="flex size-4 shrink-0 items-center justify-center [&>svg]:size-4 [&>svg]:text-dc-purple">
         {icon}
       </span>
-      <span className="truncate">{label}</span>
+      {/* Truncation on the inner span only: overflow-hidden on the bubble's
+          positioning parent would clip it. */}
+      <span className="relative min-w-0">
+        <span className="block truncate">{label}</span>
+        {pulse && (
+          <span
+            key={pulse.key}
+            aria-hidden
+            onAnimationEnd={onPulseEnd}
+            className="absolute left-full top-1/2 ml-1.5 flex h-4 min-w-4 -translate-y-1/2 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
+          >
+            {pulse.label}
+          </span>
+        )}
+      </span>
       {count != null && count > 0 && (
         <span className="absolute -right-1 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-[5px] text-[11px] font-semibold leading-none tabular-nums tracking-[-0.25px] text-white ring-1 ring-white">
           {count}

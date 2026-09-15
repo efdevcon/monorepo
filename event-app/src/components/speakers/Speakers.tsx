@@ -14,6 +14,7 @@ import {
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { InterestedPill, HeaderPill } from "@/components/ActionPills";
+import { useInterestPulse } from "@/data/interested/interestPulse";
 import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
@@ -80,6 +81,8 @@ function HeaderActions({
   useEffect(() => {
     setTarget(document.getElementById(HEADER_ACTIONS_ID));
   }, []);
+  // "+1" bubble on My Interests when a speaker is starred from this page.
+  const [pulse, clearPulse] = useInterestPulse("speaker", paneActive);
   if (!target || !paneActive) return null;
 
   return (
@@ -105,6 +108,8 @@ function HeaderActions({
             label="My Interests"
             active={interestedOnly}
             count={interestedOnly ? interestedCount : undefined}
+            pulse={pulse}
+            onPulseEnd={clearPulse}
             onClick={onToggleInterested}
             aria-pressed={interestedOnly}
             className="min-w-0 flex-1"

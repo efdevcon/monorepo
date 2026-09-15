@@ -33,6 +33,40 @@
      places that set it explicitly. Variable via next/font in layout.tsx. */
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  /* "+1" bubble in the mobile My Interests pill (HeaderPill): slides up into
+     place beside the label, rests, then slides on up and fades. The reduced-
+     motion variant only fades. Declared here so the keyframes ship with the
+     utility (Tailwind v4 drops @keyframes it can't see a use for). */
+  --animate-interest-pulse: interest-pulse 1.4s cubic-bezier(0.32, 0.72, 0, 1) both;
+  --animate-interest-pulse-fade: interest-pulse-fade 1.4s ease-out both;
+  @keyframes interest-pulse {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    22%,
+    70% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes interest-pulse-fade {
+    0% {
+      opacity: 0;
+    }
+    22%,
+    70% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 :root {
