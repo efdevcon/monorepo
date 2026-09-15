@@ -50,3 +50,27 @@ export function isSafari(): boolean {
     /Safari/i.test(ua) && !/CriOS|FxiOS|OPiOS|EdgiOS/i.test(ua) && !isBrave()
   );
 }
+
+/** Neither iOS nor Android: a laptop/desktop browser (or a TV). */
+export function isDesktopBrowser(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return !isIOS() && !/Android/i.test(navigator.userAgent);
+}
+
+/**
+ * Safari on macOS — the one desktop browser whose install ("Add to Dock",
+ * Safari 17+) lives under the Share/File menu rather than a browser-menu
+ * "Install app" item. Same UA rule as the manifest bridge's macOS branch
+ * (PersonalizedManifestLink.wantsInstallBridge). iPad in desktop mode also
+ * matches, which is fine: its Share sheet has the same "Add to Dock"-shaped
+ * "Add to Home Screen" item and isIOS() takes precedence where it matters.
+ */
+export function isMacSafari(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return (
+    /Macintosh/.test(ua) &&
+    /Safari/.test(ua) &&
+    !/Chrome|Chromium|CriOS|Edg|Firefox|FxiOS|OPR/.test(ua)
+  );
+}

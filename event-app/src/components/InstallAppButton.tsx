@@ -11,7 +11,13 @@ import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
-import { isIOS, isSafari, isStandalone } from "@/utils/platform";
+import {
+  isDesktopBrowser,
+  isIOS,
+  isMacSafari,
+  isSafari,
+  isStandalone,
+} from "@/utils/platform";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -92,16 +98,20 @@ export function useOpenInSafari(): () => Promise<void> {
 }
 
 /**
- * Show the install button only on mobile web before install — never inside the
- * native (Capacitor) app or an already-installed standalone PWA.
+ * Show install UI only in a browser tab before install — never inside the
+ * native (Capacitor) app or an already-installed standalone PWA. Mobile web
+ * only by default (the small bottom-of-page buttons); `includeDesktop` for
+ * the top-of-page hero, which asks desktop visitors too.
  */
-export function useShouldShowInstall(): boolean {
+export function useShouldShowInstall(includeDesktop = false): boolean {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => {
     if (isStandalone() || Capacitor.isNativePlatform()) return;
     if (typeof navigator === "undefined") return;
-    setShouldShow(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
-  }, []);
+    setShouldShow(
+      includeDesktop || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    );
+  }, [includeDesktop]);
   return shouldShow;
 }
 
@@ -151,8 +161,40 @@ function manualInstructions(): { intro: string; steps: ReactNode[] } {
       ],
     };
   }
-  // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
-  // Firefox, or hardened Chromium builds that gate installs).
+  if (isDesktopBrowser()) {
+    if (isMacSafari()) {
+      return {
+        intro: `Add ${APP_CONFIG.APP_NAME} to your Dock for the full experience.`,
+        steps: [
+          <>
+            Click the <Share className="inline-block h-4 w-4 align-text-bottom" />{" "}
+            Share button in Safari&apos;s toolbar (or open the <b>File</b> menu).
+          </>,
+          <>
+            Choose <b>“Add to Dock”</b>.
+          </>,
+        ],
+      };
+    }
+    const firefox = /Firefox/.test(navigator.userAgent);
+    return {
+      intro: firefox
+        ? "Firefox can't install web apps — open this page in Chrome, Edge or Safari to install it."
+        : `Install ${APP_CONFIG.APP_NAME} for the full experience.`,
+      steps: [
+        <>
+          Open your browser&apos;s menu{" "}
+          <MoreVertical className="inline-block h-4 w-4 align-text-bottom" /> (or
+          click the install icon in the address bar).
+        </>,
+        <>
+          Choose <b>“Install app”</b> or <b>“Install page as app”</b>.
+        </>,
+      ],
+    };
+  }
+  // Android browsers that don't fire `beforeinstallprompt` (e.g. Firefox, or
+  // hardened Chromium builds that gate installs).
   return {
     intro: "Add this app to your home screen for the full experience.",
     steps: [
@@ -268,27 +310,22 @@ function Step({ n }: { n: number }) {
 }
 
 /**
- * "Install app" button + install flow. Only renders on mobile web before
- * install. On Chromium it fires the real native install prompt (captured early
- * in the root layout); everywhere else it shows platform-aware manual steps.
+ * The install action shared by every install control (bottom-of-page button,
+ * top-of-page hero). On Chromium `install()` fires the real native prompt
+ * (captured early in the root layout); everywhere else it opens the
+ * platform-aware manual steps — render `modal` next to the control.
  */
-export function InstallAppButton({
-  className,
-  label = "Install app",
-}: {
-  className?: string;
-  label?: string;
-}) {
-  const shouldShow = useShouldShowInstall();
+export function useInstallFlow(): {
+  install: () => Promise<void>;
+  modal: ReactNode;
+} {
   const installPrompt = useInstallPrompt();
   const [showInstructions, setShowInstructions] = useState(false);
   const { user } = useUser();
   const copySignInLink = useCopySignInLink();
   const openInSafari = useOpenInSafari();
 
-  if (!shouldShow) return null;
-
-  const handleClick = async () => {
+  const install = async () => {
     if (installPrompt) {
       // Real native install (Chrome / Brave / Edge / Samsung / etc.).
       try {
@@ -307,11 +344,47 @@ export function InstallAppButton({
     setShowInstructions(true);
   };
 
+  const modal = (
+    <AnimatePresence>
+      {showInstructions && (
+        <InstallInstructionsModal
+          key="install-instructions"
+          onClose={() => setShowInstructions(false)}
+          // iOS only (Safari is the only installer there). Signed in, the
+          // hop carries a sign-in link so the session survives; signed out
+          // there's nothing to carry, so a plain hop is enough.
+          onOpenInSafari={
+            isIOS() ? (user ? copySignInLink : openInSafari) : undefined
+          }
+        />
+      )}
+    </AnimatePresence>
+  );
+
+  return { install, modal };
+}
+
+/**
+ * "Install app" button + install flow. Only renders on mobile web before
+ * install (useShouldShowInstall).
+ */
+export function InstallAppButton({
+  className,
+  label = "Install app",
+}: {
+  className?: string;
+  label?: string;
+}) {
+  const shouldShow = useShouldShowInstall();
+  const { install, modal } = useInstallFlow();
+
+  if (!shouldShow) return null;
+
   return (
     <>
       <button
         type="button"
-        onClick={handleClick}
+        onClick={install}
         className={
           className ??
           // Same treatment as the schedule "Interested" pill: purple icon,
@@ -326,21 +399,7 @@ export function InstallAppButton({
         <Download className={cn("size-4", !className && "text-dc-purple")} />
         {label}
       </button>
-
-      <AnimatePresence>
-        {showInstructions && (
-          <InstallInstructionsModal
-            key="install-instructions"
-            onClose={() => setShowInstructions(false)}
-            // iOS only (Safari is the only installer there). Signed in, the
-            // hop carries a sign-in link so the session survives; signed out
-            // there's nothing to carry, so a plain hop is enough.
-            onOpenInSafari={
-              isIOS() ? (user ? copySignInLink : openInSafari) : undefined
-            }
-          />
-        )}
-      </AnimatePresence>
+      {modal}
     </>
   );
 }
