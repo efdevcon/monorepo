@@ -65,7 +65,7 @@ export function HeaderPill({
   count?: number;
   /**
    * Transient "+1" bubble nested in the pill's right end (see
-   * interestPulse.ts): mounts per `key`, plays once (1.4s, house curve) while
+   * interestPulse.ts): mounts per `key`, plays once (1.65s, house curve) while
    * the pill itself pops to 1.03, then `onPulseEnd` clears it. Overlaid, so
    * the label never shifts.
    */
