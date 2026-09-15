@@ -31,6 +31,8 @@ type PanelProps = {
    * field).
    */
   inline?: boolean;
+  /** See SearchInput — "N results" beside the clear ×. */
+  resultCount?: number | null;
 };
 
 /**
@@ -55,6 +57,7 @@ export function SearchDrawerPanel({
   inputRef,
   drawerRef,
   inline = false,
+  resultCount,
 }: PanelProps) {
   return (
     <div
@@ -98,6 +101,7 @@ export function SearchDrawerPanel({
             onChange={onChange}
             placeholder={placeholder}
             inputRef={inputRef}
+            resultCount={resultCount}
           />
         </div>
       </div>

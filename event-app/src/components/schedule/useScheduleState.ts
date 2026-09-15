@@ -224,13 +224,31 @@ export function useScheduleState(
     };
   }, [q, filters, interestedOnly, interestedIds]);
 
+  // Every session on the selected day, before filters + search.
+  const daySessionsAll = useMemo(
+    () =>
+      selectedDay ? sessions.filter((s) => dayKey(s) === selectedDay) : [],
+    [sessions, selectedDay]
+  );
+
   // Day's sessions after filters + search, grouped by start time.
-  const groups: TimeGroup[] = useMemo(() => {
-    if (!selectedDay) return [];
-    return groupByTime(
-      sessions.filter((s) => dayKey(s) === selectedDay && matchesSession(s))
+  const groups: TimeGroup[] = useMemo(
+    () => groupByTime(daySessionsAll.filter(matchesSession)),
+    [daySessionsAll, matchesSession]
+  );
+
+  // The "live now" slot is decided by the whole day, not the filtered list:
+  // the latest-starting group with a running session. A search that hides
+  // that slot must not promote an earlier, still-running session (ongoing
+  // in the unfiltered list) to "live now" — only results from this slot are.
+  const liveSlotLabel = useMemo(() => {
+    const all = groupByTime(daySessionsAll);
+    const hasLive = all.map((g) =>
+      g.sessions.some((s) => getStatus(s, now) === "live")
     );
-  }, [sessions, selectedDay, matchesSession]);
+    const i = hasLive.lastIndexOf(true);
+    return i >= 0 ? all[i].timeLabel : null;
+  }, [daySessionsAll, now]);
 
   // Matches per day while a query is active — the tab badges, and which days
   // the tabs show at all. null with no query, and null when nothing matches
@@ -246,6 +264,15 @@ export function useScheduleState(
     }
     return counts.size > 0 ? counts : null;
   }, [hasQuery, sessions, matchesSession]);
+
+  /** Matches across every day mid-search (the input's "N results"); null otherwise. */
+  const totalMatches = useMemo(() => {
+    if (!hasQuery) return null;
+    if (!dayCounts) return 0;
+    let n = 0;
+    dayCounts.forEach((c) => (n += c));
+    return n;
+  }, [hasQuery, dayCounts]);
 
   // Days the tabs show: all of them, or only those with matches mid-search.
   const visibleDays = useMemo(
@@ -300,10 +327,10 @@ export function useScheduleState(
     const hasLive = groups.map((g) =>
       g.sessions.some((s) => getStatus(s, now) === "live")
     );
-    const currentSlot = hasLive.lastIndexOf(true);
     const out: DecoratedGroup[] = [];
     groups.forEach((g, i) => {
-      if (hasLive[i] && i !== currentSlot) {
+      const isCurrentSlot = g.timeLabel === liveSlotLabel;
+      if (hasLive[i] && !isCurrentSlot) {
         // Carry-over slot: its sessions all started together, so each is
         // either still running or already over. Completed ones split into
         // their own checked-off group (first, so a leading run can collapse);
@@ -334,14 +361,14 @@ export function useScheduleState(
         out.push({
           ...g,
           key: g.timeLabel,
-          isLive: i === currentSlot,
+          isLive: hasLive[i] && isCurrentSlot,
           isOngoing: false,
           isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
         });
       }
     });
     return out;
-  }, [groups, now]);
+  }, [groups, now, liveSlotLabel]);
 
   // Every fully-completed group collapses behind the "Completed sessions"
   // panel — including ones that finished after a longer session started (the
@@ -375,6 +402,7 @@ export function useScheduleState(
     days,
     visibleDays,
     dayCounts,
+    totalMatches,
     selectedDay,
     userPickedDay,
     setSelectedDay,

@@ -436,6 +436,7 @@ export function Schedule() {
     days,
     visibleDays,
     dayCounts,
+    totalMatches,
     selectedDay,
     userPickedDay,
     setSelectedDay,
@@ -1001,6 +1002,7 @@ export function Schedule() {
                 onChange={setSearch}
                 placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
+                resultCount={totalMatches}
               />
               <ViewToggle view={view} onChange={changeView} />
             </div>
@@ -1023,6 +1025,7 @@ export function Schedule() {
                 placeholder="Search by session, speaker or topic"
                 inputRef={headerSearch.inputRef}
                 drawerRef={headerSearch.drawerRef}
+                resultCount={totalMatches}
               />
             )}
 
