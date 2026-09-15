@@ -43,7 +43,8 @@ export function InterestedPill({
 /**
  * Mobile app-header pill (Figma "New Top Nav"): 32px white hairline pill,
  * 16px purple icon, 12px label; lavender fill + purple border when active,
- * with an optional 12px count bubble on the top-right corner. Replaced the
+ * with an optional 16px count bubble on the top-right corner (widens to a
+ * pill for two digits). Replaced the
  * icon-only circles — testers didn't read the star and clock glyphs.
  * before:-inset-1.5 pads the 32px pill to the 44px touch floor.
  */
@@ -76,7 +77,7 @@ export function HeaderPill({
       </span>
       <span className="truncate">{label}</span>
       {count != null && count > 0 && (
-        <span className="absolute -right-[3px] -top-1 flex size-3 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none tracking-[-0.25px] text-white ring-1 ring-white">
+        <span className="absolute -right-1 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-[5px] text-[11px] font-semibold leading-none tabular-nums tracking-[-0.25px] text-white ring-1 ring-white">
           {count}
         </span>
       )}
