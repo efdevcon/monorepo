@@ -167,9 +167,11 @@ export function SessionSummary({
             )}
           </div>
 
-          {/* Action pills, horizontally scrollable with a right fade */}
-          <div className="relative -mr-4">
-            <div className="flex gap-3 overflow-x-auto pr-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {/* Action pills. Mobile: one scrollable row behind a right fade.
+              Desktop (side panel / expanded view): wrap onto a new line — the
+              scroll-and-fade hid "Show on Map" past the panel's edge. */}
+          <div className="relative -mr-4 lg:mr-0">
+            <div className="flex gap-3 overflow-x-auto pr-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:overflow-visible lg:pr-0">
               <button
                 onClick={() => void toggle(session.id, session.title)}
                 className={cn(
@@ -199,7 +201,7 @@ export function SessionSummary({
                 Show on Map
               </Link>
             </div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l from-dc-panel to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l from-dc-panel to-transparent lg:hidden" />
           </div>
         </div>
       </div>
