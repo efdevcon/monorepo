@@ -21,7 +21,8 @@ import { OfflineIndicator } from "./OfflineIndicator";
 export const HEADER_ACTIONS_ID = "header-actions";
 
 /**
- * Mobile fold-out slot directly under the header bar (search drawer). An
+ * Mobile fold-out slot directly under the header bar (the Speakers search
+ * drawer; Schedule renders its search inline above the day tabs instead). An
  * absolutely-positioned overlay inside the sticky header, so opening it never
  * changes the header's height — every hardcoded sticky offset below
  * (top-14, top-[103px], scroll margins, the speakers rail math) stays valid.

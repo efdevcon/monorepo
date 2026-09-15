@@ -43,7 +43,12 @@ export function SearchInput({
       />
       {value && (
         <button
+          type="button"
           onClick={() => onChange("")}
+          // Keep focus in the field: clearing shouldn't drop the iOS keyboard,
+          // and the header drawer's empty-field auto-close (HeaderSearchDrawer)
+          // must only fire when focus really leaves the search.
+          onMouseDown={(e) => e.preventDefault()}
           aria-label="Clear search"
           className="shrink-0 cursor-pointer"
         >

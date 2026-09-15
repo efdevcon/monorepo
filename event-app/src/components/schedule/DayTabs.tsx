@@ -13,7 +13,8 @@ const shortLabel = (label: string) => label.split(", ")[1] ?? label;
  * Day selector bar (Figma): underline tabs — full labels on desktop plus a
  * right-hand controls slot (Interested / Jump to now / Filter); mobile shows
  * short labels in a left-packed scrollable row behind a right-edge fade
- * (full-bleed, like the topic pills). Sticks under the app header on both
+ * (full-bleed, like the topic pills); mid-search each tab carries its match
+ * count and matchless days are left out. Sticks under the app header on both
  * breakpoints (56px mobile bar, 65px desktop nav) so the day switcher and
  * controls stay reachable mid-list; time-group headers pin beneath it.
  * Lavender strip at rest on both breakpoints; mobile keeps it while pinned
@@ -27,11 +28,18 @@ export function DayTabs({
   onSelect,
   children,
   trailing,
+  counts,
   pinned = true,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
   onSelect: (key: string) => void;
+  /**
+   * Per-day match counts while a search is active (null/undefined: no
+   * badges). The host passes only the days present in the map, so a badge
+   * never reads "0".
+   */
+  counts?: ReadonlyMap<string, number> | null;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
   /** Mobile-only control at the bar's right end, past the tabs' fade. */
@@ -102,7 +110,7 @@ export function DayTabs({
                 key={day.key}
                 onClick={() => onSelect(day.key)}
                 className={cn(
-                  "flex shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
+                  "flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
                   active
                     ? "border-dc-purple font-bold text-dc-purple"
                     : "border-transparent font-normal text-dc-fg2 hover:text-dc-purple"
@@ -110,6 +118,14 @@ export function DayTabs({
               >
                 <span className="lg:hidden">{shortLabel(day.label)}</span>
                 <span className="hidden lg:inline">{day.label}</span>
+                {/* Search result count (the header's unread-pill recipe at a
+                    fixed 16px; auto width so three digits don't overflow).
+                    Purple, not the red "filters applied" badge. */}
+                {counts && (
+                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white">
+                    {counts.get(day.key) ?? 0}
+                  </span>
+                )}
               </button>
             );
           })}

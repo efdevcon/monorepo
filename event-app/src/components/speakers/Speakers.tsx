@@ -88,6 +88,10 @@ function HeaderActions({
         <>
           <button
             onClick={onToggleSearch}
+            // Keep focus in the search field while tapping the circle: otherwise
+            // the drawer's empty-field auto-close fires first and this click
+            // re-opens it.
+            onMouseDown={(e) => e.preventDefault()}
             aria-label="Search speakers"
             aria-expanded={searchOpen}
             aria-controls={HEADER_SEARCH_PANEL_ID}

@@ -32,7 +32,7 @@ import {
   headerCircleActive,
 } from "@/components/AppHeader";
 import {
-  HeaderSearchDrawer,
+  SearchDrawerPanel,
   HEADER_SEARCH_PANEL_ID,
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -113,6 +113,10 @@ function HeaderActions({
     <>
       <button
         onClick={onToggleSearch}
+        // Keep focus in the search field while tapping the circle: otherwise
+        // the drawer's empty-field auto-close fires first and this click
+        // re-opens it.
+        onMouseDown={(e) => e.preventDefault()}
         aria-label="Search sessions"
         aria-expanded={searchOpen}
         aria-controls={HEADER_SEARCH_PANEL_ID}
@@ -430,6 +434,8 @@ export function Schedule() {
   const {
     now,
     days,
+    visibleDays,
+    dayCounts,
     selectedDay,
     userPickedDay,
     setSelectedDay,
@@ -955,18 +961,6 @@ export function Schedule() {
           onOpenFilters={openFilters}
         />
       )}
-      {!detailId && (
-        <HeaderSearchDrawer
-          open={headerSearch.searchOpen}
-          onClose={headerSearch.closeSearch}
-          value={search}
-          onChange={setSearch}
-          placeholder="Search by session, speaker or topic"
-          inputRef={headerSearch.inputRef}
-          drawerRef={headerSearch.drawerRef}
-        />
-      )}
-
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
           the (still mounted) list, desktop in place of it. Keyed by id so a
           chained open (speaker → session) starts at the top. */}
@@ -1011,9 +1005,31 @@ export function Schedule() {
               <ViewToggle view={view} onChange={changeView} />
             </div>
 
+            {/* Mobile search, in flow: opening it pushes the day tabs and the
+                list down instead of covering the tabs (the header overlay left
+                no way to switch days mid-search). Not sticky — it scrolls away
+                with the page, so DayTabs still pins at 56px and every
+                hardcoded offset (103/112px group headers, timeline axis) stays
+                valid. Unmounted under a detail page (the session page owns the
+                header) and in hidden panes: one #header-search-panel in the
+                DOM at a time (Speakers portals its own). */}
+            {!detailId && paneActive && (
+              <SearchDrawerPanel
+                inline
+                open={headerSearch.searchOpen}
+                onClose={headerSearch.closeSearch}
+                value={search}
+                onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
+                inputRef={headerSearch.inputRef}
+                drawerRef={headerSearch.drawerRef}
+              />
+            )}
+
             {/* Day tabs (sticky under the mobile header) + desktop controls */}
             <DayTabs
-              days={days}
+              days={visibleDays}
+              counts={dayCounts}
               selectedDay={selectedDay}
               onSelect={selectDay}
               trailing={headingToggleVisible ? null : compactViewToggle}
@@ -1161,7 +1177,8 @@ export function Schedule() {
                   onToggleInterested={() => setInterestedOnly((v) => !v)}
                   fullscreenTop={
                     <DayTabs
-                      days={days}
+                      days={visibleDays}
+                      counts={dayCounts}
                       selectedDay={selectedDay}
                       onSelect={selectDay}
                       pinned={false}

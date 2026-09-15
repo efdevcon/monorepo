@@ -131,8 +131,8 @@ check("app open with unchanged schedule: version only", apiCalls.length === 1 &&
 
 // ---- search drawer steps aside for a detail, keeps its query ----------------
 await page.locator('button[aria-label="Search sessions"]').first().evaluate((b) => b.click());
-// Scoped to the header: the desktop toolbar has a second, CSS-hidden input.
-const searchInput = page.locator('header input[placeholder^="Search by session"]');
+// Scoped to the drawer panel: the desktop toolbar has a second, CSS-hidden input.
+const searchInput = page.locator('#header-search-panel input[placeholder^="Search by session"]');
 await searchInput.waitFor({ timeout: 5000 });
 await searchInput.fill("the");
 await page.waitForTimeout(400);
