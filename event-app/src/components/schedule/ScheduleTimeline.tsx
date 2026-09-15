@@ -197,9 +197,12 @@ const fullscreenPillActive = "border-dc-purple bg-dc-lavender";
  * may set `overflow` on mobile, or the pin silently breaks.
  *
  * `fullscreen` (mobile only, auto in landscape or via the toggle) swaps the
- * root to a fixed full-viewport overlay above the app chrome; the body then
- * scrolls both axes with the room column and axis pinned inside it. Same
- * element, class-swapped — no remount, so scroll offsets and refs persist.
+ * root to a fixed full-viewport overlay above the app chrome. The lanes box
+ * keeps owning X only; a wrapper around it owns Y — the same two-scroller
+ * shape as the page (lanes box + document), so a drag pans one axis at a
+ * time like it does inline. One box owning both axes panned diagonally,
+ * which made following a single room hard. Same elements, class-swapped —
+ * no remount, so scroll offsets and refs persist.
  */
 export function ScheduleTimeline({
   sessions,
@@ -487,78 +490,89 @@ export function ScheduleTimeline({
         </div>
       </div>
 
-      {/* Lanes: the only user-scrollable box (x inline; x + y in fullscreen) */}
+      {/* Vertical scroller, fullscreen only (`contents` inline, so the page
+          stays the Y owner and the mobile sticky axis keeps working). Nested
+          single-axis scrollers are what gives one-axis-at-a-time panning. */}
       <div
-        ref={scrollRef}
-        onScroll={(e) => {
-          const left = e.currentTarget.scrollLeft;
-          syncHeader(left);
-          onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
-        }}
-        className={cn(
-          // Scrollbar hidden (DayTabs pattern): the time-axis header and the
-          // room column already say "this pans", and the thin bar sat on top
-          // of the last lane on desktop.
-          "isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          fullscreen && "min-h-0 flex-1 overflow-auto [overscroll-behavior:contain]"
-        )}
+        className={
+          fullscreen
+            ? "min-h-0 flex-1 overflow-y-auto overflow-x-hidden [overscroll-behavior:contain]"
+            : "contents"
+        }
       >
+        {/* Lanes: the only horizontally scrollable box */}
         <div
-          style={{ width: m.roomCol + gridWidth }}
-          // Fullscreen: room to scroll the last lane clear of the floating
-          // controls in the bottom-right corner.
-          className={cn("relative", fullscreen && "pb-14")}
-        >
-          {/* Now line — below the sticky room cells (z-10) so it slides under
-              them instead of painting over the room names. */}
-          {nowVisible && (
-            <span
-              aria-hidden
-              style={{ left: m.roomCol + nowLeft }}
-              className="pointer-events-none absolute inset-y-0 z-[5] w-[2px] -translate-x-1/2 bg-dc-red"
-            />
+          ref={scrollRef}
+          onScroll={(e) => {
+            const left = e.currentTarget.scrollLeft;
+            syncHeader(left);
+            onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
+          }}
+          className={cn(
+            // Scrollbar hidden (DayTabs pattern): the time-axis header and the
+            // room column already say "this pans", and the thin bar sat on top
+            // of the last lane on desktop.
+            "isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+            fullscreen && "[overscroll-behavior:contain]"
           )}
-          {rooms.map((room) => (
-            <div key={room} className="flex" style={{ height: m.laneH }}>
-              <div
-                style={{ width: m.roomCol }}
-                title={room}
-                className={cn(
-                  chromeCell,
-                  glassCell,
-                  "sticky left-0 z-10 justify-center border-r text-center font-semibold leading-[1.2]",
-                  // Wrap at spaces (or hyphenate where the browser can);
-                  // never mid-word — "Decompressio/n Room" reads worse than
-                  // a clipped tail, and the title attr carries the full name.
-                  compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
-                )}
-              >
-                <span className="line-clamp-2">{room}</span>
+        >
+          <div
+            style={{ width: m.roomCol + gridWidth }}
+            // Fullscreen: room to scroll the last lane clear of the floating
+            // controls in the bottom-right corner.
+            className={cn("relative", fullscreen && "pb-14")}
+          >
+            {/* Now line — below the sticky room cells (z-10) so it slides under
+                them instead of painting over the room names. */}
+            {nowVisible && (
+              <span
+                aria-hidden
+                style={{ left: m.roomCol + nowLeft }}
+                className="pointer-events-none absolute inset-y-0 z-[5] w-[2px] -translate-x-1/2 bg-dc-red"
+              />
+            )}
+            {rooms.map((room) => (
+              <div key={room} className="flex" style={{ height: m.laneH }}>
+                <div
+                  style={{ width: m.roomCol }}
+                  title={room}
+                  className={cn(
+                    chromeCell,
+                    glassCell,
+                    "sticky left-0 z-10 justify-center border-r text-center font-semibold leading-[1.2]",
+                    // Wrap at spaces (or hyphenate where the browser can);
+                    // never mid-word — "Decompressio/n Room" reads worse than
+                    // a clipped tail, and the title attr carries the full name.
+                    compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
+                  )}
+                >
+                  <span className="line-clamp-2">{room}</span>
+                </div>
+                <div
+                  className="relative shrink-0 border-b border-dc-hairline bg-white"
+                  style={{
+                    width: gridWidth,
+                    backgroundImage:
+                      "repeating-linear-gradient(to right, rgba(34,17,68,0.1) 0 1px, transparent 1px " +
+                      m.slotWidth +
+                      "px)",
+                  }}
+                >
+                  {byRoom[room].map((session) => (
+                    <TimelineSession
+                      key={session.id}
+                      session={session}
+                      startMs={startMs}
+                      metrics={m}
+                      compact={compact}
+                      selected={session.id === selectedSessionId}
+                      onOpen={onOpen}
+                    />
+                  ))}
+                </div>
               </div>
-              <div
-                className="relative shrink-0 border-b border-dc-hairline bg-white"
-                style={{
-                  width: gridWidth,
-                  backgroundImage:
-                    "repeating-linear-gradient(to right, rgba(34,17,68,0.1) 0 1px, transparent 1px " +
-                    m.slotWidth +
-                    "px)",
-                }}
-              >
-                {byRoom[room].map((session) => (
-                  <TimelineSession
-                    key={session.id}
-                    session={session}
-                    startMs={startMs}
-                    metrics={m}
-                    compact={compact}
-                    selected={session.id === selectedSessionId}
-                    onOpen={onOpen}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
