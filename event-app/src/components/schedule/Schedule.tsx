@@ -29,7 +29,6 @@ import {
   HEADER_ACTIONS_ID,
   headerCircle,
   headerCircleResting,
-  headerCircleActive,
 } from "@/components/AppHeader";
 import {
   SearchDrawerPanel,
@@ -42,7 +41,7 @@ import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveRe
 import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
-import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { ghostPill, HeaderPill, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -75,29 +74,33 @@ const PANEL_SLOT_W = 376;
 const PANEL_EDGE_GAP = 16;
 
 /**
- * Page-specific app-header buttons, portaled into AppHeader's target:
- * search + jump-to-now + interested circles, and the filter button with its
- * active count bubble. The star stays filled (matching InterestedPill); the
- * lavender circle fill carries the active state — on the search button it
- * means "drawer open" (closing the drawer also clears the query).
+ * Page-specific app-header controls, portaled into AppHeader's target (mobile,
+ * Figma "New Top Nav"): labelled Search / My Interests / Filter pills — the
+ * icon-only circles read poorly in testing. "Jump to now" left the bar for
+ * the floating LiveNowButton down by the list it acts on. Lavender fill
+ * carries the active state; on Search it means both "drawer open" and
+ * "query applied with the drawer closed". Counts: interested sessions on
+ * My Interests, applied facet filters on Filter.
  */
 function HeaderActions({
   searchOpen,
   searchActive,
   onToggleSearch,
   interestedOnly,
+  interestedCount,
   onToggleInterested,
-  onJumpToNow,
   filterCount,
+  filtersOpen,
   onOpenFilters,
 }: {
   searchOpen: boolean;
   searchActive: boolean;
   onToggleSearch: () => void;
   interestedOnly: boolean;
+  interestedCount: number;
   onToggleInterested: () => void;
-  onJumpToNow: () => void;
   filterCount: number;
+  filtersOpen: boolean;
   onOpenFilters: () => void;
 }) {
   const [target, setTarget] = useState<Element | null>(null);
@@ -110,57 +113,63 @@ function HeaderActions({
   return (
     <>
       {createPortal(
-    <>
-      <button
-        onClick={onToggleSearch}
-        // Keep focus in the search field while tapping the circle: otherwise
-        // the drawer's empty-field auto-close fires first and this click
-        // re-opens it.
-        onMouseDown={(e) => e.preventDefault()}
-        aria-label="Search sessions"
-        aria-expanded={searchOpen}
-        aria-controls={HEADER_SEARCH_PANEL_ID}
-        className={cn(
-          headerCircle,
-          searchActive ? headerCircleActive : headerCircleResting
-        )}
-      >
-        <Search className="size-4 text-dc-purple" />
-      </button>
-      <button
-        onClick={onJumpToNow}
-        aria-label="Jump to now"
-        className={cn(headerCircle, headerCircleResting)}
-      >
-        <ClockArrowDown className="size-4 text-dc-purple" />
-      </button>
-      <button
-        onClick={onToggleInterested}
-        aria-label="Show interested sessions"
-        aria-pressed={interestedOnly}
-        className={cn(
-          headerCircle,
-          interestedOnly ? headerCircleActive : headerCircleResting
-        )}
-      >
-        <Star className="size-4 text-dc-purple" fill="currentColor" />
-      </button>
-      <button
-        onClick={onOpenFilters}
-        aria-label="Open filters"
-        className={cn(headerCircle, headerCircleResting, "relative")}
-      >
-        <ListFilter className="size-4 text-dc-purple" />
-        {filterCount > 0 && (
-          <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
-            {filterCount}
-          </span>
-        )}
-      </button>
-    </>,
+        <>
+          <HeaderPill
+            icon={<Search />}
+            label="Search"
+            active={searchActive}
+            onClick={onToggleSearch}
+            // Keep focus in the search field while tapping the pill: otherwise
+            // the drawer's empty-field auto-close fires first and this click
+            // re-opens it.
+            onMouseDown={(e) => e.preventDefault()}
+            aria-label="Search sessions"
+            aria-expanded={searchOpen}
+            aria-controls={HEADER_SEARCH_PANEL_ID}
+            className="shrink-0"
+          />
+          <HeaderPill
+            icon={<Star fill="currentColor" />}
+            label="My Interests"
+            active={interestedOnly}
+            count={interestedOnly ? interestedCount : undefined}
+            onClick={onToggleInterested}
+            aria-pressed={interestedOnly}
+            className="min-w-0 flex-1"
+          />
+          <HeaderPill
+            icon={<ListFilter />}
+            label="Filter"
+            active={filtersOpen || filterCount > 0}
+            count={filterCount}
+            onClick={onOpenFilters}
+            aria-label="Open filters"
+            className="shrink-0"
+          />
+        </>,
         target
       )}
     </>
+  );
+}
+
+/**
+ * Floating "Live now" (Figma "New-Live-Now-Button"): mobile's jump-to-now,
+ * parked bottom-right above the tab bar where the list it acts on lives,
+ * instead of among the header controls. Sits 16px above the tab bar
+ * (8px top pad + 40px tabs + max(12px, home-indicator inset)). py 11: the
+ * design's 40px is padding 12 with the border inside; CSS adds it outside.
+ */
+function LiveNowButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="fixed right-4 bottom-[calc(64px+max(12px,env(safe-area-inset-bottom)))] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out hover:bg-dc-live-bg lg:hidden"
+    >
+      <ClockArrowDown className="size-4 shrink-0" />
+      Live now
+    </button>
   );
 }
 
@@ -858,6 +867,11 @@ export function Schedule() {
   const lastPanelContentRef = useRef<React.ReactNode>(null);
   if (livePanelContent) lastPanelContentRef.current = livePanelContent;
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
+  // Facet filters only — search and Interested have their own pills now.
+  const facetFilterTotal = Object.values(facetFilterCounts).reduce(
+    (n, c) => n + (c ?? 0),
+    0
+  );
   const dayHeading = useMemo(() => {
     const day = days.find((d) => d.key === selectedDay);
     return day ? formatDayHeading(day.key) : null;
@@ -932,11 +946,15 @@ export function Schedule() {
           searchActive={headerSearch.searchOpen}
           onToggleSearch={headerSearch.toggleSearch}
           interestedOnly={interestedOnly}
+          interestedCount={interestedIds.size}
           onToggleInterested={() => setInterestedOnly((v) => !v)}
-          onJumpToNow={jumpToNow}
-          filterCount={activeFilterCount}
+          filterCount={facetFilterTotal}
+          filtersOpen={filtersOpen}
           onOpenFilters={openFilters}
         />
+      )}
+      {!detailId && paneActive && resultCount > 0 && !timelineFullscreen && (
+        <LiveNowButton onClick={jumpToNow} />
       )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
           the (still mounted) list, desktop in place of it. Keyed by id so a

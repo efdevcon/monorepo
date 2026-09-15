@@ -7,16 +7,13 @@ import { CircleX, ListFilter, Search, Star } from "lucide-react";
 import cn from "classnames";
 import {
   HEADER_ACTIONS_ID,
-  headerCircle,
-  headerCircleResting,
-  headerCircleActive,
 } from "@/components/AppHeader";
 import {
   HeaderSearchDrawer,
   HEADER_SEARCH_PANEL_ID,
 } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
-import { InterestedPill } from "@/components/ActionPills";
+import { InterestedPill, HeaderPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
@@ -52,17 +49,19 @@ const PANEL_SLOT_W = 376;
 const PANEL_EDGE_GAP = 16;
 
 /**
- * Page-specific app-header buttons, portaled into AppHeader's target (mobile):
- * the search and interested circles and the topic-filter button with its
- * active count bubble. The star stays filled (matching InterestedPill); the
- * lavender circle fill carries the active state — on the search button it
- * signals both "drawer open" and "query applied with the drawer closed".
+ * Page-specific app-header controls, portaled into AppHeader's target (mobile,
+ * Figma "New Top Nav"): labelled Search / My Interests / Filter pills — the
+ * icon-only circles read poorly in testing. Lavender fill carries the active
+ * state; on Search it means both "drawer open" and "query applied with the
+ * drawer closed". Counts: starred speakers on My Interests, applied topics
+ * on Filter.
  */
 function HeaderActions({
   searchOpen,
   searchActive,
   onToggleSearch,
   interestedOnly,
+  interestedCount,
   onToggleInterested,
   filterCount,
   onOpenFilters,
@@ -71,6 +70,7 @@ function HeaderActions({
   searchActive: boolean;
   onToggleSearch: () => void;
   interestedOnly: boolean;
+  interestedCount: number;
   onToggleInterested: () => void;
   filterCount: number;
   onOpenFilters: () => void;
@@ -86,45 +86,38 @@ function HeaderActions({
     <>
       {createPortal(
         <>
-          <button
+          <HeaderPill
+            icon={<Search />}
+            label="Search"
+            active={searchActive}
             onClick={onToggleSearch}
-            // Keep focus in the search field while tapping the circle: otherwise
+            // Keep focus in the search field while tapping the pill: otherwise
             // the drawer's empty-field auto-close fires first and this click
             // re-opens it.
             onMouseDown={(e) => e.preventDefault()}
             aria-label="Search speakers"
             aria-expanded={searchOpen}
             aria-controls={HEADER_SEARCH_PANEL_ID}
-            className={cn(
-              headerCircle,
-              searchActive ? headerCircleActive : headerCircleResting
-            )}
-          >
-            <Search className="size-4 text-dc-purple" />
-          </button>
-          <button
+            className="shrink-0"
+          />
+          <HeaderPill
+            icon={<Star fill="currentColor" />}
+            label="My Interests"
+            active={interestedOnly}
+            count={interestedOnly ? interestedCount : undefined}
             onClick={onToggleInterested}
-            aria-label="Show interested speakers"
             aria-pressed={interestedOnly}
-            className={cn(
-              headerCircle,
-              interestedOnly ? headerCircleActive : headerCircleResting
-            )}
-          >
-            <Star className="size-4 text-dc-purple" fill="currentColor" />
-          </button>
-          <button
+            className="min-w-0 flex-1"
+          />
+          <HeaderPill
+            icon={<ListFilter />}
+            label="Filter"
+            active={filterCount > 0}
+            count={filterCount}
             onClick={onOpenFilters}
             aria-label="Filter by topic"
-            className={cn(headerCircle, headerCircleResting, "relative")}
-          >
-            <ListFilter className="size-4 text-dc-purple" />
-            {filterCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
-                {filterCount}
-              </span>
-            )}
-          </button>
+            className="shrink-0"
+          />
         </>,
         target
       )}
@@ -509,6 +502,7 @@ export function Speakers() {
           searchActive={headerSearch.searchOpen}
           onToggleSearch={headerSearch.toggleSearch}
           interestedOnly={interestedOnly}
+          interestedCount={interestedIds.size}
           onToggleInterested={() => setInterestedOnly((v) => !v)}
           filterCount={topics.length}
           onOpenFilters={() => setTopicSheetOpen(true)}

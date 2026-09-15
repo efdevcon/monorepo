@@ -44,13 +44,20 @@ interface RouteChrome {
   title: string;
   /** Detail views show a back arrow (closing the view) instead of the logomark. */
   back?: DetailKind;
+  /**
+   * The page fills the mobile bar with its own labelled controls (Figma
+   * "New Top Nav": Search / My Interests / Filter) — no logomark or title,
+   * the actions slot takes the whole row. The bottom tab bar still names
+   * the page.
+   */
+  toolbar?: boolean;
 }
 
 function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (detail === "session") return { title: "Session details", back: "session" };
   if (detail === "speaker") return { title: "Speaker details", back: "speaker" };
-  if (pathname.startsWith("/schedule")) return { title: "Schedule" };
-  if (pathname.startsWith("/speakers")) return { title: "Speakers" };
+  if (pathname.startsWith("/schedule")) return { title: "Schedule", toolbar: true };
+  if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
   if (pathname.startsWith("/map")) return { title: "Map" };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
   if (pathname.startsWith("/announcements")) return { title: "Announcements" };
@@ -86,14 +93,16 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   }
 
   const items = NAV_ITEMS.filter((i) => i.enabled);
-  const { title, back } = routeChrome(pathname, detailKind);
+  const { title, back, toolbar } = routeChrome(pathname, detailKind);
 
   return (
     <header className="sticky top-0 z-30 font-heading">
       {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
           so the glass itself covers the iOS status-bar strip. */}
       <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
-        <div className="flex min-w-0 items-center gap-2">
+        {/* Toolbar pages keep the title for AT only; the row is the page's. */}
+        {toolbar && <h1 className="sr-only">{title}</h1>}
+        <div className={cn("flex min-w-0 items-center gap-2", toolbar && "hidden")}>
           {back ? (
             // Closes the in-page detail view: history.back() when we pushed
             // it, otherwise (deep link) drops the param in place. Never
@@ -123,9 +132,13 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           </span>
           <OfflineIndicator />
         </div>
+        {toolbar && <OfflineIndicator />}
         <div
           id={HEADER_ACTIONS_ID}
-          className="flex shrink-0 items-center justify-end gap-3"
+          className={cn(
+            "flex shrink-0 items-center justify-end gap-3",
+            toolbar && "min-w-0 flex-1"
+          )}
         />
       </div>
 
