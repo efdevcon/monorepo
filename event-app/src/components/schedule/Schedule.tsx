@@ -765,36 +765,12 @@ export function Schedule() {
   // Timeline's horizontal offset, reported by the grid as it scrolls.
   const timelineScrollLeftRef = useRef(0);
 
-  // Mobile list/timeline toggle. The full one sits next to the "Sessions"
-  // heading (design); once that row has scrolled under the pinned day bar, a
-  // compact copy appears in the bar so the view stays switchable. The
-  // fullscreen timeline's bar always carries the compact one (no heading
+  // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
+  // The pinned day bar used to pick up a compact copy once that row scrolled
+  // under it; dropped — it crowded the day tabs and their search counts. The
+  // fullscreen timeline's bar still carries the compact one (no heading
   // there), and switching to list from it exits fullscreen, since that
   // derives from the view.
-  const [headingToggleVisible, setHeadingToggleVisible] = useState(true);
-  const headingObserverRef = useRef<IntersectionObserver | null>(null);
-  const headingRowRef = useCallback((node: HTMLDivElement | null) => {
-    headingObserverRef.current?.disconnect();
-    headingObserverRef.current = null;
-    if (!node) {
-      setHeadingToggleVisible(true);
-      return;
-    }
-    // "Visible" = any part below the pinned day bar (mobile header + 48px
-    // tabs), not merely inside the viewport, which the sticky bars cover.
-    const pin = Math.round(headerOffsetNow() + 48);
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        // Hidden tab pane: 0×0 rect, not a real "scrolled away" (see GroupHeader).
-        const r = entry.boundingClientRect;
-        if (r.width === 0 && r.height === 0) return;
-        setHeadingToggleVisible(entry.isIntersecting);
-      },
-      { rootMargin: `-${pin}px 0px 0px 0px`, threshold: 0 }
-    );
-    io.observe(node);
-    headingObserverRef.current = io;
-  }, []);
   const compactViewToggle =
     resultCount > 0 ? (
       <ViewToggle view={view} onChange={changeView} compact />
@@ -1035,7 +1011,6 @@ export function Schedule() {
               counts={dayCounts}
               selectedDay={selectedDay}
               onSelect={selectDay}
-              trailing={headingToggleVisible ? null : compactViewToggle}
             >
               <InterestedPill
                 active={interestedOnly}
@@ -1081,13 +1056,9 @@ export function Schedule() {
               )}
             >
               {/* Mobile: "Sessions" heading + view toggle (+ fullscreen button
-                  in timeline view). Observed: once this row is under the
-                  pinned day bar, the bar shows the compact toggle instead. */}
+                  in timeline view). */}
               {resultCount > 0 && (
-                <div
-                  ref={headingRowRef}
-                  className="mb-3 flex items-center justify-between gap-3 lg:hidden"
-                >
+                <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
                     Sessions
                   </h2>
