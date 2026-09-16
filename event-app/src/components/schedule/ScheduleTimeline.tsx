@@ -139,7 +139,9 @@ function TimelineSession({
       </div>
       {/* Desktop only (see above). Sits at the block's right end; the sticky
           text column shrinks (min-w-0) to make room on short blocks. Inside
-          the anchor, so the click must not open the session. */}
+          the anchor, so the click must not open the session. Hover fill is
+          translucent white, not the cards' lavender: blocks come in every
+          track colour and the pink clashed with most of them. */}
       {!compact && (
         <button
           aria-label={
@@ -151,7 +153,7 @@ function TimelineSession({
             e.stopPropagation();
             void toggle(session.id, session.title);
           }}
-          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
+          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30"
         >
           <Star
             className={cn(
