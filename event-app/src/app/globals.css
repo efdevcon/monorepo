@@ -41,6 +41,12 @@
   /* 1.65s: ~310ms rise, ~920ms rest, ~420ms exit. */
   --animate-interest-pulse: interest-pulse 1.65s cubic-bezier(0.32, 0.72, 0, 1) both;
   --animate-interest-pulse-fade: interest-pulse-fade 1.65s ease-out both;
+  /* The pill's star, swapping places with the "+1" on the same clock: it
+     leaves through the top as the bubble arrives (same 16px over the same
+     segment, so they read as one motion), waits below the pill's edge, then
+     rises back into place as the bubble exits. */
+  --animate-interest-star-swap: interest-star-swap 1.65s cubic-bezier(0.32, 0.72, 0, 1) both;
+  --animate-interest-star-swap-fade: interest-star-swap-fade 1.65s ease-out both;
   @keyframes interest-pulse {
     0% {
       opacity: 0;
@@ -66,6 +72,37 @@
     }
     100% {
       opacity: 0;
+    }
+  }
+  @keyframes interest-star-swap {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    19% {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+    20%,
+    75% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes interest-star-swap-fade {
+    0% {
+      opacity: 1;
+    }
+    19%,
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 }

@@ -74,10 +74,10 @@ export function HeaderPill({
    */
   countNoun?: string;
   /**
-   * Transient "+1" bubble nested in the pill's right end (see
-   * interestPulse.ts): mounts per `key`, plays once (1.65s, house curve),
-   * then `onPulseEnd` clears it. Overlaid, so
-   * the label never shifts.
+   * Transient "+1" bubble that takes the icon's place (see interestPulse.ts):
+   * mounts per `key`, plays once (1.65s, house curve) while the icon leaves
+   * through the top and returns from below on the same clock, then
+   * `onPulseEnd` clears it. Overlaid, so the label never shifts.
    */
   pulse?: { key: number; label: string } | null;
   onPulseEnd?: () => void;
@@ -92,29 +92,37 @@ export function HeaderPill({
         className
       )}
     >
-      <span className="flex size-4 shrink-0 items-center justify-center [&>svg]:size-4 [&>svg]:text-dc-purple">
-        {icon}
+      <span className="relative flex size-4 shrink-0">
+        {/* Clip box the pill's inner height (16px icon + 7px each side, the
+            border excluded), anchored to the icon slot so it follows the
+            centred content: while a pulse plays the icon leaves through the
+            pill's top edge and the "+1" rises into its place from the bottom,
+            then they swap back. The button itself can't clip — that would
+            cut the before: tap-target extension. */}
+        <span className="absolute inset-x-0 -inset-y-[7px] overflow-hidden">
+          <span
+            key={`icon-${pulse?.key ?? 0}`}
+            className={cn(
+              "flex h-full items-center justify-center [&>svg]:size-4 [&>svg]:text-dc-purple",
+              pulse &&
+                "animate-interest-star-swap motion-reduce:animate-interest-star-swap-fade"
+            )}
+          >
+            {icon}
+          </span>
+          {pulse && (
+            <span
+              key={`bubble-${pulse.key}`}
+              aria-hidden
+              onAnimationEnd={onPulseEnd}
+              className="pointer-events-none absolute inset-x-0 top-[7px] flex size-4 items-center justify-center rounded-full bg-dc-purple text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
+            >
+              {pulse.label}
+            </span>
+          )}
+        </span>
       </span>
       <span className="truncate">{label}</span>
-      {pulse && (
-        // Clipped to the pill's own rounded box (an overlay, not overflow on
-        // the button — that would also clip the before: tap-target extension),
-        // so the bubble rises out of the bottom edge and leaves through the
-        // top. It rests nested in the rounded end: 16px in a 32px pill, 8px
-        // from the top, right and bottom (7px + the 1px border on the right).
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
-        >
-          <span
-            key={pulse.key}
-            onAnimationEnd={onPulseEnd}
-            className="absolute right-[7px] top-1/2 flex h-4 min-w-4 -translate-y-1/2 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
-          >
-            {pulse.label}
-          </span>
-        </span>
-      )}
       {count != null && count > 0 && (
         <>
           <span
