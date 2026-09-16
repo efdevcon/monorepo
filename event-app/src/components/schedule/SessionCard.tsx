@@ -117,12 +117,12 @@ export function SessionCard({
             >
               {badge}
             </span>
-            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-4 text-dc-muted">
               <Clock3 className="size-3.5 shrink-0" />
               {formatTimeRange(session)}
             </span>
             {session.speakers.length > 0 && (
-              <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-none text-dc-muted">
+              <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-4 text-dc-muted">
                 <User className="size-3.5 shrink-0" />
                 <span className="truncate">
                   {session.speakers.map((s) => s.name).join(", ")}
@@ -130,7 +130,7 @@ export function SessionCard({
               </span>
             )}
             {locationLabel(session) && (
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-4 text-dc-muted">
                 <MapPin className="size-3.5 shrink-0" />
                 {locationLabel(session)}
               </span>
