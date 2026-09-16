@@ -19,20 +19,16 @@ type PanelProps = {
   inputRef: InputRef;
   /** From useHeaderSearch — the wrapper whose `inert` the hook lifts. */
   drawerRef: DrawerRef;
-  /**
-   * In-flow variant (Schedule, Speakers): rendered by the page itself above
-   * its tab strip, so opening it pushes the tabs and list down instead of
-   * covering them — the old header overlay left no way to switch days
-   * mid-search. Lavender strip that fuses with the tabs band; mobile only
-   * (desktop has its toolbar field). The portal-into-header variant is gone.
-   */
-  inline?: boolean;
   /** See SearchInput — "N results" beside the clear ×. */
   resultCount?: number | null;
 };
 
 /**
- * The mobile search fold-out. The content stays mounted while collapsed
+ * The mobile search fold-out, rendered by the page itself (Schedule,
+ * Speakers) above its tab strip so opening it pushes the tabs and list down
+ * instead of covering them — the old header overlay left no way to switch
+ * days mid-search. A lavender strip that fuses with the tabs band; mobile
+ * only (desktop has its toolbar field). The content stays mounted while collapsed
  * (grid-rows, not unmount): iOS Safari only raises the on-screen keyboard for
  * a focus() call made synchronously inside a user gesture, so the toggle
  * handler (useHeaderSearch) must be able to focus the input the moment it
@@ -52,7 +48,6 @@ export function SearchDrawerPanel({
   placeholder,
   inputRef,
   drawerRef,
-  inline = false,
   resultCount,
 }: PanelProps) {
   return (
@@ -65,7 +60,7 @@ export function SearchDrawerPanel({
         // timing read as sluggish on a fold-out this small.
         "grid transition-[grid-template-rows] ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
         open ? "grid-rows-[1fr] duration-200" : "grid-rows-[0fr] duration-150",
-        inline && "lg:hidden"
+        "lg:hidden"
       )}
       onKeyDown={(e) => {
         if (e.key === "Escape") onClose();
@@ -82,16 +77,9 @@ export function SearchDrawerPanel({
       }}
     >
       <div className="min-h-0 overflow-hidden">
-        <div
-          className={cn(
-            "px-4 py-3",
-            inline
-              ? // In flow nothing scrolls beneath it, so no glass; the white
-                // field carries its own hairline against the lavender.
-                "bg-dc-lavender"
-              : "border-b border-dc-hairline bg-white/75 backdrop-blur-[4px]"
-          )}
-        >
+        {/* In flow nothing scrolls beneath it, so no glass; the white field
+            carries its own hairline against the lavender. */}
+        <div className="bg-dc-lavender px-4 py-3">
           <SearchInput
             value={value}
             onChange={onChange}

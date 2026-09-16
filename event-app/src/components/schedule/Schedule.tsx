@@ -929,7 +929,6 @@ export function Schedule() {
                 DOM at a time (Speakers portals its own). */}
             {!detailId && paneActive && (
               <SearchDrawerPanel
-                inline
                 open={headerSearch.searchOpen}
                 onClose={headerSearch.closeSearch}
                 value={search}

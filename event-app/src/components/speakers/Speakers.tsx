@@ -483,7 +483,6 @@ export function Speakers() {
                 #header-search-panel in the DOM at a time). */}
             {!detailId && paneActive && (
               <SearchDrawerPanel
-                inline
                 open={headerSearch.searchOpen}
                 onClose={headerSearch.closeSearch}
                 value={search}

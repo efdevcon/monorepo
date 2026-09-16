@@ -15,8 +15,9 @@ import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { OfflineIndicator } from "./OfflineIndicator";
 
 /**
- * Pages render their own header buttons (filter, jump-to-now, …) into this
- * portal target so the header itself stays page-agnostic.
+ * Pages render their own header controls (the list pages' Search / My
+ * Interests / Filter pills, a detail page's share and calendar buttons) into
+ * this portal target so the header itself stays page-agnostic.
  */
 export const HEADER_ACTIONS_ID = "header-actions";
 
@@ -29,7 +30,6 @@ export const HEADER_ACTIONS_ID = "header-actions";
 export const headerCircle =
   "relative flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity before:absolute before:-inset-1.5 before:content-['']";
 export const headerCircleResting = "border-dc-hairline bg-white";
-export const headerCircleActive = "border-dc-purple bg-dc-lavender";
 
 interface RouteChrome {
   title: string;
@@ -90,40 +90,47 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
     <header className="sticky top-0 z-30 font-heading">
       {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
           so the glass itself covers the iOS status-bar strip. */}
-      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
-        {/* Toolbar pages keep the title for AT only; the row is the page's. */}
-        {toolbar && <h1 className="sr-only">{title}</h1>}
-        <div className={cn("flex min-w-0 items-center gap-2", toolbar && "hidden")}>
-          {back ? (
-            // Closes the in-page detail view: history.back() when we pushed
-            // it, otherwise (deep link) drops the param in place. Never
-            // leaves the app.
-            <button
-              type="button"
-              onClick={() => closeDetail(back)}
-              aria-label="Back"
-              className="-m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center p-1"
-            >
-              <ArrowLeft className="size-5 text-dc-fg2" />
-            </button>
-          ) : (
-            <span className="flex size-7 shrink-0 items-center justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                key={markAttempt}
-                src="/schedule/devcon8-logomark.svg"
-                onError={markLogoFailed}
-                alt="Devcon 8 India"
-                className="h-7 w-auto"
-              />
+      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:hidden">
+        {toolbar ? (
+          // Toolbar pages keep the title for AT only; the row is the page's.
+          // One branch, not a hidden title block: that kept fetching the
+          // logomark and left two live regions announcing "offline".
+          <>
+            <h1 className="sr-only">{title}</h1>
+            <OfflineIndicator />
+          </>
+        ) : (
+          <div className="flex min-w-0 items-center gap-2">
+            {back ? (
+              // Closes the in-page detail view: history.back() when we pushed
+              // it, otherwise (deep link) drops the param in place. Never
+              // leaves the app.
+              <button
+                type="button"
+                onClick={() => closeDetail(back)}
+                aria-label="Back"
+                className="-m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center p-1"
+              >
+                <ArrowLeft className="size-5 text-dc-fg2" />
+              </button>
+            ) : (
+              <span className="flex size-7 shrink-0 items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  key={markAttempt}
+                  src="/schedule/devcon8-logomark.svg"
+                  onError={markLogoFailed}
+                  alt="Devcon 8 India"
+                  className="h-7 w-auto"
+                />
+              </span>
+            )}
+            <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
+              {title}
             </span>
-          )}
-          <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
-            {title}
-          </span>
-          <OfflineIndicator />
-        </div>
-        {toolbar && <OfflineIndicator />}
+            <OfflineIndicator />
+          </div>
+        )}
         <div
           id={HEADER_ACTIONS_ID}
           className={cn(
