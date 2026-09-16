@@ -1,8 +1,12 @@
 "use client";
 
-import { Star } from "lucide-react";
+import { ListFilter, Search, Star } from "lucide-react";
 import cn from "classnames";
 import type { ComponentProps, ReactNode } from "react";
+import { usePaneActive } from "@/components/paneContext";
+import { HeaderActionsPortal } from "@/components/DetailLayer";
+import { HEADER_SEARCH_PANEL_ID } from "@/components/HeaderSearchDrawer";
+import { useInterestPulse, type InterestKind } from "@/data/interested/interestPulse";
 
 /**
  * Shared toolbar-pill primitives (Figma): the purple ghost text-button
@@ -53,6 +57,7 @@ export function HeaderPill({
   label,
   active = false,
   count,
+  countNoun,
   pulse,
   onPulseEnd,
   className,
@@ -63,6 +68,11 @@ export function HeaderPill({
   active?: boolean;
   /** Shown as a bubble when > 0. */
   count?: number;
+  /**
+   * What the count counts ("applied", "saved"): AT reads ", 3 applied" after
+   * the label instead of a bare "3" glued to it.
+   */
+  countNoun?: string;
   /**
    * Transient "+1" bubble nested in the pill's right end (see
    * interestPulse.ts): mounts per `key`, plays once (1.65s, house curve),
@@ -106,10 +116,101 @@ export function HeaderPill({
         </span>
       )}
       {count != null && count > 0 && (
-        <span className="absolute -right-1 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-[5px] text-[11px] font-semibold leading-none tabular-nums tracking-[-0.25px] text-white ring-1 ring-white">
-          {count}
-        </span>
+        <>
+          <span
+            aria-hidden={countNoun ? true : undefined}
+            className="absolute -right-1 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-[5px] text-[11px] font-semibold leading-none tabular-nums tracking-[-0.25px] text-white ring-1 ring-white"
+          >
+            {count}
+          </span>
+          {countNoun && (
+            <span className="sr-only">
+              , {count} {countNoun}
+            </span>
+          )}
+        </>
       )}
     </button>
+  );
+}
+
+/**
+ * The mobile app-header row for the two list pages (Figma "New Top Nav"):
+ * labelled Search / My Interests / Filter pills portaled into AppHeader's
+ * action slot — the icon-only circles read poorly in testing. One component
+ * so Schedule and Speakers can't drift (they once disagreed on when Filter
+ * lights up). Lavender fill carries the active state; on Search it means
+ * both "panel open" and "query applied with the panel closed". Counts:
+ * saved items on My Interests (event-wide, not the shown day), applied
+ * filters on Filter. Renders nothing while the pane is hidden.
+ */
+export function HeaderToolbar({
+  kind,
+  searchLabel,
+  searchOpen,
+  searchActive,
+  onToggleSearch,
+  interestedOnly,
+  interestedCount,
+  onToggleInterested,
+  filterCount,
+  filtersOpen,
+  onOpenFilters,
+}: {
+  /** Which interest additions play the "+1" bubble on My Interests. */
+  kind: InterestKind;
+  /** Accessible name for Search ("Search sessions"); the visible label is shared. */
+  searchLabel: string;
+  searchOpen: boolean;
+  searchActive: boolean;
+  onToggleSearch: () => void;
+  interestedOnly: boolean;
+  interestedCount: number;
+  onToggleInterested: () => void;
+  filterCount: number;
+  filtersOpen: boolean;
+  onOpenFilters: () => void;
+}) {
+  const paneActive = usePaneActive();
+  const [pulse, clearPulse] = useInterestPulse(kind, paneActive);
+  return (
+    <HeaderActionsPortal>
+      <HeaderPill
+        icon={<Search />}
+        label="Search"
+        active={searchActive}
+        onClick={onToggleSearch}
+        // Keep focus in the search field while tapping the pill: otherwise
+        // the panel's empty-field auto-close fires first and this click
+        // re-opens it.
+        onMouseDown={(e) => e.preventDefault()}
+        aria-label={searchLabel}
+        aria-expanded={searchOpen}
+        aria-controls={HEADER_SEARCH_PANEL_ID}
+        className="shrink-0"
+      />
+      <HeaderPill
+        icon={<Star fill="currentColor" />}
+        label="My Interests"
+        active={interestedOnly}
+        count={interestedOnly ? interestedCount : undefined}
+        countNoun="saved"
+        pulse={pulse}
+        onPulseEnd={clearPulse}
+        onClick={onToggleInterested}
+        aria-pressed={interestedOnly}
+        className="min-w-0 flex-1"
+      />
+      <HeaderPill
+        icon={<ListFilter />}
+        label="Filter"
+        active={filtersOpen || filterCount > 0}
+        count={filterCount}
+        countNoun="applied"
+        onClick={onOpenFilters}
+        aria-expanded={filtersOpen}
+        className="shrink-0"
+      />
+    </HeaderActionsPortal>
   );
 }

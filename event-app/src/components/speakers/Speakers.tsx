@@ -2,19 +2,11 @@
 
 import { usePaneActive } from "@/components/paneContext";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { CircleX, ListFilter, Search, Star } from "lucide-react";
+import { CircleX } from "lucide-react";
 import cn from "classnames";
-import {
-  HEADER_ACTIONS_ID,
-} from "@/components/AppHeader";
-import {
-  SearchDrawerPanel,
-  HEADER_SEARCH_PANEL_ID,
-} from "@/components/HeaderSearchDrawer";
+import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
-import { InterestedPill, HeaderPill } from "@/components/ActionPills";
-import { useInterestPulse } from "@/data/interested/interestPulse";
+import { InterestedPill, HeaderToolbar } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import {
@@ -48,87 +40,6 @@ const PANEL_SLOT_W = 376;
  *  viewport edge so both ends of the panel match. Keep the aside's sticky
  *  top equal to 65 + this, or the two ends drift apart. */
 const PANEL_EDGE_GAP = 16;
-
-/**
- * Page-specific app-header controls, portaled into AppHeader's target (mobile,
- * Figma "New Top Nav"): labelled Search / My Interests / Filter pills — the
- * icon-only circles read poorly in testing. Lavender fill carries the active
- * state; on Search it means both "drawer open" and "query applied with the
- * drawer closed". Counts: starred speakers on My Interests, applied topics
- * on Filter.
- */
-function HeaderActions({
-  searchOpen,
-  searchActive,
-  onToggleSearch,
-  interestedOnly,
-  interestedCount,
-  onToggleInterested,
-  filterCount,
-  onOpenFilters,
-}: {
-  searchOpen: boolean;
-  searchActive: boolean;
-  onToggleSearch: () => void;
-  interestedOnly: boolean;
-  interestedCount: number;
-  onToggleInterested: () => void;
-  filterCount: number;
-  onOpenFilters: () => void;
-}) {
-  const [target, setTarget] = useState<Element | null>(null);
-  const paneActive = usePaneActive();
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_ACTIONS_ID));
-  }, []);
-  // "+1" bubble on My Interests when a speaker is starred from this page.
-  const [pulse, clearPulse] = useInterestPulse("speaker", paneActive);
-  if (!target || !paneActive) return null;
-
-  return (
-    <>
-      {createPortal(
-        <>
-          <HeaderPill
-            icon={<Search />}
-            label="Search"
-            active={searchActive}
-            onClick={onToggleSearch}
-            // Keep focus in the search field while tapping the pill: otherwise
-            // the drawer's empty-field auto-close fires first and this click
-            // re-opens it.
-            onMouseDown={(e) => e.preventDefault()}
-            aria-label="Search speakers"
-            aria-expanded={searchOpen}
-            aria-controls={HEADER_SEARCH_PANEL_ID}
-            className="shrink-0"
-          />
-          <HeaderPill
-            icon={<Star fill="currentColor" />}
-            label="My Interests"
-            active={interestedOnly}
-            count={interestedOnly ? interestedCount : undefined}
-            pulse={pulse}
-            onPulseEnd={clearPulse}
-            onClick={onToggleInterested}
-            aria-pressed={interestedOnly}
-            className="min-w-0 flex-1"
-          />
-          <HeaderPill
-            icon={<ListFilter />}
-            label="Filter"
-            active={filterCount > 0}
-            count={filterCount}
-            onClick={onOpenFilters}
-            aria-label="Filter by topic"
-            className="shrink-0"
-          />
-        </>,
-        target
-      )}
-    </>
-  );
-}
 
 /**
  * Redesigned speakers view (Figma "PWA / Speakers"). One combined view:
@@ -516,7 +427,9 @@ export function Speakers() {
           the list's actions and its search drawer step aside and come back,
           query intact, when it closes. */}
       {!detailId && (
-        <HeaderActions
+        <HeaderToolbar
+          kind="speaker"
+          searchLabel="Search speakers"
           searchOpen={headerSearch.searchOpen}
           searchActive={headerSearch.searchOpen}
           onToggleSearch={headerSearch.toggleSearch}
@@ -524,6 +437,7 @@ export function Speakers() {
           interestedCount={interestedIds.size}
           onToggleInterested={() => setInterestedOnly((v) => !v)}
           filterCount={topics.length}
+          filtersOpen={topicSheetOpen}
           onOpenFilters={() => setTopicSheetOpen(true)}
         />
       )}

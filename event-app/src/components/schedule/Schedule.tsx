@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { createPortal } from "react-dom";
 import {
   CalendarRange,
   Check,
@@ -19,21 +18,12 @@ import {
   Maximize2,
   MoveDown,
   MoveUp,
-  Search,
-  Star,
 } from "lucide-react";
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
-import {
-  HEADER_ACTIONS_ID,
-  headerCircle,
-  headerCircleResting,
-} from "@/components/AppHeader";
-import {
-  SearchDrawerPanel,
-  HEADER_SEARCH_PANEL_ID,
-} from "@/components/HeaderSearchDrawer";
+import { headerCircle, headerCircleResting } from "@/components/AppHeader";
+import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useDetailRoute } from "@/routing/detailRoute";
@@ -41,8 +31,7 @@ import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveRe
 import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
-import { ghostPill, HeaderPill, InterestedPill } from "@/components/ActionPills";
-import { useInterestPulse } from "@/data/interested/interestPulse";
+import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -73,90 +62,6 @@ const PANEL_SLOT_W = 376;
  *  viewport edge so both ends of the panel match (same recipe as
  *  Speakers.tsx). */
 const PANEL_EDGE_GAP = 16;
-
-/**
- * Page-specific app-header controls, portaled into AppHeader's target (mobile,
- * Figma "New Top Nav"): labelled Search / My Interests / Filter pills — the
- * icon-only circles read poorly in testing. "Jump to now" left the bar for
- * the floating LiveNowButton down by the list it acts on. Lavender fill
- * carries the active state; on Search it means both "drawer open" and
- * "query applied with the drawer closed". Counts: interested sessions on
- * My Interests, applied facet filters on Filter.
- */
-function HeaderActions({
-  searchOpen,
-  searchActive,
-  onToggleSearch,
-  interestedOnly,
-  interestedCount,
-  onToggleInterested,
-  filterCount,
-  filtersOpen,
-  onOpenFilters,
-}: {
-  searchOpen: boolean;
-  searchActive: boolean;
-  onToggleSearch: () => void;
-  interestedOnly: boolean;
-  interestedCount: number;
-  onToggleInterested: () => void;
-  filterCount: number;
-  filtersOpen: boolean;
-  onOpenFilters: () => void;
-}) {
-  const [target, setTarget] = useState<Element | null>(null);
-  const paneActive = usePaneActive();
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_ACTIONS_ID));
-  }, []);
-  // "+1" bubble on My Interests when a session is starred from this page.
-  const [pulse, clearPulse] = useInterestPulse("session", paneActive);
-  if (!target || !paneActive) return null;
-
-  return (
-    <>
-      {createPortal(
-        <>
-          <HeaderPill
-            icon={<Search />}
-            label="Search"
-            active={searchActive}
-            onClick={onToggleSearch}
-            // Keep focus in the search field while tapping the pill: otherwise
-            // the drawer's empty-field auto-close fires first and this click
-            // re-opens it.
-            onMouseDown={(e) => e.preventDefault()}
-            aria-label="Search sessions"
-            aria-expanded={searchOpen}
-            aria-controls={HEADER_SEARCH_PANEL_ID}
-            className="shrink-0"
-          />
-          <HeaderPill
-            icon={<Star fill="currentColor" />}
-            label="My Interests"
-            active={interestedOnly}
-            count={interestedOnly ? interestedCount : undefined}
-            pulse={pulse}
-            onPulseEnd={clearPulse}
-            onClick={onToggleInterested}
-            aria-pressed={interestedOnly}
-            className="min-w-0 flex-1"
-          />
-          <HeaderPill
-            icon={<ListFilter />}
-            label="Filter"
-            active={filtersOpen || filterCount > 0}
-            count={filterCount}
-            onClick={onOpenFilters}
-            aria-label="Open filters"
-            className="shrink-0"
-          />
-        </>,
-        target
-      )}
-    </>
-  );
-}
 
 /**
  * Floating "Live now" (Figma "New-Live-Now-Button"): mobile's jump-to-now,
@@ -949,7 +854,9 @@ export function Schedule() {
           calendar); the list's actions and its search drawer step aside and
           come back, query intact, when it closes. */}
       {!detailId && (
-        <HeaderActions
+        <HeaderToolbar
+          kind="session"
+          searchLabel="Search sessions"
           searchOpen={headerSearch.searchOpen}
           searchActive={headerSearch.searchOpen}
           onToggleSearch={headerSearch.toggleSearch}
