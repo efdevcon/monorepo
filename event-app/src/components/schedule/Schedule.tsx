@@ -470,6 +470,7 @@ export function Schedule() {
     filterOptions,
     daySessions,
     resultCount,
+    anyLive,
   } = useScheduleState(sessions, interestedIds);
 
   const isDesktop = useIsDesktop();
@@ -958,7 +959,10 @@ export function Schedule() {
           onOpenFilters={openFilters}
         />
       )}
-      {!detailId && paneActive && resultCount > 0 && !timelineFullscreen && (
+      {/* Only while something is live (Scott: no pill when nothing is on),
+          and regardless of the filtered list being empty — with a filter
+          on and a matchless day showing, it is the way back to today. */}
+      {!detailId && paneActive && anyLive && !timelineFullscreen && (
         <LiveNowButton onClick={jumpToNow} />
       )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over

@@ -250,6 +250,15 @@ export function useScheduleState(
     return i >= 0 ? all[i].timeLabel : null;
   }, [daySessionsAll, now]);
 
+  // Is anything running right now, anywhere in the event? Unfiltered and
+  // day-independent: it gates the mobile Live now pill, which exists to cross
+  // days and land on the live slot, so it stays while another day is showing
+  // and goes away between slots and outside the event.
+  const anyLive = useMemo(
+    () => sessions.some((s) => getStatus(s, now) === "live"),
+    [sessions, now]
+  );
+
   // Matches per day while a query is active — the tab badges, and which days
   // the tabs show at all. null with no query, and null when nothing matches
   // anywhere (every tab then stays visible, badge-free, and EmptyState
@@ -424,5 +433,6 @@ export function useScheduleState(
     setInterestedOnly,
     daySessions,
     resultCount,
+    anyLive,
   };
 }

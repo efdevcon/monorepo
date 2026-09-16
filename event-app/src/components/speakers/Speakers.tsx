@@ -468,9 +468,11 @@ export function Speakers() {
       window.removeEventListener("resize", schedule);
       ro?.disconnect();
     };
-    // headerSearch.drawerRef is a stable ref object.
+    // headerSearch.drawerRef is a stable ref object. detailId: the search
+    // panel unmounts around a detail visit (mobile keeps listVisible true),
+    // so the observer must rebind to the remounted node.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidePanelOpen, sections, listVisible]);
+  }, [sidePanelOpen, sections, listVisible, detailId]);
 
   const filtersActive =
     activeFilterCount > 0 || interestedOnly || search.trim().length > 0;
