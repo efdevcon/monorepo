@@ -4,43 +4,58 @@ import { ListFilter, Search, Star } from "lucide-react";
 import cn from "classnames";
 import type { ComponentProps, ReactNode } from "react";
 import { usePaneActive } from "@/components/paneContext";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { HeaderActionsPortal } from "@/components/DetailLayer";
 import { HEADER_SEARCH_PANEL_ID } from "@/components/HeaderSearchDrawer";
 import { useInterestPulse, type InterestKind } from "@/data/interested/interestPulse";
 
 /**
  * Shared toolbar-pill primitives (Figma): the purple ghost text-button
- * ("Jump to now", "A–Z index") and the Interested toggle pill, used by the
- * schedule and speakers action rows so both pages share identical sizing.
+ * ("Jump to now", "A–Z index"), the labelled pill (HeaderPill) in its mobile
+ * header and desktop toolbar sizes, and the toolbars built from them, used
+ * by the schedule and speakers pages so both share identical sizing.
  */
 export const ghostPill =
   "flex h-9 shrink-0 cursor-pointer items-center gap-1.5 rounded-full px-3 py-1 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:bg-dc-purple-wash";
 
-/** Interested toggle pill (Figma "InterestedCTA"): lavender fill when active. */
+/**
+ * Desktop "My Interests" toggle (Figma "InterestedCTA", relabelled to match
+ * the mobile pill): the same pill as the header's at desktop toolbar sizing
+ * (36px, 14px label), with the saved count while active and the "+1" swap
+ * when an item is starred. Listens only on desktop — on mobile it sits in
+ * a hidden container and the header pill plays the bubble instead.
+ */
 export function InterestedPill({
+  kind,
   active,
+  count,
   onToggle,
   className,
 }: {
+  kind: InterestKind;
   active: boolean;
+  /** Saved items, event-wide; shown as the count bubble while active. */
+  count: number;
   onToggle: () => void;
   className?: string;
 }) {
+  const paneActive = usePaneActive();
+  const isDesktop = useIsDesktop();
+  const [pulse, clearPulse] = useInterestPulse(kind, paneActive && isDesktop);
   return (
-    <button
+    <HeaderPill
+      variant="toolbar"
+      icon={<Star fill="currentColor" />}
+      label="My Interests"
+      active={active}
+      count={active ? count : undefined}
+      countNoun="saved"
+      pulse={pulse}
+      onPulseEnd={clearPulse}
       onClick={onToggle}
       aria-pressed={active}
-      className={cn(
-        "flex min-h-9 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[14px] leading-none text-dc-fg2 transition-colors duration-150 ease-out",
-        active
-          ? "border-dc-purple bg-dc-lavender"
-          : "border-dc-hairline bg-white hover:bg-dc-purple-wash",
-        className
-      )}
-    >
-      <Star className="size-4 text-dc-purple" fill="currentColor" />
-      Interested
-    </button>
+      className={className}
+    />
   );
 }
 
@@ -53,6 +68,7 @@ export function InterestedPill({
  * before:-inset-1.5 pads the 32px pill to the 44px touch floor.
  */
 export function HeaderPill({
+  variant = "header",
   icon,
   label,
   active = false,
@@ -63,6 +79,11 @@ export function HeaderPill({
   className,
   ...props
 }: ComponentProps<"button"> & {
+  /**
+   * "header": the 32px mobile app-header pill. "toolbar": the desktop list
+   * toolbar's 36px / 14px sizing (InterestedPill), hover wash at rest.
+   */
+  variant?: "header" | "toolbar";
   icon: ReactNode;
   label: string;
   active?: boolean;
@@ -82,24 +103,37 @@ export function HeaderPill({
   pulse?: { key: number; label: string } | null;
   onPulseEnd?: () => void;
 }) {
+  const toolbar = variant === "toolbar";
   return (
     <button
       type="button"
       {...props}
       className={cn(
-        "relative flex min-h-8 cursor-pointer items-center justify-center gap-2 rounded-full border py-1 pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-['']",
-        active ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline bg-white",
+        "relative flex cursor-pointer items-center justify-center gap-2 rounded-full border leading-none transition-colors duration-150 ease-out before:absolute before:content-['']",
+        // before: pads each size to the 44px touch floor (32 + 2×6, 36 + 2×4).
+        toolbar
+          ? "min-h-9 px-3 py-1 text-[14px] text-dc-fg2 before:-inset-1"
+          : "min-h-8 py-1 pl-[10px] pr-3 text-[13px] text-dc-fg before:-inset-1.5",
+        active
+          ? "border-dc-purple bg-dc-lavender"
+          : cn("border-dc-hairline bg-white", toolbar && "hover:bg-dc-purple-wash"),
         className
       )}
     >
       <span className="relative flex size-4 shrink-0">
-        {/* Clip box the pill's inner height (16px icon + 7px each side, the
-            border excluded), anchored to the icon slot so it follows the
-            centred content: while a pulse plays the icon leaves through the
-            pill's top edge and the "+1" rises into its place from the bottom,
-            then they swap back. The button itself can't clip — that would
-            cut the before: tap-target extension. */}
-        <span className="absolute inset-x-0 -inset-y-[7px] overflow-hidden">
+        {/* Clip box the pill's inner height (16px icon + 7px each side in
+            the 32px pill, 9px in the 36px one; the border excluded), anchored
+            to the icon slot so it follows the centred content: while a pulse
+            plays the icon leaves through the pill's top edge and the "+1"
+            rises into its place from the bottom, then they swap back. The
+            button itself can't clip — that would cut the before: tap-target
+            extension. */}
+        <span
+          className={cn(
+            "absolute inset-x-0 overflow-hidden",
+            toolbar ? "-inset-y-[9px]" : "-inset-y-[7px]"
+          )}
+        >
           <span
             key={`icon-${pulse?.key ?? 0}`}
             className={cn(
@@ -115,7 +149,10 @@ export function HeaderPill({
               key={`bubble-${pulse.key}`}
               aria-hidden
               onAnimationEnd={onPulseEnd}
-              className="pointer-events-none absolute inset-x-0 top-[7px] flex size-4 items-center justify-center rounded-full bg-dc-purple text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade"
+              className={cn(
+                "pointer-events-none absolute inset-x-0 flex size-4 items-center justify-center rounded-full bg-dc-purple text-[10px] font-semibold leading-none text-white animate-interest-pulse motion-reduce:animate-interest-pulse-fade",
+                toolbar ? "top-[9px]" : "top-[7px]"
+              )}
             >
               {pulse.label}
             </span>
@@ -180,7 +217,10 @@ export function HeaderToolbar({
   onOpenFilters: () => void;
 }) {
   const paneActive = usePaneActive();
-  const [pulse, clearPulse] = useInterestPulse(kind, paneActive);
+  const isDesktop = useIsDesktop();
+  // Only the visible pill listens: on desktop this bar is display:none and
+  // the list toolbar's InterestedPill plays the bubble.
+  const [pulse, clearPulse] = useInterestPulse(kind, paneActive && !isDesktop);
   return (
     <HeaderActionsPortal>
       <HeaderPill

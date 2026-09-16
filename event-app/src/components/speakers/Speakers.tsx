@@ -537,7 +537,9 @@ export function Speakers() {
                 stuck={rowsStuck}
               >
                 <InterestedPill
+                  kind="speaker"
                   active={interestedOnly}
+                  count={interestedIds.size}
                   onToggle={() => setInterestedOnly((v) => !v)}
                   className="hidden lg:flex"
                 />

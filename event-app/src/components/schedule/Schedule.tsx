@@ -948,7 +948,9 @@ export function Schedule() {
               onSelect={selectDay}
             >
               <InterestedPill
+                kind="session"
                 active={interestedOnly}
+                count={interestedIds.size}
                 onToggle={() => setInterestedOnly((v) => !v)}
               />
               <button onClick={jumpToNow} className={ghostPill}>
