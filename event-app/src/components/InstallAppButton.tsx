@@ -1,17 +1,24 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ComponentType, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Download, ExternalLink, Share, MoreVertical } from "lucide-react";
+import { Download, ExternalLink, MoreVertical } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
-import { isIOS, isSafari, isStandalone } from "@/utils/platform";
+import { iosMajorVersion, isIOS, isIPad, isSafari, isStandalone } from "@/utils/platform";
+import {
+  IosAddToHomeGlyph,
+  IosChevronGlyph,
+  IosMoreGlyph,
+  IosPageMenuGlyph,
+  IosShareGlyph,
+} from "./IosGlyphs";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -94,14 +101,17 @@ export function useOpenInSafari(): () => Promise<void> {
 /**
  * Show install UI only on mobile web before install — never inside the
  * native (Capacitor) app or an already-installed standalone PWA, and never
- * on desktop (the install nudge is a phone thing by decision).
+ * on desktop (the install nudge is a phone and tablet thing by decision).
+ * iPad goes through isIOS(): Safari there asks for the desktop site, so its
+ * User-Agent says "Macintosh" and never "iPad" (found on iPadOS 17.7,
+ * 2026-09-16); the touch-points check is what tells it from a Mac.
  */
 export function useShouldShowInstall(): boolean {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => {
     if (isStandalone() || Capacitor.isNativePlatform()) return;
     if (typeof navigator === "undefined") return;
-    setShouldShow(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+    setShouldShow(isIOS() || /Android/i.test(navigator.userAgent));
   }, []);
   return shouldShow;
 }
@@ -126,30 +136,125 @@ function useInstallPrompt(): BeforeInstallPromptEvent | null {
   return prompt;
 }
 
+/** One manual install step: the control to look for (Apple's own glyph on iOS), and what to do with it. */
+type HowToStep = { Icon: ComponentType<{ className?: string }>; text: ReactNode };
+
+/**
+ * How to reach "Add to Home Screen" in Safari, which moves with every iOS
+ * release (iPhone; iPad keeps Share at the top right). Steps and icons follow
+ * khmyznikov/pwa-install's Apple dialog, which tracks these per release:
+ * - iOS 27: the compact tab bar's ⋯ button became a Tabs button, so Share
+ *   sits in the Page menu (three lines) on the left of the address bar, or
+ *   behind a touch and hold on the address bar.
+ * - iOS 26: compact tab bar by default, Share behind ⋯ next to the address
+ *   bar; the Bottom and Top layouts keep it in the toolbar.
+ * - iOS 26 and later share sheets tuck the action behind "View More".
+ * - iOS 18 and earlier: the Share button in the bottom toolbar.
+ * Guidance is the whole install story on iOS Safari: no beforeinstallprompt,
+ * no Web Install API, and the Web Share sheet lacks Safari's own "Add to
+ * Home Screen" action (tried 2026-09-16).
+ */
+function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
+  const steps: HowToStep[] = [];
+  if (ipad) {
+    steps.push({
+      Icon: IosShareGlyph,
+      text: (
+        <>
+          Tap <b>Share</b> at the top right.
+        </>
+      ),
+    });
+  } else if (version !== null && version >= 27) {
+    steps.push(
+      {
+        Icon: IosPageMenuGlyph,
+        text: (
+          <>
+            Tap the <b>Page</b> menu if there&apos;s no Share icon.
+          </>
+        ),
+      },
+      {
+        Icon: IosShareGlyph,
+        text: (
+          <>
+            Tap <b>Share</b> in the navigation bar.
+          </>
+        ),
+      }
+    );
+  } else if (version === 26) {
+    steps.push(
+      {
+        Icon: IosMoreGlyph,
+        text: (
+          <>
+            Tap <b>•••</b> if there&apos;s no Share icon.
+          </>
+        ),
+      },
+      {
+        Icon: IosShareGlyph,
+        text: (
+          <>
+            Tap <b>Share</b> in the navigation bar.
+          </>
+        ),
+      }
+    );
+  } else if (version !== null) {
+    steps.push({
+      Icon: IosShareGlyph,
+      text: (
+        <>
+          Tap <b>Share</b> in the bottom toolbar.
+        </>
+      ),
+    });
+  } else {
+    // Version unknown: name the places it has lived.
+    steps.push({
+      Icon: IosShareGlyph,
+      text: (
+        <>
+          Tap <b>Share</b> in the toolbar, or in the menu next to the address bar.
+        </>
+      ),
+    });
+  }
+  if (version !== null && version >= 26) {
+    steps.push({
+      Icon: IosChevronGlyph,
+      text: (
+        <>
+          Tap <b>View More</b> in the share sheet.
+        </>
+      ),
+    });
+  }
+  steps.push({
+    Icon: IosAddToHomeGlyph,
+    text: (
+      <>
+        Tap <b>Add to Home Screen</b>.
+      </>
+    ),
+  });
+  return steps;
+}
+
 /** Platform-aware manual install steps, for browsers with no native prompt. */
-function manualInstructions(): { intro: string; steps: ReactNode[] } {
+function manualInstructions(): { intro: string; steps: HowToStep[] } {
   if (isIOS()) {
     const safari = isSafari();
     return {
       intro: safari
         ? "Add this app to your Home Screen for the full experience."
-        : "To install on your iPhone, open this page in Safari first.",
-      steps: [
-        ...(safari
-          ? []
-          : [
-              <>
-                Open this page in <b>Safari</b>.
-              </>,
-            ]),
-        <>
-          Tap the <Share className="inline-block h-4 w-4 align-text-bottom" /> Share
-          button.
-        </>,
-        <>
-          Choose <b>“Add to Home Screen”</b>.
-        </>,
-      ],
+        : "To install, open this page in Safari first.",
+      // Outside Safari the card is just the hop (see InstallInstructionsModal);
+      // these steps only show once the visitor is in Safari.
+      steps: safariSteps(iosMajorVersion(), isIPad()),
     };
   }
   // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
@@ -157,13 +262,15 @@ function manualInstructions(): { intro: string; steps: ReactNode[] } {
   return {
     intro: "Add this app to your home screen for the full experience.",
     steps: [
-      <>
-        Open your browser&apos;s menu{" "}
-        <MoreVertical className="inline-block h-4 w-4 align-text-bottom" />.
-      </>,
-      <>
-        Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.
-      </>,
+      { Icon: MoreVertical, text: <>Open your browser&apos;s menu.</> },
+      {
+        Icon: Download,
+        text: (
+          <>
+            Tap <b>Install app</b> or <b>Add to Home screen</b>.
+          </>
+        ),
+      },
     ],
   };
 }
@@ -185,10 +292,27 @@ function InstallInstructionsModal({
   // (Brave mimics Safari's UA), so it only decides whether the hop is worth
   // offering — the steps below stand on their own either way.
   const safariIsNextStep = !!onOpenInSafari && !isSafari();
+  // iOS Safari steps are followed live, so the card stays clear of where
+  // Safari opens things. iPhone: the Page menu, ••• menu and share sheet
+  // rise from the bottom over roughly the lower half, so the card sits at
+  // the top and skips the art header to keep every step above them. iPad:
+  // the share sheet is a popover dropping from the top-right toolbar, so the
+  // card stays at the bottom. The Safari hop and other platforms keep the
+  // usual bottom sheet (centred from `sm`).
+  const safariSteps = isIOS() && !safariIsNextStep;
+  const stepsOnTop = safariSteps && !isIPad();
+  const align = stepsOnTop
+    ? "items-start pt-[calc(16px+var(--safe-top))]"
+    : safariSteps
+      ? "items-end"
+      : "items-end sm:items-center";
 
   return createPortal(
     <motion.div
-      className="fixed inset-0 z-[95] flex items-end justify-center bg-black/60 p-4 backdrop-blur-sm sm:items-center"
+      className={cn(
+        "fixed inset-0 z-[95] flex justify-center bg-black/60 p-4 backdrop-blur-sm",
+        align
+      )}
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -198,13 +322,13 @@ function InstallInstructionsModal({
       <motion.div
         className="w-full overflow-hidden rounded-3xl bg-white shadow-2xl sm:max-w-sm"
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, y: 28, scale: 0.96 }}
+        initial={{ opacity: 0, y: stepsOnTop ? -28 : 28, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 28, scale: 0.98 }}
+        exit={{ opacity: 0, y: stepsOnTop ? -28 : 28, scale: 0.98 }}
         transition={{ type: "spring", damping: 28, stiffness: 340 }}
       >
         {/* Devcon art header, fading into the white card body */}
-        <div className="relative h-32 w-full">
+        <div className={cn("relative h-32 w-full", stepsOnTop && "hidden")}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/login/backdrop.jpg"
@@ -221,7 +345,7 @@ function InstallInstructionsModal({
           />
         </div>
 
-        <div className="px-6 pb-6 text-center font-heading">
+        <div className={cn("px-6 pb-6 text-center font-heading", stepsOnTop && "pt-6")}>
           <h3 className="text-lg font-bold text-dc-fg2">
             Install {APP_CONFIG.APP_NAME}
           </h3>
@@ -235,13 +359,18 @@ function InstallInstructionsModal({
               Open in Safari
             </PrimaryButton>
           )}
-          <ol className="mb-6 space-y-3 text-left text-sm text-dc-muted">
-            {steps.map((content, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <Step n={i + 1} /> <span className="pt-0.5">{content}</span>
-              </li>
-            ))}
-          </ol>
+          {/* Not in Safari yet: the hop is the whole job, the Safari steps
+              would only be noise here (they show once the page reopens in
+              Safari and the visitor taps Install again). */}
+          {!safariIsNextStep && (
+            <ol className="mb-6 space-y-3 text-left text-sm text-dc-muted">
+              {steps.map(({ Icon, text }, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <StepIcon Icon={Icon} /> <span>{text}</span>
+                </li>
+              ))}
+            </ol>
+          )}
           {/* No Safari CTA when we're already in Safari — the Share ->
               Add to Home Screen steps above are the whole job there. */}
           {safariIsNextStep ? (
@@ -260,10 +389,11 @@ function InstallInstructionsModal({
   );
 }
 
-function Step({ n }: { n: number }) {
+/** The control a step points at, in a disc (pwa-install's how-to rows). */
+function StepIcon({ Icon }: { Icon: ComponentType<{ className?: string }> }) {
   return (
-    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-dc-purple-soft text-xs font-bold text-dc-purple">
-      {n}
+    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-dc-purple-soft text-dc-purple">
+      <Icon className="size-5" />
     </span>
   );
 }
