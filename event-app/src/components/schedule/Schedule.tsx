@@ -161,16 +161,18 @@ function HeaderActions({
 /**
  * Floating "Live now" (Figma "New-Live-Now-Button"): mobile's jump-to-now,
  * parked bottom-right above the tab bar where the list it acts on lives,
- * instead of among the header controls. Sits 16px above the tab bar
- * (8px top pad + 40px tabs + max(12px, home-indicator inset)). py 11: the
- * design's 40px is padding 12 with the border inside; CSS adds it outside.
+ * instead of among the header controls. Sits 16px above the tab bar via
+ * its measured height (--nav-clearance, Nav.tsx), like every other
+ * bottom-anchored control. py 11: the design's 40px is padding 12 with the
+ * border inside; CSS adds it outside. The `before:` box extends the 40px
+ * pill to a 44px tap target without changing its look.
  */
 function LiveNowButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="fixed right-4 bottom-[calc(64px+max(12px,env(safe-area-inset-bottom)))] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out hover:bg-dc-live-bg lg:hidden"
+      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
     >
       <ClockArrowDown className="size-4 shrink-0" />
       Live now
