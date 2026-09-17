@@ -417,10 +417,26 @@ export function Schedule() {
   // history; the panel's expand action and shared links use the URL form.
   const [panelSessionId, setPanelSessionId] = useState<string | null>(null);
   const selectedSessionId = isDesktop ? panelSessionId : detailId;
+  // Desktop: opening or closing the side panel reflows the list under the
+  // pointer — 2-up time-slot rows collapse to one column and the main column
+  // narrows — which carried the clicked card off to a new place (often off
+  // screen). Remember where it was and, once the new layout is in, scroll
+  // the page by the difference so the card stays put (y only: a card in a
+  // right-hand 2-up cell still slides left as the row becomes one column).
+  const holdCardRef = useRef<{ id: string; top: number } | null>(null);
+  const cardEl = (id: string) =>
+    mainCardRef.current?.querySelector<HTMLElement>(
+      `[data-detail-id="${CSS.escape(id)}"]`
+    ) ?? null;
   const selectSession = useCallback(
     (id: string | null) => {
       if (id) setFiltersOpen(false);
       if (isDesktop) {
+        const anchor = id ?? panelSessionId;
+        const el = anchor ? cardEl(anchor) : null;
+        holdCardRef.current = el
+          ? { id: anchor as string, top: el.getBoundingClientRect().top }
+          : null;
         setPanelSessionId(id);
       } else if (id) {
         openDetail(id);
@@ -428,8 +444,17 @@ export function Schedule() {
         closeDetail();
       }
     },
-    [isDesktop, openDetail, closeDetail]
+    [isDesktop, panelSessionId, openDetail, closeDetail]
   );
+  useLayoutEffect(() => {
+    const hold = holdCardRef.current;
+    if (!hold) return;
+    holdCardRef.current = null;
+    const el = cardEl(hold.id);
+    if (!el) return;
+    const delta = el.getBoundingClientRect().top - hold.top;
+    if (Math.abs(delta) >= 1) window.scrollBy({ top: delta, behavior: "auto" });
+  }, [panelSessionId]);
 
   const selectedSession = useMemo(
     () =>

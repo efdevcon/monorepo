@@ -72,7 +72,16 @@ export function DetailLink({
   };
 
   return (
-    <a href={finalHref} onClick={onClick} className={className} style={style} title={title}>
+    <a
+      href={finalHref}
+      onClick={onClick}
+      className={className}
+      style={style}
+      title={title}
+      // Lets a list find the card it just opened (Schedule keeps it in place
+      // while the side panel reflows the grid).
+      data-detail-id={id}
+    >
       {children}
     </a>
   );
