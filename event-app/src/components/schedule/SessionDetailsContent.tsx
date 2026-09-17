@@ -46,8 +46,10 @@ export function downloadSessionIcs(session: Session) {
   URL.revokeObjectURL(url);
 }
 
+/** Action pills: 36px / 13px on the mobile page (one size up — the 32px
+ *  pills read small on device), the desktop panel's 32px / 12px from lg. */
 const pillBase =
-  "flex min-h-8 shrink-0 cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2";
+  "flex min-h-9 shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
 /**
@@ -167,41 +169,38 @@ export function SessionSummary({
             )}
           </div>
 
-          {/* Action pills. Mobile: one scrollable row behind a right fade.
-              Desktop (side panel / expanded view): wrap onto a new line — the
-              scroll-and-fade hid "Show on Map" past the panel's edge. */}
-          <div className="relative -mr-4 lg:mr-0">
-            <div className="flex gap-3 overflow-x-auto pr-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-wrap lg:overflow-visible lg:pr-0">
-              <button
-                onClick={() => void toggle(session.id, session.title)}
+          {/* Action pills wrap onto a new line on every breakpoint: the
+              mobile scroll-and-fade row hid "Show on Map" past the screen
+              edge, the same way the desktop panel's did. */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => void toggle(session.id, session.title)}
+              className={cn(
+                pillBase,
+                interested
+                  ? "border-dc-purple bg-dc-lavender"
+                  : "border-dc-hairline bg-white"
+              )}
+            >
+              <Star
                 className={cn(
-                  pillBase,
-                  interested
-                    ? "border-dc-purple bg-dc-lavender"
-                    : "border-dc-hairline bg-white"
+                  "size-4 text-dc-purple",
+                  interested ? "fill-dc-purple" : "fill-transparent"
                 )}
-              >
-                <Star
-                  className={cn(
-                    "size-4 text-dc-purple",
-                    interested ? "fill-dc-purple" : "fill-transparent"
-                  )}
-                />
-                {interested ? "Interested" : "Add to Interests"}
-              </button>
-              <button
-                onClick={() => downloadSessionIcs(session)}
-                className={pillClass}
-              >
-                <CalendarPlus className="size-4 text-dc-purple" />
-                Add to Calendar
-              </button>
-              <Link href="/map" className={pillClass}>
-                <MapPin className="size-4 text-dc-purple" />
-                Show on Map
-              </Link>
-            </div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l from-dc-panel to-transparent lg:hidden" />
+              />
+              {interested ? "Interested" : "Add to Interests"}
+            </button>
+            <button
+              onClick={() => downloadSessionIcs(session)}
+              className={pillClass}
+            >
+              <CalendarPlus className="size-4 text-dc-purple" />
+              Add to Calendar
+            </button>
+            <Link href="/map" className={pillClass}>
+              <MapPin className="size-4 text-dc-purple" />
+              Show on Map
+            </Link>
           </div>
         </div>
       </div>
