@@ -81,9 +81,12 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
 function ViewToggle({
   view,
   onChange,
+  iconOnly = false,
 }: {
   view: ViewMode;
   onChange: (v: ViewMode) => void;
+  /** Icons only, same 40px height: the floating copy next to Live now. */
+  iconOnly?: boolean;
 }) {
   const buttonRefs = useRef(new Map<ViewMode, HTMLButtonElement | null>());
   // The white pill slides between segments; measured after render so it lands
@@ -137,14 +140,15 @@ function ViewToggle({
           onClick={() => onChange(mode)}
           aria-pressed={view === mode}
           className={cn(
-            "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] px-2 py-1 text-[14px] leading-none transition-colors",
+            "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] py-1 text-[14px] leading-none transition-colors",
+            iconOnly ? "px-2.5" : "px-2",
             view === mode
               ? "font-bold text-dc-purple"
               : "font-medium text-dc-muted hover:text-dc-fg2"
           )}
         >
           <Icon className="size-5" />
-          <span>{label}</span>
+          <span className={cn(iconOnly && "sr-only")}>{label}</span>
         </button>
       ))}
     </div>
@@ -954,7 +958,7 @@ export function Schedule() {
               : "pointer-events-none translate-y-2 opacity-0"
           )}
         >
-          <ViewToggle view={view} onChange={changeView} />
+          <ViewToggle view={view} onChange={changeView} iconOnly />
         </div>
       )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
