@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import cn from "classnames";
 import { ChevronDown, ChevronRight, Layers, type LucideIcon } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
@@ -33,13 +33,49 @@ const FLOOR_TAG: Record<LevelId, string> = { G: "G", L1: "L1", L2: "L2" };
  * flat list of matches with floor tags. A floor in the query ("level 1",
  * "toilets l1") scopes the list to it; a bare floor also gets a row that opens
  * it. The shell provides the flex column; the list scrolls inside it.
+ *
+ * Keyboard (Scott, 2026-09-17): ArrowDown from the field enters the list and
+ * ArrowUp from its first row returns to the field; the arrows walk every row
+ * (categories, floor headers' entries, search hits) in visual order, Enter
+ * activates, ArrowRight / ArrowLeft open and close a category row, and typing
+ * while a row has focus goes back into the field.
  */
 export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor, onClose, inputRef }: FindContentProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const searching = query.trim().length > 0;
   const { floor, hits } = searching ? searchFind(groups, query) : { floor: null, hits: [] };
   // A bare floor query ("level 1") lists the floor: offer to open it above its places.
   const wholeFloor = floor !== null && floor.count === hits.length;
+
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const rows = Array.from(listRef.current?.querySelectorAll<HTMLButtonElement>("button") ?? []);
+    const target = e.target as HTMLElement;
+    const index = target instanceof HTMLButtonElement ? rows.indexOf(target) : -1;
+    const inList = index >= 0;
+    if (e.key === "ArrowDown") {
+      const next = inList ? rows[Math.min(index + 1, rows.length - 1)] : rows[0];
+      if (next) {
+        e.preventDefault();
+        next.focus();
+      }
+    } else if (e.key === "ArrowUp") {
+      if (!inList) return;
+      e.preventDefault();
+      if (index === 0) inputRef?.current?.focus();
+      else rows[index - 1].focus();
+    } else if ((e.key === "ArrowRight" || e.key === "ArrowLeft") && inList) {
+      // Category rows only: open on Right, close on Left.
+      const category = target.dataset.category;
+      if (!category) return;
+      e.preventDefault();
+      setExpanded(e.key === "ArrowRight" ? category : expanded === category ? null : expanded);
+    } else if (inList && (e.key === "Backspace" || (e.key.length === 1 && e.key !== " "))) {
+      // Typing from a row continues the search: the keystroke lands in the re-focused field.
+      inputRef?.current?.focus();
+    }
+  };
 
   return (
     <>
@@ -47,18 +83,18 @@ export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor,
         <h2 className="text-[16px] font-bold leading-none text-dc-fg">Find a place</h2>
         <CloseButton onClick={onClose} />
       </div>
-      <div className="px-4 pb-3 pt-3">
+      <div className="px-4 pb-3 pt-3" onKeyDown={onKeyDown}>
         <SearchInput value={query} onChange={onQueryChange} placeholder="Search rooms, food, floors…" inputRef={inputRef} />
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto border-t border-dc-hairline">
+      <div ref={listRef} onKeyDown={onKeyDown} className="min-h-0 flex-1 overflow-y-auto border-t border-dc-hairline">
         {searching ? (
           <>
             {floor && wholeFloor && (
               <button
                 type="button"
                 onClick={() => onPickFloor(floor.level)}
-                className="flex w-full cursor-pointer items-center gap-3 border-b border-dc-hairline px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
+                className="flex w-full cursor-pointer items-center gap-3 border-b border-dc-hairline px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
               >
                 <Layers className="size-4 shrink-0 text-dc-purple" aria-hidden />
                 <span className="min-w-0 flex-1 text-[14px] font-semibold leading-none text-dc-fg2">{floor.name}</span>
@@ -88,8 +124,9 @@ export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor,
                 <button
                   type="button"
                   aria-expanded={open}
+                  data-category={category.id}
                   onClick={() => setExpanded(open ? null : category.id)}
-                  className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
+                  className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
                 >
                   <category.Icon className="size-4 shrink-0 text-dc-purple" aria-hidden />
                   <span className="min-w-0 flex-1 text-[14px] font-semibold leading-none text-dc-fg2">{category.label}</span>
@@ -126,8 +163,8 @@ function EntryRow({ entry, Icon, floorTag, onPick }: { entry: FindEntry; Icon: L
     <button
       type="button"
       onClick={() => onPick(entry)}
-      // Same hover as the category rows (Scott): a white tint on the panel fill was invisible.
-      className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
+      // Same hover as the category rows (Scott): a white tint on the panel fill was invisible. Keyboard focus reads the same.
+      className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
     >
       <span className="flex size-7 shrink-0 items-center justify-center">
         {entry.icon ? (

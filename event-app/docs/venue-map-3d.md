@@ -203,6 +203,12 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   the header (the canvas runs under it); `FIT_MARGIN` is 0.82.
 - **Zoom clamps snap.** `OrbitControls.update()` clamps zoom every frame; `tweenTo` loosens
   the clamps to span both ends and `applyZoomClamps` restores them on landing.
+- **Find is keyboard-navigable** (2026-09-17): ArrowDown from the field enters the list, the
+  arrows walk every row (categories, entries, search hits) in DOM order via a roving-focus
+  handler in `FindContent` (`listRef.querySelectorAll("button")`), ArrowUp from the first row
+  returns to the field, ArrowRight / ArrowLeft open / close a category (`data-category`), Enter
+  activates, and a printable key or Backspace on a row re-focuses the field so the keystroke
+  continues the search. Focus reads like hover (`focus-visible:bg-dc-purple-wash`).
 - **Keyboard vs. fields.** The hook is disabled while Find is open and ignores
   input/textarea/contentEditable targets; `/` calls `preventDefault` so the key does not land
   in the freshly focused field (or open Firefox's quick find).
