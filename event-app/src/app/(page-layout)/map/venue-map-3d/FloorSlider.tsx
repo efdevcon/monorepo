@@ -135,8 +135,9 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         className={cn(
           // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
           "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
+          // Active: the Find pill's surface exactly (border, white/90 + blur, one soft shadow) so the two bottom controls match.
           value === null
-            ? "bg-white font-bold text-dc-purple shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)]"
+            ? "bg-white/90 font-bold text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur"
             : "bg-dc-lavender font-medium text-dc-muted hover:text-dc-purple lg:bg-dc-panel"
         )}
       >
