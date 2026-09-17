@@ -8,6 +8,7 @@ import { LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { InstallAppButton } from "./InstallAppButton";
+import { InstallHeroCard } from "./InstallHeroCard";
 import { MyTickets } from "./MyTickets";
 import { TicketSignIn } from "./TicketSignIn";
 
@@ -38,6 +39,13 @@ export function Ticket() {
       {/* Same page frame as Schedule/Speakers: lg:pb-16 container, h1 with
           pt-8/pb-4. Mobile keeps its own py-4 under the AppHeader. */}
       <div className="px-4 py-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 lg:pt-0 xl:px-0">
+      {/* Install nudge for browser visitors, above the auth fork so both
+          states show it and it doesn't cross-fade with them. Desktop: the
+          same pt-8 the h1 / sign-in panel use, so it sits where the page
+          content starts. */}
+      <div className="mb-4 empty:hidden lg:pt-8">
+        <InstallHeroCard />
+      </div>
       <AnimatePresence mode="wait">
         {!user ? (
           <motion.div

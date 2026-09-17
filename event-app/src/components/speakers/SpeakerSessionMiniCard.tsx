@@ -49,12 +49,12 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
             {session.title}
           </h3>
           <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-2 pr-10">
-            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+            <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-4 text-dc-muted">
               <Clock3 className="size-3.5 shrink-0" />
               {formatTimeRange(session)}
             </span>
             {session.speakers.length > 0 && (
-              <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-none text-dc-muted">
+              <span className="inline-flex min-w-0 items-center gap-1 text-[12px] leading-4 text-dc-muted">
                 <User className="size-3.5 shrink-0" />
                 <span className="truncate">
                   {session.speakers.map((s) => s.name).join(", ")}
@@ -62,7 +62,7 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
               </span>
             )}
             {locationLabel(session) && (
-              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+              <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-4 text-dc-muted">
                 <MapPin className="size-3.5 shrink-0" />
                 {locationLabel(session)}
               </span>
@@ -78,7 +78,7 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            void toggle(session.id, session.title);
+            void toggle(session.id);
           }}
           className="group/star -m-2 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
         >

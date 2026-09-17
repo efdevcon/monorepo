@@ -2,10 +2,11 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import cn from "classnames";
-import { Clock3, ClockArrowDown, Star, User, X } from "lucide-react";
+import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
   DESKTOP_METRICS,
@@ -20,10 +21,11 @@ import {
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /**
- * A session block in a room lane (Figma): pastel tile with title + meta.
- * `compact` (mobile metrics) keeps only a two-line title — the details page
- * carries the rest, and colour already encodes the track. No star here (the
- * list cards and details page have it): on a dense grid it ate the tile.
+ * A session block in a room lane (Figma): pastel tile with title + meta and
+ * the interest star (desktop). `compact` (mobile metrics) runs the same
+ * two-line title + meta row one size down — track label always, time and
+ * speakers once the block is wide enough — and drops the star, which ate
+ * the tile on the dense mobile grid.
  *
  * The text column is `sticky` inside the block (Devcon SEA behaviour): as a
  * long session scrolls under the room column its title stays at the visible
@@ -51,9 +53,18 @@ function TimelineSession({
   const theme = getTrackTheme(session.track);
   const { left, width } = sessionBox(session, startMs, m.slotWidth);
   const featured = session.featured === true;
-  // 1.5 slots = 15 min: room for the time/speakers/Featured meta (desktop).
+  const { isInterested, toggle } = useInterested();
+  const interested = isInterested(session.id);
+  // 1.5 slots = 15 min: room for the time/speakers/Featured meta. The
+  // mobile block is 100px a slot with 6px padding, so its meta comes in
+  // stages instead — speakers from 25 min, the Featured chip from 35 —
+  // otherwise a 20-min block showed a lone person icon beside the chip.
   const wide = width >= m.slotWidth * 1.5;
+  const showSpeakers = width >= m.slotWidth * (compact ? 2.5 : 1.5);
+  const showFeatured = featured && width >= m.slotWidth * (compact ? 3.5 : 1.5);
   const padX = compact ? 6 : 12;
+  const metaText = compact ? "text-[11px]" : "text-[12px]";
+  const metaIcon = compact ? "size-3" : "size-3.5";
 
   return (
     <DetailLink
@@ -70,7 +81,7 @@ function TimelineSession({
       }}
       className={cn(
         "absolute z-[1] flex items-center rounded-[4px] hover:z-[2] hover:ring-1 hover:ring-inset hover:ring-dc-purple",
-        compact ? "px-1.5 py-1" : "p-3",
+        compact ? "px-1.5 py-1.5" : "p-3",
         theme.neutral && "border border-dc-hairline",
         selected && "ring-1 ring-inset ring-dc-purple"
       )}
@@ -94,45 +105,96 @@ function TimelineSession({
         >
           {session.title}
         </span>
-        {!compact && (
-          <span className="flex max-w-full min-w-0 items-center gap-2 leading-none">
-            <span className="flex shrink-0 items-center gap-1">
-              {theme.gem && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={theme.gem}
-                  alt=""
-                  className="size-3.5 object-contain"
-                />
-              )}
-              <span className="text-[12px] font-semibold uppercase tracking-[0.5px] text-dc-fg2">
-                {trackBadgeLabel(session.track)}
-              </span>
-            </span>
-            {wide && (
-              <>
-                <span className="flex shrink-0 items-center gap-1 text-[12px] text-dc-muted">
-                  <Clock3 className="size-3.5" />
-                  {formatTimeRange(session)}
-                </span>
-                {session.speakers.length > 0 && (
-                  <span className="flex min-w-0 flex-1 items-center gap-1 text-[12px] text-dc-muted">
-                    <User className="size-3.5 shrink-0" />
-                    <span className="truncate">
-                      {session.speakers.map((s) => s.name).join(", ")}
-                    </span>
-                  </span>
-                )}
-                {featured && (
-                  <span className="shrink-0 rounded-[4px] bg-dc-featured px-1.5 py-0.5 text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-                    Featured
-                  </span>
-                )}
-              </>
+        <span
+          className={cn(
+            "flex max-w-full min-w-0 items-center leading-none",
+            compact ? "gap-1.5" : "gap-2"
+          )}
+        >
+          <span className="flex shrink-0 items-center gap-1">
+            {theme.gem && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={theme.gem}
+                alt=""
+                className={cn(metaIcon, "object-contain")}
+              />
             )}
+            <span
+              className={cn(
+                "font-semibold uppercase tracking-[0.5px] text-dc-fg2",
+                compact ? "text-[10px]" : "text-[12px]"
+              )}
+            >
+              {trackBadgeLabel(session.track)}
+            </span>
           </span>
-        )}
+          {wide && (
+            <>
+              <span
+                className={cn(
+                  "flex shrink-0 items-center gap-1 text-dc-muted",
+                  metaText
+                )}
+              >
+                <Clock3 className={metaIcon} />
+                {formatTimeRange(session)}
+              </span>
+              {showSpeakers && session.speakers.length > 0 && (
+                <span
+                  className={cn(
+                    "flex min-w-0 flex-1 items-center gap-1 text-dc-muted",
+                    metaText
+                  )}
+                >
+                  <User className={cn(metaIcon, "shrink-0")} />
+                  <span className="truncate">
+                    {session.speakers.map((s) => s.name).join(", ")}
+                  </span>
+                </span>
+              )}
+              {showFeatured && (
+                <span
+                  className={cn(
+                    "shrink-0 rounded-[4px] bg-dc-featured px-1.5 py-0.5 font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                    compact ? "text-[10px]" : "text-[12px]"
+                  )}
+                >
+                  Featured
+                </span>
+              )}
+            </>
+          )}
+        </span>
       </div>
+      {/* Desktop only (see above). Sits at the block's right end; the sticky
+          text column shrinks (min-w-0) to make room on short blocks. Inside
+          the anchor, so the click must not open the session. Hover fill is
+          translucent white, not the cards' lavender: blocks come in every
+          track colour and the pink clashed with most of them. */}
+      {!compact && (
+        <button
+          aria-label={
+            interested ? "Remove from interested" : "Add to interested"
+          }
+          aria-pressed={interested}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            void toggle(session.id);
+          }}
+          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30"
+        >
+          <Star
+            className={cn(
+              "size-4 transition-colors",
+              interested
+                ? "fill-dc-purple text-dc-purple"
+                : "fill-transparent text-dc-muted group-hover/star:text-dc-purple"
+            )}
+          />
+        </button>
+      )}
     </DetailLink>
   );
 }
@@ -140,16 +202,6 @@ function TimelineSession({
 /** Now pill: 10px text + 3px padding ≈ 16px tall; half its typical width. */
 const PILL_H = 16;
 const PILL_HALF_W = 22;
-
-/** Fullscreen controls: InterestedPill's white/hairline pill, 40px tall.
- *  flex-auto (not flex-1): each pill keeps its label's natural width and only
- *  the leftover row width is shared — equal thirds squeezed the icons out of
- *  "Jump to now" on a 390px phone. */
-const fullscreenPill =
-  "pointer-events-auto flex h-10 flex-auto cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-3 text-[14px] font-normal leading-none text-dc-fg2 shadow-[0_1px_4px_rgba(0,0,0,0.12)] transition-colors duration-150 ease-out";
-const fullscreenPillResting = "border-dc-hairline bg-white hover:bg-dc-purple-wash";
-/** Active toggle state, matching InterestedPill's lavender fill. */
-const fullscreenPillActive = "border-dc-purple bg-dc-lavender";
 
 /**
  * Room-by-time timeline (Figma "1 - Timeline view"). Desktop: 10 min = 180px
@@ -166,10 +218,9 @@ const fullscreenPillActive = "border-dc-purple bg-dc-lavender";
  * sticky axis possible. NOTE: no ancestor between this header and the page
  * may set `overflow` on mobile, or the pin silently breaks.
  *
- * `fullscreen` (mobile only, auto in landscape or via the toggle) swaps the
- * root to a fixed full-viewport overlay above the app chrome; the body then
- * scrolls both axes with the room column and axis pinned inside it. Same
- * element, class-swapped — no remount, so scroll offsets and refs persist.
+ * `headerRaised` (mobile): the app header has folded away (Schedule.tsx hides
+ * it while the user scrolls down the timeline), so the day tabs pin at the
+ * very top and the axis pins 56px higher, on the same 200ms clock.
  */
 export function ScheduleTimeline({
   sessions,
@@ -182,12 +233,7 @@ export function ScheduleTimeline({
   onOpen,
   initialScrollLeft,
   onScrollLeft,
-  fullscreen = false,
-  onExitFullscreen,
-  onJumpToNow,
-  fullscreenTop,
-  interestedOnly = false,
-  onToggleInterested,
+  headerRaised = false,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -212,23 +258,10 @@ export function ScheduleTimeline({
    * before first paint, as soon as the grid exists.
    */
   initialScrollLeft?: number;
-  /** Reports the grid's horizontal offset as the user scrolls. */
   /** Horizontal offset and the time at the time area's left edge. */
   onScrollLeft?: (left: number, leftMs: number) => void;
-  /** Mobile: render as a full-viewport overlay covering header + nav. */
-  fullscreen?: boolean;
-  /** Fullscreen X button / Escape. */
-  onExitFullscreen?: () => void;
-  /** Fullscreen "jump to now" button (the header's is covered). */
-  onJumpToNow?: () => void;
-  /**
-   * Fullscreen only: a bar fixed above the time axis (the day tabs — the
-   * page's own are covered by the overlay). Should render in normal flow.
-   */
-  fullscreenTop?: React.ReactNode;
-  /** Fullscreen only: the page's interested-only filter (header star). */
-  interestedOnly?: boolean;
-  onToggleInterested?: () => void;
+  /** Mobile: the app header is hidden, so the sticky axis pins 56px higher. */
+  headerRaised?: boolean;
 }) {
   const isDesktop = useIsDesktop();
   const compact = !isDesktop;
@@ -241,7 +274,6 @@ export function ScheduleTimeline({
   const rootRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const exitRef = useRef<HTMLButtonElement | null>(null);
   // The signal counter lives in Schedule and survives this component's
   // unmount (view toggle, filtered-to-empty), so a remount would replay the
   // last jump. Baseline whatever value we mounted with; only act on growth.
@@ -290,10 +322,7 @@ export function ScheduleTimeline({
       left: Math.max(0, m.roomCol + nowLeft - el.clientWidth / 2),
       behavior: reduce ? "auto" : "smooth",
     });
-    // Page is locked in fullscreen (and the grid already fills it).
-    if (!fullscreen) {
-      rootRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
-    }
+    rootRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jumpToNowSignal]);
 
@@ -337,32 +366,6 @@ export function ScheduleTimeline({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasGrid]);
 
-  // The box changes shape on the fullscreen swap; the browser may clamp the
-  // body's scrollLeft, so re-mirror the header after the class change lands.
-  useLayoutEffect(() => {
-    if (scrollRef.current) syncHeader(scrollRef.current.scrollLeft);
-  }, [fullscreen]);
-
-  // Fullscreen: lock the page behind (BottomSheet's pattern), Escape exits,
-  // focus moves to the exit button and returns to the opener afterwards.
-  useEffect(() => {
-    if (!fullscreen) return;
-    const opener = document.activeElement as HTMLElement | null;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    exitRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onExitFullscreen?.();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-      opener?.focus?.();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fullscreen]);
-
   if (!hasGrid) return null;
 
   const chromeCell =
@@ -374,36 +377,33 @@ export function ScheduleTimeline({
   return (
     <div
       ref={rootRef}
-      role={fullscreen ? "dialog" : undefined}
-      aria-modal={fullscreen || undefined}
-      aria-label={fullscreen ? "Timeline, fullscreen" : undefined}
       className={cn(
         "bg-white",
-        fullscreen
-          ? // Overlay: above header/nav (z-30), sheets (50), kiosk (60), the
-            // splash (70) and the overlay scrollbar (80); below modals (90+).
-            "fixed inset-0 z-[85] flex flex-col pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)]"
-          : cn(
-              // Mobile: full-bleed across the page gutters, hairline top/bottom.
-              "-mx-4 border-y border-dc-hairline",
-              // Desktop: the Figma card. overflow-hidden is lg-only on purpose —
-              // on mobile it would become the axis header's scroll container.
-              "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
-              "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(80px+var(--safe-top))]"
-            )
+        // Mobile: full-bleed across the page gutters, hairline top/bottom.
+        "-mx-4 border-y border-dc-hairline",
+        // Desktop: the Figma card. overflow-hidden is lg-only on purpose —
+        // on mobile it would become the axis header's scroll container.
+        "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
+        // Jump-to-now scroll target: clear of the pinned app header + day
+        // tabs on both breakpoints (56 + 47 + 9 mobile; 65 + 53 + 9 desktop,
+        // the list groups' clearance) so the axis — date corner, time slots
+        // and the now pill — lands fully visible instead of under the bar.
+        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
       )}
     >
-      {fullscreen && fullscreenTop}
-
       {/* Time-axis header: its own track, scrollLeft mirrored from the body */}
       <div
         ref={headerRef}
         style={{ height: m.headerH }}
         className={cn(
           "relative z-10 shrink-0 overflow-hidden bg-dc-panel",
-          // Pinned under the header + day tabs (56 + 47) on mobile pages.
-          !fullscreen &&
-            "sticky top-[calc(103px+var(--safe-top))] lg:static"
+          // Pinned under the header + day tabs (56 + 47) on mobile pages;
+          // under the tabs alone (47) while the header is folded away, the
+          // move animated on the header's clock.
+          "sticky transition-[top] duration-200 ease-out motion-reduce:transition-none lg:static",
+          headerRaised
+            ? "top-[calc(47px+var(--safe-top))]"
+            : "top-[calc(103px+var(--safe-top))]"
         )}
       >
         <div
@@ -457,7 +457,8 @@ export function ScheduleTimeline({
         </div>
       </div>
 
-      {/* Lanes: the only user-scrollable box (x inline; x + y in fullscreen) */}
+      {/* Lanes: the only horizontally scrollable box (the page owns Y, which
+          is what lets the mobile axis header above stay sticky). */}
       <div
         ref={scrollRef}
         onScroll={(e) => {
@@ -465,20 +466,12 @@ export function ScheduleTimeline({
           syncHeader(left);
           onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}
-        className={cn(
-          // Scrollbar hidden (DayTabs pattern): the time-axis header and the
-          // room column already say "this pans", and the thin bar sat on top
-          // of the last lane on desktop.
-          "isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          fullscreen && "min-h-0 flex-1 overflow-auto [overscroll-behavior:contain]"
-        )}
+        // Scrollbar hidden (DayTabs pattern): the time-axis header and the
+        // room column already say "this pans", and the thin bar sat on top
+        // of the last lane on desktop.
+        className="isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div
-          style={{ width: m.roomCol + gridWidth }}
-          // Fullscreen: room to scroll the last lane clear of the floating
-          // controls in the bottom-right corner.
-          className={cn("relative", fullscreen && "pb-14")}
-        >
+        <div style={{ width: m.roomCol + gridWidth }} className="relative">
           {/* Now line — below the sticky room cells (z-10) so it slides under
               them instead of painting over the room names. */}
           {nowVisible && (
@@ -531,45 +524,6 @@ export function ScheduleTimeline({
           ))}
         </div>
       </div>
-
-      {fullscreen && (
-        // Labelled pills (the Interested pill's recipe, one size down): icon-
-        // only circles were easy to miss floating over the dense grid.
-        <div className="pointer-events-none absolute inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+20px)] flex justify-center gap-2 pl-[calc(env(safe-area-inset-left)+16px)] pr-[calc(env(safe-area-inset-right)+16px)]">
-          {onToggleInterested && (
-            <button
-              onClick={onToggleInterested}
-              aria-pressed={interestedOnly}
-              className={cn(
-                fullscreenPill,
-                interestedOnly ? fullscreenPillActive : fullscreenPillResting
-              )}
-            >
-              <Star
-                className="size-4 shrink-0 text-dc-purple"
-                fill="currentColor"
-              />
-              Interested
-            </button>
-          )}
-          <button
-            onClick={onJumpToNow}
-            className={cn(fullscreenPill, fullscreenPillResting)}
-          >
-            <ClockArrowDown className="size-4 shrink-0 text-dc-purple" />
-            Jump to now
-          </button>
-          <button
-            ref={exitRef}
-            onClick={onExitFullscreen}
-            aria-label="Exit fullscreen"
-            className={cn(fullscreenPill, fullscreenPillResting)}
-          >
-            <X className="size-4 shrink-0 text-dc-purple" />
-            Exit
-          </button>
-        </div>
-      )}
     </div>
   );
 }

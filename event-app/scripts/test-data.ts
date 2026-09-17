@@ -21,6 +21,7 @@ import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuy
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
+import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
@@ -385,9 +386,21 @@ function testMeerkatHandover() {
   check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
 }
 
+function testIosVersion() {
+  const iphone = (os: string, version: string | null, browser = "") =>
+    `Mozilla/5.0 (iPhone; CPU iPhone OS ${os} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) ${browser}${version ? `Version/${version} ` : ""}Mobile/15E148 Safari/604.1`;
+  check("ios version: Safari 27 despite the frozen OS 18_7 token", parseIosMajorVersion(iphone("18_7", "27.0")) === 27);
+  check("ios version: Safari 26.5 reads Version, not OS", parseIosMajorVersion(iphone("18_7", "26.5")) === 26);
+  check("ios version: iOS 18 Safari", parseIosMajorVersion(iphone("18_6_2", "18.6")) === 18);
+  check("ios version: Chrome on iOS has no Version token, falls back to the OS token", parseIosMajorVersion(iphone("17_5", null, "CriOS/125.0 ")) === 17);
+  check("ios version: iPad desktop mode reads Safari's Version", parseIosMajorVersion("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15") === 27);
+  check("ios version: Android and desktop Chrome are null", parseIosMajorVersion("Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 Chrome/140.0 Mobile Safari/537.36") === null && parseIosMajorVersion("Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 Chrome/140.0 Safari/537.36") === null);
+}
+
 async function main() {
   testNormalize();
   testMeerkatHandover();
+  testIosVersion();
   testPassBarcode();
   testMaterialize();
   testSyncDecision();

@@ -63,8 +63,8 @@ export function RefreshTicketsButton({
 
 /**
  * The signed-in ticket layout (Figma "My Devcon", 5088-116/-1059), shared by
- * the ticket page and the home page: My Event Ticket column, My Swag shelf,
- * My Perks row, and the QR modal. Callers keep their own loading/empty/error
+ * the ticket page and the home page: Event Ticket column, Swag shelf,
+ * Perks row, and the QR modal. Callers keep their own loading/empty/error
  * states; this renders data.
  */
 export function TicketSections({
@@ -209,7 +209,7 @@ export function TicketSections({
 
   const ticketHeader = (
     <TicketSectionHeader
-      title={multiTicket ? "My Event Tickets" : "My Event Ticket"}
+      title={multiTicket ? "Event Tickets" : "Event Ticket"}
       action={
         onRefresh && (
           <RefreshTicketsButton
@@ -242,7 +242,7 @@ export function TicketSections({
         !multiTicket && "lg:min-w-0 lg:flex-1"
       )}
     >
-      <TicketSectionHeader title="My Swag" />
+      <TicketSectionHeader title="Swag" />
       {/* The shelf absolutely fills the wrapper so the swag images can never
           inflate the row: beside a single ticket the ticket column sets the
           height, in the stacked multi-ticket layout the wrapper is fixed at
@@ -334,7 +334,7 @@ export function TicketSections({
           that is one card, never the buyer's colleagues' perks. */}
       {shownTickets.length > 0 && (
         <section className="flex w-full flex-col gap-4">
-          <TicketSectionHeader title="My Perks" />
+          <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
             {shownTickets.map((ticket) => (
               <EnsPerkCard

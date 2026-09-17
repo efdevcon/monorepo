@@ -236,7 +236,7 @@ function SpeakerProfile({
       {/* Panel/mobile: two equal pills; expanded: auto-width pills, 12px apart. */}
       <div className={cn(lg ? "flex items-center gap-3" : "grid grid-cols-2 gap-3")}>
         <button
-          onClick={() => void toggle(speaker.id, speaker.name)}
+          onClick={() => void toggle(speaker.id)}
           className={cn(
             pill,
             interested

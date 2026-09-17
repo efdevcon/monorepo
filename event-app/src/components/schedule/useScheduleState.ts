@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
@@ -95,30 +95,18 @@ export function useScheduleState(
   const [userPickedDay, setUserPickedDay] = useState(
     initialDay?.userPickedDay ?? false
   );
+  // The day the user was on before a search steered them off it (see the
+  // steer effect below), handed back when the query clears. null while not
+  // steering; dropped on any explicit day choice, which must not be undone.
+  const dayBeforeSearchRef = useRef<string | null>(null);
   const setSelectedDay = useCallback((key: string) => {
     setUserPickedDay(true);
+    dayBeforeSearchRef.current = null;
     setSelectedDayState(key);
   }, []);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(EMPTY);
   const [interestedOnly, setInterestedOnly] = useState(false);
-
-  // Follow "today" (venue time) until the user picks a day: the initial load
-  // lands on today if the event is running (else day 1), and the tab advances
-  // when the clock crosses venue midnight. "Today" derives from the mockable
-  // `now`, so `?mockNow=` selects — and `mockSpeed` advances — the matching day.
-  useEffect(() => {
-    if (!nowDate || days.length === 0) return;
-    const selectionValid =
-      selectedDay != null && days.some((d) => d.key === selectedDay);
-    if (userPickedDay && selectionValid) return;
-    const todayKey = eventDayKey(nowDate.getTime());
-    const today = days.find((day) => day.key === todayKey)?.key ?? null;
-    // Outside the event (before day 1 / after the last day) keep whatever
-    // valid day is showing; only the initial null falls back to day 1.
-    const target = today ?? (selectionValid ? selectedDay : days[0].key);
-    if (target !== selectedDay) setSelectedDayState(target);
-  }, [days, selectedDay, nowDate, userPickedDay]);
 
   // "Jump to now" crosses days: land on the day containing `now` — clamped to
   // the dataset's range (before day 1 → day 1, after the event → last day) —
@@ -126,6 +114,7 @@ export function useScheduleState(
   // clock. Days are sorted ascending, so the first key >= today is the clamp.
   const jumpToToday = () => {
     setUserPickedDay(false);
+    dayBeforeSearchRef.current = null;
     if (days.length === 0) return;
     const todayKey = eventDayKey(now);
     const target =
@@ -194,12 +183,13 @@ export function useScheduleState(
     return counts;
   }, [filters]);
 
-  // Day's sessions after filters + search, grouped by start time.
-  const groups: TimeGroup[] = useMemo(() => {
-    if (!selectedDay) return [];
-    const q = search.trim().toLowerCase();
-    const matches = sessions.filter((s) => {
-      if (dayKey(s) !== selectedDay) return false;
+  const q = search.trim().toLowerCase();
+  const hasQuery = q !== "";
+
+  // Everything except the day check — interested, value facets, topics, query —
+  // so the same rule can filter the selected day and count matches per day.
+  const matchesSession = useMemo(() => {
+    return (s: Session): boolean => {
       if (interestedOnly && !(interestedIds?.has(s.id) ?? false)) return false;
       for (const facet of VALUE_FACETS) {
         const sel = filters[facet];
@@ -231,19 +221,125 @@ export function useScheduleState(
         if (!haystack.includes(q)) return false;
       }
       return true;
-    });
-    return groupByTime(matches);
-  }, [sessions, selectedDay, filters, search, interestedOnly, interestedIds]);
+    };
+  }, [q, filters, interestedOnly, interestedIds]);
+
+  // Every session on the selected day, before filters + search.
+  const daySessionsAll = useMemo(
+    () =>
+      selectedDay ? sessions.filter((s) => dayKey(s) === selectedDay) : [],
+    [sessions, selectedDay]
+  );
+
+  // Day's sessions after filters + search, grouped by start time.
+  const groups: TimeGroup[] = useMemo(
+    () => groupByTime(daySessionsAll.filter(matchesSession)),
+    [daySessionsAll, matchesSession]
+  );
+
+  // The "live now" slot is decided by the whole day, not the filtered list:
+  // the latest-starting group with a running session. A search that hides
+  // that slot must not promote an earlier, still-running session (ongoing
+  // in the unfiltered list) to "live now" — only results from this slot are.
+  const liveSlotLabel = useMemo(() => {
+    const all = groupByTime(daySessionsAll);
+    const hasLive = all.map((g) =>
+      g.sessions.some((s) => getStatus(s, now) === "live")
+    );
+    const i = hasLive.lastIndexOf(true);
+    return i >= 0 ? all[i].timeLabel : null;
+  }, [daySessionsAll, now]);
+
+  // Is anything running right now, anywhere in the event? Unfiltered and
+  // day-independent: it gates the mobile Live now pill, which exists to cross
+  // days and land on the live slot, so it stays while another day is showing
+  // and goes away between slots and outside the event.
+  const anyLive = useMemo(
+    () => sessions.some((s) => getStatus(s, now) === "live"),
+    [sessions, now]
+  );
+
+  // Matches per day while a query is active — the tab badges, and which days
+  // the tabs show at all. null with no query, and null when nothing matches
+  // anywhere (every tab then stays visible, badge-free, and EmptyState
+  // explains). Cheap predicate first: dayKey is an Intl format per call.
+  const dayCounts = useMemo<ReadonlyMap<string, number> | null>(() => {
+    if (!hasQuery) return null;
+    const counts = new Map<string, number>();
+    for (const s of sessions) {
+      if (!matchesSession(s)) continue;
+      const k = dayKey(s);
+      counts.set(k, (counts.get(k) ?? 0) + 1);
+    }
+    return counts.size > 0 ? counts : null;
+  }, [hasQuery, sessions, matchesSession]);
+
+  /** Matches across every day mid-search (the input's "N results"); null otherwise. */
+  const totalMatches = useMemo(() => {
+    if (!hasQuery) return null;
+    if (!dayCounts) return 0;
+    let n = 0;
+    dayCounts.forEach((c) => (n += c));
+    return n;
+  }, [hasQuery, dayCounts]);
+
+  // Days the tabs show: all of them, or only those with matches mid-search.
+  const visibleDays = useMemo(
+    () => (dayCounts ? days.filter((d) => dayCounts.has(d.key)) : days),
+    [days, dayCounts]
+  );
+
+  // A search that leaves the selected day empty steers to the first day with
+  // matches (temporary: `userPickedDay` untouched) and remembers where the
+  // user was, so clearing the query lands them back there. A day that still
+  // has matches is never switched under the user's typing.
+  useEffect(() => {
+    if (!dayCounts) {
+      if (!hasQuery && dayBeforeSearchRef.current !== null) {
+        const prev = dayBeforeSearchRef.current;
+        dayBeforeSearchRef.current = null;
+        if (days.some((d) => d.key === prev)) setSelectedDayState(prev);
+      }
+      return;
+    }
+    if (selectedDay !== null && dayCounts.has(selectedDay)) return;
+    const first = visibleDays[0]?.key;
+    if (!first) return;
+    if (dayBeforeSearchRef.current === null) {
+      dayBeforeSearchRef.current = selectedDay;
+    }
+    setSelectedDayState(first);
+  }, [dayCounts, visibleDays, selectedDay, hasQuery, days]);
+
+  // Follow "today" (venue time) until the user picks a day: the initial load
+  // lands on today if the event is running (else day 1), and the tab advances
+  // when the clock crosses venue midnight. "Today" derives from the mockable
+  // `now`, so `?mockNow=` selects — and `mockSpeed` advances — the matching day.
+  useEffect(() => {
+    // The search owns the day while it is narrowing the tabs (steer effect
+    // above); following the clock too would flip-flop between the two.
+    if (dayCounts) return;
+    if (!nowDate || days.length === 0) return;
+    const selectionValid =
+      selectedDay != null && days.some((d) => d.key === selectedDay);
+    if (userPickedDay && selectionValid) return;
+    const todayKey = eventDayKey(nowDate.getTime());
+    const today = days.find((day) => day.key === todayKey)?.key ?? null;
+    // Outside the event (before day 1 / after the last day) keep whatever
+    // valid day is showing; only the initial null falls back to day 1.
+    const target = today ?? (selectionValid ? selectedDay : days[0].key);
+    if (target !== selectedDay) setSelectedDayState(target);
+  }, [days, selectedDay, nowDate, userPickedDay, dayCounts]);
 
   // Live/past decoration per group, for the live band and completed collapse.
   const decoratedGroups: DecoratedGroup[] = useMemo(() => {
     const hasLive = groups.map((g) =>
       g.sessions.some((s) => getStatus(s, now) === "live")
     );
-    const currentSlot = hasLive.lastIndexOf(true);
     const out: DecoratedGroup[] = [];
     groups.forEach((g, i) => {
-      if (hasLive[i] && i !== currentSlot) {
+      const isCurrentSlot = g.timeLabel === liveSlotLabel;
+      if (hasLive[i] && !isCurrentSlot) {
         // Carry-over slot: its sessions all started together, so each is
         // either still running or already over. Completed ones split into
         // their own checked-off group (first, so a leading run can collapse);
@@ -274,14 +370,14 @@ export function useScheduleState(
         out.push({
           ...g,
           key: g.timeLabel,
-          isLive: i === currentSlot,
+          isLive: hasLive[i] && isCurrentSlot,
           isOngoing: false,
           isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
         });
       }
     });
     return out;
-  }, [groups, now]);
+  }, [groups, now, liveSlotLabel]);
 
   // Every fully-completed group collapses behind the "Completed sessions"
   // panel — including ones that finished after a longer session started (the
@@ -313,6 +409,9 @@ export function useScheduleState(
   return {
     now,
     days,
+    visibleDays,
+    dayCounts,
+    totalMatches,
     selectedDay,
     userPickedDay,
     setSelectedDay,
@@ -334,5 +433,6 @@ export function useScheduleState(
     setInterestedOnly,
     daySessions,
     resultCount,
+    anyLive,
   };
 }

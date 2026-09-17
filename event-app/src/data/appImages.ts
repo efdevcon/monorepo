@@ -50,6 +50,6 @@ export const APP_IMAGES: string[] = [
   "/login/devcon-8-logo.svg",
   "/schedule/devcon8-logo.svg",
   "/schedule/devcon8-logomark.svg",
-  "/schedule/empty-search.webp",
+  "/schedule/empty-search.gif",
   "/partners/ens.png",
 ];

@@ -13,35 +13,41 @@ const shortLabel = (label: string) => label.split(", ")[1] ?? label;
  * Day selector bar (Figma): underline tabs — full labels on desktop plus a
  * right-hand controls slot (Interested / Jump to now / Filter); mobile shows
  * short labels in a left-packed scrollable row behind a right-edge fade
- * (full-bleed, like the topic pills). Sticks under the app header on both
+ * (full-bleed, like the topic pills); mid-search each tab carries its match
+ * count and matchless days are left out. Sticks under the app header on both
  * breakpoints (56px mobile bar, 65px desktop nav) so the day switcher and
  * controls stay reachable mid-list; time-group headers pin beneath it.
  * Lavender strip at rest on both breakpoints; mobile keeps it while pinned
  * (unified with the speakers format tabs), while desktop swaps to the app
  * header's glass recipe (white/75 + 4px backdrop blur) once pinned so cards
- * scroll past behind it.
+ * scroll past behind it. `raised` (mobile timeline, app header folded away)
+ * pins the bar at the very top instead, its own padding covering the iOS
+ * status-bar strip the header used to.
  */
 export function DayTabs({
   days,
   selectedDay,
   onSelect,
   children,
-  trailing,
-  pinned = true,
+  pinnedLead,
+  counts,
+  raised = false,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
   onSelect: (key: string) => void;
+  /**
+   * Per-day match counts while a search is active (null/undefined: no
+   * badges). The host passes only the days present in the map, so a badge
+   * never reads "0".
+   */
+  counts?: ReadonlyMap<string, number> | null;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
-  /** Mobile-only control at the bar's right end, past the tabs' fade. */
-  trailing?: React.ReactNode;
-  /**
-   * `false` renders the bar in normal flow (no sticky offset, no stuck
-   * detection) — for hosts that place it themselves, like the fullscreen
-   * timeline overlay where it sits fixed at the very top.
-   */
-  pinned?: boolean;
+  /** Desktop-only control ahead of `children`, shown once the bar is pinned. */
+  pinnedLead?: React.ReactNode;
+  /** Mobile: the app header is hidden — pin at the top of the viewport. */
+  raised?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
@@ -51,7 +57,7 @@ export function DayTabs({
   // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
   // the offset, so <= offset+1 means stuck.)
   useEffect(() => {
-    if (!pinned || !paneActive) return;
+    if (!paneActive) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -70,7 +76,7 @@ export function DayTabs({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pinned, paneActive]);
+  }, [paneActive]);
 
   if (days.length === 0) return null;
 
@@ -78,10 +84,12 @@ export function DayTabs({
     <div
       ref={ref}
       className={cn(
-        "z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:items-center lg:px-4 lg:py-2",
-        pinned
-          ? "sticky top-[calc(3.5rem+var(--safe-top))] lg:top-[calc(65px+var(--safe-top))]"
-          : "relative shrink-0",
+        "sticky z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[calc(65px+var(--safe-top))] lg:items-center lg:px-4 lg:py-2",
+        // The raise animates on the app header's clock (AppHeader.tsx).
+        "transition-[top,padding-top] duration-200 ease-out motion-reduce:transition-none",
+        raised
+          ? "top-0 pt-[var(--safe-top)]"
+          : "top-[calc(3.5rem+var(--safe-top))]",
         // Desktop: soft lavender at rest → header glass once pinned.
         stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}
@@ -102,7 +110,7 @@ export function DayTabs({
                 key={day.key}
                 onClick={() => onSelect(day.key)}
                 className={cn(
-                  "flex shrink-0 cursor-pointer items-center whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
+                  "flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
                   active
                     ? "border-dc-purple font-bold text-dc-purple"
                     : "border-transparent font-normal text-dc-fg2 hover:text-dc-purple"
@@ -110,18 +118,22 @@ export function DayTabs({
               >
                 <span className="lg:hidden">{shortLabel(day.label)}</span>
                 <span className="hidden lg:inline">{day.label}</span>
+                {/* Search result count (the header's unread-pill recipe at a
+                    fixed 16px; auto width so three digits don't overflow).
+                    Purple, not the red "filters applied" badge. */}
+                {counts && (
+                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white">
+                    {counts.get(day.key) ?? 0}
+                  </span>
+                )}
               </button>
             );
           })}
         </div>
       </div>
-      {trailing && (
-        <div className="flex shrink-0 items-center pl-1 pr-4 lg:hidden">
-          {trailing}
-        </div>
-      )}
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          {stuck && pinnedLead}
           {children}
         </div>
       )}
