@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
-import { Group, MathUtils, OrthographicCamera, PerspectiveCamera, type Object3D } from "three";
+import { Group, MathUtils, OrthographicCamera, PerspectiveCamera, Vector3, type Object3D } from "three";
 import { POLAR_ANGLE, PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
@@ -26,7 +26,19 @@ type LevelStackProps = {
   onSelect: (area: Area) => void;
   onSelectLevel: (level: LevelId) => void;
   setHovered: (id: string | null) => void;
+  /** Receives `--poi-x` / `--poi-y` (page px) for the area card beside the selected footprint (desktop). */
+  cardAnchorRef?: MutableRefObject<HTMLDivElement | null>;
 };
+
+/** Card placement beside the selected footprint (desktop): gap to the footprint's screen point and the viewport inset. */
+const CARD_GAP_PX = 20;
+const CARD_INSET_PX = 16;
+/** Below the desktop header (68px) plus a little air. */
+const CARD_MIN_TOP_PX = 88;
+/** World units above a footprint's top where its icon sprite is centred (PlanIcons: lift + ~half a sprite). */
+const CARD_ICON_CENTRE_LIFT = 0.6;
+/** Canvas width from which the card is anchored to the footprint (Tailwind lg). */
+const CARD_ANCHOR_MIN_WIDTH = 1024;
 
 type LevelAnim = { y: number; visible: boolean };
 type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; hideAtEnd: boolean };
@@ -54,8 +66,17 @@ export function LevelStack({
   onSelect,
   onSelectLevel,
   setHovered,
+  cardAnchorRef,
 }: LevelStackProps) {
   const { camera, size, invalidate } = useThree();
+  // The selected footprint (key `${level}/${id}`), looked up once per selection for the per-frame card anchor.
+  const selectedShape = useMemo(() => {
+    if (!selectedId) return null;
+    const slash = selectedId.indexOf("/");
+    const level = levels.find((l) => l.id === selectedId.slice(0, slash));
+    return level?.shapes.find((sh) => sh.id === selectedId.slice(slash + 1)) ?? null;
+  }, [levels, selectedId]);
+  const anchorScratch = useMemo(() => new Vector3(), []);
   const groupRefs = useRef(new Map<LevelId, Group>());
   const tweensRef = useRef<Tween[]>([]);
   const prevRef = useRef<LevelId | null>(level);
@@ -139,6 +160,32 @@ export function LevelStack({
       group.visible = a.visible;
     }
     if (remaining.length) invalidate();
+
+    // Desktop area card: hang the card off the footprint's icon — its top-left a gap below-right of
+    // the icon's centre — flipping to below-left when it would leave the viewport on the right and
+    // above the icon only when there is no room below (Scott: bottom right / left of the POI, close
+    // to it). Written as CSS variables on the card's wrapper (AreaCard reads them from lg up); no
+    // React per frame.
+    const el = cardAnchorRef?.current;
+    if (el && selectedShape && size.width >= CARD_ANCHOR_MIN_WIDTH) {
+      const group = groupRefs.current.get(selectedShape.level);
+      if (group) {
+        const [cx, cz] = selectedShape.centroid;
+        anchorScratch.set(cx * PX, group.position.y + selectedShape.height * PX + CARD_ICON_CENTRE_LIFT, cz * PX).project(camera);
+        const x = ((anchorScratch.x + 1) / 2) * size.width;
+        const y = ((1 - anchorScratch.y) / 2) * size.height;
+        const w = el.offsetWidth;
+        const h = el.offsetHeight;
+        let left = x + CARD_GAP_PX;
+        if (left + w > size.width - CARD_INSET_PX) left = x - CARD_GAP_PX - w;
+        let top = y + CARD_GAP_PX / 2;
+        if (top + h > size.height - CARD_INSET_PX) top = y - h - CARD_GAP_PX / 2;
+        left = MathUtils.clamp(left, CARD_INSET_PX, Math.max(CARD_INSET_PX, size.width - w - CARD_INSET_PX));
+        top = MathUtils.clamp(top, CARD_MIN_TOP_PX, Math.max(CARD_MIN_TOP_PX, size.height - h - CARD_INSET_PX));
+        el.style.setProperty("--poi-x", `${Math.round(left)}px`);
+        el.style.setProperty("--poi-y", `${Math.round(top)}px`);
+      }
+    }
   });
 
   return (

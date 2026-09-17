@@ -69,6 +69,8 @@ export function PlanIcons({ shapes, interactive, selectedId, highlightedIds, red
             shape={shape}
             interactive={interactive}
             bob={!reducedMotion && (shapeKey(shape) === selectedId || (highlightedIds?.has(shapeKey(shape)) ?? false))}
+            // Another footprint is selected: fade with it (PlanShapes dims the footprint itself).
+            dim={selectedId !== null && shapeKey(shape) !== selectedId && !(highlightedIds?.has(shapeKey(shape)) ?? false)}
             onSelect={onSelect}
             setHovered={setHovered}
           />
@@ -77,16 +79,21 @@ export function PlanIcons({ shapes, interactive, selectedId, highlightedIds, red
   );
 }
 
+/** Sprite opacity while another footprint is selected. */
+const DIM_OPACITY = 0.35;
+
 function PlanIcon({
   shape,
   interactive,
   bob,
+  dim,
   onSelect,
   setHovered,
 }: {
   shape: PlanShape;
   interactive: boolean;
   bob: boolean;
+  dim: boolean;
   onSelect: (area: Area) => void;
   setHovered: (id: string | null) => void;
 }) {
@@ -152,7 +159,7 @@ function PlanIcon({
   return (
     <sprite ref={spriteRef} position={[cx * PX, y, cz * PX]} scale={[w, h, 1]} raycast={raycast} {...handlers}>
       {/* map-colorSpace: PNG colours are sRGB; without it the sprites render washed out. */}
-      <spriteMaterial map={texture} map-colorSpace={SRGBColorSpace} transparent depthWrite={false} toneMapped={false} />
+      <spriteMaterial map={texture} map-colorSpace={SRGBColorSpace} transparent opacity={dim ? DIM_OPACITY : 1} depthWrite={false} toneMapped={false} />
     </sprite>
   );
 }

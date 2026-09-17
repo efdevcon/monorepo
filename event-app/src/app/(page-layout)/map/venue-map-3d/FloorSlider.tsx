@@ -22,6 +22,15 @@ const SLIDE_SLOP_PX = 6;
 /** Stop height and the gap between stops (Tailwind h-9 / gap-1), for the indicator's offset. */
 const STOP_PX = 36;
 const STOP_GAP_PX = 4;
+/** Indicator corner radii: full (half its 32px width) on the side touching a track end, 4px otherwise. */
+const RADIUS_END_PX = 16;
+const RADIUS_MID_PX = 4;
+function indicatorRadius(index: number, count: number): string {
+  // Parked below the track (stacked) counts as the bottom end, so sliding up into G keeps its shape.
+  const top = index === 0 ? RADIUS_END_PX : RADIUS_MID_PX;
+  const bottom = index < 0 || index === count - 1 ? RADIUS_END_PX : RADIUS_MID_PX;
+  return `${top}px ${top}px ${bottom}px ${bottom}px`;
+}
 
 /**
  * Vertical floor selector (Scott, 2026-09-17): the floors as stops from the
@@ -99,12 +108,22 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onPointerCancel={onPointerUp}
         style={{ touchAction: "none" }}
         // Grab hand: the track is something you hold and slide, not a set of links (Scott).
-        className="relative flex w-10 cursor-grab select-none flex-col gap-1 rounded-lg active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
+        className="relative flex w-10 cursor-grab select-none flex-col gap-1 overflow-hidden rounded-full active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
       >
         <div
           aria-hidden
-          style={activeIndex < 0 ? { visibility: "hidden" } : { transform: `translateY(${activeIndex * (STOP_PX + STOP_GAP_PX)}px)`, height: STOP_PX }}
-          className="absolute left-1 right-1 top-1 rounded-[4px] bg-white shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)] transition-[transform,height] duration-150 ease-out motion-reduce:transition-none"
+          // Stacked ("All" active): parked one stop below the track, faded out, so picking a floor
+          // slides the indicator up from the All side rather than dropping in from the top.
+          style={{
+            transform: `translateY(${(activeIndex < 0 ? stops.length : activeIndex) * (STOP_PX + STOP_GAP_PX)}px)`,
+            height: STOP_PX,
+            opacity: activeIndex < 0 ? 0 : 1,
+            // Corners follow the track's pill shape: fully round on the side touching an end of the
+            // track, 4px elsewhere, morphing between positions. Full = half the 32px width (a real
+            // value, not 9999px, so the transition interpolates visibly).
+            borderRadius: indicatorRadius(activeIndex, stops.length),
+          }}
+          className="absolute left-1 right-1 top-1 bg-white shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)] transition-[transform,opacity,border-radius] duration-150 ease-out motion-reduce:transition-none"
         />
         {stops.map((level) => (
           <button
@@ -119,7 +138,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
             }}
             onClick={(e) => onKeyboardClick(e, level.id)}
             className={cn(
-              "relative z-10 flex h-9 w-full cursor-[inherit] items-center justify-center rounded-[4px] text-[14px] leading-none transition-colors",
+              "relative z-10 flex h-9 w-full cursor-[inherit] items-center justify-center rounded-full text-[14px] leading-none transition-colors",
               value === level.id ? "font-bold text-dc-purple" : "font-medium text-dc-muted"
             )}
           >
@@ -134,7 +153,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onClick={onAll}
         className={cn(
           // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
-          "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
+          "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
           // Active: the Find pill's surface exactly (border, white/90 + blur, one soft shadow) so the two bottom controls match.
           value === null
             ? "bg-white/90 font-bold text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur"

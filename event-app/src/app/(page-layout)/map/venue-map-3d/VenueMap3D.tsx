@@ -75,6 +75,10 @@ export function VenueMap3D() {
   const [debug, setDebug] = useState(false);
   const [settings, setSettings] = useState<MapSettings>(DEFAULT_SETTINGS);
   const resetRef = useRef<() => void>(() => {});
+  // Desktop: the area card sits beside the selected footprint. The scene writes the
+  // footprint's screen position onto this element as CSS variables every rendered
+  // frame (no React in the loop); the card positions itself from them from lg up.
+  const cardAnchorRef = useRef<HTMLDivElement | null>(null);
   const active = usePaneActive();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const desktop = useIsDesktop();
@@ -180,6 +184,7 @@ export function VenueMap3D() {
         onSelect={select}
         onSelectLevel={setLevel}
         resetRef={resetRef}
+        cardAnchorRef={cardAnchorRef}
       />
       <ControlsLegend stacked={settings.level === null} hidden={selected !== null || findOpen} />
       {/* Bottom controls: Find pill bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17). */}
@@ -197,7 +202,7 @@ export function VenueMap3D() {
           <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} />
         </FindSheet>
       )}
-      <AreaCard area={selected} onClose={() => select(null)} />
+      <AreaCard area={selected} onClose={() => select(null)} anchorRef={cardAnchorRef} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
       </DebugCorner>

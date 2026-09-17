@@ -32,6 +32,8 @@ export function PlanShapes({ shapes, interactive, selectedId, hoveredId, highlig
           shape={shape}
           selected={shapeKey(shape) === selectedId}
           hovered={shapeKey(shape) === hoveredId || (highlightedIds?.has(shapeKey(shape)) ?? false)}
+          // A selection dims every other footprint on the floor so it stands out (Scott, 2026-09-17; experiment).
+          dimmed={selectedId !== null && shape.tappable && shapeKey(shape) !== selectedId && shapeKey(shape) !== hoveredId && !(highlightedIds?.has(shapeKey(shape)) ?? false)}
           tinted={floorHovered && shape.kind === "slab"}
           interactive={interactive}
           onSelect={onSelect}
@@ -46,8 +48,21 @@ const OUTLINE = "#333A7F";
 const HIGHLIGHT_OUTLINE = "#7235ed"; // dc-purple
 /** Hovered-floor slab tint: the slab colour pulled this far towards dc-purple. */
 const FLOOR_TINT = 0.14;
+/** Non-selected footprints while one is selected: pulled this far towards the slab colour (and their edges likewise). */
+const SLAB_FILL = "#E4E0F8";
+const DIM_TOWARDS_SLAB = 0.6;
+
+/** Six-digit hex for the fills the plans use (`white` for the toilets); anything else is returned untouched. */
+function toHex6(c: string): string {
+  if (c === "white") return "#ffffff";
+  if (/^#[0-9a-f]{3}$/i.test(c)) return `#${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`;
+  return c;
+}
 
 function mixHex(a: string, b: string, t: number): string {
+  a = toHex6(a);
+  b = toHex6(b);
+  if (!/^#[0-9a-f]{6}$/i.test(a) || !/^#[0-9a-f]{6}$/i.test(b)) return a;
   const pa = parseInt(a.slice(1), 16);
   const pb = parseInt(b.slice(1), 16);
   const ch = (shift: number) => Math.round(((pa >> shift) & 255) * (1 - t) + ((pb >> shift) & 255) * t);
@@ -58,6 +73,7 @@ function PlanShapeMesh({
   shape,
   selected,
   hovered,
+  dimmed,
   tinted,
   interactive,
   onSelect,
@@ -66,6 +82,8 @@ function PlanShapeMesh({
   shape: PlanShape;
   selected: boolean;
   hovered: boolean;
+  /** Another footprint on this floor is selected: fade towards the slab. */
+  dimmed: boolean;
   /** Slab of the hovered floor (stacked view). */
   tinted: boolean;
   interactive: boolean;
@@ -86,9 +104,10 @@ function PlanShapeMesh({
   }, [shape]);
 
   const highlight = selected ? 1.15 : hovered ? 1.08 : 1;
-  const base = tinted ? mixHex(shape.fill, HIGHLIGHT_OUTLINE, FLOOR_TINT) : shape.fill;
+  const base = tinted ? mixHex(shape.fill, HIGHLIGHT_OUTLINE, FLOOR_TINT) : dimmed ? mixHex(shape.fill, SLAB_FILL, DIM_TOWARDS_SLAB) : shape.fill;
   const cap = scaleHex(base, highlight);
   const side = scaleHex(base, 0.82 * highlight);
+  const outline = hovered || selected ? HIGHLIGHT_OUTLINE : dimmed ? mixHex(shape.stroke ?? OUTLINE, SLAB_FILL, DIM_TOWARDS_SLAB) : shape.stroke ?? OUTLINE;
 
   const handlers =
     shape.tappable && interactive
@@ -117,7 +136,7 @@ function PlanShapeMesh({
       </mesh>
       {shape.outline && (shape.kind !== "mat" || hovered || selected) && (
         <lineSegments geometry={edges} raycast={noRaycast}>
-          <lineBasicMaterial color={hovered || selected ? HIGHLIGHT_OUTLINE : shape.stroke ?? OUTLINE} toneMapped={false} />
+          <lineBasicMaterial color={outline} toneMapped={false} />
         </lineSegments>
       )}
     </group>

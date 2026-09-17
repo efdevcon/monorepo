@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MutableRefObject } from "react";
 import cn from "classnames";
 import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
@@ -20,8 +20,14 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage"]);
  * — the session running there right now, tagged "Live now" like the schedule's
  * time groups. Stays mounted so it can slide out; the last area is kept while
  * it fades.
+ *
+ * Phones: fixed above the tab bar, full width. Desktop (experiment, Scott
+ * 2026-09-17): beside the selected footprint — the scene writes the
+ * footprint's screen position onto `anchorRef` as `--poi-x` / `--poi-y` every
+ * rendered frame (LevelStack) and the wrapper translates by them, so the card
+ * follows the camera without React in the loop.
  */
-export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => void }) {
+export function AreaCard({ area, onClose, anchorRef }: { area: Area | null; onClose: () => void; anchorRef?: MutableRefObject<HTMLDivElement | null> }) {
   // Keep the last area while the card slides out (derived state from a prop).
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
@@ -32,18 +38,25 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
 
   return (
     <div
+      ref={anchorRef}
+      className={cn(
+        // Phones: full width above the tab bar. Desktop: top-left origin translated to the footprint's
+        // screen point (off-screen until the scene has written the variables once).
+        "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 right-4 z-20 lg:bottom-auto lg:left-0 lg:right-auto lg:top-0 lg:w-[440px] lg:[translate:var(--poi-x,-9999px)_var(--poi-y,0px)]",
+        !open && "pointer-events-none"
+      )}
+    >
+    <div
       role="dialog"
       aria-label={shown?.name}
       aria-hidden={!open}
       className={cn(
-        // Full width on phones (the app's dev trigger docks under the map wrench on /map, so nothing to dodge).
-        "fixed left-4 right-4 z-20 flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:left-auto lg:right-6 lg:w-[440px]",
+        "relative flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur",
         // The icon disc rides the top edge, mostly above the card: the body only needs to clear its lower ~22px.
         icon && "pt-6",
         "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
-        open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+        open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       )}
-      style={{ bottom: "calc(var(--nav-clearance) + 16px)" }}
     >
       {icon && (
         // Theme icon in a flat white disc riding the top edge, ~70% above it (Scott's "POI idea" mock), so the text
@@ -99,6 +112,7 @@ export function AreaCard({ area, onClose }: { area: Area | null; onClose: () => 
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 }

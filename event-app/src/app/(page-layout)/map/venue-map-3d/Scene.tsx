@@ -21,10 +21,12 @@ type SceneProps = {
   onSelect: (area: Area | null) => void;
   onSelectLevel: (level: LevelId) => void;
   resetRef: MutableRefObject<() => void>;
+  /** Element that receives the selected footprint's screen position as CSS variables (LevelStack). */
+  cardAnchorRef: MutableRefObject<HTMLDivElement | null>;
 };
 
 /** The R3F canvas: the stacked plan floors and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
+export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef, cardAnchorRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: START_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Debug: expose the hovered target for hit-testing scripts.
@@ -63,6 +65,7 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
         onSelect={onSelect}
         onSelectLevel={onSelectLevel}
         setHovered={setHoveredId}
+        cardAnchorRef={cardAnchorRef}
       />
       {debug && <Stats />}
     </Canvas>

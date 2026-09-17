@@ -52,8 +52,8 @@ export function FindPanel({ open, onClose, inputRef, children }: { open: boolean
         "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
         open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       )}
-      // Above the 36px Find pill (bottom 1.5rem) with a 12px gap.
-      style={{ bottom: "calc(1.5rem + 48px)" }}
+      // Above the 40px Find pill (bottom 1.5rem) with a 12px gap.
+      style={{ bottom: "calc(1.5rem + 52px)" }}
     >
       {children}
     </div>
