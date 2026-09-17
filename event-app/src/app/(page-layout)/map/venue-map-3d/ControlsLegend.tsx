@@ -55,7 +55,7 @@ export function ControlsLegend({ stacked, hidden }: { stacked: boolean; hidden: 
         hidden ? "opacity-0" : "opacity-100"
       )}
     >
-      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-xl bg-white/85 px-3 py-2 shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur lg:flex-nowrap">
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-lg border border-dc-hairline bg-white/85 px-3 py-2 backdrop-blur lg:flex-nowrap">
         {items.map(({ Icon, label }) => (
           <span key={label} className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
             <Icon className="size-3.5 shrink-0 text-dc-purple" aria-hidden />
