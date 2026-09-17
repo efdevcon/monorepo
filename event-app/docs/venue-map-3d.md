@@ -135,8 +135,8 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   drag slides through the floors, a clean tap on the active stop returns to the stack, "All"
   above it), `FindButton` bottom-left, `ControlsLegend` along the top (right of the wrench
   on phones, centred from `lg`), `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
-  (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F
-  opens Find, A or Esc close the card then reset). Debug: the wrench (`DebugToggle`, 12px
+  (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, `/`
+  opens Find, A or Esc close the card then reset; A is not advertised). Debug: the wrench (`DebugToggle`, 12px
   under the header) toggles the tuning panel, drei `<Stats>`, `window.__mapCamera`,
   `window.__mapHover` and `window.__mapControls` (the OrbitControls instance); the app-wide
   dev trigger docks under it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`,
@@ -154,7 +154,7 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   range is unchanged in absolute terms.
 - Phones: one finger pans, two fingers rotate (2026-09-17). Desktop: drag rotates, right-drag pans.
 - Esc or A closes an open area card first and resets otherwise; Find owns Esc while open.
-  The legend shows `A` / `Esc` as "All floors" and `1 2 3` as "Floors".
+  The legend shows `Esc` as "All floors", `/` as "Find" and `1 2 3` as "Floors"; A is unlisted.
 - Floor labels are always visible in the stack (short form), dimming the non-hovered ones.
 - Duplicated facilities are one row per floor that highlights every instance.
 - Stacked-floor hover is a light lavender slab tint (no pill, no lift, no shadow: tried and
@@ -197,8 +197,8 @@ why the import of the Figma isometric illustration did not work). The flat top-d
 - **Zoom clamps snap.** `OrbitControls.update()` clamps zoom every frame; `tweenTo` loosens
   the clamps to span both ends and `applyZoomClamps` restores them on landing.
 - **Keyboard vs. fields.** The hook is disabled while Find is open and ignores
-  input/textarea/contentEditable targets; `F` calls `preventDefault` so the key does not land
-  in the freshly focused field.
+  input/textarea/contentEditable targets; `/` calls `preventDefault` so the key does not land
+  in the freshly focused field (or open Firefox's quick find).
 - **Callback order and the React Compiler lint.** A plain function calling a `useCallback`
   declared later fails `react-hooks/preserve-manual-memoization`; declare callers after.
   `react-hooks/refs` forbids assigning `ref.current` in render: use effects or stable deps.

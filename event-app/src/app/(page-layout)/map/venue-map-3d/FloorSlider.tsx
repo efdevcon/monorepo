@@ -95,8 +95,9 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         title="All floors · A / Esc"
         onClick={onAll}
         className={cn(
-          "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border text-[12px] font-bold leading-none shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out",
-          value === null ? "border-dc-purple bg-dc-lavender text-dc-purple" : "border-dc-hairline bg-white/90 text-dc-muted hover:bg-dc-purple-wash hover:text-dc-purple"
+          // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
+          "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border text-[14px] leading-none shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out",
+          value === null ? "border-dc-purple bg-dc-lavender font-bold text-dc-purple" : "border-dc-hairline bg-white/90 font-medium text-dc-muted hover:bg-dc-purple-wash hover:text-dc-purple"
         )}
       >
         All
@@ -109,7 +110,8 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         style={{ touchAction: "none" }}
-        className="relative flex w-10 cursor-pointer select-none flex-col gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
+        // Grab hand: the track is something you hold and slide, not a set of links (Scott).
+        className="relative flex w-10 cursor-grab select-none flex-col gap-1 rounded-lg active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
       >
         <div
           aria-hidden
@@ -129,7 +131,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
             }}
             onClick={(e) => onKeyboardClick(e, level.id)}
             className={cn(
-              "relative z-10 flex h-9 w-full items-center justify-center rounded-[4px] text-[14px] leading-none transition-colors",
+              "relative z-10 flex h-9 w-full cursor-[inherit] items-center justify-center rounded-[4px] text-[14px] leading-none transition-colors",
               value === level.id ? "font-bold text-dc-purple" : "font-medium text-dc-muted"
             )}
           >

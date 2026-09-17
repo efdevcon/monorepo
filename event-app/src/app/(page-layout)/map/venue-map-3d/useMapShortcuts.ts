@@ -10,7 +10,7 @@ type Handlers = {
   showLevel: (level: LevelId) => void;
   /** Back to every floor stacked at the start view (same as re-tapping the Map tab). */
   reset: () => void;
-  /** Open Find (F). */
+  /** Open Find (/). */
   openFind: () => void;
   /** Close the open area card (Esc / A close it first; the next press resets). */
   closeCard: () => void;
@@ -28,9 +28,9 @@ function isTyping(target: EventTarget | null): boolean {
 }
 
 /**
- * Map keyboard shortcuts: 1 / 2 / 3 open a floor (G / L1 / L2), F opens Find,
+ * Map keyboard shortcuts: 1 / 2 / 3 open a floor (G / L1 / L2), "/" opens Find,
  * Escape or A closes an open area card or, with none open, returns to the
- * stacked start view ("all floors"). Listens on window while the Map pane is
+ * stacked start view ("all floors"; A is deliberately not advertised). Listens on window while the Map pane is
  * the visible one (every visited pane stays mounted), and stands down while
  * the user types in a field, holds a modifier, has Find open (it owns Escape)
  * or has a detail view open over the map (DetailLayer owns Escape there).
@@ -50,8 +50,8 @@ export function useMapShortcuts({ showLevel, reset, openFind, closeCard }: Handl
         else reset();
         return;
       }
-      if (key === "f") {
-        e.preventDefault(); // Find focuses its field on open; the F must not land in it
+      if (e.key === "/") {
+        e.preventDefault(); // Find focuses its field on open; the slash must not land in it (nor open Firefox quick find)
         openFind();
         return;
       }

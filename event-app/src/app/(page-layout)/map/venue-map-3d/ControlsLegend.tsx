@@ -72,11 +72,11 @@ export function ControlsLegend({ stacked, hidden }: { stacked: boolean; hidden: 
               Floors
             </span>
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
-              <Kbd>F</Kbd>
+              <Kbd>/</Kbd>
               Find
             </span>
+            {/* A does the same as Esc but stays unlisted (Scott). */}
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
-              <Kbd>A</Kbd>
               <Kbd>Esc</Kbd>
               All floors
             </span>
