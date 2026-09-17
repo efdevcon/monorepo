@@ -98,7 +98,7 @@ export function MyTickets() {
   if (!isLoading && prompt === "choose" && online) {
     return (
       <div className="flex w-full flex-col gap-4 text-left">
-        <TicketSectionHeader title="My Event Ticket" action={refreshButton} />
+        <TicketSectionHeader title="Event Ticket" action={refreshButton} />
         {connectionNotice}
         {removedNotice}
         <ChooseTicketCard
@@ -158,7 +158,7 @@ export function MyTickets() {
   // an order that just flipped to paid only shows up after a reload.
   return (
     <div className="flex w-full flex-col gap-4 text-left">
-      <TicketSectionHeader title="My Event Ticket" action={refreshButton} />
+      <TicketSectionHeader title="Event Ticket" action={refreshButton} />
       {isLoading ? (
         <p className="text-sm text-dc-muted">Loading tickets…</p>
       ) : error ? (

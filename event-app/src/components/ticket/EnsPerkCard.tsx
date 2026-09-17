@@ -5,7 +5,7 @@ import { TicketProofButton } from "@/components/TicketProofButton";
 import { INDIA_FLAG, displayItemName } from "./ticketTheme";
 
 /**
- * "My Perks" entry for the ENS attendee perk. Card chrome only — the mint +
+ * "Perks" entry for the ENS attendee perk. Card chrome only — the mint +
  * hand-off flow stays in TicketProofButton (one proof per event ticket, so
  * the section renders one card per admission ticket).
  */
