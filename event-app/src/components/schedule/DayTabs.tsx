@@ -20,16 +20,17 @@ const shortLabel = (label: string) => label.split(", ")[1] ?? label;
  * Lavender strip at rest on both breakpoints; mobile keeps it while pinned
  * (unified with the speakers format tabs), while desktop swaps to the app
  * header's glass recipe (white/75 + 4px backdrop blur) once pinned so cards
- * scroll past behind it.
+ * scroll past behind it. `raised` (mobile timeline, app header folded away)
+ * pins the bar at the very top instead, its own padding covering the iOS
+ * status-bar strip the header used to.
  */
 export function DayTabs({
   days,
   selectedDay,
   onSelect,
   children,
-  trailing,
   counts,
-  pinned = true,
+  raised = false,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
@@ -42,14 +43,8 @@ export function DayTabs({
   counts?: ReadonlyMap<string, number> | null;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
-  /** Mobile-only control at the bar's right end, past the tabs' fade. */
-  trailing?: React.ReactNode;
-  /**
-   * `false` renders the bar in normal flow (no sticky offset, no stuck
-   * detection) — for hosts that place it themselves, like the fullscreen
-   * timeline overlay where it sits fixed at the very top.
-   */
-  pinned?: boolean;
+  /** Mobile: the app header is hidden — pin at the top of the viewport. */
+  raised?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
@@ -59,7 +54,7 @@ export function DayTabs({
   // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
   // the offset, so <= offset+1 means stuck.)
   useEffect(() => {
-    if (!pinned || !paneActive) return;
+    if (!paneActive) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -78,7 +73,7 @@ export function DayTabs({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [pinned, paneActive]);
+  }, [paneActive]);
 
   if (days.length === 0) return null;
 
@@ -86,10 +81,12 @@ export function DayTabs({
     <div
       ref={ref}
       className={cn(
-        "z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:items-center lg:px-4 lg:py-2",
-        pinned
-          ? "sticky top-[calc(3.5rem+var(--safe-top))] lg:top-[calc(65px+var(--safe-top))]"
-          : "relative shrink-0",
+        "sticky z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[calc(65px+var(--safe-top))] lg:items-center lg:px-4 lg:py-2",
+        // The raise animates on the app header's clock (AppHeader.tsx).
+        "transition-[top,padding-top] duration-200 ease-out motion-reduce:transition-none",
+        raised
+          ? "top-0 pt-[var(--safe-top)]"
+          : "top-[calc(3.5rem+var(--safe-top))]",
         // Desktop: soft lavender at rest → header glass once pinned.
         stuck && "lg:bg-white/75 lg:backdrop-blur-[4px]"
       )}
@@ -131,11 +128,6 @@ export function DayTabs({
           })}
         </div>
       </div>
-      {trailing && (
-        <div className="flex shrink-0 items-center pl-1 pr-4 lg:hidden">
-          {trailing}
-        </div>
-      )}
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           {children}
