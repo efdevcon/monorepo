@@ -174,7 +174,7 @@ export function SessionSummary({
               edge, the same way the desktop panel's did. */}
           <div className="flex flex-wrap gap-3">
             <button
-              onClick={() => void toggle(session.id, session.title)}
+              onClick={() => void toggle(session.id)}
               className={cn(
                 pillBase,
                 interested

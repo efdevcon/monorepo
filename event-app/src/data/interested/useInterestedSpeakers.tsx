@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo } from "react";
 import useSWR from "swr";
-import { toast } from "sonner";
 import { emitInterestAdded } from "./interestPulse";
 import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
@@ -36,9 +35,11 @@ export function useInterestedSpeakers() {
   const ids = useMemo(() => new Set(data ?? []), [data]);
 
   const toggle = useCallback(
-    // Pass `name` to confirm additions with a toast — the hook decides
-    // add-vs-remove from the store, so call sites don't duplicate that check.
-    async (speakerId: string, name?: string) => {
+    // The hook decides add-vs-remove from the store, so call sites don't
+    // duplicate that check. Additions are announced to the My Interests
+    // pill's "+1" bubble only — the toast that used to confirm them as
+    // well doubled the same signal.
+    async (speakerId: string) => {
       if (!cacheDB) return;
       const key: [string, string] = [eventId, speakerId];
       // Transaction: a bare get-then-put lets two rapid taps both read
@@ -63,15 +64,6 @@ export function useInterestedSpeakers() {
         }
       );
       if (added) emitInterestAdded("speaker");
-      if (added && name)
-        toast(
-          // Single wrapping span: sonner's title slot is a flex row, so
-          // multiple top-level children render as columns, not inline text.
-          <span>
-            <span className="font-semibold">{name}</span> was added to your
-            Interests.
-          </span>
-        );
       await mutate();
       requestInterestSync();
     },

@@ -146,7 +146,7 @@ export function SessionCard({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            void toggle(session.id, session.title);
+            void toggle(session.id);
           }}
           className="group/star -m-2 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
         >
