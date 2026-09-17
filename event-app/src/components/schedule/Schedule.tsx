@@ -736,17 +736,26 @@ export function Schedule() {
       setChromeHidden(false);
     };
   }, [chromeCollapsible]);
-  // Both flags in one effect: when the fold disarms (a session page opens,
-  // the view changes) the header must be back instantly, not slide in over
-  // the new page — so the animate flag leaves in the same frame as hidden.
-  useEffect(() => {
+  // Both flags in one layout effect: when the fold disarms (a session page
+  // opens, the view changes) the header must be back instantly, not slide
+  // in over the new page. Before paint, so no frame shows the page without
+  // its bar; and the animate flag is dropped and the style flushed BEFORE
+  // the transform changes — engines differ on whether a transition removed
+  // in the same style change still runs (WebKit ran it).
+  useLayoutEffect(() => {
     const root = document.documentElement;
-    root.toggleAttribute("data-app-header-animates", chromeCollapsible);
-    root.toggleAttribute("data-app-header-hidden", chromeCollapsible && chromeHidden);
-    return () => {
+    const reset = () => {
       root.removeAttribute("data-app-header-animates");
+      void root.offsetHeight; // flush: transition-property is none now
       root.removeAttribute("data-app-header-hidden");
     };
+    if (!chromeCollapsible) {
+      reset();
+      return;
+    }
+    root.setAttribute("data-app-header-animates", "");
+    root.toggleAttribute("data-app-header-hidden", chromeHidden);
+    return reset;
   }, [chromeCollapsible, chromeHidden]);
 
   // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
