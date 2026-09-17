@@ -16,6 +16,7 @@ import {
   downloadSessionIcs,
 } from "@/components/schedule/SessionDetailsContent";
 import { SessionQA } from "@/components/schedule/SessionQA";
+import { meerkatEventId } from "@/data/meerkat";
 import type { Session as SessionModel } from "@/data/models";
 
 interface SessionClientProps {
@@ -56,7 +57,7 @@ export default function Session({ params, id: directId }: SessionClientProps) {
   }
 
   // Shared with the desktop side panel (SessionQA owns the offline line).
-  const qa = <SessionQA sessionId={id} size="md" />;
+  const qa = <SessionQA sessionId={meerkatEventId(session)} size="md" />;
 
   if (isDesktop) {
     return <ExpandedSession session={session}>{qa}</ExpandedSession>;

@@ -4,6 +4,8 @@ import { SpeakerSchema } from "./speakers";
 
 export const SessionSchema = z.object({
   id: z.string(),
+  /** Pretalx code; Meerkat keys its Q&A events by it (see data/meerkat.ts). Absent in bundles cached before it shipped. */
+  sourceId: z.string().optional(),
   speakers: z.array(SpeakerSchema),
   title: z.string(),
   track: z.string(),

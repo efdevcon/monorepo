@@ -43,6 +43,13 @@ describe('GET /events/:id/bundle', () => {
     }
   })
 
+  test('sessions carry their Pretalx code as sourceId (Meerkat keys Q&A events by it)', async () => {
+    const { sessions } = (await getBundle()).body.data
+    const withCode = sessions.filter((s: any) => 'sourceId' in s)
+    expect(withCode.length).toBeGreaterThan(0)
+    for (const s of withCode) expect(typeof s.sourceId).toBe('string')
+  })
+
   test('speakerIds match the embedded speakers of the full record', async () => {
     const { sessions } = (await getBundle()).body.data
     const full = new Map(store.getSessions({ event: EVENT, take: 5000 }).items.map((s: any) => [s.id, s]))

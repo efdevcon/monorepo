@@ -273,7 +273,11 @@ Nothing is written back to Pretalx, it only supplies titles, codes and speaker e
    `<title> [<PRETALX_CODE>]` and grants each speaker email `writer` access with the
    Drive notification email off (`sendEmails = false`). A `name contains '[code]'`
    lookup makes it idempotent. The first bulk run was manual (`pnpm slides`, 2024-10-11).
-   The Drive, folder and template ids are constants in that file; keep them out of docs.
+   The Drive, folder and template ids are read from `SLIDES_DRIVE_ID`, `SLIDES_FOLDER_ID`
+   and `SLIDES_TEMPLATE_ID`, with no defaults: unset means the run fails before touching
+   Drive (2026-09-17, the DC7 ids were removed from the code); keep the ids out of docs. The DC7 template deck itself is shared
+   "anyone with the link" (checked 2026-09-17); copies do not inherit that, but the
+   master should be restricted so nobody outside can edit what every deck is copied from.
 2. **Wired into the Pretalx sync** -
    [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts) `createPresentations()`
    (2024-10-28): for every `data/sessions/devcon-7/*.json` without `resources_presentation`
@@ -281,7 +285,13 @@ Nothing is written back to Pretalx, it only supplies titles, codes and speaker e
    JSON. `runPermissions()` (2024-11-09) re-grants writer access to the current speaker
    emails on existing decks, which covers speakers added later. Both run inside the
    Pretalx Sync GitHub Action with the Google credentials as secrets, so during DC7 every
-   schedule publish also created decks for new talks. Gated `if (eventId === 'devcon-7')`.
+   schedule publish also created decks for new talks. Since 2026-09-17 two gates replace
+   the `devcon-7` check: a hardcoded `SLIDES_ALLOWED_EVENTS` list in the sync (currently
+   only `test-devcon-8`; devcon-7 is over and `devcon8` is added in a deliberate commit at
+   launch) and the `SLIDES_EVENTS` env opt-in for the run. CI sets none of the `SLIDES_*`
+   variables, so no workflow creates decks. `SLIDES_ONLY_CODES` limits a run to a few
+   Pretalx codes and `SLIDES_SKIP_PERMISSIONS=true` creates decks without granting
+   speakers, both meant for test runs. `pnpm slides` (§9) now exits immediately.
 3. **Speaker-facing link** -
    [`devcon/src/pages/sea/presentation/[code].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon/src/pages/sea/presentation/%5Bcode%5D.tsx)
    (2024-10-15): `devcon.org/sea/presentation/<code>` fetches
@@ -325,10 +335,20 @@ December, about four weeks after the event.
 For DC8 the recommendation is to keep this pipeline, keep decks private until after the
 event as in 2024, and enforce that instead of leaving it to each deck's sharing setting:
 speakers write, the AV team reads from creation, the public reads only after the event
-(§11.9). Reuse checklist: lift the `devcon-7` gate in the sync, point the template and
-folder constants at a DC8 deck and folder, add the permissions pass, and either rename
-the redirect route (DC7-branded by path, hardcodes `api.devcon.org`) or add a DC8
-equivalent.
+(§11.9). Reuse checklist: add `devcon8` to `SLIDES_ALLOWED_EVENTS` in the sync and to
+`SLIDES_EVENTS` in its workflow, with the Google secrets and `SLIDES_DRIVE_ID` /
+`SLIDES_FOLDER_ID` / `SLIDES_TEMPLATE_ID` set to the DC8 drive, folder and deck; add the
+permissions pass; and either rename the redirect route (DC7-branded by path, hardcodes
+`api.devcon.org`) or add a DC8 equivalent.
+
+**Test run on `test-devcon-8`** (local only; that workflow has no Google credentials and
+the event mirrors real Devcon 8 talks, so keep speakers out of it): in `devcon-api/.env`
+set `GOOGLE_CLIENT_EMAIL` and `GOOGLE_PRIVATE_KEY` (from the devcon-7 sync workflow
+secrets), `SLIDES_EVENTS=test-devcon-8`, `SLIDES_DRIVE_ID=<AV shared drive>`,
+`SLIDES_FOLDER_ID=<test folder in it>`, `SLIDES_TEMPLATE_ID=<DC8 template>`,
+`SLIDES_SKIP_PERMISSIONS=true`, and optionally `SLIDES_ONLY_CODES=<a few codes>`. Then
+`pnpm sync:pretalx:test`; decks appear in the folder as `<title> [<code>]` and the URLs
+land in `data/sessions/test-devcon-8/*.json`, which should not be committed.
 
 ## 3. Devcon 8 blockers - independent hardcodes that fail silently
 
@@ -701,9 +721,9 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    Prerequisites: confirm the Workspace or shared-drive policy allows "anyone with the
    link" sharing if the decks themselves are to be opened after the event (per-user
    external grants already work, link sharing is a separate setting); lift the
-   `devcon-7` gate and point the template and folder constants at DC8; rename the
-   `/sea/presentation/` redirect (DC7-branded path, hardcodes `api.devcon.org`) or add
-   a DC8 route. Alternative if stage AV does not project from the decks and the Drive
+   add `devcon8` to `SLIDES_ALLOWED_EVENTS` and `SLIDES_EVENTS` and point the `SLIDES_*`
+   ids at DC8; rename the `/sea/presentation/` redirect (DC7-branded path, hardcodes
+   `api.devcon.org`) or add a DC8 route. Alternative if stage AV does not project from the decks and the Drive
    infra should go: a private Pretalx **file** question (not the native Resources
    feature, which is public on the talk page as soon as the schedule is), released by
    the sync into `resources_slides` after the event, since anything in a session JSON
