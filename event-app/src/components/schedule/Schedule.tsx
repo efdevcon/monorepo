@@ -1043,7 +1043,7 @@ export function Schedule() {
               />
               <button onClick={jumpToNow} className={ghostPill}>
                 <ClockArrowDown className="size-4" />
-                Jump to now
+                Live now
               </button>
               <button
                 onClick={() => {
