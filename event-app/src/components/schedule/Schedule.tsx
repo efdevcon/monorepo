@@ -687,8 +687,14 @@ export function Schedule() {
   // flag skips the scroll frame they cause.
   const programmaticScrollRef = useRef(false);
   const [chromeHidden, setChromeHidden] = useState(false);
+  // Not under a session page: the layer locks the page scroll, so a header
+  // hidden at the moment of the tap would have no scroll to bring it back.
   const chromeCollapsible =
-    listVisible && !isDesktop && view === "timeline" && resultCount > 0;
+    listVisible &&
+    !detailId &&
+    !isDesktop &&
+    view === "timeline" &&
+    resultCount > 0;
   useEffect(() => {
     if (!chromeCollapsible) {
       setChromeHidden(false);
