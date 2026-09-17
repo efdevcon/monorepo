@@ -42,6 +42,8 @@ interface RouteChrome {
    * the page.
    */
   toolbar?: boolean;
+  /** No mobile bar at all: the page runs full-bleed under the status bar (the 3D map). Desktop nav unchanged. */
+  bare?: boolean;
 }
 
 function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
@@ -49,7 +51,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (detail === "speaker") return { title: "Speaker details", back: "speaker" };
   if (pathname.startsWith("/schedule")) return { title: "Schedule", toolbar: true };
   if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
-  if (pathname.startsWith("/map")) return { title: "Map" };
+  if (pathname.startsWith("/map")) return { title: "Map", bare: true };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
   if (pathname.startsWith("/announcements")) return { title: "Announcements" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
@@ -84,7 +86,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   }
 
   const items = NAV_ITEMS.filter((i) => i.enabled);
-  const { title, back, toolbar } = routeChrome(pathname, detailKind);
+  const { title, back, toolbar, bare } = routeChrome(pathname, detailKind);
 
   return (
     <header className="sticky top-0 z-30 font-heading">
@@ -95,55 +97,57 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           the page's own pinned rows move up on the same 200ms clock. The
           slide only runs while data-app-header-animates is set too — when
           the fold disarms (a session page opens) the bar snaps back. */}
-      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full">
-        {toolbar ? (
-          // Toolbar pages keep the title for AT only; the row is the page's.
-          // One branch, not a hidden title block: that kept fetching the
-          // logomark and left two live regions announcing "offline".
-          <>
-            <h1 className="sr-only">{title}</h1>
-            <OfflineIndicator />
-          </>
-        ) : (
-          <div className="flex min-w-0 items-center gap-2">
-            {back ? (
-              // Closes the in-page detail view: history.back() when we pushed
-              // it, otherwise (deep link) drops the param in place. Never
-              // leaves the app.
-              <button
-                type="button"
-                onClick={() => closeDetail(back)}
-                aria-label="Back"
-                className="-m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center p-1"
-              >
-                <ArrowLeft className="size-5 text-dc-fg2" />
-              </button>
-            ) : (
-              <span className="flex size-7 shrink-0 items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  key={markAttempt}
-                  src="/schedule/devcon8-logomark.svg"
-                  onError={markLogoFailed}
-                  alt="Devcon 8 India"
-                  className="h-7 w-auto"
-                />
+      {!bare && (
+        <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full">
+          {toolbar ? (
+            // Toolbar pages keep the title for AT only; the row is the page's.
+            // One branch, not a hidden title block: that kept fetching the
+            // logomark and left two live regions announcing "offline".
+            <>
+              <h1 className="sr-only">{title}</h1>
+              <OfflineIndicator />
+            </>
+          ) : (
+            <div className="flex min-w-0 items-center gap-2">
+              {back ? (
+                // Closes the in-page detail view: history.back() when we pushed
+                // it, otherwise (deep link) drops the param in place. Never
+                // leaves the app.
+                <button
+                  type="button"
+                  onClick={() => closeDetail(back)}
+                  aria-label="Back"
+                  className="-m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center p-1"
+                >
+                  <ArrowLeft className="size-5 text-dc-fg2" />
+                </button>
+              ) : (
+                <span className="flex size-7 shrink-0 items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    key={markAttempt}
+                    src="/schedule/devcon8-logomark.svg"
+                    onError={markLogoFailed}
+                    alt="Devcon 8 India"
+                    className="h-7 w-auto"
+                  />
+                </span>
+              )}
+              <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
+                {title}
               </span>
-            )}
-            <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
-              {title}
-            </span>
-            <OfflineIndicator />
-          </div>
-        )}
-        <div
-          id={HEADER_ACTIONS_ID}
-          className={cn(
-            "flex shrink-0 items-center justify-end gap-3",
-            toolbar && "min-w-0 flex-1"
+              <OfflineIndicator />
+            </div>
           )}
-        />
-      </div>
+          <div
+            id={HEADER_ACTIONS_ID}
+            className={cn(
+              "flex shrink-0 items-center justify-end gap-3",
+              toolbar && "min-w-0 flex-1"
+            )}
+          />
+        </div>
+      )}
 
       {/* Desktop: full-bleed glass bar. The inner row shares the pages' 1312px
           column and gutters so the logo lines up with the content's left edge,

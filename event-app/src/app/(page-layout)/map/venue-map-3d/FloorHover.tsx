@@ -5,7 +5,6 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import { Group, Shape, ShapeGeometry, Vector2, Vector3 } from "three";
 import cn from "classnames";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { polygonArea, PX } from "./isoMath";
 import type { PlanLevel } from "./types";
 
@@ -50,27 +49,24 @@ function corners(level: PlanLevel): Vector3[] {
  * the labels of the other floors dim while one floor is hovered (Scott,
  * 2026-09-17). Big, bold and in the muted foreground colour with no surface
  * behind it, so it reads as part of the backdrop rather than a control.
- * Re-anchored each frame so it stays with the floor as the stack turns:
- * desktop hangs it 24px off the right-most footprint corner at 40px; phones
- * centre it under the lowest corner (the floor's front edge) at 24px, where
- * the narrow screen has room. Never takes the pointer.
+ * Re-anchored each frame at whichever footprint corner is right-most on
+ * screen, 24px off it, so it stays beside the floor as the stack turns; 40px
+ * on desktop, 24px on phones. (Placing the phone labels under the floors'
+ * front corners was tried on 2026-09-17 and read badly.) Never takes the pointer.
  */
 export function FloorLabel({ level, dimmed }: { level: PlanLevel; dimmed: boolean }) {
   const anchor = useRef<Group>(null);
   const pts = useMemo(() => corners(level), [level]);
   const scratch = useMemo(() => new Vector3(), []);
-  const desktop = useIsDesktop();
   useFrame(({ camera }) => {
     const g = anchor.current;
     if (!g?.parent) return;
     let best = pts[0];
-    let bestScore = -Infinity;
+    let bestX = -Infinity;
     for (const p of pts) {
-      const s = g.parent.localToWorld(scratch.copy(p)).project(camera);
-      // Desktop: right-most on screen. Phones: lowest on screen (NDC y grows upwards).
-      const score = desktop ? s.x : -s.y;
-      if (score > bestScore) {
-        bestScore = score;
+      const sx = g.parent.localToWorld(scratch.copy(p)).project(camera).x;
+      if (sx > bestX) {
+        bestX = sx;
         best = p;
       }
     }
@@ -82,7 +78,7 @@ export function FloorLabel({ level, dimmed }: { level: PlanLevel; dimmed: boolea
         <p
           className={cn(
             "pointer-events-none whitespace-nowrap font-heading font-bold leading-none tracking-[-0.5px] text-dc-muted",
-            "-translate-x-1/2 translate-y-1 text-[24px] lg:translate-x-6 lg:-translate-y-1/2 lg:text-[40px]",
+            "translate-x-6 -translate-y-1/2 text-[24px] lg:text-[40px]",
             "transition-opacity duration-150 ease-out motion-reduce:transition-none",
             dimmed ? "opacity-30" : "opacity-100"
           )}

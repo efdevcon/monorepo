@@ -193,12 +193,12 @@ export function DebugPanel() {
         // corner. The +48 dates from the old 2D map's Find button sharing this
         // corner; kept so the other pages don't shift.
         // On /map it docks under the 3D map's wrench (DebugCorner: 44px disc at
-        // header+76px / lg 80px) with the same 12px column gap, and its panel
-        // opens downward from there.
+        // lg 80px) with the same 12px column gap, and its panel opens downward
+        // from there; the map has no debug tools on phones (Scott, 2026-09-17).
         className={cn(
           "fixed z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105",
           onMap
-            ? "left-4 top-[calc(3.5rem+var(--safe-top)+68px)] lg:left-6 lg:top-[136px]"
+            ? "left-6 top-[136px] hidden lg:flex"
             : "bottom-[calc(var(--nav-clearance)+48px)] left-4 lg:bottom-4"
         )}
       >
@@ -211,7 +211,7 @@ export function DebugPanel() {
           className={cn(
             "fixed z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl",
             onMap
-              ? "left-4 top-[calc(3.5rem+var(--safe-top)+124px)] lg:left-6 lg:top-[192px]"
+              ? "left-6 top-[192px] hidden lg:block"
               : "bottom-[calc(var(--nav-clearance)+104px)] left-4 lg:bottom-[72px]"
           )}>
           <p className="mb-3 font-bold">Debug</p>

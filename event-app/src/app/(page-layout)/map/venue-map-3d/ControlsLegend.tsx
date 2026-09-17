@@ -17,8 +17,9 @@ function Kbd({ children }: { children: ReactNode }) {
 }
 
 /**
- * Icon legend of what the pointer does, along the top of the map: right of
- * the debug wrench on phones (it wraps), centred under the header from lg up.
+ * Icon legend of what the pointer does, along the top of the map: full width
+ * under the status bar on phones (no header bar on /map; it wraps), centred
+ * under the header from lg up.
  * Desktop adds the keyboard shortcuts. Fades out while the area card or Find
  * is open.
  */
@@ -48,8 +49,8 @@ export function ControlsLegend({ stacked, hidden }: { stacked: boolean; hidden: 
     <div
       aria-hidden={hidden}
       className={cn(
-        // Phones: the row right of the 44px wrench at left-4 (16 + 44 + 12). Desktop: centred, 12px under the 68px header.
-        "pointer-events-none fixed left-[72px] right-4 top-[calc(3.5rem+var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        // Phones: 12px under the status bar (the mobile header bar is off on /map). Desktop: centred, 12px under the 68px header.
+        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
         hidden ? "opacity-0" : "opacity-100"
       )}

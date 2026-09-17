@@ -29,9 +29,10 @@ const STOP_GAP_PX = 4;
  * indicator that slides to the shown floor. Press and hold anywhere on the
  * track and drag to slide through the floors; each stop the finger passes
  * opens that floor. A clean tap on an inactive stop opens it, a tap on the
- * active one returns to the stack, as the pills did. "All" sits above the
- * track and is active while the floors are stacked. Keyboard users get the
- * stops as radio buttons.
+ * active one returns to the stack, as the pills did. "All" sits under the
+ * track and is active while the floors are stacked (white like the active
+ * stop; the track's fill otherwise). Keyboard users get the stops as radio
+ * buttons.
  */
 export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSliderProps) {
   const stops = [...levels].reverse(); // top floor first, like the building
@@ -89,19 +90,6 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
 
   return (
     <div className="pointer-events-auto flex flex-col items-center gap-2">
-      <button
-        type="button"
-        aria-pressed={value === null}
-        title="All floors · A / Esc"
-        onClick={onAll}
-        className={cn(
-          // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
-          "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border text-[14px] leading-none shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out",
-          value === null ? "border-dc-purple bg-dc-lavender font-bold text-dc-purple" : "border-dc-hairline bg-white/90 font-medium text-dc-muted hover:bg-dc-purple-wash hover:text-dc-purple"
-        )}
-      >
-        All
-      </button>
       <div
         role="radiogroup"
         aria-label="Floor"
@@ -139,6 +127,21 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
           </button>
         ))}
       </div>
+      <button
+        type="button"
+        aria-pressed={value === null}
+        title="All floors · A / Esc"
+        onClick={onAll}
+        className={cn(
+          // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
+          "flex h-9 w-10 cursor-pointer items-center justify-center rounded-lg border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
+          value === null
+            ? "bg-white font-bold text-dc-purple shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)]"
+            : "bg-dc-lavender font-medium text-dc-muted hover:text-dc-purple lg:bg-dc-panel"
+        )}
+      >
+        All
+      </button>
     </div>
   );
 }

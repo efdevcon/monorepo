@@ -121,9 +121,9 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   (stack around y = 0, or the chosen floor at 0 with the others parked off-screen) and tweens
   changes on the 800 ms `LEVEL_SWITCH_MS` clock. In the stack each floor group carries the
   handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`): the short label
-  ("G", "L1") is always visible beside the floor and the other floors' labels dim to 30 %
-  while one floor is hovered. Desktop: 40px, 24px right of the right-most footprint corner;
-  phones: 24px, centred under the lowest corner (the floor's front edge).
+  ("G", "L1") is always visible 24px right of the right-most footprint corner and the other
+  floors' labels dim to 30 % while one floor is hovered; 40px on desktop, 24px on phones
+  (where they currently clip at the screen edge at the stack fit; under review).
 - **`CameraRig`**: orbit with the polar angle pinned to the isometric tilt, start azimuth
   `START_AZIMUTH` = 25° left of the (1, 1, 1) diagonal (20°; `isoMath.ts`), azimuth clamped
   75° left / 85° right of it (the same absolute range as before the turn), fit from the
@@ -133,14 +133,19 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   (`TOUCH.PAN` / `TOUCH.DOLLY_ROTATE`).
 - **Controls**: `FloorSlider` bottom-right (vertical track L2 / L1 / G, press-and-hold and
   drag slides through the floors, a clean tap on the active stop returns to the stack, "All"
-  above it), `FindButton` bottom-left, `ControlsLegend` along the top (right of the wrench
-  on phones, centred from `lg`), `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
+  under it: white like the active stop when stacked, the track's fill otherwise),
+  `FindButton` bottom-left, `ControlsLegend` along the top (full width under the status bar
+  on phones, centred under the header from `lg`), `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
   (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, `/`
-  opens Find, A or Esc close the card then reset; A is not advertised). Debug: the wrench (`DebugToggle`, 12px
-  under the header) toggles the tuning panel, drei `<Stats>`, `window.__mapCamera`,
-  `window.__mapHover` and `window.__mapControls` (the OrbitControls instance); the app-wide
-  dev trigger docks under it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`,
-  whose offsets are hardcoded against `DebugCorner`: 68 / 124px on phones, 136 / 192px on lg).
+  opens Find, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
+  tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
+  the tuning panel, drei `<Stats>`, `window.__mapCamera`, `window.__mapHover` and
+  `window.__mapControls` (the OrbitControls instance); the app-wide dev trigger docks under
+  it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`, offsets hardcoded against
+  `DebugCorner`: 136 / 192px).
+- **No mobile header bar on `/map`** (2026-09-17): `AppHeader`'s `routeChrome` marks the route
+  `bare`, so the 56px glass bar is not rendered below `lg` and the map runs full-bleed under the
+  status bar (`--safe-top`); the desktop nav is unchanged.
 
 ## Design decisions
 
