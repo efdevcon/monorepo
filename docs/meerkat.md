@@ -82,6 +82,50 @@ Pretalx code kept in `sourceId`. Meerkat's DC7 test session is keyed the same wa
 schedule sync must send ids Meerkat can match against these; confirm with the Meerkat
 team when the sync is extended to Devcon 8.
 
+## Displaying questions on stage screens and streams (AV)
+
+Meerkat ships the display side; what is missing is data and operations.
+
+- **Presenter view** for the stage screen: `https://app.meerkat.events/stage/<stage>` shows
+  the live session's title and speaker, the top questions, the participant count, a QR
+  code to join and floating reactions, and follows whichever session on that stage is
+  marked live, so it can stay open all day. `?hide-qr-code=true` drops the QR.
+  `/stage/<stage>/qa` redirects to the live session's Q&A page. (Meerkat README, "How do
+  I link to the currently live session?")
+- **Moderation** (`/moderation`, organizer role): moderators mark the session live, pick
+  the question being answered and mark questions answered. Those picks drive the
+  presenter view and the "Being answered" / "Answered" tags in the app.
+- **Public API by stage**, no auth: `GET /api/v1/events?stage=<stage>` and
+  `GET /api/v1/conferences/<id>/events/live`, plus the questions and stream endpoints
+  above.
+
+Options for the livestream:
+
+1. The presenter view as a browser source in OBS or vMix per room. It is a full-screen
+   layout, so it works as a picture-in-picture panel or a scene, not as a lower third.
+2. An overlay route in the event-app (for example `/room-screens/<room>/qa`) rendering the
+   selected question or the top three on a transparent background, from the public API
+   and the SSE stream. The room screens already derive the live session per room from
+   the schedule, so this would not depend on moderators pressing "live" in Meerkat.
+   Not built yet.
+3. The same strip on the venue room screens (`/room-screens/<room>`). Those screens already
+   show a "See questions" QR code to the stage presenter view (`/stage/<room name>`, which
+   follows the live session), only when Meerkat lists sessions for that stage.
+
+Prerequisites either way:
+
+1. Devcon 8 sessions in Meerkat with `stage` set to our room, `uid` set to our session
+   slug. Created through Meerkat's admin API (`POST /api/v1/admin/events`, batch upsert
+   keyed by `uid`, `x-api-key` header) or the schedule sync once it covers DC8 (known
+   gap below).
+2. Organizer accounts for the moderators, granted by the Meerkat team through their
+   invitations table.
+3. A moderator in each room during sessions, or nothing gets marked live or selected.
+
+To raise with the Meerkat team: the `stage` field in the sync payload, organizer invites,
+and whether the presenter view could get a transparent overlay mode, which would make the
+stream side a pure browser-source setup.
+
 ## Secrets and go-live checklist
 
 - `VERIFICATION_SECRET` (event-app, Netlify): signs the hand-off JWT and must equal the
