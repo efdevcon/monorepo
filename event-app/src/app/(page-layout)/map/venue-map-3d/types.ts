@@ -3,48 +3,12 @@ export type Area = {
   id: string;
   name: string;
   description: string;
-  /** Seed point (SVG px) inside a Base-Layer block; resolved to a 3D box by scripts/iso-map-build.mjs. */
-  seed?: [number, number];
-  /** Fallback block height (SVG px) when no vertical edge is drawn next to the top face. */
-  height?: number;
-  /** Figma layer id of a Floor-/Decoration-Layer group that is this area's tap target. */
-  prop?: string;
   /** Theme icon name; derived from the id when absent (see icons.ts). */
   icon?: string | null;
   /** Numbered copies keep their number in the name ("Meeting Room 7"); set on the generic entry. */
   numbered?: boolean;
-  /** Floor the area sits on (plan source only). */
+  /** Floor the area sits on. */
   level?: LevelId;
-};
-
-export type SceneBlock = {
-  id: string;
-  kind: "top" | "silhouette";
-  /** Top face in SVG px, ring order. */
-  top: [number, number][];
-  /** Height in SVG px (vertical edges are drawn 1:1 in the isometric artwork). */
-  height: number;
-  fill: string;
-  stroke: string | null;
-  sourceId: string;
-};
-
-export type SceneProp = {
-  id: string;
-  bbox: [number, number, number, number];
-  /** Bottom-centre of the bbox in SVG px: where the upright decal touches the floor. */
-  anchor: [number, number];
-  svg: string;
-};
-
-export type SceneData = {
-  generatedFrom: string;
-  viewBox: number[];
-  /** Ground footprint of the floor slab in ground px (top-down fit). */
-  bounds: GroundBounds;
-  slabSvg: string;
-  blocks: SceneBlock[];
-  props: SceneProp[];
 };
 
 export type PlanShape = {
@@ -77,14 +41,14 @@ export const levelIndex = (id: LevelId) => LEVEL_ORDER.indexOf(id);
 /** One floor of the plan bundle: geometry extruded from its top-down SVG. */
 export type PlanLevel = {
   id: LevelId;
-  /** Pill label ("G", "L1"). */
+  /** Short label ("G", "L1"): the floor slider and the labels beside the stacked floors. */
   label: string;
   /** Spoken name ("Ground floor"). */
   name: string;
   generatedFrom: string;
   viewBox: number[];
   bounds: GroundBounds;
-  /** Screen extent of the floor at the start view, in px, for the camera fit. */
+  /** Screen extent of the floor at the isometric view, in px (legacy; the camera now fits from `bounds`). */
   fit: { width: number; height: number };
   shapes: PlanShape[];
 };
@@ -94,16 +58,13 @@ export type PlanScene = {
   source: "plan";
   planScale: number;
   bounds: GroundBounds;
+  /** Legacy screen extent at the isometric view; the camera now fits from `bounds`. */
   fit: { width: number; height: number };
   levels: PlanLevel[];
 };
 
 /** Axis-aligned floor rectangle in ground px. */
 export type GroundBounds = { minX: number; maxX: number; minZ: number; maxZ: number };
-
-export type MapSource = "iso" | "plan";
-/** Camera pitch: the isometric orbit, or straight down. */
-export type MapView = "3d" | "top";
 
 /**
  * Camera destination for a deep-linked or found footprint: ground-px point +
@@ -113,21 +74,17 @@ export type MapView = "3d" | "top";
  */
 export type CameraFocus = { x: number; z: number; zoom: number; key: string; bounds?: GroundBounds };
 
-/** Live camera orientation, written by CameraRig every frame and read by the props. */
+/** Live camera orientation, written by CameraRig every frame. */
 export type CameraPose = { azimuth: number; polar: number };
 
 export type MapSettings = {
-  /** "plan" (default): everything extruded from the top-down plans; "iso": the artwork import demo. */
-  source: MapSource;
-  view: MapView;
-  /** Floor shown on the redraw; null = every floor stacked (3D only). */
+  /** Floor shown; null = every floor stacked. */
   level: LevelId | null;
   /** Vertical gap between stacked floors, in world units. */
   levelGap: number;
   projection: "ortho" | "perspective";
-  lit: boolean;
-  showProps: boolean;
-  showBlocks: boolean;
+  /** Theme icon sprites on the footprints. */
+  showIcons: boolean;
   /** How far the floor can be turned from the start view, in degrees: left = lower azimuth (venue front), right = higher (empty back). */
   rotateLeftDeg: number;
   rotateRightDeg: number;
@@ -135,16 +92,18 @@ export type MapSettings = {
   zoomStep: number;
 };
 
+/**
+ * The start view sits 25° left of the pure isometric diagonal (Scott,
+ * 2026-09-17). The rotation range is unchanged from the isometric days
+ * (100° left / 60° right of the diagonal), so measured from the new start it
+ * is 75° left / 85° right.
+ */
 export const DEFAULT_SETTINGS: MapSettings = {
-  source: "plan",
-  view: "3d",
   level: null,
   levelGap: 6,
   projection: "ortho",
-  lit: false,
-  showProps: true,
-  showBlocks: true,
-  rotateLeftDeg: 100,
-  rotateRightDeg: 60,
+  showIcons: true,
+  rotateLeftDeg: 75,
+  rotateRightDeg: 85,
   zoomStep: 1.8,
 };

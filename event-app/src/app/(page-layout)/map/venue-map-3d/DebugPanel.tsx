@@ -9,17 +9,6 @@ export function DebugPanel({ settings, onChange }: { settings: MapSettings; onCh
     <div className="w-56 rounded-xl bg-white/95 p-3 text-[12px] leading-tight text-dc-fg shadow-lg backdrop-blur">
       <p className="mb-2 font-bold">3D map debug</p>
       <label className="mb-2 flex items-center justify-between gap-2">
-        Source
-        <select
-          className="rounded border border-dc-border px-1 py-0.5"
-          value={settings.source}
-          onChange={(e) => set("source", e.target.value as MapSettings["source"])}
-        >
-          <option value="iso">iso artwork</option>
-          <option value="plan">top-down plan</option>
-        </select>
-      </label>
-      <label className="mb-2 flex items-center justify-between gap-2">
         Projection
         <select
           className="rounded border border-dc-border px-1 py-0.5"
@@ -49,18 +38,10 @@ export function DebugPanel({ settings, onChange }: { settings: MapSettings; onCh
         Stack gap {settings.levelGap.toFixed(1)}
         <input type="range" min={2} max={12} step={0.5} className="w-full" value={settings.levelGap} onChange={(e) => set("levelGap", Number(e.target.value))} />
       </label>
-      {(
-        [
-          ["lit", "Lit blocks"],
-          ["showBlocks", "Show blocks"],
-          ["showProps", "Show props"],
-        ] as const
-      ).map(([key, label]) => (
-        <label key={key} className="mb-1 flex items-center justify-between gap-2">
-          {label}
-          <input type="checkbox" checked={settings[key]} onChange={(e) => set(key, e.target.checked)} />
-        </label>
-      ))}
+      <label className="mb-1 flex items-center justify-between gap-2">
+        Show icons
+        <input type="checkbox" checked={settings.showIcons} onChange={(e) => set("showIcons", e.target.checked)} />
+      </label>
       {(
         [
           ["rotateLeftDeg", "Rotate left"],

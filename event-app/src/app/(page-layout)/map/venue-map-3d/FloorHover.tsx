@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import { Group, Shape, ShapeGeometry, Vector2, Vector3 } from "three";
 import cn from "classnames";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { polygonArea, PX } from "./isoMath";
 import type { PlanLevel } from "./types";
 
@@ -33,7 +34,7 @@ export function FloorHitPlane({ level }: { level: PlanLevel }) {
   );
 }
 
-/** The four corners of the floor's footprint (level-local world units). */
+/** The four corners of the floor's footprint (level-local world units), a little above the slab top. */
 function corners(level: PlanLevel): Vector3[] {
   const b = level.bounds;
   return [
@@ -45,27 +46,31 @@ function corners(level: PlanLevel): Vector3[] {
 }
 
 /**
- * Floor name that slides out to the right from the floor's right-hand side
- * while the floor is hovered in the stack. Big, bold and in the muted
- * foreground colour with no surface behind it, so it reads as part of the
- * backdrop rather than a control (Scott). Anchored each frame at whichever
- * footprint corner is right-most on screen, so it stays beside the floor as
- * the stack is turned. Stays mounted so it can slide back; never takes the
- * pointer.
+ * The floor's short label ("G", "L1") beside it in the stack, always visible;
+ * the labels of the other floors dim while one floor is hovered (Scott,
+ * 2026-09-17). Big, bold and in the muted foreground colour with no surface
+ * behind it, so it reads as part of the backdrop rather than a control.
+ * Re-anchored each frame so it stays with the floor as the stack turns:
+ * desktop hangs it 24px off the right-most footprint corner at 40px; phones
+ * centre it under the lowest corner (the floor's front edge) at 24px, where
+ * the narrow screen has room. Never takes the pointer.
  */
-export function FloorLabel({ level, shown }: { level: PlanLevel; shown: boolean }) {
+export function FloorLabel({ level, dimmed }: { level: PlanLevel; dimmed: boolean }) {
   const anchor = useRef<Group>(null);
   const pts = useMemo(() => corners(level), [level]);
   const scratch = useMemo(() => new Vector3(), []);
+  const desktop = useIsDesktop();
   useFrame(({ camera }) => {
     const g = anchor.current;
     if (!g?.parent) return;
     let best = pts[0];
-    let bestX = -Infinity;
+    let bestScore = -Infinity;
     for (const p of pts) {
-      const sx = g.parent.localToWorld(scratch.copy(p)).project(camera).x;
-      if (sx > bestX) {
-        bestX = sx;
+      const s = g.parent.localToWorld(scratch.copy(p)).project(camera);
+      // Desktop: right-most on screen. Phones: lowest on screen (NDC y grows upwards).
+      const score = desktop ? s.x : -s.y;
+      if (score > bestScore) {
+        bestScore = score;
         best = p;
       }
     }
@@ -75,14 +80,14 @@ export function FloorLabel({ level, shown }: { level: PlanLevel; shown: boolean 
     <group ref={anchor} position={pts[1]}>
       <Html zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
         <p
-          aria-hidden={!shown}
           className={cn(
-            "pointer-events-none -translate-y-1/2 whitespace-nowrap font-heading text-[40px] font-bold leading-none tracking-[-0.5px] text-dc-muted",
-            "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
-            shown ? "translate-x-6 opacity-100" : "translate-x-0 opacity-0"
+            "pointer-events-none whitespace-nowrap font-heading font-bold leading-none tracking-[-0.5px] text-dc-muted",
+            "-translate-x-1/2 translate-y-1 text-[24px] lg:translate-x-6 lg:-translate-y-1/2 lg:text-[40px]",
+            "transition-opacity duration-150 ease-out motion-reduce:transition-none",
+            dimmed ? "opacity-30" : "opacity-100"
           )}
         >
-          {level.name}
+          {level.label}
         </p>
       </Html>
     </group>

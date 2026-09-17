@@ -1,70 +1,54 @@
-import { Matrix4, Vector3 } from "three";
+import { MathUtils } from "three";
+import type { GroundBounds } from "./types";
 
 /**
- * The artwork is a true isometric drawing: a world point (x, y = up, z)
- * lands on screen at u = (x − z)·cos30°, v = (x + z)·sin30° − y, with v
- * pointing down and every axis drawn at full length. Everything here is the
- * inverse of that, so a camera sitting on the (1, 1, 1) diagonal reproduces
- * the illustration pixel for pixel on the first frame.
+ * Camera geometry for the venue map. The floors are drawn in "ground px" (the
+ * plan SVG scaled by scripts/plan-map-build.mjs) and placed in the world at
+ * PX world units per ground px; the camera orbits the floor at a fixed
+ * isometric pitch and a start azimuth a little left of the (1, 1, 1) diagonal.
  */
 
-/** World units per SVG pixel (along the drawing's own axes). */
+/** World units per ground px. */
 export const PX = 0.01;
 const SQRT3 = Math.sqrt(3);
-/**
- * An isometric *drawing* shows every axis at full length; a real orthographic
- * camera on the (1, 1, 1) diagonal shows them at √(2/3) of that. The result is
- * a uniform scale, so the artwork stays exact but appears this much smaller
- * per world unit. Used when fitting the camera.
- */
-const ISO_FORESHORTENING = Math.sqrt(2 / 3);
-/** Screen pixels one SVG pixel occupies at camera zoom 1. */
-export const SCREEN_PX_PER_SVG_PX = PX * ISO_FORESHORTENING;
 
-/** Unit vector from the orbit target towards the camera at the start. */
-export const VIEW_DIR = new Vector3(1, 1, 1).normalize();
-/** OrbitControls azimuth (atan2(x, z) of the camera offset) of VIEW_DIR. */
-export const INITIAL_AZIMUTH = Math.PI / 4;
-/** OrbitControls polar angle of VIEW_DIR (≈ 54.7°, i.e. 35.3° above the floor). */
+/** OrbitControls azimuth (atan2(x, z) of the camera offset) of the pure isometric (1, 1, 1) diagonal. */
+export const ISO_AZIMUTH = Math.PI / 4;
+/** How far left of the diagonal the start view sits (lower azimuth shows more of the venue front). Scott, 2026-09-17. */
+export const START_TURN_DEG = 25;
+/** Azimuth of the start view. */
+export const START_AZIMUTH = ISO_AZIMUTH - MathUtils.degToRad(START_TURN_DEG);
+/** OrbitControls polar angle of the isometric diagonal (≈ 54.7°, i.e. 35.3° above the floor). Never changes. */
 export const POLAR_ANGLE = Math.acos(1 / SQRT3);
 
-/** Floor point (world x, z) under a screen point given in SVG px. */
-export function groundFromScreen(u: number, v: number): [number, number] {
-  return [(u / SQRT3 + v) * PX, (v - u / SQRT3) * PX];
-}
-
 /**
- * Maps flat artwork (local u, v in SVG px, z = 0) onto the floor plane. Local
- * z becomes world y so the matrix stays invertible for raycasting and small
- * per-layer offsets can be applied as `position-z`.
+ * Screen extent, in world units at camera zoom 1, of the box over `bounds`
+ * (ground px) between world heights `yMin` and `yMax`, seen from an orbit at
+ * `azimuth` / `polar`. Projects the eight corners onto the camera's right and
+ * up vectors, so the fit is exact at any rotation (the old build-time `fit`
+ * was only right on the isometric diagonal).
  */
-export const GROUND_MATRIX = new Matrix4().set(
-  PX / SQRT3, PX, 0, 0,
-  0, 0, 1, 0,
-  -PX / SQRT3, PX, 0, 0,
-  0, 0, 0, 1
-);
-
-/** World direction of one screen pixel to the right / downwards at the start view. */
-const SCREEN_RIGHT = new Vector3(1, 0, -1).multiplyScalar(PX / SQRT3);
-const SCREEN_DOWN = new Vector3(1, -2, 1).multiplyScalar(PX / 3);
-
-/**
- * Places a decal drawn in SVG px upright in the world, facing the start view,
- * with `anchor` (bottom-centre of the decal) at the local origin so the parent
- * group can sit on the floor and spin around it. Local z is along the view
- * direction in world units (used for tiny stacking offsets).
- */
-export function billboardMatrix(anchorU: number, anchorV: number): Matrix4 {
-  const t = new Vector3()
-    .addScaledVector(SCREEN_RIGHT, -anchorU)
-    .addScaledVector(SCREEN_DOWN, -anchorV);
-  return new Matrix4().set(
-    SCREEN_RIGHT.x, SCREEN_DOWN.x, VIEW_DIR.x, t.x,
-    SCREEN_RIGHT.y, SCREEN_DOWN.y, VIEW_DIR.y, t.y,
-    SCREEN_RIGHT.z, SCREEN_DOWN.z, VIEW_DIR.z, t.z,
-    0, 0, 0, 1
-  );
+export function projectedExtent(bounds: GroundBounds, yMin: number, yMax: number, azimuth: number, polar: number): { width: number; height: number } {
+  const sinA = Math.sin(azimuth);
+  const cosA = Math.cos(azimuth);
+  const sinP = Math.sin(polar);
+  const cosP = Math.cos(polar);
+  let minU = Infinity;
+  let maxU = -Infinity;
+  let minV = Infinity;
+  let maxV = -Infinity;
+  for (const x of [bounds.minX * PX, bounds.maxX * PX])
+    for (const z of [bounds.minZ * PX, bounds.maxZ * PX])
+      for (const y of [yMin, yMax]) {
+        // Camera right = (cos a, 0, −sin a); camera up = (−sin a·cos p, sin p, −cos a·cos p).
+        const u = x * cosA - z * sinA;
+        const v = -(x * sinA + z * cosA) * cosP + y * sinP;
+        minU = Math.min(minU, u);
+        maxU = Math.max(maxU, u);
+        minV = Math.min(minV, v);
+        maxV = Math.max(maxV, v);
+      }
+  return { width: maxU - minU, height: maxV - minV };
 }
 
 /** Multiply an sRGB hex colour's channels (0..1 darkens, >1 brightens). */

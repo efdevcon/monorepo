@@ -1,23 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
+import { useEffect, useRef, useState, type MutableRefObject } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
-import { INITIAL_AZIMUTH, POLAR_ANGLE } from "./isoMath";
+import { POLAR_ANGLE, START_AZIMUTH } from "./isoMath";
 import { CameraRig } from "./CameraRig";
-import { Slab } from "./Slab";
-import { Blocks } from "./Blocks";
-import { Props } from "./Props";
 import { LevelStack } from "./LevelStack";
-import type { Area, CameraFocus, CameraPose, LevelId, MapSettings, PlanScene, SceneData } from "./types";
+import type { Area, CameraFocus, CameraPose, LevelId, MapSettings, PlanScene } from "./types";
 
 type SceneProps = {
-  scene: SceneData;
   plan: PlanScene;
-  areas: Area[];
   settings: MapSettings;
   selectedId: string | null;
-  /** Found group (plan source): highlighted like a hover, icons bobbing. */
+  /** Found group: highlighted like a hover, icons bobbing. */
   highlightedIds?: ReadonlySet<string> | null;
   active: boolean;
   debug: boolean;
@@ -28,32 +23,22 @@ type SceneProps = {
   resetRef: MutableRefObject<() => void>;
 };
 
-/** The R3F canvas: the stacked plan floors (or the iso artwork) and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ scene, plan, areas, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
-  const poseRef = useRef<CameraPose>({ azimuth: INITIAL_AZIMUTH, polar: POLAR_ANGLE });
+/** The R3F canvas: the stacked plan floors and the camera rig. Client-only (three needs WebGL). */
+export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef }: SceneProps) {
+  const poseRef = useRef<CameraPose>({ azimuth: START_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Debug: expose the hovered target for hit-testing scripts.
   useEffect(() => {
     if (debug) (window as unknown as { __mapHover?: string | null }).__mapHover = hoveredId;
   }, [debug, hoveredId]);
-  const areaById = useMemo(() => new Map(areas.map((a) => [a.id, a])), [areas]);
-  const areaByProp = useMemo(
-    () => new Map(areas.filter((a) => a.prop).map((a) => [a.prop as string, a])),
-    [areas]
-  );
   const ortho = settings.projection === "ortho";
-  const usePlan = settings.source === "plan";
-  const lit = usePlan || settings.lit;
-  const groundBounds = usePlan ? plan.bounds : scene.bounds;
-  const fit = usePlan ? plan.fit : { width: scene.viewBox[2], height: scene.viewBox[3] };
-  const pannable = usePlan;
   const cursor = hoveredId ? "pointer" : "grab";
   // Every floor stacked: the camera fits the whole pile.
-  const stack = usePlan && settings.level === null ? { count: plan.levels.length, gap: settings.levelGap } : null;
+  const stack = settings.level === null ? { count: plan.levels.length, gap: settings.levelGap } : null;
 
   return (
     <Canvas
-      key={`${settings.projection}-${settings.source}`}
+      key={settings.projection}
       orthographic={ortho}
       camera={ortho ? { zoom: 50, near: 0.1, far: 500, position: [35, 35, 35] } : { fov: 25, near: 0.1, far: 500, position: [35, 35, 35] }}
       frameloop={active ? "demand" : "never"}
@@ -62,36 +47,23 @@ export default function Scene({ scene, plan, areas, settings, selectedId, highli
       onPointerMissed={() => onSelect(null)}
       style={{ touchAction: "none", cursor }}
     >
-      <ambientLight intensity={lit ? 1.6 : 0} />
-      <directionalLight position={[6, 12, 8]} intensity={lit ? 1.4 : 0} />
-      <CameraRig groundBounds={groundBounds} fit={fit} settings={settings} pannable={pannable} stack={stack} reducedMotion={reducedMotion} focus={focus} debug={debug} poseRef={poseRef} resetRef={resetRef} />
-      {usePlan ? (
-        <LevelStack
-          levels={plan.levels}
-          level={settings.level}
-          view={settings.view}
-          gap={settings.levelGap}
-          fit={plan.fit}
-          showIcons={settings.showProps}
-          reducedMotion={reducedMotion}
-          selectedId={selectedId}
-          hoveredId={hoveredId}
-          highlightedIds={highlightedIds}
-          onSelect={onSelect}
-          onSelectLevel={onSelectLevel}
-          setHovered={setHoveredId}
-        />
-      ) : (
-        <>
-          <Slab scene={scene} />
-          {settings.showBlocks && (
-            <Blocks blocks={scene.blocks} areaById={areaById} selectedId={selectedId} hoveredId={hoveredId} lit={settings.lit} onSelect={onSelect} setHovered={setHoveredId} />
-          )}
-          {settings.showProps && (
-            <Props props={scene.props} areaByProp={areaByProp} poseRef={poseRef} hoveredId={hoveredId} onSelect={onSelect} setHovered={setHoveredId} />
-          )}
-        </>
-      )}
+      <ambientLight intensity={1.6} />
+      <directionalLight position={[6, 12, 8]} intensity={1.4} />
+      <CameraRig groundBounds={plan.bounds} settings={settings} stack={stack} reducedMotion={reducedMotion} focus={focus} debug={debug} poseRef={poseRef} resetRef={resetRef} />
+      <LevelStack
+        levels={plan.levels}
+        level={settings.level}
+        gap={settings.levelGap}
+        bounds={plan.bounds}
+        showIcons={settings.showIcons}
+        reducedMotion={reducedMotion}
+        selectedId={selectedId}
+        hoveredId={hoveredId}
+        highlightedIds={highlightedIds}
+        onSelect={onSelect}
+        onSelectLevel={onSelectLevel}
+        setHovered={setHoveredId}
+      />
       {debug && <Stats />}
     </Canvas>
   );

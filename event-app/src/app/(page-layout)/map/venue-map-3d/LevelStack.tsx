@@ -3,22 +3,21 @@
 import { Suspense, useEffect, useRef } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Group, MathUtils, OrthographicCamera, PerspectiveCamera, type Object3D } from "three";
-import { POLAR_ANGLE, SCREEN_PX_PER_SVG_PX } from "./isoMath";
+import { POLAR_ANGLE, PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
 import { PlanIcons } from "./PlanIcons";
 import { FloorHitPlane, FloorLabel } from "./FloorHover";
-import { levelIndex, type Area, type LevelId, type MapView, type PlanLevel } from "./types";
+import { levelIndex, type Area, type GroundBounds, type LevelId, type PlanLevel } from "./types";
 
 type LevelStackProps = {
   levels: PlanLevel[];
   /** Floor shown, or null for every floor stacked. */
   level: LevelId | null;
-  view: MapView;
   /** World-unit gap between stacked floors. */
   gap: number;
-  /** Screen extent of one floor at the start view (px), for the off-screen distance. */
-  fit: { width: number; height: number };
+  /** Union floor rectangle in ground px, for the off-screen parking distance. */
+  bounds: GroundBounds;
   showIcons: boolean;
   reducedMotion: boolean;
   selectedId: string | null;
@@ -40,16 +39,13 @@ type Tween = { level: LevelId; fromY: number; toY: number; start: number; durati
  * to its new rest pose, so the leaving floor always moves away from the
  * entering one: G → L1 drops G and lowers L1 in from the top; leaving the
  * stack sends higher floors up and lower floors down. Floors hidden on both
- * ends snap so they never cross the screen. The flat view
- * can't show vertical travel, so any change there is instant. Refs only; no
- * per-frame React.
+ * ends snap so they never cross the screen. Refs only; no per-frame React.
  */
 export function LevelStack({
   levels,
   level,
-  view,
   gap,
-  fit,
+  bounds,
   showIcons,
   reducedMotion,
   selectedId,
@@ -62,7 +58,7 @@ export function LevelStack({
   const { camera, size, invalidate } = useThree();
   const groupRefs = useRef(new Map<LevelId, Group>());
   const tweensRef = useRef<Tween[]>([]);
-  const prevRef = useRef<{ level: LevelId | null; view: MapView }>({ level, view });
+  const prevRef = useRef<LevelId | null>(level);
   const stackY = (id: LevelId) => (levelIndex(id) - (levels.length - 1) / 2) * gap;
   const animRef = useRef<Map<LevelId, LevelAnim> | null>(null);
   if (animRef.current === null) {
@@ -78,25 +74,25 @@ export function LevelStack({
       const cam = camera as PerspectiveCamera;
       viewHalfH = cam.position.length() * Math.tan(MathUtils.degToRad(cam.fov) / 2);
     }
-    const floorHalfH = (fit.height * SCREEN_PX_PER_SVG_PX) / 2;
+    // Half the floor's ground diagonal bounds its projected half-height at any rotation.
+    const floorHalfH = (Math.hypot(bounds.maxX - bounds.minX, bounds.maxZ - bounds.minZ) * PX) / 2;
     return ((viewHalfH + floorHalfH) / Math.sin(POLAR_ANGLE)) * 1.1 + (levels.length * gap) / 2;
   };
 
   useEffect(() => {
     const prev = prevRef.current;
-    prevRef.current = { level, view };
-    if (prev.level === level) return;
+    prevRef.current = level;
+    if (prev === level) return;
     // The stacked-view handlers and hit planes come and go with the level: R3F fires no
     // pointer-out for objects that unmount, so a floor hover would otherwise stay stuck.
     setHovered(null);
     const now = performance.now();
     const tweens: Tween[] = [];
     const parked = (id: LevelId, shown: LevelId, exit: number) => Math.sign(levelIndex(id) - levelIndex(shown)) * exit;
-    // Flat view (entering it, or switching floors inside it) shows no vertical travel: swap at once.
-    const duration = reducedMotion || view === "top" || prev.view === "top" ? 0 : LEVEL_SWITCH_MS;
+    const duration = reducedMotion ? 0 : LEVEL_SWITCH_MS;
     const exit = exitOffset();
     // Floors hidden so far sit parked on their side of the floor that was showing.
-    if (prev.level !== null) for (const [id, a] of anims) if (!a.visible) a.y = parked(id, prev.level, exit);
+    if (prev !== null) for (const [id, a] of anims) if (!a.visible) a.y = parked(id, prev, exit);
     for (const [id, a] of anims) {
       const showAfter = level === null || id === level;
       const toY = level === null ? stackY(id) : id === level ? 0 : parked(id, level, exit);
@@ -110,7 +106,7 @@ export function LevelStack({
     tweensRef.current = tweens;
     invalidate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [level, view]);
+  }, [level]);
 
   // Debug slider: re-space the stack in place.
   useEffect(() => {
@@ -121,7 +117,7 @@ export function LevelStack({
   }, [gap]);
 
   const stacked = level === null;
-  // Hovered floor in the stack: light slab tint (PlanShapes) + its name sliding out from the centre (FloorLabel).
+  // Hovered floor in the stack: light slab tint (PlanShapes) and the other floors' labels dim (FloorLabel).
   const hoveredLevel = stacked && hoveredId?.startsWith("level:") ? (hoveredId.slice("level:".length) as LevelId) : null;
 
   useFrame(() => {
@@ -184,7 +180,7 @@ export function LevelStack({
         >
           <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
           {stacked && <FloorHitPlane level={l} />}
-          {stacked && <FloorLabel level={l} shown={hoveredLevel === l.id} />}
+          {stacked && <FloorLabel level={l} dimmed={hoveredLevel !== null && hoveredLevel !== l.id} />}
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />

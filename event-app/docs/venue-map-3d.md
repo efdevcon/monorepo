@@ -5,7 +5,9 @@ a **prototype built on provisional plans and old event data**: the floor-plan SV
 working exports whose layer names are still being fixed in Figma, the area descriptions
 are placeholders, and the live-session card is exercised against Devcon 7 data. This
 document records the pipelines that turn those inputs into what the tab shows, so the next
-iteration can swap inputs without re-deriving the chain.
+iteration can swap inputs without re-deriving the chain. Since 2026-09-17 the top-down
+redraw in 3D is the only view: the isometric-artwork import demo and the flat (top-down
+camera) view were removed.
 
 Code: `src/app/(page-layout)/map/venue-map-3d/` (entry `VenueMap3D.tsx`, mounted by
 `src/components/MapPane.tsx` as one of the persistent tab panes). The old map
@@ -18,7 +20,7 @@ for reference; nothing in the 3D map reads them.
 Figma floor plans (one per floor)
   → export SVG with "Include id attribute"
   → public/maps/devcon-8/source/{G.svg, top-down-geometry-test.svg (L1), L2.svg}
-  → pnpm map:build:plan   (scripts/plan-map-build.mjs)
+  → pnpm map:build:plan   (scripts/plan-map-build.mjs; the only map build script)
   → src/app/(page-layout)/map/venue-map-3d/plan.generated.json   (~46 KB, imported statically)
 ```
 
@@ -48,8 +50,9 @@ What the script does per floor (`LEVELS` table: id, pill label, spoken name, sou
 6. **Fills** come from the SVG, with `FILLS` overrides where the plan colour is schematic.
 7. **Stage fronts**: wall strips drawn against a stage block on its outward side are removed
    so stages stand clear.
-8. **Bounds and fit**: per-floor and union ground bounds, plus `isoFit` (screen extent at the
-   isometric pitch) which the camera uses for the start view.
+8. **Bounds and fit**: per-floor and union ground bounds, plus `isoFit` (screen extent on
+   the isometric diagonal). `fit` is legacy since 2026-09-17: the camera fits from `bounds`
+   at runtime (`projectedExtent` in `isoMath.ts`), exact at any rotation.
 
 Output shape (`types.ts`): `PlanScene { source, planScale, bounds, fit, levels: PlanLevel[] }`,
 `PlanLevel { id, label, name, generatedFrom, viewBox, bounds, fit, shapes: PlanShape[] }`,
@@ -97,48 +100,67 @@ roomAreas.ts: ROOM_AREAS { "main-stage": { level: "L1", id: "main-stage-mask" } 
 - Only `main-stage` is mapped. DC8 datasets call it `keynote-stage`; the rest of the rooms
   need entries before the deep link is useful in production.
 
-## Pipeline 4 (demo only): isometric artwork → `scene.generated.json`
+## Removed: the isometric artwork import (2026-09-17)
 
-`pnpm map:build` (`scripts/iso-map-build.mjs`) imports the Figma isometric illustration
-(`TEST-Iso-SVG-Map.svg`, node `5795:35828`, exported with ids) into slab + props + room
-blocks resolved from `areas.json` seed points. It is kept behind `?source=iso` / the source
-switch only to show that importing the artwork in that style does not work; the plan
-redraw is the default. Its `Blocks.tsx` still renders double-sided.
+`scripts/iso-map-build.mjs`, `scene.generated.json` (2.5 MB), `Blocks.tsx`, `Props.tsx`,
+`Slab.tsx`, `svgLayer.ts`, `SourceToggle.tsx`, `?source=iso` and the `seed` / `prop` /
+`height` fields of `areas.json` are gone (commit history has them; the memory note records
+why the import of the Figma isometric illustration did not work). The flat top-down camera
+(`ViewToggle`, `MapView`) went in the same round: 3D is the only view.
 
 ## How the pipelines meet on screen
 
-- **`VenueMap3D`** owns `settings` (`source`, `view` 3d/top, `level` or `null` for the
-  stack, tuning values), `selected`, `highlighted` (a found group), `focus` (camera target),
-  and Find state. `select(area)` is the one path that also clears the group. `showShapes()`
-  is the deep link's body factored out and is what Find uses: opens the floor, selects the
-  member nearest the group's centre, highlights the rest, and focuses the camera
+- **`VenueMap3D`** owns `settings` (`level` or `null` for the stack, tuning values),
+  `selected`, `highlighted` (a found group), `focus` (camera target), and Find state.
+  `select(area)` is the one path that also clears the group. `showShapes()` is the deep
+  link's body factored out and is what Find uses: opens the floor, selects the member
+  nearest the group's centre, highlights the rest, and focuses the camera
   (`CameraFocus.bounds` makes the rig fit a group between the floor fit and the
   single-footprint zoom).
 - **`Scene` → `LevelStack` → `PlanShapes` / `PlanIcons`**: `LevelStack` positions the floors
   (stack around y = 0, or the chosen floor at 0 with the others parked off-screen) and tweens
   changes on the 800 ms `LEVEL_SWITCH_MS` clock. In the stack each floor group carries the
-  handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`).
-- **`CameraRig`**: orbit with the polar angle pinned, azimuth clamped, zoom to cursor,
-  double-tap zoom, and every programmatic move a `tweenTo` sharing the floors' clock.
-- **Controls**: `Segmented` (source, view, All/G/L1/L2 pills), `ControlsLegend` + `FindButton`
-  in one bottom wrapper (Find above the legend on phones, one row from `lg`), `FindSheet`
-  (phones, house `BottomSheet`) / `FindPanel` (desktop, stays mounted), `AreaCard`,
-  `useMapShortcuts` (G / 1 / 2 / F / Esc). Debug: the wrench (`DebugToggle`) toggles the
-  tuning panel, drei `<Stats>` and `window.__mapCamera` / `window.__mapHover`; the app-wide
-  dev trigger docks under it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`).
+  handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`): the short label
+  ("G", "L1") is always visible beside the floor and the other floors' labels dim to 30 %
+  while one floor is hovered. Desktop: 40px, 24px right of the right-most footprint corner;
+  phones: 24px, centred under the lowest corner (the floor's front edge).
+- **`CameraRig`**: orbit with the polar angle pinned to the isometric tilt, start azimuth
+  `START_AZIMUTH` = 25° left of the (1, 1, 1) diagonal (20°; `isoMath.ts`), azimuth clamped
+  75° left / 85° right of it (the same absolute range as before the turn), fit from the
+  ground bounds via `projectedExtent` (stack spread included), zoom to cursor, double-tap
+  zoom, and every programmatic move a `tweenTo` sharing the floors' clock. Mouse: drag
+  rotates, right-drag pans. Touch: one finger pans, two fingers rotate and pinch-zoom
+  (`TOUCH.PAN` / `TOUCH.DOLLY_ROTATE`).
+- **Controls**: `FloorSlider` bottom-right (vertical track L2 / L1 / G, press-and-hold and
+  drag slides through the floors, a clean tap on the active stop returns to the stack, "All"
+  above it), `FindButton` bottom-left, `ControlsLegend` along the top (right of the wrench
+  on phones, centred from `lg`), `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
+  (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F
+  opens Find, A or Esc close the card then reset). Debug: the wrench (`DebugToggle`, 12px
+  under the header) toggles the tuning panel, drei `<Stats>`, `window.__mapCamera`,
+  `window.__mapHover` and `window.__mapControls` (the OrbitControls instance); the app-wide
+  dev trigger docks under it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`,
+  whose offsets are hardcoded against `DebugCorner`: 68 / 124px on phones, 136 / 192px on lg).
 
 ## Design decisions
 
 - Rebuilt in the DC8 app's own styling and conventions (dc-* tokens, `Segmented`,
   `BottomSheet`, `SearchInput`, 150 ms ease-out), not ported from the old map's code.
-- Stacked landing with "All" as a visible state, plus re-tapping the active floor pill to
-  return to the stack. Flat view always shows one floor; "All" from Flat pitches back to 3D.
-- Esc closes an open area card first and resets otherwise; Find owns Esc while open. Not
-  spelled out in the UI.
+- Stacked landing with "All" as a visible state, plus re-tapping the active floor stop to
+  return to the stack. The floor selector is a vertical slider since 2026-09-17 (press,
+  hold and drag through the floors), bottom-right on every breakpoint.
+- 3D is the only view (2026-09-17): the flat top-down camera and the iso import are gone.
+- The start view is turned 25° left of the isometric diagonal (2026-09-17); the rotation
+  range is unchanged in absolute terms.
+- Phones: one finger pans, two fingers rotate (2026-09-17). Desktop: drag rotates, right-drag pans.
+- Esc or A closes an open area card first and resets otherwise; Find owns Esc while open.
+  The legend shows `A` / `Esc` as "All floors" and `1 2 3` as "Floors".
+- Floor labels are always visible in the stack (short form), dimming the non-hovered ones.
 - Duplicated facilities are one row per floor that highlights every instance.
-- Stacked-floor hover is a light lavender slab tint plus the floor name in 40px muted bold
-  text beside the floor (no pill, no lift, no shadow: tried and rejected as noise).
-- Legend leads with the click/tap target; copy is "Double click zoom-in".
+- Stacked-floor hover is a light lavender slab tint (no pill, no lift, no shadow: tried and
+  rejected as noise).
+- Legend leads with the click/tap target; copy is "Double click zoom-in". It sits at the top
+  of the map since 2026-09-17.
 
 ## Gotchas
 
@@ -168,11 +190,10 @@ redraw is the default. Its `Blocks.tsx` still renders double-sided.
 - **Outline lines steal hits.** three's default `Line.threshold` is 1 world unit (~45 px);
   every `lineSegments` gets `raycast={noRaycast}`.
 - **Reset from an open floor.** `resetRef` tweens before React re-renders, so it aimed at the
-  open floor's fit. The view effect leaves `pendingResetRef` up and the stack effect finishes
-  the reset with the refitted stack.
-- **Pitch and stack change in one commit** (All from Flat): the stack tween is built from the
-  current camera, still top-down, and overrode the pitch tween. It now aims at the target
-  pitch and start azimuth whenever the pitch is changing.
+  open floor's fit. It leaves `pendingResetRef` up and the stack effect finishes the reset
+  with the refitted stack.
+- **Fit margin.** With the exact `projectedExtent` fit, 0.9 put the stack's top edge under
+  the header (the canvas runs under it); `FIT_MARGIN` is 0.82.
 - **Zoom clamps snap.** `OrbitControls.update()` clamps zoom every frame; `tweenTo` loosens
   the clamps to span both ends and `applyZoomClamps` restores them on landing.
 - **Keyboard vs. fields.** The hook is disabled while Find is open and ignores
@@ -188,11 +209,13 @@ redraw is the default. Its `Blocks.tsx` still renders double-sided.
   HMR; prefer classes that already exist in the tree (`bottom-[calc(var(--nav-clearance)+12px)]`)
   and restart the dev server if a new one does not apply.
 - **Verification is headless** (`scripts/shot.mjs`, one-off playwright-core scripts in
-  `monorepo/scripts/`, deleted after). `window.__mapCamera` / `__mapHover` are published when
-  the wrench is on. A 16px pointer-grid scan logging `__mapHover` with the nulls drawn on a
+  `monorepo/scripts/`, deleted after). `window.__mapCamera` / `__mapHover` / `__mapControls`
+  are published when the wrench is on. **Synthetic multi-touch** goes through a CDP session
+  (`Input.dispatchTouchEvent`); give every touch point a distinct `id`, and keep the fingers
+  clear of the open debug panel (a finger on one of its range inputs never reaches the
+  canvas, which looked like OrbitControls ignoring the second finger). A 16px pointer-grid scan logging `__mapHover` with the nulls drawn on a
   canvas overlay is the quickest way to see where hover is lost. Material and hover changes
   must also be checked in a real browser: the floor-shadow experiment rendered fine headless
   and wrong in Arc.
 - **Not yet handled for production**: Serwist precache will include the three chunk
-  (~170 KB gz) and the plan JSON on merge; wire the rest of the rooms in `roomAreas.ts`;
-  `Blocks.tsx` (iso demo) is still double-sided.
+  (~170 KB gz) and the plan JSON on merge; wire the rest of the rooms in `roomAreas.ts`.

@@ -198,7 +198,7 @@ export function DebugPanel() {
         className={cn(
           "fixed z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105",
           onMap
-            ? "left-4 top-[calc(3.5rem+var(--safe-top)+132px)] lg:left-6 lg:top-[136px]"
+            ? "left-4 top-[calc(3.5rem+var(--safe-top)+68px)] lg:left-6 lg:top-[136px]"
             : "bottom-[calc(var(--nav-clearance)+48px)] left-4 lg:bottom-4"
         )}
       >
@@ -211,7 +211,7 @@ export function DebugPanel() {
           className={cn(
             "fixed z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl",
             onMap
-              ? "left-4 top-[calc(3.5rem+var(--safe-top)+188px)] lg:left-6 lg:top-[192px]"
+              ? "left-4 top-[calc(3.5rem+var(--safe-top)+124px)] lg:left-6 lg:top-[192px]"
               : "bottom-[calc(var(--nav-clearance)+104px)] left-4 lg:bottom-[72px]"
           )}>
           <p className="mb-3 font-bold">Debug</p>

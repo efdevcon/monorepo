@@ -13,29 +13,13 @@ import { FindSheet } from "./FindSheet";
 import { buildFindGroups, type FindEntry } from "./pois";
 import { DebugPanel } from "./DebugPanel";
 import { DebugCorner, DebugToggle } from "./DebugToggle";
-import { SourceToggle } from "./SourceToggle";
-import { ViewToggle } from "./ViewToggle";
-import { LevelToggle } from "./LevelToggle";
+import { FloorSlider } from "./FloorSlider";
 import { ControlsLegend } from "./ControlsLegend";
 import { useMapShortcuts } from "./useMapShortcuts";
 import { areaOf, shapeKey } from "./planArea";
 import { AREA_PARAM, parseAreaParam } from "./roomAreas";
-import {
-  DEFAULT_SETTINGS,
-  type Area,
-  type CameraFocus,
-  type GroundBounds,
-  type LevelId,
-  type MapSettings,
-  type MapSource,
-  type MapView,
-  type PlanScene,
-  type PlanShape,
-  type SceneData,
-} from "./types";
-import sceneJson from "./scene.generated.json";
+import { DEFAULT_SETTINGS, type Area, type CameraFocus, type GroundBounds, type LevelId, type MapSettings, type PlanScene, type PlanShape } from "./types";
 import planJson from "./plan.generated.json";
-import areasJson from "./areas.json";
 
 // three touches WebGL and DOMParser, so the scene only ever renders in the browser.
 const Scene = dynamic(() => import("./Scene"), {
@@ -43,9 +27,7 @@ const Scene = dynamic(() => import("./Scene"), {
   loading: () => <div className="p-8 text-dc-muted">Loading map…</div>,
 });
 
-const scene = sceneJson as unknown as SceneData;
 const plan = planJson as unknown as PlanScene;
-const areas = areasJson as Area[];
 
 /** Deep-link zoom over the fitted floor: phones need the footprint pulled in, desktop only a nudge (Scott, 2026-09-12). */
 const FOCUS_ZOOM_MOBILE = 2.2;
@@ -66,17 +48,16 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
 }
 
 /**
- * 3D venue map prototype for the Map tab. Default source: the three floors
- * (G, L1, L2) extruded from the top-down plan SVGs, stacked in 3D until a
- * floor is picked (tap it, or a G/L1/L2 pill); the flat view shows one floor
- * at a time. `?source=iso` opens the isometric-artwork import, kept only to
- * show that importing in that style doesn't work. Drag / swipe turns the
- * floor (horizontal only, clamped), pinch or wheel zooms, double-tap zooms in
- * on a point, a tap on an area opens AreaCard, and re-tapping the Map tab
- * resets the view (useTabReselect). Find (bottom-left) lists every footprint
- * by category and floor and jumps to one — or to every "Toilets" on a floor at
- * once. Desktop: G / 1 / 2 open a floor, F opens Find, Esc closes the card or
- * resets (useMapShortcuts).
+ * 3D venue map prototype for the Map tab: the three floors (G, L1, L2)
+ * extruded from the top-down plan SVGs, stacked in 3D until a floor is picked
+ * (tap it, or slide the floor selector bottom-right). Drag turns the floor
+ * (horizontal only, clamped), right-drag pans, wheel zooms; on phones one
+ * finger pans, two fingers turn and pinch-zoom. Double-tap zooms in on a
+ * point, a tap on an area opens AreaCard, and re-tapping the Map tab resets
+ * the view (useTabReselect). Find (bottom-left) lists every footprint by
+ * category and floor and jumps to one — or to every "Toilets" on a floor at
+ * once. Desktop: 1 / 2 / 3 open a floor, F opens Find, A or Esc close the
+ * card or reset (useMapShortcuts).
  */
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
@@ -92,10 +73,7 @@ export function VenueMap3D() {
   // Tuning panel + stats, toggled from the top-left button (not a URL param: the
   // app-wide dev panel owns `?debug` and carries it across every link).
   const [debug, setDebug] = useState(false);
-  const [settings, setSettings] = useState<MapSettings>(() => ({
-    ...DEFAULT_SETTINGS,
-    source: searchParams.get("source") === "iso" ? "iso" : "plan",
-  }));
+  const [settings, setSettings] = useState<MapSettings>(DEFAULT_SETTINGS);
   const resetRef = useRef<() => void>(() => {});
   const active = usePaneActive();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -111,20 +89,20 @@ export function VenueMap3D() {
     setFindQuery("");
   }, []);
 
-  // Map-tab re-tap: back to the stacked 3D start view (the rig finishes the reset once the pitch change lands).
+  // Map-tab re-tap, Esc, A, the "All" button: back to the stacked start view (the rig finishes the reset once the stack lands).
   const reset = useCallback(() => {
     select(null);
     setFocus(null);
     closeFind();
-    setSettings((s) => (s.view === "3d" && s.level === null ? s : { ...s, view: "3d", level: null }));
+    setSettings((s) => (s.level === null ? s : { ...s, level: null }));
     resetRef.current();
   }, [select, closeFind]);
   useTabReselect(reset);
 
   /**
-   * Show footprints (all on one floor): open that floor on the redraw, select
-   * the one nearest the group's centre, highlight the rest, and send the camera
-   * there (a new `key` re-runs the camera even for the same target).
+   * Show footprints (all on one floor): open that floor, select the one
+   * nearest the group's centre, highlight the rest, and send the camera there
+   * (a new `key` re-runs the camera even for the same target).
    */
   const showShapes = (shapes: PlanShape[], key: string) => {
     if (shapes.length === 0) return;
@@ -135,7 +113,7 @@ export function VenueMap3D() {
     const primary = group
       ? shapes.reduce((best, s) => (Math.hypot(s.centroid[0] - cx, s.centroid[1] - cz) < Math.hypot(best.centroid[0] - cx, best.centroid[1] - cz) ? s : best))
       : shapes[0];
-    setSettings((s) => ({ ...s, source: "plan", level: primary.level }));
+    setSettings((s) => ({ ...s, level: primary.level }));
     setSelected(areaOf(primary));
     setHighlighted(group ? new Set(shapes.map(shapeKey)) : null);
     const [x, z] = group ? [cx, cz] : primary.centroid;
@@ -143,8 +121,8 @@ export function VenueMap3D() {
   };
 
   // Deep link from the schedule ("Show on Map"): `?area=<level>/<layer id>` opens
-  // that floor on the redraw and highlights the footprint. Derived state during
-  // render (guarded), same as AreaCard: keyed on the param and on the pane being
+  // that floor and highlights the footprint. Derived state during render
+  // (guarded), same as AreaCard: keyed on the param and on the pane being
   // active, so a second visit with the same param re-highlights.
   const areaParam = searchParams.get(AREA_PARAM);
   const areaVisit = areaParam && active ? areaParam : null;
@@ -163,33 +141,15 @@ export function VenueMap3D() {
     showShapes(entry.shapes, `find:${entry.key}#${Date.now()}`);
     closeFind();
   };
-  // The top-down camera only makes sense on the redraw; the artwork always shows in 3D.
-  const setSource = useCallback(
-    (source: MapSource) => {
-      select(null);
-      setSettings((s) => ({ ...s, source, view: source === "plan" ? s.view : "3d" }));
-    },
-    [select]
-  );
-  // The flat view shows one floor: ground unless one was already chosen.
-  const setView = useCallback(
-    (view: MapView) => setSettings((s) => ({ ...s, view, level: view === "top" && s.level === null ? "G" : s.level })),
-    []
-  );
-  // Pills and floor taps; re-tapping the active pill returns to the stack (3D only).
+  // Floor taps in the stack and a clean tap on the slider's active stop: re-picking the shown floor returns to the stack.
   const setLevel = useCallback(
     (level: LevelId) => {
       select(null);
-      setSettings((s) => ({ ...s, level: s.level === level ? (s.view === "3d" ? null : level) : level }));
+      setSettings((s) => ({ ...s, level: s.level === level ? null : level }));
     },
     [select]
   );
-  // "All" pill: every floor stacked. The stack only exists in 3D, so from the flat view it also pitches back.
-  const showAll = useCallback(() => {
-    select(null);
-    setSettings((s) => (s.level === null && s.view === "3d" ? s : { ...s, view: "3d", level: null }));
-  }, [select]);
-  // Keyboard: G / 1 / 2 always land on that floor (no toggle back to the stack); Esc is the tab re-tap reset.
+  // Slider, keyboard and Find's floor row: always land on that floor (no toggle back to the stack).
   const showLevel = useCallback(
     (level: LevelId) => {
       select(null);
@@ -197,7 +157,6 @@ export function VenueMap3D() {
     },
     [select]
   );
-  // Find "Level 1" row: just open the floor.
   const pickFloor = (level: LevelId) => {
     showLevel(level);
     closeFind();
@@ -205,14 +164,12 @@ export function VenueMap3D() {
   // Find owns Escape while open (and the user may be typing "1" into its field).
   const openFind = useCallback(() => setFindOpen(true), []);
   const closeCard = useCallback(() => select(null), [select]);
-  useMapShortcuts({ showLevel, reset, openFind, closeCard }, { enabled: settings.source === "plan" && !findOpen, hasCard: selected !== null });
+  useMapShortcuts({ showLevel, reset, openFind, closeCard }, { enabled: !findOpen, hasCard: selected !== null });
 
   return (
     <div className="relative flex-1">
       <Scene
-        scene={scene}
         plan={plan}
-        areas={areas}
         settings={settings}
         selectedId={selected?.id ?? null}
         highlightedIds={highlighted}
@@ -224,31 +181,21 @@ export function VenueMap3D() {
         onSelectLevel={setLevel}
         resetRef={resetRef}
       />
-      <SourceToggle value={settings.source} onChange={setSource} />
-      {settings.source === "plan" && (
-        <>
-          <ViewToggle value={settings.view} onChange={setView} />
-          <LevelToggle levels={plan.levels} value={settings.level} onChange={setLevel} onAll={showAll} />
-        </>
-      )}
-      {/* Bottom controls: Find pill over the legend on phones (Scott), side by side on the pill's row from lg up. */}
-      <div className="pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex flex-col items-start gap-2 lg:inset-x-6 lg:bottom-6 lg:block">
-        {settings.source === "plan" && <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />}
-        <ControlsLegend view={settings.view} pannable={settings.source === "plan"} stacked={settings.source === "plan" && settings.level === null} hidden={selected !== null || findOpen} />
+      <ControlsLegend stacked={settings.level === null} hidden={selected !== null || findOpen} />
+      {/* Bottom controls: Find pill bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17). */}
+      <div className="pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex items-end justify-between lg:inset-x-6 lg:bottom-6">
+        <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />
+        <FloorSlider levels={plan.levels} value={settings.level} onSlide={showLevel} onToggle={setLevel} onAll={reset} />
       </div>
-      {settings.source === "plan" && (
-        <>
-          {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
-          {desktop ? (
-            <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
-              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} inputRef={findInputRef} />
-            </FindPanel>
-          ) : (
-            <FindSheet open={findOpen} onOpenChange={(open) => (open ? setFindOpen(true) : closeFind())}>
-              <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} />
-            </FindSheet>
-          )}
-        </>
+      {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
+      {desktop ? (
+        <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
+          <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} inputRef={findInputRef} />
+        </FindPanel>
+      ) : (
+        <FindSheet open={findOpen} onOpenChange={(open) => (open ? setFindOpen(true) : closeFind())}>
+          <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} />
+        </FindSheet>
       )}
       <AreaCard area={selected} onClose={() => select(null)} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
