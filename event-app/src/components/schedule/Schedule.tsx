@@ -17,6 +17,7 @@ import {
   ListFilter,
   MoveDown,
   MoveUp,
+  Search,
 } from "lucide-react";
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
@@ -396,6 +397,7 @@ export function Schedule() {
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
+  const desktopSearchRef = useRef<HTMLInputElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
@@ -1001,6 +1003,7 @@ export function Schedule() {
                 onChange={setSearch}
                 placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
+                inputRef={desktopSearchRef}
                 resultCount={totalMatches}
               />
               <ViewToggle view={view} onChange={changeView} />
@@ -1034,6 +1037,21 @@ export function Schedule() {
               selectedDay={selectedDay}
               onSelect={selectDay}
               raised={chromeHidden}
+              // The toolbar's search field has scrolled away by the time the
+              // bar pins: this brings the page back to it and focuses it.
+              pinnedLead={
+                <button
+                  onClick={() => {
+                    programmaticScrollRef.current = true;
+                    window.scrollTo({ top: 0, behavior: "auto" });
+                    desktopSearchRef.current?.focus();
+                  }}
+                  className={cn(ghostPill, search && "bg-dc-lavender")}
+                >
+                  <Search className="size-4" />
+                  Search
+                </button>
+              }
             >
               <InterestedPill
                 kind="session"

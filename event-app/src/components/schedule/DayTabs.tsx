@@ -29,6 +29,7 @@ export function DayTabs({
   selectedDay,
   onSelect,
   children,
+  pinnedLead,
   counts,
   raised = false,
 }: {
@@ -43,6 +44,8 @@ export function DayTabs({
   counts?: ReadonlyMap<string, number> | null;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
+  /** Desktop-only control ahead of `children`, shown once the bar is pinned. */
+  pinnedLead?: React.ReactNode;
   /** Mobile: the app header is hidden — pin at the top of the viewport. */
   raised?: boolean;
 }) {
@@ -130,6 +133,7 @@ export function DayTabs({
       </div>
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          {stuck && pinnedLead}
           {children}
         </div>
       )}
