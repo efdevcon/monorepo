@@ -217,7 +217,7 @@ sole email match, else the tab asks.
 - **Swag** shows "Collected" from a Pretix entry check-in on the add-on or
   merchandise position (`positionCollected`); no list configuration, since
   Pretix only records a scan against a list that includes that product.
-- **Meerkat ids are Pretalx codes**: the Q&A feed and hand-off identify a session by `sourceId` via `meerkatEventId()` (`src/data/meerkat.ts`), never by the slug.
+- **Meerkat ids are Pretalx codes**: the Q&A feed and hand-off identify a session by `sourceId` via `meerkatEventId()` (`src/data/meerkat.ts`); the slug is only a one-time retry after a 404 on the code (`SessionQA`), for sessions Meerkat created under it.
 - **Q&A eligibility** (`/api/meerkat/go`, a cookie-authenticated redirect) and the ENS perk (`/api/ticket-proof`)
   resolve tickets with `getTicketsForUser`, so attached tickets count.
 - **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live

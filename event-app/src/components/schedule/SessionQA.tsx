@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { useMemo, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import {
   ArrowUpRight,
   Check,
@@ -16,6 +16,8 @@ import {
   type Question,
 } from "@meerkat-events/react";
 import { Link } from "@/routing";
+import type { Session } from "@/data/models";
+import { meerkatEventId } from "@/data/meerkat";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { useUser } from "@/data/auth/useUser";
 import { useOnline } from "@/hooks/useOnline";
@@ -35,14 +37,23 @@ type Size = "sm" | "md";
  * recovers on reconnect.
  */
 export function SessionQA({
-  sessionId,
+  session,
   size = "md",
 }: {
-  /** Meerkat's event id for the session: the Pretalx code, see meerkatEventId(). */
-  sessionId: string;
+  session: Pick<Session, "id" | "sourceId">;
   size?: Size;
 }) {
   const online = useOnline();
+  // Meerkat keys events by the Pretalx code (meerkatEventId). Sessions it
+  // created under our slug instead (the DC7 test session) still answer on the
+  // slug, so a 404 on the code retries once with it; the feed remounts on the
+  // new id. Keyed by session so a fallback never carries over to another one.
+  const [slugFor, setSlugFor] = useState<string | null>(null);
+  const primary = meerkatEventId(session);
+  const slug = session.id !== primary ? session.id : null;
+  const active = slug && slugFor === session.id ? slug : primary;
+  const onNotFound = slug && active === primary ? () => setSlugFor(session.id) : undefined;
+
   if (!online) {
     return (
       <div className="flex flex-col gap-3">
@@ -53,7 +64,7 @@ export function SessionQA({
   }
   return (
     <MeerkatProvider>
-      <QAFeed sessionId={sessionId} size={size} />
+      <QAFeed key={active} sessionId={active} size={size} onNotFound={onNotFound} />
     </MeerkatProvider>
   );
 }
@@ -97,7 +108,17 @@ function QAHeading({ size, count, live }: { size: Size; count?: number; live?: b
   );
 }
 
-function QAFeed({ sessionId, size }: { sessionId: string; size: Size }) {
+function QAFeed({
+  sessionId,
+  size,
+  onNotFound,
+}: {
+  /** Meerkat's event id: the Pretalx code, or the slug on the retry. */
+  sessionId: string;
+  size: Size;
+  /** Present while another id is still worth trying: called on a 404 instead of showing "not open". */
+  onNotFound?: () => void;
+}) {
   const { user } = useUser();
   const mock = useMockQuestions();
   // Realtime: one SSE stream per mounted feed (the side panel unmounts its
@@ -110,7 +131,13 @@ function QAFeed({ sessionId, size }: { sessionId: string; size: Size }) {
     : live;
   // Meerkat answers 404 for a session it has no Q&A for: not an error to the
   // attendee, and no hand-off link either (Meerkat would 404 on that too).
-  const notOpen = error instanceof FetchError && error.status === 404;
+  // With a fallback id still to try, the parent swaps ids instead.
+  const notFound = error instanceof FetchError && error.status === 404;
+  const retrying = notFound && !!onNotFound;
+  useEffect(() => {
+    if (retrying) onNotFound?.();
+  }, [retrying, onNotFound]);
+  const notOpen = notFound && !onNotFound;
   const standalone = useStandalone();
 
   return (
@@ -146,6 +173,8 @@ function QAFeed({ sessionId, size }: { sessionId: string; size: Size }) {
 
       {notOpen ? (
         <QuietLine>Q&amp;A isn&apos;t open for this session yet.</QuietLine>
+      ) : retrying ? (
+        <p className="text-[14px] leading-5 text-dc-muted">Loading questions…</p>
       ) : error ? (
         <p className="text-[14px] leading-5 text-red-500">
           Couldn&apos;t load questions.{" "}
