@@ -132,10 +132,13 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           the bar rather than growing the header. */}
       <div id={HEADER_DRAWER_ID} className="absolute inset-x-0 top-full lg:hidden" />
 
-      {/* Desktop: full-bleed glass bar, content centered at ~1440px.
+      {/* Desktop: full-bleed glass bar. The inner row shares the pages' 1312px
+          column and gutters so the logo lines up with the content's left edge,
+          and it's a 1fr/auto/1fr grid so the menu is centred on the screen
+          whatever the logo and the right-hand controls measure.
           --safe-top matters here too (iPad PWA). */}
-      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-16">
-        <div className="mx-auto flex w-full max-w-[1440px] items-center gap-10">
+      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-0">
+        <div className="mx-auto grid w-full max-w-[1312px] grid-cols-[1fr_auto_1fr] items-center gap-6">
         <Link href="/" prefetch className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -146,7 +149,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
             className="h-10 w-auto"
           />
         </Link>
-        <nav className="flex min-w-0 items-center gap-2">
+        <nav className="flex min-w-0 items-center justify-center gap-2">
           {items.map((item) => {
             const active = isNavActive(pathname, item.href);
             return (
@@ -185,7 +188,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
         </nav>
         {/* Same offline marker as the mobile bar: laptops on venue wifi drop
             out too, and the schedule they show may be from an earlier sync. */}
-        <div className="ml-auto flex shrink-0 items-center">
+        <div className="flex shrink-0 items-center justify-end">
           <OfflineIndicator />
         </div>
         </div>
