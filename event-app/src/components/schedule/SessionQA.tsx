@@ -57,8 +57,12 @@ export function SessionQA({
   );
 }
 
-/** "Live Q&A (N)" left, "Powered by Meerkat" right, sized like SessionSpeakers. */
-function QAHeading({ size, count }: { size: Size; count?: number }) {
+/**
+ * "Live Q&A (N)" left, "Powered by Meerkat" right, sized like SessionSpeakers.
+ * `live`: the SSE stream is connected, shown as a small green dot so a stalled
+ * stream is visible without opening devtools.
+ */
+function QAHeading({ size, count, live }: { size: Size; count?: number; live?: boolean }) {
   return (
     <div className="flex items-baseline justify-between gap-3">
       <h2
@@ -74,10 +78,18 @@ function QAHeading({ size, count }: { size: Size; count?: number }) {
       </h2>
       <span
         className={cn(
-          "text-dc-muted",
+          "inline-flex items-center gap-1.5 text-dc-muted",
           size === "md" ? "text-[14px] leading-5" : "text-[12px] leading-4"
         )}
       >
+        {live && (
+          <span
+            className="size-1.5 rounded-full bg-emerald-500"
+            role="img"
+            aria-label="Live updates connected"
+            title="Live updates connected"
+          />
+        )}
         Powered by Meerkat
       </span>
     </div>
@@ -87,10 +99,11 @@ function QAHeading({ size, count }: { size: Size; count?: number }) {
 function QAFeed({ sessionId, size }: { sessionId: string; size: Size }) {
   const { user } = useUser();
   const mock = useMockQuestions();
-  // Realtime (SSE) stays off for now: every mounted feed would hold its own
-  // stream. SWR still revalidates when the tab regains focus, which covers
-  // coming back from Meerkat after asking.
-  const live = useQuestions({ sessionId, sort: "popular", realtime: false });
+  // Realtime: one SSE stream per mounted feed (the side panel unmounts its
+  // feed while the fullscreen page is open, so a session holds at most one).
+  // Enabled 2026-09-17 for testing, pending Meerkat's OK on the connection
+  // load at venue scale; SWR still revalidates on focus as the fallback.
+  const live = useQuestions({ sessionId, sort: "popular", realtime: true });
   const { data: questions, isLoading, error } = mock
     ? { data: mock, isLoading: false, error: undefined }
     : live;
@@ -101,7 +114,7 @@ function QAFeed({ sessionId, size }: { sessionId: string; size: Size }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <QAHeading size={size} count={questions?.length} />
+      <QAHeading size={size} count={questions?.length} live={!mock && live.isConnected} />
 
       {!notOpen && (
         <div className="text-[14px] leading-5">

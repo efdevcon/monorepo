@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import cn from "classnames";
 import QRCode from "qrcode";
 import { Clock, Users } from "lucide-react";
@@ -9,20 +9,31 @@ import { useEvent, useRoom, useSessions } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
-import { eventFmt } from "@/data/eventTime";
-import { getTrackTheme } from "@/components/schedule/trackTheme";
+import { eventDayKey, eventFmt } from "@/data/eventTime";
+import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
+import { MEERKAT_URL, meerkatStageUrl } from "@/app/api/meerkat/handover";
+import { roomIconUrl } from "./roomIcon";
 
-// Adapter for the retired trackColor(): the DC8 theme drives the pastel bg;
-// text stays the fixed dark foreground the new track system uses everywhere.
+/**
+ * One design unit: 1% of a 16:9 box fitted inside the viewport (1vw on a
+ * 16:9 screen, height-limited on wider or shorter windows such as a laptop
+ * with browser chrome). Every size in the kiosk is em off a root font of one
+ * unit, so a 1080p TV, a 4K TV and a 1440x900 laptop show the same
+ * composition and nothing is ever clipped. Leaf text sets its own em size;
+ * containers only space with em so sizes never compound.
+ */
+const KIOSK_STYLE = {
+  "--u": "min(1vw, 1.7778vh)",
+  fontSize: "calc(1 * var(--u))",
+} as CSSProperties;
+
+/** Pastel track surface + the fixed dark foreground the track system uses. */
 const trackColor = (track: string | undefined) => {
   const theme = getTrackTheme(track);
   return { bg: theme.neutral ? "#f5f1fe" : theme.color, fg: "#1a0d33" };
 };
 
-const GRADIENT = "linear-gradient(to right, #7a3aff, #633cff, #bc52f1)";
-const GLASS = "bg-white/80 backdrop-blur-[10px]";
-
-/** "45 min" / "2 hours" / "1 day" — coarse human duration. */
+/** "45 min" / "2 hours" / "1 day": coarse human duration. */
 function humanize(mins: number): string {
   if (mins < 60) return `${mins} min`;
   const h = Math.round(mins / 60);
@@ -31,30 +42,21 @@ function humanize(mins: number): string {
   return `${d} day${d > 1 ? "s" : ""}`;
 }
 
-/** Track / type / expertise pill (mirrors devcon's SessionBar). */
-function SessionBar({ session }: { session: Session }) {
+/** Type / expertise / track pills for the session on screen. */
+function SessionTags({ session }: { session: Session }) {
   const color = trackColor(session.track);
+  const pill = "rounded-full px-[0.9em] py-[0.35em] text-[0.8em] font-bold uppercase leading-none tracking-[0.04em]";
   return (
-    <div
-      className="flex items-center gap-[0.5em] self-start rounded-full border border-solid border-[#dfd8fc] p-[0.4em] pr-[1em]"
-      style={{ backgroundColor: color.bg }}
-    >
-      {session.type && (
-        <p className="rounded-full bg-[#dfd8fc] px-[0.75em] py-[0.25em] text-[0.75vw] font-bold uppercase">
-          {session.type}
-        </p>
-      )}
+    <div className="flex flex-wrap items-center gap-[0.5em]">
+      {session.type && <span className={cn(pill, "bg-[#dfd8fc] text-dc-fg2")}>{session.type}</span>}
       {session.expertise && (
-        <p className="rounded-full bg-white px-[0.75em] py-[0.25em] text-[0.75vw] font-bold uppercase">
-          {session.expertise}
-        </p>
+        <span className={cn(pill, "border border-dc-hairline bg-white text-dc-fg2")}>{session.expertise}</span>
       )}
-      <p
-        className="ml-[0.5em] text-[0.75vw] font-semibold uppercase"
-        style={{ color: color.fg }}
-      >
-        {session.track}
-      </p>
+      {session.track && (
+        <span className={pill} style={{ backgroundColor: color.bg, color: color.fg }}>
+          {trackFullLabel(session.track)}
+        </span>
+      )}
     </div>
   );
 }
@@ -63,7 +65,7 @@ function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
   if (avatar) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={avatar} alt={name} className="h-full w-full rounded-full object-cover" />
+      <img src={avatar} alt="" className="size-full rounded-full object-cover" />
     );
   }
   const initials = name
@@ -73,328 +75,401 @@ function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
     .join("")
     .toUpperCase();
   return (
-    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#dfd8fc] font-bold text-[#7D52F4]">
+    <div className="flex size-full items-center justify-center rounded-full bg-[#dfd8fc] text-[0.9em] font-bold text-dc-purple">
       {initials}
     </div>
   );
 }
 
-/** Compact upcoming-session card. */
-function UpcomingCard({ session }: { session: Session }) {
-  const color = trackColor(session.track);
+const MAX_SPEAKERS = 4;
+
+/** Speakers as wrapping chips, capped so a panel never pushes the description off screen. */
+function Speakers({ session }: { session: Session }) {
+  const shown = session.speakers.slice(0, MAX_SPEAKERS);
+  const rest = session.speakers.length - shown.length;
+  if (shown.length === 0) return null;
   return (
-    <div className="mb-[0.5em] flex gap-[0.75em] rounded-xl border border-solid border-[#dfd8fc] p-[0.75em]">
-      <div className="shrink-0 text-[1.25vw] font-bold tabular-nums">
-        {formatTime(session.start)}
-      </div>
-      <div className="min-w-0">
-        <p className="line-clamp-3 text-[1vw] font-semibold leading-snug">
-          {session.title}
-        </p>
-        {session.track && (
-          <span
-            className="mt-[0.3em] inline-block rounded-full px-[0.6em] py-[0.15em] text-[0.75vw] font-medium"
-            style={{ backgroundColor: color.bg, color: color.fg }}
-          >
-            {session.track}
+    <ul className="flex flex-wrap items-center gap-x-[1.6em] gap-y-[0.7em]">
+      {shown.map((speaker) => (
+        <li key={speaker.id} className="flex items-center gap-[0.7em]">
+          <span className="size-[3.2em] shrink-0 overflow-hidden rounded-full ring-[0.15em] ring-white">
+            <SpeakerAvatar name={speaker.name} avatar={speaker.avatar || undefined} />
+          </span>
+          <span className="text-[1.4em] font-semibold leading-tight text-dc-fg2">{speaker.name}</span>
+        </li>
+      ))}
+      {rest > 0 && (
+        <li className="rounded-full bg-[#dfd8fc] px-[1em] py-[0.5em] text-[1.05em] font-semibold text-dc-fg2">
+          +{rest} more
+        </li>
+      )}
+    </ul>
+  );
+}
+
+/** Upcoming-session row in the side rail; the first one carries the countdown. */
+function UpcomingCard({ session, nowMs, first }: { session: Session; nowMs: number; first: boolean }) {
+  const color = trackColor(session.track);
+  const otherDay = eventDayKey(session.start * 1000) !== eventDayKey(nowMs);
+  return (
+    <li
+      className={cn(
+        "flex gap-[1em] rounded-2xl border p-[1.1em]",
+        first ? "border-dc-purple/30 bg-white" : "border-dc-hairline bg-white/60"
+      )}
+    >
+      <div className="flex shrink-0 flex-col items-start gap-[0.35em]">
+        <span className="text-[1.5em] font-bold leading-none tabular-nums text-dc-fg2">{formatTime(session.start)}</span>
+        {otherDay && (
+          <span className="text-[0.8em] font-semibold uppercase leading-none tracking-[0.04em] text-dc-muted">
+            {eventFmt("en-US", { weekday: "short" }).format(new Date(session.start * 1000))}
+          </span>
+        )}
+        {first && (
+          <span className="rounded-full bg-dc-purple px-[0.6em] py-[0.25em] text-[0.75em] font-bold leading-none text-white">
+            in {humanize(minutesUntil(session, nowMs))}
           </span>
         )}
       </div>
-    </div>
+      <div className="flex min-w-0 flex-col gap-[0.45em]">
+        <p className="line-clamp-2 text-[1.15em] font-semibold leading-snug text-dc-fg2">{session.title}</p>
+        <p className="flex flex-wrap items-center gap-[0.4em] text-[0.8em] leading-none text-dc-muted">
+          {session.track && (
+            <span className="rounded-full px-[0.7em] py-[0.3em] font-medium" style={{ backgroundColor: color.bg, color: color.fg }}>
+              {trackFullLabel(session.track)}
+            </span>
+          )}
+          {session.speakers.length > 0 && (
+            <span className="truncate">
+              {session.speakers.slice(0, 2).map((sp) => sp.name).join(", ")}
+              {session.speakers.length > 2 ? ` +${session.speakers.length - 2}` : ""}
+            </span>
+          )}
+        </p>
+      </div>
+    </li>
   );
 }
 
 /**
- * Full-screen room kiosk modeled on the devcon-app room screen: a 26/74
- * widescreen split that scales with the viewport (vw units), the live (or
- * next-up) session shown large, speakers, description, a QR + livestream box,
- * an upcoming list, and a notifications ticker. Pure Tailwind + inline styles
- * (no SCSS). Isolated under components/room-screen.
+ * QR tile in the Scan box: the code above a coloured label. The whole tile
+ * links to the same URL so the screen is usable on a laptop too (a TV never
+ * clicks); the app link is relative to stay hydration-safe, the QR itself
+ * always encodes the absolute URL.
+ */
+function QrTile({
+  qr,
+  href,
+  alt,
+  label,
+  color,
+}: {
+  qr: string;
+  href: string;
+  alt: string;
+  label: string;
+  color: string;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="flex w-[10em] flex-col items-center gap-[0.6em]">
+      <span className="flex aspect-square w-full items-center justify-center rounded-2xl border border-dc-hairline bg-white p-[0.6em]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={qr} alt={alt} className="size-full" />
+      </span>
+      <span
+        className="w-full rounded-full px-[0.8em] py-[0.5em] text-center text-[0.85em] font-semibold leading-tight text-white"
+        style={{ backgroundColor: color }}
+      >
+        {label}
+      </span>
+    </a>
+  );
+}
+
+/** Full-screen surface shared by the kiosk and its loading / error / end-of-day states. */
+function Surface({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={cn("fixed inset-0 z-[60] overflow-hidden font-heading leading-[1.35] text-dc-fg2", className)}
+      style={KIOSK_STYLE}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Message({ children }: { children: React.ReactNode }) {
+  return (
+    <Surface className="flex items-center justify-center bg-[#0e0a1f] text-white">
+      <p className="text-[1.6em]">{children}</p>
+    </Surface>
+  );
+}
+
+/**
+ * Full-screen room kiosk for the TVs at each room door, and the same page on
+ * a laptop for the AV desk. A branded header (room, seats, date, big clock),
+ * then the session on screen in a panel topped with its track colour (status
+ * and time range, title, speakers, description, live progress, QR codes for
+ * the app, the livestream and Meerkat's presenter view) beside a rail of what
+ * follows, and the notifications ticker along the bottom. Sized entirely in design units (see KIOSK_STYLE), so it fits
+ * any 16:9 TV and any laptop window. Isolated under components/room-screen.
  */
 export function RoomScreen({ roomId }: { roomId: string }) {
   const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
   const { sessions, isLoading: sessionsLoading } = useSessions({ roomId });
+  const { event } = useEvent();
 
-  const sorted = useMemo(
-    () => [...sessions].sort((a, b) => a.start - b.start),
-    [sessions]
-  );
+  const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);
   const upcomingSessions = useMemo(
-    () => sorted.filter((s) => s.start * 1000 > nowMs).slice(0, 3),
+    () => sorted.filter((s) => s.start * 1000 > nowMs).slice(0, 5),
     [sorted, nowMs]
   );
   const currentSession = useMemo(() => {
     const live = sorted.find((s) => getStatus(s, nowMs) === "live");
     return live ?? upcomingSessions[0] ?? null;
   }, [sorted, nowMs, upcomingSessions]);
-  const sessionIsLive = currentSession
-    ? getStatus(currentSession, nowMs) === "live"
-    : false;
+  const sessionIsLive = currentSession ? getStatus(currentSession, nowMs) === "live" : false;
+  // The list beside the Scan box: what follows the session on screen.
+  const laterSessions = useMemo(
+    () => upcomingSessions.filter((s) => s.id !== currentSession?.id),
+    [upcomingSessions, currentSession]
+  );
+  const nextSession = laterSessions[0] ?? null;
 
-  const [qr, setQr] = useState<string | null>(null);
+  const [qr, setQr] = useState<{ sessionId: string; url: string } | null>(null);
+  const qrSessionId = currentSession?.id ?? null;
   useEffect(() => {
-    if (!currentSession) return setQr(null);
+    if (!qrSessionId) return;
+    let cancelled = false;
     const origin = typeof window !== "undefined" ? window.location.origin : "";
-    QRCode.toDataURL(`${origin}/schedule/${currentSession.id}`, {
-      margin: 1,
-      width: 256,
-    })
-      .then(setQr)
-      .catch(() => setQr(null));
-  }, [currentSession]);
+    QRCode.toDataURL(`${origin}/schedule/${qrSessionId}`, { margin: 1, width: 512 })
+      .then((url) => {
+        if (!cancelled) setQr({ sessionId: qrSessionId, url });
+      })
+      .catch(() => {
+        // Nothing to scan for this session.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [qrSessionId]);
+  const appQr = qr && qr.sessionId === qrSessionId ? qr.url : null;
 
-  const { event } = useEvent();
-  const streamUrl = streamUrlForDay(room ?? undefined, nowMs, event?.startDate);
-  const [streamQr, setStreamQr] = useState<string | null>(null);
-
+  // "See questions" QR to Meerkat's presenter view for this room's stage
+  // (Meerkat stages are our room names): it follows whatever is live or next
+  // there, so one code serves the whole day. Shown only when Meerkat lists sessions
+  // for the stage: a room screen is online by definition, and a QR into a 404
+  // is worse than none. Keyed by stage so a stale code never lingers.
+  const stage = room?.name ?? null;
+  const [qaQr, setQaQr] = useState<{ stage: string; url: string } | null>(null);
   useEffect(() => {
-    if (!streamUrl) {
-      setStreamQr(null);
-      return;
-    }
-    QRCode.toDataURL(streamUrl, { margin: 1, width: 256 })
-      .then(setStreamQr)
-      .catch(() => setStreamQr(null));
+    if (!stage) return;
+    let cancelled = false;
+    fetch(`${MEERKAT_URL}/api/v1/events?stage=${encodeURIComponent(stage)}`, {
+      headers: { Accept: "application/json" },
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((body: { data?: unknown[] } | null) =>
+        body?.data?.length ? QRCode.toDataURL(meerkatStageUrl(stage), { margin: 1, width: 512 }) : null
+      )
+      .then((url) => {
+        if (!cancelled && url) setQaQr({ stage, url });
+      })
+      .catch(() => {
+        // Meerkat unreachable: no QR for this stage.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [stage]);
+  const qaQrUrl = qaQr && qaQr.stage === stage ? qaQr.url : null;
+
+  const streamUrl = streamUrlForDay(room ?? undefined, nowMs, event?.startDate);
+  const [streamQr, setStreamQr] = useState<{ streamUrl: string; url: string } | null>(null);
+  useEffect(() => {
+    if (!streamUrl) return;
+    let cancelled = false;
+    QRCode.toDataURL(streamUrl, { margin: 1, width: 512 })
+      .then((url) => {
+        if (!cancelled) setStreamQr({ streamUrl, url });
+      })
+      .catch(() => {
+        // No stream QR.
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [streamUrl]);
+  const streamQrUrl = streamQr && streamQr.streamUrl === streamUrl ? streamQr.url : null;
 
   if (!APP_CONFIG.ROOMS_ENABLED) {
-    return <div className="p-4 text-gray-500">Room screens are not enabled</div>;
+    return <div className="p-4 text-dc-muted">Room screens are not enabled</div>;
   }
+  if (roomLoading || sessionsLoading) return <Message>Loading…</Message>;
+  if (isError || !room) return <Message>{error?.message || "Room not found"}</Message>;
 
-  if (roomLoading || sessionsLoading) {
-    return (
-      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#0e0a1f] text-white">
-        Loading…
-      </div>
-    );
-  }
-
-  if (isError || !room) {
-    return (
-      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#0e0a1f] text-white">
-        {error?.message || "Room not found"}
-      </div>
-    );
-  }
-
-  // Fallback "thank you" screen.
+  // End of day.
   if (!currentSession) {
     return (
-      <div className="fixed inset-0 z-[60] flex h-screen w-screen items-center justify-center overflow-hidden">
+      <Surface className="flex items-center justify-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/login/backdrop.jpg" alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(71,4,218,0.6), rgba(14,10,31,0.4))" }} />
-        <div className="relative flex flex-col items-center justify-center p-[1em] text-center text-white">
-          <div className="text-[3vw] font-bold">{APP_CONFIG.APP_NAME}</div>
-          <div className="text-[2vw]">No more sessions in {room.name} today.</div>
-          <p className="text-[1.25vw]">Thank you for attending! 🙏</p>
+        <img src="/login/backdrop.jpg" alt="" className="absolute inset-0 size-full object-cover" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to top, rgba(71,4,218,0.6), rgba(14,10,31,0.4))" }}
+        />
+        <div className="relative flex flex-col items-center gap-[0.6em] p-[2em] text-center text-white">
+          <p className="text-[3em] font-bold leading-none">{APP_CONFIG.APP_NAME}</p>
+          <p className="text-[2em]">No more sessions in {room.name} today.</p>
+          <p className="text-[1.25em]">Thank you for attending!</p>
         </div>
-      </div>
+      </Surface>
     );
   }
 
+  const dateLabel = eventFmt("en-US", { weekday: "long", month: "short", day: "numeric" }).format(new Date(nowMs));
+  const roomIcon = roomIconUrl(room.id);
   const color = trackColor(currentSession.track);
+  const progress = sessionIsLive
+    ? Math.min(1, Math.max(0, (nowMs / 1000 - currentSession.start) / (currentSession.end - currentSession.start)))
+    : 0;
 
   return (
-    <div className="fixed inset-0 z-[60] flex h-screen w-screen overflow-hidden text-[1.5vw] leading-[1.5em]">
-      {/* LEFT — branding, clock, room image, capacity, next-session gradient */}
-      <div className="flex w-[26%] flex-col border-r border-[#dddddd]">
-        <div className="relative flex h-[81.5%] grow flex-col overflow-hidden bg-[#f2efff]">
-          <div className="m-[0.3em] flex items-center justify-between p-[1em]">
-            <p className="text-[1.5vw] font-bold text-[#6B54AB]">
-              {APP_CONFIG.APP_NAME}
-            </p>
+    <Surface className="grid grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)_auto] bg-[#f9f8fa]">
+      {/* HEADER: room identity on the Devcon art, date and a big clock */}
+      <header className="relative flex h-[8em] items-center justify-between overflow-hidden px-[2em] text-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/login/backdrop.jpg" alt="" className="absolute inset-0 size-full object-cover" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, rgba(22,11,43,0.85) 0%, rgba(71,4,218,0.55) 60%, rgba(22,11,43,0.7) 100%)" }}
+        />
+        <div className="relative flex min-w-0 items-center gap-[1.2em]">
+          {roomIcon && (
+            // The stage's theme crest (Masks, Fans, ...), same art as on the venue map.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={roomIcon} alt="" className="h-[5.6em] w-auto shrink-0 drop-shadow-[0_0.15em_0.5em_rgba(0,0,0,0.35)]" />
+          )}
+          <div className="flex min-w-0 flex-col">
+            <h2 className="truncate text-[3em] font-bold leading-[1.25] tracking-[-0.01em]">{room.name}</h2>
+            {room.description && <p className="truncate text-[1.4em] leading-[1.3] opacity-85">{room.description}</p>}
           </div>
-
-          <div className="m-[0.3em] flex justify-between p-[1em]">
-            <p className="ml-[0.2em] text-[1.5vw] text-black">
-              {eventFmt("en-US", { weekday: "long", month: "short", day: "numeric" }).format(new Date(nowMs))}
+        </div>
+        <div className="relative flex shrink-0 items-center gap-[2em]">
+          {room.capacity != null && (
+            <p className="flex items-center gap-[0.5em] text-[1.2em] leading-none opacity-90">
+              <Users className="size-[1.3em]" />
+              {room.capacity} seats
             </p>
-            <p className="mr-[0.5em] flex items-center gap-[0.75em] text-[1.25vw] font-bold text-black">
-              <Clock className="h-[1.5em] w-[1.5em]" style={{ color: "#7D52F4" }} />
+          )}
+          <div className="flex flex-col items-end gap-[0.35em]">
+            <p className="text-[1.2em] leading-none opacity-90">{dateLabel}</p>
+            <p className="flex items-center gap-[0.4em] text-[2.6em] font-bold leading-none tabular-nums">
+              <Clock className="size-[0.8em] opacity-80" />
               {formatTime(nowMs / 1000)}
             </p>
           </div>
+        </div>
+      </header>
 
-          {/* Room image with gradient-overlaid title */}
-          <div className="relative grow">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/login/backdrop.jpg" alt={room.name} className="h-full w-full object-cover" />
-            <div className="absolute inset-0 p-[1.5vw] text-white">
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "linear-gradient(to bottom, rgba(122,58,255,0.5), transparent)" }}
-              />
-              <p className="relative text-[2vw] font-bold">
-                {room.name}
-                {room.description ? ` - ${room.description}` : ""}
+      {/* BODY: the session on screen, and the rail of what follows */}
+      <main className="grid min-h-0 grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-[2em] p-[2em]">
+        <section
+          className="relative flex min-h-0 flex-col gap-[1em] overflow-hidden rounded-3xl border border-dc-hairline bg-white p-[2em]"
+          style={{ borderTopColor: color.bg, borderTopWidth: "0.5em" }}
+        >
+          <div className="flex shrink-0 flex-wrap items-center gap-x-[1.2em] gap-y-[0.5em]">
+            {sessionIsLive ? (
+              <p className="flex items-center gap-[0.5em] text-[1.3em] font-bold leading-none text-[#e11d48]">
+                <span className="size-[0.6em] rounded-full bg-[#e11d48] motion-safe:animate-pulse" />
+                Happening now
               </p>
-            </div>
+            ) : (
+              <p className="text-[1.3em] font-bold leading-none text-dc-purple">
+                Starts in {humanize(minutesUntil(currentSession, nowMs))}
+              </p>
+            )}
+            <p className="text-[1.3em] leading-none tabular-nums text-dc-muted">
+              {formatTime(currentSession.start)} – {formatTime(currentSession.end)}
+            </p>
+            <SessionTags session={currentSession} />
           </div>
 
-          {room.capacity != null && (
-            <div className="flex w-full items-center justify-between bg-[#f8f4ff] px-[1.5vw] py-[1vw]">
-              <p className="text-[1.25vw]">
-                Room Capacity:{" "}
-                <span className="font-semibold">{room.capacity}</span>
-              </p>
-              <Users className="h-[2.2em] w-[2.2em]" style={{ color: "#765BE6" }} />
+          <h1 className="line-clamp-2 shrink-0 text-[3em] font-bold leading-[1.08] tracking-[-0.015em] text-dc-fg2">
+            {currentSession.title}
+          </h1>
+          <div className="shrink-0">
+            <Speakers session={currentSession} />
+          </div>
+          {currentSession.description && (
+            <p className="line-clamp-3 shrink-0 text-[1.15em] leading-[1.4] text-dc-fg2/80">{currentSession.description}</p>
+          )}
+
+          {sessionIsLive && (
+            <div className="h-[0.5em] w-full shrink-0 overflow-hidden rounded-full bg-[#eee9fb]" aria-hidden>
+              <div className="h-full rounded-full bg-dc-purple transition-[width] duration-1000" style={{ width: `${progress * 100}%` }} />
             </div>
           )}
-        </div>
 
-        <div
-          className="flex flex-col justify-between p-[1.5vw] text-white"
-          style={{ background: GRADIENT }}
-        >
-          {upcomingSessions.length > 0 && (
-            <div className="flex items-center justify-between">
-              <p className="text-[1.25vw] font-bold">Next Session</p>
-              <p className="text-[2vw]">
-                {humanize(minutesUntil(upcomingSessions[0], nowMs))}
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* RIGHT — current session, speakers, description, QR, upcoming, ticker */}
-      <div className="relative box-border flex w-[74%] flex-col px-[2vw] pb-[2vw] pt-0">
-        <div className="relative flex grow justify-between border-b border-[#dddddd] py-[0.5vw] pb-0">
-          <div className="flex w-[60%] flex-col gap-4">
-            <div className="flex items-center gap-[0.5em]">
-              <SessionBar session={currentSession} />
-              {sessionIsLive ? (
-                <p className="ml-[1vw] mt-[1vw] text-[1.25vw] font-bold text-red-600">
-                  Happening Now
-                </p>
-              ) : (
-                <p className="ml-[1vw] mt-[1vw] text-[1.25vw] font-bold">
-                  Starts in {humanize(minutesUntil(currentSession, nowMs))}
-                </p>
+          {/* Scan row anchored to the bottom of the panel */}
+          <div className="mt-auto flex shrink-0 items-end justify-between gap-[2em] pt-[0.5em]">
+            <div className="flex flex-wrap items-start gap-[1.6em]">
+              {appQr && (
+                <QrTile qr={appQr} href={`/schedule/${currentSession.id}`} alt="Session QR code" label="Open in app" color="#7D52F4" />
+              )}
+              {streamQrUrl && streamUrl && (
+                <QrTile qr={streamQrUrl} href={streamUrl} alt="Livestream QR code" label="Watch livestream" color="#e11d48" />
+              )}
+              {qaQrUrl && stage && (
+                <QrTile qr={qaQrUrl} href={meerkatStageUrl(stage)} alt="Live Q&A QR code" label="See questions" color="#059669" />
               )}
             </div>
-
-            <p className="line-clamp-3 text-[2.5vw] !leading-[1.3em]">
-              {currentSession.title}
+            <p className="max-w-[18em] text-right text-[1em] leading-snug text-dc-muted">
+              Scan to open the session in the app, watch the livestream if the room is full, or follow the questions.
             </p>
-
-            <div className="flex grow flex-col justify-end">
-              <div className="flex items-center">
-                {currentSession.speakers.map((speaker, i) => (
-                  <div
-                    className={cn(
-                      "flex shrink-0 items-center p-[0.2em] py-[0.8em]",
-                      GLASS,
-                      i === currentSession.speakers.length - 1 && "rounded-tr-2xl"
-                    )}
-                    key={speaker.id}
-                  >
-                    <div className="mr-[0.5vw] flex items-center">
-                      <div className="relative h-[4vw] w-[4vw]">
-                        <SpeakerAvatar name={speaker.name} avatar={speaker.avatar} />
-                      </div>
-                    </div>
-                    <p className="font-bold">{speaker.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
+        </section>
 
-          {/* Track-colored watermark (replaces devcon's track logo image) */}
-          <div
-            className="absolute bottom-0 right-0 z-[-2] h-full w-[60%]"
-            style={{ background: `radial-gradient(circle at 70% 60%, ${color.bg}, transparent 70%)` }}
-          />
-        </div>
+        <aside className="flex min-h-0 flex-col gap-[1em]">
+          <h2 className="text-[1.4em] font-bold leading-none text-dc-fg2">Up next in this room</h2>
+          {laterSessions.length > 0 ? (
+            <ul
+              className="flex min-h-0 flex-col gap-[0.8em] overflow-hidden"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 88%, transparent)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 88%, transparent)",
+              }}
+            >
+              {laterSessions.map((session, i) => (
+                <UpcomingCard key={session.id} session={session} nowMs={nowMs} first={i === 0} />
+              ))}
+            </ul>
+          ) : (
+            <p className="rounded-2xl border border-dc-hairline bg-white/60 p-[1.1em] text-[1.1em] text-dc-muted">
+              No more sessions in this room today.
+            </p>
+          )}
+        </aside>
+      </main>
 
-        {currentSession.description && (
-          <div className="border-b border-[#dddddd] pb-[1vw]">
-            <p className="py-[1vw] font-bold text-black">Description</p>
-            <p className="line-clamp-3 text-[1vw]">{currentSession.description}</p>
-          </div>
-        )}
-
-        <div className="flex grow">
-          <div className="flex shrink-0 grow-0 basis-1/2 flex-row">
-            <div className="flex flex-col">
-              <p className="py-[1vw] font-bold text-black">Resources / Livestreams</p>
-              <p className="text-[1vw]">
-                View the session in the app for more information.
-              </p>
-              <p className="mt-[1vw] text-[1vw]">
-                If the room is full, please watch the session on livestream.
-              </p>
-            </div>
-
-            <div className="mx-[1em] mt-[5em] flex flex-col items-center justify-center">
-              <div className="flex aspect-square shrink-0 items-center justify-center rounded-2xl border border-solid border-[#dfd8fc] p-[1em]">
-                {qr && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={qr}
-                    alt="Session QR code"
-                    style={{ height: "auto", maxWidth: "10em", width: "100%" }}
-                  />
-                )}
-              </div>
-              <p className="mt-[0.7em] shrink-0 rounded-2xl bg-[#7D52F4] px-[1em] py-[0.5em] text-center text-[0.75vw] font-semibold !leading-[1.2em] text-white">
-                Open in app
-              </p>
-            </div>
-
-            {streamQr && (
-              <div className="mx-[1em] mt-[5em] flex flex-col items-center justify-center">
-                <div className="flex aspect-square shrink-0 items-center justify-center rounded-2xl border border-solid border-[#dfd8fc] p-[1em]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={streamQr}
-                    alt="Livestream QR code"
-                    style={{ height: "auto", maxWidth: "10em", width: "100%" }}
-                  />
-                </div>
-                <p className="mt-[0.7em] shrink-0 rounded-2xl bg-[#e11d48] px-[1em] py-[0.5em] text-center text-[0.75vw] font-semibold !leading-[1.2em] text-white">
-                  Watch livestream
-                </p>
-              </div>
-            )}
-          </div>
-
-          <div
-            className="relative ml-[1em] shrink-0 grow-0 basis-1/2"
-            style={{ maskImage: "linear-gradient(to bottom, white 80%, transparent 93%, transparent)", WebkitMaskImage: "linear-gradient(to bottom, white 80%, transparent 93%, transparent)" }}
-          >
-            <p className="py-[1vw] font-bold text-black">Upcoming Sessions</p>
-            {upcomingSessions.map((session) => (
-              <UpcomingCard key={session.id} session={session} />
-            ))}
-            {upcomingSessions.length === 0 && (
-              <p className="text-[1vw]">There are no upcoming sessions.</p>
-            )}
+      {/* FOOTER: notifications ticker */}
+      <footer className="flex h-[3.2em] items-center gap-[1em] border-t border-dc-hairline bg-[#F8F4FF] px-[2em]">
+        <p className="shrink-0 rounded-full bg-[#dfd8fc] px-[0.9em] py-[0.35em] text-[0.8em] font-bold uppercase leading-none tracking-[0.04em]">
+          Notifications
+        </p>
+        <div className="flex-1 overflow-hidden">
+          <div className="inline-flex whitespace-nowrap text-[1.1em] motion-safe:animate-[marquee_40s_linear_infinite]">
+            <span className="mr-[4em]">
+              If the room is full please view on livestream or ask volunteers for any overflow rooms.
+            </span>
+            <span className="mr-[4em]">
+              If the room is full please view on livestream or ask volunteers for any overflow rooms.
+            </span>
           </div>
         </div>
-
-        {/* Notifications ticker */}
-        <div className="absolute bottom-0 left-0 flex h-[3em] w-full items-center gap-[1vw] bg-[#F8F4FF] px-[0.75vw] py-[0.5vw]">
-          <p className="shrink-0 rounded-full bg-[#dfd8fc] px-[0.75em] py-[0.25em] text-[0.75vw] font-bold uppercase">
-            Notifications
-          </p>
-          <div className="flex-1 overflow-hidden">
-            <div className="inline-flex animate-[marquee_40s_linear_infinite] whitespace-nowrap">
-              <span className="mr-[4em]">
-                If the room is full please view on livestream or ask volunteers
-                for any overflow rooms.
-              </span>
-              <span className="mr-[4em]">
-                If the room is full please view on livestream or ask volunteers
-                for any overflow rooms.
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </footer>
+    </Surface>
   );
 }

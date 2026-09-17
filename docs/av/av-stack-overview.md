@@ -236,17 +236,26 @@ devcon-app stays DC7-only; its blocker #3 is moot.
   ([`route.ts`](https://github.com/efdevcon/monorepo/blob/main/event-app/src/app/api/pretalx/route.ts));
   flip that slug if the provider is ever reactivated.
 - **Room screens (venue signage) live here now:** `/room-screens/[id]` renders a
-  per-room now/next display with a QR code into the app. ✅ As of 2026-08-05 the
-  "Resources / Livestreams" box also renders a second **"Watch livestream" QR** for
-  the room's stream on the current conference day (anchored on *now* via the mockable
-  clock, unlike SessionMedia which anchors on the session's own day - intentional).
-  Hidden when no stream URL exists; degrades to no-QR offline. devcon-app has the DC7
+  per-room now/next display, relaid out 2026-09-17 for TVs and laptops (sized in a
+  16:9 design unit; branded header with the stage crest and clock, live progress bar,
+  next-up rail). Its "Scan" row carries up to three QR codes: **"Open in app"** (the
+  session), **"Watch livestream"** for the room's stream on the current conference day
+  (anchored on *now* via the mockable clock, unlike SessionMedia which anchors on the
+  session's own day - intentional; hidden when no stream URL exists), and
+  **"See questions"** to Meerkat's presenter view for the room's stage (only when
+  Meerkat lists sessions for that stage, see `docs/meerkat.md`). `/room-screens` is
+  the picker, one card per room with its live/next session. devcon-app has the DC7
   predecessor at
   [`devcon-app/src/pages/room-screens/[id].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon-app/src/pages/room-screens/%5Bid%5D.tsx)
   (text-only, no QR).
-- **Meerkat's user-facing half** is in event-app: `POST /api/meerkat` gates on a
-  Supabase session + paid Pretix ticket, then hands off with a 5-min HS256 JWT
-  (secret shared with Meerkat). The schedule-sync half is §3 #11.
+- **Meerkat's user-facing half** is in event-app: the session pages show the
+  questions (public API, SSE stream) and "Ask a question" links to
+  `GET /api/meerkat/go`, which gates on the Supabase auth cookies + a paid Pretix
+  ticket and 302s to Meerkat with a 5-min HS256 JWT (secret shared with Meerkat).
+  For stage screens and streams, Meerkat's presenter view (`/stage/<stage>`) follows
+  the live session; options and prerequisites in
+  [`docs/meerkat.md`](https://github.com/efdevcon/monorepo/blob/main/docs/meerkat.md).
+  The schedule-sync half is §3 #11.
 - event-app's `/api/admin/{datasets,search,inference}` routes are the debugging UI for
   the devcon-ai RAG stack (per the handover doc).
 - devcon-app meanwhile shows a dismissable "Devcon 8 prep" banner but is otherwise
