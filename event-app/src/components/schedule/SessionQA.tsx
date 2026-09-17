@@ -38,6 +38,7 @@ export function SessionQA({
   sessionId,
   size = "md",
 }: {
+  /** Meerkat's event id for the session: the Pretalx code, see meerkatEventId(). */
   sessionId: string;
   size?: Size;
 }) {

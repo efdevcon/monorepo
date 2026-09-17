@@ -22,6 +22,7 @@ import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
+import { meerkatEventId } from "../src/data/meerkat";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -54,6 +55,7 @@ export const FIXTURE: EventBundle = {
   sessions: [
     {
       id: "talk-a",
+      sourceId: "ABC123",
       title: "Talk A",
       description: "About A",
       track: "Security",
@@ -93,6 +95,7 @@ function testNormalize() {
   check("ISO slot times converted to ms", rows.sessions[1].slotStart === T0 + 60 * 60_000);
   check("featured true kept, absent omitted", a.featured === true && !("featured" in rows.sessions[1]));
   check("empty source id omitted", !("sources_youtubeId" in a));
+  check("Pretalx code kept as sourceId, omitted when absent", a.sourceId === "ABC123" && !("sourceId" in rows.sessions[1]));
   check("no undefined keys on rows", rows.sessions.every((r) => Object.values(r).every((v) => v !== undefined)));
   check("missing text fields default to empty strings", rows.sessions[1].description === "" && rows.sessions[1].track === "" && rows.sessions[1].type === "Talk");
   check("room null capacity omitted", !("capacity" in rows.rooms[0]));
@@ -379,6 +382,7 @@ function testMeerkatHandover() {
   check("meerkat: token travels as the token query param", url.searchParams.get("token") === "a.b.c");
   check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
   check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
+  check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
   check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
 }
 

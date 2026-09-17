@@ -77,10 +77,14 @@ awaited fetch) and keeps the token out of client code and the DOM.
 
 ## Session ids
 
-The app passes its own schedule session id (the slug, e.g. `opening-ceremony`), not the
-Pretalx code kept in `sourceId`. Meerkat's DC7 test session is keyed the same way. The
-schedule sync must send ids Meerkat can match against these; confirm with the Meerkat
-team when the sync is extended to Devcon 8.
+Meerkat keys its events by the **Pretalx code** (our `sourceId`, e.g. `X3JSYF`), the same
+convention as Devcon 7 and what the Meerkat team syncs from Pretalx. Since 2026-09-17 the
+app passes that code for the feed and the hand-off (`meerkatEventId()` in
+`event-app/src/data/meerkat.ts`); the code travels in the offline bundle (`sourceId` in
+devcon-api's `BUNDLE_SESSION_FIELDS`). A bundle cached before the field shipped falls back
+to the schedule slug, which Meerkat answers with 404 (shown as "Q&A isn't open yet") until
+the device's next schedule sync. The DC7 test session on Meerkat is still keyed by the
+slug `opening-ceremony`; it needs a twin under `X3JSYF` for the app to find it.
 
 ## Displaying questions on stage screens and streams (AV)
 
