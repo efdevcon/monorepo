@@ -736,11 +736,18 @@ export function Schedule() {
       setChromeHidden(false);
     };
   }, [chromeCollapsible]);
+  // Both flags in one effect: when the fold disarms (a session page opens,
+  // the view changes) the header must be back instantly, not slide in over
+  // the new page — so the animate flag leaves in the same frame as hidden.
   useEffect(() => {
     const root = document.documentElement;
-    root.toggleAttribute("data-app-header-hidden", chromeHidden);
-    return () => root.removeAttribute("data-app-header-hidden");
-  }, [chromeHidden]);
+    root.toggleAttribute("data-app-header-animates", chromeCollapsible);
+    root.toggleAttribute("data-app-header-hidden", chromeCollapsible && chromeHidden);
+    return () => {
+      root.removeAttribute("data-app-header-animates");
+      root.removeAttribute("data-app-header-hidden");
+    };
+  }, [chromeCollapsible, chromeHidden]);
 
   // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
   // Once that row has scrolled under the pinned day tabs, a floating copy

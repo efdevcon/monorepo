@@ -92,8 +92,10 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           so the glass itself covers the iOS status-bar strip. Slides up out
           of view while <html data-app-header-hidden> is set (the mobile
           timeline folds it away as the user scrolls down, Schedule.tsx);
-          the page's own pinned rows move up on the same 200ms clock. */}
-      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] transition-transform duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-hidden]_&]:-translate-y-full">
+          the page's own pinned rows move up on the same 200ms clock. The
+          slide only runs while data-app-header-animates is set too — when
+          the fold disarms (a session page opens) the bar snaps back. */}
+      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full">
         {toolbar ? (
           // Toolbar pages keep the title for AT only; the row is the page's.
           // One branch, not a hidden title block: that kept fetching the
