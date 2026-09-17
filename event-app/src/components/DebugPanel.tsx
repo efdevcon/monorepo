@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Bug, FlaskConical } from "lucide-react";
+import cn from "classnames";
 import { Link } from "@/routing";
 import {
   DATASETS,
@@ -81,6 +83,7 @@ function parseSpeed(raw: string | null): number {
 }
 
 export function DebugPanel() {
+  const pathname = usePathname();
   const params =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search)
@@ -125,6 +128,11 @@ export function DebugPanel() {
 
   if (!enabled) return null;
 
+  // Mobile schedule: the FAB shares the bottom-left corner with the floating
+  // list/timeline toggle (Schedule.tsx), so the tool steps aside there;
+  // desktop and every other page keep it.
+  const hideOnMobile = pathname.startsWith("/schedule");
+
   // Clock timezone comes from the URL-active dataset (what the schedule
   // renders), not the panel's unsaved selection.
   const activeTz = DATASETS[getActiveDatasetKey()].timezone;
@@ -156,7 +164,7 @@ export function DebugPanel() {
   };
 
   return (
-    <>
+    <div className={cn(hideOnMobile && "max-lg:hidden")}>
       <button
         onClick={() => setOpen((o) => !o)}
         title="Debug panel"
@@ -257,6 +265,6 @@ export function DebugPanel() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
