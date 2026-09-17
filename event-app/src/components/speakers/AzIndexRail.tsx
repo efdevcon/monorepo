@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
-import { Mic } from "lucide-react";
+import { MicVocal } from "lucide-react";
 import cn from "classnames";
 
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -14,7 +14,9 @@ export const FEATURED_SECTION = "featured";
  * A–Z jump rail (Figma "A–Z Scrollbar"): the letter stack inside the lavender
  * right-edge column — 24px cells, 12px semibold, `justify-between` so the
  * letters spread over whatever height the sticky wrapper gives the stack.
- * A featured-speakers (mic) cell always tops the rail, above the optional "#" cell.
+ * A featured-speakers cell (handheld mic — a heavier silhouette than the
+ * studio mic it replaced; the star is My Interests) always tops the rail,
+ * above the optional "#" cell.
  *
  * The active section (topmost section in view) sits on a purple pill in
  * bold white. The pill is one absolutely-positioned element translated to the
@@ -126,7 +128,7 @@ export function AzIndexRail({
           >
             {section === FEATURED_SECTION ? (
               // 2.5 stroke so the icon reads as heavy as the semibold letters
-              <Mic className="size-3.5" strokeWidth={2.5} />
+              <MicVocal className="size-3.5" strokeWidth={2.5} />
             ) : (
               section
             )}
