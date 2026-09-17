@@ -122,8 +122,10 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   changes on the 800 ms `LEVEL_SWITCH_MS` clock. In the stack each floor group carries the
   handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`): the short label
   ("G", "L1") is always visible 24px right of the right-most footprint corner and the other
-  floors' labels dim to 30 % while one floor is hovered; 40px on desktop, 24px on phones
-  (where they currently clip at the screen edge at the stack fit; under review).
+  floors' labels dim to 30 % while one floor is hovered; 40px on desktop, 24px on phones.
+  On phones (canvas ≤ 1023px) the home view's orbit target sits `PHONE_SHIFT_PX` (28) screen px
+  further right along the camera's right vector (`homeTarget` in `CameraRig`), so the stack sits
+  left of centre and the labels clear the screen edge; reset and the stack refit share it.
 - **`CameraRig`**: orbit with the polar angle pinned to the isometric tilt, start azimuth
   `START_AZIMUTH` = 25° left of the (1, 1, 1) diagonal (20°; `isoMath.ts`), azimuth clamped
   75° left / 85° right of it (the same absolute range as before the turn), fit from the

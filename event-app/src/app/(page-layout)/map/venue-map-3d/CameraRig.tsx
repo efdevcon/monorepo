@@ -31,6 +31,10 @@ const FIT_MARGIN = 0.82;
 /** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
 const GROUP_FIT_MARGIN = 0.55;
 const TWEEN_MS = 350;
+/** Phones: the centred stack fills the width and its floor labels (24px right of the floors) clipped, so the home view sits this many screen px further right (Scott, 2026-09-17). */
+const PHONE_SHIFT_PX = 28;
+/** Canvas width below which the phone shift applies (Tailwind lg, the app's desktop breakpoint). */
+const PHONE_MAX_WIDTH = 1023;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
 const TAP_MOVE_PX = 10;
@@ -139,8 +143,24 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     }
   };
 
+  /**
+   * Orbit target for the "whole floor" views: the floor centre, pushed along
+   * the camera's right vector on phones so the scene sits left of centre and
+   * the floor labels beside it stay on screen. In ortho `zoom` is screen px
+   * per world unit, so the shift is exact in px.
+   */
+  const homeTarget = (azimuth: number, zoom: number) => {
+    const t = center.clone();
+    if (size.width <= PHONE_MAX_WIDTH && isOrtho && zoom > 0) {
+      const shift = PHONE_SHIFT_PX / zoom;
+      t.x += Math.cos(azimuth) * shift;
+      t.z -= Math.sin(azimuth) * shift;
+    }
+    return t;
+  };
+
   const startView = (): ViewState => ({
-    target: center.clone(),
+    target: homeTarget(START_AZIMUTH, fitRef.current.zoom),
     azimuth: START_AZIMUTH,
     polar: POLAR_ANGLE,
     zoom: fitRef.current.zoom,
@@ -235,7 +255,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     // Fit at the rotation the user is looking from: the floors keep their turn.
     fitRef.current = computeFit(stack, cur.azimuth);
     applyZoomClamps();
-    tweenTo({ target: center.clone(), azimuth: cur.azimuth, polar: POLAR_ANGLE, zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+    tweenTo({ target: homeTarget(cur.azimuth, fitRef.current.zoom), azimuth: cur.azimuth, polar: POLAR_ANGLE, zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackKey]);
 
