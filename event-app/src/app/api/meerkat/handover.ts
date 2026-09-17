@@ -17,3 +17,17 @@ export function meerkatSessionUrl(sessionId: string, token: string): string {
   url.searchParams.set("token", token);
   return url.toString();
 }
+
+/**
+ * Meerkat's presenter view for a stage: the questions of whatever is live (or
+ * next) there, following the schedule. Stages are our room names, spelled
+ * exactly (case and spaces).
+ */
+export function meerkatStageUrl(stage: string): string {
+  return `${MEERKAT_URL}/stage/${encodeURIComponent(stage)}`;
+}
+
+/** Meerkat's own Q&A page for a session, without a token. */
+export function meerkatQaUrl(sessionId: string): string {
+  return `${MEERKAT_URL}/e/${encodeURIComponent(sessionId)}/qa`;
+}

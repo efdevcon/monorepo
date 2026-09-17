@@ -19,7 +19,8 @@ import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
 import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
-import { isSessionId, meerkatSessionUrl } from "../src/app/api/meerkat/handover";
+import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
+import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -375,6 +376,9 @@ function testMeerkatHandover() {
   const url = new URL(meerkatSessionUrl("opening-ceremony", "a.b.c"));
   check("meerkat: hand-off lands on the session's Q&A page", url.origin === "https://app.meerkat.events" && url.pathname === "/e/opening-ceremony/qa");
   check("meerkat: token travels as the token query param", url.searchParams.get("token") === "a.b.c");
+  check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
+  check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
+  check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
 }
 
 async function main() {
