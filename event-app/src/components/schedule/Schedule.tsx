@@ -855,7 +855,9 @@ export function Schedule() {
     <SessionDetailsPanel
       session={selectedSession}
       onClose={() => selectSession(null)}
-      showQa={listVisible}
+      // Desktop only: on phones this aside is mounted but hidden, and the
+      // fullscreen page already runs the session's feed (one SSE stream each).
+      showQa={isDesktop && listVisible}
     />
   ) : filtersOpen ? (
     // Same growth var as the details panels: the filter column keeps

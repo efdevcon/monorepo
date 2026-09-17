@@ -1,93 +1,119 @@
 # Meerkat Integration
 
-Attendees can view questions for a given session. We don't host the Q&A UI; we
-authenticate the user on our side and hand them off to Meerkat - on the app side, we only show a preview of the current questions.
+Live Q&A for sessions runs on Meerkat; the event-app shows the questions and hands
+attendees over to Meerkat to ask one. Working end to end since 2026-09-14 on the
+Devcon 7 test data (Meerkat set up the `opening-ceremony` session on their side).
 
-When a user taps "Ask a question" on a selected session, `POST /api/meerkat` gates on two checks — a valid Supabase session and
-ownership of a paid Pretix ticket — then issues an HS256 JWT (`{ email, iat, exp }`, 5-min
-expiry) signed with a secret shared with Meerkat. The browser is redirected to Meerkat with
-`?token=<jwt>`; Meerkat verifies the signature independently and takes over.
-
-Separately, **devcon-api** keeps Meerkat's session list in sync with the schedule via
-`sync-pretalx.ts`, which POSTs schedule changes to Meerkat authenticated with a webhook
-secret. Key secrets: `VERIFICATION_SECRET` (JWT signing, must match Meerkat's) and
-`WEBHOOK_MEERKAT_SECRET` (sync webhook).
+- Read side: `event-app/src/components/schedule/SessionQA.tsx`, one component for the
+  mobile session page, the expanded desktop view and the desktop side panel.
+- Ask side: `event-app/src/app/api/meerkat/go/route.ts`, a cookie-authenticated redirect.
+  JWT details for the Meerkat team: `event-app/src/app/api/meerkat/README.md`.
+- Schedule sync (devcon-api): `devcon-api/src/scripts/sync-pretalx.ts`, see the known gap
+  at the end.
 
 ```mermaid
 flowchart LR
-    U[User taps<br/>Ask a question] --> API[event-app<br/>POST /api/meerkat]
-    API --> C{Supabase session<br/>+ paid Pretix ticket?}
-    C -->|no| X[Reject<br/>401/403/503]
+    U[User taps<br/>Ask a question] --> GO[event-app<br/>GET /api/meerkat/go?session=id]
+    GO --> C{Auth cookies valid<br/>+ paid Pretix ticket?}
+    C -->|no| X[Small HTML page<br/>401 / 403 / 502]
     C -->|yes| J[Issue HS256 JWT<br/>email, 5-min exp]
-    J --> R[Redirect to Meerkat<br/>?token=jwt]
+    J --> R[302 to Meerkat<br/>/e/id/qa?token=jwt]
     R --> M[Meerkat verifies<br/>shared secret, starts session]
-    SYNC[devcon-api<br/>sync-pretalx.ts] -.schedule sync.-> M
+    Q[SessionQA component] -.reads questions, no auth.-> M
+    SYNC[devcon-api<br/>sync-pretalx.ts] -.schedule sync, DC7 only.-> M
 ```
 
-## Reading questions (public API)
+## Reading questions
 
-`@meerkat-events/react` (an event-app dependency) is the read side. It hits:
+`@meerkat-events/react` is the read side, against Meerkat's public API:
 
 ```
 GET {apiUrl}/api/v1/events/{sessionId}/questions?sort=newest|popular
 GET {apiUrl}/api/v1/events/{sessionId}/questions/stream    # SSE, live updates
 ```
 
-`apiUrl` defaults to `https://app.meerkat.events` and event-app doesn't override
-it (`MeerkatProvider` is used with no props). Despite the `events/` path segment,
-`sessionId` is a *session* code, i.e. the Pretalx code we store as `sourceId`.
+`apiUrl` defaults to `https://app.meerkat.events` and the app doesn't override it
+(`MeerkatProvider` with no props). No credentials are involved; neither secret below
+applies to reads.
 
-Response shape: `{ id, sessionId, votes, question, createdAt, answeredAt?,
-selectedAt?, user? }`.
+How the component behaves:
 
-**No credentials are involved.** The library sends only `Accept:
-application/json`, so reading questions needs no token, and neither
-`VERIFICATION_SECRET` (handover JWT) nor `WEBHOOK_MEERKAT_SECRET` (schedule sync)
-applies to it. Those two are write/auth paths only.
+- Sorted by popularity. Each question shows its vote count, the author's Meerkat name,
+  a relative time, and a state tag: "Being answered" from `selectedAt`, "Answered" from
+  `answeredAt`.
+- A 404 from the questions endpoint means Meerkat has no Q&A for that session yet: the
+  card says so and hides the ask link (Meerkat would 404 on the hand-off too). Other
+  errors show a Retry.
+- Realtime (SSE) is on since 2026-09-17, pending the Meerkat team's OK on the load: every
+  open session view holds one stream (at most one per session per device). A small green
+  dot next to "Powered by Meerkat" shows while the stream is connected. The list also
+  refreshes when the tab regains focus, the fallback if the stream drops.
+- Offline the block renders the usual "needs a connection" line.
+- `?mockQa=1` renders placeholder questions in every state, for layout work on any
+  session.
 
-## Devcon 7 (SEA): link-out only, no data came back
+## Asking a question
 
-Worth knowing before anyone assumes SEA Q&A is recoverable from our side: it
-never touched our systems. devcon-app rendered a "Join Live Q&A" tile linking
-straight out, with no token exchange and no questions read back:
+"Ask a question" is a plain link to `GET /api/meerkat/go?session=<id>`, opened in a new
+tab in browsers and in place in the installed app (a new tab from a home-screen app
+doesn't carry the app's cookies on iOS, and the OS shows the out-of-scope page in an
+in-app browser anyway). The route:
 
-```
-https://meerkat.events/e/{session.sourceId}/remote?secret={secret}
-```
+1. Reads the Supabase auth cookies the app mirrors through `/api/auth/session`,
+   refreshing them when expired.
+2. Checks for a paid Pretix ticket for the event, matched by email or attached by QR
+   proof (the same rule as the ticket tab). Rate limited per user only; attendees at the
+   venue share NAT addresses, and anonymous requests never reach Pretix.
+3. Mints the HS256 JWT (`{ email, iat, exp }`, 5-minute expiry, timestamps in
+   milliseconds) with the verified session email and answers a 302 to
+   `https://app.meerkat.events/e/<sessionId>/qa?token=<jwt>` with `Cache-Control:
+   no-store`.
 
-(`devcon-app/src/components/domain/app/dc7/sessions/index.tsx`, in
-`Integrations`. `secret` was just forwarded from devcon-app's own query string
-when present.)
+Failures (not signed in, no ticket, ticket service down, malformed id) render a small
+HTML page in that tab, since the request is a navigation, not a fetch. The redirect
+replaced an earlier `POST /api/meerkat` that returned the token to the client: doing the
+work behind a redirect keeps the click synchronous (Safari blocks `window.open` after an
+awaited fetch) and keeps the token out of client code and the DOM.
 
-So all SEA Q&A content lives on Meerkat's side. We hold the session codes
-(`devcon-api/data/sessions/devcon-7/*.json`, 650 sessions) and nothing else.
+## Session ids
 
-## Service status (checked 2026-09-01)
+The app passes its own schedule session id (the slug, e.g. `opening-ceremony`), not the
+Pretalx code kept in `sourceId`. Meerkat's DC7 test session is keyed the same way. The
+schedule sync must send ids Meerkat can match against these; confirm with the Meerkat
+team when the sync is extended to Devcon 8.
 
-Attempts to read DC7 questions failed. Both findings are about Meerkat's hosting,
-not our integration:
+## Secrets and go-live checklist
 
-- **`app.meerkat.events` returns HTTP 503**, after ~41s. DNS resolves (Fly.io)
-  and TCP/443 accepts connections, so the edge is up but the app behind it isn't
-  starting. The root path 503s too, so this isn't an auth rejection. Retried
-  after a warm-up; unchanged.
-- **`meerkat.events` is now a Framer marketing site.** The apex 308-redirects to
-  `www.meerkat.events`, where the old DC7 links (`/e/{code}/remote`) 404. Every
-  "Join Live Q&A" link in the shipped SEA app is therefore dead.
+- `VERIFICATION_SECRET` (event-app, Netlify): signs the hand-off JWT and must equal the
+  value Meerkat verifies with. **Not set in production yet.** The code falls back to a
+  placeholder that lives in this public repo, so anyone can mint a token for any email
+  until it is rotated. Before launch: generate a random secret, set it on the event-app
+  site, share it with the Meerkat team through 1Password, and switch both sides together.
+  Worth removing the fallback so the route fails closed when the variable is missing.
+- `WEBHOOK_MEERKAT_SECRET` (devcon-api): bearer token for the schedule sync ping.
+- Confirm realtime with the Meerkat team (one SSE connection per open session view); it is
+  currently on in `SessionQA.tsx` for testing.
 
-Read as a pair (domain moved to marketing, app backend unhealthy), this looks
-like a service winding down rather than a transient outage — but that's an
-inference, not something we confirmed with the Meerkat team.
+## Devcon 7 (SEA): link-out only
 
-If DC7 Q&A is wanted as an archive, the blocking step is asking Meerkat whether
-the data still exists. If it does, scraping it is a short script: iterate the 650
-`sourceId`s against the questions endpoint. Don't build that against a 503 first.
+DC7 Q&A never touched our systems. devcon-app rendered a "Join Live Q&A" tile linking
+straight to `https://meerkat.events/e/{session.sourceId}/remote?secret={secret}`, with
+no token exchange and no questions read back. All SEA Q&A content lives on Meerkat's
+side; we hold the session codes (`devcon-api/data/sessions/devcon-7/*.json`) and nothing
+else. The apex `meerkat.events` is now a marketing site, so those old links 404.
+
+## Service status
+
+Checked 2026-09-01: `app.meerkat.events` answered 503 and the DC7 links were dead, which
+read like a service winding down. Superseded: since 2026-09-12 the app is up again, the
+questions API answers for the DC7 test session, and the Meerkat team has implemented
+the JWT hand-over on their side. If DC7 Q&A is ever wanted as an archive, ask the
+Meerkat team whether the data still exists before scripting anything.
 
 ## Known gap: DC8 schedule sync
 
 `sync-pretalx.ts` POSTs to a URL hardcoded to `devcon-7`
-(`.../api/v1/sync/devcon/devcon-7`) and is gated to that event, so Devcon 8
-schedule publishes never notify Meerkat and its session list goes stale. Tracked
-as #11 in `docs/av/av-stack-overview.md`; needs an event-parameterised endpoint
-agreed with the Meerkat team. Given the service status above, worth resolving
-whether Meerkat is still in the plan for DC8 before spending effort on it.
+(`.../api/v1/sync/devcon/devcon-7`) and is gated to that event, so Devcon 8 schedule
+publishes never notify Meerkat and its session list goes stale. Tracked as #11 in
+`docs/av/av-stack-overview.md`; needs an event-parameterised endpoint agreed with the
+Meerkat team, using the session ids described above.

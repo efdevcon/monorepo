@@ -13,9 +13,10 @@ import { SessionQA } from "./SessionQA";
  * a 360px right column rendered from the in-memory session (no extra fetch).
  * The white header carries expand (the fullscreen page `/schedule/<id>`,
  * opened in place), share and close. Mobile renders the fullscreen page
- * directly (schedule/[id]/session.tsx). `showQa` is false while the list is
- * off screen (the fullscreen page replaces it, or another tab is active) so
- * only one Q&A feed for a session holds the Meerkat hooks at a time.
+ * directly (schedule/[id]/session.tsx). `showQa` is false on phones (this
+ * panel is mounted but hidden there) and while the list is off screen (the
+ * fullscreen page replaces it, or another tab is active), so only one Q&A
+ * feed per session holds the Meerkat hooks and its SSE stream at a time.
  */
 export function SessionDetailsPanel({
   session,
