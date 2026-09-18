@@ -5,6 +5,12 @@ import { readFileSync, statSync, unlinkSync, writeFileSync } from 'fs'
 import path from 'path'
 
 async function main() {
+  // Retired Devcon 7 tooling: every path in this file is hardcoded to
+  // data/sessions/devcon-7 and data/slides/devcon-7 (the latter no longer
+  // exists). Kept for reference only; refuse to run so a stray `pnpm slides`
+  // cannot create or export decks for the wrong event.
+  console.error('slides.ts is retired (Devcon 7 only). Decks are created by sync-pretalx.ts for SLIDES_ALLOWED_EVENTS.')
+  process.exit(1)
   // await exportSlides()
   await migrateSlides()
 }

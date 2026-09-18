@@ -2,11 +2,29 @@ import { AuthenticateServiceAccount, GetAccessToken } from '@/clients/google'
 import { GoogleApis } from 'googleapis'
 
 const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
-const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
-const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
-const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
-const emailMessage = 'Your Devcon 7 presentation'
-const skipPermissions = false // ONLY SET TRUE FOR LOCAL TESTING (DO NOT COMMIT)
+// Where decks live and what they are copied from. No defaults on purpose: the
+// Devcon 7 folder and template are retired, and a run that has not set these
+// explicitly must fail before touching Drive rather than land decks in the
+// wrong place. Set SLIDES_DRIVE_ID / SLIDES_FOLDER_ID / SLIDES_TEMPLATE_ID in
+// the environment (see sync-pretalx.ts and docs/av/av-stack-overview.md §2d).
+function requireSlidesEnv(name: string): string {
+  const value = process.env[name]
+  if (!value) throw new Error(`${name} is not set; the slides pipeline refuses to run without an explicit target`)
+  return value
+}
+// Devcon 7
+// const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
+// const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
+// const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
+// Devcon 8
+const DRIVE_ID = requireSlidesEnv('SLIDES_DRIVE_ID')
+const FOLDER_ID = requireSlidesEnv('SLIDES_FOLDER_ID')
+const TEMPLATE_ID = requireSlidesEnv('SLIDES_TEMPLATE_ID')
+const emailMessage = 'Your Devcon 8 presentation'
+// SLIDES_SKIP_PERMISSIONS=true creates decks without granting speakers access.
+// For test runs against an event that mirrors real talks (test-devcon-8), so
+// no real speaker is handed a deck they never asked for.
+const skipPermissions = process.env.SLIDES_SKIP_PERMISSIONS === 'true'
 const sendEmails = false
 
 let client: GoogleApis | null = null
