@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import cn from "classnames";
 import { Hand, Mouse, MousePointerClick, Move, Pointer, Rotate3d, ZoomIn, type LucideIcon } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useIsDesktop";
+import { useOnline } from "@/hooks/useOnline";
 
 type Item = { Icon: LucideIcon; label: string };
 
@@ -27,6 +28,7 @@ function Kbd({ children }: { children: ReactNode }) {
  */
 export function ControlsLegend({ stacked, hidden, dismissed }: { stacked: boolean; hidden: boolean; dismissed: boolean }) {
   const touch = useMediaQuery("(pointer: coarse)");
+  const online = useOnline();
   const target: Item = touch
     ? { Icon: Pointer, label: stacked ? "Tap a floor" : "Tap an area" }
     : { Icon: Pointer, label: stacked ? "Click a floor" : "Click an area" };
@@ -51,9 +53,10 @@ export function ControlsLegend({ stacked, hidden, dismissed }: { stacked: boolea
     <div
       aria-hidden={hidden}
       className={cn(
-        // Phones: 12px under the status bar (the mobile header bar is off on /map), leaving the top-right
-        // corner to the offline marker. Desktop: centred, 15px under the 65px header (shared with the wrench).
-        "pointer-events-none fixed left-4 right-14 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        // Phones: full width 12px under the status bar (the mobile header bar is off on /map); while offline it
+        // leaves the top-right corner to the offline marker. Desktop: centred, 15px under the 65px header (shared with the wrench).
+        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        !online && "max-lg:right-14",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
         hidden ? "opacity-0" : "opacity-100",
         dismissed && "max-lg:opacity-0"

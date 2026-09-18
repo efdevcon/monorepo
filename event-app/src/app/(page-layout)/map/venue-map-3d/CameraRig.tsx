@@ -222,7 +222,8 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [camera, gl]);
 
-  // Clamps follow the debug settings and the viewport.
+  // Clamps follow the debug settings and the viewport (`desktop` too: the media query can flip after the
+  // canvas has resized, and the phone shift in startView depends on it).
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
@@ -235,7 +236,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     else controls.update();
     invalidate();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.rotateLeftDeg, settings.rotateRightDeg, size.width, size.height, isOrtho]);
+  }, [settings.rotateLeftDeg, settings.rotateRightDeg, size.width, size.height, isOrtho, desktop]);
 
   // Stack ↔ single floor: refit the zoom on the floors' clock so the camera and the floors move as one.
   const stackKey = stack ? `${stack.count}:${stack.gap}` : "";

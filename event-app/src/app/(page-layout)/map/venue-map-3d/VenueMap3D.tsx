@@ -185,7 +185,10 @@ export function VenueMap3D() {
   useMapShortcuts({ showLevel, reset, openFind, closeCard }, { enabled: !findOpen, hasCard: selected !== null });
 
   return (
-    <div className="relative flex-1">
+    // min-w-0 / min-h-0: the canvas keeps its last intrinsic size, and a flex item's default
+    // `min-width: auto` would stop this root shrinking below it when the window narrows (the
+    // canvas stayed 1100px wide in a 390px window, pushing the floors and controls off-screen).
+    <div className="relative min-h-0 min-w-0 flex-1">
       <Scene
         plan={plan}
         settings={settings}
