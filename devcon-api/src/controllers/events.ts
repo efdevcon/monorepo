@@ -70,6 +70,9 @@ export async function GetRooms(req: Request, res: Response) {
 // (transcripts, Q&A) can never leak into every attendee's phone by accident.
 export const BUNDLE_SESSION_FIELDS = [
   'id',
+  // Pretalx code. Meerkat keys its Q&A events by it (as at Devcon 7), so the
+  // app needs it next to the slug.
+  'sourceId',
   'title',
   'description',
   'track',

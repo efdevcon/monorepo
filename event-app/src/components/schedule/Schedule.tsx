@@ -9,32 +9,20 @@ import {
   useRef,
   useState,
 } from "react";
-import { createPortal } from "react-dom";
 import {
   CalendarRange,
   Check,
   ClockArrowDown,
   List,
   ListFilter,
-  Maximize2,
   MoveDown,
   MoveUp,
   Search,
-  Star,
 } from "lucide-react";
 import cn from "classnames";
 import { useSessions } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
-import {
-  HEADER_ACTIONS_ID,
-  headerCircle,
-  headerCircleResting,
-  headerCircleActive,
-} from "@/components/AppHeader";
-import {
-  HeaderSearchDrawer,
-  HEADER_SEARCH_PANEL_ID,
-} from "@/components/HeaderSearchDrawer";
+import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useDetailRoute } from "@/routing/detailRoute";
@@ -42,7 +30,7 @@ import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveRe
 import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
-import { ghostPill, InterestedPill } from "@/components/ActionPills";
+import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -55,13 +43,7 @@ import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
-import {
-  useIsDesktop,
-  useIsLandscape,
-  useOrientationChange,
-  headerOffsetNow,
-  safeTopNow,
-} from "@/hooks/useIsDesktop";
+import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
 
 type ViewMode = "list" | "timeline";
 
@@ -75,88 +57,24 @@ const PANEL_SLOT_W = 376;
 const PANEL_EDGE_GAP = 16;
 
 /**
- * Page-specific app-header buttons, portaled into AppHeader's target:
- * search + jump-to-now + interested circles, and the filter button with its
- * active count bubble. The star stays filled (matching InterestedPill); the
- * lavender circle fill carries the active state — on the search button it
- * means "drawer open" (closing the drawer also clears the query).
+ * Floating "Live now" (Figma "New-Live-Now-Button"): mobile's jump-to-now,
+ * parked bottom-right above the tab bar where the list it acts on lives,
+ * instead of among the header controls. Sits 16px above the tab bar via
+ * its measured height (--nav-clearance, Nav.tsx), like every other
+ * bottom-anchored control. py 11: the design's 40px is padding 12 with the
+ * border inside; CSS adds it outside. The `before:` box extends the 40px
+ * pill to a 44px tap target without changing its look.
  */
-function HeaderActions({
-  searchOpen,
-  searchActive,
-  onToggleSearch,
-  interestedOnly,
-  onToggleInterested,
-  onJumpToNow,
-  filterCount,
-  onOpenFilters,
-}: {
-  searchOpen: boolean;
-  searchActive: boolean;
-  onToggleSearch: () => void;
-  interestedOnly: boolean;
-  onToggleInterested: () => void;
-  onJumpToNow: () => void;
-  filterCount: number;
-  onOpenFilters: () => void;
-}) {
-  const [target, setTarget] = useState<Element | null>(null);
-  const paneActive = usePaneActive();
-  useEffect(() => {
-    setTarget(document.getElementById(HEADER_ACTIONS_ID));
-  }, []);
-  if (!target || !paneActive) return null;
-
+function LiveNowButton({ onClick }: { onClick: () => void }) {
   return (
-    <>
-      {createPortal(
-    <>
-      <button
-        onClick={onToggleSearch}
-        aria-label="Search sessions"
-        aria-expanded={searchOpen}
-        aria-controls={HEADER_SEARCH_PANEL_ID}
-        className={cn(
-          headerCircle,
-          searchActive ? headerCircleActive : headerCircleResting
-        )}
-      >
-        <Search className="size-4 text-dc-purple" />
-      </button>
-      <button
-        onClick={onJumpToNow}
-        aria-label="Jump to now"
-        className={cn(headerCircle, headerCircleResting)}
-      >
-        <ClockArrowDown className="size-4 text-dc-purple" />
-      </button>
-      <button
-        onClick={onToggleInterested}
-        aria-label="Show interested sessions"
-        aria-pressed={interestedOnly}
-        className={cn(
-          headerCircle,
-          interestedOnly ? headerCircleActive : headerCircleResting
-        )}
-      >
-        <Star className="size-4 text-dc-purple" fill="currentColor" />
-      </button>
-      <button
-        onClick={onOpenFilters}
-        aria-label="Open filters"
-        className={cn(headerCircle, headerCircleResting, "relative")}
-      >
-        <ListFilter className="size-4 text-dc-purple" />
-        {filterCount > 0 && (
-          <span className="absolute -right-1 -top-1 flex size-3.5 items-center justify-center rounded-full bg-dc-purple text-[10px] font-medium leading-none text-white">
-            {filterCount}
-          </span>
-        )}
-      </button>
-    </>,
-        target
-      )}
-    </>
+    <button
+      type="button"
+      onClick={onClick}
+      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
+    >
+      <ClockArrowDown className="size-4 shrink-0" />
+      Live now
+    </button>
   );
 }
 
@@ -164,12 +82,12 @@ function HeaderActions({
 function ViewToggle({
   view,
   onChange,
-  compact = false,
+  iconOnly = false,
 }: {
   view: ViewMode;
   onChange: (v: ViewMode) => void;
-  /** Icon-only, one step shorter: fits the pinned day bar on mobile. */
-  compact?: boolean;
+  /** Icons only, same 40px height: the floating copy next to Live now. */
+  iconOnly?: boolean;
 }) {
   const buttonRefs = useRef(new Map<ViewMode, HTMLButtonElement | null>());
   // The white pill slides between segments; measured after render so it lands
@@ -194,10 +112,7 @@ function ViewToggle({
 
   return (
     <div
-      className={cn(
-        "relative flex shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel",
-        compact ? "h-9" : "h-10"
-      )}
+      className="relative flex h-10 shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
     >
       <div
         aria-hidden
@@ -226,15 +141,15 @@ function ViewToggle({
           onClick={() => onChange(mode)}
           aria-pressed={view === mode}
           className={cn(
-            "relative z-10 flex cursor-pointer items-center gap-2 rounded-[4px] px-2 py-1 text-[14px] leading-none transition-colors",
-            compact ? "min-h-7" : "min-h-8",
+            "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] py-1 text-[14px] leading-none transition-colors",
+            iconOnly ? "px-2.5" : "px-2",
             view === mode
               ? "font-bold text-dc-purple"
               : "font-medium text-dc-muted hover:text-dc-fg2"
           )}
         >
           <Icon className="size-5" />
-          <span className={cn(compact && "sr-only")}>{label}</span>
+          <span className={cn(iconOnly && "sr-only")}>{label}</span>
         </button>
       ))}
     </div>
@@ -430,6 +345,9 @@ export function Schedule() {
   const {
     now,
     days,
+    visibleDays,
+    dayCounts,
+    totalMatches,
     selectedDay,
     userPickedDay,
     setSelectedDay,
@@ -449,6 +367,7 @@ export function Schedule() {
     filterOptions,
     daySessions,
     resultCount,
+    anyLive,
   } = useScheduleState(sessions, interestedIds);
 
   const isDesktop = useIsDesktop();
@@ -478,6 +397,7 @@ export function Schedule() {
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
+  const desktopSearchRef = useRef<HTMLInputElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
@@ -488,10 +408,26 @@ export function Schedule() {
   // history; the panel's expand action and shared links use the URL form.
   const [panelSessionId, setPanelSessionId] = useState<string | null>(null);
   const selectedSessionId = isDesktop ? panelSessionId : detailId;
+  // Desktop: opening or closing the side panel reflows the list under the
+  // pointer — 2-up time-slot rows collapse to one column and the main column
+  // narrows — which carried the clicked card off to a new place (often off
+  // screen). Remember where it was and, once the new layout is in, scroll
+  // the page by the difference so the card stays put (y only: a card in a
+  // right-hand 2-up cell still slides left as the row becomes one column).
+  const holdCardRef = useRef<{ id: string; top: number } | null>(null);
+  const cardEl = (id: string) =>
+    mainCardRef.current?.querySelector<HTMLElement>(
+      `[data-detail-id="${CSS.escape(id)}"]`
+    ) ?? null;
   const selectSession = useCallback(
     (id: string | null) => {
       if (id) setFiltersOpen(false);
       if (isDesktop) {
+        const anchor = id ?? panelSessionId;
+        const el = anchor ? cardEl(anchor) : null;
+        holdCardRef.current = el
+          ? { id: anchor as string, top: el.getBoundingClientRect().top }
+          : null;
         setPanelSessionId(id);
       } else if (id) {
         openDetail(id);
@@ -499,8 +435,17 @@ export function Schedule() {
         closeDetail();
       }
     },
-    [isDesktop, openDetail, closeDetail]
+    [isDesktop, panelSessionId, openDetail, closeDetail]
   );
+  useLayoutEffect(() => {
+    const hold = holdCardRef.current;
+    if (!hold) return;
+    holdCardRef.current = null;
+    const el = cardEl(hold.id);
+    if (!el) return;
+    const delta = el.getBoundingClientRect().top - hold.top;
+    if (Math.abs(delta) >= 1) window.scrollBy({ top: delta, behavior: "auto" });
+  }, [panelSessionId]);
 
   const selectedSession = useMemo(
     () =>
@@ -550,6 +495,7 @@ export function Schedule() {
     // render the selected day). The scroll itself is signal-driven so it runs
     // after the (possibly day-switching) re-render, when the target groups /
     // now line actually exist.
+    programmaticScrollRef.current = true;
     jumpToToday();
     if (view === "timeline") {
       // The timeline scrolls itself (horizontally to the now line) on signal.
@@ -606,6 +552,7 @@ export function Schedule() {
   // new page, and a smooth scroll through content that just changed reads as
   // scrolling the wrong day.
   const selectDay = (key: string) => {
+    programmaticScrollRef.current = true;
     setSelectedDay(key);
     setDayJump((prev) => ({ n: (prev?.n ?? 0) + 1, key }));
   };
@@ -659,6 +606,7 @@ export function Schedule() {
   // below once the new view is in the DOM.
   const changeView = (next: ViewMode) => {
     if (next === view) return;
+    programmaticScrollRef.current = true;
     const t =
       view === "list" ? topVisibleGroupStartMs() : timelineLeftMsRef.current;
     if (next === "timeline") {
@@ -732,66 +680,110 @@ export function Schedule() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailId, listVisible]);
 
-  // Mobile timeline fullscreen: auto in landscape, or by the toggle button.
-  // `null` follows orientation; a rotation always resets to the auto rule, so
-  // manual portrait fullscreen + rotate stays fullscreen and rotating back
-  // exits, while an X in landscape sticks until the next rotation.
-  const [fullscreenOverride, setFullscreenOverride] = useState<boolean | null>(
-    null
-  );
-  useOrientationChange(() => setFullscreenOverride(null));
-  const isLandscape = useIsLandscape();
-  const timelineFullscreen =
-    // Never from a hidden pane or under a detail page: the fullscreen
-    // timeline locks body scroll, which would freeze whatever is on screen.
-    listVisible &&
-    !isDesktop &&
-    view === "timeline" &&
-    // The timeline renders nothing without sessions — never lock the page
-    // behind an overlay that isn't there.
-    resultCount > 0 &&
-    // Auto path only: an open soft keyboard (search) can make a phone
-    // viewport report landscape, so don't flip into fullscreen under the
-    // user's typing. An explicit tap on the button always wins.
-    (fullscreenOverride ?? (isLandscape && !headerSearch.searchOpen));
-
   // Timeline's horizontal offset, reported by the grid as it scrolls.
   const timelineScrollLeftRef = useRef(0);
 
-  // Mobile list/timeline toggle. The full one sits next to the "Sessions"
-  // heading (design); once that row has scrolled under the pinned day bar, a
-  // compact copy appears in the bar so the view stays switchable. The
-  // fullscreen timeline's bar always carries the compact one (no heading
-  // there), and switching to list from it exits fullscreen, since that
-  // derives from the view.
-  const [headingToggleVisible, setHeadingToggleVisible] = useState(true);
-  const headingObserverRef = useRef<IntersectionObserver | null>(null);
-  const headingRowRef = useCallback((node: HTMLDivElement | null) => {
-    headingObserverRef.current?.disconnect();
-    headingObserverRef.current = null;
-    if (!node) {
-      setHeadingToggleVisible(true);
+  // Mobile timeline: the app header (Search / My Interests / Filter) folds
+  // away once the day tabs have pinned and the user keeps scrolling down —
+  // the dense grid wants the height — and comes back on the first scroll
+  // up, or when the tabs unpin. Published as <html data-app-header-hidden>
+  // for AppHeader (outside this tree); DayTabs and the timeline's axis take
+  // the flag as a prop and re-pin 56px higher on the same clock. Own
+  // jumps (Live now, day tabs, view toggle) are not "scrolling down": the
+  // flag skips the scroll frame they cause.
+  const programmaticScrollRef = useRef(false);
+  const [chromeHidden, setChromeHidden] = useState(false);
+  // Not under a session page: the layer locks the page scroll, so a header
+  // hidden at the moment of the tap would have no scroll to bring it back.
+  const chromeCollapsible =
+    listVisible &&
+    !detailId &&
+    !isDesktop &&
+    view === "timeline" &&
+    resultCount > 0;
+  useEffect(() => {
+    if (!chromeCollapsible) {
+      setChromeHidden(false);
       return;
     }
-    // "Visible" = any part below the pinned day bar (mobile header + 48px
-    // tabs), not merely inside the viewport, which the sticky bars cover.
-    const pin = Math.round(headerOffsetNow() + 48);
-    const io = new IntersectionObserver(
+    let raf = 0;
+    let lastY = window.scrollY;
+    const measure = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const dy = y - lastY;
+      lastY = y;
+      if (programmaticScrollRef.current) {
+        programmaticScrollRef.current = false;
+        return;
+      }
+      // Day tabs pinned: the content area's top has reached the bottom of
+      // the header + tab strip (56 + 47; it only gets higher from there).
+      const content = contentRef.current;
+      const tabsPinned =
+        !!content &&
+        content.getBoundingClientRect().top <= headerOffsetNow() + 48;
+      if (!tabsPinned || dy < -2) setChromeHidden(false);
+      else if (dy > 2) setChromeHidden(true);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      setChromeHidden(false);
+    };
+  }, [chromeCollapsible]);
+  // Both flags in one layout effect: when the fold disarms (a session page
+  // opens, the view changes) the header must be back instantly, not slide
+  // in over the new page. Before paint, so no frame shows the page without
+  // its bar; and the animate flag is dropped and the style flushed BEFORE
+  // the transform changes — engines differ on whether a transition removed
+  // in the same style change still runs (WebKit ran it).
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const reset = () => {
+      root.removeAttribute("data-app-header-animates");
+      void root.offsetHeight; // flush: transition-property is none now
+      root.removeAttribute("data-app-header-hidden");
+    };
+    if (!chromeCollapsible) {
+      reset();
+      return;
+    }
+    root.setAttribute("data-app-header-animates", "");
+    root.toggleAttribute("data-app-header-hidden", chromeHidden);
+    return reset;
+  }, [chromeCollapsible, chromeHidden]);
+
+  // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
+  // Once that row has scrolled under the pinned day tabs, a floating copy
+  // takes the bottom-left corner, opposite the Live now pill, so the view
+  // stays switchable mid-list. Observed like GroupHeader's pin line; the
+  // row is display:none on desktop (0×0 rect) and never trips it there.
+  const viewRowRef = useRef<HTMLDivElement | null>(null);
+  const [viewRowScrolledOut, setViewRowScrolledOut] = useState(false);
+  const hasViewRow = resultCount > 0;
+  useEffect(() => {
+    const el = viewRowRef.current;
+    if (!el || !listVisible || isDesktop) {
+      setViewRowScrolledOut(false);
+      return;
+    }
+    const pinLine = headerOffsetNow() + 47;
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        // Hidden tab pane: 0×0 rect, not a real "scrolled away" (see GroupHeader).
         const r = entry.boundingClientRect;
         if (r.width === 0 && r.height === 0) return;
-        setHeadingToggleVisible(entry.isIntersecting);
+        setViewRowScrolledOut(!entry.isIntersecting && r.top < pinLine);
       },
-      { rootMargin: `-${pin}px 0px 0px 0px`, threshold: 0 }
+      { rootMargin: `-${pinLine}px 0px 0px 0px` }
     );
-    io.observe(node);
-    headingObserverRef.current = io;
-  }, []);
-  const compactViewToggle =
-    resultCount > 0 ? (
-      <ViewToggle view={view} onChange={changeView} compact />
-    ) : null;
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [listVisible, isDesktop, hasViewRow]);
 
   // Contiguous live groups render inside one full-bleed band (Figma frame 4).
   const segments = useMemo(() => {
@@ -855,6 +847,9 @@ export function Schedule() {
     <SessionDetailsPanel
       session={selectedSession}
       onClose={() => selectSession(null)}
+      // Desktop only: on phones this aside is mounted but hidden, and the
+      // fullscreen page already runs the session's feed (one SSE stream each).
+      showQa={isDesktop && listVisible}
     />
   ) : filtersOpen ? (
     // Same growth var as the details panels: the filter column keeps
@@ -874,6 +869,11 @@ export function Schedule() {
   const lastPanelContentRef = useRef<React.ReactNode>(null);
   if (livePanelContent) lastPanelContentRef.current = livePanelContent;
   const panelContent = livePanelContent ?? lastPanelContentRef.current;
+  // Facet filters only — search and Interested have their own pills now.
+  const facetFilterTotal = Object.values(facetFilterCounts).reduce(
+    (n, c) => n + (c ?? 0),
+    0
+  );
   const dayHeading = useMemo(() => {
     const day = days.find((d) => d.key === selectedDay);
     return day ? formatDayHeading(day.key) : null;
@@ -943,29 +943,44 @@ export function Schedule() {
           calendar); the list's actions and its search drawer step aside and
           come back, query intact, when it closes. */}
       {!detailId && (
-        <HeaderActions
+        <HeaderToolbar
+          kind="session"
+          searchLabel="Search sessions"
           searchOpen={headerSearch.searchOpen}
           searchActive={headerSearch.searchOpen}
           onToggleSearch={headerSearch.toggleSearch}
           interestedOnly={interestedOnly}
+          interestedCount={interestedIds.size}
           onToggleInterested={() => setInterestedOnly((v) => !v)}
-          onJumpToNow={jumpToNow}
-          filterCount={activeFilterCount}
+          filterCount={facetFilterTotal}
+          filtersOpen={filtersOpen}
           onOpenFilters={openFilters}
         />
       )}
-      {!detailId && (
-        <HeaderSearchDrawer
-          open={headerSearch.searchOpen}
-          onClose={headerSearch.closeSearch}
-          value={search}
-          onChange={setSearch}
-          placeholder="Search by session, speaker or topic"
-          inputRef={headerSearch.inputRef}
-          drawerRef={headerSearch.drawerRef}
-        />
+      {/* Only while something is live (Scott: no pill when nothing is on),
+          and regardless of the filtered list being empty — with a filter
+          on and a matchless day showing, it is the way back to today. */}
+      {!detailId && paneActive && anyLive && (
+        <LiveNowButton onClick={jumpToNow} />
       )}
-
+      {/* Floating list/timeline toggle (mobile), bottom-left opposite Live
+          now, once the in-flow one has scrolled away. Kept mounted for the
+          150ms fade; inert while hidden. Same bottom as Live now: 16px above
+          the tab bar's measured height. */}
+      {!detailId && paneActive && hasViewRow && (
+        <div
+          aria-hidden={!viewRowScrolledOut}
+          inert={!viewRowScrolledOut || undefined}
+          className={cn(
+            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
+            viewRowScrolledOut
+              ? "translate-y-0 opacity-100"
+              : "pointer-events-none translate-y-2 opacity-0"
+          )}
+        >
+          <ViewToggle view={view} onChange={changeView} iconOnly />
+        </div>
+      )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
           the (still mounted) list, desktop in place of it. Keyed by id so a
           chained open (speaker → session) starts at the top. */}
@@ -1006,24 +1021,65 @@ export function Schedule() {
                 onChange={setSearch}
                 placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
+                inputRef={desktopSearchRef}
+                resultCount={totalMatches}
               />
               <ViewToggle view={view} onChange={changeView} />
             </div>
 
+            {/* Mobile search, in flow: opening it pushes the day tabs and the
+                list down instead of covering the tabs (the header overlay left
+                no way to switch days mid-search). Not sticky — it scrolls away
+                with the page, so DayTabs still pins at 56px and every
+                hardcoded offset (103/112px group headers, timeline axis) stays
+                valid. Unmounted under a detail page (the session page owns the
+                header) and in hidden panes: one #header-search-panel in the
+                DOM at a time (Speakers portals its own). */}
+            {!detailId && paneActive && (
+              <SearchDrawerPanel
+                open={headerSearch.searchOpen}
+                onClose={headerSearch.closeSearch}
+                value={search}
+                onChange={setSearch}
+                placeholder="Search by session, speaker or topic"
+                inputRef={headerSearch.inputRef}
+                drawerRef={headerSearch.drawerRef}
+                resultCount={totalMatches}
+              />
+            )}
+
             {/* Day tabs (sticky under the mobile header) + desktop controls */}
             <DayTabs
-              days={days}
+              days={visibleDays}
+              counts={dayCounts}
               selectedDay={selectedDay}
               onSelect={selectDay}
-              trailing={headingToggleVisible ? null : compactViewToggle}
+              raised={chromeHidden}
+              // The toolbar's search field has scrolled away by the time the
+              // bar pins: this brings the page back to it and focuses it.
+              pinnedLead={
+                <button
+                  onClick={() => {
+                    programmaticScrollRef.current = true;
+                    window.scrollTo({ top: 0, behavior: "auto" });
+                    desktopSearchRef.current?.focus();
+                  }}
+                  className={cn(ghostPill, search && "bg-dc-lavender")}
+                >
+                  <Search className="size-4" />
+                  Search
+                </button>
+              }
             >
               <InterestedPill
+                kind="session"
                 active={interestedOnly}
+                count={interestedIds.size}
                 onToggle={() => setInterestedOnly((v) => !v)}
               />
               <button onClick={jumpToNow} className={ghostPill}>
                 <ClockArrowDown className="size-4" />
-                Jump to now
+                Live now
               </button>
               <button
                 onClick={() => {
@@ -1060,29 +1116,16 @@ export function Schedule() {
                 view === "timeline" ? "pb-0" : "pb-6"
               )}
             >
-              {/* Mobile: "Sessions" heading + view toggle (+ fullscreen button
-                  in timeline view). Observed: once this row is under the
-                  pinned day bar, the bar shows the compact toggle instead. */}
-              {resultCount > 0 && (
+              {/* Mobile: "Sessions" heading + view toggle. */}
+              {hasViewRow && (
                 <div
-                  ref={headingRowRef}
+                  ref={viewRowRef}
                   className="mb-3 flex items-center justify-between gap-3 lg:hidden"
                 >
                   <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
                     Sessions
                   </h2>
-                  <div className="flex items-center gap-3">
-                    {view === "timeline" && (
-                      <button
-                        onClick={() => setFullscreenOverride(true)}
-                        aria-label="Fullscreen timeline"
-                        className={cn(headerCircle, headerCircleResting)}
-                      >
-                        <Maximize2 className="size-4 text-dc-purple" />
-                      </button>
-                    )}
-                    <ViewToggle view={view} onChange={changeView} />
-                  </div>
+                  <ViewToggle view={view} onChange={changeView} />
                 </div>
               )}
 
@@ -1153,20 +1196,7 @@ export function Schedule() {
                     timelineLeftMsRef.current = leftMs;
                   }}
                   scrollToTime={timelineScrollToTime}
-                  fullscreen={timelineFullscreen}
-                  onExitFullscreen={() => setFullscreenOverride(false)}
-                  onJumpToNow={jumpToNow}
-                  interestedOnly={interestedOnly}
-                  onToggleInterested={() => setInterestedOnly((v) => !v)}
-                  fullscreenTop={
-                    <DayTabs
-                      days={days}
-                      selectedDay={selectedDay}
-                      onSelect={selectDay}
-                      pinned={false}
-                      trailing={compactViewToggle}
-                    />
-                  }
+                  headerRaised={chromeHidden}
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>

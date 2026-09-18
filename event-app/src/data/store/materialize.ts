@@ -88,6 +88,7 @@ export function toSession(
 
   return compact<Session>({
     id: row.id,
+    sourceId: row.sourceId,
     title: row.title,
     description: row.description,
     track: row.track,

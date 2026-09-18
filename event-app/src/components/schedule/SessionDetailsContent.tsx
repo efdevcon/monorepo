@@ -11,6 +11,7 @@ import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel } from "./trackTheme";
+import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 export function downloadSessionIcs(session: Session) {
@@ -46,8 +47,10 @@ export function downloadSessionIcs(session: Session) {
   URL.revokeObjectURL(url);
 }
 
+/** Action pills: 36px / 13px on the mobile page (one size up — the 32px
+ *  pills read small on device), the desktop panel's 32px / 12px from lg. */
 const pillBase =
-  "flex min-h-8 shrink-0 cursor-pointer items-center justify-center gap-1 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2";
+  "flex min-h-9 shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
 /**
@@ -167,39 +170,39 @@ export function SessionSummary({
             )}
           </div>
 
-          {/* Action pills, horizontally scrollable with a right fade */}
-          <div className="relative -mr-4">
-            <div className="flex gap-3 overflow-x-auto pr-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <button
-                onClick={() => void toggle(session.id, session.title)}
+          {/* Action pills wrap onto a new line on every breakpoint: the
+              mobile scroll-and-fade row hid "Show on Map" past the screen
+              edge, the same way the desktop panel's did. */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => void toggle(session.id)}
+              className={cn(
+                pillBase,
+                interested
+                  ? "border-dc-purple bg-dc-lavender"
+                  : "border-dc-hairline bg-white"
+              )}
+            >
+              <Star
                 className={cn(
-                  pillBase,
-                  interested
-                    ? "border-dc-purple bg-dc-lavender"
-                    : "border-dc-hairline bg-white"
+                  "size-4 text-dc-purple",
+                  interested ? "fill-dc-purple" : "fill-transparent"
                 )}
-              >
-                <Star
-                  className={cn(
-                    "size-4 text-dc-purple",
-                    interested ? "fill-dc-purple" : "fill-transparent"
-                  )}
-                />
-                {interested ? "Interested" : "Add to Interests"}
-              </button>
-              <button
-                onClick={() => downloadSessionIcs(session)}
-                className={pillClass}
-              >
-                <CalendarPlus className="size-4 text-dc-purple" />
-                Add to Calendar
-              </button>
-              <Link href="/map" className={pillClass}>
-                <MapPin className="size-4 text-dc-purple" />
-                Show on Map
-              </Link>
-            </div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-[52px] bg-gradient-to-l from-dc-panel to-transparent" />
+              />
+              {interested ? "Interested" : "Add to Interests"}
+            </button>
+            <button
+              onClick={() => downloadSessionIcs(session)}
+              className={pillClass}
+            >
+              <CalendarPlus className="size-4 text-dc-purple" />
+              Add to Calendar
+            </button>
+            {/* Rooms the map knows open on their floor with the footprint highlighted; the rest just open the map. */}
+            <Link href={mapHrefForRoom(session.room?.id)} className={pillClass}>
+              <MapPin className="size-4 text-dc-purple" />
+              Show on Map
+            </Link>
           </div>
         </div>
       </div>
@@ -240,7 +243,7 @@ export function SessionSpeakers({
 /**
  * Single-column session details: summary section, then speakers + Q&A. The
  * Q&A block is passed as children so its logic stays owned by the page.
- * - `panel` (desktop side panel): "Speakers" caption first, then Q&A teaser.
+ * - `panel` (desktop side panel): "Speakers" caption first, then Q&A.
  * - `page` (mobile fullscreen): Q&A first, then "Speakers (N)".
  */
 export function SessionDetailsContent({

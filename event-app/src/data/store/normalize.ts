@@ -44,6 +44,7 @@ export function normalizeBundle(
     compact<SessionRow>({
       eventId,
       id: s.id,
+      sourceId: str(s.sourceId),
       title: s.title ?? "",
       description: s.description ?? "",
       track: s.track ?? "",

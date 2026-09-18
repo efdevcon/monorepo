@@ -42,7 +42,7 @@ export function SpeakersEmptyState({
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src="/schedule/empty-search.webp"
+          src="/schedule/empty-search.gif"
           alt=""
           className="w-[200px] max-w-full"
         />

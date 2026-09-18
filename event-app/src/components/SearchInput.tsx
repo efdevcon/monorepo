@@ -17,6 +17,7 @@ export function SearchInput({
   placeholder,
   className,
   inputRef,
+  resultCount,
 }: {
   value: string;
   onChange: (v: string) => void;
@@ -24,6 +25,11 @@ export function SearchInput({
   className?: string;
   /** Ref to the inner <input>, for programmatic focus (header search icon). */
   inputRef?: InputRef;
+  /**
+   * Match count shown as a small "N results" label beside the clear × while
+   * something is typed (null/undefined: no label).
+   */
+  resultCount?: number | null;
 }) {
   return (
     <div
@@ -41,9 +47,22 @@ export function SearchInput({
         placeholder={placeholder}
         className="min-w-0 flex-1 bg-transparent text-[14px] leading-5 text-dc-fg outline-none placeholder:text-dc-muted [&::-webkit-search-cancel-button]:hidden"
       />
+      {value && resultCount != null && (
+        <span
+          aria-live="polite"
+          className="shrink-0 whitespace-nowrap text-[11px] leading-none tabular-nums text-dc-muted"
+        >
+          {resultCount} {resultCount === 1 ? "result" : "results"}
+        </span>
+      )}
       {value && (
         <button
+          type="button"
           onClick={() => onChange("")}
+          // Keep focus in the field: clearing shouldn't drop the iOS keyboard,
+          // and the search panel's empty-field auto-close (SearchDrawerPanel)
+          // must only fire when focus really leaves the search.
+          onMouseDown={(e) => e.preventDefault()}
           aria-label="Clear search"
           className="shrink-0 cursor-pointer"
         >

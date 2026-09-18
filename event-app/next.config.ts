@@ -57,7 +57,7 @@ const withSerwist = withSerwistInit({
     { url: "/schedule/devcon8-logomark.svg", revision },
     { url: "/schedule/devcon8-logo.svg", revision },
     { url: "/login/devcon-8-logo.svg", revision },
-    { url: "/schedule/empty-search.webp", revision },
+    { url: "/schedule/empty-search.gif", revision },
     { url: "/partners/ens.png", revision },
     // Track gem artwork (~113KB for all nine): every schedule view renders
     // them and the schedule is where offline use concentrates, so they must be

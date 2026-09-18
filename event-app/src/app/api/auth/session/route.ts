@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+import { cookieClient } from "../cookieClient";
 
 /**
  * Mirrors the browser's Supabase session into the HTTP-only auth cookies
@@ -18,30 +15,9 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
  *
  * POST { access_token, refresh_token }: validates the pair by loading it into
  * a server client and writes the cookies. DELETE: clears them (sign-out), so
- * a shared device can't install the previous user's app.
+ * a shared device can't install the previous user's app. The cookie client
+ * itself lives in ../cookieClient.ts (shared with the Meerkat hand-off).
  */
-function cookieClient(request: NextRequest) {
-  const pending: { name: string; value: string; options: CookieOptions }[] = [];
-  const client =
-    supabaseUrl && supabaseAnonKey
-      ? createServerClient(supabaseUrl, supabaseAnonKey, {
-          cookies: {
-            getAll() {
-              return request.cookies.getAll();
-            },
-            setAll(cookiesToSet) {
-              pending.push(...cookiesToSet);
-            },
-          },
-        })
-      : null;
-  const apply = (response: NextResponse) => {
-    pending.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
-    return response;
-  };
-  return { client, apply };
-}
-
 export async function POST(request: NextRequest) {
   const { client, apply } = cookieClient(request);
   if (!client) {

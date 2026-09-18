@@ -53,6 +53,8 @@ The Devcon event app authenticates users and verifies ticket ownership. When a u
          │                        │                        │
 ```
 
+Implementation: the "Ask a question" link in `src/components/schedule/SessionQA.tsx` points at `GET /api/meerkat/go?session=<id>` (`go/route.ts`), opened in a new tab in browsers and in place in the installed app, where a new tab would not carry the app's cookies on iOS. The route reads the Supabase auth cookies the app mirrors through `/api/auth/session`, checks for a paid ticket (email match or QR-attached link), mints the token and answers `302` to `https://app.meerkat.events/e/<id>/qa?token=<jwt>`. Failures (not signed in, no ticket, ticketing down) render a small HTML page in that tab. Reading questions needs no token (Meerkat's public REST API via `@meerkat-events/react`); a 404 there means the session has no Q&A yet and the link is hidden.
+
 ## JWT Specification
 
 ### Structure
@@ -143,7 +145,7 @@ def verify_handover_token(token: str, secret: str):
 The token is passed as a URL query parameter when redirecting the user to Meerkat:
 
 ```
-https://app.meerkat.events/session/{sessionId}?token={jwt}
+https://app.meerkat.events/e/{sessionId}/qa?token={jwt}
 ```
 
 Meerkat should read the `token` query parameter on page load, verify it, and use the email to establish its own session for the user. The session context comes from the URL path, not the JWT.

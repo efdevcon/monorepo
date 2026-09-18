@@ -19,6 +19,10 @@ import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
 import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
+import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
+import { roomIconUrl } from "../src/components/room-screen/roomIcon";
+import { parseIosMajorVersion } from "../src/utils/platform";
+import { meerkatEventId } from "../src/data/meerkat";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -51,6 +55,7 @@ export const FIXTURE: EventBundle = {
   sessions: [
     {
       id: "talk-a",
+      sourceId: "ABC123",
       title: "Talk A",
       description: "About A",
       track: "Security",
@@ -90,6 +95,7 @@ function testNormalize() {
   check("ISO slot times converted to ms", rows.sessions[1].slotStart === T0 + 60 * 60_000);
   check("featured true kept, absent omitted", a.featured === true && !("featured" in rows.sessions[1]));
   check("empty source id omitted", !("sources_youtubeId" in a));
+  check("Pretalx code kept as sourceId, omitted when absent", a.sourceId === "ABC123" && !("sourceId" in rows.sessions[1]));
   check("no undefined keys on rows", rows.sessions.every((r) => Object.values(r).every((v) => v !== undefined)));
   check("missing text fields default to empty strings", rows.sessions[1].description === "" && rows.sessions[1].track === "" && rows.sessions[1].type === "Talk");
   check("room null capacity omitted", !("capacity" in rows.rooms[0]));
@@ -368,8 +374,33 @@ function testPassBarcode() {
   check("photo format: PNG, JPEG and PDF are not", !isUnsupportedPhotoFormat(blob("shot.png", "image/png")) && !isUnsupportedPhotoFormat(blob("p.jpg", "image/jpeg")) && !isUnsupportedPhotoFormat(blob("t.pdf", "application/pdf")));
 }
 
+function testMeerkatHandover() {
+  check("meerkat: slug session ids pass", isSessionId("opening-ceremony") && isSessionId("Session_01"));
+  check("meerkat: empty, path-like or oversized ids fail", !isSessionId("") && !isSessionId("a/b") && !isSessionId("../x") && !isSessionId("-lead") && !isSessionId("x".repeat(200)));
+  const url = new URL(meerkatSessionUrl("opening-ceremony", "a.b.c"));
+  check("meerkat: hand-off lands on the session's Q&A page", url.origin === "https://app.meerkat.events" && url.pathname === "/e/opening-ceremony/qa");
+  check("meerkat: token travels as the token query param", url.searchParams.get("token") === "a.b.c");
+  check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
+  check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
+  check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
+  check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
+}
+
+function testIosVersion() {
+  const iphone = (os: string, version: string | null, browser = "") =>
+    `Mozilla/5.0 (iPhone; CPU iPhone OS ${os} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) ${browser}${version ? `Version/${version} ` : ""}Mobile/15E148 Safari/604.1`;
+  check("ios version: Safari 27 despite the frozen OS 18_7 token", parseIosMajorVersion(iphone("18_7", "27.0")) === 27);
+  check("ios version: Safari 26.5 reads Version, not OS", parseIosMajorVersion(iphone("18_7", "26.5")) === 26);
+  check("ios version: iOS 18 Safari", parseIosMajorVersion(iphone("18_6_2", "18.6")) === 18);
+  check("ios version: Chrome on iOS has no Version token, falls back to the OS token", parseIosMajorVersion(iphone("17_5", null, "CriOS/125.0 ")) === 17);
+  check("ios version: iPad desktop mode reads Safari's Version", parseIosMajorVersion("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15") === 27);
+  check("ios version: Android and desktop Chrome are null", parseIosMajorVersion("Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 Chrome/140.0 Mobile Safari/537.36") === null && parseIosMajorVersion("Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 Chrome/140.0 Safari/537.36") === null);
+}
+
 async function main() {
   testNormalize();
+  testMeerkatHandover();
+  testIosVersion();
   testPassBarcode();
   testMaterialize();
   testSyncDecision();

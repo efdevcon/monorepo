@@ -1,26 +1,44 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePaneActive } from "@/components/paneContext";
 
 /**
- * Shared state + behavior for the mobile header search drawer: the pages'
- * portaled search circle toggles it, HeaderSearchDrawer renders it. One home
+ * Shared state + behavior for the mobile search fold-out: the pages' Search
+ * pill (HeaderToolbar) toggles it, SearchDrawerPanel renders it in flow. One home
  * for the fragile iOS invariant so Schedule and Speakers can't drift apart:
  * Safari only raises the on-screen keyboard for a focus() made synchronously
  * inside a user gesture, so everything the open path needs (inert removal,
  * focus, scroll reset) happens right here in the tap handler, before React
  * re-renders.
  *
- * `onClose` runs on every close path (circle tap, Escape, closeSearch) — the
- * pages use it to clear the query, so closing the drawer also drops the
- * filter it applied. A hidden-but-active search used to survive the close,
- * signalled only by the filled circle, and read as the list being broken.
+ * `onClose` runs on every close path (pill tap, Escape, closeSearch, and
+ * leaving the tab) — the pages use it to clear the query, so closing the
+ * panel also drops the filter it applied. A hidden-but-active search used to
+ * survive the close, signalled only by the filled pill, and read as the
+ * list being broken.
  */
 export function useHeaderSearch(onClose?: () => void) {
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   /** The drawer's collapsible wrapper — carries `inert` while closed. */
   const drawerRef = useRef<HTMLDivElement | null>(null);
+
+  // Tab panes stay mounted when the user switches tabs (TabPanes), so an
+  // open search would still be open — query applied, field showing — when
+  // they came back. Fold it up as the pane goes hidden instead. `onClose`
+  // is an inline arrow at both call sites, so it rides along in a ref.
+  const paneActive = usePaneActive();
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+  useEffect(() => {
+    if (paneActive || !searchOpen) return;
+    setSearchOpen(false);
+    inputRef.current?.blur();
+    onCloseRef.current?.();
+  }, [paneActive, searchOpen]);
 
   const toggleSearch = () => {
     const next = !searchOpen;

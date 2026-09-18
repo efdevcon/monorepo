@@ -163,7 +163,7 @@ export const DESKTOP_METRICS: TimelineMetrics = {
 export const MOBILE_METRICS: TimelineMetrics = {
   slotWidth: 100,
   roomCol: 96,
-  laneH: 56,
+  laneH: 72,
   headerH: 32,
   blockInset: 4,
 };

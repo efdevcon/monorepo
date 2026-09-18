@@ -8,6 +8,22 @@ import fs from 'fs'
 
 const eventId = process.argv[2] || 'devcon-7'
 const config = getPretalxConfig(eventId)
+// Events that may get a Google Slides deck per session (§2d of docs/av). Two
+// gates, both required: this hardcoded allow-list (extend it in a deliberate
+// commit when Devcon 8 goes live; devcon-7 is over and stays out) and the
+// SLIDES_EVENTS env opt-in for the current run. CI sets no SLIDES_* variables,
+// so the sync workflows never create decks by accident.
+const SLIDES_ALLOWED_EVENTS = ['test-devcon-8']
+const SLIDES_EVENTS = (process.env.SLIDES_EVENTS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean)
+// Optional: only create decks for these Pretalx codes (comma separated), so a
+// test run touches a handful of talks instead of the whole event.
+const SLIDES_ONLY_CODES = (process.env.SLIDES_ONLY_CODES || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean)
 
 console.log(`Syncing Pretalx for event: ${eventId} (${config.PRETALX_EVENT_NAME} @ ${config.PRETALX_BASE_URI})`)
 
@@ -23,9 +39,15 @@ async function main() {
   await syncRooms()
   await syncSessions()
 
-  // Devcon-7 specific: Google Slides + glossary
+  // Google Slides decks, only for events passing both gates; glossary stays Devcon-7 only.
+  if (SLIDES_EVENTS.includes(eventId)) {
+    if (SLIDES_ALLOWED_EVENTS.includes(eventId)) {
+      await createPresentations()
+    } else {
+      console.log(`Slides: ${eventId} is not in SLIDES_ALLOWED_EVENTS (${SLIDES_ALLOWED_EVENTS.join(', ')}), skipping deck creation`)
+    }
+  }
   if (eventId === 'devcon-7') {
-    await createPresentations()
     createGlossary()
   }
 }
@@ -260,6 +282,7 @@ async function createPresentations() {
   for (const sessionFs of sessionsFs) {
     if (!sessionFs.resources_presentation) {
       const session = sessions.find((s: any) => s.id === sessionFs.id)
+      if (session && SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
 
       if (session) {
         const speakerEmails = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)

@@ -40,6 +40,8 @@ export interface BundleSpeaker {
 
 export interface BundleSession {
   id: string;
+  /** Pretalx code; Meerkat's event id for the session's Q&A. */
+  sourceId?: string;
   title?: string;
   description?: string;
   track?: string;
@@ -84,6 +86,8 @@ export const BundleSchema = z.object({
 export interface SessionRow {
   eventId: string;
   id: string;
+  /** Pretalx code; Meerkat's event id for the session's Q&A. */
+  sourceId?: string;
   title: string;
   description: string;
   track: string;

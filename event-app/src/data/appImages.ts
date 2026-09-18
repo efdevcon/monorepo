@@ -1,4 +1,5 @@
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
+import { ROOM_ICON_URLS } from "@/components/room-screen/roomIcon";
 import mapBackground from "@/app/(page-layout)/map/venue-map/bg-image-new.png";
 
 /**
@@ -37,6 +38,9 @@ export const TRACK_GEM_IMAGES: string[] = DC8_TRACKS.flatMap((track) =>
 export const MAP_IMAGES: string[] = [mapBackground.src];
 
 export const APP_IMAGES: string[] = [
+  // Stage theme crests on the room-screen picker (small, but under public/, so
+  // never in the API-driven warm list; see roomIcon.ts).
+  ...ROOM_ICON_URLS,
   // Large — warmed, never precached.
   "/login/backdrop.jpg",
   "/tickets-hero.jpg",
@@ -46,6 +50,6 @@ export const APP_IMAGES: string[] = [
   "/login/devcon-8-logo.svg",
   "/schedule/devcon8-logo.svg",
   "/schedule/devcon8-logomark.svg",
-  "/schedule/empty-search.webp",
+  "/schedule/empty-search.gif",
   "/partners/ens.png",
 ];

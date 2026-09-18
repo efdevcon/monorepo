@@ -4,14 +4,16 @@ import APP_CONFIG from "@/CONFIG";
 import { AnnouncementsSection } from "../announcements/AnnouncementsSection";
 import { HighlightsCarousel } from "../announcements/HighlightsCarousel";
 import { InstallAppButton } from "../InstallAppButton";
+import { InstallHeroCard } from "../InstallHeroCard";
 import { Tickets } from "../Tickets";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 
 /**
- * The home page (Figma home redesign): rotating greeting, the featured
- * highlight hero, announcements preview, highlights carousel, tickets, and the
- * "Devcon 8 India" sign-off art.
+ * The home page (Figma home redesign): rotating greeting, the install nudge
+ * (browser visitors only), the featured highlight hero, announcements
+ * preview, highlights carousel, tickets, and the "Devcon 8 India" sign-off
+ * art.
  *
  * FeaturedCard sits outside the ANNOUNCEMENTS_ENABLED gate on purpose: it owns
  * that check itself and renders nothing when there's no highlight to show. Escapes the 680px `.section` column to the
@@ -25,6 +27,12 @@ export function Home() {
         <h1 className="sr-only">Home</h1>
         <Greeting />
         <div className="mt-8 flex flex-col gap-8 lg:gap-12">
+          {/* Browser visitors: install nudge up top (the bottom button stays
+              as a second chance). Wrapper collapses when the card is null so
+              the stack's gap doesn't double up. */}
+          <div className="empty:hidden">
+            <InstallHeroCard />
+          </div>
           <FeaturedCard />
           {APP_CONFIG.ANNOUNCEMENTS_ENABLED && (
             <>
