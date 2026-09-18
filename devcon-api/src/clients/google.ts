@@ -4,7 +4,11 @@ import path from 'path'
 import { authenticate } from '@google-cloud/local-auth'
 
 export async function GetAccessToken(scopes: string[]) {
-  console.log('Authenticating with Google', scopes)
+  console.log(
+    `  Google: authenticating as ${
+      process.env.GOOGLE_IMPERSONATE_USER || process.env.GOOGLE_CLOUD_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL || '(no credentials)'
+    }`
+  )
 
   const credentials = {
     client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL,
@@ -15,13 +19,22 @@ export async function GetAccessToken(scopes: string[]) {
     email: credentials.client_email,
     key: credentials.private_key,
     scopes: scopes,
+    // Domain-wide delegation: act as this Workspace user instead of the bare
+    // service account, so Drive items are created and read as an internal
+    // identity. Needs the account's client id authorised for these scopes in
+    // the Workspace admin console; unset = plain service account as before.
+    subject: process.env.GOOGLE_IMPERSONATE_USER || undefined,
   })
 
   return auth.getAccessToken()
 }
 
 export async function AuthenticateServiceAccount(scopes: string[]) {
-  console.log('Authenticating with Google', scopes)
+  console.log(
+    `  Google: authenticating as ${
+      process.env.GOOGLE_IMPERSONATE_USER || process.env.GOOGLE_CLOUD_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL || '(no credentials)'
+    }`
+  )
 
   const credentials = {
     client_email: process.env.GOOGLE_CLOUD_CLIENT_EMAIL || process.env.GOOGLE_CLIENT_EMAIL,
@@ -32,6 +45,11 @@ export async function AuthenticateServiceAccount(scopes: string[]) {
     email: credentials.client_email,
     key: credentials.private_key,
     scopes: scopes,
+    // Domain-wide delegation: act as this Workspace user instead of the bare
+    // service account, so Drive items are created and read as an internal
+    // identity. Needs the account's client id authorised for these scopes in
+    // the Workspace admin console; unset = plain service account as before.
+    subject: process.env.GOOGLE_IMPERSONATE_USER || undefined,
   })
 
   google.options({ auth: auth as any })

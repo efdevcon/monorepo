@@ -65,9 +65,7 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
 
   // Build lookups
   const slotMap = new Map<number, any>(slots.map((s: any) => [s.id, s]))
-  const roomIdToSlug = new Map<number, string>(
-    rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)])
-  )
+  const roomIdToSlug = new Map<number, string>(rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)]))
   // Unlike /talks, /submissions returns `speakers` as an array of codes (not
   // full objects), so mapSession can't derive a name/slug from them. Resolve
   // each code to its full speaker object up front.
@@ -99,6 +97,9 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
     })
 }
 
+// The talks-endpoint fallback is hit once per data pass; say so once per run, not per call.
+let fallbackNoticeShown = false
+
 export async function GetSessions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   try {
     const talks = await exhaustResource(`talks?questions=all&expand=answers.question,track,submission_type,tags`, config)
@@ -108,7 +109,10 @@ export async function GetSessions(params: Partial<RequestParams> = {}, config: P
     // Only keep scheduled ones (with a slot): unscheduled confirmed talks have no
     // time/room and would otherwise render as 1970-01-01 in an "unassigned" stage.
     // This mirrors the published-schedule path, which only returns scheduled talks.
-    console.log('No published schedule, falling back to confirmed (scheduled) submissions...')
+    if (!fallbackNoticeShown) {
+      fallbackNoticeShown = true
+      console.log(`  Pretalx: no published schedule for ${config.PRETALX_EVENT_NAME}, using confirmed and scheduled submissions instead`)
+    }
     const submissions = await GetSubmissions({ ...params, state: 'confirmed' }, config)
     return submissions.filter((s: any) => s.slot_start)
   }
@@ -124,14 +128,20 @@ export async function GetSpeaker(id: string, params: Partial<RequestParams> = {}
   return mapSpeaker(data, params, config)
 }
 
-async function exhaustResource(slug: string, config: PretalxInstanceConfig, limit = config.DEFAULT_LIMIT, offset = 0, results = [] as any): Promise<any> {
+async function exhaustResource(
+  slug: string,
+  config: PretalxInstanceConfig,
+  limit = config.DEFAULT_LIMIT,
+  offset = 0,
+  results = [] as any
+): Promise<any> {
   return get(`${slug}${slug.includes('?') ? '&' : '?'}limit=${limit}&offset=${offset}`, config).then((data: any) => {
     results.push(data.results)
     if (data.next) {
-      console.log('GET', slug, 'TOTAL COUNT', data.count)
+      if (process.env.SYNC_VERBOSE) console.log('  pretalx GET', slug, 'total', data.count)
       return exhaustResource(slug, config, limit, offset + limit, results)
     } else {
-      console.log('Return results', slug, results.flat().length)
+      if (process.env.SYNC_VERBOSE) console.log('  pretalx GET', slug, '→', results.flat().length, 'rows')
       return results.flat()
     }
   })
@@ -220,7 +230,7 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
   if (predefinedTags) tags = [...tags, ...predefinedTags]
   tags = [...new Set(tags.filter((t) => typeof t === 'string' && t.trim() !== ''))]
 
-  let session: any = {
+  const session: any = {
     id: defaultSlugify(i.title),
     sourceId: i.code,
     title: i.title,
@@ -229,11 +239,7 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     // objects `{id, name:{en}}`; older instances used a bare `{en}` / numeric id.
     // Read both shapes so the migrated events keep their track labels and types.
     track: i.track?.name?.en ?? i.track?.en ?? '',
-    type:
-      mapSubmissionType(i.submission_type_id ?? i.submission_type?.id) ||
-      i.submission_type?.name?.en ||
-      i.submission_type?.en ||
-      'Talk',
+    type: mapSubmissionType(i.submission_type_id ?? i.submission_type?.id) || i.submission_type?.name?.en || i.submission_type?.en || 'Talk',
     expertise: expertise ?? '',
     audience: audience ?? '',
     featured: i.is_featured ?? false,
@@ -265,8 +271,7 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
 }
 
 function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInstanceConfig = PRETALX_CONFIG) {
-  const findAnswer = (questionId: number | undefined) =>
-    questionId ? i.answers?.find((i: any) => i.question?.id === questionId)?.answer : undefined
+  const findAnswer = (questionId: number | undefined) => (questionId ? i.answers?.find((i: any) => i.question?.id === questionId)?.answer : undefined)
 
   const twitter = findAnswer(config.PRETALX_QUESTIONS_TWITTER)
   const github = findAnswer(config.PRETALX_QUESTIONS_GITHUB)
@@ -287,7 +292,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const avatarUrl = (i.avatar ?? i.avatar_url)?.replace(/^https?:\/\/speak\.devcon\.org\//, 'https://cfp.devcon.org/')
   const avatar = avatarUrl || CreateBlockie(i.name || i.code)
 
-  let speaker: any = {
+  const speaker: any = {
     id: defaultSlugify(i.name || i.code),
     sourceId: i.code,
     name: i.name,

@@ -292,6 +292,27 @@ Nothing is written back to Pretalx, it only supplies titles, codes and speaker e
    variables, so no workflow creates decks. `SLIDES_ONLY_CODES` limits a run to a few
    Pretalx codes and `SLIDES_SKIP_PERMISSIONS=true` creates decks without granting
    speakers, both meant for test runs. `pnpm slides` (§9) now exits immediately.
+   A **permissions pass** (2026-09-18, `reconcilePermissions()` in the sync, rules in
+   `utils/slides-permissions.ts`) runs after deck creation for the same events: current
+   speakers get writer, speakers removed in Pretalx lose the writer grant, the AV group
+   from `SLIDES_AV_GROUP` gets reader, `anyone` grants are removed unless
+   `SLIDES_ALLOW_PUBLIC=true`, direct grants listed in `SLIDES_KEEP_EMAILS` and inherited
+   access are never touched. It only reports while `SLIDES_SKIP_PERMISSIONS=true` or
+   `SLIDES_PERMISSIONS_DRY_RUN=true`. It reads decks by the id in the session JSON, so it
+   needs the Google identity to see the decks: as of 2026-09-18 the external service
+   account loses sight of files it creates seconds after creation (cause under
+   investigation with the Workspace admins), which blocks this pass and the export.
+   `GOOGLE_IMPERSONATE_USER` (domain-wide delegation, to be authorised by an admin) makes
+   the pipeline act as an internal EF user instead.
+   **Speakers without a Google account** (2026-09-18): Drive refuses a silent grant to such
+   an address and only accepts one with its invitation email; in testing that email never
+   arrived (two addresses, two runs), and in DC7 the grant simply failed with "Grant
+   manually". The pipeline now keeps the pending grant (it attaches automatically if the
+   speaker later creates a Google account with that address) and, with
+   `SLIDES_NO_ACCOUNT_EMAIL=true`, sends Devcon's own email (the devcon.org transactional chrome) through the API's SMTP,
+   from and reply-to `SLIDES_CONTACT_EMAIL` (default speak@devcon.org), asking the speaker
+   to reply with a Google account address. Sent once, when the grant is
+   first attempted; the next sync grants the updated address and revokes the old one.
 3. **Speaker-facing link** -
    [`devcon/src/pages/sea/presentation/[code].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon/src/pages/sea/presentation/%5Bcode%5D.tsx)
    (2024-10-15): `devcon.org/sea/presentation/<code>` fetches
@@ -303,8 +324,13 @@ Nothing is written back to Pretalx, it only supplies titles, codes and speaker e
    (inference).
 4. **Event-eve nudge** - `RunPermissions` (commit `553ca239a`, 2024-11-12 00:59 Bangkok)
    reads the deck's `lastModifyingUser`. If the last editor is still the service
-   account, meaning the speaker never opened the deck, it sends a notification email;
-   otherwise it returns silently.
+   account, meaning the speaker never opened the deck, it re-grants the speakers writer
+   access, silently: despite its "Sending Notification Email" log line the grant has
+   `sendNotificationEmail: false`, and the Drive-notification branch in the creation
+   path was gated by a `sendEmails` flag that was `false` in every commit (checked
+   2026-09-18). Drive never emailed a DC7 speaker; the deck link travelled in Devcon's
+   own emails (step 3), and a grant to an address without a Google account failed with
+   "Grant manually" in the log.
 5. **Post-event export to the archive** -
    [`scripts/slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/slides.ts) (2024-12-09 to 12):
    `exportSlides()` pulled each deck as PDF through the Slides export URL into
