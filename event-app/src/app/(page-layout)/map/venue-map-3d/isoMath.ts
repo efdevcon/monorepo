@@ -51,10 +51,21 @@ export function projectedExtent(bounds: GroundBounds, yMin: number, yMax: number
   return { width: maxU - minU, height: maxV - minV };
 }
 
+/**
+ * Six-digit hex for the fills the plans use (`white` for the toilets, `#rgb`
+ * shorthand); anything else is returned untouched. Every colour helper here
+ * goes through it, so a named fill never reaches the channel maths (it used to
+ * produce `#NaNNaN..`, which three ignored with a warning).
+ */
+export function toHex6(c: string): string {
+  if (c === "white") return "#ffffff";
+  if (/^#[0-9a-f]{3}$/i.test(c)) return `#${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`;
+  return c;
+}
+
 /** Multiply an sRGB hex colour's channels (0..1 darkens, >1 brightens). */
 export function scaleHex(hex: string, factor: number): string {
-  const h = hex.replace("#", "");
-  const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h;
+  const full = toHex6(hex).replace("#", "");
   const out = [0, 2, 4].map((i) => {
     const v = Math.round(parseInt(full.slice(i, i + 2), 16) * factor);
     return Math.max(0, Math.min(255, v)).toString(16).padStart(2, "0");

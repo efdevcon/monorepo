@@ -5,7 +5,7 @@ import { useFrame, useLoader, useThree, type ThreeEvent } from "@react-three/fib
 import { SRGBColorSpace, Sprite, TextureLoader, type Intersection, type Raycaster, type Texture } from "three";
 import { PX } from "./isoMath";
 import { TAP_SLOP_PX } from "./interaction";
-import { areaOf, shapeKey } from "./planArea";
+import { areaOf, isDimmed, shapeKey } from "./planArea";
 import type { Area, PlanShape } from "./types";
 
 type PlanIconsProps = {
@@ -14,6 +14,8 @@ type PlanIconsProps = {
   interactive: boolean;
   /** Footprint whose icon bobs (selection key, see planArea.ts). */
   selectedId: string | null;
+  /** Hovered footprint: its icon is not dimmed, like the footprint itself (PlanShapes). */
+  hoveredId: string | null;
   /** Found group: every member's icon bobs too. */
   highlightedIds: ReadonlySet<string> | null;
   reducedMotion: boolean;
@@ -58,7 +60,7 @@ const BOB_AMPLITUDE = 0.12; // Scott: "a little more verticality" than 0.07
 const BOB_PERIOD_S = 1.8;
 
 /** The theme icons, standing on the centre of each footprint and always facing the camera. */
-export function PlanIcons({ shapes, interactive, selectedId, highlightedIds, reducedMotion, onSelect, setHovered }: PlanIconsProps) {
+export function PlanIcons({ shapes, interactive, selectedId, hoveredId, highlightedIds, reducedMotion, onSelect, setHovered }: PlanIconsProps) {
   return (
     <>
       {shapes
@@ -69,8 +71,8 @@ export function PlanIcons({ shapes, interactive, selectedId, highlightedIds, red
             shape={shape}
             interactive={interactive}
             bob={!reducedMotion && (shapeKey(shape) === selectedId || (highlightedIds?.has(shapeKey(shape)) ?? false))}
-            // Another footprint is selected: fade with it (PlanShapes dims the footprint itself).
-            dim={selectedId !== null && shapeKey(shape) !== selectedId && !(highlightedIds?.has(shapeKey(shape)) ?? false)}
+            // Another footprint is selected: fade with it (PlanShapes dims the footprint itself, same predicate).
+            dim={isDimmed(shape, selectedId, hoveredId, highlightedIds)}
             onSelect={onSelect}
             setHovered={setHovered}
           />

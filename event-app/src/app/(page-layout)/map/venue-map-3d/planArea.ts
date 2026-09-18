@@ -11,3 +11,14 @@ export const areaOf = (shape: PlanShape): Area => ({
   icon: shape.icon,
   level: shape.level,
 });
+
+/**
+ * Another footprint on the floor is selected: this one fades towards the slab
+ * (PlanShapes) and its icon with it (PlanIcons). One predicate for both, so a
+ * hover un-dims the footprint and its icon together.
+ */
+export const isDimmed = (shape: PlanShape, selectedId: string | null, hoveredId: string | null, highlightedIds: ReadonlySet<string> | null): boolean => {
+  if (selectedId === null || !shape.tappable) return false;
+  const key = shapeKey(shape);
+  return key !== selectedId && key !== hoveredId && !(highlightedIds?.has(key) ?? false);
+};

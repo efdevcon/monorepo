@@ -3,9 +3,9 @@
 import { useMemo } from "react";
 import type { ThreeEvent } from "@react-three/fiber";
 import { EdgesGeometry, ExtrudeGeometry, Path, Shape, Vector2 } from "three";
-import { polygonArea, PX, scaleHex } from "./isoMath";
+import { polygonArea, PX, scaleHex, toHex6 } from "./isoMath";
 import { noRaycast, TAP_SLOP_PX } from "./interaction";
-import { areaOf, shapeKey } from "./planArea";
+import { areaOf, isDimmed, shapeKey } from "./planArea";
 import type { Area, PlanShape } from "./types";
 
 type PlanShapesProps = {
@@ -32,8 +32,8 @@ export function PlanShapes({ shapes, interactive, selectedId, hoveredId, highlig
           shape={shape}
           selected={shapeKey(shape) === selectedId}
           hovered={shapeKey(shape) === hoveredId || (highlightedIds?.has(shapeKey(shape)) ?? false)}
-          // A selection dims every other footprint on the floor so it stands out (Scott, 2026-09-17; experiment).
-          dimmed={selectedId !== null && shape.tappable && shapeKey(shape) !== selectedId && shapeKey(shape) !== hoveredId && !(highlightedIds?.has(shapeKey(shape)) ?? false)}
+          // A selection dims every other footprint on the floor so it stands out (Scott, 2026-09-17; experiment). Same predicate as its icon (PlanIcons).
+          dimmed={isDimmed(shape, selectedId, hoveredId, highlightedIds)}
           tinted={floorHovered && shape.kind === "slab"}
           interactive={interactive}
           onSelect={onSelect}
@@ -51,13 +51,6 @@ const FLOOR_TINT = 0.14;
 /** Non-selected footprints while one is selected: pulled this far towards the slab colour (and their edges likewise). */
 const SLAB_FILL = "#E4E0F8";
 const DIM_TOWARDS_SLAB = 0.6;
-
-/** Six-digit hex for the fills the plans use (`white` for the toilets); anything else is returned untouched. */
-function toHex6(c: string): string {
-  if (c === "white") return "#ffffff";
-  if (/^#[0-9a-f]{3}$/i.test(c)) return `#${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`;
-  return c;
-}
 
 function mixHex(a: string, b: string, t: number): string {
   a = toHex6(a);
