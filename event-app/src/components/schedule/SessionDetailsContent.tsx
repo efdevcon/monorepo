@@ -11,6 +11,7 @@ import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel } from "./trackTheme";
+import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 export function downloadSessionIcs(session: Session) {
@@ -197,7 +198,8 @@ export function SessionSummary({
               <CalendarPlus className="size-4 text-dc-purple" />
               Add to Calendar
             </button>
-            <Link href="/map" className={pillClass}>
+            {/* Rooms the map knows open on their floor with the footprint highlighted; the rest just open the map. */}
+            <Link href={mapHrefForRoom(session.room?.id)} className={pillClass}>
               <MapPin className="size-4 text-dc-purple" />
               Show on Map
             </Link>

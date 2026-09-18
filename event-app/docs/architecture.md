@@ -167,3 +167,9 @@ Production build (`pnpm preview`) against the production API, mobile viewport.
 | Offline sweep (`scripts/offline-sweep.mjs`) | passed: 7 routes, 6 deep links, 2 legacy redirects, cross-section trip without reload |
 | `pnpm data:test` | 50 checks passing |
 | Tab switch, 4x CPU throttle (persistent panes + progressive lists) | Speakers 154 ms (was 809), Schedule 170 ms (was 635), Home 159 ms (was 483); first-ever Speakers visit 493 ms incl. its chunk (was 938) |
+
+## Venue map
+
+The Map tab is a React Three Fiber prototype fed by generated bundles from the floor-plan SVGs
+(`pnpm map:build:plan`). Pipelines, interaction model, design decisions and gotchas:
+`docs/venue-map-3d.md`.

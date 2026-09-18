@@ -82,20 +82,35 @@ function parseSpeed(raw: string | null): number {
   return isNaN(n) || n <= 0 ? 1 : n;
 }
 
+/**
+ * Whether the dev panel (and its floating trigger) is available: local dev,
+ * `?debug` in the URL, or any environment (incl. production) when
+ * NEXT_PUBLIC_ENABLE_DEBUG is set at build time. The env flag is the supported
+ * way to turn this on in production without abusing NODE_ENV (a non-standard
+ * NODE_ENV breaks the Next.js production build). Client-only: reads the URL.
+ */
+export function appDebugEnabled(): boolean {
+  const params =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : new URLSearchParams();
+  return (
+    process.env.NODE_ENV === "development" ||
+    process.env.NEXT_PUBLIC_ENABLE_DEBUG === "true" ||
+    params.has("debug")
+  );
+}
+
 export function DebugPanel() {
   const pathname = usePathname();
   const params =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search)
       : new URLSearchParams();
-  // Available in local dev, when `?debug` is in the URL, or in any environment
-  // (incl. production) when NEXT_PUBLIC_ENABLE_DEBUG is set at build time. The
-  // env flag is the supported way to turn this on in production without abusing
-  // NODE_ENV (a non-standard NODE_ENV breaks the Next.js production build).
-  const enabled =
-    process.env.NODE_ENV === "development" ||
-    process.env.NEXT_PUBLIC_ENABLE_DEBUG === "true" ||
-    params.has("debug");
+  const enabled = appDebugEnabled();
+  // The venue map docks this trigger under its own wrench button (top-left),
+  // keeping the map's bottom edge free for the Find control and the legend.
+  const onMap = pathname.startsWith("/map");
 
   const [open, setOpen] = useState(false);
   const [mockNow, setMockNow] = useState(() => {
@@ -175,18 +190,30 @@ export function DebugPanel() {
         // safe-area inset between browser tab and installed PWA, which is why
         // a hardcoded offset sat differently in each); where there is no bar
         // (desktop, detail views) the clearance is 0 and it drops to the
-        // corner. +48 (not +12): the venue map parks its Find button in this
-        // same corner at clearance+12 — the debug tool yields and floats
-        // above it.
-        className="fixed bottom-[calc(var(--nav-clearance)+48px)] left-4 z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105 lg:bottom-4"
+        // corner. The +48 dates from the old 2D map's Find button sharing this
+        // corner; kept so the other pages don't shift.
+        // On /map it docks under the 3D map's wrench (DebugCorner: 44px disc at
+        // lg 80px) with the same 12px column gap, and its panel opens downward
+        // from there; the map has no debug tools on phones (Scott, 2026-09-17).
+        className={cn(
+          "fixed z-[100] flex h-11 w-11 items-center justify-center rounded-full bg-gray-900 text-white shadow-lg transition-transform hover:scale-105",
+          onMap
+            ? "left-6 top-[136px] hidden lg:flex"
+            : "bottom-[calc(var(--nav-clearance)+48px)] left-4 lg:bottom-4"
+        )}
       >
         <Bug className="h-5 w-5" />
       </button>
 
       {open && (
-        <div // Anchored above the button so it opens upward from the same corner.
-          // 48px FAB offset + 44px button + 12px gap.
-          className="fixed bottom-[calc(var(--nav-clearance)+104px)] left-4 z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl lg:bottom-[72px]">
+        <div // Anchored above the button so it opens upward from the same corner
+          // (48px FAB offset + 44px button + 12px gap); under it on /map.
+          className={cn(
+            "fixed z-[100] w-72 rounded-2xl border border-dc-hairline bg-white p-4 text-sm shadow-2xl",
+            onMap
+              ? "left-6 top-[192px] hidden lg:block"
+              : "bottom-[calc(var(--nav-clearance)+104px)] left-4 lg:bottom-[72px]"
+          )}>
           <p className="mb-3 font-bold">Debug</p>
 
           <div className="mb-3 text-xs text-gray-500">

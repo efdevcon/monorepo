@@ -42,6 +42,15 @@ interface RouteChrome {
    * the page.
    */
   toolbar?: boolean;
+  /**
+   * No visible mobile bar: the page runs full-bleed under the status bar (the
+   * 3D map). Desktop nav unchanged. The bar is hidden, not unmounted: the
+   * #header-actions portal target inside it must keep its DOM node, because
+   * the persistent tab panes (Home, Ticket, Schedule, Speakers) look it up
+   * once on mount and would otherwise portal into a detached element after a
+   * trip through /map.
+   */
+  bare?: boolean;
 }
 
 function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
@@ -49,7 +58,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (detail === "speaker") return { title: "Speaker details", back: "speaker" };
   if (pathname.startsWith("/schedule")) return { title: "Schedule", toolbar: true };
   if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
-  if (pathname.startsWith("/map")) return { title: "Map" };
+  if (pathname.startsWith("/map")) return { title: "Map", bare: true };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
   if (pathname.startsWith("/announcements")) return { title: "Announcements" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
@@ -84,7 +93,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   }
 
   const items = NAV_ITEMS.filter((i) => i.enabled);
-  const { title, back, toolbar } = routeChrome(pathname, detailKind);
+  const { title, back, toolbar, bare } = routeChrome(pathname, detailKind);
 
   return (
     <header className="sticky top-0 z-30 font-heading">
@@ -95,7 +104,13 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
           the page's own pinned rows move up on the same 200ms clock. The
           slide only runs while data-app-header-animates is set too — when
           the fold disarms (a session page opens) the bar snaps back. */}
-      <div className="flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full">
+      <div
+        className={cn(
+          "flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full",
+          // Bare pages (the map) hide the bar but keep it mounted: see RouteChrome.bare.
+          bare && "hidden"
+        )}
+      >
         {toolbar ? (
           // Toolbar pages keep the title for AT only; the row is the page's.
           // One branch, not a hidden title block: that kept fetching the

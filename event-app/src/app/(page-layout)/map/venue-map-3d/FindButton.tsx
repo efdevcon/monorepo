@@ -1,0 +1,27 @@
+"use client";
+
+import cn from "classnames";
+import { TextSearch } from "lucide-react";
+
+/**
+ * Opens Find. Left end of the bottom-controls wrapper (VenueMap3D): above the
+ * legend on phones (the area card overlays it there), on its row from lg up.
+ */
+export function FindButton({ open, onClick }: { open: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      data-find-trigger
+      aria-expanded={open}
+      onClick={onClick}
+      className={cn(
+        // before:-inset-0.5 extends the 40px pill to the 44px touch floor without changing its look.
+        "pointer-events-auto relative z-10 flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-3 text-[14px] font-bold leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-['']",
+        open ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline bg-white/90 hover:bg-dc-purple-wash"
+      )}
+    >
+      <TextSearch className="size-4" aria-hidden />
+      Find
+    </button>
+  );
+}

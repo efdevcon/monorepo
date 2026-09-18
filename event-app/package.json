@@ -21,7 +21,8 @@
     "proof:test": "tsx scripts/test-ticket-proof.ts",
     "proof:demo-link": "tsx scripts/make-demo-proof.ts",
     "data:test": "tsx scripts/test-data.ts",
-    "qr:test": "tsx scripts/test-qr-decode.ts"
+    "qr:test": "tsx scripts/test-qr-decode.ts",
+    "map:build:plan": "node scripts/plan-map-build.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",
@@ -32,6 +33,8 @@
     "@mdi/react": "^1.6.1",
     "@meerkat-events/react": "^0.1.0",
     "@netlify/functions": "^5.3.0",
+    "@react-three/drei": "10.7.8",
+    "@react-three/fiber": "9.7.0",
     "@serwist/next": "^9.5.11",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.106.2",
@@ -53,6 +56,7 @@
     "sharp": "^0.33.5",
     "sonner": "^1.7.0",
     "swr": "^2.3.6",
+    "three": "0.186.0",
     "viem": "^2.55.19",
     "web-push": "^3.6.7",
     "zod": "^3.23.8"
@@ -65,6 +69,7 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
+    "@types/three": "0.186.0",
     "@types/web-push": "^3.6.4",
     "dotenv": "^17.4.2",
     "eslint": "^9",
