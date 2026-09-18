@@ -15,7 +15,8 @@ export function FindButton({ open, onClick }: { open: boolean; onClick: () => vo
       aria-expanded={open}
       onClick={onClick}
       className={cn(
-        "pointer-events-auto relative z-10 flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-3 text-[14px] font-bold leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out",
+        // before:-inset-0.5 extends the 40px pill to the 44px touch floor without changing its look.
+        "pointer-events-auto relative z-10 flex h-10 cursor-pointer items-center gap-1.5 rounded-full border px-3 text-[14px] font-bold leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-['']",
         open ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline bg-white/90 hover:bg-dc-purple-wash"
       )}
     >

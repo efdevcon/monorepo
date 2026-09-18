@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type MouseEvent, type PointerEvent } from "react";
+import { useRef, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 import cn from "classnames";
 import { LEVEL_KEYS } from "./useMapShortcuts";
 import type { LevelId, PlanLevel } from "./types";
@@ -90,11 +90,32 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
     // A clean tap on the stop that was already active: back to the stack.
     if (!p.moved && p.last !== null && p.last === p.startValue) onToggle(p.last);
   };
+  // The browser took the pointer away (system gesture, long-press callout, a second finger): the
+  // press is discarded, never treated as a tap — otherwise a cancelled hold on the active stop re-stacked the floors.
+  const onPointerCancel = () => {
+    press.current = null;
+  };
   // Pointer presses are handled on the track above; a click with detail 0 is the keyboard (Enter / Space).
   const onKeyboardClick = (e: MouseEvent<HTMLButtonElement>, level: LevelId) => {
     if (e.detail !== 0) return;
     if (level === value) onToggle(level);
     else onSlide(level);
+  };
+  // Radio-group keyboard pattern: the arrows move between the stops (top floor first, like the
+  // track) and show the floor they land on; Home / End jump to the ends. 1 / 2 / 3 stay global.
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const focused = stops.findIndex((l) => buttonRefs.current.get(l.id) === document.activeElement);
+    let next: number;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") next = Math.min(stops.length - 1, (focused < 0 ? activeIndex : focused) + 1);
+    else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = Math.max(0, (focused < 0 ? activeIndex : focused) - 1);
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = stops.length - 1;
+    else return;
+    e.preventDefault();
+    const level = stops[next];
+    buttonRefs.current.get(level.id)?.focus();
+    onSlide(level.id);
   };
 
   return (
@@ -105,7 +126,8 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
+        onPointerCancel={onPointerCancel}
+        onKeyDown={onKeyDown}
         style={{ touchAction: "none" }}
         // Grab hand: the track is something you hold and slide, not a set of links (Scott).
         className="relative flex w-10 cursor-grab select-none flex-col gap-1 overflow-hidden rounded-full active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
@@ -153,7 +175,8 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onClick={onAll}
         className={cn(
           // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
-          "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
+          // before:-inset-0.5 extends the 40px disc to the 44px touch floor without changing its look.
+          "relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-['']",
           // Active: the Find pill's surface exactly (border, white/90 + blur, one soft shadow) so the two bottom controls match.
           value === null
             ? "bg-white/90 font-bold text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur"
