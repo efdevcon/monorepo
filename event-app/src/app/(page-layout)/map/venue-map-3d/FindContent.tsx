@@ -43,6 +43,10 @@ const FLOOR_TAG: Record<LevelId, string> = { G: "G", L1: "L1", L2: "L2" };
 export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor, onClose, inputRef }: FindContentProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  // The phone sheet passes no ref (nothing autofocuses there), but the arrow keys still need the
+  // field: an iPad or a narrow desktop window has a hardware keyboard.
+  const localInputRef = useRef<HTMLInputElement | null>(null);
+  const field = inputRef ?? localInputRef;
   const searching = query.trim().length > 0;
   const { floor, hits } = searching ? searchFind(groups, query) : { floor: null, hits: [] };
   // A bare floor query ("level 1") lists the floor: offer to open it above its places.
@@ -63,7 +67,7 @@ export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor,
     } else if (e.key === "ArrowUp") {
       if (!inList) return;
       e.preventDefault();
-      if (index === 0) inputRef?.current?.focus();
+      if (index === 0) field.current?.focus();
       else rows[index - 1].focus();
     } else if ((e.key === "ArrowRight" || e.key === "ArrowLeft") && inList) {
       // Category rows only: open on Right, close on Left.
@@ -73,7 +77,7 @@ export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor,
       setExpanded(e.key === "ArrowRight" ? category : expanded === category ? null : expanded);
     } else if (inList && (e.key === "Backspace" || (e.key.length === 1 && e.key !== " "))) {
       // Typing from a row continues the search: the keystroke lands in the re-focused field.
-      inputRef?.current?.focus();
+      field.current?.focus();
     }
   };
 
@@ -84,7 +88,7 @@ export function FindContent({ groups, query, onQueryChange, onPick, onPickFloor,
         <CloseButton onClick={onClose} />
       </div>
       <div className="px-4 pb-3 pt-3" onKeyDown={onKeyDown}>
-        <SearchInput value={query} onChange={onQueryChange} placeholder="Search rooms, food, floors…" inputRef={inputRef} />
+        <SearchInput value={query} onChange={onQueryChange} placeholder="Search rooms, food, floors…" inputRef={field} />
       </div>
 
       <div ref={listRef} onKeyDown={onKeyDown} className="min-h-0 flex-1 overflow-y-auto border-t border-dc-hairline">
