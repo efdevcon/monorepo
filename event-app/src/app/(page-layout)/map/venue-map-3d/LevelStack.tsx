@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Group, MathUtils, OrthographicCamera, PerspectiveCamera, Vector3, type Object3D } from "three";
+import { HEADER_OFFSET_DESKTOP } from "@/hooks/useIsDesktop";
 import { POLAR_ANGLE, PX } from "./isoMath";
 import { easeOutQuint, LEVEL_SWITCH_MS, TAP_SLOP_PX } from "./interaction";
 import { PlanShapes } from "./PlanShapes";
@@ -26,6 +27,8 @@ type LevelStackProps = {
   onSelect: (area: Area) => void;
   onSelectLevel: (level: LevelId) => void;
   setHovered: (id: string | null) => void;
+  /** Desktop breakpoint (useIsDesktop, the same `lg:` the card's CSS forks on): the card is anchored to the footprint. */
+  desktop: boolean;
   /** Receives `--poi-x` / `--poi-y` (page px) for the area card beside the selected footprint (desktop). */
   cardAnchorRef?: MutableRefObject<HTMLDivElement | null>;
 };
@@ -33,12 +36,12 @@ type LevelStackProps = {
 /** Card placement beside the selected footprint (desktop): gap to the footprint's screen point and the viewport inset. */
 const CARD_GAP_PX = 20;
 const CARD_INSET_PX = 16;
-/** Below the desktop header (68px) plus a little air. */
-const CARD_MIN_TOP_PX = 88;
+/** The card's icon disc (AreaCard: 64px, raised 70%) overhangs the wrapper's top by this much. */
+const CARD_DISC_OVERHANG_PX = 45;
+/** Wrapper top that keeps the disc clear of the sticky desktop header, plus a little air. */
+const CARD_MIN_TOP_PX = HEADER_OFFSET_DESKTOP + CARD_DISC_OVERHANG_PX + 12;
 /** World units above a footprint's top where its icon sprite is centred (PlanIcons: lift + ~half a sprite). */
 const CARD_ICON_CENTRE_LIFT = 0.6;
-/** Canvas width from which the card is anchored to the footprint (Tailwind lg). */
-const CARD_ANCHOR_MIN_WIDTH = 1024;
 
 type LevelAnim = { y: number; visible: boolean };
 type Tween = { level: LevelId; fromY: number; toY: number; start: number; duration: number; hideAtEnd: boolean };
@@ -66,9 +69,29 @@ export function LevelStack({
   onSelect,
   onSelectLevel,
   setHovered,
+  desktop,
   cardAnchorRef,
 }: LevelStackProps) {
   const { camera, size, invalidate } = useThree();
+  // The card's size, kept current by a ResizeObserver rather than read from layout every frame; a
+  // size change (the live-session block arriving on the 60s tick) re-anchors even with the camera still.
+  const cardSizeRef = useRef({ w: 0, h: 0 });
+  useEffect(() => {
+    const el = cardAnchorRef?.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const measure = () => {
+      const { offsetWidth: w, offsetHeight: h } = el;
+      if (w === cardSizeRef.current.w && h === cardSizeRef.current.h) return;
+      cardSizeRef.current = { w, h };
+      invalidate();
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+    // The wrapper element mounts once with the card (AreaCard stays mounted); re-run per selection in case it didn't.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cardAnchorRef, selectedId]);
   // The selected footprint (key `${level}/${id}`), looked up once per selection for the per-frame card anchor.
   const selectedShape = useMemo(() => {
     if (!selectedId) return null;
@@ -167,15 +190,14 @@ export function LevelStack({
     // to it). Written as CSS variables on the card's wrapper (AreaCard reads them from lg up); no
     // React per frame.
     const el = cardAnchorRef?.current;
-    if (el && selectedShape && size.width >= CARD_ANCHOR_MIN_WIDTH) {
+    if (el && selectedShape && desktop) {
       const group = groupRefs.current.get(selectedShape.level);
       if (group) {
         const [cx, cz] = selectedShape.centroid;
         anchorScratch.set(cx * PX, group.position.y + selectedShape.height * PX + CARD_ICON_CENTRE_LIFT, cz * PX).project(camera);
         const x = ((anchorScratch.x + 1) / 2) * size.width;
         const y = ((1 - anchorScratch.y) / 2) * size.height;
-        const w = el.offsetWidth;
-        const h = el.offsetHeight;
+        const { w, h } = cardSizeRef.current;
         let left = x + CARD_GAP_PX;
         if (left + w > size.width - CARD_INSET_PX) left = x - CARD_GAP_PX - w;
         let top = y + CARD_GAP_PX / 2;
@@ -230,7 +252,7 @@ export function LevelStack({
           {stacked && <FloorLabel level={l} dimmed={hoveredLevel !== null && hoveredLevel !== l.id} />}
           {showIcons && (
             <Suspense fallback={null}>
-              <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
+              <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />
             </Suspense>
           )}
         </group>

@@ -2,8 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useMemo, useRef, useState } from "react";
+import cn from "classnames";
 import { useSearchParams } from "next/navigation";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
 import { FindButton } from "./FindButton";
@@ -56,7 +58,7 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
  * point, a tap on an area opens AreaCard, and re-tapping the Map tab resets
  * the view (useTabReselect). Find (bottom-left) lists every footprint by
  * category and floor and jumps to one — or to every "Toilets" on a floor at
- * once. Desktop: 1 / 2 / 3 open a floor, F opens Find, A or Esc close the
+ * once. Desktop: 1 / 2 / 3 open a floor, / opens Find, A or Esc close the
  * card or reset (useMapShortcuts).
  */
 export function VenueMap3D() {
@@ -82,6 +84,18 @@ export function VenueMap3D() {
   const active = usePaneActive();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const desktop = useIsDesktop();
+  const stacked = settings.level === null;
+
+  // Phone legend (Scott, 2026-09-18): shown with the stacked view until the first gesture — a camera
+  // move (CameraRig onInteract) or opening a floor — and back whenever the stack returns. Derived
+  // state in render, like the deep link below (no set-state-in-effect).
+  const [legendGestured, setLegendGestured] = useState(false);
+  const [legendStacked, setLegendStacked] = useState(stacked);
+  if (stacked !== legendStacked) {
+    setLegendStacked(stacked);
+    if (stacked) setLegendGestured(false);
+  }
+  const onInteract = useCallback(() => setLegendGestured(true), []);
 
   // Find: every tappable footprint by category and floor (the plan is static, so build it once).
   const findGroups = useMemo(() => buildFindGroups(plan), []);
@@ -183,12 +197,25 @@ export function VenueMap3D() {
         focus={focus}
         onSelect={select}
         onSelectLevel={setLevel}
+        onInteract={onInteract}
+        desktop={desktop}
         resetRef={resetRef}
         cardAnchorRef={cardAnchorRef}
       />
-      <ControlsLegend stacked={settings.level === null} hidden={selected !== null || findOpen} />
-      {/* Bottom controls: Find pill bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17). */}
-      <div className="pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex items-end justify-between lg:inset-x-6 lg:bottom-6">
+      <ControlsLegend stacked={stacked} hidden={selected !== null || findOpen} dismissed={!stacked || legendGestured} />
+      {/* Phones have no header bar on /map, so the header's offline marker moves to the map's top-right corner. */}
+      <div className="pointer-events-none fixed right-4 top-[calc(var(--safe-top)+12px)] z-10 lg:hidden">
+        <OfflineIndicator />
+      </div>
+      {/* Bottom controls: Find pill bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17).
+          On phones the area card sits over them, so they fade out (and go inert) while it is open. */}
+      <div
+        inert={selected !== null && !desktop}
+        className={cn(
+          "pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex items-end justify-between transition-opacity duration-150 ease-out motion-reduce:transition-none lg:inset-x-6 lg:bottom-6",
+          selected !== null && "max-lg:opacity-0"
+        )}
+      >
         <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />
         <FloorSlider levels={plan.levels} value={settings.level} onSlide={showLevel} onToggle={setLevel} onAll={reset} />
       </div>

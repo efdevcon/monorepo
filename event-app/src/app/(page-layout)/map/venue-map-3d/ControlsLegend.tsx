@@ -21,9 +21,11 @@ function Kbd({ children }: { children: ReactNode }) {
  * under the status bar on phones (no header bar on /map; it wraps), centred
  * under the header from lg up.
  * Desktop adds the keyboard shortcuts. Fades out while the area card or Find
- * is open.
+ * is open (`hidden`, every breakpoint). On phones it also goes once the user
+ * has made a gesture and comes back with the stacked view (`dismissed`, CSS
+ * `max-lg:` so the desktop legend stays put) — Scott, 2026-09-18.
  */
-export function ControlsLegend({ stacked, hidden }: { stacked: boolean; hidden: boolean }) {
+export function ControlsLegend({ stacked, hidden, dismissed }: { stacked: boolean; hidden: boolean; dismissed: boolean }) {
   const touch = useMediaQuery("(pointer: coarse)");
   const target: Item = touch
     ? { Icon: Pointer, label: stacked ? "Tap a floor" : "Tap an area" }
@@ -49,10 +51,12 @@ export function ControlsLegend({ stacked, hidden }: { stacked: boolean; hidden: 
     <div
       aria-hidden={hidden}
       className={cn(
-        // Phones: 12px under the status bar (the mobile header bar is off on /map). Desktop: centred, 12px under the 68px header.
-        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        // Phones: 12px under the status bar (the mobile header bar is off on /map), leaving the top-right
+        // corner to the offline marker. Desktop: centred, 15px under the 65px header (shared with the wrench).
+        "pointer-events-none fixed left-4 right-14 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
-        hidden ? "opacity-0" : "opacity-100"
+        hidden ? "opacity-0" : "opacity-100",
+        dismissed && "max-lg:opacity-0"
       )}
     >
       <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-lg border border-dc-hairline bg-white/85 px-3 py-2 backdrop-blur lg:flex-nowrap">

@@ -20,13 +20,17 @@ type SceneProps = {
   focus: CameraFocus | null;
   onSelect: (area: Area | null) => void;
   onSelectLevel: (level: LevelId) => void;
+  /** The user moved the camera (drag, wheel, pinch, double-tap). */
+  onInteract?: () => void;
+  /** Desktop breakpoint (useIsDesktop), the one JS-side twin of the chrome's `lg:` classes. */
+  desktop: boolean;
   resetRef: MutableRefObject<() => void>;
   /** Element that receives the selected footprint's screen position as CSS variables (LevelStack). */
   cardAnchorRef: MutableRefObject<HTMLDivElement | null>;
 };
 
 /** The R3F canvas: the stacked plan floors and the camera rig. Client-only (three needs WebGL). */
-export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, resetRef, cardAnchorRef }: SceneProps) {
+export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, onInteract, desktop, resetRef, cardAnchorRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: START_AZIMUTH, polar: POLAR_ANGLE });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Debug: expose the hovered target for hit-testing scripts.
@@ -51,7 +55,7 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
     >
       <ambientLight intensity={1.6} />
       <directionalLight position={[6, 12, 8]} intensity={1.4} />
-      <CameraRig groundBounds={plan.bounds} settings={settings} stack={stack} reducedMotion={reducedMotion} focus={focus} debug={debug} poseRef={poseRef} resetRef={resetRef} />
+      <CameraRig groundBounds={plan.bounds} settings={settings} stack={stack} reducedMotion={reducedMotion} focus={focus} debug={debug} desktop={desktop} onInteract={onInteract} poseRef={poseRef} resetRef={resetRef} />
       <LevelStack
         levels={plan.levels}
         level={settings.level}
@@ -65,6 +69,7 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
         onSelect={onSelect}
         onSelectLevel={onSelectLevel}
         setHovered={setHoveredId}
+        desktop={desktop}
         cardAnchorRef={cardAnchorRef}
       />
       {debug && <Stats />}

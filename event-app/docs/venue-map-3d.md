@@ -123,9 +123,11 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`): the short label
   ("G", "L1") is always visible 24px right of the right-most footprint corner and the other
   floors' labels dim to 30 % while one floor is hovered; 40px on desktop, 24px on phones.
-  On phones (canvas ≤ 1023px) the home view's orbit target sits `PHONE_SHIFT_PX` (28) screen px
-  further right along the camera's right vector (`homeTarget` in `CameraRig`), so the stack sits
-  left of centre and the labels clear the screen edge; reset and the stack refit share it.
+  On phones (`useIsDesktop` false, passed into the scene as `desktop`) the stacked home view's
+  orbit target sits `PHONE_SHIFT_PX` (28) screen px further right along the camera's right
+  vector (`homeTarget` in `CameraRig`), so the stack sits left of centre and the labels clear
+  the screen edge; reset and the stack refit share it. A single floor has no labels and is
+  centred (2026-09-18).
 - **`CameraRig`**: orbit with the polar angle pinned to the isometric tilt, start azimuth
   `START_AZIMUTH` = 25° left of the (1, 1, 1) diagonal (20°; `isoMath.ts`), azimuth clamped
   75° left / 85° right of it (the same absolute range as before the turn), fit from the
@@ -136,8 +138,10 @@ why the import of the Figma isometric illustration did not work). The flat top-d
 - **Controls**: `FloorSlider` bottom-right (vertical track L2 / L1 / G, press-and-hold and
   drag slides through the floors, a clean tap on the active stop returns to the stack, "All"
   under it: white like the active stop when stacked, the track's fill otherwise),
-  `FindButton` bottom-left, `ControlsLegend` along the top (full width under the status bar
-  on phones, centred under the header from `lg`), `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
+  `FindButton` bottom-left (both fade out and go `inert` on phones while the area card covers
+  them), `ControlsLegend` along the top (under the status bar on phones, where it fades after
+  the first gesture and returns with the stacked view; centred and permanent under the header
+  from `lg`), the header's `OfflineIndicator` top-right on phones, `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
   (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, `/`
   opens Find, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
   tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
@@ -146,12 +150,15 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`, offsets hardcoded against
   `DebugCorner`: 136 / 192px).
 - **No mobile header bar on `/map`** (2026-09-17): `AppHeader`'s `routeChrome` marks the route
-  `bare`, so the 56px glass bar is not rendered below `lg` and the map runs full-bleed under the
-  status bar (`--safe-top`); the desktop nav is unchanged.
+  `bare`, so the 56px glass bar is `hidden` below `lg` and the map runs full-bleed under the
+  status bar (`--safe-top`); the desktop nav is unchanged. Hidden, not unmounted: the
+  `#header-actions` portal target inside the bar must keep its DOM node, because the persistent
+  tab panes look it up once on mount (a trip through `/map` used to leave Home's sign-in circle
+  and the Schedule / Speakers pills portalled into a detached element until reload).
 
 ## Design decisions
 
-- Rebuilt in the DC8 app's own styling and conventions (dc-* tokens, `Segmented`,
+- Rebuilt in the DC8 app's own styling and conventions (dc-* tokens, `FloorSlider`,
   `BottomSheet`, `SearchInput`, 150 ms ease-out), not ported from the old map's code.
 - Stacked landing with "All" as a visible state, plus re-tapping the active floor stop to
   return to the stack. The floor selector is a vertical slider since 2026-09-17 (press,

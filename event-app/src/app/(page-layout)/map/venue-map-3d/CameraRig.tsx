@@ -19,6 +19,10 @@ type CameraRigProps = {
   focus: CameraFocus | null;
   /** Publish the camera state on window.__mapCamera for hit-testing scripts. */
   debug: boolean;
+  /** Desktop breakpoint (useIsDesktop): phones shift the stacked home view right for the floor labels. */
+  desktop: boolean;
+  /** The user grabbed, scrolled, pinched or double-tapped the camera (the legend fades on the first one). */
+  onInteract?: () => void;
   /** Current orbit azimuth + polar angle, written every frame. */
   poseRef: MutableRefObject<CameraPose>;
   /** Filled with a function that animates back to the start view (Map tab re-tap, Esc / A). */
@@ -31,10 +35,8 @@ const FIT_MARGIN = 0.82;
 /** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
 const GROUP_FIT_MARGIN = 0.55;
 const TWEEN_MS = 350;
-/** Phones: the centred stack fills the width and its floor labels (24px right of the floors) clipped, so the home view sits this many screen px further right (Scott, 2026-09-17). */
+/** Phones: the centred stack fills the width and its floor labels (24px right of the floors) clipped, so the stacked home view sits this many screen px further right (Scott, 2026-09-17). A single floor has no labels and stays centred. */
 const PHONE_SHIFT_PX = 28;
-/** Canvas width below which the phone shift applies (Tailwind lg, the app's desktop breakpoint). */
-const PHONE_MAX_WIDTH = 1023;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
 const TAP_MOVE_PX = 10;
@@ -53,7 +55,7 @@ const easeOutCubic: Easing = (t) => 1 - Math.pow(1 - t, 3);
  * an animated reset. Mouse: drag rotates, right-drag pans. Touch: one finger
  * pans, two fingers rotate and pinch-zoom (Scott, 2026-09-17).
  */
-export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus, debug, poseRef, resetRef }: CameraRigProps) {
+export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus, debug, desktop, onInteract, poseRef, resetRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const controlsRef = useRef<OrbitControls | null>(null);
   const tweenRef = useRef<Tween | null>(null);
@@ -67,9 +69,10 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   };
   const center = new Vector3((bounds.minX + bounds.maxX) / 2, 0, (bounds.minZ + bounds.maxZ) / 2);
   const isOrtho = camera instanceof OrthographicCamera;
-  // Latest stack for callbacks created in the mount effect (reset).
-  const latest = useRef({ stack });
-  latest.current = { stack };
+  // Latest props for the closures created in the mount effect (reset, the controls' start handler):
+  // R3F replaces `size` on every resize, so a captured `size` would fit the mount-time viewport forever.
+  const latest = useRef({ stack, size, desktop, onInteract });
+  latest.current = { stack, size, desktop, onInteract };
   // Set by reset() when the floors are also re-stacking; the stack effect then finishes the reset.
   const pendingResetRef = useRef(false);
   const debugRef = useRef(debug);
@@ -77,6 +80,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
 
   /** Zoom (ortho) or distance (perspective) at which the whole floor — or the whole stack — fits the viewport. */
   const computeFit = (stacked = latest.current.stack, azimuth = START_AZIMUTH) => {
+    const { size } = latest.current;
     const spread = stacked ? ((stacked.count - 1) * stacked.gap) / 2 : 0;
     const { width: worldW, height: worldH } = projectedExtent(groundBounds, -spread, spread, azimuth, POLAR_ANGLE);
     if (isOrtho) {
@@ -144,14 +148,15 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   };
 
   /**
-   * Orbit target for the "whole floor" views: the floor centre, pushed along
-   * the camera's right vector on phones so the scene sits left of centre and
-   * the floor labels beside it stay on screen. In ortho `zoom` is screen px
+   * Orbit target for the "whole floor" views: the floor centre — pushed along
+   * the camera's right vector on phones while the floors are stacked, so the
+   * stack sits left of centre and the floor labels beside it stay on screen.
+   * A single floor has no labels and is centred. In ortho `zoom` is screen px
    * per world unit, so the shift is exact in px.
    */
-  const homeTarget = (azimuth: number, zoom: number) => {
+  const homeTarget = (azimuth: number, zoom: number, stacked: boolean) => {
     const t = center.clone();
-    if (size.width <= PHONE_MAX_WIDTH && isOrtho && zoom > 0) {
+    if (stacked && !latest.current.desktop && isOrtho && zoom > 0) {
       const shift = PHONE_SHIFT_PX / zoom;
       t.x += Math.cos(azimuth) * shift;
       t.z -= Math.sin(azimuth) * shift;
@@ -160,7 +165,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   };
 
   const startView = (): ViewState => ({
-    target: homeTarget(START_AZIMUTH, fitRef.current.zoom),
+    target: homeTarget(START_AZIMUTH, fitRef.current.zoom, latest.current.stack !== null),
     azimuth: START_AZIMUTH,
     polar: POLAR_ANGLE,
     zoom: fitRef.current.zoom,
@@ -185,6 +190,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     const onChange = () => invalidate();
     const onStart = () => {
       interactedRef.current = true;
+      latest.current.onInteract?.();
       pendingResetRef.current = false; // a grab abandons a reset in flight; otherwise the next floor change would finish it
       if (tweenRef.current) {
         tweenRef.current = null;
@@ -255,7 +261,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
     // Fit at the rotation the user is looking from: the floors keep their turn.
     fitRef.current = computeFit(stack, cur.azimuth);
     applyZoomClamps();
-    tweenTo({ target: homeTarget(cur.azimuth, fitRef.current.zoom), azimuth: cur.azimuth, polar: POLAR_ANGLE, zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
+    tweenTo({ target: homeTarget(cur.azimuth, fitRef.current.zoom, stack !== null), azimuth: cur.azimuth, polar: POLAR_ANGLE, zoom: fitRef.current.zoom, radius: fitRef.current.radius }, reducedMotion ? 0 : LEVEL_SWITCH_MS, easeOutQuint);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stackKey]);
 
@@ -301,6 +307,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
       if (!raycaster.ray.intersectPlane(floor, hit)) return;
       const cur = currentView();
       interactedRef.current = true;
+      latest.current.onInteract?.();
       const zoom = isOrtho ? Math.min(controls.maxZoom, cur.zoom * settings.zoomStep) : cur.zoom;
       const radius = isOrtho ? cur.radius : Math.max(controls.minDistance, cur.radius / settings.zoomStep);
       // Keep the tapped floor point under the finger: move the target towards it by the zoom factor.
