@@ -48,6 +48,11 @@ export function AreaCard({
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
   const open = area !== null;
+  // Same for the placement: closing clears the selection and the highlighted group together, so `group`
+  // flips off while the card is still fading — the wrapper snapped from bottom-centre back to the footprint
+  // anchor mid-fade (Scott's recording, 2026-09-21). Only follow `group` while open.
+  const [shownGroup, setShownGroup] = useState(group);
+  if (open && group !== shownGroup) setShownGroup(group);
   const icon = shown ? (shown.icon ?? iconFor(shown.id)) : null;
   // Stages keep the theme icon in the disc riding the top edge; every other place shows it inside the
   // card, left of the text (Scott, 2026-09-21). `shown.id` is `${level}/${layer id}`.
@@ -66,7 +71,7 @@ export function AreaCard({
         // screen point (off-screen until the scene has written the variables once) — or, for a group
         // pick, bottom-centre on the controls' baseline so every highlighted footprint stays visible (Scott, 2026-09-21).
         "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 right-4 z-20 lg:w-[440px]",
-        group ? "lg:bottom-6 lg:left-1/2 lg:right-auto lg:-translate-x-1/2" : "lg:bottom-auto lg:left-0 lg:right-auto lg:top-0 lg:[translate:var(--poi-x,-9999px)_var(--poi-y,0px)]",
+        shownGroup ? "lg:bottom-6 lg:left-1/2 lg:right-auto lg:-translate-x-1/2" : "lg:bottom-auto lg:left-0 lg:right-auto lg:top-0 lg:[translate:var(--poi-x,-9999px)_var(--poi-y,0px)]",
         !open && "pointer-events-none"
       )}
     >

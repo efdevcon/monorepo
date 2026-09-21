@@ -154,7 +154,8 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   disc (48 px icon) riding the top edge at −70 %, same fill, no shadow, body `pt-6`; **everything
   else**: the 48 px icon inline left of the text block (`categoryIdFor` decides); **group pick**
   (`group` prop = a highlighted set): desktop card bottom-centre (`lg:bottom-6 lg:left-1/2
-  -translate-x-1/2`) instead of anchored beside the footprint; `CloseButton` centred on
+  -translate-x-1/2`) instead of anchored beside the footprint; the placement is held (like
+  `shown`) while the card fades out, because closing clears selection and group together; `CloseButton` centred on
   the top-right corner (half outside, white + shadow, exact — took three rounds); title 16 px bold;
   **floor line (2026-09-21)**: the spoken floor name ("Level 1") as plain 12px dc-muted text,
   `mt-1.5`, no icon (tried, noise), shown even in the session-only state; blurb 14 px muted; `role=dialog`. Desktop
