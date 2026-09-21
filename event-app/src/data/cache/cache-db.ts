@@ -78,12 +78,12 @@ export interface Conversation {
 }
 
 /**
- * An announcement the user has seen (inbox opened while it was visible).
+ * An inbox item the user has seen (inbox tab opened while it was visible).
  * Browser-local, like all read state here — never synced (cross-device "seen"
  * was never missed at previous events).
  */
 export interface SeenAnnouncement {
-  /** Announcement id (Notion page id). */
+  /** Announcement id (Notion page id), or `reminder:<sessionId>` for a session reminder. */
   id: string;
   seenAt: number;
 }

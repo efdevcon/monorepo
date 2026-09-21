@@ -9,7 +9,7 @@ import { closeDetail, useDetailView } from "@/routing/detailRoute";
 import { handleTabClick } from "@/components/paneContext";
 import type { DetailKind } from "@/routing/viewParams";
 import { useUser } from "@/data/auth/useUser";
-import { useAnnouncements } from "@/data/announcements/useAnnouncements";
+import { useInboxUnreadCount } from "@/data/announcements/useInboxUnread";
 import { NAV_ITEMS, isNavActive } from "@/components/Nav";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { OfflineIndicator } from "./OfflineIndicator";
@@ -82,10 +82,10 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { kind: detailKind } = useDetailView();
   const { user } = useUser();
-  const { unreadCount } = useAnnouncements({
-    enabled:
-      APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/"),
-  });
+  // Event announcements + Personal session reminders, one badge.
+  const unreadCount = useInboxUnreadCount(
+    APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/")
+  );
 
   // No chrome on the full-screen room-screen kiosk.
   if (pathname.startsWith("/room-screens/")) {

@@ -1,65 +1,139 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import { Megaphone } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Megaphone, Star } from "lucide-react";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
-import { useRealWorldNowMs } from "@/hooks/useNow";
+import { useSessionReminders } from "@/data/reminders/useSessionReminders";
+import { REMINDER_LEAD_MINUTES } from "@/data/reminders/reminders";
+import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
+import { eventDayKey } from "@/data/eventTime";
+import { formatDayHeading } from "@/components/schedule/utils";
 import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
+import { ReminderCard } from "@/components/announcements/ReminderCard";
+import {
+  AnnouncementTabs,
+  type InboxTab,
+} from "@/components/announcements/AnnouncementTabs";
 import { PushOptIn } from "@/components/announcements/PushOptIn";
 
 const dayKey = (ms: number) => new Date(ms).toDateString();
 
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Group items by a day label, preserving item order. */
+function groupByDay<T>(
+  items: T[],
+  labelOf: (item: T) => string
+): [string, T[]][] {
+  const byDay = new Map<string, T[]>();
+  for (const item of items) {
+    const label = labelOf(item);
+    const group = byDay.get(label) ?? [];
+    group.push(item);
+    byDay.set(label, group);
+  }
+  return [...byDay.entries()];
+}
+
+const groupHeading =
+  "mb-3 font-heading text-xs font-bold uppercase leading-[18px] tracking-[0.5px] text-dc-muted";
+const emptyBox =
+  "flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-12 text-center";
+
 /**
- * The announcements inbox, grouped by day (Today / Yesterday / date).
- * Viewing it marks everything as seen, clearing the unread badges.
+ * The announcements inbox, in two tabs: Event (the team's Notion
+ * announcements) and Personal (reminders for the sessions you starred), each
+ * grouped by day (Today / Yesterday / date). Viewing a tab marks its items as
+ * seen, clearing that tab's badge and its share of the header badge.
  */
 export default function AnnouncementsPage() {
-  const { announcements, isLoading, error, markAllSeen, readStateReady } =
-    useAnnouncements();
+  const {
+    announcements,
+    unreadCount,
+    isLoading,
+    error,
+    markAllSeen,
+    readStateReady,
+  } = useAnnouncements();
+  const reminders = useSessionReminders();
+  // Two clocks on purpose: announcements are real-world-dated (viewer-local
+  // days), reminders are dated against the schedule (venue days, mockable).
   const nowMs = useRealWorldNowMs(60_000);
+  const eventNowMs = useNowMs(60_000);
+
+  // Default Event; `?tab=personal` (read once on mount, like ?preview) opens
+  // the other tab directly.
+  const [tab, setTab] = useState<InboxTab>("event");
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("tab") === "personal") {
+      setTab("personal");
+    }
+  }, []);
 
   // Unread dots reflect the read state as it was when the page was entered:
-  // markAllSeen below clears the nav badge immediately, but the dots stay for
-  // the whole visit so "what's new" remains visible while reading. The
-  // snapshot must wait for BOTH the feed and the async Dexie read-state
+  // marking seen below clears the badges immediately, but the dots stay for
+  // the whole visit so "what's new" remains visible while reading. Each
+  // snapshot must wait for BOTH its data and the async Dexie read-state
   // hydration — before hydration every item reports seen=true and the dots
-  // would be lost.
+  // would be lost. One snapshot per tab, both taken at entry.
   const seenAtEntry = useRef<Set<string> | null>(null);
   if (seenAtEntry.current === null && !isLoading && readStateReady) {
     seenAtEntry.current = new Set(
       announcements.filter((a) => a.seen).map((a) => a.id)
     );
   }
+  const remindersSeenAtEntry = useRef<Set<string> | null>(null);
+  if (
+    remindersSeenAtEntry.current === null &&
+    !reminders.isLoading &&
+    reminders.readStateReady
+  ) {
+    remindersSeenAtEntry.current = new Set(
+      reminders.reminders.filter((r) => r.seen).map((r) => r.id)
+    );
+  }
 
-  // Seen = it was on screen in the inbox, after the entry snapshot is taken.
-  // Re-runs as new data arrives while the page is open (markAllSeen is
-  // memoized on the fetched list).
+  // Seen = it was on screen in the ACTIVE tab, after the entry snapshot is
+  // taken. Re-runs as new data arrives while the tab is open (both markers
+  // are memoized on their lists, not on the clock).
+  const eventReady = !isLoading && readStateReady;
+  const personalReady = !reminders.isLoading && reminders.readStateReady;
+  const markRemindersSeen = reminders.markAllSeen;
   useEffect(() => {
-    if (!isLoading && readStateReady) markAllSeen();
-  }, [isLoading, readStateReady, markAllSeen]);
+    if (tab === "event" && eventReady) markAllSeen();
+    if (tab === "personal" && personalReady) markRemindersSeen();
+  }, [tab, eventReady, personalReady, markAllSeen, markRemindersSeen]);
 
-  const groups = useMemo(() => {
+  const eventGroups = useMemo(() => {
     const today = dayKey(nowMs);
-    const yesterday = dayKey(nowMs - 24 * 60 * 60 * 1000);
-    const byDay = new Map<string, typeof announcements>();
-    for (const a of announcements) {
-      const key = dayKey(new Date(a.sendAt).getTime());
-      const label =
-        key === today
-          ? "Today"
-          : key === yesterday
-            ? "Yesterday"
-            : new Date(a.sendAt).toLocaleDateString(undefined, {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-              });
-      const group = byDay.get(label) ?? [];
-      group.push(a);
-      byDay.set(label, group);
-    }
-    return [...byDay.entries()];
+    const yesterday = dayKey(nowMs - DAY_MS);
+    return groupByDay(announcements, (a) => {
+      const at = new Date(a.sendAt);
+      const key = dayKey(at.getTime());
+      return key === today
+        ? "Today"
+        : key === yesterday
+          ? "Yesterday"
+          : at.toLocaleDateString(undefined, {
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+            });
+    });
   }, [announcements, nowMs]);
+
+  const personalGroups = useMemo(() => {
+    const today = eventDayKey(eventNowMs);
+    const yesterday = eventDayKey(eventNowMs - DAY_MS);
+    return groupByDay(reminders.reminders, (r) => {
+      const key = eventDayKey(r.remindAtMs);
+      return key === today
+        ? "Today"
+        : key === yesterday
+          ? "Yesterday"
+          : formatDayHeading(key);
+    });
+  }, [reminders.reminders, eventNowMs]);
 
   return (
     // Escape the 680px `.section` column to the 1312px desktop content box
@@ -73,44 +147,90 @@ export default function AnnouncementsPage() {
 
         <PushOptIn />
 
-        {isLoading && (
-          <p className="text-sm text-dc-muted">Loading announcements…</p>
-        )}
+        {/* Badges are the LIVE unread counts (they clear as a tab is viewed,
+            like the header badge); the dots below keep the entry snapshot. */}
+        <AnnouncementTabs
+          selected={tab}
+          onSelect={setTab}
+          counts={{ event: unreadCount, personal: reminders.unreadCount }}
+        />
 
-        {!isLoading && error && announcements.length === 0 && (
-          <p className="text-sm text-dc-muted">
-            Couldn&apos;t load announcements. Check your connection and try
-            again.
-          </p>
-        )}
+        {tab === "event" && (
+          <>
+            {isLoading && (
+              <p className="text-sm text-dc-muted">Loading announcements…</p>
+            )}
 
-        {!isLoading && !error && announcements.length === 0 && (
-          <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border py-12 text-center">
-            <Megaphone className="h-6 w-6 text-dc-muted/50" />
-            <p className="text-sm text-dc-muted">
-              Nothing yet — announcements from the team will show up here.
-            </p>
-          </div>
-        )}
+            {!isLoading && error && announcements.length === 0 && (
+              <p className="text-sm text-dc-muted">
+                Couldn&apos;t load announcements. Check your connection and
+                try again.
+              </p>
+            )}
 
-        <div className="flex flex-col gap-8">
-          {groups.map(([label, items]) => (
-            <section key={label}>
-              <h2 className="mb-3 font-heading text-xs font-bold uppercase leading-[18px] tracking-[0.5px] text-dc-muted">
-                {label}
-              </h2>
-              <div className="flex flex-col gap-3">
-                {items.map((a) => (
-                  <AnnouncementCard
-                    key={a.id}
-                    announcement={a}
-                    seen={seenAtEntry.current?.has(a.id) ?? true}
-                  />
-                ))}
+            {!isLoading && !error && announcements.length === 0 && (
+              <div className={emptyBox}>
+                <Megaphone className="h-6 w-6 text-dc-muted/50" />
+                <p className="text-sm text-dc-muted">
+                  Nothing yet — announcements from the team will show up here.
+                </p>
               </div>
-            </section>
-          ))}
-        </div>
+            )}
+
+            <div className="flex flex-col gap-8">
+              {eventGroups.map(([label, items]) => (
+                <section key={label}>
+                  <h2 className={groupHeading}>{label}</h2>
+                  <div className="flex flex-col gap-3">
+                    {items.map((a) => (
+                      <AnnouncementCard
+                        key={a.id}
+                        announcement={a}
+                        seen={seenAtEntry.current?.has(a.id) ?? true}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </>
+        )}
+
+        {tab === "personal" && (
+          <>
+            {reminders.isLoading && (
+              <p className="text-sm text-dc-muted">Loading your sessions…</p>
+            )}
+
+            {!reminders.isLoading && reminders.reminders.length === 0 && (
+              <div className={emptyBox}>
+                <Star className="h-6 w-6 text-dc-muted/50" />
+                <p className="text-sm text-dc-muted">
+                  {reminders.starredCount === 0
+                    ? `Star sessions in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
+                    : `You've starred ${reminders.starredCount} ${reminders.starredCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`}
+                </p>
+              </div>
+            )}
+
+            <div className="flex flex-col gap-8">
+              {personalGroups.map(([label, items]) => (
+                <section key={label}>
+                  <h2 className={groupHeading}>{label}</h2>
+                  <div className="flex flex-col gap-3">
+                    {items.map((r) => (
+                      <ReminderCard
+                        key={r.id}
+                        reminder={r}
+                        seen={remindersSeenAtEntry.current?.has(r.id) ?? true}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </main>
   );

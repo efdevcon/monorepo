@@ -26,7 +26,7 @@ function Cta({ external, mini }: { external: boolean; mini?: boolean }) {
   );
 }
 
-function UnreadDot() {
+export function UnreadDot() {
   return (
     <span
       className="size-2 shrink-0 rounded-full bg-dc-purple"
