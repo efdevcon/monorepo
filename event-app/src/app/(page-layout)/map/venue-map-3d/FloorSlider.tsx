@@ -161,7 +161,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
             }}
             onClick={(e) => onKeyboardClick(e, level.id)}
             className={cn(
-              "relative z-10 flex h-10 w-full cursor-[inherit] items-center justify-center rounded-full text-[14px] leading-none transition-colors",
+              "relative z-10 flex h-10 w-full cursor-[inherit] items-center justify-center rounded-full text-[16px] leading-none transition-colors",
               value === level.id ? "font-bold text-dc-purple" : "font-medium text-dc-muted"
             )}
           >
@@ -175,8 +175,8 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         title="All floors · A / Esc"
         onClick={onAll}
         className={cn(
-          // Same type as the stops: 14px, bold purple when active, medium muted otherwise. 44px disc = the touch floor.
-          "relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out",
+          // Same type as the stops: 16px (2026-09-21, was 14), bold purple when active, medium muted otherwise. 44px disc = the touch floor.
+          "relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[16px] leading-none transition-colors duration-150 ease-out",
           // Active: the Find pill's surface exactly (border, white/90 + blur, one soft shadow) so the two bottom controls match.
           value === null
             ? "bg-white/90 font-bold text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur"

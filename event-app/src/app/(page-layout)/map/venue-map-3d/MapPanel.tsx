@@ -11,7 +11,7 @@ type MapPanelProps = {
   label: string;
   open: boolean;
   onClose: () => void;
-  /** Focused on open (the search field); omit for panels with nothing to type into. */
+  /** Focused on open (the search field); without it the panel focuses its `[data-autofocus]` element (Find's first row). */
   inputRef?: InputRef;
   children: ReactNode;
 };
@@ -19,7 +19,8 @@ type MapPanelProps = {
 /**
  * Desktop shell for Find and Search: a floating panel above the bottom-left
  * pills, styled like the area card. Stays mounted (fades and slides like the
- * card), `inert` while closed. Escape and a click outside close it; a click on
+ * card), `inert` while closed. Opening focuses the search field or, without one,
+ * the first list row (`data-autofocus`). Escape and a click outside close it; a click on
  * any control pill (`data-map-trigger`) is left to the pill's own handler.
  * Only one panel is open at a time, so both share the same anchor.
  */
@@ -28,7 +29,8 @@ export function MapPanel({ id, label, open, onClose, inputRef, children }: MapPa
 
   useEffect(() => {
     if (!open) return;
-    inputRef?.current?.focus({ preventScroll: true });
+    // Keyboard-ready at once: the search field, or the first list row so the arrow keys walk the list (Scott, 2026-09-21).
+    (inputRef?.current ?? panelRef.current?.querySelector<HTMLElement>("[data-autofocus]"))?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault(); // the map's own Escape (reset) must not also fire

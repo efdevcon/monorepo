@@ -265,7 +265,7 @@ export function VenueMap3D() {
           </MapSheet>
         </>
       )}
-      <AreaCard area={selected} levels={plan.levels} onClose={() => select(null)} anchorRef={cardAnchorRef} />
+      <AreaCard area={selected} levels={plan.levels} group={highlighted !== null} onClose={() => select(null)} anchorRef={cardAnchorRef} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
       </DebugCorner>

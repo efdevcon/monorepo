@@ -22,7 +22,8 @@ type FindContentProps = {
  *
  * Keyboard (Scott, 2026-09-17): the arrows walk every row (categories and
  * their entries) in visual order, Enter activates, ArrowRight / ArrowLeft open
- * and close a category row.
+ * and close a category row. The desktop panel focuses the first category on
+ * open (`data-autofocus`), so the keys work without a click (2026-09-21).
  */
 export function FindContent({ groups, onPick, onClose }: FindContentProps) {
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -54,7 +55,7 @@ export function FindContent({ groups, onPick, onClose }: FindContentProps) {
       </div>
 
       <div ref={listRef} onKeyDown={onKeyDown} className="min-h-0 flex-1 overflow-y-auto border-t border-dc-hairline">
-        {groups.map(({ category, count, floors }) => {
+        {groups.map(({ category, count, floors }, i) => {
           const open = expanded === category.id;
           return (
             <div key={category.id} className="border-b border-dc-hairline last:border-b-0">
@@ -62,6 +63,8 @@ export function FindContent({ groups, onPick, onClose }: FindContentProps) {
                 type="button"
                 aria-expanded={open}
                 data-category={category.id}
+                // The desktop panel focuses this on open (MapPanel), so ArrowDown / Right work straight away.
+                data-autofocus={i === 0 || undefined}
                 onClick={() => setExpanded(open ? null : category.id)}
                 className="flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
               >
