@@ -1,8 +1,9 @@
 "use client";
 
 import cn from "classnames";
-import { MapPin } from "lucide-react";
+import { MapPin, PlayCircle } from "lucide-react";
 import { Link } from "@/routing";
+import { DetailLink } from "@/routing/DetailLink";
 import { useNowMs } from "@/hooks/useNow";
 import { useSession } from "@/data/hooks";
 import { SessionCard } from "@/components/schedule/SessionCard";
@@ -24,12 +25,14 @@ const ctaClass =
  * - "inbox" (default, /announcements): title row with the unread dot and a
  *   relative time, the one-line message as it was sent, the schedule's own
  *   SessionCard (title, time, room, format, speakers, track and the star — it
- *   opens the session itself), then a "Show on map" link (`/map` when the
- *   room isn't mapped yet).
+ *   opens the session itself), then one CTA: "Show on map" (`/map` when the
+ *   room isn't mapped yet) while the session is ahead or live, "Watch
+ *   recording" (the session page, where SessionMedia embeds it) once it has
+ *   ended — the map is no longer useful then.
  * - "home" (home preview grid): same content in the compact speaker-panel
- *   session card, meta row at the bottom — dot + time left, map link right —
+ *   session card, meta row at the bottom — dot + time left, the CTA right —
  *   equal-height across the 3-up grid.
- * The outer card is never a link: the embedded card and the map CTA are the
+ * The outer card is never a link: the embedded card and the CTA are the
  * targets. The message is a record of the reminder, like a sent
  * announcement, so it keeps saying "in 15 minutes" after the fact.
  */
@@ -49,6 +52,22 @@ export function ReminderCard({
   // this same catalogue, so it is only ever missing mid-resync.
   const { session } = useSession(sessionId);
   const time = relativeTime(remindAtMs, nowMs);
+  // Session.end is unix seconds. Unknown session → not provably finished.
+  const finished = session ? nowMs >= session.end * 1000 : false;
+
+  const cta = (mini: boolean) => {
+    const cls = cn(ctaClass, mini ? "text-xs" : "text-sm");
+    const icon = mini ? "size-3.5" : "size-4";
+    return finished ? (
+      <DetailLink kind="session" id={sessionId} className={cls}>
+        <PlayCircle className={icon} /> Watch recording
+      </DetailLink>
+    ) : (
+      <Link href={mapHrefForRoom(roomId)} className={cls}>
+        <MapPin className={icon} /> Show on map
+      </Link>
+    );
+  };
 
   const fallback = (
     <p className="font-heading text-sm leading-5 text-dc-fg2">
@@ -78,12 +97,7 @@ export function ReminderCard({
               {time}
             </span>
           </span>
-          <Link
-            href={mapHrefForRoom(roomId)}
-            className={cn(ctaClass, "text-xs")}
-          >
-            <MapPin className="size-3.5" /> Show on map
-          </Link>
+          {cta(true)}
         </div>
       </div>
     );
@@ -108,11 +122,7 @@ export function ReminderCard({
       <div className="mt-3">
         {session ? <SessionCard session={session} /> : fallback}
       </div>
-      <div className="mt-4">
-        <Link href={mapHrefForRoom(roomId)} className={cn(ctaClass, "text-sm")}>
-          <MapPin className="size-4" /> Show on map
-        </Link>
-      </div>
+      <div className="mt-4">{cta(false)}</div>
     </div>
   );
 }
