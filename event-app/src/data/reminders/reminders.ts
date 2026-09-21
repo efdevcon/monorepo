@@ -41,10 +41,6 @@ export interface ReminderItem {
   title: string;
   roomId?: string;
   roomName?: string;
-  /** Session format ("Talk", "Workshop", …), for the card's context line. */
-  type?: string;
-  /** Speaker names in catalogue order, for the card's context line. */
-  speakers: string[];
   startMs: number;
   /** When the reminder became visible / was pushed: startMs − LEAD. */
   remindAtMs: number;
@@ -72,8 +68,6 @@ export function deriveReminders(
       title: s.title,
       roomId: s.room?.id,
       roomName: s.room?.name,
-      type: s.type || undefined,
-      speakers: (s.speakers ?? []).map((sp) => sp.name).filter(Boolean),
       startMs,
       remindAtMs,
     });
