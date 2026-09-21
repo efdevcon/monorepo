@@ -27,7 +27,7 @@ const RETRY_DELAYS_MS = [300, 1200];
 /** Delete a subscription after this many consecutive non-410 failures. */
 const FAILURE_THRESHOLD = 5;
 /** Reclaim rows stuck in `sending` after this long (dispatcher crash). */
-const STALL_MS = 10 * 60 * 1000;
+export const STALL_MS = 10 * 60 * 1000;
 const TTL_SECONDS = 3600;
 
 export interface PushSubscriptionRow {
@@ -143,44 +143,77 @@ export interface FanOutResult {
   errors: Record<string, number>;
 }
 
+/** One send: a subscription and the payload it gets. */
+export interface DeliveryItem {
+  sub: PushSubscriptionRow;
+  payload: string;
+}
+
+export interface Delivery<T extends DeliveryItem = DeliveryItem> {
+  item: T;
+  outcome: SendOutcome;
+}
+
 /**
- * Deliver one payload to a set of subscriptions, chunked, with retries and
- * dead-endpoint pruning. Mutates subscription bookkeeping as it goes.
+ * Send every item (chunked, with retries). No DB writes: pair it with
+ * `recordDeliveries` once per dispatch. Results keep the input order.
  */
-export async function fanOut(
-  subs: PushSubscriptionRow[],
-  payload: string
-): Promise<FanOutResult> {
+export async function deliver<T extends DeliveryItem>(
+  items: T[]
+): Promise<Delivery<T>[]> {
   ensureVapid();
-  const db = getSupabase();
+  const results: Delivery<T>[] = [];
+  for (let i = 0; i < items.length; i += CHUNK_SIZE) {
+    const chunk = items.slice(i, i + CHUNK_SIZE);
+    const outcomes = await Promise.all(
+      chunk.map((item) => sendWithRetry(item.sub, item.payload))
+    );
+    outcomes.forEach((outcome, j) => results.push({ item: chunk[j], outcome }));
+  }
+  return results;
+}
+
+/** ok/fail counts plus a per-status-code failure breakdown for a set of deliveries. */
+export function tally(deliveries: readonly Delivery[]): FanOutResult {
   const result: FanOutResult = { ok: 0, fail: 0, errors: {} };
+  for (const { outcome } of deliveries) {
+    if (outcome.ok) {
+      result.ok++;
+    } else {
+      result.fail++;
+      result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
+    }
+  }
+  return result;
+}
+
+/**
+ * Subscription bookkeeping for a batch of deliveries: prune endpoints that
+ * are gone, reset the failure count on success, bump it otherwise and delete
+ * at the threshold. An endpoint that received several payloads in one batch
+ * (two reminders to one device) is judged once: gone wins, then any success,
+ * else failed. All best-effort — stats must never fail a dispatch.
+ */
+export async function recordDeliveries(
+  deliveries: readonly Delivery[]
+): Promise<void> {
+  const db = getSupabase();
+  const verdict = new Map<string, "ok" | "gone" | "failed">();
+  for (const { item, outcome } of deliveries) {
+    const prev = verdict.get(item.sub.endpoint);
+    const next = outcome.ok ? "ok" : outcome.gone ? "gone" : "failed";
+    if (prev === "gone" || (prev === "ok" && next === "failed")) continue;
+    verdict.set(item.sub.endpoint, next);
+  }
   const goneEndpoints: string[] = [];
   const okEndpoints: string[] = [];
   const failedEndpoints: string[] = [];
-
-  for (let i = 0; i < subs.length; i += CHUNK_SIZE) {
-    const chunk = subs.slice(i, i + CHUNK_SIZE);
-    const outcomes = await Promise.all(
-      chunk.map((sub) => sendWithRetry(sub, payload))
-    );
-    outcomes.forEach((outcome, j) => {
-      const sub = chunk[j];
-      if (outcome.ok) {
-        result.ok++;
-        okEndpoints.push(sub.endpoint);
-      } else if (outcome.gone) {
-        result.fail++;
-        result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
-        goneEndpoints.push(sub.endpoint);
-      } else {
-        result.fail++;
-        result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
-        failedEndpoints.push(sub.endpoint);
-      }
-    });
+  for (const [endpoint, v] of verdict) {
+    if (v === "gone") goneEndpoints.push(endpoint);
+    else if (v === "ok") okEndpoints.push(endpoint);
+    else failedEndpoints.push(endpoint);
   }
 
-  // Bookkeeping, all best-effort — stats must never fail a dispatch.
   const now = new Date().toISOString();
   try {
     if (goneEndpoints.length > 0) {
@@ -224,8 +257,19 @@ export async function fanOut(
   } catch (err) {
     console.warn("[push] subscription bookkeeping failed:", err);
   }
+}
 
-  return result;
+/**
+ * Deliver one payload to a set of subscriptions, chunked, with retries and
+ * dead-endpoint pruning (`deliver` + `recordDeliveries`).
+ */
+export async function fanOut(
+  subs: PushSubscriptionRow[],
+  payload: string
+): Promise<FanOutResult> {
+  const deliveries = await deliver(subs.map((sub) => ({ sub, payload })));
+  await recordDeliveries(deliveries);
+  return tally(deliveries);
 }
 
 export async function getSubscriptions(options: {
@@ -238,6 +282,25 @@ export async function getSubscriptions(options: {
   const { data, error } = await query;
   if (error) throw new Error(`subscription query failed: ${error.message}`);
   return data ?? [];
+}
+
+/** Keeps each `.in()` filter short enough for PostgREST's URL. */
+const USER_ID_CHUNK = 200;
+
+/** Every subscription of the given accounts (session reminders target users, not the world). */
+export async function getSubscriptionsForUsers(
+  userIds: readonly string[]
+): Promise<PushSubscriptionRow[]> {
+  const rows: PushSubscriptionRow[] = [];
+  for (let i = 0; i < userIds.length; i += USER_ID_CHUNK) {
+    const { data, error } = await getSupabase()
+      .from("devcon8_push_subscriptions")
+      .select("endpoint, p256dh, auth, user_id, is_team")
+      .in("user_id", userIds.slice(i, i + USER_ID_CHUNK));
+    if (error) throw new Error(`subscription query failed: ${error.message}`);
+    rows.push(...(data ?? []));
+  }
+  return rows;
 }
 
 export interface DispatchResult {

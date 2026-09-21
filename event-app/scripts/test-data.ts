@@ -27,6 +27,7 @@ import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
 import { parseSyncBody } from "../src/data/interested/syncProtocol";
+import { deriveReminders, dueSessions, REMINDER_LEAD_MS, reminderBody, reminderId } from "../src/data/reminders/reminders";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -397,8 +398,47 @@ function testIosVersion() {
   check("ios version: Android and desktop Chrome are null", parseIosMajorVersion("Mozilla/5.0 (Linux; Android 15) AppleWebKit/537.36 Chrome/140.0 Mobile Safari/537.36") === null && parseIosMajorVersion("Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 Chrome/140.0 Safari/537.36") === null);
 }
 
+function testReminders() {
+  // 2026-11-03 04:30 UTC = 10:00 Asia/Kolkata (devcon8 venue timezone).
+  const start = Date.UTC(2026, 10, 3, 4, 30);
+  const s = (id: string, startMs: number) => ({ id, startMs });
+  const due = (nowMs: number) => dueSessions([s("a", start)], nowMs).length === 1;
+  check("reminders: due exactly LEAD before start", due(start - REMINDER_LEAD_MS));
+  check("reminders: due inside the window", due(start - 60_000));
+  check("reminders: not due before the window", !due(start - REMINDER_LEAD_MS - 1));
+  check("reminders: not due once started", !due(start));
+
+  const session = (id: string, startSec: number, title: string, room?: { id: string; name: string }) =>
+    ({ id, title, start: startSec, end: startSec + 1800, duration: 1800, track: "", speakers: [], room: room && { ...room, description: "", info: "" } }) as unknown as Parameters<typeof deriveReminders>[0][number];
+  const sessions = [
+    session("early", start / 1000 - 3600, "Earlier talk", { id: "stage-1", name: "Stage 1" }),
+    session("now", start / 1000, "Talk now"),
+    session("later", start / 1000 + 3600, "Later talk"),
+    session("unstarred", start / 1000, "Not mine"),
+  ];
+  const starred = new Set(["early", "now", "later"]);
+  const items = deriveReminders(sessions, starred, start - REMINDER_LEAD_MS);
+  check("reminders: derived = starred sessions whose reminder time has passed, newest first",
+    eq(items.map((r) => r.id), [reminderId("now"), reminderId("early")]));
+  check("reminders: seconds → ms once, remindAt = start − LEAD",
+    items[0].startMs === start && items[0].remindAtMs === start - REMINDER_LEAD_MS);
+  check("reminders: room carried through", items[1].roomId === "stage-1" && items[1].roomName === "Stage 1" && items[0].roomName === undefined);
+  check("reminders: unstarred excluded", !items.some((r) => r.sessionId === "unstarred"));
+  check("reminders: nothing before the first reminder", deriveReminders(sessions, starred, start - 2 * 3600_000 - REMINDER_LEAD_MS - 1).length === 0);
+
+  check("reminders: body in venue time with room",
+    reminderBody("Talk now", start, "Asia/Kolkata", "Stage 1") === "Talk now starts in 15 minutes at 10:00, on Stage 1");
+  check("reminders: body without room drops the clause",
+    reminderBody("Talk now", start, "Asia/Kolkata") === "Talk now starts in 15 minutes at 10:00");
+  check("reminders: body counts the real remaining minutes when claimed late",
+    reminderBody("Talk now", start, "Asia/Kolkata", null, start - 4 * 60_000 - 30_000) === "Talk now starts in 5 minutes at 10:00");
+  check("reminders: body never says 0 minutes",
+    reminderBody("Talk now", start, "Asia/Kolkata", null, start - 10_000) === "Talk now starts in 1 minute at 10:00");
+}
+
 async function main() {
   testNormalize();
+  testReminders();
   testMeerkatHandover();
   testIosVersion();
   testPassBarcode();
