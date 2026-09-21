@@ -64,8 +64,8 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
  * category and floor and jumps to one — or to every "Toilets" on a floor at
  * once; Search beside it (its own surface since 2026-09-21) does the same by
  * name. The top strip shows the pointer legend while the floors are stacked
- * and the open floor's legend (stages) otherwise. Desktop: 1 / 2 / 3 open a
- * floor, / opens Search, A or Esc close the card or reset (useMapShortcuts).
+ * and the open floor's legend otherwise. Desktop: 1 / 2 / 3 open a floor, F
+ * opens Find, / opens Search, A or Esc close the card or reset (useMapShortcuts).
  */
 type MapPanelId = "find" | "search";
 export function VenueMap3D() {
@@ -107,7 +107,7 @@ export function VenueMap3D() {
   // Find + Search: every tappable footprint by category and floor (the plan is static, so build it once);
   // the floor legends list the same entries for the categories the map doesn't explain by itself.
   const findGroups = useMemo(() => buildFindGroups(plan), []);
-  const floorLegends = useMemo(() => buildFloorLegends(findGroups), [findGroups]);
+  const floorLegends = useMemo(() => buildFloorLegends(plan), []);
   // One panel (or sheet) at a time: Find or Search.
   const [panel, setPanel] = useState<MapPanelId | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -165,7 +165,7 @@ export function VenueMap3D() {
   }
 
   // Find / Search / legend pick: the same path as the deep link, keyed per pick so re-choosing the same row re-focuses.
-  const pickFind = (entry: FindEntry) => {
+  const pickFind = (entry: Pick<FindEntry, "key" | "shapes">) => {
     showShapes(entry.shapes, `find:${entry.key}#${Date.now()}`);
     closePanel();
   };
@@ -190,10 +190,11 @@ export function VenueMap3D() {
     closePanel();
   };
   // An open panel owns Escape (and the user may be typing "1" into the search field).
+  const openFind = useCallback(() => setPanel("find"), []);
   const openSearch = useCallback(() => setPanel("search"), []);
   const togglePanel = (id: MapPanelId) => (panel === id ? closePanel() : setPanel(id));
   const closeCard = useCallback(() => select(null), [select]);
-  useMapShortcuts({ showLevel, reset, openSearch, closeCard }, { enabled: panel === null, hasCard: selected !== null });
+  useMapShortcuts({ showLevel, reset, openFind, openSearch, closeCard }, { enabled: panel === null, hasCard: selected !== null });
   const openLevel = settings.level === null ? null : plan.levels.find((l) => l.id === settings.level) ?? null;
   const legendEntries = openLevel ? floorLegends.get(openLevel.id) : undefined;
   const stripHidden = selected !== null || panel !== null;

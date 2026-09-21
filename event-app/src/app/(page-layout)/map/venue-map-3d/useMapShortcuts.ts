@@ -10,6 +10,8 @@ type Handlers = {
   showLevel: (level: LevelId) => void;
   /** Back to every floor stacked at the start view (same as re-tapping the Map tab). */
   reset: () => void;
+  /** Open Find (F). */
+  openFind: () => void;
   /** Open Search (/). */
   openSearch: () => void;
   /** Close the open area card (Esc / A close it first; the next press resets). */
@@ -28,14 +30,14 @@ function isTyping(target: EventTarget | null): boolean {
 }
 
 /**
- * Map keyboard shortcuts: 1 / 2 / 3 open a floor (G / L1 / L2), "/" opens Search,
+ * Map keyboard shortcuts: 1 / 2 / 3 open a floor (G / L1 / L2), F opens Find, "/" opens Search,
  * Escape or A closes an open area card or, with none open, returns to the
  * stacked start view ("all floors"; A is deliberately not advertised). Listens on window while the Map pane is
  * the visible one (every visited pane stays mounted), and stands down while
  * the user types in a field, holds a modifier, has Find or Search open (they own Escape)
  * or has a detail view open over the map (DetailLayer owns Escape there).
  */
-export function useMapShortcuts({ showLevel, reset, openSearch, closeCard }: Handlers, { enabled, hasCard }: { enabled: boolean; hasCard: boolean }) {
+export function useMapShortcuts({ showLevel, reset, openFind, openSearch, closeCard }: Handlers, { enabled, hasCard }: { enabled: boolean; hasCard: boolean }) {
   const active = usePaneActive();
   const detail = useDetailView().kind !== null;
 
@@ -55,10 +57,14 @@ export function useMapShortcuts({ showLevel, reset, openSearch, closeCard }: Han
         openSearch();
         return;
       }
+      if (key === "f") {
+        openFind();
+        return;
+      }
       const level = KEY_LEVELS[key];
       if (level) showLevel(level);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, enabled, detail, hasCard, showLevel, reset, openSearch, closeCard]);
+  }, [active, enabled, detail, hasCard, showLevel, reset, openFind, openSearch, closeCard]);
 }

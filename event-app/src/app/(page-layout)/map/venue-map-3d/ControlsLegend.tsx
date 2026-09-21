@@ -92,6 +92,10 @@ export function ControlsLegend({ hidden, dismissed }: { hidden: boolean; dismiss
             Floors
           </span>
           <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
+            <Kbd>F</Kbd>
+            Find
+          </span>
+          <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted">
             <Kbd>/</Kbd>
             Search
           </span>

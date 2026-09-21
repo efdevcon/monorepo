@@ -2,7 +2,7 @@
 
 import { useState, type MutableRefObject } from "react";
 import cn from "classnames";
-import { ChevronRight, Clock3, Layers, Presentation, User } from "lucide-react";
+import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
@@ -84,11 +84,9 @@ export function AreaCard({ area, levels, onClose, anchorRef }: { area: Area | nu
           )}
         </div>
         {floorName && (
-          // Which floor the place is on, in the live-session row's meta style; shown even when the blurb is not.
-          <span className="mt-1.5 inline-flex items-center gap-1 text-[12px] leading-none text-dc-muted">
-            <Layers className="size-3.5 shrink-0" aria-hidden />
-            {floorName}
-          </span>
+          // Which floor the place is on, in the live-session row's meta size; shown even when the blurb is not.
+          // Plain text: an icon beside it read as noise (Scott).
+          <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{floorName}</span>
         )}
         {shown?.description && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
       </div>
