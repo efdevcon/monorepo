@@ -408,10 +408,10 @@ function testReminders() {
   check("reminders: not due before the window", !due(start - REMINDER_LEAD_MS - 1));
   check("reminders: not due once started", !due(start));
 
-  const session = (id: string, startSec: number, title: string, room?: { id: string; name: string }) =>
-    ({ id, title, start: startSec, end: startSec + 1800, duration: 1800, track: "", speakers: [], room: room && { ...room, description: "", info: "" } }) as unknown as Parameters<typeof deriveReminders>[0][number];
+  const session = (id: string, startSec: number, title: string, room?: { id: string; name: string }, extra: object = {}) =>
+    ({ id, title, start: startSec, end: startSec + 1800, duration: 1800, track: "", speakers: [], room: room && { ...room, description: "", info: "" }, ...extra }) as unknown as Parameters<typeof deriveReminders>[0][number];
   const sessions = [
-    session("early", start / 1000 - 3600, "Earlier talk", { id: "stage-1", name: "Stage 1" }),
+    session("early", start / 1000 - 3600, "Earlier talk", { id: "stage-1", name: "Stage 1" }, { type: "Workshop", speakers: [{ id: "a", name: "Alice" }, { id: "b", name: "Bob" }] }),
     session("now", start / 1000, "Talk now"),
     session("later", start / 1000 + 3600, "Later talk"),
     session("unstarred", start / 1000, "Not mine"),
@@ -424,6 +424,8 @@ function testReminders() {
     items[0].startMs === start && items[0].remindAtMs === start - REMINDER_LEAD_MS);
   check("reminders: room carried through", items[1].roomId === "stage-1" && items[1].roomName === "Stage 1" && items[0].roomName === undefined);
   check("reminders: unstarred excluded", !items.some((r) => r.sessionId === "unstarred"));
+  check("reminders: type + speaker names carried through, empty when absent",
+    items[1].type === "Workshop" && eq(items[1].speakers, ["Alice", "Bob"]) && items[0].type === undefined && eq(items[0].speakers, []));
   check("reminders: nothing before the first reminder", deriveReminders(sessions, starred, start - 2 * 3600_000 - REMINDER_LEAD_MS - 1).length === 0);
 
   check("reminders: body in venue time with room",
