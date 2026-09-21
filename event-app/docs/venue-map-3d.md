@@ -154,7 +154,7 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   zoom, and every programmatic move a `tweenTo` sharing the floors' clock. Mouse: drag
   rotates, right-drag pans. Touch: one finger pans, two fingers rotate and pinch-zoom
   (`TOUCH.PAN` / `TOUCH.DOLLY_ROTATE`).
-- **Controls** (all 44px tall since 2026-09-21; text stays 14px): `FloorSlider` bottom-right
+- **Controls** (all 44px tall since 2026-09-21; 16px labels since the same evening): `FloorSlider` bottom-right
   (vertical 44px track L2 / L1 / G with 40px stops, press-and-hold and drag slides through the
   floors, a clean tap on the active stop returns to the stack, "All" under it: white like the
   active stop when stacked, the track's fill otherwise), the `ControlPill`s "Find" and
@@ -165,9 +165,12 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   returns with the stack) and `FloorLegend` while a floor with legend entries is open (both
   fade while the card or a panel is open), the header's `OfflineIndicator` top-right on
   phones, `MapSheet` (phones, house `BottomSheet`) / `MapPanel` (desktop, stays mounted,
-  `inert` when closed) as the shells for `FindContent` and `SearchContent` (one panel open at
-  a time; the shortcuts stand down while one is open), `AreaCard` (name, plain floor line,
-  blurb, live session), `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F opens Find, `/` opens
+  `inert` when closed; opening focuses the search field or, for Find, the first category row via
+  `data-autofocus` so the arrow keys work at once) as the shells for `FindContent` and
+  `SearchContent` (one panel open at a time; the shortcuts stand down while one is open),
+  `AreaCard` (theme icon — stages in the disc on the top edge, everything else inline left of the
+  text — name, plain floor line, blurb, live session; a group pick parks the desktop card
+  bottom-centre so every highlighted footprint stays visible), `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F opens Find, `/` opens
   Search, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
   tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
   the tuning panel, drei `<Stats>`, `window.__mapCamera`, `window.__mapHover` and
@@ -211,7 +214,11 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   covers G (five icon chips) and L2 (discussion corner + colour swatches for breakout / meeting
   rooms / speakers space, an experiment with swatches for colour-coded rooms) and L1 gets a
   "Classrooms" swatch; stage chips drop the theme suffix; `F` opens Find; the control pills get
-  4px more padding on the label side (`pl-3 pr-4`) so they don't read lopsided.
+  4px more padding on the label side (`pl-3 pr-4`) so they don't read lopsided. Evening round: labels 16px
+  (Find, Search, All, slider stops); Find keyboard-ready on open (first row focused, no field to
+  autofocus any more); group picks (Find/Search/legend, e.g. Coffee Station ×3) put the desktop
+  card bottom-centre instead of beside a footprint; non-stage cards show the theme icon inline
+  left of the text, stages keep the disc.
 - Known limitation: the phone Search sheet cannot autofocus its field (the sheet mounts on
   open; iOS only raises the keyboard for a focus() made synchronously inside the tap), so the
   first tap on the field raises it. If testers mind, keep the search content mounted like

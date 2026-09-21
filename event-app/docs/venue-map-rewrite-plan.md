@@ -69,7 +69,7 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   stop to the pointer, idempotent `showLevel`, 6 px tap slop), pointer capture, `touch-action:
   none`, `role=radiogroup` + keyboard via `click.detail === 0` plus Arrow/Home/End keys,
   pointercancel discards the press (never toggles), `cursor-grab` (grabbing while pressed); "All"
-  disc (`h-11 w-11`, hairline border, same 14px type as the stops) UNDER the track: white fill +
+  disc (`h-11 w-11`, hairline border, same 16px type as the stops) UNDER the track: white fill +
   indicator shadow + bold purple when stacked, track fill (lavender / lg panel) + medium muted
   otherwise; title "All floors · A / Esc"; stop titles "<name> · <key>".
 - Stacked hover: slab tinted 14 % towards dc-purple; **floor labels always visible** as the short
@@ -99,12 +99,13 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   hoverables else `grab`.
 ### Find / Search (two surfaces since 2026-09-21)
 - Bottom-left row of two 44px `ControlPill`s, "Find" (`TextSearch` icon) and "Search" (`Search`
-  icon), `pl-3 pr-4` (4px more on the label side or the pill reads lopsided), `gap-2`, same row as the slider on every breakpoint; on phones the whole bottom-controls
+  icon), 16px bold labels, `pl-3 pr-4` (4px more on the label side or the pill reads lopsided), `gap-2`, same row as the slider on every breakpoint; on phones the whole bottom-controls
   row fades + goes `inert` while the AreaCard is open. One panel/sheet open at a time (`panel:
   "find" | "search" | null`); opening one closes the other; `closePanel` clears the query.
 - Shells: desktop `MapPanel` (380 px, `left-6`, `bottom: 1.5rem + 56px`, stays mounted, `inert`
   when closed, Esc + outside-click close, ignores clicks on any `[data-map-trigger]`, focuses
-  `inputRef` when given); phone `MapSheet` = house `BottomSheet` (`fit`), no autofocus (iOS
+  `inputRef` when given, else the `[data-autofocus]` element — Find's first category row — so the
+  arrow keys work the moment it opens); phone `MapSheet` = house `BottomSheet` (`fit`), no autofocus (iOS
   keyboard limitation; `SearchContent` keeps a local input ref so the arrow keys work with a
   hardware keyboard). One shell per breakpoint per panel.
 - **Find** (`FindContent`): title "Find a place", 10 ordered categories (Stages, Classrooms &
@@ -149,8 +150,11 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   today → `focus.seq`); keyed on pane active. "Show on Map" in session details always renders;
   unknown room → plain `/map`.
 - `AreaCard`: fixed bottom (`--nav-clearance`+16 px), full width phone / 440 px desktop,
-  `bg-white/95 backdrop-blur`, 150 ms slide+fade, keeps last area for exit; 64 px icon disc (48 px
-  icon) riding the top edge at −70 %, same fill, no shadow, body `pt-6`; `CloseButton` centred on
+  `bg-white/95 backdrop-blur`, 150 ms slide+fade, keeps last area for exit; **stages**: 64 px icon
+  disc (48 px icon) riding the top edge at −70 %, same fill, no shadow, body `pt-6`; **everything
+  else**: the 48 px icon inline left of the text block (`categoryIdFor` decides); **group pick**
+  (`group` prop = a highlighted set): desktop card bottom-centre (`lg:bottom-6 lg:left-1/2
+  -translate-x-1/2`) instead of anchored beside the footprint; `CloseButton` centred on
   the top-right corner (half outside, white + shadow, exact — took three rounds); title 16 px bold;
   **floor line (2026-09-21)**: the spoken floor name ("Level 1") as plain 12px dc-muted text,
   `mt-1.5`, no icon (tried, noise), shown even in the session-only state; blurb 14 px muted; `role=dialog`. Desktop
@@ -401,3 +405,6 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - 2026-09-21 (later) — same-day follow-up: floor line loses its icon; per-floor `LEGEND` specs with
   `places` and `swatch` chips (G five places, L1 stages + Classrooms swatch, L2 discussion corner +
   three room swatches), stage chips without the theme suffix; `F` opens Find; pills `pl-3 pr-4`.
+- 2026-09-21 (evening) — labels 16px on Find/Search/All/stops; Find focuses its first row on open
+  (`data-autofocus`); group picks park the desktop card bottom-centre; non-stage cards show the
+  icon inline, stages keep the disc.
