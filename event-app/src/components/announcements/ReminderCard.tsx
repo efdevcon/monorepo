@@ -1,8 +1,7 @@
 "use client";
 
-import { ArrowRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "@/routing";
-import { DetailLink } from "@/routing/DetailLink";
 import { useNowMs } from "@/hooks/useNow";
 import { useSession } from "@/data/hooks";
 import { SessionCard } from "@/components/schedule/SessionCard";
@@ -22,10 +21,10 @@ const ctaClass =
  * One Personal-tab item: the inbox card's shell — generic title with the
  * unread dot and a relative time, the reminder's one-line message as it was
  * sent — with the schedule's own SessionCard embedded (title, time, room,
- * format, speakers, track and the star), plus two links: the session page
- * (opens in place) and its spot on the map (`/map` when the room isn't
- * mapped yet). The outer card is not a link: the embedded card and the CTAs
- * are the targets. The message is a record of the reminder, like a sent
+ * format, speakers, track and the star — it opens the session itself), plus
+ * a link to its spot on the map (`/map` when the room isn't mapped yet). The
+ * outer card is not a link: the embedded card and the map CTA are the
+ * targets. The message is a record of the reminder, like a sent
  * announcement, so it keeps saying "in 15 minutes" after the fact.
  */
 export function ReminderCard({
@@ -46,7 +45,7 @@ export function ReminderCard({
     <div className="rounded-lg border border-dc-hairline bg-white p-4">
       <div className="flex items-center justify-between gap-3">
         <p className="min-w-0 font-heading text-base font-bold leading-6 text-dc-fg2">
-          Interested session reminder
+          Session reminder
         </p>
         <span className="flex shrink-0 items-center gap-2">
           {!seen && <UnreadDot />}
@@ -68,10 +67,7 @@ export function ReminderCard({
           </p>
         )}
       </div>
-      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
-        <DetailLink kind="session" id={sessionId} className={ctaClass}>
-          Open session <ArrowRight className="size-4" />
-        </DetailLink>
+      <div className="mt-4">
         <Link href={mapHrefForRoom(roomId)} className={ctaClass}>
           <MapPin className="size-4" /> Show on map
         </Link>
