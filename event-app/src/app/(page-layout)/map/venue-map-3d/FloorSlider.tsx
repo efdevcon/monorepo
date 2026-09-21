@@ -19,11 +19,11 @@ type FloorSliderProps = {
 
 /** Pointer travel (px) below which a press-and-release on a stop is a tap, not a slide. */
 const SLIDE_SLOP_PX = 6;
-/** Stop height and the gap between stops (Tailwind h-9 / gap-1), for the indicator's offset. */
-const STOP_PX = 36;
+/** Stop height and the gap between stops (Tailwind h-10 / gap-1), for the indicator's offset. */
+const STOP_PX = 40;
 const STOP_GAP_PX = 4;
-/** Indicator corner radii: full (half its 32px width) on the side touching a track end, 4px otherwise. */
-const RADIUS_END_PX = 16;
+/** Indicator corner radii: full (half its 36px width) on the side touching a track end, 4px otherwise. */
+const RADIUS_END_PX = 18;
 const RADIUS_MID_PX = 4;
 function indicatorRadius(index: number, count: number): string {
   // Parked below the track (stacked) counts as the bottom end, so sliding up into G keeps its shape.
@@ -41,7 +41,8 @@ function indicatorRadius(index: number, count: number): string {
  * active one returns to the stack, as the pills did. "All" sits under the
  * track and is active while the floors are stacked (white like the active
  * stop; the track's fill otherwise). Keyboard users get the stops as radio
- * buttons.
+ * buttons. Track and All are 44px wide, matching the 44px control pills
+ * (Scott, 2026-09-21; was 40).
  */
 export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSliderProps) {
   const stops = [...levels].reverse(); // top floor first, like the building
@@ -130,7 +131,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         onKeyDown={onKeyDown}
         style={{ touchAction: "none" }}
         // Grab hand: the track is something you hold and slide, not a set of links (Scott).
-        className="relative flex w-10 cursor-grab select-none flex-col gap-1 overflow-hidden rounded-full active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
+        className="relative flex w-11 cursor-grab select-none flex-col gap-1 overflow-hidden rounded-full active:cursor-grabbing bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
       >
         <div
           aria-hidden
@@ -141,7 +142,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
             height: STOP_PX,
             opacity: activeIndex < 0 ? 0 : 1,
             // Corners follow the track's pill shape: fully round on the side touching an end of the
-            // track, 4px elsewhere, morphing between positions. Full = half the 32px width (a real
+            // track, 4px elsewhere, morphing between positions. Full = half the 36px width (a real
             // value, not 9999px, so the transition interpolates visibly).
             borderRadius: indicatorRadius(activeIndex, stops.length),
           }}
@@ -160,7 +161,7 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
             }}
             onClick={(e) => onKeyboardClick(e, level.id)}
             className={cn(
-              "relative z-10 flex h-9 w-full cursor-[inherit] items-center justify-center rounded-full text-[14px] leading-none transition-colors",
+              "relative z-10 flex h-10 w-full cursor-[inherit] items-center justify-center rounded-full text-[16px] leading-none transition-colors",
               value === level.id ? "font-bold text-dc-purple" : "font-medium text-dc-muted"
             )}
           >
@@ -174,9 +175,8 @@ export function FloorSlider({ levels, value, onSlide, onToggle, onAll }: FloorSl
         title="All floors · A / Esc"
         onClick={onAll}
         className={cn(
-          // Same type as the stops: 14px, bold purple when active, medium muted otherwise.
-          // before:-inset-0.5 extends the 40px disc to the 44px touch floor without changing its look.
-          "relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[14px] leading-none transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-['']",
+          // Same type as the stops: 16px (2026-09-21, was 14), bold purple when active, medium muted otherwise. 44px disc = the touch floor.
+          "relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-dc-hairline text-[16px] leading-none transition-colors duration-150 ease-out",
           // Active: the Find pill's surface exactly (border, white/90 + blur, one soft shadow) so the two bottom controls match.
           value === null
             ? "bg-white/90 font-bold text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.12)] backdrop-blur"

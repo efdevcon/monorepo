@@ -30,7 +30,10 @@ const CATEGORIES: (FindCategory & { match: RegExp })[] = [
 
 export const FIND_CATEGORIES: FindCategory[] = CATEGORIES.map(({ id, label, Icon }) => ({ id, label, Icon }));
 
-const categoryFor = (shape: PlanShape): FindCategory => CATEGORIES.find((c) => c.match.test(shape.id)) ?? CATEGORIES[CATEGORIES.length - 1];
+const categoryFor = (shapeId: string): FindCategory => CATEGORIES.find((c) => c.match.test(shapeId)) ?? CATEGORIES[CATEGORIES.length - 1];
+
+/** Category id of a plan layer id ("stages", "food", …); AreaCard uses it to lay out stages differently. */
+export const categoryIdFor = (shapeId: string): string => categoryFor(shapeId).id;
 
 /** "Meeting Room 2" before "Meeting Room 10". */
 const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name, undefined, { numeric: true });
@@ -43,7 +46,7 @@ export function buildFindGroups(plan: PlanScene): FindGroup[] {
   for (const level of plan.levels) {
     for (const shape of level.shapes) {
       if (!shape.tappable) continue;
-      const category = categoryFor(shape);
+      const category = categoryFor(shape.id);
       const perLevel = buckets.get(category.id) ?? new Map<LevelId, Map<string, PlanShape[]>>();
       buckets.set(category.id, perLevel);
       const perName = perLevel.get(shape.level) ?? new Map<string, PlanShape[]>();

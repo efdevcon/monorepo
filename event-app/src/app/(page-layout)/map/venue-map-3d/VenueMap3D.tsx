@@ -4,19 +4,23 @@ import dynamic from "next/dynamic";
 import { useCallback, useMemo, useRef, useState } from "react";
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
+import { Search, TextSearch } from "lucide-react";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
-import { FindButton } from "./FindButton";
+import { ControlPill } from "./ControlPill";
 import { FindContent } from "./FindContent";
-import { FindPanel } from "./FindPanel";
-import { FindSheet } from "./FindSheet";
+import { SearchContent } from "./SearchContent";
+import { MapPanel } from "./MapPanel";
+import { MapSheet } from "./MapSheet";
 import { buildFindGroups, type FindEntry } from "./pois";
+import { buildFloorLegends } from "./legend";
 import { DebugPanel } from "./DebugPanel";
 import { DebugCorner, DebugToggle } from "./DebugToggle";
 import { FloorSlider } from "./FloorSlider";
 import { ControlsLegend } from "./ControlsLegend";
+import { FloorLegend } from "./FloorLegend";
 import { useMapShortcuts } from "./useMapShortcuts";
 import { areaOf, shapeKey } from "./planArea";
 import { AREA_PARAM, parseAreaParam } from "./roomAreas";
@@ -58,9 +62,12 @@ function boundsOf(shapes: PlanShape[]): GroundBounds {
  * point, a tap on an area opens AreaCard, and re-tapping the Map tab resets
  * the view (useTabReselect). Find (bottom-left) lists every footprint by
  * category and floor and jumps to one — or to every "Toilets" on a floor at
- * once. Desktop: 1 / 2 / 3 open a floor, / opens Find, A or Esc close the
- * card or reset (useMapShortcuts).
+ * once; Search beside it (its own surface since 2026-09-21) does the same by
+ * name. The top strip shows the pointer legend while the floors are stacked
+ * and the open floor's legend otherwise. Desktop: 1 / 2 / 3 open a floor, F
+ * opens Find, / opens Search, A or Esc close the card or reset (useMapShortcuts).
  */
+type MapPanelId = "find" | "search";
 export function VenueMap3D() {
   const [selected, setSelected] = useState<Area | null>(null);
   // A found group ("Toilets · Level 1"): every member's selection key, highlighted alongside the selected one.
@@ -97,24 +104,27 @@ export function VenueMap3D() {
   }
   const onInteract = useCallback(() => setLegendGestured(true), []);
 
-  // Find: every tappable footprint by category and floor (the plan is static, so build it once).
+  // Find + Search: every tappable footprint by category and floor (the plan is static, so build it once);
+  // the floor legends list the same entries for the categories the map doesn't explain by itself.
   const findGroups = useMemo(() => buildFindGroups(plan), []);
-  const [findOpen, setFindOpen] = useState(false);
-  const [findQuery, setFindQuery] = useState("");
-  const findInputRef = useRef<HTMLInputElement | null>(null);
-  const closeFind = useCallback(() => {
-    setFindOpen(false);
-    setFindQuery("");
+  const floorLegends = useMemo(() => buildFloorLegends(plan), []);
+  // One panel (or sheet) at a time: Find or Search.
+  const [panel, setPanel] = useState<MapPanelId | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const closePanel = useCallback(() => {
+    setPanel(null);
+    setSearchQuery("");
   }, []);
 
   // Map-tab re-tap, Esc, A, the "All" button: back to the stacked start view (the rig finishes the reset once the stack lands).
   const reset = useCallback(() => {
     select(null);
     setFocus(null);
-    closeFind();
+    closePanel();
     setSettings((s) => (s.level === null ? s : { ...s, level: null }));
     resetRef.current();
-  }, [select, closeFind]);
+  }, [select, closePanel]);
   useTabReselect(reset);
 
   /**
@@ -154,10 +164,10 @@ export function VenueMap3D() {
     if (shape) showShapes([shape], `${areaVisit}#${n}`);
   }
 
-  // Find pick: the same path as the deep link, keyed per pick so re-choosing the same row re-focuses.
-  const pickFind = (entry: FindEntry) => {
+  // Find / Search / legend pick: the same path as the deep link, keyed per pick so re-choosing the same row re-focuses.
+  const pickFind = (entry: Pick<FindEntry, "key" | "shapes">) => {
     showShapes(entry.shapes, `find:${entry.key}#${Date.now()}`);
-    closeFind();
+    closePanel();
   };
   // Floor taps in the stack and a clean tap on the slider's active stop: re-picking the shown floor returns to the stack.
   const setLevel = useCallback(
@@ -177,12 +187,17 @@ export function VenueMap3D() {
   );
   const pickFloor = (level: LevelId) => {
     showLevel(level);
-    closeFind();
+    closePanel();
   };
-  // Find owns Escape while open (and the user may be typing "1" into its field).
-  const openFind = useCallback(() => setFindOpen(true), []);
+  // An open panel owns Escape (and the user may be typing "1" into the search field).
+  const openFind = useCallback(() => setPanel("find"), []);
+  const openSearch = useCallback(() => setPanel("search"), []);
+  const togglePanel = (id: MapPanelId) => (panel === id ? closePanel() : setPanel(id));
   const closeCard = useCallback(() => select(null), [select]);
-  useMapShortcuts({ showLevel, reset, openFind, closeCard }, { enabled: !findOpen, hasCard: selected !== null });
+  useMapShortcuts({ showLevel, reset, openFind, openSearch, closeCard }, { enabled: panel === null, hasCard: selected !== null });
+  const openLevel = settings.level === null ? null : plan.levels.find((l) => l.id === settings.level) ?? null;
+  const legendEntries = openLevel ? floorLegends.get(openLevel.id) : undefined;
+  const stripHidden = selected !== null || panel !== null;
 
   return (
     // min-w-0 / min-h-0: the canvas keeps its last intrinsic size, and a flex item's default
@@ -205,12 +220,17 @@ export function VenueMap3D() {
         resetRef={resetRef}
         cardAnchorRef={cardAnchorRef}
       />
-      <ControlsLegend stacked={stacked} hidden={selected !== null || findOpen} dismissed={!stacked || legendGestured} />
+      {/* Top strip: the pointer legend while stacked, the open floor's legend otherwise (only floors with something to explain). */}
+      {stacked ? (
+        <ControlsLegend hidden={stripHidden} dismissed={legendGestured} />
+      ) : (
+        openLevel && legendEntries && legendEntries.length > 0 && <FloorLegend level={openLevel} entries={legendEntries} hidden={stripHidden} onPick={pickFind} />
+      )}
       {/* Phones have no header bar on /map, so the header's offline marker moves to the map's top-right corner. */}
       <div className="pointer-events-none fixed right-4 top-[calc(var(--safe-top)+12px)] z-10 lg:hidden">
         <OfflineIndicator />
       </div>
-      {/* Bottom controls: Find pill bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17).
+      {/* Bottom controls: Find + Search pills bottom-left, the floor slider bottom-right, on every breakpoint (Scott, 2026-09-17/21).
           On phones the area card sits over them, so they fade out (and go inert) while it is open. */}
       <div
         inert={selected !== null && !desktop}
@@ -219,20 +239,33 @@ export function VenueMap3D() {
           selected !== null && "max-lg:opacity-0"
         )}
       >
-        <FindButton open={findOpen} onClick={() => (findOpen ? closeFind() : openFind())} />
+        <div className="flex items-center gap-2">
+          <ControlPill icon={TextSearch} label="Find" trigger="find" open={panel === "find"} onClick={() => togglePanel("find")} />
+          <ControlPill icon={Search} label="Search" trigger="search" open={panel === "search"} onClick={() => togglePanel("search")} />
+        </div>
         <FloorSlider levels={plan.levels} value={settings.level} onSlide={showLevel} onToggle={setLevel} onAll={reset} />
       </div>
-      {/* One shell per breakpoint so only one Escape handler is live; the sheet is lg:hidden anyway. */}
+      {/* One shell per breakpoint so only one Escape handler is live per panel; the sheets are lg:hidden anyway. */}
       {desktop ? (
-        <FindPanel open={findOpen} onClose={closeFind} inputRef={findInputRef}>
-          <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} inputRef={findInputRef} />
-        </FindPanel>
+        <>
+          <MapPanel id="map-find-panel" label="Find a place" open={panel === "find"} onClose={closePanel}>
+            <FindContent groups={findGroups} onPick={pickFind} onClose={closePanel} />
+          </MapPanel>
+          <MapPanel id="map-search-panel" label="Search the map" open={panel === "search"} onClose={closePanel} inputRef={searchInputRef}>
+            <SearchContent groups={findGroups} query={searchQuery} onQueryChange={setSearchQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closePanel} inputRef={searchInputRef} />
+          </MapPanel>
+        </>
       ) : (
-        <FindSheet open={findOpen} onOpenChange={(open) => (open ? setFindOpen(true) : closeFind())}>
-          <FindContent groups={findGroups} query={findQuery} onQueryChange={setFindQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closeFind} />
-        </FindSheet>
+        <>
+          <MapSheet label="Find a place" open={panel === "find"} onOpenChange={(open) => (open ? setPanel("find") : closePanel())}>
+            <FindContent groups={findGroups} onPick={pickFind} onClose={closePanel} />
+          </MapSheet>
+          <MapSheet label="Search the map" open={panel === "search"} onOpenChange={(open) => (open ? setPanel("search") : closePanel())}>
+            <SearchContent groups={findGroups} query={searchQuery} onQueryChange={setSearchQuery} onPick={pickFind} onPickFloor={pickFloor} onClose={closePanel} />
+          </MapSheet>
+        </>
       )}
-      <AreaCard area={selected} onClose={() => select(null)} anchorRef={cardAnchorRef} />
+      <AreaCard area={selected} levels={plan.levels} group={highlighted !== null} onClose={() => select(null)} anchorRef={cardAnchorRef} />
       <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
         <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
       </DebugCorner>

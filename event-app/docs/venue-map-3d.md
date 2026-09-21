@@ -65,19 +65,33 @@ Known input problems (fix in Figma, not in code): L2 `food-area-2`, `cowork-spac
 `food-area-*`; `Stge-3-Fabrics` is a typo the script tolerates; `press-room`,
 `community-hub-4` and `classroom-f` have no description in `areas.json`.
 
-## Pipeline 2: plan → Find catalogue (runtime, `pois.ts`)
+## Pipeline 2: plan → Find / Search / legend catalogue (runtime, `pois.ts`, `legend.ts`)
 
 `buildFindGroups(plan)` runs once per mount (`useMemo`): every `tappable` shape is assigned
 a category by id regex (`CATEGORIES`: Stages, Classrooms & breakout, Meeting rooms, Food &
 drink, Toilets, Cowork & discussion, Community hubs, Check-in & swag, Fun & rest, Other),
 grouped by floor in building order, and same-name shapes on one floor collapse into one
 `FindEntry` whose `shapes[]` holds them all (so "Toilets ×4" highlights four footprints).
-Each category carries a lucide icon for rows without a theme PNG.
+Each category carries a lucide icon for rows without a theme PNG. Three surfaces read the
+same groups:
 
-`searchFind(groups, query)` is a case-insensitive substring match on name or category label.
-`parseFloorQuery` first splits a floor alias off the query (`FLOOR_ALIASES`: "ground floor",
-"gf", "g", "level 1", "l1", "first floor", …); a bare floor lists the whole floor and offers
-a row that opens it, a floor plus text scopes the search. Bare digits are never a floor.
+- **Find** (`FindContent`): the category accordion, browsing only since 2026-09-21.
+- **Search** (`SearchContent`, its own pill, sheet and panel since 2026-09-21):
+  `searchFind(groups, query)` is a case-insensitive substring match on name or category label.
+  `parseFloorQuery` first splits a floor alias off the query (`FLOOR_ALIASES`: "ground floor",
+  "gf", "g", "level 1", "l1", "first floor", …); a bare floor lists the whole floor and offers
+  a row that opens it, a floor plus text scopes the search. Bare digits are never a floor.
+- **Floor legend** (`legend.ts` → `FloorLegend`): `LEGEND` is a per-floor list of specs for what
+  the map does not explain by itself. Two chip kinds: `places` (one chip per matching footprint,
+  theme icon + short name — the name up to " - ", so "Stage 1", not "Stage 1 - Fans") and
+  `swatch` (ONE chip for every matching footprint, a rounded square in the footprints' fill +
+  a label, for the colour-coded rooms with no icon). Today: G → Decompression Zone, Hacker Cave,
+  Playground, Registration, Swag Station; L1 → the seven stages + "Classrooms" swatch; L2 → Blue
+  Discussion Corner + "Breakout rooms", "Meeting rooms", "Speakers Space" swatches.
+  `buildFloorLegends(plan)` gives, per floor, the entries in spec order; floors with no entries
+  show no legend. Tapping a chip runs the Find-pick path (a swatch chip highlights every room of
+  that colour). Surfacing something else is one spec line. The rewrite carries it on its area
+  catalogue.
 
 The quick-action category chips were deferred; the categories exist for them.
 
@@ -111,11 +125,12 @@ why the import of the Figma isometric illustration did not work). The flat top-d
 ## How the pipelines meet on screen
 
 - **`VenueMap3D`** owns `settings` (`level` or `null` for the stack, tuning values),
-  `selected`, `highlighted` (a found group), `focus` (camera target), and Find state.
+  `selected`, `highlighted` (a found group), `focus` (camera target), and the panel state
+  (`panel`: `"find" | "search" | null`, one open at a time, plus the search query).
   `select(area)` is the one path that also clears the group. `showShapes()` is the deep
-  link's body factored out and is what Find uses: opens the floor, selects the member
-  nearest the group's centre, highlights the rest, and focuses the camera
-  (`CameraFocus.bounds` makes the rig fit a group between the floor fit and the
+  link's body factored out and is what Find, Search and the floor legend use: opens the
+  floor, selects the member nearest the group's centre, highlights the rest, and focuses
+  the camera (`CameraFocus.bounds` makes the rig fit a group between the floor fit and the
   single-footprint zoom).
 - **`Scene` → `LevelStack` → `PlanShapes` / `PlanIcons`**: `LevelStack` positions the floors
   (stack around y = 0, or the chosen floor at 0 with the others parked off-screen) and tweens
@@ -123,6 +138,10 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   handlers, a `FloorHitPlane` and a `FloorLabel` (`FloorHover.tsx`): the short label
   ("G", "L1") is always visible 24px right of the right-most footprint corner and the other
   floors' labels dim to 30 % while one floor is hovered; 40px on desktop, 24px on phones.
+  Since 2026-09-21 the label is a button: clicking it opens the floor (`onSelectLevel`) and
+  hovering it hovers the floor (`setHovered("level:<id>")`, so the slab tints and the other
+  labels dim exactly as with the pointer over the floor). Only the button takes the pointer;
+  the drei `Html` wrapper stays `pointer-events: none`.
   On phones (`useIsDesktop` false, passed into the scene as `desktop`) the stacked home view's
   orbit target sits `PHONE_SHIFT_PX` (28) screen px further right along the camera's right
   vector (`homeTarget` in `CameraRig`), so the stack sits left of centre and the labels clear
@@ -135,15 +154,24 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   zoom, and every programmatic move a `tweenTo` sharing the floors' clock. Mouse: drag
   rotates, right-drag pans. Touch: one finger pans, two fingers rotate and pinch-zoom
   (`TOUCH.PAN` / `TOUCH.DOLLY_ROTATE`).
-- **Controls**: `FloorSlider` bottom-right (vertical track L2 / L1 / G, press-and-hold and
-  drag slides through the floors, a clean tap on the active stop returns to the stack, "All"
-  under it: white like the active stop when stacked, the track's fill otherwise),
-  `FindButton` bottom-left (both fade out and go `inert` on phones while the area card covers
-  them), `ControlsLegend` along the top (under the status bar on phones, where it fades after
-  the first gesture and returns with the stacked view; centred and permanent under the header
-  from `lg`), the header's `OfflineIndicator` top-right on phones, `FindSheet` (phones, house `BottomSheet`) / `FindPanel`
-  (desktop, stays mounted), `AreaCard`, `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, `/`
-  opens Find, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
+- **Controls** (all 44px tall since 2026-09-21; 16px labels since the same evening): `FloorSlider` bottom-right
+  (vertical 44px track L2 / L1 / G with 40px stops, press-and-hold and drag slides through the
+  floors, a clean tap on the active stop returns to the stack, "All" under it: white like the
+  active stop when stacked, the track's fill otherwise), the `ControlPill`s "Find" and
+  "Search" side by side bottom-left (the whole bottom row fades out and goes `inert` on
+  phones while the area card covers it), the top strip (`TopStrip` in `ControlsLegend.tsx`:
+  under the status bar on phones, centred under the header from `lg`) holding
+  `ControlsLegend` while the floors are stacked (phones: fades after the first gesture and
+  returns with the stack) and `FloorLegend` while a floor with legend entries is open (both
+  fade while the card or a panel is open), the header's `OfflineIndicator` top-right on
+  phones, `MapSheet` (phones, house `BottomSheet`) / `MapPanel` (desktop, stays mounted,
+  `inert` when closed; opening focuses the search field or, for Find, the first category row via
+  `data-autofocus` so the arrow keys work at once) as the shells for `FindContent` and
+  `SearchContent` (one panel open at a time; the shortcuts stand down while one is open),
+  `AreaCard` (theme icon — stages in the disc on the top edge, everything else inline left of the
+  text — name, plain floor line, blurb, live session; a group pick parks the desktop card
+  bottom-centre so every highlighted footprint stays visible), `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F opens Find, `/` opens
+  Search, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
   tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
   the tuning panel, drei `<Stats>`, `window.__mapCamera`, `window.__mapHover` and
   `window.__mapControls` (the OrbitControls instance); the app-wide dev trigger docks under
@@ -167,14 +195,34 @@ why the import of the Figma isometric illustration did not work). The flat top-d
 - The start view is turned 25° left of the isometric diagonal (2026-09-17); the rotation
   range is unchanged in absolute terms.
 - Phones: one finger pans, two fingers rotate (2026-09-17). Desktop: drag rotates, right-drag pans.
-- Esc or A closes an open area card first and resets otherwise; Find owns Esc while open.
-  The legend shows `Esc` as "All floors", `/` as "Find" and `1 2 3` as "Floors"; A is unlisted.
-- Floor labels are always visible in the stack (short form), dimming the non-hovered ones.
+- Esc or A closes an open area card first and resets otherwise; an open Find or Search panel
+  owns Esc. The legend shows `Esc` as "All floors", `F` as "Find", `/` as "Search" and `1 2 3`
+  as "Floors"; A is unlisted.
+- Floor labels are always visible in the stack (short form), dimming the non-hovered ones,
+  and are clickable (2026-09-21).
 - Duplicated facilities are one row per floor that highlights every instance.
 - Stacked-floor hover is a light lavender slab tint (no pill, no lift, no shadow: tried and
   rejected as noise).
 - Legend leads with the click/tap target; copy is "Double click zoom-in". It sits at the top
   of the map since 2026-09-17.
+- **Feedback round 2026-09-21** (Scott): controls 44px (was 40; 48 was asked, 44 agreed),
+  text stays 14px for now; Search is its own surface beside Find (Find browses, Search types)
+  so each can be refined on its own; the floor legend takes the top strip on every breakpoint
+  once a floor is open, listing only what the map does not explain by itself (stages first,
+  theme icon + name, tappable, hidden on floors with nothing to list); the area card names
+  its floor. Same-day follow-up: floor line is plain text (an icon beside it was noise); legend
+  covers G (five icon chips) and L2 (discussion corner + colour swatches for breakout / meeting
+  rooms / speakers space, an experiment with swatches for colour-coded rooms) and L1 gets a
+  "Classrooms" swatch; stage chips drop the theme suffix; `F` opens Find; the control pills get
+  4px more padding on the label side (`pl-3 pr-4`) so they don't read lopsided. Evening round: labels 16px
+  (Find, Search, All, slider stops); Find keyboard-ready on open (first row focused, no field to
+  autofocus any more); group picks (Find/Search/legend, e.g. Coffee Station ×3) put the desktop
+  card bottom-centre instead of beside a footprint; non-stage cards show the theme icon inline
+  left of the text, stages keep the disc.
+- Known limitation: the phone Search sheet cannot autofocus its field (the sheet mounts on
+  open; iOS only raises the keyboard for a focus() made synchronously inside the tap), so the
+  first tap on the field raises it. If testers mind, keep the search content mounted like
+  `HeaderSearchDrawer` does.
 
 ## Gotchas
 
@@ -210,13 +258,13 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   the header (the canvas runs under it); `FIT_MARGIN` is 0.82.
 - **Zoom clamps snap.** `OrbitControls.update()` clamps zoom every frame; `tweenTo` loosens
   the clamps to span both ends and `applyZoomClamps` restores them on landing.
-- **Find is keyboard-navigable** (2026-09-17): ArrowDown from the field enters the list, the
-  arrows walk every row (categories, entries, search hits) in DOM order via a roving-focus
-  handler in `FindContent` (`listRef.querySelectorAll("button")`), ArrowUp from the first row
-  returns to the field, ArrowRight / ArrowLeft open / close a category (`data-category`), Enter
-  activates, and a printable key or Backspace on a row re-focuses the field so the keystroke
-  continues the search. Focus reads like hover (`focus-visible:bg-dc-purple-wash`).
-- **Keyboard vs. fields.** The hook is disabled while Find is open and ignores
+- **Find and Search are keyboard-navigable** (2026-09-17): the arrows walk every row in DOM
+  order via a roving-focus handler (`listRef.querySelectorAll("button")`); in `FindContent`
+  ArrowRight / ArrowLeft open / close a category (`data-category`); in `SearchContent`
+  ArrowDown from the field enters the list, ArrowUp from the first row returns to the field,
+  and a printable key or Backspace on a row re-focuses the field so the keystroke continues
+  the search. Enter activates. Focus reads like hover (`focus-visible:bg-dc-purple-wash`).
+- **Keyboard vs. fields.** The hook is disabled while a panel is open and ignores
   input/textarea/contentEditable targets; `/` calls `preventDefault` so the key does not land
   in the freshly focused field (or open Firefox's quick find).
 - **Callback order and the React Compiler lint.** A plain function calling a `useCallback`
@@ -236,6 +284,10 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   canvas, which looked like OrbitControls ignoring the second finger). A 16px pointer-grid scan logging `__mapHover` with the nulls drawn on a
   canvas overlay is the quickest way to see where hover is lost. Material and hover changes
   must also be checked in a real browser: the floor-shadow experiment rendered fine headless
-  and wrong in Arc.
+  and wrong in Arc. Turn the wrench off again before driving the desktop Find panel: the
+  open tuning panel overlaps it and intercepts the clicks (dev-only, accepted).
+- **Rewrite plan**: `docs/venue-map-rewrite-plan.md` is the living plan for rebuilding the
+  map when the real SVGs arrive. Update its feature checklist and changelog with every map
+  change, alongside this file.
 - **Not yet handled for production**: Serwist precache will include the three chunk
   (~170 KB gz) and the plan JSON on merge; wire the rest of the rooms in `roomAreas.ts`.

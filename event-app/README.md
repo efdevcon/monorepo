@@ -16,3 +16,4 @@ Time-dependent UI can be tested with `?mockNow=` / `?mockSpeed=` query params.
 
 - Agent instructions and hard rules (offline/data/SW): [CLAUDE.md](./CLAUDE.md)
 - Architecture background (service worker, Dexie, Capacitor, update flow): [docs/architecture.md](./docs/architecture.md)
+ 
