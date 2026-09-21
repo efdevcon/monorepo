@@ -8,12 +8,13 @@ import { InstallHeroCard } from "../InstallHeroCard";
 import { Tickets } from "../Tickets";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
+import { LegalLinks } from "./LegalLinks";
 
 /**
  * The home page (Figma home redesign): rotating greeting, the install nudge
  * (browser visitors only), the featured highlight hero, announcements
- * preview, highlights carousel, tickets, and the "Devcon 8 India" sign-off
- * art.
+ * preview, highlights carousel, tickets, the legal links (same seven as the
+ * devcon.org footer), and the "Devcon 8 India" sign-off art.
  *
  * FeaturedCard sits outside the ANNOUNCEMENTS_ENABLED gate on purpose: it owns
  * that check itself and renders nothing when there's no highlight to show. Escapes the 680px `.section` column to the
@@ -47,6 +48,7 @@ export function Home() {
             {/* Styled to match SecondaryButton (Buttons.tsx), centered */}
             <InstallAppButton className="mx-auto mt-6 flex w-fit cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-hairline bg-white/80 px-8 py-3.5 text-[16px] font-bold leading-none text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-dc-lavender motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none" />
           </div>
+          <LegalLinks />
         </div>
       </div>
     </main>
