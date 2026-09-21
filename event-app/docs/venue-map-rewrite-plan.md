@@ -35,7 +35,7 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   category, icon, roomId, numbered, heightClass) is the single source of truth. The build script
   joins SVG ids to it and **fails** on unknown ids or unused entries. It replaces `areas.json`,
   `HEIGHTS`, `ICONS`+`icons.ts`, `FILLS`, `DECORATION`, `ID_FIXES`, `pois.ts CATEGORIES`,
-  `legend.ts LEGEND_CATEGORIES` (→ a `legend: true` flag per category in `categories.ts`),
+  `legend.ts LEGEND` (→ `legend: { kind: "places" | "swatch" }` per category or area in the catalogue),
   `ROOM_AREAS`, `SESSION_ONLY_ROOMS`. Runtime never regexes ids again.
 - **One reducer + derived camera commands** instead of six `useState`s with implicit invariants
   and ordering-dependent `CameraRig` effects.
@@ -99,7 +99,7 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   hoverables else `grab`.
 ### Find / Search (two surfaces since 2026-09-21)
 - Bottom-left row of two 44px `ControlPill`s, "Find" (`TextSearch` icon) and "Search" (`Search`
-  icon), `gap-2`, same row as the slider on every breakpoint; on phones the whole bottom-controls
+  icon), `pl-3 pr-4` (4px more on the label side or the pill reads lopsided), `gap-2`, same row as the slider on every breakpoint; on phones the whole bottom-controls
   row fades + goes `inert` while the AreaCard is open. One panel/sheet open at a time (`panel:
   "find" | "search" | null`); opening one closes the other; `closePanel` clears the query.
 - Shells: desktop `MapPanel` (380 px, `left-6`, `bottom: 1.5rem + 56px`, stays mounted, `inert`
@@ -131,14 +131,19 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
 - **Stacked** → `ControlsLegend`: tap target first, items vary by `pointer: coarse`; touch copy
   "Tap a floor · Swipe pans · Two fingers rotate · Pinch zooms · Double tap zoom-in", mouse "Click a
   floor · Drag rotates · Right-drag pans · Scroll zooms · Double click zoom-in"; kbd chips `1 2 3
-  Floors · / Search · Esc All floors` (A works but is unlisted) via `hidden lg:contents`. Phones:
+  Floors · F Find · / Search · Esc All floors` (A works but is unlisted) via `hidden lg:contents`. Phones:
   fades after the first gesture (controls `start`, double-tap, or opening a floor; CameraRig
   `onInteract`) and returns whenever the stack returns; desktop permanent while stacked.
 - **Floor open** → `FloorLegend` (2026-09-21, every breakpoint): one chip per entry of
-  `buildFloorLegends(findGroups).get(level)` (categories in `LEGEND_CATEGORIES` order, `["stages"]`
-  today), 20px theme PNG (fallback `MapPin`) + name, 12px dc-muted, `hover:text-dc-purple`,
-  tappable → same path as a Find pick; `aria-label "<Floor name> legend"`. Floors with no
-  entries show nothing in the strip. Rewrite: `legend: boolean` on `categories.ts` entries.
+  `buildFloorLegends(plan).get(level)`; `LEGEND` in `legend.ts` is a per-floor spec list with two
+  chip kinds: `places` (one chip per matching footprint, 20px theme PNG + name cut at " - ", so
+  "Stage 1") and `swatch` (one chip for all matching footprints: 14px rounded square in the fill
+  + label). Today G → Decompression Zone, Hacker Cave, Playground, Registration, Swag Station;
+  L1 → seven stages + Classrooms swatch; L2 → Blue Discussion Corner + Breakout rooms / Meeting
+  rooms / Speakers Space swatches. 12px dc-muted, `hover:text-dc-purple`, tappable → same path as
+  a Find pick (a swatch chip highlights the whole group); `aria-label "<Floor name> legend"`.
+  Floors with no entries show nothing. Rewrite: `legend` on the area catalogue (per category or
+  area, with the chip kind).
 ### Card / deep link / live session
 - `?area=<level>/<id>` opens floor, selects, focuses; re-focuses on a repeat visit (visit counter
   today → `focus.seq`); keyed on pane active. "Show on Map" in session details always renders;
@@ -147,8 +152,8 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   `bg-white/95 backdrop-blur`, 150 ms slide+fade, keeps last area for exit; 64 px icon disc (48 px
   icon) riding the top edge at −70 %, same fill, no shadow, body `pt-6`; `CloseButton` centred on
   the top-right corner (half outside, white + shadow, exact — took three rounds); title 16 px bold;
-  **floor line (2026-09-21)**: `Layers` icon + spoken floor name ("Level 1"), 12px dc-muted,
-  `mt-1.5`, shown even in the session-only state; blurb 14 px muted; `role=dialog`. Desktop
+  **floor line (2026-09-21)**: the spoken floor name ("Level 1") as plain 12px dc-muted text,
+  `mt-1.5`, no icon (tried, noise), shown even in the session-only state; blurb 14 px muted; `role=dialog`. Desktop
   anchoring clamps the wrapper top to `HEADER_OFFSET_DESKTOP (65) + 45 (disc overhang) + 12`; card
   size comes from a ResizeObserver, not per-frame layout reads.
 - Live session for mapped rooms (`useSessions({roomId}) + useNowMs(60_000) + getStatus==="live"`):
@@ -157,7 +162,7 @@ execute the phases in §6 in order. Until then, keep §1 in step with the code.
   length). Main Stage hides blurb + divider while live. Test `?mockNow=2024-11-12T03:15:00.000Z`
   on DC7 data. DC8 room id is `keynote-stage`.
 ### Chrome / a11y / shortcuts / debug
-- Shortcuts `1/2/3` open G/L1/L2 (never toggle), `/` opens Search (preventDefault), `A` or `Esc`
+- Shortcuts `1/2/3` open G/L1/L2 (never toggle), `F` opens Find, `/` opens Search (preventDefault), `A` or `Esc`
   close the card first then reset; gated on pane active, no panel open, no detail view, no
   modifier, not typing.
 - OfflineIndicator sits fixed top-right on /map phones.
@@ -393,3 +398,6 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
   time); floor legend (`legend.ts` `LEGEND_CATEGORIES`, `FloorLegend`, shared `TopStrip`) swaps
   with the controls legend when a floor opens, on every breakpoint; floor labels clickable +
   hoverable; area card floor line. §0, §1, §2, §5, §6, §7, §8 updated.
+- 2026-09-21 (later) — same-day follow-up: floor line loses its icon; per-floor `LEGEND` specs with
+  `places` and `swatch` chips (G five places, L1 stages + Classrooms swatch, L2 discussion corner +
+  three room swatches), stage chips without the theme suffix; `F` opens Find; pills `pl-3 pr-4`.

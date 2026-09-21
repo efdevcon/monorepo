@@ -81,12 +81,17 @@ same groups:
   `parseFloorQuery` first splits a floor alias off the query (`FLOOR_ALIASES`: "ground floor",
   "gf", "g", "level 1", "l1", "first floor", …); a bare floor lists the whole floor and offers
   a row that opens it, a floor plus text scopes the search. Bare digits are never a floor.
-- **Floor legend** (`legend.ts` → `FloorLegend`): `LEGEND_CATEGORIES` lists the category ids
-  whose places the map does not explain by itself (`["stages"]` to start: the stages are plain
-  purple blocks with a theme icon each). `buildFloorLegends(groups)` gives, per floor, those
-  categories' entries in order; floors with nothing to explain are absent and show no legend.
-  Surfacing another group is one id in that list. The rewrite carries it as a `legend` flag on
-  its category catalogue.
+- **Floor legend** (`legend.ts` → `FloorLegend`): `LEGEND` is a per-floor list of specs for what
+  the map does not explain by itself. Two chip kinds: `places` (one chip per matching footprint,
+  theme icon + short name — the name up to " - ", so "Stage 1", not "Stage 1 - Fans") and
+  `swatch` (ONE chip for every matching footprint, a rounded square in the footprints' fill +
+  a label, for the colour-coded rooms with no icon). Today: G → Decompression Zone, Hacker Cave,
+  Playground, Registration, Swag Station; L1 → the seven stages + "Classrooms" swatch; L2 → Blue
+  Discussion Corner + "Breakout rooms", "Meeting rooms", "Speakers Space" swatches.
+  `buildFloorLegends(plan)` gives, per floor, the entries in spec order; floors with no entries
+  show no legend. Tapping a chip runs the Find-pick path (a swatch chip highlights every room of
+  that colour). Surfacing something else is one spec line. The rewrite carries it on its area
+  catalogue.
 
 The quick-action category chips were deferred; the categories exist for them.
 
@@ -161,8 +166,8 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   fade while the card or a panel is open), the header's `OfflineIndicator` top-right on
   phones, `MapSheet` (phones, house `BottomSheet`) / `MapPanel` (desktop, stays mounted,
   `inert` when closed) as the shells for `FindContent` and `SearchContent` (one panel open at
-  a time; the shortcuts stand down while one is open), `AreaCard` (name, floor line with the
-  Layers icon, blurb, live session), `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, `/` opens
+  a time; the shortcuts stand down while one is open), `AreaCard` (name, plain floor line,
+  blurb, live session), `useMapShortcuts` (1 / 2 / 3 open G / L1 / L2, F opens Find, `/` opens
   Search, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
   tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
   the tuning panel, drei `<Stats>`, `window.__mapCamera`, `window.__mapHover` and
@@ -188,8 +193,8 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   range is unchanged in absolute terms.
 - Phones: one finger pans, two fingers rotate (2026-09-17). Desktop: drag rotates, right-drag pans.
 - Esc or A closes an open area card first and resets otherwise; an open Find or Search panel
-  owns Esc. The legend shows `Esc` as "All floors", `/` as "Search" and `1 2 3` as "Floors";
-  A is unlisted.
+  owns Esc. The legend shows `Esc` as "All floors", `F` as "Find", `/` as "Search" and `1 2 3`
+  as "Floors"; A is unlisted.
 - Floor labels are always visible in the stack (short form), dimming the non-hovered ones,
   and are clickable (2026-09-21).
 - Duplicated facilities are one row per floor that highlights every instance.
@@ -202,7 +207,11 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   so each can be refined on its own; the floor legend takes the top strip on every breakpoint
   once a floor is open, listing only what the map does not explain by itself (stages first,
   theme icon + name, tappable, hidden on floors with nothing to list); the area card names
-  its floor.
+  its floor. Same-day follow-up: floor line is plain text (an icon beside it was noise); legend
+  covers G (five icon chips) and L2 (discussion corner + colour swatches for breakout / meeting
+  rooms / speakers space, an experiment with swatches for colour-coded rooms) and L1 gets a
+  "Classrooms" swatch; stage chips drop the theme suffix; `F` opens Find; the control pills get
+  4px more padding on the label side (`pl-3 pr-4`) so they don't read lopsided.
 - Known limitation: the phone Search sheet cannot autofocus its field (the sheet mounts on
   open; iOS only raises the keyboard for a focus() made synchronously inside the tap), so the
   first tap on the field raises it. If testers mind, keep the search content mounted like
