@@ -249,7 +249,15 @@ export function LevelStack({
         >
           <PlanShapes shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} floorHovered={hoveredLevel === l.id} onSelect={onSelect} setHovered={setHovered} />
           {stacked && <FloorHitPlane level={l} />}
-          {stacked && <FloorLabel level={l} dimmed={hoveredLevel !== null && hoveredLevel !== l.id} />}
+          {stacked && (
+            <FloorLabel
+              level={l}
+              dimmed={hoveredLevel !== null && hoveredLevel !== l.id}
+              onOpen={() => onSelectLevel(l.id)}
+              // The label hovers its floor: the same key the level group sets, so the slab tints and the other labels dim.
+              onHover={(hovered) => setHovered(hovered ? `level:${l.id}` : null)}
+            />
+          )}
           {showIcons && (
             <Suspense fallback={null}>
               <PlanIcons shapes={l.shapes} interactive={!stacked} selectedId={selectedId} hoveredId={hoveredId} highlightedIds={highlightedIds} reducedMotion={reducedMotion} onSelect={onSelect} setHovered={setHovered} />

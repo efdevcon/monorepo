@@ -3,23 +3,32 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import cn from "classnames";
 
-const FIND_PANEL_ID = "map-find-panel";
-
 /** Structural ref type (see SearchInput.tsx). */
 type InputRef = { current: HTMLInputElement | null };
 
+type MapPanelProps = {
+  id: string;
+  label: string;
+  open: boolean;
+  onClose: () => void;
+  /** Focused on open (the search field); omit for panels with nothing to type into. */
+  inputRef?: InputRef;
+  children: ReactNode;
+};
+
 /**
- * Desktop shell for Find: a floating panel above the Find pill, bottom-left,
- * styled like the area card. Stays mounted (fades and slides like the card),
- * `inert` while closed. Escape and a click outside close it; opening focuses
- * the search field.
+ * Desktop shell for Find and Search: a floating panel above the bottom-left
+ * pills, styled like the area card. Stays mounted (fades and slides like the
+ * card), `inert` while closed. Escape and a click outside close it; a click on
+ * any control pill (`data-map-trigger`) is left to the pill's own handler.
+ * Only one panel is open at a time, so both share the same anchor.
  */
-export function FindPanel({ open, onClose, inputRef, children }: { open: boolean; onClose: () => void; inputRef: InputRef; children: ReactNode }) {
+export function MapPanel({ id, label, open, onClose, inputRef, children }: MapPanelProps) {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!open) return;
-    inputRef.current?.focus({ preventScroll: true });
+    inputRef?.current?.focus({ preventScroll: true });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault(); // the map's own Escape (reset) must not also fire
@@ -28,7 +37,7 @@ export function FindPanel({ open, onClose, inputRef, children }: { open: boolean
     };
     const onPointerDown = (e: PointerEvent) => {
       const target = e.target as HTMLElement | null;
-      if (!target || panelRef.current?.contains(target) || target.closest("[data-find-trigger]")) return;
+      if (!target || panelRef.current?.contains(target) || target.closest("[data-map-trigger]")) return;
       onClose();
     };
     window.addEventListener("keydown", onKey);
@@ -41,10 +50,10 @@ export function FindPanel({ open, onClose, inputRef, children }: { open: boolean
 
   return (
     <div
-      id={FIND_PANEL_ID}
+      id={id}
       ref={panelRef}
       role="dialog"
-      aria-label="Find a place"
+      aria-label={label}
       aria-hidden={!open}
       inert={!open || undefined}
       className={cn(
@@ -52,8 +61,8 @@ export function FindPanel({ open, onClose, inputRef, children }: { open: boolean
         "transition-[translate,opacity] duration-150 ease-out motion-reduce:transition-none",
         open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       )}
-      // Above the 40px Find pill (bottom 1.5rem) with a 12px gap.
-      style={{ bottom: "calc(1.5rem + 52px)" }}
+      // Above the 44px control pills (bottom 1.5rem) with a 12px gap.
+      style={{ bottom: "calc(1.5rem + 56px)" }}
     >
       {children}
     </div>

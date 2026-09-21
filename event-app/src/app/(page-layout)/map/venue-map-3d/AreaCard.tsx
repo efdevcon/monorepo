@@ -2,24 +2,24 @@
 
 import { useState, type MutableRefObject } from "react";
 import cn from "classnames";
-import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
+import { ChevronRight, Clock3, Layers, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
 import { iconFor, iconUrl } from "./icons";
 import { roomIdForArea } from "./roomAreas";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
-import type { Area } from "./types";
+import type { Area, PlanLevel } from "./types";
 
 /** Rooms whose card drops its own blurb and divider while a session is live, so the session is the whole story (Scott: Main Stage). */
 const SESSION_ONLY_ROOMS = new Set(["main-stage"]);
 
 /**
- * The bottom card that opens when an area is tapped: name and a short
- * description, plus — for footprints backed by a schedule room (roomAreas.ts)
- * — the session running there right now, tagged "Live now" like the schedule's
- * time groups. Stays mounted so it can slide out; the last area is kept while
- * it fades.
+ * The bottom card that opens when an area is tapped: name, the floor it is on
+ * (Scott, 2026-09-21) and a short description, plus — for footprints backed by
+ * a schedule room (roomAreas.ts) — the session running there right now, tagged
+ * "Live now" like the schedule's time groups. Stays mounted so it can slide
+ * out; the last area is kept while it fades.
  *
  * Phones: fixed above the tab bar, full width. Desktop (experiment, Scott
  * 2026-09-17): beside the selected footprint — the scene writes the
@@ -27,12 +27,13 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage"]);
  * rendered frame (LevelStack) and the wrapper translates by them, so the card
  * follows the camera without React in the loop.
  */
-export function AreaCard({ area, onClose, anchorRef }: { area: Area | null; onClose: () => void; anchorRef?: MutableRefObject<HTMLDivElement | null> }) {
+export function AreaCard({ area, levels, onClose, anchorRef }: { area: Area | null; levels: PlanLevel[]; onClose: () => void; anchorRef?: MutableRefObject<HTMLDivElement | null> }) {
   // Keep the last area while the card slides out (derived state from a prop).
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
   const open = area !== null;
   const icon = shown ? (shown.icon ?? iconFor(shown.id)) : null;
+  const floorName = shown ? levels.find((l) => l.id === shown.level)?.name : undefined;
   const live = useLiveSessionForArea(shown?.id ?? null);
   const sessionOnly = live !== null && shown !== null && SESSION_ONLY_ROOMS.has(roomIdForArea(shown.id) ?? "");
 
@@ -82,7 +83,14 @@ export function AreaCard({ area, onClose, anchorRef }: { area: Area | null; onCl
             </span>
           )}
         </div>
-        {shown?.description && !sessionOnly && <p className="mt-1 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+        {floorName && (
+          // Which floor the place is on, in the live-session row's meta style; shown even when the blurb is not.
+          <span className="mt-1.5 inline-flex items-center gap-1 text-[12px] leading-none text-dc-muted">
+            <Layers className="size-3.5 shrink-0" aria-hidden />
+            {floorName}
+          </span>
+        )}
+        {shown?.description && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
       </div>
 
       {live && (

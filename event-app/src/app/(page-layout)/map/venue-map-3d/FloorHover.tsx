@@ -52,9 +52,13 @@ function corners(level: PlanLevel): Vector3[] {
  * Re-anchored each frame at whichever footprint corner is right-most on
  * screen, 24px off it, so it stays beside the floor as the stack turns; 40px
  * on desktop, 24px on phones. (Placing the phone labels under the floors'
- * front corners was tried on 2026-09-17 and read badly.) Never takes the pointer.
+ * front corners was tried on 2026-09-17 and read badly.) Clickable since
+ * 2026-09-21 (Scott): the label is a button that opens its floor, and hovering
+ * it hovers the floor (slab tint, other labels dim) exactly like the pointer
+ * over the floor itself. Only the button takes the pointer; the Html wrapper
+ * around it stays transparent to it.
  */
-export function FloorLabel({ level, dimmed }: { level: PlanLevel; dimmed: boolean }) {
+export function FloorLabel({ level, dimmed, onOpen, onHover }: { level: PlanLevel; dimmed: boolean; onOpen: () => void; onHover: (hovered: boolean) => void }) {
   const anchor = useRef<Group>(null);
   const pts = useMemo(() => corners(level), [level]);
   const scratch = useMemo(() => new Vector3(), []);
@@ -75,16 +79,21 @@ export function FloorLabel({ level, dimmed }: { level: PlanLevel; dimmed: boolea
   return (
     <group ref={anchor} position={pts[1]}>
       <Html zIndexRange={[10, 0]} style={{ pointerEvents: "none" }}>
-        <p
+        <button
+          type="button"
+          aria-label={`Open ${level.name}`}
+          onClick={onOpen}
+          onPointerEnter={() => onHover(true)}
+          onPointerLeave={() => onHover(false)}
           className={cn(
-            "pointer-events-none whitespace-nowrap font-heading font-bold leading-none tracking-[-0.5px] text-dc-muted",
+            "pointer-events-auto block cursor-pointer whitespace-nowrap font-heading font-bold leading-none tracking-[-0.5px] text-dc-muted hover:text-dc-purple",
             "translate-x-6 -translate-y-1/2 text-[24px] lg:text-[40px]",
-            "transition-opacity duration-150 ease-out motion-reduce:transition-none",
+            "transition-[opacity,color] duration-150 ease-out motion-reduce:transition-none",
             dimmed ? "opacity-30" : "opacity-100"
           )}
         >
           {level.label}
-        </p>
+        </button>
       </Html>
     </group>
   );
