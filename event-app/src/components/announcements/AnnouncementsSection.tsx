@@ -50,6 +50,11 @@ export function AnnouncementsSection() {
 
   if (items.length === 0) return null;
 
+  // "View all" opens the tab the newest item lives in, so a fresh reminder
+  // doesn't land the reader on Event with the badge sitting on Personal.
+  const viewAllHref =
+    items[0].kind === "reminder" ? "/announcements?tab=personal" : "/announcements";
+
   return (
     <section>
       <div className="mb-4 flex items-center justify-between gap-8">
@@ -57,7 +62,7 @@ export function AnnouncementsSection() {
           Announcements
         </h2>
         <Link
-          href="/announcements"
+          href={viewAllHref}
           className="flex shrink-0 items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 hover:underline"
         >
           View all <ArrowRight className="size-4" />

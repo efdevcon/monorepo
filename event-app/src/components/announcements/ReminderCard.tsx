@@ -65,7 +65,7 @@ export function ReminderCard({
             Session reminder
           </p>
           <p className="mt-2 font-heading text-sm leading-5 text-dc-fg2">
-            Your interested session starts in {REMINDER_LEAD_MINUTES} minutes.
+            Your starred session begins in {REMINDER_LEAD_MINUTES} minutes.
           </p>
           <div className="mt-3">
             {session ? <SpeakerSessionMiniCard session={session} /> : fallback}
@@ -103,7 +103,7 @@ export function ReminderCard({
         </span>
       </div>
       <p className="mt-2 font-heading text-sm leading-5 text-dc-fg2">
-        Your interested session starts in {REMINDER_LEAD_MINUTES} minutes.
+        Your starred session begins in {REMINDER_LEAD_MINUTES} minutes.
       </p>
       <div className="mt-3">
         {session ? <SessionCard session={session} /> : fallback}
