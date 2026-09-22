@@ -21,10 +21,14 @@ type RingCfg = {
   parallax: number
 }
 
+// Radii leave ≥0.37·usableRadiusY between the middle and outer rings: at the
+// 1300px minimum that is ~143px, enough for a middle card's caption plus an
+// outer card stacked on the same angle (~134px), so coincident angles between
+// rings — unavoidable for coprime counts — never cover a caption.
 const RING_CONFIG_DESKTOP: readonly RingCfg[] = [
-  { radius: 0.32, cardSizes: [62, 66, 64, 68, 64, 66] as const, cornerRadius: 9, captionSize: 11, captionWidth: 110, parallax: 0.35 },
-  { radius: 0.6, cardSizes: [72, 78, 70, 80, 74, 76, 72, 78, 74] as const, cornerRadius: 10, captionSize: 11, captionWidth: 132, parallax: 0.65 },
-  { radius: 0.88, cardSizes: [84, 90, 82, 92, 86, 88, 84, 90] as const, cornerRadius: 12, captionSize: 12, captionWidth: 150, parallax: 1.0 },
+  { radius: 0.3, cardSizes: [62, 66, 64, 68, 64, 66] as const, cornerRadius: 9, captionSize: 11, captionWidth: 110, parallax: 0.35 },
+  { radius: 0.55, cardSizes: [72, 78, 70, 80, 74, 76, 72, 78, 74] as const, cornerRadius: 10, captionSize: 11, captionWidth: 132, parallax: 0.65 },
+  { radius: 0.92, cardSizes: [84, 90, 82, 92, 86, 88, 84, 90] as const, cornerRadius: 12, captionSize: 12, captionWidth: 150, parallax: 1.0 },
 ]
 
 const RING_CONFIG_COMPACT: readonly RingCfg[] = [
@@ -326,11 +330,15 @@ function Ring({
         const arcLength = (2 * Math.PI * minR) / group.length
         const maxCardForArc = Math.max(40, arcLength * 0.7)
 
-        // Alternate rings start a half-step off the vertical: the inner ring's
-        // cards then sit on the diagonals clear of the centre heading, and the
-        // outer ring's cards stay off the 12/6 o'clock axis where the middle
-        // ring's cards and captions live (only the middle ring starts at 12).
-        const startAngle = -Math.PI / 2 + (ringIndex % 2 === 0 ? Math.PI / group.length : 0)
+        // The middle ring starts at 12 o'clock. Inner/outer rings with an EVEN
+        // count start a half-step later so no card lands on the 12/6 o'clock
+        // axis where the middle ring's cards and captions live (inner: cards
+        // on the diagonals, clear of the centre heading). An odd count always
+        // hits that axis once, and 12 o'clock is the safer spot: the middle
+        // card's caption sits between the two cards there, whereas at 6 the
+        // outer card covers it.
+        const evenCount = group.length % 2 === 0
+        const startAngle = -Math.PI / 2 + (ringIndex % 2 === 0 && evenCount ? Math.PI / group.length : 0)
 
         return group.map((speaker, i) => {
           const angle = ((2 * Math.PI) / group.length) * i + startAngle
