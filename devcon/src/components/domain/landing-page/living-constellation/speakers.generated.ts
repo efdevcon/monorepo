@@ -7,6 +7,7 @@ import img3JEDML from './assets/portraits/dorde-mijovic.webp'
 import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
+import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
 import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
@@ -63,6 +64,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     organization: 'Aztec Foundation',
     xHandle: 'Zac_Aztec',
     image: img8FL8QW,
+    source: 'pretalx',
+  },
+  B9V8HC: {
+    id: 'B9V8HC',
+    name: 'victoria kozlova',
+    organization:
+      'I am a PhD researcher studying society and technology with almost 5 years of experience working with blockchains, primarily in the Ethereum ecosystem. my current affiliation is with Tallinn University of Technology, Royal Melbourne Institute of Technology and DREAM+PLAN, EU-funded PhD program.',
+    xHandle: 'vicosvv',
+    image: imgB9V8HC,
     source: 'pretalx',
   },
   DURU3V: {

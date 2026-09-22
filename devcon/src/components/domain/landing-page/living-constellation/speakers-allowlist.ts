@@ -66,7 +66,7 @@ const C = {
 
 export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   // ── Inner ring (4) ────────────────────────────────────────────────────────
-  { code: 'G9LYGU', title: 'Researcher', color: C.indigo }, // Justin Drake · Ethereum Foundation
+  { code: 'G9LYGU', title: 'Researcher', xHandle: 'drakefjustin', color: C.indigo }, // Justin Drake · Ethereum Foundation
   { code: 'W8UUCW', title: 'Co-Founder', color: C.fuchsia }, // Roger Dingledine · The Tor Project
   { code: 'MWSEWZ', title: 'Founder', color: C.grape }, // Sandeep Nailwal · Polygon Labs
   { code: 'FZ8PA3', title: 'CTO', company: 'LF Decentralized Trust', color: C.violet }, // Hart Montgomery
@@ -94,4 +94,12 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   { code: 'TKDN87', title: 'Integration Engineer', color: C.indigo }, // Jason Chaskin · Ethereum Foundation
   { code: 'GVKNCK', color: C.orange }, // Meinhard Benn · Freedom Browser — TODO title
   { code: 'DURU3V', name: 'Santiago', title: 'Developer Relations', color: C.green }, // SantiagoDevRel · Golem Network
+  // Pretalx name is lowercase and the org answer is a paragraph, hence both overrides.
+  {
+    code: 'B9V8HC',
+    name: 'Victoria Kozlova',
+    title: 'PhD Researcher',
+    company: 'Tallinn University of Technology',
+    color: C.fuchsia,
+  },
 ]
