@@ -14,7 +14,10 @@
  *   pnpm speakers:pull                     # fetch, normalise avatars, rewrite the generated file
  *   pnpm speakers:pull --force             # re-download avatars even when the file already exists
  *   pnpm speakers:pull --dry-run           # print what would change, write nothing
- *   pnpm speakers:pull --normalize-manual  # also crop/convert hand-supplied (manual) portraits to 720×720 webp
+ *   pnpm speakers:pull --normalize-manual  # also crop/convert hand-supplied portraits (manual entries and
+ *                                          # `portrait:` overrides) to 720×720 webp, in place
+ *   pnpm speakers:pull --prune             # delete portraits no allowlisted speaker references (default: list only,
+ *                                          # so a portrait dropped in ahead of its allowlist entry survives)
  *
  * Requires PRETALX_API_KEY (team token for cfp.devcon.org) in .env.local or the
  * shell env. Running twice must produce no diff: sorted output + prettier +
@@ -62,6 +65,7 @@ const args = new Set(process.argv.slice(2))
 const FORCE = args.has('--force')
 const DRY_RUN = args.has('--dry-run')
 const NORMALIZE_MANUAL = args.has('--normalize-manual')
+const PRUNE = args.has('--prune')
 
 interface PretalxAnswer {
   answer: string | null
@@ -174,16 +178,34 @@ async function downloadPortrait(speaker: PretalxSpeaker, filename: string): Prom
   const target = path.join(PORTRAITS_DIR, filename)
   if (fs.existsSync(target) && !FORCE) return true
 
-  const res = await fetch(avatarUrl, { headers: { Authorization: `Token ${TOKEN}` } })
+  downloaded++
+  if (DRY_RUN) {
+    console.log(`  ↓ would download ${filename} from ${avatarUrl}`)
+    return true
+  }
+
+  // Avatars are public media; only present the team token to the Pretalx
+  // origin itself, never to a CDN/object-storage host it might redirect to.
+  const sameOrigin = new URL(avatarUrl).origin === new URL(PRETALX_BASE).origin
+  const res = await fetch(avatarUrl, sameOrigin ? { headers: { Authorization: `Token ${TOKEN}` } } : undefined)
   if (!res.ok) {
     errors.push(`${speaker.code} ${speaker.name}: avatar download failed (${res.status}) from ${avatarUrl}`)
     return false
   }
   const buffer = await normalizeImage(Buffer.from(await res.arrayBuffer()), `${speaker.code} ${speaker.name}`)
-  if (!DRY_RUN) fs.writeFileSync(target, buffer)
-  downloaded++
-  console.log(`  ↓ ${DRY_RUN ? 'would download' : 'downloaded'} ${filename} (${Math.round(buffer.length / 1024)} KB)`)
+  fs.writeFileSync(target, buffer)
+  console.log(`  ↓ downloaded ${filename} (${Math.round(buffer.length / 1024)} KB)`)
   return true
+}
+
+// Hand-supplied portraits (manual entries, `portrait:` overrides) are used as-is
+// unless --normalize-manual asks for the same 720×720 webp treatment, in place.
+async function normalizeHandSupplied(filename: string, label: string): Promise<void> {
+  if (!NORMALIZE_MANUAL) return
+  const file = path.join(PORTRAITS_DIR, filename)
+  const buffer = await normalizeImage(fs.readFileSync(file), label)
+  if (!DRY_RUN) fs.writeFileSync(file, buffer)
+  console.log(`  ✎ ${DRY_RUN ? 'would normalise' : 'normalised'} ${filename}`)
 }
 
 async function pullPretalx(entry: PretalxAllowlistEntry): Promise<PulledRecord | null> {
@@ -201,12 +223,17 @@ async function pullPretalx(entry: PretalxAllowlistEntry): Promise<PulledRecord |
       )
       return null
     }
+    await normalizeHandSupplied(entry.portrait, `${speaker.code} ${speaker.name}`)
   } else if (!(await downloadPortrait(speaker, portrait))) {
     return null
   }
 
-  if (!organization && !entry.company)
-    warnings.push(`${speaker.code} ${speaker.name}: no organization answer — set \`company:\` in the allowlist`)
+  // The UI has no fallback for a missing organization (it is always rendered),
+  // so fail like a missing portrait rather than shipping an empty line.
+  if (!organization && !entry.company) {
+    errors.push(`${speaker.code} ${speaker.name}: no organization answer — set \`company:\` in the allowlist`)
+    return null
+  }
   if (!entry.title) missingTitles.push(`${speaker.code} ${entry.name ?? speaker.name}`)
 
   console.log(`  ${speaker.code}  ${entry.name ?? speaker.name}`)
@@ -236,22 +263,12 @@ async function pullManual(entry: ManualAllowlistEntry): Promise<PulledRecord | n
     errors.push(`${id}: manual portrait "${portrait}" not found in assets/portraits/`)
     return null
   }
-  if (NORMALIZE_MANUAL) {
-    const buffer = await normalizeImage(fs.readFileSync(file), id)
-    if (!DRY_RUN) fs.writeFileSync(file, buffer)
-    console.log(`  ✎ ${DRY_RUN ? 'would normalise' : 'normalised'} ${portrait}`)
-  }
+  await normalizeHandSupplied(portrait, id)
   if (!entry.title) missingTitles.push(id)
   console.log(`  ${id}  ${name}  (manual)`)
   console.log(`     org:   ${company}`)
-  return {
-    id,
-    name,
-    organization: company,
-    ...(entry.xHandle ? { xHandle: entry.xHandle } : {}),
-    portrait,
-    source: 'manual',
-  }
+  // xHandle stays in the allowlist only — the merge reads it from there.
+  return { id, name, organization: company, portrait, source: 'manual' }
 }
 
 function importIdentifier(id: string): string {
@@ -307,9 +324,14 @@ async function emitGeneratedFile(records: PulledRecord[]): Promise<void> {
 function sweepOrphans(records: PulledRecord[]): void {
   const referenced = new Set(records.map(r => r.portrait))
   const orphans = fs.readdirSync(PORTRAITS_DIR).filter(f => IMAGE_EXT.test(f) && !referenced.has(f))
+  const deleting = PRUNE && !DRY_RUN
   for (const file of orphans) {
-    if (!DRY_RUN) fs.unlinkSync(path.join(PORTRAITS_DIR, file))
-    console.log(`  ✂ ${DRY_RUN ? 'would remove' : 'removed'} unreferenced portrait ${file}`)
+    if (deleting) fs.unlinkSync(path.join(PORTRAITS_DIR, file))
+    console.log(
+      deleting
+        ? `  ✂ removed unreferenced portrait ${file}`
+        : `  ⚠ unreferenced portrait ${file}${PRUNE ? ' (would remove)' : ' — pass --prune to delete'}`
+    )
   }
 }
 

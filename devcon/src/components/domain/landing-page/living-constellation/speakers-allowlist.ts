@@ -2,14 +2,16 @@
  * Hand-curated allowlist for the home page "Devcon 8 Speakers" section.
  *
  * THIS FILE IS THE GATE: only speakers we have publicly announced on X
- * (https://x.com/EFDevcon) belong here. Order = display order — the first
- * entries land on the desktop inner ring and are the ones that survive the
- * 13-card cap on small phones.
+ * (https://x.com/EFDevcon) belong here. Order = display order: the first four
+ * land on the desktop inner ring, the rest are split between the middle and
+ * outer rings by count (see ringDistribution in LivingConstellationDesktop),
+ * and the first 13 are the ones that survive the cap on small phones.
  *
  * Pretalx (Devcon 8 CFP) supplies name, portrait, organization (question 153)
  * and X handle (question 142). `title` is hand-filled because Pretalx has no
  * job-title question. After editing, run `pnpm speakers:pull` to refresh
- * speakers.generated.ts + assets/portraits/, and commit both.
+ * speakers.generated.ts + assets/portraits/, and commit both. Hand-supplied
+ * portraits are used as-is unless you pass --normalize-manual.
  *
  * Keep this file free of image imports so the pull script can import it.
  */
@@ -65,16 +67,16 @@ const C = {
 } as const
 
 export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
-  // ── Inner ring (4) ────────────────────────────────────────────────────────
+  // ── Inner ring (always the first four) ───────────────────────────────────
   { code: 'G9LYGU', title: 'Researcher', xHandle: 'drakefjustin', color: C.indigo }, // Justin Drake · Ethereum Foundation
   { code: 'W8UUCW', title: 'Co-Founder', color: C.fuchsia }, // Roger Dingledine · The Tor Project
   { code: 'MWSEWZ', title: 'Founder', color: C.grape }, // Sandeep Nailwal · Polygon Labs
   { code: 'FZ8PA3', title: 'CTO', company: 'LF Decentralized Trust', color: C.violet }, // Hart Montgomery
-  // ── Middle ring (6) ───────────────────────────────────────────────────────
+  // ── Middle → outer rings (split derived from the count) ──────────────────
   { code: '8FL8QW', title: 'Co-Founder', company: 'Aztec', color: C.orange }, // Zachary Williamson
   { code: 'RMPP9E', title: 'Co-Founder', color: C.cyan }, // Barnabé Monnot · Ethlabs
   { code: '7BLNXR', title: 'Founder', company: 'Giveth', color: C.green }, // Griff Green — TODO confirm title
-  // Not in the DC8 Pretalx CFP — portrait supplied by hand (normalised to 720×720 webp by the pull script).
+  // Not in the DC8 Pretalx CFP — portrait supplied by hand (normalised once via --normalize-manual).
   {
     manual: {
       id: 'christopher-fabian',
@@ -95,7 +97,6 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   }, // Fatemeh Fannizadeh
   { code: '3JEDML', title: 'Protocol Engineering Lead', color: C.teal }, // Dorde Mijovic · Monad Foundation
   { code: 'LP7S9M', title: 'Product & Project Manager', company: 'UNICEF Office of Innovation', color: C.pink }, // Kati Illes
-  // ── Outer ring ────────────────────────────────────────────────────────────
   { code: '3QYPGS', title: 'Researcher & Engineer', color: C.blue }, // Preston Vander Vos · Circle
   { code: 'T8KAJP', title: 'Co-Founder', color: C.ocean }, // Jan Kalivoda · ack3
   { code: 'MPDBM3', title: 'Strategy & Operations Lead', color: C.purple }, // Johanna Moran · libp2p

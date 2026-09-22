@@ -48,7 +48,11 @@ const MIN_INNER = 4
 function ringDistribution(count: number): [number, number] {
   const total = RING_WEIGHTS.reduce((a, b) => a + b, 0)
   const inner = Math.min(count, Math.max(MIN_INNER, Math.round((count * RING_WEIGHTS[0]) / total)))
-  const middle = Math.max(0, Math.min(count - inner, Math.round((count * RING_WEIGHTS[1]) / total)))
+  const rest = count - inner
+  let middle = Math.max(0, Math.min(rest, Math.round((count * RING_WEIGHTS[1]) / total)))
+  // The inner floor eats into small counts; never let the largest ring end up
+  // sparser than the middle one (7 → [4, 1, 2] rather than [4, 2, 1]).
+  if (rest - middle < middle) middle = Math.floor(rest / 2)
   return [inner, middle] // remainder → outer ring
 }
 
