@@ -26,9 +26,9 @@ export function PushOptIn() {
       {state === "requires-install" && (
         <p className="flex items-center gap-2 text-sm text-dc-muted">
           <Share className="h-4 w-4 shrink-0 text-dc-purple" />
-          To get notified about announcements and your starred sessions on
-          iOS, add the app to your Home Screen first (Share → Add to Home
-          Screen).
+          To get notified about announcements and sessions you&apos;re
+          interested in on iOS, add the app to your Home Screen first (Share →
+          Add to Home Screen).
         </p>
       )}
 
@@ -45,7 +45,7 @@ export function PushOptIn() {
           <p className="flex items-center gap-2 text-sm text-dc-fg2">
             <Bell className="h-4 w-4 shrink-0 text-dc-purple" />
             Get notified when the team posts an announcement, and 15 minutes
-            before a session you&apos;ve starred starts.
+            before a session you&apos;re interested in starts.
           </p>
           <button
             onClick={subscribe}
@@ -65,7 +65,7 @@ export function PushOptIn() {
           <p className="flex items-center gap-2 text-sm text-dc-fg2">
             <BellRing className="h-4 w-4 shrink-0 text-dc-purple" />
             Notifications are on for this device, including reminders for
-            your starred sessions.
+            sessions you&apos;re interested in.
           </p>
           <button
             onClick={unsubscribe}

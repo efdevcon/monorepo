@@ -42,7 +42,7 @@ const emptyBox =
 
 /**
  * The announcements inbox, in two tabs: Event (the team's Notion
- * announcements) and Personal (reminders for the sessions you starred), each
+ * announcements) and Personal (reminders for the sessions you marked interested), each
  * grouped by day (Today / Yesterday / date). Viewing a tab marks its items as
  * seen, clearing that tab's badge and its share of the header badge.
  */
@@ -206,9 +206,9 @@ export default function AnnouncementsPage() {
               <div className={emptyBox}>
                 <Star className="h-6 w-6 text-dc-muted/50" />
                 <p className="text-sm text-dc-muted">
-                  {reminders.starredCount === 0
-                    ? `Star sessions in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
-                    : `You've starred ${reminders.starredCount} ${reminders.starredCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`}
+                  {reminders.interestedCount === 0
+                    ? `Mark sessions as interested in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
+                    : `You're interested in ${reminders.interestedCount} ${reminders.interestedCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`}
                 </p>
               </div>
             )}

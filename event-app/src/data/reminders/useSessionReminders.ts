@@ -12,7 +12,7 @@ import {
 import { deriveReminders, type ReminderItem } from "./reminders";
 
 /**
- * The inbox's Personal tab: "your starred session starts in 15 minutes"
+ * The inbox's Personal tab: "a session you're interested in starts in 15 minutes"
  * items, derived on the device from the local stars, the event catalogue
  * and the clock — no fetch, so it works offline and signed out, and honours
  * `?mockNow=`. The server push (src/app/api/push/reminders.ts) is only a
@@ -66,7 +66,7 @@ export function useSessionReminders(options: { enabled?: boolean } = {}) {
     /** True once the Dexie read state has hydrated (unread info is real). */
     readStateReady: ready,
     markAllSeen,
-    /** Stars on this device for the active event, due or not. */
-    starredCount: ids.size,
+    /** Sessions marked interested on this device for the active event, due or not. */
+    interestedCount: ids.size,
   };
 }
