@@ -62,6 +62,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
   if (pathname.startsWith("/announcements")) return { title: "Announcements" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
+  if (pathname.startsWith("/community-hubs")) return { title: "Community Hubs" };
   if (pathname === "/") return { title: "Home" };
   return { title: APP_CONFIG.APP_NAME };
 }

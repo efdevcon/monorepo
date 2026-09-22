@@ -50,7 +50,7 @@ function TimelineSession({
   /** Open the details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
 }) {
-  const theme = getTrackTheme(session.track);
+  const theme = getTrackTheme(session.track, session.room?.id);
   const { left, width } = sessionBox(session, startMs, m.slotWidth);
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
@@ -126,7 +126,7 @@ function TimelineSession({
                 compact ? "text-[10px]" : "text-[12px]"
               )}
             >
-              {trackBadgeLabel(session.track)}
+              {trackBadgeLabel(session.track, session.room?.id)}
             </span>
           </span>
           {wide && (

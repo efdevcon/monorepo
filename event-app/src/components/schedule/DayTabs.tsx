@@ -32,6 +32,7 @@ export function DayTabs({
   pinnedLead,
   counts,
   raised = false,
+  trailing,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
@@ -46,6 +47,12 @@ export function DayTabs({
   children?: React.ReactNode;
   /** Desktop-only control ahead of `children`, shown once the bar is pinned. */
   pinnedLead?: React.ReactNode;
+  /**
+   * Mobile-only control past the tabs' right fade, shown once the bar is
+   * pinned (the schedule's compact programme switch: the full one sits in
+   * flow above the bar and has scrolled away by then).
+   */
+  trailing?: React.ReactNode;
   /** Mobile: the app header is hidden — pin at the top of the viewport. */
   raised?: boolean;
 }) {
@@ -131,6 +138,9 @@ export function DayTabs({
           })}
         </div>
       </div>
+      {stuck && trailing && (
+        <div className="flex shrink-0 items-center pr-4 lg:hidden">{trailing}</div>
+      )}
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           {stuck && pinnedLead}

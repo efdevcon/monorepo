@@ -9,6 +9,8 @@
  * themes so future events still look designed.
  */
 
+import { communityHubForRoom, communityHubLogo } from "@/data/communityHubs";
+
 export interface TrackTheme {
   /** Canonical DC8 display name (used for the detail-banner caption). */
   name: string;
@@ -22,6 +24,8 @@ export interface TrackTheme {
   neutral?: boolean;
   /** Community-led session ("[CLS] …" tracks). */
   isCLS?: boolean;
+  /** Community Hub session: `gem` is the hub's logo and stands alone in the details banner. */
+  isHub?: boolean;
 }
 
 const gem = (file: string) => `/schedule/gems/${file}.webp`;
@@ -101,7 +105,19 @@ function hashTrack(track: string): number {
   return hash;
 }
 
-export function getTrackTheme(track: string | undefined): TrackTheme {
+/**
+ * Community Hub sessions are themed by their hub (its own pastel, its name as
+ * the badge), not by the shared "Community Hubs" track. Callers pass the
+ * session's room id so the hub can be recognised.
+ */
+function hubTheme(roomId: string | undefined): TrackTheme | undefined {
+  const hub = communityHubForRoom(roomId);
+  return hub ? { name: hub.name, badge: hub.name, color: hub.color, gem: communityHubLogo(hub), isHub: true } : undefined;
+}
+
+export function getTrackTheme(track: string | undefined, roomId?: string): TrackTheme {
+  const hub = hubTheme(roomId);
+  if (hub) return hub;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME;
   if (raw.startsWith("[CLS]")) return CLS_THEME;
@@ -125,7 +141,9 @@ export function getTrackTheme(track: string | undefined): TrackTheme {
  * DC7 aliases inherit their mapped DC8 theme's label; only tracks that hash
  * into a fallback theme keep their raw name (a themed label would mislead).
  */
-export function trackBadgeLabel(track: string | undefined): string {
+export function trackBadgeLabel(track: string | undefined, roomId?: string): string {
+  const hub = hubTheme(roomId);
+  if (hub) return hub.badge;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME.badge;
   if (raw.startsWith("[CLS]")) return CLS_THEME.badge;
@@ -143,7 +161,9 @@ export function trackBadgeLabel(track: string | undefined): string {
  * own track name (as the details banner caption already does) so DC7 aliases
  * don't get relabelled with a DC8 name; only the "[CLS]" prefix is stripped.
  */
-export function trackFullLabel(track: string | undefined): string {
+export function trackFullLabel(track: string | undefined, roomId?: string): string {
+  const hub = hubTheme(roomId);
+  if (hub) return hub.name;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME.name;
   if (raw.startsWith("[CLS]")) {

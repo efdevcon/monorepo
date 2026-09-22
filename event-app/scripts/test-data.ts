@@ -23,6 +23,10 @@ import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from ".
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
+import { communityHubEmbedUrl, defaultCommunityHub, findCommunityHub } from "../src/data/communityHubs";
+import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
+import { BundleSchema } from "../src/data/store/types";
+import { readFileSync } from "fs";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -383,6 +387,29 @@ function testMeerkatHandover() {
   check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
   check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
   check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
+  check(
+    "community hub embed: embed flag before the key, unknown ids fall back to a hub with a sheet",
+    communityHubEmbedUrl("https://sheets.fileverse.io/sheet/abc#k=key") === "https://sheets.fileverse.io/sheet/abc?embed=1#k=key" &&
+      findCommunityHub("nope") === undefined &&
+      !!defaultCommunityHub().sheetUrl
+  );
+  check(
+    "community hubs dataset: follows the event, keyed apart from it, none for the test event",
+    communityHubsDataset(DATASETS["devcon-7"])?.eventId === "devcon-7-community-hubs" &&
+      communityHubsDataset(DATASETS["devcon-7"])?.communityHubsOf === "devcon-7" &&
+      communityHubsDataset(DATASETS.devcon8)?.eventId === "devcon8-community-hubs" &&
+      communityHubsDataset(DATASETS["test-devcon-8"]) === undefined
+  );
+  // Every dataset that ships a static bundle must ship one the store accepts.
+  for (const dataset of [...Object.values(DATASETS), ...Object.values(COMMUNITY_HUB_DATASETS)]) {
+    if (!dataset?.staticBundleUrl) continue;
+    const file = JSON.parse(readFileSync(`public${dataset.staticBundleUrl}`, "utf8")) as { data: unknown };
+    const parsed = BundleSchema.safeParse(file.data);
+    check(
+      `static bundle for ${dataset.key} parses and names its own event id`,
+      parsed.success && parsed.data.event.id === dataset.eventId && parsed.data.sessions.length > 0
+    );
+  }
   check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
 }
 

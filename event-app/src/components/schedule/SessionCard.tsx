@@ -42,8 +42,8 @@ export function SessionCard({
   /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
 }) {
-  const theme = getTrackTheme(session.track);
-  const badge = trackBadgeLabel(session.track);
+  const theme = getTrackTheme(session.track, session.room?.id);
+  const badge = trackBadgeLabel(session.track, session.room?.id);
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
