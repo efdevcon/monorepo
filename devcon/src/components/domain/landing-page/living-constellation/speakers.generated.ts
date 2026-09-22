@@ -8,6 +8,7 @@ import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
+import imgchristopherfabian from './assets/portraits/christopher-fabian.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
 import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
@@ -74,6 +75,13 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'vicosvv',
     image: imgB9V8HC,
     source: 'pretalx',
+  },
+  'christopher-fabian': {
+    id: 'christopher-fabian',
+    name: 'Christopher Fabian',
+    organization: 'Giga',
+    image: imgchristopherfabian,
+    source: 'manual',
   },
   DURU3V: {
     id: 'DURU3V',

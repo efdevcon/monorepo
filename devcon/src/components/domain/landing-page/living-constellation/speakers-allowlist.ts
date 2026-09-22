@@ -74,15 +74,18 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   { code: '8FL8QW', title: 'Co-Founder', company: 'Aztec', color: C.orange }, // Zachary Williamson
   { code: 'RMPP9E', title: 'Co-Founder', color: C.cyan }, // Barnabé Monnot · Ethlabs
   { code: '7BLNXR', title: 'Founder', company: 'Giveth', color: C.green }, // Griff Green — TODO confirm title
-  // TODO(scott): Christopher Fabian is not in the DC8 Pretalx CFP. Drop a
-  // portrait into assets/portraits/christopher-fabian.webp (any size; the
-  // script normalises manual portraits with --normalize-manual), confirm the
-  // org/title, then uncomment and re-run `pnpm speakers:pull`.
-  // {
-  //   manual: { id: 'christopher-fabian', name: 'Christopher Fabian', company: 'Giga', portrait: 'christopher-fabian.webp' },
-  //   title: 'Co-Founder',
-  //   color: C.blue,
-  // },
+  // Not in the DC8 Pretalx CFP — portrait supplied by hand (normalised to 720×720 webp by the pull script).
+  {
+    manual: {
+      id: 'christopher-fabian',
+      name: 'Christopher Fabian',
+      company: 'Giga',
+      portrait: 'christopher-fabian.webp',
+    },
+    title: 'Co-Founder',
+    xHandle: 'chrisfabian',
+    color: C.blue,
+  },
   {
     code: 'ZDA7LS',
     title: 'Lawyer & Digital-Rights Researcher',
