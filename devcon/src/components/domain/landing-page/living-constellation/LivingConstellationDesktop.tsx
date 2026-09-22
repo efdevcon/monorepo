@@ -220,7 +220,7 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
                   color: '#160b2b',
                 }}
               >
-                Confirmed speakers
+                Devcon 8 Speakers
               </h2>
             </motion.div>
           )}

@@ -1,5 +1,5 @@
 /**
- * Hand-curated allowlist for the home page "Confirmed speakers" section.
+ * Hand-curated allowlist for the home page "Devcon 8 Speakers" section.
  *
  * THIS FILE IS THE GATE: only speakers we have publicly announced on X
  * (https://x.com/EFDevcon) belong here. Order = display order — the first

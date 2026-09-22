@@ -11,7 +11,7 @@ const CARD_RADIUS = 10
 const ELLIPSE_RX = '70vw'
 const ELLIPSE_RY = '230px'
 const CAPTION_GAP = 8
-// "Confirmed speakers" (and some names) at 32px Poppins 800 is wider than a
+// "Devcon 8 Speakers" (and some names) at 32px Poppins 800 is wider than a
 // 320–390px viewport with nowrap — scale the centre text down on narrow phones.
 const CENTER_TEXT_SIZE = 'clamp(24px, 7.5vw, 32px)'
 const SWIPE_FACTOR = 0.08
@@ -311,7 +311,7 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
                 exit={{ opacity: 0, filter: 'blur(4px)' }}
                 transition={{ duration: 0.12 }}
               >
-                Confirmed speakers
+                Devcon 8 Speakers
               </motion.h2>
             )}
           </AnimatePresence>
