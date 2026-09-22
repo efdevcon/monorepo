@@ -323,9 +323,11 @@ function Ring({
         const arcLength = (2 * Math.PI * minR) / group.length
         const maxCardForArc = Math.max(40, arcLength * 0.7)
 
-        // The inner ring starts a half-step off the vertical so its cards sit on
-        // the diagonals, clear of the centre heading; outer rings start at 12 o'clock.
-        const startAngle = -Math.PI / 2 + (ringIndex === 0 ? Math.PI / group.length : 0)
+        // Alternate rings start a half-step off the vertical: the inner ring's
+        // cards then sit on the diagonals clear of the centre heading, and the
+        // outer ring's cards stay off the 12/6 o'clock axis where the middle
+        // ring's cards and captions live (only the middle ring starts at 12).
+        const startAngle = -Math.PI / 2 + (ringIndex % 2 === 0 ? Math.PI / group.length : 0)
 
         return group.map((speaker, i) => {
           const angle = ((2 * Math.PI) / group.length) * i + startAngle
