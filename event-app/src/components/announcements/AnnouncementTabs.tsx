@@ -12,8 +12,9 @@ const TABS: { key: InboxTab; label: string }[] = [
 /**
  * Event / Personal switch at the top of the announcements inbox: the
  * speakers page's underline tabs (TypeTabs) with the schedule day tabs'
- * purple count badge, here showing each tab's unread count. Full-bleed
- * lavender strip on mobile; sits inside the content box on desktop.
+ * purple count badge, here showing each tab's unread count. The strip it
+ * sits in (full-bleed lavender on mobile, the card's white header row on
+ * desktop) belongs to the page.
  */
 export function AnnouncementTabs({
   selected,
@@ -29,7 +30,7 @@ export function AnnouncementTabs({
     <div
       role="group"
       aria-label="Announcement type"
-      className="-mx-4 mb-6 flex items-stretch gap-3 bg-dc-lavender px-4 lg:mx-0 lg:rounded-lg lg:py-2"
+      className="flex min-w-0 items-stretch gap-3"
     >
       {TABS.map(({ key, label }) => {
         const active = key === selected;

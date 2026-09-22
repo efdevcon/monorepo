@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Megaphone, Star } from "lucide-react";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useSessionReminders } from "@/data/reminders/useSessionReminders";
 import { REMINDER_LEAD_MINUTES } from "@/data/reminders/reminders";
+import { usePushSubscription } from "@/data/push/usePushSubscription";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
 import { formatDayHeading } from "@/components/schedule/utils";
@@ -14,7 +15,10 @@ import {
   AnnouncementTabs,
   type InboxTab,
 } from "@/components/announcements/AnnouncementTabs";
-import { PushOptIn } from "@/components/announcements/PushOptIn";
+import {
+  NotificationSettingsLink,
+  NotificationSettingsModal,
+} from "@/components/announcements/NotificationSettings";
 
 const dayKey = (ms: number) => new Date(ms).toDateString();
 
@@ -42,9 +46,12 @@ const emptyBox =
 
 /**
  * The announcements inbox, in two tabs: Event (the team's Notion
- * announcements) and Personal (reminders for the sessions you marked interested), each
- * grouped by day (Today / Yesterday / date). Viewing a tab marks its items as
- * seen, clearing that tab's badge and its share of the header badge.
+ * announcements) and Personal (reminders for the sessions you marked
+ * interested), each grouped by day (Today / Yesterday / date). Viewing a tab
+ * marks its items as seen, clearing that tab's badge and its share of the
+ * header badge. Same top-level card as the Schedule and Speakers pages: a
+ * header strip (tabs + the Notifications settings link) over a panel body;
+ * the card chrome is desktop-only, mobile runs edge to edge.
  */
 export default function AnnouncementsPage() {
   const {
@@ -56,6 +63,10 @@ export default function AnnouncementsPage() {
     readStateReady,
   } = useAnnouncements();
   const reminders = useSessionReminders();
+  // One push-state instance for the settings link and its modal.
+  const push = usePushSubscription();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const closeSettings = useCallback(() => setSettingsOpen(false), []);
   // Two clocks on purpose: announcements are real-world-dated (viewer-local
   // days), reminders are dated against the schedule (venue days, mockable).
   const nowMs = useRealWorldNowMs(60_000);
@@ -137,101 +148,121 @@ export default function AnnouncementsPage() {
 
   return (
     // Escape the 680px `.section` column to the 1312px desktop content box
-    // (same pattern as Ticket.tsx / Schedule).
-    <main className="expand py-6">
-      <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
+    // (same pattern as Schedule / Speakers).
+    <main className="expand font-heading text-dc-fg">
+      <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
         {/* Mobile title comes from AppHeader (routeChrome); page h1 is desktop-only. */}
-        <h1 className="mb-4 hidden font-heading text-2xl font-extrabold tracking-[-0.5px] text-dc-fg2 lg:block">
+        <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
           Announcements
         </h1>
 
-        <PushOptIn />
+        <div className="lg:flex lg:items-start">
+          <div className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
+            {/* Header strip: the Event / Personal tabs left, the settings
+                link right. Full-bleed lavender on mobile (the schedule's day
+                bar), the card's white top row on desktop. Badges are the
+                LIVE unread counts (they clear as a tab is viewed, like the
+                header badge); the dots below keep the entry snapshot. */}
+            <div className="flex items-center justify-between gap-3 bg-dc-lavender px-4 lg:rounded-t-xl lg:border-b lg:border-dc-hairline lg:bg-white lg:py-2">
+              <AnnouncementTabs
+                selected={tab}
+                onSelect={setTab}
+                counts={{ event: unreadCount, personal: reminders.unreadCount }}
+              />
+              <NotificationSettingsLink
+                push={push}
+                onOpen={() => setSettingsOpen(true)}
+              />
+            </div>
 
-        {/* Badges are the LIVE unread counts (they clear as a tab is viewed,
-            like the header badge); the dots below keep the entry snapshot. */}
-        <AnnouncementTabs
-          selected={tab}
-          onSelect={setTab}
-          counts={{ event: unreadCount, personal: reminders.unreadCount }}
-        />
+            <div className="px-4 pb-6 pt-6 lg:rounded-b-xl lg:bg-dc-panel">
+              {tab === "event" && (
+                <>
+                  {isLoading && (
+                    <p className="text-sm text-dc-muted">Loading announcements…</p>
+                  )}
 
-        {tab === "event" && (
-          <>
-            {isLoading && (
-              <p className="text-sm text-dc-muted">Loading announcements…</p>
-            )}
+                  {!isLoading && error && announcements.length === 0 && (
+                    <p className="text-sm text-dc-muted">
+                      Couldn&apos;t load announcements. Check your connection and
+                      try again.
+                    </p>
+                  )}
 
-            {!isLoading && error && announcements.length === 0 && (
-              <p className="text-sm text-dc-muted">
-                Couldn&apos;t load announcements. Check your connection and
-                try again.
-              </p>
-            )}
+                  {!isLoading && !error && announcements.length === 0 && (
+                    <div className={emptyBox}>
+                      <Megaphone className="h-6 w-6 text-dc-muted/50" />
+                      <p className="text-sm text-dc-muted">
+                        Nothing yet — announcements from the team will show up
+                        here.
+                      </p>
+                    </div>
+                  )}
 
-            {!isLoading && !error && announcements.length === 0 && (
-              <div className={emptyBox}>
-                <Megaphone className="h-6 w-6 text-dc-muted/50" />
-                <p className="text-sm text-dc-muted">
-                  Nothing yet — announcements from the team will show up here.
-                </p>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-8">
-              {eventGroups.map(([label, items]) => (
-                <section key={label}>
-                  <h2 className={groupHeading}>{label}</h2>
-                  <div className="flex flex-col gap-3">
-                    {items.map((a) => (
-                      <AnnouncementCard
-                        key={a.id}
-                        announcement={a}
-                        seen={seenAtEntry.current?.has(a.id) ?? true}
-                      />
+                  <div className="flex flex-col gap-8">
+                    {eventGroups.map(([label, items]) => (
+                      <section key={label}>
+                        <h2 className={groupHeading}>{label}</h2>
+                        <div className="flex flex-col gap-3">
+                          {items.map((a) => (
+                            <AnnouncementCard
+                              key={a.id}
+                              announcement={a}
+                              seen={seenAtEntry.current?.has(a.id) ?? true}
+                            />
+                          ))}
+                        </div>
+                      </section>
                     ))}
                   </div>
-                </section>
-              ))}
-            </div>
-          </>
-        )}
+                </>
+              )}
 
-        {tab === "personal" && (
-          <>
-            {reminders.isLoading && (
-              <p className="text-sm text-dc-muted">Loading your sessions…</p>
-            )}
+              {tab === "personal" && (
+                <>
+                  {reminders.isLoading && (
+                    <p className="text-sm text-dc-muted">Loading your sessions…</p>
+                  )}
 
-            {!reminders.isLoading && reminders.reminders.length === 0 && (
-              <div className={emptyBox}>
-                <Star className="h-6 w-6 text-dc-muted/50" />
-                <p className="text-sm text-dc-muted">
-                  {reminders.interestedCount === 0
-                    ? `Mark sessions as interested in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
-                    : `You're interested in ${reminders.interestedCount} ${reminders.interestedCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`}
-                </p>
-              </div>
-            )}
+                  {!reminders.isLoading && reminders.reminders.length === 0 && (
+                    <div className={emptyBox}>
+                      <Star className="h-6 w-6 text-dc-muted/50" />
+                      <p className="text-sm text-dc-muted">
+                        {reminders.interestedCount === 0
+                          ? `Mark sessions as interested in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
+                          : `You're interested in ${reminders.interestedCount} ${reminders.interestedCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`}
+                      </p>
+                    </div>
+                  )}
 
-            <div className="flex flex-col gap-8">
-              {personalGroups.map(([label, items]) => (
-                <section key={label}>
-                  <h2 className={groupHeading}>{label}</h2>
-                  <div className="flex flex-col gap-3">
-                    {items.map((r) => (
-                      <ReminderCard
-                        key={r.id}
-                        reminder={r}
-                        seen={remindersSeenAtEntry.current?.has(r.id) ?? true}
-                      />
+                  <div className="flex flex-col gap-8">
+                    {personalGroups.map(([label, items]) => (
+                      <section key={label}>
+                        <h2 className={groupHeading}>{label}</h2>
+                        <div className="flex flex-col gap-3">
+                          {items.map((r) => (
+                            <ReminderCard
+                              key={r.id}
+                              reminder={r}
+                              seen={remindersSeenAtEntry.current?.has(r.id) ?? true}
+                            />
+                          ))}
+                        </div>
+                      </section>
                     ))}
                   </div>
-                </section>
-              ))}
+                </>
+              )}
             </div>
-          </>
-        )}
+          </div>
+        </div>
       </div>
+
+      <NotificationSettingsModal
+        push={push}
+        open={settingsOpen}
+        onClose={closeSettings}
+      />
     </main>
   );
 }
