@@ -50,8 +50,8 @@ const emptyBox =
  * interested), each grouped by day (Today / Yesterday / date). Viewing a tab
  * marks its items as seen, clearing that tab's badge and its share of the
  * header badge. Same top-level card as the Schedule and Speakers pages: a
- * header strip (tabs + the Notifications settings link) over a panel body;
- * the card chrome is desktop-only, mobile runs edge to edge.
+ * sticky header strip (tabs + the Notifications settings link) over a panel
+ * body; the card chrome is desktop-only, mobile runs edge to edge.
  */
 export default function AnnouncementsPage() {
   const {
@@ -158,22 +158,20 @@ export default function AnnouncementsPage() {
 
         <div className="lg:flex lg:items-start">
           <div className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
-            {/* Header strip: the Event / Personal tabs left, the settings
-                link right. Full-bleed lavender on mobile (the schedule's day
-                bar), the card's white top row on desktop. Badges are the
-                LIVE unread counts (they clear as a tab is viewed, like the
-                header badge); the dots below keep the entry snapshot. */}
-            <div className="flex items-center justify-between gap-3 bg-dc-lavender px-4 lg:rounded-t-xl lg:border-b lg:border-dc-hairline lg:bg-white lg:py-2">
-              <AnnouncementTabs
-                selected={tab}
-                onSelect={setTab}
-                counts={{ event: unreadCount, personal: reminders.unreadCount }}
-              />
+            {/* Sticky header strip (the schedule's day bar): Event / Personal
+                tabs left, the settings link right. Badges are the LIVE
+                unread counts (they clear as a tab is viewed, like the header
+                badge); the dots below keep the entry snapshot. */}
+            <AnnouncementTabs
+              selected={tab}
+              onSelect={setTab}
+              counts={{ event: unreadCount, personal: reminders.unreadCount }}
+            >
               <NotificationSettingsLink
                 push={push}
                 onOpen={() => setSettingsOpen(true)}
               />
-            </div>
+            </AnnouncementTabs>
 
             <div className="px-4 pb-6 pt-6 lg:rounded-b-xl lg:bg-dc-panel">
               {tab === "event" && (
