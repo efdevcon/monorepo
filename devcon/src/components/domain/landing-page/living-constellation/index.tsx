@@ -1,9 +1,11 @@
 import React from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import Dc8MoonBg from 'assets/icons/dc8-moon-bg.svg'
 import { LivingConstellationDesktop } from './LivingConstellationDesktop'
 import { LivingConstellationMobile } from './LivingConstellationMobile'
 import { AnimatedGradientBackground } from './AnimatedGradientBackground'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
+import { ctaSecondary } from 'components/common/cta'
 
 // Warm pastel palette — peach, pink, lavender, blue. Each circle is its own
 // drifting blob so the section never looks like a flat fill.
@@ -17,7 +19,7 @@ export function LivingConstellation() {
   return (
     <section
       id="confirmed-speakers"
-      className="relative w-full overflow-hidden flex flex-col items-center py-10 min-[1300px]:pt-0 min-[1300px]:pb-12"
+      className="relative w-full overflow-hidden flex flex-col items-center py-10 min-[1300px]:py-0"
     >
       <AnimatedGradientBackground colors={BACKGROUND_COLORS} speed={11} blur="heavy" />
       {/* Decorative DC8 moon glyph between the gradient and the cards. The SVG
@@ -32,6 +34,16 @@ export function LivingConstellation() {
       <div className="relative hidden w-full aspect-[14/10] min-h-[720px] max-h-[980px] min-[1300px]:block">
         <LivingConstellationDesktop speakers={CONSTELLATION_SPEAKERS} />
       </div>
+      <a
+        href="https://archive.devcon.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`relative z-10 ${ctaSecondary} mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12`}
+        style={{ fontFamily: 'Poppins, sans-serif' }}
+      >
+        Devcon archive
+        <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
+      </a>
     </section>
   )
 }
