@@ -212,15 +212,18 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
               style={{ padding: isCompact ? '6px 14px' : '10px 20px' }}
             >
               <h2
-                className="tracking-tight whitespace-nowrap"
+                className="tracking-tight whitespace-nowrap text-center"
                 style={{
                   fontFamily: 'Poppins, sans-serif',
                   fontWeight: 800,
                   fontSize: isCompact ? 22 : 28,
+                  lineHeight: 1.1,
                   color: '#160b2b',
                 }}
               >
-                Devcon 8 Speakers
+                Devcon 8 India
+                <br />
+                Speakers
               </h2>
             </motion.div>
           )}

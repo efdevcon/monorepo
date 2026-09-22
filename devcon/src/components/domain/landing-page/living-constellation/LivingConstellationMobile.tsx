@@ -11,7 +11,7 @@ const CARD_RADIUS = 10
 const ELLIPSE_RX = '70vw'
 const ELLIPSE_RY = '230px'
 const CAPTION_GAP = 8
-// "Devcon 8 Speakers" (and some names) at 32px Poppins 800 is wider than a
+// "Devcon 8 India" (and some names) at 32px Poppins 800 is wider than a
 // 320–390px viewport with nowrap — scale the centre text down on narrow phones.
 const CENTER_TEXT_SIZE = 'clamp(24px, 7.5vw, 32px)'
 const SWIPE_FACTOR = 0.08
@@ -304,14 +304,22 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
             ) : (
               <motion.h2
                 key="default"
-                className="tracking-tight absolute whitespace-nowrap"
-                style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: CENTER_TEXT_SIZE, color: '#160b2b' }}
+                className="tracking-tight absolute whitespace-nowrap text-center"
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 800,
+                  fontSize: CENTER_TEXT_SIZE,
+                  lineHeight: 1.1,
+                  color: '#160b2b',
+                }}
                 initial={{ opacity: 0, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, filter: 'blur(4px)' }}
                 transition={{ duration: 0.12 }}
               >
-                Devcon 8 Speakers
+                Devcon 8 India
+                <br />
+                Speakers
               </motion.h2>
             )}
           </AnimatePresence>
