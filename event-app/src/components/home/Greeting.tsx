@@ -4,10 +4,17 @@ import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { LogIn, LogOut } from "lucide-react";
-import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import cn from "classnames";
+import { Bell, LogIn } from "lucide-react";
+import APP_CONFIG from "@/CONFIG";
+import {
+  HEADER_ACTIONS_ID,
+  headerCircle,
+  headerCircleResting,
+} from "@/components/AppHeader";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
+import { useInboxUnreadCount } from "@/data/announcements/useInboxUnread";
 
 // Greeting variants from the Figma spec strip (5017:5368), rotated in order.
 // The strip's नमस्त entry was a truncated duplicate of नमस्ते (same
@@ -21,16 +28,58 @@ const ROTATE_MS = 5_000;
 
 type AuthProps = {
   user: ReturnType<typeof useUser>["user"];
-  signOut: () => Promise<void>;
+  /** Unread inbox items (Event announcements + Personal reminders). */
+  unread: number;
 };
 
 /**
- * Mobile auth controls, portaled into the AppHeader's #header-actions target
- * (same pattern as the speakers page): a sign-in circle when signed out, the
- * sign-out circle when signed in. Desktop renders its own inline controls
- * next to the greeting instead.
+ * Round bell linking to the inbox, with the unread count as a pill on its
+ * shoulder (the same 16px purple pill the inbox tabs use, so the two
+ * counters read as one). Signing out moved to the Me tab; this is the
+ * signed-in control on the home page at both breakpoints.
  */
-function HeaderAuthActions({ user, signOut }: AuthProps) {
+function BellLink({
+  unread,
+  size,
+}: {
+  unread: number;
+  size: "sm" | "lg";
+}) {
+  const label =
+    unread > 0
+      ? `Announcements, ${unread} unread`
+      : "Announcements";
+  return (
+    <Link
+      href="/announcements"
+      aria-label={label}
+      className={cn(
+        size === "sm"
+          ? cn(headerCircle, headerCircleResting)
+          : // after:-inset-0.5 pads the 40px circle to a 44px hit area
+            "relative flex size-10 items-center justify-center rounded-full border border-dc-hairline bg-white/80 transition-colors after:absolute after:-inset-0.5 after:content-[''] hover:bg-white"
+      )}
+    >
+      <Bell className="size-4 text-dc-purple" />
+      {unread > 0 && (
+        <span
+          aria-hidden
+          className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white"
+        >
+          {unread > 9 ? "9+" : unread}
+        </span>
+      )}
+    </Link>
+  );
+}
+
+/**
+ * Mobile controls, portaled into the AppHeader's #header-actions target
+ * (same pattern as the speakers page): a sign-in circle when signed out, the
+ * inbox bell when signed in. Desktop renders its own inline controls next to
+ * the greeting instead.
+ */
+function HeaderAuthActions({ user, unread }: AuthProps) {
   const [target, setTarget] = useState<Element | null>(null);
   const paneActive = usePaneActive();
   useEffect(() => {
@@ -42,14 +91,7 @@ function HeaderAuthActions({ user, signOut }: AuthProps) {
     <>
       {createPortal(
         user ? (
-          // after:-inset-1.5 pads the 32px circle to a 44px hit area
-          <button
-            onClick={signOut}
-            aria-label="Sign out"
-            className="relative flex size-8 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 after:absolute after:-inset-1.5 after:content-['']"
-          >
-            <LogOut className="size-4 text-dc-error" />
-          </button>
+          <BellLink unread={unread} size="sm" />
         ) : (
           <Link
             href="/ticket"
@@ -67,11 +109,13 @@ function HeaderAuthActions({ user, signOut }: AuthProps) {
 
 /**
  * Home-page greeting row: rotating Devanagari/English greeting with
- * pronunciation. Auth controls sit inline on desktop (Sign in pill, or email +
- * account/sign-out round buttons); on mobile they live in the app header.
+ * pronunciation. Controls sit inline on desktop (Sign in pill, or email +
+ * the inbox bell with its unread count); on mobile they live in the app
+ * header.
  */
 export function Greeting() {
-  const { user, signOut } = useUser();
+  const { user } = useUser();
+  const unread = useInboxUnreadCount(APP_CONFIG.ANNOUNCEMENTS_ENABLED);
   const reducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
 
@@ -145,7 +189,7 @@ export function Greeting() {
         )}
       </div>
 
-      <HeaderAuthActions user={user} signOut={signOut} />
+      <HeaderAuthActions user={user} unread={unread} />
 
       {/* Desktop-only inline controls */}
       <div className="mt-1 hidden shrink-0 items-center gap-3 lg:flex">
@@ -154,14 +198,7 @@ export function Greeting() {
             <span className="font-heading text-base tracking-[-0.25px] text-dc-muted">
               {user.email}
             </span>
-            {/* after:-inset-0.5 pads the 40px circle to a 44px hit area */}
-            <button
-              onClick={signOut}
-              aria-label="Sign out"
-              className="relative flex size-10 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white/80 transition-colors after:absolute after:-inset-0.5 after:content-[''] hover:bg-dc-live-bg"
-            >
-              <LogOut className="size-4 text-dc-error" />
-            </button>
+            <BellLink unread={unread} size="lg" />
           </>
         ) : (
           <Link
