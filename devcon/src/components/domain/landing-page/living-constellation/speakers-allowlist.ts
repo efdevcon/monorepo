@@ -83,7 +83,13 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   //   title: 'Co-Founder',
   //   color: C.blue,
   // },
-  { code: 'ZDA7LS', title: 'Lawyer & Digital-Rights Researcher', company: 'EF Silviculture Society', color: C.rose }, // Fatemeh Fannizadeh
+  {
+    code: 'ZDA7LS',
+    title: 'Lawyer & Digital-Rights Researcher',
+    company: 'EF Silviculture Society',
+    xHandle: 'Fatalmeh',
+    color: C.rose,
+  }, // Fatemeh Fannizadeh
   { code: '3JEDML', title: 'Protocol Engineering Lead', color: C.teal }, // Dorde Mijovic · Monad Foundation
   { code: 'LP7S9M', title: 'Product & Project Manager', company: 'UNICEF Office of Innovation', color: C.pink }, // Kati Illes
   // ── Outer ring ────────────────────────────────────────────────────────────
