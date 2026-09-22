@@ -9,7 +9,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion'
-import type { ConstellationSpeaker } from './types'
+import { speakerAriaLabel, speakerSubtitle, type ConstellationSpeaker } from './types'
 import { SpeakerDetailOverlay } from './SpeakerDetailOverlay'
 
 type RingCfg = {
@@ -34,8 +34,19 @@ const RING_CONFIG_COMPACT: readonly RingCfg[] = [
 ]
 
 const COMPACT_WIDTH = 600
-const RING_DISTRIBUTION = [6, 9]
 const CAPTION_GAP = 6
+
+// Cards per ring, proportional to ring radius so spacing along each perimeter
+// stays roughly even as more speakers are announced. The inner ring is floored
+// so it never degenerates to a triangle around the heading (18 → [4, 6, 8]).
+const RING_WEIGHTS = RING_CONFIG_DESKTOP.map(r => r.radius)
+const MIN_INNER = 4
+function ringDistribution(count: number): [number, number] {
+  const total = RING_WEIGHTS.reduce((a, b) => a + b, 0)
+  const inner = Math.min(count, Math.max(MIN_INNER, Math.round((count * RING_WEIGHTS[0]) / total)))
+  const middle = Math.max(0, Math.min(count - inner, Math.round((count * RING_WEIGHTS[1]) / total)))
+  return [inner, middle] // remainder → outer ring
+}
 
 interface LivingConstellationDesktopProps {
   speakers: ConstellationSpeaker[]
@@ -97,9 +108,9 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
   }, [selected])
 
   const ringGroups = useMemo(() => {
-    const list = speakers.filter(s => s.type !== 'logo')
+    const list = speakers
     const groups: ConstellationSpeaker[][] = [[], [], []]
-    const [inner, middle] = RING_DISTRIBUTION
+    const [inner, middle] = ringDistribution(list.length)
     list.forEach((s, i) => {
       if (i < inner) groups[0].push(s)
       else if (i < inner + middle) groups[1].push(s)
@@ -157,25 +168,6 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
 
   return (
     <div ref={containerRef} className={`relative w-full h-full select-none overflow-hidden ${className}`}>
-      {/* Center hovered-event-logo watermark — keyed by logo so hovering
-          two speakers from the same event doesn't flicker. */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[5]">
-        <AnimatePresence mode="wait">
-          {hoveredSpeaker?.event && (
-            <motion.div
-              key={hoveredSpeaker.event.logo.src}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.14 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              style={{ width: 140, height: 140, position: 'relative' }}
-            >
-              <Image src={hoveredSpeaker.event.logo} alt="" fill sizes="140px" className="object-contain" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
       {/* Center title / hovered name (pill-backed so it reads above cards) */}
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-[25]">
         <AnimatePresence mode="popLayout">
@@ -207,7 +199,7 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
                 className="whitespace-nowrap"
                 style={{ fontSize: isCompact ? 13 : 15, color: 'rgba(34,17,68,0.88)', fontWeight: 500, marginTop: 2 }}
               >
-                {hoveredSpeaker.title} · {hoveredSpeaker.company}
+                {speakerSubtitle(hoveredSpeaker)}
               </p>
             </motion.div>
           ) : (
@@ -228,7 +220,7 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
                   color: '#160b2b',
                 }}
               >
-                Past speakers
+                Confirmed speakers
               </h2>
             </motion.div>
           )}
@@ -262,7 +254,6 @@ export function LivingConstellationDesktop({ speakers, className = '' }: LivingC
         layoutIdPrefix="speaker-v2-"
         cardWidth={Math.min(340, Math.max(260, size.w - 32))}
         imageHeight={isCompact ? 220 : 260}
-        companyLogoHeight={56}
         backdropClassName="cursor-pointer"
         backdropStyle={{
           background: 'radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.65) 100%)',
@@ -332,8 +323,12 @@ function Ring({
         const arcLength = (2 * Math.PI * minR) / group.length
         const maxCardForArc = Math.max(40, arcLength * 0.7)
 
+        // The inner ring starts a half-step off the vertical so its cards sit on
+        // the diagonals, clear of the centre heading; outer rings start at 12 o'clock.
+        const startAngle = -Math.PI / 2 + (ringIndex === 0 ? Math.PI / group.length : 0)
+
         return group.map((speaker, i) => {
-          const angle = ((2 * Math.PI) / group.length) * i - Math.PI / 2
+          const angle = ((2 * Math.PI) / group.length) * i + startAngle
           const cx = radiusX * Math.cos(angle)
           const cy = radiusY * Math.sin(angle)
           const baseCard = cfg.cardSizes[i % cfg.cardSizes.length]
@@ -448,7 +443,7 @@ function SpeakerCard({
             type="button"
             layoutId={`speaker-v2-${speaker.id}`}
             tabIndex={frozen ? -1 : 0}
-            aria-label={`${speaker.name}, ${speaker.title} at ${speaker.company}`}
+            aria-label={speakerAriaLabel(speaker)}
             onClick={() => onSelect(speaker)}
             onMouseEnter={() => onHover(speaker.id)}
             onMouseLeave={() => onHover(null)}
@@ -492,31 +487,6 @@ function SpeakerCard({
                 className="object-cover"
               />
             </div>
-            {speaker.companyLogo && (
-              <div
-                className="absolute flex items-center justify-center overflow-hidden"
-                style={{
-                  width: Math.round(cardSize * 0.3),
-                  height: Math.round(cardSize * 0.3),
-                  ...(x < 0
-                    ? { left: -Math.round(cardSize * 0.12), bottom: -Math.round(cardSize * 0.12) }
-                    : { right: -Math.round(cardSize * 0.12), bottom: -Math.round(cardSize * 0.12) }),
-                  borderRadius: '50%',
-                  background: '#fff',
-                  boxShadow: '0 1px 4px -1px rgba(34,17,68,0.2)',
-                  border: 'none',
-                  zIndex: 3,
-                }}
-              >
-                <Image
-                  src={speaker.companyLogo}
-                  alt=""
-                  fill
-                  sizes={`${Math.round(cardSize * 0.3)}px`}
-                  className="object-contain"
-                />
-              </div>
-            )}
           </motion.button>
         )}
 
