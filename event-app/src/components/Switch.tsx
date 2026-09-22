@@ -39,7 +39,7 @@ export function Switch({
       disabled={inert}
       onClick={() => onChange(!checked)}
       className={cn(
-        "relative box-content h-[31px] w-[51px] shrink-0 rounded-full p-0 transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-reduce:transition-none",
+        "relative h-[31px] w-[51px] shrink-0 rounded-full p-0 transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-reduce:transition-none",
         checked ? "bg-dc-purple" : "bg-dc-border",
         inert ? "cursor-default opacity-40" : "cursor-pointer",
         className

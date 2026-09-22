@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import cn from "classnames";
-import { usePaneActive } from "@/components/paneContext";
-import { headerOffsetNow } from "@/hooks/useIsDesktop";
+import { unreadPill } from "@/components/AppHeader";
+import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 
 export type InboxTab = "event" | "personal";
 
@@ -36,32 +36,7 @@ export function AnnouncementTabs({
   children?: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [stuck, setStuck] = useState(false);
-  const paneActive = usePaneActive();
-
-  // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
-  // the offset, so <= offset+1 means stuck.) Same loop as DayTabs.
-  useEffect(() => {
-    if (!paneActive) return;
-    let raf = 0;
-    const measure = () => {
-      raf = 0;
-      const el = ref.current;
-      if (!el) return;
-      setStuck(el.getBoundingClientRect().top <= headerOffsetNow() + 1);
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(measure);
-    };
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [paneActive]);
+  const stuck = useStuckUnderHeader(ref);
 
   return (
     <div
@@ -99,7 +74,7 @@ export function AnnouncementTabs({
                   the list below nudges when a tab is read and the badge goes. */}
               {count > 0 && (
                 <span
-                  className="-my-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white"
+                  className={cn(unreadPill, "-my-0.5")}
                   aria-label={`${count} unread`}
                 >
                   {count}

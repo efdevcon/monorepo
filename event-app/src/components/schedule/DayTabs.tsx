@@ -1,9 +1,9 @@
 "use client";
 
-import { usePaneActive } from "@/components/paneContext";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import cn from "classnames";
-import { headerOffsetNow } from "@/hooks/useIsDesktop";
+import { unreadPill } from "@/components/AppHeader";
+import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 import type { ScheduleDay } from "./utils";
 
 /** "Tue, Nov 3" → "Nov 3" for the compact mobile tabs. */
@@ -50,33 +50,7 @@ export function DayTabs({
   raised?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [stuck, setStuck] = useState(false);
-  // Hidden tab panes must not measure on every scroll of another tab.
-  const paneActive = usePaneActive();
-
-  // Pinned under the app header? (rAF-throttled; sticky clamps rect.top at
-  // the offset, so <= offset+1 means stuck.)
-  useEffect(() => {
-    if (!paneActive) return;
-    let raf = 0;
-    const measure = () => {
-      raf = 0;
-      const el = ref.current;
-      if (!el) return;
-      setStuck(el.getBoundingClientRect().top <= headerOffsetNow() + 1);
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(measure);
-    };
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [paneActive]);
+  const stuck = useStuckUnderHeader(ref);
 
   if (days.length === 0) return null;
 
@@ -118,11 +92,10 @@ export function DayTabs({
               >
                 <span className="lg:hidden">{shortLabel(day.label)}</span>
                 <span className="hidden lg:inline">{day.label}</span>
-                {/* Search result count (the header's unread-pill recipe at a
-                    fixed 16px; auto width so three digits don't overflow).
-                    Purple, not the red "filters applied" badge. */}
+                {/* Search result count: the shared unread pill. Purple, not
+                    the red "filters applied" badge. */}
                 {counts && (
-                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white">
+                  <span className={unreadPill}>
                     {counts.get(day.key) ?? 0}
                   </span>
                 )}

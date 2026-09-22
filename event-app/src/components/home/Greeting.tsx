@@ -11,6 +11,7 @@ import {
   HEADER_ACTIONS_ID,
   headerCircle,
   headerCircleResting,
+  unreadPill,
 } from "@/components/AppHeader";
 import { Link } from "@/routing";
 import { useUser } from "@/data/auth/useUser";
@@ -62,10 +63,7 @@ function BellLink({
     >
       <Bell className="size-4 text-dc-purple" />
       {unread > 0 && (
-        <span
-          aria-hidden
-          className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white"
-        >
+        <span aria-hidden className={cn(unreadPill, "absolute -right-1 -top-1")}>
           {unread > 9 ? "9+" : unread}
         </span>
       )}

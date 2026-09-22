@@ -31,6 +31,12 @@ export const headerCircle =
   "relative flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity before:absolute before:-inset-1.5 before:content-['']";
 export const headerCircleResting = "border-dc-hairline bg-white";
 
+/** The 16px purple count pill (unread badges, the day tabs' search counts):
+ *  fixed height so it never grows its text row, auto width so three digits
+ *  don't overflow. One recipe so every counter in the app reads as one. */
+export const unreadPill =
+  "flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white";
+
 interface RouteChrome {
   title: string;
   /** Detail views show a back arrow (closing the view) instead of the logomark. */
@@ -197,7 +203,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
               >
                 {item.label}
                 {item.unreadBadge && unreadCount > 0 && (
-                  <span className="rounded-full bg-dc-purple px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
+                  <span className={unreadPill}>
                     {unreadCount}
                   </span>
                 )}
