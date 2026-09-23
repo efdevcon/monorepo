@@ -5,19 +5,22 @@ import { LivingConstellationDesktop } from './LivingConstellationDesktop'
 import { LivingConstellationMobile } from './LivingConstellationMobile'
 import { AnimatedGradientBackground } from './AnimatedGradientBackground'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
-import { ctaPrimary } from 'components/common/cta'
+import { ctaSecondary } from 'components/common/cta'
 
 // Warm pastel palette — peach, pink, lavender, blue. Each circle is its own
 // drifting blob so the section never looks like a flat fill.
 const BACKGROUND_COLORS = ['#FFE5D6', '#FFD7E4', '#E0D7FF', '#D7E4FF', '#FFEEDE', '#F4D7FF']
 
-// Section wrapper for the rotating speakers showcase. Renders the desktop
+// Section wrapper for the confirmed Devcon 8 speakers showcase. Renders the desktop
 // (multi-ring parallax) layout at md+ and the single-orbit mobile layout
 // below md. Both components are mounted simultaneously and one is shown via
 // Tailwind responsive utilities — they hold their own state independently.
 export function LivingConstellation() {
   return (
-    <section className="relative w-full overflow-hidden flex flex-col items-center py-10 min-[1300px]:py-0">
+    <section
+      id="confirmed-speakers"
+      className="relative w-full overflow-hidden flex flex-col items-center py-10 min-[1300px]:py-0"
+    >
       <AnimatedGradientBackground colors={BACKGROUND_COLORS} speed={11} blur="heavy" />
       {/* Decorative DC8 moon glyph between the gradient and the cards. The SVG
           ships with opacity 0.25 baked into the artwork — no extra fade
@@ -35,7 +38,7 @@ export function LivingConstellation() {
         href="https://archive.devcon.org"
         target="_blank"
         rel="noopener noreferrer"
-        className={`relative z-10 ${ctaPrimary} mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12`}
+        className={`relative z-10 ${ctaSecondary} mt-10 min-[1300px]:mt-0 min-[1300px]:mb-12`}
         style={{ fontFamily: 'Poppins, sans-serif' }}
       >
         Devcon archive
