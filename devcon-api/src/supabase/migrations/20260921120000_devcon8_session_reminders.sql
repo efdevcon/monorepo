@@ -32,6 +32,18 @@ create index if not exists devcon8_session_reminders_stall_idx
 
 alter table devcon8_session_reminders enable row level security;
 
+-- The claim below joins the due sessions to every account's stars and then to
+-- that account's subscriptions, once a minute per event. Neither table had an
+-- index for that side of the lookup (interests are keyed by user first,
+-- subscriptions by endpoint), so both would be sequential scans.
+create index if not exists devcon8_interests_event_item_idx
+  on devcon8_interests (event, kind, item_id)
+  where interested;
+
+create index if not exists devcon8_push_subscriptions_user_idx
+  on devcon8_push_subscriptions (user_id)
+  where user_id is not null;
+
 -- Atomic claim, called every minute by the dispatcher.
 --   p_sessions: the sessions due RIGHT NOW as computed from the live
 --     schedule, [{ session_id, session_start, send_at }].
