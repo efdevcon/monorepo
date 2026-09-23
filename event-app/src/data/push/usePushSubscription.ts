@@ -33,7 +33,8 @@ function urlBase64ToUint8Array(base64: string): Uint8Array {
   return Uint8Array.from(raw, (c) => c.charCodeAt(0));
 }
 
-async function authHeader(): Promise<Record<string, string>> {
+/** Bearer header for the app's own API routes (throws when signed out). */
+export async function authHeader(): Promise<Record<string, string>> {
   if (!supabase) throw new Error("Supabase not initialized");
   const token = (await supabase.auth.getSession()).data.session?.access_token;
   if (!token) throw new Error("Not signed in");

@@ -32,6 +32,18 @@ Per dispatch run (log lines from `/api/push/dispatch`): duration, `due`, `claime
 6. Move delivery out of the synchronous route: Netlify Async Workloads (durable steps, platform retries with backoff and jitter; a completed step is not repeated) or a background function (15 min, auto-retried after 1 and 2 min, so bookkeeping per chunk is needed). The schedule then only emits the event. Raise the per-run cap to a per-workload budget. This is what lifts 10k to a one to two minute job.
 7. Per-run metrics and an alert on fail rate or 429 count; a post-event wipe of `devcon8_session_reminders`.
 
+## Real rehearsal, closer to the event
+
+Everything as in November, only the sessions are moved; no code involved.
+
+1. In the Pretalx test event (`test-devcon-8`), schedule two or three sessions 30 to 40 minutes ahead, two in the same minute, and publish. Allow about ten minutes for the webhook sync and the API redeploy.
+2. On the production Netlify site set `PUSH_REMINDER_EVENTS=devcon8,test-devcon-8` (Functions scope) and redeploy.
+3. Team: open the production app with `?dataset=test-devcon-8`, sign in, turn notifications on, star the sessions.
+4. At start minus 15 the scheduled function claims and sends. Check the phones, the rows in `devcon8_session_reminders`, and the dispatch log line (duration, due, claimed, ok, fail).
+5. To repeat, delete that dataset's rows first (the row is the idempotency lock) and reschedule.
+
+Until then: `POST /api/push/test/reminders` (or the team-only "Rehearse reminders" control in the Notifications modal) shows what one account receives at a chosen clock, without the claim, the trigger or the function budget.
+
 ## Research notes
 
 - Netlify: sync functions 10 s default, 26 s on request; scheduled functions carry no payload and run on the published deploy only; background functions 15 min, 202 immediately, retried after 1 and 2 min; Async Workloads: durable steps, 4 retries by default, backoff and jitter, event fan-out. [Background Functions](https://docs.netlify.com/build/functions/background-functions/), [Scheduled Functions](https://docs.netlify.com/build/functions/scheduled-functions/), [Async Workloads](https://docs.netlify.com/build/async-workloads/overview/).

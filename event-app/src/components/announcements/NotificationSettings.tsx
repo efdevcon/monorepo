@@ -10,6 +10,7 @@ import { useOnline } from "@/hooks/useOnline";
 import { CloseButton } from "@/components/Buttons";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { Switch } from "@/components/Switch";
+import { ReminderRehearsal } from "./ReminderRehearsal";
 
 /** One `usePushSubscription()` result, shared by the link and the modal so
  *  the link's icon and the switch always agree. The page owns the instance. */
@@ -187,6 +188,9 @@ export function NotificationSettingsModal({
                 className="mt-3"
               />
             )}
+
+            {/* Team accounts only: rehearse the session reminders. */}
+            <ReminderRehearsal />
           </motion.div>
         </motion.div>
       )}
