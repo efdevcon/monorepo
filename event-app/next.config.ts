@@ -91,6 +91,13 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["lib"],
+  env: {
+    // Public origin baked in at build time (see src/CONFIG.ts). Deploy
+    // previews and branch deploys get their own URL from Netlify's build-only
+    // DEPLOY_PRIME_URL, so push tap-through links from a preview open inside
+    // a preview install; production sets APP_ORIGIN explicitly.
+    APP_ORIGIN: process.env.APP_ORIGIN || process.env.DEPLOY_PRIME_URL || "",
+  },
   experimental: {
     // Keep prefetched route payloads in the client router cache for the whole
     // session (default 5 min). Every tab is a static one-line shell — all data
