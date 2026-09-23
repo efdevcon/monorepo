@@ -196,7 +196,7 @@ type ReminderItem = DeliveryItem & { pair: string };
  * keeps it only until then (never under a minute, so it is not dropped on
  * the spot for a device that is briefly offline).
  */
-const reminderTtlSeconds = (startMs: number, nowMs: number) =>
+export const reminderTtlSeconds = (startMs: number, nowMs: number) =>
   Math.max(60, Math.ceil((startMs - nowMs) / 1000));
 const pairKey = (c: ClaimedRow) => `${c.userId}|${c.sessionId}`;
 
