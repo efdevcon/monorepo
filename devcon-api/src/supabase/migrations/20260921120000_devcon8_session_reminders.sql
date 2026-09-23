@@ -108,6 +108,8 @@ begin
                 and r.event = p_event
                 and r.session_id = d.session_id
            )
+     -- Soonest session first, so a cap never starves the one about to start.
+     order by d.send_at, i.user_id
      limit p_limit
     on conflict (user_id, event, session_id) do nothing
     returning user_id, session_id, session_start
