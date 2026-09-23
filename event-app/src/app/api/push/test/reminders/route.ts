@@ -31,8 +31,10 @@ import {
  *
  * `now` (ISO) defaults to the real clock, `event` (dataset key) to the first
  * configured reminder event, `dryRun` lists what is due and starred without
- * sending. Stars must have synced: star while signed in on a device on that
- * dataset.
+ * sending. `exclude` (session ids) stands in for the claim: a session stays
+ * due for 15 minutes, so a caller walking the clock passes the ids already
+ * sent in this run or gets them again every minute. Stars must have synced:
+ * star while signed in on a device on that dataset.
  */
 export async function POST(request: NextRequest) {
   const auth = await requireEthereumOrg(request);
@@ -43,7 +45,13 @@ export async function POST(request: NextRequest) {
       now?: unknown;
       event?: unknown;
       dryRun?: unknown;
+      exclude?: unknown;
     };
+    const exclude = new Set(
+      Array.isArray(body.exclude)
+        ? body.exclude.filter((id): id is string => typeof id === "string")
+        : []
+    );
     const nowMs = typeof body.now === "string" ? Date.parse(body.now) : Date.now();
     if (!Number.isFinite(nowMs)) {
       return NextResponse.json(
@@ -77,7 +85,7 @@ export async function POST(request: NextRequest) {
         .in("item_id", due.map((s) => s.id));
       if (error) throw new Error(error.message);
       const starred = new Set((data ?? []).map((r) => r.item_id as string));
-      mine = due.filter((s) => starred.has(s.id));
+      mine = due.filter((s) => starred.has(s.id) && !exclude.has(s.id));
     }
     const subs = await getSubscriptionsForUsers([auth.userId]);
 
@@ -100,7 +108,9 @@ export async function POST(request: NextRequest) {
         body.dryRun === true
           ? "dry run, nothing sent"
           : mine.length === 0
-            ? "none of the due sessions is starred by this account (synced stars only)"
+            ? exclude.size > 0
+              ? "nothing new: the due sessions were already sent in this run"
+              : "none of the due sessions is starred by this account (synced stars only)"
             : "this account has no push subscription";
       return NextResponse.json({ success: true, data: { ...base, sent: 0, ok: 0, fail: 0, note } });
     }

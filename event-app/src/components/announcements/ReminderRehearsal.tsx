@@ -44,6 +44,9 @@ export function ReminderRehearsal() {
   const [minutes, setMinutes] = useState(20);
   const [running, setRunning] = useState(false);
   const [log, setLog] = useState<LogLine[]>([]);
+  // The clock the running rehearsal started from (the label must not drift
+  // with the live clock mid-run).
+  const [baseMs, setBaseMs] = useState<number | null>(null);
   const runRef = useRef(0);
 
   useEffect(() => () => {
@@ -62,13 +65,18 @@ export function ReminderRehearsal() {
   const stop = () => {
     runRef.current++;
     setRunning(false);
+    setBaseMs(null);
   };
 
   const start = async () => {
     const run = ++runRef.current;
     const base = nowMs;
     const ticks = Math.max(1, Math.min(180, Math.round(minutes)));
+    // Stands in for the claim rows: a session is due for 15 minutes but the
+    // dispatcher sends it once, so this run never asks for it twice.
+    const sent = new Set<string>();
     setRunning(true);
+    setBaseMs(base);
     setLog([]);
     try {
       for (let i = 0; i <= ticks && runRef.current === run; i++) {
@@ -81,18 +89,25 @@ export function ReminderRehearsal() {
           const res = await fetch("/api/push/test/reminders", {
             method: "POST",
             headers,
-            body: JSON.stringify({ now: new Date(mock).toISOString(), event: dataset.key }),
+            body: JSON.stringify({
+              now: new Date(mock).toISOString(),
+              event: dataset.key,
+              exclude: [...sent],
+            }),
           });
           const json = (await res.json()) as { success: boolean; data?: TickResult; error?: string };
           if (runRef.current !== run) return;
           if (!json.success || !json.data) throw new Error(json.error || `HTTP ${res.status}`);
           const d = json.data;
+          for (const m of d.mine) sent.add(m.id);
           const text =
             d.sent > 0
               ? `${d.sent} sent to ${d.devices} device${d.devices === 1 ? "" : "s"} (${d.ok} ok, ${d.fail} failed): ${d.mine.map((m) => m.title).join(", ")}`
               : d.due.length === 0
                 ? "nothing due"
-                : `${d.due.length} due, none starred`;
+                : d.note?.startsWith("nothing new")
+                  ? "nothing new"
+                  : `${d.due.length} due, none starred`;
           setLog((prev) => [{ tick: i, at, text }, ...prev]);
         } catch (err) {
           if (runRef.current !== run) return;
@@ -101,7 +116,10 @@ export function ReminderRehearsal() {
         if (i < ticks) await new Promise((r) => setTimeout(r, TICK_MS));
       }
     } finally {
-      if (runRef.current === run) setRunning(false);
+      if (runRef.current === run) {
+        setRunning(false);
+        setBaseMs(null);
+      }
     }
   };
 
@@ -131,7 +149,7 @@ export function ReminderRehearsal() {
             onChange={(e) => setMinutes(Number(e.target.value))}
             className="w-16 rounded-md border border-dc-hairline bg-white px-2 py-1 text-[14px] leading-5 text-dc-fg2 disabled:opacity-40"
           />
-          min from {clock.format(new Date(nowMs))}
+          min from {clock.format(new Date(baseMs ?? nowMs))}
         </label>
         {running ? (
           <button
