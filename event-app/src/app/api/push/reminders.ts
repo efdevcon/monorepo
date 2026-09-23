@@ -190,6 +190,14 @@ export interface ReminderDispatchResult {
 }
 
 type ReminderItem = DeliveryItem & { pair: string };
+
+/**
+ * A reminder is worthless once the session has started: the push service
+ * keeps it only until then (never under a minute, so it is not dropped on
+ * the spot for a device that is briefly offline).
+ */
+const reminderTtlSeconds = (startMs: number, nowMs: number) =>
+  Math.max(60, Math.ceil((startMs - nowMs) / 1000));
 const pairKey = (c: ClaimedRow) => `${c.userId}|${c.sessionId}`;
 
 async function dispatchForDataset(
@@ -251,8 +259,9 @@ async function dispatchForDataset(
       payload = buildReminderPayload(session, ds.timezone, nowMs);
       payloads.set(session.id, payload);
     }
+    const ttl = reminderTtlSeconds(session.startMs, nowMs);
     for (const sub of subsByUser.get(c.userId) ?? []) {
-      items.push({ pair: pairKey(c), sub, payload });
+      items.push({ pair: pairKey(c), sub, payload, ttl });
     }
   }
 

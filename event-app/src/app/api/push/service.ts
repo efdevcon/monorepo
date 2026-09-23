@@ -29,6 +29,14 @@ const FAILURE_THRESHOLD = 5;
 /** Reclaim rows stuck in `sending` after this long (dispatcher crash). */
 export const STALL_MS = 10 * 60 * 1000;
 const TTL_SECONDS = 3600;
+/** Per-request socket timeout: a hung push service must not eat the run budget. */
+const SEND_TIMEOUT_MS = 10_000;
+/**
+ * Page size for subscriber reads. Supabase silently truncates any select at
+ * the project's Max Rows (1,000 by default), so reads page with `range()`
+ * and stay under that ceiling.
+ */
+const SUBSCRIPTION_PAGE = 500;
 
 export interface PushSubscriptionRow {
   endpoint: string;
@@ -98,7 +106,8 @@ type SendOutcome = { ok: true } | { ok: false; gone: boolean; code: string };
 
 async function sendOnce(
   sub: PushSubscriptionRow,
-  payload: string
+  payload: string,
+  ttl: number
 ): Promise<SendOutcome> {
   try {
     await webpush.sendNotification(
@@ -107,7 +116,7 @@ async function sendOnce(
         keys: { p256dh: sub.p256dh, auth: sub.auth },
       },
       payload,
-      { TTL: TTL_SECONDS, urgency: "high" }
+      { TTL: ttl, urgency: "high", timeout: SEND_TIMEOUT_MS }
     );
     return { ok: true };
   } catch (err) {
@@ -125,13 +134,14 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function sendWithRetry(
   sub: PushSubscriptionRow,
-  payload: string
+  payload: string,
+  ttl: number
 ): Promise<SendOutcome> {
-  let outcome = await sendOnce(sub, payload);
+  let outcome = await sendOnce(sub, payload, ttl);
   for (const delay of RETRY_DELAYS_MS) {
     if (outcome.ok || outcome.gone || !RETRYABLE.has(outcome.code)) break;
     await sleep(delay);
-    outcome = await sendOnce(sub, payload);
+    outcome = await sendOnce(sub, payload, ttl);
   }
   return outcome;
 }
@@ -147,6 +157,12 @@ export interface FanOutResult {
 export interface DeliveryItem {
   sub: PushSubscriptionRow;
   payload: string;
+  /**
+   * Seconds the push service keeps the message for an offline device;
+   * default one hour. Time-bound messages (a "starts in 15 minutes"
+   * reminder) pass the seconds left, so a late device never gets a stale one.
+   */
+  ttl?: number;
 }
 
 export interface Delivery<T extends DeliveryItem = DeliveryItem> {
@@ -166,7 +182,9 @@ export async function deliver<T extends DeliveryItem>(
   for (let i = 0; i < items.length; i += CHUNK_SIZE) {
     const chunk = items.slice(i, i + CHUNK_SIZE);
     const outcomes = await Promise.all(
-      chunk.map((item) => sendWithRetry(item.sub, item.payload))
+      chunk.map((item) =>
+        sendWithRetry(item.sub, item.payload, item.ttl ?? TTL_SECONDS)
+      )
     );
     outcomes.forEach((outcome, j) => results.push({ item: chunk[j], outcome }));
   }
@@ -275,17 +293,28 @@ export async function fanOut(
 export async function getSubscriptions(options: {
   teamOnly?: boolean;
 }): Promise<PushSubscriptionRow[]> {
-  let query = getSupabase()
-    .from("devcon8_push_subscriptions")
-    .select("endpoint, p256dh, auth, user_id, is_team");
-  if (options.teamOnly) query = query.eq("is_team", true);
-  const { data, error } = await query;
-  if (error) throw new Error(`subscription query failed: ${error.message}`);
-  return data ?? [];
+  const rows: PushSubscriptionRow[] = [];
+  // Ordered by the primary key so pages never overlap or skip.
+  for (let from = 0; ; from += SUBSCRIPTION_PAGE) {
+    let query = getSupabase()
+      .from("devcon8_push_subscriptions")
+      .select("endpoint, p256dh, auth, user_id, is_team")
+      .order("endpoint")
+      .range(from, from + SUBSCRIPTION_PAGE - 1);
+    if (options.teamOnly) query = query.eq("is_team", true);
+    const { data, error } = await query;
+    if (error) throw new Error(`subscription query failed: ${error.message}`);
+    rows.push(...(data ?? []));
+    if (!data || data.length < SUBSCRIPTION_PAGE) break;
+  }
+  return rows;
 }
 
-/** Keeps each `.in()` filter short enough for PostgREST's URL. */
-const USER_ID_CHUNK = 200;
+/**
+ * Keeps each `.in()` filter short enough for PostgREST's URL and its result
+ * under the Max Rows ceiling even at ten devices per account.
+ */
+const USER_ID_CHUNK = 100;
 
 /** Every subscription of the given accounts (session reminders target users, not the world). */
 export async function getSubscriptionsForUsers(
