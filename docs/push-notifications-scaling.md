@@ -11,12 +11,23 @@ Netlify scheduled function (every minute) → `POST /api/push/dispatch` (synchro
 | Limit | Where | Effect |
 |---|---|---|
 | Sync function budget, 10 s default (26 s on request) | Netlify | Every fan-out must finish inside one call, announcements and reminders together |
-| 150 fresh reminder pairs per run per event | `reminders.ts` `MAX_REMINDERS_PER_RUN` | 2,250 (user, session) pairs per 15-minute window, shared by all sessions starting in it; the rest get no push, silently |
+| 150 fresh reminder pairs per run per event | `reminders.ts` `MAX_REMINDERS_PER_RUN` | 1,500 (user, session) pairs per 10-minute window, shared by all sessions starting in it; the rest get no push, silently |
 | No `order by` in the claim | migration RPC | Which pairs win under the cap is arbitrary |
 | Unbounded subscriber select | `service.ts` `getSubscriptions` | Supabase returns at most 1,000 rows (project Max Rows), so an announcement reaches the first 1,000 subscriptions only |
 | Fixed retry delays, no request timeout | `service.ts` `sendWithRetry` | 429 is not paced by `Retry-After`; a hung socket eats the run budget |
-| One TTL for everything | `service.ts` | A late device can receive "starts in 15 minutes" after the session started |
+| One TTL for everything | `service.ts` | A late device can receive "starts in 10 minutes" after the session started |
 | Bookkeeping once per batch | `reminders.ts`, `service.ts` | A crash mid fan-out re-sends the whole batch on reclaim |
+
+Stall windows: a row left in `sending` by a crashed run is reclaimed after `STALL_MS` (10 min) for announcements, but after `REMINDER_STALL_MS` (2 min, `service.ts`) for reminders. A reminder is claimed at start minus 10, so a 10-minute window would first reclaim at the session start, exactly when the claim RPC retires the row as `skipped`. A sync function cannot outlive 26 s, so 2 minutes safely means the run is dead; keep it well under the lead.
+
+## Notification preferences (per device)
+
+Each `devcon8_push_subscriptions` row carries two flags (migration `20260923120000_devcon8_push_subscription_prefs.sql`): `announcements` (default on) and `reminders` (default off, opt-in). A row exists only while at least one is on; turning the last one off unsubscribes the browser and deletes the row. The client (`usePushSubscription`: `prefs`, `setPref`) writes them through `POST /api/push/subscriptions` (optional `prefs`, sets only the fields given, so re-subscribing never resets a flag), `PATCH` (rejects both off) and reads them back through `POST /api/push/subscriptions/prefs`; rotation carries both flags to the new endpoint.
+
+Where the filters live:
+
+- Announcements: `getSubscriptions({ announcements: true })` in `dispatchDueAnnouncements`. The team test-send (`/api/push/test`) ignores the flags and goes to every `is_team` device.
+- Reminders: inside `devcon8_session_reminders_claim` (the subscription `exists` check requires `p.reminders`, backed by a partial index), so the 150-per-run cap is spent only on accounts with an opted-in device and no empty `sent` rows are written; `getSubscriptionsForUsers` then returns only the opted-in devices. The rehearsal route applies the same filter and says so when every device of the caller has reminders off.
 
 ## What to watch during the test
 
@@ -38,8 +49,8 @@ Everything as in November, only the sessions are moved; no code involved.
 
 1. In the Pretalx test event (`test-devcon-8`), schedule two or three sessions 30 to 40 minutes ahead, two in the same minute, and publish. Allow about ten minutes for the webhook sync and the API redeploy.
 2. On the production Netlify site set `PUSH_REMINDER_EVENTS=devcon8,test-devcon-8` (Functions scope) and redeploy.
-3. Team: open the production app with `?dataset=test-devcon-8`, sign in, turn notifications on, star the sessions.
-4. At start minus 15 the scheduled function claims and sends. Check the phones, the rows in `devcon8_session_reminders`, and the dispatch log line (duration, due, claimed, ok, fail).
+3. Team: open the production app with `?dataset=test-devcon-8`, sign in, turn session reminders on in the Notifications modal (they are opt-in per device), star the sessions.
+4. At start minus 10 the scheduled function claims and sends. Check the phones, the rows in `devcon8_session_reminders`, and the dispatch log line (duration, due, claimed, ok, fail).
 5. To repeat, delete that dataset's rows first (the row is the idempotency lock) and reschedule.
 
 Until then: `POST /api/push/test/reminders` (or the team-only "Rehearse reminders" control in the Notifications modal) shows what one account receives at a chosen clock, without the claim, the trigger or the function budget.

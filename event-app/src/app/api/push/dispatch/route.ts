@@ -9,7 +9,7 @@ import { CACHE_TAG } from "../../announcements/service";
  * (netlify/functions/push-dispatch.mts) and gated by PUSH_DISPATCH_SECRET.
  * Claims due announcements atomically and fans out — see service.ts for the
  * crash-safety design — and, independently, the session reminders for
- * starred sessions entering their 15-minute window (reminders.ts). Safe to
+ * starred sessions entering their 10-minute window (reminders.ts). Safe to
  * call concurrently or manually (idempotent: a second caller claims nothing).
  */
 export const dynamic = "force-dynamic";

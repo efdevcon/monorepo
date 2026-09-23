@@ -1,9 +1,9 @@
 /**
  * Session reminders ("your starred session starts soon"): the pure parts.
  * Shared by the push dispatcher (server, src/app/api/push/reminders.ts), the
- * Personal tab of the announcements inbox (client, useSessionReminders.ts)
- * and scripts/test-data.ts — so no React, no DOM and no helper that reads the
- * URL or `window` (eventFmt does; the timezone is passed in here instead).
+ * inbox (client, useSessionReminders.ts) and scripts/test-data.ts — so no
+ * React, no DOM and no helper that reads the URL or `window` (eventFmt does;
+ * the timezone is passed in here instead).
  *
  * Units: everything in this module is epoch MILLISECONDS. The bundle's
  * `slot_start` is ms; the client's materialised `Session.start` is SECONDS and
@@ -12,7 +12,7 @@
 import type { Session } from "@/data/models";
 
 /** How long before a starred session starts the reminder goes out / appears. */
-export const REMINDER_LEAD_MS = 15 * 60_000;
+export const REMINDER_LEAD_MS = 10 * 60_000;
 export const REMINDER_LEAD_MINUTES = REMINDER_LEAD_MS / 60_000;
 
 /**
@@ -33,7 +33,7 @@ export function dueSessions<T extends { startMs: number }>(
   );
 }
 
-/** One Personal-tab item, derived on the device from a starred session. */
+/** One inbox reminder item, derived on the device from a starred session. */
 export interface ReminderItem {
   /** `reminderId(sessionId)` — the seen-state key. */
   id: string;
@@ -47,7 +47,7 @@ export interface ReminderItem {
 }
 
 /**
- * The Personal tab's items: starred sessions whose reminder time has passed,
+ * The inbox's reminder items: starred sessions whose reminder time has passed,
  * newest first (like the inbox). Sessions that already started or ended stay
  * listed — a reminder is history, like a sent announcement.
  */
@@ -92,10 +92,10 @@ export function formatWallClock(ms: number, timeZone: string): string {
 }
 
 /**
- * Push body: "<title> starts in 15 minutes at 13:00, on Stage 1". The room
+ * Push body: "<title> starts in 10 minutes at 13:00, on Stage 1". The room
  * clause is dropped when the room is unknown. The minute count is the real
  * remaining time (ceil, clamped to 1..LEAD) so a star added inside the window
- * doesn't claim "15 minutes" at 12:58.
+ * doesn't claim "10 minutes" at 12:58.
  */
 export function reminderBody(
   title: string,

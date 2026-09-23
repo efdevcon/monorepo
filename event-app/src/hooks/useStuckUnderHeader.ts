@@ -10,7 +10,7 @@ import { headerOffsetNow } from "./useIsDesktop";
  * corners, reveal pinned-only controls). One rAF-throttled scroll/resize
  * listener; sticky clamps rect.top at the offset, so <= offset+1 means
  * stuck. Hidden tab panes must not measure on every scroll of another tab,
- * hence the pane-active gate. Shared by DayTabs and AnnouncementTabs.
+ * hence the pane-active gate. Used by DayTabs.
  */
 export function useStuckUnderHeader(ref: RefObject<HTMLElement | null>): boolean {
   const [stuck, setStuck] = useState(false);

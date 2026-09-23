@@ -1,26 +1,39 @@
 "use client";
 
-import { useEffect, useId } from "react";
+import { useEffect, useId, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bell, BellOff, BellRing, Share, Smartphone } from "lucide-react";
+import { BellOff, Settings, Share, Smartphone } from "lucide-react";
 import cn from "classnames";
-import type { usePushSubscription } from "@/data/push/usePushSubscription";
+import type {
+  PushPrefKind,
+  usePushSubscription,
+} from "@/data/push/usePushSubscription";
 import { REMINDER_LEAD_MINUTES } from "@/data/reminders/reminders";
 import { useOnline } from "@/hooks/useOnline";
+import { isIOS } from "@/utils/platform";
 import { CloseButton } from "@/components/Buttons";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { Switch } from "@/components/Switch";
 import { ReminderRehearsal } from "./ReminderRehearsal";
 
 /** One `usePushSubscription()` result, shared by the link and the modal so
- *  the link's icon and the switch always agree. The page owns the instance. */
+ *  the link's icon and the switches always agree. The page owns the instance. */
 export type PushSettings = ReturnType<typeof usePushSubscription>;
 
 /**
- * "Notifications" entry point in the inbox's tabs row: opens the settings
- * modal. Nothing to offer while detecting or signed out (the subscriptions
- * API needs a session), so it renders nothing then — same rule the old
- * always-visible card had.
+ * Whether to offer a settings entry point at all: nothing while detecting or
+ * signed out, since the subscriptions API needs a session — same rule the
+ * old always-visible card had. Shared by the desktop link below and the
+ * page's mobile header pill.
+ */
+export const canOpenNotificationSettings = (push: PushSettings) =>
+  push.signedIn && push.state !== "loading";
+
+/**
+ * Desktop entry to the notification settings, beside the Notifications
+ * page's h1: a purple "Settings" text button (labelled Settings, not
+ * Notifications, since the page itself now carries that name) that opens
+ * the modal. The mobile equivalent is the page's header pill.
  */
 export function NotificationSettingsLink({
   push,
@@ -29,31 +42,127 @@ export function NotificationSettingsLink({
   push: PushSettings;
   onOpen: () => void;
 }) {
-  if (!push.signedIn || push.state === "loading") return null;
-  const Icon = push.state === "on" ? BellRing : Bell;
+  if (!canOpenNotificationSettings(push)) return null;
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-haspopup="dialog"
-      className="flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded py-2 font-heading text-[14px] font-bold leading-none text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
+      aria-label="Notification settings"
+      className="flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded py-2 font-heading text-[16px] font-bold leading-none text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
     >
-      <Icon className="size-4" />
-      Notifications
+      <Settings className="size-4" />
+      Settings
     </button>
   );
 }
 
 const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
 
+/** What the hook reports while "on" before any flags are known (the
+ *  server's column defaults); the hook already falls back to these, this
+ *  only guards the type. */
+const DEFAULT_PREFS: Record<PushPrefKind, boolean> = {
+  announcements: true,
+  reminders: false,
+};
+
 /**
- * Notification preferences modal: one iOS-style switch for push on this
- * device, with the state's explanation under it. The switch is live only in
- * the `off` / `on` states; a context that can't push (desktop browser, iOS
- * tab not yet installed, permission denied) shows why with the switch
- * disabled. Never auto-prompts — the permission dialog only appears on the
- * switch tap. Same shell as the ticket QR modal: centred, backdrop click
- * and Escape close.
+ * Why a context that can't push shows both switches disabled. Shown once,
+ * under the rows, for the non-toggleable states only; "off" / "on" need no
+ * extra words because each row's helper already says what it does.
+ */
+function stateNote(state: PushSettings["state"]) {
+  switch (state) {
+    case "requires-install":
+      return {
+        Icon: Share,
+        text: "To get announcements and session reminders on iOS, add the app to your Home Screen first (Share → Add to Home Screen).",
+      };
+    case "denied":
+      return {
+        Icon: BellOff,
+        text: isIOS()
+          ? "Notifications are blocked for this app, so announcements and session reminders can't reach you. Allow them in Settings → Notifications, under this app."
+          : "Notifications are blocked for this site, so announcements and session reminders can't reach you. Allow them in your browser settings.",
+      };
+    case "unsupported":
+      return {
+        Icon: Smartphone,
+        text: "This browser can't receive push notifications. Install the app on your phone to get them.",
+      };
+    default:
+      return null;
+  }
+}
+
+/**
+ * One notification type: bold title, helper text under it, switch on the
+ * right. While its own change is in flight the helper swaps to
+ * "Enabling…" / "Turning off…" (the first switch turned on is also the
+ * permission prompt, so that can sit a while). The switch is described by
+ * the helper plus, in a context that can't push, the shared state note.
+ */
+function PrefRow({
+  title,
+  helper,
+  checked,
+  onChange,
+  disabled,
+  busy,
+  noteId,
+  className,
+}: {
+  title: string;
+  helper: ReactNode;
+  checked: boolean;
+  onChange: (next: boolean) => void;
+  disabled: boolean;
+  busy: boolean;
+  noteId?: string;
+  className?: string;
+}) {
+  const helperId = useId();
+  return (
+    <div className={cn("flex items-start justify-between gap-4", className)}>
+      <div className="min-w-0">
+        <span className="block text-[16px] font-bold leading-6 text-dc-fg2">
+          {title}
+        </span>
+        <div
+          id={helperId}
+          className={cn(
+            "mt-1 text-[14px] leading-5",
+            disabled ? "text-dc-muted" : "text-dc-fg2"
+          )}
+        >
+          {busy ? (checked ? "Turning off…" : "Enabling…") : helper}
+        </div>
+      </div>
+      <Switch
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        busy={busy}
+        aria-label={title}
+        aria-describedby={noteId ? `${helperId} ${noteId}` : helperId}
+      />
+    </div>
+  );
+}
+
+/**
+ * Notification preferences modal: two peer iOS-style switches for this
+ * device, Announcements and Session reminders. There's no master switch —
+ * the first one turned on asks for permission and subscribes with only that
+ * type, turning the last one off unsubscribes, anything in between just
+ * updates the device's flags (all in `push.setPref`). The switches are live
+ * only in the `off` / `on` states; a context that can't push (desktop
+ * browser, iOS tab not yet installed, permission denied) shows both
+ * disabled-off with one explanation under them. Session reminders land in
+ * the inbox either way — the switch only controls the push. Never
+ * auto-prompts: the permission dialog only appears on a switch tap. Same
+ * shell as the ticket QR modal: centred, backdrop click and Escape close.
  */
 export function NotificationSettingsModal({
   push,
@@ -64,11 +173,11 @@ export function NotificationSettingsModal({
   open: boolean;
   onClose: () => void;
 }) {
-  const { state, busy, error, subscribe, unsubscribe } = push;
-  // Subscribing/unsubscribing talks to the push service and our API.
+  const { state, busy, error, prefBusy, setPref } = push;
+  // Changing either flag talks to the push service and/or our API.
   const online = useOnline();
   const titleId = useId();
-  const descId = useId();
+  const noteId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -80,37 +189,22 @@ export function NotificationSettingsModal({
   }, [open, onClose]);
 
   const toggleable = state === "off" || state === "on";
-  const on = state === "on";
+  const prefs = state === "on" ? (push.prefs ?? DEFAULT_PREFS) : null;
+  const note = stateNote(state);
 
-  const description = (() => {
-    switch (state) {
-      case "on":
-        return {
-          Icon: BellRing,
-          text: `Notifications are on for this device, including reminders for sessions you're interested in.`,
-        };
-      case "off":
-        return {
-          Icon: Bell,
-          text: `Get notified when the team posts an announcement, and ${REMINDER_LEAD_MINUTES} minutes before a session you're interested in starts.`,
-        };
-      case "requires-install":
-        return {
-          Icon: Share,
-          text: "To get notified about announcements and sessions you're interested in on iOS, add the app to your Home Screen first (Share → Add to Home Screen).",
-        };
-      case "denied":
-        return {
-          Icon: BellOff,
-          text: "Notifications are blocked for this site — allow them in your browser settings to get announcement alerts.",
-        };
-      default:
-        return {
-          Icon: Smartphone,
-          text: "This browser can't receive push notifications. Install the app on your phone to get them.",
-        };
-    }
-  })();
+  // One change at a time: a row whose neighbour is mid-change (or a plain
+  // subscribe()/unsubscribe() from elsewhere) is disabled, not busy.
+  const rowProps = (kind: PushPrefKind) => ({
+    checked: !!prefs?.[kind],
+    onChange: (next: boolean) => void setPref(kind, next),
+    busy: prefBusy === kind,
+    disabled:
+      !toggleable ||
+      !online ||
+      (prefBusy !== null && prefBusy !== kind) ||
+      (busy && prefBusy === null),
+    noteId: note ? noteId : undefined,
+  });
 
   return (
     <AnimatePresence>
@@ -145,39 +239,41 @@ export function NotificationSettingsModal({
               <CloseButton onClick={onClose} />
             </div>
 
-            <div className="mt-5 flex items-center justify-between gap-4">
-              <span className="text-[16px] font-bold leading-6 text-dc-fg2">
-                Push notifications
-              </span>
-              <Switch
-                checked={on}
-                onChange={(next) => (next ? subscribe() : unsubscribe())}
-                disabled={!toggleable || !online}
-                busy={busy}
-                aria-label="Push notifications"
-                aria-describedby={descId}
-              />
-            </div>
+            <PrefRow
+              title="Announcements"
+              helper="Updates from the Devcon team. We keep them rare."
+              className="mt-5"
+              {...rowProps("announcements")}
+            />
+            <PrefRow
+              title="Session reminders"
+              helper={
+                <>
+                  A push {REMINDER_LEAD_MINUTES} minutes before a session
+                  you&apos;re interested in starts.
+                  <span className="mt-1 block text-[12px] leading-4 text-dc-muted">
+                    Reminders always show in your inbox, with or without push.
+                  </span>
+                </>
+              }
+              className="mt-4 border-t border-dc-hairline pt-4"
+              {...rowProps("reminders")}
+            />
 
-            <p
-              id={descId}
-              className={cn(
-                "mt-3 flex items-start gap-2 text-[14px] leading-5",
-                toggleable ? "text-dc-fg2" : "text-dc-muted"
-              )}
-            >
-              <description.Icon
-                className={cn(
-                  "mt-0.5 size-4 shrink-0",
-                  state === "denied" ? "text-dc-muted" : "text-dc-purple"
-                )}
-              />
-              {busy
-                ? on
-                  ? "Turning off…"
-                  : "Enabling…"
-                : description.text}
-            </p>
+            {note && (
+              <p
+                id={noteId}
+                className="mt-4 flex items-start gap-2 text-[14px] leading-5 text-dc-muted"
+              >
+                <note.Icon
+                  className={cn(
+                    "mt-0.5 size-4 shrink-0",
+                    state === "denied" ? "text-dc-muted" : "text-dc-purple"
+                  )}
+                />
+                {note.text}
+              </p>
+            )}
 
             {error && (
               <p className="mt-3 text-[12px] leading-4 text-dc-error">{error}</p>

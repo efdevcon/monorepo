@@ -6,12 +6,13 @@ import { cacheDB } from "@/data/cache/cache-db";
 /** Unread badges only count unseen items from the last 3 days. */
 export const UNREAD_WINDOW_MS = 3 * 24 * 60 * 60 * 1000;
 
-// Read state for the inbox, shared by both of its tabs: Notion announcements
-// (keyed by page id) and session reminders (keyed `reminder:<sessionId>`,
-// see data/reminders/reminders.ts). One Dexie table, one module-level
-// snapshot loaded once, with subscribers notified on every change — Nav, the
-// home section and the inbox page all mount their own hook instance, and
-// marking one tab read must clear the header badge without a reload.
+// Read state for the inbox, shared by both kinds of item in it: Notion
+// announcements (keyed by page id) and session reminders (keyed
+// `reminder:<sessionId>`, see data/reminders/reminders.ts). One Dexie table,
+// one module-level snapshot loaded once, with subscribers notified on every
+// change — Nav, the home section and the inbox page all mount their own hook
+// instance, and visiting the inbox must clear the header badge without a
+// reload.
 let seenIdsSnapshot: Set<string> | null = null;
 let seenIdsLoad: Promise<void> | null = null;
 const listeners = new Set<() => void>();

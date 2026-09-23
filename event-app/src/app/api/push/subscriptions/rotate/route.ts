@@ -6,7 +6,8 @@ import { getSupabase } from "../../service";
  * the service worker re-subscribed. The SW has no Supabase session, so this
  * endpoint is deliberately unauthenticated — knowledge of the OLD endpoint
  * (an unguessable push-service URL) is the proof of ownership. The new row
- * inherits the old row's user attribution; unknown old endpoints are
+ * inherits the old row's user attribution and notification preferences
+ * (both flags, so a rotation never resets a choice); unknown old endpoints are
  * rejected, so this can't be used to create subscriptions from thin air.
  *
  * Without this, rotated endpoints go permanently dark (unfixed at Devcon SEA).
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
     const db = getSupabase();
     const { data: existing, error: readError } = await db
       .from("devcon8_push_subscriptions")
-      .select("user_id, is_team")
+      .select("user_id, is_team, announcements, reminders")
       .eq("endpoint", oldEndpoint)
       .maybeSingle();
     if (readError) throw new Error(readError.message);
@@ -56,6 +57,8 @@ export async function POST(request: NextRequest) {
           auth,
           user_id: existing.user_id,
           is_team: existing.is_team,
+          announcements: existing.announcements,
+          reminders: existing.reminders,
           updated_at: now,
         },
         { onConflict: "endpoint" }

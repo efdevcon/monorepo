@@ -10,7 +10,7 @@ import {
 /**
  * Team-only test send: pushes one announcement, or one session reminder, to
  * @ethereum.org subscribers only, WITHOUT touching any send state — the real
- * broadcast still happens at Send At / 15 minutes before the session. Cheap
+ * broadcast still happens at Send At / 10 minutes before the session. Cheap
  * insurance against typo broadcasts: check the notification on your own
  * phone before the world gets it.
  *
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
           { status: 404 }
         );
       }
-      // As the real reminder would read 15 minutes before the start.
+      // As the real reminder would read 10 minutes before the start.
       payload = buildReminderPayload(session, ds.timezone);
     } else {
       const { data: announcement, error } = await getSupabase()

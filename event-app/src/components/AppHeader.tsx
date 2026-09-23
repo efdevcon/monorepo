@@ -66,7 +66,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
   if (pathname.startsWith("/map")) return { title: "Map", bare: true };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
-  if (pathname.startsWith("/announcements")) return { title: "Announcements" };
+  if (pathname.startsWith("/announcements")) return { title: "Notifications" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
   if (pathname === "/") return { title: "Home" };
   return { title: APP_CONFIG.APP_NAME };
@@ -88,7 +88,7 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { kind: detailKind } = useDetailView();
   const { user } = useUser();
-  // Event announcements + Personal session reminders, one badge.
+  // Team announcements + session reminders, one badge.
   const unreadCount = useInboxUnreadCount(
     APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/")
   );

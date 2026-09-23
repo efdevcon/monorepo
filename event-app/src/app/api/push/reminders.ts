@@ -1,8 +1,11 @@
 /**
- * Session reminders: push "<title> starts in 15 minutes at 13:00, on Stage 1"
- * to the account's devices. A best-effort accelerant — the Personal tab of the
- * inbox derives the same items on-device from local stars
- * (src/data/reminders/), so a missed push is never a missed reminder.
+ * Session reminders: push "<title> starts in 10 minutes at 13:00, on Stage 1"
+ * to the account's devices. A best-effort accelerant — the inbox derives the
+ * same items on-device from local stars (src/data/reminders/), so a missed
+ * push is never a missed reminder.
+ * - Opt-in: only devices whose subscription row has `reminders` on get one
+ *   (the claim RPC skips accounts with none; getSubscriptionsForUsers
+ *   returns only those devices). Announcements are a separate flag.
  *
  * Design (mirrors the announcement dispatcher in service.ts):
  * - Who: devcon8_interests (stars synced while signed in) joined to
@@ -18,11 +21,12 @@
  *   tick, unstarring after the send does nothing.
  * - Crash-safe: the row is the claim (insert … on conflict do nothing, see
  *   the migration). Rows a crashed run left in `sending` are reclaimed after
- *   STALL_MS while the session is still ahead, retired as `skipped` once it
- *   has begun.
+ *   REMINDER_STALL_MS (2 min, not the announcements' STALL_MS: see
+ *   service.ts) while the session is still ahead, retired as `skipped` once
+ *   it has begun.
  * - Budget: at most MAX_REMINDERS_PER_RUN pairs per run, one bulk `deliver`
- *   and one bookkeeping pass. Leftovers are claimed next minute — the 15-min
- *   window gives 15 runs to drain a spike of same-minute starts.
+ *   and one bookkeeping pass. Leftovers are claimed next minute — the 10-min
+ *   window gives 10 runs to drain a spike of same-minute starts.
  *
  * Server-only (service-role key through service.ts).
  */
@@ -44,7 +48,7 @@ import {
   getSubscriptionsForUsers,
   getSupabase,
   recordDeliveries,
-  STALL_MS,
+  REMINDER_STALL_MS,
   type DeliveryItem,
   type PushSubscriptionRow,
 } from "./service";
@@ -217,7 +221,7 @@ async function dispatchForDataset(
       session_start: new Date(s.startMs).toISOString(),
       send_at: new Date(s.startMs - REMINDER_LEAD_MS).toISOString(),
     })),
-    p_stall_before: new Date(nowMs - STALL_MS).toISOString(),
+    p_stall_before: new Date(nowMs - REMINDER_STALL_MS).toISOString(),
     p_limit: MAX_REMINDERS_PER_RUN,
   });
   if (error) throw new Error(`reminder claim failed: ${error.message}`);

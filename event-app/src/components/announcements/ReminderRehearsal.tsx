@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FlaskConical, Square } from "lucide-react";
+import { Square } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { authHeader } from "@/data/push/usePushSubscription";
 import { getActiveDataset } from "@/data/dataset";
@@ -15,6 +15,8 @@ interface TickResult {
   mine: { id: string; title: string }[];
   due: unknown[];
   devices: number;
+  /** No device of this account has session reminders on (`note` says which case). */
+  remindersOff?: boolean;
   sent: number;
   ok: number;
   fail: number;
@@ -72,7 +74,7 @@ export function ReminderRehearsal() {
     const run = ++runRef.current;
     const base = nowMs;
     const ticks = Math.max(1, Math.min(180, Math.round(minutes)));
-    // Stands in for the claim rows: a session is due for 15 minutes but the
+    // Stands in for the claim rows: a session is due for 10 minutes but the
     // dispatcher sends it once, so this run never asks for it twice.
     const sent = new Set<string>();
     setRunning(true);
@@ -99,9 +101,13 @@ export function ReminderRehearsal() {
           if (runRef.current !== run) return;
           if (!json.success || !json.data) throw new Error(json.error || `HTTP ${res.status}`);
           const d = json.data;
-          for (const m of d.mine) sent.add(m.id);
-          const text =
-            d.sent > 0
+          // Only what actually went out: with reminders off nothing did, so
+          // turning them on mid-run still gets these sessions.
+          if (d.sent > 0) for (const m of d.mine) sent.add(m.id);
+          // Reminders off everywhere wins: nothing will arrive whatever is due.
+          const text = d.remindersOff
+            ? (d.note ?? "Session reminders are off on all your devices")
+            : d.sent > 0
               ? `${d.sent} sent to ${d.devices} device${d.devices === 1 ? "" : "s"} (${d.ok} ok, ${d.fail} failed): ${d.mine.map((m) => m.title).join(", ")}`
               : d.due.length === 0
                 ? "nothing due"
@@ -126,17 +132,19 @@ export function ReminderRehearsal() {
   return (
     <div className="mt-5 border-t border-dc-hairline pt-4">
       <div className="flex items-center justify-between gap-3">
-        <span className="flex items-center gap-1.5 text-[14px] font-bold leading-5 text-dc-fg2">
-          <FlaskConical className="size-4 text-dc-purple" />
+        <span className="text-[16px] font-bold leading-6 text-dc-fg2">
           Rehearse reminders
         </span>
         <span className="rounded-[2px] bg-dc-lavender px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-purple">
           Team
         </span>
       </div>
-      <p className="mt-2 text-[12px] leading-4 text-dc-muted">
+      <p className="mt-2 text-[14px] leading-5 text-dc-fg2">
         Walks the app clock forward one minute per minute and pushes the reminders you would
-        get, to your devices only. Nothing is recorded. Keep this tab open.
+        get, to your devices only.
+        <span className="mt-1 block text-[12px] leading-4 text-dc-muted">
+          Nothing is recorded. Keep this tab open.
+        </span>
       </p>
       <div className="mt-3 flex items-center gap-2">
         <label className="flex items-center gap-2 text-[14px] leading-5 text-dc-fg2">
@@ -147,7 +155,7 @@ export function ReminderRehearsal() {
             value={minutes}
             disabled={running}
             onChange={(e) => setMinutes(Number(e.target.value))}
-            className="w-16 rounded-md border border-dc-hairline bg-white px-2 py-1 text-[14px] leading-5 text-dc-fg2 disabled:opacity-40"
+            className="h-8 w-16 rounded-md border border-dc-hairline bg-white px-2 text-[14px] leading-5 text-dc-fg2 disabled:opacity-40"
           />
           min from {clock.format(new Date(baseMs ?? nowMs))}
         </label>
@@ -155,7 +163,7 @@ export function ReminderRehearsal() {
           <button
             type="button"
             onClick={stop}
-            className="ml-auto flex cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1.5 text-[13px] font-bold leading-none text-dc-fg2 hover:bg-dc-purple-wash"
+            className="ml-auto flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 text-[13px] font-bold leading-none text-dc-fg2 hover:bg-dc-purple-wash"
           >
             <Square className="size-3.5" />
             Stop
@@ -164,7 +172,7 @@ export function ReminderRehearsal() {
           <button
             type="button"
             onClick={() => void start()}
-            className="ml-auto flex cursor-pointer items-center gap-1.5 rounded-full bg-dc-purple px-3 py-1.5 text-[13px] font-bold leading-none text-white hover:bg-[#6730d5]"
+            className="ml-auto flex h-8 cursor-pointer items-center gap-1.5 rounded-full bg-dc-purple px-3 text-[13px] font-bold leading-none text-white hover:bg-[#6730d5]"
           >
             Start
           </button>

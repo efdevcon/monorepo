@@ -31,8 +31,10 @@ import {
  *
  * `now` (ISO) defaults to the real clock, `event` (dataset key) to the first
  * configured reminder event, `dryRun` lists what is due and starred without
- * sending. `exclude` (session ids) stands in for the claim: a session stays
- * due for 15 minutes, so a caller walking the clock passes the ids already
+ * sending. Like the real run it only reaches devices with session reminders
+ * on; with none, the response says so (`note`) and nothing is sent.
+ * `exclude` (session ids) stands in for the claim: a session stays
+ * due for 10 minutes, so a caller walking the clock passes the ids already
  * sent in this run or gets them again every minute. Stars must have synced:
  * star while signed in on a device on that dataset.
  */
@@ -87,7 +89,21 @@ export async function POST(request: NextRequest) {
       const starred = new Set((data ?? []).map((r) => r.item_id as string));
       mine = due.filter((s) => starred.has(s.id) && !exclude.has(s.id));
     }
+    // Only devices with session reminders on, as in production.
     const subs = await getSubscriptionsForUsers([auth.userId]);
+    // Tell "reminders off everywhere" apart from "no device at all".
+    let anyDevice = subs.length > 0;
+    if (!anyDevice) {
+      const { count, error } = await getSupabase()
+        .from("devcon8_push_subscriptions")
+        .select("endpoint", { count: "exact", head: true })
+        .eq("user_id", auth.userId);
+      if (error) throw new Error(error.message);
+      anyDevice = (count ?? 0) > 0;
+    }
+    const noDevicesNote = anyDevice
+      ? "Session reminders are off on all your devices"
+      : "this account has no push subscription";
 
     const describe = (s: ReminderSession) => ({
       id: s.id,
@@ -101,17 +117,22 @@ export async function POST(request: NextRequest) {
       due: due.map(describe),
       mine: mine.map(describe),
       devices: subs.length,
+      remindersOff: subs.length === 0,
     };
 
     if (body.dryRun === true || mine.length === 0 || subs.length === 0) {
+      // No reminder device outranks the star notes: it is why nothing would
+      // arrive even once something starred is due.
       const note =
         body.dryRun === true
-          ? "dry run, nothing sent"
-          : mine.length === 0
-            ? exclude.size > 0
+          ? subs.length === 0
+            ? `dry run, nothing sent; ${noDevicesNote}`
+            : "dry run, nothing sent"
+          : subs.length === 0
+            ? noDevicesNote
+            : exclude.size > 0
               ? "nothing new: the due sessions were already sent in this run"
-              : "none of the due sessions is starred by this account (synced stars only)"
-            : "this account has no push subscription";
+              : "none of the due sessions is starred by this account (synced stars only)";
       return NextResponse.json({ success: true, data: { ...base, sent: 0, ok: 0, fail: 0, note } });
     }
 

@@ -36,7 +36,7 @@ function useIsPreview(): boolean {
  *
  * Feed: SWR backed by the Dexie cache (src/data/cache), so everything stays
  * readable offline after the first load. Read state: the inbox's shared
- * Dexie-backed snapshot (seenState.ts), also used by the Personal tab.
+ * Dexie-backed snapshot (seenState.ts), shared with the session reminders.
  *
  * Announcements are time-gated against the mockable clock: the server already
  * excludes future rows, but a CDN-cached response plus `?mockNow=` testing

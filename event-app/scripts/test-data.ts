@@ -427,9 +427,9 @@ function testReminders() {
   check("reminders: nothing before the first reminder", deriveReminders(sessions, starred, start - 2 * 3600_000 - REMINDER_LEAD_MS - 1).length === 0);
 
   check("reminders: body in venue time with room",
-    reminderBody("Talk now", start, "Asia/Kolkata", "Stage 1") === "Talk now starts in 15 minutes at 10:00, on Stage 1");
+    reminderBody("Talk now", start, "Asia/Kolkata", "Stage 1") === "Talk now starts in 10 minutes at 10:00, on Stage 1");
   check("reminders: body without room drops the clause",
-    reminderBody("Talk now", start, "Asia/Kolkata") === "Talk now starts in 15 minutes at 10:00");
+    reminderBody("Talk now", start, "Asia/Kolkata") === "Talk now starts in 10 minutes at 10:00");
   check("reminders: body counts the real remaining minutes when claimed late",
     reminderBody("Talk now", start, "Asia/Kolkata", null, start - 4 * 60_000 - 30_000) === "Talk now starts in 5 minutes at 10:00");
   check("reminders: body never says 0 minutes",

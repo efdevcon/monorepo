@@ -28,6 +28,16 @@ const RETRY_DELAYS_MS = [300, 1200];
 const FAILURE_THRESHOLD = 5;
 /** Reclaim rows stuck in `sending` after this long (dispatcher crash). */
 export const STALL_MS = 10 * 60 * 1000;
+/**
+ * The same window for session reminders, which can't afford STALL_MS: a
+ * reminder is claimed at start − 10 min (REMINDER_LEAD_MS), so a 10-minute
+ * stall would first reclaim a crashed run's rows at the session start — the
+ * moment the claim RPC retires them as `skipped` — and recovery would never
+ * happen. A Netlify sync function is killed after 26 s, so a row still in
+ * `sending` 2 minutes on belongs to a run that is certainly dead; this must
+ * stay well under the lead time.
+ */
+export const REMINDER_STALL_MS = 2 * 60 * 1000;
 const TTL_SECONDS = 3600;
 /** Per-request socket timeout: a hung push service must not eat the run budget. */
 const SEND_TIMEOUT_MS = 10_000;
@@ -159,7 +169,7 @@ export interface DeliveryItem {
   payload: string;
   /**
    * Seconds the push service keeps the message for an offline device;
-   * default one hour. Time-bound messages (a "starts in 15 minutes"
+   * default one hour. Time-bound messages (a "starts in 10 minutes"
    * reminder) pass the seconds left, so a late device never gets a stale one.
    */
   ttl?: number;
@@ -290,8 +300,14 @@ export async function fanOut(
   return tally(deliveries);
 }
 
+/**
+ * Every subscription, paged. `announcements` keeps only devices with that
+ * preference on (the broadcast); the team test-send passes `teamOnly` alone,
+ * so it reaches every team device regardless of preferences.
+ */
 export async function getSubscriptions(options: {
   teamOnly?: boolean;
+  announcements?: boolean;
 }): Promise<PushSubscriptionRow[]> {
   const rows: PushSubscriptionRow[] = [];
   // Ordered by the primary key so pages never overlap or skip.
@@ -302,6 +318,7 @@ export async function getSubscriptions(options: {
       .order("endpoint")
       .range(from, from + SUBSCRIPTION_PAGE - 1);
     if (options.teamOnly) query = query.eq("is_team", true);
+    if (options.announcements) query = query.eq("announcements", true);
     const { data, error } = await query;
     if (error) throw new Error(`subscription query failed: ${error.message}`);
     rows.push(...(data ?? []));
@@ -316,7 +333,11 @@ export async function getSubscriptions(options: {
  */
 const USER_ID_CHUNK = 100;
 
-/** Every subscription of the given accounts (session reminders target users, not the world). */
+/**
+ * The given accounts' devices that have session reminders on (reminders
+ * target users, not the world). The claim RPC applies the same flag, so an
+ * account claimed there has at least one such device.
+ */
 export async function getSubscriptionsForUsers(
   userIds: readonly string[]
 ): Promise<PushSubscriptionRow[]> {
@@ -325,7 +346,8 @@ export async function getSubscriptionsForUsers(
     const { data, error } = await getSupabase()
       .from("devcon8_push_subscriptions")
       .select("endpoint, p256dh, auth, user_id, is_team")
-      .in("user_id", userIds.slice(i, i + USER_ID_CHUNK));
+      .in("user_id", userIds.slice(i, i + USER_ID_CHUNK))
+      .eq("reminders", true);
     if (error) throw new Error(`subscription query failed: ${error.message}`);
     rows.push(...(data ?? []));
   }
@@ -380,7 +402,7 @@ export async function dispatchDueAnnouncements(): Promise<DispatchResult> {
     return { claimed: 0, sent: [], subscribers: 0 };
   }
 
-  const subs = await getSubscriptions({});
+  const subs = await getSubscriptions({ announcements: true });
   const sent: DispatchResult["sent"] = [];
 
   for (const announcement of claimed) {

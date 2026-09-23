@@ -36,11 +36,43 @@ export function UnreadDot() {
 }
 
 /**
- * One announcement, in either of the redesign's two shapes:
- * - "inbox" (default, /announcements): date/unread dot top-right in the title
- *   row, CTA bottom-left.
- * - "home" (home preview grid): meta row at the card's bottom — dot + time on
- *   the left, CTA on the right; equal-height across the 3-up grid.
+ * The top row every inbox card shares (both kinds, both variants): a small
+ * text-only uppercase kind label on the left ("Announcement" / "Session
+ * reminder" — with the reminder card's lavender fill, what tells the two
+ * kinds apart in the merged list), the unread dot and the relative time on
+ * the right.
+ */
+export function InboxKindRow({
+  label,
+  time,
+  seen,
+}: {
+  label: string;
+  time: string;
+  seen: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <span className="min-w-0 truncate font-heading text-[11px] font-bold uppercase leading-4 tracking-[0.5px] text-dc-muted">
+        {label}
+      </span>
+      <span className="flex shrink-0 items-center gap-2">
+        {!seen && <UnreadDot />}
+        <span className="font-heading text-xs leading-4 text-dc-muted">
+          {time}
+        </span>
+      </span>
+    </div>
+  );
+}
+
+/**
+ * One team announcement, white on both surfaces (session reminders are the
+ * lavender ones), in either of the redesign's two shapes. Both open with the
+ * InboxKindRow ("Announcement", unread dot, time):
+ * - "inbox" (default, /announcements): title, message, CTA bottom-left.
+ * - "home" (home preview grid): compact type, the CTA bottom-right;
+ *   equal-height across the 3-up grid.
  */
 export function AnnouncementCard({
   announcement,
@@ -56,6 +88,13 @@ export function AnnouncementCard({
   const link = url ? resolveAnnouncementLink(url) : null;
   const external = !!link?.external;
   const time = relativeTime(sendAt, nowMs);
+  const kindRow = (
+    <InboxKindRow
+      label="Announcement"
+      time={time}
+      seen={seen}
+    />
+  );
 
   // Linked cards get a purple border + CTA underline (`group`) on hover;
   // cards without a url stay fully inert. Only the home-preview variant also
@@ -75,7 +114,8 @@ export function AnnouncementCard({
         )}
       >
         <div>
-          <p className="font-heading text-sm font-bold leading-5 text-dc-fg2">
+          {kindRow}
+          <p className="mt-2 font-heading text-sm font-bold leading-5 text-dc-fg2">
             {title}
           </p>
           {message && (
@@ -84,15 +124,11 @@ export function AnnouncementCard({
             </p>
           )}
         </div>
-        <div className="flex items-center justify-between">
-          <span className="flex items-center gap-2">
-            {!seen && <UnreadDot />}
-            <span className="font-heading text-xs leading-4 text-dc-muted">
-              {time}
-            </span>
-          </span>
-          {link && <Cta external={external} mini />}
-        </div>
+        {link && (
+          <div className="flex justify-end">
+            <Cta external={external} mini />
+          </div>
+        )}
       </div>
     ) : (
       <div
@@ -101,17 +137,10 @@ export function AnnouncementCard({
           link && interactive
         )}
       >
-        <div className="flex items-center justify-between gap-3">
-          <p className="min-w-0 font-heading text-base font-bold leading-6 text-dc-fg2">
-            {title}
-          </p>
-          <span className="flex shrink-0 items-center gap-2">
-            {!seen && <UnreadDot />}
-            <span className="font-heading text-xs leading-4 text-dc-muted">
-              {time}
-            </span>
-          </span>
-        </div>
+        {kindRow}
+        <p className="mt-2 font-heading text-base font-bold leading-6 text-dc-fg2">
+          {title}
+        </p>
         {message && (
           <p className="mt-2 whitespace-pre-line font-heading text-sm leading-5 text-dc-fg2">
             {message}

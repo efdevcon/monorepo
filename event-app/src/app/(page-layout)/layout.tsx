@@ -7,6 +7,8 @@ import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
 import { TabPanes } from "@/components/TabPanes";
+import { PushOnboardingSheet } from "@/components/onboarding/PushOnboardingSheet";
+import { PushProvider } from "@/data/push/PushProvider";
 
 /**
  * `useSearchParams` needs a Suspense boundary on statically rendered routes.
@@ -33,6 +35,8 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
   const isKiosk = pathname.startsWith("/room-screens/");
 
   return (
+    // One shared push state for the header, inbox and onboarding sheet.
+    <PushProvider>
     <IntroSplash>
       {/* Fixed gradient underlay behind all pages (Figma page background). */}
       <div className="app-bg" aria-hidden />
@@ -53,6 +57,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
           onToggle={(visible) => setDevaBotOpen(visible)}
         />
       )}
+      {/* One-time "turn on notifications" ask after install (not on the TV kiosk). */}
+      {!isKiosk && <PushOnboardingSheet />}
     </IntroSplash>
+    </PushProvider>
   );
 }

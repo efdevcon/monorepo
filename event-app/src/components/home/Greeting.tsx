@@ -29,14 +29,14 @@ const ROTATE_MS = 5_000;
 
 type AuthProps = {
   user: ReturnType<typeof useUser>["user"];
-  /** Unread inbox items (Event announcements + Personal reminders). */
+  /** Unread inbox items (team announcements + session reminders). */
   unread: number;
 };
 
 /**
  * Round bell linking to the inbox, with the unread count as a pill on its
- * shoulder (the same 16px purple pill the inbox tabs use, so the two
- * counters read as one). Signing out moved to the Me tab; this is the
+ * shoulder (the same 16px purple pill as the desktop nav's Notifications
+ * badge, so the two counters read as one). Signing out moved to the Me tab; this is the
  * signed-in control on the home page at both breakpoints.
  */
 function BellLink({
@@ -48,8 +48,8 @@ function BellLink({
 }) {
   const label =
     unread > 0
-      ? `Announcements, ${unread} unread`
-      : "Announcements";
+      ? `Notifications, ${unread} unread`
+      : "Notifications";
   return (
     <Link
       href="/announcements"

@@ -74,11 +74,13 @@ export const NAV_ITEMS: NavItem[] = [
     enabled: true,
   },
   {
-    // Mobile reaches announcements via the home-screen section; the bottom
+    // Mobile reaches the Notifications inbox via the home-screen section; the bottom
     // pill is already at capacity.
     href: "/announcements",
-    label: "Announcements",
-    short: "News",
+    // "Notifications": team announcements and session reminders in one
+    // inbox. The route keeps its /announcements path.
+    label: "Notifications",
+    short: "Notifications",
     icon: Bell,
     enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
     hideOnMobile: true,

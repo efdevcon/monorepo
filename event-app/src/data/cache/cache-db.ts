@@ -127,6 +127,16 @@ export interface InterestSyncMeta {
   lastSyncAt: number;
 }
 
+/**
+ * A small device-local preference or flag (src/data/prefs.ts). Generic on
+ * purpose: one table for every key (notification preferences, onboarding
+ * state, …) instead of a table per feature.
+ */
+export interface PrefRow {
+  key: string;
+  value: unknown;
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
@@ -135,6 +145,7 @@ class CacheDB extends Dexie {
   interested!: Table<InterestedSession, [string, string]>;
   interestedSpeakers!: Table<InterestedSpeaker, [string, string]>;
   interestSync!: Table<InterestSyncMeta, string>;
+  prefs!: Table<PrefRow, string>;
   // v7: normalised event catalogue (EventStore). One row per session /
   // speaker / room per event, plus one meta row (version, sync times).
   eventSessions!: Table<SessionRow, [string, string]>;
@@ -203,6 +214,10 @@ class CacheDB extends Dexie {
         await tx.table("interested").toCollection().modify(stamp);
         await tx.table("interestedSpeakers").toCollection().modify(stamp);
       });
+    // v9: generic device-local preferences, keyed by name (data/prefs.ts).
+    this.version(9).stores({
+      prefs: "&key",
+    });
   }
 }
 
