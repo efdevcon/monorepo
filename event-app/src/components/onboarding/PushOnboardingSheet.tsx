@@ -32,7 +32,7 @@ import { whenIntroSplashDone } from "@/components/IntroSplash";
  * Once per device: the Dexie pref PREF_KEY is written the moment it opens,
  * so "Not now", the scrim, Escape, a crash or killing the app all count as
  * shown. There is no re-nudge; later changes happen in the Notifications
- * modal on /announcements.
+ * strip at the top of /notifications.
  *
  * Steps (no wizard chrome, one card at a time):
  * - signed out: "Sign in to get updates". The subscriptions API needs an

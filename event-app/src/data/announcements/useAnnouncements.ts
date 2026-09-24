@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { cacheDB } from "@/data/cache/cache-db";
-import { useRealWorldNowMs } from "@/hooks/useNow";
+import { useNowMs } from "@/hooks/useNow";
 import { markSeen, UNREAD_WINDOW_MS, useSeenIds } from "./seenState";
 import type { Announcement, AnnouncementsResponse } from "./types";
 
@@ -49,7 +49,11 @@ function useIsPreview(): boolean {
 export function useAnnouncements(options: { enabled?: boolean } = {}) {
   const enabled = options.enabled ?? true;
   const preview = useIsPreview();
-  const nowMs = useRealWorldNowMs(60_000);
+  // The app clock, mock included: under `?mockNow=` or the preview's
+  // event-start mock, announcements reveal, group and age on the same clock
+  // as the schedule and the reminders (Didier, 2026-09-24; the Notion test
+  // rows are dated inside the devcon-7 mock window for that).
+  const nowMs = useNowMs(60_000);
 
   const { data, error, isValidating, mutate } = useSWR(
     enabled ? ["announcements", preview ? "preview" : "published"] : null,

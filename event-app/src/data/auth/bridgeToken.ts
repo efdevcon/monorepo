@@ -16,9 +16,14 @@ interface BridgePayload {
  * not baked in here, so this token stays useful even if opened long after
  * minting (unlike a raw magic link, which has its own short expiry).
  */
-export function signBridgeToken(email: string): string {
+/**
+ * `ttlMs` defaults to the 24h install-manifest lifetime; callers that show
+ * the token somewhere it can be photographed (the desktop card's QR) pass a
+ * short one and re-mint.
+ */
+export function signBridgeToken(email: string, ttlMs: number = TTL_MS): string {
   if (!SECRET) throw new Error("INSTALL_BRIDGE_SECRET not configured");
-  const payload: BridgePayload = { email, exp: Date.now() + TTL_MS };
+  const payload: BridgePayload = { email, exp: Date.now() + Math.min(Math.max(ttlMs, 60_000), TTL_MS) };
   const body = Buffer.from(JSON.stringify(payload)).toString("base64url");
   const sig = createHmac("sha256", SECRET).update(body).digest("base64url");
   return `${body}.${sig}`;

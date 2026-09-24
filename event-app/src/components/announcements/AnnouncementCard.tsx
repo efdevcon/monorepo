@@ -3,7 +3,7 @@
 import cn from "classnames";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/routing";
-import { useRealWorldNowMs } from "@/hooks/useNow";
+import { useNowMs } from "@/hooks/useNow";
 import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
 import type { Announcement } from "@/data/announcements/types";
 import { relativeTime } from "@/utils/relativeTime";
@@ -70,7 +70,7 @@ export function InboxKindRow({
  * One team announcement, white on both surfaces (session reminders are the
  * lavender ones), in either of the redesign's two shapes. Both open with the
  * InboxKindRow ("Announcement", unread dot, time):
- * - "inbox" (default, /announcements): title, message, CTA bottom-left.
+ * - "inbox" (default, /notifications): title, message, CTA bottom-left.
  * - "home" (home preview grid): compact type, the CTA bottom-right;
  *   equal-height across the 3-up grid.
  */
@@ -83,7 +83,7 @@ export function AnnouncementCard({
   seen: boolean;
   variant?: "inbox" | "home";
 }) {
-  const nowMs = useRealWorldNowMs(60_000);
+  const nowMs = useNowMs(60_000); // app clock, mock included (see useAnnouncements)
   const { title, message, url, sendAt } = announcement;
   const link = url ? resolveAnnouncementLink(url) : null;
   const external = !!link?.external;

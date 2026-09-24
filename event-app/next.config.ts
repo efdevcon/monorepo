@@ -27,7 +27,7 @@ const withSerwist = withSerwistInit({
     { url: "/schedule", revision },
     { url: "/speakers", revision },
     { url: "/map", revision },
-    { url: "/announcements", revision },
+    { url: "/notifications", revision },
     // NOT /ticket (nor "/"). Their HTML must come from the server whenever the
     // network is there: the root layout's <link rel="manifest"> is
     // personalised from the session cookie (PersonalizedManifestLink), and
@@ -91,6 +91,13 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["lib"],
+  // The inbox moved from /announcements to /notifications (2026-09-24); pushes
+  // and links sent before then still point at the old path.
+  async redirects() {
+    return [
+      { source: "/announcements", destination: "/notifications", permanent: true },
+    ];
+  },
   env: {
     // Public origin baked in at build time (see src/CONFIG.ts). Deploy
     // previews and branch deploys get their own URL from Netlify's build-only

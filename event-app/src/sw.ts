@@ -351,14 +351,14 @@ self.addEventListener("push", (event) => {
       body: n.body,
       icon: "/android-chrome-192x192.png",
       badge: "/android-chrome-192x192.png",
-      data: { url: n.navigate || "/announcements" },
+      data: { url: n.navigate || "/notifications" },
     })
   );
 });
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url: string = event.notification.data?.url || "/announcements";
+  const url: string = event.notification.data?.url || "/notifications";
   event.waitUntil(
     (async () => {
       const clientList = await self.clients.matchAll({

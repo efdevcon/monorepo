@@ -1,8 +1,9 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import {Suspense} from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
+import { setDevaBotOpen, useDevaBotOpen } from "@/components/ai/devaBotState";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
@@ -28,7 +29,8 @@ export default function PageLayout({
 }
 
 function PageLayoutInner({ children }: { children: React.ReactNode }) {
-  const [devaBotOpen, setDevaBotOpen] = useState(false);
+  // Opened from the EF internal tools (My Devcon); closed by the panel itself.
+  const devaBotOpen = useDevaBotOpen();
   const pathname = usePathname();
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
@@ -40,7 +42,7 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
     <IntroSplash>
       {/* Fixed gradient underlay behind all pages (Figma page background). */}
       <div className="app-bg" aria-hidden />
-      <AppHeader onOpenAI={() => setDevaBotOpen(true)} />
+      <AppHeader />
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the bottom nav bar, which stays on
           session and speaker pages too. */}

@@ -98,7 +98,7 @@ export function buildPayload(
 ): string {
   const origin = APP_CONFIG.APP_ORIGIN;
   const navigate = !a.url
-    ? `${origin}/announcements`
+    ? `${origin}/notifications`
     : a.url.startsWith("/")
       ? `${origin}${a.url}`
       : a.url;

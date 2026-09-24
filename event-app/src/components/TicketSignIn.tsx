@@ -97,7 +97,16 @@ export function TicketSignIn() {
 
       {!codeSent ? (
         <div className="flex w-full max-w-[460px] flex-col gap-8">
-          <div className="flex flex-col gap-6">
+          {/* A real form with a named, autocomplete-typed field: browsers and
+              password managers only offer saved emails for that (a bare input
+              with no form, name or autocomplete got nothing, 2026-09-24). */}
+          <form
+            className="flex flex-col gap-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              sendCode();
+            }}
+          >
             <div className="flex flex-col gap-3 text-center">
               <h1 className="text-[20px] font-extrabold leading-[26px] text-dc-fg2 lg:text-[24px] lg:leading-[28.8px] lg:tracking-[-0.5px]">
                 Sign in to the Devcon app
@@ -116,9 +125,21 @@ export function TicketSignIn() {
                 Email
                 {showEmailError && <span className="text-dc-error">*</span>}
               </label>
+              {/* type="text" + inputMode="email", not type="email": WebKit
+                  (Safari and Chrome on iOS) turns autocorrect off for email
+                  fields, and iOS text-replacement shortcuts ride on
+                  autocorrect, so they never expanded here. The keyboard is
+                  still the email one, validation is ours (EMAIL_FORMAT), and
+                  autocorrect stays on explicitly for the same reason. */}
               <input
                 id="signin-email"
-                type="email"
+                name="email"
+                type="text"
+                autoComplete="email"
+                inputMode="email"
+                autoCapitalize="none"
+                autoCorrect="on"
+                enterKeyHint="send"
                 aria-invalid={showEmailError}
                 aria-describedby="signin-email-error"
                 autoFocus
@@ -133,7 +154,6 @@ export function TicketSignIn() {
                   setEmailTouched(false);
                 }}
                 onBlur={() => setEmailTouched(true)}
-                onKeyDown={(e) => e.key === "Enter" && sendCode()}
                 placeholder="youremail@example.com"
                 className={cn(
                   // Same shape as the speakers search input (rounded-xl pill).
@@ -157,14 +177,14 @@ export function TicketSignIn() {
             </div>
 
             <PrimaryButton
+              type="submit"
               className="min-h-12 w-full"
-              onClick={sendCode}
               disabled={busy || !emailValid || !online}
             >
               {busy ? loading : "Send one-time code"}
             </PrimaryButton>
             {!online && <NeedsConnection what="Signing in" className="mt-3" />}
-          </div>
+          </form>
 
           <Footer />
         </div>
@@ -235,9 +255,10 @@ export function TicketSignIn() {
         </div>
       )}
 
-      {/* Install-as-app (mobile web only) — extra breathing room from the
-          form above; empty:hidden stops the margin ghosting when it's null. */}
-      <div className="mt-4 empty:hidden">
+      {/* Install-as-app, phones and tablets only (desktop's install story is
+          the QR on the hero card): extra breathing room from the form above;
+          empty:hidden stops the margin ghosting when it's null. */}
+      <div className="mt-4 empty:hidden lg:hidden">
         <InstallAppButton />
       </div>
     </div>

@@ -27,7 +27,7 @@ const ctaClass =
  * list; no rail of its own (the embedded session card already has the
  * track-coloured one) and never a purple border, which on lavender is the
  * SessionCard's selected state.
- * - "inbox" (default, /announcements): kind row (unread dot, relative time),
+ * - "inbox" (default, /notifications): kind row (unread dot, relative time),
  *   the reminder itself as the title line ("Interested session starts in N minutes"),
  *   the schedule's own SessionCard (title, time, room, format, speakers,
  *   track and the star — it opens the session itself), then one CTA: "Show

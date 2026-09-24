@@ -35,7 +35,7 @@ const APP_CONFIG = {
   SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
   ROOMS_ENABLED: true, // /room-screens/[id]
   MAP_ENABLED: true, // /map (venue map)
-  ANNOUNCEMENTS_ENABLED: true, // /announcements (Notion-authored inbox) + home section
+  ANNOUNCEMENTS_ENABLED: true, // /notifications (Notion-authored inbox + session reminders) + home section
   INFERENCE_DEBUG_ENABLED: true, // /admin/inference-test (EF-only RAG debugger)
 
   // Development settings

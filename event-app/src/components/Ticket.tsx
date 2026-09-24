@@ -11,6 +11,7 @@ import { InstallAppButton } from "./InstallAppButton";
 import { InstallHeroCard } from "./InstallHeroCard";
 import { MyTickets } from "./MyTickets";
 import { TicketSignIn } from "./TicketSignIn";
+import { EfInternalTools } from "./internal/EfInternalTools";
 
 /**
  * Ticket screen (Figma "My Devcon", Dev Handoff 5088-116/-1059): signed out,
@@ -99,7 +100,12 @@ export function Ticket() {
               </div>
             </div>
 
-            <div className="mt-6 flex justify-center empty:hidden">
+            {/* @ethereum.org accounts only: rehearsal + nudge reset. */}
+            <EfInternalTools />
+
+            {/* Phones and tablets only: desktop's install story is the QR on
+                the hero card. */}
+            <div className="mt-6 flex justify-center empty:hidden lg:hidden">
               <InstallAppButton />
             </div>
           </motion.div>

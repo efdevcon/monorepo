@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Download, ExternalLink, MoreVertical } from "lucide-react";
+import { Download, ExternalLink, MonitorDown, MoreVertical, Share } from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
@@ -99,21 +99,31 @@ export function useOpenInSafari(): () => Promise<void> {
 }
 
 /**
- * Show install UI only on mobile web before install — never inside the
- * native (Capacitor) app or an already-installed standalone PWA, and never
- * on desktop (the install nudge is a phone and tablet thing by decision).
- * iPad goes through isIOS(): Safari there asks for the desktop site, so its
- * User-Agent says "Macintosh" and never "iPad" (found on iPadOS 17.7,
- * 2026-09-16); the touch-points check is what tells it from a Mac.
+ * Show install UI in any browser before install — never inside the native
+ * (Capacitor) app or an already-installed standalone PWA. Desktop included
+ * since 2026-09-24 (Didier): installed desktop apps get push too, and the
+ * how-to modal knows the desktop browsers' install paths. iPad goes through
+ * isIOS(): Safari there asks for the desktop site, so its User-Agent says
+ * "Macintosh" and never "iPad" (found on iPadOS 17.7, 2026-09-16); the
+ * touch-points check is what tells it from a Mac.
  */
 export function useShouldShowInstall(): boolean {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => {
     if (isStandalone() || Capacitor.isNativePlatform()) return;
     if (typeof navigator === "undefined") return;
-    setShouldShow(isIOS() || /Android/i.test(navigator.userAgent));
+    setShouldShow(true);
   }, []);
   return shouldShow;
+}
+
+/** Desktop browser family, for the manual install steps (no prompt fired). */
+function desktopBrowser(): "safari" | "firefox" | "chromium" | "other" {
+  const ua = navigator.userAgent;
+  if (/Firefox\//.test(ua)) return "firefox";
+  if (/Chrome\/|Chromium\/|Edg\//.test(ua)) return "chromium";
+  if (isSafari() || (/Safari\//.test(ua) && !/Chrome|Chromium|Edg|Firefox/.test(ua))) return "safari";
+  return "other";
 }
 
 /**
@@ -257,22 +267,89 @@ function manualInstructions(): { intro: string; steps: HowToStep[] } {
       steps: safariSteps(iosMajorVersion(), isIPad()),
     };
   }
-  // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
-  // Firefox, or hardened Chromium builds that gate installs).
-  return {
-    intro: "Add this app to your home screen for the full experience.",
-    steps: [
-      { Icon: MoreVertical, text: <>Open your browser&apos;s menu.</> },
-      {
-        Icon: Download,
-        text: (
-          <>
-            Tap <b>Install app</b> or <b>Add to Home screen</b>.
-          </>
-        ),
-      },
-    ],
-  };
+  if (/Android/i.test(navigator.userAgent)) {
+    // Android browsers that don't fire `beforeinstallprompt` (e.g. Firefox,
+    // or hardened Chromium builds that gate installs).
+    return {
+      intro: "Add this app to your home screen for the full experience.",
+      steps: [
+        { Icon: MoreVertical, text: <>Open your browser&apos;s menu.</> },
+        {
+          Icon: Download,
+          text: (
+            <>
+              Tap <b>Install app</b> or <b>Add to Home screen</b>.
+            </>
+          ),
+        },
+      ],
+    };
+  }
+  // Desktop. Chromium normally fires the prompt (handled before we get here);
+  // these are the paths when it didn't, plus Safari's Dock and Firefox's lack
+  // of an install feature.
+  switch (desktopBrowser()) {
+    case "safari":
+      return {
+        intro: "Add this app to your Dock for the full experience, notifications included.",
+        steps: [
+          {
+            Icon: Share,
+            text: (
+              <>
+                Click <b>Share</b> in the toolbar (or open the <b>File</b> menu).
+              </>
+            ),
+          },
+          {
+            Icon: Download,
+            text: (
+              <>
+                Choose <b>Add to Dock</b>, then open the app from your Dock.
+              </>
+            ),
+          },
+        ],
+      };
+    case "firefox":
+      return {
+        intro: "Firefox can't install web apps on desktop.",
+        steps: [
+          {
+            Icon: ExternalLink,
+            text: (
+              <>
+                Open this page in <b>Chrome</b>, <b>Edge</b> or <b>Safari</b> and use their
+                Install option.
+              </>
+            ),
+          },
+        ],
+      };
+    default:
+      return {
+        intro: "Install this app for the full experience, notifications included.",
+        steps: [
+          {
+            Icon: MonitorDown,
+            text: (
+              <>
+                Click the <b>install icon</b> at the right end of the address bar, if it shows.
+              </>
+            ),
+          },
+          {
+            Icon: MoreVertical,
+            text: (
+              <>
+                Otherwise open the browser menu: <b>Cast, save and share → Install page as
+                app</b> (Chrome) or <b>Apps → Install this site as an app</b> (Edge).
+              </>
+            ),
+          },
+        ],
+      };
+  }
 }
 
 /** Instructions card shown when no native install prompt is available. */
@@ -454,8 +531,8 @@ export function useInstallFlow(): {
 }
 
 /**
- * "Install app" button + install flow. Only renders on mobile web before
- * install (useShouldShowInstall).
+ * "Install app" button + install flow. Renders in any browser before install
+ * (useShouldShowInstall).
  */
 export function InstallAppButton({
   className,

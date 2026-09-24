@@ -52,7 +52,7 @@ function BellLink({
       : "Notifications";
   return (
     <Link
-      href="/announcements"
+      href="/notifications"
       aria-label={label}
       className={cn(
         size === "sm"

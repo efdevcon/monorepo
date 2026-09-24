@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useId, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { BellOff, Settings, Share, Smartphone } from "lucide-react";
+import { useId, type ReactNode } from "react";
+import { BellOff, Share, Smartphone } from "lucide-react";
 import cn from "classnames";
 import type {
   PushPrefKind,
@@ -11,53 +10,11 @@ import type {
 import { REMINDER_LEAD_MINUTES } from "@/data/reminders/reminders";
 import { useOnline } from "@/hooks/useOnline";
 import { isIOS } from "@/utils/platform";
-import { CloseButton } from "@/components/Buttons";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { Switch } from "@/components/Switch";
-import { ReminderRehearsal } from "./ReminderRehearsal";
 
-/** One `usePushSubscription()` result, shared by the link and the modal so
- *  the link's icon and the switches always agree. The page owns the instance. */
+/** One `usePushSubscription()` result: the app-wide instance from PushProvider. */
 export type PushSettings = ReturnType<typeof usePushSubscription>;
-
-/**
- * Whether to offer a settings entry point at all: nothing while detecting or
- * signed out, since the subscriptions API needs a session — same rule the
- * old always-visible card had. Shared by the desktop link below and the
- * page's mobile header pill.
- */
-export const canOpenNotificationSettings = (push: PushSettings) =>
-  push.signedIn && push.state !== "loading";
-
-/**
- * Desktop entry to the notification settings, beside the Notifications
- * page's h1: a purple "Settings" text button (labelled Settings, not
- * Notifications, since the page itself now carries that name) that opens
- * the modal. The mobile equivalent is the page's header pill.
- */
-export function NotificationSettingsLink({
-  push,
-  onOpen,
-}: {
-  push: PushSettings;
-  onOpen: () => void;
-}) {
-  if (!canOpenNotificationSettings(push)) return null;
-  return (
-    <button
-      type="button"
-      onClick={onOpen}
-      aria-haspopup="dialog"
-      aria-label="Notification settings"
-      className="flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded py-2 font-heading text-[16px] font-bold leading-none text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
-    >
-      <Settings className="size-4" />
-      Settings
-    </button>
-  );
-}
-
-const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
 
 /** What the hook reports while "on" before any flags are known (the
  *  server's column defaults); the hook already falls back to these, this
@@ -152,41 +109,22 @@ function PrefRow({
 }
 
 /**
- * Notification preferences modal: two peer iOS-style switches for this
- * device, Announcements and Session reminders. There's no master switch —
- * the first one turned on asks for permission and subscribes with only that
- * type, turning the last one off unsubscribes, anything in between just
- * updates the device's flags (all in `push.setPref`). The switches are live
- * only in the `off` / `on` states; a context that can't push (desktop
- * browser, iOS tab not yet installed, permission denied) shows both
- * disabled-off with one explanation under them. Session reminders land in
- * the inbox either way — the switch only controls the push. Never
- * auto-prompts: the permission dialog only appears on a switch tap. Same
- * shell as the ticket QR modal: centred, backdrop click and Escape close.
+ * The two preference rows and what goes under them (state note, error,
+ * offline notice), for any container: the settings modal below and the
+ * inline card at the top of the inbox (NotificationsCard). Owns nothing but
+ * the online check; all state comes from `push`.
  */
-export function NotificationSettingsModal({
+export function NotificationPrefs({
   push,
-  open,
-  onClose,
+  className,
 }: {
   push: PushSettings;
-  open: boolean;
-  onClose: () => void;
+  className?: string;
 }) {
   const { state, busy, error, prefBusy, setPref } = push;
   // Changing either flag talks to the push service and/or our API.
   const online = useOnline();
-  const titleId = useId();
   const noteId = useId();
-
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
 
   const toggleable = state === "off" || state === "on";
   const prefs = state === "on" ? (push.prefs ?? DEFAULT_PREFS) : null;
@@ -207,89 +145,51 @@ export function NotificationSettingsModal({
   });
 
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          onClick={onClose}
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/70 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+    <div className={className}>
+      <PrefRow
+        title="Announcements"
+        helper="Updates from the Devcon team. We keep them rare."
+        {...rowProps("announcements")}
+      />
+      <PrefRow
+        title="Session reminders"
+        helper={
+          <>
+            A push {REMINDER_LEAD_MINUTES} minutes before a session
+            you&apos;re interested in starts.
+            <span className="mt-1 block text-[12px] leading-4 text-dc-muted">
+              Reminders always show in your inbox, with or without push.
+            </span>
+          </>
+        }
+        className="mt-4 border-t border-dc-hairline pt-4"
+        {...rowProps("reminders")}
+      />
+
+      {note && (
+        <p
+          id={noteId}
+          className="mt-4 flex items-start gap-2 text-[14px] leading-5 text-dc-muted"
         >
-          <motion.div
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            className="relative w-full max-w-[361px] rounded-[12px] p-6 font-heading shadow-[0_10px_15px_rgba(22,11,43,0.1),0_4px_6px_rgba(22,11,43,0.1)]"
-            style={{ background: MODAL_BG }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-          >
-            <div className="flex items-center justify-between gap-3">
-              <h2
-                id={titleId}
-                className="text-[20px] font-bold leading-7 tracking-[-0.5px] text-dc-fg2"
-              >
-                Notifications
-              </h2>
-              <CloseButton onClick={onClose} />
-            </div>
-
-            <PrefRow
-              title="Announcements"
-              helper="Updates from the Devcon team. We keep them rare."
-              className="mt-5"
-              {...rowProps("announcements")}
-            />
-            <PrefRow
-              title="Session reminders"
-              helper={
-                <>
-                  A push {REMINDER_LEAD_MINUTES} minutes before a session
-                  you&apos;re interested in starts.
-                  <span className="mt-1 block text-[12px] leading-4 text-dc-muted">
-                    Reminders always show in your inbox, with or without push.
-                  </span>
-                </>
-              }
-              className="mt-4 border-t border-dc-hairline pt-4"
-              {...rowProps("reminders")}
-            />
-
-            {note && (
-              <p
-                id={noteId}
-                className="mt-4 flex items-start gap-2 text-[14px] leading-5 text-dc-muted"
-              >
-                <note.Icon
-                  className={cn(
-                    "mt-0.5 size-4 shrink-0",
-                    state === "denied" ? "text-dc-muted" : "text-dc-purple"
-                  )}
-                />
-                {note.text}
-              </p>
+          <note.Icon
+            className={cn(
+              "mt-0.5 size-4 shrink-0",
+              state === "denied" ? "text-dc-muted" : "text-dc-purple"
             )}
-
-            {error && (
-              <p className="mt-3 text-[12px] leading-4 text-dc-error">{error}</p>
-            )}
-            {!online && (
-              <NeedsConnection
-                what="Changing notification settings"
-                className="mt-3"
-              />
-            )}
-
-            {/* Team accounts only: rehearse the session reminders. */}
-            <ReminderRehearsal />
-          </motion.div>
-        </motion.div>
+          />
+          {note.text}
+        </p>
       )}
-    </AnimatePresence>
+
+      {error && (
+        <p className="mt-3 text-[12px] leading-4 text-dc-error">{error}</p>
+      )}
+      {!online && (
+        <NeedsConnection
+          what="Changing notification settings"
+          className="mt-3"
+        />
+      )}
+    </div>
   );
 }

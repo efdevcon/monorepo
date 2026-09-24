@@ -10,7 +10,6 @@ import {
   CircleUserRound,
   Home,
   Map,
-  Tv,
   Users,
 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
@@ -57,14 +56,6 @@ export const NAV_ITEMS: NavItem[] = [
     enabled: APP_CONFIG.MAP_ENABLED,
   },
   {
-    href: "/room-screens",
-    label: "Room Screens",
-    short: "Rooms",
-    icon: Tv,
-    enabled: APP_CONFIG.ROOMS_ENABLED,
-    hideOnMobile: true,
-  },
-  {
     // Mobile tab reads "Me" (Figma tab-bar redesign); desktop keeps the
     // fuller "Tickets" wording in the header.
     href: "/ticket",
@@ -76,9 +67,8 @@ export const NAV_ITEMS: NavItem[] = [
   {
     // Mobile reaches the Notifications inbox via the home-screen section; the bottom
     // pill is already at capacity.
-    href: "/announcements",
-    // "Notifications": team announcements and session reminders in one
-    // inbox. The route keeps its /announcements path.
+    href: "/notifications",
+    // "Notifications": team announcements and session reminders in one inbox.
     label: "Notifications",
     short: "Notifications",
     icon: Bell,

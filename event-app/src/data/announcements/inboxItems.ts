@@ -13,7 +13,7 @@ export type InboxItem =
   | { kind: "reminder"; at: number; item: ReminderItem & { seen: boolean } };
 
 /**
- * Both sources interleaved newest first — the order of the /announcements
+ * Both sources interleaved newest first — the order of the /notifications
  * list and of the home preview (which takes the first few). Ties keep the
  * announcement first (stable sort, announcements spread in first).
  */

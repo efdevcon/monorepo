@@ -23,3 +23,10 @@ export async function writePref(key: string, value: unknown): Promise<void> {
     await cacheDB.prefs.put({ key, value });
   } catch {}
 }
+
+export async function deletePref(key: string): Promise<void> {
+  if (!cacheDB) return;
+  try {
+    await cacheDB.prefs.delete(key);
+  } catch {}
+}
