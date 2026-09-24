@@ -12,7 +12,7 @@ import {
 import { deriveReminders, type ReminderItem } from "./reminders";
 
 /**
- * The inbox's session reminders ("<title> starts in REMINDER_LEAD_MINUTES
+ * The inbox's session reminders ("Interested session starts in REMINDER_LEAD_MINUTES
  * minutes", merged into the timeline with the team's announcements), derived
  * on the device from the local stars, the event catalogue and the clock — no
  * fetch, so it works offline and signed out, and honours `?mockNow=`. The server push (src/app/api/push/reminders.ts) is only a

@@ -28,7 +28,7 @@ const ctaClass =
  * track-coloured one) and never a purple border, which on lavender is the
  * SessionCard's selected state.
  * - "inbox" (default, /announcements): kind row (unread dot, relative time),
- *   the reminder itself as the title line ("<title> starts in N minutes"),
+ *   the reminder itself as the title line ("Interested session starts in N minutes"),
  *   the schedule's own SessionCard (title, time, room, format, speakers,
  *   track and the star — it opens the session itself), then one CTA: "Show
  *   on map" (`/map` when the room isn't mapped yet) while the session is
@@ -64,7 +64,7 @@ export function ReminderCard({
       seen={seen}
     />
   );
-  const message = `${title} starts in ${REMINDER_LEAD_MINUTES} minutes`;
+  const message = `Interested session starts in ${REMINDER_LEAD_MINUTES} minutes`;
   // Session.end is unix seconds. Unknown session → not provably finished.
   const finished = session ? nowMs >= session.end * 1000 : false;
 
