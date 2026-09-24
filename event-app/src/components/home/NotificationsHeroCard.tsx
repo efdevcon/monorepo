@@ -51,7 +51,8 @@ export function NotificationsHeroCard() {
     };
   }, []);
 
-  if (dismissed !== false || installShowing) return null;
+  // Wait for both flags (null = still reading), and yield to the install card.
+  if (dismissed !== false || installShowing !== false) return null;
   if (!push.signedIn || push.state !== "off") return null;
 
   const dismiss = () => {

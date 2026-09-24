@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { deletePref, readPref, writePref } from "@/data/prefs";
 import { Download, Smartphone, X } from "lucide-react";
 import QRCode from "qrcode";
 import { isIOS } from "@/utils/platform";
@@ -10,53 +11,77 @@ import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { PrimaryButton } from "./Buttons";
 import { useInstallFlow, useShouldShowInstall } from "./InstallAppButton";
 
-// Dismissal is session-scoped and shared: Home and My Devcon are persistent
-// panes (TabPanes), both mounted at once, so a per-card useState would leave
-// the other copy standing. In memory only, on purpose — the offline-first
-// rule keeps user state out of ad-hoc localStorage, and a Dexie flag to
-// survive reloads is a follow-up once the card's fate is decided.
-let dismissed = false;
+// Dismissal is shared and persisted: Home and My Devcon are persistent panes
+// (TabPanes), both mounted at once, so a per-card useState would leave the
+// other copy standing; and it must survive a reload (Didier, 2026-09-24), so
+// it lives in the Dexie prefs table like the other nudge flags, mirrored in
+// this module-level store for the panes. `null` until the first read.
+const PREF_KEY = "home.installHero.dismissed";
+let dismissed: boolean | null = null;
+let loading: Promise<void> | null = null;
 const listeners = new Set<() => void>();
+function notify() {
+  listeners.forEach((cb) => cb());
+}
 function subscribe(cb: () => void) {
   listeners.add(cb);
   return () => {
     listeners.delete(cb);
   };
 }
+function load() {
+  if (dismissed !== null || loading) return;
+  loading = readPref<boolean>(PREF_KEY).then((v) => {
+    dismissed = v === true;
+    loading = null;
+    notify();
+  });
+}
 function dismiss() {
   dismissed = true;
-  listeners.forEach((cb) => cb());
+  notify();
+  void writePref(PREF_KEY, true);
 }
 
-/** Undo the session dismissal (EF internal tools: "reset nudges"). */
+/** Undo the dismissal, here and on disk (EF internal tools: "reset nudges"). */
 export function resetInstallHeroDismissal() {
-  if (!dismissed) return;
   dismissed = false;
-  listeners.forEach((cb) => cb());
+  notify();
+  void deletePref(PREF_KEY);
 }
 
 /** Lifetime of the sign-in bridge inside the desktop QR, and how often it is re-minted. */
 const QR_BRIDGE_TTL_MS = 10 * 60_000;
 const QR_BRIDGE_REFRESH_MS = 8 * 60_000;
 
-/** The banner pill's glass recipe (Tickets.tsx) — the dismiss × over the art. */
+/**
+ * The dismiss × over the art: a dark translucent disc with a white glyph,
+ * legible on the phones visual's near-white sky (the old white-glass recipe
+ * from the tickets banner vanished there, 2026-09-24).
+ */
 const glass =
-  "bg-white/20 shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out hover:bg-white/30 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none";
+  "bg-[#160b2b]/60 backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out hover:bg-[#160b2b]/80 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none";
 
 /**
  * Whether the install hero is on screen right now: the install gate minus
- * the session dismissal. Home's NotificationsHeroCard yields to it, so the
- * two steps of that slot never show together (Android Chrome can push from a
- * browser tab, so push "off" alone would not keep them apart).
+ * the dismissal. `null` while the dismissal flag is still being read, so
+ * callers can wait instead of flashing. Home's NotificationsHeroCard yields
+ * to it, so the two steps of that slot never show together (Android Chrome
+ * can push from a browser tab, so push "off" alone would not keep them
+ * apart).
  */
-export function useInstallHeroVisible(): boolean {
+export function useInstallHeroVisible(): boolean | null {
   const shouldShow = useShouldShowInstall();
   const isDismissed = useSyncExternalStore(
     subscribe,
     () => dismissed,
-    () => false
+    () => null
   );
-  return shouldShow && !isDismissed;
+  useEffect(() => {
+    load();
+  }, []);
+  if (!shouldShow) return false;
+  return isDismissed === null ? null : !isDismissed;
 }
 
 /**
@@ -71,7 +96,18 @@ export function useInstallHeroVisible(): boolean {
  * Renders nothing once installed, in the native shell, or after dismissal;
  * hosts wrap it in `empty:hidden`.
  */
-export function InstallHeroCard() {
+export function InstallHeroCard({
+  dismissible = true,
+}: {
+  /**
+   * Home lets people close the card (remembered per device). My Devcon does
+   * not (Didier, 2026-09-24): it is the sign-in and tickets page, where
+   * installing matters most, so the card stays whenever the install gate
+   * applies, whatever was dismissed on Home.
+   */
+  dismissible?: boolean;
+} = {}) {
+  const gate = useShouldShowInstall();
   const visible = useInstallHeroVisible();
   const { install, modal } = useInstallFlow();
   const { attempt, markFailed } = useRetryOnReconnect();
@@ -123,7 +159,7 @@ export function InstallHeroCard() {
     };
   }, [user]);
 
-  if (!visible) return null;
+  if (dismissible ? visible !== true : !gate) return null;
 
   return (
     <section
@@ -144,14 +180,16 @@ export function InstallHeroCard() {
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        <button
-          type="button"
-          onClick={dismiss}
-          aria-label="Dismiss"
-          className={`absolute right-4 top-4 flex size-8 cursor-pointer items-center justify-center rounded-full ${glass}`}
-        >
-          <X className="size-4 text-dc-purple-fg" />
-        </button>
+        {dismissible && (
+          <button
+            type="button"
+            onClick={dismiss}
+            aria-label="Dismiss"
+            className={`absolute right-4 top-4 flex size-8 cursor-pointer items-center justify-center rounded-full ${glass}`}
+          >
+            <X className="size-4 text-dc-purple-fg" />
+          </button>
+        )}
       </div>
 
       {/* Copy + CTA: stacked on mobile, one row on desktop. "Devcon app",

@@ -45,7 +45,7 @@ export function Ticket() {
           same pt-8 the h1 / sign-in panel use, so it sits where the page
           content starts. */}
       <div className="mb-4 empty:hidden lg:pt-8">
-        <InstallHeroCard />
+        <InstallHeroCard dismissible={false} />
       </div>
       <AnimatePresence mode="wait">
         {!user ? (
