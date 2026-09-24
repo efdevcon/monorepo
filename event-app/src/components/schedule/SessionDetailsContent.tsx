@@ -143,9 +143,23 @@ export function SessionSummary({
               {formatTimeRange(session)}
             </span>
             {location && (
-              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-                <MapPin className="size-3.5 shrink-0" />
-                {location}
+              <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] leading-none text-dc-fg2">
+                <span className="inline-flex items-center gap-1">
+                  <MapPin className="size-3.5 shrink-0" />
+                  {location}
+                </span>
+                {/* Next to the stage it belongs to, not among the action pills
+                    (Didier, 2026-09-24). Rooms the map knows open on their
+                    floor with the footprint highlighted; the rest just open
+                    the map. */}
+                {session.room && (
+                  <Link
+                    href={mapHrefForRoom(session.room.id)}
+                    className="font-heading font-bold text-dc-purple underline-offset-2 hover:underline"
+                  >
+                    Show on map
+                  </Link>
+                )}
               </span>
             )}
           </div>
@@ -170,9 +184,9 @@ export function SessionSummary({
             )}
           </div>
 
-          {/* Action pills wrap onto a new line on every breakpoint: the
-              mobile scroll-and-fade row hid "Show on Map" past the screen
-              edge, the same way the desktop panel's did. */}
+          {/* Action pills wrap onto a new line on every breakpoint (the old
+              mobile scroll-and-fade row hid the last pill past the screen
+              edge). "Show on map" moved up next to the stage. */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => void toggle(session.id)}
@@ -198,11 +212,6 @@ export function SessionSummary({
               <CalendarPlus className="size-4 text-dc-purple" />
               Add to Calendar
             </button>
-            {/* Rooms the map knows open on their floor with the footprint highlighted; the rest just open the map. */}
-            <Link href={mapHrefForRoom(session.room?.id)} className={pillClass}>
-              <MapPin className="size-4 text-dc-purple" />
-              Show on Map
-            </Link>
           </div>
         </div>
       </div>
