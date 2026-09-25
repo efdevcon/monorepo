@@ -243,9 +243,9 @@ export function InstallHeroCard({
 
 /**
  * The phone-sized install nudge for My Devcon once signed in (desktop shows
- * InstallHeroCard's QR card instead; the page picks by `useIsDesktop`): one
- * row, a thumbnail crop of the same phones art, the title and one line of
- * copy, and the Install button. Not dismissible and independent of Home's
+ * InstallHeroCard's QR card instead; the page picks by `useIsDesktop`): the
+ * title, one line of copy and the Install button left-aligned, with a
+ * full-height strip of the same phones art flush against the right edge. Not dismissible and independent of Home's
  * dismissal by decision (Scott, 2026-09-25): it is small enough to stay,
  * and the sign-in page itself never shows an install card. Same install
  * gate and flow as the hero; renders nothing once installed or in the
@@ -261,10 +261,24 @@ export function InstallCompactCard() {
   return (
     <section
       aria-label="Install the Devcon app"
-      className="flex gap-4 rounded-xl border border-dc-hairline bg-white p-4 font-heading"
+      className="flex overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading"
     >
-      {/* Thumbnail: white fallback like the hero's band, retried on reconnect. */}
-      <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-white">
+      <div className="flex min-w-0 flex-1 flex-col items-start p-4">
+        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+          Install the Devcon app
+        </h2>
+        <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
+          Your schedule, tickets and notifications, offline and one tap away.
+        </p>
+        <PrimaryButton onClick={install} className="mt-3">
+          <Download className="size-4" />
+          Install app
+        </PrimaryButton>
+      </div>
+      {/* Art: the card's full height, flush with its right edge (a cropped
+          strip of the phones visual, no padding or radius of its own). White
+          fallback like the hero's band, retried on reconnect. */}
+      <div className="relative w-[120px] shrink-0 self-stretch bg-white">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
@@ -273,18 +287,6 @@ export function InstallCompactCard() {
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-      </div>
-      <div className="flex min-w-0 flex-1 flex-col">
-        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
-          Install the Devcon app
-        </h2>
-        <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
-          Your schedule, tickets and notifications, offline and one tap away.
-        </p>
-        <PrimaryButton onClick={install} className="mt-3 w-fit self-end">
-          <Download className="size-4" />
-          Install app
-        </PrimaryButton>
       </div>
       {modal}
     </section>
