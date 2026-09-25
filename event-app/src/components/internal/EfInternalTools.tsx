@@ -24,7 +24,7 @@ const NUDGE_PREF_KEYS = [
  * entry can be a Link. Sits under its row's copy, left-aligned.
  */
 const toolPill =
-  "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] font-bold leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
+  "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
 
 /**
  * Tools for the EF team on My Devcon (/ticket), rendered only for signed-in
