@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import { Megaphone, Star } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Megaphone, Settings, Star } from "lucide-react";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import {
   mergeInboxItems,
@@ -13,9 +13,16 @@ import { usePush } from "@/data/push/PushProvider";
 import { useNowMs } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
 import { formatDayHeading } from "@/components/schedule/utils";
+import { HeaderPill } from "@/components/ActionPills";
+import { HeaderActionsPortal } from "@/components/DetailLayer";
 import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
 import { ReminderCard } from "@/components/announcements/ReminderCard";
-import { NotificationsCard } from "@/components/announcements/NotificationsCard";
+import {
+  canOpenNotificationSettings,
+  NotificationSettingsLink,
+  NotificationSettingsModal,
+  type PushSettings,
+} from "@/components/announcements/NotificationSettings";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -37,15 +44,44 @@ const emptyBox =
   "flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-12 text-center";
 
 /**
- * The Notifications inbox (route /notifications): the notification switches
- * first (NotificationsCard, a control strip apart from the list), then one
- * timeline, newest first, of the team's Notion announcements and the
- * reminders for sessions you marked interested (merged by inboxItems.ts, the
- * same order as the home preview), grouped by venue day (Today / Yesterday /
- * date). Visiting marks both kinds seen, clearing the header badge. Same
- * top-level card as the Schedule and Speakers pages on desktop (a panel
- * body; the card chrome is desktop-only, mobile runs edge to edge), minus
- * their sticky strip.
+ * Mobile entry to the notification settings: a labelled "Settings" pill in
+ * the app header's action slot, the schedule's HeaderPill (not a bare bell —
+ * the bell elsewhere means "go to the inbox"). The header's mobile bar is
+ * lg:hidden, so this never shows on desktop, where NotificationSettingsLink
+ * sits beside the page h1 instead.
+ */
+function SettingsHeaderPill({
+  push,
+  onOpen,
+}: {
+  push: PushSettings;
+  onOpen: () => void;
+}) {
+  if (!canOpenNotificationSettings(push)) return null;
+  return (
+    <HeaderActionsPortal>
+      <HeaderPill
+        icon={<Settings />}
+        label="Settings"
+        onClick={onOpen}
+        aria-haspopup="dialog"
+        aria-label="Notification settings"
+        className="shrink-0"
+      />
+    </HeaderActionsPortal>
+  );
+}
+
+/**
+ * The Notifications inbox (route /notifications): one timeline, newest
+ * first, of the team's Notion announcements and the reminders for sessions
+ * you marked interested (merged by inboxItems.ts, the same order as the home
+ * preview), grouped by venue day (Today / Yesterday / date). Visiting marks both kinds seen,
+ * clearing the header badge. Same top-level card as the Schedule and
+ * Speakers pages on desktop (a panel body; the card chrome is desktop-only,
+ * mobile runs edge to edge), minus their sticky strip: the "Settings" entry
+ * to the notification settings sits beside the h1 on desktop and in the app
+ * header on mobile.
  */
 export default function AnnouncementsPage() {
   const {
@@ -59,6 +95,9 @@ export default function AnnouncementsPage() {
   // The app-wide push instance (PushProvider), shared with the onboarding
   // sheet, so a subscribe made there is reflected here without a remount.
   const push = usePush();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const openSettings = useCallback(() => setSettingsOpen(true), []);
+  const closeSettings = useCallback(() => setSettingsOpen(false), []);
   // Day grouping runs on the event clock (venue days, mockable) for both
   // kinds, the same clock useAnnouncements reveals them on.
   const nowMs = useNowMs(60_000);
@@ -121,24 +160,26 @@ export default function AnnouncementsPage() {
     interestedCount === 0
       ? `Mark sessions as interested in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
       : `You're interested in ${interestedCount} ${interestedCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`;
+  // Signed in and able to toggle push on this device: the hint offers the
+  // settings modal (a tap, never an auto-prompt).
+  const canOpenSettings =
+    push.signedIn && (push.state === "off" || push.state === "on");
 
   return (
     // Escape the 680px `.section` column to the 1312px desktop content box
     // (same pattern as Schedule / Speakers).
     <main className="expand font-heading text-dc-fg">
-      <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
-        {/* Mobile title comes from AppHeader (routeChrome); the page h1 is
-            desktop-only. */}
-        <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
-          Notifications
-        </h1>
+      <SettingsHeaderPill push={push} onOpen={openSettings} />
 
-        {/* The switches themselves, first thing on the page (Didier:
-            enabling must not sit behind a Settings click) and apart from the
-            list: a lavender control strip under the header on mobile, its
-            own card above the inbox panel on desktop. One line once both
-            are on. */}
-        <NotificationsCard push={push} className="lg:mb-4" />
+      <div className="lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0">
+        {/* Mobile title comes from AppHeader (routeChrome); page h1 and the
+            settings link beside it are desktop-only. */}
+        <div className="hidden items-center justify-between gap-4 pb-4 pt-8 lg:flex">
+          <h1 className="text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+            Notifications
+          </h1>
+          <NotificationSettingsLink push={push} onOpen={openSettings} />
+        </div>
 
         <div className="min-w-0 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
           <div className="px-4 pb-6 pt-6 lg:rounded-xl lg:bg-dc-panel">
@@ -196,6 +237,16 @@ export default function AnnouncementsPage() {
                 <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-8 text-center">
                   <Star className="h-6 w-6 text-dc-muted/50" />
                   <p className="text-sm text-dc-muted">{remindersHint}</p>
+                  {canOpenSettings && (
+                    <button
+                      type="button"
+                      onClick={openSettings}
+                      aria-haspopup="dialog"
+                      className="mt-1 cursor-pointer rounded font-heading text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
+                    >
+                      Notification settings
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -203,6 +254,11 @@ export default function AnnouncementsPage() {
         </div>
       </div>
 
+      <NotificationSettingsModal
+        push={push}
+        open={settingsOpen}
+        onClose={closeSettings}
+      />
     </main>
   );
 }

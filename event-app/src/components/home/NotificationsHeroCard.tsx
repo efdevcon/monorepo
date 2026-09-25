@@ -29,10 +29,10 @@ const dismissButton =
  * not on screen: install comes first, always (a context that cannot push,
  * "requires-install", "unsupported", "denied", never sees this card either). The tap is the permission prompt, straight
  * from the button (never an auto-prompt), and subscribes with the defaults:
- * announcements on, session reminders left to the switch on /notifications.
- * Dismissal is remembered per device in the Dexie prefs table, like the
- * onboarding sheet's "shown" flag; the /notifications strip stays the place
- * to change one's mind. Hosts wrap it in `empty:hidden`.
+ * announcements on, session reminders left to the switch in the settings
+ * modal on /notifications. Dismissal is remembered per device in the Dexie
+ * prefs table, like the onboarding sheet's "shown" flag; that modal stays the
+ * place to change one's mind. Hosts wrap it in `empty:hidden`.
  */
 export function NotificationsHeroCard() {
   const push = usePush();
