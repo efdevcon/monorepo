@@ -26,6 +26,8 @@ export interface TrackTheme {
   isCLS?: boolean;
   /** Community Hub session: `gem` is the hub's logo and stands alone in the details banner. */
   isHub?: boolean;
+  /** Hub's stacked lockup, shown larger in the details banner in place of `gem`. */
+  banner?: string;
 }
 
 const gem = (file: string) => `/schedule/gems/${file}.webp`;
@@ -120,6 +122,7 @@ function hubTheme(roomId: string | undefined): TrackTheme | undefined {
         badge: hub.name.replace(/\s+Hub$/, ""),
         color: hub.color,
         gem: communityHubLogo(hub),
+        banner: hub.logoStacked,
         isHub: true,
       }
     : undefined;

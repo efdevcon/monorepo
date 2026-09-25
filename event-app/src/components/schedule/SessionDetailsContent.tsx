@@ -94,13 +94,24 @@ export function SessionSummary({
         backgroundColor: theme.neutral ? "#f5f1fe" : theme.color,
       }}
     >
-      {theme.gem && (
+      {theme.banner ? (
+        // Hub's stacked lockup (mark over name): bigger than the mark, sized
+        // off the banner so it scales from the side panel to the expanded page.
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={theme.gem}
-          alt={theme.isHub ? theme.name : ""}
-          className="size-[120px] object-contain"
+          src={theme.banner}
+          alt={theme.name}
+          className="h-3/5 max-w-[70%] object-contain"
         />
+      ) : (
+        theme.gem && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={theme.gem}
+            alt={theme.isHub ? theme.name : ""}
+            className="size-[120px] object-contain"
+          />
+        )
       )}
       {/* Hub sessions: the hub's logo is the banner, no caption under it. */}
       {!theme.isHub && (

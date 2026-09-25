@@ -19,6 +19,10 @@ export interface CommunityHub {
   color: string;
   /** dSheets share link (https://sheets.fileverse.io/sheet/<id>#k=<key>); unset until the hub shares one. */
   sheetUrl?: string;
+  /** Logo path under /public when it isn't the default `<id>.svg` (see communityHubLogo). */
+  logo?: string;
+  /** Stacked lockup (mark over wordmark) for the session details banner; the mark is used when unset. */
+  logoStacked?: string;
 }
 
 export const COMMUNITY_HUBS: CommunityHub[] = [
@@ -40,6 +44,10 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     description: "Hands-on space that turns attendees into open-source contributors.",
     color: "#D4F7E0",
     sheetUrl: "https://sheets.fileverse.io/sheet/s3TVTVbiTgppsbK3YvHM8D#k=GUkKdz7R7-u__IcatV7vI2cNudXwFdFs16u-M4bRFZ4",
+    // TEST (2026-09-25): gem-style artwork trial; revert to the placeholder svg or replace with the final logo.
+    logo: "/community-hubs/logos/open-source-test.png",
+    // TEST (2026-09-25): stacked-lockup trial for the details banner (the art reads "Agentic Hub").
+    logoStacked: "/community-hubs/logos/open-source-stacked-test.png",
   },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Prediction-market builders, researchers, traders and governance contributors.", color: "#F7DDD4" },
   { id: "world-of-desci", name: "World of DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
@@ -83,7 +91,7 @@ export function communityHubForRoom(roomId: string | undefined): CommunityHub | 
  * the file, keep the name.
  */
 export function communityHubLogo(hub: CommunityHub): string {
-  return `/community-hubs/logos/${hub.id}.svg`;
+  return hub.logo ?? `/community-hubs/logos/${hub.id}.svg`;
 }
 
 /** First hub that has a sheet, the default when the URL names none. */
