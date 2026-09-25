@@ -51,8 +51,11 @@ export const APP_IMAGES: string[] = [
   "/tickets-hero.jpg",
   "/home/install-phones.jpg",
   "/home/tickets-banner.webp",
+  "/home/community-hubs.jpg",
   "/login/signin-keyart.webp",
   // Small chrome — precached too, listed here so a cache miss still self-heals.
+  "/home/community-hubs-tent.svg",
+  "/home/community-hubs-tent-mask.svg",
   "/login/devcon-8-logo.svg",
   "/schedule/devcon8-logo.svg",
   "/schedule/devcon8-logomark.svg",
