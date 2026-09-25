@@ -170,8 +170,10 @@ export function InstallHeroCard({
     >
       {/* Art band. bg fallback keeps the band a solid surface if the art
           fails or is evicted; the img retries when the connection returns
-          (see Tickets.tsx). */}
-      <div className="relative h-[180px] bg-[#160b2b] lg:h-auto lg:w-[42%] lg:shrink-0">
+          (see Tickets.tsx). White like the art's own edges: a dark fallback
+          peeked out at the band's fractional-pixel edges and read as a
+          border around the near-white phones visual. */}
+      <div className="relative h-[180px] bg-white lg:h-auto lg:w-[42%] lg:shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
