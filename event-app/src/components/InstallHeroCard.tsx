@@ -87,23 +87,23 @@ export function useInstallHeroVisible(): boolean | null {
 /**
  * Top-of-page "install the app" hero for browser visitors, phones and
  * desktops alike since 2026-09-24 (the same gate as the bottom-of-page
- * buttons), on Home and My Devcon: a key-art band up top with the copy and
- * CTA on a white panel beneath it; from lg the art sits on the right beside
- * the copy — the HighlightCard shell, with a dismiss × on the art. On
- * desktop the CTA fires Chromium's native prompt when it has one, otherwise
- * the how-to modal explains the browser's own install path (address-bar
- * icon or menu in Chrome and Edge, Add to Dock in Safari, none in Firefox).
- * Renders nothing once installed, in the native shell, or after dismissal;
- * hosts wrap it in `empty:hidden`.
+ * buttons), on Home, and on My Devcon once signed in on desktop (phones get
+ * InstallCompactCard there): a key-art band up top with the copy and CTA on
+ * a white panel beneath it; from lg the art sits on the right beside the
+ * copy — the HighlightCard shell, with a dismiss × on the art. On desktop
+ * the CTA fires Chromium's native prompt when it has one, otherwise the
+ * how-to modal explains the browser's own install path (address-bar icon or
+ * menu in Chrome and Edge, Add to Dock in Safari, none in Firefox). Renders
+ * nothing once installed, in the native shell, or after dismissal; hosts
+ * wrap it in `empty:hidden`.
  */
 export function InstallHeroCard({
   dismissible = true,
 }: {
   /**
    * Home lets people close the card (remembered per device). My Devcon does
-   * not (Didier, 2026-09-24): it is the sign-in and tickets page, where
-   * installing matters most, so the card stays whenever the install gate
-   * applies, whatever was dismissed on Home.
+   * not: signed in, it is where installing matters most, so the card stays
+   * whenever the install gate applies, whatever was dismissed on Home.
    */
   dismissible?: boolean;
 } = {}) {
@@ -234,6 +234,56 @@ export function InstallHeroCard({
             )}
           </div>
         )}
+      </div>
+      {modal}
+    </section>
+  );
+}
+
+/**
+ * The phone-sized install nudge for My Devcon once signed in (desktop shows
+ * InstallHeroCard's QR card instead; the page picks by `useIsDesktop`): one
+ * row, a thumbnail crop of the same phones art, the title and one line of
+ * copy, and the Install button. Not dismissible and independent of Home's
+ * dismissal by decision (Scott, 2026-09-25): it is small enough to stay,
+ * and the sign-in page itself never shows an install card. Same install
+ * gate and flow as the hero; renders nothing once installed or in the
+ * native shell, so hosts wrap it in `empty:hidden`.
+ */
+export function InstallCompactCard() {
+  const gate = useShouldShowInstall();
+  const { install, modal } = useInstallFlow();
+  const { attempt, markFailed } = useRetryOnReconnect();
+
+  if (!gate) return null;
+
+  return (
+    <section
+      aria-label="Install the Devcon app"
+      className="flex gap-4 rounded-xl border border-dc-hairline bg-white p-4 font-heading"
+    >
+      {/* Thumbnail: white fallback like the hero's band, retried on reconnect. */}
+      <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={attempt}
+          src="/home/install-phones.jpg"
+          onError={markFailed}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+          Install the Devcon app
+        </h2>
+        <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
+          Your schedule, tickets and notifications, offline and one tap away.
+        </p>
+        <PrimaryButton onClick={install} className="mt-3 w-fit self-end">
+          <Download className="size-4" />
+          Install app
+        </PrimaryButton>
       </div>
       {modal}
     </section>
