@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, RotateCcw, Sparkles, Tv } from "lucide-react";
+import cn from "classnames";
+import { RotateCcw, Sparkles, Tv } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { deletePref } from "@/data/prefs";
 import { openDevaBot } from "@/components/ai/devaBotState";
@@ -17,8 +18,13 @@ const NUDGE_PREF_KEYS = [
   "home.notificationsHero.dismissed", // Home's "Turn on notifications" card
 ];
 
-const textButton =
-  "flex cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 py-1.5 text-[13px] font-bold leading-none text-dc-fg2 hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
+/**
+ * The app's labelled pill (HeaderPill's 32px mobile recipe: white hairline
+ * pill, 16px purple icon, 13px label), as a plain class so the room-screens
+ * entry can be a Link. Sits under its row's copy, left-aligned.
+ */
+const toolPill =
+  "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] font-bold leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
 
 /**
  * Tools for the EF team on My Devcon (/ticket), rendered only for signed-in
@@ -61,64 +67,61 @@ export function EfInternalTools() {
       </div>
 
       {/* Deva (AI assistant) */}
-      <div className="mt-4 flex flex-wrap items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-[14px] font-bold leading-5 text-dc-fg2">Ask Deva</p>
-          <p className="mt-1 text-[12px] leading-4 text-dc-muted">
-            The AI assistant, off the public menu for now.
-          </p>
-        </div>
-        <button type="button" onClick={openDevaBot} className={textButton}>
-          <Sparkles className="size-3.5" />
+      <div className="mt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Ask Deva</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+          The AI assistant, off the public menu for now.
+        </p>
+        <button type="button" onClick={openDevaBot} className={cn(toolPill, "mt-3")}>
+          <Sparkles />
           Open
         </button>
       </div>
 
       {/* Room screens (kiosk) */}
-      <div className="mt-4 flex flex-wrap items-start justify-between gap-3 border-t border-dc-hairline pt-4">
-        <div className="min-w-0">
-          <p className="text-[14px] font-bold leading-5 text-dc-fg2">Room screens</p>
-          <p className="mt-1 text-[12px] leading-4 text-dc-muted">
-            The kiosk view for the display outside each room: pick a room, then leave the
-            screen on it.
-          </p>
-        </div>
-        <Link href="/room-screens" className={textButton}>
-          <Tv className="size-3.5" />
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Room screens</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+          The kiosk view for the display outside each room: pick a room, then leave the
+          screen on it.
+        </p>
+        <Link href="/room-screens" className={cn(toolPill, "mt-3")}>
+          <Tv />
           Open
-          <ExternalLink className="size-3" />
         </Link>
       </div>
 
       {/* Nudges */}
-      <div className="mt-4 flex flex-wrap items-start justify-between gap-3 border-t border-dc-hairline pt-4">
-        <div className="min-w-0">
-          <p className="text-[14px] font-bold leading-5 text-dc-fg2">
-            Install &amp; notification nudges
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">
+          Install &amp; notification nudges
+        </p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+          Bring back the &ldquo;Install the Devcon app&rdquo; card, the first-launch push
+          sheet and the &ldquo;Turn on notifications&rdquo; card on Home, as if this device
+          had never seen them.
+        </p>
+        {nudges === "cleared" && (
+          <p className="mt-1 text-[14px] leading-5 text-dc-purple">
+            Cleared. Reload to see them again.
           </p>
-          <p className="mt-1 text-[12px] leading-4 text-dc-muted">
-            Bring back the &ldquo;Install the Devcon app&rdquo; card, the first-launch push
-            sheet and the &ldquo;Turn on notifications&rdquo; card on Home, as if this device
-            had never seen them.
-          </p>
-          {nudges === "cleared" && (
-            <p className="mt-1 text-[12px] leading-4 text-dc-purple">
-              Cleared. Reload to see them again.
-            </p>
-          )}
-        </div>
+        )}
         {nudges === "cleared" ? (
           <button
             type="button"
             onClick={() => window.location.reload()}
-            className={textButton}
+            className={cn(toolPill, "mt-3")}
           >
-            <RotateCcw className="size-3.5" />
+            <RotateCcw />
             Reload
           </button>
         ) : (
-          <button type="button" onClick={() => void resetNudges()} className={textButton}>
-            <RotateCcw className="size-3.5" />
+          <button
+            type="button"
+            onClick={() => void resetNudges()}
+            className={cn(toolPill, "mt-3")}
+          >
+            <RotateCcw />
             Reset nudges
           </button>
         )}
