@@ -204,9 +204,8 @@ export function InstallHeroCard({
               Install the Devcon app
             </h2>
             <p className="mt-1 text-[14px] leading-5 text-dc-muted lg:mt-2 lg:max-w-[640px] lg:text-base lg:leading-6">
-              Your schedule, tickets and notifications, offline and one tap away.
-              Turn on push to hear about announcements and the sessions
-              you&apos;re interested in.
+              Your schedule, tickets and push notifications, available offline
+              and just a few steps away.
             </p>
           </div>
           {/* Phones and tablets: the install control. Desktop: none; the QR
@@ -225,14 +224,18 @@ export function InstallHeroCard({
               alt="QR code that opens this app on your phone"
               className="size-[132px] rounded-lg border border-dc-hairline"
             />
-            <p className="text-[12px] font-bold leading-4 text-dc-fg2">
-              Scan to open on your phone
-            </p>
-            {qrSignedIn && (
-              <p className="text-[11px] leading-4 text-dc-muted">
-                Signs you in there too
+            {/* Caption and its sign-in note sit tight (2px), apart from the
+                QR's 8px gap. */}
+            <div className="flex flex-col items-center gap-0.5">
+              <p className="text-[12px] font-bold leading-4 text-dc-fg2">
+                Scan to open on mobile
               </p>
-            )}
+              {qrSignedIn && (
+                <p className="text-[11px] leading-4 text-dc-muted">
+                  We&apos;ll sign you in there too
+                </p>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -268,7 +271,8 @@ export function InstallCompactCard() {
           Install the Devcon app
         </h2>
         <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
-          Your schedule, tickets and notifications, offline and one tap away.
+          Your schedule, tickets and push notifications, available offline and
+          just a few steps away.
         </p>
         <PrimaryButton onClick={install} className="mt-3">
           <Download className="size-4" />
