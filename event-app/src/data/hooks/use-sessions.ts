@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { getActiveDataset } from "../dataset";
+import { communityHubsDataset, getActiveDataset } from "../dataset";
 import type { Session } from "../models";
-import { eventStore, type StoreState } from "../store/event-store";
-import { useEventStore } from "../store/use-event-store";
+import type { StoreState } from "../store/event-store";
+import { storeFor, useScheduleSource, type ScheduleSource } from "../store/schedule-source";
+import { useEventStore, useStoreState } from "../store/use-event-store";
 
 export interface SessionFilters {
   track?: string;
@@ -34,9 +35,17 @@ export function statusFlags(state: StoreState, hasData: boolean) {
   return { isLoading, error, isValidating: status === "syncing" };
 }
 
-/** Force a full re-sync (the old SWR `mutate`). */
-export function forceSync() {
-  return eventStore.sync(getActiveDataset(), { force: true });
+/** Force a full re-sync of one programme's store (the old SWR `mutate`). */
+export function forceSync(source: ScheduleSource = "main") {
+  const dataset = source === "hubs" ? communityHubsDataset(getActiveDataset()) : getActiveDataset();
+  if (!dataset) return Promise.resolve("failed" as const);
+  return storeFor(source).sync(dataset, { force: true });
+}
+
+/** `mutate` for the store behind the current schedule source. */
+export function useForceSync() {
+  const source = useScheduleSource();
+  return useCallback(() => forceSync(source), [source]);
 }
 
 export function filterSessions(all: Session[], f: SessionFilters): Session[] {
@@ -67,7 +76,7 @@ export function useSessions(filters?: SessionFilters) {
     [state.snapshot, track, type, roomId, search]
   );
   const flags = statusFlags(state, state.snapshot.sessions.length > 0);
-  const mutate = useCallback(() => forceSync(), []);
+  const mutate = useForceSync();
   return {
     sessions,
     isLoading: flags.isLoading,
@@ -78,12 +87,37 @@ export function useSessions(filters?: SessionFilters) {
   };
 }
 
-/** One session by id from the snapshot. Works offline once the event has synced once. */
+/**
+ * Sessions of every programme together: the Pretalx schedule and, when the
+ * event has them, the Community Hubs. For views that span programmes, like
+ * "My Interests", which lists everything the attendee starred whichever
+ * segment the schedule is on. The hub store is empty (never synced) for
+ * events without hubs, so this is then the plain schedule.
+ */
+export function useSessionsOfAllProgrammes(): Session[] {
+  const main = useStoreState(storeFor("main"));
+  const hubs = useStoreState(storeFor("hubs"));
+  return useMemo(
+    () =>
+      hubs.snapshot.sessions.length > 0
+        ? [...main.snapshot.sessions, ...hubs.snapshot.sessions]
+        : main.snapshot.sessions,
+    [main.snapshot, hubs.snapshot]
+  );
+}
+
+/**
+ * One session by id from the snapshot. Works offline once the event has synced
+ * once. Looks in the current programme first, then the other one, so a hub
+ * session link opens whichever segment the schedule is showing.
+ */
 export function useSession(id: string) {
+  const source = useScheduleSource();
   const state = useEventStore();
-  const session = id ? (state.snapshot.sessionById.get(id) ?? null) : null;
+  const other = useStoreState(storeFor(source === "hubs" ? "main" : "hubs"));
+  const session = id ? (state.snapshot.sessionById.get(id) ?? other.snapshot.sessionById.get(id) ?? null) : null;
   const flags = statusFlags(state, state.snapshot.sessions.length > 0);
-  const mutate = useCallback(() => forceSync(), []);
+  const mutate = useForceSync();
   return {
     session,
     isLoading: flags.isLoading && !session,

@@ -31,16 +31,26 @@ async function getJson<T>(url: string, init?: RequestInit): Promise<T> {
  */
 export class DevconApiProvider implements IEventDataProvider {
   async getVersion(dataset: Dataset): Promise<string> {
-    const version = await getJson<string | number>(
-      `${dataset.apiUrl}/events/${dataset.eventId}/version`,
-      { cache: "no-cache" }
-    );
+    if (dataset.staticBundleUrl) return (await this.getBundle(dataset)).version;
+    const version = await getJson<string | number>(`${baseUrl(dataset)}/version`, {
+      cache: "no-cache",
+    });
     return String(version);
   }
 
   async getBundle(dataset: Dataset): Promise<EventBundle> {
-    return getJson<EventBundle>(
-      `${dataset.apiUrl}/events/${dataset.eventId}/bundle`
-    );
+    if (dataset.staticBundleUrl) return getJson<EventBundle>(dataset.staticBundleUrl, { cache: "no-cache" });
+    return getJson<EventBundle>(`${baseUrl(dataset)}/bundle`);
   }
+}
+
+/**
+ * A Community Hubs dataset reads its event's `/events/:id/community-hubs/*`
+ * endpoints (the API builds that bundle live from the hubs' sheets); every
+ * other dataset reads the Pretalx-synced `/events/:id/*`.
+ */
+function baseUrl(dataset: Dataset): string {
+  return dataset.communityHubsOf
+    ? `${dataset.apiUrl}/events/${dataset.communityHubsOf}/community-hubs`
+    : `${dataset.apiUrl}/events/${dataset.eventId}`;
 }

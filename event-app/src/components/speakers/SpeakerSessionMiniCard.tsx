@@ -23,7 +23,7 @@ const locationLabel = (session: Session) =>
  * state (session ids, not speaker ids) without navigating.
  */
 export function SpeakerSessionMiniCard({ session }: { session: Session }) {
-  const theme = getTrackTheme(session.track);
+  const theme = getTrackTheme(session.track, session.room?.id);
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
@@ -106,7 +106,7 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
         )}
         style={theme.neutral ? undefined : { backgroundColor: theme.color }}
       >
-        {trackBadgeLabel(session.track)}
+        {trackBadgeLabel(session.track, session.room?.id)}
       </span>
     </DetailLink>
   );

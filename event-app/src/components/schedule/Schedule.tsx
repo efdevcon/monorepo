@@ -10,6 +10,7 @@ import {
   useState,
 } from "react";
 import {
+  CalendarDays,
   CalendarRange,
   Check,
   ClockArrowDown,
@@ -17,10 +18,14 @@ import {
   ListFilter,
   MoveDown,
   MoveUp,
-  Search,
+  Tent,
 } from "lucide-react";
 import cn from "classnames";
-import { useSessions } from "@/data/hooks";
+import { useSearchParams } from "next/navigation";
+import { useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
+import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
+import { communityHubForRoom, isCommunityHubName } from "@/data/communityHubs";
+import { HUBS_PARAM, ScheduleSourceProvider, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -36,7 +41,7 @@ import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
 import { ScheduleTimeline } from "./ScheduleTimeline";
 import { FilterSheet } from "./FilterSheet";
-import { FilterPanelContent } from "./FilterPanelContent";
+import { FilterPanelContent, type FilterPanelMode } from "./FilterPanelContent";
 import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
@@ -44,8 +49,194 @@ import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
+import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 
 type ViewMode = "list" | "timeline";
+
+/**
+ * "Sessions / Community Hubs" switch: which programme the whole page shows.
+ * A white pill track whose purple fill slides to the chosen programme (the
+ * List/Timeline control's sliding indicator, in the topic pills' selected
+ * purple), so it reads as page-level navigation and not as a twin of that
+ * control, which keeps its recessed track. Type, 20px icons, gap and colours
+ * match List/Timeline so the two read as one family; segments take 12px
+ * sides (not that control's 8px) so labels clear the round track's ends.
+ * `stretch` fills the row on mobile. A switch remounts the list (and this
+ * toggle with it), so `previous` names the programme just left and when:
+ * a toggle mounting right after that switch paints its fill there first,
+ * then slides it over. Any later mount (My Interests turned off, crossing
+ * the desktop breakpoint) just places the fill.
+ */
+/** The last programme switch: where the fill slides from, and when. */
+type SourceSwitch = { from: ScheduleSource; at: number };
+/** A toggle mounting this soon after a switch belongs to it (the remount). */
+const SLIDE_WINDOW_MS = 1000;
+
+function SourceToggle({
+  source,
+  previous,
+  onChange,
+  stretch = false,
+}: {
+  source: ScheduleSource;
+  previous: SourceSwitch | null;
+  onChange: (s: ScheduleSource) => void;
+  stretch?: boolean;
+}) {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const buttonRefs = useRef(new Map<ScheduleSource, HTMLButtonElement | null>());
+  const [indicator, setIndicator] = useState<{ x: number; w: number } | null>(null);
+
+  // Measured after render so the fill lands on the active label's
+  // post-font-weight-swap width; re-measured on resize because the stretched
+  // mobile segments change width with the viewport.
+  const indicatorRef = useRef<HTMLDivElement | null>(null);
+  // undefined until the first layout pass decides; null = no slide.
+  const slideFromRef = useRef<ScheduleSource | null | undefined>(undefined);
+  const slidePendingRef = useRef(false);
+  // The first placement (no slide) must snap, not animate in from x 0.
+  const snapPendingRef = useRef(false);
+  const measureOf = useCallback((s: ScheduleSource) => {
+    const el = buttonRefs.current.get(s);
+    return el ? { x: el.offsetLeft, w: el.offsetWidth } : null;
+  }, []);
+  useLayoutEffect(() => {
+    const measure = () => {
+      const m = measureOf(source);
+      if (m) setIndicator(m);
+    };
+    // Decided once per mount, cleared by the effect below once the slide
+    // has started (not here: StrictMode re-runs this effect on mount and
+    // must see it again). Only a mount caused by the switch itself slides.
+    if (slideFromRef.current === undefined) {
+      const fresh =
+        previous !== null &&
+        previous.from !== source &&
+        performance.now() - previous.at < SLIDE_WINDOW_MS;
+      slideFromRef.current = fresh ? previous.from : null;
+    }
+    const from = slideFromRef.current;
+    if (from) {
+      // Paint the fill at the old segment first; the effect below moves it.
+      slidePendingRef.current = true;
+      setIndicator(measureOf(from));
+    } else {
+      snapPendingRef.current = true;
+      measure();
+    }
+    const track = trackRef.current;
+    if (!track) return;
+    const ro = new ResizeObserver(() => {
+      if (!slidePendingRef.current) measure();
+    });
+    ro.observe(track);
+    return () => ro.disconnect();
+    // `previous` is read once, on mount (see above).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [source, measureOf]);
+  useLayoutEffect(() => {
+    const el = indicatorRef.current;
+    if (snapPendingRef.current && indicator && el) {
+      // Placed with the transition off and styles flushed, so the hidden →
+      // placed step never runs as an animation.
+      snapPendingRef.current = false;
+      el.style.transition = "none";
+      void el.offsetWidth;
+      el.style.transition = "";
+      return;
+    }
+    if (!slidePendingRef.current || !indicator || !el) return;
+    slidePendingRef.current = false;
+    slideFromRef.current = null;
+    // Snap to the old segment with the transition off (the hidden → placed
+    // step would otherwise animate in from x 0), flush styles so that is the
+    // transition's start, then move the fill on the DOM directly; state
+    // catches up on the ResizeObserver's first measure.
+    el.style.transition = "none";
+    void el.offsetWidth;
+    el.style.transition = "";
+    const m = measureOf(source);
+    if (!m) return;
+    el.style.transform = `translateX(${m.x}px)`;
+    el.style.width = `${m.w}px`;
+  }, [indicator, source, measureOf]);
+
+  return (
+    <div
+      ref={trackRef}
+      role="tablist"
+      aria-label="Which programme to show"
+      className={cn(
+        // Hairline as an inset ring, not a border: a border sits inside the
+        // 40px box and left 30px for the 32px segments, so the fill sat 4px
+        // from the top but 2px from the bottom. The ring takes no space.
+        "relative flex h-10 shrink-0 items-center gap-1 rounded-full bg-white p-1 ring-1 ring-inset ring-dc-hairline",
+        stretch && "w-full"
+      )}
+    >
+      <div
+        ref={indicatorRef}
+        aria-hidden
+        style={
+          indicator
+            ? { transform: `translateX(${indicator.x}px)`, width: indicator.w }
+            : { visibility: "hidden" }
+        }
+        className="absolute left-0 top-1 h-8 rounded-full bg-dc-purple transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
+      />
+      {(
+        [
+          { value: "main", label: "Sessions", Icon: CalendarDays },
+          { value: "hubs", label: "Community Hubs", Icon: Tent },
+        ] as const
+      ).map(({ value, label, Icon }) => {
+        const active = source === value;
+        return (
+          <button
+            key={value}
+            ref={(el) => {
+              buttonRefs.current.set(value, el);
+            }}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            onClick={() => onChange(value)}
+            className={cn(
+              "relative z-10 flex h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 text-[14px] leading-none transition-colors duration-150 ease-out",
+              stretch && "flex-1",
+              active
+                ? "font-bold text-white"
+                : "font-medium text-dc-muted hover:text-dc-fg2"
+            )}
+          >
+            <Icon className="size-5 shrink-0" />
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * Stands in for the programme switch while "My Interests" is on: that view
+ * spans both programmes, so the switch would do nothing. A plain text label
+ * (not a pill, which read as a button) in the switch's 40px slot, so the day
+ * tabs do not jump when the toggle flips. leading-5, not leading-none: the
+ * truncate's overflow clip cut the descenders at a 14px line box.
+ */
+function InterestsSpanNote({ stretch = false }: { stretch?: boolean }) {
+  return (
+    <div
+      className={cn(
+        "flex h-10 min-w-0 shrink-0 items-center whitespace-nowrap text-[14px] leading-5 text-dc-muted",
+        stretch ? "w-full justify-center" : "justify-end"
+      )}
+    >
+      <span className="min-w-0 truncate">Showing Interests from both programmes</span>
+    </div>
+  );
+}
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
@@ -224,7 +415,8 @@ function CompletedPanel({
 
 /**
  * Sticky time-group header. Pins under the day tabs: 103px on mobile (56px
- * app bar + 47px tab strip), 118px on desktop (65px nav + 53px day bar).
+ * app bar + 47px tab strip), 183px on desktop (65px nav + 65px toolbar +
+ * 53px day bar).
  * Non-live headers only paint their wash once pinned on mobile — unpinned
  * they sit directly on the gradient/band (Figma) — while a pinned header
  * needs the fill so cards scrolling beneath don't show through. Desktop
@@ -248,10 +440,11 @@ function GroupHeader({
     if (inPanel || !el) return;
     // The sentinel marks the header's natural position: once it crosses
     // above the pin line (1px past the breakpoint's sticky top offset =
-    // app header + day-tab strip, see the sticky top-[103px]/[118px]),
+    // app header (+ desktop toolbar) + day-tab strip, see the sticky
+    // top-[103px]/[183px]),
     // the header is stuck. headerOffsetNow() carries the iOS status-bar
     // inset, matching the +var(--safe-top) in those sticky classes.
-    const pinLine = headerOffsetNow() + (isDesktop ? 54 : 48);
+    const pinLine = headerOffsetNow() + (isDesktop ? 119 : 48);
     const observer = new IntersectionObserver(
       ([entry]) => {
         // A hidden tab pane (display:none) reports a 0×0 rect that is "not
@@ -274,7 +467,7 @@ function GroupHeader({
         className={cn(
           "flex items-center justify-between gap-3",
           !inPanel &&
-            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(118px+var(--safe-top))]",
+            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(183px+var(--safe-top))]",
           // Pinned headers get 4px 0 padding for breathing room, offset by
           // negative margins so flow height stays put (the section is
           // flex-col so the negative margins can't collapse away). Browsers
@@ -336,9 +529,78 @@ function GroupHeader({
  * full-bleed live band, collapsed completed sessions, a filter bottom sheet.
  * Desktop: white panel (toolbar + day tabs + list) with filter / session
  * details as 360px right columns. Data hooks and shapes are untouched.
+ *
+ * The view is one component for two programmes: the Pretalx schedule and, when
+ * the event has one, the Community Hubs' (a separate store, see
+ * schedule-source.tsx). The segment lives in the URL as `?hubs=1` so the home
+ * card and deep links can open it; the list remounts on switch so day, filter
+ * and scroll state start fresh for the other programme.
  */
 export function Schedule() {
+  const hasHubs = !!communityHubsDataset(getActiveDataset());
+  // List or timeline: kept here so it carries over a programme switch (the
+  // inner view remounts) instead of snapping back to a default.
+  const [view, setView] = useState<ViewMode>("list");
+  const searchParams = useSearchParams();
+  const hubsInUrl = hasHubs && !!searchParams.get(HUBS_PARAM);
+  const [source, setSource] = useState<ScheduleSource>(hubsInUrl ? "hubs" : "main");
+  // A link into `/schedule?hubs=1` while the pane is mounted switches over;
+  // the param disappearing (detail pages drop the query) does not switch back.
+  // Adjusted during render (React's "state from props" pattern), not in an effect.
+  const [seenHubsInUrl, setSeenHubsInUrl] = useState(hubsInUrl);
+  if (hubsInUrl !== seenHubsInUrl) {
+    setSeenHubsInUrl(hubsInUrl);
+    if (hubsInUrl) setSource("hubs");
+  }
+  // The programme just left (and when), for the remounted switch's slide.
+  const [previousSource, setPreviousSource] = useState<SourceSwitch | null>(null);
+  const sourceRef = useRef(source);
+  useEffect(() => {
+    sourceRef.current = source;
+  }, [source]);
+  const changeSource = useCallback((next: ScheduleSource) => {
+    // Batched with setSource, so the remounted switch mounts already
+    // knowing where its fill comes from.
+    setPreviousSource({ from: sourceRef.current, at: performance.now() });
+    setSource(next);
+    const url = new URL(window.location.href);
+    if (next === "hubs") url.searchParams.set(HUBS_PARAM, "1");
+    else url.searchParams.delete(HUBS_PARAM);
+    window.history.replaceState(window.history.state, "", url.toString());
+  }, []);
+  return (
+    <ScheduleSourceProvider source={source}>
+      <ScheduleInner
+        key={source}
+        source={source}
+        previousSource={previousSource}
+        hasHubs={hasHubs}
+        onSourceChange={changeSource}
+        view={view}
+        setView={setView}
+      />
+    </ScheduleSourceProvider>
+  );
+}
+
+function ScheduleInner({
+  source,
+  previousSource,
+  hasHubs,
+  onSourceChange,
+  view,
+  setView,
+}: {
+  source: ScheduleSource;
+  previousSource: SourceSwitch | null;
+  hasHubs: boolean;
+  onSourceChange: (s: ScheduleSource) => void;
+  view: ViewMode;
+  setView: (v: ViewMode) => void;
+}) {
   const { sessions, isLoading, isError } = useSessions();
+  // "My Interests" spans both programmes (see useScheduleState).
+  const everySessions = useSessionsOfAllProgrammes();
   const { ids: interestedIds } = useInterested();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailRoute("session");
@@ -356,6 +618,7 @@ export function Schedule() {
     setSearch,
     filters,
     toggleFilter,
+    retainFilters,
     clearFilters,
     activeFilterCount,
     facetFilterCounts,
@@ -368,13 +631,49 @@ export function Schedule() {
     daySessions,
     resultCount,
     anyLive,
-  } = useScheduleState(sessions, interestedIds);
+  } = useScheduleState(sessions, interestedIds, undefined, everySessions);
+
+  // Filter panel shape: the Community Hubs segment drops Tracks/Locations
+  // and calls the hub tags "Hubs"; My Interests spanning both programmes
+  // adds a Hubs section. Hub names come from the sessions in view (a hub
+  // session's only tag is its hub's name, so they filter as topics).
+  const filterMode: FilterPanelMode =
+    hasHubs && interestedOnly ? "both" : source === "hubs" ? "hubs" : "main";
+  const hubFilterOptions = useMemo(() => {
+    if (filterMode === "main") return [];
+    const names = new Set<string>();
+    for (const s of filterMode === "both" ? everySessions : sessions) {
+      const hub = communityHubForRoom(s.room?.id);
+      if (hub) names.add(hub.name);
+    }
+    return [...names].sort();
+  }, [filterMode, everySessions, sessions]);
+
+  // My Interests reshapes the panel (its Hubs section comes and goes; on the
+  // Community Hubs segment Tracks and Locations too), but selections outlive
+  // the toggle: keep only what the new panel still shows, or a hidden pick
+  // keeps filtering an empty list. Adjusted during render when the mode
+  // changes (React's "state from props" pattern), not in an effect.
+  const [seenFilterMode, setSeenFilterMode] = useState(filterMode);
+  if (filterMode !== seenFilterMode) {
+    setSeenFilterMode(filterMode);
+    const shown = filterMode !== "hubs";
+    retainFilters({
+      track: shown ? filterOptions.track : [],
+      room: shown ? filterOptions.room : [],
+      type: filterOptions.type,
+      expertise: filterOptions.expertise,
+      topic:
+        filterMode === "main"
+          ? filterOptions.topic.filter((t) => !isCommunityHubName(t))
+          : [...filterOptions.topic, ...hubFilterOptions],
+    });
+  }
 
   const isDesktop = useIsDesktop();
   // False while another tab pane is showing: header portals and window
   // measurements belong to the visible pane only (see TabPanes).
   const paneActive = usePaneActive();
-  const [view, setView] = useState<ViewMode>("list");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
@@ -397,7 +696,9 @@ export function Schedule() {
   // Closing the drawer clears the query too (see useHeaderSearch).
   const headerSearch = useHeaderSearch(() => setSearch(""));
   const mainCardRef = useRef<HTMLDivElement | null>(null);
-  const desktopSearchRef = useRef<HTMLInputElement | null>(null);
+  // Desktop toolbar (search + switches): sticky, glass once pinned.
+  const toolbarRef = useRef<HTMLDivElement | null>(null);
+  const toolbarStuck = useStuckUnderHeader(toolbarRef);
   const asideRef = useRef<HTMLElement | null>(null);
   const groupRefs = useRef(new Map<string, HTMLElement | null>());
 
@@ -447,16 +748,20 @@ export function Schedule() {
     if (Math.abs(delta) >= 1) window.scrollBy({ top: delta, behavior: "auto" });
   }, [panelSessionId]);
 
+  // Looked up across both programmes: with My Interests on, the list shows
+  // the other programme's starred sessions too, and a lookup in this
+  // programme's list alone found nothing, so the side panel never opened
+  // (or closed) for them.
   const selectedSession = useMemo(
     () =>
       selectedSessionId
-        ? (sessions.find((s) => s.id === selectedSessionId) ?? null)
+        ? (everySessions.find((s) => s.id === selectedSessionId) ?? null)
         : null,
-    [sessions, selectedSessionId]
+    [everySessions, selectedSessionId]
   );
   const routeSession = useMemo(
-    () => (detailId ? (sessions.find((s) => s.id === detailId) ?? null) : null),
-    [sessions, detailId]
+    () => (detailId ? (everySessions.find((s) => s.id === detailId) ?? null) : null),
+    [everySessions, detailId]
   );
   useDocumentTitle(routeSession?.title ?? null);
   // Desktop renders the session page in place of the list: remember where
@@ -863,6 +1168,8 @@ export function Schedule() {
         onClear={clearFilters}
         onClose={() => setFiltersOpen(false)}
         defaultOpen
+        mode={filterMode}
+        hubs={hubFilterOptions}
       />
     </div>
   ) : null;
@@ -893,7 +1200,7 @@ export function Schedule() {
       className={cn(
         "flex flex-col",
         !opts.inPanel &&
-          "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
+          "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} />
@@ -1002,10 +1309,20 @@ export function Schedule() {
         hidden={(isDesktop && !!detailId) || undefined}
         inert={!!detailId || undefined}
       >
-        {/* Desktop page title */}
-        <h1 className="hidden pb-4 pt-8 text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
-          Schedule
-        </h1>
+        {/* Desktop page title, with the programme switch beside it: it
+            changes the whole page (list, filters, day set), so it sits at
+            page level rather than among the list's toolbar controls. */}
+        <div className="hidden items-center justify-between gap-4 pb-4 pt-8 lg:flex">
+          <h1 className="text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+            Schedule
+          </h1>
+          {hasHubs &&
+            (interestedOnly ? (
+              <InterestsSpanNote />
+            ) : (
+              <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} />
+            ))}
+        </div>
 
         {/* No gap here — the animated aside carries the 16px gutter (pl-4). */}
         <div className="lg:flex lg:items-start">
@@ -1014,14 +1331,28 @@ export function Schedule() {
             ref={mainCardRef}
             className="min-w-0 lg:flex-1 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]"
           >
-            {/* Desktop: search + view toggle toolbar */}
-            <div className="hidden items-center justify-between gap-3 border-b border-dc-hairline bg-white px-4 py-3 lg:flex lg:rounded-t-xl">
+            {/* Desktop: search + view toggle toolbar. Sticky under the app
+                header, with the day tabs pinning right beneath it (the
+                Speakers page's two-row stack): search and the view switch
+                stay in reach mid-list. 65px tall (12 + 40 +
+                12 + 1px border), which every desktop offset below the day
+                tabs adds (DayTabs' lg:top, GroupHeader, the scroll margins).
+                Pinned, it swaps to the app header's glass and squares its
+                corners, like the Speakers toolbar. */}
+            <div
+              ref={toolbarRef}
+              className={cn(
+                "z-20 hidden items-center justify-between gap-3 border-b border-dc-hairline px-4 py-3 lg:sticky lg:top-[calc(65px+var(--safe-top))] lg:flex",
+                toolbarStuck
+                  ? "bg-white/75 backdrop-blur-[4px]"
+                  : "bg-white lg:rounded-t-xl"
+              )}
+            >
               <SearchInput
                 value={search}
                 onChange={setSearch}
                 placeholder="Search by session, speaker or topic"
                 className="w-[348px]"
-                inputRef={desktopSearchRef}
                 resultCount={totalMatches}
               />
               <ViewToggle view={view} onChange={changeView} />
@@ -1048,6 +1379,21 @@ export function Schedule() {
               />
             )}
 
+            {/* Mobile: programme switch on the day bar's lavender, in flow
+                right above the day tabs so the two read as one block of
+                programme navigation (an open search drawer sits above it,
+                against the header). It scrolls away with the page like the
+                search does; DayTabs alone pins. */}
+            {hasHubs && !detailId && (
+              <div className="bg-dc-lavender px-4 pb-1 pt-3 lg:hidden">
+                {interestedOnly ? (
+                  <InterestsSpanNote stretch />
+                ) : (
+                  <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} stretch />
+                )}
+              </div>
+            )}
+
             {/* Day tabs (sticky under the mobile header) + desktop controls */}
             <DayTabs
               days={visibleDays}
@@ -1055,21 +1401,9 @@ export function Schedule() {
               selectedDay={selectedDay}
               onSelect={selectDay}
               raised={chromeHidden}
-              // The toolbar's search field has scrolled away by the time the
-              // bar pins: this brings the page back to it and focuses it.
-              pinnedLead={
-                <button
-                  onClick={() => {
-                    programmaticScrollRef.current = true;
-                    window.scrollTo({ top: 0, behavior: "auto" });
-                    desktopSearchRef.current?.focus();
-                  }}
-                  className={cn(ghostPill, search && "bg-dc-lavender")}
-                >
-                  <Search className="size-4" />
-                  Search
-                </button>
-              }
+              // Desktop: pins under the sticky toolbar above (65px nav +
+              // 65px toolbar).
+              stackedUnderToolbar
             >
               <InterestedPill
                 kind="session"
@@ -1109,7 +1443,7 @@ export function Schedule() {
                 "px-4 pt-6 lg:rounded-b-xl lg:bg-dc-panel lg:pb-6",
                 // Scroll target for day-tab "top" (see scrollListTop); same
                 // pinned-tabs clearance as the group headers.
-                "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]",
+                "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]",
                 // Mobile timeline sits flush on the panel-grey underlay (see
                 // the timeline branch); the layout's nav clearance is the
                 // only gap left below it.
@@ -1144,6 +1478,7 @@ export function Schedule() {
                   <FilterStatusBar
                     counts={facetFilterCounts}
                     onClear={clearFilters}
+                    topicLabel={filterMode === "hubs" ? "Hubs" : undefined}
                   />
                 </div>
               </div>
@@ -1153,6 +1488,7 @@ export function Schedule() {
                 <FilterStatusBar
                   counts={facetFilterCounts}
                   onClear={clearFilters}
+                  topicLabel={filterMode === "hubs" ? "Hubs" : undefined}
                 />
               </div>
 
@@ -1277,6 +1613,8 @@ export function Schedule() {
           filters={filters}
           onToggle={toggleFilter}
           onClear={clearFilters}
+          mode={filterMode}
+          hubs={hubFilterOptions}
         />
       )}
     </main>

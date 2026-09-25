@@ -12,6 +12,7 @@ import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel } from "./trackTheme";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
+import { isCommunityHubSession } from "@/data/communityHubs";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 export function downloadSessionIcs(session: Session) {
@@ -68,7 +69,7 @@ export function SessionSummary({
 }) {
   const nowMs = useNowMs(60_000);
   const { event } = useEvent();
-  const theme = getTrackTheme(session.track);
+  const theme = getTrackTheme(session.track, session.room?.id);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
@@ -76,7 +77,8 @@ export function SessionSummary({
   // and live/soon sessions may render the room livestream there instead.
   // Asks SessionMedia's own predicate — a live session whose room has no
   // stream configured must fall back to the banner, not an empty slot.
-  const hasMedia = sessionHasMedia(session, nowMs, event?.startDate);
+  // Hub sessions are not recorded or streamed; keep the track banner.
+  const hasMedia = !isCommunityHubSession(session) && sessionHasMedia(session, nowMs, event?.startDate);
 
   const location = [session.type, session.room?.name]
     .filter(Boolean)
@@ -92,17 +94,31 @@ export function SessionSummary({
         backgroundColor: theme.neutral ? "#f5f1fe" : theme.color,
       }}
     >
-      {theme.gem && (
+      {theme.banner ? (
+        // Hub's stacked lockup (mark over name): bigger than the mark, sized
+        // off the banner so it scales from the side panel to the expanded page.
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={theme.gem}
-          alt=""
-          className="size-[120px] object-contain"
+          src={theme.banner}
+          alt={theme.name}
+          className="h-3/5 max-w-[70%] object-contain"
         />
+      ) : (
+        theme.gem && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={theme.gem}
+            alt={theme.isHub ? theme.name : ""}
+            className="size-[120px] object-contain"
+          />
+        )
       )}
-      <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
-        {session.track || theme.name}
-      </span>
+      {/* Hub sessions: the hub's logo is the banner, no caption under it. */}
+      {!theme.isHub && (
+        <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
+          {session.track || theme.name}
+        </span>
+      )}
     </div>
   );
 
@@ -173,7 +189,7 @@ export function SessionSummary({
                 theme.neutral ? undefined : { backgroundColor: theme.color }
               }
             >
-              {trackFullLabel(session.track)}
+              {trackFullLabel(session.track, session.room?.id)}
             </span>
             {featured && (
               <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">

@@ -35,6 +35,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
   const isKiosk = pathname.startsWith("/room-screens/");
+  // The embedded hub sheet sizes itself to the space above the bottom bar
+  // (see community-hubs.tsx), so that page needs no clearance padding.
+  const bottomPad = pathname.startsWith("/community-hubs") ? "pb-0" : "pb-28";
 
   return (
     // One shared push state for the header, inbox and onboarding sheet.
@@ -46,7 +49,7 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the bottom nav bar, which stays on
           session and speaker pages too. */}
-      <div className="section pb-28 lg:pb-0">
+      <div className={`section ${bottomPad} lg:pb-0`}>
         {/* Bottom-bar tabs stay mounted across switches (TabPanes); their
             route pages render nothing. Other routes render as children. */}
         <TabPanes pathname={pathname} />

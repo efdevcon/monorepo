@@ -11,7 +11,20 @@ export interface Dataset {
   key: DatasetKey;
   label: string;
   apiUrl: string;
+  /** Id the store files rows under; also the API event id unless `communityHubsOf` is set. */
   eventId: string;
+  /**
+   * Set on a Community Hubs dataset: the event whose `/events/:id/community-hubs/*`
+   * endpoints serve it. Those bundles are built live from the hubs' sheets
+   * and kept apart from the Pretalx schedule (own store, own cache rows).
+   */
+  communityHubsOf?: string;
+  /**
+   * Serve the bundle from a static file (under /public) instead of the API.
+   * Test-only: lets the hubs' schedule be looked at before the API endpoint
+   * is deployed. The file carries the usual `{ data: bundle }` envelope.
+   */
+  staticBundleUrl?: string;
   /**
    * Start of the conference (UTC ISO), i.e. morning of day 1 in the event's
    * local timezone. The debug panel uses this to mock "now" to the beginning of
@@ -60,6 +73,39 @@ export const DATASETS: Record<DatasetKey, Dataset> = {
     timezone: "Asia/Bangkok",
   },
 };
+
+/**
+ * The Community Hubs programme of an event, loaded into its own store next to
+ * the Pretalx schedule (the Schedule tab's "Community Hubs" segment). Not a
+ * `?dataset` choice: it always follows the active event.
+ */
+export const COMMUNITY_HUB_DATASETS: Partial<Record<DatasetKey, Dataset>> = {
+  devcon8: {
+    key: "devcon8",
+    label: "Devcon 8 Community Hubs",
+    apiUrl: ENV_API,
+    eventId: "devcon8-community-hubs",
+    communityHubsOf: "devcon8",
+    startDate: DATASETS.devcon8.startDate,
+    timezone: DATASETS.devcon8.timezone,
+  },
+  "devcon-7": {
+    key: "devcon-7",
+    label: "Devcon 7 Community Hubs (test sheets)",
+    apiUrl: ENV_API,
+    eventId: "devcon-7-community-hubs",
+    communityHubsOf: "devcon-7",
+    // Snapshot of /events/devcon-7/community-hubs/bundle from the three test
+    // sheets (2026-09-21); remove once the endpoint is on api.devcon.org.
+    staticBundleUrl: "/community-hubs/devcon-7-bundle.json",
+    startDate: DATASETS["devcon-7"].startDate,
+    timezone: DATASETS["devcon-7"].timezone,
+  },
+};
+
+export function communityHubsDataset(base: Dataset): Dataset | undefined {
+  return COMMUNITY_HUB_DATASETS[base.key];
+}
 
 /**
  * Default dataset used when no `?dataset` param is present. Driven by

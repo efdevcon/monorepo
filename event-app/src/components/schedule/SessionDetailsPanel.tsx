@@ -7,6 +7,8 @@ import { ShareButton } from "@/components/ShareButton";
 import { openDetail } from "@/routing/detailRoute";
 import { SessionDetailsContent } from "./SessionDetailsContent";
 import { SessionQA } from "./SessionQA";
+import { HubSheetLink } from "./HubSheetLink";
+import { isCommunityHubSession } from "@/data/communityHubs";
 
 /**
  * Desktop session-details side panel (Figma "Session Details - Side Menu"):
@@ -59,7 +61,11 @@ export function SessionDetailsPanel({
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SessionDetailsContent session={session}>
-          {showQa && <SessionQA session={session} size="sm" />}
+          {isCommunityHubSession(session) ? (
+            <HubSheetLink session={session} size="sm" />
+          ) : (
+            showQa && <SessionQA session={session} size="sm" />
+          )}
         </SessionDetailsContent>
       </div>
     </div>

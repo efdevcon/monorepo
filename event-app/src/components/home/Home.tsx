@@ -7,6 +7,7 @@ import { InstallAppButton } from "../InstallAppButton";
 import { InstallHeroCard } from "../InstallHeroCard";
 import { NotificationsHeroCard } from "./NotificationsHeroCard";
 import { Tickets } from "../Tickets";
+import { CommunityHubsCard } from "./CommunityHubsCard";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { LegalLinks } from "./LegalLinks";
@@ -45,6 +46,7 @@ export function Home() {
               <HighlightsCarousel />
             </>
           )}
+          <CommunityHubsCard />
           {/* HomeFooterArt ("Devcon 8 India") is parked for a design revisit —
               the component is kept, just not rendered. */}
           <div>

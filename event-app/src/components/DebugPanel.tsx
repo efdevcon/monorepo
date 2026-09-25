@@ -142,6 +142,10 @@ export function DebugPanel() {
   };
 
   if (!enabled) return null;
+  // Home only: the other pages have their own bottom-corner controls (list /
+  // timeline toggle, Live now, the map's tools) and the settings it applies
+  // (dataset, mock time) carry across pages anyway.
+  if (pathname !== "/") return null;
 
   // Mobile schedule: the FAB shares the bottom-left corner with the floating
   // list/timeline toggle (Schedule.tsx), so the tool steps aside there;

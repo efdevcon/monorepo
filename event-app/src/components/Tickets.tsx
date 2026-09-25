@@ -87,7 +87,7 @@ export function Tickets() {
             Sign in
           </div>
             <div className="relative [text-shadow:0_2px_4px_rgba(22,11,43,0.4)]">
-              <h3 className="font-heading text-2xl font-extrabold leading-[1.2] tracking-[-0.5px] text-dc-purple-fg">
+              <h3 className="font-heading text-[20px] font-extrabold leading-[1.2] tracking-[-0.5px] text-dc-purple-fg">
                 Add your tickets to the Devcon app
               </h3>
               <p className="mt-1 font-heading text-base leading-6 text-dc-purple-fg">
