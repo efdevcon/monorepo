@@ -2,14 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import cn from "classnames";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { closeDetail, useDetailView } from "@/routing/detailRoute";
 import { handleTabClick } from "@/components/paneContext";
 import type { DetailKind } from "@/routing/viewParams";
 import { useUser } from "@/data/auth/useUser";
-import { useAnnouncements } from "@/data/announcements/useAnnouncements";
+import { useInboxUnreadCount } from "@/data/announcements/useInboxUnread";
 import { NAV_ITEMS, isNavActive } from "@/components/Nav";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { OfflineIndicator } from "./OfflineIndicator";
@@ -30,6 +30,12 @@ export const HEADER_ACTIONS_ID = "header-actions";
 export const headerCircle =
   "relative flex size-8 cursor-pointer items-center justify-center rounded-full border transition-opacity before:absolute before:-inset-1.5 before:content-['']";
 export const headerCircleResting = "border-dc-hairline bg-white";
+
+/** The 16px purple count pill (unread badges, the day tabs' search counts):
+ *  fixed height so it never grows its text row, auto width so three digits
+ *  don't overflow. One recipe so every counter in the app reads as one. */
+export const unreadPill =
+  "flex h-4 min-w-4 items-center justify-center rounded-full bg-dc-purple px-1 text-[10px] font-semibold leading-none tabular-nums text-white";
 
 interface RouteChrome {
   title: string;
@@ -60,7 +66,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
   if (pathname.startsWith("/map")) return { title: "Map", bare: true };
   if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
-  if (pathname.startsWith("/announcements")) return { title: "Announcements" };
+  if (pathname.startsWith("/notifications")) return { title: "Notifications" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
   if (pathname === "/") return { title: "Home" };
   return { title: APP_CONFIG.APP_NAME };
@@ -74,7 +80,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
  * Every enabled route stays reachable here regardless of the design's 5-item
  * nav (Tickets, Room Screens, Announcements and the AI entry included).
  */
-export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
+export function AppHeader() {
   // Shared by the mobile logomark and the desktop logo — one reconnect retries
   // whichever of them failed.
   const { attempt: markAttempt, markFailed: markLogoFailed } =
@@ -82,10 +88,10 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
   const pathname = usePathname();
   const { kind: detailKind } = useDetailView();
   const { user } = useUser();
-  const { unreadCount } = useAnnouncements({
-    enabled:
-      APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/"),
-  });
+  // Team announcements + session reminders, one badge.
+  const unreadCount = useInboxUnreadCount(
+    APP_CONFIG.ANNOUNCEMENTS_ENABLED && !pathname.startsWith("/room-screens/")
+  );
 
   // No chrome on the full-screen room-screen kiosk.
   if (pathname.startsWith("/room-screens/")) {
@@ -197,22 +203,13 @@ export function AppHeader({ onOpenAI }: { onOpenAI?: () => void } = {}) {
               >
                 {item.label}
                 {item.unreadBadge && unreadCount > 0 && (
-                  <span className="rounded-full bg-dc-purple px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">
+                  <span className={unreadPill}>
                     {unreadCount}
                   </span>
                 )}
               </Link>
             );
           })}
-          {onOpenAI && user && (
-            <button
-              onClick={onOpenAI}
-              className="flex cursor-pointer items-center gap-1.5 border-b-2 border-transparent px-2 pb-2 pt-3 text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-purple transition-colors hover:opacity-80"
-            >
-              <Sparkles className="size-4" />
-              AI
-            </button>
-          )}
         </nav>
         {/* Same offline marker as the mobile bar: laptops on venue wifi drop
             out too, and the schedule they show may be from an earlier sync. */}

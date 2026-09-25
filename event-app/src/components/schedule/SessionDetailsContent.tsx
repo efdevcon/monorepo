@@ -50,7 +50,7 @@ export function downloadSessionIcs(session: Session) {
 /** Action pills: 36px / 13px on the mobile page (one size up — the 32px
  *  pills read small on device), the desktop panel's 32px / 12px from lg. */
 const pillBase =
-  "flex min-h-9 shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
+  "flex min-h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
 /**
@@ -142,12 +142,24 @@ export function SessionSummary({
               <Clock3 className="size-3.5 shrink-0" />
               {formatTimeRange(session)}
             </span>
-            {location && (
+            {/* The location itself is the map link (purple), no separate
+                "Show on map" text: rooms the map knows open on their floor
+                with the footprint highlighted; the rest just open the map. A
+                session without a room keeps the plain "Type" label. */}
+            {location && session.room ? (
+              <Link
+                href={mapHrefForRoom(session.room.id)}
+                className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
+              >
+                <MapPin className="size-3.5 shrink-0" />
+                {location}
+              </Link>
+            ) : location ? (
               <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
                 <MapPin className="size-3.5 shrink-0" />
                 {location}
               </span>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {/* Details show the full track name; list/timeline cards keep the
@@ -170,9 +182,10 @@ export function SessionSummary({
             )}
           </div>
 
-          {/* Action pills wrap onto a new line on every breakpoint: the
-              mobile scroll-and-fade row hid "Show on Map" past the screen
-              edge, the same way the desktop panel's did. */}
+          {/* Action pills share the row's width equally (flex-1) and wrap
+              onto a new line if they can't (the old mobile scroll-and-fade
+              row hid the last pill past the screen edge). The map link is
+              the location line above. */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => void toggle(session.id)}
@@ -198,11 +211,6 @@ export function SessionSummary({
               <CalendarPlus className="size-4 text-dc-purple" />
               Add to Calendar
             </button>
-            {/* Rooms the map knows open on their floor with the footprint highlighted; the rest just open the map. */}
-            <Link href={mapHrefForRoom(session.room?.id)} className={pillClass}>
-              <MapPin className="size-4 text-dc-purple" />
-              Show on Map
-            </Link>
           </div>
         </div>
       </div>

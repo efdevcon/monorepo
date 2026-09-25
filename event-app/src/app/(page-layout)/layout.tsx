@@ -1,12 +1,15 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import {Suspense} from "react";
 import { usePathname } from "next/navigation";
 import DevaBot from "@/components/ai/DevaBot";
+import { setDevaBotOpen, useDevaBotOpen } from "@/components/ai/devaBotState";
 import { Nav } from "@/components/Nav";
 import { AppHeader } from "@/components/AppHeader";
 import { IntroSplash } from "@/components/IntroSplash";
 import { TabPanes } from "@/components/TabPanes";
+import { PushOnboardingSheet } from "@/components/onboarding/PushOnboardingSheet";
+import { PushProvider } from "@/data/push/PushProvider";
 
 /**
  * `useSearchParams` needs a Suspense boundary on statically rendered routes.
@@ -26,17 +29,20 @@ export default function PageLayout({
 }
 
 function PageLayoutInner({ children }: { children: React.ReactNode }) {
-  const [devaBotOpen, setDevaBotOpen] = useState(false);
+  // Opened from the EF internal tools (My Devcon); closed by the panel itself.
+  const devaBotOpen = useDevaBotOpen();
   const pathname = usePathname();
 
   // Full-screen room-screen kiosk: no app chrome (it's shown on a TV).
   const isKiosk = pathname.startsWith("/room-screens/");
 
   return (
+    // One shared push state for the header, inbox and onboarding sheet.
+    <PushProvider>
     <IntroSplash>
       {/* Fixed gradient underlay behind all pages (Figma page background). */}
       <div className="app-bg" aria-hidden />
-      <AppHeader onOpenAI={() => setDevaBotOpen(true)} />
+      <AppHeader />
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the bottom nav bar, which stays on
           session and speaker pages too. */}
@@ -53,6 +59,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
           onToggle={(visible) => setDevaBotOpen(visible)}
         />
       )}
+      {/* One-time "turn on notifications" ask after install (not on the TV kiosk). */}
+      {!isKiosk && <PushOnboardingSheet />}
     </IntroSplash>
+    </PushProvider>
   );
 }

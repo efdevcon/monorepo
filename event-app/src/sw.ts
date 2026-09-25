@@ -351,33 +351,43 @@ self.addEventListener("push", (event) => {
       body: n.body,
       icon: "/android-chrome-192x192.png",
       badge: "/android-chrome-192x192.png",
-      data: { url: n.navigate || "/announcements" },
+      data: { url: n.navigate || "/notifications" },
     })
   );
 });
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url: string = event.notification.data?.url || "/announcements";
+  const url: string = event.notification.data?.url || "/notifications";
   event.waitUntil(
     (async () => {
-      const clientList = await self.clients.matchAll({
-        type: "window",
-        includeUncontrolled: true,
-      });
-      // Focus an existing app window (navigating it) before opening a new one.
-      const client = clientList.find((c) => "focus" in c);
-      if (client) {
-        await client.focus();
+      // Reuse an app window when one can be focused and steered; fall back to
+      // a new window on ANY failure. Every step here can reject on desktop
+      // (focus() is refused for windows in another profile or not
+      // user-activatable, navigate() for uncontrolled or cross-origin
+      // clients), and an unhandled rejection meant the click did nothing
+      // (Chrome on macOS, 2026-09-24).
+      let clients: readonly WindowClient[] = [];
+      try {
+        clients = await self.clients.matchAll({
+          type: "window",
+          includeUncontrolled: true,
+        });
+      } catch {}
+      for (const client of clients) {
         try {
-          await client.navigate(url);
+          const focused = await client.focus();
+          await (focused ?? client).navigate(url);
+          return;
         } catch {
-          // Cross-origin destination can't be navigated in place.
-          await self.clients.openWindow(url);
+          // Try the next window; open a fresh one if none works.
         }
-        return;
       }
-      await self.clients.openWindow(url);
+      try {
+        await self.clients.openWindow(url);
+      } catch {
+        // Popup blocked or URL refused: nothing more a worker can do.
+      }
     })()
   );
 });

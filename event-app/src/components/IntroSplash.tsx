@@ -17,6 +17,41 @@ const MASK =
   "linear-gradient(to right, transparent var(--l), #000 calc(var(--l) + 8%), #000 calc(var(--r) - 8%), transparent var(--r))";
 
 /**
+ * "The splash is out of the way" signal, for UI that must not open under it
+ * (the one-time push onboarding sheet). Module-level rather than a prop so
+ * the layout doesn't hold state and re-render its whole tree for a one-shot
+ * flag. Fires once per page load: when the splash finishes, or on mount when
+ * it doesn't play at all (browser tab, already seen). A listener registered
+ * after that runs on the next microtask.
+ */
+let splashDone = false;
+const splashListeners = new Set<() => void>();
+
+function markSplashDone() {
+  if (splashDone) return;
+  splashDone = true;
+  for (const cb of [...splashListeners]) cb();
+  splashListeners.clear();
+}
+
+/** Run `cb` once the intro splash has finished or been skipped. Returns an unsubscribe. */
+export function whenIntroSplashDone(cb: () => void): () => void {
+  if (splashDone) {
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) cb();
+    });
+    return () => {
+      cancelled = true;
+    };
+  }
+  splashListeners.add(cb);
+  return () => {
+    splashListeners.delete(cb);
+  };
+}
+
+/**
  * One-time cinematic welcome, played over the app the first time it's
  * launched as an installed PWA (standalone display mode) on a device —
  * never again after. Skipped entirely for ordinary browser-tab visits, so
@@ -31,8 +66,10 @@ export function IntroSplash({ children }: { children: React.ReactNode }) {
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
   useEffect(() => {
-    if (!isStandalone()) return;
-    if (localStorage.getItem(STORAGE_KEY) === "true") return;
+    if (!isStandalone() || localStorage.getItem(STORAGE_KEY) === "true") {
+      markSplashDone();
+      return;
+    }
     localStorage.setItem(STORAGE_KEY, "true");
     setPlaying(true);
   }, []);
@@ -77,7 +114,10 @@ export function IntroSplash({ children }: { children: React.ReactNode }) {
             } as Record<string, string[]>
           }
           transition={{ duration: DURATION, times: TIMES, ease: "easeInOut" }}
-          onAnimationComplete={() => setPlaying(false)}
+          onAnimationComplete={() => {
+            setPlaying(false);
+            markSplashDone();
+          }}
         >
           {/* Transform layer: holds the image AND the centered logo so they
               move/zoom together. Native Framer transforms (smoothly

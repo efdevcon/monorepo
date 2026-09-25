@@ -5,7 +5,7 @@
  * - internal = a single-slash path (in-app <Link>)
  * - external = an http(s) or mailto URL; scheme-less values (including protocol-relative
  *   "//host") get https:// so the anchor can't resolve relative to the current
- *   route (a bare "devcon.org/x" would 404 under /announcements/devcon.org/x).
+ *   route (a bare "devcon.org/x" would 404 under /notifications/devcon.org/x).
  * - anything else is refused, and callers render the card without a link.
  *
  * The refusal matters because the resolved value goes straight into an

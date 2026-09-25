@@ -7,10 +7,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { InstallAppButton } from "./InstallAppButton";
-import { InstallHeroCard } from "./InstallHeroCard";
+import { InstallCompactCard, InstallHeroCard } from "./InstallHeroCard";
 import { MyTickets } from "./MyTickets";
 import { TicketSignIn } from "./TicketSignIn";
+import { EfInternalTools } from "./internal/EfInternalTools";
 
 /**
  * Ticket screen (Figma "My Devcon", Dev Handoff 5088-116/-1059): signed out,
@@ -22,6 +24,7 @@ import { TicketSignIn } from "./TicketSignIn";
 export function Ticket() {
   const { user, loading, hasInitialized, signOut } = useUser();
   const busy = loading !== false;
+  const desktop = useIsDesktop();
 
   if (!hasInitialized) {
     return (
@@ -39,13 +42,6 @@ export function Ticket() {
       {/* Same page frame as Schedule/Speakers: lg:pb-16 container, h1 with
           pt-8/pb-4. Mobile keeps its own py-4 under the AppHeader. */}
       <div className="px-4 py-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 lg:pt-0 xl:px-0">
-      {/* Install nudge for browser visitors, above the auth fork so both
-          states show it and it doesn't cross-fade with them. Desktop: the
-          same pt-8 the h1 / sign-in panel use, so it sits where the page
-          content starts. */}
-      <div className="mb-4 empty:hidden lg:pt-8">
-        <InstallHeroCard />
-      </div>
       <AnimatePresence mode="wait">
         {!user ? (
           <motion.div
@@ -77,6 +73,18 @@ export function Ticket() {
             {/* Mobile sign-out lives in the sticky header bar (Figma 5088-140). */}
             <HeaderSignOut onSignOut={signOut} disabled={busy} />
 
+            {/* Install nudge for browser visitors, signed in only (the
+                sign-in page stays free of it; Home already asks). Desktop:
+                the hero with the phone QR, the post-sign-in install story;
+                phones and tablets: the compact row. */}
+            <div className="mb-4 empty:hidden">
+              {desktop ? (
+                <InstallHeroCard dismissible={false} />
+              ) : (
+                <InstallCompactCard />
+              )}
+            </div>
+
             <div className="flex flex-col gap-6 lg:block lg:overflow-clip lg:rounded-xl lg:border lg:border-dc-hairline">
               <div className="flex items-center justify-between gap-3 lg:border-b lg:border-dc-hairline lg:bg-white lg:p-4">
                 <p className="min-w-0 text-[16px] font-bold leading-6 text-dc-fg2 lg:text-[20px] lg:font-extrabold lg:leading-[26px]">
@@ -99,7 +107,12 @@ export function Ticket() {
               </div>
             </div>
 
-            <div className="mt-6 flex justify-center empty:hidden">
+            {/* @ethereum.org accounts only: rehearsal + nudge reset. */}
+            <EfInternalTools />
+
+            {/* Phones and tablets only: desktop's install story is the QR on
+                the hero card. */}
+            <div className="mt-6 flex justify-center empty:hidden lg:hidden">
               <InstallAppButton />
             </div>
           </motion.div>

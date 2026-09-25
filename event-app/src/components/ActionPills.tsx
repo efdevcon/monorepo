@@ -159,7 +159,9 @@ export function HeaderPill({
           )}
         </span>
       </span>
-      <span className="truncate">{label}</span>
+      {/* leading-5, not the pill's leading-none: truncate clips overflow, and
+          a 13px line box with no leading cut the descenders ("Settings"). */}
+      <span className="truncate leading-5">{label}</span>
       {count != null && count > 0 && (
         <>
           <span

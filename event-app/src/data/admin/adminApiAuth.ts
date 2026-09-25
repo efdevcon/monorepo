@@ -14,7 +14,7 @@ export const DEVABOT_URL =
   "http://localhost:3030";
 
 export type AdminAuth =
-  | { ok: true; token: string; email: string }
+  | { ok: true; token: string; email: string; userId: string }
   | { ok: false; response: NextResponse };
 
 /**
@@ -73,5 +73,5 @@ export async function requireEthereumOrg(
     };
   }
 
-  return { ok: true, token, email: user.email };
+  return { ok: true, token, email: user.email, userId: user.id };
 }
