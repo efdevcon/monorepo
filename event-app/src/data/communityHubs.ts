@@ -76,6 +76,11 @@ export function isCommunityHubSession(session: { room?: { id: string } }): boole
   return communityHubIdFromRoom(session.room?.id) !== undefined;
 }
 
+/** A hub's name ("Privacy Hub"): hub sessions carry it as their only tag. */
+export function isCommunityHubName(name: string): boolean {
+  return COMMUNITY_HUBS.some((hub) => hub.name === name);
+}
+
 export function findCommunityHub(id: string | undefined): CommunityHub | undefined {
   return id ? COMMUNITY_HUBS.find((hub) => hub.id === id) : undefined;
 }

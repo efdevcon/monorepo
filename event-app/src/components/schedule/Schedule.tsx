@@ -24,7 +24,7 @@ import cn from "classnames";
 import { useSearchParams } from "next/navigation";
 import { useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
-import { communityHubForRoom } from "@/data/communityHubs";
+import { communityHubForRoom, isCommunityHubName } from "@/data/communityHubs";
 import { HUBS_PARAM, ScheduleSourceProvider, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
@@ -62,9 +62,16 @@ type ViewMode = "list" | "timeline";
  * match List/Timeline so the two read as one family; segments take 12px
  * sides (not that control's 8px) so labels clear the round track's ends.
  * `stretch` fills the row on mobile. A switch remounts the list (and this
- * toggle with it), so `previous` names the programme just left: the fresh
- * toggle paints its fill there first, then slides it over.
+ * toggle with it), so `previous` names the programme just left and when:
+ * a toggle mounting right after that switch paints its fill there first,
+ * then slides it over. Any later mount (My Interests turned off, crossing
+ * the desktop breakpoint) just places the fill.
  */
+/** The last programme switch: where the fill slides from, and when. */
+type SourceSwitch = { from: ScheduleSource; at: number };
+/** A toggle mounting this soon after a switch belongs to it (the remount). */
+const SLIDE_WINDOW_MS = 1000;
+
 function SourceToggle({
   source,
   previous,
@@ -72,7 +79,7 @@ function SourceToggle({
   stretch = false,
 }: {
   source: ScheduleSource;
-  previous: ScheduleSource | null;
+  previous: SourceSwitch | null;
   onChange: (s: ScheduleSource) => void;
   stretch?: boolean;
 }) {
@@ -84,8 +91,11 @@ function SourceToggle({
   // post-font-weight-swap width; re-measured on resize because the stretched
   // mobile segments change width with the viewport.
   const indicatorRef = useRef<HTMLDivElement | null>(null);
-  const slideFromRef = useRef(previous !== source ? previous : null);
+  // undefined until the first layout pass decides; null = no slide.
+  const slideFromRef = useRef<ScheduleSource | null | undefined>(undefined);
   const slidePendingRef = useRef(false);
+  // The first placement (no slide) must snap, not animate in from x 0.
+  const snapPendingRef = useRef(false);
   const measureOf = useCallback((s: ScheduleSource) => {
     const el = buttonRefs.current.get(s);
     return el ? { x: el.offsetLeft, w: el.offsetWidth } : null;
@@ -95,14 +105,23 @@ function SourceToggle({
       const m = measureOf(source);
       if (m) setIndicator(m);
     };
-    // Cleared by the effect below once the slide has started, not here:
-    // StrictMode re-runs this effect on mount and must see it again.
+    // Decided once per mount, cleared by the effect below once the slide
+    // has started (not here: StrictMode re-runs this effect on mount and
+    // must see it again). Only a mount caused by the switch itself slides.
+    if (slideFromRef.current === undefined) {
+      const fresh =
+        previous !== null &&
+        previous.from !== source &&
+        performance.now() - previous.at < SLIDE_WINDOW_MS;
+      slideFromRef.current = fresh ? previous.from : null;
+    }
     const from = slideFromRef.current;
     if (from) {
       // Paint the fill at the old segment first; the effect below moves it.
       slidePendingRef.current = true;
       setIndicator(measureOf(from));
     } else {
+      snapPendingRef.current = true;
       measure();
     }
     const track = trackRef.current;
@@ -112,9 +131,20 @@ function SourceToggle({
     });
     ro.observe(track);
     return () => ro.disconnect();
+    // `previous` is read once, on mount (see above).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [source, measureOf]);
   useLayoutEffect(() => {
     const el = indicatorRef.current;
+    if (snapPendingRef.current && indicator && el) {
+      // Placed with the transition off and styles flushed, so the hidden →
+      // placed step never runs as an animation.
+      snapPendingRef.current = false;
+      el.style.transition = "none";
+      void el.offsetWidth;
+      el.style.transition = "";
+      return;
+    }
     if (!slidePendingRef.current || !indicator || !el) return;
     slidePendingRef.current = false;
     slideFromRef.current = null;
@@ -522,8 +552,8 @@ export function Schedule() {
     setSeenHubsInUrl(hubsInUrl);
     if (hubsInUrl) setSource("hubs");
   }
-  // The programme just left, for the remounted switch's fill slide.
-  const [previousSource, setPreviousSource] = useState<ScheduleSource | null>(null);
+  // The programme just left (and when), for the remounted switch's slide.
+  const [previousSource, setPreviousSource] = useState<SourceSwitch | null>(null);
   const sourceRef = useRef(source);
   useEffect(() => {
     sourceRef.current = source;
@@ -531,7 +561,7 @@ export function Schedule() {
   const changeSource = useCallback((next: ScheduleSource) => {
     // Batched with setSource, so the remounted switch mounts already
     // knowing where its fill comes from.
-    setPreviousSource(sourceRef.current);
+    setPreviousSource({ from: sourceRef.current, at: performance.now() });
     setSource(next);
     const url = new URL(window.location.href);
     if (next === "hubs") url.searchParams.set(HUBS_PARAM, "1");
@@ -562,7 +592,7 @@ function ScheduleInner({
   setView,
 }: {
   source: ScheduleSource;
-  previousSource: ScheduleSource | null;
+  previousSource: SourceSwitch | null;
   hasHubs: boolean;
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
@@ -588,6 +618,7 @@ function ScheduleInner({
     setSearch,
     filters,
     toggleFilter,
+    retainFilters,
     clearFilters,
     activeFilterCount,
     facetFilterCounts,
@@ -617,6 +648,27 @@ function ScheduleInner({
     }
     return [...names].sort();
   }, [filterMode, everySessions, sessions]);
+
+  // My Interests reshapes the panel (its Hubs section comes and goes; on the
+  // Community Hubs segment Tracks and Locations too), but selections outlive
+  // the toggle: keep only what the new panel still shows, or a hidden pick
+  // keeps filtering an empty list. Adjusted during render when the mode
+  // changes (React's "state from props" pattern), not in an effect.
+  const [seenFilterMode, setSeenFilterMode] = useState(filterMode);
+  if (filterMode !== seenFilterMode) {
+    setSeenFilterMode(filterMode);
+    const shown = filterMode !== "hubs";
+    retainFilters({
+      track: shown ? filterOptions.track : [],
+      room: shown ? filterOptions.room : [],
+      type: filterOptions.type,
+      expertise: filterOptions.expertise,
+      topic:
+        filterMode === "main"
+          ? filterOptions.topic.filter((t) => !isCommunityHubName(t))
+          : [...filterOptions.topic, ...hubFilterOptions],
+    });
+  }
 
   const isDesktop = useIsDesktop();
   // False while another tab pane is showing: header portals and window
@@ -696,16 +748,20 @@ function ScheduleInner({
     if (Math.abs(delta) >= 1) window.scrollBy({ top: delta, behavior: "auto" });
   }, [panelSessionId]);
 
+  // Looked up across both programmes: with My Interests on, the list shows
+  // the other programme's starred sessions too, and a lookup in this
+  // programme's list alone found nothing, so the side panel never opened
+  // (or closed) for them.
   const selectedSession = useMemo(
     () =>
       selectedSessionId
-        ? (sessions.find((s) => s.id === selectedSessionId) ?? null)
+        ? (everySessions.find((s) => s.id === selectedSessionId) ?? null)
         : null,
-    [sessions, selectedSessionId]
+    [everySessions, selectedSessionId]
   );
   const routeSession = useMemo(
-    () => (detailId ? (sessions.find((s) => s.id === detailId) ?? null) : null),
-    [sessions, detailId]
+    () => (detailId ? (everySessions.find((s) => s.id === detailId) ?? null) : null),
+    [everySessions, detailId]
   );
   useDocumentTitle(routeSession?.title ?? null);
   // Desktop renders the session page in place of the list: remember where

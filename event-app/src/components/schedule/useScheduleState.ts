@@ -174,6 +174,21 @@ export function useScheduleState(
       };
     });
 
+  /** Drops every selection not in `allowed` (the panel's visible options). */
+  const retainFilters = (allowed: Record<FilterFacet, string[]>) =>
+    setFilters((prev) => {
+      const next = { ...prev };
+      let changed = false;
+      (Object.keys(prev) as FilterFacet[]).forEach((f) => {
+        const kept = prev[f].filter((v) => allowed[f].includes(v));
+        if (kept.length !== prev[f].length) {
+          next[f] = kept;
+          changed = true;
+        }
+      });
+      return changed ? next : prev;
+    });
+
   const clearFilters = () => {
     setFilters(EMPTY);
     setSearch("");
@@ -431,6 +446,7 @@ export function useScheduleState(
     setSearch,
     filters,
     toggleFilter,
+    retainFilters,
     clearFilters,
     activeFilterCount,
     facetFilterCounts,
