@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { deletePref, readPref, writePref } from "@/data/prefs";
-import { Download, Smartphone, X } from "lucide-react";
+import { Download, X } from "lucide-react";
 import QRCode from "qrcode";
 import { isIOS } from "@/utils/platform";
 import { useUser } from "@/data/auth/useUser";
@@ -225,8 +225,7 @@ export function InstallHeroCard({
               alt="QR code that opens this app on your phone"
               className="size-[132px] rounded-lg border border-dc-hairline"
             />
-            <p className="flex items-center gap-1 text-[12px] font-bold leading-4 text-dc-fg2">
-              <Smartphone className="size-3.5 text-dc-purple" />
+            <p className="text-[12px] font-bold leading-4 text-dc-fg2">
               Scan to open on your phone
             </p>
             {qrSignedIn && (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FlaskConical, Square } from "lucide-react";
+import { Square } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { authHeader } from "@/data/push/usePushSubscription";
 import { getActiveDataset } from "@/data/dataset";
@@ -131,10 +131,7 @@ export function ReminderRehearsal() {
 
   return (
     <div className="mt-5 border-t border-dc-hairline pt-4">
-      <p className="flex items-center gap-1.5 text-[14px] font-bold leading-5 text-dc-fg2">
-        <FlaskConical className="size-4 shrink-0 text-dc-purple" />
-        Rehearse reminders
-      </p>
+      <p className="text-[14px] font-bold leading-5 text-dc-fg2">Rehearse reminders</p>
       <p className="mt-2 text-[14px] leading-5 text-dc-fg2">
         Walks the app clock forward one minute per minute and pushes the reminders you would
         get, to your devices only.

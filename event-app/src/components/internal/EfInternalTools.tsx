@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, FlaskConical, RotateCcw, Sparkles, Tv } from "lucide-react";
+import { ExternalLink, RotateCcw, Sparkles, Tv } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { deletePref } from "@/data/prefs";
 import { openDevaBot } from "@/components/ai/devaBotState";
@@ -54,10 +54,7 @@ export function EfInternalTools() {
       className="mt-6 rounded-xl border border-dc-hairline bg-dc-lavender p-4 font-heading lg:p-6"
     >
       <div className="flex items-center justify-between gap-3">
-        <h2 className="flex items-center gap-2 text-[16px] font-bold leading-6 text-dc-fg2">
-          <FlaskConical className="size-4 text-dc-purple" />
-          EF internal tools
-        </h2>
+        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">EF internal tools</h2>
         <span className="rounded-[2px] bg-white px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-purple">
           @ethereum.org only
         </span>
