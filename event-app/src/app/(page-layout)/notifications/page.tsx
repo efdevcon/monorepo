@@ -19,6 +19,7 @@ import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
 import { ReminderCard } from "@/components/announcements/ReminderCard";
 import {
   canOpenNotificationSettings,
+  notificationSettingsLabel,
   NotificationSettingsLink,
   NotificationSettingsModal,
   type PushSettings,
@@ -44,8 +45,9 @@ const emptyBox =
   "flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-12 text-center";
 
 /**
- * Mobile entry to the notification settings: a labelled "Settings" pill in
- * the app header's action slot, the schedule's HeaderPill (not a bare bell —
+ * Mobile entry to the notification settings: a labelled pill ("Enable
+ * notifications" until both switches are on, then "Settings") in the app
+ * header's action slot, the schedule's HeaderPill (not a bare bell —
  * the bell elsewhere means "go to the inbox"). The header's mobile bar is
  * lg:hidden, so this never shows on desktop, where NotificationSettingsLink
  * sits beside the page h1 instead.
@@ -62,7 +64,7 @@ function SettingsHeaderPill({
     <HeaderActionsPortal>
       <HeaderPill
         icon={<Settings />}
-        label="Settings"
+        label={notificationSettingsLabel(push)}
         onClick={onOpen}
         aria-haspopup="dialog"
         aria-label="Notification settings"

@@ -69,7 +69,7 @@ export function EfInternalTools() {
       {/* Deva (AI assistant) */}
       <div className="mt-4">
         <p className="text-[14px] font-bold leading-5 text-dc-fg2">Ask Deva</p>
-        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
           The AI assistant, off the public menu for now.
         </p>
         <button type="button" onClick={openDevaBot} className={cn(toolPill, "mt-3")}>
@@ -81,7 +81,7 @@ export function EfInternalTools() {
       {/* Room screens (kiosk) */}
       <div className="mt-4 border-t border-dc-hairline pt-4">
         <p className="text-[14px] font-bold leading-5 text-dc-fg2">Room screens</p>
-        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
           The kiosk view for the display outside each room: pick a room, then leave the
           screen on it.
         </p>
@@ -96,7 +96,7 @@ export function EfInternalTools() {
         <p className="text-[14px] font-bold leading-5 text-dc-fg2">
           Install &amp; notification nudges
         </p>
-        <p className="mt-1 text-[14px] leading-5 text-dc-muted">
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
           Bring back the &ldquo;Install the Devcon app&rdquo; card, the first-launch push
           sheet and the &ldquo;Turn on notifications&rdquo; card on Home, as if this device
           had never seen them.

@@ -166,14 +166,14 @@ export function InstallHeroCard({
       aria-label="Install the Devcon app"
       // DOM order is art first (mobile: on top); row-reverse puts it on the
       // right on desktop without reordering for AT.
-      className="overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading lg:flex lg:flex-row-reverse lg:min-h-[220px]"
+      className="overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading lg:flex lg:flex-row-reverse lg:min-h-[160px]"
     >
       {/* Art band. bg fallback keeps the band a solid surface if the art
           fails or is evicted; the img retries when the connection returns
           (see Tickets.tsx). White like the art's own edges: a dark fallback
           peeked out at the band's fractional-pixel edges and read as a
           border around the near-white phones visual. */}
-      <div className="relative h-[180px] bg-white lg:h-auto lg:w-[42%] lg:shrink-0">
+      <div className="relative h-[180px] bg-white lg:h-auto lg:w-[32%] lg:shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
@@ -197,7 +197,7 @@ export function InstallHeroCard({
       {/* Copy + CTA: stacked on mobile, one row on desktop. "Devcon app",
           not APP_NAME: the dev config's "Devcon App v2" read as "…App v2 app".
           Desktop adds the phone QR beside the copy. */}
-      <div className="flex flex-col gap-4 p-4 lg:flex-1 lg:flex-row lg:items-center lg:gap-8 lg:p-8">
+      <div className="flex flex-col gap-4 p-4 lg:flex-1 lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-4">
         <div className="flex min-w-0 flex-1 flex-col gap-4 lg:gap-6">
           <div className="min-w-0">
             <h2 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:text-2xl lg:font-extrabold lg:leading-[1.2]">
@@ -222,7 +222,7 @@ export function InstallHeroCard({
             <img
               src={qr}
               alt="QR code that opens this app on your phone"
-              className="size-[132px] rounded-lg border border-dc-hairline"
+              className="size-[88px] rounded-lg border border-dc-hairline"
             />
             {/* Caption and its sign-in note sit tight (2px), apart from the
                 QR's 8px gap. */}
@@ -262,9 +262,14 @@ export function InstallCompactCard() {
   if (!gate) return null;
 
   return (
+    // The whole card is a tap target (Scott, 2026-09-25; phones only, which
+    // is where this card renders): the section takes the tap, the button
+    // inside stays the keyboard and AT target and stops the tap bubbling so
+    // the flow starts once.
     <section
       aria-label="Install the Devcon app"
-      className="flex overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading"
+      onClick={install}
+      className="flex cursor-pointer overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading transition-colors duration-150 ease-out active:bg-dc-lavender"
     >
       <div className="flex min-w-0 flex-1 flex-col items-start p-4">
         <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
@@ -274,7 +279,13 @@ export function InstallCompactCard() {
           Your schedule, tickets and push notifications, available offline and
           just a few steps away.
         </p>
-        <PrimaryButton onClick={install} className="mt-3">
+        <PrimaryButton
+          onClick={(e) => {
+            e.stopPropagation();
+            install();
+          }}
+          className="mt-5"
+        >
           <Download className="size-4" />
           Install app
         </PrimaryButton>

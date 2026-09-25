@@ -29,9 +29,19 @@ export const canOpenNotificationSettings = (push: PushSettings) =>
   push.signedIn && push.state !== "loading";
 
 /**
+ * Label of that entry point (mobile header pill and desktop link alike):
+ * "Enable notifications" until both switches are on (off, one of two,
+ * denied, needs install), "Settings" once they are, so the entry reads as
+ * the action it leads to rather than as a preferences drawer.
+ */
+export const notificationSettingsLabel = (push: PushSettings) =>
+  push.state === "on" && !!push.prefs?.announcements && !!push.prefs?.reminders
+    ? "Settings"
+    : "Enable notifications";
+
+/**
  * Desktop entry to the notification settings, beside the Notifications
- * page's h1: a purple "Settings" text button (labelled Settings, not
- * Notifications, since the page itself now carries that name) that opens
+ * page's h1: a purple text button (notificationSettingsLabel) that opens
  * the modal. The mobile equivalent is the page's header pill.
  */
 export function NotificationSettingsLink({
@@ -51,7 +61,7 @@ export function NotificationSettingsLink({
       className="flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded py-2 font-heading text-[16px] font-bold leading-none text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
     >
       <Settings className="size-4" />
-      Settings
+      {notificationSettingsLabel(push)}
     </button>
   );
 }
