@@ -12,6 +12,17 @@ import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Button
 import type { FilterFacet, Filters } from "./useScheduleState";
 import { getTrackTheme } from "./trackTheme";
 
+/**
+ * Which programme(s) the panel filters. "hubs": the Community Hubs segment,
+ * where every session shares one track and the hubs double as the
+ * locations, so Tracks and Locations are dropped and the hub tags read as
+ * "Hubs". "both": My Interests spanning the two programmes, which adds a
+ * "Hubs" section under Tracks (pulled out of Topics).
+ */
+export type FilterPanelMode = "main" | "hubs" | "both";
+
+const NO_HUBS: string[] = [];
+
 const CLS_PREFIX = "[CLS]";
 const stripCls = (v: string) => v.replace(CLS_PREFIX, "").trim();
 
@@ -89,6 +100,32 @@ function CheckboxRow({
   );
 }
 
+/** Plain pill-chip (Topics, Hubs): purple treatment when active. */
+function TopicChip({
+  label,
+  active,
+  onToggle,
+}: {
+  label: string;
+  active: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      onClick={onToggle}
+      aria-pressed={active}
+      className={cn(
+        "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
+        active
+          ? "border-dc-purple bg-dc-lavender font-semibold"
+          : "border-dc-hairline bg-white font-normal"
+      )}
+    >
+      {label}
+    </button>
+  );
+}
+
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
  * Topics as plain pill-chips (the shared Speakers-page vocabulary),
@@ -104,6 +141,8 @@ export function FilterPanelContent({
   onClear,
   onClose,
   defaultOpen = false,
+  mode = "main",
+  hubs = NO_HUBS,
 }: {
   options: Record<FilterFacet, string[]>;
   filters: Filters;
@@ -112,6 +151,13 @@ export function FilterPanelContent({
   onClose: () => void;
   /** Whether accordion sections start expanded (desktop panel). */
   defaultOpen?: boolean;
+  mode?: FilterPanelMode;
+  /**
+   * Hub names on offer ("hubs" / "both" modes). A hub session's only tag is
+   * its hub's name, so they filter through the "topic" facet; listed apart
+   * because the topic vocabulary is capped and skips speakerless sessions.
+   */
+  hubs?: string[];
 }) {
   const { tracks, clsTracks } = useMemo(
     () => ({
@@ -119,6 +165,31 @@ export function FilterPanelContent({
       clsTracks: options.track.filter((t) => t.startsWith(CLS_PREFIX)),
     }),
     [options.track]
+  );
+  const topics = useMemo(
+    () =>
+      mode === "both"
+        ? options.topic.filter((t) => !hubs.includes(t))
+        : options.topic,
+    [mode, options.topic, hubs]
+  );
+  const hubSection = mode !== "main" && hubs.length > 0 && (
+    <AccordionSection
+      title="Hubs"
+      count={filters.topic.filter((t) => hubs.includes(t)).length}
+      defaultOpen={defaultOpen}
+    >
+      <div className="flex flex-wrap gap-2">
+        {hubs.map((hub) => (
+          <TopicChip
+            key={hub}
+            label={hub}
+            active={filters.topic.includes(hub)}
+            onToggle={() => onToggle("topic", hub)}
+          />
+        ))}
+      </div>
+    </AccordionSection>
   );
 
   // Mobile renders as a bottom-anchored sheet — square bottom corners there;
@@ -143,7 +214,7 @@ export function FilterPanelContent({
 
       {/* Scrollable facet sections */}
       <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto p-4">
-        {tracks.length > 0 && (
+        {mode !== "hubs" && tracks.length > 0 && (
           <AccordionSection
             title="Tracks"
             // CLS picks share filters.track — count only this section's own.
@@ -184,10 +255,12 @@ export function FilterPanelContent({
           </AccordionSection>
         )}
 
-        {options.topic.length > 0 && (
+        {hubSection}
+
+        {mode !== "hubs" && topics.length > 0 && (
           <AccordionSection
             title="Topics"
-            count={filters.topic.length}
+            count={filters.topic.filter((t) => topics.includes(t)).length}
             defaultOpen={defaultOpen}
           >
             {/* Same chip grammar as Tracks; topics have no track theme, so
@@ -195,29 +268,19 @@ export function FilterPanelContent({
                 per-track pastel. The list is the shared Speakers-page topic
                 vocabulary (top session tags by frequency). */}
             <div className="flex flex-wrap gap-2">
-              {options.topic.map((topic) => {
-                const active = filters.topic.includes(topic);
-                return (
-                  <button
-                    key={topic}
-                    onClick={() => onToggle("topic", topic)}
-                    aria-pressed={active}
-                    className={cn(
-                      "flex min-h-8 cursor-pointer items-center gap-2 rounded-full border px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
-                      active
-                        ? "border-dc-purple bg-dc-lavender font-semibold"
-                        : "border-dc-hairline bg-white font-normal"
-                    )}
-                  >
-                    {topic}
-                  </button>
-                );
-              })}
+              {topics.map((topic) => (
+                <TopicChip
+                  key={topic}
+                  label={topic}
+                  active={filters.topic.includes(topic)}
+                  onToggle={() => onToggle("topic", topic)}
+                />
+              ))}
             </div>
           </AccordionSection>
         )}
 
-        {options.room.length > 0 && (
+        {mode !== "hubs" && options.room.length > 0 && (
           <AccordionSection
             title="Locations"
             count={filters.room.length}

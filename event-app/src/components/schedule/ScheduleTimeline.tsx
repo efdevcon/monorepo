@@ -385,10 +385,11 @@ export function ScheduleTimeline({
         // on mobile it would become the axis header's scroll container.
         "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
         // Jump-to-now scroll target: clear of the pinned app header + day
-        // tabs on both breakpoints (56 + 47 + 9 mobile; 65 + 53 + 9 desktop,
+        // tabs on both breakpoints (56 + 47 + 9 mobile; 65 + 65 toolbar +
+        // 53 + 9 desktop,
         // the list groups' clearance) so the axis — date corner, time slots
         // and the now pill — lands fully visible instead of under the bar.
-        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
+        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
       {/* Time-axis header: its own track, scrollLeft mirrored from the body */}

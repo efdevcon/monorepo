@@ -112,7 +112,17 @@ function hashTrack(track: string): number {
  */
 function hubTheme(roomId: string | undefined): TrackTheme | undefined {
   const hub = communityHubForRoom(roomId);
-  return hub ? { name: hub.name, badge: hub.name, color: hub.color, gem: communityHubLogo(hub), isHub: true } : undefined;
+  // Badge drops the trailing "Hub" ("Privacy Hub" → "Privacy"): the pill's
+  // tent glyph already says it, and the card's location line keeps the full name.
+  return hub
+    ? {
+        name: hub.name,
+        badge: hub.name.replace(/\s+Hub$/, ""),
+        color: hub.color,
+        gem: communityHubLogo(hub),
+        isHub: true,
+      }
+    : undefined;
 }
 
 export function getTrackTheme(track: string | undefined, roomId?: string): TrackTheme {

@@ -18,13 +18,16 @@ const FACET_LABELS: Record<FilterFacet, string> = {
 export function FilterStatusBar({
   counts,
   onClear,
+  topicLabel,
 }: {
   counts: Partial<Record<FilterFacet, number>>;
   onClear: () => void;
+  /** Renames the topic facet (the Community Hubs segment's "Hubs"). */
+  topicLabel?: string;
 }) {
   const parts = (Object.keys(FACET_LABELS) as FilterFacet[])
     .filter((f) => (counts[f] ?? 0) > 0)
-    .map((f) => `${FACET_LABELS[f]} (${counts[f]})`);
+    .map((f) => `${f === "topic" && topicLabel ? topicLabel : FACET_LABELS[f]} (${counts[f]})`);
 
   if (parts.length === 0) return null;
 
