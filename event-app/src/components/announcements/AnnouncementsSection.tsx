@@ -72,7 +72,7 @@ export function AnnouncementsSection() {
           View all <ArrowRight className="size-4" />
         </Link>
       </div>
-      <div className="grid gap-3 lg:grid-cols-3 lg:gap-4">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 lg:gap-4">
         {items.map((entry) =>
           entry.kind === "announcement" ? (
             <AnnouncementCard
