@@ -57,7 +57,7 @@ const APPLICATION_SOURCES = [
   {
     label: 'Youth',
     tableId: 'mnniomolz1z8634',
-    statusField: 'Status',
+    statusField: 'Request Status',
     emptyLabel: 'to process',
     url: 'https://form.devcon.org/wx5thjwz/pzerie4iw55aae0/mnniomolz1z8634/vw2o8speg56br66p/youth-ticket-application-youth-ticket',
   },

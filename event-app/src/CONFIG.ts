@@ -16,9 +16,13 @@ const APP_CONFIG = {
   APP_DESCRIPTION: "Ethereum knitting club.",
 
   // Public origin of this deployment. Used server-side (e.g.
-  // /api/manifest-bridge) to build redirect URLs — deriving it from the
-  // incoming request's own URL isn't reliable behind Netlify's serverless
-  // function proxying, which doesn't necessarily preserve the public host.
+  // /api/manifest-bridge, push tap-through links) to build absolute URLs —
+  // deriving it from the incoming request's own URL isn't reliable behind
+  // Netlify's serverless function proxying, which doesn't necessarily
+  // preserve the public host. Inlined at build time by next.config.ts: the
+  // APP_ORIGIN env var, else the deploy's own URL (previews, branch deploys),
+  // else the production site. A push URL only opens inside the installed app
+  // when it is on that install's origin.
   APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
   // Host of the server-rendered social cards (og:image). The renderers,
   // fonts, brand art and Supabase render cache live on devcon.org
@@ -31,7 +35,7 @@ const APP_CONFIG = {
   SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
   ROOMS_ENABLED: true, // /room-screens/[id]
   MAP_ENABLED: true, // /map (venue map)
-  ANNOUNCEMENTS_ENABLED: true, // /announcements (Notion-authored inbox) + home section
+  ANNOUNCEMENTS_ENABLED: true, // /notifications (Notion-authored inbox + session reminders) + home section
   INFERENCE_DEBUG_ENABLED: true, // /admin/inference-test (EF-only RAG debugger)
 
   // Development settings

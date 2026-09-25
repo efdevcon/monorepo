@@ -3,36 +3,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import { cacheDB } from "@/data/cache/cache-db";
-import { useRealWorldNowMs } from "@/hooks/useNow";
+import { useNowMs } from "@/hooks/useNow";
+import { markSeen, UNREAD_WINDOW_MS, useSeenIds } from "./seenState";
 import type { Announcement, AnnouncementsResponse } from "./types";
-
-/** Unread badge only counts unseen announcements from the last 3 days. */
-const UNREAD_WINDOW_MS = 3 * 24 * 60 * 60 * 1000;
-
-// Read state is shared across hook instances (Nav, home section, inbox page
-// all mount their own copy): one module-level snapshot, loaded from Dexie
-// once, with subscribers notified on every change — otherwise marking the
-// inbox read would never clear the Nav badge until a full reload.
-let seenIdsSnapshot: Set<string> | null = null;
-let seenIdsLoad: Promise<void> | null = null;
-const seenIdsListeners = new Set<() => void>();
-
-function loadSeenIds(): Promise<void> {
-  if (!seenIdsLoad) {
-    seenIdsLoad = cacheDB
-      ? cacheDB.seenAnnouncements.toArray().then((rows) => {
-          seenIdsSnapshot = new Set(rows.map((r) => r.id));
-          seenIdsListeners.forEach((fn) => fn());
-        })
-      : Promise.resolve();
-  }
-  return seenIdsLoad;
-}
-
-function publishSeenIds(next: Set<string>): void {
-  seenIdsSnapshot = next;
-  seenIdsListeners.forEach((fn) => fn());
-}
 
 async function fetchAnnouncements(preview: boolean): Promise<Announcement[]> {
   const res = await fetch(
@@ -62,8 +35,8 @@ function useIsPreview(): boolean {
  * The announcements + highlights feed plus device-local read state.
  *
  * Feed: SWR backed by the Dexie cache (src/data/cache), so everything stays
- * readable offline after the first load. Read state: its own Dexie table
- * (`seenAnnouncements`), shared across all hook instances.
+ * readable offline after the first load. Read state: the inbox's shared
+ * Dexie-backed snapshot (seenState.ts), shared with the session reminders.
  *
  * Announcements are time-gated against the mockable clock: the server already
  * excludes future rows, but a CDN-cached response plus `?mockNow=` testing
@@ -76,7 +49,11 @@ function useIsPreview(): boolean {
 export function useAnnouncements(options: { enabled?: boolean } = {}) {
   const enabled = options.enabled ?? true;
   const preview = useIsPreview();
-  const nowMs = useRealWorldNowMs(60_000);
+  // The app clock, mock included: under `?mockNow=` or the preview's
+  // event-start mock, announcements reveal, group and age on the same clock
+  // as the schedule and the reminders (Didier, 2026-09-24; the Notion test
+  // rows are dated inside the devcon-7 mock window for that).
+  const nowMs = useNowMs(60_000);
 
   const { data, error, isValidating, mutate } = useSWR(
     enabled ? ["announcements", preview ? "preview" : "published"] : null,
@@ -84,17 +61,7 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
     { revalidateOnFocus: false, dedupingInterval: 10_000 }
   );
 
-  // Subscribe this instance to the shared read-state snapshot.
-  const [seenIds, setSeenIds] = useState<Set<string> | null>(seenIdsSnapshot);
-  useEffect(() => {
-    if (!enabled) return;
-    const update = () => setSeenIds(seenIdsSnapshot);
-    seenIdsListeners.add(update);
-    loadSeenIds().then(update);
-    return () => {
-      seenIdsListeners.delete(update);
-    };
-  }, [enabled]);
+  const { seenIds } = useSeenIds(enabled);
 
   const announcements = useMemo(() => {
     const list = (data ?? []).filter(
@@ -163,20 +130,15 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
    */
   const markAllSeen = useCallback(() => {
     if (!cacheDB || !data || preview) return;
-    const seenAt = Date.now();
-    const rows = data
-      .filter(
-        (a) =>
-          a.type === "announcement" && new Date(a.sendAt).getTime() <= seenAt
-      )
-      .map((a) => ({ id: a.id, seenAt }));
-    if (rows.length === 0) return;
-    cacheDB.seenAnnouncements.bulkPut(rows).catch((err) => {
-      console.error("Failed to persist announcement read state:", err);
-    });
-    const next = new Set(seenIdsSnapshot ?? []);
-    for (const row of rows) next.add(row.id);
-    publishSeenIds(next);
+    const now = Date.now();
+    markSeen(
+      data
+        .filter(
+          (a) =>
+            a.type === "announcement" && new Date(a.sendAt).getTime() <= now
+        )
+        .map((a) => a.id)
+    );
   }, [data, preview]);
 
   return {

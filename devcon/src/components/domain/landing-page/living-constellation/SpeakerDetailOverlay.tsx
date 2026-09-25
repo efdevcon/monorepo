@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
+import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
+import IconX from 'assets/icons/twitter.svg'
 import type { ConstellationSpeaker } from './types'
 
 interface SpeakerDetailOverlayProps {
@@ -8,7 +10,6 @@ interface SpeakerDetailOverlayProps {
   layoutIdPrefix: string
   cardWidth: string | number
   imageHeight: number
-  companyLogoHeight: number
   backdropClassName?: string
   backdropStyle: React.CSSProperties
   onDismiss: () => void
@@ -19,7 +20,6 @@ export function SpeakerDetailOverlay({
   layoutIdPrefix,
   cardWidth,
   imageHeight,
-  companyLogoHeight,
   backdropClassName = '',
   backdropStyle,
   onDismiss,
@@ -70,22 +70,20 @@ export function SpeakerDetailOverlay({
                   sizes="(max-width: 768px) 100vw, 340px"
                   className="object-cover"
                 />
-                {speaker.event && (
-                  <div
-                    className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-2.5"
-                    style={{
-                      height: 32,
-                      background: 'rgba(22,11,43,0.3)',
-                      backdropFilter: 'blur(12px)',
-                      WebkitBackdropFilter: 'blur(12px)',
-                    }}
-                  >
-                    <Image src={speaker.event.logo} alt="" className="object-contain" height={16} />
-                    <span style={{ fontSize: 12, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap' }}>
-                      {speaker.event.label}
-                    </span>
-                  </div>
-                )}
+                <div
+                  className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-2.5 [&_path]:fill-white"
+                  style={{
+                    height: 32,
+                    background: 'rgba(22,11,43,0.3)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                  }}
+                >
+                  <Dc8Glyph className="h-4 w-4 shrink-0" aria-hidden />
+                  <span style={{ fontSize: 12, fontWeight: 600, color: '#fff', whiteSpace: 'nowrap' }}>
+                    Devcon 8 · Mumbai
+                  </span>
+                </div>
               </div>
               <motion.div
                 className="p-5"
@@ -98,31 +96,23 @@ export function SpeakerDetailOverlay({
                     <h3 className="text-xl font-bold text-[#1a1a1a] tracking-tight leading-tight truncate">
                       {speaker.name}
                     </h3>
-                    <p className="text-sm text-[#3a3a3a] mt-1">{speaker.title}</p>
-                    <p className="text-sm text-[#6b6b6b]">{speaker.company}</p>
+                    {speaker.title && <p className="text-sm text-[#3a3a3a] mt-1">{speaker.title}</p>}
+                    <p className={`text-sm text-[#6b6b6b] ${speaker.title ? '' : 'mt-1'}`}>{speaker.company}</p>
                   </div>
-                  {speaker.companyLogo && (
-                    <Image
-                      src={speaker.companyLogo}
-                      alt=""
-                      className="object-contain shrink-0"
-                      height={companyLogoHeight}
-                    />
-                  )}
                 </div>
-                <a
-                  href={`https://archive.devcon.org/watch/?sort=eventId&order=desc&q=${encodeURIComponent(speaker.name.toLowerCase())}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  className="mt-4 flex items-center justify-center gap-2 w-full rounded-full bg-[#7235ED] hover:bg-[#6020d0] text-white text-sm font-bold py-2.5 transition-colors"
-                  style={{ fontFamily: 'Poppins, sans-serif' }}
-                >
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-                    <path d="M3 2.5 L13 8 L3 13.5 Z" fill="currentColor" />
-                  </svg>
-                  Watch talks on Devcon Archive
-                </a>
+                {speaker.xHandle && (
+                  <a
+                    href={`https://x.com/${speaker.xHandle}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="mt-4 flex items-center justify-center gap-2 w-full rounded-full bg-[#7235ED] hover:bg-[#6020d0] text-white text-sm font-bold py-2.5 transition-colors [&_path]:fill-white"
+                    style={{ fontFamily: 'Poppins, sans-serif' }}
+                  >
+                    <IconX className="w-3.5 h-3.5 shrink-0" aria-hidden />
+                    Follow on X
+                  </a>
+                )}
               </motion.div>
             </motion.div>
           </div>

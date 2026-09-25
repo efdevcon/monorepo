@@ -56,7 +56,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const bridgeToken = signBridgeToken(user.email);
+    // Optional `{ ttlMs }`: the desktop install card's QR asks for a short
+    // token (10 min) and re-mints; the signer clamps it to [1 min, 24 h].
+    const body = (await request.json().catch(() => null)) as { ttlMs?: unknown } | null;
+    const ttlMs = typeof body?.ttlMs === "number" && Number.isFinite(body.ttlMs) ? body.ttlMs : undefined;
+    const bridgeToken = signBridgeToken(user.email, ttlMs);
     return NextResponse.json({ bridgeToken });
   } catch (err) {
     console.error("[/api/manifest-bridge POST] error:", err);

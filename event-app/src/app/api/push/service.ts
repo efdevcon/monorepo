@@ -27,8 +27,26 @@ const RETRY_DELAYS_MS = [300, 1200];
 /** Delete a subscription after this many consecutive non-410 failures. */
 const FAILURE_THRESHOLD = 5;
 /** Reclaim rows stuck in `sending` after this long (dispatcher crash). */
-const STALL_MS = 10 * 60 * 1000;
+export const STALL_MS = 10 * 60 * 1000;
+/**
+ * The same window for session reminders, which can't afford STALL_MS: a
+ * reminder is claimed at start − 10 min (REMINDER_LEAD_MS), so a 10-minute
+ * stall would first reclaim a crashed run's rows at the session start — the
+ * moment the claim RPC retires them as `skipped` — and recovery would never
+ * happen. A Netlify sync function is killed after 26 s, so a row still in
+ * `sending` 2 minutes on belongs to a run that is certainly dead; this must
+ * stay well under the lead time.
+ */
+export const REMINDER_STALL_MS = 2 * 60 * 1000;
 const TTL_SECONDS = 3600;
+/** Per-request socket timeout: a hung push service must not eat the run budget. */
+const SEND_TIMEOUT_MS = 10_000;
+/**
+ * Page size for subscriber reads. Supabase silently truncates any select at
+ * the project's Max Rows (1,000 by default), so reads page with `range()`
+ * and stay under that ceiling.
+ */
+const SUBSCRIPTION_PAGE = 500;
 
 export interface PushSubscriptionRow {
   endpoint: string;
@@ -80,7 +98,7 @@ export function buildPayload(
 ): string {
   const origin = APP_CONFIG.APP_ORIGIN;
   const navigate = !a.url
-    ? `${origin}/announcements`
+    ? `${origin}/notifications`
     : a.url.startsWith("/")
       ? `${origin}${a.url}`
       : a.url;
@@ -98,7 +116,8 @@ type SendOutcome = { ok: true } | { ok: false; gone: boolean; code: string };
 
 async function sendOnce(
   sub: PushSubscriptionRow,
-  payload: string
+  payload: string,
+  ttl: number
 ): Promise<SendOutcome> {
   try {
     await webpush.sendNotification(
@@ -107,7 +126,7 @@ async function sendOnce(
         keys: { p256dh: sub.p256dh, auth: sub.auth },
       },
       payload,
-      { TTL: TTL_SECONDS, urgency: "high" }
+      { TTL: ttl, urgency: "high", timeout: SEND_TIMEOUT_MS }
     );
     return { ok: true };
   } catch (err) {
@@ -125,13 +144,14 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function sendWithRetry(
   sub: PushSubscriptionRow,
-  payload: string
+  payload: string,
+  ttl: number
 ): Promise<SendOutcome> {
-  let outcome = await sendOnce(sub, payload);
+  let outcome = await sendOnce(sub, payload, ttl);
   for (const delay of RETRY_DELAYS_MS) {
     if (outcome.ok || outcome.gone || !RETRYABLE.has(outcome.code)) break;
     await sleep(delay);
-    outcome = await sendOnce(sub, payload);
+    outcome = await sendOnce(sub, payload, ttl);
   }
   return outcome;
 }
@@ -143,44 +163,85 @@ export interface FanOutResult {
   errors: Record<string, number>;
 }
 
+/** One send: a subscription and the payload it gets. */
+export interface DeliveryItem {
+  sub: PushSubscriptionRow;
+  payload: string;
+  /**
+   * Seconds the push service keeps the message for an offline device;
+   * default one hour. Time-bound messages (a "starts in 10 minutes"
+   * reminder) pass the seconds left, so a late device never gets a stale one.
+   */
+  ttl?: number;
+}
+
+export interface Delivery<T extends DeliveryItem = DeliveryItem> {
+  item: T;
+  outcome: SendOutcome;
+}
+
 /**
- * Deliver one payload to a set of subscriptions, chunked, with retries and
- * dead-endpoint pruning. Mutates subscription bookkeeping as it goes.
+ * Send every item (chunked, with retries). No DB writes: pair it with
+ * `recordDeliveries` once per dispatch. Results keep the input order.
  */
-export async function fanOut(
-  subs: PushSubscriptionRow[],
-  payload: string
-): Promise<FanOutResult> {
+export async function deliver<T extends DeliveryItem>(
+  items: T[]
+): Promise<Delivery<T>[]> {
   ensureVapid();
-  const db = getSupabase();
+  const results: Delivery<T>[] = [];
+  for (let i = 0; i < items.length; i += CHUNK_SIZE) {
+    const chunk = items.slice(i, i + CHUNK_SIZE);
+    const outcomes = await Promise.all(
+      chunk.map((item) =>
+        sendWithRetry(item.sub, item.payload, item.ttl ?? TTL_SECONDS)
+      )
+    );
+    outcomes.forEach((outcome, j) => results.push({ item: chunk[j], outcome }));
+  }
+  return results;
+}
+
+/** ok/fail counts plus a per-status-code failure breakdown for a set of deliveries. */
+export function tally(deliveries: readonly Delivery[]): FanOutResult {
   const result: FanOutResult = { ok: 0, fail: 0, errors: {} };
+  for (const { outcome } of deliveries) {
+    if (outcome.ok) {
+      result.ok++;
+    } else {
+      result.fail++;
+      result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
+    }
+  }
+  return result;
+}
+
+/**
+ * Subscription bookkeeping for a batch of deliveries: prune endpoints that
+ * are gone, reset the failure count on success, bump it otherwise and delete
+ * at the threshold. An endpoint that received several payloads in one batch
+ * (two reminders to one device) is judged once: gone wins, then any success,
+ * else failed. All best-effort — stats must never fail a dispatch.
+ */
+export async function recordDeliveries(
+  deliveries: readonly Delivery[]
+): Promise<void> {
+  const db = getSupabase();
+  const verdict = new Map<string, "ok" | "gone" | "failed">();
+  for (const { item, outcome } of deliveries) {
+    const prev = verdict.get(item.sub.endpoint);
+    const next = outcome.ok ? "ok" : outcome.gone ? "gone" : "failed";
+    if (prev === "gone" || (prev === "ok" && next === "failed")) continue;
+    verdict.set(item.sub.endpoint, next);
+  }
   const goneEndpoints: string[] = [];
   const okEndpoints: string[] = [];
   const failedEndpoints: string[] = [];
-
-  for (let i = 0; i < subs.length; i += CHUNK_SIZE) {
-    const chunk = subs.slice(i, i + CHUNK_SIZE);
-    const outcomes = await Promise.all(
-      chunk.map((sub) => sendWithRetry(sub, payload))
-    );
-    outcomes.forEach((outcome, j) => {
-      const sub = chunk[j];
-      if (outcome.ok) {
-        result.ok++;
-        okEndpoints.push(sub.endpoint);
-      } else if (outcome.gone) {
-        result.fail++;
-        result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
-        goneEndpoints.push(sub.endpoint);
-      } else {
-        result.fail++;
-        result.errors[outcome.code] = (result.errors[outcome.code] ?? 0) + 1;
-        failedEndpoints.push(sub.endpoint);
-      }
-    });
+  for (const [endpoint, v] of verdict) {
+    if (v === "gone") goneEndpoints.push(endpoint);
+    else if (v === "ok") okEndpoints.push(endpoint);
+    else failedEndpoints.push(endpoint);
   }
 
-  // Bookkeeping, all best-effort — stats must never fail a dispatch.
   const now = new Date().toISOString();
   try {
     if (goneEndpoints.length > 0) {
@@ -224,20 +285,73 @@ export async function fanOut(
   } catch (err) {
     console.warn("[push] subscription bookkeeping failed:", err);
   }
-
-  return result;
 }
 
+/**
+ * Deliver one payload to a set of subscriptions, chunked, with retries and
+ * dead-endpoint pruning (`deliver` + `recordDeliveries`).
+ */
+export async function fanOut(
+  subs: PushSubscriptionRow[],
+  payload: string
+): Promise<FanOutResult> {
+  const deliveries = await deliver(subs.map((sub) => ({ sub, payload })));
+  await recordDeliveries(deliveries);
+  return tally(deliveries);
+}
+
+/**
+ * Every subscription, paged. `announcements` keeps only devices with that
+ * preference on (the broadcast); the team test-send passes `teamOnly` alone,
+ * so it reaches every team device regardless of preferences.
+ */
 export async function getSubscriptions(options: {
   teamOnly?: boolean;
+  announcements?: boolean;
 }): Promise<PushSubscriptionRow[]> {
-  let query = getSupabase()
-    .from("devcon8_push_subscriptions")
-    .select("endpoint, p256dh, auth, user_id, is_team");
-  if (options.teamOnly) query = query.eq("is_team", true);
-  const { data, error } = await query;
-  if (error) throw new Error(`subscription query failed: ${error.message}`);
-  return data ?? [];
+  const rows: PushSubscriptionRow[] = [];
+  // Ordered by the primary key so pages never overlap or skip.
+  for (let from = 0; ; from += SUBSCRIPTION_PAGE) {
+    let query = getSupabase()
+      .from("devcon8_push_subscriptions")
+      .select("endpoint, p256dh, auth, user_id, is_team")
+      .order("endpoint")
+      .range(from, from + SUBSCRIPTION_PAGE - 1);
+    if (options.teamOnly) query = query.eq("is_team", true);
+    if (options.announcements) query = query.eq("announcements", true);
+    const { data, error } = await query;
+    if (error) throw new Error(`subscription query failed: ${error.message}`);
+    rows.push(...(data ?? []));
+    if (!data || data.length < SUBSCRIPTION_PAGE) break;
+  }
+  return rows;
+}
+
+/**
+ * Keeps each `.in()` filter short enough for PostgREST's URL and its result
+ * under the Max Rows ceiling even at ten devices per account.
+ */
+const USER_ID_CHUNK = 100;
+
+/**
+ * The given accounts' devices that have session reminders on (reminders
+ * target users, not the world). The claim RPC applies the same flag, so an
+ * account claimed there has at least one such device.
+ */
+export async function getSubscriptionsForUsers(
+  userIds: readonly string[]
+): Promise<PushSubscriptionRow[]> {
+  const rows: PushSubscriptionRow[] = [];
+  for (let i = 0; i < userIds.length; i += USER_ID_CHUNK) {
+    const { data, error } = await getSupabase()
+      .from("devcon8_push_subscriptions")
+      .select("endpoint, p256dh, auth, user_id, is_team")
+      .in("user_id", userIds.slice(i, i + USER_ID_CHUNK))
+      .eq("reminders", true);
+    if (error) throw new Error(`subscription query failed: ${error.message}`);
+    rows.push(...(data ?? []));
+  }
+  return rows;
 }
 
 export interface DispatchResult {
@@ -288,7 +402,7 @@ export async function dispatchDueAnnouncements(): Promise<DispatchResult> {
     return { claimed: 0, sent: [], subscribers: 0 };
   }
 
-  const subs = await getSubscriptions({});
+  const subs = await getSubscriptions({ announcements: true });
   const sent: DispatchResult["sent"] = [];
 
   for (const announcement of claimed) {

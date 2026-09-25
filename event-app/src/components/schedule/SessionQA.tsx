@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   Check,
   ChevronUp,
-  MessageCircleQuestion,
   Mic,
 } from "lucide-react";
 import {
@@ -202,8 +201,7 @@ function QAFeed({
 /** Same quiet card as NeedsConnection, for the empty and not-open states. */
 function QuietLine({ children }: { children: React.ReactNode }) {
   return (
-    <p className="flex items-center gap-2 rounded-lg border border-dc-hairline bg-white px-3 py-2 text-[14px] leading-5 text-dc-muted">
-      <MessageCircleQuestion className="size-4 shrink-0 text-dc-purple" />
+    <p className="rounded-lg border border-dc-hairline bg-white px-3 py-2 text-[14px] leading-5 text-dc-muted">
       {children}
     </p>
   );

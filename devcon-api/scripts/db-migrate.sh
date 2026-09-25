@@ -46,12 +46,20 @@ LIST=$(npx supabase migration list --workdir src 2>&1) || {
   echo "$LIST" >&2
   exit 1
 }
-if ! echo "$LIST" | grep -q "Remote"; then
-  echo "error: unexpected 'migration list' output (no Remote column); aborting." >&2
+# The CLI prints a "Local | Remote | Time" table on a terminal and, depending
+# on its version, JSON ({"migrations":[{"local":"…","remote":"…"}]}) when its
+# output is captured as it is here. Accept both; anything else aborts.
+APPLIED=0
+if echo "$LIST" | grep -q '"remote"'; then
+  if echo "$LIST" | grep -Eq "\"remote\" *: *\"$VERSION\""; then APPLIED=1; fi
+elif echo "$LIST" | grep -q "Remote"; then
+  if echo "$LIST" | awk -F'|' -v v="$VERSION" '$2 ~ v { found = 1 } END { exit !found }'; then APPLIED=1; fi
+else
+  echo "error: unexpected 'migration list' output (neither the table nor JSON); aborting." >&2
   echo "$LIST" >&2
   exit 1
 fi
-if echo "$LIST" | awk -F'|' -v v="$VERSION" '$2 ~ v { found = 1 } END { exit !found }'; then
+if [ "$APPLIED" = 1 ]; then
   echo "error: version $VERSION is already applied on the remote (see: npx supabase migration list --workdir src)" >&2
   exit 1
 fi

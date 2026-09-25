@@ -10,9 +10,10 @@ const CARD_H = 112
 const CARD_RADIUS = 10
 const ELLIPSE_RX = '70vw'
 const ELLIPSE_RY = '230px'
-const LOGO_SIZE = Math.round(CARD_W * 0.3)
-const LOGO_OFFSET = -Math.round(CARD_W * 0.1)
 const CAPTION_GAP = 8
+// "Devcon 8 India" (and some names) at 32px Poppins 800 is wider than a
+// 320–390px viewport with nowrap — scale the centre text down on narrow phones.
+const CENTER_TEXT_SIZE = 'clamp(24px, 7.5vw, 32px)'
 const SWIPE_FACTOR = 0.08
 const MOMENTUM_TC = 0.325
 
@@ -53,15 +54,9 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
     return () => mql.removeEventListener('change', handler)
   }, [])
 
-  const allSpeakers = useMemo(() => {
-    const order = [
-      'vitalik', 'audrey', 'danny', 'aya', 'joseph', 'justin', 'brewster',
-      'stani', 'sreeram', 'pooja', 'roger', 'mudit', 'tarun',
-      'bruno', 'tomasz', 'sunny', 'puja', 'soham',
-    ]
-    const map = new Map(speakers.filter(s => s.type !== 'logo').map(s => [s.id, s]))
-    return order.filter(id => map.has(id)).map(id => map.get(id)!).slice(0, speakerCount)
-  }, [speakers, speakerCount])
+  // Data order is display order (curated in speakers-allowlist.ts); the cap
+  // keeps the single orbit readable on narrow phones.
+  const allSpeakers = useMemo(() => speakers.slice(0, speakerCount), [speakers, speakerCount])
 
   useEffect(() => {
     const count = allSpeakers.length
@@ -266,30 +261,6 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
                       className="object-cover pointer-events-none"
                     />
                   </div>
-                  {speaker.companyLogo && (
-                    <div
-                      className="absolute flex items-center justify-center overflow-hidden"
-                      style={{
-                        width: LOGO_SIZE,
-                        height: LOGO_SIZE,
-                        bottom: LOGO_OFFSET,
-                        right: LOGO_OFFSET,
-                        borderRadius: '50%',
-                        background: '#fff',
-                        boxShadow: '0 1px 4px -1px rgba(34,17,68,0.2)',
-                        zIndex: 3,
-                      }}
-                    >
-                      <Image
-                        src={speaker.companyLogo}
-                        alt=""
-                        fill
-                        sizes={`${LOGO_SIZE}px`}
-                        draggable={false}
-                        className="object-contain pointer-events-none"
-                      />
-                    </div>
-                  )}
                 </motion.div>
               )}
               {/* Name label */}
@@ -322,7 +293,7 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
               <motion.p
                 key={activeSpeaker}
                 className="tracking-tight whitespace-nowrap absolute"
-                style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: 32, color: '#160b2b' }}
+                style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: CENTER_TEXT_SIZE, color: '#160b2b' }}
                 initial={{ opacity: 0, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, filter: 'blur(4px)' }}
@@ -333,14 +304,22 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
             ) : (
               <motion.h2
                 key="default"
-                className="tracking-tight absolute whitespace-nowrap"
-                style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: 32, color: '#160b2b' }}
+                className="tracking-tight absolute whitespace-nowrap text-center"
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 800,
+                  fontSize: CENTER_TEXT_SIZE,
+                  lineHeight: 1.1,
+                  color: '#160b2b',
+                }}
                 initial={{ opacity: 0, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, filter: 'blur(4px)' }}
                 transition={{ duration: 0.12 }}
               >
-                Past speakers
+                Devcon 8 India
+                <br />
+                Speakers
               </motion.h2>
             )}
           </AnimatePresence>
@@ -352,7 +331,6 @@ export function LivingConstellationMobile({ speakers, className = '' }: LivingCo
         layoutIdPrefix="speaker-v2-mobile-"
         cardWidth="min(320px, calc(100vw - 48px))"
         imageHeight={220}
-        companyLogoHeight={48}
         backdropStyle={{
           background: 'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.5) 100%)',
         }}

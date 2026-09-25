@@ -48,6 +48,7 @@ export const APP_IMAGES: string[] = [
   // Large — warmed, never precached.
   "/login/backdrop.jpg",
   "/tickets-hero.jpg",
+  "/home/install-phones.jpg",
   "/home/tickets-banner.webp",
   "/login/signin-keyart.webp",
   // Small chrome — precached too, listed here so a cache miss still self-heals.

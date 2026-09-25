@@ -5,20 +5,23 @@ import { createPortal } from "react-dom";
 import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
-import { Download, ExternalLink, MoreVertical } from "lucide-react";
+import {
+  Download,
+  Ellipsis,
+  ExternalLink,
+  MonitorDown,
+  MoreVertical,
+  Share,
+  SquareChevronDown,
+  SquareMenu,
+  SquarePlus,
+} from "lucide-react";
 import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
 import { supabase } from "@/data/auth/supabase";
 import { iosMajorVersion, isIOS, isIPad, isSafari, isStandalone } from "@/utils/platform";
-import {
-  IosAddToHomeGlyph,
-  IosChevronGlyph,
-  IosMoreGlyph,
-  IosPageMenuGlyph,
-  IosShareGlyph,
-} from "./IosGlyphs";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
 interface BeforeInstallPromptEvent extends Event {
@@ -99,21 +102,31 @@ export function useOpenInSafari(): () => Promise<void> {
 }
 
 /**
- * Show install UI only on mobile web before install — never inside the
- * native (Capacitor) app or an already-installed standalone PWA, and never
- * on desktop (the install nudge is a phone and tablet thing by decision).
- * iPad goes through isIOS(): Safari there asks for the desktop site, so its
- * User-Agent says "Macintosh" and never "iPad" (found on iPadOS 17.7,
- * 2026-09-16); the touch-points check is what tells it from a Mac.
+ * Show install UI in any browser before install — never inside the native
+ * (Capacitor) app or an already-installed standalone PWA. Desktop included
+ * since 2026-09-24 (Didier): installed desktop apps get push too, and the
+ * how-to modal knows the desktop browsers' install paths. iPad goes through
+ * isIOS(): Safari there asks for the desktop site, so its User-Agent says
+ * "Macintosh" and never "iPad" (found on iPadOS 17.7, 2026-09-16); the
+ * touch-points check is what tells it from a Mac.
  */
 export function useShouldShowInstall(): boolean {
   const [shouldShow, setShouldShow] = useState(false);
   useEffect(() => {
     if (isStandalone() || Capacitor.isNativePlatform()) return;
     if (typeof navigator === "undefined") return;
-    setShouldShow(isIOS() || /Android/i.test(navigator.userAgent));
+    setShouldShow(true);
   }, []);
   return shouldShow;
+}
+
+/** Desktop browser family, for the manual install steps (no prompt fired). */
+function desktopBrowser(): "safari" | "firefox" | "chromium" | "other" {
+  const ua = navigator.userAgent;
+  if (/Firefox\//.test(ua)) return "firefox";
+  if (/Chrome\/|Chromium\/|Edg\//.test(ua)) return "chromium";
+  if (isSafari() || (/Safari\//.test(ua) && !/Chrome|Chromium|Edg|Firefox/.test(ua))) return "safari";
+  return "other";
 }
 
 /**
@@ -158,7 +171,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
   const steps: HowToStep[] = [];
   if (ipad) {
     steps.push({
-      Icon: IosShareGlyph,
+      Icon: Share,
       text: (
         <>
           Tap <b>Share</b> at the top right.
@@ -168,7 +181,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
   } else if (version !== null && version >= 27) {
     steps.push(
       {
-        Icon: IosPageMenuGlyph,
+        Icon: SquareMenu,
         text: (
           <>
             Tap the <b>Page</b> menu if there&apos;s no Share icon.
@@ -176,7 +189,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
         ),
       },
       {
-        Icon: IosShareGlyph,
+        Icon: Share,
         text: (
           <>
             Tap <b>Share</b> in the navigation bar.
@@ -187,7 +200,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
   } else if (version === 26) {
     steps.push(
       {
-        Icon: IosMoreGlyph,
+        Icon: Ellipsis,
         text: (
           <>
             Tap <b>•••</b> if there&apos;s no Share icon.
@@ -195,7 +208,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
         ),
       },
       {
-        Icon: IosShareGlyph,
+        Icon: Share,
         text: (
           <>
             Tap <b>Share</b> in the navigation bar.
@@ -205,7 +218,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
     );
   } else if (version !== null) {
     steps.push({
-      Icon: IosShareGlyph,
+      Icon: Share,
       text: (
         <>
           Tap <b>Share</b> in the bottom toolbar.
@@ -215,7 +228,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
   } else {
     // Version unknown: name the places it has lived.
     steps.push({
-      Icon: IosShareGlyph,
+      Icon: Share,
       text: (
         <>
           Tap <b>Share</b> in the toolbar, or in the menu next to the address bar.
@@ -225,7 +238,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
   }
   if (version !== null && version >= 26) {
     steps.push({
-      Icon: IosChevronGlyph,
+      Icon: SquareChevronDown,
       text: (
         <>
           Tap <b>View More</b> in the share sheet.
@@ -234,7 +247,7 @@ function safariSteps(version: number | null, ipad: boolean): HowToStep[] {
     });
   }
   steps.push({
-    Icon: IosAddToHomeGlyph,
+    Icon: SquarePlus,
     text: (
       <>
         Tap <b>Add to Home Screen</b>.
@@ -257,22 +270,89 @@ function manualInstructions(): { intro: string; steps: HowToStep[] } {
       steps: safariSteps(iosMajorVersion(), isIPad()),
     };
   }
-  // Android / desktop browsers that don't fire `beforeinstallprompt` (e.g.
-  // Firefox, or hardened Chromium builds that gate installs).
-  return {
-    intro: "Add this app to your home screen for the full experience.",
-    steps: [
-      { Icon: MoreVertical, text: <>Open your browser&apos;s menu.</> },
-      {
-        Icon: Download,
-        text: (
-          <>
-            Tap <b>Install app</b> or <b>Add to Home screen</b>.
-          </>
-        ),
-      },
-    ],
-  };
+  if (/Android/i.test(navigator.userAgent)) {
+    // Android browsers that don't fire `beforeinstallprompt` (e.g. Firefox,
+    // or hardened Chromium builds that gate installs).
+    return {
+      intro: "Add this app to your Home Screen for the full experience.",
+      steps: [
+        { Icon: MoreVertical, text: <>Open your browser&apos;s menu.</> },
+        {
+          Icon: Download,
+          text: (
+            <>
+              Tap <b>Install app</b> or <b>Add to Home screen</b>.
+            </>
+          ),
+        },
+      ],
+    };
+  }
+  // Desktop. Chromium normally fires the prompt (handled before we get here);
+  // these are the paths when it didn't, plus Safari's Dock and Firefox's lack
+  // of an install feature.
+  switch (desktopBrowser()) {
+    case "safari":
+      return {
+        intro: "Add this app to your Dock for the full experience, notifications included.",
+        steps: [
+          {
+            Icon: Share,
+            text: (
+              <>
+                Click <b>Share</b> in the toolbar (or open the <b>File</b> menu).
+              </>
+            ),
+          },
+          {
+            Icon: Download,
+            text: (
+              <>
+                Choose <b>Add to Dock</b>, then open the app from your Dock.
+              </>
+            ),
+          },
+        ],
+      };
+    case "firefox":
+      return {
+        intro: "Firefox can't install web apps on desktop.",
+        steps: [
+          {
+            Icon: ExternalLink,
+            text: (
+              <>
+                Open this page in <b>Chrome</b>, <b>Edge</b> or <b>Safari</b> and use their
+                Install option.
+              </>
+            ),
+          },
+        ],
+      };
+    default:
+      return {
+        intro: "Install this app for the full experience, notifications included.",
+        steps: [
+          {
+            Icon: MonitorDown,
+            text: (
+              <>
+                Click the <b>install icon</b> at the right end of the address bar, if it shows.
+              </>
+            ),
+          },
+          {
+            Icon: MoreVertical,
+            text: (
+              <>
+                Otherwise open the browser menu: <b>Cast, save and share → Install page as
+                app</b> (Chrome) or <b>Apps → Install this site as an app</b> (Edge).
+              </>
+            ),
+          },
+        ],
+      };
+  }
 }
 
 /** Instructions card shown when no native install prompt is available. */
@@ -292,27 +372,16 @@ function InstallInstructionsModal({
   // (Brave mimics Safari's UA), so it only decides whether the hop is worth
   // offering — the steps below stand on their own either way.
   const safariIsNextStep = !!onOpenInSafari && !isSafari();
-  // iOS Safari steps are followed live, so the card stays clear of where
-  // Safari opens things. iPhone: the Page menu, ••• menu and share sheet
-  // rise from the bottom over roughly the lower half, so the card sits at
-  // the top and skips the art header to keep every step above them. iPad:
-  // the share sheet is a popover dropping from the top-right toolbar, so the
-  // card stays at the bottom. The Safari hop and other platforms keep the
-  // usual bottom sheet (centred from `sm`).
-  const safariSteps = isIOS() && !safariIsNextStep;
-  const stepsOnTop = safariSteps && !isIPad();
-  const align = stepsOnTop
-    ? "items-start pt-[calc(16px+var(--safe-top))]"
-    : safariSteps
-      ? "items-end"
-      : "items-end sm:items-center";
+  // Centred in the viewport everywhere (Scott, 2026-09-25; it used to sit at
+  // the top on iPhone Safari to stay clear of the share sheet, and at the
+  // bottom elsewhere). iPhone Safari steps are followed live, so that
+  // variant still skips the art header and keeps the card short. The card
+  // fades and scales in place; no slide.
+  const compactSteps = isIOS() && !safariIsNextStep && !isIPad();
 
   return createPortal(
     <motion.div
-      className={cn(
-        "fixed inset-0 z-[95] flex justify-center bg-black/60 p-4 backdrop-blur-sm",
-        align
-      )}
+      className="fixed inset-0 z-[95] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -322,13 +391,15 @@ function InstallInstructionsModal({
       <motion.div
         className="w-full overflow-hidden rounded-3xl bg-white shadow-2xl sm:max-w-sm"
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, y: stepsOnTop ? -28 : 28, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: stepsOnTop ? -28 : 28, scale: 0.98 }}
+        // Centred card: fade + slight scale only (the slide up from the
+        // bottom was the old bottom-sheet's entrance).
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.98 }}
         transition={{ type: "spring", damping: 28, stiffness: 340 }}
       >
         {/* Devcon art header, fading into the white card body */}
-        <div className={cn("relative h-32 w-full", stepsOnTop && "hidden")}>
+        <div className={cn("relative h-32 w-full", compactSteps && "hidden")}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/login/backdrop.jpg"
@@ -345,7 +416,7 @@ function InstallInstructionsModal({
           />
         </div>
 
-        <div className={cn("px-6 pb-6 text-center font-heading", stepsOnTop && "pt-6")}>
+        <div className={cn("px-6 pb-6 text-center font-heading", compactSteps && "pt-6")}>
           <h3 className="text-lg font-bold text-dc-fg2">
             Install {APP_CONFIG.APP_NAME}
           </h3>
@@ -454,8 +525,8 @@ export function useInstallFlow(): {
 }
 
 /**
- * "Install app" button + install flow. Only renders on mobile web before
- * install (useShouldShowInstall).
+ * "Install app" button + install flow. Renders in any browser before install
+ * (useShouldShowInstall).
  */
 export function InstallAppButton({
   className,
