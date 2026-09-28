@@ -1,7 +1,13 @@
 "use client";
 
+import cn from "classnames";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Megaphone, Settings, Star } from "lucide-react";
+import { Bell, BellOff, Settings, Star } from "lucide-react";
+import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import { InboxSkeleton } from "@/components/Skeletons";
+import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
+import { usePreviewState } from "@/hooks/usePreviewState";
+import { useOnline } from "@/hooks/useOnline";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import {
   mergeInboxItems,
@@ -41,8 +47,9 @@ function groupByDay(items: InboxItem[]): [string, InboxItem[]][] {
 
 const groupHeading =
   "mb-3 font-heading text-xs font-bold uppercase leading-[18px] tracking-[0.5px] text-dc-muted";
-const emptyBox =
-  "flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-12 text-center";
+/** Inbox-slot messages sit mid-viewport: header (+ tab bar on phones) and,
+ *  on desktop, the page h1 above the panel. */
+const INBOX_CENTER = "min-h-[calc(100dvh-240px)] py-8 lg:min-h-[calc(100dvh-420px)]";
 
 /**
  * Mobile entry to the notification settings: a labelled pill ("Enable
@@ -90,6 +97,7 @@ export default function AnnouncementsPage() {
     announcements,
     isLoading,
     error,
+    refresh,
     markAllSeen,
     readStateReady,
   } = useAnnouncements();
@@ -154,9 +162,16 @@ export default function AnnouncementsPage() {
         ? "Yesterday"
         : formatDayHeading(key);
 
+  const preview = usePreviewState();
+  const online = useOnline();
   const loading = isLoading || reminders.isLoading;
   const noAnnouncements = announcements.length === 0;
   const noReminders = reminders.reminders.length === 0;
+  const showLoading =
+    preview === "loading" || (!preview && loading && noAnnouncements && noReminders);
+  const showError = preview === "failed" || (!preview && !isLoading && !!error && noAnnouncements);
+  const showEmpty =
+    preview === "empty" || (!preview && !loading && !error && noAnnouncements && noReminders);
   const { interestedCount } = reminders;
   const remindersHint =
     interestedCount === 0
@@ -185,28 +200,41 @@ export default function AnnouncementsPage() {
 
         <div className="min-w-0 lg:rounded-xl lg:border lg:border-dc-hairline lg:shadow-[0px_1px_2px_rgba(22,11,43,0.04)]">
           <div className="px-4 pb-6 pt-6 lg:rounded-xl lg:bg-dc-panel">
-            {loading && noAnnouncements && noReminders && (
-              <p className="text-sm text-dc-muted">Loading announcements…</p>
+            {showLoading && <InboxSkeleton />}
+
+            {showError && (
+              <StateMessage
+                icon={BellOff}
+                title="Couldn't load notifications"
+                body={online ? FAILED_BODY : "You're offline and there are no notifications saved on this device yet."}
+                className={INBOX_CENTER}
+              >
+                <TryAgainButton onRetry={refresh} />
+              </StateMessage>
             )}
 
-            {!isLoading && error && noAnnouncements && (
-              <p className="mb-6 text-sm text-dc-muted">
-                Couldn&apos;t load announcements. Check your connection and
-                try again.
-              </p>
+            {showEmpty && (
+              <StateMessage
+                icon={Bell}
+                title="Nothing here yet"
+                body="Announcements from the team and reminders for sessions you're interested in will show up here."
+                className={INBOX_CENTER}
+              >
+                {canOpenSettings && (
+                  <PrimaryButton
+                    type="button"
+                    onClick={openSettings}
+                    aria-haspopup="dialog"
+                    className="w-full"
+                  >
+                    Notification settings
+                  </PrimaryButton>
+                )}
+              </StateMessage>
             )}
 
-            {!loading && !error && noAnnouncements && noReminders && (
-              <div className={emptyBox}>
-                <Megaphone className="h-6 w-6 text-dc-muted/50" />
-                <p className="text-sm text-dc-muted">
-                  Nothing yet — announcements from the team and reminders for
-                  sessions you&apos;re interested in will show up here.
-                </p>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-8">
+            {/* A forced preview state stands alone, like the real one. */}
+            <div className={cn("flex flex-col gap-8", preview && "hidden")}>
               {groups.map(([key, items]) => (
                 <section key={key}>
                   <h2 className={groupHeading}>{dayLabel(key)}</h2>
@@ -236,20 +264,24 @@ export default function AnnouncementsPage() {
               {/* Announcements but no reminders yet: say where reminders
                   will come from, at the end of the list. */}
               {!noAnnouncements && !reminders.isLoading && noReminders && (
-                <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-dc-border px-6 py-8 text-center">
-                  <Star className="h-6 w-6 text-dc-muted/50" />
-                  <p className="text-sm text-dc-muted">{remindersHint}</p>
+                <StateMessage
+                  icon={Star}
+                  title="No session reminders yet"
+                  body={remindersHint}
+                  size="compact"
+                  className="rounded-lg border border-dc-hairline bg-white py-6"
+                >
                   {canOpenSettings && (
-                    <button
+                    <SecondaryButton
                       type="button"
                       onClick={openSettings}
                       aria-haspopup="dialog"
-                      className="mt-1 cursor-pointer rounded font-heading text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
+                      className="w-full py-3 text-[14px]"
                     >
                       Notification settings
-                    </button>
+                    </SecondaryButton>
                   )}
-                </div>
+                </StateMessage>
               )}
             </div>
           </div>

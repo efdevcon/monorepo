@@ -25,6 +25,7 @@ export function StateMessage({
   className,
   headingLevel = "p",
   tone = "default",
+  size = "page",
   children,
 }: {
   icon: LucideIcon;
@@ -35,35 +36,59 @@ export function StateMessage({
   headingLevel?: "h1" | "p";
   /** `critical` (crashes): red mark on the soft pink live/error fill. */
   tone?: "default" | "critical";
+  /** `compact`: the inline version for a block inside a page (Q&A, the
+   *  inbox's reminders note): 48px circle, 20px mark, 16px title, 14px body. */
+  size?: "page" | "compact";
   children?: React.ReactNode;
 }) {
   const Title = headingLevel;
+  const compact = size === "compact";
   return (
-    <div className={cn("flex w-full flex-col items-center justify-center gap-6 px-4 text-center font-heading", className)}>
+    <div
+      className={cn(
+        "flex w-full flex-col items-center justify-center px-4 text-center font-heading",
+        compact ? "gap-3" : "gap-6",
+        className
+      )}
+    >
       <span
         className={cn(
-          "flex size-16 items-center justify-center rounded-full",
+          "flex items-center justify-center rounded-full",
+          compact ? "size-12" : "size-16",
           tone === "critical" ? "bg-dc-live-bg" : "bg-dc-lavender"
         )}
       >
-        <Icon className={cn("size-7", tone === "critical" ? "text-dc-red" : "text-dc-purple")} aria-hidden />
+        <Icon
+          className={cn(compact ? "size-5" : "size-7", tone === "critical" ? "text-dc-red" : "text-dc-purple")}
+          aria-hidden
+        />
       </span>
-      <div className="flex max-w-[420px] flex-col gap-1 text-dc-fg">
-        <Title className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">{title}</Title>
-        <p className="text-[16px] leading-6 text-dc-muted">{body}</p>
+      <div className={cn("flex flex-col text-dc-fg", compact ? "max-w-[360px] gap-0.5" : "max-w-[420px] gap-1")}>
+        <Title
+          className={
+            compact
+              ? "text-[16px] font-bold leading-6"
+              : "text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]"
+          }
+        >
+          {title}
+        </Title>
+        <p className={cn("text-dc-muted", compact ? "text-[14px] leading-5" : "text-[16px] leading-6")}>{body}</p>
       </div>
-      {children && <div className="flex w-full max-w-[420px] flex-col gap-3">{children}</div>}
+      {children && (
+        <div className={cn("flex w-full flex-col gap-3", compact ? "max-w-[320px]" : "max-w-[420px]")}>{children}</div>
+      )}
     </div>
   );
 }
 
-/** Re-runs the catalogue sync; label first, spinning icon on the right. */
-export function TryAgainButton() {
+/** Re-runs the catalogue sync (or `onRetry`); label first, spinning icon on the right. */
+export function TryAgainButton({ onRetry = forceSync }: { onRetry?: () => Promise<unknown> }) {
   const [retrying, setRetrying] = useState(false);
   const retry = async () => {
     setRetrying(true);
     try {
-      await forceSync();
+      await onRetry();
     } finally {
       setRetrying(false);
     }

@@ -121,3 +121,36 @@ export function DetailSkeleton({ kind }: { kind: "session" | "speaker" }) {
     </Status>
   );
 }
+
+/** Notifications inbox: a day heading and three announcement cards. */
+export function InboxSkeleton() {
+  return (
+    <Status label="Loading announcements…" className="flex flex-col gap-3">
+      <Bone className="mb-0 h-[18px] w-20" />
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="flex flex-col gap-2 rounded-lg border border-dc-hairline bg-white p-4">
+          <Bone className="h-3 w-24" />
+          <Bone className={cn("h-5", i === 1 ? "w-[50%]" : "w-[65%]")} />
+          <Bone className="h-4 w-[90%]" />
+        </div>
+      ))}
+    </Status>
+  );
+}
+
+/** Live Q&A: three question rows (vote column + two lines). */
+export function QASkeleton() {
+  return (
+    <Status label="Loading questions…" className="flex flex-col gap-2">
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="flex gap-3 rounded-lg border border-dc-hairline bg-white p-3">
+          <Bone className="h-10 w-9 shrink-0 rounded-md" />
+          <div className="flex flex-1 flex-col gap-2 pt-0.5">
+            <Bone className={cn("h-4", i === 2 ? "w-[55%]" : "w-[80%]")} />
+            <Bone className="h-3 w-24" />
+          </div>
+        </div>
+      ))}
+    </Status>
+  );
+}
