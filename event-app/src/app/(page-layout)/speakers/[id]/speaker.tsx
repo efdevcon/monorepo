@@ -44,16 +44,18 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
     return <div className="p-4 text-dc-muted">Speakers are not enabled</div>;
   }
 
-  if (!decorated || preview) {
+  const detailPreview =
+    preview === "loading" || preview === "notfound" || preview === "failed" ? preview : null;
+  if (!decorated || detailPreview) {
     // Loading only while nothing has ever been synced; otherwise the id is
     // unknown (stale link, other dataset) or the first sync failed.
-    if (preview === "loading" || (!preview && isLoading)) {
+    if (detailPreview === "loading" || (!detailPreview && isLoading)) {
       return <DetailSkeleton kind="speaker" />;
     }
     return (
       <DetailNotFound
         kind="speaker"
-        failed={preview ? preview === "failed" : Boolean(error)}
+        failed={detailPreview ? detailPreview === "failed" : Boolean(error)}
         onBack={() => closeDetail("speaker")}
       />
     );

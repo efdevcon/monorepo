@@ -44,16 +44,18 @@ export default function Session({ params, id: directId }: SessionClientProps) {
     return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
   }
 
-  if (!session || preview) {
+  const detailPreview =
+    preview === "loading" || preview === "notfound" || preview === "failed" ? preview : null;
+  if (!session || detailPreview) {
     // Loading only while nothing has ever been synced; otherwise the id is
     // unknown (stale link, other dataset) or the first sync failed.
-    if (preview === "loading" || (!preview && isLoading)) {
+    if (detailPreview === "loading" || (!detailPreview && isLoading)) {
       return <DetailSkeleton kind="session" />;
     }
     return (
       <DetailNotFound
         kind="session"
-        failed={preview ? preview === "failed" : Boolean(error)}
+        failed={detailPreview ? detailPreview === "failed" : Boolean(error)}
         onBack={() => closeDetail("session")}
       />
     );
