@@ -1171,6 +1171,8 @@ export function Schedule() {
                 <EmptyState
                   query={search}
                   filtersActive={activeFilterCount > 0}
+                  interestsOnly={interestedOnly && activeFilterCount === 1}
+                  interestedCount={interestedIds.size}
                   onReset={clearFilters}
                 />
               ) : view === "timeline" ? (
