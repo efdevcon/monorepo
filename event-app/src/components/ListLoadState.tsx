@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { CloudOff, RefreshCw } from "lucide-react";
-import { forceSync } from "@/data/hooks/use-sessions";
+import { CalendarX2, UserX } from "lucide-react";
+import { FAILED_BODY, StateMessage, TryAgainButton } from "./StateMessage";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { ListSkeleton } from "./Skeletons";
 
@@ -12,13 +11,13 @@ const COPY: Record<Kind, { loading: string; unpublished: string; failed: string;
   schedule: {
     loading: "Loading schedule…",
     unpublished: "The schedule isn't published yet. Check back soon.",
-    failed: "Couldn't load the schedule.",
+    failed: "Couldn't load the schedule",
     offline: "You're offline and the schedule isn't saved on this device yet.",
   },
   speakers: {
     loading: "Loading speakers…",
     unpublished: "Speakers aren't announced yet. Check back soon.",
-    failed: "Couldn't load the speakers.",
+    failed: "Couldn't load the speakers",
     offline: "You're offline and the speakers aren't saved on this device yet.",
   },
 };
@@ -38,7 +37,6 @@ export function ListLoadState({
   kind: Kind;
   state: "loading" | "unpublished" | "error";
 }) {
-  const [retrying, setRetrying] = useState(false);
   const copy = COPY[kind];
 
   if (state === "loading") {
@@ -49,29 +47,18 @@ export function ListLoadState({
   }
 
   const offline = !isOnlineNow();
-  const retry = async () => {
-    setRetrying(true);
-    try {
-      await forceSync();
-    } finally {
-      setRetrying(false);
-    }
-  };
+  // Nothing else is on screen below the toolbars, so the message sits in
+  // the middle of the viewport rather than at the top of the empty list:
+  // the min-height is roughly the viewport less the header, toolbars and
+  // (phones) the tab bar above and below it.
   return (
-    <div className="flex flex-col items-center gap-3 py-12 text-center">
-      <p className="flex items-center gap-2 text-dc-muted">
-        {offline && <CloudOff className="size-4 shrink-0 text-dc-purple" />}
-        {offline ? copy.offline : copy.failed}
-      </p>
-      <button
-        type="button"
-        onClick={retry}
-        disabled={retrying}
-        className="flex cursor-pointer items-center gap-1.5 font-bold text-dc-purple hover:underline disabled:opacity-50"
-      >
-        <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
-        {retrying ? "Retrying…" : "Retry"}
-      </button>
-    </div>
+    <StateMessage
+      icon={kind === "schedule" ? CalendarX2 : UserX}
+      title={copy.failed}
+      body={offline ? copy.offline : FAILED_BODY}
+      className="min-h-[calc(100dvh-360px)] py-8 lg:min-h-[calc(100dvh-600px)]"
+    >
+      <TryAgainButton />
+    </StateMessage>
   );
 }

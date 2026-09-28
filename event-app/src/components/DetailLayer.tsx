@@ -1,9 +1,9 @@
 "use client";
 
 import { usePaneActive } from "@/components/paneContext";
-import { CalendarX2, RefreshCw, UserX } from "lucide-react";
+import { CalendarX2, UserX } from "lucide-react";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
-import { forceSync } from "@/data/hooks/use-sessions";
+import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -159,49 +159,26 @@ export function DetailNotFound({
   onBack: () => void;
 }) {
   const copy = NOT_FOUND[kind];
-  const [retrying, setRetrying] = useState(false);
   const offline = failed && !isOnlineNow();
-  const retry = async () => {
-    setRetrying(true);
-    try {
-      await forceSync();
-    } finally {
-      setRetrying(false);
-    }
-  };
-  const Mark = kind === "session" ? CalendarX2 : UserX;
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-6 px-4 py-16 text-center font-heading">
-      <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
-        <Mark className="size-7 text-dc-purple" aria-hidden />
-      </span>
-      <div className="flex max-w-[420px] flex-col gap-1 text-dc-fg">
-        <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">
-          {failed ? copy.failed : copy.missing}
-        </p>
-        <p className="text-[16px] leading-6">
-          {failed ? (offline ? copy.offline : "Something went wrong on our side, please try again in a moment.") : copy.missingBody}
-        </p>
-      </div>
-      <div className="flex w-full max-w-[420px] flex-col gap-3">
-        {failed && (
-          <PrimaryButton type="button" onClick={retry} disabled={retrying} className="w-full">
-            {retrying ? "Retrying…" : "Try again"}
-            <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
-          </PrimaryButton>
-        )}
-        {/* Only action on a missing id, so primary; behind Try again it's the
-            way out. */}
-        {failed ? (
-          <SecondaryButton type="button" onClick={onBack} className="w-full">
-            {copy.back}
-          </SecondaryButton>
-        ) : (
-          <PrimaryButton type="button" onClick={onBack} className="w-full">
-            {copy.back}
-          </PrimaryButton>
-        )}
-      </div>
-    </div>
+    <StateMessage
+      icon={kind === "session" ? CalendarX2 : UserX}
+      title={failed ? copy.failed : copy.missing}
+      body={failed ? (offline ? copy.offline : FAILED_BODY) : copy.missingBody}
+      className="py-16"
+    >
+      {failed && <TryAgainButton />}
+      {/* Only action on a missing id, so primary; behind Try again it's the
+          way out. */}
+      {failed ? (
+        <SecondaryButton type="button" onClick={onBack} className="w-full">
+          {copy.back}
+        </SecondaryButton>
+      ) : (
+        <PrimaryButton type="button" onClick={onBack} className="w-full">
+          {copy.back}
+        </PrimaryButton>
+      )}
+    </StateMessage>
   );
 }
