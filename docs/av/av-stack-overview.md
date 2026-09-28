@@ -265,7 +265,8 @@ devcon-app stays DC7-only; its blocker #3 is moot.
 
 How every DC7 speaker got a pre-made deck and how the archive got its PDFs. Built by
 Wesley between Oct and Dec 2024; everything lives in devcon-api plus one devcon.org page.
-Nothing is written back to Pretalx, it only supplies titles, codes and speaker emails.
+Until 2026-09-28 nothing was written back to Pretalx, it only supplied titles, codes and
+speaker emails; since then the sync writes each deck's URL into a Pretalx question (step 2).
 
 1. **Deck creation** - [`clients/slides.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/clients/slides.ts)
    `CreatePresentationFromTemplate(title, pretalxCode, speakerEmails)`: the EF Google
@@ -304,24 +305,51 @@ Nothing is written back to Pretalx, it only supplies titles, codes and speaker e
    investigation with the Workspace admins), which blocks this pass and the export.
    `GOOGLE_IMPERSONATE_USER` (domain-wide delegation, to be authorised by an admin) makes
    the pipeline act as an internal EF user instead.
-   **Speakers without a Google account** (2026-09-18): Drive refuses a silent grant to such
-   an address and only accepts one with its invitation email; in testing that email never
-   arrived (two addresses, two runs), and in DC7 the grant simply failed with "Grant
-   manually". The pipeline now keeps the pending grant (it attaches automatically if the
-   speaker later creates a Google account with that address) and, with
-   `SLIDES_NO_ACCOUNT_EMAIL=true`, sends Devcon's own email (the devcon.org transactional chrome) through the API's SMTP,
-   from and reply-to `SLIDES_CONTACT_EMAIL` (default speak@devcon.org), asking the speaker
-   to reply with a Google account address. Sent once, when the grant is
-   first attempted; the next sync grants the updated address and revokes the old one.
+   **Deck link and no-Google-account speakers recorded in Pretalx** (2026-09-28): the
+   slides passes now run over every confirmed submission, scheduled or not, and write each
+   deck URL into a submission question ("Slides deck", url, private, frozen so speakers see
+   it read-only; id in `PRETALX_QUESTIONS_SLIDES_DECK`). Pretalx is the source of truth:
+   the session mapper copies the answer into `resources_presentation` once the talk is
+   published, and a URL that only exists on disk is backfilled into Pretalx. Drive refuses a
+   silent grant to an address without a Google account and only accepts one with its
+   invitation email (not delivered in testing, 2026-09-18); such addresses are recorded in a
+   second question ("Slides: no Google account", text, private, frozen; id in
+   `PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT`), shown read-only on the proposal page to
+   organisers and to the speakers themselves, with a help text explaining the Drive
+   invitation, and listed on the question's organiser page and in the API for the speaker
+   team to share the deck by hand or to export to the run of show. Pretalx has no
+   organiser-only mode for a question (an inactive one is hidden from the proposal page for
+   everyone, `limit_teams` only scopes organiser teams), the deployed version ignores the
+   per-question list filters, and its API rejects every tag update on a proposal, so
+   speaker-visible read-only was the workable option (decided 2026-09-28). Addresses leave
+   the list when they leave the talk or an organiser clears the field; Drive gives no signal
+   for an accepted invitation. Non-public tags are now dropped from the session JSON by the
+   session mapper (they used to be published like any other tag).
+   Field definitions, to recreate on `devcon8` (both: target submission, optional, not
+   public, not visible to reviewers, active, `freeze_after` in the past):
+   - "Slides deck", variant url. Help text: "Your Google Slides deck for this session,
+     created by the Devcon team and shared with each speaker's email address. Build your
+     presentation in it. If you cannot open or edit it, email speak@devcon.org and provide a
+     Google account address." (plain text: the url variant's help text is not rendered as
+     markdown on the deployed pretalx, the text variant's is.)
+   - "Slides: no Google account", variant text, contains personal data. Help text: "If you
+     cannot edit the slides with this email address, contact [speak@devcon.org](mailto:speak@devcon.org) and provide a
+     Google account address."
+   The mail template links `https://devcon.org/presentation/devcon8/{proposal_code}/`;
+   pretalx templates have no placeholder for custom-question answers. This replaced
+   the sync's own "we need a Google account" email (2026-09-18 to 09-28). Both writes need
+   `PRETALX_API_KEY_WRITE` (organiser token with write scope on the event; as of 2026-09-28
+   it has that only on `test-devcon-8`); without it the slides passes do not run.
 3. **Speaker-facing link** -
-   [`devcon/src/pages/sea/presentation/[code].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon/src/pages/sea/presentation/%5Bcode%5D.tsx)
-   (2024-10-15): `devcon.org/sea/presentation/<code>` fetches
-   `api.devcon.org/sessions/<code>` (slug or Pretalx code both resolve) and redirects
-   client-side to `resources_presentation`; without a link it shows "No presentation
-   link found. Please contact the organisers." Pages build on demand
-   (`fallback: 'blocking'`). The path is referenced nowhere else in the repo, so the
-   link was handed to speakers from Pretalx mail templates or the speaker guide
-   (inference).
+   [`devcon/src/pages/presentation/[event]/[code].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon/src/pages/presentation/%5Bevent%5D/%5Bcode%5D.tsx)
+   (2026-09-28; the 2024 `/sea/presentation/<code>` page stays as is, so DC7 links keep
+   working): `devcon.org/presentation/{devcon8|sea|test}/<code>/` reads the submission's
+   "Slides deck" answer live from Pretalx, server-side with a one-minute CDN cache, and
+   redirects to it, so the link works before the schedule is published; only Google
+   Docs/Drive URLs are followed and only accepted/confirmed talks resolve in production.
+   Devcon SEA has no such question and falls back to `api.devcon.org/sessions/<code>`.
+   Without a link the page shows "No presentation link found. Please contact the
+   organisers." Speakers get the link from Pretalx mail templates.
 4. **Event-eve nudge** - `RunPermissions` (commit `553ca239a`, 2024-11-12 00:59 Bangkok)
    reads the deck's `lastModifyingUser`. If the last editor is still the service
    account, meaning the speaker never opened the deck, it re-grants the speakers writer
@@ -748,8 +776,9 @@ Pretalx being slow or venue internet dropping are expected, not exceptional.
    link" sharing if the decks themselves are to be opened after the event (per-user
    external grants already work, link sharing is a separate setting); lift the
    add `devcon8` to `SLIDES_ALLOWED_EVENTS` and `SLIDES_EVENTS` and point the `SLIDES_*`
-   ids at DC8; rename the `/sea/presentation/` redirect (DC7-branded path, hardcodes
-   `api.devcon.org`) or add a DC8 route. Alternative if stage AV does not project from the decks and the Drive
+   ids at DC8; create the two slides questions on `devcon8` (same shape as the test
+   event's) and set their ids in the devcon-api config and the `/presentation/` redirect
+   page, and give the write token organiser scope on `devcon8`. Alternative if stage AV does not project from the decks and the Drive
    infra should go: a private Pretalx **file** question (not the native Resources
    feature, which is public on the talk page as soon as the schedule is), released by
    the sync into `resources_slides` after the event, since anything in a session JSON
