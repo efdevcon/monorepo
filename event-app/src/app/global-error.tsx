@@ -1,45 +1,38 @@
 "use client";
 
+import { RefreshCw, TriangleAlert } from "lucide-react";
+import "./globals.css";
+import { PrimaryButton } from "@/components/Buttons";
+import { StateMessage } from "@/components/StateMessage";
+
+/**
+ * Root-layout crash: replaces the whole document, so it brings its own
+ * html/body and stylesheet. Poppins isn't loaded here (the root layout's
+ * next/font variables are gone), so text falls back to the system font.
+ */
 export default function GlobalError({
-  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
   return (
-    <html>
+    <html lang="en">
       <body>
-        <div
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "16px",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
-          <div style={{ textAlign: "center", maxWidth: "400px" }}>
-            <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "8px" }}>
-              Something went wrong
-            </h1>
-            <p style={{ color: "#666", marginBottom: "16px" }}>{error.message}</p>
-            <button
-              onClick={reset}
-              style={{
-                padding: "8px 16px",
-                background: "#000",
-                color: "#fff",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
+        <main className="flex min-h-dvh items-center justify-center py-16">
+          <div className="app-bg" aria-hidden />
+          <StateMessage
+            icon={TriangleAlert}
+            title="Something went wrong"
+            body="Please try again in a moment."
+            headingLevel="h1"
+          >
+            <PrimaryButton type="button" onClick={reset} className="w-full">
               Try again
-            </button>
-          </div>
-        </div>
+              <RefreshCw className="size-4" />
+            </PrimaryButton>
+          </StateMessage>
+        </main>
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ import { Tickets } from "../Tickets";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { LegalLinks } from "./LegalLinks";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 /**
  * The home page (Figma home redesign): rotating greeting, the install nudge
@@ -21,6 +22,8 @@ import { LegalLinks } from "./LegalLinks";
  * 1312px desktop content box (same pattern as Ticket.tsx / Schedule).
  */
 export function Home() {
+  // Dev preview of the route error page (app/error.tsx).
+  if (usePreviewState() === "crash") throw new Error("previewState=crash");
   return (
     <main className="expand py-6 lg:pb-16">
       <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
