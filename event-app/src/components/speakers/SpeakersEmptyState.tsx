@@ -50,7 +50,7 @@ export function SpeakersEmptyState({
       <div className="flex w-full min-w-0 flex-col gap-1 text-dc-fg">
         <p className="w-full truncate text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">
           {noStarsYet
-            ? "No starred speakers yet"
+            ? "No interested Speakers yet"
             : hasQuery
               ? `No speakers found for ‘${query.trim()}’`
               : "No speakers found"}
@@ -58,7 +58,7 @@ export function SpeakersEmptyState({
         <p className="text-[16px] leading-6">
           {noStarsYet ? (
             <>
-              Tap the star on any speaker to save them here.{" "}
+              Tap the star on any speaker to save them.{" "}
               <button
                 onClick={onReset}
                 className="cursor-pointer font-bold text-dc-purple"
