@@ -10,6 +10,8 @@ import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { InstallCompactCard, InstallHeroCard } from "./InstallHeroCard";
 import { MyTickets } from "./MyTickets";
+import { TicketSkeleton } from "./Skeletons";
+import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
 
@@ -25,10 +27,19 @@ export function Ticket() {
   const busy = loading !== false;
   const desktop = useIsDesktop();
 
-  if (!hasInitialized) {
+  const preview = usePreviewState();
+
+  // Auth not resolved yet: the page frame with a ticket-shaped placeholder,
+  // so neither the sign-in form nor the tickets flash in.
+  if (!hasInitialized || preview === "loading") {
     return (
-      <main className="flex min-h-screen items-center justify-center p-8">
-        <p className="text-dc-muted">Loading…</p>
+      <main className="expand">
+        <div className="px-4 py-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 lg:pt-0 xl:px-0">
+          <h1 className="hidden pb-4 pt-8 font-heading text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2 lg:block">
+            My Devcon
+          </h1>
+          <TicketSkeleton />
+        </div>
       </main>
     );
   }

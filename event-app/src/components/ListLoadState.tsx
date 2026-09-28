@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CloudOff, RefreshCw } from "lucide-react";
 import { forceSync } from "@/data/hooks/use-sessions";
 import { isOnlineNow } from "@/hooks/useOnline";
+import { ListSkeleton } from "./Skeletons";
 
 type Kind = "schedule" | "speakers";
 
@@ -24,7 +25,7 @@ const COPY: Record<Kind, { loading: string; unpublished: string; failed: string;
 
 /**
  * The three non-list states of a catalogue list, in plain words:
- * - loading: nothing has ever been synced and a sync is pending;
+ * - loading: nothing has ever been synced and a sync is pending (skeleton rows);
  * - unpublished: the event synced fine but has no items yet (the app can ship
  *   before the schedule does; this is not "no results" and not an error);
  * - error: the first sync failed, with a Retry. The raw error stays in the
@@ -41,7 +42,7 @@ export function ListLoadState({
   const copy = COPY[kind];
 
   if (state === "loading") {
-    return <p className="py-12 text-center text-dc-muted">{copy.loading}</p>;
+    return <ListSkeleton kind={kind} label={copy.loading} />;
   }
   if (state === "unpublished") {
     return <p className="py-12 text-center text-dc-muted">{copy.unpublished}</p>;

@@ -1,6 +1,10 @@
 "use client";
 
 import { usePaneActive } from "@/components/paneContext";
+import { ArrowLeft, CalendarX2, CloudOff, RefreshCw, UserX } from "lucide-react";
+import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import { forceSync } from "@/data/hooks/use-sessions";
+import { isOnlineNow } from "@/hooks/useOnline";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
@@ -122,24 +126,75 @@ export function useListScrollAcrossDetail(detailOpen: boolean): void {
   }, [detailOpen, paneActive]);
 }
 
-/** Body for an id the snapshot doesn't know (stale link, wrong dataset). */
+const NOT_FOUND = {
+  session: {
+    missing: "Session not found",
+    missingBody: "This link may be out of date, or the session has moved. Find it in the schedule.",
+    failed: "Couldn't load this session",
+    offline: "You're offline and the schedule isn't saved on this device yet.",
+    back: "Back to schedule",
+  },
+  speaker: {
+    missing: "Speaker not found",
+    missingBody: "This link may be out of date, or the speaker is no longer on the lineup.",
+    failed: "Couldn't load this speaker",
+    offline: "You're offline and the speakers aren't saved on this device yet.",
+    back: "Back to speakers",
+  },
+} as const;
+
+/**
+ * Body for an id the snapshot doesn't know (stale link, wrong dataset), or
+ * for a first sync that failed with nothing saved (`failed`, with a Retry).
+ * Same recipe as the list empty states; the raw error stays in the debug
+ * panel, users never see exception text.
+ */
 export function DetailNotFound({
-  label,
+  kind,
+  failed = false,
   onBack,
 }: {
-  label: string;
+  kind: "session" | "speaker";
+  failed?: boolean;
   onBack: () => void;
 }) {
+  const copy = NOT_FOUND[kind];
+  const [retrying, setRetrying] = useState(false);
+  const offline = failed && !isOnlineNow();
+  const retry = async () => {
+    setRetrying(true);
+    try {
+      await forceSync();
+    } finally {
+      setRetrying(false);
+    }
+  };
+  const Mark = failed ? (offline ? CloudOff : RefreshCw) : kind === "session" ? CalendarX2 : UserX;
   return (
-    <div className="p-4 py-12 text-center font-heading">
-      <p className="text-dc-red">{label}</p>
-      <button
-        type="button"
-        onClick={onBack}
-        className="mt-4 cursor-pointer font-bold text-dc-purple hover:underline"
-      >
-        Back
-      </button>
+    <div className="flex w-full flex-col items-center justify-center gap-6 px-4 py-16 text-center font-heading">
+      <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
+        <Mark className="size-7 text-dc-purple" aria-hidden />
+      </span>
+      <div className="flex max-w-[420px] flex-col gap-1 text-dc-fg">
+        <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">
+          {failed ? copy.failed : copy.missing}
+        </p>
+        <p className="text-[16px] leading-6">
+          {failed ? (offline ? copy.offline : "Something went wrong on our side. Try again in a moment.") : copy.missingBody}
+        </p>
+      </div>
+      <div className="flex flex-col items-center gap-3 sm:flex-row">
+        {failed && (
+          <PrimaryButton type="button" onClick={retry} disabled={retrying}>
+            <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
+            {retrying ? "Retrying…" : "Try again"}
+          </PrimaryButton>
+        )}
+        <SecondaryButton type="button" onClick={onBack}>
+          <ArrowLeft className="size-4 text-dc-purple" />
+          {copy.back}
+        </SecondaryButton>
+      </div>
     </div>
   );
 }

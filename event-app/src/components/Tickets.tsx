@@ -10,6 +10,8 @@ import {
 } from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { useOnline } from "@/hooks/useOnline";
+import { usePreviewState } from "@/hooks/usePreviewState";
+import { TicketSkeleton } from "./Skeletons";
 
 const purchaseLink = (
   <p className="mt-3 text-sm text-dc-muted">
@@ -72,8 +74,10 @@ function KeyArtBanner({ title, body, cta }: { title: string; body: string; cta: 
  *  from the Figma home redesign. */
 export function Tickets() {
   const { user } = useUser();
-  const { tickets, primary, prompt, qrCodes, isLoading, isRefreshing, error, refresh } =
+  const { tickets, primary, prompt, qrCodes, isLoading: ticketsLoading, isRefreshing, error, refresh } =
     useTickets();
+  const preview = usePreviewState();
+  const isLoading = ticketsLoading || preview === "loading";
   const online = useOnline();
 
   const hasTickets = tickets.length > 0;
@@ -108,7 +112,7 @@ export function Tickets() {
           yet — never flashes the signed-out banner over their cached
           tickets/QR codes. */}
       {isLoading ? (
-        <p className="text-sm text-dc-muted">Loading tickets…</p>
+        <TicketSkeleton />
       ) : !user ? (
         /* Signed out: full-width key-art banner prompting sign-in. */
         <>

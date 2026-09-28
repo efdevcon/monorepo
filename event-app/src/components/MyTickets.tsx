@@ -7,6 +7,8 @@ import { useUser } from "@/data/auth/useUser";
 import { buyerOrdersToAssign, ticketChoices } from "@/data/tickets/primary";
 import { BuyerOrdersHint } from "./ticket/BuyerOrdersHint";
 import { useOnline } from "@/hooks/useOnline";
+import { usePreviewState } from "@/hooks/usePreviewState";
+import { TicketSkeleton } from "./Skeletons";
 import { AttachTicketCard, ChooseTicketCard } from "./ticket/AttachTicketCard";
 import {
   RefreshTicketsButton,
@@ -46,11 +48,13 @@ export function MyTickets() {
     attach,
     choose,
     detach,
-    isLoading,
+    isLoading: ticketsLoading,
     isRefreshing,
     error,
     refresh,
   } = useTickets();
+  const preview = usePreviewState();
+  const isLoading = ticketsLoading || preview === "loading";
   const online = useOnline();
   const [replacing, setReplacing] = useState(false);
   const buyerOrders = buyerOrdersToAssign(tickets);
@@ -160,7 +164,7 @@ export function MyTickets() {
     <div className="flex w-full flex-col gap-4 text-left">
       <TicketSectionHeader title="Event Ticket" action={refreshButton} />
       {isLoading ? (
-        <p className="text-sm text-dc-muted">Loading tickets…</p>
+        <TicketSkeleton />
       ) : error ? (
         <p className="text-sm text-dc-error">
           Couldn&apos;t load tickets: {error.message}

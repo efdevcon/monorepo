@@ -44,6 +44,7 @@ import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 type ViewMode = "list" | "timeline";
 
@@ -340,6 +341,7 @@ function GroupHeader({
 export function Schedule() {
   const { sessions, isLoading, isError } = useSessions();
   const { ids: interestedIds } = useInterested();
+  const preview = usePreviewState();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailRoute("session");
   const {
@@ -1156,9 +1158,9 @@ export function Schedule() {
                 />
               </div>
 
-              {isLoading && sessions.length === 0 ? (
+              {preview === "loading" || (isLoading && sessions.length === 0) ? (
                 <ListLoadState kind="schedule" state="loading" />
-              ) : isError ? (
+              ) : preview === "failed" || isError ? (
                 <ListLoadState kind="schedule" state="error" />
               ) : sessions.length === 0 ? (
                 // Synced fine, nothing published yet (the app ships before
