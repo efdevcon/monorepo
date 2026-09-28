@@ -1,7 +1,7 @@
 "use client";
 
 import { usePaneActive } from "@/components/paneContext";
-import { ArrowLeft, CalendarX2, CloudOff, RefreshCw, UserX } from "lucide-react";
+import { CalendarX2, RefreshCw, UserX } from "lucide-react";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import { forceSync } from "@/data/hooks/use-sessions";
 import { isOnlineNow } from "@/hooks/useOnline";
@@ -132,14 +132,14 @@ const NOT_FOUND = {
     missingBody: "This link may be out of date, or the session has moved. Find it in the schedule.",
     failed: "Couldn't load this session",
     offline: "You're offline and the schedule isn't saved on this device yet.",
-    back: "Back to schedule",
+    back: "Back to Schedule",
   },
   speaker: {
     missing: "Speaker not found",
     missingBody: "This link may be out of date, or the speaker is no longer on the lineup.",
     failed: "Couldn't load this speaker",
     offline: "You're offline and the speakers aren't saved on this device yet.",
-    back: "Back to speakers",
+    back: "Back to Speakers",
   },
 } as const;
 
@@ -169,7 +169,7 @@ export function DetailNotFound({
       setRetrying(false);
     }
   };
-  const Mark = failed ? (offline ? CloudOff : RefreshCw) : kind === "session" ? CalendarX2 : UserX;
+  const Mark = kind === "session" ? CalendarX2 : UserX;
   return (
     <div className="flex w-full flex-col items-center justify-center gap-6 px-4 py-16 text-center font-heading">
       <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
@@ -180,20 +180,27 @@ export function DetailNotFound({
           {failed ? copy.failed : copy.missing}
         </p>
         <p className="text-[16px] leading-6">
-          {failed ? (offline ? copy.offline : "Something went wrong on our side. Try again in a moment.") : copy.missingBody}
+          {failed ? (offline ? copy.offline : "Something went wrong on our side, please try again in a moment.") : copy.missingBody}
         </p>
       </div>
-      <div className="flex flex-col items-center gap-3 sm:flex-row">
+      <div className="flex w-full max-w-[420px] flex-col gap-3">
         {failed && (
-          <PrimaryButton type="button" onClick={retry} disabled={retrying}>
+          <PrimaryButton type="button" onClick={retry} disabled={retrying} className="w-full">
             <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
             {retrying ? "Retrying…" : "Try again"}
           </PrimaryButton>
         )}
-        <SecondaryButton type="button" onClick={onBack}>
-          <ArrowLeft className="size-4 text-dc-purple" />
-          {copy.back}
-        </SecondaryButton>
+        {/* Only action on a missing id, so primary; behind Try again it's the
+            way out. */}
+        {failed ? (
+          <SecondaryButton type="button" onClick={onBack} className="w-full">
+            {copy.back}
+          </SecondaryButton>
+        ) : (
+          <PrimaryButton type="button" onClick={onBack} className="w-full">
+            {copy.back}
+          </PrimaryButton>
+        )}
       </div>
     </div>
   );
