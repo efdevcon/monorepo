@@ -186,8 +186,8 @@ export function DetailNotFound({
       <div className="flex w-full max-w-[420px] flex-col gap-3">
         {failed && (
           <PrimaryButton type="button" onClick={retry} disabled={retrying} className="w-full">
-            <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
             {retrying ? "Retrying…" : "Try again"}
+            <RefreshCw className={retrying ? "size-4 animate-spin" : "size-4"} />
           </PrimaryButton>
         )}
         {/* Only action on a missing id, so primary; behind Try again it's the
