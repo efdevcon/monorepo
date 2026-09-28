@@ -1,21 +1,23 @@
 "use client";
 
-import { CalendarX2, UserX } from "lucide-react";
-import { FAILED_BODY, StateMessage, TryAgainButton } from "./StateMessage";
+import { CalendarClock, CalendarX2, UserX, UsersRound } from "lucide-react";
+import { FAILED_BODY, LIST_SLOT_CENTER, StateMessage, TryAgainButton } from "./StateMessage";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { ListSkeleton } from "./Skeletons";
 
 type Kind = "schedule" | "speakers";
 
-const COPY: Record<Kind, { loading: string; unpublished: string; failed: string; offline: string }> = {
+const COPY: Record<Kind, { loading: string; unpublishedTitle: string; unpublished: string; failed: string; offline: string }> = {
   schedule: {
     loading: "Loading schedule…",
+    unpublishedTitle: "Schedule coming soon",
     unpublished: "The schedule isn't published yet. Check back soon.",
     failed: "Couldn't load the schedule",
     offline: "You're offline and the schedule isn't saved on this device yet.",
   },
   speakers: {
     loading: "Loading speakers…",
+    unpublishedTitle: "Speakers coming soon",
     unpublished: "Speakers aren't announced yet. Check back soon.",
     failed: "Couldn't load the speakers",
     offline: "You're offline and the speakers aren't saved on this device yet.",
@@ -43,20 +45,26 @@ export function ListLoadState({
     return <ListSkeleton kind={kind} label={copy.loading} />;
   }
   if (state === "unpublished") {
-    return <p className="py-12 text-center text-dc-muted">{copy.unpublished}</p>;
+    // Nothing to retry, so no action.
+    return (
+      <StateMessage
+        icon={kind === "schedule" ? CalendarClock : UsersRound}
+        title={copy.unpublishedTitle}
+        body={copy.unpublished}
+        className={LIST_SLOT_CENTER}
+      />
+    );
   }
 
   const offline = !isOnlineNow();
   // Nothing else is on screen below the toolbars, so the message sits in
-  // the middle of the viewport rather than at the top of the empty list:
-  // the min-height is roughly the viewport less the header, toolbars and
-  // (phones) the tab bar above and below it.
+  // the middle of the viewport rather than at the top of the empty list.
   return (
     <StateMessage
       icon={kind === "schedule" ? CalendarX2 : UserX}
       title={copy.failed}
       body={offline ? copy.offline : FAILED_BODY}
-      className="min-h-[calc(100dvh-360px)] py-8 lg:min-h-[calc(100dvh-600px)]"
+      className={LIST_SLOT_CENTER}
     >
       <TryAgainButton />
     </StateMessage>

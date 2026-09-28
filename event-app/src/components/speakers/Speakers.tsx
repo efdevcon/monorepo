@@ -563,7 +563,7 @@ export function Speakers() {
                 <ListLoadState kind="speakers" state="loading" />
               ) : showError ? (
                 <ListLoadState kind="speakers" state="error" />
-              ) : decorated.length === 0 ? (
+              ) : preview === "unpublished" || decorated.length === 0 ? (
                 // Synced fine, nothing published yet. Distinct from "no
                 // results" for a query or filter.
                 <ListLoadState kind="speakers" state="unpublished" />

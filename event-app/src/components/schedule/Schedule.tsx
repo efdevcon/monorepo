@@ -1162,7 +1162,7 @@ export function Schedule() {
                 <ListLoadState kind="schedule" state="loading" />
               ) : preview === "failed" || isError ? (
                 <ListLoadState kind="schedule" state="error" />
-              ) : sessions.length === 0 ? (
+              ) : preview === "unpublished" || sessions.length === 0 ? (
                 // Synced fine, nothing published yet (the app ships before
                 // the schedule does). Distinct from "no results".
                 <ListLoadState kind="schedule" state="unpublished" />
