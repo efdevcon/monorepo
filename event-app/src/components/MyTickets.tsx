@@ -170,8 +170,14 @@ export function MyTickets() {
           {/* No ticket under this email: instead of an empty state, the way
               forward (spec). */}
           {removedNotice}
-          <AttachTicketCard variant="none" onAttach={attachAndClose} />
-          {purchaseLink}
+          {/* Already inside the white desktop panel: drop the card chrome
+              there so it isn't a box in a box. */}
+          <AttachTicketCard
+            variant="none"
+            onAttach={attachAndClose}
+            footerEnd={purchaseLink}
+            className="lg:rounded-none lg:border-0 lg:p-0"
+          />
         </>
       )}
     </div>
