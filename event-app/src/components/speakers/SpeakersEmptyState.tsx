@@ -55,7 +55,7 @@ export function SpeakersEmptyState({
               ? `No speakers found for ‘${query.trim()}’`
               : "No speakers found"}
         </p>
-        <p className="text-[16px] leading-6">
+        <p className="text-[16px] leading-6 text-dc-muted">
           {noStarsYet ? (
             <>
               Tap the star on any speaker to save them.{" "}

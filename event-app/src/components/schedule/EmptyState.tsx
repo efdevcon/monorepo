@@ -44,7 +44,7 @@ export function EmptyState({
           <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">
             {noneSaved ? "Nothing in My Interests yet" : "No interests on this day"}
           </p>
-          <p className="text-[16px] leading-6">
+          <p className="text-[16px] leading-6 text-dc-muted">
             {noneSaved
               ? "Tap the star on any session to save it here. "
               : `Your ${interestedCount} saved ${interestedCount === 1 ? "session is" : "sessions are"} on other days. `}
@@ -74,7 +74,7 @@ export function EmptyState({
             ? `No sessions found for ‘${query.trim()}’`
             : "No sessions found"}
         </p>
-        <p className="text-[16px] leading-6">
+        <p className="text-[16px] leading-6 text-dc-muted">
           {hasQuery
             ? "It looks like we don’t have any sessions related to that. "
             : filtersActive

@@ -60,7 +60,7 @@ export default function OfflinePage() {
         body={
           online
             ? "This page couldn't be loaded. Try again, or head back to the app."
-            : "This page isn't available offline. Reconnect to load it, or head back to the app."
+            : "Sorry, this page isn't available offline. Reconnect to a network to reload, or head back to the app."
         }
         headingLevel="h1"
       >

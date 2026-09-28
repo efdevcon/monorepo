@@ -29,6 +29,7 @@ export default function Error({
         title="Something went wrong"
         body="Please try again in a moment, or head back to Home."
         headingLevel="h1"
+        tone="critical"
       >
         <PrimaryButton type="button" onClick={reset} className="w-full">
           Try again

@@ -26,6 +26,7 @@ export default function GlobalError({
             title="Something went wrong"
             body="Please try again in a moment."
             headingLevel="h1"
+            tone="critical"
           >
             <PrimaryButton type="button" onClick={reset} className="w-full">
               Try again
