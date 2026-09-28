@@ -191,6 +191,7 @@ function QAFeed({
           icon={MessageCircleWarning}
           title="Couldn't load questions"
           body={FAILED_BODY}
+          tone="critical"
           {...quietCard}
         >
           <TryAgainButton onRetry={() => live.mutate()} />
