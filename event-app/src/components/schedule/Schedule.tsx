@@ -371,6 +371,13 @@ export function Schedule() {
     resultCount,
     anyLive,
   } = useScheduleState(sessions, interestedIds);
+  // Stars that still match a session in this snapshot: a withdrawn talk's
+  // star stays in Dexie, and counting it would promise "saved sessions on
+  // other days" that no day shows.
+  const savedSessionCount = useMemo(
+    () => sessions.reduce((n, s) => n + (interestedIds.has(s.id) ? 1 : 0), 0),
+    [sessions, interestedIds]
+  );
 
   const isDesktop = useIsDesktop();
   // False while another tab pane is showing: header portals and window
@@ -1174,7 +1181,7 @@ export function Schedule() {
                   query={search}
                   filtersActive={activeFilterCount > 0}
                   interestsOnly={interestedOnly && activeFilterCount === 1}
-                  interestedCount={interestedIds.size}
+                  interestedCount={savedSessionCount}
                   onReset={clearFilters}
                 />
               ) : view === "timeline" ? (
