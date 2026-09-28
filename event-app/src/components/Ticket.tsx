@@ -8,7 +8,6 @@ import { LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { InstallAppButton } from "./InstallAppButton";
 import { InstallCompactCard, InstallHeroCard } from "./InstallHeroCard";
 import { MyTickets } from "./MyTickets";
 import { TicketSignIn } from "./TicketSignIn";
@@ -110,11 +109,6 @@ export function Ticket() {
             {/* @ethereum.org accounts only: rehearsal + nudge reset. */}
             <EfInternalTools />
 
-            {/* Phones and tablets only: desktop's install story is the QR on
-                the hero card. */}
-            <div className="mt-6 flex justify-center empty:hidden lg:hidden">
-              <InstallAppButton />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
