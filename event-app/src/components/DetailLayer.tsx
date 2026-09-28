@@ -165,6 +165,7 @@ export function DetailNotFound({
       icon={kind === "session" ? CalendarX2 : UserX}
       title={failed ? copy.failed : copy.missing}
       body={failed ? (offline ? copy.offline : FAILED_BODY) : copy.missingBody}
+      tone={failed ? "critical" : "default"}
       className="py-16"
     >
       {failed && <TryAgainButton />}

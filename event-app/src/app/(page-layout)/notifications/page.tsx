@@ -206,6 +206,7 @@ export default function AnnouncementsPage() {
               <StateMessage
                 icon={BellOff}
                 title="Couldn't load notifications"
+                tone="critical"
                 body={online ? FAILED_BODY : "You're offline and there are no notifications saved on this device yet."}
                 className={INBOX_CENTER}
               >

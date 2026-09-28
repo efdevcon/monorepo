@@ -64,6 +64,7 @@ export function ListLoadState({
       icon={kind === "schedule" ? CalendarX2 : UserX}
       title={copy.failed}
       body={offline ? copy.offline : FAILED_BODY}
+      tone="critical"
       className={LIST_SLOT_CENTER}
     >
       <TryAgainButton />
