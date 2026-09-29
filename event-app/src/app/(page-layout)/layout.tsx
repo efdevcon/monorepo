@@ -59,7 +59,7 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
           onToggle={(visible) => setDevaBotOpen(visible)}
         />
       )}
-      {/* One-time "turn on notifications" ask after install (not on the TV kiosk). */}
+      {/* One-time "turn on notifications" ask on the third starred session (not on the TV kiosk). */}
       {!isKiosk && <PushOnboardingSheet />}
     </IntroSplash>
     </PushProvider>
