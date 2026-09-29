@@ -29,33 +29,42 @@ import { NeedsConnection } from "@/components/NeedsConnection";
  * schedule, which is what session reminders are for.
  *
  * When it opens: in standalone display mode only (never in a browser tab),
- * right after a star tap that leaves the active dataset with at least
- * INTEREST_THRESHOLD interests (`onInterestAdded`, then OPEN_DELAY_MS so the
- * star and the +1 bubble land first), and only while push is exactly "off".
- * Only a tap counts: stars arriving by sync, or a device that already had
- * three, wait for the next addition. It waits while the push state is
- * "loading" or auth hasn't settled. "on", "denied" and "unsupported" skip it
- * for good (the device can't or needn't be asked); "requires-install" skips
- * without recording (a standalone launch can't really be in that state).
+ * once star taps have paused for QUIET_MS and the active dataset holds at
+ * least INTEREST_THRESHOLD interests (`onInterestAdded`). The pause means a
+ * burst of stars finishes first: a sheet sliding up mid-burst caught the
+ * next tap on its scrim or "Not now" and burned the one ask. Only a tap
+ * counts: stars arriving by sync, or a device that already had three, wait
+ * for the next addition. It opens while push is "off", and also while it is
+ * "on" with session reminders off (the Home card turns on announcements
+ * only, so those users would otherwise never hear about reminders). It
+ * waits while the push state is "loading", the flags aren't known yet or
+ * auth hasn't settled. "on" with reminders on, "denied" and "unsupported"
+ * skip it for good (the device can't or needn't be asked);
+ * "requires-install" skips without recording (a standalone launch can't
+ * really be in that state).
  *
  * Once per device: the Dexie pref PREF_KEY is written the moment it opens,
  * so "Not now", the scrim, Escape, a crash or killing the app all count as
- * shown. There is no re-nudge; later changes happen in the Notifications
- * settings modal on /notifications.
+ * shown. "Not now" still isn't "never": the schedule's My Interests view
+ * keeps a quiet standing row (`RemindersNudgeRow`) that opens the
+ * Notification settings while reminders are off.
  *
  * Steps (no wizard chrome, one card at a time):
  * - signed out: "Sign in to get session reminders". The subscriptions API needs an
  *   account, so the primary goes to /ticket (the sign-in home). If the user
  *   signs in during the same app session the sheet comes back with the
  *   notification step (still the same "once": nothing re-opens next launch).
- * - signed in: "Get reminded before your sessions". The primary calls
- *   `push.subscribe(SUBSCRIBE_PREFS)` straight from the tap:
+ * - signed in, push off: "Get reminded before your sessions". The primary
+ *   calls `push.subscribe(SUBSCRIBE_PREFS)` straight from the tap:
  *   `Notification.requestPermission()` is its first await, so nothing may be
  *   awaited before it. The system dialog is never shown without that tap.
  *   Unlike the other entry points (reminders off by default) it turns
  *   session reminders ON as well as announcements: the reminders are what
  *   this moment is asking about.
- * - outcomes: "on" → a short confirmation with Done. "denied" → the sheet
+ * - signed in, push on without reminders: the same step, reworded, whose
+ *   primary calls `push.setPref("reminders", true)` (a PATCH of the device's
+ *   row; permission is already granted, so no prompt).
+ * - outcomes: both types on → a short confirmation with Done. "denied" → the sheet
  *   closes with a toast pointing at the settings that can undo it. Granted
  *   but subscribe failed (typically the service worker still precaching
  *   on a fresh install) → the hook's `error` shows here with "Try again", which calls
@@ -69,8 +78,9 @@ import { NeedsConnection } from "@/components/NeedsConnection";
  * Dev preview: the sheet can't trigger under `pnpm dev` (no service worker,
  * not standalone), so outside production `?previewPushSheet=1` forces it
  * open, skipping the standalone, third-star, shown-once and push-state
- * checks but not the sign-in logic. `=signin`, `=enable`, `=done` and
- * `=error` force one step (for screenshots). A preview never writes the pref.
+ * checks but not the sign-in logic. `=signin`, `=enable`, `=reminders` (the
+ * push-on wording), `=done` and `=error` force one step (for screenshots). A
+ * preview never writes the pref.
  */
 
 /**
@@ -80,13 +90,15 @@ import { NeedsConnection } from "@/components/NeedsConnection";
 export const PREF_KEY = "onboarding.pushSheet.interests";
 /** Interested sessions (active dataset) that make the ask worth it. */
 const INTEREST_THRESHOLD = 3;
-/** Pause after the star tap so the fill and the +1 bubble land first. */
+/** No star tap for this long ends a burst: only then does the sheet open. */
+const QUIET_MS = 3000;
+/** Pause before reopening after sign-in, so the page lands first. */
 const OPEN_DELAY_MS = 800;
 /** What this sheet subscribes with: reminders too, unlike a plain subscribe(). */
 const SUBSCRIBE_PREFS = { announcements: true, reminders: true };
 
 type Step = "signin" | "enable" | "done";
-type Preview = "natural" | Step | "error";
+type Preview = "natural" | Step | "reminders" | "error";
 
 /** Session-level lifecycle: `awaitingSignIn` = sent to /ticket, reopen on sign-in. */
 type Phase = "idle" | "open" | "awaitingSignIn" | "finished";
@@ -95,7 +107,13 @@ function readPreview(): Preview | null {
   if (process.env.NODE_ENV === "production") return null;
   const value = new URLSearchParams(window.location.search).get("previewPushSheet");
   if (!value) return null;
-  if (value === "signin" || value === "enable" || value === "done" || value === "error") {
+  if (
+    value === "signin" ||
+    value === "enable" ||
+    value === "reminders" ||
+    value === "done" ||
+    value === "error"
+  ) {
     return value;
   }
   return "natural";
@@ -153,59 +171,90 @@ export function PushOnboardingSheet() {
   // The preview skips the wait for a tap.
   const armed = triggered || !!preview;
 
-  // Count on each star tap (the store write has committed by then).
+  // Each star tap restarts the quiet timer; the count is checked once taps
+  // stop (the store write has committed by then).
   useEffect(() => {
     if (!eligible || armed) return;
     let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const unsubscribe = onInterestAdded("session", () => {
-      void readInterestedIds(getActiveDataset().eventId).then((ids) => {
-        if (!cancelled && ids.length >= INTEREST_THRESHOLD) setTriggered(true);
-      });
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        void readInterestedIds(getActiveDataset().eventId).then((ids) => {
+          if (!cancelled && ids.length >= INTEREST_THRESHOLD) setTriggered(true);
+        });
+      }, QUIET_MS);
     });
     return () => {
       cancelled = true;
+      clearTimeout(timer);
       unsubscribe();
     };
   }, [eligible, armed]);
+
+  // Whether there is anything to ask: "yes" (push off, or on without
+  // reminders), "no" (reminders already on, or the device can't push),
+  // "wait" (push state or the device's flags not known yet).
+  const need: "yes" | "no" | "wait" =
+    push.state === "loading" || push.state === "requires-install"
+      ? "wait"
+      : push.state === "off"
+        ? "yes"
+        : push.state !== "on"
+          ? "no"
+          : !push.prefs
+            ? "wait"
+            : push.prefs.reminders
+              ? "no"
+              : "yes";
 
   // First open: re-evaluated as the push state and auth settle.
   useEffect(() => {
     if (phase !== "idle" || !eligible || !armed || skippedRef.current) return;
     if (!preview) {
-      if (push.state === "loading" || push.state === "requires-install") return;
-      if (push.state !== "off") {
+      if (need === "wait") return;
+      if (need === "no") {
         skippedRef.current = true;
         markShown();
         return;
       }
     }
     if (!hasInitialized) return;
+    // No extra pause (the quiet wait already let the last star land), but
+    // out of the effect body so the open is its own render.
     const timer = setTimeout(() => {
       if (!preview) markShown();
       setPhase("open");
-    }, OPEN_DELAY_MS);
+    }, 0);
     return () => clearTimeout(timer);
-  }, [phase, eligible, armed, preview, push.state, hasInitialized]);
+  }, [phase, eligible, armed, preview, need, hasInitialized]);
 
   // Sent to sign in: come back with the notification step once signed in
-  // (and only if push is still off; otherwise the sheet just stays closed).
+  // (and only if there is still something to ask; otherwise the sheet just
+  // stays closed).
   useEffect(() => {
     if (phase !== "awaitingSignIn" || !user) return;
-    if (push.state !== "off" && !preview) return;
+    if (need !== "yes" && !preview) return;
     const timer = setTimeout(() => setPhase("open"), OPEN_DELAY_MS);
     return () => clearTimeout(timer);
-  }, [phase, user, push.state, preview]);
+  }, [phase, user, need, preview]);
 
   const forcedStep = preview && preview !== "natural" ? preview : null;
+  // Push is already on, only reminders are missing: a PATCH, no prompt.
+  const remindersOnly =
+    forcedStep === "reminders" || (!forcedStep && push.state === "on");
+  const bothOn = push.state === "on" && !!push.prefs?.reminders;
+
   const step: Step =
-    forcedStep === "error"
+    forcedStep === "error" || forcedStep === "reminders"
       ? "enable"
       : (forcedStep ??
-        (!push.signedIn ? "signin" : attempted && push.state === "on" ? "done" : "enable"));
+        (!push.signedIn ? "signin" : attempted && bothOn ? "done" : "enable"));
+  const busy = remindersOnly ? push.prefBusy === "reminders" : push.busy;
   const error =
     forcedStep === "error"
       ? "The app is still setting up offline support — try again in a few seconds."
-      : attempted && !push.busy
+      : attempted && !busy
         ? push.error
         : null;
 
@@ -223,8 +272,12 @@ export function PushOnboardingSheet() {
       close();
       return;
     }
-    // Straight from the tap: subscribe() awaits requestPermission() first.
     setAttempted(true);
+    if (remindersOnly) {
+      void push.setPref("reminders", true);
+      return;
+    }
+    // Straight from the tap: subscribe() awaits requestPermission() first.
     void push.subscribe(SUBSCRIBE_PREFS).then(() => {
       // Denied from this tap: nothing left to offer here but where to undo it.
       if ("Notification" in window && Notification.permission === "denied") {
@@ -240,7 +293,8 @@ export function PushOnboardingSheet() {
       step={step}
       titleId={titleId}
       error={error}
-      busy={step === "enable" && push.busy}
+      busy={step === "enable" && busy}
+      remindersOnly={remindersOnly}
       online={online}
       onPrimary={onPrimary}
       onDismiss={close}
@@ -271,7 +325,7 @@ export function PushOnboardingSheet() {
 const TITLES: Record<Step, string> = {
   signin: "Sign in to get session reminders",
   enable: "Get reminded before your sessions",
-  done: "Reminders are on",
+  done: "Notifications are on",
 };
 
 /**
@@ -284,6 +338,7 @@ function SheetContent({
   titleId,
   error,
   busy,
+  remindersOnly,
   online,
   onPrimary,
   onDismiss,
@@ -292,6 +347,7 @@ function SheetContent({
   titleId: string;
   error: string | null;
   busy: boolean;
+  remindersOnly: boolean;
   online: boolean;
   onPrimary: () => void;
   onDismiss: () => void;
@@ -319,7 +375,14 @@ function SheetContent({
             <p className="text-dc-muted">Nothing is sent until you say yes.</p>
           </>
         )}
-        {step === "enable" && (
+        {step === "enable" && remindersOnly && (
+          <p>
+            We&apos;ll nudge you {REMINDER_LEAD_MINUTES} minutes before each
+            session you&apos;re interested in. Your announcements stay as
+            they are.
+          </p>
+        )}
+        {step === "enable" && !remindersOnly && (
           <>
             <p>
               We&apos;ll nudge you {REMINDER_LEAD_MINUTES} minutes before each
@@ -368,7 +431,9 @@ function SheetContent({
                 ? "Turning on…"
                 : error
                   ? "Try again"
-                  : "Turn on notifications"}
+                  : remindersOnly
+                    ? "Turn on reminders"
+                    : "Turn on notifications"}
         </PrimaryButton>
         {step !== "done" && (
           <SecondaryButton type="button" onClick={onDismiss} className="w-full">

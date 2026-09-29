@@ -31,6 +31,7 @@ import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
 import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
+import { RemindersNudgeRow } from "@/components/schedule/RemindersNudgeRow";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -1155,6 +1156,12 @@ export function Schedule() {
                   onClear={clearFilters}
                 />
               </div>
+
+              {/* My Interests: the standing reminders offer (the third-star
+                  sheet asks only once). Only over a non-empty list. */}
+              {interestedOnly && resultCount > 0 && (
+                <RemindersNudgeRow className="mb-5" />
+              )}
 
               {isLoading && sessions.length === 0 ? (
                 <ListLoadState kind="schedule" state="loading" />

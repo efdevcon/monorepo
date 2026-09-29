@@ -98,7 +98,7 @@ export function EfInternalTools() {
           Install &amp; notification nudges
         </p>
         <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
-          Bring back the &ldquo;Install the Devcon app&rdquo; card, the first-launch push
+          Bring back the &ldquo;Install the Devcon app&rdquo; card, the third-star push
           sheet and the &ldquo;Turn on notifications&rdquo; card on Home, as if this device
           had never seen them.
         </p>
