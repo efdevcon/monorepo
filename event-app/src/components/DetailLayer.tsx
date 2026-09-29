@@ -1,6 +1,11 @@
 "use client";
 
 import { usePaneActive } from "@/components/paneContext";
+import { CalendarX2, UserX } from "lucide-react";
+import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
@@ -122,24 +127,66 @@ export function useListScrollAcrossDetail(detailOpen: boolean): void {
   }, [detailOpen, paneActive]);
 }
 
-/** Body for an id the snapshot doesn't know (stale link, wrong dataset). */
+const NOT_FOUND = {
+  session: {
+    missing: "Session not found",
+    missingBody: "This link may be out of date, or the session has moved. Find it in the schedule.",
+    failed: "Couldn't load this session",
+    offline: "You're offline and the schedule isn't saved on this device yet.",
+    retry: "Loading this session",
+    back: "Back to Schedule",
+  },
+  speaker: {
+    missing: "Speaker not found",
+    missingBody: "This link may be out of date, or the speaker is no longer on the lineup.",
+    failed: "Couldn't load this speaker",
+    offline: "You're offline and the speakers aren't saved on this device yet.",
+    retry: "Loading this speaker",
+    back: "Back to Speakers",
+  },
+} as const;
+
+/**
+ * Body for an id the snapshot doesn't know (stale link, wrong dataset), or
+ * for a first sync that failed with nothing saved (`failed`, with a Retry).
+ * Same recipe as the list empty states; the raw error stays in the debug
+ * panel, users never see exception text.
+ */
 export function DetailNotFound({
-  label,
+  kind,
+  failed = false,
   onBack,
 }: {
-  label: string;
+  kind: "session" | "speaker";
+  failed?: boolean;
   onBack: () => void;
 }) {
+  const copy = NOT_FOUND[kind];
+  // Subscribed, so the copy and action flip back when the network returns.
+  const online = useOnline();
+  // Retrying can only fail offline: no Try again, and Back is the one action.
+  const canRetry = failed && online;
   return (
-    <div className="p-4 py-12 text-center font-heading">
-      <p className="text-dc-red">{label}</p>
-      <button
-        type="button"
-        onClick={onBack}
-        className="mt-4 cursor-pointer font-bold text-dc-purple hover:underline"
-      >
-        Back
-      </button>
-    </div>
+    <StateMessage
+      icon={kind === "session" ? CalendarX2 : UserX}
+      title={failed ? copy.failed : copy.missing}
+      body={failed ? (online ? FAILED_BODY : copy.offline) : copy.missingBody}
+      tone={failed ? "critical" : "default"}
+      className="py-16"
+    >
+      {canRetry && <TryAgainButton />}
+      {failed && !online && <NeedsConnection what={copy.retry} className="self-center" />}
+      {/* The only action on a missing id or offline, so primary; behind Try
+          again it's the way out. */}
+      {canRetry ? (
+        <SecondaryButton type="button" onClick={onBack} className="w-full">
+          {copy.back}
+        </SecondaryButton>
+      ) : (
+        <PrimaryButton type="button" onClick={onBack} className="w-full">
+          {copy.back}
+        </PrimaryButton>
+      )}
+    </StateMessage>
   );
 }

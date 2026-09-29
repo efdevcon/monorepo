@@ -31,6 +31,7 @@ import { SpeakersFilterStatusBar } from "./SpeakersFilterStatusBar";
 import { SpeakersEmptyState } from "./SpeakersEmptyState";
 import { AzIndexRail, FEATURED_SECTION } from "./AzIndexRail";
 import { SpeakerDetailsPanel } from "./SpeakerDetailsPanel";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
@@ -60,6 +61,9 @@ export function Speakers() {
     isLoading,
     isError,
   } = useSpeakersData();
+  const preview = usePreviewState();
+  const showLoading = preview === "loading" || isLoading;
+  const showError = preview === "failed" || isError;
   // Single interested subscription for the whole page — memoized cards get
   // plain `interested`/`onToggleInterested` props instead of each running
   // their own SWR hook.
@@ -552,14 +556,14 @@ export function Speakers() {
             <div
               className={cn(
                 "lg:rounded-b-xl lg:bg-dc-panel",
-                (isLoading || isError) && "px-4 py-6"
+                (showLoading || showError) && "px-4 py-6"
               )}
             >
-              {isLoading ? (
+              {showLoading ? (
                 <ListLoadState kind="speakers" state="loading" />
-              ) : isError ? (
+              ) : showError ? (
                 <ListLoadState kind="speakers" state="error" />
-              ) : decorated.length === 0 ? (
+              ) : preview === "unpublished" || decorated.length === 0 ? (
                 // Synced fine, nothing published yet. Distinct from "no
                 // results" for a query or filter.
                 <ListLoadState kind="speakers" state="unpublished" />

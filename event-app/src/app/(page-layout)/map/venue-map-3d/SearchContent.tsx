@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, type KeyboardEvent } from "react";
-import { ChevronRight, Layers } from "lucide-react";
+import { ChevronRight, Layers, SearchX } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { SearchInput } from "@/components/SearchInput";
+import { StateMessage } from "@/components/StateMessage";
 import { EntryRow } from "./EntryRow";
 import { searchFind, type FindEntry, type FindGroup } from "./pois";
 import type { LevelId } from "./types";
@@ -95,7 +96,13 @@ export function SearchContent({ groups, query, onQueryChange, onPick, onPickFloo
             </button>
           )}
           {hits.length === 0 ? (
-            <p className="px-4 py-6 text-center text-[14px] text-dc-muted">No places match “{query.trim()}”</p>
+            <StateMessage
+              icon={SearchX}
+              title="No places found"
+              body={`Nothing matches “${query.trim()}”. Try a room, stage or floor name.`}
+              size="compact"
+              className="py-8"
+            />
           ) : (
             <ul className="py-1">
               {hits.map((hit) => (

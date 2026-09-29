@@ -7,6 +7,7 @@ import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
 import { eventStore } from "../store/event-store";
 import { getActiveDataset } from "../dataset";
+import { BootShell } from "@/components/BootShell";
 
 /**
  * Data boot gate. Hydrates two things in parallel before rendering children:
@@ -24,7 +25,9 @@ export function DataProvider({ children }: { children: ReactNode }) {
     return eventStore.startTriggers(getActiveDataset());
   }, [ready]);
 
-  if (!ready) return null;
+  // Also the server-rendered HTML (ready starts false), so this is the first
+  // paint: a route-shaped skeleton on the app gradient, not a white page.
+  if (!ready) return <BootShell />;
 
   return (
     <SWRConfig

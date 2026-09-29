@@ -6,6 +6,9 @@ import {
   ArrowUpRight,
   Check,
   ChevronUp,
+  MessageCircleOff,
+  MessageCircleWarning,
+  MessagesSquare,
   Mic,
 } from "lucide-react";
 import {
@@ -18,6 +21,9 @@ import { Link } from "@/routing";
 import type { Session } from "@/data/models";
 import { meerkatEventId } from "@/data/meerkat";
 import { NeedsConnection } from "@/components/NeedsConnection";
+import { QASkeleton } from "@/components/Skeletons";
+import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
+import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
 import { useOnline } from "@/hooks/useOnline";
 import { useRealWorldNowMs } from "@/hooks/useNow";
@@ -137,6 +143,7 @@ function QAFeed({
     if (retrying) onNotFound?.();
   }, [retrying, onNotFound]);
   const notOpen = notFound && !onNotFound;
+  const preview = usePreviewQA();
   const standalone = useStandalone();
 
   return (
@@ -170,27 +177,32 @@ function QAFeed({
         </div>
       )}
 
-      {notOpen ? (
-        <QuietLine>Q&amp;A isn&apos;t open for this session yet.</QuietLine>
-      ) : retrying ? (
-        <p className="text-[14px] leading-5 text-dc-muted">Loading questions…</p>
-      ) : error ? (
-        <p className="text-[14px] leading-5 text-red-500">
-          Couldn&apos;t load questions.{" "}
-          <button
-            type="button"
-            onClick={() => void live.mutate()}
-            className="cursor-pointer font-medium text-dc-purple hover:underline"
-          >
-            Retry
-          </button>
-        </p>
-      ) : isLoading ? (
-        <p className="text-[14px] leading-5 text-dc-muted">
-          Loading questions…
-        </p>
-      ) : !questions?.length ? (
-        <QuietLine>No questions yet. Be the first to ask!</QuietLine>
+      {preview === "closed" || (!preview && notOpen) ? (
+        <StateMessage
+          icon={MessageCircleOff}
+          title="Q&A isn't open yet"
+          body="Questions open for this session closer to the time."
+          {...quietCard}
+        />
+      ) : preview === "loading" || (!preview && (retrying || isLoading)) ? (
+        <QASkeleton />
+      ) : preview === "failed" || (!preview && error) ? (
+        <StateMessage
+          icon={MessageCircleWarning}
+          title="Couldn't load questions"
+          body={FAILED_BODY}
+          tone="critical"
+          {...quietCard}
+        >
+          <TryAgainButton onRetry={() => live.mutate()} />
+        </StateMessage>
+      ) : preview === "empty" || !questions?.length ? (
+        <StateMessage
+          icon={MessagesSquare}
+          title="No questions yet"
+          body="Be the first to ask!"
+          {...quietCard}
+        />
       ) : (
         <QuestionList questions={questions} />
       )}
@@ -198,14 +210,11 @@ function QAFeed({
   );
 }
 
-/** Same quiet card as NeedsConnection, for the empty and not-open states. */
-function QuietLine({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="rounded-lg border border-dc-hairline bg-white px-3 py-2 text-[14px] leading-5 text-dc-muted">
-      {children}
-    </p>
-  );
-}
+/** The compact state recipe in the Q&A slot's quiet white card. */
+const quietCard = {
+  size: "compact",
+  className: "rounded-lg border border-dc-hairline bg-white py-6",
+} as const;
 
 function QuestionList({ questions }: { questions: Question[] }) {
   // Real-world clock: questions are stamped when asked, not in event time.

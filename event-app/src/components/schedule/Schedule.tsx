@@ -44,6 +44,7 @@ import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 type ViewMode = "list" | "timeline";
 
@@ -340,6 +341,7 @@ function GroupHeader({
 export function Schedule() {
   const { sessions, isLoading, isError } = useSessions();
   const { ids: interestedIds } = useInterested();
+  const preview = usePreviewState();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailRoute("session");
   const {
@@ -369,6 +371,13 @@ export function Schedule() {
     resultCount,
     anyLive,
   } = useScheduleState(sessions, interestedIds);
+  // Stars that still match a session in this snapshot: a withdrawn talk's
+  // star stays in Dexie, and counting it would promise "saved sessions on
+  // other days" that no day shows.
+  const savedSessionCount = useMemo(
+    () => sessions.reduce((n, s) => n + (interestedIds.has(s.id) ? 1 : 0), 0),
+    [sessions, interestedIds]
+  );
 
   const isDesktop = useIsDesktop();
   // False while another tab pane is showing: header portals and window
@@ -1156,11 +1165,11 @@ export function Schedule() {
                 />
               </div>
 
-              {isLoading && sessions.length === 0 ? (
+              {preview === "loading" || (isLoading && sessions.length === 0) ? (
                 <ListLoadState kind="schedule" state="loading" />
-              ) : isError ? (
+              ) : preview === "failed" || isError ? (
                 <ListLoadState kind="schedule" state="error" />
-              ) : sessions.length === 0 ? (
+              ) : preview === "unpublished" || sessions.length === 0 ? (
                 // Synced fine, nothing published yet (the app ships before
                 // the schedule does). Distinct from "no results".
                 <ListLoadState kind="schedule" state="unpublished" />
@@ -1171,6 +1180,8 @@ export function Schedule() {
                 <EmptyState
                   query={search}
                   filtersActive={activeFilterCount > 0}
+                  interestsOnly={interestedOnly && activeFilterCount === 1}
+                  interestedCount={savedSessionCount}
                   onReset={clearFilters}
                 />
               ) : view === "timeline" ? (
