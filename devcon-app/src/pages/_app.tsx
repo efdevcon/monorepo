@@ -76,36 +76,18 @@ function Devcon8Notice() {
   )
 }
 
+// The service worker activates as soon as a new build is installed (skipWaiting
+// in next.config.js), so installed PWAs stop serving the precached previous
+// build at their next launch. Reload once the new worker controls this page so
+// the new build, notice included, is what renders. Unattended room screens
+// update the same way, silently; there is no prompt to dismiss any more.
 // @ts-ignore
-if (
-  typeof window !== 'undefined' &&
-  'serviceWorker' in navigator &&
-  // @ts-ignore
-  window.workbox !== undefined &&
-  !window.location.pathname.includes('/room-screens')
-) {
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
   // @ts-ignore
   const wb = window.workbox
-
-  const promptNewVersionAvailable = (event: any) => {
-    // `event.wasWaitingBeforeRegister` will be false if this is the first time the updated service worker is waiting.
-    // When `event.wasWaitingBeforeRegister` is true, a previously updated service worker is still waiting.
-    // You may want to customize the UI prompt accordingly.
-    if (confirm('New update downloaded, please refresh.')) {
-      wb.addEventListener('controlling', (event: any) => {
-        window.location.reload()
-      })
-
-      // Send a message to the waiting service worker, instructing it to activate.
-      wb.messageSkipWaiting()
-    } else {
-      console.log(
-        'User rejected to reload the web app, keep using old version. New version will automatically load when user opens the app next time.'
-      )
-    }
-  }
-
-  wb.addEventListener('waiting', promptNewVersionAvailable)
+  wb.addEventListener('controlling', (event: any) => {
+    if (event.isUpdate) window.location.reload()
+  })
 }
 
 const withProviders = (Component: React.ComponentType<AppProps>) => {

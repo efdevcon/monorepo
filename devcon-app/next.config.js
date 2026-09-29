@@ -18,7 +18,7 @@ const nextConfig = {
   // Exclude wallet packages from serverless functions to avoid runtime errors
   serverExternalPackages: [
     '@reown/appkit',
-    '@reown/appkit-wallet', 
+    '@reown/appkit-wallet',
     '@reown/appkit-polyfills',
     '@reown/appkit-adapter-wagmi',
     'wagmi',
@@ -205,7 +205,12 @@ const createConfig = phase => {
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     dynamicStartUrl: false,
-    skipWaiting: false,
+    // Activate a new service worker as soon as it is installed. With waiting
+    // enabled, an installed PWA kept serving the precached previous build until
+    // the user accepted the update prompt or fully closed the app, so a notice
+    // shipped in a new build never reached them. _app.tsx reloads once the new
+    // worker controls the page.
+    skipWaiting: true,
     customWorkerDir: 'workbox',
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
