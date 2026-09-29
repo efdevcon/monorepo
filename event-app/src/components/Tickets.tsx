@@ -91,8 +91,8 @@ export function Tickets() {
                 Add your tickets to the Devcon app
               </h3>
               <p className="mt-1 font-heading text-base leading-6 text-dc-purple-fg">
-                Sign in using your ticket purchase email to unlock the full
-                experience.
+                Sign in with your ticket email to unlock the full experience,
+                or with any email to sync Interests and get notifications.
               </p>
             </div>
           </Link>

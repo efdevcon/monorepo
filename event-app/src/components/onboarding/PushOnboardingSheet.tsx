@@ -313,8 +313,8 @@ function SheetContent({
             <p>
               We can nudge you {REMINDER_LEAD_MINUTES} minutes before each
               session you&apos;re interested in. Notifications are linked to
-              your Devcon account, so sign in with the email on your ticket
-              first.
+              your Devcon account, so sign in first, with the email on your
+              ticket if you have one.
             </p>
             <p className="text-dc-muted">Nothing is sent until you say yes.</p>
           </>
