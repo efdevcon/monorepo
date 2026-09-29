@@ -11,7 +11,7 @@ import {
   pretalxWriteToken,
 } from '@/clients/pretalx'
 import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
-import { CreatePresentationFromTemplate, ReconcileDeckPermissions } from '@/clients/slides'
+import { CreatePresentationFromTemplate, GetDeckActivity, ReconcileDeckPermissions } from '@/clients/slides'
 import { deckIdFromUrl } from '@/utils/slides-permissions'
 import { getPretalxConfig } from '@/utils/config'
 
@@ -66,7 +66,18 @@ const tally = (results: WriteResult[], deleted?: number) => {
   return `created ${n('created')}, updated ${n('updated')}, unchanged ${n('unchanged')}` + (deleted === undefined ? '' : `, deleted ${deleted}`)
 }
 
-const summary = { rooms: 0, sessions: 0, speakers: 0, decksCreated: 0, permissionChanges: 0, pretalxWrites: 0, noGoogleAccount: 0 }
+const summary = {
+  rooms: 0,
+  sessions: 0,
+  speakers: 0,
+  decksCreated: 0,
+  permissionChanges: 0,
+  pretalxWrites: 0,
+  noGoogleAccount: 0,
+  decksUntouched: 0,
+  decksEdited: 0,
+  staleDecks: 0,
+}
 
 // Speaker emails Drive could only grant with its invitation email (no Google
 // account), collected per Pretalx code across the deck and permissions passes
@@ -75,6 +86,9 @@ const summary = { rooms: 0, sessions: 0, speakers: 0, decksCreated: 0, permissio
 // sync used to send: the speaker team reads the field (or the run of show,
 // later) and shares the deck by hand.
 const invitedByCode = new Map<string, Set<string>>()
+// Talks that get a deck: accepted (acceptance email sent, speaker not yet
+// confirmed) and confirmed. Anything else with a deck is flagged for cleanup.
+const DECK_STATES = ['accepted', 'confirmed']
 const noteInvited = (code: string, email: string) => {
   if (!invitedByCode.has(code)) invitedByCode.set(code, new Set())
   invitedByCode.get(code)!.add(email.toLowerCase())
@@ -113,14 +127,19 @@ async function main() {
     if (!pretalxWriteToken()) {
       problem('Slides: PRETALX_API_KEY_WRITE is not set, so deck links cannot be written to Pretalx; the slides passes did not run')
     } else {
-      // Every confirmed submission, scheduled or not: the deck and its link in
-      // Pretalx have to exist before the schedule is released, so speakers can
-      // be emailed about it. Session files only exist for published talks and
-      // pick the link up from the Pretalx answer on the next sync.
-      const submissions = await GetSubmissions({ state: 'confirmed', inclContacts: true }, config)
+      // Every accepted or confirmed submission, scheduled or not: the deck and
+      // its link in Pretalx have to exist when the acceptance email goes out,
+      // before speakers confirm and long before the schedule is released.
+      // Session files only exist for published talks and pick the link up from
+      // the Pretalx answer on the next sync. The unfiltered list serves the
+      // cleanup check for decks whose talk was declined or withdrawn since.
+      const everySubmission = await GetSubmissions({ state: 'any', inclContacts: true }, config)
+      const submissions = everySubmission.filter((s: any) => DECK_STATES.includes(s.pretalxState))
       await createPresentations(submissions)
       await reconcilePermissions(submissions)
       await recordNoGoogleAccounts(submissions)
+      await recordDeckActivity(submissions)
+      flagStaleDecks(everySubmission)
     }
   }
   if (eventId === 'devcon-7') {
@@ -493,6 +512,56 @@ async function recordNoGoogleAccounts(submissions: any[]) {
   line(`${flagged} session(s) flagged · share those decks by hand or ask the speaker for a Google account`)
 }
 
+/**
+ * Has the speaker started on the deck? Drive's last modifier is still the
+ * pipeline's own identity until someone edits the content, so each deck gets
+ * "untouched" or "edited <date>" in PRETALX_QUESTIONS_SLIDES_LAST_EDIT, for the
+ * speaker team and the run-of-show export. Only as fresh as the last run.
+ */
+async function recordDeckActivity(submissions: any[]) {
+  const question = config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT
+  if (!question) {
+    problem('Slides: PRETALX_QUESTIONS_SLIDES_LAST_EDIT is not configured for this event, deck activity not recorded')
+    return
+  }
+  heading('Slides: activity')
+  for (const session of submissions) {
+    if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    const deckId = deckIdFromUrl(session.resources_presentation)
+    if (!deckId) continue
+    try {
+      const activity = await GetDeckActivity(deckId)
+      const value = activity.untouched ? 'untouched' : `edited ${(activity.modifiedTime ?? '').slice(0, 10) || 'on an unknown date'}`
+      if (activity.untouched) summary.decksUntouched++
+      else summary.decksEdited++
+      if (session.slidesLastEdit === value) continue
+      await UpsertSubmissionAnswer(session.sourceId, question, value, config)
+      summary.pretalxWrites++
+      line(`~ [${session.sourceId}] ${value}`)
+    } catch (e) {
+      problem(`[${session.sourceId}] could not record the deck activity: ${(e as Error).message}`)
+    }
+  }
+  line(`${summary.decksUntouched} deck(s) untouched · ${summary.decksEdited} edited`)
+}
+
+/**
+ * Decks outlive their talk: a proposal declined, withdrawn or rejected after
+ * its deck was created keeps the deck and the speaker's writer access, and
+ * nothing here deletes files. List them so the team can archive the deck or
+ * revoke access by hand.
+ */
+function flagStaleDecks(everySubmission: any[]) {
+  for (const session of everySubmission) {
+    if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    if (DECK_STATES.includes(session.pretalxState) || !deckIdFromUrl(session.resources_presentation)) continue
+    summary.staleDecks++
+    problem(
+      `[${session.sourceId}] talk is ${session.pretalxState} but still has a deck: ${session.resources_presentation} · archive it or revoke access by hand`
+    )
+  }
+}
+
 main()
   .then(() => {
     const secs = ((Date.now() - startedAt) / 1000).toFixed(1)
@@ -500,7 +569,9 @@ main()
       `\nDone in ${secs}s · rooms ${summary.rooms} · sessions ${summary.sessions} · speakers ${summary.speakers}` +
         (SLIDES_EVENTS.includes(eventId)
           ? ` · decks created ${summary.decksCreated} · permission changes ${summary.permissionChanges} · Pretalx writes ${summary.pretalxWrites}` +
-            (summary.noGoogleAccount ? ` · speakers without a Google account ${summary.noGoogleAccount}` : '')
+            (summary.noGoogleAccount ? ` · speakers without a Google account ${summary.noGoogleAccount}` : '') +
+            ` · decks untouched ${summary.decksUntouched}, edited ${summary.decksEdited}` +
+            (summary.staleDecks ? ` · stale decks ${summary.staleDecks}` : '')
           : '')
     )
     if (problems.length) {

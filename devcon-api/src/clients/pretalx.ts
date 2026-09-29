@@ -10,9 +10,12 @@ dayjs.extend(utc)
 
 const cache = new Map()
 
+export type SubmissionState = 'draft' | 'submitted' | 'accepted' | 'confirmed' | 'rejected' | 'withdrawn' | 'canceled' | 'deleted'
+
 export interface RequestParams {
   inclContacts?: boolean
-  state?: 'confirmed' | 'accepted'
+  /** Submission state(s) to keep (default confirmed); 'any' keeps every state. */
+  state?: SubmissionState | SubmissionState[] | 'any'
 }
 
 export async function GetLastcheduleUpdate(config: PretalxInstanceConfig = PRETALX_CONFIG) {
@@ -71,8 +74,10 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
   // each code to its full speaker object up front.
   const speakerMap = new Map<string, any>(speakers.map((s: any) => [s.code, s]))
 
+  const wanted = params.state ?? 'confirmed'
+  const wantedStates: string[] = wanted === 'any' ? [] : Array.isArray(wanted) ? wanted : [wanted]
   return submissions
-    .filter((i: any) => i.state === (params.state ?? 'confirmed'))
+    .filter((i: any) => wanted === 'any' || wantedStates.includes(i.state))
     .map((i: any) => {
       // Enrich with slot data if available (submissions return slots as ID array)
       if (i.slots && Array.isArray(i.slots) && typeof i.slots[0] === 'number') {
@@ -272,6 +277,14 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
       ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT)?.answer
       : undefined
   if (typeof noGoogleAccount === 'string' && noGoogleAccount.trim()) session.slidesNoGoogleAccount = noGoogleAccount.trim()
+  const lastEdit =
+    params.inclContacts && config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT
+      ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT)?.answer
+      : undefined
+  if (typeof lastEdit === 'string' && lastEdit.trim()) session.slidesLastEdit = lastEdit.trim()
+  // The Pretalx state, for the slides passes only (accepted vs confirmed, and
+  // decks left behind by declined talks); the public data has no use for it.
+  if (params.inclContacts && typeof i.state === 'string') session.pretalxState = i.state
 
   if (i.slot) {
     session.slot_start = dayjs.utc(i.slot.start).valueOf()

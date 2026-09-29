@@ -306,7 +306,9 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    `GOOGLE_IMPERSONATE_USER` (domain-wide delegation, to be authorised by an admin) makes
    the pipeline act as an internal EF user instead.
    **Deck link and no-Google-account speakers recorded in Pretalx** (2026-09-28): the
-   slides passes now run over every confirmed submission, scheduled or not, and write each
+   slides passes now run over every accepted or confirmed submission (accepted since
+   2026-09-29: the acceptance email may carry the link before the speaker confirms),
+   scheduled or not, and write each
    deck URL into a submission question ("Slides deck", url, private, frozen so speakers see
    it read-only; id in `PRETALX_QUESTIONS_SLIDES_DECK`). Pretalx is the source of truth:
    the session mapper copies the answer into `resources_presentation` once the talk is
@@ -325,7 +327,19 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    the list when they leave the talk or an organiser clears the field; Drive gives no signal
    for an accepted invitation. Non-public tags are now dropped from the session JSON by the
    session mapper (they used to be published like any other tag).
-   Field definitions, to recreate on `devcon8` (both: target submission, optional, not
+   **Deck activity** (2026-09-29): a third question, "Slides: last edit", holds `untouched`
+   while Drive's last modifier of the deck is still the pipeline's own identity (the
+   impersonated user, else the service account) and `edited <date>` afterwards, the DC7
+   event-eve nudge's signal made persistent for the speaker team and the run-of-show export.
+   One `files.get` per deck per run, written to Pretalx only when the value changes, as fresh
+   as the last sync; opening without editing counts as untouched, any content change by
+   anyone counts as edited. Like the no-Google-account list it is mapped only on contact
+   reads and never reaches the session JSON.
+   **Stale decks** (2026-09-29): a talk that is rejected, withdrawn or otherwise no longer
+   accepted/confirmed keeps its deck and the speakers' writer access, since the pipeline
+   never deletes files or revokes access on its own. The sync lists such decks in the final
+   problems list so the team can archive the deck or revoke access by hand.
+   Field definitions, to recreate on `devcon8` (all: target submission, optional, not
    public, not visible to reviewers, active, `freeze_after` in the past):
    - "Slides deck", variant url. Help text: "Your Google Slides deck for this session,
      created by the Devcon team and shared with each speaker's email address. Build your
@@ -335,6 +349,9 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    - "Slides: no Google account", variant text, contains personal data. Help text: "If you
      cannot edit the slides with this email address, contact [speak@devcon.org](mailto:speak@devcon.org) and provide a
      Google account address."
+   - "Slides: last edit", variant text. Help text: "Set by the Devcon team from the deck's
+     Google Drive history: untouched until someone edits the deck, then the date of the last
+     edit."
    The mail template links `https://devcon.org/presentation/devcon8/{proposal_code}/`;
    pretalx templates have no placeholder for custom-question answers. This replaced
    the sync's own "we need a Google account" email (2026-09-18 to 09-28). Both writes need

@@ -93,12 +93,14 @@ export interface PretalxInstanceConfig {
 
   // Submission-target questions the Pretalx sync WRITES for the slides
   // pipeline (docs/av/av-stack-overview.md §2d), with PRETALX_API_KEY_WRITE:
-  // the Google Slides deck URL (url) and the list of speaker emails Drive could
-  // not grant silently because they have no Google account (text). Both are
-  // active but frozen: speakers and organisers see them read-only on the
+  // the Google Slides deck URL (url), the list of speaker emails Drive could
+  // not grant silently because they have no Google account (text), and the
+  // deck's edit status from Drive ("untouched" or "edited <date>", text). All
+  // are active but frozen: speakers and organisers see them read-only on the
   // proposal, only the sync (API) writes them.
   PRETALX_QUESTIONS_SLIDES_DECK?: number
   PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT?: number
+  PRETALX_QUESTIONS_SLIDES_LAST_EDIT?: number
 
   DEFAULT_LIMIT: number
 }
@@ -156,6 +158,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_AUDIENCE: 158, // "Which of the following best describes your target audience?"
     PRETALX_QUESTIONS_SLIDES_DECK: 178, // "Slides deck" (written by the sync; created 2026-09-28)
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 179, // "Slides: no Google account" (written by the sync; created 2026-09-28)
+    PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 180, // "Slides: last edit" (written by the sync; created 2026-09-29)
 
     DEFAULT_LIMIT: 100,
   },

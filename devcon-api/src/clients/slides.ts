@@ -341,6 +341,43 @@ async function applyChange(drive: ReturnType<GoogleApis['drive']>, fileId: strin
   }
 }
 
+/**
+ * Has anyone edited a deck since the pipeline created it? Drive's last
+ * modifier is the acting Google identity (the impersonated user, else the
+ * service account) until a speaker or team member changes the content;
+ * sharing changes do not count as modifications. Same signal as the DC7
+ * event-eve nudge in RunPermissions.
+ */
+export interface DeckActivity {
+  /** ISO timestamp of the last content change, as reported by Drive. */
+  modifiedTime?: string
+  /** Address of the last modifier when Drive discloses it. */
+  lastModifiedBy?: string
+  /** True while the pipeline's own identity is still the last modifier. */
+  untouched: boolean
+}
+
+export async function GetDeckActivity(deckId: string): Promise<DeckActivity> {
+  if (!client) {
+    client = await AuthenticateServiceAccount(SCOPES)
+  }
+  const drive = client.drive('v3')
+  const res = await drive.files.get({ fileId: deckId, supportsAllDrives: true, fields: 'modifiedTime,lastModifyingUser(emailAddress)' })
+  // Same precedence as clients/google.ts, so this is the address Drive records for the pipeline's own edits.
+  const identity = (
+    process.env.GOOGLE_IMPERSONATE_USER ||
+    process.env.GOOGLE_CLOUD_CLIENT_EMAIL ||
+    process.env.GOOGLE_CLIENT_EMAIL ||
+    ''
+  ).toLowerCase()
+  const lastModifiedBy = res.data.lastModifyingUser?.emailAddress ?? undefined
+  return {
+    modifiedTime: res.data.modifiedTime ?? undefined,
+    lastModifiedBy,
+    untouched: !!lastModifiedBy && !!identity && lastModifiedBy.toLowerCase() === identity,
+  }
+}
+
 export async function GetSlides(id: string) {
   if (!token) {
     token = (await GetAccessToken(SCOPES)).token
