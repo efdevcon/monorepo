@@ -14,6 +14,18 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl)
   }
 
+  // Printed QR codes for the event app, optionally with a placement segment
+  // (/qr/app/airport-banner). Netlify serves the same redirects in production
+  // (netlify.toml); this keeps local runs and previews consistent.
+  const qrApp = normalizedPathname.match(/^\/(?:en\/)?qr\/app(?:\/([a-z0-9-]+))?$/)
+  if (qrApp) {
+    const target = new URL('https://app.devcon.org/')
+    target.searchParams.set('mtm_campaign', 'qr')
+    target.searchParams.set('mtm_kwd', 'app')
+    if (qrApp[1]) target.searchParams.set('mtm_placement', qrApp[1])
+    return NextResponse.redirect(target)
+  }
+
   if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {
     return
   }

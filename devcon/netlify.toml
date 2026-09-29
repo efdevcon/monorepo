@@ -48,3 +48,32 @@
   to = "/en/tickets/store/"
   status = 302
   force = true
+
+# Printed QR codes for the event app. Matomo params follow the repo convention
+# (campaign = surface, keyword = which code); an optional last segment names
+# where the code is printed and lands in mtm_placement, so one rule serves
+# /qr/app, /qr/app/airport-banner, /qr/app/venue-entrance, ... 302 so a
+# printed code can be re-pointed.
+[[redirects]]
+  from = "/qr/app"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/app"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/qr/app/:placement"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app&mtm_placement=:placement"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/app/:placement"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app&mtm_placement=:placement"
+  status = 302
+  force = true
