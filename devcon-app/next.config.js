@@ -214,7 +214,11 @@ const createConfig = phase => {
     customWorkerDir: 'workbox',
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
-    buildExcludes: [/media\/.*$/, /\.map$/],
+    // dynamic-css-manifest.json is a Next 15 build artefact at the root of .next
+    // that is never served under /_next/. Precaching it 404s, and Workbox fails
+    // the whole install on one bad response, so installed PWAs silently kept
+    // the previous worker and build (found 2026-09-29).
+    buildExcludes: [/media\/.*$/, /\.map$/, /dynamic-css-manifest\.json$/],
     maximumFileSizeToCacheInBytes: 10000000, // this is important, the default file cache size is low, and it can cause some weird problems if certain files aren't cached
     runtimeCaching: runtimeCache,
     // fallbacks: {
