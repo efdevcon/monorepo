@@ -9,6 +9,7 @@ import {
   Download,
   Ellipsis,
   ExternalLink,
+  Loader2,
   MonitorDown,
   MoreVertical,
   Share,
@@ -20,7 +21,7 @@ import { Capacitor } from "@capacitor/core";
 import APP_CONFIG from "@/CONFIG";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useUser } from "@/data/auth/useUser";
-import { supabase } from "@/data/auth/supabase";
+import { BRIDGE_LINK_REFRESH_MS, BRIDGE_LINK_TTL_MS, mintBridgeLink } from "@/data/auth/bridgeLink";
 import { iosMajorVersion, isIOS, isIPad, isSafari, isStandalone } from "@/utils/platform";
 
 /** The Chromium-only install event, captured early in src/app/layout.tsx. */
@@ -36,69 +37,60 @@ declare global {
   }
 }
 
-/**
- * Gets a fresh sign-in link (via /api/manifest-bridge) and, on iOS, tries to
- * hand it straight to Safari via the `x-safari-https://` scheme — unlike
- * the same trick failing from inside Gmail's in-app browser, this is a real
- * standalone browser (Brave/Chrome) navigating via JS, which iOS generally
- * does hand off to the OS. Copies the link to the clipboard regardless, as
- * a fallback: the handoff isn't guaranteed since it happens after an async
- * fetch, and iOS sometimes blocks app-handoff attempts not tied directly to
- * the tap that triggered them.
- */
-export function useCopySignInLink(): () => Promise<void> {
-  return async () => {
-    try {
-      const accessToken = (await supabase?.auth.getSession())?.data.session
-        ?.access_token;
-      if (!accessToken) throw new Error("Not signed in");
-
-      const res = await fetch("/api/manifest-bridge", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-      if (!res.ok) throw new Error("Failed to create sign-in link");
-      const { bridgeToken } = await res.json();
-      if (!bridgeToken) throw new Error("Failed to create sign-in link");
-      const link = `${window.location.origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`;
-
-      await navigator.clipboard.writeText(link).catch(() => {});
-
-      if (isIOS()) {
-        // Harmless even if we're already in Safari — it just re-opens the
-        // same link there — deliberately not gated on "not Safari", since
-        // several iOS browsers (Brave included) are indistinguishable from
-        // Safari by User-Agent, which made that gate hide the option exactly
-        // when it was needed.
-        window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
-        toast.success("Opening in Safari… link copied too, in case it doesn't switch automatically");
-      } else {
-        toast.success("Link copied — paste it into Safari's address bar");
-      }
-    } catch {
-      toast.error("Couldn't create a sign-in link. Try again in a moment.");
-    }
-  };
-}
+/** Past this, a signed-in hop goes ahead without the sign-in link rather than holding the button. */
+const HOP_MINT_TIMEOUT_MS = 8_000;
 
 /**
- * Open the current page in Safari, for visitors who aren't signed in. Same
- * `x-safari-https://` handoff as useCopySignInLink, minus the sign-in link —
- * there's no session to carry, so no API round-trip is needed and the button
- * works signed out (previously the only Safari action required being signed
- * in, so a signed-out visitor was just told to switch browsers manually).
- * The URL is copied too: the handoff isn't guaranteed, and on success this
- * tab is backgrounded so the toast is never seen anyway.
+ * The "Open in Safari" action of the install modal. `x-safari-https://` hands
+ * the page to Safari, the only iOS browser that installs. Signed in, the link
+ * is the sign-in bridge, so the session survives the hop (other iOS browsers
+ * have their own storage); signed out it is just this page.
+ *
+ * The bridge link is minted when the modal opens, never on the tap: iOS
+ * browsers hand off to another app only inside the tap's user gesture, and
+ * WebKit carries that gesture through a fetch only if it returns fast. The
+ * old tap-time mint lost the hop whenever the function was cold or the
+ * connection slow (first tap after a deploy), leaving just the "link copied"
+ * toast (2026-09-29). So `hop` awaits nothing; while a signed-in mint is
+ * still in flight `ready` is false and the button waits for it, or for
+ * HOP_MINT_TIMEOUT_MS, after which the plain hop goes ahead. The link is
+ * copied as well, the fallback for when iOS still refuses the handoff.
  */
-export function useOpenInSafari(): () => Promise<void> {
-  return async () => {
-    const link = window.location.href;
-    await navigator.clipboard.writeText(link).catch(() => {});
+function useSafariHop(enabled: boolean): { hop: () => void; ready: boolean } {
+  const { user } = useUser();
+  const [bridge, setBridge] = useState<string | null>(null);
+  const [minting, setMinting] = useState(false);
+
+  useEffect(() => {
+    if (!enabled || !user) return;
+    let cancelled = false;
+    const mint = async (first: boolean) => {
+      if (first) setMinting(true);
+      const link = await mintBridgeLink(BRIDGE_LINK_TTL_MS, HOP_MINT_TIMEOUT_MS);
+      if (cancelled) return;
+      if (link) setBridge(link);
+      if (first) setMinting(false);
+    };
+    void mint(true);
+    // Reusable until it expires, so a modal left open gets a fresh one.
+    const timer = setInterval(() => void mint(false), BRIDGE_LINK_REFRESH_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+      setBridge(null);
+      setMinting(false);
+    };
+  }, [enabled, user]);
+
+  const hop = () => {
+    const link = bridge ?? window.location.href;
+    // Nothing asynchronous may come before this line: the navigation has to
+    // run inside the tap.
     window.location.href = link.replace(/^https:\/\//, "x-safari-https://");
-    toast.success(
-      "Opening in Safari… link copied too, in case it doesn't switch automatically"
-    );
+    void navigator.clipboard?.writeText(link).catch(() => {});
+    toast.success("Opening in Safari… link copied too, in case it doesn't switch automatically");
   };
+  return { hop, ready: !minting };
 }
 
 /**
@@ -358,20 +350,19 @@ function manualInstructions(): { intro: string; steps: HowToStep[] } {
 /** Instructions card shown when no native install prompt is available. */
 function InstallInstructionsModal({
   onClose,
-  onOpenInSafari,
+  safariHop = false,
 }: {
   onClose: () => void;
-  /** Present on iOS: hands the visitor over to Safari, which is the only
-   *  browser that can install. Signed in it carries a fresh sign-in link so
-   *  the session survives the hop (other iOS browsers have separate
-   *  storage); signed out it just re-opens the page. */
-  onOpenInSafari?: () => void;
+  /** iOS: offer the hop to Safari, the only browser that installs there
+   *  (useSafariHop; signed in it carries the session across). */
+  safariHop?: boolean;
 }) {
   const { intro, steps } = manualInstructions();
   // isSafari() is UA sniffing and unreliable in both directions on iOS
   // (Brave mimics Safari's UA), so it only decides whether the hop is worth
   // offering — the steps below stand on their own either way.
-  const safariIsNextStep = !!onOpenInSafari && !isSafari();
+  const safariIsNextStep = safariHop && !isSafari();
+  const { hop, ready } = useSafariHop(safariIsNextStep);
   // Centred in the viewport everywhere (Scott, 2026-09-25; it used to sit at
   // the top on iPhone Safari to stay clear of the share sheet, and at the
   // bottom elsewhere). iPhone Safari steps are followed live, so that
@@ -425,9 +416,13 @@ function InstallInstructionsModal({
               so it leads the card as a real button rather than only appearing
               as written instruction step 1. */}
           {safariIsNextStep && (
-            <PrimaryButton onClick={onOpenInSafari} className="mb-5 w-full">
-              <ExternalLink className="size-4" />
-              Open in Safari
+            <PrimaryButton onClick={hop} disabled={!ready} className="mb-5 w-full">
+              {ready ? (
+                <ExternalLink className="size-4" />
+              ) : (
+                <Loader2 className="size-4 animate-spin" />
+              )}
+              {ready ? "Open in Safari" : "Preparing your sign-in…"}
             </PrimaryButton>
           )}
           {/* Not in Safari yet: the hop is the whole job, the Safari steps
@@ -481,9 +476,6 @@ export function useInstallFlow(): {
 } {
   const installPrompt = useInstallPrompt();
   const [showInstructions, setShowInstructions] = useState(false);
-  const { user } = useUser();
-  const copySignInLink = useCopySignInLink();
-  const openInSafari = useOpenInSafari();
 
   const install = async () => {
     if (installPrompt) {
@@ -510,12 +502,9 @@ export function useInstallFlow(): {
         <InstallInstructionsModal
           key="install-instructions"
           onClose={() => setShowInstructions(false)}
-          // iOS only (Safari is the only installer there). Signed in, the
-          // hop carries a sign-in link so the session survives; signed out
-          // there's nothing to carry, so a plain hop is enough.
-          onOpenInSafari={
-            isIOS() ? (user ? copySignInLink : openInSafari) : undefined
-          }
+          // iOS only: Safari is the only installer there, so the card offers
+          // the hop (useSafariHop carries the sign-in when signed in).
+          safariHop={isIOS()}
         />
       )}
     </AnimatePresence>

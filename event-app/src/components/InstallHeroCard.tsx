@@ -6,7 +6,7 @@ import { Download, X } from "lucide-react";
 import QRCode from "qrcode";
 import { isIOS } from "@/utils/platform";
 import { useUser } from "@/data/auth/useUser";
-import { authHeader } from "@/data/push/usePushSubscription";
+import { BRIDGE_LINK_REFRESH_MS, BRIDGE_LINK_TTL_MS, mintBridgeLink } from "@/data/auth/bridgeLink";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { PrimaryButton } from "./Buttons";
 import { useInstallFlow, useShouldShowInstall } from "./InstallAppButton";
@@ -49,10 +49,6 @@ export function resetInstallHeroDismissal() {
   notify();
   void deletePref(PREF_KEY);
 }
-
-/** Lifetime of the sign-in bridge inside the desktop QR, and how often it is re-minted. */
-const QR_BRIDGE_TTL_MS = 10 * 60_000;
-const QR_BRIDGE_REFRESH_MS = 8 * 60_000;
 
 /**
  * The dismiss × over the art: a dark translucent disc with a white glyph,
@@ -133,18 +129,11 @@ export function InstallHeroCard({
       let link = `${origin}/`;
       let signedIn = false;
       if (user) {
-        try {
-          const res = await fetch("/api/manifest-bridge", {
-            method: "POST",
-            headers: { ...(await authHeader()), "Content-Type": "application/json" },
-            body: JSON.stringify({ ttlMs: QR_BRIDGE_TTL_MS }),
-          });
-          const { bridgeToken } = res.ok ? await res.json() : {};
-          if (bridgeToken) {
-            link = `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`;
-            signedIn = true;
-          }
-        } catch {}
+        const bridge = await mintBridgeLink(BRIDGE_LINK_TTL_MS);
+        if (bridge) {
+          link = bridge;
+          signedIn = true;
+        }
       }
       const url = await QRCode.toDataURL(link, { margin: 1, width: 512 }).catch(() => null);
       if (cancelled) return;
@@ -152,7 +141,7 @@ export function InstallHeroCard({
       setQrSignedIn(signedIn);
     };
     void render();
-    const timer = user ? setInterval(() => void render(), QR_BRIDGE_REFRESH_MS) : null;
+    const timer = user ? setInterval(() => void render(), BRIDGE_LINK_REFRESH_MS) : null;
     return () => {
       cancelled = true;
       if (timer) clearInterval(timer);
