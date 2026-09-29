@@ -341,17 +341,18 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    problems list so the team can archive the deck or revoke access by hand.
    Field definitions, to recreate on `devcon8` (all: target submission, optional, not
    public, not visible to reviewers, active, `freeze_after` in the past):
-   - "Slides deck", variant url. Help text: "Your Google Slides deck for this session,
-     created by the Devcon team and shared with each speaker's email address. Build your
+   - "Slides deck", variant url. Help text: "[Read-only, set by the Devcon team] Your Google
+     Slides deck for this session, shared with each speaker's email address. Build your
      presentation in it. If you cannot open or edit it, email speak@devcon.org and provide a
      Google account address." (plain text: the url variant's help text is not rendered as
      markdown on the deployed pretalx, the text variant's is.)
-   - "Slides: no Google account", variant text, contains personal data. Help text: "If you
-     cannot edit the slides with this email address, contact [speak@devcon.org](mailto:speak@devcon.org) and provide a
-     Google account address."
-   - "Slides: last edit", variant text. Help text: "Set by the Devcon team from the deck's
-     Google Drive history: untouched until someone edits the deck, then the date of the last
-     edit."
+   - "Slides: no Google account", variant text, contains personal data. Help text: "[Read-only,
+     set by the Devcon team] This email address has no Google account, so the deck could only
+     be shared by invitation email. If you cannot edit the slides, contact
+     [speak@devcon.org](mailto:speak@devcon.org) and provide a Google account address."
+   - "Slides: last edit", variant text. Help text: "[Read-only, set by the Devcon team]
+     Untouched until someone edits the deck, then the date of the last edit, from the deck's
+     Google Drive history."
    The mail template links `https://devcon.org/presentation/devcon8/{proposal_code}/`;
    pretalx templates have no placeholder for custom-question answers. This replaced
    the sync's own "we need a Google account" email (2026-09-18 to 09-28). Both writes need
