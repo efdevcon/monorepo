@@ -49,6 +49,17 @@ function Devcon8Notice() {
   useEffect(() => {
     if (window.location.pathname.includes('/room-screens')) return
     setOpen(true)
+    // An installed app on a phone rarely gets a fresh page load: iOS restores
+    // the page as it was when the app returns to the foreground. Treat a
+    // return after a longer absence as a new visit and show the notice again.
+    const REOPEN_AFTER_MS = 10 * 60 * 1000
+    let hiddenAt = 0
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') hiddenAt = Date.now()
+      else if (hiddenAt && Date.now() - hiddenAt > REOPEN_AFTER_MS) setOpen(true)
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
   return (
@@ -74,6 +85,25 @@ function Devcon8Notice() {
       </DialogContent>
     </Dialog>
   )
+}
+
+// Companion of the service worker's activate handler (workbox/index.js): when a
+// new worker cannot reload this page itself, it sends this message instead.
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', (event: MessageEvent) => {
+    if (event.data?.type === 'SW_UPDATED') window.location.reload()
+  })
+  // Browsers only look for a new worker on a real page load, which an
+  // installed app restored from the background never does. Check on every
+  // return to the foreground instead; a new build then reloads via the
+  // worker's activate handler.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return
+    navigator.serviceWorker
+      .getRegistration()
+      .then(registration => registration?.update())
+      .catch(() => undefined)
+  })
 }
 
 const withProviders = (Component: React.ComponentType<AppProps>) => {

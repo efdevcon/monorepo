@@ -17,7 +17,12 @@ _self.addEventListener('activate', event => {
       .then(() => _self.clients.matchAll({ type: 'window' }))
       .then(clients =>
         Promise.all(
-          clients.map(client => ('navigate' in client ? client.navigate(client.url).catch(() => undefined) : undefined))
+          clients.map(client => {
+            // Reload the page from here where the browser allows it; otherwise
+            // (or if it refuses) ask the page to reload itself, see _app.tsx.
+            const askPage = () => client.postMessage({ type: 'SW_UPDATED' })
+            return 'navigate' in client ? client.navigate(client.url).catch(askPage) : askPage()
+          })
         )
       )
   )
