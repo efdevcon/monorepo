@@ -1,5 +1,28 @@
 const _self = self
 
+// Reload every open page once a NEW version of this worker takes over
+// (skipWaiting is on, see next.config.js). Without this, the page that
+// triggered the update keeps running the previous build's JavaScript until its
+// next full load, so a change shipped to installed PWAs arrived one launch
+// late. Skipped on a first install, where nothing older is running.
+let replacesOlderWorker = false
+_self.addEventListener('install', () => {
+  replacesOlderWorker = Boolean(_self.registration.active)
+})
+_self.addEventListener('activate', event => {
+  if (!replacesOlderWorker) return
+  event.waitUntil(
+    _self.clients
+      .claim()
+      .then(() => _self.clients.matchAll({ type: 'window' }))
+      .then(clients =>
+        Promise.all(
+          clients.map(client => ('navigate' in client ? client.navigate(client.url).catch(() => undefined) : undefined))
+        )
+      )
+  )
+})
+
 // To disable all workbox logging during development, you can set self.__WB_DISABLE_DEV_LOGS to true
 // https://developers.google.com/web/tools/workbox/guides/configure-workbox#disable_logging
 //

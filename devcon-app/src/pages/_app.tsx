@@ -76,20 +76,6 @@ function Devcon8Notice() {
   )
 }
 
-// The service worker activates as soon as a new build is installed (skipWaiting
-// in next.config.js), so installed PWAs stop serving the precached previous
-// build at their next launch. Reload once the new worker controls this page so
-// the new build, notice included, is what renders. Unattended room screens
-// update the same way, silently; there is no prompt to dismiss any more.
-// @ts-ignore
-if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
-  // @ts-ignore
-  const wb = window.workbox
-  wb.addEventListener('controlling', (event: any) => {
-    if (event.isUpdate) window.location.reload()
-  })
-}
-
 const withProviders = (Component: React.ComponentType<AppProps>) => {
   return (props: AppProps) => (
     <DataProvider>
