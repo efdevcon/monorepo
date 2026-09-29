@@ -18,6 +18,15 @@ import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import router, { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from 'lib/components/ui/dialog'
 import { usePathname } from 'next/navigation'
 import { DataProvider } from 'context/data'
 import { init } from '@socialgouv/matomo-next'
@@ -30,35 +39,40 @@ let matomoAdded = false
 // Re-export for backwards compatibility with other files
 export { initialFilterState, initialSpeakerFilterState }
 
-// Dismissable banner for Devcon 8 prep
-function Devcon8Banner() {
-  const [dismissed, setDismissed] = useState(true) // Start hidden to avoid flash
+// Devcon 8 prep notice. A modal on every full page load, on purpose without
+// any "seen" flag: the old app stays reachable while the new one is built, and
+// each visit should meet the warning. Skipped on the room screens, which are
+// unattended stage displays.
+function Devcon8Notice() {
+  const [open, setOpen] = useState(false) // opens after mount, so server and client render the same
 
   useEffect(() => {
-    const isDismissed = localStorage.getItem('devcon8-banner-dismissed') === 'true'
-    setDismissed(isDismissed)
+    if (window.location.pathname.includes('/room-screens')) return
+    setOpen(true)
   }, [])
 
-  const handleDismiss = () => {
-    localStorage.setItem('devcon8-banner-dismissed', 'true')
-    setDismissed(true)
-  }
-
-  if (dismissed) return null
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9999] bg-[#7d52f4] text-white px-4 py-2 text-center text-sm flex items-center justify-center gap-2">
-      <span>
-        🚧 We're preparing the app for Devcon 8 in Mumbai — some features may be unavailable or behave unexpectedly.
-      </span>
-      <button
-        onClick={handleDismiss}
-        className="ml-2 hover:opacity-80 font-bold text-lg leading-none"
-        aria-label="Dismiss banner"
-      >
-        ×
-      </button>
-    </div>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-lg p-6">
+        <DialogHeader>
+          <DialogTitle>🚧 Preparing for Devcon 8</DialogTitle>
+          <DialogDescription>
+            We&apos;re getting this app ready for Devcon 8 in Mumbai, so some features may be unavailable or behave
+            unexpectedly. Stay tuned: the new app is coming soon.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <button
+              type="button"
+              className="rounded-md bg-[#7d52f4] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Got it
+            </button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 
@@ -169,7 +183,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Devcon8Banner />
+      <Devcon8Notice />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />
