@@ -123,7 +123,6 @@ export function AppHeader() {
           // logomark and left two live regions announcing "offline".
           <>
             <h1 className="sr-only">{title}</h1>
-            <OfflineIndicator />
           </>
         ) : (
           <div className="flex min-w-0 items-center gap-2">
@@ -154,16 +153,27 @@ export function AppHeader() {
             <span className="truncate text-[16px] font-bold leading-none tracking-[-0.25px] text-dc-fg2">
               {title}
             </span>
-            <OfflineIndicator />
           </div>
         )}
+        {/* The offline pill sits on the right: before the page's controls
+            on title pages, after the toolbar (icon only, no room for the
+            label) on toolbar pages. */}
         <div
-          id={HEADER_ACTIONS_ID}
           className={cn(
             "flex shrink-0 items-center justify-end gap-3",
             toolbar && "min-w-0 flex-1"
           )}
-        />
+        >
+          {!toolbar && <OfflineIndicator />}
+          <div
+            id={HEADER_ACTIONS_ID}
+            className={cn(
+              "flex shrink-0 items-center justify-end gap-3",
+              toolbar && "min-w-0 flex-1"
+            )}
+          />
+          {toolbar && <OfflineIndicator iconOnly />}
+        </div>
       </div>
 
       {/* Desktop: full-bleed glass bar. The inner row shares the pages' 1312px

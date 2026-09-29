@@ -4,7 +4,8 @@ import { usePaneActive } from "@/components/paneContext";
 import { CalendarX2, UserX } from "lucide-react";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
-import { isOnlineNow } from "@/hooks/useOnline";
+import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
@@ -132,6 +133,7 @@ const NOT_FOUND = {
     missingBody: "This link may be out of date, or the session has moved. Find it in the schedule.",
     failed: "Couldn't load this session",
     offline: "You're offline and the schedule isn't saved on this device yet.",
+    retry: "Loading this session",
     back: "Back to Schedule",
   },
   speaker: {
@@ -139,6 +141,7 @@ const NOT_FOUND = {
     missingBody: "This link may be out of date, or the speaker is no longer on the lineup.",
     failed: "Couldn't load this speaker",
     offline: "You're offline and the speakers aren't saved on this device yet.",
+    retry: "Loading this speaker",
     back: "Back to Speakers",
   },
 } as const;
@@ -159,19 +162,23 @@ export function DetailNotFound({
   onBack: () => void;
 }) {
   const copy = NOT_FOUND[kind];
-  const offline = failed && !isOnlineNow();
+  // Subscribed, so the copy and action flip back when the network returns.
+  const online = useOnline();
+  // Retrying can only fail offline: no Try again, and Back is the one action.
+  const canRetry = failed && online;
   return (
     <StateMessage
       icon={kind === "session" ? CalendarX2 : UserX}
       title={failed ? copy.failed : copy.missing}
-      body={failed ? (offline ? copy.offline : FAILED_BODY) : copy.missingBody}
+      body={failed ? (online ? FAILED_BODY : copy.offline) : copy.missingBody}
       tone={failed ? "critical" : "default"}
       className="py-16"
     >
-      {failed && <TryAgainButton />}
-      {/* Only action on a missing id, so primary; behind Try again it's the
-          way out. */}
-      {failed ? (
+      {canRetry && <TryAgainButton />}
+      {failed && !online && <NeedsConnection what={copy.retry} className="self-center" />}
+      {/* The only action on a missing id or offline, so primary; behind Try
+          again it's the way out. */}
+      {canRetry ? (
         <SecondaryButton type="button" onClick={onBack} className="w-full">
           {copy.back}
         </SecondaryButton>

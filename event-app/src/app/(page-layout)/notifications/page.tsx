@@ -8,6 +8,7 @@ import { InboxSkeleton } from "@/components/Skeletons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { usePreviewState } from "@/hooks/usePreviewState";
 import { useOnline } from "@/hooks/useOnline";
+import { NeedsConnection } from "@/components/NeedsConnection";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import {
   mergeInboxItems,
@@ -24,6 +25,7 @@ import { HeaderActionsPortal } from "@/components/DetailLayer";
 import { AnnouncementCard } from "@/components/announcements/AnnouncementCard";
 import { ReminderCard } from "@/components/announcements/ReminderCard";
 import {
+  allNotificationsOn,
   canOpenNotificationSettings,
   notificationSettingsLabel,
   NotificationSettingsLink,
@@ -178,9 +180,12 @@ export default function AnnouncementsPage() {
       ? `Mark sessions as interested in the schedule and we'll remind you ${REMINDER_LEAD_MINUTES} minutes before they start.`
       : `You're interested in ${interestedCount} ${interestedCount === 1 ? "session" : "sessions"}. Reminders show up here ${REMINDER_LEAD_MINUTES} minutes before each one starts.`;
   // Signed in and able to toggle push on this device: the hint offers the
-  // settings modal (a tap, never an auto-prompt).
+  // settings modal (a tap, never an auto-prompt). While push is on but its
+  // flags haven't loaded yet (a moment, from the Dexie cache), no button: the
+  // label depends on them and would flash "Turn on notifications".
   const canOpenSettings =
-    push.signedIn && (push.state === "off" || push.state === "on");
+    push.signedIn &&
+    (push.state === "off" || (push.state === "on" && !!push.prefs));
 
   return (
     // Escape the 680px `.section` column to the 1312px desktop content box
@@ -210,7 +215,12 @@ export default function AnnouncementsPage() {
                 body={online ? FAILED_BODY : "You're offline and there are no notifications saved on this device yet."}
                 className={INBOX_CENTER}
               >
-                <TryAgainButton onRetry={refresh} />
+                {/* A retry can only fail offline, so no dead button. */}
+                {online ? (
+                  <TryAgainButton onRetry={refresh} />
+                ) : (
+                  <NeedsConnection what="Loading notifications" className="self-center" />
+                )}
               </StateMessage>
             )}
 
@@ -221,16 +231,29 @@ export default function AnnouncementsPage() {
                 body="Announcements from the team and reminders for sessions you're interested in will show up here."
                 className={INBOX_CENTER}
               >
-                {canOpenSettings && (
-                  <PrimaryButton
-                    type="button"
-                    onClick={openSettings}
-                    aria-haspopup="dialog"
-                    className="w-full"
-                  >
-                    Notification settings
-                  </PrimaryButton>
-                )}
+                {/* Until both switches are on: the direct action, same
+                    label as the home card and onboarding sheet. Then:
+                    settings, secondary. */}
+                {canOpenSettings &&
+                  (!allNotificationsOn(push) ? (
+                    <PrimaryButton
+                      type="button"
+                      onClick={openSettings}
+                      aria-haspopup="dialog"
+                      className="w-full"
+                    >
+                      Turn on notifications
+                    </PrimaryButton>
+                  ) : (
+                    <SecondaryButton
+                      type="button"
+                      onClick={openSettings}
+                      aria-haspopup="dialog"
+                      className="w-full"
+                    >
+                      Notification settings
+                    </SecondaryButton>
+                  ))}
               </StateMessage>
             )}
 
@@ -272,16 +295,27 @@ export default function AnnouncementsPage() {
                   size="compact"
                   className="rounded-lg border border-dc-hairline bg-white py-6"
                 >
-                  {canOpenSettings && (
-                    <SecondaryButton
-                      type="button"
-                      onClick={openSettings}
-                      aria-haspopup="dialog"
-                      className="w-full py-3 text-[14px]"
-                    >
-                      Notification settings
-                    </SecondaryButton>
-                  )}
+                  {/* Same rule as the empty state above. */}
+                  {canOpenSettings &&
+                    (!allNotificationsOn(push) ? (
+                      <PrimaryButton
+                        type="button"
+                        onClick={openSettings}
+                        aria-haspopup="dialog"
+                        className="w-full py-3 text-[14px]"
+                      >
+                        Turn on notifications
+                      </PrimaryButton>
+                    ) : (
+                      <SecondaryButton
+                        type="button"
+                        onClick={openSettings}
+                        aria-haspopup="dialog"
+                        className="w-full py-3 text-[14px]"
+                      >
+                        Notification settings
+                      </SecondaryButton>
+                    ))}
                 </StateMessage>
               )}
             </div>

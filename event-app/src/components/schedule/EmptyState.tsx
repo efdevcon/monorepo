@@ -42,7 +42,7 @@ export function EmptyState({
         </span>
         <div className="flex w-full min-w-0 flex-col gap-1 text-dc-fg">
           <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">
-            {noneSaved ? "Nothing in My Interests yet" : "No interests on this day"}
+            {noneSaved ? "No sessions in My Interests yet" : "No interests on this day"}
           </p>
           <p className="text-[16px] leading-6 text-dc-muted">
             {noneSaved
