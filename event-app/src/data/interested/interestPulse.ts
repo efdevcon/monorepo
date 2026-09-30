@@ -18,6 +18,15 @@ export function emitInterestAdded(kind: InterestKind) {
   window.dispatchEvent(new CustomEvent<InterestKind>(EVENT, { detail: kind }));
 }
 
+/** Run `cb` after each `kind` addition (the store write has committed). Returns an unsubscribe. */
+export function onInterestAdded(kind: InterestKind, cb: () => void): () => void {
+  const listener = (e: Event) => {
+    if ((e as CustomEvent<InterestKind>).detail === kind) cb();
+  };
+  window.addEventListener(EVENT, listener);
+  return () => window.removeEventListener(EVENT, listener);
+}
+
 export interface InterestPulse {
   /** Changes per addition so a fresh bubble mounts even mid-animation. */
   key: number;

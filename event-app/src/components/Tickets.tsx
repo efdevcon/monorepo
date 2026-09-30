@@ -118,7 +118,7 @@ export function Tickets() {
         <>
           <KeyArtBanner
             title="Add your tickets to the Devcon app"
-            body="Sign in using your ticket purchase email to unlock the full experience."
+            body="Sign in with your ticket email to unlock the full experience, or with any email to sync Interests and get notifications."
             cta="Sign in"
           />
           {/* Keep a purchase path reachable while signed out */}

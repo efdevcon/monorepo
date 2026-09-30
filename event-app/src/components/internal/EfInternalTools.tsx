@@ -9,12 +9,13 @@ import { openDevaBot } from "@/components/ai/devaBotState";
 import { Link } from "@/routing";
 import { ReminderRehearsal } from "@/components/announcements/ReminderRehearsal";
 import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
+import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
 
 const TEAM_DOMAIN = "@ethereum.org";
 
 /** Per-device "already shown / dismissed" flags of the notification nudges. */
 const NUDGE_PREF_KEYS = [
-  "onboarding.pushSheet", // PushOnboardingSheet, once per device
+  PUSH_SHEET_PREF_KEY, // PushOnboardingSheet (third star), once per device
   "home.notificationsHero.dismissed", // Home's "Turn on notifications" card
 ];
 
@@ -37,7 +38,7 @@ const toolPill =
  *   entry point for the team.
  * - Reset nudges: brings back the install card (its dismissal is in memory
  *   for the session) and clears the per-device flags that hide the
- *   first-launch push sheet and Home's "Turn on notifications" card, so all
+ *   third-star push sheet and Home's "Turn on notifications" card, so all
  *   three can be seen again (the two flags after a reload).
  * - Rehearse reminders (ReminderRehearsal): the session-reminder rehearsal at
  *   a mocked clock, own devices only.
@@ -97,7 +98,7 @@ export function EfInternalTools() {
           Install &amp; notification nudges
         </p>
         <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
-          Bring back the &ldquo;Install the Devcon app&rdquo; card, the first-launch push
+          Bring back the &ldquo;Install the Devcon app&rdquo; card, the third-star push
           sheet and the &ldquo;Turn on notifications&rdquo; card on Home, as if this device
           had never seen them.
         </p>
