@@ -7,6 +7,7 @@ import { DetailLink } from "@/routing/DetailLink";
 import { useInterested } from "@/data/interested/useInterested";
 import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
+import { communityHubTopics } from "@/data/communityHubs";
 
 /** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"). */
 const locationLabel = (session: Session) =>
@@ -136,6 +137,15 @@ export function SessionCard({
               {badge}
               {hub && <Tent className="size-3 shrink-0" aria-hidden />}
             </span>
+            {hub &&
+              communityHubTopics(session).map((topic) => (
+                <span
+                  key={topic}
+                  className="hidden shrink-0 items-center rounded-full border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex"
+                >
+                  {topic}
+                </span>
+              ))}
             <span className="inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-4 text-dc-muted">
               <Clock3 className="size-3.5 shrink-0" />
               {formatTimeRange(session)}

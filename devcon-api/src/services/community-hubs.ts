@@ -291,7 +291,9 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
         track: COMMUNITY_HUB_TRACK,
         type: row.format || 'Talk',
         expertise: '',
-        tags: [hub.name],
+        // The hub name first (the app tells hubs from topics by name), then
+        // the sheet's free-text Topic when given.
+        tags: row.topic ? [hub.name, row.topic] : [hub.name],
         featured: false,
         slot_start: row.start,
         slot_end: row.end,

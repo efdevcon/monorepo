@@ -40,6 +40,8 @@ export interface DSheetCell {
   text: string
   /** Number format of the cell when set, e.g. "hh:mm". */
   format?: string
+  /** Target of an "Insert link" on the cell (the sheet keeps it apart from the text). */
+  link?: string
 }
 
 export interface DSheetTab {
@@ -138,17 +140,39 @@ function readTabs(sheets: Y.Array<unknown>): DSheetTab[] {
     const get = (key: string): unknown => (entry instanceof Y.Map ? entry.get(key) : (entry as Record<string, unknown>)?.[key])
     const celldata = get('celldata')
     const plain = celldata instanceof Y.Map ? celldata.toJSON() : celldata
+    const hyperlink = get('hyperlink')
     tabs.push({
       id: String(get('id') ?? ''),
       name: String(get('name') ?? ''),
       order: typeof get('order') === 'number' ? (get('order') as number) : tabs.length,
-      cells: toCells(plain),
+      cells: toCells(plain, toLinks(hyperlink instanceof Y.Map ? hyperlink.toJSON() : hyperlink)),
     })
   }
   return tabs.sort((a, b) => a.order - b.order)
 }
 
-function toCells(celldata: unknown): DSheetCell[] {
+/**
+ * The sheet-level hyperlink map (Luckysheet/Fortune-sheet shape, which dSheets
+ * builds on): "<row>_<col>" -> { linkType, linkAddress }, or a list of those
+ * (what an imported xlsx link looks like, seen 2026-09-30). Only web addresses
+ * are kept; sheet-internal links mean nothing outside the sheet.
+ */
+export function toLinks(hyperlink: unknown): Map<string, string> {
+  const links = new Map<string, string>()
+  if (!hyperlink || typeof hyperlink !== 'object') return links
+  for (const [key, raw] of Object.entries(hyperlink as Record<string, unknown>)) {
+    const entries = Array.isArray(raw) ? raw : [raw]
+    for (const entry of entries) {
+      const address = (entry as { linkAddress?: unknown } | null)?.linkAddress
+      if (typeof address !== 'string' || !/^https?:\/\//i.test(address.trim())) continue
+      links.set(key, address.trim())
+      break
+    }
+  }
+  return links
+}
+
+function toCells(celldata: unknown, links: Map<string, string> = new Map()): DSheetCell[] {
   const entries: any[] = Array.isArray(celldata) ? celldata : celldata && typeof celldata === 'object' ? Object.values(celldata) : []
   const cells: DSheetCell[] = []
   for (const entry of entries) {
@@ -159,12 +183,14 @@ function toCells(celldata: unknown): DSheetCell[] {
     const value = cell.v ?? (runs || null)
     const text = typeof cell.m === 'string' && cell.m !== '' ? cell.m : runs || (value == null ? '' : String(value))
     if (value == null && text === '') continue
+    const link = links.get(`${entry.r}_${entry.c}`)
     cells.push({
       row: Number(entry.r),
       col: Number(entry.c),
       value,
       text: text.replace(/\r\n?/g, '\n').trim(),
       format: typeof cell.ct?.fa === 'string' && cell.ct.fa !== 'General' ? cell.ct.fa : undefined,
+      ...(link ? { link } : {}),
     })
   }
   return cells.sort((a, b) => a.row - b.row || a.col - b.col)

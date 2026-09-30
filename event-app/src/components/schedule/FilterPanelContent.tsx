@@ -16,8 +16,9 @@ import { getTrackTheme } from "./trackTheme";
  * Which programme(s) the panel filters. "hubs": the Community Hubs segment,
  * where every session shares one track and the hubs double as the
  * locations, so Tracks and Locations are dropped and the hub tags read as
- * "Hubs". "both": My Interests spanning the two programmes, which adds a
- * "Hubs" section under Tracks (pulled out of Topics).
+ * "Hubs"; the rows' Topic column fills "Topics". "both": My Interests
+ * spanning the two programmes, which adds a "Hubs" section under Tracks
+ * (pulled out of Topics).
  */
 export type FilterPanelMode = "main" | "hubs" | "both";
 
@@ -166,11 +167,9 @@ export function FilterPanelContent({
     }),
     [options.track]
   );
+  // Hub names ride the topic facet too; they get their own section below.
   const topics = useMemo(
-    () =>
-      mode === "both"
-        ? options.topic.filter((t) => !hubs.includes(t))
-        : options.topic,
+    () => (mode === "main" ? options.topic : options.topic.filter((t) => !hubs.includes(t))),
     [mode, options.topic, hubs]
   );
   const hubSection = mode !== "main" && hubs.length > 0 && (
@@ -257,7 +256,7 @@ export function FilterPanelContent({
 
         {hubSection}
 
-        {mode !== "hubs" && topics.length > 0 && (
+        {topics.length > 0 && (
           <AccordionSection
             title="Topics"
             count={filters.topic.filter((t) => topics.includes(t)).length}

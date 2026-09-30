@@ -12,7 +12,8 @@ import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel } from "./trackTheme";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
-import { isCommunityHubSession } from "@/data/communityHubs";
+import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
+import { TextWithLinks } from "@/components/TextWithLinks";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 export function downloadSessionIcs(session: Session) {
@@ -146,7 +147,7 @@ export function SessionSummary({
             // URLs, which otherwise widen the fixed detail layer past the
             // viewport (iOS Safari then widens the whole layout viewport).
             <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
-              {session.description}
+              <TextWithLinks text={session.description} />
             </p>
           )}
           <div className="flex flex-wrap items-center gap-3">
@@ -191,6 +192,16 @@ export function SessionSummary({
             >
               {trackFullLabel(session.track, session.room?.id)}
             </span>
+            {/* Hub sessions: the sheet's Topic column, as neutral chips after
+                the hub badge (a hub session has no track of its own). */}
+            {communityHubTopics(session).map((topic) => (
+              <span
+                key={topic}
+                className="rounded-[2px] border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2"
+              >
+                {topic}
+              </span>
+            ))}
             {featured && (
               <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
                 Featured

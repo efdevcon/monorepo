@@ -76,9 +76,14 @@ export function isCommunityHubSession(session: { room?: { id: string } }): boole
   return communityHubIdFromRoom(session.room?.id) !== undefined;
 }
 
-/** A hub's name ("Privacy Hub"): hub sessions carry it as their only tag. */
+/** A hub's name ("Privacy Hub"): hub sessions carry it as their first tag. */
 export function isCommunityHubName(name: string): boolean {
   return COMMUNITY_HUBS.some((hub) => hub.name === name);
+}
+
+/** A hub session's topics: its tags minus the hub's own name (the sheet's Topic column). */
+export function communityHubTopics(session: { tags?: string[] }): string[] {
+  return (session.tags ?? []).map((t) => t.trim()).filter((t) => t && !isCommunityHubName(t));
 }
 
 export function findCommunityHub(id: string | undefined): CommunityHub | undefined {

@@ -12,6 +12,7 @@ import {
   pickScheduleTabs,
   shouldKeepPreviousRead,
   toUtcMs,
+  withLink,
 } from './community-hubs'
 
 const DAYS = eventDays('2026-11-03T00:00:00.000Z', '2026-11-06T00:00:00.000Z')
@@ -74,6 +75,99 @@ test('session ids are unique within a hub', () => {
   expect(hubSessionId('privacy', row('Lunch Break', 1), taken)).toBe('privacy-lunch-break')
   expect(hubSessionId('privacy', row('Lunch Break', 2), taken)).toBe('privacy-lunch-break-day-2')
   expect(hubSessionId('privacy', row('Lunch Break', 2), taken)).toBe('privacy-lunch-break-day-2-2')
+})
+
+test('a Key names the session, so a retitled row keeps its id', () => {
+  const taken = new Set<string>()
+  const row = (title: string, key: string) => ({ title, key, day: DAYS[0] } as any)
+  expect(hubSessionId('privacy', row('Lunch Break', 'TUE-01'), taken)).toBe('privacy-tue-01')
+  expect(hubSessionId('privacy', row('Lunch (renamed)', 'TUE-01'), new Set())).toBe('privacy-tue-01')
+  // The same key twice in one hub (already reported by the parser): the title scheme steps in.
+  expect(hubSessionId('privacy', row('Lunch Break', 'TUE-01'), taken)).toBe('privacy-lunch-break')
+  expect(hubSessionId('privacy', row('No key here', ''), taken)).toBe('privacy-no-key-here')
+})
+
+test('a linked description cell spells its URL out once', () => {
+  expect(withLink('Sign up here', 'https://example.org/form')).toBe('Sign up here https://example.org/form')
+  expect(withLink('See https://example.org/form/', 'https://example.org/form')).toBe('See https://example.org/form/')
+  expect(withLink('', 'https://example.org')).toBe('https://example.org')
+  expect(withLink('Plain text', undefined)).toBe('Plain text')
+})
+
+test('v5: one Schedule tab with ID, Day and Topic columns, hub name and the Topics list beside it', () => {
+  const sheet: DSheet = {
+    dsheetId: 'x',
+    publishedAt: 0,
+    tabs: [
+      {
+        ...tab([
+          ['Hub name', 'Privacy Hub', '', '', '', 'Read me', 'https://example.org/readme', '', '', '', 'Topics: list yours here once,'],
+          ['', '', '', '', '', '', '', '', '', '', 'then pick them in the Topic column.'],
+          ['ID', 'Day', 'From', 'To', 'Session title', 'Format', 'Speaker(s)', 'Description (optional)', 'Topic', '', 'Topics'],
+          ['S01', 'Tue 3 Nov', '09:00', '10:00', 'Coffee', 'Networking', '', '', '', '', 'Community'],
+          ['S02', 'Wed 4 Nov', '10:00', '10:45', 'ZK for everyone', 'Talk', 'Ada Lovelace', 'Slides: https://example.org', 'Zero knowledge', '', 'Zero knowledge'],
+          ['S03', '', '', '', '', '', '', '', '', '', 'Governance'], // an unused session row: only a topic beside it
+        ]),
+        name: 'Schedule',
+        order: 0,
+      },
+    ],
+  }
+  const parsed = parseHubSheets(sheet, DAYS)
+  expect(parsed.hubName).toBe('Privacy Hub')
+  expect(parsed.problems).toEqual([])
+  expect(parsed.sessions.map((s) => [s.key, s.title, s.day.number, s.topic])).toEqual([
+    ['S01', 'Coffee', 1, ''],
+    ['S02', 'ZK for everyone', 2, 'Zero knowledge'],
+  ])
+  const taken = new Set<string>()
+  expect(parsed.sessions.map((s) => hubSessionId('privacy', s, taken))).toEqual(['privacy-s01', 'privacy-s02'])
+})
+
+test('v5 day tabs (earlier draft): Topic and Key columns, duplicate keys reported, keyless rows counted once per tab', () => {
+  const header = [
+    ['Tuesday 3 November'],
+    [],
+    [],
+    ['Time', '', 'Session title', 'Format', 'Speaker(s)', 'Description (optional)', 'Topic (optional)', "Key (don't edit)"],
+    ['from', 'to'],
+  ]
+  const day = (name: string, order: number, rows: (string | number | null)[][]): DSheetTab => ({ ...tab([...header, ...rows]), name, order })
+  const sheet: DSheet = {
+    dsheetId: 'x',
+    publishedAt: 0,
+    tabs: [
+      day('Tue 3', 0, [
+        ['09:00', '10:00', 'Coffee', 'Networking', '', '', '', 'TUE-01'],
+        ['10:00', '11:00', 'ZK for everyone', 'Talk', 'Ada Lovelace', 'Bring a laptop', 'Zero knowledge', 'TUE-02'],
+        ['11:00', '12:00', 'Added later, no key yet', 'Talk', '', '', '', ''],
+      ]),
+      day('Wed 4', 1, [
+        ['09:00', '10:00', 'Coffee again', 'Networking', '', '', '', 'WED-01'],
+        ['10:00', '11:00', 'Pasted from Tuesday', 'Talk', '', '', '', 'tue-02'],
+      ]),
+    ],
+  }
+  const parsed = parseHubSheets(sheet, DAYS)
+  expect(parsed.sessions.map((s) => [s.title, s.key, s.topic])).toEqual([
+    ['Coffee', 'TUE-01', ''],
+    ['ZK for everyone', 'TUE-02', 'Zero knowledge'],
+    ['Added later, no key yet', '', ''],
+    ['Coffee again', 'WED-01', ''],
+    ['Pasted from Tuesday', '', ''], // duplicate key dropped, falls back to the title
+  ])
+  expect(parsed.problems).toEqual([
+    expect.stringMatching(/^Tue 3: 1 row has no Key \(row 8\)/),
+    expect.stringMatching(/^Wed 4: row 7 "Pasted from Tuesday": Key "tue-02" is already used on Tue 3 row 7/),
+  ])
+  // v4 sheets have no Key column: nothing to report about keys.
+  const v4Header = [['Tuesday 3 November'], [], [], ['Time', '', 'Session title', 'Format', 'Speaker(s)', 'Description (optional)'], ['from', 'to']]
+  const v4 = parseHubSheets(
+    { dsheetId: 'x', publishedAt: 0, tabs: [{ ...tab([...v4Header, ['09:00', '10:00', 'Coffee', 'Networking', '', '']]), name: 'Tue 3', order: 0 }] },
+    DAYS
+  )
+  expect(v4.problems).toEqual([])
+  expect(v4.sessions[0]).toMatchObject({ key: '', topic: '' })
 })
 
 test('a fresh read is held back only when it has problems and lost sessions', () => {

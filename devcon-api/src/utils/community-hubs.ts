@@ -1,10 +1,14 @@
 import { defaultSlugify } from '@/utils/content'
 import type { DSheet, DSheetCell, DSheetTab } from '@/clients/fileverse'
 
-// Community Hubs publish their programme in a shared dSheets template: one tab
-// per event day ("Day 1 · Tue 3 Nov", ...) with one row per session, plus an
-// Info tab (hub name) and a Read me tab. Earlier revisions (one tab with "Day N"
-// banner rows, or a Day column per row) still parse. This module knows the
+// Community Hubs publish their programme in a shared dSheets template. v5 is
+// one "Schedule" tab holding only what the app reads: the hub name at the top,
+// one row per session (ID, Day, From, To, Session title, Format, Speaker(s),
+// Description, Topic) and a Topics list beside the schedule that the Topic
+// dropdown reads from. The pre-filled ID is the session's identity, so a
+// retitled row keeps its saved stars and reminders; Topic rides into the app
+// as a tag. Earlier revisions (v4: one tab per day plus Info and Read me tabs,
+// no ID/Topic; older: "Day N" banner rows) still parse. This module knows the
 // template and turns a sheet into session rows; services/community-hubs.ts
 // serves them as the event's Community Hubs bundle.
 
@@ -70,7 +74,11 @@ export function eventDays(startDate: string, endDate: string): EventDay[] {
 export interface HubSessionRow {
   /** 1-based sheet row, for messages. */
   line: number
+  /** Template v5 Key cell, trimmed; '' when the sheet has no Key column or the cell is empty. Drives the session id. */
+  key: string
   title: string
+  /** Free text; hub sessions carry it as a tag next to the hub's name. '' when absent. */
+  topic: string
   description: string
   format: string
   speakers: string[]
@@ -151,6 +159,9 @@ export function toUtcMs(day: EventDay, minutesSinceMidnight: number, utcOffsetMi
 }
 
 const HEADER_PATTERNS = {
+  key: /^(id|key)\b/i,
+  // "Topic" is the session column; the "Topics" list the dropdown reads from sits beside the schedule with its own header.
+  topic: /^topic(?!s)\b/i,
   day: /^day$/i,
   start: /^(start|from)\b/i,
   end: /^(end|to)\b/i,
@@ -215,9 +226,24 @@ export function parseHubSheets(sheet: DSheet, days: EventDay[], utcOffsetMinutes
   const sessions: HubSessionRow[] = []
   const problems: string[] = []
   let headerFound = false
+  // A Key must be unique across the whole sheet (it is the session id). The
+  // second use falls back to the title scheme and is reported, so the hub can
+  // fix it before a rename loses that row's stars.
+  const keyOwners = new Map<string, string>()
   for (const { tab, day } of tabs) {
     const parsed = parseHubSheet(tab, days, utcOffsetMinutes, day ?? undefined)
     headerFound = headerFound || parsed.headerFound
+    const where = (line: number) => (tabs.length > 1 ? `${tab.name} row ${line}` : `row ${line}`)
+    for (const row of parsed.sessions) {
+      if (!row.key) continue
+      const owner = keyOwners.get(row.key.toLowerCase())
+      if (owner) {
+        parsed.problems.push(`row ${row.line} "${row.title}": Key "${row.key}" is already used on ${owner}, this row falls back to its title`)
+        row.key = ''
+      } else {
+        keyOwners.set(row.key.toLowerCase(), where(row.line))
+      }
+    }
     sessions.push(...parsed.sessions)
     problems.push(...parsed.problems.map((p) => (tabs.length > 1 ? `${tab.name}: ${p}` : p)))
   }
@@ -285,6 +311,7 @@ export function parseHubSheet(
   }
 
   const sessions: HubSessionRow[] = []
+  const missingKeys: number[] = []
   let bannerDay: EventDay | null = null
   for (const [row, cells] of ordered.slice(firstDataRow)) {
     const at = (col: Column) => (columns[col] === undefined ? undefined : cells.find((c) => c.col === columns[col]))
@@ -323,10 +350,14 @@ export function parseHubSheet(
       problems.push(`row ${line} "${title}": ends (${text('end')}) before it starts (${text('start')}), skipped`)
       continue
     }
+    const key = text('key')
+    if (columns.key !== undefined && !key) missingKeys.push(line)
     sessions.push({
       line,
+      key,
       title,
-      description: text('description'),
+      topic: text('topic'),
+      description: withLink(text('description'), at('description')?.link),
       format: text('format'),
       speakers: parseSpeakers(text('speakers')),
       start: toUtcMs(day, start, utcOffsetMinutes),
@@ -334,11 +365,43 @@ export function parseHubSheet(
       day,
     })
   }
+  // Only for sheets that have the column: v4 sheets are keyless by design,
+  // and a per-row message would drown the real problems.
+  if (missingKeys.length > 0) {
+    problems.push(
+      `${missingKeys.length} ${missingKeys.length === 1 ? 'row has' : 'rows have'} no Key (row${missingKeys.length === 1 ? '' : 's'} ${missingKeys.join(', ')}): ` +
+        `type any short unique text there, or renaming the session loses its saved stars`
+    )
+  }
   return { hubName, headerFound: true, sessions, problems }
 }
 
-/** Stable, unique session ids within a hub: <hub>-<title>, then -day-N, then a counter. */
-export function hubSessionId(hubId: string, row: HubSessionRow, taken: Set<string>): string {
+/**
+ * A cell's "Insert link" target, appended to its text unless the text already
+ * spells the URL out: the app turns URLs in descriptions into links, and a
+ * linked word would otherwise lose its link on the way.
+ */
+export function withLink(text: string, link: string | undefined): string {
+  if (!link) return text
+  if (text.toLowerCase().includes(link.toLowerCase().replace(/\/$/, ''))) return text
+  return text ? `${text} ${link}` : link
+}
+
+/**
+ * Stable, unique session ids within a hub. With a Key (template v5):
+ * <hub>-<key>, which survives retitling, so stars and reminders follow the
+ * row. Without one: <hub>-<title>, then -day-N, then a counter (a rename
+ * orphans the stars; the status endpoint reports keyless rows).
+ */
+export function hubSessionId(hubId: string, row: Pick<HubSessionRow, 'title' | 'day'> & { key?: string }, taken: Set<string>): string {
+  const key = row.key ? defaultSlugify(row.key) : ''
+  if (key) {
+    const byKey = `${hubId}-${key}`
+    if (!taken.has(byKey)) {
+      taken.add(byKey)
+      return byKey
+    }
+  }
   const base = `${hubId}-${defaultSlugify(row.title) || 'session'}`
   const perDay = `${base}-day-${row.day.number}`
   for (const candidate of [base, perDay]) {
