@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { GhostLinkButton, PrimaryLinkButton } from "@/components/Buttons";
+import { ArrowRight } from "lucide-react";
+import { PrimaryLinkButton } from "@/components/Buttons";
 import { HUBS_PARAM } from "@/data/store/schedule-source";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
@@ -70,10 +70,6 @@ export function CommunityHubsCard() {
               View Community Hubs
               <ArrowRight className="size-4 shrink-0" />
             </PrimaryLinkButton>
-            <GhostLinkButton href="/community-hubs">
-              View on Fileverse
-              <ArrowUpRight className="size-4 shrink-0" />
-            </GhostLinkButton>
           </div>
         </div>
       </div>

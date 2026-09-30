@@ -23,7 +23,7 @@ import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from ".
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
-import { communityHubEmbedUrl, defaultCommunityHub, findCommunityHub } from "../src/data/communityHubs";
+import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -389,10 +389,12 @@ function testMeerkatHandover() {
   check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
   check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
   check(
-    "community hub embed: embed flag before the key, unknown ids fall back to a hub with a sheet",
-    communityHubEmbedUrl("https://sheets.fileverse.io/sheet/abc#k=key") === "https://sheets.fileverse.io/sheet/abc?embed=1#k=key" &&
-      findCommunityHub("nope") === undefined &&
-      !!defaultCommunityHub().sheetUrl
+    "community hub topics: the hub's own name is not a topic, blanks are dropped, unknown hub ids resolve to nothing",
+    JSON.stringify(communityHubTopics({ tags: ["Privacy Hub", " Zero knowledge ", ""] })) === JSON.stringify(["Zero knowledge"]) &&
+      communityHubTopics({ tags: ["Privacy Hub"] }).length === 0 &&
+      communityHubTopics({}).length === 0 &&
+      findCommunityHub("privacy")?.name === "Privacy Hub" &&
+      findCommunityHub("nope") === undefined
   );
   check(
     "community hubs dataset: follows the event, keyed apart from it, none for the test event",

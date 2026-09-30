@@ -18,7 +18,6 @@ import {
   downloadSessionIcs,
 } from "@/components/schedule/SessionDetailsContent";
 import { SessionQA } from "@/components/schedule/SessionQA";
-import { HubSheetLink } from "@/components/schedule/HubSheetLink";
 import { isCommunityHubSession } from "@/data/communityHubs";
 import type { Session as SessionModel } from "@/data/models";
 
@@ -65,9 +64,7 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 
   // Shared with the desktop side panel (SessionQA owns the offline line).
   // A Community Hub session has no Q&A room: point at the hub's sheet instead.
-  const qa = isCommunityHubSession(session) ? (
-    <HubSheetLink session={session} size="md" />
-  ) : (
+  const qa = isCommunityHubSession(session) ? null : (
     <SessionQA session={session} size="md" />
   );
 

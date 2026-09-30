@@ -1,10 +1,8 @@
 /**
- * Devcon 8 Community Hubs and the dSheets each hub publishes its programme in.
- *
- * The sheets are the same ones devcon-api reads to put hub sessions on the
- * schedule (see docs/community-hubs.md); this page embeds them directly, the
- * way the Devconnect 2025 site did. Only view or comment links belong here:
- * whoever can open this page can open the link.
+ * Devcon 8 Community Hubs, as the app shows them. Their programme reaches the
+ * app through devcon-api, which reads each hub's dSheet (see
+ * docs/community-hubs.md); the sheets themselves are never shown here, so no
+ * sheet links live in the app.
  *
  * Each hub has a colour of its own (a pastel, like the track palette) used for
  * its badge and cards in the schedule; the same hue, darker, heads the hub's
@@ -17,8 +15,6 @@ export interface CommunityHub {
   description: string;
   /** Pastel surface colour for badges and timeline cards. */
   color: string;
-  /** dSheets share link (https://sheets.fileverse.io/sheet/<id>#k=<key>); unset until the hub shares one. */
-  sheetUrl?: string;
   /** Logo path under /public when it isn't the default `<id>.svg` (see communityHubLogo). */
   logo?: string;
   /** Stacked lockup (mark over wordmark) for the session details banner; the mark is used when unset. */
@@ -31,7 +27,6 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     name: "Privacy Hub",
     description: "Building, exploring and using privacy on Ethereum, onchain and off.",
     color: "#E5D4F7",
-    sheetUrl: "https://sheets.fileverse.io/sheet/32gtmX5BW39G57rgDkrm4u#k=rbIDyYhIPVgAOSncg7UxQbtVpkdQJQsVS3mTCoYPUSw",
   },
   { id: "security", name: "Security Hub", description: "Closing the gap between Ethereum's security research and practice.", color: "#F7D4D4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards, protocol upgrades and standards adoption.", color: "#D4EBF7" },
@@ -43,7 +38,6 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     name: "Open Source Hub",
     description: "Hands-on space that turns attendees into open-source contributors.",
     color: "#D4F7E0",
-    sheetUrl: "https://sheets.fileverse.io/sheet/s3TVTVbiTgppsbK3YvHM8D#k=GUkKdz7R7-u__IcatV7vI2cNudXwFdFs16u-M4bRFZ4",
     // TEST (2026-09-25): gem-style artwork trial; revert to the placeholder svg or replace with the final logo.
     logo: "/community-hubs/logos/open-source-test.png",
     // TEST (2026-09-25): stacked-lockup trial for the details banner (the art reads "Agentic Hub").
@@ -56,7 +50,6 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     name: "Onchain Art Hub",
     description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
     color: "#F7D4F7",
-    sheetUrl: "https://sheets.fileverse.io/sheet/pSKtQGbujNeNKQnSYNuUmu#k=-YWpL1S3KGZGV9g7-kPXCZqvFgryRqFIJDuGcRWwFrk",
   },
   { id: "agentic", name: "Agentic Hub", description: "AI agents paying, trading and negotiating on Ethereum.", color: "#D4E0F7" },
   { id: "fragmentation", name: "Fragmentation Hub", description: "Mapping Ethereum's technical and social fragmentation.", color: "#E0F7D4" },
@@ -104,17 +97,4 @@ export function communityHubLogo(hub: CommunityHub): string {
   return hub.logo ?? `/community-hubs/logos/${hub.id}.svg`;
 }
 
-/** First hub that has a sheet, the default when the URL names none. */
-export function defaultCommunityHub(): CommunityHub {
-  return COMMUNITY_HUBS.find((hub) => hub.sheetUrl) ?? COMMUNITY_HUBS[0];
-}
 
-/**
- * The share link in dSheets' embed mode (`?embed=1` before the `#k=` key):
- * no sign-in button or app menu, just the sheet.
- */
-export function communityHubEmbedUrl(sheetUrl: string): string {
-  const url = new URL(sheetUrl);
-  url.searchParams.set("embed", "1");
-  return url.toString();
-}

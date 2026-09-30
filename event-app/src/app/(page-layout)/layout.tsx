@@ -37,7 +37,7 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
   const isKiosk = pathname.startsWith("/room-screens/");
   // The embedded hub sheet sizes itself to the space above the bottom bar
   // (see community-hubs.tsx), so that page needs no clearance padding.
-  const bottomPad = pathname.startsWith("/community-hubs") ? "pb-0" : "pb-28";
+  const bottomPad = "pb-28";
 
   return (
     // One shared push state for the header, inbox and onboarding sheet.
