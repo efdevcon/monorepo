@@ -4,7 +4,7 @@ import { WhyDevconContainer } from './WhyDevconContainer'
 import { JoinTheEvent } from './JoinTheEvent'
 import { VibeCarousel } from './VibeCarousel'
 import { TracksSection } from './TracksSection'
-import { DevconSEAStats } from './DevconSEAStats'
+import { Supporters } from './Supporters'
 import { LivingConstellation } from './living-constellation'
 import { AttendDevcon } from './AttendDevcon'
 import { FaqSection } from './FaqSection'
@@ -28,7 +28,7 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
         <TracksSection />
       </div>
       <LivingConstellation />
-      <DevconSEAStats />
+      <Supporters />
       <AttendDevcon />
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />
