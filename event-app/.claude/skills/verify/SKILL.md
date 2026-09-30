@@ -13,7 +13,7 @@ Always confirm which app owns the port before screenshotting (the devcon site al
 
 ```bash
 curl -s http://localhost:3000/ | grep -o "<title>[^<]*</title>"
-# event-app → "Devcon App v2"; the devcon site has a Devcon.org title
+# event-app → "Devcon App V1"; the devcon site has a Devcon.org title
 ```
 
 A dev server is often already running (the user's own) — check before starting a second one.
