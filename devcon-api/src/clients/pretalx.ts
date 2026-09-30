@@ -426,13 +426,14 @@ function arrayify(value: string | undefined) {
 }
 
 // ── Writes (slides pipeline) ──────────────────────────────────────────────
-// Answers to organiser-managed questions are written with PRETALX_API_KEY_WRITE,
-// an organiser token with write scope on the event; the read token used above
-// cannot create answers. The token is never logged.
+// Answers to organiser-managed questions are written with the event's own
+// write token (PRETALX_API_KEY_WRITE_<EVENT> in .env, mapped per instance in
+// utils/config.ts): an organiser token with write scope on that event only.
+// The read token used above cannot create answers. The token is never logged.
 
-/** Set when the sync may write to Pretalx. */
-export function pretalxWriteToken(): string | undefined {
-  return process.env.PRETALX_API_KEY_WRITE || undefined
+/** Set when the sync may write to this event's Pretalx. */
+export function pretalxWriteToken(config: PretalxInstanceConfig = PRETALX_CONFIG): string | undefined {
+  return config.PRETALX_API_KEY_WRITE || undefined
 }
 
 /** Error for a failed write, with the start of Pretalx's response body (its validation messages live there). */
@@ -441,8 +442,8 @@ async function writeError(response: Response, what: string): Promise<Error> {
   return new Error(`Pretalx API error: ${response.status} ${response.statusText} ${what}${body ? ` · ${body}` : ''}`)
 }
 
-function writeHeaders() {
-  return { Authorization: `Token ${pretalxWriteToken()}`, 'Content-Type': 'application/json' }
+function writeHeaders(config: PretalxInstanceConfig) {
+  return { Authorization: `Token ${pretalxWriteToken(config)}`, 'Content-Type': 'application/json' }
 }
 
 /**
@@ -459,7 +460,7 @@ export async function UpsertSubmissionAnswer(
   const url = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/answers/`
   const response = await fetch(url, {
     method: 'POST',
-    headers: writeHeaders(),
+    headers: writeHeaders(config),
     body: JSON.stringify({ question: questionId, submission: submissionCode, answer }),
   })
   if (!response.ok) {
@@ -474,14 +475,14 @@ export async function UpsertSubmissionAnswer(
  */
 export async function DeleteSubmissionAnswer(submissionCode: string, questionId: number, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const base = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/answers/`
-  const list = await fetch(`${base}?question=${questionId}&submission=${encodeURIComponent(submissionCode)}`, { headers: writeHeaders() })
+  const list = await fetch(`${base}?question=${questionId}&submission=${encodeURIComponent(submissionCode)}`, { headers: writeHeaders(config) })
   if (!list.ok) {
     throw await writeError(list, `listing answers to question ${questionId} for ${submissionCode}`)
   }
   const data = await list.json()
   let deleted = 0
   for (const answer of data?.results ?? []) {
-    const response = await fetch(`${base}${answer.id}/`, { method: 'DELETE', headers: writeHeaders() })
+    const response = await fetch(`${base}${answer.id}/`, { method: 'DELETE', headers: writeHeaders(config) })
     if (!response.ok) {
       throw await writeError(response, `deleting answer ${answer.id}`)
     }

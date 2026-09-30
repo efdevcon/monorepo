@@ -23,9 +23,8 @@ import { isPublicSubmissionState } from 'services/social-cards/submission-state'
 const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
 
 const EVENTS: Record<string, { pretalxSlug: string; slidesQuestionId?: number; apiFallback?: boolean }> = {
-  // TODO devcon8: create the "Slides deck" question on the devcon8 event (same
-  // shape as the test event's) and set its id here and in the devcon-api config.
-  devcon8: { pretalxSlug: 'devcon8' },
+  // Question ids mirror PRETALX_QUESTIONS_SLIDES_DECK in devcon-api/src/utils/config.ts.
+  devcon8: { pretalxSlug: 'devcon8', slidesQuestionId: 181 },
   sea: { pretalxSlug: 'devcon7-sea', apiFallback: true },
   test: { pretalxSlug: 'test-devcon-8', slidesQuestionId: 178 },
 }

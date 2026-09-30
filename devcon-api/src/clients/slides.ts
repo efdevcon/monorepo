@@ -3,24 +3,21 @@ import { GoogleApis } from 'googleapis'
 import { planDeckPermissions, type DeckPermission, type PermissionChange } from '@/utils/slides-permissions'
 
 const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
-// Where decks live and what they are copied from. No defaults on purpose: the
-// Devcon 7 folder and template are retired, and a run that has not set these
-// explicitly must fail before touching Drive rather than land decks in the
-// wrong place. Set SLIDES_DRIVE_ID / SLIDES_FOLDER_ID / SLIDES_TEMPLATE_ID in
-// the environment (see sync-pretalx.ts and docs/av/av-stack-overview.md §2d).
+// Which shared drive holds the decks and which deck they are copied from.
+// Common to every event, and read on first use rather than at import: the
+// sync imports this module on every run, including CI runs with the slides
+// passes off, and must not fail there. No defaults on purpose: the Devcon 7
+// ids are retired, and a run that has not set these explicitly fails before
+// touching Drive rather than land decks in the wrong place. The destination
+// folder is per event and comes from the caller (SLIDES_FOLDER_ID_<EVENT>,
+// mapped per instance in utils/config.ts; see docs/av/av-stack-overview.md §2d).
 function requireSlidesEnv(name: string): string {
   const value = process.env[name]
   if (!value) throw new Error(`${name} is not set; the slides pipeline refuses to run without an explicit target`)
   return value
 }
-// Devcon 7
-// const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
-// const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
-// const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
-// Devcon 8
-const DRIVE_ID = requireSlidesEnv('SLIDES_DRIVE_ID')
-const FOLDER_ID = requireSlidesEnv('SLIDES_FOLDER_ID')
-const TEMPLATE_ID = requireSlidesEnv('SLIDES_TEMPLATE_ID')
+const driveId = () => requireSlidesEnv('SLIDES_DRIVE_ID')
+const templateId = () => requireSlidesEnv('SLIDES_TEMPLATE_ID')
 const emailMessage = 'Your Devcon 8 presentation'
 // SLIDES_SKIP_PERMISSIONS=true creates decks without granting speakers access.
 // For test runs against an event that mirrors real talks (test-devcon-8), so
@@ -30,7 +27,7 @@ const skipPermissions = process.env.SLIDES_SKIP_PERMISSIONS === 'true'
 let client: GoogleApis | null = null
 let token: string | null | undefined = undefined
 
-export async function CreateFolders(folders: string[]) {
+export async function CreateFolders(folders: string[], folderId: string) {
   console.log('Create folders', folders)
   if (!client) {
     client = await AuthenticateServiceAccount(SCOPES)
@@ -39,10 +36,10 @@ export async function CreateFolders(folders: string[]) {
 
   for (const folder of folders) {
     const exists = await drive.files.list({
-      q: `name='${folder}' and trashed=false and mimeType='application/vnd.google-apps.folder' and '${FOLDER_ID}' in parents`,
+      q: `name='${folder}' and trashed=false and mimeType='application/vnd.google-apps.folder' and '${folderId}' in parents`,
       corpora: 'drive',
       spaces: 'drive',
-      driveId: DRIVE_ID,
+      driveId: driveId(),
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
     })
@@ -57,7 +54,7 @@ export async function CreateFolders(folders: string[]) {
       requestBody: {
         name: folder,
         mimeType: 'application/vnd.google-apps.folder',
-        parents: [FOLDER_ID],
+        parents: [folderId],
       },
     })
 
@@ -116,10 +113,11 @@ function driveErrorMessage(e: any, what: string): string {
 
 /**
  * Deck for one talk: the existing one when a deck named "[code]" is already
- * in the folder, otherwise a copy of the template, shared with the speakers.
+ * in `folderId` (the event's deck folder), otherwise a copy of the template
+ * placed there and shared with the speakers.
  * Throws with a one-line message on failure; the caller logs it.
  */
-export async function CreatePresentationFromTemplate(title: string, id: string, emails: string[]): Promise<CreatedDeck> {
+export async function CreatePresentationFromTemplate(title: string, id: string, emails: string[], folderId: string): Promise<CreatedDeck> {
   if (!client) {
     client = await AuthenticateServiceAccount(SCOPES)
   }
@@ -128,10 +126,10 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
   let exists
   try {
     exists = await drive.files.list({
-      q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${FOLDER_ID}' in parents`,
+      q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${folderId}' in parents`,
       corpora: 'drive',
       spaces: 'drive',
-      driveId: DRIVE_ID,
+      driveId: driveId(),
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
     })
@@ -144,11 +142,11 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
   let presentationId: string | null | undefined
   try {
     const presentation = await drive.files.copy({
-      fileId: TEMPLATE_ID,
+      fileId: templateId(),
       supportsAllDrives: true,
       requestBody: {
         name: `${title} [${id}]`,
-        parents: [FOLDER_ID],
+        parents: [folderId],
       },
     })
     presentationId = presentation.data.id
@@ -201,7 +199,7 @@ export async function UploadSlides(id: string, buffer: Buffer) {
   }
 }
 
-export async function RunPermissions(title: string, id: string, emails: string[]) {
+export async function RunPermissions(title: string, id: string, emails: string[], folderId: string) {
   if (!client) {
     client = await AuthenticateServiceAccount(SCOPES)
   }
@@ -211,10 +209,10 @@ export async function RunPermissions(title: string, id: string, emails: string[]
   let lastEditor = null
   try {
     const exists = await drive.files.list({
-      q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${FOLDER_ID}' in parents`,
+      q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${folderId}' in parents`,
       corpora: 'drive',
       spaces: 'drive',
-      driveId: DRIVE_ID,
+      driveId: driveId(),
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
       fields: 'files(id, lastModifyingUser)',

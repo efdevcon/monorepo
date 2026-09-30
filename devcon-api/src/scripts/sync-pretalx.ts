@@ -13,18 +13,18 @@ import {
 import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
 import { CreatePresentationFromTemplate, GetDeckActivity, ReconcileDeckPermissions } from '@/clients/slides'
 import { deckIdFromUrl } from '@/utils/slides-permissions'
-import { getPretalxConfig } from '@/utils/config'
+import { eventEnvName, getPretalxConfig } from '@/utils/config'
 
 import fs from 'fs'
 
 const eventId = process.argv[2] || 'devcon-7'
 const config = getPretalxConfig(eventId)
 // Events that may get a Google Slides deck per session (§2d of docs/av). Two
-// gates, both required: this hardcoded allow-list (extend it in a deliberate
-// commit when Devcon 8 goes live; devcon-7 is over and stays out) and the
-// SLIDES_EVENTS env opt-in for the current run. CI sets no SLIDES_* variables,
-// so the sync workflows never create decks by accident.
-const SLIDES_ALLOWED_EVENTS = ['test-devcon-8']
+// gates, both required: this hardcoded allow-list (devcon8 added 2026-09-30;
+// devcon-7 is over and stays out) and the SLIDES_EVENTS env opt-in for the
+// current run. CI sets no SLIDES_* variables, so the sync workflows never
+// create decks by accident.
+const SLIDES_ALLOWED_EVENTS = ['test-devcon-8', 'devcon8']
 const csv = (v: string | undefined) =>
   (v || '')
     .split(',')
@@ -104,9 +104,15 @@ async function main() {
   const slidesOn = SLIDES_EVENTS.includes(eventId) && SLIDES_ALLOWED_EVENTS.includes(eventId)
   if (slidesOn) {
     line(
-      `Slides: on · folder ${tail(process.env.SLIDES_FOLDER_ID)} · template ${tail(process.env.SLIDES_TEMPLATE_ID)} · ` +
+      `Slides: on · folder ${tail(config.SLIDES_FOLDER_ID)} · template ${tail(process.env.SLIDES_TEMPLATE_ID)} · ` +
         `speaker grants ${SLIDES_SKIP_PERMISSIONS ? 'off' : 'on'} · permissions pass ${SLIDES_DRY_RUN ? 'dry run' : 'applying'}` +
         (SLIDES_ONLY_CODES.length ? ` · only ${SLIDES_ONLY_CODES.join(', ')}` : '')
+    )
+    // The folder and the write token are per event: named after the event so a
+    // run can never use another event's. Drive and template are shared.
+    line(
+      `Slides: per-event settings ${eventEnvName('SLIDES_FOLDER_ID', eventId)} (${config.SLIDES_FOLDER_ID ? 'set' : 'MISSING'}) · ` +
+        `${eventEnvName('PRETALX_API_KEY_WRITE', eventId)} (${pretalxWriteToken(config) ? 'set' : 'MISSING'})`
     )
   } else if (SLIDES_EVENTS.includes(eventId)) {
     line(`Slides: off · ${eventId} is not in SLIDES_ALLOWED_EVENTS (${SLIDES_ALLOWED_EVENTS.join(', ')})`)
@@ -124,8 +130,13 @@ async function main() {
   await syncSessions()
 
   if (slidesOn) {
-    if (!pretalxWriteToken()) {
-      problem('Slides: PRETALX_API_KEY_WRITE is not set, so deck links cannot be written to Pretalx; the slides passes did not run')
+    const folderId = config.SLIDES_FOLDER_ID
+    const tokenVar = eventEnvName('PRETALX_API_KEY_WRITE', eventId)
+    const folderVar = eventEnvName('SLIDES_FOLDER_ID', eventId)
+    if (!pretalxWriteToken(config)) {
+      problem(`Slides: ${tokenVar} is not set, so deck links cannot be written to Pretalx; the slides passes did not run`)
+    } else if (!folderId) {
+      problem(`Slides: ${folderVar} is not set, so this event has no deck folder; the slides passes did not run`)
     } else {
       // Every accepted or confirmed submission, scheduled or not: the deck and
       // its link in Pretalx have to exist when the acceptance email goes out,
@@ -135,7 +146,7 @@ async function main() {
       // cleanup check for decks whose talk was declined or withdrawn since.
       const everySubmission = await GetSubmissions({ state: 'any', inclContacts: true }, config)
       const submissions = everySubmission.filter((s: any) => DECK_STATES.includes(s.pretalxState))
-      await createPresentations(submissions)
+      await createPresentations(submissions, folderId)
       await reconcilePermissions(submissions)
       await recordNoGoogleAccounts(submissions)
       await recordDeckActivity(submissions)
@@ -332,7 +343,7 @@ async function syncSessions() {
   )
 }
 
-async function createPresentations(submissions: any[]) {
+async function createPresentations(submissions: any[], folderId: string) {
   heading('Slides: decks')
   const deckQuestion = config.PRETALX_QUESTIONS_SLIDES_DECK
   if (!deckQuestion) {
@@ -367,7 +378,7 @@ async function createPresentations(submissions: any[]) {
     const speakerEmails: string[] = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
     const label = `[${session.sourceId}] ${session.title}`
     try {
-      const deck = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+      const deck = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails, folderId)
       session.resources_presentation = `https://docs.google.com/presentation/d/${deck.id}`
       if (!deck.created) {
         line(`= ${label}: deck already in the folder, URL recorded`)
