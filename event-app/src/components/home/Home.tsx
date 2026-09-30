@@ -3,7 +3,6 @@
 import APP_CONFIG from "@/CONFIG";
 import { AnnouncementsSection } from "../announcements/AnnouncementsSection";
 import { HighlightsCarousel } from "../announcements/HighlightsCarousel";
-import { InstallAppButton } from "../InstallAppButton";
 import { InstallHeroCard } from "../InstallHeroCard";
 import { NotificationsHeroCard } from "./NotificationsHeroCard";
 import { Tickets } from "../Tickets";
@@ -11,6 +10,7 @@ import { CommunityHubsCard } from "./CommunityHubsCard";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { LegalLinks } from "./LegalLinks";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 /**
  * The home page (Figma home redesign): rotating greeting, the install nudge
@@ -23,6 +23,8 @@ import { LegalLinks } from "./LegalLinks";
  * 1312px desktop content box (same pattern as Ticket.tsx / Schedule).
  */
 export function Home() {
+  // Dev preview of the route error page (app/error.tsx).
+  if (usePreviewState() === "crash") throw new Error("previewState=crash");
   return (
     <main className="expand py-6 lg:pb-16">
       <div className="px-4 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
@@ -51,10 +53,6 @@ export function Home() {
               the component is kept, just not rendered. */}
           <div>
             <Tickets />
-            {/* Styled to match SecondaryButton (Buttons.tsx), centered.
-                Phones and tablets only: desktop's install story is the QR
-                on the hero card (Didier, 2026-09-24). */}
-            <InstallAppButton className="mx-auto mt-6 flex w-fit cursor-pointer lg:hidden items-center justify-center gap-2 rounded-full border border-dc-hairline bg-white/80 px-8 py-3.5 text-[16px] font-bold leading-none text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-dc-lavender motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none" />
           </div>
           <LegalLinks />
         </div>

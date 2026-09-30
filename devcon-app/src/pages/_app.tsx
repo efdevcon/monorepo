@@ -18,6 +18,15 @@ import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import router, { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from 'lib/components/ui/dialog'
 import { usePathname } from 'next/navigation'
 import { DataProvider } from 'context/data'
 import { init } from '@socialgouv/matomo-next'
@@ -30,68 +39,71 @@ let matomoAdded = false
 // Re-export for backwards compatibility with other files
 export { initialFilterState, initialSpeakerFilterState }
 
-// Dismissable banner for Devcon 8 prep
-function Devcon8Banner() {
-  const [dismissed, setDismissed] = useState(true) // Start hidden to avoid flash
+// Devcon 8 prep notice. A modal on every full page load, on purpose without
+// any "seen" flag: the old app stays reachable while the new one is built, and
+// each visit should meet the warning. Skipped on the room screens, which are
+// unattended stage displays.
+function Devcon8Notice() {
+  const [open, setOpen] = useState(false) // opens after mount, so server and client render the same
 
   useEffect(() => {
-    const isDismissed = localStorage.getItem('devcon8-banner-dismissed') === 'true'
-    setDismissed(isDismissed)
+    if (window.location.pathname.includes('/room-screens')) return
+    setOpen(true)
+    // An installed app on a phone rarely gets a fresh page load: iOS restores
+    // the page as it was when the app returns to the foreground. Treat a
+    // return after a longer absence as a new visit and show the notice again.
+    const REOPEN_AFTER_MS = 10 * 60 * 1000
+    let hiddenAt = 0
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') hiddenAt = Date.now()
+      else if (hiddenAt && Date.now() - hiddenAt > REOPEN_AFTER_MS) setOpen(true)
+    }
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
-  const handleDismiss = () => {
-    localStorage.setItem('devcon8-banner-dismissed', 'true')
-    setDismissed(true)
-  }
-
-  if (dismissed) return null
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9999] bg-[#7d52f4] text-white px-4 py-2 text-center text-sm flex items-center justify-center gap-2">
-      <span>
-        🚧 We're preparing the app for Devcon 8 in Mumbai — some features may be unavailable or behave unexpectedly.
-      </span>
-      <button
-        onClick={handleDismiss}
-        className="ml-2 hover:opacity-80 font-bold text-lg leading-none"
-        aria-label="Dismiss banner"
-      >
-        ×
-      </button>
-    </div>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-lg p-6">
+        <DialogHeader>
+          <DialogTitle>🚧 Preparing for Devcon 8</DialogTitle>
+          <DialogDescription>
+            We&apos;re getting this app ready for Devcon 8 in Mumbai, so some features may be unavailable or behave
+            unexpectedly. Stay tuned: the new app is coming soon.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <button
+              type="button"
+              className="rounded-md bg-[#7d52f4] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Got it
+            </button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 
-// @ts-ignore
-if (
-  typeof window !== 'undefined' &&
-  'serviceWorker' in navigator &&
-  // @ts-ignore
-  window.workbox !== undefined &&
-  !window.location.pathname.includes('/room-screens')
-) {
-  // @ts-ignore
-  const wb = window.workbox
-
-  const promptNewVersionAvailable = (event: any) => {
-    // `event.wasWaitingBeforeRegister` will be false if this is the first time the updated service worker is waiting.
-    // When `event.wasWaitingBeforeRegister` is true, a previously updated service worker is still waiting.
-    // You may want to customize the UI prompt accordingly.
-    if (confirm('New update downloaded, please refresh.')) {
-      wb.addEventListener('controlling', (event: any) => {
-        window.location.reload()
-      })
-
-      // Send a message to the waiting service worker, instructing it to activate.
-      wb.messageSkipWaiting()
-    } else {
-      console.log(
-        'User rejected to reload the web app, keep using old version. New version will automatically load when user opens the app next time.'
-      )
-    }
-  }
-
-  wb.addEventListener('waiting', promptNewVersionAvailable)
+// Companion of the service worker's activate handler (workbox/index.js): when a
+// new worker cannot reload this page itself, it sends this message instead.
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', (event: MessageEvent) => {
+    if (event.data?.type === 'SW_UPDATED') window.location.reload()
+  })
+  // Browsers only look for a new worker on a real page load, which an
+  // installed app restored from the background never does. Check on every
+  // return to the foreground instead; a new build then reloads via the
+  // worker's activate handler.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return
+    navigator.serviceWorker
+      .getRegistration()
+      .then(registration => registration?.update())
+      .catch(() => undefined)
+  })
 }
 
 const withProviders = (Component: React.ComponentType<AppProps>) => {
@@ -169,7 +181,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Devcon8Banner />
+      <Devcon8Notice />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />

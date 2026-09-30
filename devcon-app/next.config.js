@@ -18,7 +18,7 @@ const nextConfig = {
   // Exclude wallet packages from serverless functions to avoid runtime errors
   serverExternalPackages: [
     '@reown/appkit',
-    '@reown/appkit-wallet', 
+    '@reown/appkit-wallet',
     '@reown/appkit-polyfills',
     '@reown/appkit-adapter-wagmi',
     'wagmi',
@@ -205,11 +205,20 @@ const createConfig = phase => {
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     dynamicStartUrl: false,
-    skipWaiting: false,
+    // Activate a new service worker as soon as it is installed. With waiting
+    // enabled, an installed PWA kept serving the precached previous build until
+    // the user accepted the update prompt or fully closed the app, so a notice
+    // shipped in a new build never reached them. _app.tsx reloads once the new
+    // worker controls the page.
+    skipWaiting: true,
     customWorkerDir: 'workbox',
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
-    buildExcludes: [/media\/.*$/, /\.map$/],
+    // dynamic-css-manifest.json is a Next 15 build artefact at the root of .next
+    // that is never served under /_next/. Precaching it 404s, and Workbox fails
+    // the whole install on one bad response, so installed PWAs silently kept
+    // the previous worker and build (found 2026-09-29).
+    buildExcludes: [/media\/.*$/, /\.map$/, /dynamic-css-manifest\.json$/],
     maximumFileSizeToCacheInBytes: 10000000, // this is important, the default file cache size is low, and it can cause some weird problems if certain files aren't cached
     runtimeCaching: runtimeCache,
     // fallbacks: {

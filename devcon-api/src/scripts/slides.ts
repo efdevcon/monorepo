@@ -1,6 +1,6 @@
 import { GetData } from '@/clients/filesystem'
 import { GetSubmissions } from '@/clients/pretalx'
-import { CreatePresentationFromTemplate, GetSlides, UploadSlides } from '@/clients/slides'
+import { GetSlides, UploadSlides } from '@/clients/slides'
 import { readFileSync, statSync, unlinkSync, writeFileSync } from 'fs'
 import path from 'path'
 
@@ -81,20 +81,6 @@ async function exportSlides() {
         console.log('Skip slides', session.id, buffer?.length)
       }
     }
-  }
-}
-
-async function generateSlides() {
-  console.log('Generate Speaker slides...')
-  const sessions = await GetSubmissions({ inclContacts: true })
-  console.log('# of Submissions', sessions.length)
-
-  for (const session of sessions) {
-    await CreatePresentationFromTemplate(
-      session.title,
-      session.sourceId,
-      session?.speakers.map((i: any) => i.email)
-    )
   }
 }
 

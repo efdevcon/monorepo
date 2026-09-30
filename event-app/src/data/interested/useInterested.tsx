@@ -7,6 +7,14 @@ import { cacheDB } from "../cache/cache-db";
 import { getActiveDataset } from "../dataset";
 import { requestInterestSync } from "./sync";
 
+/** The starred session ids for `eventId`, straight from the store. */
+export async function readInterestedIds(eventId: string): Promise<string[]> {
+  if (!cacheDB) return [];
+  const rows = await cacheDB.interested.where("eventId").equals(eventId).toArray();
+  // Tombstones (unstarred, kept for sync) are not stars.
+  return rows.filter((r) => r.interested !== false).map((r) => r.sessionId);
+}
+
 /**
  * "Interested" session stars. Browser-local user state persisted in the
  * Dexie-backed store (offline-first rule: no parallel localStorage state),
@@ -19,15 +27,7 @@ export function useInterested() {
 
   const { data, mutate } = useSWR(
     ["interested", eventId],
-    async () => {
-      if (!cacheDB) return [] as string[];
-      const rows = await cacheDB.interested
-        .where("eventId")
-        .equals(eventId)
-        .toArray();
-      // Tombstones (unstarred, kept for sync) are not stars.
-      return rows.filter((r) => r.interested !== false).map((r) => r.sessionId);
-    },
+    () => readInterestedIds(eventId),
     { revalidateOnFocus: false }
   );
 

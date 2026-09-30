@@ -10,9 +10,12 @@ dayjs.extend(utc)
 
 const cache = new Map()
 
+export type SubmissionState = 'draft' | 'submitted' | 'accepted' | 'confirmed' | 'rejected' | 'withdrawn' | 'canceled' | 'deleted'
+
 export interface RequestParams {
   inclContacts?: boolean
-  state?: 'confirmed' | 'accepted'
+  /** Submission state(s) to keep (default confirmed); 'any' keeps every state. */
+  state?: SubmissionState | SubmissionState[] | 'any'
 }
 
 export async function GetLastcheduleUpdate(config: PretalxInstanceConfig = PRETALX_CONFIG) {
@@ -71,8 +74,10 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
   // each code to its full speaker object up front.
   const speakerMap = new Map<string, any>(speakers.map((s: any) => [s.code, s]))
 
+  const wanted = params.state ?? 'confirmed'
+  const wantedStates: string[] = wanted === 'any' ? [] : Array.isArray(wanted) ? wanted : [wanted]
   return submissions
-    .filter((i: any) => i.state === (params.state ?? 'confirmed'))
+    .filter((i: any) => wanted === 'any' || wantedStates.includes(i.state))
     .map((i: any) => {
       // Enrich with slot data if available (submissions return slots as ID array)
       if (i.slots && Array.isArray(i.slots) && typeof i.slots[0] === 'number') {
@@ -198,7 +203,7 @@ async function get(slug: string, config: PretalxInstanceConfig) {
   })
 
   if (!response.ok) {
-    throw new Error(`Pretalx API error: ${response.status} ${response.statusText} for ${url}`)
+    throw await writeError(response, `for ${url}`)
   }
 
   const data = await response.json()
@@ -225,7 +230,10 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
   // to name strings, merge with the predefined-tags answer, and de-duplicate.
   let tags: string[] = []
   if (Array.isArray(i.tags)) {
-    tags = i.tags.map((t: any) => (typeof t === 'object' && t ? t.tag ?? t.name?.en ?? String(t.id) : t))
+    tags = i.tags
+      // Organiser-only tags (is_public false) never reach the public data.
+      .filter((t: any) => !(typeof t === 'object' && t && t.is_public === false))
+      .map((t: any) => (typeof t === 'object' && t ? t.tag ?? t.name?.en ?? String(t.id) : t))
   }
   if (predefinedTags) tags = [...tags, ...predefinedTags]
   tags = [...new Set(tags.filter((t) => typeof t === 'string' && t.trim() !== ''))]
@@ -252,6 +260,31 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
       : (i.speakers ?? []).map((i: any) => defaultSlugify(i.name || i.code)),
     eventId: config.eventId,
   }
+
+  // Slides pipeline (docs/av/av-stack-overview.md §2d): the deck URL lives in
+  // a Pretalx question the sync writes, so it is only set when an answer
+  // exists. Absent, the key is left out so a `{...onDisk, ...session}` merge
+  // keeps a URL recorded earlier (devcon-7 predates the question; its decks
+  // are only in the JSON).
+  const slidesDeck = config.PRETALX_QUESTIONS_SLIDES_DECK
+    ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_DECK)?.answer
+    : undefined
+  if (typeof slidesDeck === 'string' && slidesDeck.trim()) session.resources_presentation = slidesDeck.trim()
+  // Internal and personal data: only on contact-bearing reads (the slides
+  // passes), never on the data the sync writes to disk.
+  const noGoogleAccount =
+    params.inclContacts && config.PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT
+      ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT)?.answer
+      : undefined
+  if (typeof noGoogleAccount === 'string' && noGoogleAccount.trim()) session.slidesNoGoogleAccount = noGoogleAccount.trim()
+  const lastEdit =
+    params.inclContacts && config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT
+      ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT)?.answer
+      : undefined
+  if (typeof lastEdit === 'string' && lastEdit.trim()) session.slidesLastEdit = lastEdit.trim()
+  // The Pretalx state, for the slides passes only (accepted vs confirmed, and
+  // decks left behind by declined talks); the public data has no use for it.
+  if (params.inclContacts && typeof i.state === 'string') session.pretalxState = i.state
 
   if (i.slot) {
     session.slot_start = dayjs.utc(i.slot.start).valueOf()
@@ -390,4 +423,70 @@ function arrayify(value: string | undefined) {
       ? value.split(',').map((i) => i.replace(/['"]+/g, '').trim())
       : value.split(' ').map((i) => i.replace(/['"]+/g, '').trim())
     : []
+}
+
+// ── Writes (slides pipeline) ──────────────────────────────────────────────
+// Answers to organiser-managed questions are written with the event's own
+// write token (PRETALX_API_KEY_WRITE_<EVENT> in .env, mapped per instance in
+// utils/config.ts): an organiser token with write scope on that event only.
+// The read token used above cannot create answers. The token is never logged.
+
+/** Set when the sync may write to this event's Pretalx. */
+export function pretalxWriteToken(config: PretalxInstanceConfig = PRETALX_CONFIG): string | undefined {
+  return config.PRETALX_API_KEY_WRITE || undefined
+}
+
+/** Error for a failed write, with the start of Pretalx's response body (its validation messages live there). */
+async function writeError(response: Response, what: string): Promise<Error> {
+  const body = (await response.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300)
+  return new Error(`Pretalx API error: ${response.status} ${response.statusText} ${what}${body ? ` · ${body}` : ''}`)
+}
+
+function writeHeaders(config: PretalxInstanceConfig) {
+  return { Authorization: `Token ${pretalxWriteToken(config)}`, 'Content-Type': 'application/json' }
+}
+
+/**
+ * Set a submission's answer to a question. POST /answers/ is an upsert per
+ * (question, submission) on this Pretalx: re-posting the same value is a
+ * no-op and a changed value replaces the old answer (verified 2026-09-28).
+ */
+export async function UpsertSubmissionAnswer(
+  submissionCode: string,
+  questionId: number,
+  answer: string,
+  config: PretalxInstanceConfig = PRETALX_CONFIG
+) {
+  const url = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/answers/`
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: writeHeaders(config),
+    body: JSON.stringify({ question: questionId, submission: submissionCode, answer }),
+  })
+  if (!response.ok) {
+    throw await writeError(response, `writing question ${questionId} for ${submissionCode}`)
+  }
+}
+
+/**
+ * Remove a submission's answer(s) to a question. Pretalx rejects an empty
+ * answer ("This field may not be blank"), so clearing means deleting.
+ * Returns how many answers were deleted.
+ */
+export async function DeleteSubmissionAnswer(submissionCode: string, questionId: number, config: PretalxInstanceConfig = PRETALX_CONFIG) {
+  const base = `${config.PRETALX_BASE_URI}/events/${config.PRETALX_EVENT_NAME}/answers/`
+  const list = await fetch(`${base}?question=${questionId}&submission=${encodeURIComponent(submissionCode)}`, { headers: writeHeaders(config) })
+  if (!list.ok) {
+    throw await writeError(list, `listing answers to question ${questionId} for ${submissionCode}`)
+  }
+  const data = await list.json()
+  let deleted = 0
+  for (const answer of data?.results ?? []) {
+    const response = await fetch(`${base}${answer.id}/`, { method: 'DELETE', headers: writeHeaders(config) })
+    if (!response.ok) {
+      throw await writeError(response, `deleting answer ${answer.id}`)
+    }
+    deleted++
+  }
+  return deleted
 }

@@ -72,6 +72,11 @@ function parseNocoDbTables(raw: string | undefined): Record<string, string> {
 export interface PretalxInstanceConfig {
   eventId: string
   PRETALX_API_KEY: string | undefined
+  // Organiser token with write scope on this event, for the answers the slides
+  // pipeline writes (clients/pretalx.ts) and for pretalx:release. One token per
+  // event, each scoped to that event's team; its env var carries the event id
+  // as suffix (see eventEnvName) so a run can never pick up another event's.
+  PRETALX_API_KEY_WRITE?: string
   PRETALX_BASE_URI: string
   PRETALX_EVENT_NAME: string
 
@@ -90,6 +95,23 @@ export interface PretalxInstanceConfig {
   PRETALX_QUESTIONS_AUDIENCE?: number
   PRETALX_QUESTIONS_TAGS?: number
   PRETALX_QUESTIONS_KEYWORDS?: number
+
+  // Submission-target questions the Pretalx sync WRITES for the slides
+  // pipeline (docs/av/av-stack-overview.md §2d), with PRETALX_API_KEY_WRITE:
+  // the Google Slides deck URL (url), the list of speaker emails Drive could
+  // not grant silently because they have no Google account (text), and the
+  // deck's edit status from Drive ("untouched" or "edited <date>", text). All
+  // are active but frozen: speakers and organisers see them read-only on the
+  // proposal, only the sync (API) writes them.
+  PRETALX_QUESTIONS_SLIDES_DECK?: number
+  PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT?: number
+  PRETALX_QUESTIONS_SLIDES_LAST_EDIT?: number
+
+  // Shared-drive folder that receives this event's decks (docs/av §2d). Per
+  // event on purpose: test decks and Devcon 8 decks must never share a folder.
+  // The drive and the template deck are common to all events and stay in
+  // SLIDES_DRIVE_ID / SLIDES_TEMPLATE_ID, read in clients/slides.ts.
+  SLIDES_FOLDER_ID?: string
 
   DEFAULT_LIMIT: number
 }
@@ -110,6 +132,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     // PRETALX_QUESTIONS_* IDs below were verified against this instance's
     // question IDs, so speaker social links map correctly.
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    // No write token: Devcon 7 is over and nothing writes to it any more.
     PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'devcon7-sea',
 
@@ -132,6 +155,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
   'test-devcon-8': {
     eventId: 'test-devcon-8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_API_KEY_WRITE: process.env.PRETALX_API_KEY_WRITE_TEST_DEVCON_8,
     PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'test-devcon-8',
 
@@ -145,12 +169,17 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_FEATURED: 175, // "Featured speaker" (organizer-only curation, created 2026-08-27)
     PRETALX_QUESTIONS_EXPERTISE: 156, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 158, // "Which of the following best describes your target audience?"
+    PRETALX_QUESTIONS_SLIDES_DECK: 178, // "Slides deck" (written by the sync; created 2026-09-28)
+    PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 179, // "Slides: no Google account" (written by the sync; created 2026-09-28)
+    PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 180, // "Slides: last edit" (written by the sync; created 2026-09-29)
+    SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_TEST_DEVCON_8,
 
     DEFAULT_LIMIT: 100,
   },
   'devcon8': {
     eventId: 'devcon8',
     PRETALX_API_KEY: process.env.PRETALX_API_KEY_MUMBAI,
+    PRETALX_API_KEY_WRITE: process.env.PRETALX_API_KEY_WRITE_DEVCON8,
     PRETALX_BASE_URI: 'https://cfp.devcon.org/api',
     PRETALX_EVENT_NAME: 'devcon8',
 
@@ -168,6 +197,11 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_TAGS: 146, // "Select 1-3 tags that apply to your talk/workshop."
     // PRETALX_QUESTIONS_FEATURED: TODO — create the "Featured speaker" question
     // on devcon8 (same shape as 175/176) and fill in its id.
+    PRETALX_QUESTIONS_SLIDES_DECK: 181, // "Slides deck" (written by the sync; created 2026-09-30)
+    PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 182, // "Slides: no Google account" (written by the sync; created 2026-09-30)
+    PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 183, // "Slides: last edit" (written by the sync; created 2026-09-30)
+    // The slides passes also need devcon8 in SLIDES_ALLOWED_EVENTS (sync-pretalx.ts).
+    SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_DEVCON8,
 
     DEFAULT_LIMIT: 100,
   },
@@ -185,4 +219,12 @@ export function getPretalxConfig(eventId: string): PretalxInstanceConfig {
 // Reverse lookup: find eventId from pretalx event slug
 export function getEventIdByPretalxSlug(slug: string): string | undefined {
   return Object.values(PRETALX_INSTANCES).find((c) => c.PRETALX_EVENT_NAME === slug)?.eventId
+}
+
+// Per-event secrets in .env carry the event id as suffix, in upper snake case:
+// SLIDES_FOLDER_ID_TEST_DEVCON_8, PRETALX_API_KEY_WRITE_DEVCON8. The values are
+// mapped per instance above; this only builds the name, for messages that tell
+// the operator which variable to set.
+export function eventEnvName(name: string, eventId: string): string {
+  return `${name}_${eventId.toUpperCase().replace(/[^A-Z0-9]/g, '_')}`
 }

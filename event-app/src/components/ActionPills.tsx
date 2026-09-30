@@ -5,6 +5,7 @@ import cn from "classnames";
 import type { ComponentProps, ReactNode } from "react";
 import { usePaneActive } from "@/components/paneContext";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useOnline } from "@/hooks/useOnline";
 import { HeaderActionsPortal } from "@/components/DetailLayer";
 import { HEADER_SEARCH_PANEL_ID } from "@/components/HeaderSearchDrawer";
 import { useInterestPulse, type InterestKind } from "@/data/interested/interestPulse";
@@ -223,6 +224,9 @@ export function HeaderToolbar({
   // Only the visible pill listens: on desktop this bar is display:none and
   // the list toolbar's InterestedPill plays the bubble.
   const [pulse, clearPulse] = useInterestPulse(kind, paneActive && !isDesktop);
+  // Offline, the header's offline icon joins this row: the shorter label
+  // keeps every pill legible at phone widths.
+  const online = useOnline();
   return (
     <HeaderActionsPortal>
       <HeaderPill
@@ -241,7 +245,7 @@ export function HeaderToolbar({
       />
       <HeaderPill
         icon={<Star fill="currentColor" />}
-        label="My Interests"
+        label={online ? "My Interests" : "Interests"}
         active={interestedOnly}
         count={interestedOnly ? interestedCount : undefined}
         countNoun="saved"

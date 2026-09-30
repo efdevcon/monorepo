@@ -1118,7 +1118,7 @@ export function FormRenderer({
                   </p>
                   <p className="pl-7 text-sm text-[#3b3450] leading-5">
                     You don&apos;t need to apply — claim your ticket now at the{' '}
-                    <a href="/en/tickets/store/" className="font-bold text-[#137a3e] underline">
+                    <a href="/en/tickets/store/#community" className="font-bold text-[#137a3e] underline">
                       ticket store
                     </a>
                     . Verify using the same GitHub / wallet and the discount will be detected automatically.

@@ -36,6 +36,7 @@ import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
 import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
+import { RemindersNudgeRow } from "@/components/schedule/RemindersNudgeRow";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
 import { SessionCard } from "./SessionCard";
@@ -50,6 +51,7 @@ import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
 import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
+import { usePreviewState } from "@/hooks/usePreviewState";
 
 type ViewMode = "list" | "timeline";
 
@@ -602,6 +604,7 @@ function ScheduleInner({
   // "My Interests" spans both programmes (see useScheduleState).
   const everySessions = useSessionsOfAllProgrammes();
   const { ids: interestedIds } = useInterested();
+  const preview = usePreviewState();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailRoute("session");
   const {
@@ -632,6 +635,14 @@ function ScheduleInner({
     resultCount,
     anyLive,
   } = useScheduleState(sessions, interestedIds, undefined, everySessions);
+  // Stars that still match a session in this snapshot: a withdrawn talk's
+  // star stays in Dexie, and counting it would promise "saved sessions on
+  // other days" that no day shows. Over every programme, since My Interests
+  // spans them all (useScheduleState).
+  const savedSessionCount = useMemo(
+    () => everySessions.reduce((n, s) => n + (interestedIds.has(s.id) ? 1 : 0), 0),
+    [everySessions, interestedIds]
+  );
 
   // Filter panel shape: the Community Hubs segment drops Tracks/Locations
   // and calls the hub tags "Hubs"; My Interests spanning both programmes
@@ -1492,11 +1503,17 @@ function ScheduleInner({
                 />
               </div>
 
-              {isLoading && sessions.length === 0 ? (
+              {/* My Interests: the standing reminders offer (the third-star
+                  sheet asks only once). Only over a non-empty list. */}
+              {interestedOnly && resultCount > 0 && (
+                <RemindersNudgeRow className="mb-5" />
+              )}
+
+              {preview === "loading" || (isLoading && sessions.length === 0) ? (
                 <ListLoadState kind="schedule" state="loading" />
-              ) : isError ? (
+              ) : preview === "failed" || isError ? (
                 <ListLoadState kind="schedule" state="error" />
-              ) : sessions.length === 0 ? (
+              ) : preview === "unpublished" || sessions.length === 0 ? (
                 // Synced fine, nothing published yet (the app ships before
                 // the schedule does). Distinct from "no results".
                 <ListLoadState kind="schedule" state="unpublished" />
@@ -1507,6 +1524,8 @@ function ScheduleInner({
                 <EmptyState
                   query={search}
                   filtersActive={activeFilterCount > 0}
+                  interestsOnly={interestedOnly && activeFilterCount === 1}
+                  interestedCount={savedSessionCount}
                   onReset={clearFilters}
                 />
               ) : view === "timeline" ? (

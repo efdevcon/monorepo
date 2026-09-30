@@ -22,8 +22,8 @@ const dismissButton =
  * starts with InstallHeroCard: once the app is installed (or in any browser
  * that can push) and the account is signed in, this card asks for
  * notifications until they are on. It is the quiet fallback for everyone the
- * one-time PushOnboardingSheet missed (tapped "Not now", opened the app days
- * later), and it vanishes as soon as push is on, denied, or dismissed here.
+ * one-time PushOnboardingSheet missed (tapped "Not now", or hasn't starred
+ * three sessions yet), and it vanishes as soon as push is on, denied, or dismissed here.
  *
  * Shows only while the push state is exactly "off" and the install card is
  * not on screen: install comes first, always (a context that cannot push,

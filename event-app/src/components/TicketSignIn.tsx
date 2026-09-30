@@ -112,8 +112,9 @@ export function TicketSignIn() {
                 Sign in to the Devcon app
               </h1>
               <p className="text-[16px] leading-6 text-dc-muted">
-                Enter your ticket purchase email to add your tickets, take part
-                in live Q&amp;A, and save your Interests cross-platform.
+                Use your ticket email to add your tickets, join live Q&amp;A,
+                sync your Interests and get notifications. No ticket yet? Any
+                email works for Interests and notifications.
               </p>
             </div>
 

@@ -7,6 +7,8 @@ import { use, useEffect, useRef, useState } from "react";
 import { ArrowLeft, CalendarPlus } from "lucide-react";
 import { closeDetail } from "@/routing/detailRoute";
 import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
+import { DetailSkeleton } from "@/components/Skeletons";
+import { usePreviewState } from "@/hooks/usePreviewState";
 import { ShareButton } from "@/components/ShareButton";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import {
@@ -35,6 +37,7 @@ export default function Session({ params, id: directId }: SessionClientProps) {
   const id = directId ?? use(params!).id;
 
   const { session, isLoading, error } = useSession(id);
+  const preview = usePreviewState();
   // JS fork rather than lg:hidden twins: the two layouts differ in structure
   // and each mounts the Meerkat hooks, which must not run twice.
   const isDesktop = useIsDesktop();
@@ -43,15 +46,18 @@ export default function Session({ params, id: directId }: SessionClientProps) {
     return <div className="p-4 text-dc-muted">Schedule is not enabled</div>;
   }
 
-  if (!session) {
+  const detailPreview =
+    preview === "loading" || preview === "notfound" || preview === "failed" ? preview : null;
+  if (!session || detailPreview) {
     // Loading only while nothing has ever been synced; otherwise the id is
     // unknown (stale link, other dataset) or the first sync failed.
-    if (isLoading) {
-      return <div className="p-4 py-12 text-center font-heading text-dc-muted">Loading session…</div>;
+    if (detailPreview === "loading" || (!detailPreview && isLoading)) {
+      return <DetailSkeleton kind="session" />;
     }
     return (
       <DetailNotFound
-        label={error?.message || "Session not found"}
+        kind="session"
+        failed={detailPreview ? detailPreview === "failed" : Boolean(error)}
         onBack={() => closeDetail("session")}
       />
     );

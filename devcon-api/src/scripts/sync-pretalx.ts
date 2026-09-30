@@ -1,22 +1,30 @@
 import { GetData } from '@/clients/filesystem'
-import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers, getPublishedScheduleVersion } from '@/clients/pretalx'
+import {
+  DeleteSubmissionAnswer,
+  GetLastcheduleUpdate,
+  GetRooms,
+  GetSessions,
+  GetSpeakers,
+  GetSubmissions,
+  UpsertSubmissionAnswer,
+  getPublishedScheduleVersion,
+  pretalxWriteToken,
+} from '@/clients/pretalx'
 import { resolveSpeakerAvatar } from '@/services/avatar-mirror'
-import { CreatePresentationFromTemplate, ReconcileDeckPermissions } from '@/clients/slides'
+import { CreatePresentationFromTemplate, GetDeckActivity, ReconcileDeckPermissions } from '@/clients/slides'
 import { deckIdFromUrl } from '@/utils/slides-permissions'
-import { sendSlidesNoGoogleAccountEmail } from '@/services/email'
-import { SERVER_CONFIG } from '@/utils/config'
-import { getPretalxConfig } from '@/utils/config'
+import { eventEnvName, getPretalxConfig } from '@/utils/config'
 
 import fs from 'fs'
 
 const eventId = process.argv[2] || 'devcon-7'
 const config = getPretalxConfig(eventId)
 // Events that may get a Google Slides deck per session (§2d of docs/av). Two
-// gates, both required: this hardcoded allow-list (extend it in a deliberate
-// commit when Devcon 8 goes live; devcon-7 is over and stays out) and the
-// SLIDES_EVENTS env opt-in for the current run. CI sets no SLIDES_* variables,
-// so the sync workflows never create decks by accident.
-const SLIDES_ALLOWED_EVENTS = ['test-devcon-8']
+// gates, both required: this hardcoded allow-list (devcon8 added 2026-09-30;
+// devcon-7 is over and stays out) and the SLIDES_EVENTS env opt-in for the
+// current run. CI sets no SLIDES_* variables, so the sync workflows never
+// create decks by accident.
+const SLIDES_ALLOWED_EVENTS = ['test-devcon-8', 'devcon8']
 const csv = (v: string | undefined) =>
   (v || '')
     .split(',')
@@ -27,12 +35,6 @@ const SLIDES_EVENTS = csv(process.env.SLIDES_EVENTS)
 // test run touches a handful of talks instead of the whole event.
 const SLIDES_ONLY_CODES = csv(process.env.SLIDES_ONLY_CODES)
 const SLIDES_SKIP_PERMISSIONS = process.env.SLIDES_SKIP_PERMISSIONS === 'true'
-// Speakers whose CFP email has no Google account cannot be reached by Drive's
-// invitation (not delivered in testing), so with this opt-in the sync sends
-// our own email asking for a Google account address. Off by default: a test
-// event mirrors real speakers.
-const SLIDES_NO_ACCOUNT_EMAIL = process.env.SLIDES_NO_ACCOUNT_EMAIL === 'true'
-const SLIDES_CONTACT_EMAIL = process.env.SLIDES_CONTACT_EMAIL || 'speak@devcon.org'
 const SLIDES_DRY_RUN = SLIDES_SKIP_PERMISSIONS || process.env.SLIDES_PERMISSIONS_DRY_RUN === 'true'
 
 // ── Log helpers: one heading per phase, indented detail lines, problems
@@ -64,45 +66,53 @@ const tally = (results: WriteResult[], deleted?: number) => {
   return `created ${n('created')}, updated ${n('updated')}, unchanged ${n('unchanged')}` + (deleted === undefined ? '' : `, deleted ${deleted}`)
 }
 
-const summary = { rooms: 0, sessions: 0, speakers: 0, decksCreated: 0, permissionChanges: 0, noAccountEmails: 0 }
-
-/** A speaker's CFP address has no Google account: tell them what to do, once, when the grant is first attempted. */
-async function notifyNoGoogleAccount(session: any, email: string) {
-  const label = `[${session.sourceId}]`
-  if (!SLIDES_NO_ACCOUNT_EMAIL) {
-    line(`  ${label} ${email} has no Google account; set SLIDES_NO_ACCOUNT_EMAIL=true to email them, or share the deck by hand`)
-    return
-  }
-  if (!SERVER_CONFIG.SMTP_SERVICE) {
-    problem(`${label} ${email} has no Google account and SMTP is not configured, email them by hand`)
-    return
-  }
-  const speaker = session.speakers.find((s: any) => (s.email || '').toLowerCase() === email.toLowerCase())
-  try {
-    const ok = await sendSlidesNoGoogleAccountEmail(email, {
-      speakerName: speaker?.name || 'there',
-      talkTitle: session.title,
-      talkCode: session.sourceId,
-      contactEmail: SLIDES_CONTACT_EMAIL,
-      eventName: config.PRETALX_EVENT_NAME === 'devcon8' ? 'Devcon 8' : `Devcon (${config.PRETALX_EVENT_NAME})`,
-    })
-    if (ok) {
-      summary.noAccountEmails++
-      line(`  ✉ ${label} emailed ${email}: no Google account, asked for one (reply-to ${SLIDES_CONTACT_EMAIL})`)
-    } else problem(`${label} email to ${email} was not accepted by the SMTP server`)
-  } catch (e) {
-    problem(`${label} could not email ${email}: ${(e as Error).message}`)
-  }
+const summary = {
+  rooms: 0,
+  sessions: 0,
+  speakers: 0,
+  decksCreated: 0,
+  permissionChanges: 0,
+  pretalxWrites: 0,
+  noGoogleAccount: 0,
+  decksUntouched: 0,
+  decksEdited: 0,
+  staleDecks: 0,
 }
+
+// Speaker emails Drive could only grant with its invitation email (no Google
+// account), collected per Pretalx code across the deck and permissions passes
+// and written to the internal PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT
+// question afterwards (recordNoGoogleAccounts). This replaced the email the
+// sync used to send: the speaker team reads the field (or the run of show,
+// later) and shares the deck by hand.
+const invitedByCode = new Map<string, Set<string>>()
+// Talks that get a deck: accepted (acceptance email sent, speaker not yet
+// confirmed) and confirmed. Anything else with a deck is flagged for cleanup.
+const DECK_STATES = ['accepted', 'confirmed']
+const noteInvited = (code: string, email: string) => {
+  if (!invitedByCode.has(code)) invitedByCode.set(code, new Set())
+  invitedByCode.get(code)!.add(email.toLowerCase())
+}
+const splitEmails = (value: string | undefined) =>
+  (value || '')
+    .split(/[,\s]+/)
+    .map((s) => s.trim().toLowerCase())
+    .filter(Boolean)
 
 async function main() {
   console.log(`Pretalx sync · ${eventId} (${config.PRETALX_EVENT_NAME} @ ${config.PRETALX_BASE_URI})`)
   const slidesOn = SLIDES_EVENTS.includes(eventId) && SLIDES_ALLOWED_EVENTS.includes(eventId)
   if (slidesOn) {
     line(
-      `Slides: on · folder ${tail(process.env.SLIDES_FOLDER_ID)} · template ${tail(process.env.SLIDES_TEMPLATE_ID)} · ` +
+      `Slides: on · folder ${tail(config.SLIDES_FOLDER_ID)} · template ${tail(process.env.SLIDES_TEMPLATE_ID)} · ` +
         `speaker grants ${SLIDES_SKIP_PERMISSIONS ? 'off' : 'on'} · permissions pass ${SLIDES_DRY_RUN ? 'dry run' : 'applying'}` +
         (SLIDES_ONLY_CODES.length ? ` · only ${SLIDES_ONLY_CODES.join(', ')}` : '')
+    )
+    // The folder and the write token are per event: named after the event so a
+    // run can never use another event's. Drive and template are shared.
+    line(
+      `Slides: per-event settings ${eventEnvName('SLIDES_FOLDER_ID', eventId)} (${config.SLIDES_FOLDER_ID ? 'set' : 'MISSING'}) · ` +
+        `${eventEnvName('PRETALX_API_KEY_WRITE', eventId)} (${pretalxWriteToken(config) ? 'set' : 'MISSING'})`
     )
   } else if (SLIDES_EVENTS.includes(eventId)) {
     line(`Slides: off · ${eventId} is not in SLIDES_ALLOWED_EVENTS (${SLIDES_ALLOWED_EVENTS.join(', ')})`)
@@ -120,9 +130,28 @@ async function main() {
   await syncSessions()
 
   if (slidesOn) {
-    const sessions = await GetSessions({ inclContacts: true }, config)
-    await createPresentations(sessions)
-    await reconcilePermissions(sessions)
+    const folderId = config.SLIDES_FOLDER_ID
+    const tokenVar = eventEnvName('PRETALX_API_KEY_WRITE', eventId)
+    const folderVar = eventEnvName('SLIDES_FOLDER_ID', eventId)
+    if (!pretalxWriteToken(config)) {
+      problem(`Slides: ${tokenVar} is not set, so deck links cannot be written to Pretalx; the slides passes did not run`)
+    } else if (!folderId) {
+      problem(`Slides: ${folderVar} is not set, so this event has no deck folder; the slides passes did not run`)
+    } else {
+      // Every accepted or confirmed submission, scheduled or not: the deck and
+      // its link in Pretalx have to exist when the acceptance email goes out,
+      // before speakers confirm and long before the schedule is released.
+      // Session files only exist for published talks and pick the link up from
+      // the Pretalx answer on the next sync. The unfiltered list serves the
+      // cleanup check for decks whose talk was declined or withdrawn since.
+      const everySubmission = await GetSubmissions({ state: 'any', inclContacts: true }, config)
+      const submissions = everySubmission.filter((s: any) => DECK_STATES.includes(s.pretalxState))
+      await createPresentations(submissions, folderId)
+      await reconcilePermissions(submissions)
+      await recordNoGoogleAccounts(submissions)
+      await recordDeckActivity(submissions)
+      flagStaleDecks(everySubmission)
+    }
   }
   if (eventId === 'devcon-7') {
     createGlossary()
@@ -314,50 +343,82 @@ async function syncSessions() {
   )
 }
 
-async function createPresentations(sessions: any[]) {
+async function createPresentations(submissions: any[], folderId: string) {
   heading('Slides: decks')
+  const deckQuestion = config.PRETALX_QUESTIONS_SLIDES_DECK
+  if (!deckQuestion) {
+    problem('Slides: PRETALX_QUESTIONS_SLIDES_DECK is not configured for this event, no decks created')
+    return
+  }
   const sessionsFs = GetData(`sessions/${eventId}`)
   const inScope = (s: any) => SLIDES_ONLY_CODES.length === 0 || SLIDES_ONLY_CODES.includes(s.sourceId)
-  const todo: { sessionFs: any; session: any }[] = []
+  const todo: any[] = []
   let withDeck = 0
-  for (const sessionFs of sessionsFs) {
-    if (sessionFs.resources_presentation) {
+  for (const session of submissions) {
+    if (!inScope(session)) continue
+    const sessionFs = sessionsFs.find((s: any) => s.id === session.id)
+    // Pretalx is the source of truth; a URL only on disk (decks made before
+    // the question existed) is backfilled into Pretalx by publishDeckLink.
+    const fromPretalx: string | undefined = session.resources_presentation
+    const known = fromPretalx || sessionFs?.resources_presentation
+    if (known) {
       withDeck++
+      session.resources_presentation = known
+      await publishDeckLink(session, sessionFs, fromPretalx, deckQuestion)
       continue
     }
-    const session = sessions.find((s: any) => s.id === sessionFs.id)
-    if (!session) {
-      problem(`session ${sessionFs.id} is on disk but not in the Pretalx data, no deck created`)
-      continue
-    }
-    if (inScope(session)) todo.push({ sessionFs, session })
+    todo.push({ session, sessionFs })
   }
   line(
     `${withDeck} session(s) already have a deck, ${todo.length} to create` +
       (SLIDES_ONLY_CODES.length ? ` (limited to ${SLIDES_ONLY_CODES.join(', ')})` : '')
   )
 
-  for (const { sessionFs, session } of todo) {
+  for (const { session, sessionFs } of todo) {
     const speakerEmails: string[] = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
     const label = `[${session.sourceId}] ${session.title}`
     try {
-      const deck = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
-      const url = `https://docs.google.com/presentation/d/${deck.id}`
-      fs.writeFileSync(`./data/sessions/${eventId}/${sessionFs.id}.json`, JSON.stringify({ ...sessionFs, resources_presentation: url }, null, 2))
+      const deck = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails, folderId)
+      session.resources_presentation = `https://docs.google.com/presentation/d/${deck.id}`
       if (!deck.created) {
-        line(`= ${label}: deck already in the folder, URL recorded ${url}`)
-        continue
+        line(`= ${label}: deck already in the folder, URL recorded`)
+      } else {
+        summary.decksCreated++
+        const grants = deck.skippedPermissions
+          ? 'speaker grants skipped'
+          : `${deck.granted.length} speaker(s) granted` +
+            (deck.invited.length ? `, ${deck.invited.length} invited by Drive email (no Google account)` : '')
+        line(`+ ${label} → ${session.resources_presentation} · ${grants}`)
       }
-      summary.decksCreated++
-      const grants = deck.skippedPermissions
-        ? 'speaker grants skipped'
-        : `${deck.granted.length} speaker(s) granted` + (deck.invited.length ? `, ${deck.invited.length} invited by email (no Google account)` : '')
-      line(`+ ${label} → ${url} · ${grants}`)
-      for (const email of deck.invited) await notifyNoGoogleAccount(session, email)
+      for (const email of deck.invited) noteInvited(session.sourceId, email)
       for (const email of deck.grantFailures) problem(`${label}: could not grant ${email}, share the deck by hand`)
+      await publishDeckLink(session, sessionFs, undefined, deckQuestion)
     } catch (e) {
       problem(`${label}: ${(e as Error).message}`)
     }
+  }
+}
+
+/**
+ * Record a session's deck URL where it is read from: the Pretalx question
+ * (speakers see it read-only; the devcon.org redirect and this sync read it)
+ * and, when the talk is published and has a session file, that JSON too.
+ */
+async function publishDeckLink(session: any, sessionFs: any | undefined, fromPretalx: string | undefined, deckQuestion: number) {
+  const url: string = session.resources_presentation
+  const label = `[${session.sourceId}]`
+  if (fromPretalx !== url) {
+    try {
+      await UpsertSubmissionAnswer(session.sourceId, deckQuestion, url, config)
+      summary.pretalxWrites++
+      line(`  ${label} deck link ${fromPretalx ? 'updated' : 'written'} in Pretalx`)
+    } catch (e) {
+      problem(`${label} could not write the deck link to Pretalx: ${(e as Error).message}`)
+    }
+  }
+  if (sessionFs && sessionFs.resources_presentation !== url) {
+    fs.writeFileSync(`./data/sessions/${eventId}/${sessionFs.id}.json`, JSON.stringify({ ...sessionFs, resources_presentation: url }, null, 2))
+    line(`  ${label} deck link written to the session file`)
   }
 }
 
@@ -367,9 +428,8 @@ async function createPresentations(sessions: any[]) {
 // rules: utils/slides-permissions.ts. It only plans (and prints) unless
 // SLIDES_SKIP_PERMISSIONS is off AND SLIDES_PERMISSIONS_DRY_RUN is not set,
 // so a first run against real decks is a report, not a mutation.
-async function reconcilePermissions(sessions: any[]) {
+async function reconcilePermissions(submissions: any[]) {
   heading(`Slides: permissions${SLIDES_DRY_RUN ? ' (dry run, nothing written)' : ''}`)
-  const sessionsFs = GetData(`sessions/${eventId}`)
   const opts = {
     avGroup: process.env.SLIDES_AV_GROUP || null,
     keep: csv(process.env.SLIDES_KEEP_EMAILS),
@@ -378,12 +438,12 @@ async function reconcilePermissions(sessions: any[]) {
   }
   let decks = 0
   let unreadable = 0
-  for (const sessionFs of sessionsFs) {
-    const deckId = deckIdFromUrl(sessionFs.resources_presentation)
-    if (!deckId) continue
-    const session = sessions.find((s: any) => s.id === sessionFs.id)
-    if (!session) continue
+  for (const session of submissions) {
     if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    // Deck URLs come from Pretalx (or were just created above) — the same
+    // source the redirect page reads, so this pass covers unpublished talks too.
+    const deckId = deckIdFromUrl(session.resources_presentation)
+    if (!deckId) continue
     const speakerEmails: string[] = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
     decks++
     try {
@@ -403,7 +463,7 @@ async function reconcilePermissions(sessions: any[]) {
         const note = c.note ? ` (${c.note})` : ''
         if (c.note?.startsWith('FAILED')) problem(`[${session.sourceId}] ${what}: ${c.note.slice(8)}`)
         else line(`${SLIDES_DRY_RUN ? '?' : '~'} [${session.sourceId}] ${what}${note}`)
-        if (c.action === 'grant-writer' && c.invited) await notifyNoGoogleAccount(session, c.email)
+        if (c.action === 'grant-writer' && c.invited) noteInvited(session.sourceId, c.email)
       }
     } catch (e) {
       unreadable++
@@ -416,14 +476,113 @@ async function reconcilePermissions(sessions: any[]) {
   )
 }
 
+/**
+ * Keep the internal "no Google account" question in step with what Drive told
+ * us: addresses invited in this run are added, addresses no longer on the talk
+ * drop out, and anything an organiser cleared by hand stays cleared unless
+ * Drive invites that address again. Drive has no API signal for "invitation
+ * accepted", so the field is a to-do list for the speaker team, not a status.
+ */
+async function recordNoGoogleAccounts(submissions: any[]) {
+  const question = config.PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT
+  if (!question) {
+    if (invitedByCode.size) {
+      problem(
+        `Slides: ${invitedByCode.size} session(s) have speakers without a Google account, but PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT is not configured for this event`
+      )
+    }
+    return
+  }
+  heading('Slides: speakers without a Google account')
+  let flagged = 0
+  for (const session of submissions) {
+    if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    const speakerEmails = new Set<string>(session.speakers.map((s: any) => (s.email || '').toLowerCase()).filter(Boolean))
+    const current = splitEmails(session.slidesNoGoogleAccount).sort()
+    const kept = current.filter((email) => speakerEmails.has(email))
+    const next = [...new Set([...kept, ...(invitedByCode.get(session.sourceId) ?? [])])].sort()
+    if (next.length) {
+      flagged++
+      summary.noGoogleAccount += next.length
+    }
+    if (next.join(', ') !== current.join(', ')) {
+      try {
+        if (next.length) await UpsertSubmissionAnswer(session.sourceId, question, next.join(', '), config)
+        else await DeleteSubmissionAnswer(session.sourceId, question, config)
+        summary.pretalxWrites++
+        line(
+          `~ [${session.sourceId}] ${
+            next.length ? `${next.length} speaker(s) without a Google account recorded` : 'cleared, every speaker has a Google account now'
+          }`
+        )
+      } catch (e) {
+        problem(`[${session.sourceId}] could not update the no-Google-account field: ${(e as Error).message}`)
+      }
+    }
+  }
+  line(`${flagged} session(s) flagged · share those decks by hand or ask the speaker for a Google account`)
+}
+
+/**
+ * Has the speaker started on the deck? Drive's last modifier is still the
+ * pipeline's own identity until someone edits the content, so each deck gets
+ * "untouched" or "edited <date>" in PRETALX_QUESTIONS_SLIDES_LAST_EDIT, for the
+ * speaker team and the run-of-show export. Only as fresh as the last run.
+ */
+async function recordDeckActivity(submissions: any[]) {
+  const question = config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT
+  if (!question) {
+    problem('Slides: PRETALX_QUESTIONS_SLIDES_LAST_EDIT is not configured for this event, deck activity not recorded')
+    return
+  }
+  heading('Slides: activity')
+  for (const session of submissions) {
+    if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    const deckId = deckIdFromUrl(session.resources_presentation)
+    if (!deckId) continue
+    try {
+      const activity = await GetDeckActivity(deckId)
+      const value = activity.untouched ? 'untouched' : `edited ${(activity.modifiedTime ?? '').slice(0, 10) || 'on an unknown date'}`
+      if (activity.untouched) summary.decksUntouched++
+      else summary.decksEdited++
+      if (session.slidesLastEdit === value) continue
+      await UpsertSubmissionAnswer(session.sourceId, question, value, config)
+      summary.pretalxWrites++
+      line(`~ [${session.sourceId}] ${value}`)
+    } catch (e) {
+      problem(`[${session.sourceId}] could not record the deck activity: ${(e as Error).message}`)
+    }
+  }
+  line(`${summary.decksUntouched} deck(s) untouched · ${summary.decksEdited} edited`)
+}
+
+/**
+ * Decks outlive their talk: a proposal declined, withdrawn or rejected after
+ * its deck was created keeps the deck and the speaker's writer access, and
+ * nothing here deletes files. List them so the team can archive the deck or
+ * revoke access by hand.
+ */
+function flagStaleDecks(everySubmission: any[]) {
+  for (const session of everySubmission) {
+    if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
+    if (DECK_STATES.includes(session.pretalxState) || !deckIdFromUrl(session.resources_presentation)) continue
+    summary.staleDecks++
+    problem(
+      `[${session.sourceId}] talk is ${session.pretalxState} but still has a deck: ${session.resources_presentation} · archive it or revoke access by hand`
+    )
+  }
+}
+
 main()
   .then(() => {
     const secs = ((Date.now() - startedAt) / 1000).toFixed(1)
     console.log(
       `\nDone in ${secs}s · rooms ${summary.rooms} · sessions ${summary.sessions} · speakers ${summary.speakers}` +
         (SLIDES_EVENTS.includes(eventId)
-          ? ` · decks created ${summary.decksCreated} · permission changes ${summary.permissionChanges}` +
-            (summary.noAccountEmails ? ` · no-Google-account emails ${summary.noAccountEmails}` : '')
+          ? ` · decks created ${summary.decksCreated} · permission changes ${summary.permissionChanges} · Pretalx writes ${summary.pretalxWrites}` +
+            (summary.noGoogleAccount ? ` · speakers without a Google account ${summary.noGoogleAccount}` : '') +
+            ` · decks untouched ${summary.decksUntouched}, edited ${summary.decksEdited}` +
+            (summary.staleDecks ? ` · stale decks ${summary.staleDecks}` : '')
           : '')
     )
     if (problems.length) {
