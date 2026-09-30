@@ -126,7 +126,7 @@ ${emailEyebrow('Sanctuary Tech Builders application update')}
                 you may qualify for at the ticket store below.
               </p>
               <div style="text-align: center;">
-                <a href="https://devcon.org/en/tickets/store/" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #ffffff; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
+                <a href="https://devcon.org/en/tickets/store/#community" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #ffffff; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
                   Visit the ticket store
                 </a>
               </div>

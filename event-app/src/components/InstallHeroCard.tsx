@@ -198,8 +198,7 @@ export function InstallHeroCard({
             </p>
           </div>
           {/* Phones and tablets: the install control. Desktop: none; the QR
-              is the whole action (the browser's own install path is still in
-              the bottom-of-page button and the how-to). */}
+              is the whole action. */}
           <PrimaryButton onClick={install} className="w-full shrink-0 lg:hidden">
             <Download className="size-4" />
             Install app

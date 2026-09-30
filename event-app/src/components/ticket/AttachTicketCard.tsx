@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import cn from "classnames";
 import { Loader2, Upload, Users } from "lucide-react";
 import { toast } from "sonner";
@@ -22,7 +22,6 @@ const UNSUPPORTED_PHOTO =
 const CARD = "flex flex-col gap-3 rounded-xl border border-dc-hairline bg-white p-4";
 const TITLE = "text-[16px] font-bold leading-6 text-dc-fg2";
 const BODY = "text-[14px] leading-5 text-dc-fg2";
-const HINT = "text-[12px] leading-4 text-dc-muted";
 const TEXT_LINK =
   "cursor-pointer font-bold text-dc-purple hover:underline disabled:cursor-default disabled:opacity-50";
 
@@ -100,7 +99,7 @@ export type AttachVariant = "none" | "replace";
 const COPY: Record<AttachVariant, { title: string; body: string }> = {
   none: {
     title: "No ticket found for this email",
-    body: "Have your ticket? Upload it: the ticket PDF, the wallet pass (.pkpass), or a screenshot of its QR code.",
+    body: "Have your ticket? Upload the PDF or wallet pass (.pkpass) from your ticket email, or a screenshot of its QR code.",
   },
   replace: {
     title: "Not your ticket?",
@@ -108,50 +107,68 @@ const COPY: Record<AttachVariant, { title: string; body: string }> = {
   },
 };
 
-/** Upload-only prompt: no ticket under this email, or replacing the one shown. */
+/**
+ * Upload-only prompt: no ticket under this email, or replacing the one shown.
+ * Stacked on phones; from lg the copy sits left of a fixed-width upload column
+ * so the CTA never stretches across the desktop panel. `className` lets the
+ * empty state drop the card chrome where it already sits in a white panel.
+ */
 export function AttachTicketCard({
   variant,
   onAttach,
   onCancel,
+  footerEnd,
+  className,
 }: {
   variant: AttachVariant;
   onAttach: (code: string) => Promise<AttachResult>;
   onCancel?: () => void;
+  /** Trailing footer item beside the wrong-email hint (e.g. the purchase link). */
+  footerEnd?: ReactNode;
+  className?: string;
 }) {
   const online = useOnline();
   const { signOut, loading } = useUser();
   const upload = useQrUpload(onAttach);
 
   return (
-    <section className={CARD}>
-      <h2 className={TITLE}>{COPY[variant].title}</h2>
-      <p className={BODY}>{COPY[variant].body}</p>
-      <p className={HINT}>Any of the ticket email attachments works, or a screenshot of the QR code.</p>
-      {upload.input}
-      <PrimaryButton
-        type="button"
-        className="min-h-12 w-full"
-        onClick={upload.open}
-        disabled={upload.busy || !online}
-      >
-        <Upload className="size-4" />
-        {upload.label ?? "Upload your ticket"}
-      </PrimaryButton>
-      {!online && <NeedsConnection what="Attaching a ticket" />}
-      <ErrorLine error={upload.error} />
-      {variant === "none" && (
-        // The most common "no ticket" is simply the wrong sign-in address.
-        <p className={BODY}>
-          Signed in with a different email than the one on your ticket?{" "}
-          <button
+    <section className={cn(CARD, className)}>
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+        <div className="flex flex-col gap-3 lg:max-w-[560px] lg:gap-1">
+          <h2 className={TITLE}>{COPY[variant].title}</h2>
+          <p className={BODY}>{COPY[variant].body}</p>
+        </div>
+        <div className="flex flex-col gap-3 lg:w-[320px] lg:shrink-0 lg:gap-2">
+          {upload.input}
+          <PrimaryButton
             type="button"
-            onClick={signOut}
-            disabled={loading !== false}
-            className={TEXT_LINK}
+            className="min-h-12 w-full"
+            onClick={upload.open}
+            disabled={upload.busy || !online}
           >
-            Sign out and use that one
-          </button>
-        </p>
+            <Upload className="size-4" />
+            {upload.label ?? "Upload your ticket"}
+          </PrimaryButton>
+          {!online && <NeedsConnection what="Attaching a ticket" />}
+          <ErrorLine error={upload.error} />
+        </div>
+      </div>
+      {variant === "none" && (
+        <div className="flex flex-col gap-2 border-t border-dc-hairline pt-4 text-[14px] leading-5 text-dc-muted lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+          {/* The most common "no ticket" is simply the wrong sign-in address. */}
+          <p>
+            Wrong email?{" "}
+            <button
+              type="button"
+              onClick={signOut}
+              disabled={loading !== false}
+              className={TEXT_LINK}
+            >
+              Sign out and use the one on your ticket
+            </button>
+          </p>
+          {footerEnd}
+        </div>
       )}
       {onCancel && (
         <div className="flex items-center justify-end text-[14px] leading-none">

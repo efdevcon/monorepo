@@ -35,7 +35,7 @@ export function TopStrip({ hidden, dismissed = false, label, children }: { hidde
         // Phones: full width 12px under the status bar (the mobile header bar is off on /map); while offline it
         // leaves the top-right corner to the offline marker. Desktop: centred, 15px under the 65px header (shared with the wrench).
         "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
-        !online && "max-lg:right-14",
+        !online && "max-lg:right-[120px]",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
         hidden ? "opacity-0" : "opacity-100",
         dismissed && "max-lg:opacity-0"

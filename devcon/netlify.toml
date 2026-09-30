@@ -48,3 +48,57 @@
   to = "/en/tickets/store/"
   status = 302
   force = true
+
+# Printed QR codes. Matomo params follow the repo convention (campaign = surface,
+# keyword = which code); an optional last segment names where the code is
+# printed and lands in mtm_placement, so one rule per target serves /qr/app,
+# /qr/app/airport, /qr/app/venue, ... 302 so a printed code can be re-pointed.
+# The same pattern lives in src/middleware.ts for local runs and previews.
+[[redirects]]
+  from = "/qr/app"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/app"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/qr/app/:placement"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app&mtm_placement=:placement"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/app/:placement"
+  to = "https://app.devcon.org/?mtm_campaign=qr&mtm_kwd=app&mtm_placement=:placement"
+  status = 302
+  force = true
+
+# Travel guide on devcon.org itself, so these scans show up in the site's Matomo.
+[[redirects]]
+  from = "/qr/guide"
+  to = "/en/travel-guide/?mtm_campaign=qr&mtm_kwd=guide"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/guide"
+  to = "/en/travel-guide/?mtm_campaign=qr&mtm_kwd=guide"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/qr/guide/:placement"
+  to = "/en/travel-guide/?mtm_campaign=qr&mtm_kwd=guide&mtm_placement=:placement"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/:locale/qr/guide/:placement"
+  to = "/en/travel-guide/?mtm_campaign=qr&mtm_kwd=guide&mtm_placement=:placement"
+  status = 302
+  force = true

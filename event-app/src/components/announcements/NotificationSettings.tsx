@@ -35,9 +35,11 @@ export const canOpenNotificationSettings = (push: PushSettings) =>
  * the action it leads to rather than as a preferences drawer.
  */
 export const notificationSettingsLabel = (push: PushSettings) =>
-  push.state === "on" && !!push.prefs?.announcements && !!push.prefs?.reminders
-    ? "Settings"
-    : "Enable notifications";
+  allNotificationsOn(push) ? "Settings" : "Enable notifications";
+
+/** Both switches on (Announcements and Session reminders) on this device. */
+export const allNotificationsOn = (push: PushSettings) =>
+  push.state === "on" && !!push.prefs?.announcements && !!push.prefs?.reminders;
 
 /**
  * Desktop entry to the notification settings, beside the Notifications

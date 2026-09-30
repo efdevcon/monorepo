@@ -5,6 +5,8 @@ import { ArrowLeft } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { closeDetail } from "@/routing/detailRoute";
 import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
+import { DetailSkeleton } from "@/components/Skeletons";
+import { usePreviewState } from "@/hooks/usePreviewState";
 import { ShareButton } from "@/components/ShareButton";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useSpeakersData } from "@/components/speakers/useSpeakersData";
@@ -32,6 +34,7 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
   const id = directId ?? use(params!).id;
 
   const { byId, isLoading, error } = useSpeakersData();
+  const preview = usePreviewState();
   const decorated = byId.get(id) ?? null;
   // JS fork rather than lg:hidden twins: the desktop layout is a different
   // structure (two cards, desktop session cards), not a restyle.
@@ -41,19 +44,18 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
     return <div className="p-4 text-dc-muted">Speakers are not enabled</div>;
   }
 
-  if (!decorated) {
+  const detailPreview =
+    preview === "loading" || preview === "notfound" || preview === "failed" ? preview : null;
+  if (!decorated || detailPreview) {
     // Loading only while nothing has ever been synced; otherwise the id is
     // unknown (stale link, other dataset) or the first sync failed.
-    if (isLoading) {
-      return (
-        <div className="p-4 py-12 text-center font-heading text-dc-muted">
-          Loading speaker…
-        </div>
-      );
+    if (detailPreview === "loading" || (!detailPreview && isLoading)) {
+      return <DetailSkeleton kind="speaker" />;
     }
     return (
       <DetailNotFound
-        label={(error as Error | undefined)?.message || "Speaker not found"}
+        kind="speaker"
+        failed={detailPreview ? detailPreview === "failed" : Boolean(error)}
         onBack={() => closeDetail("speaker")}
       />
     );

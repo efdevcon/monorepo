@@ -275,6 +275,11 @@ function StoreContent({
   const [earlyAccess, setEarlyAccess] = useState<string | null>(null)
   const [earlyAccessEmail, setEarlyAccessEmail] = useState<string | null>(null)
   const [redeemOpen, setRedeemOpen] = useState(false)
+  // Deep link for voucher holders: /tickets/store/#redeem scrolls to the
+  // voucher banner (its id) and opens the redeem modal straight away.
+  useEffect(() => {
+    if (launched && window.location.hash === '#redeem') setRedeemOpen(true)
+  }, [launched])
   const [verifyDiscountOpen, setVerifyDiscountOpen] = useState(false)
 
   // "Parked": the x402 catalog is off (sales run through Pretix's hosted shop),
@@ -720,7 +725,8 @@ function StoreContent({
 
               {/* Voucher redemption also opens at launch — no entry point before. */}
               {launched && (
-                <div className={css['voucher-banner']}>
+                // /tickets/store/#redeem lands here and opens the redeem modal (see the hash effect above).
+                <div className={css['voucher-banner']} id="redeem">
                   <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
                     <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
                   </button>

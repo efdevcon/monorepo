@@ -21,10 +21,12 @@
  * change to main. The script only confirms the Pretalx side (release created
  * + public widget serving it); watch the Actions run for the git commit.
  *
- * Auth: PRETALX_API_KEY_WRITE in .env (the read-only PRETALX_API_KEY can't
- * release). The token is never printed.
+ * Auth: the event's write token, PRETALX_API_KEY_WRITE_<EVENT> in .env and
+ * mapped per event in utils/config.ts (the read-only token can't release).
+ * The token is never printed.
  */
 import 'dotenv/config'
+import { eventEnvName, getEventIdByPretalxSlug, getPretalxConfig } from '@/utils/config'
 
 const BASE = 'https://cfp.devcon.org/api'
 const WIDGET_BASE = 'https://cfp.devcon.org'
@@ -35,9 +37,14 @@ const versionArg = process.argv[2]
 const event = process.argv[3] || 'test-devcon-8'
 const listOnly = versionArg === 'list'
 
-const token = process.env.PRETALX_API_KEY_WRITE
+const eventId = getEventIdByPretalxSlug(event)
+if (!eventId) {
+  console.error(`unknown Pretalx event ${event}; it must be one of the slugs in utils/config.ts`)
+  process.exit(1)
+}
+const token = getPretalxConfig(eventId).PRETALX_API_KEY_WRITE
 if (!token) {
-  console.error('PRETALX_API_KEY_WRITE not set in .env')
+  console.error(`${eventEnvName('PRETALX_API_KEY_WRITE', eventId)} not set in .env`)
   process.exit(1)
 }
 const headers = { Authorization: `Token ${token}`, 'Content-Type': 'application/json' }

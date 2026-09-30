@@ -10,18 +10,74 @@ import {
 } from "./ticket/TicketSections";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { useOnline } from "@/hooks/useOnline";
+import { usePreviewState } from "@/hooks/usePreviewState";
+import { TicketSkeleton } from "./Skeletons";
+
+const purchaseLink = (
+  <p className="mt-3 text-sm text-dc-muted">
+    Don&apos;t have a ticket yet?{" "}
+    <a
+      href="https://devcon.org/tickets"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-bold text-dc-purple underline-offset-2 hover:underline"
+    >
+      Get tickets ↗
+    </a>
+  </p>
+);
+
+/** Full-width key-art banner linking to My Devcon (Figma home redesign):
+ *  signed out it prompts sign-in, signed in with no ticket it prompts the
+ *  attach flow. bg fallback keeps the white text legible if the art
+ *  fails/evicts. */
+function KeyArtBanner({ title, body, cta }: { title: string; body: string; cta: string }) {
+  const { attempt, markFailed } = useRetryOnReconnect();
+  return (
+    <Link
+      href="/ticket"
+      className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl bg-[#160b2b] p-5 transition-shadow duration-150 ease-out hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple lg:h-[243px] lg:p-6"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        // Retries itself when the connection returns; a static asset that
+        // failed while offline otherwise stays blank for the page's life.
+        key={attempt}
+        src="/home/tickets-banner.webp"
+        onError={markFailed}
+        alt=""
+        // Mobile: horizontal crop keeps the moon toward the top-left
+        // (Figma crop ~72% of the art's width). Desktop: lower band
+        // through gateway + bridge. Hover pans the art in gently (the
+        // card itself doesn't scale).
+        className="absolute inset-0 h-full w-full object-cover object-[72%_center] transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 lg:object-[center_88%]"
+      />
+      {/* Mobile-only legibility gradient under the text (Figma 5017:5545) */}
+      <div className="absolute inset-x-0 bottom-0 h-[134px] bg-gradient-to-t from-[rgba(22,11,43,0.9)] to-transparent lg:hidden" />
+      {/* The whole card is the link, so the pill scales on the card's
+          hover/press (group-*) rather than its own. */}
+      <div className="absolute right-6 top-6 flex h-10 items-center rounded-full bg-white/20 px-6 font-heading text-sm font-bold text-dc-purple-fg shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out group-hover:bg-white/30 motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] motion-reduce:transition-none">
+        {cta}
+      </div>
+      <div className="relative [text-shadow:0_2px_4px_rgba(22,11,43,0.4)]">
+        <h3 className="font-heading text-2xl font-extrabold leading-[1.2] tracking-[-0.5px] text-dc-purple-fg">
+          {title}
+        </h3>
+        <p className="mt-1 font-heading text-base leading-6 text-dc-purple-fg">{body}</p>
+      </div>
+    </Link>
+  );
+}
 
 /** Home-page tickets section: signed in it renders the shared My Devcon
  *  layout (TicketSections); signed out it becomes the key-art sign-in banner
  *  from the Figma home redesign. */
 export function Tickets() {
-  const {
-    attempt: bannerAttempt,
-    markFailed: markBannerFailed,
-  } = useRetryOnReconnect();
   const { user } = useUser();
-  const { tickets, primary, prompt, qrCodes, isLoading, isRefreshing, error, refresh } =
+  const { tickets, primary, prompt, qrCodes, isLoading: ticketsLoading, isRefreshing, error, refresh } =
     useTickets();
+  const preview = usePreviewState();
+  const isLoading = ticketsLoading || preview === "loading";
   const online = useOnline();
 
   const hasTickets = tickets.length > 0;
@@ -56,58 +112,17 @@ export function Tickets() {
           yet — never flashes the signed-out banner over their cached
           tickets/QR codes. */}
       {isLoading ? (
-        <p className="text-sm text-dc-muted">Loading tickets…</p>
+        <TicketSkeleton />
       ) : !user ? (
-        /* Signed out: full-width key-art banner prompting sign-in.
-           bg fallback keeps the white text legible if the art fails/evicts. */
+        /* Signed out: full-width key-art banner prompting sign-in. */
         <>
-          <Link
-            href="/ticket"
-            className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl bg-[#160b2b] p-5 transition-shadow duration-150 ease-out hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple lg:h-[243px] lg:p-6"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              // Retries itself when the connection returns; a static asset that
-              // failed while offline otherwise stays blank for the page's life.
-              key={bannerAttempt}
-              src="/home/tickets-banner.webp"
-              onError={markBannerFailed}
-              alt=""
-              // Mobile: horizontal crop keeps the moon toward the top-left
-              // (Figma crop ~72% of the art's width). Desktop: lower band
-              // through gateway + bridge. Hover pans the art in gently (the
-              // card itself doesn't scale).
-              className="absolute inset-0 h-full w-full object-cover object-[72%_center] transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 lg:object-[center_88%]"
-            />
-          {/* Mobile-only legibility gradient under the text (Figma 5017:5545) */}
-          <div className="absolute inset-x-0 bottom-0 h-[134px] bg-gradient-to-t from-[rgba(22,11,43,0.9)] to-transparent lg:hidden" />
-          {/* The whole card is the link, so the pill scales on the card's
-              hover/press (group-*) rather than its own. */}
-          <div className="absolute right-6 top-6 flex h-10 items-center rounded-full bg-white/20 px-6 font-heading text-sm font-bold text-dc-purple-fg shadow-[inset_0_0_1px_rgba(255,255,255,0.66)] backdrop-blur-[1.5px] transition-[scale,background-color] duration-150 ease-out group-hover:bg-white/30 motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] motion-reduce:transition-none">
-            Sign in
-          </div>
-            <div className="relative [text-shadow:0_2px_4px_rgba(22,11,43,0.4)]">
-              <h3 className="font-heading text-2xl font-extrabold leading-[1.2] tracking-[-0.5px] text-dc-purple-fg">
-                Add your tickets to the Devcon app
-              </h3>
-              <p className="mt-1 font-heading text-base leading-6 text-dc-purple-fg">
-                Sign in with your ticket email to unlock the full experience,
-                or with any email to sync Interests and get notifications.
-              </p>
-            </div>
-          </Link>
+          <KeyArtBanner
+            title="Add your tickets to the Devcon app"
+            body="Sign in with your ticket email to unlock the full experience, or with any email to sync Interests and get notifications."
+            cta="Sign in"
+          />
           {/* Keep a purchase path reachable while signed out */}
-          <p className="mt-3 text-sm text-dc-muted">
-            Don&apos;t have a ticket yet?{" "}
-            <a
-              href="https://devcon.org/tickets"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-dc-purple underline-offset-2 hover:underline"
-            >
-              Get tickets ↗
-            </a>
-          </p>
+          {purchaseLink}
         </>
       ) : error && !hasTickets ? (
         <p className="text-sm text-dc-error">
@@ -129,37 +144,17 @@ export function Tickets() {
           </p>
         </div>
       ) : !hasTickets ? (
-        <div className="relative overflow-hidden rounded-xl p-6 text-white">
-          {/* Real banner art from devcon.org/tickets + gradient for legibility */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/tickets-hero.jpg"
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
+        /* Signed in, nothing under this email: the same banner, pointing at
+           the attach flow on My Devcon (ticket bought with another email or
+           by someone else). */
+        <>
+          <KeyArtBanner
+            title="No tickets for this email yet"
+            body="Bought yours with another email, or got it from someone else? Attach it to see its QR code here."
+            cta="Attach ticket"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1b0a45]/90 via-[#1b0a45]/60 to-transparent" />
-          <div className="relative min-w-0">
-            <h3 className="font-heading text-lg font-bold">Welcome!</h3>
-            <p className="mt-1 max-w-xs text-sm text-white/80">
-              We couldn&apos;t find any tickets for your email yet.
-            </p>
-            <a
-              href="https://devcon.org/tickets"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex rounded-full bg-white px-5 py-2.5 font-heading text-sm font-semibold text-dc-purple transition-colors hover:bg-white/90"
-            >
-              Get tickets
-            </a>
-            {/* Ticket bought by someone else: the attach flow lives on the tab. */}
-            <p className="mt-3 text-sm text-white/90">
-              Have your ticket?{" "}
-              <Link href="/ticket" className="font-bold underline underline-offset-2">
-                Attach it on My Devcon
-              </Link>
-            </p>
-          </div>
-        </div>
+          {purchaseLink}
+        </>
       ) : (
         <>
           {/* A failed revalidation must never hide cached tickets/QR codes —
