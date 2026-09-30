@@ -10,6 +10,8 @@ import { usePreviewState } from "@/hooks/usePreviewState";
 import { ShareButton } from "@/components/ShareButton";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useSpeakersData } from "@/components/speakers/useSpeakersData";
+import { ScheduleSourceProvider, storeFor, useScheduleSource } from "@/data/store/schedule-source";
+import { useStoreState } from "@/data/store/use-event-store";
 import {
   SpeakerDetailsContent,
   SpeakerDetailsExpanded,
@@ -29,10 +31,30 @@ interface SpeakerClientProps {
  * from AppHeader (routeChrome); the desktop header has no back slot, so a
  * page-level text back button sits above the two-column card there (PR #112
  * feedback). `params` is kept for direct use as a route page component.
+ *
+ * Which programme: the Speakers pane has no schedule-source provider, so the
+ * join below reads the Pretalx programme by default, and a Community Hub
+ * speaker (only in the hubs store) came up "not found". The programme is
+ * decided from the id itself, not from the URL: the `?hubs=1` a detail link
+ * carries is just the schedule's own query string, and a shared link may
+ * not have it. The page then renders under that source, so the join, the
+ * session cards and their links all read the same store.
  */
 export default function Speaker({ params, id: directId }: SpeakerClientProps) {
   const id = directId ?? use(params!).id;
+  const current = useScheduleSource();
+  const main = useStoreState(storeFor("main"));
+  const hubs = useStoreState(storeFor("hubs"));
+  const source =
+    !main.snapshot.speakerById.has(id) && hubs.snapshot.speakerById.has(id) ? "hubs" : current;
+  return (
+    <ScheduleSourceProvider source={source}>
+      <SpeakerPage id={id} />
+    </ScheduleSourceProvider>
+  );
+}
 
+function SpeakerPage({ id }: { id: string }) {
   const { byId, isLoading, error } = useSpeakersData();
   const preview = usePreviewState();
   const decorated = byId.get(id) ?? null;
