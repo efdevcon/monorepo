@@ -687,7 +687,7 @@ export default function BuilderReviewPage() {
                     <p className="text-sm text-[#7a5a1a] leading-5">
                       They can self-claim this at the{' '}
                       <a
-                        href="/en/tickets/store/"
+                        href="/en/tickets/store/#community"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline font-medium"
