@@ -111,3 +111,70 @@ export function reminderBody(
   const where = roomName ? `, on ${roomName}` : "";
   return `${title} starts in ${minutes} minute${minutes === 1 ? "" : "s"} at ${formatWallClock(startMs, timeZone)}${where}`;
 }
+
+/** What the dispatcher needs to know about a session. Times in ms. */
+export interface ReminderSession {
+  id: string;
+  title: string;
+  startMs: number;
+  roomName?: string;
+}
+
+/** A bundle envelope as devcon-api serves it (Pretalx `/bundle` or `/community-hubs/bundle`). */
+export interface ReminderBundle {
+  data?: {
+    rooms?: { id?: string; name?: string }[];
+    sessions?: {
+      id?: string;
+      title?: string;
+      slot_start?: number | string;
+      slot_roomId?: string;
+    }[];
+  };
+}
+
+/** The bundle serves `slot_start` as a ms number or an ISO string (see normalize.ts). */
+const slotToMs = (v: unknown): number => {
+  if (typeof v === "number") return v;
+  if (typeof v === "string" && v) return new Date(v).getTime() || 0;
+  return 0;
+};
+
+/** Sessions with their start and room name out of one bundle; rows without an id or a start are dropped. */
+export function parseReminderCatalogue(json: ReminderBundle): ReminderSession[] {
+  const roomName = new Map<string, string>();
+  for (const r of json.data?.rooms ?? []) {
+    if (r.id && r.name) roomName.set(r.id, r.name);
+  }
+  const sessions: ReminderSession[] = [];
+  for (const s of json.data?.sessions ?? []) {
+    const startMs = slotToMs(s.slot_start);
+    if (!s.id || !startMs) continue;
+    sessions.push({
+      id: s.id,
+      title: s.title || "Your session",
+      startMs,
+      roomName: s.slot_roomId ? roomName.get(s.slot_roomId) : undefined,
+    });
+  }
+  return sessions;
+}
+
+/**
+ * Both programmes as one catalogue, Pretalx first. Stars carry only the
+ * session id, so the two lists must not collide: hub ids are prefixed with
+ * the hub's slug, Pretalx ids are Pretalx codes or slugs, and a repeat is
+ * the same session twice, which keeps its first entry.
+ */
+export function mergeReminderCatalogues(...lists: ReminderSession[][]): ReminderSession[] {
+  const seen = new Set<string>();
+  const out: ReminderSession[] = [];
+  for (const list of lists) {
+    for (const s of list) {
+      if (seen.has(s.id)) continue;
+      seen.add(s.id);
+      out.push(s);
+    }
+  }
+  return out;
+}

@@ -31,7 +31,15 @@ import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
 import { parseSyncBody } from "../src/data/interested/syncProtocol";
-import { deriveReminders, dueSessions, REMINDER_LEAD_MS, reminderBody, reminderId } from "../src/data/reminders/reminders";
+import {
+  deriveReminders,
+  dueSessions,
+  mergeReminderCatalogues,
+  parseReminderCatalogue,
+  REMINDER_LEAD_MS,
+  reminderBody,
+  reminderId,
+} from "../src/data/reminders/reminders";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -379,6 +387,33 @@ function testPassBarcode() {
   check("photo format: PNG, JPEG and PDF are not", !isUnsupportedPhotoFormat(blob("shot.png", "image/png")) && !isUnsupportedPhotoFormat(blob("p.jpg", "image/jpeg")) && !isUnsupportedPhotoFormat(blob("t.pdf", "application/pdf")));
 }
 
+function testReminderCatalogue() {
+  const main = parseReminderCatalogue({
+    data: {
+      rooms: [{ id: "stage-1", name: "Main Stage" }],
+      sessions: [
+        { id: "X3JSYF", title: "Opening", slot_start: 1_762_160_400_000, slot_roomId: "stage-1" },
+        { id: "iso", title: "ISO start", slot_start: "2026-11-03T10:00:00.000Z", slot_roomId: "nowhere" },
+        { id: "", title: "no id", slot_start: 1 },
+        { id: "unscheduled", title: "no start" },
+      ],
+    },
+  });
+  check("reminder catalogue: rows keep id, start and room name; unscheduled and id-less rows drop", eq(main, [
+    { id: "X3JSYF", title: "Opening", startMs: 1_762_160_400_000, roomName: "Main Stage" },
+    { id: "iso", title: "ISO start", startMs: Date.parse("2026-11-03T10:00:00.000Z"), roomName: undefined },
+  ]));
+  const hubs = parseReminderCatalogue({
+    data: {
+      rooms: [{ id: "community-hub-privacy", name: "Privacy Hub" }],
+      sessions: [{ id: "privacy-s01", title: "Coffee", slot_start: 1_762_160_400_000, slot_roomId: "community-hub-privacy" }],
+    },
+  });
+  const merged = mergeReminderCatalogues(main, hubs, hubs);
+  check("reminder catalogue: hub sessions join the Pretalx ones once, with the hub as their room", merged.length === 3 && merged[2].id === "privacy-s01" && merged[2].roomName === "Privacy Hub");
+  check("reminder catalogue: an unreachable hubs programme is just an empty list", eq(mergeReminderCatalogues(main, []), main));
+}
+
 function testMeerkatHandover() {
   check("meerkat: slug session ids pass", isSessionId("opening-ceremony") && isSessionId("Session_01"));
   check("meerkat: empty, path-like or oversized ids fail", !isSessionId("") && !isSessionId("a/b") && !isSessionId("../x") && !isSessionId("-lead") && !isSessionId("x".repeat(200)));
@@ -469,6 +504,7 @@ async function main() {
   testNormalize();
   testReminders();
   testMeerkatHandover();
+  testReminderCatalogue();
   testIosVersion();
   testPassBarcode();
   testMaterialize();

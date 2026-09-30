@@ -6,7 +6,7 @@ import { Link } from "@/routing";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useSessionReminders } from "@/data/reminders/useSessionReminders";
 import { mergeInboxItems } from "@/data/announcements/inboxItems";
-import { useSessions } from "@/data/hooks";
+import { useSessionsOfAllProgrammes } from "@/data/hooks";
 import { useNowMs } from "@/hooks/useNow";
 import { AnnouncementCard } from "./AnnouncementCard";
 import { ReminderCard } from "./ReminderCard";
@@ -31,8 +31,9 @@ export function AnnouncementsSection() {
   const { announcements } = useAnnouncements();
   const { reminders } = useSessionReminders();
   // Session end times, to drop reminders whose session is over. Event clock
-  // (mockable), like the reminders themselves.
-  const { sessions } = useSessions();
+  // (mockable), like the reminders themselves; both programmes, since hub
+  // sessions get reminders too.
+  const sessions = useSessionsOfAllProgrammes();
   const nowMs = useNowMs(60_000);
 
   const items = useMemo(() => {

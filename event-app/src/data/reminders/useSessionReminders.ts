@@ -3,6 +3,7 @@
 import { useCallback, useMemo } from "react";
 import { useInterested } from "@/data/interested/useInterested";
 import { useSessions } from "@/data/hooks";
+import { useSessionsOfAllProgrammes } from "@/data/hooks";
 import { useNowMs } from "@/hooks/useNow";
 import {
   markSeen,
@@ -25,7 +26,10 @@ import { deriveReminders, type ReminderItem } from "./reminders";
 export function useSessionReminders(options: { enabled?: boolean } = {}) {
   const enabled = options.enabled ?? true;
   const { ids } = useInterested();
-  const { sessions, isLoading } = useSessions();
+  // Both programmes: a star on a Community Hub session earns a reminder like
+  // any other, and this hook runs outside the schedule's source provider.
+  const { isLoading } = useSessions();
+  const sessions = useSessionsOfAllProgrammes();
   const nowMs = useNowMs(60_000);
   const { seenIds, ready } = useSeenIds(enabled);
 
