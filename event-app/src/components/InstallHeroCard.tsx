@@ -166,7 +166,7 @@ export function InstallHeroCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
-          src="/home/install-phones.jpg"
+          src="/home/install-app.jpg"
           onError={markFailed}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
@@ -263,10 +263,10 @@ export function InstallCompactCard() {
       className="flex cursor-pointer overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading transition-colors duration-150 ease-out active:bg-dc-lavender"
     >
       <div className="flex min-w-0 flex-1 flex-col items-start p-4">
-        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+        <h2 className="text-[14px] font-bold leading-5 text-dc-fg2">
           Install the Devcon app
         </h2>
-        <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
+        <p className="mt-0.5 text-[12px] leading-4 text-dc-muted">
           Your schedule, tickets and push notifications, available offline and
           just a few steps away.
         </p>
@@ -275,7 +275,8 @@ export function InstallCompactCard() {
             e.stopPropagation();
             install();
           }}
-          className="mt-5"
+          size="sm"
+          className="mt-4"
         >
           <Download className="size-4" />
           Install app
@@ -288,7 +289,7 @@ export function InstallCompactCard() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
-          src="/home/install-phones.jpg"
+          src="/home/install-app.jpg"
           onError={markFailed}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"

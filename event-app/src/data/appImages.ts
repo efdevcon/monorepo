@@ -49,7 +49,7 @@ export const APP_IMAGES: string[] = [
   // Large — warmed, never precached.
   "/login/backdrop.jpg",
   "/tickets-hero.jpg",
-  "/home/install-phones.jpg",
+  "/home/install-app.jpg",
   "/home/tickets-banner.webp",
   "/home/community-hubs.jpg",
   "/login/signin-keyart.webp",

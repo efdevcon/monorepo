@@ -13,7 +13,7 @@ import { Link } from "@/routing";
  * removes the conflict rather than fighting it.
  */
 const ctaBase =
-  "flex cursor-pointer items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[16px] font-bold leading-none transition-[scale,background-color] duration-150 ease-out motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] disabled:cursor-default disabled:opacity-40 motion-reduce:transition-none";
+  "flex cursor-pointer items-center justify-center rounded-full font-bold leading-none transition-[scale,background-color] duration-150 ease-out motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] disabled:cursor-default disabled:opacity-40 motion-reduce:transition-none";
 
 /**
  * CTAs as links (navigation, not actions). Anchors have no :enabled state,
@@ -23,8 +23,10 @@ const ctaLinkBase =
   "flex cursor-pointer items-center justify-center rounded-full font-bold leading-none transition-[scale,background-color] duration-150 ease-out motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none";
 
 /**
- * `md`: PrimaryButton's 16px label, 32px sides. `sm`: the Figma
- * "Button-Small", 40px tall, 14px label, 24px sides.
+ * `md`: the default 16px label, 32px sides. `sm`: the Figma "Button-Small",
+ * 40px tall, 14px label, 24px sides. Sizing is a prop, not a className
+ * override: `cn` is plain classnames (no tailwind-merge), so a conflicting
+ * px/py/text class passed in loses or wins by stylesheet order.
  */
 type CtaLinkSize = "md" | "sm";
 const ctaLinkSize = (size: CtaLinkSize) =>
@@ -65,13 +67,15 @@ export function GhostLinkButton({ className, ...props }: React.ComponentProps<ty
 /** Solid purple CTA (e.g. "Reset filters"). Darkens ~10% on hover. */
 export function PrimaryButton({
   className,
+  size = "md",
   ...props
-}: React.ComponentProps<"button">) {
+}: React.ComponentProps<"button"> & { size?: CtaLinkSize }) {
   return (
     <button
       {...props}
       className={cn(
         ctaBase,
+        ctaLinkSize(size),
         "bg-dc-purple text-dc-purple-fg enabled:hover:bg-[#6730d5]",
         className
       )}
@@ -82,13 +86,15 @@ export function PrimaryButton({
 /** White bordered CTA (e.g. "Close"). Tints lavender on hover. */
 export function SecondaryButton({
   className,
+  size = "md",
   ...props
-}: React.ComponentProps<"button">) {
+}: React.ComponentProps<"button"> & { size?: CtaLinkSize }) {
   return (
     <button
       {...props}
       className={cn(
         ctaBase,
+        ctaLinkSize(size),
         "border border-dc-hairline bg-white/80 text-dc-fg2 enabled:hover:bg-dc-lavender",
         className
       )}
