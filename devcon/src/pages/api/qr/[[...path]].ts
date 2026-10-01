@@ -16,11 +16,11 @@ import { fetchQrRedirects, normaliseSlug, resolveQr } from 'services/qr-redirect
  * someone who scanned it before.
  *
  * With `?svg` the same URL returns the QR code image to print instead of
- * redirecting (`?svg&download` saves it as a file). The middleware turns that
- * into a `.svg` path (/api/qr/web/ns.svg): Netlify ignores the query string in
- * its cache key, so the image and the redirect must not share a path, and the
- * image itself is never CDN-cached (cheap to make, and its inline and download
- * variants differ only by query). The image encodes the
+ * redirecting (`?svg&download` saves it as a file). The middleware sends those
+ * to /api/qr-image/ (same handler, own path): Netlify ignores the query string
+ * in its cache key, so the image and the redirect must not share a path, and
+ * the image itself is never CDN-cached (cheap to make, and its inline and
+ * download variants differ only by query). The image encodes the
  * short devcon.org/qr/ URL, never the destination, so the printed code keeps
  * working when the row is re-pointed. Only slugs that resolve get an image, so
  * a typo cannot end up on a poster.

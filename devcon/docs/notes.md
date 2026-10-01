@@ -107,9 +107,10 @@ to save it as a file. It encodes the short `/qr/` URL (never the destination),
 error correction Q, 4-module quiet zone, black on white, scalable. Unknown slugs
 get a 404 so a typo cannot be printed. Netlify's Next runtime keys the CDN cache
 on the path and ignores the query string (`netlify-vary: query=__nextDataReq|_rsc`),
-so the middleware rewrites `?svg` to a `.svg` path and the image is served
-`no-store`; otherwise an image request would poison the redirect of that URL
-for a day (seen live on 2026-10-01). Any new query-based variant must follow
-the same rule. Print guidance: at least 2 cm wide for
+so the middleware rewrites `?svg` (and `/qr/x.svg`) to `/api/qr-image/x?svg`
+(same handler, own path; no file extension in the target, which the runtime
+would answer with a visible 308) and the image is served `no-store`; otherwise
+an image request would poison the redirect of that URL for a day (seen live on
+2026-10-01). Any new query-based variant must follow the same rule. Print guidance: at least 2 cm wide for
 hand-held scanning, larger for screens or banners, never invert colours. The old per-target rules in `netlify.toml` were removed on
 2026-10-01; the early-bird QR rule stays.
