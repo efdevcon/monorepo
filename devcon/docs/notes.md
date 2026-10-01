@@ -99,5 +99,12 @@ after a purge (seen in testing). On a NocoDB failure the service
 (`src/services/qr-redirects.ts`) falls back to the last rows it read and then
 to a built-in safety net for the public targets. `/api/qr/refresh/` re-reads
 NocoDB and purges the tag; the NocoDB webhook calls it on every row change, so
-edits go live at once. The old per-target rules in `netlify.toml` were removed on
+edits go live at once.
+
+Printable image: append `?svg` to any resolving QR URL
+(`https://devcon.org/qr/web/ns?svg`) to get the QR code as SVG, `?svg&download`
+to save it as a file. It encodes the short `/qr/` URL (never the destination),
+error correction Q, 4-module quiet zone, black on white, scalable. Unknown slugs
+get a 404 so a typo cannot be printed. Print guidance: at least 2 cm wide for
+hand-held scanning, larger for screens or banners, never invert colours. The old per-target rules in `netlify.toml` were removed on
 2026-10-01; the early-bird QR rule stays.

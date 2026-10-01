@@ -18,9 +18,13 @@ export async function middleware(req: NextRequest) {
   // a NocoDB table (services/qr-redirects.ts) read by /api/qr/, so the request is
   // rewritten there instead of taking the locale redirect first: one hop per
   // scan, and no redirect rule to maintain here or in netlify.toml.
-  const qr = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?qr(?:\/(.*))?$/)
+  // Case-insensitive: a QR may encode the URL in capitals, which scanners
+  // pass through as typed. The query string travels along (?svg = the image).
+  const qr = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?qr(?:\/(.*))?$/i)
   if (qr) {
-    return NextResponse.rewrite(new URL(`/api/qr/${qr[1] ?? ''}`, req.url))
+    const target = new URL(`/api/qr/${qr[1] ?? ''}`, req.url)
+    target.search = req.nextUrl.search
+    return NextResponse.rewrite(target)
   }
 
   if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {
