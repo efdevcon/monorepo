@@ -56,9 +56,9 @@ export function CommunityHubsCard() {
         </div>
 
         <div className="flex min-w-0 flex-col gap-4 p-5 lg:flex-1 lg:p-0">
-          <div className="flex flex-col gap-1">
-            <h3 className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-              Discover Community Hubs in the Devcon app
+          <div className="flex flex-col gap-3 lg:gap-1">
+            <h3 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 lg:leading-[28.8px]">
+              Discover our Community Hubs
             </h3>
             <p className="text-[14px] leading-5 text-dc-muted lg:text-[16px] lg:leading-6">
               Community-run spaces inside Devcon, each with their own focus

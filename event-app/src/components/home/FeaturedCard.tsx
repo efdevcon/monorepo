@@ -104,7 +104,7 @@ export function FeaturedCard() {
   );
 
   const shell = cn(
-    "group relative flex h-[208px] w-full flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 lg:h-60 lg:max-w-[400px]",
+    "group relative flex h-80 w-full flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 lg:h-[280px] lg:max-w-[428px]",
     link &&
       "transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
   );
