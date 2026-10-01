@@ -1,5 +1,6 @@
 import { dipsRouter } from '@/controllers/dips'
 import { eventsRouter } from '@/controllers/events'
+import { communityHubsRouter } from '@/controllers/community-hubs'
 import { rssRouter } from '@/controllers/rss'
 import { sessionsRouter } from '@/controllers/sessions'
 import { speakersRouter } from '@/controllers/speakers'
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 
 router.use(dipsRouter)
 router.use(eventsRouter)
+router.use(communityHubsRouter)
 router.use(rssRouter)
 router.use(sessionsRouter)
 router.use(speakersRouter)

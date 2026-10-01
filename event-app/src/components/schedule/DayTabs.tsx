@@ -6,6 +6,9 @@ import { unreadPill } from "@/components/AppHeader";
 import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 import type { ScheduleDay } from "./utils";
 
+/** Height of the schedule's sticky desktop toolbar (`stackedUnderToolbar`). */
+const DESKTOP_TOOLBAR_H = 65;
+
 /** "Tue, Nov 3" → "Nov 3" for the compact mobile tabs. */
 const shortLabel = (label: string) => label.split(", ")[1] ?? label;
 
@@ -29,9 +32,9 @@ export function DayTabs({
   selectedDay,
   onSelect,
   children,
-  pinnedLead,
   counts,
   raised = false,
+  stackedUnderToolbar = false,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
@@ -44,13 +47,16 @@ export function DayTabs({
   counts?: ReadonlyMap<string, number> | null;
   /** Desktop-only right-hand controls. */
   children?: React.ReactNode;
-  /** Desktop-only control ahead of `children`, shown once the bar is pinned. */
-  pinnedLead?: React.ReactNode;
+  /**
+   * Desktop: the host's 65px toolbar is sticky above this bar (the Speakers
+   * page's two-row stack), so it pins under both instead of the nav alone.
+   */
+  stackedUnderToolbar?: boolean;
   /** Mobile: the app header is hidden — pin at the top of the viewport. */
   raised?: boolean;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const stuck = useStuckUnderHeader(ref);
+  const stuck = useStuckUnderHeader(ref, stackedUnderToolbar ? DESKTOP_TOOLBAR_H : 0);
 
   if (days.length === 0) return null;
 
@@ -58,7 +64,10 @@ export function DayTabs({
     <div
       ref={ref}
       className={cn(
-        "sticky z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:top-[calc(65px+var(--safe-top))] lg:items-center lg:px-4 lg:py-2",
+        "sticky z-20 flex items-stretch justify-between border-b border-dc-hairline bg-dc-lavender lg:items-center lg:px-4 lg:py-2",
+        stackedUnderToolbar
+          ? "lg:top-[calc(130px+var(--safe-top))]"
+          : "lg:top-[calc(65px+var(--safe-top))]",
         // The raise animates on the app header's clock (AppHeader.tsx).
         "transition-[top,padding-top] duration-200 ease-out motion-reduce:transition-none",
         raised
@@ -69,8 +78,7 @@ export function DayTabs({
       )}
     >
       {/* Mobile: the tabs scroll behind a right-edge fade — an abruptly cut
-          tab reads as "no more days" (like the speakers topic pills). The
-          fade belongs to the scroll region, so `trailing` sits past it. */}
+          tab reads as "no more days" (like the speakers topic pills). */}
       <div className="relative flex min-w-0 flex-1 lg:flex-initial">
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-dc-lavender to-transparent lg:hidden" />
         {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone
@@ -106,7 +114,6 @@ export function DayTabs({
       </div>
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          {stuck && pinnedLead}
           {children}
         </div>
       )}

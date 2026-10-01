@@ -71,15 +71,27 @@ export interface DecoratedGroup extends TimeGroup {
  * "Interested" toggle is on — data fetching and shapes are untouched.
  */
 export function useScheduleState(
-  sessions: Session[],
+  programmeSessions: Session[],
   interestedIds?: Set<string>,
   /**
    * Day selection to start from instead of "today" — the schedule passes its
    * pre-navigation snapshot here when the user comes back from a session or
    * speaker details page, so they land on the day they left.
    */
-  initialDay?: { day: string | null; userPickedDay: boolean }
+  initialDay?: { day: string | null; userPickedDay: boolean },
+  /**
+   * Sessions of every programme (Pretalx schedule and Community Hubs). While
+   * the "Interested" toggle is on, the view spans them all: what the attendee
+   * starred, whichever programme the schedule is showing. Days, filter
+   * options and the timeline's rooms follow the wider list.
+   */
+  everyProgrammeSessions?: Session[]
 ) {
+  const [interestedOnly, setInterestedOnly] = useState(false);
+  const sessions =
+    interestedOnly && everyProgrammeSessions
+      ? everyProgrammeSessions
+      : programmeSessions;
   // Ticks every minute so "live"/"soon" status stays current (URL-mockable).
   // `nowDate` is null until the mock (if any) has resolved — day defaulting
   // waits for it so a cached session list can't race ahead with real time.
@@ -106,7 +118,6 @@ export function useScheduleState(
   }, []);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(EMPTY);
-  const [interestedOnly, setInterestedOnly] = useState(false);
 
   // "Jump to now" crosses days: land on the day containing `now` — clamped to
   // the dataset's range (before day 1 → day 1, after the event → last day) —
@@ -161,6 +172,21 @@ export function useScheduleState(
           ? prev[facet].filter((v) => v !== value)
           : [...prev[facet], value],
       };
+    });
+
+  /** Drops every selection not in `allowed` (the panel's visible options). */
+  const retainFilters = (allowed: Record<FilterFacet, string[]>) =>
+    setFilters((prev) => {
+      const next = { ...prev };
+      let changed = false;
+      (Object.keys(prev) as FilterFacet[]).forEach((f) => {
+        const kept = prev[f].filter((v) => allowed[f].includes(v));
+        if (kept.length !== prev[f].length) {
+          next[f] = kept;
+          changed = true;
+        }
+      });
+      return changed ? next : prev;
     });
 
   const clearFilters = () => {
@@ -420,6 +446,7 @@ export function useScheduleState(
     setSearch,
     filters,
     toggleFilter,
+    retainFilters,
     clearFilters,
     activeFilterCount,
     facetFilterCounts,

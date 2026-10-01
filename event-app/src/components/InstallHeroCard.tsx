@@ -184,7 +184,7 @@ export function InstallHeroCard({
       </div>
 
       {/* Copy + CTA: stacked on mobile, one row on desktop. "Devcon app",
-          not APP_NAME: the dev config's "Devcon App v2" read as "…App v2 app".
+          not APP_NAME: the dev config's "Devcon App V1" read as "…App V1 app".
           Desktop adds the phone QR beside the copy. */}
       <div className="flex flex-col gap-4 p-4 lg:flex-1 lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-4">
         <div className="flex min-w-0 flex-1 flex-col gap-4 lg:gap-6">
@@ -199,7 +199,10 @@ export function InstallHeroCard({
           </div>
           {/* Phones and tablets: the install control. Desktop: none; the QR
               is the whole action. */}
-          <PrimaryButton onClick={install} className="w-full shrink-0 lg:hidden">
+          <PrimaryButton
+            onClick={install}
+            className="w-full shrink-0 lg:hidden"
+          >
             <Download className="size-4" />
             Install app
           </PrimaryButton>

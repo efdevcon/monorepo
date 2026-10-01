@@ -5,6 +5,7 @@ export {
   useSessionsBySpeaker,
   useSessionsByTrack,
   useSessionsByDay,
+  useSessionsOfAllProgrammes,
   type SessionFilters,
 } from "./use-sessions";
 
