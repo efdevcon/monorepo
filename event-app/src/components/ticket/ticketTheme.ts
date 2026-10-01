@@ -7,8 +7,8 @@ import type { Ticket, TicketStyle } from "@/data/tickets/types";
  * for the dynamic gradients (Tailwind can't take runtime hexes).
  *
  * Styles: `india` for India-only products, `golden` for early birds /
- * volunteers / speakers / supporters, `devcon` (pink/purple) for everything
- * else. The server can pin a style per Pretix item id (TICKET_STYLE_*_ITEM_IDS,
+ * volunteers / speakers / supporters, `efer` for EFer / EFer Plus One (Figma
+ * 5096-6766/-6861), `devcon` (pink/purple) for everything else. The server can pin a style per Pretix item id (TICKET_STYLE_*_ITEM_IDS,
  * see api/tickets/pretix.ts); otherwise we match item-name keywords below —
  * deliberately NOT the bare word "India", which appears in the main product
  * and swag names (see CLAUDE.md, partner ticket proofs).
@@ -23,8 +23,10 @@ export interface TicketTheme {
   label: string;
   /** Accent gradient (top→bottom) for QR frame borders. */
   accent: string;
-  /** The same accent as SVG stops for the DC8 glyph (Figma userSpace order, bottom→top). */
-  glyphStops: ReadonlyArray<{ offset: number; color: string }>;
+  /** The same accent as SVG stops for the DC8 glyph (Figma userSpace order,
+   *  bottom→top). Absent on `efer`, whose glyph is six flat colour bands
+   *  instead of a gradient (EFER_GLYPH_BANDS in DC8Glyph). */
+  glyphStops?: ReadonlyArray<{ offset: number; color: string }>;
 }
 
 export const TICKET_THEMES: Record<TicketStyle, TicketTheme> = {
@@ -48,6 +50,15 @@ export const TICKET_THEMES: Record<TicketStyle, TicketTheme> = {
       { offset: 0.441129, color: "#FED21F" },
       { offset: 1, color: "#F6B20F" },
     ],
+  },
+  efer: {
+    tint: "#fbf1ee",
+    base: "#fbfafc",
+    label: "#d6644d",
+    // The glyph's six band colours top to bottom. Figma's export only gives
+    // the stroke's first paint (#fbeb74); the stops are read off the render.
+    accent:
+      "linear-gradient(to bottom, #fbeb74, #e18e7d, #6fb075, #9b69a1, #6e7ab4, #50a7ce)",
   },
   india: {
     tint: "#edfcf7",
@@ -77,6 +88,8 @@ export function ticketBottomBackground(theme: TicketTheme): string {
 export const INDIA_FLAG = /\u{1F1EE}\u{1F1F3}/u;
 const INDIA_PRODUCTS = /india resident|indian student|daily india pass/i;
 const GOLDEN_PRODUCTS = /early bird|volunteer|speaker|supporter/i;
+// "EFer" and "EFer Plus One"; word-bounded so it can't hit "Referral" etc.
+const EFER_PRODUCTS = /\befer\b/i;
 
 /** Resolve a ticket's card style: server-pinned `style` wins, then keywords. */
 export function resolveTicketStyle(
@@ -84,6 +97,7 @@ export function resolveTicketStyle(
 ): TicketStyle {
   if (ticket.style) return ticket.style;
   const name = ticket.itemName ?? "";
+  if (EFER_PRODUCTS.test(name)) return "efer";
   if (INDIA_FLAG.test(name) || INDIA_PRODUCTS.test(name)) return "india";
   if (GOLDEN_PRODUCTS.test(name)) return "golden";
   return "devcon";
