@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   res.setHeader('Cache-Control', 'no-store')
   if (req.method !== 'GET') return res.status(405).json({ success: false, error: 'method not allowed' })
   try {
-    const redirects = await fetchQrRedirects(true)
+    const redirects = await fetchQrRedirects()
     try {
       await purgeCache({ tags: [CACHE_TAG] })
     } catch (e) {

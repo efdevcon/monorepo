@@ -92,10 +92,12 @@ in the table.
 Flow: `src/middleware.ts` rewrites `/qr/*` (any locale) to `/api/qr/*`
 (`src/pages/api/qr/[[...path]].ts`), which answers a 302 kept in Netlify's
 durable CDN cache per scanned URL (1 h for a match, 1 min for the fallback)
-under the `qr-redirects` tag; browsers are told not to keep the redirect. The
-service (`src/services/qr-redirects.ts`) adds a one-minute memory cache, falls
-back to the last rows it saw and then to a built-in safety net for the public
-targets, so a scan never depends on NocoDB being up. `/api/qr/refresh/` re-reads
-NocoDB and purges the tag; NocoDB webhooks call it on every row change, so edits
-go live at once. The old per-target rules in `netlify.toml` were removed on
+under the `qr-redirects` tag, no stale-while-revalidate; browsers are told not
+to keep the redirect. Every CDN miss reads NocoDB: there is no memory cache on
+purpose, because an instance holding the old table would refill the CDN with it
+after a purge (seen in testing). On a NocoDB failure the service
+(`src/services/qr-redirects.ts`) falls back to the last rows it read and then
+to a built-in safety net for the public targets. `/api/qr/refresh/` re-reads
+NocoDB and purges the tag; the NocoDB webhook calls it on every row change, so
+edits go live at once. The old per-target rules in `netlify.toml` were removed on
 2026-10-01; the early-bird QR rule stays.

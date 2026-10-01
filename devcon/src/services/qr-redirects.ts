@@ -3,11 +3,13 @@
  * team in a NocoDB table and served by /api/qr/.
  *
  * NocoDB is both the editor and the store: one row per slug, read here with
- * the site's NocoDB token. A scan never waits on anything else. In front of
- * this sit a one-minute memory cache per function instance and the durable
- * CDN cache per scanned URL (see the API route), so a burst of scans reaches
- * NocoDB a handful of times, not once per scan. A NocoDB webhook calls
- * /api/qr/refresh/ on every row change, so edits go live at once.
+ * the site's NocoDB token on every CDN miss. The durable CDN cache per scanned
+ * URL (see the API route) carries the load, so a burst of scans reaches NocoDB
+ * once per URL per hour plus the odd revalidation, not once per scan. There is
+ * deliberately no per-instance memory cache: a NocoDB webhook calls
+ * /api/qr/refresh/ on every row change to purge the CDN, and an instance that
+ * kept the old table in memory would refill the CDN with it for an hour (seen
+ * in testing on 2026-10-01).
  *
  * Server-only: uses NOCODB_BASE_URL, NOCODB_API_TOKEN and NOCODB_QR_TABLE_ID.
  */
@@ -16,8 +18,6 @@
 const SITE_ORIGIN = 'https://devcon.org'
 /** Where unknown or inactive slugs land, so a bad poster never shows an error. */
 const FALLBACK_URL = `${SITE_ORIGIN}/en/`
-/** Module-level cache: a warm function instance skips NocoDB for a minute. */
-const MEMORY_TTL_MS = 60_000
 /** Column titles in the NocoDB table. */
 const COL = { slug: 'Slug', target: 'Target URL', keyword: 'Keyword', active: 'Active', notes: 'Notes' } as const
 
@@ -101,22 +101,22 @@ async function queryNocoDb(): Promise<QrRedirect[]> {
   return rows
 }
 
-let cache: { rows: QrRedirect[]; at: number } | null = null
+/** Last rows this instance read successfully, for the failure path only. */
+let lastGood: QrRedirect[] | null = null
 
 /**
- * The live table for a scan: memory (≤ 1 min old), else NocoDB, else the last
- * rows this instance saw, else the SAFETY_NET. With `force`, NocoDB first.
+ * The live table for a scan: NocoDB, else the last rows this instance read,
+ * else the SAFETY_NET.
  */
-export async function fetchQrRedirects(force = false): Promise<QrRedirect[]> {
-  if (!force && cache && Date.now() - cache.at < MEMORY_TTL_MS) return cache.rows
+export async function fetchQrRedirects(): Promise<QrRedirect[]> {
   try {
     const rows = await queryNocoDb()
-    cache = { rows, at: Date.now() }
+    lastGood = rows
     return rows
   } catch (e) {
-    if (cache) {
-      console.warn('[qr-redirects] serving stale rows after:', (e as Error).message)
-      return cache.rows
+    if (lastGood) {
+      console.warn('[qr-redirects] serving the last good rows after:', (e as Error).message)
+      return lastGood
     }
     console.error('[qr-redirects] serving the safety net after:', (e as Error).message)
     return SAFETY_NET

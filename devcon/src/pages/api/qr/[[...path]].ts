@@ -9,9 +9,10 @@ import { fetchQrRedirects, resolveQr } from 'services/qr-redirects'
  * without a locale prefix) to /api/qr/* so a scan is a single redirect. The
  * 302 is kept in Netlify's durable CDN cache per scanned URL (an hour for a
  * match, a minute for the homepage fallback so a freshly added row shows up
- * quickly) under one tag, which /api/qr/refresh/ purges. Browsers are told not
- * to keep the redirect, so a re-pointed code also works for someone who
- * scanned it before.
+ * quickly) under one tag, which /api/qr/refresh/ purges. No stale-while-
+ * revalidate: a purged or expired entry is never served once more. Browsers
+ * are told not to keep the redirect, so a re-pointed code also works for
+ * someone who scanned it before.
  */
 export const CACHE_TAG = 'qr-redirects'
 
@@ -24,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.setHeader('Netlify-Cache-Tag', CACHE_TAG)
     res.setHeader(
       'Netlify-CDN-Cache-Control',
-      hit.matched ? 'public, durable, s-maxage=3600, stale-while-revalidate=86400' : 'public, durable, s-maxage=60'
+      hit.matched ? 'public, durable, s-maxage=3600' : 'public, durable, s-maxage=60'
     )
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
     res.redirect(302, hit.url)
