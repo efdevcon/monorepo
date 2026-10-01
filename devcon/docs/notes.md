@@ -75,3 +75,27 @@ Open items before the DC8 card is final:
 - The DC8 schedule card always shows the Mumbai date block (per the Figma
   frames); once a schedule is published, decide whether scheduled sessions
   should surface room/time again (`getDay` still maps DC7 dates).
+
+# qr code redirects
+
+`devcon.org/qr/<slug>[/<placement>]` redirects are managed by the team in the
+NocoDB table "QR redirects" (base "QR codes"; table id in the
+`NOCODB_QR_TABLE_ID` env var, read with the site's existing NocoDB token).
+Columns: Slug (path after `/qr/`), Target URL (absolute or a devcon.org path),
+Keyword (Matomo `mtm_kwd`, defaults to the slug's first segment), Active, Notes.
+Anything after the slug in a scanned URL is the placement (`/qr/app/airport` =
+row `app`, placement `airport`) and lands in `mtm_placement`; `mtm_campaign` is
+always `qr`. Unknown or inactive slugs go to the homepage with `mtm_kwd=unknown`.
+Targets that must stay out of the public repo (Pretix voucher links) live only
+in the table.
+
+Flow: `src/middleware.ts` rewrites `/qr/*` (any locale) to `/api/qr/*`
+(`src/pages/api/qr/[[...path]].ts`), which answers a 302 kept in Netlify's
+durable CDN cache per scanned URL (1 h for a match, 1 min for the fallback)
+under the `qr-redirects` tag; browsers are told not to keep the redirect. The
+service (`src/services/qr-redirects.ts`) adds a one-minute memory cache, falls
+back to the last rows it saw and then to a built-in safety net for the public
+targets, so a scan never depends on NocoDB being up. `/api/qr/refresh/` re-reads
+NocoDB and purges the tag; NocoDB webhooks call it on every row change, so edits
+go live at once. The old per-target rules in `netlify.toml` were removed on
+2026-10-01; the early-bird QR rule stays.

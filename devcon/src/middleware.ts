@@ -14,16 +14,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl)
   }
 
-  // Printed QR codes: /qr/<target> with an optional placement segment
-  // (/qr/app/airport, /qr/guide/venue). Netlify serves the same redirects in
-  // production (netlify.toml); this keeps local runs and previews consistent.
-  const qr = normalizedPathname.match(/^\/(?:en\/)?qr\/(app|guide)(?:\/([a-z0-9-]+))?$/)
+  // Printed QR codes: devcon.org/qr/<slug>[/<placement>]. The targets live in
+  // a NocoDB table (services/qr-redirects.ts) read by /api/qr/, so the request is
+  // rewritten there instead of taking the locale redirect first: one hop per
+  // scan, and no redirect rule to maintain here or in netlify.toml.
+  const qr = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?qr(?:\/(.*))?$/)
   if (qr) {
-    const target = qr[1] === 'app' ? new URL('https://app.devcon.org/') : new URL('/en/travel-guide/', req.url)
-    target.searchParams.set('mtm_campaign', 'qr')
-    target.searchParams.set('mtm_kwd', qr[1])
-    if (qr[2]) target.searchParams.set('mtm_placement', qr[2])
-    return NextResponse.redirect(target)
+    return NextResponse.rewrite(new URL(`/api/qr/${qr[1] ?? ''}`, req.url))
   }
 
   if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {
