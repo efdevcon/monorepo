@@ -16,7 +16,11 @@ import { fetchQrRedirects, normaliseSlug, resolveQr } from 'services/qr-redirect
  * someone who scanned it before.
  *
  * With `?svg` the same URL returns the QR code image to print instead of
- * redirecting (`?svg&download` saves it as a file). The image encodes the
+ * redirecting (`?svg&download` saves it as a file). The middleware turns that
+ * into a `.svg` path (/api/qr/web/ns.svg): Netlify ignores the query string in
+ * its cache key, so the image and the redirect must not share a path, and the
+ * image itself is never CDN-cached (cheap to make, and its inline and download
+ * variants differ only by query). The image encodes the
  * short devcon.org/qr/ URL, never the destination, so the printed code keeps
  * working when the row is re-pointed. Only slugs that resolve get an image, so
  * a typo cannot end up on a poster.
@@ -44,8 +48,9 @@ async function qrSvg(url: string): Promise<string> {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const parts = Array.isArray(req.query.path) ? req.query.path : req.query.path ? [req.query.path] : []
-  const path = normaliseSlug(parts.join('/'))
-  const wantsSvg = 'svg' in req.query
+  const joined = parts.join('/')
+  const wantsSvg = /\.svg$/i.test(joined) || 'svg' in req.query
+  const path = normaliseSlug(joined.replace(/\.svg$/i, ''))
   try {
     const rows = await fetchQrRedirects()
     const hit = resolveQr(path, rows)
@@ -63,9 +68,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         'Content-Disposition',
         `${'download' in req.query ? 'attachment' : 'inline'}; filename="${filename}"`
       )
-      res.setHeader('Netlify-Cache-Tag', CACHE_TAG)
-      res.setHeader('Netlify-CDN-Cache-Control', 'public, durable, s-maxage=86400')
-      res.setHeader('Cache-Control', 'public, max-age=3600')
+      res.setHeader('Cache-Control', 'no-store')
       return res.status(200).send(svg)
     }
 

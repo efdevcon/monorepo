@@ -19,11 +19,14 @@ export async function middleware(req: NextRequest) {
   // rewritten there instead of taking the locale redirect first: one hop per
   // scan, and no redirect rule to maintain here or in netlify.toml.
   // Case-insensitive: a QR may encode the URL in capitals, which scanners
-  // pass through as typed. The query string travels along (?svg = the image).
+  // pass through as typed. `?svg` (the printable image) becomes a `.svg` PATH
+  // here: Netlify keys its CDN cache on the rewritten path and ignores the
+  // query string, so the image and the redirect must not share a path.
   const qr = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?qr(?:\/(.*))?$/i)
   if (qr) {
-    const target = new URL(`/api/qr/${qr[1] ?? ''}`, req.url)
-    target.search = req.nextUrl.search
+    const wantsSvg = req.nextUrl.searchParams.has('svg')
+    const target = new URL(`/api/qr/${qr[1] ?? ''}${wantsSvg ? '.svg' : ''}`, req.url)
+    if (req.nextUrl.searchParams.has('download')) target.searchParams.set('download', '')
     return NextResponse.rewrite(target)
   }
 

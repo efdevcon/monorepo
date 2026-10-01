@@ -105,6 +105,11 @@ Printable image: append `?svg` to any resolving QR URL
 (`https://devcon.org/qr/web/ns?svg`) to get the QR code as SVG, `?svg&download`
 to save it as a file. It encodes the short `/qr/` URL (never the destination),
 error correction Q, 4-module quiet zone, black on white, scalable. Unknown slugs
-get a 404 so a typo cannot be printed. Print guidance: at least 2 cm wide for
+get a 404 so a typo cannot be printed. Netlify's Next runtime keys the CDN cache
+on the path and ignores the query string (`netlify-vary: query=__nextDataReq|_rsc`),
+so the middleware rewrites `?svg` to a `.svg` path and the image is served
+`no-store`; otherwise an image request would poison the redirect of that URL
+for a day (seen live on 2026-10-01). Any new query-based variant must follow
+the same rule. Print guidance: at least 2 cm wide for
 hand-held scanning, larger for screens or banners, never invert colours. The old per-target rules in `netlify.toml` were removed on
 2026-10-01; the early-bird QR rule stays.
