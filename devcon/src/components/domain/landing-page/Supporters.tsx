@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import Gnosis from './images/supporters/gnosis.svg'
 import Arkiv from './images/supporters/arkiv.svg'
 import Fluid from './images/supporters/fluid.svg'
+import Kleros from './images/supporters/kleros.svg'
 import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/common/styles'
 import { Reveal } from 'components/common/reveal/Reveal'
 
@@ -12,6 +13,7 @@ const SUPPORTERS = [
   { name: 'Gnosis', Logo: Gnosis },
   { name: 'Arkiv', Logo: Arkiv },
   { name: 'Fluid', Logo: Fluid },
+  { name: 'Kleros', Logo: Kleros },
 ]
 
 export const Supporters = () => {
