@@ -73,7 +73,7 @@ function BellLink({
 
 /**
  * Mobile controls, portaled into the AppHeader's #header-actions target
- * (same pattern as the speakers page): a sign-in circle when signed out, the
+ * (same pattern as the speakers page): a labelled Sign in pill when signed out, the
  * inbox bell when signed in. Desktop renders its own inline controls next to
  * the greeting instead.
  */
@@ -93,10 +93,10 @@ function HeaderAuthActions({ user, unread }: AuthProps) {
         ) : (
           <Link
             href="/ticket"
-            aria-label="Sign in"
-            className="relative flex size-8 items-center justify-center rounded-full border border-dc-hairline bg-white after:absolute after:-inset-1.5 after:content-['']"
+            className="relative flex h-8 items-center gap-1.5 rounded-full border border-dc-hairline bg-white pl-2.5 pr-3 font-heading text-sm font-bold text-dc-fg2 after:absolute after:-inset-1.5 after:content-['']"
           >
             <LogIn className="size-4 text-dc-purple" />
+            Sign in
           </Link>
         ),
         target

@@ -101,7 +101,7 @@ export function Ticket() {
                   Hello!{" "}
                   <span className="break-all text-dc-purple">{user.email}</span>
                 </p>
-                {/* Desktop: labeled pill (mobile uses the header circle). */}
+                {/* Desktop: labeled pill (mobile uses the header pill). */}
                 <button
                   onClick={signOut}
                   disabled={busy}
@@ -129,9 +129,9 @@ export function Ticket() {
 }
 
 /**
- * Sign-out circle portaled into the AppHeader's actions slot — the slot only
- * exists in the mobile bar, so this never shows on desktop. 32px circle per
- * the design; before:-inset-1.5 pads the touch target to 44px (headerCircle
+ * Sign-out pill portaled into the AppHeader's actions slot — the slot only
+ * exists in the mobile bar, so this never shows on desktop. 32px labelled
+ * pill; before:-inset-1.5 pads the touch target to 44px (headerCircle
  * convention) — this is the only sign-out control on mobile and a mis-tap
  * costs a full OTP round-trip.
  */
@@ -154,10 +154,10 @@ function HeaderSignOut({
         <button
           onClick={onSignOut}
           disabled={disabled}
-          aria-label="Sign out"
-          className="relative flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-error bg-white transition-[scale,background-color] duration-150 ease-out before:absolute before:-inset-1.5 before:content-[''] hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
+          className="relative flex h-8 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-dc-error bg-white pl-3 pr-2.5 font-heading text-sm font-semibold text-dc-error transition-[scale,background-color] duration-150 ease-out before:absolute before:-inset-1.5 before:content-[''] hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
         >
-          <LogOut className="size-4 text-dc-error" />
+          Sign out
+          <LogOut className="size-4" />
         </button>,
         target
       )}

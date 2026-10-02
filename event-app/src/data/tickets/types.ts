@@ -1,11 +1,11 @@
 /**
  * Visual treatment of a ticket card (Figma Dev Handoff 5088-*): India-themed
  * products, "golden" tickets (early birds, volunteers, speakers, supporters),
- * or the default Devcon look. Resolved client-side from the item name in
+ * "efer" (EFer / EFer Plus One), or the default Devcon look. Resolved client-side from the item name in
  * `components/ticket/ticketTheme.ts`; the server can pin it per item id via
  * TICKET_STYLE_*_ITEM_IDS env overrides (see api/tickets/pretix.ts).
  */
-export type TicketStyle = "devcon" | "golden" | "india";
+export type TicketStyle = "devcon" | "golden" | "india" | "efer";
 
 /** A swag/add-on item attached to a ticket (e.g. a t-shirt). */
 export interface TicketAddon {

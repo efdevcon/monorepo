@@ -239,7 +239,7 @@ export function TicketSections({
     <section
       className={cn(
         "flex w-full flex-col gap-4",
-        !multiTicket && "lg:min-w-0 lg:flex-1"
+        !multiTicket && "lg:col-start-2 lg:row-start-1 lg:min-w-0"
       )}
     >
       <TicketSectionHeader title="Swag" />
@@ -302,10 +302,15 @@ export function TicketSections({
           {swagSection}
         </>
       ) : (
-        /* Default stretch alignment keeps the two columns — and via h-full on
-           the shelf cards, the cards themselves — the same height. */
-        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
-          <section className="flex w-full flex-col gap-4 lg:w-[400px] lg:shrink-0">
+        /* Desktop grid: row 1 is the ticket column (header + card) beside
+           the swag shelf, and default stretch keeps them — and via h-full on
+           the shelf cards, the cards themselves — the same height. The notes
+           and links under the ticket get their own row 2 in the ticket
+           column, so they never stretch the shelf past the card. On mobile
+           it all stacks in DOM order (ticket, notes, swag); -mt-2 keeps the
+           notes 16px under the card inside the 24px stack. */
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[400px_minmax(0,1fr)] lg:gap-x-8 lg:gap-y-4">
+          <section className="flex w-full flex-col gap-4">
             {ticketHeader}
             {shownTickets.map((ticket) => (
               <EventTicketCard
@@ -316,6 +321,8 @@ export function TicketSections({
                 onQrClick={setModal}
               />
             ))}
+          </section>
+          <div className="-mt-2 flex flex-col gap-4 empty:hidden lg:col-start-1 lg:row-start-2 lg:mt-0">
             {lead?.sharedWith ? (
               // Two accounts on one ticket is allowed; the door decides, so
               // say it here rather than surprise anyone there.
@@ -325,7 +332,7 @@ export function TicketSections({
             ) : null}
             {leadFooter}
             {leadSlot}
-          </section>
+          </div>
           {swagSection}
         </div>
       )}

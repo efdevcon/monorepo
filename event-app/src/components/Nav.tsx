@@ -57,9 +57,9 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     // Mobile tab reads "Me" (Figma tab-bar redesign); desktop keeps the
-    // fuller "Tickets" wording in the header.
+    // fuller "My Devcon" wording in the header.
     href: "/ticket",
-    label: "Tickets",
+    label: "My Devcon",
     short: "Me",
     icon: CircleUserRound,
     enabled: true,

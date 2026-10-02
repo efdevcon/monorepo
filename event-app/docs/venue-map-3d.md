@@ -174,9 +174,9 @@ why the import of the Figma isometric illustration did not work). The flat top-d
   Search, A or Esc close the card then reset; A is not advertised). Debug (desktop only since 2026-09-17; both
   tools are `hidden lg:flex` on phones): the wrench (`DebugToggle`, `left-6 top-[80px]`) toggles
   the tuning panel, drei `<Stats>`, `window.__mapCamera`, `window.__mapHover` and
-  `window.__mapControls` (the OrbitControls instance); the app-wide dev trigger docks under
-  it on `/map` (`appDebugEnabled()` in `components/DebugPanel.tsx`, offsets hardcoded against
-  `DebugCorner`: 136 / 192px).
+  `window.__mapControls` (the OrbitControls instance). The app-wide dev trigger that used to
+  dock under it moved into the EF internal tools on My Devcon (2026-10-02), so the corner
+  holds only the wrench and its panel.
 - **No mobile header bar on `/map`** (2026-09-17): `AppHeader`'s `routeChrome` marks the route
   `bare`, so the 56px glass bar is `hidden` below `lg` and the map runs full-bleed under the
   status bar (`--safe-top`); the desktop nav is unchanged. Hidden, not unmounted: the

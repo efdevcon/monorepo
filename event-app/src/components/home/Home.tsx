@@ -5,18 +5,18 @@ import { AnnouncementsSection } from "../announcements/AnnouncementsSection";
 import { HighlightsCarousel } from "../announcements/HighlightsCarousel";
 import { InstallHeroCard } from "../InstallHeroCard";
 import { NotificationsHeroCard } from "./NotificationsHeroCard";
-import { Tickets } from "../Tickets";
+// import { Tickets } from "../Tickets"; // parked, see note in Home()
 import { CommunityHubsCard } from "./CommunityHubsCard";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
-import { LegalLinks } from "./LegalLinks";
+import { EventInformation } from "./EventInformation";
 import { usePreviewState } from "@/hooks/usePreviewState";
 
 /**
  * The home page (Figma home redesign): rotating greeting, the install nudge
  * (browser visitors only), the featured highlight hero, announcements
- * preview, highlights carousel, tickets, the legal links (same seven as the
- * devcon.org footer), and the "Devcon 8 India" sign-off art.
+ * preview, highlights carousel, Community Hubs, and the Event information
+ * section (essentials, guide disclosures and the legal links).
  *
  * FeaturedCard sits outside the ANNOUNCEMENTS_ENABLED gate on purpose: it owns
  * that check itself and renders nothing when there's no highlight to show. Escapes the 680px `.section` column to the
@@ -51,10 +51,15 @@ export function Home() {
           <CommunityHubsCard />
           {/* HomeFooterArt ("Devcon 8 India") is parked for a design revisit —
               the component is kept, just not rendered. */}
-          <div>
-            <Tickets />
-          </div>
-          <LegalLinks />
+          {/* Tickets section removed from Home: signed in, the event ticket,
+              swag and perks live only on My Devcon (/ticket). The signed-out
+              "Your tickets" sign-in banner is parked pending a decision on
+              whether it goes for good; restore it with:
+              <div>
+                <Tickets />
+              </div>
+          */}
+          <EventInformation />
         </div>
       </div>
     </main>
