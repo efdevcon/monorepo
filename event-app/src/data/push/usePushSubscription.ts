@@ -112,20 +112,36 @@ export function usePushSubscription() {
         setState(sub ? "on" : "off");
         if (!sub) return;
         // Show the cached flags at once (offline too; a subscription from
-        // before the flags existed has the defaults), then refresh them from
-        // the server. Best-effort: signed out, offline or an unknown row
-        // leaves the cached copy.
+        // before the flags existed has the defaults), then ask the server.
         const cached = await readPref<PushPrefs | null>(PREFS_KEY);
-        if (cancelled || prefsRef.current) return;
-        const shown = isPushPrefs(cached) ? cached : DEFAULT_PREFS;
-        prefsRef.current = shown;
-        setPrefsState(shown);
+        if (cancelled) return;
+        if (!prefsRef.current) {
+          const shown = isPushPrefs(cached) ? cached : DEFAULT_PREFS;
+          prefsRef.current = shown;
+          setPrefsState(shown);
+        }
+        // Ownership check, per account: a browser subscription is per
+        // browser, not per account, so after a sign-in with another email the
+        // row behind this endpoint belongs to someone else (or was pruned) and
+        // the prefs route answers 404. For this account the device is then
+        // not subscribed: show "off", and the next switch re-registers the
+        // same browser subscription under this account (the POST upserts by
+        // endpoint). Before this, the UI kept saying "on" and the first switch
+        // hit the PATCH route's 404 as "Unknown subscription" (2026-10-02).
+        // Signed out or offline there is nothing to check: keep the cache.
+        if (!user) return;
         try {
           const res = await fetch("/api/push/subscriptions/prefs", {
             method: "POST",
             headers: { "Content-Type": "application/json", ...(await authHeader()) },
             body: JSON.stringify({ endpoint: sub.endpoint }),
           });
+          if (cancelled) return;
+          if (res.status === 404) {
+            setState("off");
+            setPrefs(null);
+            return;
+          }
           const json = await res.json();
           if (!cancelled && json.success && isPushPrefs(json.data)) setPrefs(json.data);
         } catch {}
@@ -136,7 +152,9 @@ export function usePushSubscription() {
     return () => {
       cancelled = true;
     };
-  }, [setPrefs]);
+    // Re-run on an account switch: the ownership of this browser's
+    // subscription depends on who is signed in.
+  }, [setPrefs, user]);
 
   /**
    * Subscribe this device with the given flags (unset ones take
@@ -277,6 +295,14 @@ export function usePushSubscription() {
           headers: { "Content-Type": "application/json", ...(await authHeader()) },
           body: JSON.stringify({ endpoint: sub.endpoint, prefs: { [kind]: value } }),
         });
+        if (res.status === 404) {
+          // Not this account's row (see the startup check): re-register this
+          // browser subscription here with the requested flag. Permission is
+          // already granted, so subscribe() shows no prompt, and the push
+          // manager hands back the same subscription for the POST to upsert.
+          await subscribe({ [kind]: value });
+          return;
+        }
         const json = await res.json();
         if (!json.success) throw new Error(json.error || "Failed to update notifications");
         setPrefs(isPushPrefs(json.data) ? json.data : { ...current, [kind]: value });
