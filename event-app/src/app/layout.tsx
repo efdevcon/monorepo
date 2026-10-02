@@ -9,7 +9,6 @@ import { IOSViewportHealer } from "@/components/IOSViewportHealer";
 import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
-import { DebugPanel } from "@/components/DebugPanel";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import APP_CONFIG from "@/CONFIG";
@@ -218,7 +217,6 @@ export default function RootLayout({
         </DataProvider>
         <CustomScrollbar />
         <IOSViewportHealer />
-        <DebugPanel />
         <ServiceWorkerUpdater />
         {/* mobileOffset lifts bottom toasts clear of the docked tab bar
             (--nav-clearance: its measured height, 0 where it isn't shown) */}
