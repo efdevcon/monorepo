@@ -86,11 +86,18 @@ function TimelineSession({
         selected && "ring-1 ring-inset ring-dc-purple"
       )}
     >
+      {/* The sticky text column lives in its own flex cell: a sticky box is
+          confined to its containing block, so it can slide right as the lane
+          scrolls but never under the star at the block's end. Without the
+          cell it did exactly that, and being positioned it painted over the
+          button and swallowed its clicks. */}
+      <div className="flex min-w-0 flex-1 items-center">
       <div
         style={{
           left: m.roomCol + padX,
-          // Never wider than the block, nor than the grid area beside the
-          // room column — the slack is what lets the text stay in view.
+          // Never wider than the cell (the block minus the star), nor than
+          // the grid area beside the room column — the slack is what lets
+          // the text stay in view.
           maxWidth: `min(100%, calc(100vw - ${m.roomCol + padX * 2 + 16}px))`,
         }}
         className="sticky flex w-fit min-w-0 flex-col items-start gap-1.5"
@@ -167,8 +174,9 @@ function TimelineSession({
           )}
         </span>
       </div>
-      {/* Desktop only (see above). Sits at the block's right end; the sticky
-          text column shrinks (min-w-0) to make room on short blocks. Inside
+      </div>
+      {/* Desktop only (see above). Sits at the block's right end, outside the
+          text cell, so the sticky column can never cover it. Inside
           the anchor, so the click must not open the session. Hover fill is
           translucent white, not the cards' lavender: blocks come in every
           track colour and the pink clashed with most of them. */}
