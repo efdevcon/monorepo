@@ -3,13 +3,15 @@ import coreDevs from "discounts/core-devs.json"
 import ossContributors from "discounts/oss-contributors.json"
 import pgProjects from "discounts/pg-projects.json"
 import pastAttendees from "discounts/past-attendees.json"
-import { createPublicClient, http } from 'viem'
+import { createPublicClient } from 'viem'
 import { mainnet } from 'viem/chains'
 import { normalize } from 'viem/ens'
+import { getTransport } from 'services/rpc'
 
+// ENS lookups only; shared transport (Alchemy, then Infura, then public RPC).
 const client = createPublicClient({
     chain: mainnet,
-    transport: http(`https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`),
+    transport: getTransport(mainnet.id),
 })
 
 export function GetDiscount(id: string) {
