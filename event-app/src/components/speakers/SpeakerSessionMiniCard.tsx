@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock3, MapPin, Star, User } from "lucide-react";
+import { Clock3, MapPin, Star, Tent, User } from "lucide-react";
 import cn from "classnames";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
@@ -20,10 +20,13 @@ const locationLabel = (session: Session) =>
  * Container"): SessionCard's mobile presentation — 8px track rail, corner
  * FEATURED/track badges — forced at every breakpoint, since the 360px panel
  * renders at desktop widths. The star toggles the session's "Interested"
- * state (session ids, not speaker ids) without navigating.
+ * state (session ids, not speaker ids) without navigating. Hub sessions keep
+ * SessionCard's hub grammar too (rail on the right, round pill with the tent),
+ * so a reminder on Home reads like the same session in the inbox.
  */
 export function SpeakerSessionMiniCard({ session }: { session: Session }) {
   const theme = getTrackTheme(session.track, session.room?.id);
+  const hub = theme.isHub === true;
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
@@ -32,13 +35,18 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
     <DetailLink
       kind="session"
       id={session.id}
-      className="group relative flex gap-4 overflow-clip rounded-lg border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:border-dc-purple/40"
+      className={cn(
+        "group relative flex gap-4 overflow-clip rounded-lg border border-dc-hairline bg-white transition-colors duration-150 ease-out hover:border-dc-purple/40",
+        // Hub cards: the rail sits on the right, so the text gets its own inset.
+        hub && "pl-4"
+      )}
     >
-      {/* 8px track-colored accent rail */}
+      {/* 8px track-colored accent rail (right-hand for hub sessions) */}
       <div
         className={cn(
           "w-2 shrink-0 self-stretch",
-          theme.neutral && "border-r border-dc-hairline bg-white"
+          theme.neutral && "border-r border-dc-hairline bg-white",
+          hub && "order-last rounded-r-[4px]"
         )}
         style={theme.neutral ? undefined : { backgroundColor: theme.color }}
       />
@@ -95,18 +103,28 @@ export function SpeakerSessionMiniCard({ session }: { session: Session }) {
 
       {/* Absolute corner badges (mobile SessionCard grammar) */}
       {featured && (
-        <span className="absolute right-0 top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg">
+        <span
+          className={cn(
+            "absolute top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+            hub ? "right-2" : "right-0"
+          )}
+        >
           Featured
         </span>
       )}
       <span
         className={cn(
-          "absolute bottom-2 right-2 rounded-[2px] px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+          "absolute bottom-2 px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
+          // Hub cards: round pill + tent, 8px clear of the right-hand rail.
+          hub
+            ? "right-4 flex items-center gap-1 rounded-full border border-dc-hairline"
+            : "right-2 rounded-[2px]",
           theme.neutral && "border border-dc-hairline bg-white"
         )}
         style={theme.neutral ? undefined : { backgroundColor: theme.color }}
       >
         {trackBadgeLabel(session.track, session.room?.id)}
+        {hub && <Tent className="size-2.5 shrink-0" aria-hidden />}
       </span>
     </DetailLink>
   );
