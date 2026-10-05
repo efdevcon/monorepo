@@ -36,19 +36,35 @@ type LogoEntry = { name: string; aspect?: number } & (
   | { image: StaticImageData; Logo?: never }
 )
 
-const SUPPORTERS: LogoEntry[] = [
-  { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
-  { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
-  { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
-  { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
-  { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
-  { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
-  { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
-  { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
-  { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
-  { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
-  { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
-  { name: 'World', Logo: World, aspect: 317 / 80 },
+// Explicit rows: Fluid + Base (equal-area sizing), then Arkiv, Gnosis and Kleros
+// at a fixed 44px, then the rest at 36px wrapping (max-w gives 4 + 3 on desktop).
+const SUPPORTER_ROWS: { height?: number; logos: LogoEntry[] }[] = [
+  {
+    logos: [
+      { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
+      { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
+    ],
+  },
+  {
+    height: 44,
+    logos: [
+      { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
+      { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
+      { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
+    ],
+  },
+  {
+    height: 36,
+    logos: [
+      { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
+      { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
+      { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
+      { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
+      { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
+      { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
+      { name: 'World', Logo: World, aspect: 317 / 80 },
+    ],
+  },
 ]
 
 const IMPACT_HUBS: LogoEntry[] = [
@@ -65,10 +81,22 @@ const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80 },
 ]
 
-const LogoList = ({ logos, k, cap, className }: { logos: LogoEntry[]; k: number; cap: number; className: string }) => (
+const LogoList = ({
+  logos,
+  k,
+  cap,
+  height,
+  className,
+}: {
+  logos: LogoEntry[]
+  k: number
+  cap: number
+  height?: number
+  className: string
+}) => (
   <ul className={`flex flex-wrap items-center justify-center ${className}`}>
     {logos.map(({ name, Logo, image, aspect }) => {
-      const h = Math.round(Math.min(cap, k / Math.sqrt(image ? image.width / image.height : aspect!)))
+      const h = height ?? Math.round(Math.min(cap, k / Math.sqrt(image ? image.width / image.height : aspect!)))
       const logoClass = 'w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]'
       return (
         <li key={name} className="flex" style={{ '--h': `${h}px` } as React.CSSProperties}>
@@ -93,12 +121,18 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <LogoList
-          logos={SUPPORTERS}
-          k={96}
-          cap={56}
-          className="gap-x-[32px] gap-y-[24px] sm:gap-x-[56px] sm:gap-y-[40px] max-w-[1000px]"
-        />
+        <div className="flex flex-col items-center gap-[24px] sm:gap-[40px]">
+          {SUPPORTER_ROWS.map(({ height, logos }, i) => (
+            <LogoList
+              key={i}
+              logos={logos}
+              height={height}
+              k={96}
+              cap={56}
+              className="gap-x-[32px] gap-y-[24px] sm:gap-x-[56px] sm:gap-y-[40px] max-w-[1000px]"
+            />
+          ))}
+        </div>
 
         <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px]">
           <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
