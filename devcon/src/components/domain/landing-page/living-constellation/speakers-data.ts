@@ -2,7 +2,7 @@ import type { ConstellationSpeaker } from './types'
 import { SPEAKER_ALLOWLIST, allowlistId } from './speakers-allowlist'
 import { PULLED_SPEAKERS } from './speakers.generated'
 
-// Joins the hand-curated allowlist (order, title, colour, overrides) with the
+// Joins the hand-curated allowlist (order, title, bio, overrides) with the
 // Pretalx-pulled profile data (name, organization, X handle, portrait). The
 // home page is statically generated, so a stale generated file fails the
 // build here instead of shipping a hole in the ring.
@@ -25,7 +25,6 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = SPEAKER_ALLOWLIST.
     name,
     title: entry.title,
     company,
-    color: entry.color,
     image: pulled.image,
     ...(xHandle ? { xHandle } : {}),
     ...(track ? { track } : {}),
