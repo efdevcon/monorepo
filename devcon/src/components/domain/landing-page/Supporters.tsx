@@ -36,10 +36,15 @@ type LogoEntry = { name: string; aspect?: number } & (
   | { image: StaticImageData; Logo?: never }
 )
 
-// Explicit rows: Fluid + Base (equal-area sizing), then Arkiv, Gnosis and Kleros
-// at a fixed 44px, then the rest at 36px wrapping (max-w gives 4 + 3 on desktop).
-const SUPPORTER_ROWS: { height?: number; logos: LogoEntry[] }[] = [
+// Fixed rows that never wrap: Fluid + Base (equal-area sizing), Arkiv, Gnosis and
+// Kleros at 44px, then the rest at 36px as 4 + 3. Those heights are maximums — each
+// row scales down as a unit once it no longer fits the container width (FitRow).
+// maxWidth: share of the container the row may fill before it starts scaling down.
+type Row = { height?: number; maxWidth?: number; logos: LogoEntry[] }
+
+const SUPPORTER_ROWS: Row[] = [
   {
+    maxWidth: 0.8,
     logos: [
       { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
       { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
@@ -60,6 +65,11 @@ const SUPPORTER_ROWS: { height?: number; logos: LogoEntry[] }[] = [
       { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
       { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
       { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
+    ],
+  },
+  {
+    height: 36,
+    logos: [
       { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
       { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
       { name: 'World', Logo: World, aspect: 317 / 80 },
@@ -81,33 +91,62 @@ const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80 },
 ]
 
-const LogoList = ({
-  logos,
-  k,
-  cap,
-  height,
-  className,
-}: {
-  logos: LogoEntry[]
-  k: number
-  cap: number
-  height?: number
-  className: string
-}) => (
-  <ul className={`flex flex-wrap items-center justify-center ${className}`}>
-    {logos.map(({ name, Logo, image, aspect }) => {
-      const h = height ?? Math.round(Math.min(cap, k / Math.sqrt(image ? image.width / image.height : aspect!)))
-      const logoClass = 'w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]'
-      return (
-        <li key={name} className="flex" style={{ '--h': `${h}px` } as React.CSSProperties}>
-          {image ? (
-            <Image src={image} alt={name} className={logoClass} />
-          ) : (
-            Logo && <Logo role="img" aria-label={name} className={logoClass} />
-          )}
+const logoAspect = ({ image, aspect }: LogoEntry) => (image ? image.width / image.height : aspect!)
+const equalAreaHeight = (logo: LogoEntry, k: number, cap: number) =>
+  Math.round(Math.min(cap, k / Math.sqrt(logoAspect(logo))))
+
+const LogoImage = ({ logo, className }: { logo: LogoEntry; className: string }) =>
+  logo.image ? (
+    <Image src={logo.image} alt={logo.name} className={className} />
+  ) : (
+    <logo.Logo role="img" aria-label={logo.name} className={className} />
+  )
+
+// One non-wrapping row. Each logo's height is min(its max height, its share of the
+// container width): (100cqw − gaps) × h / naturalWidth, where naturalWidth is the
+// row's width at max heights. cqw resolves against the nearest inline-size container.
+// Rows sharing a fixed height scale together, fitted to the widest of them, so a
+// shorter row in the same tier never ends up bigger than its neighbour.
+const FIT_ROW_GAP = 'min(56px, 6cqw)'
+const rowHeights = ({ logos, height }: Row) => logos.map(logo => height ?? equalAreaHeight(logo, 96, 56))
+const rowNaturalWidth = (row: Row) => rowHeights(row).reduce((sum, h, i) => sum + h * logoAspect(row.logos[i]), 0)
+
+const FitRow = ({ row, rows }: { row: Row; rows: Row[] }) => {
+  const heights = rowHeights(row)
+  const fitTo =
+    row.height === undefined
+      ? row
+      : rows.filter(r => r.height === row.height).reduce((a, b) => (rowNaturalWidth(b) > rowNaturalWidth(a) ? b : a))
+  const available = `(${(fitTo.maxWidth ?? 1) * 100}cqw - ${fitTo.logos.length - 1} * ${FIT_ROW_GAP})`
+  const naturalWidth = rowNaturalWidth(fitTo)
+  return (
+    <ul className="flex items-center justify-center" style={{ gap: FIT_ROW_GAP }}>
+      {row.logos.map((logo, i) => (
+        <li
+          key={logo.name}
+          className="flex"
+          style={
+            { '--h': `min(${heights[i]}px, calc(${available} * ${heights[i] / naturalWidth}))` } as React.CSSProperties
+          }
+        >
+          <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
         </li>
-      )
-    })}
+      ))}
+    </ul>
+  )
+}
+
+const LogoList = ({ logos, k, cap, className }: { logos: LogoEntry[]; k: number; cap: number; className: string }) => (
+  <ul className={`flex flex-wrap items-center justify-center ${className}`}>
+    {logos.map(logo => (
+      <li
+        key={logo.name}
+        className="flex"
+        style={{ '--h': `${equalAreaHeight(logo, k, cap)}px` } as React.CSSProperties}
+      >
+        <LogoImage logo={logo} className="w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]" />
+      </li>
+    ))}
   </ul>
 )
 
@@ -121,16 +160,9 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <div className="flex flex-col items-center gap-[24px] sm:gap-[40px]">
-          {SUPPORTER_ROWS.map(({ height, logos }, i) => (
-            <LogoList
-              key={i}
-              logos={logos}
-              height={height}
-              k={96}
-              cap={56}
-              className="gap-x-[32px] gap-y-[24px] sm:gap-x-[56px] sm:gap-y-[40px] max-w-[1000px]"
-            />
+        <div className="w-full flex flex-col items-center gap-[32px] sm:gap-[40px] [container-type:inline-size]">
+          {SUPPORTER_ROWS.map((row, i) => (
+            <FitRow key={i} row={row} rows={SUPPORTER_ROWS} />
           ))}
         </div>
 
