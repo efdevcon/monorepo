@@ -25,6 +25,7 @@ export function LivingConstellation() {
             <p className={`${bodyCopy} text-[#1a0d33]`}>{t('body')}</p>
           </div>
           <SpeakerGrid speakers={CONSTELLATION_SPEAKERS} />
+          <p className={`${bodyCopy} text-center text-[#1a0d33]`}>{t('added_weekly')}</p>
         </div>
       </div>
     </section>
