@@ -20,14 +20,26 @@ import Walletbeat from './images/supporters/impact-hubs/walletbeat.svg'
 import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/common/styles'
 import { Reveal } from 'components/common/reveal/Reveal'
 
-// Below lg the logos share a 3-column grid and scale to their column (capped at
-// 56px tall); from lg there's room for a single row at a fixed 56px height.
-const SUPPORTERS = [
-  { name: 'Gnosis', Logo: Gnosis },
-  { name: 'Arkiv', Logo: Arkiv },
-  { name: 'Fluid', Logo: Fluid },
-  { name: 'Kleros', Logo: Kleros },
-  { name: 'Base', Logo: Base },
+// Two tiers, each a centred row at a fixed logo height: Fluid + Base at full size,
+// then Gnosis, Arkiv and Kleros slightly smaller.
+const SUPPORTER_TIERS = [
+  {
+    logoClass: 'h-[40px] sm:h-[56px]',
+    gapClass: 'gap-[32px] sm:gap-[64px]',
+    supporters: [
+      { name: 'Fluid', Logo: Fluid },
+      { name: 'Base', Logo: Base },
+    ],
+  },
+  {
+    logoClass: 'h-[24px] sm:h-[32px] md:h-[44px]',
+    gapClass: 'gap-[24px] md:gap-[48px]',
+    supporters: [
+      { name: 'Gnosis', Logo: Gnosis },
+      { name: 'Arkiv', Logo: Arkiv },
+      { name: 'Kleros', Logo: Kleros },
+    ],
+  },
 ]
 
 // Impact hub logos range from near-square to ~18:1, so a shared height would make
@@ -60,13 +72,17 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <ul className="w-full grid grid-cols-3 items-center gap-[24px] md:gap-[48px] lg:flex lg:w-auto xl:gap-[64px]">
-          {SUPPORTERS.map(({ name, Logo }) => (
-            <li key={name} className="flex justify-center">
-              <Logo role="img" aria-label={name} className="w-full h-auto max-h-[56px] lg:w-auto lg:h-[56px]" />
-            </li>
+        <div className="flex flex-col items-center gap-[24px] sm:gap-[40px]">
+          {SUPPORTER_TIERS.map(({ logoClass, gapClass, supporters }, i) => (
+            <ul key={i} className={`flex items-center justify-center ${gapClass}`}>
+              {supporters.map(({ name, Logo }) => (
+                <li key={name} className="flex">
+                  <Logo role="img" aria-label={name} className={`w-auto ${logoClass}`} />
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
+        </div>
 
         <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px]">
           <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
