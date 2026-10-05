@@ -18,5 +18,7 @@ export interface ConstellationSpeaker {
   track?: string
 }
 
+// Comma-joined so no English connective is baked in; callers wrap it in a
+// translated phrase (home.speakers.card_label).
 export const speakerAriaLabel = (s: ConstellationSpeaker): string =>
-  s.title ? `${s.name}, ${s.title} at ${s.company}` : `${s.name}, ${s.company}`
+  [s.name, s.title, s.company].filter(Boolean).join(', ')

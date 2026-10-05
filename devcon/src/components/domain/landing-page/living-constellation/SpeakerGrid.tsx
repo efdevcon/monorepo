@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, type Transition } from 'framer-motion'
 import IconX from 'assets/icons/twitter.svg'
 import { ctaSecondary } from 'components/common/cta'
@@ -70,6 +71,7 @@ interface SpeakerGridProps {
 }
 
 export function SpeakerGrid({ speakers }: SpeakerGridProps) {
+  const t = useTranslations('home.speakers')
   const [selectedId, setSelectedId] = useState<string | null>(null)
   // Card flying back to its slot: stays above its neighbours until it lands.
   const [returningId, setReturningId] = useState<string | null>(null)
@@ -177,7 +179,7 @@ export function SpeakerGrid({ speakers }: SpeakerGridProps) {
         // Only shown at the widths where cards are actually hidden.
         <div className={`flex justify-center ${speakers.length > SHOWN_3_COL ? 'lg:hidden' : 'sm:hidden'}`}>
           <button type="button" onClick={expand} className={ctaSecondary} style={{ fontFamily: 'Poppins, sans-serif' }}>
-            View all speakers
+            {t('view_all')}
           </button>
         </div>
       )}
@@ -256,6 +258,7 @@ function SpeakerCard({
   gutter,
   revealDelay,
 }: SpeakerCardProps) {
+  const t = useTranslations('home.speakers')
   const track = speakerTrackTheme(speaker.track)
   const [hovered, setHovered] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -440,7 +443,7 @@ function SpeakerCard({
                 ref={closeRef}
                 type="button"
                 onClick={onClose}
-                aria-label="Close speaker details"
+                aria-label={t('close')}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.08 } }}
@@ -490,7 +493,7 @@ function SpeakerCard({
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
               <IconX className="h-3.5 w-3.5 shrink-0" aria-hidden />
-              Follow on X
+              {t('follow_on_x')}
             </motion.a>
           )}
         </motion.div>
@@ -500,7 +503,7 @@ function SpeakerCard({
           <button
             type="button"
             data-speaker-id={speaker.id}
-            aria-label={`${speakerAriaLabel(speaker)} — more about this speaker`}
+            aria-label={t('card_label', { speaker: speakerAriaLabel(speaker) })}
             aria-haspopup="dialog"
             onClick={openCard}
             onPointerDown={() => {
