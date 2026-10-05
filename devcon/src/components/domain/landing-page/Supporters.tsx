@@ -1,11 +1,17 @@
 import React from 'react'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { useTranslations } from 'next-intl'
 import Gnosis from './images/supporters/gnosis.svg'
 import Arkiv from './images/supporters/arkiv.svg'
 import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
+import Bitget from './images/supporters/bitget.svg'
+import Ens from './images/supporters/ens.svg'
+import Fairfood from './images/supporters/fairfood.svg'
+import Nethermind from './images/supporters/nethermind.svg'
+import TrailOfBits from './images/supporters/trail-of-bits.svg'
+import World from './images/supporters/world.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
 import eag from './images/supporters/impact-hubs/eag.avif'
 import Eez from './images/supporters/impact-hubs/eez.svg'
@@ -20,21 +26,30 @@ import Walletbeat from './images/supporters/impact-hubs/walletbeat.svg'
 import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/common/styles'
 import { Reveal } from 'components/common/reveal/Reveal'
 
-// Below lg the logos share a 3-column grid and scale to their column (capped at
-// 56px tall). From lg they sit in a single row whose height tracks the viewport
-// (3.8vw, capped at 56px) so the five logos never outgrow the container.
-const SUPPORTERS = [
-  { name: 'Gnosis', Logo: Gnosis },
-  { name: 'Arkiv', Logo: Arkiv },
-  { name: 'Fluid', Logo: Fluid },
-  { name: 'Kleros', Logo: Kleros },
-  { name: 'Base', Logo: Base },
+// Logos range from near-square to ~18:1, so a shared height would make the wide
+// ones huge. Each gets the same visual area instead (height = K / √aspect, capped),
+// then rows wrap and centre. Supporters use a larger K/cap than impact hubs.
+// Aspect = viewBox (SVG) or pixel size (raster).
+type LogoEntry = { name: string; aspect?: number } & (
+  | { Logo: React.ComponentType<React.SVGProps<SVGSVGElement>>; image?: never }
+  | { image: StaticImageData; Logo?: never }
+)
+
+const SUPPORTERS: LogoEntry[] = [
+  { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
+  { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
+  { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
+  { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
+  { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
+  { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
+  { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
+  { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
+  { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
+  { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
+  { name: 'World', Logo: World, aspect: 317 / 80 },
 ]
 
-// Impact hub logos range from near-square to ~18:1, so a shared height would make
-// the wide ones huge. Each gets the same visual area instead (height = K / √aspect,
-// capped at 40px), scaled down to 70% below sm. Aspect = viewBox (SVG) or pixel size.
-const IMPACT_HUBS = [
+const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Crossbar', image: crossbar },
   { name: 'Ethereum Applications Guild', image: eag },
   { name: 'Ethereum Economic Zone', Logo: Eez, aspect: 170 / 80 },
@@ -48,8 +63,23 @@ const IMPACT_HUBS = [
   { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80 },
 ]
 
-const hubLogoHeight = (aspect: number) => Math.round(Math.min(40, 72 / Math.sqrt(aspect)))
-const hubLogoClass = 'w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]'
+const LogoList = ({ logos, k, cap, className }: { logos: LogoEntry[]; k: number; cap: number; className: string }) => (
+  <ul className={`flex flex-wrap items-center justify-center ${className}`}>
+    {logos.map(({ name, Logo, image, aspect }) => {
+      const h = Math.round(Math.min(cap, k / Math.sqrt(image ? image.width / image.height : aspect!)))
+      const logoClass = 'w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]'
+      return (
+        <li key={name} className="flex" style={{ '--h': `${h}px` } as React.CSSProperties}>
+          {image ? (
+            <Image src={image} alt={name} className={logoClass} />
+          ) : (
+            Logo && <Logo role="img" aria-label={name} className={logoClass} />
+          )}
+        </li>
+      )
+    })}
+  </ul>
+)
 
 export const Supporters = () => {
   const t = useTranslations('home.supporters')
@@ -61,31 +91,21 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <ul className="w-full grid grid-cols-3 items-center gap-[24px] md:gap-[48px] lg:flex lg:w-auto lg:gap-[40px] xl:gap-[48px]">
-          {SUPPORTERS.map(({ name, Logo }) => (
-            <li key={name} className="flex justify-center">
-              <Logo role="img" aria-label={name} className="w-full h-auto max-h-[56px] lg:w-auto lg:h-[min(56px,3.8vw)]" />
-            </li>
-          ))}
-        </ul>
+        <LogoList
+          logos={SUPPORTERS}
+          k={96}
+          cap={56}
+          className="gap-x-[32px] gap-y-[24px] sm:gap-x-[56px] sm:gap-y-[40px] max-w-[1000px]"
+        />
 
         <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px]">
           <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
-          <ul className="flex flex-wrap items-center justify-center gap-x-[32px] gap-y-[24px] sm:gap-x-[48px] sm:gap-y-[32px] max-w-[1200px]">
-            {IMPACT_HUBS.map(({ name, Logo, image, aspect }) => {
-              const h = hubLogoHeight(image ? image.width / image.height : aspect!)
-              const style = { '--h': `${h}px` } as React.CSSProperties
-              return (
-                <li key={name} className="flex" style={style}>
-                  {image ? (
-                    <Image src={image} alt={name} className={hubLogoClass} />
-                  ) : (
-                    Logo && <Logo role="img" aria-label={name} className={hubLogoClass} />
-                  )}
-                </li>
-              )
-            })}
-          </ul>
+          <LogoList
+            logos={IMPACT_HUBS}
+            k={72}
+            cap={40}
+            className="gap-x-[32px] gap-y-[24px] sm:gap-x-[48px] sm:gap-y-[32px] max-w-[1200px]"
+          />
         </div>
       </div>
     </div>
