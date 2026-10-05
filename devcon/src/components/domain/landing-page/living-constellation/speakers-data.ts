@@ -18,6 +18,7 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = SPEAKER_ALLOWLIST.
   const name = 'manual' in entry ? entry.manual.name : entry.name ?? pulled.name
   const company = 'manual' in entry ? entry.manual.company : entry.company ?? pulled.organization
   const xHandle = entry.xHandle ?? pulled.xHandle
+  const track = entry.track ?? pulled.track
 
   return {
     id,
@@ -27,5 +28,7 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = SPEAKER_ALLOWLIST.
     color: entry.color,
     image: pulled.image,
     ...(xHandle ? { xHandle } : {}),
+    ...(track ? { track } : {}),
+    ...(entry.bio ? { bio: entry.bio } : {}),
   }
 })

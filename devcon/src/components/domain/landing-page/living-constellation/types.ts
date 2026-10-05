@@ -13,6 +13,11 @@ export interface ConstellationSpeaker {
   image: StaticImageData
   // Bare X handle (no @, no URL). The "Follow on X" CTA is hidden when absent.
   xHandle?: string
+  // Hand-written blurb shown on the focused card (speakers-allowlist.ts).
+  bio?: string
+  // Pretalx track name of the speaker's first confirmed session (e.g.
+  // "Privacy & Consent"). The card's track tag is hidden when absent.
+  track?: string
 }
 
 export const speakerSubtitle = (s: ConstellationSpeaker): string => [s.title, s.company].filter(Boolean).join(' · ')
