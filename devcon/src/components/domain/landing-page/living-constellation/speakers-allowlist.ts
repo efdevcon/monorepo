@@ -153,8 +153,9 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'DURU3V',
     name: 'Santiago',
     title: 'Developer Relations',
+    company: 'Arkiv',
     bio: 'Santiago is DevRel at Arkiv and has hosted 30+ developer workshops and two builder residencies across Africa, Latin America and Europe. Santiago previously worked at ChainSafe, Lisk and Swisstronik.',
-  }, // SantiagoDevRel · Golem Network
+  }, // SantiagoDevRel — Pretalx org answer says Golem Network; the speaker's bio confirms Arkiv
   // Pretalx name is lowercase and the org answer is a paragraph, hence both overrides.
   {
     code: 'B9V8HC',
