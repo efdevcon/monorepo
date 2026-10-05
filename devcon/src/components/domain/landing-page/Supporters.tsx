@@ -21,7 +21,8 @@ import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/comm
 import { Reveal } from 'components/common/reveal/Reveal'
 
 // Below lg the logos share a 3-column grid and scale to their column (capped at
-// 56px tall); from lg there's room for a single row at a fixed 56px height.
+// 56px tall). From lg they sit in a single row whose height tracks the viewport
+// (3.8vw, capped at 56px) so the five logos never outgrow the container.
 const SUPPORTERS = [
   { name: 'Gnosis', Logo: Gnosis },
   { name: 'Arkiv', Logo: Arkiv },
@@ -60,10 +61,10 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <ul className="w-full grid grid-cols-3 items-center gap-[24px] md:gap-[48px] lg:flex lg:w-auto xl:gap-[64px]">
+        <ul className="w-full grid grid-cols-3 items-center gap-[24px] md:gap-[48px] lg:flex lg:w-auto lg:gap-[40px] xl:gap-[48px]">
           {SUPPORTERS.map(({ name, Logo }) => (
             <li key={name} className="flex justify-center">
-              <Logo role="img" aria-label={name} className="w-full h-auto max-h-[56px] lg:w-auto lg:h-[56px]" />
+              <Logo role="img" aria-label={name} className="w-full h-auto max-h-[56px] lg:w-auto lg:h-[min(56px,3.8vw)]" />
             </li>
           ))}
         </ul>
