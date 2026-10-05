@@ -28,72 +28,90 @@ import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/comm
 import { Reveal } from 'components/common/reveal/Reveal'
 
 // Logos range from near-square to ~18:1, so a shared height would make the wide
-// ones huge. Each gets the same visual area instead (height = K / √aspect, capped),
-// then rows wrap and centre. Supporters use a larger K/cap than impact hubs.
-// Aspect = viewBox (SVG) or pixel size (raster).
-type LogoEntry = { name: string; aspect?: number } & (
+// ones huge. Where a row has no fixed height, each logo gets the same visual area
+// instead (height = K / √aspect, capped), times an optional optical `scale` for
+// marks that read heavier or lighter than their box. Aspect = viewBox (SVG) or
+// pixel size (raster).
+type LogoEntry = { name: string; aspect?: number; scale?: number } & (
   | { Logo: React.ComponentType<React.SVGProps<SVGSVGElement>>; image?: never }
   | { image: StaticImageData; Logo?: never }
 )
 
-// Fixed rows that never wrap: Fluid + Base (equal-area sizing), Arkiv, Gnosis and
-// Kleros at 44px, then the rest at 36px as 4 + 3. Those heights are maximums — each
-// row scales down as a unit once it no longer fits the container width (FitRow).
-// maxWidth: share of the container the row may fill before it starts scaling down.
-type Row = { height?: number; maxWidth?: number; logos: LogoEntry[] }
+// A row that never wraps. height: fixed max height for every logo (else equal-area
+// from k/cap). maxWidth: share of the container the row may fill before scaling down.
+// gap: CSS length between logos.
+type Row = { height?: number; k?: number; cap?: number; maxWidth?: number; gap?: string; logos: LogoEntry[] }
 
-const SUPPORTER_ROWS: Row[] = [
-  {
-    maxWidth: 0.8,
-    logos: [
-      { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
-      { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
-    ],
-  },
-  {
-    height: 44,
-    logos: [
-      { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
-      { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
-      { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
-    ],
-  },
-  {
-    height: 36,
-    logos: [
-      { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
-      { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
-      { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
-      { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
-    ],
-  },
-  {
-    height: 36,
-    logos: [
-      { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
-      { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
-      { name: 'World', Logo: World, aspect: 317 / 80 },
-    ],
-  },
+// Supporters: Fluid + Base, then Arkiv, Gnosis and Kleros at 44px, then the rest at
+// 36px — 4 + 3 from sm, pairs below sm (sized off row 2 so it always stays bigger).
+// Impact hubs follow the scale of the tier above them, so they always stay smaller.
+const TOP_ROW: Row = {
+  maxWidth: 0.8,
+  logos: [
+    { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
+    { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
+  ],
+}
+
+const SECOND_ROW: Row = {
+  height: 44,
+  logos: [
+    { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
+    { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
+    { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
+  ],
+}
+
+const OTHER_SUPPORTERS: LogoEntry[] = [
+  { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
+  { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
+  { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
+  { name: 'Fair Food Data', Logo: Fairfood, aspect: 369 / 70.2 },
+  { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
+  { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
+  { name: 'World', Logo: World, aspect: 317 / 80 },
 ]
 
 const IMPACT_HUBS: LogoEntry[] = [
-  { name: 'Crossbar', image: crossbar },
-  { name: 'Ethereum Applications Guild', image: eag },
-  { name: 'Ethereum Economic Zone', Logo: Eez, aspect: 170 / 80 },
-  { name: 'Ethlabs', Logo: Ethlabs, aspect: 401 / 80 },
+  { name: 'Crossbar', image: crossbar, scale: 1.15 },
+  { name: 'Ethereum Applications Guild', image: eag, scale: 1.15 },
+  { name: 'Ethereum Economic Zone', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
+  { name: 'Ethlabs', Logo: Ethlabs, aspect: 401 / 80, scale: 0.75 },
   { name: 'growthepie', Logo: Growthepie, aspect: 292 / 80 },
   { name: 'LF Decentralized Trust', Logo: Lfdt, aspect: 698.7 / 39.1 },
   { name: 'Nimbus', Logo: Nimbus, aspect: 86 / 67 },
   { name: 'Railgun', Logo: Railgun, aspect: 493 / 80 },
   { name: 'Swarm', Logo: Swarm, aspect: 296 / 80 },
   { name: 'UNICEF', Logo: Unicef, aspect: 337 / 80 },
-  { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80 },
+  { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80, scale: 1.1 },
 ]
+
+const HUB_K = 56
+const HUB_CAP = 30
+
+const chunk = <T,>(items: T[], sizes: number[]) => {
+  let i = 0
+  return sizes.map(n => items.slice(i, (i += n)))
+}
+
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [4, 3]).map(logos => ({ height: 36, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 1]).map(logos => ({ height: 36, logos }))
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [4, 4, 3]).map(logos => ({
+  k: HUB_K,
+  cap: HUB_CAP,
+  gap: 'min(48px, 5cqw)',
+  logos,
+}))
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 2]).map(logos => ({
+  k: HUB_K,
+  cap: HUB_CAP,
+  gap: 'min(48px, 7cqw)',
+  logos,
+}))
 
 const logoAspect = ({ image, aspect }: LogoEntry) => (image ? image.width / image.height : aspect!)
 const equalAreaHeight = (logo: LogoEntry, k: number, cap: number) =>
-  Math.round(Math.min(cap, k / Math.sqrt(logoAspect(logo))))
+  Math.round(Math.min(cap, k / Math.sqrt(logoAspect(logo))) * (logo.scale ?? 1))
 
 const LogoImage = ({ logo, className }: { logo: LogoEntry; className: string }) =>
   logo.image ? (
@@ -102,53 +120,43 @@ const LogoImage = ({ logo, className }: { logo: LogoEntry; className: string }) 
     <logo.Logo role="img" aria-label={logo.name} className={className} />
   )
 
-// One non-wrapping row. Each logo's height is min(its max height, its share of the
-// container width): (100cqw − gaps) × h / naturalWidth, where naturalWidth is the
-// row's width at max heights. cqw resolves against the nearest inline-size container.
-// Rows sharing a fixed height scale together, fitted to the widest of them, so a
-// shorter row in the same tier never ends up bigger than its neighbour.
-const FIT_ROW_GAP = 'min(56px, 6cqw)'
-const rowHeights = ({ logos, height }: Row) => logos.map(logo => height ?? equalAreaHeight(logo, 96, 56))
+const rowHeights = ({ logos, height, k = 96, cap = 56 }: Row) =>
+  logos.map(logo => height ?? equalAreaHeight(logo, k, cap))
 const rowNaturalWidth = (row: Row) => rowHeights(row).reduce((sum, h, i) => sum + h * logoAspect(row.logos[i]), 0)
+const widestRow = (rows: Row[]) => rows.reduce((a, b) => (rowNaturalWidth(b) > rowNaturalWidth(a) ? b : a))
 
-const FitRow = ({ row, rows }: { row: Row; rows: Row[] }) => {
+// Each logo's height is min(its max height, its share of the container width in
+// every reference row): (maxWidth·100cqw − gaps) × h / naturalWidth per row in
+// `fitTo` (default: the row itself). Rows fitted to the same reference share one
+// scale, so a lower tier never ends up bigger than the tier above it. cqw resolves
+// against the nearest inline-size container.
+const DEFAULT_GAP = 'min(56px, 6cqw)'
+// Each row enters with the same one-shot Reveal as the section heading.
+const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; className?: string }) => {
   const heights = rowHeights(row)
-  const fitTo =
-    row.height === undefined
-      ? row
-      : rows.filter(r => r.height === row.height).reduce((a, b) => (rowNaturalWidth(b) > rowNaturalWidth(a) ? b : a))
-  const available = `(${(fitTo.maxWidth ?? 1) * 100}cqw - ${fitTo.logos.length - 1} * ${FIT_ROW_GAP})`
-  const naturalWidth = rowNaturalWidth(fitTo)
+  const shares = fitTo.map(ref => {
+    const available = `(${(ref.maxWidth ?? 1) * 100}cqw - ${ref.logos.length - 1} * ${ref.gap ?? DEFAULT_GAP})`
+    return { available, naturalWidth: rowNaturalWidth(ref) }
+  })
   return (
-    <ul className="flex items-center justify-center" style={{ gap: FIT_ROW_GAP }}>
-      {row.logos.map((logo, i) => (
-        <li
-          key={logo.name}
-          className="flex"
-          style={
-            { '--h': `min(${heights[i]}px, calc(${available} * ${heights[i] / naturalWidth}))` } as React.CSSProperties
-          }
-        >
-          <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
-        </li>
-      ))}
-    </ul>
+    <Reveal className={className}>
+      <ul className="flex items-center justify-center" style={{ gap: row.gap ?? DEFAULT_GAP }}>
+        {row.logos.map((logo, i) => {
+          const fits = shares.map(({ available, naturalWidth }) => `calc(${available} * ${heights[i] / naturalWidth})`)
+          return (
+            <li
+              key={logo.name}
+              className="flex"
+              style={{ '--h': `min(${heights[i]}px, ${fits.join(', ')})` } as React.CSSProperties}
+            >
+              <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
+            </li>
+          )
+        })}
+      </ul>
+    </Reveal>
   )
 }
-
-const LogoList = ({ logos, k, cap, className }: { logos: LogoEntry[]; k: number; cap: number; className: string }) => (
-  <ul className={`flex flex-wrap items-center justify-center ${className}`}>
-    {logos.map(logo => (
-      <li
-        key={logo.name}
-        className="flex"
-        style={{ '--h': `${equalAreaHeight(logo, k, cap)}px` } as React.CSSProperties}
-      >
-        <LogoImage logo={logo} className="w-auto h-[calc(var(--h)*0.7)] sm:h-[var(--h)]" />
-      </li>
-    ))}
-  </ul>
-)
 
 export const Supporters = () => {
   const t = useTranslations('home.supporters')
@@ -161,19 +169,31 @@ export const Supporters = () => {
         </Reveal>
 
         <div className="w-full flex flex-col items-center gap-[32px] sm:gap-[40px] [container-type:inline-size]">
-          {SUPPORTER_ROWS.map((row, i) => (
-            <FitRow key={i} row={row} rows={SUPPORTER_ROWS} />
+          <FitRow row={TOP_ROW} />
+          <FitRow row={SECOND_ROW} />
+          {OTHER_ROWS_DESKTOP.map((row, i) => (
+            <FitRow key={i} row={row} fitTo={[widestRow(OTHER_ROWS_DESKTOP)]} className="hidden sm:block" />
+          ))}
+          {OTHER_ROWS_MOBILE.map((row, i) => (
+            <FitRow key={i} row={row} fitTo={[row, SECOND_ROW]} className="sm:hidden" />
           ))}
         </div>
 
-        <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px]">
-          <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
-          <LogoList
-            logos={IMPACT_HUBS}
-            k={72}
-            cap={40}
-            className="gap-x-[32px] gap-y-[24px] sm:gap-x-[48px] sm:gap-y-[32px] max-w-[1200px]"
-          />
+        <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px] [container-type:inline-size]">
+          <Reveal>
+            <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
+          </Reveal>
+          {HUB_ROWS_DESKTOP.map((row, i) => (
+            <FitRow
+              key={i}
+              row={row}
+              fitTo={[widestRow(HUB_ROWS_DESKTOP), widestRow(OTHER_ROWS_DESKTOP)]}
+              className="hidden sm:block"
+            />
+          ))}
+          {HUB_ROWS_MOBILE.map((row, i) => (
+            <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), SECOND_ROW]} className="sm:hidden" />
+          ))}
         </div>
       </div>
     </div>
