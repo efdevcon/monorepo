@@ -7,6 +7,7 @@ import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
 import Bitget from './images/supporters/bitget.svg'
+import CowSwap from './images/supporters/cow-swap.svg'
 import Ens from './images/supporters/ens.svg'
 import Fairfood from './images/supporters/fairfood.svg'
 import Nethermind from './images/supporters/nethermind.svg'
@@ -42,6 +43,7 @@ const SUPPORTERS: LogoEntry[] = [
   { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
   { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
   { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
+  { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
   { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
   { name: 'Fair Food Data', Logo: Fairfood, aspect: 226 / 43 },
   { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
