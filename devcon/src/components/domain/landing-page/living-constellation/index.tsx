@@ -22,7 +22,6 @@ export function LivingConstellation() {
           <div className="flex flex-col gap-[16px]">
             <p className={eyebrow}>{t('eyebrow')}</p>
             <h2 className={sectionHeading}>{t('heading')}</h2>
-            <p className={`${bodyCopy} text-[#1a0d33]`}>{t('body')}</p>
           </div>
           <SpeakerGrid speakers={CONSTELLATION_SPEAKERS} />
           <p className={`${bodyCopy} text-center text-[#1a0d33]`}>{t('added_weekly')}</p>
