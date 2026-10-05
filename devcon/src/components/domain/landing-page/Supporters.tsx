@@ -37,11 +37,11 @@ type LogoEntry = { name: string; aspect?: number } & (
 )
 
 const SUPPORTERS: LogoEntry[] = [
+  { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
+  { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
   { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
   { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
-  { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
   { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
-  { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
   { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
   { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
   { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
