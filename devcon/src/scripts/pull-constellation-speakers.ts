@@ -7,8 +7,9 @@
  *
  * Curation (who is listed, order, title, colour, overrides) lives in
  * speakers-allowlist.ts and is never touched here. Pretalx supplies name,
- * avatar, organization (question 153) and X handle (question 142); it has no
- * job-title question, so the bio is printed to help fill `title` by hand.
+ * avatar, organization (question 153), X handle (question 142) and the track of
+ * the speaker's first confirmed/accepted session; it has no job-title
+ * question, so the bio is printed to help fill `title` by hand.
  *
  * Usage:
  *   pnpm speakers:pull                     # fetch, normalise avatars, rewrite the generated file
@@ -81,6 +82,13 @@ interface PretalxSpeaker {
   avatar_url?: string | null
   avatar?: string | null
   answers?: PretalxAnswer[]
+  submissions?: string[]
+}
+
+interface PretalxSubmission {
+  code: string
+  state: string
+  track: number | null
 }
 
 interface PulledRecord {
@@ -88,6 +96,7 @@ interface PulledRecord {
   name: string
   organization: string
   xHandle?: string
+  track?: string
   portrait: string
   source: 'pretalx' | 'manual'
 }
@@ -122,6 +131,38 @@ async function fetchSpeaker(code: string): Promise<PretalxSpeaker | null> {
     return null
   }
   return (await res.json()) as PretalxSpeaker
+}
+
+const SCHEDULED_STATES = new Set(['confirmed', 'accepted'])
+let trackNames: Map<number, string> | null = null
+
+async function fetchTrackNames(): Promise<Map<number, string>> {
+  if (trackNames) return trackNames
+  const res = await fetch(`${PRETALX_BASE}/events/${EVENT_SLUG}/tracks/?limit=100`, {
+    headers: { Authorization: `Token ${TOKEN}` },
+  })
+  if (!res.ok) throw new Error(`Pretalx tracks API error ${res.status} ${res.statusText}`)
+  const body = (await res.json()) as { results: { id: number; name: string | Record<string, string> }[] }
+  trackNames = new Map(body.results.map(t => [t.id, typeof t.name === 'string' ? t.name : t.name.en]))
+  return trackNames
+}
+
+// Track of the speaker's first confirmed/accepted session, in Pretalx's
+// submission order. Rejected/withdrawn submissions and community-led ("[CLS]")
+// or "Invited speaker" pseudo-tracks are skipped.
+async function trackFor(speaker: PretalxSpeaker): Promise<string | undefined> {
+  const names = await fetchTrackNames()
+  for (const code of speaker.submissions ?? []) {
+    const res = await fetch(`${PRETALX_BASE}/events/${EVENT_SLUG}/submissions/${encodeURIComponent(code)}/`, {
+      headers: { Authorization: `Token ${TOKEN}` },
+    })
+    if (!res.ok) continue
+    const submission = (await res.json()) as PretalxSubmission
+    if (!SCHEDULED_STATES.has(submission.state) || submission.track == null) continue
+    const name = names.get(submission.track)
+    if (name && !name.startsWith('[CLS]') && name !== 'Invited speaker') return name
+  }
+  return undefined
 }
 
 function answerFor(speaker: PretalxSpeaker, questionId: number): string | undefined {
@@ -215,6 +256,8 @@ async function pullPretalx(entry: PretalxAllowlistEntry): Promise<PulledRecord |
   const organization = answerFor(speaker, QUESTION_ORGANIZATION) ?? ''
   const xHandle = normalizeXHandle(answerFor(speaker, QUESTION_X), `${speaker.code} ${speaker.name}`)
   const portrait = entry.portrait ?? portraitFilename(speaker.name)
+  const track = await trackFor(speaker)
+  if (!track && !entry.track) warnings.push(`${speaker.code} ${speaker.name}: no confirmed session track — card shows no tag`)
 
   if (entry.portrait) {
     if (!fs.existsSync(path.join(PORTRAITS_DIR, entry.portrait))) {
@@ -243,6 +286,7 @@ async function pullPretalx(entry: PretalxAllowlistEntry): Promise<PulledRecord |
     }`
   )
   console.log(`     x:     ${entry.xHandle ?? xHandle ?? '—'}`)
+  console.log(`     track: ${entry.track ?? track ?? '—'}${entry.track ? ' (override)' : ''}`)
   console.log(`     title: ${entry.title ?? 'MISSING → fill `title` in speakers-allowlist.ts'}`)
   console.log(`     bio:   ${(speaker.biography ?? '').replace(/\s+/g, ' ').slice(0, 400) || '—'}`)
 
@@ -251,6 +295,7 @@ async function pullPretalx(entry: PretalxAllowlistEntry): Promise<PulledRecord |
     name: speaker.name,
     organization,
     ...(xHandle ? { xHandle } : {}),
+    ...(track ? { track } : {}),
     portrait,
     source: 'pretalx',
   }
@@ -292,6 +337,8 @@ async function emitGeneratedFile(records: PulledRecord[]): Promise<void> {
     '  organization: string',
     '  /** Bare X handle parsed from Pretalx question 142. */',
     '  xHandle?: string',
+    '  /** Track of the first confirmed/accepted session. */',
+    '  track?: string',
     '  image: StaticImageData',
     "  source: 'pretalx' | 'manual'",
     '}',
@@ -303,6 +350,7 @@ async function emitGeneratedFile(records: PulledRecord[]): Promise<void> {
         `name: ${JSON.stringify(r.name)}`,
         `organization: ${JSON.stringify(r.organization)}`,
         ...(r.xHandle ? [`xHandle: ${JSON.stringify(r.xHandle)}`] : []),
+        ...(r.track ? [`track: ${JSON.stringify(r.track)}`] : []),
         `image: ${importIdentifier(r.id)}`,
         `source: ${JSON.stringify(r.source)}`,
       ]

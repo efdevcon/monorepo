@@ -8,19 +8,28 @@ import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
+import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
+import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
 import imgchristopherfabian from './assets/portraits/christopher-fabian.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
 import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
+import imgG9TNL3 from './assets/portraits/lightclient.webp'
 import imgGVKNCK from './assets/portraits/meinhard-benn.webp'
+import imgJ3CHSG from './assets/portraits/jordi-baylina.webp'
 import imgJ7URYL from './assets/portraits/janmajaya-mall.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
+import imgMAXUYR from './assets/portraits/pg.webp'
 import imgMPDBM3 from './assets/portraits/johanna-moran.webp'
 import imgMWSEWZ from './assets/portraits/sandeep-nailwal.webp'
+import imgNWGADS from './assets/portraits/eric-marti-haynes.webp'
+import imgQNSFPZ from './assets/portraits/ben-biedermann.webp'
 import imgRMPP9E from './assets/portraits/barnabe-monnot.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
+import imgV88N3U from './assets/portraits/asha-shankar.webp'
 import imgW8UUCW from './assets/portraits/roger-dingledine.webp'
+import imgWLADZ7 from './assets/portraits/cheeky-gorilla.webp'
 import imgZDA7LS from './assets/portraits/fatemeh-fannizadeh.webp'
 
 export interface PulledSpeaker {
@@ -30,6 +39,8 @@ export interface PulledSpeaker {
   organization: string
   /** Bare X handle parsed from Pretalx question 142. */
   xHandle?: string
+  /** Track of the first confirmed/accepted session. */
+  track?: string
   image: StaticImageData
   source: 'pretalx' | 'manual'
 }
@@ -40,6 +51,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Dorde Mijovic',
     organization: 'Monad Foundation',
     xHandle: 'mijovic988',
+    track: 'Users, Builders, and Agents',
     image: img3JEDML,
     source: 'pretalx',
   },
@@ -48,6 +60,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Preston Vander Vos',
     organization: 'Circle',
     xHandle: 'PrestonVanderV',
+    track: 'Privacy & Consent',
     image: img3QYPGS,
     source: 'pretalx',
   },
@@ -56,6 +69,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Griff Green',
     organization: 'TheDAO Security Fund & Giveth',
     xHandle: 'griffgreen',
+    track: 'Security',
     image: img7BLNXR,
     source: 'pretalx',
   },
@@ -64,6 +78,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Zachary Williamson',
     organization: 'Aztec Foundation',
     xHandle: 'Zac_Aztec',
+    track: 'Privacy & Consent',
     image: img8FL8QW,
     source: 'pretalx',
   },
@@ -73,7 +88,26 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     organization:
       'I am a PhD researcher studying society and technology with almost 5 years of experience working with blockchains, primarily in the Ethereum ecosystem. my current affiliation is with Tallinn University of Technology, Royal Melbourne Institute of Technology and DREAM+PLAN, EU-funded PhD program.',
     xHandle: 'vicosvv',
+    track: 'Rights, Freedoms, and Governance',
     image: imgB9V8HC,
+    source: 'pretalx',
+  },
+  BRYZ3G: {
+    id: 'BRYZ3G',
+    name: 'Telamon Ardavanis',
+    organization: 'Edge City',
+    xHandle: 'TelamonArdavani',
+    track: 'Futures Worth Building',
+    image: imgBRYZ3G,
+    source: 'pretalx',
+  },
+  BW7UUN: {
+    id: 'BW7UUN',
+    name: 'Francesco Andreoli',
+    organization: 'MetaMask (Director of Developer Relations); the project presented is personal open-source work',
+    xHandle: 'francescoswiss',
+    track: 'Users, Builders, and Agents',
+    image: imgBW7UUN,
     source: 'pretalx',
   },
   'christopher-fabian': {
@@ -88,6 +122,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'SantiagoDevRel',
     organization: 'Golem Network',
     xHandle: 'santiagodevrel',
+    track: 'Open & Verifiable Stack',
     image: imgDURU3V,
     source: 'pretalx',
   },
@@ -96,6 +131,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Hart Montgomery',
     organization:
       'Linux Foundation, and many of the foundations and projects in it (including LF Decentralized Trust, which hosts Besu, Lineth, Paladin, and more)',
+    track: 'Open & Verifiable Stack',
     image: imgFZ8PA3,
     source: 'pretalx',
   },
@@ -103,15 +139,42 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'G9LYGU',
     name: 'Justin Drake',
     organization: 'Ethereum Foundation',
+    track: 'Futures Worth Building',
     image: imgG9LYGU,
     source: 'pretalx',
   },
-  GVKNCK: { id: 'GVKNCK', name: 'Meinhard Benn', organization: 'Freedom Browser', image: imgGVKNCK, source: 'pretalx' },
+  G9TNL3: {
+    id: 'G9TNL3',
+    name: 'lightclient',
+    organization: 'Ethereum Foundation',
+    xHandle: 'lightclients',
+    track: 'Core Protocol',
+    image: imgG9TNL3,
+    source: 'pretalx',
+  },
+  GVKNCK: {
+    id: 'GVKNCK',
+    name: 'Meinhard Benn',
+    organization: 'Freedom Browser',
+    track: 'Permissionless Networks',
+    image: imgGVKNCK,
+    source: 'pretalx',
+  },
+  J3CHSG: {
+    id: 'J3CHSG',
+    name: 'Jordi Baylina',
+    organization: 'EEZ and ZisK',
+    xHandle: 'jbaylina',
+    track: 'Permissionless Networks',
+    image: imgJ3CHSG,
+    source: 'pretalx',
+  },
   J7URYL: {
     id: 'J7URYL',
     name: 'Janmajaya Mall',
     organization: 'phantom.zone',
     xHandle: 'Janmajaya_mall',
+    track: 'Applied Cryptography',
     image: imgJ7URYL,
     source: 'pretalx',
   },
@@ -119,16 +182,52 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'LP7S9M',
     name: 'Kati Illes',
     organization: 'UNICEF, Office of Innovation, Cryptofund',
+    track: 'Futures Worth Building',
     image: imgLP7S9M,
     source: 'pretalx',
   },
-  MPDBM3: { id: 'MPDBM3', name: 'Johanna Moran', organization: 'libp2p', image: imgMPDBM3, source: 'pretalx' },
+  MAXUYR: {
+    id: 'MAXUYR',
+    name: 'PG',
+    organization: 'Web3Privacy Now - founder',
+    xHandle: 'PG_CDG',
+    track: 'Futures Worth Building',
+    image: imgMAXUYR,
+    source: 'pretalx',
+  },
+  MPDBM3: {
+    id: 'MPDBM3',
+    name: 'Johanna Moran',
+    organization: 'libp2p',
+    track: 'Permissionless Networks',
+    image: imgMPDBM3,
+    source: 'pretalx',
+  },
   MWSEWZ: {
     id: 'MWSEWZ',
     name: 'Sandeep Nailwal',
     organization: 'Polygon Labs',
     xHandle: 'sandeepnailwal',
+    track: 'Futures Worth Building',
     image: imgMWSEWZ,
+    source: 'pretalx',
+  },
+  NWGADS: {
+    id: 'NWGADS',
+    name: 'Eric Marti Haynes',
+    organization: 'Nethermind',
+    xHandle: 'ericmartihaynes',
+    track: 'Futures Worth Building',
+    image: imgNWGADS,
+    source: 'pretalx',
+  },
+  QNSFPZ: {
+    id: 'QNSFPZ',
+    name: 'Ben Biedermann',
+    organization: 'Cambridge Centre for Alternative Finance',
+    xHandle: 'b3nedictvs',
+    track: 'Rights, Freedoms, and Governance',
+    image: imgQNSFPZ,
     source: 'pretalx',
   },
   RMPP9E: {
@@ -136,6 +235,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Barnabé Monnot',
     organization: 'Ethlabs',
     xHandle: 'barnabemonnot',
+    track: 'Users, Builders, and Agents',
     image: imgRMPP9E,
     source: 'pretalx',
   },
@@ -144,6 +244,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Jan Kalivoda',
     organization: 'ack3',
     xHandle: 'jaczkal',
+    track: 'Privacy & Consent',
     image: imgT8KAJP,
     source: 'pretalx',
   },
@@ -152,20 +253,40 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Jason Chaskin',
     organization: 'Ethereum Foundation',
     xHandle: 'jchaskin22',
+    track: 'Users, Builders, and Agents',
     image: imgTKDN87,
+    source: 'pretalx',
+  },
+  V88N3U: {
+    id: 'V88N3U',
+    name: 'Asha Shankar',
+    organization: 'Coinbase',
+    track: 'Privacy & Consent',
+    image: imgV88N3U,
     source: 'pretalx',
   },
   W8UUCW: {
     id: 'W8UUCW',
     name: 'Roger Dingledine',
     organization: 'The Tor Project',
+    track: 'Permissionless Networks',
     image: imgW8UUCW,
+    source: 'pretalx',
+  },
+  WLADZ7: {
+    id: 'WLADZ7',
+    name: 'cheeky-gorilla',
+    organization: 'Protocol Guild',
+    xHandle: 'cheekygorilla0x',
+    track: 'Core Protocol',
+    image: imgWLADZ7,
     source: 'pretalx',
   },
   ZDA7LS: {
     id: 'ZDA7LS',
     name: 'Fatemeh Fannizadeh',
     organization: 'EF Silviculture Society - Collective for Universal Basic Broadband Access',
+    track: 'Rights, Freedoms, and Governance',
     image: imgZDA7LS,
     source: 'pretalx',
   },
