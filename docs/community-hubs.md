@@ -4,7 +4,7 @@ The 14 Devcon 8 Community Hubs run their own programme and are not in Pretalx. E
 
 ## The template
 
-One sheet, "Schedule" (v5, 2026-09-30). Row 1: hub name (shown in the app) and a link to the shared Read me, a separate dSheet. Then one row per session: `ID`, `Day`, `From`, `To`, `Session title`, `Format`, `Speaker(s)`, `Description (optional)`, `Topic`; Day, times, Format and Topic are dropdowns. A `Topics` list beside the schedule (column K) feeds the Topic dropdown, on the same sheet because same-sheet ranges are what survives the dSheets import. Time options sit hidden in column AJ.
+One sheet, "Schedule" (v5, 2026-09-30). Row 1: hub name (identifies the sheet; the app shows the name from the hub registry) and a link to the shared Read me, a separate dDoc. Then one row per session: `ID`, `Day`, `From`, `To`, `Session title`, `Format`, `Speaker(s)`, `Description (optional)`, `Topic`; Day, times, Format and Topic are dropdowns. A `Topics` list beside the schedule (column K) feeds the Topic dropdown, on the same sheet because same-sheet ranges are what survives the dSheets import. Time options sit hidden in column AJ.
 
 - `ID` (pre-filled `S01`...) is the session id in the app, `<hub>-<id>`, so a retitled row keeps its stars and reminders. Whole rows must move together. Without an id the sync falls back to `<hub>-<title slug>`, and reports id-less rows and duplicate ids.
 - `Topic` becomes the session's second tag (after the hub name): shown on the session, filterable in the app.
