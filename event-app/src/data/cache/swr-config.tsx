@@ -6,7 +6,8 @@ import { toast } from "sonner";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
 import { eventStore } from "../store/event-store";
-import { getActiveDataset } from "../dataset";
+import { hubStore } from "../store/hub-store";
+import { communityHubsDataset, getActiveDataset } from "../dataset";
 import { BootShell } from "@/components/BootShell";
 
 /**
@@ -22,7 +23,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!ready) return;
-    return eventStore.startTriggers(getActiveDataset());
+    const dataset = getActiveDataset();
+    const hubs = communityHubsDataset(dataset);
+    const stops = [eventStore.startTriggers(dataset), hubs ? hubStore.startTriggers(hubs) : undefined];
+    return () => stops.forEach((stop) => stop?.());
   }, [ready]);
 
   // Also the server-rendered HTML (ready starts false), so this is the first
@@ -88,7 +92,9 @@ function useBoot() {
       });
       finish();
     }, BOOT_TIMEOUT_MS);
-    Promise.all([initPromise, eventStore.hydrate(getActiveDataset())])
+    const dataset = getActiveDataset();
+    const hubs = communityHubsDataset(dataset);
+    Promise.all([initPromise, eventStore.hydrate(dataset), hubs ? hubStore.hydrate(hubs) : undefined])
       .catch((err) => console.warn("[boot] hydrate failed, starting empty:", err))
       .then(() => {
         clearTimeout(timer);

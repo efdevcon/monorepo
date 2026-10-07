@@ -1,4 +1,5 @@
 import type { Session } from "@/data/models";
+import { isCommunityHubSession } from "@/data/communityHubs";
 
 /** How many topic options the filter surfaces offer (top tags by frequency). */
 export const TOPIC_OPTION_COUNT = 15;
@@ -14,7 +15,9 @@ export const TOPIC_OPTION_COUNT = 15;
 export function deriveTopicOptions(sessions: Session[]): string[] {
   const tagCounts = new Map<string, number>();
   for (const session of sessions) {
-    if ((session.speakers ?? []).length === 0) continue;
+    // Speakerless Pretalx entries (breaks, ceremonies) carry noise tags; a
+    // hub row's Topic is deliberate whether or not it names a speaker.
+    if (!isCommunityHubSession(session) && (session.speakers ?? []).length === 0) continue;
     for (const raw of session.tags ?? []) {
       const tag = raw.trim();
       if (!tag) continue;

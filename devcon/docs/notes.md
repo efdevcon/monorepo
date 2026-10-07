@@ -75,3 +75,42 @@ Open items before the DC8 card is final:
 - The DC8 schedule card always shows the Mumbai date block (per the Figma
   frames); once a schedule is published, decide whether scheduled sessions
   should surface room/time again (`getDay` still maps DC7 dates).
+
+# qr code redirects
+
+`devcon.org/qr/<slug>[/<placement>]` redirects are managed by the team in the
+NocoDB table "QR redirects" (base "QR codes"; table id in the
+`NOCODB_QR_TABLE_ID` env var, read with the site's existing NocoDB token).
+Columns: Slug (path after `/qr/`), Target URL (absolute or a devcon.org path),
+Keyword (Matomo `mtm_kwd`, defaults to the slug's first segment), Active, Notes.
+Anything after the slug in a scanned URL is the placement (`/qr/app/airport` =
+row `app`, placement `airport`) and lands in `mtm_placement`; `mtm_campaign` is
+always `qr`. Unknown or inactive slugs go to the homepage with `mtm_kwd=unknown`.
+Targets that must stay out of the public repo (Pretix voucher links) live only
+in the table.
+
+Flow: `src/middleware.ts` rewrites `/qr/*` (any locale) to `/api/qr/*`
+(`src/pages/api/qr/[[...path]].ts`), which answers a 302 kept in Netlify's
+durable CDN cache per scanned URL (1 h for a match, 1 min for the fallback)
+under the `qr-redirects` tag, no stale-while-revalidate; browsers are told not
+to keep the redirect. Every CDN miss reads NocoDB: there is no memory cache on
+purpose, because an instance holding the old table would refill the CDN with it
+after a purge (seen in testing). On a NocoDB failure the service
+(`src/services/qr-redirects.ts`) falls back to the last rows it read and then
+to a built-in safety net for the public targets. `/api/qr/refresh/` re-reads
+NocoDB and purges the tag; the NocoDB webhook calls it on every row change, so
+edits go live at once.
+
+Printable image: append `?svg` to any resolving QR URL
+(`https://devcon.org/qr/web/ns?svg`) to get the QR code as SVG, `?svg&download`
+to save it as a file. It encodes the short `/qr/` URL (never the destination),
+error correction Q, 4-module quiet zone, black on white, scalable. Unknown slugs
+get a 404 so a typo cannot be printed. Netlify's Next runtime keys the CDN cache
+on the path and ignores the query string (`netlify-vary: query=__nextDataReq|_rsc`),
+so the middleware rewrites `?svg` (and `/qr/x.svg`) to `/api/qr-image/x?svg`
+(same handler, own path; no file extension in the target, which the runtime
+would answer with a visible 308) and the image is served `no-store`; otherwise
+an image request would poison the redirect of that URL for a day (seen live on
+2026-10-01). Any new query-based variant must follow the same rule. Print guidance: at least 2 cm wide for
+hand-held scanning, larger for screens or banners, never invert colours. The old per-target rules in `netlify.toml` were removed on
+2026-10-01; the early-bird QR rule stays.

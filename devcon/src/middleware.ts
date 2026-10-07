@@ -14,16 +14,24 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl)
   }
 
-  // Printed QR codes: /qr/<target> with an optional placement segment
-  // (/qr/app/airport, /qr/guide/venue). Netlify serves the same redirects in
-  // production (netlify.toml); this keeps local runs and previews consistent.
-  const qr = normalizedPathname.match(/^\/(?:en\/)?qr\/(app|guide)(?:\/([a-z0-9-]+))?$/)
+  // Printed QR codes: devcon.org/qr/<slug>[/<placement>]. The targets live in
+  // a NocoDB table (services/qr-redirects.ts) read by /api/qr/, so the request is
+  // rewritten there instead of taking the locale redirect first: one hop per
+  // scan, and no redirect rule to maintain here or in netlify.toml.
+  // Case-insensitive: a QR may encode the URL in capitals, which scanners
+  // pass through as typed. `?svg` (the printable image, also /qr/x.svg) goes
+  // to /api/qr-image/ instead: Netlify keys its CDN cache on the rewritten
+  // path and ignores the query string, so the image and the redirect must not
+  // share a path. No file extension in the target: the runtime answers a
+  // rewrite to an extension path with a visible 308.
+  const qr = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?qr(?:\/(.*))?$/i)
   if (qr) {
-    const target = qr[1] === 'app' ? new URL('https://app.devcon.org/') : new URL('/en/travel-guide/', req.url)
-    target.searchParams.set('mtm_campaign', 'qr')
-    target.searchParams.set('mtm_kwd', qr[1])
-    if (qr[2]) target.searchParams.set('mtm_placement', qr[2])
-    return NextResponse.redirect(target)
+    const rest = (qr[1] ?? '').replace(/\.svg$/i, '')
+    const wantsSvg = req.nextUrl.searchParams.has('svg') || /\.svg$/i.test(qr[1] ?? '')
+    const target = new URL(`/api/${wantsSvg ? 'qr-image' : 'qr'}/${rest}`, req.url)
+    if (wantsSvg) target.searchParams.set('svg', '')
+    if (req.nextUrl.searchParams.has('download')) target.searchParams.set('download', '')
+    return NextResponse.rewrite(target)
   }
 
   if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {

@@ -12,7 +12,7 @@
 
 const APP_CONFIG = {
   // App metadata
-  APP_NAME: "Devcon App v2",
+  APP_NAME: "Devcon App V1",
   APP_DESCRIPTION: "Ethereum knitting club.",
 
   // Public origin of this deployment. Used server-side (e.g.

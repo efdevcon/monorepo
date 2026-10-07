@@ -205,9 +205,6 @@ NEXT_PUBLIC_PARA_API_KEY=      # Auto-detects PROD/BETA by prefix
 
 # WalletConnect
 NEXT_PUBLIC_WC_PROJECT_ID=
-
-# RPC
-NEXT_PUBLIC_INFURA_APIKEY=
 ```
 
 ### Para Configuration (`src/context/WalletProviders.tsx`)
@@ -686,4 +683,3 @@ The app cleverly uses **TWO authentication layers**:
 | `src/config/appkit.ts` | AppKit/Wagmi configuration |
 | `src/config/para.ts` | Para SDK initialization |
 | `src/config/config.ts` | Environment variables |
-

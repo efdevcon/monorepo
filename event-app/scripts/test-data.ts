@@ -23,11 +23,23 @@ import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from ".
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
+import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
+import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
+import { BundleSchema } from "../src/data/store/types";
+import { readFileSync } from "fs";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
 import { parseSyncBody } from "../src/data/interested/syncProtocol";
-import { deriveReminders, dueSessions, REMINDER_LEAD_MS, reminderBody, reminderId } from "../src/data/reminders/reminders";
+import {
+  deriveReminders,
+  dueSessions,
+  mergeReminderCatalogues,
+  parseReminderCatalogue,
+  REMINDER_LEAD_MS,
+  reminderBody,
+  reminderId,
+} from "../src/data/reminders/reminders";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -375,6 +387,33 @@ function testPassBarcode() {
   check("photo format: PNG, JPEG and PDF are not", !isUnsupportedPhotoFormat(blob("shot.png", "image/png")) && !isUnsupportedPhotoFormat(blob("p.jpg", "image/jpeg")) && !isUnsupportedPhotoFormat(blob("t.pdf", "application/pdf")));
 }
 
+function testReminderCatalogue() {
+  const main = parseReminderCatalogue({
+    data: {
+      rooms: [{ id: "stage-1", name: "Main Stage" }],
+      sessions: [
+        { id: "X3JSYF", title: "Opening", slot_start: 1_762_160_400_000, slot_roomId: "stage-1" },
+        { id: "iso", title: "ISO start", slot_start: "2026-11-03T10:00:00.000Z", slot_roomId: "nowhere" },
+        { id: "", title: "no id", slot_start: 1 },
+        { id: "unscheduled", title: "no start" },
+      ],
+    },
+  });
+  check("reminder catalogue: rows keep id, start and room name; unscheduled and id-less rows drop", eq(main, [
+    { id: "X3JSYF", title: "Opening", startMs: 1_762_160_400_000, roomName: "Main Stage" },
+    { id: "iso", title: "ISO start", startMs: Date.parse("2026-11-03T10:00:00.000Z"), roomName: undefined },
+  ]));
+  const hubs = parseReminderCatalogue({
+    data: {
+      rooms: [{ id: "community-hub-privacy", name: "Privacy Hub" }],
+      sessions: [{ id: "privacy-s01", title: "Coffee", slot_start: 1_762_160_400_000, slot_roomId: "community-hub-privacy" }],
+    },
+  });
+  const merged = mergeReminderCatalogues(main, hubs, hubs);
+  check("reminder catalogue: hub sessions join the Pretalx ones once, with the hub as their room", merged.length === 3 && merged[2].id === "privacy-s01" && merged[2].roomName === "Privacy Hub");
+  check("reminder catalogue: an unreachable hubs programme is just an empty list", eq(mergeReminderCatalogues(main, []), main));
+}
+
 function testMeerkatHandover() {
   check("meerkat: slug session ids pass", isSessionId("opening-ceremony") && isSessionId("Session_01"));
   check("meerkat: empty, path-like or oversized ids fail", !isSessionId("") && !isSessionId("a/b") && !isSessionId("../x") && !isSessionId("-lead") && !isSessionId("x".repeat(200)));
@@ -384,6 +423,31 @@ function testMeerkatHandover() {
   check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
   check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
   check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
+  check(
+    "community hub topics: the hub's own name is not a topic, blanks are dropped, unknown hub ids resolve to nothing",
+    JSON.stringify(communityHubTopics({ tags: ["Privacy Hub", " Zero knowledge ", ""] })) === JSON.stringify(["Zero knowledge"]) &&
+      communityHubTopics({ tags: ["Privacy Hub"] }).length === 0 &&
+      communityHubTopics({}).length === 0 &&
+      findCommunityHub("privacy")?.name === "Privacy Hub" &&
+      findCommunityHub("nope") === undefined
+  );
+  check(
+    "community hubs dataset: follows the event, keyed apart from it, none for the test event",
+    communityHubsDataset(DATASETS["devcon-7"])?.eventId === "devcon-7-community-hubs" &&
+      communityHubsDataset(DATASETS["devcon-7"])?.communityHubsOf === "devcon-7" &&
+      communityHubsDataset(DATASETS.devcon8)?.eventId === "devcon8-community-hubs" &&
+      communityHubsDataset(DATASETS["test-devcon-8"]) === undefined
+  );
+  // Every dataset that ships a static bundle must ship one the store accepts.
+  for (const dataset of [...Object.values(DATASETS), ...Object.values(COMMUNITY_HUB_DATASETS)]) {
+    if (!dataset?.staticBundleUrl) continue;
+    const file = JSON.parse(readFileSync(`public${dataset.staticBundleUrl}`, "utf8")) as { data: unknown };
+    const parsed = BundleSchema.safeParse(file.data);
+    check(
+      `static bundle for ${dataset.key} parses and names its own event id`,
+      parsed.success && parsed.data.event.id === dataset.eventId && parsed.data.sessions.length > 0
+    );
+  }
   check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
 }
 
@@ -440,6 +504,7 @@ async function main() {
   testNormalize();
   testReminders();
   testMeerkatHandover();
+  testReminderCatalogue();
   testIosVersion();
   testPassBarcode();
   testMaterialize();

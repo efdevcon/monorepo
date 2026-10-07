@@ -17,6 +17,7 @@ NODE_ENV=test pnpm exec jest <file> --runInBand   # run tests PER FILE
 - **Never run the full jest suite in one process** - every test file loads the full data store and node runs out of memory. Run per-file with `--runInBand`.
 - **Speaker emails must never leave a sync or endpoint response.**
 - Schedule truth flows Pretalx -> sync -> `data/` -> memory. Day-of AV enrichment (YouTube IDs, sources) goes through `PUT /sessions/sources/:id`, not through Pretalx.
+- **Community Hub sessions are not in Pretalx and have no files under `data/sessions/`.** `GET /events/:id/community-hubs/{version,bundle}` builds them live from the hubs' dSheets (`COMMUNITY_HUB_SHEETS` env, in-memory cache). The only thing on disk is `data/community-hubs/<eventId>.json`, the last good read per hub, written by the API and committed in production so a redeploy starts from it; never hand-edit it. Keep hub sessions out of the Pretalx bundle. Details: `../docs/community-hubs.md`.
 
 ## Supabase migrations
 

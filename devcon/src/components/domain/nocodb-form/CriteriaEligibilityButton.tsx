@@ -96,7 +96,7 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
             <div className="flex flex-col gap-2 items-start w-full shrink-0">
               <h3 className="text-base font-bold text-[#160b2b] leading-6">Application timeline</h3>
               <div className="text-base text-[#1a0d33] leading-6 w-full">
-                <p className="mb-2">Applications are reviewed in three rounds:</p>
+                <p className="mb-2">Applications are reviewed in four rounds:</p>
                 <ul className="list-disc list-outside pl-5 space-y-1">
                   <li>
                     <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
@@ -106,6 +106,9 @@ function CriteriaDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (
                   </li>
                   <li>
                     <span className="font-bold">Round 3</span> — Apply by September 30, responses sent by October 7
+                  </li>
+                  <li>
+                    <span className="font-bold">Final Round</span> — Apply by October 23, responses sent by October 30
                   </li>
                 </ul>
               </div>

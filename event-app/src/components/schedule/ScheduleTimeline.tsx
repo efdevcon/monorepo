@@ -50,7 +50,7 @@ function TimelineSession({
   /** Open the details in place (side panel on desktop, layer on mobile). */
   onOpen?: (id: string) => void;
 }) {
-  const theme = getTrackTheme(session.track);
+  const theme = getTrackTheme(session.track, session.room?.id);
   const { left, width } = sessionBox(session, startMs, m.slotWidth);
   const featured = session.featured === true;
   const { isInterested, toggle } = useInterested();
@@ -86,11 +86,18 @@ function TimelineSession({
         selected && "ring-1 ring-inset ring-dc-purple"
       )}
     >
+      {/* The sticky text column lives in its own flex cell: a sticky box is
+          confined to its containing block, so it can slide right as the lane
+          scrolls but never under the star at the block's end. Without the
+          cell it did exactly that, and being positioned it painted over the
+          button and swallowed its clicks. */}
+      <div className="flex min-w-0 flex-1 items-center">
       <div
         style={{
           left: m.roomCol + padX,
-          // Never wider than the block, nor than the grid area beside the
-          // room column — the slack is what lets the text stay in view.
+          // Never wider than the cell (the block minus the star), nor than
+          // the grid area beside the room column — the slack is what lets
+          // the text stay in view.
           maxWidth: `min(100%, calc(100vw - ${m.roomCol + padX * 2 + 16}px))`,
         }}
         className="sticky flex w-fit min-w-0 flex-col items-start gap-1.5"
@@ -126,7 +133,7 @@ function TimelineSession({
                 compact ? "text-[10px]" : "text-[12px]"
               )}
             >
-              {trackBadgeLabel(session.track)}
+              {trackBadgeLabel(session.track, session.room?.id)}
             </span>
           </span>
           {wide && (
@@ -167,8 +174,9 @@ function TimelineSession({
           )}
         </span>
       </div>
-      {/* Desktop only (see above). Sits at the block's right end; the sticky
-          text column shrinks (min-w-0) to make room on short blocks. Inside
+      </div>
+      {/* Desktop only (see above). Sits at the block's right end, outside the
+          text cell, so the sticky column can never cover it. Inside
           the anchor, so the click must not open the session. Hover fill is
           translucent white, not the cards' lavender: blocks come in every
           track colour and the pink clashed with most of them. */}
@@ -385,10 +393,11 @@ export function ScheduleTimeline({
         // on mobile it would become the axis header's scroll container.
         "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
         // Jump-to-now scroll target: clear of the pinned app header + day
-        // tabs on both breakpoints (56 + 47 + 9 mobile; 65 + 53 + 9 desktop,
+        // tabs on both breakpoints (56 + 47 + 9 mobile; 65 + 65 toolbar +
+        // 53 + 9 desktop,
         // the list groups' clearance) so the axis — date corner, time slots
         // and the now pill — lands fully visible instead of under the bar.
-        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(127px+var(--safe-top))]"
+        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
       {/* Time-axis header: its own track, scrollLeft mirrored from the body */}

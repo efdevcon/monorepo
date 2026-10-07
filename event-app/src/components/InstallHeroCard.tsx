@@ -166,7 +166,7 @@ export function InstallHeroCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
-          src="/home/install-phones.jpg"
+          src="/home/install-app.jpg"
           onError={markFailed}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
@@ -184,7 +184,7 @@ export function InstallHeroCard({
       </div>
 
       {/* Copy + CTA: stacked on mobile, one row on desktop. "Devcon app",
-          not APP_NAME: the dev config's "Devcon App v2" read as "…App v2 app".
+          not APP_NAME: the dev config's "Devcon App V1" read as "…App V1 app".
           Desktop adds the phone QR beside the copy. */}
       <div className="flex flex-col gap-4 p-4 lg:flex-1 lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-4">
         <div className="flex min-w-0 flex-1 flex-col gap-4 lg:gap-6">
@@ -199,7 +199,10 @@ export function InstallHeroCard({
           </div>
           {/* Phones and tablets: the install control. Desktop: none; the QR
               is the whole action. */}
-          <PrimaryButton onClick={install} className="w-full shrink-0 lg:hidden">
+          <PrimaryButton
+            onClick={install}
+            className="w-full shrink-0 lg:hidden"
+          >
             <Download className="size-4" />
             Install app
           </PrimaryButton>
@@ -260,10 +263,10 @@ export function InstallCompactCard() {
       className="flex cursor-pointer overflow-hidden rounded-xl border border-dc-hairline bg-white font-heading transition-colors duration-150 ease-out active:bg-dc-lavender"
     >
       <div className="flex min-w-0 flex-1 flex-col items-start p-4">
-        <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">
+        <h2 className="text-[14px] font-bold leading-5 text-dc-fg2">
           Install the Devcon app
         </h2>
-        <p className="mt-0.5 text-[14px] leading-5 text-dc-muted">
+        <p className="mt-0.5 text-[12px] leading-4 text-dc-muted">
           Your schedule, tickets and push notifications, available offline and
           just a few steps away.
         </p>
@@ -272,7 +275,8 @@ export function InstallCompactCard() {
             e.stopPropagation();
             install();
           }}
-          className="mt-5"
+          size="sm"
+          className="mt-4"
         >
           <Download className="size-4" />
           Install app
@@ -285,7 +289,7 @@ export function InstallCompactCard() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           key={attempt}
-          src="/home/install-phones.jpg"
+          src="/home/install-app.jpg"
           onError={markFailed}
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"

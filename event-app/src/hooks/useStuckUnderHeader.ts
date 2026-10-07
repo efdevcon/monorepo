@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type RefObject } from "react";
 import { usePaneActive } from "@/components/paneContext";
-import { headerOffsetNow } from "./useIsDesktop";
+import { headerOffsetNow, isDesktopNow } from "./useIsDesktop";
 
 /**
  * Whether a `position: sticky` bar pinned under the app header is currently
@@ -10,9 +10,14 @@ import { headerOffsetNow } from "./useIsDesktop";
  * corners, reveal pinned-only controls). One rAF-throttled scroll/resize
  * listener; sticky clamps rect.top at the offset, so <= offset+1 means
  * stuck. Hidden tab panes must not measure on every scroll of another tab,
- * hence the pane-active gate. Used by DayTabs.
+ * hence the pane-active gate. Used by DayTabs and the schedule toolbar.
+ * `desktopOffset`: extra px the bar pins below the header on desktop (the
+ * day tabs under the schedule's sticky toolbar).
  */
-export function useStuckUnderHeader(ref: RefObject<HTMLElement | null>): boolean {
+export function useStuckUnderHeader(
+  ref: RefObject<HTMLElement | null>,
+  desktopOffset = 0
+): boolean {
   const [stuck, setStuck] = useState(false);
   const paneActive = usePaneActive();
 
@@ -23,7 +28,8 @@ export function useStuckUnderHeader(ref: RefObject<HTMLElement | null>): boolean
       raf = 0;
       const el = ref.current;
       if (!el) return;
-      setStuck(el.getBoundingClientRect().top <= headerOffsetNow() + 1);
+      const offset = headerOffsetNow() + (isDesktopNow() ? desktopOffset : 0);
+      setStuck(el.getBoundingClientRect().top <= offset + 1);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(measure);
@@ -36,7 +42,7 @@ export function useStuckUnderHeader(ref: RefObject<HTMLElement | null>): boolean
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [paneActive, ref]);
+  }, [paneActive, ref, desktopOffset]);
 
   return stuck;
 }

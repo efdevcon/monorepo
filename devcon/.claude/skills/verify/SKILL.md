@@ -10,7 +10,7 @@ description: How to launch and drive the devcon website to verify UI changes at 
 `pnpm dev` from `monorepo/devcon` starts TinaCMS + Next.js on `http://localhost:3000`.
 
 - If it fails with "Datalayer server is busy on port 9000", a dev server is **already running** (often the user's own) — just use `http://localhost:3000` directly.
-- **Confirm which app owns the port** before screenshotting — event-app also defaults to 3000 (second server started lands on 3001): `curl -s http://localhost:3000/ | grep -o "<title>[^<]*</title>"` (event-app → "Devcon App v2").
+- **Confirm which app owns the port** before screenshotting — event-app also defaults to 3000 (second server started lands on 3001): `curl -s http://localhost:3000/ | grep -o "<title>[^<]*</title>"` (event-app → "Devcon App V1").
 - Routes redirect (308) through the i18n middleware; the harness follows redirects, but prefer trailing-slash URLs (e.g. `/speaker-applications/`).
 
 ## Screenshots

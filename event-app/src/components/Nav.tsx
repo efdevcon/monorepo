@@ -57,9 +57,9 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     // Mobile tab reads "Me" (Figma tab-bar redesign); desktop keeps the
-    // fuller "Tickets" wording in the header.
+    // fuller "My Devcon" wording in the header.
     href: "/ticket",
-    label: "Tickets",
+    label: "My Devcon",
     short: "Me",
     icon: CircleUserRound,
     enabled: true,
@@ -163,6 +163,9 @@ export function Nav() {
   return (
     <nav
       ref={navRef}
+      // Hook for pages that size content to the space above the bar
+      // (the Community Hubs iframe).
+      data-bottom-nav=""
       // The 1px hairline is a ring shadow, not a border (no layout space)
       // and not an outline (outline only follows border-radius from Safari
       // 16.4 — earlier iOS drew it square around the rounded top corners).

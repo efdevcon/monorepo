@@ -31,6 +31,7 @@
  * Server-only (service-role key through service.ts).
  */
 import {
+  communityHubsDataset,
   DATASETS,
   DEFAULT_DATASET_KEY,
   type Dataset,
@@ -38,8 +39,12 @@ import {
 } from "@/data/dataset";
 import {
   dueSessions,
+  mergeReminderCatalogues,
+  parseReminderCatalogue,
   REMINDER_LEAD_MS,
   reminderBody,
+  type ReminderBundle,
+  type ReminderSession,
 } from "@/data/reminders/reminders";
 import { detailHref } from "@/routing/viewParams";
 import {
@@ -59,13 +64,7 @@ const BUNDLE_TIMEOUT_MS = 8_000;
 /** Matches the API's publicCache(60) on the bundle. */
 const CATALOGUE_TTL_MS = 60_000;
 
-/** What the dispatcher needs to know about a session. Times in ms. */
-export interface ReminderSession {
-  id: string;
-  title: string;
-  startMs: number;
-  roomName?: string;
-}
+export type { ReminderSession };
 
 /**
  * Events to send reminders for: PUSH_REMINDER_EVENTS="devcon8,test-devcon-8"
@@ -82,34 +81,48 @@ export function reminderDatasets(): Dataset[] {
   return [...new Set(known)].map((k) => DATASETS[k]);
 }
 
-/** The bundle serves `slot_start` as a ms number or an ISO string (see normalize.ts). */
-const toMs = (v: unknown): number => {
-  if (typeof v === "number") return v;
-  if (typeof v === "string" && v) return new Date(v).getTime() || 0;
-  return 0;
-};
-
-interface BundleEnvelope {
-  data?: {
-    rooms?: { id?: string; name?: string }[];
-    sessions?: {
-      id?: string;
-      title?: string;
-      slot_start?: number | string;
-      slot_roomId?: string;
-    }[];
-  };
-}
-
 const catalogueCache = new Map<
   string,
   { at: number; sessions: ReminderSession[] }
 >();
 
+async function fetchBundle(url: string): Promise<ReminderBundle> {
+  const res = await fetch(url, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(BUNDLE_TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`bundle fetch failed: HTTP ${res.status} (${url})`);
+  return (await res.json()) as ReminderBundle;
+}
+
 /**
- * The event's sessions with start time and room name, from devcon-api's
- * bundle endpoint (only the fields we need), memoised for a minute so the
- * every-minute dispatcher and a test send don't refetch a 1 MB bundle.
+ * The Community Hubs programme of `ds`, when the event has one: the API's
+ * hubs bundle, else the dataset's static snapshot served by this deployment
+ * (`APP_ORIGIN`, the devcon-7 test data before the endpoint is deployed).
+ * Empty when neither answers: the hubs must never hold up the Pretalx
+ * reminders, so the caller only logs.
+ */
+async function fetchHubCatalogue(ds: Dataset): Promise<ReminderSession[]> {
+  const hubs = communityHubsDataset(ds);
+  if (!hubs) return [];
+  const eventId = hubs.communityHubsOf ?? ds.eventId;
+  try {
+    return parseReminderCatalogue(
+      await fetchBundle(`${hubs.apiUrl}/events/${encodeURIComponent(eventId)}/community-hubs/bundle`)
+    );
+  } catch (apiErr) {
+    const origin = process.env.APP_ORIGIN;
+    if (!hubs.staticBundleUrl || !origin) throw apiErr;
+    return parseReminderCatalogue(await fetchBundle(`${origin}${hubs.staticBundleUrl}`));
+  }
+}
+
+/**
+ * The event's sessions with start time and room name: devcon-api's bundle
+ * (only the fields we need) merged with the Community Hubs bundle when the
+ * event has hubs, since stars on hub sessions earn reminders like any other.
+ * Memoised for a minute so the every-minute dispatcher and a test send don't
+ * refetch a 1 MB bundle.
  */
 export async function fetchReminderCatalogue(
   ds: Dataset,
@@ -118,28 +131,16 @@ export async function fetchReminderCatalogue(
   const cached = catalogueCache.get(ds.eventId);
   if (cached && nowMs - cached.at < CATALOGUE_TTL_MS) return cached.sessions;
 
-  const url = `${ds.apiUrl}/events/${encodeURIComponent(ds.eventId)}/bundle?fields=id,title,slot_start,slot_roomId`;
-  const res = await fetch(url, {
-    cache: "no-store",
-    signal: AbortSignal.timeout(BUNDLE_TIMEOUT_MS),
+  const main = parseReminderCatalogue(
+    await fetchBundle(
+      `${ds.apiUrl}/events/${encodeURIComponent(ds.eventId)}/bundle?fields=id,title,slot_start,slot_roomId`
+    )
+  );
+  const hubs = await fetchHubCatalogue(ds).catch((err) => {
+    console.warn(`[reminders] ${ds.eventId}: hubs catalogue unavailable, Pretalx sessions only:`, (err as Error).message);
+    return [] as ReminderSession[];
   });
-  if (!res.ok) throw new Error(`bundle fetch failed: HTTP ${res.status}`);
-  const json = (await res.json()) as BundleEnvelope;
-  const roomName = new Map<string, string>();
-  for (const r of json.data?.rooms ?? []) {
-    if (r.id && r.name) roomName.set(r.id, r.name);
-  }
-  const sessions: ReminderSession[] = [];
-  for (const s of json.data?.sessions ?? []) {
-    const startMs = toMs(s.slot_start);
-    if (!s.id || !startMs) continue;
-    sessions.push({
-      id: s.id,
-      title: s.title || "Your session",
-      startMs,
-      roomName: s.slot_roomId ? roomName.get(s.slot_roomId) : undefined,
-    });
-  }
+  const sessions = mergeReminderCatalogues(main, hubs);
   catalogueCache.set(ds.eventId, { at: nowMs, sessions });
   return sessions;
 }

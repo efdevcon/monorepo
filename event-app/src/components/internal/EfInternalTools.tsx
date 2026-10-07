@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
-import { RotateCcw, Sparkles, Tv } from "lucide-react";
+import { FlaskConical, RotateCcw, Sparkles, Tv } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { deletePref } from "@/data/prefs";
 import { openDevaBot } from "@/components/ai/devaBotState";
@@ -10,6 +10,7 @@ import { Link } from "@/routing";
 import { ReminderRehearsal } from "@/components/announcements/ReminderRehearsal";
 import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
+import { EventDataTools, MockClockTools } from "./DebugTools";
 
 const TEAM_DOMAIN = "@ethereum.org";
 
@@ -32,7 +33,8 @@ const toolPill =
  * @ethereum.org accounts; attendees never see the section. Everything here
  * acts on this device or this account only:
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
- *   the public header on 2026-09-24; this is the team's way in.
+ *   the public header on 2026-09-24; this is the team's way in. Beside it,
+ *   the inference debugger (/admin/inference-test) for prompt and model work.
  * - Room screens: the kiosk view shown on the display outside each room
  *   (/room-screens). Out of the public nav since 2026-09-24; this is its
  *   entry point for the team.
@@ -40,6 +42,9 @@ const toolPill =
  *   for the session) and clears the per-device flags that hide the
  *   third-star push sheet and Home's "Turn on notifications" card, so all
  *   three can be seen again (the two flags after a reload).
+ * - Mock clock & dataset (MockClockTools) and Event data sync (EventDataTools):
+ *   the former floating bug button on Home, moved here 2026-10-02 so it needs
+ *   no `?debug` flag and attendees never see it.
  * - Rehearse reminders (ReminderRehearsal): the session-reminder rehearsal at
  *   a mocked clock, own devices only.
  */
@@ -73,10 +78,16 @@ export function EfInternalTools() {
         <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
           The AI assistant, off the public menu for now.
         </p>
-        <button type="button" onClick={openDevaBot} className={cn(toolPill, "mt-3")}>
-          <Sparkles />
-          Open
-        </button>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button type="button" onClick={openDevaBot} className={toolPill}>
+            <Sparkles />
+            Open
+          </button>
+          <Link href="/admin/inference-test" className={toolPill}>
+            <FlaskConical />
+            Inference debugger
+          </Link>
+        </div>
       </div>
 
       {/* Room screens (kiosk) */}
@@ -126,6 +137,27 @@ export function EfInternalTools() {
             Reset nudges
           </button>
         )}
+      </div>
+
+      {/* Mock clock & dataset */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Mock clock &amp; dataset</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Set the time the app believes it is, and which event&apos;s data it shows (Devcon 8, the
+          test event, Devcon 7). Applies through the URL and reloads; it follows you across pages
+          until Reset.
+        </p>
+        <MockClockTools />
+      </div>
+
+      {/* Event data sync */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Event data sync</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          What this device has loaded of the schedule and when it last checked; force a fresh
+          sync if something looks stale.
+        </p>
+        <EventDataTools />
       </div>
 
       {/* Session reminder rehearsal (folded by default). */}
