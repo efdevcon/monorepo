@@ -10,6 +10,7 @@ import { SessionCard } from "@/components/schedule/SessionCard";
 import { SpeakerSessionMiniCard } from "@/components/speakers/SpeakerSessionMiniCard";
 import { formatTime } from "@/components/schedule/utils";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
+import { shortCommunityHubName } from "@/data/communityHubs";
 import {
   REMINDER_LEAD_MINUTES,
   type ReminderItem,
@@ -85,7 +86,7 @@ export function ReminderCard({
   const fallback = (
     <p className="font-heading text-sm leading-5 text-dc-fg2">
       {title} · {formatTime(startMs / 1000)}
-      {roomName ? ` · ${roomName}` : ""}
+      {roomName ? ` · ${shortCommunityHubName(roomName)}` : ""}
     </p>
   );
 

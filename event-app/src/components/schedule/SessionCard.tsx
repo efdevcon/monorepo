@@ -7,11 +7,11 @@ import { DetailLink } from "@/routing/DetailLink";
 import { useInterested } from "@/data/interested/useInterested";
 import { formatTimeRange } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
-import { communityHubTopics } from "@/data/communityHubs";
+import { communityHubTopics, shortCommunityHubName } from "@/data/communityHubs";
 
-/** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"). */
+/** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"); hub rooms lose their "Hub". */
 const locationLabel = (session: Session) =>
-  [session.type, session.room?.name].filter(Boolean).join(" - ");
+  [session.type, session.room?.name && shortCommunityHubName(session.room.name)].filter(Boolean).join(" - ");
 
 /**
  * A session card (Figma "Event Details Container").
