@@ -7,7 +7,9 @@ import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
 import Bitget from './images/supporters/bitget.svg'
+import Circle from './images/supporters/circle.svg'
 import CowSwap from './images/supporters/cow-swap.svg'
+import Dedaub from './images/supporters/dedaub.svg'
 import Ens from './images/supporters/ens.svg'
 import Fairfood from './images/supporters/fairfood.svg'
 import Nethermind from './images/supporters/nethermind.svg'
@@ -16,11 +18,17 @@ import World from './images/supporters/world.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
 import eag from './images/supporters/impact-hubs/eag.avif'
 import Eez from './images/supporters/impact-hubs/eez.svg'
+import EipsInsight from './images/supporters/impact-hubs/eipsinsight.svg'
 import Ethlabs from './images/supporters/impact-hubs/ethlabs.svg'
+import Gainforest from './images/supporters/impact-hubs/gainforest.svg'
+import GrapheneOS from './images/supporters/impact-hubs/grapheneos.svg'
 import Growthepie from './images/supporters/impact-hubs/growthepie.svg'
+import Kohaku from './images/supporters/impact-hubs/kohaku.svg'
 import Lfdt from './images/supporters/impact-hubs/lfdt.svg'
+import MoneyLeague from './images/supporters/impact-hubs/money-league.svg'
 import Nimbus from './images/supporters/impact-hubs/nimbus.svg'
 import Railgun from './images/supporters/impact-hubs/railgun.svg'
+import Seal from './images/supporters/impact-hubs/seal.svg'
 import Swarm from './images/supporters/impact-hubs/swarm.svg'
 import Unicef from './images/supporters/impact-hubs/unicef.svg'
 import Walletbeat from './images/supporters/impact-hubs/walletbeat.svg'
@@ -32,79 +40,103 @@ import { Reveal } from 'components/common/reveal/Reveal'
 // instead (height = K / √aspect, capped), times an optional optical `scale` for
 // marks that read heavier or lighter than their box. Aspect = viewBox (SVG) or
 // pixel size (raster).
-type LogoEntry = { name: string; aspect?: number; scale?: number } & (
+type LogoEntry = { name: string; href?: string; aspect?: number; scale?: number } & (
   | { Logo: React.ComponentType<React.SVGProps<SVGSVGElement>>; image?: never }
   | { image: StaticImageData; Logo?: never }
 )
 
 // A row that never wraps. height: fixed max height for every logo (else equal-area
-// from k/cap). maxWidth: share of the container the row may fill before scaling down.
-// gap: CSS length between logos.
-type Row = { height?: number; k?: number; cap?: number; maxWidth?: number; gap?: string; logos: LogoEntry[] }
+// from k/cap). max: hard ceiling after optical scale. maxWidth: share of the container
+// the row may fill before scaling down. gap: CSS length between logos.
+type Row = {
+  height?: number
+  k?: number
+  cap?: number
+  max?: number
+  maxWidth?: number
+  gap?: string
+  logos: LogoEntry[]
+}
 
 // Supporters: Fluid + Base, then Arkiv, Gnosis and Kleros at 44px, then the rest at
-// 36px — 4 + 3 from sm, pairs below sm (sized off row 2 so it always stays bigger).
+// 36px — 5 + 4 from sm, pairs below sm (sized off row 2 so it always stays bigger).
 // Impact hubs follow the scale of the tier above them, so they always stay smaller.
 const TOP_ROW: Row = {
   maxWidth: 0.8,
   logos: [
-    { name: 'Fluid', Logo: Fluid, aspect: 248 / 83 },
-    { name: 'Base', Logo: Base, aspect: 1280 / 323.84 },
+    { name: 'Fluid', href: 'https://fluid.io', Logo: Fluid, aspect: 248 / 83 },
+    { name: 'Base', href: 'https://www.base.org', Logo: Base, aspect: 1280 / 323.84 },
   ],
 }
 
 const SECOND_ROW: Row = {
   height: 44,
   logos: [
-    { name: 'Arkiv', Logo: Arkiv, aspect: 1389 / 320 },
-    { name: 'Gnosis', Logo: Gnosis, aspect: 878 / 230 },
-    { name: 'Kleros', Logo: Kleros, aspect: 185 / 48 },
+    { name: 'Arkiv', href: 'https://arkiv.network', Logo: Arkiv, aspect: 1389 / 320 },
+    { name: 'Gnosis', href: 'https://www.gnosis.io', Logo: Gnosis, aspect: 878 / 230 },
+    { name: 'Kleros', href: 'https://kleros.io', Logo: Kleros, aspect: 185 / 48 },
   ],
 }
 
 const OTHER_SUPPORTERS: LogoEntry[] = [
-  { name: 'Bitget', Logo: Bitget, aspect: 266 / 80 },
-  { name: 'CoW Swap', Logo: CowSwap, aspect: 390 / 60 },
-  { name: 'ENS', Logo: Ens, aspect: 255 / 80 },
-  { name: 'Fair Food Data', Logo: Fairfood, aspect: 369 / 70.2 },
-  { name: 'Nethermind', Logo: Nethermind, aspect: 586 / 80 },
-  { name: 'Trail of Bits', Logo: TrailOfBits, aspect: 133 / 80 },
-  { name: 'World', Logo: World, aspect: 317 / 80 },
+  { name: 'Bitget', href: 'https://www.bitget.com', Logo: Bitget, aspect: 266 / 80 },
+  { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 219 / 63 },
+  { name: 'CoW Swap', href: 'https://cow.fi', Logo: CowSwap, aspect: 390 / 60 },
+  { name: 'Dedaub', href: 'https://dedaub.com', Logo: Dedaub, aspect: 602 / 80 },
+  { name: 'ENS', href: 'https://ens.domains', Logo: Ens, aspect: 255 / 80 },
+  { name: 'Fair Food Data', href: 'https://fairfooddata.org', Logo: Fairfood, aspect: 369 / 70.2 },
+  { name: 'Nethermind', href: 'https://www.nethermind.io', Logo: Nethermind, aspect: 586 / 80 },
+  { name: 'Trail of Bits', href: 'https://www.trailofbits.com', Logo: TrailOfBits, aspect: 133 / 80 },
+  { name: 'World', href: 'https://world.org', Logo: World, aspect: 317 / 80 },
 ]
 
 const IMPACT_HUBS: LogoEntry[] = [
-  { name: 'Crossbar', image: crossbar, scale: 1.15 },
-  { name: 'Ethereum Applications Guild', image: eag, scale: 1.15 },
-  { name: 'Ethereum Economic Zone', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
-  { name: 'Ethlabs', Logo: Ethlabs, aspect: 401 / 80, scale: 0.75 },
-  { name: 'growthepie', Logo: Growthepie, aspect: 292 / 80 },
-  { name: 'LF Decentralized Trust', Logo: Lfdt, aspect: 698.7 / 39.1 },
-  { name: 'Nimbus', Logo: Nimbus, aspect: 86 / 67 },
-  { name: 'Railgun', Logo: Railgun, aspect: 493 / 80 },
-  { name: 'Swarm', Logo: Swarm, aspect: 296 / 80 },
-  { name: 'UNICEF', Logo: Unicef, aspect: 337 / 80 },
-  { name: 'Walletbeat', Logo: Walletbeat, aspect: 327 / 80, scale: 1.1 },
+  { name: 'Crossbar', href: 'https://crossbar-inc.com', image: crossbar, scale: 1.15 },
+  { name: 'EIPsInsight', href: 'https://eipsinsight.com', Logo: EipsInsight, aspect: 442 / 80 },
+  { name: 'Ethereum Applications Guild', href: 'https://ethappsguild.org', image: eag, scale: 1.15 },
+  { name: 'Ethereum Economic Zone', href: 'https://eez.io', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
+  { name: 'Ethlabs', href: 'https://ethlabs.org', Logo: Ethlabs, aspect: 401 / 80, scale: 0.75 },
+  { name: 'Gainforest', href: 'https://www.gainforest.earth', Logo: Gainforest, aspect: 380 / 80 },
+  { name: 'GrapheneOS', href: 'https://grapheneos.org', Logo: GrapheneOS, aspect: 344 / 80 },
+  { name: 'growthepie', href: 'https://www.growthepie.com', Logo: Growthepie, aspect: 292 / 80 },
+  { name: 'Kohaku', href: 'https://github.com/ethereum/kohaku', Logo: Kohaku, aspect: 294 / 80 },
+  { name: 'LF Decentralized Trust', href: 'https://www.lfdecentralizedtrust.org', Logo: Lfdt, aspect: 698.7 / 39.1 },
+  { name: 'Money League', href: 'https://league.money', Logo: MoneyLeague, aspect: 81 / 80 },
+  { name: 'Nimbus', href: 'https://nimbus.team', Logo: Nimbus, aspect: 86 / 67 },
+  { name: 'Railgun', href: 'https://railgun.org', Logo: Railgun, aspect: 493 / 80 },
+  { name: 'SEAL', href: 'https://securityalliance.org', Logo: Seal, aspect: 262 / 80 },
+  { name: 'Swarm', href: 'https://www.ethswarm.org', Logo: Swarm, aspect: 296 / 80 },
+  { name: 'UNICEF', href: 'https://www.unicefventurefund.org', Logo: Unicef, aspect: 337 / 80 },
+  { name: 'Walletbeat', href: 'https://www.walletbeat.fyi', Logo: Walletbeat, aspect: 327 / 80, scale: 1.1 },
 ]
 
+const OTHER_HEIGHT = 36
 const HUB_K = 56
 const HUB_CAP = 30
+// Mobile hubs share tier 2's (heavy) shrink, which leaves wide wordmarks tiny, so
+// there they size up to tier 3's height (never past it, even with optical scale).
+const HUB_K_MOBILE = 86
 
 const chunk = <T,>(items: T[], sizes: number[]) => {
   let i = 0
   return sizes.map(n => items.slice(i, (i += n)))
 }
 
-const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [4, 3]).map(logos => ({ height: 36, logos }))
-const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 1]).map(logos => ({ height: 36, logos }))
-const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [4, 4, 3]).map(logos => ({
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [5, 4]).map(logos => ({ height: OTHER_HEIGHT, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 1]).map(logos => ({
+  height: OTHER_HEIGHT,
+  logos,
+}))
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [6, 6, 5]).map(logos => ({
   k: HUB_K,
   cap: HUB_CAP,
   gap: 'min(48px, 5cqw)',
   logos,
 }))
-const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 2]).map(logos => ({
-  k: HUB_K,
-  cap: HUB_CAP,
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 2]).map(logos => ({
+  k: HUB_K_MOBILE,
+  cap: OTHER_HEIGHT,
+  max: OTHER_HEIGHT,
   gap: 'min(48px, 7cqw)',
   logos,
 }))
@@ -120,8 +152,8 @@ const LogoImage = ({ logo, className }: { logo: LogoEntry; className: string }) 
     <logo.Logo role="img" aria-label={logo.name} className={className} />
   )
 
-const rowHeights = ({ logos, height, k = 96, cap = 56 }: Row) =>
-  logos.map(logo => height ?? equalAreaHeight(logo, k, cap))
+const rowHeights = ({ logos, height, k = 96, cap = 56, max = Infinity }: Row) =>
+  logos.map(logo => height ?? Math.min(max, equalAreaHeight(logo, k, cap)))
 const rowNaturalWidth = (row: Row) => rowHeights(row).reduce((sum, h, i) => sum + h * logoAspect(row.logos[i]), 0)
 const widestRow = (rows: Row[]) => rows.reduce((a, b) => (rowNaturalWidth(b) > rowNaturalWidth(a) ? b : a))
 
@@ -149,7 +181,13 @@ const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; cl
               className="flex"
               style={{ '--h': `min(${heights[i]}px, ${fits.join(', ')})` } as React.CSSProperties}
             >
-              <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
+              {logo.href ? (
+                <a href={logo.href} target="_blank" rel="noopener noreferrer" className="flex hover:opacity-80">
+                  <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
+                </a>
+              ) : (
+                <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
+              )}
             </li>
           )
         })}
