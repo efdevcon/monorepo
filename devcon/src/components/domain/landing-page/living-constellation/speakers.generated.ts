@@ -10,14 +10,16 @@ import img8FL8QW from './assets/portraits/zachary-williamson.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
-import imgchristopherfabian from './assets/portraits/christopher-fabian.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
 import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
 import imgG9TNL3 from './assets/portraits/lightclient.webp'
 import imgGVKNCK from './assets/portraits/meinhard-benn.webp'
+import imgHDTJHP from './assets/portraits/jon-stephens.webp'
 import imgJ3CHSG from './assets/portraits/jordi-baylina.webp'
 import imgJ7URYL from './assets/portraits/janmajaya-mall.webp'
+import imgJPTVDC from './assets/portraits/christopher-fabian.webp'
+import imgKYP3UZ from './assets/portraits/vitalik.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
 import imgMAXUYR from './assets/portraits/pg.webp'
 import imgMPDBM3 from './assets/portraits/johanna-moran.webp'
@@ -25,6 +27,7 @@ import imgMWSEWZ from './assets/portraits/sandeep-nailwal.webp'
 import imgNWGADS from './assets/portraits/eric-marti-haynes.webp'
 import imgQNSFPZ from './assets/portraits/ben-biedermann.webp'
 import imgRMPP9E from './assets/portraits/barnabe-monnot.webp'
+import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
 import imgV88N3U from './assets/portraits/asha-shankar.webp'
@@ -110,13 +113,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgBW7UUN,
     source: 'pretalx',
   },
-  'christopher-fabian': {
-    id: 'christopher-fabian',
-    name: 'Christopher Fabian',
-    organization: 'Giga',
-    image: imgchristopherfabian,
-    source: 'manual',
-  },
   DURU3V: {
     id: 'DURU3V',
     name: 'SantiagoDevRel',
@@ -160,6 +156,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgGVKNCK,
     source: 'pretalx',
   },
+  HDTJHP: {
+    id: 'HDTJHP',
+    name: 'Jon Stephens',
+    organization: 'Veridise Inc',
+    xHandle: 'FormallyJon',
+    track: 'Security',
+    image: imgHDTJHP,
+    source: 'pretalx',
+  },
   J3CHSG: {
     id: 'J3CHSG',
     name: 'Jordi Baylina',
@@ -176,6 +181,22 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'Janmajaya_mall',
     track: 'Applied Cryptography',
     image: imgJ7URYL,
+    source: 'pretalx',
+  },
+  JPTVDC: {
+    id: 'JPTVDC',
+    name: 'Christopher Fabian',
+    organization: '',
+    track: 'Rights, Freedoms, and Governance',
+    image: imgJPTVDC,
+    source: 'pretalx',
+  },
+  KYP3UZ: {
+    id: 'KYP3UZ',
+    name: 'Vitalik',
+    organization: 'Ethereum',
+    xHandle: 'VitalikButerin',
+    image: imgKYP3UZ,
     source: 'pretalx',
   },
   LP7S9M: {
@@ -237,6 +258,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'barnabemonnot',
     track: 'Users, Builders, and Agents',
     image: imgRMPP9E,
+    source: 'pretalx',
+  },
+  SPUYRY: {
+    id: 'SPUYRY',
+    name: 'Audrey Tang',
+    organization: 'Cyber Ambassador Taiwan, civic.ai',
+    xHandle: 'audreyt',
+    track: 'Rights, Freedoms, and Governance',
+    image: imgSPUYRY,
     source: 'pretalx',
   },
   T8KAJP: {

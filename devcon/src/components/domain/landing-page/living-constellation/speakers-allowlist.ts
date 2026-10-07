@@ -50,6 +50,21 @@ export type AllowlistEntry = PretalxAllowlistEntry | ManualAllowlistEntry
 export const allowlistId = (entry: AllowlistEntry): string => ('manual' in entry ? entry.manual.id : entry.code)
 
 export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
+  // Pretalx name is just "Vitalik"; org answer is "Ethereum". The keynote has no track yet, hence the override.
+  {
+    code: 'KYP3UZ',
+    name: 'Vitalik Buterin',
+    title: 'Co-Founder',
+    track: 'Core Protocol',
+    bio: 'Vitalik Buterin co-founded Ethereum, first describing it in a 2013 white paper. Vitalik writes and researches across cryptography, scaling and public goods.',
+  },
+  // Org answer is "Cyber Ambassador Taiwan, civic.ai".
+  {
+    code: 'SPUYRY',
+    title: 'Cyber Ambassador-at-Large',
+    company: 'Taiwan',
+    bio: "Audrey Tang is Taiwan's Cyber Ambassador-at-Large and served as the country's first digital minister from 2016 to 2024. Audrey brought civic innovation into government, from Taiwan's COVID-19 response to protecting its 2024 elections from cyber interference.",
+  }, // Audrey Tang
   {
     code: 'G9LYGU',
     title: 'Researcher',
@@ -89,20 +104,15 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Giveth',
     bio: 'Griff Green leads TheDAO Security Fund and co-founded Giveth and Dappnode. Griff has spent a decade on white-hat rescues, from the cleanup after TheDAO hack to recovering $200M+ in the first Parity multisig hack.',
   }, // Griff Green — TODO confirm title
-  // Not in the DC8 Pretalx CFP — portrait supplied by hand (normalised once via --normalize-manual).
+  // No avatar or org answer in Pretalx, so the portrait and company are hand-supplied.
   {
-    manual: {
-      id: 'christopher-fabian',
-      name: 'Christopher Fabian',
-      company: 'Giga',
-      portrait: 'christopher-fabian.webp',
-    },
+    code: 'JPTVDC',
     title: 'Co-Founder',
+    company: 'Giga',
     xHandle: 'chrisfabian',
-    // Not in Pretalx, so no session to read a track from.
-    track: 'Rights, Freedoms & Governance',
+    portrait: 'christopher-fabian.webp',
     bio: 'Christopher Fabian co-launched Giga with UNICEF and the ITU to connect every school in the world to the internet, mapping school connectivity in real time and pooling demand to finance it. Christopher also co-founded UNICEF Innovation.',
-  },
+  }, // Christopher Fabian
   {
     code: 'ZDA7LS',
     title: 'Lawyer & Digital-Rights Researcher',
@@ -222,4 +232,11 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     title: 'Head of Privacy',
     bio: 'Asha Shankar is Head of Privacy at Coinbase, leading privacy risk, assessments and incident response. Asha works where data protection law meets blockchain architecture, building privacy programs that hold up under regulatory scrutiny.',
   }, // Asha Shankar · Coinbase
+  // Org answer is "Veridise Inc".
+  {
+    code: 'HDTJHP',
+    title: 'Co-Founder & CEO',
+    company: 'Veridise',
+    bio: 'Jon Stephens co-founded Veridise, which audits and builds security tools for smart contracts, blockchain systems and zero-knowledge tech. Jon is also a computer science PhD student at UT Austin, researching formal methods and program analysis.',
+  }, // Jon Stephens
 ]
