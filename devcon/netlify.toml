@@ -13,6 +13,14 @@
   path = "/_next/image/*"
   function = "image-csp"
 
+# Community Hub schedule templates, devcon.org/community-hubs-templates/<Hub-name>.xlsx
+# (generated outside the repo, see docs/community-hubs.md): download on click
+# instead of opening in the browser.
+[[headers]]
+  for = "/community-hubs-templates/*"
+  [headers.values]
+    Content-Disposition = "attachment"
+
 [[redirects]]
   from = "/grants"
   to = "https://esp.ethereum.foundation/devcon-grants"
