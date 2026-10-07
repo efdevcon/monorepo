@@ -31,20 +31,20 @@ export interface CommunityHub {
 
 /** The 14 Devcon 8 hubs (forum announcement, 2026-09). */
 export const COMMUNITY_HUBS: CommunityHub[] = [
-  { id: 'privacy', name: 'Privacy Hub', color: '#E5D4F7' },
-  { id: 'security', name: 'Security Hub', color: '#F7D4D4' },
+  { id: 'privacy', name: 'Privacy Hub', color: '#FFE8E5' },
+  { id: 'security', name: 'Security Hub', color: '#E9E5FF' },
   { id: 'eip', name: 'EIP Hub', color: '#D4EBF7' },
-  { id: 'p2p-networking', name: 'P2P Networking Hub', color: '#F7E6D4' },
-  { id: 'resilient-networks', name: 'Resilient Networks Hub', color: '#F7D4E6' },
-  { id: 'token-rights', name: 'Token Rights Hub', color: '#F7F1D4' },
-  { id: 'open-source', name: 'Open Source Hub', color: '#D4F7E0' },
-  { id: 'prediction-markets', name: 'Prediction Markets Hub', color: '#F7DDD4' },
+  { id: 'p2p-networking', name: 'P2P Networking Hub', color: '#A8FFD5' },
+  { id: 'resilient-networks', name: 'Resilient Networks Hub', color: '#FFF4E0' },
+  { id: 'token-rights', name: 'Token Rights Hub', color: '#B9EFFF' },
+  { id: 'open-source', name: 'Open Source Hub', color: '#DDFDEC' },
+  { id: 'prediction-markets', name: 'Prediction Markets Hub', color: '#F5FFDB' },
   { id: 'world-of-desci', name: 'World of DeSci Hub', color: '#D4F7F4' },
-  { id: 'onchain-art', name: 'Onchain Art Hub', color: '#F7D4F7' },
-  { id: 'agentic', name: 'Agentic Hub', color: '#D4E0F7' },
-  { id: 'fragmentation', name: 'Fragmentation Hub', color: '#E0F7D4' },
-  { id: 'zuzone', name: 'ZuZone Hub', color: '#DAD4F7' },
-  { id: 'india', name: 'India Hub', color: '#F7E0D4' },
+  { id: 'onchain-art', name: 'Onchain Art Hub', color: '#F7D4D4' },
+  { id: 'agentic', name: 'Agentic Hub', color: '#C2FFDD' },
+  { id: 'fragmentation', name: 'Fragmentation Hub', color: '#EDD6FF' },
+  { id: 'zuzone', name: 'ZuZone Hub', color: '#DEEDE5' },
+  { id: 'india', name: 'India Hub', color: '#FFE7D1' },
 ]
 
 export const communityHubRoomId = (hubId: string) => `${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`
