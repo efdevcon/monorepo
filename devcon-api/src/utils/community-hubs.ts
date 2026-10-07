@@ -29,22 +29,22 @@ export interface CommunityHub {
   color: string
 }
 
-/** The 14 Devcon 8 hubs (forum announcement, 2026-09). */
+/** The 14 Devcon 8 hubs, official names from the Community Hubs coordinator (2026-10-07), alphabetical. */
 export const COMMUNITY_HUBS: CommunityHub[] = [
-  { id: 'privacy', name: 'Privacy Hub', color: '#FFE8E5' },
-  { id: 'security', name: 'Security Hub', color: '#E9E5FF' },
-  { id: 'eip', name: 'EIP Hub', color: '#D4EBF7' },
-  { id: 'p2p-networking', name: 'P2P Networking Hub', color: '#A8FFD5' },
-  { id: 'resilient-networks', name: 'Resilient Networks Hub', color: '#FFF4E0' },
-  { id: 'token-rights', name: 'Token Rights Hub', color: '#B9EFFF' },
-  { id: 'open-source', name: 'Open Source Hub', color: '#DDFDEC' },
-  { id: 'prediction-markets', name: 'Prediction Markets Hub', color: '#F5FFDB' },
-  { id: 'world-of-desci', name: 'World of DeSci Hub', color: '#D4F7F4' },
-  { id: 'onchain-art', name: 'Onchain Art Hub', color: '#F7D4D4' },
   { id: 'agentic', name: 'Agentic Hub', color: '#C2FFDD' },
-  { id: 'fragmentation', name: 'Fragmentation Hub', color: '#EDD6FF' },
-  { id: 'zuzone', name: 'ZuZone Hub', color: '#DEEDE5' },
+  { id: 'aggregation', name: 'Aggregation Hub', color: '#EDD6FF' },
+  { id: 'desci', name: 'DeSci Hub', color: '#D4F7F4' },
+  { id: 'eip', name: 'EIP Hub', color: '#D4EBF7' },
   { id: 'india', name: 'India Hub', color: '#FFE7D1' },
+  { id: 'legal-governance', name: 'Legal & Governance Hub', color: '#B9EFFF' },
+  { id: 'onchain-art', name: 'Onchain Art Hub', color: '#F7D4D4' },
+  { id: 'open-source', name: 'Open Source Hub', color: '#DDFDEC' },
+  { id: 'p2p-networking', name: 'P2P Networking Hub', color: '#A8FFD5' },
+  { id: 'prediction-markets', name: 'Prediction Markets Hub', color: '#F5FFDB' },
+  { id: 'privacy', name: 'Privacy Hub', color: '#FFE8E5' },
+  { id: 'resilient-networking', name: 'Resilient Networking Hub', color: '#FFF4E0' },
+  { id: 'security', name: 'Security Hub', color: '#E9E5FF' },
+  { id: 'zuzone', name: 'Zuzone Hub', color: '#DEEDE5' },
 ]
 
 export const communityHubRoomId = (hubId: string) => `${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`

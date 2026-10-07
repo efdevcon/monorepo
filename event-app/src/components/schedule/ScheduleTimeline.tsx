@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { shortCommunityHubName } from "@/data/communityHubs";
 import cn from "classnames";
 import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
@@ -505,7 +506,7 @@ export function ScheduleTimeline({
                   compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
                 )}
               >
-                <span className="line-clamp-2">{room}</span>
+                <span className="line-clamp-2">{shortCommunityHubName(room)}</span>
               </div>
               <div
                 className="relative shrink-0 border-b border-dc-hairline bg-white"

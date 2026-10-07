@@ -9,7 +9,7 @@
  * themes so future events still look designed.
  */
 
-import { communityHubForRoom, communityHubLogo } from "@/data/communityHubs";
+import { communityHubForRoom, communityHubLogo, shortCommunityHubName } from "@/data/communityHubs";
 
 export interface TrackTheme {
   /** Canonical DC8 display name (used for the detail-banner caption). */
@@ -115,11 +115,11 @@ function hashTrack(track: string): number {
 function hubTheme(roomId: string | undefined): TrackTheme | undefined {
   const hub = communityHubForRoom(roomId);
   // Badge drops the trailing "Hub" ("Privacy Hub" → "Privacy"): the pill's
-  // tent glyph already says it, and the card's location line keeps the full name.
+  // tent glyph already says it. Cards and the timeline shorten the room the same way.
   return hub
     ? {
         name: hub.name,
-        badge: hub.name.replace(/\s+Hub$/, ""),
+        badge: shortCommunityHubName(hub.name),
         color: hub.color,
         gem: communityHubLogo(hub),
         banner: hub.logoStacked,

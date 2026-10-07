@@ -4,7 +4,7 @@ The 14 Devcon 8 Community Hubs run their own programme and are not in Pretalx. E
 
 ## The template
 
-One sheet, "Schedule" (v5, 2026-09-30). Row 1: hub name (shown in the app) and a link to the shared Read me, a separate dSheet. Then one row per session: `ID`, `Day`, `From`, `To`, `Session title`, `Format`, `Speaker(s)`, `Description (optional)`, `Topic`; Day, times, Format and Topic are dropdowns. A `Topics` list beside the schedule (column K) feeds the Topic dropdown, on the same sheet because same-sheet ranges are what survives the dSheets import. Time options sit hidden in column AJ.
+One sheet, "Schedule" (v5, 2026-10-07). Row 1: hub name (identifies the sheet; the app shows the name from the hub registry) and a link to the shared Read me, a separate dDoc. Then one row per session: `ID`, `Day`, `From`, `To`, `Session title`, `Format (optional)`, `Speaker(s)`, `Description (optional)`, `Topic`. Day, times and Format are dropdowns (strict once imported, dSheets prohibits other input on any list validation); Topic is typed directly. Time options (08:30 to 18:30 in 10-minute steps) sit hidden in column AJ. The header row carries the hub's colour. Hub names, ids and order follow the coordinator's official list (hub numbers 1 to 14, 2026-10-07).
 
 - `ID` (pre-filled `S01`...) is the session id in the app, `<hub>-<id>`, so a retitled row keeps its stars and reminders. Whole rows must move together. Without an id the sync falls back to `<hub>-<title slug>`, and reports id-less rows and duplicate ids.
 - `Topic` becomes the session's second tag (after the hub name): shown on the session, filterable in the app.
@@ -31,7 +31,7 @@ The parsed sheets are also written to one file per event, `devcon-api/data/commu
 
 - `GET /events/:id/community-hubs` status: which hubs were read, when they last published, rows that could not be parsed
 - `GET /events/:id/community-hubs/version` changes when any hub publishes or the hub set changes
-- `GET /events/:id/community-hubs/bundle` sessions, speakers and rooms in the offline bundle shape: one room `community-hub-<id>` per hub, `track: "Community Hubs"`, `type` = Format, `tags: [hub name, topic]` (the topic only when the row has one), session ids from the Key column (`<hub>-<key>`) or the title, times converted from the event's city (Mumbai; Bangkok when the event is `devcon-7`, which the test sheets target)
+- `GET /events/:id/community-hubs/bundle` sessions, speakers and rooms in the offline bundle shape: one room `community-hub-<id>` per hub, `track: "Community Hubs"`, `type` = Format (blank when the row has none), `tags: [hub name, topic]` (the topic only when the row has one), session ids from the Key column (`<hub>-<key>`) or the title, times converted from the event's city (Mumbai; Bangkok when the event is `devcon-7`, which the test sheets target)
 
 Configuration is the `COMMUNITY_HUB_SHEETS` env var on the API: a JSON object of hub id to share link, e.g. `{"privacy":"https://sheets.fileverse.io/sheet/<id>#k=<key>"}`. Hub ids and names are hardcoded in `devcon-api/src/utils/community-hubs.ts`. The link key grants access to the sheet (edit access when the hub shares an editable link), so the links stay out of the repo.
 

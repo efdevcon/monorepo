@@ -21,18 +21,20 @@ export interface CommunityHub {
   logoStacked?: string;
 }
 
+/** Official names from the Community Hubs coordinator (2026-10-07), alphabetical. */
 export const COMMUNITY_HUBS: CommunityHub[] = [
-  {
-    id: "privacy",
-    name: "Privacy Hub",
-    description: "Building, exploring and using privacy on Ethereum, onchain and off.",
-    color: "#FFE8E5",
-  },
-  { id: "security", name: "Security Hub", description: "Closing the gap between Ethereum's security research and practice.", color: "#E9E5FF" },
+  { id: "agentic", name: "Agentic Hub", description: "AI agents paying, trading and negotiating on Ethereum.", color: "#C2FFDD" },
+  { id: "aggregation", name: "Aggregation Hub", description: "Bringing Ethereum's fragmented chains, apps and communities back together.", color: "#EDD6FF" },
+  { id: "desci", name: "DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards, protocol upgrades and standards adoption.", color: "#D4EBF7" },
-  { id: "p2p-networking", name: "P2P Networking Hub", description: "The people who build and maintain Ethereum's networking layer.", color: "#A8FFD5" },
-  { id: "resilient-networks", name: "Resilient Networks Hub", description: "Where Ethereum security meets P2P networking.", color: "#FFF4E0" },
-  { id: "token-rights", name: "Token Rights Hub", description: "Ownership and voting rights across tokens, NFTs and RWAs.", color: "#B9EFFF" },
+  { id: "india", name: "India Hub", description: "A builder's corner that teaches Ethereum's core properties by building.", color: "#FFE7D1" },
+  { id: "legal-governance", name: "Legal & Governance Hub", description: "Legal and governance questions around tokens, protocols and onchain organisations.", color: "#B9EFFF" },
+  {
+    id: "onchain-art",
+    name: "Onchain Art Hub",
+    description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
+    color: "#F7D4D4",
+  },
   {
     id: "open-source",
     name: "Open Source Hub",
@@ -43,18 +45,17 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     // TEST (2026-09-25): stacked-lockup trial for the details banner (the art reads "Agentic Hub").
     logoStacked: "/community-hubs/logos/open-source-stacked-test.png",
   },
+  { id: "p2p-networking", name: "P2P Networking Hub", description: "The people who build and maintain Ethereum's networking layer.", color: "#A8FFD5" },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Prediction-market builders, researchers, traders and governance contributors.", color: "#F5FFDB" },
-  { id: "world-of-desci", name: "World of DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
   {
-    id: "onchain-art",
-    name: "Onchain Art Hub",
-    description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
-    color: "#F7D4D4",
+    id: "privacy",
+    name: "Privacy Hub",
+    description: "Building, exploring and using privacy on Ethereum, onchain and off.",
+    color: "#FFE8E5",
   },
-  { id: "agentic", name: "Agentic Hub", description: "AI agents paying, trading and negotiating on Ethereum.", color: "#C2FFDD" },
-  { id: "fragmentation", name: "Fragmentation Hub", description: "Mapping Ethereum's technical and social fragmentation.", color: "#EDD6FF" },
-  { id: "zuzone", name: "ZuZone Hub", description: "Founders of Zuzalu-aligned permanent hubs and pop-up cities.", color: "#DEEDE5" },
-  { id: "india", name: "India Hub", description: "A builder's corner that teaches Ethereum's core properties by building.", color: "#FFE7D1" },
+  { id: "resilient-networking", name: "Resilient Networking Hub", description: "Where Ethereum security meets P2P networking.", color: "#FFF4E0" },
+  { id: "security", name: "Security Hub", description: "Closing the gap between Ethereum's security research and practice.", color: "#E9E5FF" },
+  { id: "zuzone", name: "Zuzone Hub", description: "Founders of Zuzalu-aligned permanent hubs and pop-up cities.", color: "#DEEDE5" },
 ];
 
 /** Hub rooms in the API bundle are `community-hub-<hub id>`. */
@@ -72,6 +73,15 @@ export function isCommunityHubSession(session: { room?: { id: string } }): boole
 /** A hub's name ("Privacy Hub"): hub sessions carry it as their first tag. */
 export function isCommunityHubName(name: string): boolean {
   return COMMUNITY_HUBS.some((hub) => hub.name === name);
+}
+
+/**
+ * "Privacy Hub" → "Privacy" where space is tight (badges, cards, the timeline's
+ * room column, reminder lines). Details pages keep the full name. Non-hub
+ * names pass through unchanged.
+ */
+export function shortCommunityHubName(name: string): string {
+  return isCommunityHubName(name) ? name.replace(/\s+Hub$/, "") : name;
 }
 
 /** A hub session's topics: its tags minus the hub's own name (the sheet's Topic column). */
