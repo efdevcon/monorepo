@@ -138,8 +138,9 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   }, // Johanna Moran · libp2p
   {
     code: 'J7URYL',
+    title: 'Founder',
     bio: "Janmajaya Mall invents new cryptographic primitives at phantom.zone, building encrypted, shared ways to compute that don't depend on the machine underneath. All of it open source.",
-  }, // Janmajaya Mall · phantom.zone — TODO title
+  }, // Janmajaya Mall · phantom.zone
   {
     code: 'TKDN87',
     title: 'Integration Engineer',
@@ -147,8 +148,9 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   }, // Jason Chaskin · Ethereum Foundation
   {
     code: 'GVKNCK',
+    title: 'Founder',
     bio: 'Meinhard Benn has worked with Bitcoin since 2011 and founded SatoshiPay in 2014. Meinhard now builds Freedom Browser, an open-source browser with Swarm, IPFS, Radicle and ENS built in.',
-  }, // Meinhard Benn · Freedom Browser — TODO title
+  }, // Meinhard Benn · Freedom Browser
   {
     code: 'DURU3V',
     name: 'Santiago',
