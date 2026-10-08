@@ -2,7 +2,7 @@
   "id": "metal3-meets-kubevirtbmc-provisioning-kubevirt-vms-like-bare-metal",
   "sourceId": "VUCFJY",
   "title": "Metal3 Meets KubeVirtBMC: Provisioning KubeVirt VMs Like Bare Metal",
-  "description": "",
+  "description": "Bare-metal provisioning tools speak a language that virtual machines simply don't understand: IPMI and Redfish, the protocols of physical Baseboard Management Controllers (BMCs). Yet in today's cloud-native landscape, there's a very real need to run those same provisioning workflows against virtualized infrastructure: for development, testing, CI pipelines, and beyond.\n\nIn this talk, we'll introduce KubeVirtBMC, an open-source, cloud-native project that gives KubeVirt VMs virtual BMCs, exposing IPMI and Redfish endpoints so that existing bare-metal provisioning stacks, whether cloud-native or not (Metal3, Tinkerbell, Foreman, and others), can interact with virtual infrastructure without any modification. Think of it as the Kubernetes-native counterpart to VirtualBMC, but built from the ground up around the Kubernetes controller pattern.\n\nWe'll walk through the architecture, demonstrate a live integration with Metal3/Tinkerbell, and discuss project governance, including lessons learned from navigating the migration into the KubeVirt organization.",
   "track": "[CLS] - OTS",
   "type": "CLS - Talk (Open Tech Summit)",
   "expertise": "",
@@ -20,5 +20,6 @@
   "eventId": "test-devcon-8",
   "slot_start": 1793869200000,
   "slot_end": 1793870100000,
-  "slot_roomId": "cls-stage-builders-room"
+  "slot_roomId": "cls-stage-builders-room",
+  "resources_presentation": "https://docs.google.com/presentation/d/14nsk6C_nFaEbYKJe2caq6ZmW4HDJ-bEQn5sOc8kiRmw"
 }

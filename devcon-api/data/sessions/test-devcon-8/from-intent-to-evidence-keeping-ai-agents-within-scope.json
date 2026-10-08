@@ -2,7 +2,7 @@
   "id": "from-intent-to-evidence-keeping-ai-agents-within-scope",
   "sourceId": "B3AVLL",
   "title": "From Intent to Evidence: Keeping AI Agents within scope",
-  "description": "",
+  "description": "An agent asked to summarize one ticket may have credentials to read every project and publish anywhere. Its final answer does not reveal which permissions it used.\n\nWe will follow one task through a permitted read, a blocked out-of-scope request, and a write that requires approval. Then we will correlate execution traces with gateway decisions to distinguish attempted calls, blocked requests, and observed outcomes.\n\nThe approach combines short-lived, task-scoped permissions with authorization checks before tool execution. Intent interpretation proposes actions. Explicit approval and deterministic checks establish authority.\n\nLearn how to constrain agent access and investigate unexpected behavior using open-source examples. We will also cover what incomplete traces cannot establish and why revocation cannot undo an action already executed.",
   "track": "[CLS] - OTS",
   "type": "CLS - Talk (Open Tech Summit)",
   "expertise": "",

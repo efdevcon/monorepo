@@ -2,7 +2,7 @@
   "id": "prefill-decode-and-despair-disaggregated-llm-serving-made-boring",
   "sourceId": "KUJPQD",
   "title": "Prefill, Decode, and Despair: Disaggregated LLM Serving Made Boring",
-  "description": "",
+  "description": "KServe can serve large language models on Kubernetes - but past \"hello world,\" it gets sharp. You face disaggregated prefill/decode, four kinds of parallelism, autoscaling that behaves differently under KEDA versus HPA, a CPU profile that runs out of memory before your model loads, and gateway wiring where one wrong setting silently breaks routing. Miss a field and you don't get an error - you get a slow, wrong, or unreachable model.\n\nThis talk shows how the OpenEverest's KServe provider hides all of that behind a single, technology-agnostic Instance resource. In ten lines of YAML, you get an OpenAI-compatible endpoint. We'll look at the real traps it saves you from: container args that silently drop your defaults, a gateway backend that bypasses request routing, and KV-cache settings that refuse to start.",
   "track": "[CLS] - OTS",
   "type": "CLS - Talk (Open Tech Summit)",
   "expertise": "",
@@ -20,5 +20,6 @@
   "eventId": "test-devcon-8",
   "slot_start": 1793868300000,
   "slot_end": 1793869200000,
-  "slot_roomId": "stage-6-cls"
+  "slot_roomId": "stage-6-cls",
+  "resources_presentation": "https://docs.google.com/presentation/d/1xcFD7AVFdPFRYKdC6rtzekIoAnY_VhLQE0MjzJyY2xQ"
 }

@@ -2,7 +2,7 @@
   "id": "can-small-open-models-power-reliable-ai-agents",
   "sourceId": "3PQHNV",
   "title": "Can Small Open Models Power Reliable AI Agents?",
-  "description": "",
+  "description": "Small open models are increasingly capable of powering AI agents locally, giving developers more control over privacy, cost, and deployment. But most agent demos follow the happy path: tools work correctly, inputs are predictable, and the agent successfully completes the task. Real-world systems are rarely that simple.\n\nWhat happens when a tool fails, returns unexpected information, or when a task requires multiple steps? More importantly, can a small open model recognize failure, recover intelligently, and avoid confidently producing an incorrect answer?\n\nIn this talk, I will explore these questions through a reproducible experiment using AI agents powered by small open models running locally. The agents will be tested across increasingly challenging scenarios, including tool selection, argument generation, multi-step tasks, tool failures, unexpected outputs, and failure recovery.\n\nRather than evaluating only the final response, we will examine the agent's behavior throughout the task using practical measures such as tool correctness, task completion, recovery rate, step efficiency, and graceful failure.\n\nAttendees will see where small open models perform well, where agent reliability begins to break down, and what developers should consider when moving beyond demos. The experiment, test scenarios, evaluation code, and results will be released openly for others to reproduce and extend.",
   "track": "[CLS] - OTS",
   "type": "CLS - Talk (Open Tech Summit)",
   "expertise": "",
