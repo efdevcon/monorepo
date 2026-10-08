@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useId } from 'react'
 import cn from 'classnames'
 import { Link } from 'components/common/link'
 import { ArrowUpRight, CalendarDays, Globe, Sheet } from 'lucide-react'
@@ -19,17 +19,27 @@ const TAG_CLASS =
 function CalendarCard({ calendar }: { calendar: SideEventCalendar }) {
   const t = useTranslations('road_to_devcon')
   const PlatformIcon = PLATFORM_ICONS[calendar.platform]
+  // Name the link by its title (described by the blurb) so screen readers don't
+  // announce every tag as part of the link text.
+  const titleId = useId()
+  const descriptionId = useId()
   return (
     <Link
       to={calendar.url}
-      className="group flex flex-col gap-4 rounded-2xl outline outline-1 outline-[#221144]/10 bg-white p-[16px] sm:p-6 transition-[box-shadow,transform] duration-150 ease-out hover:scale-[1.03] hover:shadow-md hover:shadow-[#221144]/10 active:scale-[0.97] active:shadow-none"
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      className="group flex flex-col gap-4 rounded-2xl outline outline-1 outline-[#221144]/10 bg-white p-[20px] sm:p-6 transition-[box-shadow,transform] duration-150 ease-out hover:shadow-md hover:shadow-[#221144]/10 active:shadow-none motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
     >
       <div className="flex flex-col gap-2">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-xl font-extrabold leading-[26px] text-[#160b2b]">{calendar.name}</h3>
+          <h3 id={titleId} className="text-xl font-extrabold leading-[26px] text-[#160b2b]">
+            {calendar.name}
+          </h3>
           <ArrowUpRight size={20} strokeWidth={2} className="mt-[3px] shrink-0 text-[#7235ed]" aria-hidden />
         </div>
-        <p className="text-sm leading-5 text-[#221144]">{t(`side_events.calendars.${calendar.id}`)}</p>
+        <p id={descriptionId} className="text-sm leading-5 text-[#221144]">
+          {t(`side_events.calendars.${calendar.id}`)}
+        </p>
       </div>
 
       <ul className="mt-auto flex flex-wrap gap-2 pt-2">
