@@ -5,6 +5,7 @@ import { Link } from 'components/common/link'
 import { RoadToDevconHero } from 'components/domain/road-to-devcon/RoadToDevconHero'
 import { RoadToDevconEvents } from 'components/domain/road-to-devcon/RoadToDevconEvents'
 import { RoadToDevconCommunities } from 'components/domain/road-to-devcon/RoadToDevconCommunities'
+import { RoadToDevconSideEvents } from 'components/domain/road-to-devcon/RoadToDevconSideEvents'
 import { RoadToDevconPrograms } from 'components/domain/road-to-devcon/RoadToDevconPrograms'
 import { University, Sprout, ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -103,6 +104,8 @@ export default function RoadToDevconPage({
         <RoadToDevconEvents events={events} />
 
         <RoadToDevconCommunities communities={communities} />
+
+        <RoadToDevconSideEvents />
 
         <RoadToDevconPrograms />
 
