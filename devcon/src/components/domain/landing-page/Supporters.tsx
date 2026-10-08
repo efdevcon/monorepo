@@ -227,6 +227,10 @@ export const Supporters = () => {
             <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), SECOND_ROW]} className="sm:hidden" />
           ))}
         </div>
+
+        <Reveal>
+          <p className="text-[14px] sm:text-[16px] text-white/80">{t('more_soon')}</p>
+        </Reveal>
       </div>
     </div>
   )
