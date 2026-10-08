@@ -8,7 +8,7 @@
  *   pnpm pretalx:release            # release the next number (0.16 -> 0.17)
  *   pnpm pretalx:release 1.0        # explicit version override
  *   pnpm pretalx:release list       # read-only: list versions + what's next
- *   pnpm pretalx:release list devcon8
+ *   pnpm pretalx:release list devcon8  # the only thing allowed on devcon8
  *
  * Version names are free-form in Pretalx but we use numbers (0.15, 0.16, …);
  * auto-increment bumps the minor of the highest numeric version and ignores
@@ -36,6 +36,13 @@ const VISIBILITY_DELAY_MS = 8000
 const versionArg = process.argv[2]
 const event = process.argv[3] || 'test-devcon-8'
 const listOnly = versionArg === 'list'
+// Devcon 8 is released by the programme team in the Pretalx UI, never by a
+// script: only the read-only listing is allowed here. Do not add an override.
+const NEVER_RELEASE = ['devcon8']
+if (!listOnly && NEVER_RELEASE.includes(event)) {
+  console.error(`refusing to release ${event}: its schedule is published by the programme team in the Pretalx UI only`)
+  process.exit(1)
+}
 
 const eventId = getEventIdByPretalxSlug(event)
 if (!eventId) {

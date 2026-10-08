@@ -36,6 +36,27 @@ const SLIDES_EVENTS = csv(process.env.SLIDES_EVENTS)
 const SLIDES_ONLY_CODES = csv(process.env.SLIDES_ONLY_CODES)
 const SLIDES_SKIP_PERMISSIONS = process.env.SLIDES_SKIP_PERMISSIONS === 'true'
 const SLIDES_DRY_RUN = SLIDES_SKIP_PERMISSIONS || process.env.SLIDES_PERMISSIONS_DRY_RUN === 'true'
+// Partner-run tracks (sync-eventyay): every deck on SLIDES_DELEGATE_TRACKS is
+// shared with the partner's contact only (SLIDES_PLACEHOLDER_DELEGATE per event),
+// who passes it on; the speakers themselves get nothing, whether they are
+// placeholder users (SYNC_PLACEHOLDER_EMAIL mailbox with a "+" suffix) or real
+// accounts. Outside those tracks a placeholder still maps to the delegate.
+const PLACEHOLDER_MAILBOX = (process.env.SYNC_PLACEHOLDER_EMAIL || '').toLowerCase()
+const isPlaceholder = (email: string) => {
+  const [local, domain] = PLACEHOLDER_MAILBOX.split('@')
+  const e = email.toLowerCase()
+  return !!domain && e.startsWith(`${local}+`) && e.endsWith(`@${domain}`)
+}
+const deckEmails = (session: any): string[] => {
+  const delegate = config.SLIDES_PLACEHOLDER_DELEGATE
+  if (delegate && (config.SLIDES_DELEGATE_TRACKS ?? []).includes(session.track)) return [delegate]
+  const out: string[] = []
+  for (const email of session.speakers.map((s: any) => s.email).filter(Boolean) as string[]) {
+    if (!isPlaceholder(email)) out.push(email)
+    else if (config.SLIDES_PLACEHOLDER_DELEGATE && !out.includes(config.SLIDES_PLACEHOLDER_DELEGATE)) out.push(config.SLIDES_PLACEHOLDER_DELEGATE)
+  }
+  return out
+}
 
 // ── Log helpers: one heading per phase, indented detail lines, problems
 // collected for the final summary (SYNC_VERBOSE=1 adds the Pretalx paging). ──
@@ -271,6 +292,13 @@ async function syncSessions() {
     fs.mkdirSync(`./data/sessions/${eventId}`, { recursive: true })
   }
   const sessions = await GetSessions({}, config)
+  // Same-event collision: two talks with the same title map to the same id and
+  // the later one silently overwrites the file. Loud, like the cross-event check.
+  const seenIds = new Map<string, string>()
+  for (const s of sessions) {
+    if (seenIds.has(s.id)) problem(`session id '${s.id}' is shared by ${seenIds.get(s.id)} and ${s.sourceId}; one overwrites the other, rename a talk`)
+    else seenIds.set(s.id, s.sourceId)
+  }
   const sessionsFs = GetData(`sessions/${eventId}`)
   let deleted = 0
   for (const session of sessionsFs) {
@@ -375,7 +403,7 @@ async function createPresentations(submissions: any[], folderId: string) {
   )
 
   for (const { session, sessionFs } of todo) {
-    const speakerEmails: string[] = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
+    const speakerEmails: string[] = deckEmails(session)
     const label = `[${session.sourceId}] ${session.title}`
     try {
       const deck = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails, folderId)
@@ -444,7 +472,7 @@ async function reconcilePermissions(submissions: any[]) {
     // source the redirect page reads, so this pass covers unpublished talks too.
     const deckId = deckIdFromUrl(session.resources_presentation)
     if (!deckId) continue
-    const speakerEmails: string[] = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
+    const speakerEmails: string[] = deckEmails(session)
     decks++
     try {
       const changes = await ReconcileDeckPermissions(deckId, speakerEmails, opts)
@@ -497,7 +525,7 @@ async function recordNoGoogleAccounts(submissions: any[]) {
   let flagged = 0
   for (const session of submissions) {
     if (SLIDES_ONLY_CODES.length > 0 && !SLIDES_ONLY_CODES.includes(session.sourceId)) continue
-    const speakerEmails = new Set<string>(session.speakers.map((s: any) => (s.email || '').toLowerCase()).filter(Boolean))
+    const speakerEmails = new Set<string>(deckEmails(session).map((e) => e.toLowerCase()))
     const current = splitEmails(session.slidesNoGoogleAccount).sort()
     const kept = current.filter((email) => speakerEmails.has(email))
     const next = [...new Set([...kept, ...(invitedByCode.get(session.sourceId) ?? [])])].sort()

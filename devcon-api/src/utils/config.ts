@@ -112,6 +112,10 @@ export interface PretalxInstanceConfig {
   // The drive and the template deck are common to all events and stay in
   // SLIDES_DRIVE_ID / SLIDES_TEMPLATE_ID, read in clients/slides.ts.
   SLIDES_FOLDER_ID?: string
+  // Partner-run tracks (see scripts/sync-eventyay.ts): their decks are shared with
+  // the partner's contact only, never with the speakers, whoever they are.
+  SLIDES_DELEGATE_TRACKS?: string[]
+  SLIDES_PLACEHOLDER_DELEGATE?: string
 
   DEFAULT_LIMIT: number
 }
@@ -173,6 +177,8 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 179, // "Slides: no Google account" (written by the sync; created 2026-09-28)
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 180, // "Slides: last edit" (written by the sync; created 2026-09-29)
     SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_TEST_DEVCON_8,
+    SLIDES_DELEGATE_TRACKS: ['[CLS] - OTS'],
+    SLIDES_PLACEHOLDER_DELEGATE: process.env.SLIDES_PLACEHOLDER_DELEGATE_TEST_DEVCON_8,
 
     DEFAULT_LIMIT: 100,
   },
@@ -202,6 +208,8 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 183, // "Slides: last edit" (written by the sync; created 2026-09-30)
     // The slides passes also need devcon8 in SLIDES_ALLOWED_EVENTS (sync-pretalx.ts).
     SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_DEVCON8,
+    SLIDES_DELEGATE_TRACKS: ['[CLS] - OTS'],
+    SLIDES_PLACEHOLDER_DELEGATE: process.env.SLIDES_PLACEHOLDER_DELEGATE_DEVCON8,
 
     DEFAULT_LIMIT: 100,
   },

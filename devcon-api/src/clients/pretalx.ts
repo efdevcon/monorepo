@@ -242,7 +242,8 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     id: defaultSlugify(i.title),
     sourceId: i.code,
     title: i.title,
-    description: i.description ?? i.abstract,
+    // Pretalx returns '' (not null) for an empty description; fall back to the abstract then too.
+    description: i.description || i.abstract,
     // Newer pretalx (cfp.devcon.org) returns track/submission_type as expanded
     // objects `{id, name:{en}}`; older instances used a bare `{en}` / numeric id.
     // Read both shapes so the migrated events keep their track labels and types.
@@ -308,6 +309,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
 
   const twitter = findAnswer(config.PRETALX_QUESTIONS_TWITTER)
   const github = findAnswer(config.PRETALX_QUESTIONS_GITHUB)
+  const website = findAnswer(config.PRETALX_QUESTIONS_WEBSITE)
   const farcaster = findAnswer(config.PRETALX_QUESTIONS_FARCASTER)
   const lens = findAnswer(config.PRETALX_QUESTIONS_LENS)
   const ens = findAnswer(config.PRETALX_QUESTIONS_ENS)
@@ -336,6 +338,16 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   if (featuredAnswer === 'True') speaker.featured = true
   if (notEmptyOrInvalid(twitter)) speaker.twitter = sanitizeProfileField(twitter)
   if (notEmptyOrInvalid(github)) speaker.github = sanitizeProfileField(github)
+  // "Personal Website, Github, or other relevant link": a GitHub URL fills github
+  // when the dedicated question is absent (devcon8, test), anything else is the website.
+  if (notEmptyOrInvalid(website)) {
+    const link = website.trim().split(/[\s,]+/)[0]
+    if (/^(https?:\/\/)?(www\.)?github\.com\//i.test(link)) {
+      if (!speaker.github) speaker.github = sanitizeProfileField(link)
+    } else if (/^[a-z0-9.-]+\.[a-z]{2,}(\/|$)/i.test(link.replace(/^https?:\/\//i, ''))) {
+      speaker.website = /^https?:\/\//i.test(link) ? link : `https://${link}`
+    }
+  }
   if (notEmptyOrInvalid(farcaster)) speaker.farcaster = sanitizeProfileField(farcaster)
   if (notEmptyOrInvalid(lens)) speaker.lens = sanitizeProfileField(lens)
   if (notEmptyOrInvalid(ens)) {
