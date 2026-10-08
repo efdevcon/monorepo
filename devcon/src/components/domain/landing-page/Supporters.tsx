@@ -6,15 +6,12 @@ import Arkiv from './images/supporters/arkiv.svg'
 import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
-import Bitget from './images/supporters/bitget.svg'
 import Circle from './images/supporters/circle.svg'
 import CowSwap from './images/supporters/cow-swap.svg'
-import Dedaub from './images/supporters/dedaub.svg'
 import Ens from './images/supporters/ens.svg'
 import Fairfood from './images/supporters/fairfood.svg'
 import Nethermind from './images/supporters/nethermind.svg'
 import TrailOfBits from './images/supporters/trail-of-bits.svg'
-import World from './images/supporters/world.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
 import eag from './images/supporters/impact-hubs/eag.avif'
 import Eez from './images/supporters/impact-hubs/eez.svg'
@@ -59,7 +56,7 @@ type Row = {
 }
 
 // Supporters: Fluid + Base, then Arkiv, Gnosis and Kleros at 44px, then the rest at
-// 36px — 5 + 4 from sm, pairs below sm (sized off row 2 so it always stays bigger).
+// 36px — 3 + 3 from sm, pairs below sm (sized off row 2 so it always stays bigger).
 // Impact hubs follow the scale of the tier above them, so they always stay smaller.
 const TOP_ROW: Row = {
   maxWidth: 0.8,
@@ -79,15 +76,12 @@ const SECOND_ROW: Row = {
 }
 
 const OTHER_SUPPORTERS: LogoEntry[] = [
-  { name: 'Bitget', href: 'https://www.bitget.com', Logo: Bitget, aspect: 266 / 80 },
   { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 219 / 63 },
   { name: 'CoW Swap', href: 'https://cow.fi', Logo: CowSwap, aspect: 390 / 60 },
-  { name: 'Dedaub', href: 'https://dedaub.com', Logo: Dedaub, aspect: 602 / 80 },
   { name: 'ENS', href: 'https://ens.domains', Logo: Ens, aspect: 255 / 80 },
   { name: 'Fair Food Data', href: 'https://fairfooddata.org', Logo: Fairfood, aspect: 369 / 70.2 },
   { name: 'Nethermind', href: 'https://www.nethermind.io', Logo: Nethermind, aspect: 586 / 80 },
   { name: 'Trail of Bits', href: 'https://www.trailofbits.com', Logo: TrailOfBits, aspect: 133 / 80 },
-  { name: 'World', href: 'https://world.org', Logo: World, aspect: 317 / 80 },
 ]
 
 const IMPACT_HUBS: LogoEntry[] = [
@@ -122,8 +116,8 @@ const chunk = <T,>(items: T[], sizes: number[]) => {
   return sizes.map(n => items.slice(i, (i += n)))
 }
 
-const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [5, 4]).map(logos => ({ height: OTHER_HEIGHT, logos }))
-const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 1]).map(logos => ({
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3]).map(logos => ({ height: OTHER_HEIGHT, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2]).map(logos => ({
   height: OTHER_HEIGHT,
   logos,
 }))
