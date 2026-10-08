@@ -308,7 +308,7 @@ const nextConfig = {
                     params: {
                       overrides: {
                         removeViewBox: false,
-                        cleanupIds: false,
+                        cleanupIDs: false, // svgo 2 (bundled with @svgr/webpack 6) spells it cleanupIDs
                       },
                     },
                   },
