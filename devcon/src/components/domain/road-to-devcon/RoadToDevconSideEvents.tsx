@@ -16,6 +16,8 @@ const PLATFORM_ICONS: Record<CalendarPlatform, typeof Globe> = {
 const TAG_CLASS =
   'rounded-[2px] outline outline-1 px-2 py-1 text-[11px] font-semibold uppercase leading-4 tracking-[0.5px]'
 
+// Card type uses px literals with a 1025px step, not rem utilities: the site
+// root font-size drops to 14px ≤1024 (index.scss), which would shrink rem text.
 function CalendarCard({ calendar }: { calendar: SideEventCalendar }) {
   const t = useTranslations('road_to_devcon')
   const PlatformIcon = PLATFORM_ICONS[calendar.platform]
@@ -32,12 +34,15 @@ function CalendarCard({ calendar }: { calendar: SideEventCalendar }) {
     >
       <div className="flex flex-col gap-2">
         <div className="flex items-start justify-between gap-3">
-          <h3 id={titleId} className="text-xl font-extrabold leading-[26px] text-[#160b2b]">
+          <h3
+            id={titleId}
+            className="text-[18px] font-extrabold leading-[26px] text-[#160b2b] min-[1025px]:text-[20px]"
+          >
             {calendar.name}
           </h3>
           <ArrowUpRight size={20} strokeWidth={2} className="mt-[3px] shrink-0 text-[#7235ed]" aria-hidden />
         </div>
-        <p id={descriptionId} className="text-sm leading-5 text-[#221144]">
+        <p id={descriptionId} className="text-[14px] leading-[1.5] text-[#221144]">
           {t(`side_events.calendars.${calendar.id}`)}
         </p>
       </div>
