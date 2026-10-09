@@ -26,7 +26,10 @@ _Assessment date: 2026-08-04. Items marked ✅ FIXED were implemented the same d
 surface was built - §12c is that changelog. On 2026-08-10 compression + CDN cache
 headers landed on devcon-api (the §11.7 insurance) - §12e is that changelog. Reviewed
 2026-08-10: findings re-verified against the repo and live API, GitHub links added,
-superseded statements corrected in place. Line references may drift as code changes._
+superseded statements corrected in place. Updated 2026-10-09, after the first Devcon 8
+schedule release: §12g covers the Pretalx upgrade, the partner schedule sync, the
+release guard and the featured-speaker question. Line references may drift as code
+changes._
 
 ---
 
@@ -123,6 +126,13 @@ Details that matter:
   response for the sync stalled — and rolled back — orga-UI releases.
 - Both sync workflows also have a **monthly cron fallback** (`0 23 30 * *`), so data
   refreshes even if no schedule is published.
+- **Releasing a Devcon 8 schedule is done by the speaker team in the Pretalx orga UI,
+  nowhere else.** `pnpm pretalx:release` (devcon-api, §12f) refuses `devcon8` through a
+  hardcoded `NEVER_RELEASE` list with no override (2026-10-08), so a script run cannot
+  publish by accident. The first Devcon 8 schedule was released on 2026-10-09: the
+  webhook dispatched the sync, which committed 316 sessions, 320 speakers and 11 rooms;
+  the run-of-show workflow dispatched alongside it failed on the Google Sheets write
+  quota (§12g).
 - The devcon-7 sync additionally runs `createPresentations()` (Google Slides) and a
   glossary build - gated `if (eventId === 'devcon-7')` in
   [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts). The
@@ -194,6 +204,8 @@ by hand. "Manual" means someone runs a pnpm script locally.
 | Pretalx webhook ([`hooks.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/controllers/hooks.ts)) | Full resync into memory + dispatches workflows | Pretalx "schedule published" plugin webhook | Slug-resolved; unknown slugs rejected with 400 (✅ fixed, §12) | Live |
 | [`sync-pretalx{,-devcon8,-test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Commits `devcon-api/data/` to git (→ Render redeploy), builds devcon-ai RAG embeddings, pings Meerkat | Webhook-dispatched + monthly cron (`0 23 30 * *`) | devcon-7 / devcon8 / test-devcon-8 | Live |
 | [`run-of-show-{devcon8,test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Rebuilds the AV team's Google Sheet | Webhook-dispatched + manual dispatch | devcon8 / test-devcon-8 (devcon-7 not wired) | Live |
+| `pnpm sync:eventyay <event>` ([`sync-eventyay.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-eventyay.ts)) | Syncs a partner's eventyay schedule (Open Tech Summit) into our Pretalx event: proposals, WIP slots, tags, speakers (§12g) | Manual; dry run by default, `--apply` writes | test-devcon-8 / devcon8 (target table in the script) | Manual |
+| `pnpm pretalx:release <event>` ([`pretalx-release.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/pretalx-release.ts)) | Releases a schedule version through the Pretalx API (orga-UI fallback, §12f) | Manual | `devcon8` refused (`NEVER_RELEASE`); test-devcon-8 and devcon7-sea | Manual |
 | Meerkat ping (`notifyClients()` in [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts)) | POST sync ping to `meerkat.events` | Runs inside the sync script | **devcon-7 only, URL hardcoded** (§3 #11) | Live (DC7 only) |
 | `pnpm yt` → `syncThumbnails()` ([`yt.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/yt.ts)) | Renders `devcon.org/api/social/av/:id` at 1920×1080 and pushes via `youtube.thumbnails.set()` (105/run for quota) | Manual, interactive browser OAuth | `sessions/devcon-7` hardcoded | Manual |
 | `pnpm yt` → `syncDescriptions()` | Rewrites YouTube **titles** (truncated to fit "by <speaker>" + a hardcoded `\| Devcon SEA` suffix into 100 chars) and **descriptions** (from session description + tags), ledger [`youtube-descriptions.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/youtube-descriptions.json) | **Commented out** in `main()` | devcon-7 + SEA branding hardcoded | Disabled |
@@ -295,7 +307,8 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    the `SLIDES_EVENTS` env opt-in for the run. CI sets none of the `SLIDES_*` variables,
    so no workflow creates decks; Devcon 8 decks are created by manual runs for now, the
    first one on 2026-09-30 for a single accepted talk
-   (`SLIDES_EVENTS=devcon8 SLIDES_ONLY_CODES=<code> pnpm sync:pretalx:devcon8`). `SLIDES_ONLY_CODES` limits a run to a few
+   (`SLIDES_EVENTS=devcon8 SLIDES_ONLY_CODES=<code> pnpm sync:pretalx:devcon8`), then on
+   2026-10-08 for the 43 Open Tech Summit sessions (§12g). `SLIDES_ONLY_CODES` limits a run to a few
    Pretalx codes and `SLIDES_SKIP_PERMISSIONS=true` creates decks without granting
    speakers, both meant for test runs. `pnpm slides` (§9) now exits immediately.
    A **permissions pass** (2026-09-18, `reconcilePermissions()` in the sync, rules in
@@ -310,6 +323,12 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    investigation with the Workspace admins), which blocks this pass and the export.
    `GOOGLE_IMPERSONATE_USER` (domain-wide delegation, to be authorised by an admin) makes
    the pipeline act as an internal EF user instead.
+   **Partner tracks** (2026-10-08): a deck whose session sits on a track listed in the
+   instance's `SLIDES_DELEGATE_TRACKS` (`[CLS] - OTS` on both DC8 events) is shared with
+   the partner's contact address from `SLIDES_PLACEHOLDER_DELEGATE_<EVENT>` only, at
+   creation and in the permissions pass; the partner passes it on to its speakers.
+   Outside those tracks a placeholder speaker address (§12g) also maps to that contact,
+   real addresses are granted as usual.
    **Deck link and no-Google-account speakers recorded in Pretalx** (2026-09-28): the
    slides passes now run over every accepted or confirmed submission (accepted since
    2026-09-29: the acceptance email may carry the link before the speaker confirms),
@@ -327,8 +346,9 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    team to share the deck by hand or to export to the run of show. Pretalx has no
    organiser-only mode for a question (an inactive one is hidden from the proposal page for
    everyone, `limit_teams` only scopes organiser teams), the deployed version ignores the
-   per-question list filters, and its API rejects every tag update on a proposal, so
-   speaker-visible read-only was the workable option (decided 2026-09-28). Addresses leave
+   per-question list filters, and its API rejected every tag update on a proposal (fixed
+   by the 2026-10-08 upgrade, §12g), so speaker-visible read-only was the workable option
+   (decided 2026-09-28). Addresses leave
    the list when they leave the talk or an organiser clears the field; Drive gives no signal
    for an accepted invitation. Non-public tags are now dropped from the session JSON by the
    session mapper (they used to be published like any other tag).
@@ -526,18 +546,20 @@ template, and has an unreachable 1920×1080 `'video'` branch (`imageType` hardco
 
 ## 6. Source coverage on disk
 
-Counts re-verified 2026-08-10:
+Counts re-verified 2026-08-10 (devcon8 and test-devcon-8 rows: 2026-10-09):
 
 | Event | Sessions | YouTube | IPFS | Swarm | StreamEth | Livepeer | Transcript |
 |---|---|---|---|---|---|---|---|
 | devcon-0 … 6 | 1,079 | ~all | ~all | ~all | – | – | – |
 | **devcon-7** | 650 | 580 | **0** | 555 | 388 | **1** | 367 |
 | **devconnect-arg** | 418 | 418 | 0 | 0 | 0 | 0 | 0 |
-| **devcon8** | 0 | – | – | – | – | – | – |
-| **test-devcon-8** | 5 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **devcon8** | 316 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **test-devcon-8** | 54 | 0 | 0 | 0 | 0 | 0 | 0 |
 
-- `devcon8` has no synced sessions yet (schedule not published); `test-devcon-8`
-  carries the seeded test sessions from §12c.
+- `devcon8` got its first synced sessions with the first schedule release on
+  2026-10-09 (316 sessions, 320 speakers, no AV sources yet). `test-devcon-8` carries
+  the seeded test sessions from §12c, a mirror of real DC8 talks and the Open Tech
+  Summit sessions (§12g).
 - IPFS mirroring **stopped after DC6**, and the gateway in use
   (`cloudflare-ipfs.com`,
   [`archive/.../Video.tsx`](https://github.com/efdevcon/monorepo/blob/main/archive/src/components/domain/archive/Video.tsx))
@@ -587,7 +609,11 @@ Counts re-verified 2026-08-10:
    `securing-ethereum` exists in devcon-1 and devcon-7), last-loaded wins. Harder to
    fix than rooms because `GET /sessions/:id` is a public bare-id contract
    (archive/app deep links). Not fixed; needs a decision (e.g. prefer the newest
-   event on conflict, or event-scoped lookups).
+   event on conflict, or event-scoped lookups). Since 2026-10-08 the sync at least
+   reports it: a same-event collision (two talks with one title) and a cross-event one
+   land in the run's problems list. The first Devcon 8 sync (2026-10-09) listed 43 ids
+   that also exist in `test-devcon-8`, the Open Tech Summit sessions mirrored there
+   (§12g); a bare-id lookup for those resolves to whichever event loaded last.
 8. **Production `/events` publicly serves three phantom events** (re-verified
    2026-08-10): `0` (stray
    [`data/events/0.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/data/events/0.json),
@@ -859,6 +885,14 @@ describe pre-fix behavior.
   instead of Lens, and no Keywords question; the test event also lacks Farcaster and
   Tags. Why: without these, speaker socials/expertise/audience/tags sync silently
   empty.
+- **"Featured speaker" question** (speaker target, boolean, organiser-only: not public,
+  not visible to reviewers): `PRETALX_QUESTIONS_FEATURED`, created 2026-08-27 on
+  `test-devcon-8` and `devcon7-sea`, 2026-10-09 on `devcon8` (ids in the config). The
+  sync collects the ticked speakers into the event record's `featuredSpeakers` (speaker
+  files are shared across events, so the flag cannot live there) and only overwrites
+  the list when the question yields answers. event-app lists them first and, while no
+  answer exists, falls back to speakers with a featured session (Pretalx's own
+  `is_featured` on the proposal, mapped as `featured`).
 - **`mapSubmissionType` extended with DC8 + test-devcon-8 ids** (blocker #5).
   Talk/Keynote → `Talk`, workshops (1h/1h30/2h) → `Workshop`, Mixed Formats →
   `Panel`, Lightning Talk → `Lightning Talk`. "Experience" (89/100) intentionally
@@ -1067,9 +1101,66 @@ Fixes:
   scheduled via `transaction.on_commit` + `(5, 180)s` timeout — releases never block
   on the receiver and webhooks can no longer announce rolled-back releases. Deploy =
   bump the git pin in `cluster/devcon/pretalx/ansible/inventories/mumbai/group_vars/instances.yaml`
-  (currently `21a8d2e`) + ansible run.
+  (currently `21a8d2e`; the pretalx pin itself moved on 2026-10-08, §12g) + ansible run.
 - Fallback while any of this is undeployed: `pnpm pretalx:release` (devcon-api)
   releases via the API with auto-incremented version numbers.
+
+## 12g. Changelog: Pretalx upgrade, partner schedule sync, release guard, 2026-10-08 to 10-09
+
+Context: Open Tech Summit India (FOSSASIA) runs co-located with Devcon 8 on the CLS
+stage and publishes its own schedule on eventyay (a Pretalx fork). Its sessions had to
+exist in our Pretalx event like every other talk, so the app, the slides pipeline and
+the run of show see them, without the partner re-entering anything.
+
+- **Pretalx upgraded for the tags API** (cluster repo, `instances.yaml`): the pin moved
+  from the launch commit to upstream `071224513a` (2026-03-31, six days later), the
+  commit that fixes the submission serializer rejecting every `tags` write ("Invalid
+  pk"). Deployed with ansible on both Mumbai nodes on 2026-10-08; the comment next to
+  the pin lists the versions. Anything from v2026.2.0 upwards changes the API, so check
+  the devcon-api clients before going further. The webhook plugin pin is unchanged (§12f).
+- **`pnpm sync:eventyay <event> [--apply]`**
+  ([`sync-eventyay.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-eventyay.ts)):
+  reads the partner's public widget JSON and creates or updates proposals on
+  `test-devcon-8` or `devcon8`, matched on the source session code kept in an
+  organiser-only "Sync source ID" question. Dry run by default, idempotent, never
+  deletes (a vanished source session is reported). It maps the partner's session types
+  to ours (`CLS - Talk / Lightning Talk / Miniworkshop / Panel (Open Tech Summit)`), its
+  rooms (`CLS Stage`, `CLS Stage - Builders Room`) and its tracks to our tags, accepts
+  and confirms, and places each proposal in the **unreleased** WIP schedule with the
+  source duration. A session held several times becomes one proposal per run with a
+  "(n/N)" title suffix, since our events allow one slot per proposal. Speakers: the
+  partner contacts its own speakers, so no real email is involved. A speaker whose full
+  name already exists on `devcon8` or `devcon-7` is attached as that account (gaps
+  filled, nothing overwritten); everyone else gets a placeholder address on a team
+  mailbox with a `+` suffix per source speaker (`SYNC_PLACEHOLDER_EMAIL` in `.env`,
+  never in the repo), so the profile exists with the eventyay bio, avatar (webp
+  converted to PNG, Pretalx refuses webp) and social links (X, Telegram, one
+  website/GitHub/LinkedIn link, into the speaker questions). Applied on `devcon8` on
+  2026-10-08: 43 proposals on Nov 5, 66 speaker links. Pretalx queues an "added to a
+  proposal" draft in the outbox for every attach; nothing is sent, the speaker team
+  discards them.
+- **Release guard**: `pnpm pretalx:release` refuses `devcon8` (`NEVER_RELEASE`, no
+  override). Publishing Devcon 8 schedules is the speaker team's act in the orga UI
+  (§2). The whole flow was exercised on `test-devcon-8` first (release 0.35, 2026-10-08).
+- **Slides for partner tracks**: `SLIDES_DELEGATE_TRACKS` / `SLIDES_PLACEHOLDER_DELEGATE`
+  (§2d). The 43 decks were created on 2026-10-08 with `SLIDES_EVENTS=devcon8`, each
+  shared with the partner contact only (verified in Drive), deck links written to Pretalx.
+- **Mapper** (`clients/pretalx.ts`, all events): `description` falls back to the
+  abstract when Pretalx returns an empty string (the partner's sessions carry only an
+  abstract); the "Personal Website, Github, or other relevant link" answer is now
+  published, as `github` for a GitHub URL on events without a dedicated GitHub question,
+  as `website` otherwise. It was mapped but never written before, so the next sync also
+  surfaces the links Devcon 8 speakers entered there.
+- **Sync problems list** now includes same-event and cross-event session-id collisions
+  (§7.7).
+- **"Featured speaker" question on `devcon8`** (2026-10-09, §12 DC8 configuration).
+- **First Devcon 8 schedule release, 2026-10-09**, by the speaker team in the orga UI.
+  The webhook dispatched `sync-pretalx-devcon8` (success: 316 sessions, 320 speakers,
+  11 rooms committed, slides off as designed, 43 collision warnings against
+  `test-devcon-8`) and `run-of-show-devcon8`, which **failed** on the Google Sheets
+  "Write requests per minute per user" quota while writing the first full schedule.
+  Nothing in the sync depends on it, but the sheet needs a re-run, and a throttled
+  writer before the next release.
 
 ### Still open after these changelogs
 
@@ -1078,7 +1169,9 @@ Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube chann
 templates - infra done, §12d), #9/#11 (YouTube OAuth, Meerkat endpoint - #10 is
 now closed: AV write path + token migration verified 2026-08-13), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility). §12e's edge caching is now fully active (Render Edge
-Caching "All files", 2026-08-19).
+Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): the devcon8 run-of-show
+workflow fails on the Sheets write quota, CI still creates no decks for devcon8 (§2d
+checklist), and 43 Open Tech Summit session ids collide with test-devcon-8 (§7.7).
 
 ## Verification
 
@@ -1094,7 +1187,7 @@ No code changes are proposed in this document. To validate the findings above:
 - Thumbnail rendering: `curl -I https://devcon.org/api/social/av/<sourceId>` (check
   the `x-og-cache` header).
 - Pipeline liveness: `git log --oneline --author=github-actions -5` shows
-  `[action] Pretalx Sync` commits.
+  `[action] Pretalx Sync` commits (the first `(devcon8)` one landed 2026-10-09).
 - Sync auth against cfp.devcon.org: run `pnpm sync:pretalx:devcon8` locally - a stale
   base URL / key shows as public endpoints 200 but private events 401 (the redirect
   strips the `Authorization` header, so the failure is silent).

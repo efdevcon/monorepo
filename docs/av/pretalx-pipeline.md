@@ -1,5 +1,7 @@
 # Pretalx → devcon-api → repo (schedule data pipeline)
 
+> Handover snapshot from the former maintainer (mid-2026). Stale parts: the production events are hooked up (`devcon8` and `test-devcon-8` each have their own sync workflow, `devcon-mumbai-playground` is gone), the first Devcon 8 schedule was released on 2026-10-09, and releasing a Devcon 8 schedule is the speaker team's act in the Pretalx orga UI (`pnpm pretalx:release` refuses `devcon8`). Partner schedules (Open Tech Summit) enter Pretalx upstream of this flow through `sync-eventyay.ts`. Current state: [av-stack-overview.md](./av-stack-overview.md) §2, §12g.
+>
 > For a full map of the AV stack and a Devcon 8 readiness assessment (blockers,
 > automation inventory, dormant code), see [av-stack-overview.md](./av-stack-overview.md).
 
