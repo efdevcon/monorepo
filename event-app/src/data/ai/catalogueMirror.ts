@@ -12,6 +12,7 @@ import { DATASETS, DEFAULT_DATASET_KEY, type Dataset } from "@/data/dataset";
  *   /ai/<event>            index          cached
  *   /ai/<event>/day/<n>    one day        cached
  *   /ai/<event>/sessions   all days       cached
+ *   /ai/<event>/ids/<A,B>  full details   cached
  *   /ai/<event>/search?…   filters        never cached
  * Netlify's CDN keys a Next response by path alone (its Netlify-Vary covers
  * only the RSC params), so a query-string variant must not be cached: a
@@ -22,7 +23,7 @@ import { DATASETS, DEFAULT_DATASET_KEY, type Dataset } from "@/data/dataset";
 /** Query parameters the API's search understands; anything else is dropped. */
 export const CATALOGUE_PARAMS = ["day", "track", "type", "room", "q", "ids", "full"] as const;
 
-export type MirrorPage = "index" | "day" | "sessions" | "search";
+export type MirrorPage = "index" | "day" | "sessions" | "ids" | "search";
 
 /** The dataset an event id names (the API event id, which the hubs ride on). */
 export function catalogueDataset(event: string | null | undefined): Dataset | undefined {
@@ -33,10 +34,11 @@ export function catalogueDataset(event: string | null | undefined): Dataset | un
 const apiBase = (dataset: Dataset) => `${dataset.apiUrl.replace(/\/$/, "")}/events/${dataset.eventId}/ai`;
 
 /** Upstream URL for a mirror request. */
-export function upstreamCatalogueUrl(dataset: Dataset, page: MirrorPage, params: URLSearchParams, day?: string): string {
+export function upstreamCatalogueUrl(dataset: Dataset, page: MirrorPage, params: URLSearchParams, segment?: string): string {
   const base = apiBase(dataset);
   if (page === "index") return base;
-  if (page === "day") return `${base}/day/${encodeURIComponent(day ?? "")}`;
+  if (page === "day") return `${base}/day/${encodeURIComponent(segment ?? "")}`;
+  if (page === "ids") return `${base}/ids/${encodeURIComponent(segment ?? "")}`;
   if (page === "sessions") return `${base}/sessions`;
   const query = new URLSearchParams();
   for (const name of CATALOGUE_PARAMS) {
@@ -57,7 +59,14 @@ export function rewriteCatalogueLinks(text: string, dataset: Dataset, appOrigin:
   return text.split(apiBase(dataset)).join(mirrorCatalogueUrl(appOrigin, dataset.eventId));
 }
 
-export const CATALOGUE_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=600";
+/**
+ * Cached pages: fresh for five minutes, then served stale at once while the
+ * CDN refreshes behind the scenes for up to a day. An assistant's fetcher
+ * gives up after a few seconds, and the first request after a deploy pays a
+ * Next function cold start, so a stale answer beats a timeout; the data
+ * changes slowly (a hub edit lands within the refresh).
+ */
+export const CATALOGUE_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=86400";
 
 /**
  * The origin the visitor used. On Netlify a route handler's `request.url`
@@ -72,6 +81,20 @@ export function requestOrigin(request: Request): string {
   return `${proto}://${host}`;
 }
 
+/** One retry on a network error or a 5xx: the API sits behind a CDN that occasionally hiccups, and the failure is logged either way. */
+async function fetchUpstream(url: string): Promise<Response | null> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(url, { headers: { Accept: "text/plain" }, cache: "no-store" });
+      if (res.ok || res.status < 500) return res;
+      console.warn(`[ai-mirror] upstream ${res.status} for ${url} (attempt ${attempt + 1})`);
+    } catch (error) {
+      console.warn(`[ai-mirror] upstream fetch failed for ${url} (attempt ${attempt + 1}):`, error instanceof Error ? error.message : error);
+    }
+  }
+  return null;
+}
+
 const plain = (body: string, status: number, cache?: string) =>
   new Response(body, {
     status,
@@ -83,16 +106,12 @@ const plain = (body: string, status: number, cache?: string) =>
  * page, rewrite its links, answer as plain text. A failed upstream fetch is a
  * 502 with a one-line explanation the assistant can relay.
  */
-export async function mirrorCatalogue(request: Request, event: string, page: MirrorPage, day?: string): Promise<Response> {
+export async function mirrorCatalogue(request: Request, event: string, page: MirrorPage, segment?: string): Promise<Response> {
   const dataset = catalogueDataset(event);
   if (!dataset) return plain("Unknown event.", 404);
-  const upstream = upstreamCatalogueUrl(dataset, page, new URL(request.url).searchParams, day);
-  let res: Response;
-  try {
-    res = await fetch(upstream, { headers: { Accept: "text/plain" }, cache: "no-store" });
-  } catch {
-    return plain("The programme is not reachable right now, try again in a minute.", 502);
-  }
+  const upstream = upstreamCatalogueUrl(dataset, page, new URL(request.url).searchParams, segment);
+  const res = await fetchUpstream(upstream);
+  if (!res) return plain("The programme is not reachable right now, try again in a minute.", 502);
   if (!res.ok) return plain(`The programme is not reachable right now (upstream ${res.status}), try again in a minute.`, 502);
   const text = rewriteCatalogueLinks(await res.text(), dataset, requestOrigin(request));
   return plain(text, 200, page === "search" ? undefined : CATALOGUE_CACHE_CONTROL);

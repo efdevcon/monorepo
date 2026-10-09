@@ -125,6 +125,8 @@ export interface PromptInput {
   dates: string;
   /** "Mumbai time (IST)" or similar. */
   timezoneLabel: string;
+  /** Number of event days, for the day-page links; 0 when unknown. */
+  dayCount: number;
   starred: { code: string; title: string }[];
 }
 
@@ -142,11 +144,14 @@ export function buildAssistantPrompt(input: PromptInput): string {
       ? "none yet"
       : input.starred.map((s) => `${s.code} (${s.title})`).join(", ");
   const when = [input.dates, input.timezoneLabel].filter(Boolean).join(", ");
+  // Claude's fetch tool only opens URLs it has seen (in the prompt or in a fetched page), so the day pages are spelled out.
+  const dayPages = Array.from({ length: input.dayCount }, (_, i) => `${catalogue}/day/${i + 1}`);
   return [
     `You are helping me build my personal schedule for ${input.eventTitle}${when ? ` (${when})` : ""}.`,
     "",
-    `Catalogue: ${catalogue}`,
-    "Read it first. It links one page per event day listing every session, main stages and Community Hubs alike, one per line with a CODE at the start, plus filters you can query. Only use codes that appear there.",
+    `Catalogue index: ${catalogue}`,
+    ...(dayPages.length ? [`Day pages: ${dayPages.join(" , ")}`] : []),
+    "Fetch the index first, then the day pages: every session, main stages and Community Hubs alike, one per line with a CODE at the start. Open only links that appear in the index or in a page you fetched (your fetch tool refuses URLs you compose yourself), and only use codes that appear there.",
     "",
     `My current interests: ${starred}.`,
     "",

@@ -29,6 +29,10 @@ export function AiPlannerCard() {
   const prompt = useCallback(() => {
     const dataset = getActiveDataset();
     const starred = sessions.filter((s) => ids.has(s.id)).map((s) => ({ code: sessionCode(s), title: s.title }));
+    const dayCount =
+      event?.startDate && event?.endDate
+        ? Math.max(0, Math.round((Date.parse(event.endDate) - Date.parse(event.startDate)) / 86_400_000) + 1)
+        : 0;
     const dates =
       event?.startDate && event?.endDate
         ? `${eventFmt("en-GB", { day: "numeric" }).format(new Date(event.startDate))} to ${eventFmt("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date(event.endDate))}`
@@ -39,6 +43,7 @@ export function AiPlannerCard() {
       eventTitle: event?.title || dataset.label,
       dates,
       timezoneLabel: getEventTimeZoneLabel(),
+      dayCount,
       starred,
     });
   }, [sessions, ids, event]);

@@ -559,13 +559,15 @@ function testAiPlan() {
     eventTitle: "Devcon 8",
     dates: "3 to 6 November 2026",
     timezoneLabel: "Mumbai time (IST)",
+    dayCount: 4,
     starred: [{ code: "8LTCLM", title: "A talk" }],
   });
-  check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue: https://app.devcon.org/ai/devcon8"));
+  check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue index: https://app.devcon.org/ai/devcon8"));
+  check("prompt spells out the day pages for fetch tools that only open seen URLs", prompt.includes("https://app.devcon.org/ai/devcon8/day/1 , https://app.devcon.org/ai/devcon8/day/2 , https://app.devcon.org/ai/devcon8/day/3 , https://app.devcon.org/ai/devcon8/day/4"));
   check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM (A talk)."));
   check("prompt explains the apply link", prompt.includes("https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3"));
-  check("prompt stays short enough for a URL prefill", prompt.length < 2000, `${prompt.length} chars`);
-  check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", starred: [] }).includes("My current interests: none yet."));
+  check("prompt stays short enough for a URL prefill", prompt.length < 2600, `${prompt.length} chars`);
+  check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", dayCount: 0, starred: [] }).includes("My current interests: none yet."));
   const ds = { ...DATASETS.devcon8, apiUrl: "https://api.devcon.org/", eventId: "devcon8" };
   check("catalogueDataset: default without ?event, by API event id with it, unknown is undefined",
     catalogueDataset(null) !== undefined && catalogueDataset("devcon8")?.eventId === "devcon8" && catalogueDataset("nope") === undefined);
@@ -573,11 +575,12 @@ function testAiPlan() {
     upstreamCatalogueUrl(ds, "index", new URLSearchParams("")) === "https://api.devcon.org/events/devcon8/ai"
     && upstreamCatalogueUrl(ds, "day", new URLSearchParams("q=ignored"), "2") === "https://api.devcon.org/events/devcon8/ai/day/2"
     && upstreamCatalogueUrl(ds, "sessions", new URLSearchParams("")) === "https://api.devcon.org/events/devcon8/ai/sessions"
+    && upstreamCatalogueUrl(ds, "ids", new URLSearchParams(""), "A,B") === "https://api.devcon.org/events/devcon8/ai/ids/A%2CB"
     && upstreamCatalogueUrl(ds, "search", new URLSearchParams("day=2&q=zk&utm=x")) === "https://api.devcon.org/events/devcon8/ai/search?day=2&q=zk");
   check("mirrorCatalogueUrl is the event's index path", mirrorCatalogueUrl("https://app.devcon.org", "devcon8") === "https://app.devcon.org/ai/devcon8");
-  const page = "Day 1: https://api.devcon.org/events/devcon8/ai/day/1\nIndex: https://api.devcon.org/events/devcon8/ai\nIds: https://api.devcon.org/events/devcon8/ai/search?ids=A,B&full=1";
+  const page = "Day 1: https://api.devcon.org/events/devcon8/ai/day/1\nIndex: https://api.devcon.org/events/devcon8/ai\nIds: https://api.devcon.org/events/devcon8/ai/ids/A,B";
   check("rewriteCatalogueLinks moves every API link onto the mirror", rewriteCatalogueLinks(page, ds, "https://app.devcon.org") ===
-    "Day 1: https://app.devcon.org/ai/devcon8/day/1\nIndex: https://app.devcon.org/ai/devcon8\nIds: https://app.devcon.org/ai/devcon8/search?ids=A,B&full=1");
+    "Day 1: https://app.devcon.org/ai/devcon8/day/1\nIndex: https://app.devcon.org/ai/devcon8\nIds: https://app.devcon.org/ai/devcon8/ids/A,B");
   check("requestOrigin prefers the forwarded host over the deploy's internal URL",
     requestOrigin(new Request("https://abc123--site.netlify.app/ai", { headers: { "x-forwarded-host": "app.devcon.org", "x-forwarded-proto": "https" } })) === "https://app.devcon.org"
     && requestOrigin(new Request("http://localhost:3000/ai", { headers: { host: "localhost:3000", "x-forwarded-proto": "http" } })) === "http://localhost:3000"
