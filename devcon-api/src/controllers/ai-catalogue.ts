@@ -9,6 +9,8 @@ import { formatIndex, formatSessionList, type CatalogueFilters } from '@/utils/a
 // session with its code first. The event app's "Plan with your AI" card sends
 // assistants here; they hand codes back through /my-interests?add=... in the
 // app. Main programme from the store, Community Hubs from their live bundle.
+// Served as text/plain: every assistant's URL fetcher accepts it, while
+// text/markdown is not on all of their allowlists.
 export const aiCatalogueRouter = Router()
 aiCatalogueRouter.get(`/events/:id/ai`, publicCache(300), GetAiIndex)
 aiCatalogueRouter.get(`/events/:id/ai/sessions`, publicCache(60), GetAiSessions)
@@ -28,7 +30,7 @@ export async function GetAiIndex(req: Request, res: Response) {
   // #swagger.summary = 'Markdown index of the programme for AI assistants: day lists, filters, how to hand sessions back to the app.'
   if (!store.getEvent(req.params.id)) return res.status(404).send({ status: 404, message: 'Not Found' })
   const { sessions, hubs, ctx } = await buildCatalogue(req.params.id, apiOrigin(req))
-  res.status(200).type('text/markdown; charset=utf-8').send(formatIndex(sessions, hubs, ctx))
+  res.status(200).type('text/plain; charset=utf-8').send(formatIndex(sessions, hubs, ctx))
 }
 
 export async function GetAiSessions(req: Request, res: Response) {
@@ -47,5 +49,5 @@ export async function GetAiSessions(req: Request, res: Response) {
     full: get('full') === '1' || get('full') === 'true',
   }
   const { sessions, ctx } = await buildCatalogue(req.params.id, apiOrigin(req))
-  res.status(200).type('text/markdown; charset=utf-8').send(formatSessionList(sessions, filters, ctx))
+  res.status(200).type('text/plain; charset=utf-8').send(formatSessionList(sessions, filters, ctx))
 }
