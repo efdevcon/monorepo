@@ -554,12 +554,12 @@ Counts re-verified 2026-08-10 (devcon8 and test-devcon-8 rows: 2026-10-09):
 | **devcon-7** | 650 | 580 | **0** | 555 | 388 | **1** | 367 |
 | **devconnect-arg** | 418 | 418 | 0 | 0 | 0 | 0 | 0 |
 | **devcon8** | 316 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **test-devcon-8** | 54 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **test-devcon-8** | 11 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 - `devcon8` got its first synced sessions with the first schedule release on
   2026-10-09 (316 sessions, 320 speakers, no AV sources yet). `test-devcon-8` carries
-  the seeded test sessions from §12c, a mirror of real DC8 talks and the Open Tech
-  Summit sessions (§12g).
+  the seeded test sessions from §12c and a few mirrored DC8 talks; its Open Tech Summit
+  mirror was removed the same day (§12g).
 - IPFS mirroring **stopped after DC6**, and the gateway in use
   (`cloudflare-ipfs.com`,
   [`archive/.../Video.tsx`](https://github.com/efdevcon/monorepo/blob/main/archive/src/components/domain/archive/Video.tsx))
@@ -613,7 +613,8 @@ Counts re-verified 2026-08-10 (devcon8 and test-devcon-8 rows: 2026-10-09):
    reports it: a same-event collision (two talks with one title) and a cross-event one
    land in the run's problems list. The first Devcon 8 sync (2026-10-09) listed 43 ids
    that also exist in `test-devcon-8`, the Open Tech Summit sessions mirrored there
-   (§12g); a bare-id lookup for those resolves to whichever event loaded last.
+   (§12g); a bare-id lookup for those resolved to whichever event loaded last. Cleared the
+   same day: the 43 test proposals were deleted and test release 0.36 synced them out.
 8. **Production `/events` publicly serves three phantom events** (re-verified
    2026-08-10): `0` (stray
    [`data/events/0.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/data/events/0.json),
@@ -1161,6 +1162,10 @@ the run of show see them, without the partner re-entering anything.
   "Write requests per minute per user" quota while writing the first full schedule.
   Nothing in the sync depends on it, but the sheet needs a re-run, and a throttled
   writer before the next release.
+- **Test mirror cleaned up** (2026-10-09): the 43 Open Tech Summit proposals were deleted
+  from `test-devcon-8` through the API and test release 0.36 synced them out (11 test
+  sessions left), so Devcon 8 syncs no longer report id collisions for them. The 43 test
+  decks remain in the test Drive folder.
 
 ### Still open after these changelogs
 
@@ -1170,8 +1175,8 @@ templates - infra done, §12d), #9/#11 (YouTube OAuth, Meerkat endpoint - #10 is
 now closed: AV write path + token migration verified 2026-08-13), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility). §12e's edge caching is now fully active (Render Edge
 Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): the devcon8 run-of-show
-workflow fails on the Sheets write quota, CI still creates no decks for devcon8 (§2d
-checklist), and 43 Open Tech Summit session ids collide with test-devcon-8 (§7.7).
+workflow fails on the Sheets write quota and CI still creates no decks for devcon8 (§2d
+checklist).
 
 ## Verification
 
