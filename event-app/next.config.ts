@@ -28,6 +28,8 @@ const withSerwist = withSerwistInit({
     { url: "/speakers", revision },
     { url: "/map", revision },
     { url: "/notifications", revision },
+    // The AI planner's apply page (/my-interests?add=…): must open offline.
+    { url: "/my-interests", revision },
     // NOT /ticket (nor "/"). Their HTML must come from the server whenever the
     // network is there: the root layout's <link rel="manifest"> is
     // personalised from the session cookie (PersonalizedManifestLink), and

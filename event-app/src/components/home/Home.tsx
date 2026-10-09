@@ -7,6 +7,7 @@ import { InstallHeroCard } from "../InstallHeroCard";
 import { NotificationsHeroCard } from "./NotificationsHeroCard";
 // import { Tickets } from "../Tickets"; // parked, see note in Home()
 import { CommunityHubsCard } from "./CommunityHubsCard";
+import { AiPlannerCard } from "./AiPlannerCard";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { EventInformation } from "./EventInformation";
@@ -49,6 +50,7 @@ export function Home() {
             </>
           )}
           <CommunityHubsCard />
+          <AiPlannerCard />
           {/* HomeFooterArt ("Devcon 8 India") is parked for a design revisit —
               the component is kept, just not rendered. */}
           {/* Tickets section removed from Home: signed in, the event ticket,

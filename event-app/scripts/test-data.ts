@@ -18,6 +18,16 @@ import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, tick
 import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
 import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
+import {
+  applyLink,
+  assistantUrl,
+  buildAssistantPrompt,
+  parseCodeList,
+  parsePlanParams,
+  planOverlaps,
+  resolvePlan,
+} from "../src/data/ai/plan";
+import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
@@ -500,6 +510,65 @@ function testReminders() {
     reminderBody("Talk now", start, "Asia/Kolkata", null, start - 10_000) === "Talk now starts in 1 minute at 10:00");
 }
 
+// --- AI planner: codes in, sessions out (src/data/ai/plan.ts) ---
+
+function planSession(id: string, sourceId: string | undefined, start: number, minutes: number, title = id): Session {
+  return {
+    id,
+    sourceId,
+    title,
+    track: "Core Protocol",
+    duration: minutes,
+    start,
+    end: start + minutes * 60_000,
+    speakers: [],
+    room: { id: "r1", name: "Lotus Stage" },
+  } as unknown as Session;
+}
+
+function testAiPlan() {
+  check("parseCodeList splits on commas, spaces and lines, drops junk, dedupes case-insensitively", eq(
+    parseCodeList(" 8LTCLM, shtldn\nprivacy-s03;8ltclm <script> "),
+    ["8LTCLM", "shtldn", "privacy-s03"]
+  ));
+  check("parseCodeList caps the list", parseCodeList(Array.from({ length: 300 }, (_, i) => `C${i}`).join(",")).length === 200);
+  const params = new URLSearchParams("add=A,B&add=C&remove=B,D");
+  check("parsePlanParams merges repeated params and lets add win over remove", eq(parsePlanParams(params), { add: ["A", "B", "C"], remove: ["D"] }));
+
+  const s1 = planSession("a-talk", "8LTCLM", T0, 30, "A talk");
+  const s2 = planSession("b-talk", "SHTLDN", T0 + 15 * 60_000, 30, "B talk");
+  const s3 = planSession("privacy-s03", undefined, T0 + 60 * 60_000, 40, "Hub chat");
+  const s4 = planSession("c-talk", "CCCCCC", T0 + 120 * 60_000, 30, "C talk");
+  const starred = new Set(["a-talk", "c-talk"]);
+  const plan = resolvePlan({ add: ["8ltclm", "SHTLDN", "privacy-s03", "NOPE"], remove: ["c-talk", "b-talk"] }, [s1, s2, s3, s4], starred);
+  check("resolvePlan matches codes and slugs, case-insensitively, across programmes", eq(plan.add.map((s) => s.id), ["b-talk", "privacy-s03"]));
+  check("resolvePlan reports already starred adds", eq(plan.alreadyStarred.map((s) => s.id), ["a-talk"]));
+  check("resolvePlan removes starred sessions by slug and skips the rest", eq(plan.remove.map((s) => s.id), ["c-talk"]) && eq(plan.notStarred, []));
+  check("resolvePlan lists unknown codes", eq(plan.unknown, ["NOPE"]));
+
+  check("planOverlaps pairs sessions that overlap in time", eq(planOverlaps([s3, s1, s2, s4]).map(([a, b]) => [a.id, b.id]), [["a-talk", "b-talk"]]));
+  check("planOverlaps: touching sessions do not overlap", planOverlaps([s1, planSession("x", "X", s1.end, 30)]).length === 0);
+
+  check("applyLink builds the apply URL", applyLink("https://app.devcon.org", ["A", "B"], ["C"]) === "https://app.devcon.org/my-interests?add=A%2CB&remove=C");
+  check("applyLink with nothing to remove", applyLink("https://app.devcon.org", ["A"], []) === "https://app.devcon.org/my-interests?add=A");
+
+  const prompt = buildAssistantPrompt({
+    appOrigin: "https://app.devcon.org",
+    apiUrl: "https://api.devcon.org/",
+    eventId: "devcon8",
+    eventTitle: "Devcon 8",
+    dates: "3 to 6 November 2026",
+    timezoneLabel: "Mumbai time (IST)",
+    starred: [{ code: "8LTCLM", title: "A talk" }],
+  });
+  check("prompt points at the catalogue index", prompt.includes("Catalogue: https://api.devcon.org/events/devcon8/ai"));
+  check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM (A talk)."));
+  check("prompt explains the apply link", prompt.includes("https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3"));
+  check("prompt stays short enough for a URL prefill", prompt.length < 2000, `${prompt.length} chars`);
+  check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", apiUrl: "y", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", starred: [] }).includes("My current interests: none yet."));
+  check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b");
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -513,6 +582,7 @@ async function main() {
   testPrimary();
   testRateLimiter();
   testInterestsMerge();
+  testAiPlan();
   await testRetryOnce();
   await testWhenControlled();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
