@@ -13,6 +13,7 @@ import Fairfood from './images/supporters/fairfood.svg'
 import Nethermind from './images/supporters/nethermind.svg'
 import TrailOfBits from './images/supporters/trail-of-bits.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
+import DaoFund from './images/supporters/impact-hubs/dao-fund.svg'
 import eag from './images/supporters/impact-hubs/eag.avif'
 import Eez from './images/supporters/impact-hubs/eez.svg'
 import EipsInsight from './images/supporters/impact-hubs/eipsinsight.svg'
@@ -86,6 +87,7 @@ const OTHER_SUPPORTERS: LogoEntry[] = [
 
 const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Crossbar', href: 'https://crossbar-inc.com', image: crossbar, scale: 1.15 },
+  { name: 'DAO FUND', href: 'https://thedao.fund', Logo: DaoFund, aspect: 81 / 80 },
   { name: 'EIPsInsight', href: 'https://eipsinsight.com', Logo: EipsInsight, aspect: 442 / 80 },
   { name: 'Ethereum Applications Guild', href: 'https://ethappsguild.org', image: eag, scale: 1.15 },
   { name: 'Ethereum Economic Zone', href: 'https://eez.io', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
@@ -121,13 +123,13 @@ const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2]).map(logos =>
   height: OTHER_HEIGHT,
   logos,
 }))
-const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [6, 6, 5]).map(logos => ({
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [6, 6, 6]).map(logos => ({
   k: HUB_K,
   cap: HUB_CAP,
   gap: 'min(48px, 5cqw)',
   logos,
 }))
-const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 2]).map(logos => ({
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 3]).map(logos => ({
   k: HUB_K_MOBILE,
   cap: OTHER_HEIGHT,
   max: OTHER_HEIGHT,
