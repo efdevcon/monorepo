@@ -1,0 +1,28 @@
+{
+  "id": "lessons-learned-shipping-proof-of-personhood-on-taiwans-citizen-digital-certificate",
+  "sourceId": "FAULEV",
+  "title": "Lessons learned shipping proof of personhood on Taiwan's citizen digital certificate",
+  "description": "PTT is a non-profit forum, online since 1995, run by volunteers on their own time. To keep coordinated manipulation such as bot armies off the platform, it has to verify that users are real people in Taiwan. It also does not want to know which ones, because holding identity data makes it the first stop for law enforcement and a breach risk nobody there is paid to carry.\r\n\r\nTeams from Ethereum Foundation worked with PTT to ship a zero-knowledge proof-of-personhood flow, now in beta, built on Taiwan's citizen digital certificate, an RSA X.509 credential.\r\n\r\nThis talk is about the gap between the protocol and a product real people use. Three things broke: revocation against legacy government infrastructure, an initial ZK proof too large to generate on a phone, and what happened when we tried to bridge it to Ethereum.\r\n\r\nThe SDKs are now open source for mobile and web, so other teams can ship privacy-preserving features that are actually practical to build.",
+  "track": "Privacy & Consent",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Identity",
+    "Open Source",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "moven-tsai"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Id0Nt42Ld1Z16eYh2zP3BrAWId_mPIAb5WvLijsAv6Q",
+  "slot_start": 1793945400000,
+  "slot_end": 1793945820000,
+  "slot_roomId": "lotus-2"
+}

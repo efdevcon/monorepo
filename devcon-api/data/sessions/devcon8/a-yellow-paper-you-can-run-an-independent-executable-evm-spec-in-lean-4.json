@@ -1,0 +1,26 @@
+{
+  "id": "a-yellow-paper-you-can-run-an-independent-executable-evm-spec-in-lean-4",
+  "sourceId": "PYCGBJ",
+  "title": "A Yellow Paper you can run: an independent executable EVM spec in Lean 4",
+  "description": "Ethereum's execution layer has a canonical executable specification — EELS. Jaune is an independent executable counterpart in Lean 4: one set of definitions that supports machine-checked proofs and runs the complete supported current-mainnet test corpus (5,100/5,100 fixture files, 34,005 cases, Prague through BPO2, gas and all 18 active precompiles, no FFI).\r\n\r\nThis talk is what that independence turned up, told as stories. A merged correction to EELS's withdrawal decoding, found by Jaune's fixture gate demanding exact exception identities. Divergences between the transaction roots emitted by Geth and by the reference transition tool, reported upstream with proposed fixes. Then, what an independent spec is for beyond bug-hunting: a second opinion that reads like a spec, through the same t8n interface clients already speak; and a semantics you can prove against: verified compilation to bytecode, contract invariants carried to chain level, scope and trust boundaries stated exactly.",
+  "track": "Core Protocol",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "seulkee-baek"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1aYKCHSFM_TwWqNtCrAbS4gzZRQTD7k3MXbp-aLrdexs",
+  "slot_start": 1793874600000,
+  "slot_end": 1793876100000,
+  "slot_roomId": "lotus-2"
+}

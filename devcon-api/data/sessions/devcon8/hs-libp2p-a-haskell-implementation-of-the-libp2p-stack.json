@@ -1,0 +1,26 @@
+{
+  "id": "hs-libp2p-a-haskell-implementation-of-the-libp2p-stack",
+  "sourceId": "MJ7SP9",
+  "title": "hs-libp2p: A Haskell Implementation of the libp2p Stack",
+  "description": "Every Ethereum node reaches peers through libp2p: multiaddr, Noise, Yamux, Identify, Kademlia DHT, GossipSub. Yet this layer rests on a few implementations; when two read an underspecified spec corner differently, peers fail to connect or silently drop messages — a systemic risk with no owner.\r\n\r\nI built the full libp2p stack independently in Haskell — TCP, Noise XX, Yamux, multistream-select, Switch, Identify, Ping, Kademlia DHT, GossipSub — with 547 unit, property, and end-to-end tests, and joined libp2p/unified-testing to interop with other libp2p implementations.\r\n\r\nA layer-by-layer tour of Ethereum's p2p stack; the concrete spec ambiguities a fresh, strongly-typed implementation surfaces that incumbents absorbed as folklore; how cross-client interop keeps the network coherent; and why implementation diversity at the networking layer — not just the client layer — is a resilience and censorship-resistance property.",
+  "track": "Permissionless Networks",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "P2P"
+  ],
+  "language": "en",
+  "speakers": [
+    "shouki-tsuda"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1h04VogKdRok4-hf1lry5TJgADZaPyxTK1_rnO478fj4",
+  "slot_start": 1793790600000,
+  "slot_end": 1793791020000,
+  "slot_roomId": "lightning-stage"
+}

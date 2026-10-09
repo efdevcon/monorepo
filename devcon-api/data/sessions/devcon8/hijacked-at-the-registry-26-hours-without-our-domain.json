@@ -1,0 +1,28 @@
+{
+  "id": "hijacked-at-the-registry-26-hours-without-our-domain",
+  "sourceId": "SFF9N9",
+  "title": "Hijacked at the registry: 26 hours without our domain",
+  "description": "Most DeFi teams harden contracts, cloud accounts and DNS, yet a domain can still be taken through the administrative layer above them. This talk reconstructs the cow.fi registry-level hijack: how forged identity documents and a registrar transfer redirected users to a wallet drainer while our AWS account, DNS zone, frontend, contracts and keys remained untouched.\r\n\r\nAttendees will learn how to distinguish a registry hijack from a DNS or cloud breach, which signals shorten detection, and which controls would or would not help including DNSSEC, CAA, transfer locks and RegistryLock. We will also share a practical response model for operating when your website and cow.fi email addresses are unreachable: fallback domains, out-of-band communications, registrar escalation and recovery checks.\r\n\r\nThis matters now because DeFi frontends remain trusted gateways to immutable protocols, while registries and registrars are centralized dependencies that most threat models and incident drills ignore.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Security",
+    "Supply chain",
+    "OpSec"
+  ],
+  "language": "en",
+  "speakers": [
+    "anuj-bansal",
+    "nuno-anselmo"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1zI4gfSiiqoAysSQKzlTVmTVUtrrxoHeiQJyYWKo0lwM",
+  "slot_start": 1793781000000,
+  "slot_end": 1793782500000,
+  "slot_roomId": "lightning-stage"
+}

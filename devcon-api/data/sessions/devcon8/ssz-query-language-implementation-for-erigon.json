@@ -1,0 +1,27 @@
+{
+  "id": "ssz-query-language-implementation-for-erigon",
+  "sourceId": "WKPXUX",
+  "title": "SSZ Query Language Implementation for Erigon",
+  "description": "SSZ-QL is a query language for querying execution layer data **with proofs** directly from Erigon's SSZ encoded blocks (this is WIP too under another EPF project by another fellow), built against Erigon's `rpcdaemon` module. I will share concrete design decisions from implementing it: the five query primitives (anchor, path, filter, summaries, aliases) and a JSON request and response envelope schema. I will cover how this differs from GraphQL and other existing RPC methods for querying block data and proofs, lessons from reviews and bugs caught during implementation phase and why the specs were formalized as they are.\r\n\r\nProject proposal: [SSZ Query Language for Erigon](https://github.com/eth-protocol-fellows/cohort-seven/blob/main/projects/Erigon-SSZ-Query-Language.md)\r\n\r\nSSZ-QL specs mentioned above: [SSZ-QL for the Ethereum Execution Layer](https://hackmd.io/@SoarinSkySagar/rkwwvAMEzg)",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Proving Systems",
+    "Open Source"
+  ],
+  "language": "en",
+  "speakers": [
+    "sagar-rana"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1nlYREQ1l8S-Z0I3QRVEi1GWmkJ-KB4xA-FSAJ7N0Zek",
+  "slot_start": 1793781000000,
+  "slot_end": 1793781900000,
+  "slot_roomId": "workshop-3"
+}

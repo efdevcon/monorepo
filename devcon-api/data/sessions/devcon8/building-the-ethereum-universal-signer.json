@@ -1,0 +1,28 @@
+{
+  "id": "building-the-ethereum-universal-signer",
+  "sourceId": "XJWZLS",
+  "title": "Building the Ethereum Universal Signer",
+  "description": "This presentation will start with a quick description of the problem : what is missing from hardware wallets today regarding protocol support and user interface, and what has been built so far (ERC-7730 - https://clearsigning.org/). \r\nIt'll then dig into the modifications done to a open microkernel, Xous (https://github.com/betrusted-io/xous-core), running on the open RISCV Daric chip (https://github.com/crossbar-inc/daric-hardware) from a security and user experience point of view (from adding a new service to handle BIP 39 seeds safely for multiple applications to choosing the best User Interface layer)\r\nWe'll continue with the implementation of the Universal Signer application itself and the architecture chosen to be compatible with devices having quite different performance targets.\r\nFinally we'll do a quick demo.\r\n\r\nAttendees will get a clear view of modern challenges faced by wallets today, and how automatic programming helps building secure hardware.",
+  "track": "Open & Verifiable Stack",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Wallets",
+    "Hardware",
+    "Key Management",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "nicolas-bacca"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1NDoYACImdYS4y6E8acizHikl7f1BTByFDoXYiaVr5e0",
+  "slot_start": 1793953800000,
+  "slot_end": 1793955300000,
+  "slot_roomId": "lotus-1"
+}

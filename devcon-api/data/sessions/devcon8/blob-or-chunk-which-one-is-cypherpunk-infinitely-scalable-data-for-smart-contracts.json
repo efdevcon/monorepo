@@ -1,0 +1,28 @@
+{
+  "id": "blob-or-chunk-which-one-is-cypherpunk-infinitely-scalable-data-for-smart-contracts",
+  "sourceId": "7RNEX7",
+  "title": "Blob or chunk: which one is cypherpunk? Infinitely scalable data for smart contracts",
+  "description": "A chain of reductions: each step removes machinery the previous one needed.\r\n\r\nBlobs: data never enters the EVM, type-3 txs are EOA-only, bytes pruned in ~18 days — publication, never storage.\r\nAnchor pattern: a 32-byte content-addressed root; updates O(1) at any payload size; keccak Merkle openings verified natively in Solidity.\r\nValidity vs availability: slashing forces openings but can't punish withholding; availability must be physically produced — broadcast, or a second bonded holder.\r\nLitigable receipts: staked nodes at a derived secondary address pledge \"produce on challenge or be slashed\", countersigned by the primary storers — withholding needs two colluding neighbourhoods; persistence prepaid via postage stamps.\r\nReads are EIP-3668 callbacks verifying Merkle paths; writes are gasless signed pointer flips.\r\nAuthenticated indexes give query completeness; a censored result is convicted on-chain by two keccak proofs. Close: storage-cost state, consensus-grade trust.",
+  "track": "Open & Verifiable Stack",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Scalability",
+    "EVM",
+    "Communication"
+  ],
+  "language": "en",
+  "speakers": [
+    "viktor-tron"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Q01r7u3b0q0o4BJR1PFYnc84TlgtF2WkKZiq8n52qxg",
+  "slot_start": 1793784600000,
+  "slot_end": 1793785020000,
+  "slot_roomId": "lightning-stage"
+}

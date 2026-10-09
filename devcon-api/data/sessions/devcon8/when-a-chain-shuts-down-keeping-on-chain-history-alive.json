@@ -1,0 +1,28 @@
+{
+  "id": "when-a-chain-shuts-down-keeping-on-chain-history-alive",
+  "sourceId": "GNVKGQ",
+  "title": "When a Chain Shuts Down: Keeping On-Chain History Alive",
+  "description": "Networks get deprecated. When that happens, everything deployed on them has to move somewhere else.\r\n\r\nSpiko runs Europe's largest tokenized regulated funds infrastructure on more than five EVM networks. Regulation requires business continuity: the funds must stay operational, redeemable and auditable even if a chain shuts down. So we built infrastructure to fully offboard from a network.\r\n\r\nMoving the assets is the easy part: custodial positions can be bridged to another network. The hard part is the events. Transfer history and audit trails don't move with a bridge, and once the chain is gone, so are they. Most of this talk is about how we solved that: an archiving mechanism that migrates events from any chain onto an EVM network, so history stays queryable after the source chain shuts down.\r\n\r\nI'll go through the design, the trade-offs we made, and how it runs in production.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "DeFi",
+    "Security",
+    "Real World"
+  ],
+  "language": "en",
+  "speakers": [
+    "nicolas-assouad"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1UYV4bANSoe3RNZGUF_CzPP979_AbXRfxurKWX5uSfpk",
+  "slot_start": 1793775000000,
+  "slot_end": 1793775420000,
+  "slot_roomId": "lightning-stage"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "is-this-binary-actually-built-from-that-public-source-code",
+  "sourceId": "VCEMDS",
+  "title": "Is this binary actually built from that public source code?",
+  "description": "In this lightning talk, I'd like to share ideas and results from my recent exploration in the opaque binary verification.\r\n\r\nTalk TLDR\r\n1. Problem: in ecosystems like apple, devs sign compiled binaries with their certificate/pvt key. in some ecosystems like npm, crates, and more user trust that the platform and dev both are legit.\r\n2. How hackers are exploiting the gap.\r\n3. Approaches to binary verification: \r\n  - self build (no trust assumptions, CPU intensive, hardly anyone does), \r\n  - delegated build (google's oss rebuild tool)\r\n  - zk proof of compilation (5000x overhead from feb 2026 study)\r\n  - builds in TEE\r\n  - social layer attestations.\r\n4. How social layer attestation can be leveraged today in ethereum consensus/execution client binaries, various design vectors, positives and negatives of this approach. \r\n5. PoC screenshots/GIF verifying an update to ethereum client in a fairly decentralised way.",
+  "track": "Open & Verifiable Stack",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Open Source",
+    "Security",
+    "Supply chain"
+  ],
+  "language": "en",
+  "speakers": [
+    "soham-zemse"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/155JW3fDiIHanfZbV4Ahh8hq-owoXavQmm7JfSsf-7EA",
+  "slot_start": 1793785200000,
+  "slot_end": 1793785620000,
+  "slot_roomId": "lightning-stage"
+}

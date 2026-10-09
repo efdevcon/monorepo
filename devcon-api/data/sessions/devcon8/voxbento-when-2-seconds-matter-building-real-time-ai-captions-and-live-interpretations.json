@@ -1,0 +1,25 @@
+{
+  "id": "voxbento-when-2-seconds-matter-building-real-time-ai-captions-and-live-interpretations",
+  "sourceId": "HWKQHS",
+  "title": "Voxbento: When 2 Seconds Matter — Building Real-Time AI Captions and Live Interpretations",
+  "description": "**When 2 Seconds Matter: Building Real-Time AI Captions for Live Events**\n\nLive events need captions and translations that feel instantaneous, but building real-time AI streaming is very different from processing uploaded audio.\n\nIn this talk, I’ll share what I learned building **VoxBento**, an open source real-time multilingual streaming infrastructure using FastAPI, WebRTC, MediaMTX, and pluggable transcription providers.\n\nI’ll walk through the architecture from live audio ingestion to streaming transcription and caption delivery, and the engineering challenges we encountered along the way. In particular, I’ll cover why we moved from HLS to WHEP to reduce playback handoff latency, how we integrated both cloud and local transcription services, and why naïve chunk-based Whisper inference can cause context and caption consistency problems.\n\nI’ll also discuss practical approaches to handling overloaded transcription pipelines, including bounded queues, dropping stale audio, voice activity detection, and caption aggregation.\n\nThe goal is to give attendees a practical look at the tradeoffs involved in building low-latency, extensible AI infrastructure in open source, along with lessons that can be applied to other real-time AI applications.",
+  "track": "[CLS] - OTS",
+  "type": "CLS - Talk (Open Tech Summit)",
+  "expertise": "",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI"
+  ],
+  "language": "en",
+  "speakers": [
+    "arnav-angarkar"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1AnqWGzxxXsiXl2LNoF0QtegQIC9Gi79xaUfTNYoeks4",
+  "slot_start": 1793853000000,
+  "slot_end": 1793853900000,
+  "slot_roomId": "cls-stage"
+}

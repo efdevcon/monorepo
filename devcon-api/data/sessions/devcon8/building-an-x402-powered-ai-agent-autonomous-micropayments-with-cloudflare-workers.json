@@ -1,0 +1,25 @@
+{
+  "id": "building-an-x402-powered-ai-agent-autonomous-micropayments-with-cloudflare-workers",
+  "sourceId": "FD9ZQQ",
+  "title": "Building an x402-Powered AI Agent: Autonomous Micropayments with Cloudflare Workers",
+  "description": "HTTP 402 \"Payment Required\" sat dormant in the web spec for 30 years. In 2026, Coinbase and Cloudflare revived it as x402, and Cloudflare has since shipped programmable Wallets and a Monetization Gateway that let any API charge AI agents per request in stablecoins — no accounts, no API keys.\r\n\r\nMost engineers building \"agentic\" apps are still wiring in OAuth and manual billing — patterns that don't scale to autonomous, machine-to-machine commerce. Few have hands-on experience with the actual x402 flow: 402 challenge, signed payment payload, facilitator verification, on-chain settlement.\r\n\r\nIn this workshop we live-code an agent that requests a paywalled resource, receives a 402 challenge, signs an x402 payment, and gets served — all on Cloudflare Workers. We'll cover wallet setup, spending guardrails, and facilitator verification.",
+  "track": "Users, Builders, and Agents",
+  "type": "Workshop",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI"
+  ],
+  "language": "en",
+  "speakers": [
+    "haruki-kondo"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1u8sI3sRfcNuafevYw2HhiuadIdh4he_yMBxisTmyg8s",
+  "slot_start": 1793856600000,
+  "slot_end": 1793859600000,
+  "slot_roomId": "workshop-2"
+}

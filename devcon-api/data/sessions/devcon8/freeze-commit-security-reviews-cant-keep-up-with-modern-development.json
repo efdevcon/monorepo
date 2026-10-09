@@ -1,0 +1,28 @@
+{
+  "id": "freeze-commit-security-reviews-cant-keep-up-with-modern-development",
+  "sourceId": "ZCDYYW",
+  "title": "Freeze Commit Security Reviews Can't Keep Up with Modern Development",
+  "description": "A frozen commit gives security reviewers a stable target and makes every review hour count. But when a team ships production-critical changes every two weeks, a multi-week sequential review forces a choice: slow development, accept growing scope drift, or let security fall behind.\r\n\r\nDrawing on experience reviewing code on short release cycles, this talk separates the certification of a freeze-commit review from the workflow built around it. It introduces a rolling pattern: establish a reviewed baseline, assess scoped pull requests as they land, then perform an integration review against one final commit. The final commit remains the subject of the audit opinion.\r\n\r\nThis is not a free speedup. Code may be reviewed more than once, coordination rises, and reviewers must track scope continuously. Attendees will leave with a simple framework for deciding when reduced wall-clock delay justifies that extra reviewer effort.\r\n\r\nBlog - https://sigmaprime.io/blog/collapsing-security-review-cycle/",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Security",
+    "OpSec",
+    "Coordination"
+  ],
+  "language": "en",
+  "speakers": [
+    "kirk-baird"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1UT7P-jjYUK4Ohf32wHG613Ne3c63Hxh1HtSNxN2ypuA",
+  "slot_start": 1793774400000,
+  "slot_end": 1793774820000,
+  "slot_roomId": "lightning-stage"
+}

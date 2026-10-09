@@ -1,0 +1,28 @@
+{
+  "id": "paying-nodes-that-actually-execute-proofs-a-free-rider-cannot-copy-from-a-peer",
+  "sourceId": "BBGJPJ",
+  "title": "Paying Nodes That Actually Execute: Proofs a Free-Rider Cannot Copy From a Peer",
+  "description": "Outside the consensus committee, nobody pays a node to execute blocks. Lottery rewards are the natural fix, but a state root is a public output of the state transition function, exposed by every API. A node can copy a peer's root and claim the reward without running the block.\r\n\r\nSigning the output does not close the attack. A signature proves who is claiming, not that the claimant did the work. A signature attached to a separately produced proof is separable too, so only the cheap half is bound to the node's secret. The proof itself has to require the secret and the computation at the same time.\r\n\r\nTRACE binds both in one argument over the in-memory execution trace, a vector that is never serialized and cannot be fetched from an API. The verifier stays logarithmic, so the claim is checkable without redoing the execution. I will also cover the transferable tension: hiding the node's secret wants fresh randomness, but prover-chosen randomness lets nodes grind the lottery.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Cryptography",
+    "Proving Systems",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "pranay-anchuri"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1ecM6tuAx53r0KesVtqylJQzV56X-D_5zd1LQUo6RxtM",
+  "slot_start": 1793876400000,
+  "slot_end": 1793877900000,
+  "slot_roomId": "lotus-3"
+}

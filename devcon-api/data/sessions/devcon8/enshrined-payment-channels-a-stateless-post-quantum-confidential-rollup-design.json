@@ -1,0 +1,28 @@
+{
+  "id": "enshrined-payment-channels-a-stateless-post-quantum-confidential-rollup-design",
+  "sourceId": "MW8QFF",
+  "title": "Enshrined Payment Channels: A Stateless, Post-Quantum, Confidential Rollup Design",
+  "description": "Lightning-style networks force users to lock capital into pre-funded routes. Rollups avoid this but keep per-user state on-chain and expose every balance. We present findings from a design that combines both: channels hold balances encrypted under Regev/LWE, members co-sign state updates with hash-based signatures, and any channel pays any other channel through the rollup, so no routing or rebalancing is needed.\r\n\r\nThree results stand out. First, an atomic signature: members sign hash(post-debit state, transfer tag) as one object, so authorizing a send and accepting the debit cannot be separated, removing a class of griefing attacks. Second, solvency over ciphertexts: ZK range proofs enforce non-negative balances that no one, including the block producer, can read. Third, machine-checked safety: authorization, no double-spend, solvency, and unilateral exit are proven in Lean. We close with in-browser proving benchmarks and WHIR-based on-chain verification.",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Scalability",
+    "Post-quantum",
+    "ZK",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "leona-hioki"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/19KtX1gEc5fJRLQKixOBxTjtHz7ONk3XRTu6hspDo8lQ",
+  "slot_start": 1793876400000,
+  "slot_end": 1793877900000,
+  "slot_roomId": "lotus-1"
+}

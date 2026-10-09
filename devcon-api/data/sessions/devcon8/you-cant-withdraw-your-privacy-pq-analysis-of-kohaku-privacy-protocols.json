@@ -1,0 +1,28 @@
+{
+  "id": "you-cant-withdraw-your-privacy-pq-analysis-of-kohaku-privacy-protocols",
+  "sourceId": "7LKURX",
+  "title": "You can't withdraw your privacy: PQ analysis of Kohaku privacy protocols",
+  "description": "While the PQ transition is often discussed in terms of protecting signatures and preventing the theft of funds, privacy protocols face a fundamentally different challenge. Many of the cryptographic primitives used to guarantee transaction confidentiality today do not provide forward secrecy. As a result, a future quantum adversary could retrospectively decrypt the entire history of private on-chain transactions, permanently revealing information that users expected to remain confidential (often called \"Harvest Now, Decrypt Later\"). This talk highlights why signature schemes and privacy-preserving cryptography have different migration requirements in the transition to PQ cryptography. Using the privacy protocols integrated in Kohaku as case studies, we compare their resilience against quantum attacks, identify their respective security assumptions, and present practical migration paths based on PQ cryptographic standards.",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Post-quantum",
+    "ZK",
+    "Cryptography",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "simon"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1CL3AoKmxNfx51Hr7jB5ALVpQgrND_2Tlq-IKAo_JUog",
+  "slot_start": 1793872800000,
+  "slot_end": 1793874300000,
+  "slot_roomId": "lotus-1"
+}

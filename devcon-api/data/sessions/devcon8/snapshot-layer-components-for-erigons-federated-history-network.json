@@ -1,0 +1,26 @@
+{
+  "id": "snapshot-layer-components-for-erigons-federated-history-network",
+  "sourceId": "E9ZP9S",
+  "title": "Snapshot-Layer Components for Erigon's Federated History Network",
+  "description": "Clients are dropping historical data, so something else has to keep it and answer questions about it. Erigon's answer is a federated history network built from era1 exports and the snapshot torrent swarm it already runs. The whole design gets its own session. This talk stays one layer down, in the file work it rests on.\r\n\r\nThree pieces. Segments cut on era1's 8192-block boundary, so era1 and segments convert both ways without loss. A converter turning any client's era1 into segments. A read-only RPC answering from those files, no database and no EVM.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Decentralization"
+  ],
+  "language": "en",
+  "speakers": [
+    "steven"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/15j1yRNojNlFnMaxNMmi9uUGXgjPZhfFZCS801csWS1s",
+  "slot_start": 1793782800000,
+  "slot_end": 1793783700000,
+  "slot_roomId": "workshop-3"
+}

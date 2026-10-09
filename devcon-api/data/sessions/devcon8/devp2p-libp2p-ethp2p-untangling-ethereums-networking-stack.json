@@ -1,0 +1,28 @@
+{
+  "id": "devp2p-libp2p-ethp2p-untangling-ethereums-networking-stack",
+  "sourceId": "MUPDSA",
+  "title": "devp2p, libp2p, ethp2p - Untangling Ethereum’s Networking Stack",
+  "description": "Ethereum's execution layer runs devp2p: RLPx transport, capability negotiation, and request-response subprotocols carrying the mempool and sync. Its consensus layer runs libp2p, a modular general-purpose stack, with gossipsub handling broadcast. I'll explain both and cover what each does and how the split came about.\r\n\r\nThe two stacks embody opposite answers to the same question: build your own, or borrow. devp2p was written for Ethereum in 2015. libp2p was adopted from outside for the beacon chain.\r\n\r\nethp2p proposes returning to the first answer, arguing bandwidth binds as blocks grow, blobs multiply, slots shorten and zkEVM proofs reach the wire. I'll make that case, then argue against it: the bandwidth problems are challenging, but nearly every proposed fix ships on top of libp2p. This avoids reimplementation across ten client teams on a layer where divergence causes liveness failures.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Decentralization",
+    "Open Source",
+    "P2P"
+  ],
+  "language": "en",
+  "speakers": [
+    "dr-dennis-trautwein"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1xi6JMUDxXxAI2rKULL4Q9IiDiNSWhUOIkWle0fpRqIU",
+  "slot_start": 1793856600000,
+  "slot_end": 1793858100000,
+  "slot_roomId": "lotus-3"
+}

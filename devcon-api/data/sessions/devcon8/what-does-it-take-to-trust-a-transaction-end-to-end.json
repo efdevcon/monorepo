@@ -1,0 +1,28 @@
+{
+  "id": "what-does-it-take-to-trust-a-transaction-end-to-end",
+  "sourceId": "ELNRHR",
+  "title": "What does it take to trust a transaction end to end?",
+  "description": "Using a contract today means trusting a stack of services: an RPC for chain state, an explorer database for \"verified\" sources and the ABI it serves, a simulation API for effects, a decoding service for human readability, the same explorer for what happened. None of it is proof.\r\n\r\nWe split the pipeline into layers and show each made verifiable on the user's device:\r\n- Chain state through an embedded light client\r\n- Sources by local recompilation matched against proven bytecode\r\n- Simulation from a local EVM that reads only proven state\r\n- Decoding via ERC-7730 clear signing descriptors that must stay display hints\r\n- Post-mining re-verification of what you signed vs. what actually happened\r\n\r\nThe proof is an open research prototype made possible by a decade of shared open source. We close with what it costs, and with what still runs on trust: compiler binaries, package supply chains, the app itself, the screen-to-device gap, the silicon below.",
+  "track": "Open & Verifiable Stack",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Wallets",
+    "Open Source",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "manuel"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1OqS63p8p3XenN5khmHwAhLiS0RzyXXz84iEy-FDVxE8",
+  "slot_start": 1793788200000,
+  "slot_end": 1793789700000,
+  "slot_roomId": "lotus-1"
+}

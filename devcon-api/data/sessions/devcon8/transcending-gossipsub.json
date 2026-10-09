@@ -1,0 +1,27 @@
+{
+  "id": "transcending-gossipsub",
+  "sourceId": "ULTD3X",
+  "title": "Transcending Gossipsub",
+  "description": "Gossipsub is a general-purpose publish-subscribe protocol. Over the years, it has received several upgrades, such as a scoring mechanism, \"IDONTWANT\" to avoid receiving duplicates of large messages, and most recently the partial message extension to avoid sending blob data to nodes that already have part of it. These upgrades were created to help Ethereum scale, but have made the protocol very complex, while its core design still treats every message the same.\r\n\r\nIn this talk, we discuss a novel approach to the consensus layer's networking. Instead of continuing to build upon Gossipsub, we define a new framework protocol that allows us to use the unique properties of the different objects to be sent (e.g. large blocks, aggregateable attestations) for optimal propagation through the network. I present the protocol's design and discuss how the consensus layer could migrate to it incrementally.",
+  "track": "Core Protocol",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Scalability",
+    "P2P"
+  ],
+  "language": "en",
+  "speakers": [
+    "daniel-knopik"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1p2z9z20915PctFxW3YMslACmcVc3cSl3Y9NouzZnLtg",
+  "slot_start": 1793858400000,
+  "slot_end": 1793859900000,
+  "slot_roomId": "lotus-3"
+}

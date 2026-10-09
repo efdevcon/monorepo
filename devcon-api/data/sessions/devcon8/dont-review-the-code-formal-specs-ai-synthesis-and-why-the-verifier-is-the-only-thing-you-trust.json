@@ -1,0 +1,28 @@
+{
+  "id": "dont-review-the-code-formal-specs-ai-synthesis-and-why-the-verifier-is-the-only-thing-you-trust",
+  "sourceId": "LUVQKE",
+  "title": "Don't Review the Code: Formal Specs, AI Synthesis, and Why the Verifier Is the Only Thing You Trust",
+  "description": "AI can now produce a plausible implementation of almost anything. That moves the bottleneck from writing code to knowing whether it's right, and the answer isn't more code review — it's making the specification the artifact humans own, and reducing the trusted component to a single deterministic checker.\r\n\r\nI'll walk through a working pipeline: high-level behavioural specs in Act, AI-generated Yul, and machine-checked refinement between the two. The running example is a fully onchain orderbook, where designing for verifiability changed the architecture itself — custody that proves solvency without trusting its callers, and units chosen so that no division exists anywhere in the protocol.\r\n\r\nI'll also cover what doesn't work yet: storage-layout abstraction, matching loops, and the uncomfortable fact that a specification can prove instantly because it says nothing at all.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "AI",
+    "Security",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "dorde-mijovic"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1pIlosYANmrVWgaxvoxjkLcD3d9A5lYXeFhl1XQJmcMA",
+  "slot_start": 1793867400000,
+  "slot_end": 1793868900000,
+  "slot_roomId": "lotus-2"
+}

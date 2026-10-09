@@ -1,0 +1,28 @@
+{
+  "id": "nobody-verifies-what-your-agent-reads",
+  "sourceId": "HPREFJ",
+  "title": "Nobody Verifies What Your Agent Reads",
+  "description": "We spent years building verification for Ethereum: light clients, storage proofs, TEE attestation. In parallel we built an agent stack that verifies who an agent is (ERC-8004 identity) and attests what it did. But, nothing verifies what it read.\r\n\r\nI run indexing infrastructure across several networks. I'll share what that seat shows: how agents actually query chain data, where what they read silently diverges from consensus (reorgs, unfinalized state, transformed metrics nobody can re-derive), and why recent benchmarks find these errors undetectable downstream. Models stay fluent while being wrong.\r\n\r\nEnvio is in the critique. A handful of hosted indexers and RPC providers now decide what agents believe about Ethereum, and open source is not verification.\r\n\r\nI'll close with a concrete proposal for attested reads and what MCP would need to carry provenance.",
+  "track": "Users, Builders, and Agents",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "AI",
+    "Open Source",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "denham"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/13fAmCfyinI36MWma1gQ7Ovm6dmUzoJAXAGG-KTnoug0",
+  "slot_start": 1793703000000,
+  "slot_end": 1793703420000,
+  "slot_roomId": "lightning-stage"
+}

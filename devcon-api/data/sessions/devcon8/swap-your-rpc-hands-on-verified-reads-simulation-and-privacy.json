@@ -1,0 +1,28 @@
+{
+  "id": "swap-your-rpc-hands-on-verified-reads-simulation-and-privacy",
+  "sourceId": "JCGTDY",
+  "title": "Swap Your RPC: Hands-On Verified Reads, Simulation, and Privacy",
+  "description": "Every dApp trusts its RPC provider: it believes the balances, logs, and simulations the provider returns, and leaks the user's addresses and intent doing so. This workshop removes that trust — in the same interface your dApp already uses.\r\n\r\nYou add colibri-stateless (an npm package) as a verifying EIP-1193 provider, then build up in small, observable steps: (1) verify account state and logs against the beacon-chain state root; (2) run a verified eth_call simulation locally and decode what a transaction would do before signing; (3) switch on privacy — request noise, multi-provider distribution — and watch what the provider can and cannot see.\r\n\r\nJoin either path: tinker zero-setup in a hosted sandbox (play with config, inspect real proofs), or wire the provider into your own dApp and leave with a working integration. Prerequisites: JavaScript/TypeScript and basic Ethereum RPC. Everything runs client-side — no node to operate. You also get a clear view of the current limits.",
+  "track": "Users, Builders, and Agents",
+  "type": "Workshop",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Proving Systems",
+    "UX",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "simon-jentzsch"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/11ZWbdOKKF_XWvDQ_Xu0YLbkAzxAkAayT8sWZOokmJrk",
+  "slot_start": 1793950500000,
+  "slot_end": 1793953500000,
+  "slot_roomId": "workshop-2"
+}

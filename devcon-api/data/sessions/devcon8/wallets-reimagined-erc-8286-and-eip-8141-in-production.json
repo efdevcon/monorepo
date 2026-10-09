@@ -1,0 +1,27 @@
+{
+  "id": "wallets-reimagined-erc-8286-and-eip-8141-in-production",
+  "sourceId": "H9HGER",
+  "title": "Wallets Reimagined: ERC-8286 & EIP-8141 in Production",
+  "description": "Account abstraction has been covered at Ethereum events for years, but almost always at the protocol layer or through the ERC-4337 bundler model. This talk covers newer ground: how native account abstraction (EIP-8141 Frame Transactions) connects to the modular accounts wallets actually ship on (ERC-7579), via ERC-8286.\r\nWe'll explain concrete design decisions and why they were made: why frame validators became a distinct module type rather than overloading IERC7579Validator; the SENDER vs DEFAULT frame-mode trade-off and what each guarantees for security; and how approval modes and VERIFY-frame rules work in practice. We'll also share what the open review process surfaced, including changes driven by EIP-8141's co-authors.\r\nThis is timely: EIP-8141 targets the Hegota fork, so wallet teams are deciding now.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Account Abstraction",
+    "UX"
+  ],
+  "language": "en",
+  "speakers": [
+    "chiranjeev-mishra",
+    "alex-forshtat"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1r7y2PnUK7GCJNtMsCleEDGNSjgn6AS3s0SLEokPZ0ho",
+  "slot_start": 1793770200000,
+  "slot_end": 1793771700000,
+  "slot_roomId": "lotus-3"
+}

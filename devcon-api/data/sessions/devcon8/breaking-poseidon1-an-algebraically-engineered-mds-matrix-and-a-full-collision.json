@@ -1,0 +1,27 @@
+{
+  "id": "breaking-poseidon1-an-algebraically-engineered-mds-matrix-and-a-full-collision",
+  "sourceId": "883JV8",
+  "title": "Breaking Poseidon1: An Algebraically Engineered MDS Matrix and a Full Collision",
+  "description": "Poseidon1 is a core ZK-friendly hash function widely adopted across L1/L2 proving systems. In this talk, we present a complete 16-coordinate multi-tier collision against Poseidon1 over the KoalaBear prime. We break down the algebraic technique used to construct a custom MDS matrix by solving a system of 16 linear equations. We design the MDS matrix to cancel internal state differences across full and partial rounds, forcing the final hash outputs to collide under feed-forward. We will share insights from AI-assisted cryptanalysis (GPT 5.6 Pro) and verification, and actionable guidelines for selecting secure hash functions in ZK proof systems.",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Cryptography",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "sunghyeon-joainta"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1YSm34EgDaPWvV30wXkqvoNFDLFPmQqRlsJv74JJ0jFs",
+  "slot_start": 1793853000000,
+  "slot_end": 1793854500000,
+  "slot_roomId": "lotus-1"
+}

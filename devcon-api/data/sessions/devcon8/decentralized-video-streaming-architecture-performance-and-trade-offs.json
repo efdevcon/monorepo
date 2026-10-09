@@ -1,0 +1,27 @@
+{
+  "id": "decentralized-video-streaming-architecture-performance-and-trade-offs",
+  "sourceId": "9S3PQS",
+  "title": "Decentralized video streaming: architecture, performance, and trade-offs",
+  "description": "Video is where decentralized storage claims get tested: tight latency budgets, chunked retrieval at scale, and viewers who notice every rebuffer. We pushed real HLS video through Swarm's content-addressed chunks, load-tested the result, and measured quality of experience instead of asserting it.\r\n\r\nWe will cover:\r\n- Why video is the hard case for decentralized storage: retrieval latency, chunking, and buffering under load\r\n- The architecture: HLS over Swarm chunks, the retrieval path, and the Swarmcast design direction\r\n- The measurements: the load-testing setup, a live QoE overlay, and results, including what does not hold up yet\r\n- Transcoding on decentralized infrastructure\r\n- What \"survives when the network layer is hostile\" means concretely for a media pipeline\r\n\r\nThe findings transfer to any content-addressed network, and the timing matters: streaming is how the world consumes information, and nearly all of it still hangs off seizable origins. Field notes, not a pitch.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "P2P",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "levente-bence-kiss"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/15_U6jcdpsLm893Hz0sXYXGNs7FnyCLWU2OF9QwUEIF0",
+  "slot_start": 1793878200000,
+  "slot_end": 1793879700000,
+  "slot_roomId": "lotus-3"
+}

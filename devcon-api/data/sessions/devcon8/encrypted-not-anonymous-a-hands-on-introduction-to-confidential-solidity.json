@@ -1,0 +1,26 @@
+{
+  "id": "encrypted-not-anonymous-a-hands-on-introduction-to-confidential-solidity",
+  "sourceId": "UW7SA8",
+  "title": "Encrypted, Not Anonymous: A Hands-On Introduction to Confidential Solidity",
+  "description": "Confidential contracts stopped being theoretical faster than developer intuition adapted. OpenZeppelin Confidential Contracts is at v0.5.2, coprocessors are live on mainnet, and people are writing encrypted-state Solidity with plaintext habits.\r\n\r\nWe wrote and maintain the library, so this is a tour of our own mistakes, not just our features:\r\n\r\n- Your contract stores values it cannot read. require() becomes a branchless select, and every guard you forget succeeds silently. \r\n- Arithmetic wraps instead of reverting. Since we can’t revert, our safe-math layer returns success booleans.\r\n- Disclosure is irreversible. FHE access grants can't be withdrawn, and secrets can’t be forgotten.\r\n\r\nAttendees ship a confidential contract, then debug a broken one.",
+  "track": "Privacy & Consent",
+  "type": "Workshop",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "FHE",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "aryeh-greenberg"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1iAk6Jygm8enA46MGYf2HeV5zoovk8_0OFLM48uvoKSg",
+  "slot_start": 1793853000000,
+  "slot_end": 1793856000000,
+  "slot_roomId": "workshop-3"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "evaluating-client-side-proving-systems",
+  "sourceId": "PCQRRH",
+  "title": "Evaluating Client-Side Proving Systems",
+  "description": "Participants analyze a saved client-side proving benchmark dataset covering 16 systems and various workloads (SHA-256, Keccak, ECDSA, Poseidon). First, they fit proving-time models against reported constraints or VM cycles and test predictions for a larger workload. Second, they construct Pareto frontiers for proving time versus RAM and proof size, then apply resource budgets and ZK/PQ filters to select eligible configurations. Discussion addresses prediction error, model selection versus independent validation, workload and configuration differences, and what to measure before adopting a system. The aim is to make application-specific choices from published measurements. Exercises use Python, NumPy, and Matplotlib, with optional coding-agent assistance",
+  "track": "Applied Cryptography",
+  "type": "Workshop",
+  "expertise": "No prior knowledge",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Proving Systems",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "alex-kuzmin"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1bJ3JQ-8IwFhlxNDjKLaijviU-Pr3lUa2I_0oslUh9I8",
+  "slot_start": 1793781000000,
+  "slot_end": 1793784000000,
+  "slot_roomId": "workshop-2"
+}

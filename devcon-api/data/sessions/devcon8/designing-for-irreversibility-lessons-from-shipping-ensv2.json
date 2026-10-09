@@ -1,0 +1,28 @@
+{
+  "id": "designing-for-irreversibility-lessons-from-shipping-ensv2",
+  "sourceId": "BLYH7C",
+  "title": "Designing for Irreversibility: Lessons from Shipping ENSv2",
+  "description": "ENSv2 replaces the flat ENS registry with hierarchical registries, shipping on L1 while millions of v1 names keep working. There is no undo: names are user-owned assets, and a bad deploy or design flaw is permanent. This talk covers how that constraint shaped three layers of the system.\r\n\r\nProtocol: token IDs regenerate whenever a name's permissions change or it is re-registered, so a seller can't list a name on a marketplace and quietly strip its roles before sale. Revoking a single role makes a name soulbound.\r\n\r\nAccounts: users get deterministic smart accounts with owner-derived salts, so funds sent to a counterfactual address are safe because the derivation itself is the security model. We also cover spoofing bugs we found and fixed.\r\n\r\nProcess: phased runbooks, resumable deploys, and full dress rehearsals on Sepolia, including real incidents they caught.\r\n\r\nAttendees leave with a practical checklist for designing, auditing, and shipping systems where mistakes can't be rolled back.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Identity",
+    "Account Abstraction",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "makoto-inoue",
+    "workemoneth"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/18PdLYQPehzelnKatzD-DIygZJhCM7XnooLsZZ86g_hY",
+  "slot_start": 1793779200000,
+  "slot_end": 1793780700000,
+  "slot_roomId": "lotus-3"
+}

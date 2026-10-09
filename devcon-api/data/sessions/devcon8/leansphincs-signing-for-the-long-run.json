@@ -1,0 +1,27 @@
+{
+  "id": "leansphincs-signing-for-the-long-run",
+  "sourceId": "GJTGEJ",
+  "title": "leanSPHINCS: Signing for the long run",
+  "description": "Every Ethereum account today is protected by a signature that a large quantum computer would break. That machine does not exist yet, but migrating away takes years, so the work has to start early.\r\n\r\nThe most conservative post-quantum option is hash-based signatures, which rely only on hash functions and none of the newer mathematics that could prove weaker than we think. SPHINCS is already standardized. It is just not built for Ethereum.\r\n\r\nStandards have to work for everyone, so they are tuned for a world where nobody knows how the scheme will be used. Ethereum is more specific. We know roughly how often a key will sign, how strong the security must be, and the hardest constraint of all: it has to run on a hardware wallet, fast enough that people will use it.\r\n\r\nNarrow the requirements that far and a huge space of possible designs opens up, too large to explore by hand. So the Ethereum Foundation is running sig.golf, an open competition where AI-driven search does the exploring",
+  "track": "Core Protocol",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Post-quantum",
+    "Roadmap"
+  ],
+  "language": "en",
+  "speakers": [
+    "nico"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1QyhhmLXOxqP1pjywncFII80OYknCpKU7Ilvn_Dm_37U",
+  "slot_start": 1793869800000,
+  "slot_end": 1793870220000,
+  "slot_roomId": "lotus-1"
+}

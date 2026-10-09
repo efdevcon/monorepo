@@ -1,0 +1,27 @@
+{
+  "id": "from-production-rust-to-lean-4-proofs-a-verification-pipeline-with-ai-provers",
+  "sourceId": "3PC37L",
+  "title": "From Production Rust to Lean 4 Proofs: A Verification Pipeline with AI Provers",
+  "description": "A working pipeline from production Rust cryptographic code to kernel-checked Lean 4 proofs, built within the Ethereum Foundation's zkEVM Verification Project. Charon lowers Rust to a typed IR, Aeneas translates it to pure-functional Lean 4, and we prove the extracted code against formal specs from ArkLib and CompPoly.\r\n\r\nClosed so far: the arity-2 FRI fold step in Plonky3 matches a pure spec, never panics, no overflow (0 sorry). Also FRI round scheduling, Mersenne31 and KoalaBear field arithmetic, RISC Zero Merkle inclusion, 32-bit ADC via bv_decide. Two polynomial-algebra theorems connecting to ArkLib's foldNth remain open, and we show why they are hard.\r\n\r\nRunning example: Aleph authored proofs of two bounds theorems that stood as sorry. Every AI proof is re-checked by the Lean kernel, so soundness never depends on the AI. We cover where AI provers help, where they fail, and the toolchain friction to budget for. \r\n\r\nCode: github.com/Verified-zkEVM/rust-lean. \r\n\r\nPreprint: arXiv:2605.30106.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "AI",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "natalia-klaus"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/10xChmQcBQimLhr3Lco262o8Dzb2pLJfzGA15zrMnIrw",
+  "slot_start": 1793876400000,
+  "slot_end": 1793877900000,
+  "slot_roomId": "lotus-2"
+}

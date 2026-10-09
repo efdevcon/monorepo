@@ -1,0 +1,26 @@
+{
+  "id": "cross-referencing-clients-with-llms-how-we-shipped-quic-in-teku",
+  "sourceId": "SASDDR",
+  "title": "Cross-Referencing Clients with LLMs: How We Shipped QUIC in Teku",
+  "description": "Ethereum has many independent implementations of the same specs, in languages no single engineer reads fluently. That's verification ground truth we don't use.\r\n\r\nQUIC in jvm-libp2p sat half-finished; nobody on the team had time to finish it. We had an LLM check our code against the networking spec, then cross-reference it with go-libp2p and rust-libp2p. That surfaced spec divergences and unwritten conventions the other clients already followed: flow-control windows hardcoded at 1MB where siblings use 15MB, and a stateless-reset token that only interops if its derivation matches theirs. The gap list is jvm-libp2p#476; closing it shipped QUIC in Teku (#10805), now on by default.\r\n\r\nLLM drafted the test plan, too. The resource-leak investigations took JVM internals and protocol knowledge.\r\n\r\nThe claim is capacity, not just productivity: small teams carry real work that never gets scheduled but still needs to be done, and that bounds client diversity. LLMs can help fill the gap.",
+  "track": "Core Protocol",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "AI"
+  ],
+  "language": "en",
+  "speakers": [
+    "lucas-saldanha"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1lHtKZ3pi9Gh5q9x0DZoNHTuLAiHCW2eu8_itvCOrWMo",
+  "slot_start": 1793943000000,
+  "slot_end": 1793944500000,
+  "slot_roomId": "lotus-3"
+}

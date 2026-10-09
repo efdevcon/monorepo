@@ -1,0 +1,26 @@
+{
+  "id": "light-client-protocol-implementation-in-teku",
+  "sourceId": "ZDFYFR",
+  "title": "Light Client Protocol Implementation in Teku",
+  "description": "Light client discussions usually focus on the client side. This talk covers the server side, i.e, what a consensus client computes, when, and where the results are stored.\r\n\r\nUpdates come from three independent triggers. A head advancing produces an optimistic update, checkpoint finalization produces a finality update, and a sync committee period boundary produces the full update a client bootstraps from.\r\n\r\nI will walk through the storage design, i.e, why a dedicated database column was preferred over flat SSZ files on disk, the atomicity gained by writing the update in the same transaction as the block, and the measured cost.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Deep prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Consensus"
+  ],
+  "language": "en",
+  "speakers": [
+    "abhivansh"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1JreSLunXG5X7-BNLjXEa1CZ1j-_sD8zUanXIIBPJz50",
+  "slot_start": 1793775600000,
+  "slot_end": 1793776500000,
+  "slot_roomId": "workshop-3"
+}

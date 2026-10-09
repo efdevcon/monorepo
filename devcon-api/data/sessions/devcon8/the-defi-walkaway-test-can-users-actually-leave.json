@@ -1,0 +1,29 @@
+{
+  "id": "the-defi-walkaway-test-can-users-actually-leave",
+  "sourceId": "NBDGZU",
+  "title": "The DeFi Walkaway Test: Can Users Actually Leave?",
+  "description": "\"The contracts still exist\" is a weak test. Users must find positions, construct calls, obtain data, and verify exits without the operator.\r\n\r\nI'm building an exit harness for 15+ major DeFi protocols. Each test starts with a historical position and removes the frontend, company API, hosted indexer, relayer, and default RPC one dependency at a time. Public artifacts must find the position and return its assets.\r\n\r\nThis talk presents the measured results: exit success, recovery time, required infrastructure, and value exposed to each dependency, separating inconvenience from lost agency, and catching immutable contracts that rely on mutable services.\r\n\r\nI show real failures and the small repairs that fix them: ABIs, deployment records, permissionless automation, local indexes, fallback interfaces.\r\n\r\nThe harness, raw data, and dependency graphs will be public before Devcon. Teams can run the test pre-launch, reviewers can verify claims, and users learn whether self-custody includes an exit.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Open Source",
+    "DeFi",
+    "Security",
+    "Censorship Resistance",
+    "Walkaway Test"
+  ],
+  "language": "en",
+  "speakers": [
+    "diego-siqueira"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1_1R9XXJqB-qEIidkQAR_E_V0xZcimqvEOO0icgaB8xo",
+  "slot_start": 1793874600000,
+  "slot_end": 1793876100000,
+  "slot_roomId": "lotus-3"
+}

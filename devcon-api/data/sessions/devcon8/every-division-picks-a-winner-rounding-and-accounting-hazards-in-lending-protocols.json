@@ -1,0 +1,27 @@
+{
+  "id": "every-division-picks-a-winner-rounding-and-accounting-hazards-in-lending-protocols",
+  "sourceId": "LQ7QCG",
+  "title": "Every Division Picks a Winner: Rounding and Accounting Hazards in Lending Protocols",
+  "description": "This talk dissects two findings from the published Aave V4 security reviews and generalises them into a hazard class carried by every share-based protocol. First: fee computation rounds down at three points, and view functions simulate what accrue() later realises, so observed share price can drop, breaking the monotonicity invariant. Second: fees that participate in liquidity before being realised as shares earn interest that flows to shareholders, so share price grows faster than the interest rate itself, effectively unbounded around asset listing and off-boarding. Neither is the familiar first-depositor inflation attack. Both trace back to fee collection, the most routine mechanism in DeFi. With ERC-4626 vaults now the default for lending markets, LSTs, and yield products, integrators everywhere consume exchange rates built on these assumptions. Attendees leave with testable invariants, fuzzing properties, and an integration checklist.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "DeFi",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "dhairya-sethi",
+    "tomer-ganor"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/18AkhwMx_FBt6IDjosWSJjJPTDHawPddO4uOTauAPo7A",
+  "slot_start": 1793777400000,
+  "slot_end": 1793778900000,
+  "slot_roomId": "lotus-3"
+}

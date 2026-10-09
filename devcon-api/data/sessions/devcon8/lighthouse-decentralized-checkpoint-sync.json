@@ -1,0 +1,27 @@
+{
+  "id": "lighthouse-decentralized-checkpoint-sync",
+  "sourceId": "ZHAKEY",
+  "title": "LightHouse Decentralized Checkpoint Sync",
+  "description": "Checkpoint sync today requires trusting a checkpoint provider. We're building a trust-minimized pathway for Lighthouse: a node bootstraps as a light client from a hardcoded, network-verified root, syncs forward using the existing light client protocol, and backfills a recent state in verifiable chunks, no trusted URL required.\r\nWe'll cover why the historical light client data Lighthouse needs to serve this was silently dropped, not because of a design flaw, but three small, independently reasonable optimizations stacking up; the architecture we landed on to fix it without touching Lighthouse's live sync path; and several concrete mistakes we only caught by diving deep into the codebase and checking claims.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Consensus",
+    "Decentralization"
+  ],
+  "language": "en",
+  "speakers": [
+    "roheemah-abolare"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/124QLxTzwIPyT316mvfN8Nea_LmGaoPLCU6S0kiOeub0",
+  "slot_start": 1793772900000,
+  "slot_end": 1793773800000,
+  "slot_roomId": "workshop-3"
+}

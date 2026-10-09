@@ -1,0 +1,25 @@
+{
+  "id": "epf-project-presentation-rest-ssz-engine-api-for-lighthouse",
+  "sourceId": "CPKL7K",
+  "title": "EPF Project Presentation: REST-SSZ Engine API for Lighthouse",
+  "description": "Every slot, the consensus layer drives the execution layer over the Engine API by importing blocks, updating the head, producing payloads, and fetching blobs. It sits on the critical path for block propagation and validation timing and it runs on JSON-RPC, which has inefficiencies such as doubled wire size from hex-encoding, and repeated encoding and decoding between SSZ and JSON in consensus clients, forcing the node to spend additional bandwidth, CPU, and memory thereby adding latency to every slot.\r\n\r\nI am implementing the REST-SSZ Engine API in Lighthouse based on the [spec](https://github.com/ethereum/execution-apis/pull/793) where REST-SSZ will be the primary transport with JSON-RPC acting as the fallback. The talk will cover redesign demands on the consensus clients set out in the spec, changes that have landed in the spec since the EPF project proposal creation, and REST-SSZ vs JSON-RPC results from client interop on local and Glamsterdam devnet results.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol"
+  ],
+  "language": "en",
+  "speakers": [
+    "sameer-agarwal"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1BbjKTDRKl0Y56igoorFrV-lj9XcRnKd6VvM4h08SRtc",
+  "slot_start": 1793772000000,
+  "slot_end": 1793772900000,
+  "slot_roomId": "workshop-3"
+}

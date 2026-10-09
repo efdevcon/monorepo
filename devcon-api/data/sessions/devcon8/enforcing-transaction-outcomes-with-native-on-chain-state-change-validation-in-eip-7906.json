@@ -1,0 +1,28 @@
+{
+  "id": "enforcing-transaction-outcomes-with-native-on-chain-state-change-validation-in-eip-7906",
+  "sourceId": "J9JVWK",
+  "title": "Enforcing transaction outcomes with native on-chain state change validation in EIP-7906",
+  "description": "**EIP-7906 introduces a new \"post-transaction validation\"** call frame type for EIP-8141 Frame Transactions, providing tools to observe the full set of state changes that occurred during the current transaction's execution. This data is exposed via a family of introspecting opcodes: `TXTRACE`, `TXDIFF` and `EVENTDATACOPY` - covering native balance transfers, storage writes, new contract deployments and even nonce increments, providing the smart contract accounts with full and absolute control over what changes the transaction does or does not allow. Most importantly, this allows accounts to ensure that \"nothing unexpected happened\" - an ability that is critically missing from Ethereum today!\r\nCombined with Clear Signing (ERC-7730), the proposed mechanism can eliminate most risks in the process of signing transactions on Ethereum, significantly improve security for all users, and even enable protocol-native intent-like transactions.",
+  "track": "Core Protocol",
+  "type": "Workshop",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "EVM",
+    "Account Abstraction",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "alex-forshtat"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1SUXnF_gCat1mLAiFXPfpJp-mctRCYagvkXnHPGqCtzs",
+  "slot_start": 1793867400000,
+  "slot_end": 1793870400000,
+  "slot_roomId": "workshop-2"
+}

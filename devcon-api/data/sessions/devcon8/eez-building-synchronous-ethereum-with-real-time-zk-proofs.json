@@ -1,0 +1,28 @@
+{
+  "id": "eez-building-synchronous-ethereum-with-real-time-zk-proofs",
+  "sourceId": "JWEMGN",
+  "title": "EEZ: Building Synchronous Ethereum with Real-Time ZK Proofs",
+  "description": "Ethereum's rollup ecosystem has achieved massive scalability, but composability remains fragmented. EEZ (Ethereum Economic Zone) enables synchronous inter-rollup calls while preserving Ethereum's trust model.\r\n\r\nThis talk presents the technical design of EEZ. We'll explain how rollups exchange synchronous call requests and responses through Ethereum blobs, the smart contracts that coordinate execution, and the protocol's security model.\r\n\r\nWe'll then discuss the proving layer. EEZ supports multiple proving technologies—including zero-knowledge proofs, Trusted Execution Environments (TEEs), multisignature committees, and future approaches—offering different trust, security, and latency trade-offs.\r\n\r\nFinally, we'll present our implementation using ZisK, an open-source zkVM. We'll cover the proving pipeline, key engineering decisions, and benchmark results showing that low-latency proving makes synchronous composability practical on Ethereum.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "ZK",
+    "Proving Systems",
+    "Coordination"
+  ],
+  "language": "en",
+  "speakers": [
+    "jordi-baylina"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1SHlurHSNH6XiYRLFnszcHiIl7Bx5MtlO5hkKzk8pJ-Y",
+  "slot_start": 1793867400000,
+  "slot_end": 1793868900000,
+  "slot_roomId": "lotus-3"
+}

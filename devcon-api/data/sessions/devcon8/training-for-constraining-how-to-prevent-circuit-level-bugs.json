@@ -1,0 +1,29 @@
+{
+  "id": "training-for-constraining-how-to-prevent-circuit-level-bugs",
+  "sourceId": "BCLSJF",
+  "title": "Training for Constraining: How to Prevent Circuit-Level Bugs",
+  "description": "Vulnerabilities from underconstrained circuits remain a live concern.  At least four significant underconstrained-circuit bugs surfaced in 2026: Zcash's Orchard pool (a missing Halo2 copy constraint), OpenVM's pairing check (CVE-2026-46669), Scroll's ecPairing precompile, and three criticals in ZKsync Airbender, caught by formal verification.  Unit testing is insufficient to catch underconstrained circuits, as true witnesses always pass verification.\r\n\r\nIn this introductory workshop we first introduce arithmetic circuits and how they are used in modern SNARK-based systems.  Then we will discuss real examples of underconstrained circuits, and what a false proof means in context.  Participants will see an example of an underconstrained circuit and how to identify it by inspection.  Then we'll demonstrate on an example circuit how methods of fuzzing and formal verification can find a missing constraint, and discuss how AI tools may assist in the search for circuit-level vulnerabilities.",
+  "track": "Security",
+  "type": "Workshop",
+  "expertise": "No prior knowledge",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Proving Systems",
+    "Security",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "levi-katyal-sledd",
+    "vijay-singh"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1U8MZJTVP-CZsH1DeSKx_txX6j7tHF_j44ataaiicr5w",
+  "slot_start": 1793773800000,
+  "slot_end": 1793776800000,
+  "slot_roomId": "workshop-2"
+}

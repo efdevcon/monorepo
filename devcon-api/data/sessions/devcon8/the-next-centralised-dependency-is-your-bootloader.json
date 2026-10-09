@@ -1,0 +1,28 @@
+{
+  "id": "the-next-centralised-dependency-is-your-bootloader",
+  "sourceId": "VW97LB",
+  "title": "The Next Centralised Dependency Is Your Bootloader",
+  "description": "Findings from building a Swarm client that runs inside UEFI firmware, before any operating system exists: libp2p, Noise, yamux and BMT verification in no_std Rust, single-threaded, fixed heap. It pulls kernel, rootfs and clients (Geth, Lighthouse) by hash from public Swarm: storage our community built and barely uses for its own software.\r\n\r\nThree transferable results:\r\n\r\n1. Authority can be money-grade without a chain on the boot path. The machine verifies m-of-n ECDSA signatures over a manifest - the same keys and thresholds that control funds - so it checks signatures, not contracts, and boots even when Ethereum is unreachable.\r\n\r\n2. Real numbers for pulling an OS from a public mesh with nothing seeding it, and why that budget dictates the design.\r\n\r\n3. What read as a firmware hang for a week was a leak starving the log transport: telemetry sharing a resource with the system under test. It generalises far beyond boot.\r\n\r\nPlus a scorecard of what is still centralised, starting with GitHub.",
+  "track": "Open & Verifiable Stack",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Hardware",
+    "Supply chain",
+    "P2P",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "chris-hobcroft"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/16nxtKpCefKyOAJ2z8xzj9zrG1KM3ZgyeJs1LvKXtfkg",
+  "slot_start": 1793941200000,
+  "slot_end": 1793942700000,
+  "slot_roomId": "lotus-1"
+}

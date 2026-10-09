@@ -1,0 +1,28 @@
+{
+  "id": "ten-ways-daos-get-owned-a-governor-maintainers-threat-model",
+  "sourceId": "PMCTTU",
+  "title": "Ten Ways DAOs Get Owned: A Governor Maintainer's Threat Model",
+  "description": "Onchain governance concentrates the two things attackers love: authority and money. Yet many governance systems are configured at launch and never threat modeled again.\r\n\r\nDrawing on maintaining the governance contracts behind many of the largest DAOs, and on the public incident record, this talk walks through ten takeover and griefing patterns, including:\r\n\r\n- Voting power from nowhere: flash loans, and why checkpointing exists\r\n- Quorum decay in aging DAOs, where yesterday's safety margin becomes a rubber stamp\r\n- Proposal spam and frontrunning as denial of governance\r\n- Timelock role hygiene, from open executors to admin capture\r\n- Delegation markets and vote buying\r\n- Cross-chain execution, where a message bridge quietly joins your trust model\r\n\r\nEvery pattern is paired with a real incident or disclosed vulnerability and a concrete mitigation: parameters, role setup, monitoring, and the escape hatches users should demand.\r\n\r\nAttendees leave with a checklist to run against any live governor.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Open Source",
+    "DeFi",
+    "Security",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "luiz-vasconcelos"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1PWv6tZ00x5ifJnU6UTYyCLe7ILucchiXoEfD2VdX1R8",
+  "slot_start": 1793955000000,
+  "slot_end": 1793956500000,
+  "slot_roomId": "lotus-2"
+}

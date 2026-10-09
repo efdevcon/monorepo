@@ -1,0 +1,28 @@
+{
+  "id": "design-for-the-compromised-signer-bounding-blast-radius-in-smart-accounts",
+  "sourceId": "PWDFKG",
+  "title": "Design for the Compromised Signer: Bounding Blast Radius in Smart Accounts",
+  "description": "Since 2024, over $2B has been stolen from multisig-secured organizations — Bybit ($1.4B), WazirX, DMM, Radiant. No keys were stolen; no multisig math was broken. In every case the signer's screen lied: the approved payload wasn't the displayed one. More signers didn't help. Better signing UX didn't help.\r\n\r\nThe one layer those attackers couldn't touch is onchain enforcement at the account itself. In 5 minutes I'll share a mental model for designing it, from building smart account policy enforcement in production: two composable primitives — execution scoping (who can act, within what bounds) and universal guards (what the account may ever do) — plus the rule that decides whether a policy is real or theater: policy must protect itself. If reconfiguration outpaces your transaction delay (Beanstalk, $182M), you built decoration, not defense.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Wallets",
+    "UX",
+    "Security",
+    "Coordination"
+  ],
+  "language": "en",
+  "speakers": [
+    "dev-pramoth"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/187Qa9dtoHQj8SrBUnLOe01vjj-mlYofk2tQXmXHfhX0",
+  "slot_start": 1793785200000,
+  "slot_end": 1793785620000,
+  "slot_roomId": "jasmine"
+}

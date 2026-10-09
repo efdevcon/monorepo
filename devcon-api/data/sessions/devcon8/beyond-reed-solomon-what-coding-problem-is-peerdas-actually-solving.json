@@ -1,0 +1,26 @@
+{
+  "id": "beyond-reed-solomon-what-coding-problem-is-peerdas-actually-solving",
+  "sourceId": "D9Y9H9",
+  "title": "Beyond Reed–Solomon: What Coding Problem Is PeerDAS Actually Solving?",
+  "description": "PeerDAS is often explained as a combination of Reed–Solomon coding, KZG commitments, and data-availability sampling. I propose a coding-theoretic lens for understanding why these components fit together: if malformed or adversarial cells can be detected and rejected through cryptographic authentication, the decoder is no longer solving a generic error-correction problem. It is solving reconstruction from authenticated erasures.\r\nFrom this perspective, the key question is not only how many missing cells Reed–Solomon can recover, but whether MDS coding gives the best trade-off between recovery threshold, encoding cost, proof overhead, propagation, and decentralization. I will formalize this viewpoint, map the assumptions to PeerDAS, and compare Reed–Solomon with alternative linear coding strategies as a design space for future data-availability systems",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "mustafa-kircali"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1dsQIl5ywAK0s3Wl6_lweZiiE8FNxJkIInOXSMIgl15Q",
+  "slot_start": 1793790000000,
+  "slot_end": 1793791500000,
+  "slot_roomId": "lotus-2"
+}

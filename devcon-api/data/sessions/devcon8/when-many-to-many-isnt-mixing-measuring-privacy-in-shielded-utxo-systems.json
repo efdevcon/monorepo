@@ -1,0 +1,25 @@
+{
+  "id": "when-many-to-many-isnt-mixing-measuring-privacy-in-shielded-utxo-systems",
+  "sourceId": "B9G98T",
+  "title": "When Many-to-Many Isn't Mixing: Measuring Privacy in Shielded UTXO Systems",
+  "description": "Zero-knowledge proofs hide note ownership, values, and spend edges, but transaction shape cannot tell protocol designers whether value is well mixed or merely complex-looking. This talk presents feasible provenance sets: instead of guessing a hidden UTXO graph, we optimize over all graphs consistent with public events, causality, single-spend, transaction shape, and value conservation. Using RAILGUN mainnet data through August 2026, we analyze 58,207 WETH unshield proofs; 21.4% are many-to-many. Boundary-only analysis uniquely attributes none, but finds forced provenance in four bottleneck withdrawals. Exact small-component analyses show two identical 2-input/2-private-output shapes diverge: one requires at least two Shield origins, while the other admits a single-origin explanation. Attendees will learn metrics for forced attribution, candidate ambiguity, possible concentration, and guaranteed multi-source mixing, applicable without viewing keys, identity claims, or ground truth.",
+  "track": "Privacy & Consent",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "tomoki-adachi"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1NWgIMfponffIHpV1Jx7-J1v6cxBvyZQUNFT_lVp4sfw",
+  "slot_start": 1793951400000,
+  "slot_end": 1793952900000,
+  "slot_roomId": "lotus-2"
+}

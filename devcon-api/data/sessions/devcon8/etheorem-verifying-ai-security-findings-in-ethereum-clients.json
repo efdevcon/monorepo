@@ -1,0 +1,27 @@
+{
+  "id": "etheorem-verifying-ai-security-findings-in-ethereum-clients",
+  "sourceId": "ARWNLV",
+  "title": "ETHeorem: Verifying AI Security Findings in Ethereum Clients",
+  "description": "Most AI security demos count raw reports; ETHeorem measures what survives verification. We benchmark single-agent and composed pipelines on historical bugs in Prysm, Reth, and libp2p. On a 29-bug Prysm target, a composed run found 10 known bugs, versus 0 for Codex and 1 for Claude.\r\n\r\nWe present two complementary components. Spec2Code aligns a specification across clients to identify divergences. The triage pipeline uses threat models, checks at each stage, and repeated PoC construction to reduce 1,080 raw Lighthouse findings to 33 runnable PoCs triggered through network entry points. We analyze hidden guards, stale findings, hallucinated reachability, and self-judging bias, then give practical rules for evaluating AI security systems. The central rule is simple: no security claim without a runnable witness.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "AI",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "woosun-song"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1T_QbZa6Sysa_MqJsPacS0Zjt0OgtsAsyT7tWX-LpvRc",
+  "slot_start": 1793858400000,
+  "slot_end": 1793859900000,
+  "slot_roomId": "lotus-2"
+}

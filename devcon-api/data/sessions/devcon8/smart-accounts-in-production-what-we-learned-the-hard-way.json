@@ -1,0 +1,29 @@
+{
+  "id": "smart-accounts-in-production-what-we-learned-the-hard-way",
+  "sourceId": "R3WSN8",
+  "title": "Smart Accounts in Production: What We Learned the Hard Way",
+  "description": "Smart accounts are usually presented as a solved problem: ERC-4337 handles execution, ERC-7579 makes accounts modular, session keys delegate, passkeys onboard users, paymasters pay for gas. We have run this stack in production for four years, first at wallet scale and then at institutional scale, and most of what we learned is not written down anywhere.\r\n\r\nOnboarding breaks in ways no spec mentions once passkeys meet real devices and password managers. Recovery is easy to design and hard to operate when real users lose real phones. Session keys promise clean delegation, but scoping them right is harder than the standards suggest. Gas abstraction works until a UserOperation passes simulation and reverts on-chain, or a bundler rejects a valid one because fees moved. Modularity adds audit surface faster than it adds flexibility.\r\n\r\nEvery failure comes with the fix that held. Builders leave with concrete guidelines for assembling an account stack that real users can rely on.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Wallets",
+    "Account Abstraction",
+    "UX",
+    "Real World"
+  ],
+  "language": "en",
+  "speakers": [
+    "ulas-erdogan",
+    "alim-sahin"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1b9u2spjS1VqykD-Z4g33QTJ_bFn6F86OMpC4aoOp0Yk",
+  "slot_start": 1793768400000,
+  "slot_end": 1793769900000,
+  "slot_roomId": "lotus-3"
+}

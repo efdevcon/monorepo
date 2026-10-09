@@ -1,0 +1,28 @@
+{
+  "id": "post-quantum-accounts-today-benchmarking-falcon-512-verification-inside-starknets-validate",
+  "sourceId": "SCRFFM",
+  "title": "Post-Quantum Accounts Today: Benchmarking Falcon-512 Verification Inside Starknet's `__validate__`",
+  "description": "Account abstraction turns post-quantum migration from a protocol upgrade into a contract swap: replace the signature check inside `__validate__` and a quantum-safe account can ship today — if verification fits the validation limits (1M steps, 100M L2 gas).\r\nWe measured what that actually costs. Falcon-512 (FN-DSA) verification in Cairo lands at 26–64% of the gas cap depending on the hash-to-point: standards-compliant SHAKE-256 at ~64% (with a pure-Cairo `Keccak-f[1600]`), non-standard Poseidon and BLAKE2s variants at ~26–31%. We'll cover the engineering that makes this fit, a lazy-reduction NTT over felt252 with the final reduction folded into the divisibility check, hint-based vs. direct verification (calldata vs. compute tradeoff), and storing the public key in the NTT domain, plus the security implications of each shortcut, and what a native keccak syscall (SNIP-32) would change. All numbers are reproducible from an open-source benchmark suite with deployable SNIP-6 accounts.",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Post-quantum",
+    "Cryptography",
+    "Wallets",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "vijay-singh"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1km1g3fyfI37YbpdIlmtsKRKaOll1tIDCjIy0WYS17Ug",
+  "slot_start": 1793871000000,
+  "slot_end": 1793872500000,
+  "slot_roomId": "lotus-1"
+}

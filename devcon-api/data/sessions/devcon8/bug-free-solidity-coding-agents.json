@@ -1,0 +1,27 @@
+{
+  "id": "bug-free-solidity-coding-agents",
+  "sourceId": "Z7YVKJ",
+  "title": "Bug-Free Solidity Coding Agents",
+  "description": "Aave V4 spokes enable easy deployment of various lending markets, each with different collateral management, risk premiums, liquidations, per reserve risk configuration, and oracle integration, without having to manually manage liquidity. We show how to leverage agents to develop new secure spokes. The core idea is that the user provides an informal definition of correctness for these applications. Our agentic pipeline translates these informal definitions into a formal specification of the application’s safety properties/invariants. Once we have these formal specifications, we can Vibe-code the spoke implementation guardrail with the Certora Prover. The LLM cannot introduce bugs into our generated implementation because the Certora Prover will reject any potential implementation that does not satisfy the formal specification.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI",
+    "Security",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "mooly-sagiv"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1JeF8jJ8vbXIObuZe9rW1VI8KjGQFBnjB6Tl9yH8-my0",
+  "slot_start": 1793862000000,
+  "slot_end": 1793863500000,
+  "slot_roomId": "lotus-2"
+}

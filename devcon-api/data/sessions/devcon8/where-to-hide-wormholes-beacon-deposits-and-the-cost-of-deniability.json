@@ -1,0 +1,27 @@
+{
+  "id": "where-to-hide-wormholes-beacon-deposits-and-the-cost-of-deniability",
+  "sourceId": "LZ8DKM",
+  "title": "Where to Hide: Wormholes, Beacon Deposits, and the Cost of Deniability",
+  "description": "I start by reminding everyone of the definition of plausible deniability and why it is a very desirable property! The I explain wormholes derive a burn address from a user secret, where non-inflation rests on 160-bit collision resistance. One collision mints the same deposit twice. That gives us only an unsatisfying 80 bits of security. Then, I make a formal argument why without longer addresses it is impossible to fix low security problem.\r\n\r\nAfter that I pitch EIP-8222 as an alternative, which adds a two-phase deposit and withdrawal to the staking contract, with 256-bit long commitments that never touch execution-layer addresses, so security reduces to proof soundness. Finally, I close by explaining how \"the extremely lean chain\" proposal by Vitalik reaches a similar place as a byproduct of state minimization.",
+  "track": "Privacy & Consent",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "ZK",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "mo-jahanara"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1HyZ1tEE8cRxwkp01-yWyu5KjtBdpFnynKK6ItMqDGRg",
+  "slot_start": 1793766600000,
+  "slot_end": 1793767020000,
+  "slot_roomId": "lightning-stage"
+}

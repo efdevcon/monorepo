@@ -1,0 +1,28 @@
+{
+  "id": "end-to-end-formally-verifying-openvm",
+  "sourceId": "GTCDR9",
+  "title": "End-to-end formally verifying OpenVM",
+  "description": "Real-time proving makes it possible to verify Ethereum execution as blocks are produced, but performance alone is not enough: the entire proving stack must correctly connect program execution to the final proofs.\r\n\r\nThis talk presents Axiom’s end-to-end formal verification effort for OpenVM. We explain how we use Lean to prove soundness of the SWIRL proof system, verify that the production Rust verifier faithfully implements its mathematical specification, and establish correctness of the RISC-V virtual machine and recursive verifier circuits.\r\n\r\nWe will discuss how these proofs compose into a single assurance story, where the main trust boundaries remain, and the engineering techniques required to verify a zkVM running in production. Attendees will leave with a concrete blueprint for formally verifying a complex real-world cryptographic system.",
+  "track": "Core Protocol",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Proving Systems",
+    "Security",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "yi-sun"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1wYrqboPuEfmSimWZAyJnHQ08HK7S3SFDcuBjSJ3DP3k",
+  "slot_start": 1793690700000,
+  "slot_end": 1793691120000,
+  "slot_roomId": "lightning-stage"
+}

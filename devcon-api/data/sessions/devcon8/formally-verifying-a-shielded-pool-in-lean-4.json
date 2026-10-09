@@ -1,0 +1,28 @@
+{
+  "id": "formally-verifying-a-shielded-pool-in-lean-4",
+  "sourceId": "XAD8FT",
+  "title": "Formally Verifying a Shielded Pool in Lean 4",
+  "description": "The worst shielded pool bugs are soundness bugs: quietly creating value out of nothing. Zcash's counterfeiting bug survived multiple audits for years; with Ironwood, Zcash turned to machine-checked Lean proofs that counterfeiting is impossible at the spec level. Ethereum's shielded pools have nothing comparable yet.\r\n\r\nWe're running an experiment to close that gap: model our open source shielded pool spec in Lean 4 and prove value conservation and no double-spend, scoped to integrity rather than privacy. More broadly, every confidential system institutions rely on makes claims like these; spec-level proofs are a reusable way to back them.\r\n\r\nThe talk is educational as much as a report: how a prose spec becomes a Lean model, what a conservation proof looks like, where modeling goes wrong, and what it cost. No formal methods background needed. You should leave with a working model of spec-level verification, and a question: when should specs stop asserting properties and start proving them?",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Formal Verification",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "oskar-thoren",
+    "aaryamann-challani"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/18bmAH-Yq-scNSWwe96CWIXx3czTgMOIZwoi5s_2789g",
+  "slot_start": 1793871000000,
+  "slot_end": 1793872500000,
+  "slot_roomId": "lotus-2"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "autoresearch-for-zk-optimization",
+  "sourceId": "UCRQPP",
+  "title": "Autoresearch for ZK Optimization",
+  "description": "Autoresearch systems use very different feedback loops: AlphaEvolve searches against executable evaluators, AI theorem provers use formal verification, and zk.golf combines Lean-checked circuit semantics with circuit cost. I’ll use these approaches as reference points for an internal autoresearch harness we built at Atheon to experiment with ZK optimization and evaluate how different verification and security tools perform within the loop.\r\n\r\nThe harness lets agents propose and implement optimizations, checks them using formal verification, equivalence testing and circuit-security tooling, benchmarks valid candidates, and feeds the results into the next iteration. I’ll test this on ProveKit and WHIR workloads, including SHA-256 arithmetization, ACIR to R1CS lowering and WHIR folding parameters. I’ll compare constraint and witness reduction, proving time, peak memory and proof size across approaches, alongside verified-candidate rate, optimization success rate, security findings.",
+  "track": "Applied Cryptography",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Cryptographers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "ZK",
+    "AI",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "rose-jethani"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Sm4Yz2xt2YPijC1GtqaUrTsmXhpLLZ60zyVh5twTC9c",
+  "slot_start": 1793946600000,
+  "slot_end": 1793948100000,
+  "slot_roomId": "lotus-3"
+}

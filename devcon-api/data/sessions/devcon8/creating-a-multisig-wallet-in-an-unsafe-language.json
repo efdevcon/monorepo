@@ -1,0 +1,28 @@
+{
+  "id": "creating-a-multisig-wallet-in-an-unsafe-language",
+  "sourceId": "VN7HYM",
+  "title": "Creating a multisig wallet in an \"unsafe\" language",
+  "description": "This will have in-depth explainer of decisions made on the new wallet (what makes it different / better / distinct) and how that could be achieved in the new language. What implications that can be have on the ecosystem (EIP-712 extensions, wallet improvements). Lastly also touching on how we can formally verify it (powdr/yul-compiler).\r\n\r\nHere's a longer explainer I wrote earlier this month: https://hackmd.io/@axic/Sy46YeCrze\r\n\r\nTLDR:\r\n1) Core Solidity introduces support for ADTs, which simplify the implementation and increases transparency from the signing side greatly \r\n2) The compiler infrastructure (the different passes) are way smaller and there's active effort to formally verify it end-to-end using Lean 4\r\n\r\nI picked 25 minute slot, but would be happy to do it in a lightning talk as well.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "Wallets",
+    "Security",
+    "Formal Verification"
+  ],
+  "language": "en",
+  "speakers": [
+    "alex-beregszaszi"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/168HQpqVJLX5T2hKHIoxRAxs-bDYiJ2m3N-6PV-3IUDg",
+  "slot_start": 1793782800000,
+  "slot_end": 1793784300000,
+  "slot_roomId": "lotus-3"
+}

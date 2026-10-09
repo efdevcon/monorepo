@@ -1,0 +1,26 @@
+{
+  "id": "ssz-execution-blocks-eip-7807-for-geth",
+  "sourceId": "CYMQDQ",
+  "title": "SSZ Execution Blocks (EIP-7807) for Geth",
+  "description": "Geth has three disconnected SSZ mechanisms and no shared implementation: fastssz in one file, zrnt behind the light client, and two hand-rolled merkleizers in beacon/types with TODOs from 2023 asking for an SSZ encoder. None of them can compute a progressive root. EIP-7688 is scheduled for Glamsterdam and converts the types Geth's light client roots through zrnt, dormant since February 2025.\r\n\r\nMy EPF project is core/ssz: encoding, strict decoding, classic and progressive merkleization per EIP-7495 and EIP-7916, and Merkle proof generation, with the EIP-7807 block on top.\r\n\r\nThe talk walks through the design: hand-written per-type methods rather than reflection, batched hashing through gohashtree, a zero-hash table derived at startup, and a decoder that latches errors instead of returning them per field. Each choice is compared against how Erigon and Nimbus made it. Everything is checked against the official ssz_generic vectors, and the work is landing upstream as small PRs.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "EVM"
+  ],
+  "language": "en",
+  "speakers": [
+    "vivek-singh-solanki"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1X5HUAXuQFAFGPPyQ1KNnE9vC0PbztsVV4xtIG_Up_Sk",
+  "slot_start": 1793769300000,
+  "slot_end": 1793770200000,
+  "slot_roomId": "workshop-3"
+}

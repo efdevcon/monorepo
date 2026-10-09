@@ -1,0 +1,28 @@
+{
+  "id": "teaching-an-ai-agent-everything-it-needs-to-know-about-ethereum-then-letting-it-rip",
+  "sourceId": "HQVBBE",
+  "title": "Teaching an AI Agent Everything It Needs to Know About Ethereum, Then Letting It Rip",
+  "description": "I built eth-evals to measure how much LLMs actually know about Ethereum: 242 closed-book tasks, 25 categories, deterministic grading. Fourteen models score 58–82%, and they all fail in the same places. ethskills.com is the patch: 24 skill files. Load the skill and Opus jumps from 33% to 95% (on tasks keyed to the skill — a ceiling; held-out numbers by Devcon).\r\n\r\nThen I handed the skill to my agent, clawdbotatg. It writes Solidity, audits itself with its own $1 audit service (x402 payments, ERC-8004 reviews), and deploys with no human review: 14 dapps on Base, 714 paid jobs, ~690 audits, a staking contract holding about $67K. It also leaked its own private key. Twice. We'll dig into where the audits worked, where they didn't, and how I locked the agent down after.\r\n\r\nThe same agent co-hosts slop.computer with me: 50 interviews with crypto × AI builders on a multisig with Kohaku private txs and Interfold private votes. I'll share what keeps coming up.\r\n\r\nAll of it is open source and live.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI",
+    "Open Source",
+    "Security",
+    "Public Goods"
+  ],
+  "language": "en",
+  "speakers": [
+    "austin-griffith"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1T8XWxLV_YqdN-s20HxCvuYdOmY7J8M7zplwbq1FU6f0",
+  "slot_start": 1793953800000,
+  "slot_end": 1793955300000,
+  "slot_roomId": "lotus-3"
+}

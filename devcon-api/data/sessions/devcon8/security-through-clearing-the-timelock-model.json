@@ -1,0 +1,27 @@
+{
+  "id": "security-through-clearing-the-timelock-model",
+  "sourceId": "8YBCQB",
+  "title": "Security Through Clearing: The Timelock Model",
+  "description": "When a multisig signer is compromised, atomicity works against you. Malicious transactions settle instantly with no recall mechanism. Traditional finance solved this decades ago by separating clearing and settlement. This talk presents a concrete architecture for applying that same separation to on-chain multisig operations using timelocks for the clearing layer. Drawing on lessons from building and operating a timelock-based self-custody system on top of Gnosis Safe, I'll cover: what operational changes multisig teams need to make to support reversibility, where the model breaks down (MEV, transaction visibility), and how to integrate timelock modules with existing Safe deployments. All code discussed is open source.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Wallets",
+    "Open Source",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "elliot-friedman"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Q3PWR-Z7R__UdbE5nFd3aMF98K1OEva5I11oBzI99Wk",
+  "slot_start": 1793785800000,
+  "slot_end": 1793786220000,
+  "slot_roomId": "jasmine"
+}

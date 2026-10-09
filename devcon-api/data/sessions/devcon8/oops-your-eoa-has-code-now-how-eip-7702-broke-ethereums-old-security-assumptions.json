@@ -1,0 +1,27 @@
+{
+  "id": "oops-your-eoa-has-code-now-how-eip-7702-broke-ethereums-old-security-assumptions",
+  "sourceId": "TP3NS3",
+  "title": "Oops, Your EOA Has Code Now: How EIP-7702 Broke Ethereum's Old Security Assumptions",
+  "description": "EIP-7702 changes security assumptions that have existed since Ethereum's earliest days. This talk studies the consequences for both existing smart contracts and users adopting 7702.\r\n\r\nWe'll analyze deployed mainnet contracts to identify patterns that rely on pre-7702 EOA behavior, quantify how widespread they are, and determine when these assumptions become exploitable. Through concrete examples, we'll demonstrate how delegated EOAs can interact with contracts in ways their developers never anticipated and examine emerging attacks that abuse 7702 delegation.\r\n\r\nWe'll also compare existing 7702 delegation implementations and the security properties and tradeoffs they introduce. Finally, we'll present approaches and tooling for detecting post-7702 vulnerabilities, identifying potentially malicious delegations, and helping developers and users choose and interact with delegation implementations safely.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Account Abstraction",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "souradeep-das"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1S1qIlJ-852ApFQdXDonwXI3drIypd-g6jIbGbyH490A",
+  "slot_start": 1793853000000,
+  "slot_end": 1793854500000,
+  "slot_roomId": "lotus-2"
+}

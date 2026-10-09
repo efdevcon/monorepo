@@ -1,0 +1,26 @@
+{
+  "id": "handling-private-state-bloat-pruning-nullifiers-and-the-privacy-scalability-trade-off",
+  "sourceId": "DDAZFL",
+  "title": "Handling Private State Bloat: Pruning Nullifiers and the Privacy-Scalability Trade-Off",
+  "description": "Privacy-preserving applications like shielded pools, mixers, and anonymous voting face a fundamental scalability crisis: preventing double-spending requires maintaining a global set of spent-tags (nullifiers) forever. Because nodes cannot distinguish between lost credentials and unspent ones, state growth is monotonic and unbounded.\r\n\r\nThis talk introduces a protocol-agnostic paired-partitioning framework that resolves this tension. By binding credentials and spent-tags into fixed-size partitions derived from consensus ordering, we prove that once a partition is fully spent, its entire state becomes provably redundant and can be safely pruned down to a single bit. Attendees will explore the fundamental trade-off between partition size and anonymity set size, see how this mechanism retrofits both SNARK- and ring-signature-based systems without new cryptographic assumptions, and learn how to bound state growth for the next generation of private applications.",
+  "track": "Privacy & Consent",
+  "type": "Talk",
+  "expertise": "No prior knowledge",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Cryptography",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "preston-vander-vos"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1c-gfff9m24UZXUgpeu-tvOZwQgkK7G8Rkx8ljdBmX8E",
+  "slot_start": 1793698200000,
+  "slot_end": 1793699700000,
+  "slot_roomId": "lotus-1"
+}

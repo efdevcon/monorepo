@@ -1,0 +1,27 @@
+{
+  "id": "why-your-observability-stack-is-making-your-agents-stupid-and-ours-isnt-anymore",
+  "sourceId": "8WAE9N",
+  "title": "Why your observability stack is making your agents stupid (and ours isn't anymore)",
+  "description": "The 2022-era observability setup is friction for humans and poison for agents: Grafana in front of ClickHouse, Prometheus, and Loki, three query languages, and auth in a browser. We did the obvious integration first, building one MCP tool per datasource. It failed instructively: a single query would dump ~7000 rows of JSON into the context window, rotting the agent's context until it forgot its original task.\r\n\r\nWe'll walk through the rebuild: Panda, a CLI and MCP server sharing one backend, with a sandboxed Python runtime where raw rows live and die and only summaries return to the model. Humans and agents use the same surface. We'll cover the zero-credential sandbox that makes LLM code against prod safe, and the semantic search that solves discovery. Any core dev can use it today via panda init.\r\n\r\nYou'll leave with a pattern to steal: give agents a computer, not a pile of tools.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "No prior knowledge",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "AI",
+    "Open Source"
+  ],
+  "language": "en",
+  "speakers": [
+    "stefan-starflinger"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1nxLjPyC3aTsWydFz5qfeVzu5RlIWNKevd7d-sG_yHhg",
+  "slot_start": 1793955600000,
+  "slot_end": 1793957100000,
+  "slot_roomId": "lotus-3"
+}

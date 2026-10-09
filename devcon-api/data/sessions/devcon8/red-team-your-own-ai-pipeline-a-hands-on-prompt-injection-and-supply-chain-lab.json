@@ -1,0 +1,27 @@
+{
+  "id": "red-team-your-own-ai-pipeline-a-hands-on-prompt-injection-and-supply-chain-lab",
+  "sourceId": "CUPZ8H",
+  "title": "Red-Team Your Own AI Pipeline: A Hands-On Prompt-Injection & Supply-Chain Lab",
+  "description": "Framing (10 min). The trust boundary: an autonomous agent with repo/CI access is a new privileged user that reads attacker-controlled text. The \"assume the agent is compromised\" premise.\r\n\r\nStation 1 — Inject the reviewer (15 min). Plant a payload in a PR body and in an agent-instruction file; watch a review agent act on it. Then apply an injection-resistant prompt + input isolation and confirm the payload no longer fires.\r\n\r\nStation 2 — Adversarial-validate a plan (15 min). Run an AI adversarial-review pass against a deliberately over-scoped sample supply-chain engagement and watch it surface the unsafe steps a human plan-author missed.\r\n\r\nStation 3 — Bound the blast radius (15 min). Apply the defensive checklist — no-write tokens, action allowlists, spend/scope caps, monitoring — and re-run Station 1's attack against the hardened pipeline.\r\n\r\nDebrief (5 min). Mapping the lab back to your real CI; what to do Monday morning.",
+  "track": "Security",
+  "type": "Workshop",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI",
+    "Security",
+    "OpSec"
+  ],
+  "language": "en",
+  "speakers": [
+    "gustavo-dutra"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1L3NnXUSSYoS1O4KL6QrVq4EEwEBJaPMmUALJmgeNc9Q",
+  "slot_start": 1793766600000,
+  "slot_end": 1793769600000,
+  "slot_roomId": "workshop-2"
+}

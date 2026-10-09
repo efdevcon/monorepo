@@ -1,0 +1,26 @@
+{
+  "id": "eip-8304-trustless-log-and-transaction-index-in-geth",
+  "sourceId": "CXFQUJ",
+  "title": "EIP-8304: Trustless log and transaction index in Geth",
+  "description": "Every log query today runs on trust, dashboards, indexers and commercial RPCs assume the serving node is honest, nothing in a response is provable. Light clients cannot verify completeness, selective omission goes unnoticed. EIP-8304 builds an index into the protocol, a system contract called each block commits transactions and logs as sorted, variable-length entries into chained SSZ-merkleized tables, staggered merges keep per-block work and storage incremental.\r\n\r\nThe index unlocks trustless log queries with inclusion, exclusion and completeness proofs for light clients",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "vansh"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1FD0VxMJTMhBNsNFSEVIi3x2uOatlzrLA8mzsdzT8a1U",
+  "slot_start": 1793780100000,
+  "slot_end": 1793781000000,
+  "slot_roomId": "workshop-3"
+}

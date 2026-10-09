@@ -1,0 +1,29 @@
+{
+  "id": "permission-not-possession-setting-agent-wallet-defaults-before-they-harden",
+  "sourceId": "BBJKCJ",
+  "title": "Permission, Not Possession: Setting Agent Wallet Defaults Before They Harden",
+  "description": "The setup: a friend's Telegram channel flags on-chain deployment events on a perps venue; I wired those signals to an agent that executes from my own wallet. Open-source, personal GitHub, open standards.\r\n\r\nThe trap: approve every trade and the timing edge dies; never ask and the agent holds unbounded power — and prompt injection means I must assume it can be turned against me. The industry's fix is a custodian: the decade-old trade we came here to refuse, back through a side door.\r\n\r\nInstead: scoped delegation (ERC-7715/7710, session keys) — spend caps, time bounds, an allowlist, one-tap revoke. A company card with a limit, never the vault key.\r\n\r\nSix months of dry-run journals show where the caps would have saved me, where latency genuinely fights safety, and why ~a dozen events is a narrative, not statistics — so it's still not fully live.\r\n\r\nThe stakes: agent wallet defaults are being set now, and they harden. Permission-not-possession must become the default grant, not the expert path.",
+  "track": "Users, Builders, and Agents",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Wallets",
+    "Key Management",
+    "Coordination",
+    "Sovereignty"
+  ],
+  "language": "en",
+  "speakers": [
+    "francesco-andreoli"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1cXxjIzyb0L-acDBRM3Hkr4wJf11OIF_YcTYXLwXteKA",
+  "slot_start": 1793702400000,
+  "slot_end": 1793702820000,
+  "slot_roomId": "lightning-stage"
+}

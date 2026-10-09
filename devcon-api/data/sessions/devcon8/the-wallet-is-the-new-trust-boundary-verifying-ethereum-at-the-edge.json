@@ -1,0 +1,27 @@
+{
+  "id": "the-wallet-is-the-new-trust-boundary-verifying-ethereum-at-the-edge",
+  "sourceId": "Z3G7WS",
+  "title": "The Wallet Is the New Trust Boundary: Verifying Ethereum at the Edge",
+  "description": "Ethereum is trustless at the protocol layer, yet most wallets still depend on centralized RPC providers for blockchain state, eth_call, logs, and transaction simulation. This introduces a critical trust boundary outside the protocol, where applications accept information without independent verification. Read privacy is affected as well, exposing user behavior and intent to infrastructure providers.\r\n\r\nStateless verification combines execution and consensus proofs to verify blockchain data locally without running a full node or maintaining blockchain state. Trustless verification and read privacy must become protocol-level capabilities rather than application-specific features. \r\n\r\nVerification and read privacy belong at the protocol layer, not the infrastructure layer. Wallets should verify rather than trust blockchain data, regardless of where it originates. The integration into the Ethereum Wallet SDK Kohaku demonstrates that this architecture is practical today.",
+  "track": "Open & Verifiable Stack",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Security",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "steffen-kux"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1hR1v_MDYAE-b7Z5fNe3Fz9E8hBjvLrKgQpdt3kD8ONQ",
+  "slot_start": 1793952000000,
+  "slot_end": 1793953500000,
+  "slot_roomId": "lotus-1"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "the-dollar75m-sandwich-bot-hack-what-agent-transaction-security-requires",
+  "sourceId": "LC797R",
+  "title": "The $7.5M Sandwich Bot Hack: What Agent Transaction Security Requires",
+  "description": "In June 2026 JaredfromSubway.eth, the most profitable sandwich bot on Ethereum, lost more than $7.5 million to an attacker who deployed fake token contracts as honeypots. The bot moved fast, granted approvals to unfamiliar contracts, and never revoked them. Once enough piled up, one transaction swept the wallets clean.\r\n\r\nThis talk uses that incident to separate two failure modes any transaction-signing agent has to close on its own: key exposure, where raw keys end up in prompts, logs, or context windows, and unvalidated execution, the one that actually got Jared, where a secure key still signs a transaction it should never sign.\r\n\r\nI will cover defenses for the second problem: simulating a transaction against real chain state before signing, so a revert or bad balance change is caught first, deny-by-default handling for risky signature types like EIP-712 approvals, and server-enforced allowlists and spend caps independent of agent behavior. Lessons from building this at 1Claw.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI",
+    "Key Management",
+    "Security",
+    "OpSec"
+  ],
+  "language": "en",
+  "speakers": [
+    "kevin-jones"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Z1r0tR87ExksFKCpMCv8Kli-zf1t9OzAi0t8R5FCv0Q",
+  "slot_start": 1793782800000,
+  "slot_end": 1793784300000,
+  "slot_roomId": "lightning-stage"
+}

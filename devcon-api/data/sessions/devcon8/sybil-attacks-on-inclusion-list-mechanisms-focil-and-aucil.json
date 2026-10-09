@@ -1,0 +1,28 @@
+{
+  "id": "sybil-attacks-on-inclusion-list-mechanisms-focil-and-aucil",
+  "sourceId": "YEQFXR",
+  "title": "Sybil Attacks on Inclusion List Mechanisms: FOCIL and AUCIL",
+  "description": "Inclusion lists are important for Ethereum’s censorship resistance, but their robustness to Sybil attacks remains unresolved. This talk compares FOCIL and AUCIL under a false name attack model. FOCIL limits committee capture through sybils via stake based sampling, yet its economic guarantees can weaken when adversaries combine committee participation, bribery, and fake transactions (by Stouka et al.)\r\nAUCIL raises censorship costs through a scoring auction design, but coordinated sybils may shift its Phase I equilibrium and manipulate the Phase II aggregation auction through multiple high scores. I will show how these attacks affect censorship cost, proposer incentives, and transaction inclusion, then examine mitigations such as stake based rewards, caps on marginal contribution, and optimization problems on committee sizing. \r\nThe talk concludes with design requirements for an inclusion list mechanism that remains censorship resistant even when one proposer controls many identities.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "MEV",
+    "Security",
+    "Censorship Resistance",
+    "Coordination"
+  ],
+  "language": "en",
+  "speakers": [
+    "abhimanyu-nag"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1UbOEJA9VX02wVMfZJp6_Hlx3CRxfBS1zdqWZYdVIbSg",
+  "slot_start": 1793693700000,
+  "slot_end": 1793694120000,
+  "slot_roomId": "lightning-stage"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "ream-blackbox-interop-testing-post-quantam-lean-ethereum",
+  "sourceId": "KRK7JN",
+  "title": "Ream: BlackBox Interop Testing Post Quantam Lean Ethereum",
+  "description": "Lean Ethereum’s move toward hash-based signatures introduces signing constraints that clients must preserve throughout operation. My EPF cohort 7 project focuses on turning these constraints into black-box integration tests in Hive, starting with Ream and designing for cross-client coverage.\r\n\r\nThe talk follows the process from studying XMSS and client implementations to exposing the real production signer, independently verifying its output, and designing tests for same-slot conflicts, concurrent requests, restart persistence, and key activation and preparation boundaries. It also examines signature aggregation and the challenges of passing proof material between clients.\r\n\r\nThe aim is to make failures reproducible and identify coverage gaps beyond existing cryptographic unit tests. Attendees will learn how to translate a cryptographic assumption into a client-level assertion, choose meaningful controls, and distinguish signer behavior from test-harness failures.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Consensus",
+    "Post-quantum",
+    "Cryptography",
+    "Open Source"
+  ],
+  "language": "en",
+  "speakers": [
+    "mohit-grover"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1Y3UKtr_9XlwyeAaA3wOjC4dDiqT74oA8lK5cLYT8Thk",
+  "slot_start": 1793767500000,
+  "slot_end": 1793768400000,
+  "slot_roomId": "workshop-3"
+}

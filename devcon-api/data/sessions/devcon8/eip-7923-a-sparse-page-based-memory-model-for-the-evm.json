@@ -1,0 +1,28 @@
+{
+  "id": "eip-7923-a-sparse-page-based-memory-model-for-the-evm",
+  "sourceId": "LG3SGH",
+  "title": "EIP-7923: A Sparse-Page-Based Memory Model for the EVM",
+  "description": "EIP-7923 enables 64MB of memory allocation per transaction through a sparse-page-based memory model with linearized gas costs. Today, the EVM’s quadratic memory pricing — designed to prevent DoS attacks — limits memory usage to about 3MB per transaction and lacks modern memory management features like stack and heap allocation, resulting in real inefficiencies for compute-heavy contracts. EIP-7923 replaces quadratic pricing with a linear model, unlocking up to 64MB of memory per transaction. We explain how this is achieved through a virtual memory system implemented using POSIX mmap, present gas-cost measurements from real-world hardware benchmarks, and justify the 64MB cap as a security-critical balance that prevents DoS risk, particularly in concurrent eth_call scenarios.",
+  "track": "Core Protocol",
+  "type": "Lightning Talk",
+  "expertise": "Deep prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Roadmap",
+    "EVM",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "qi-zhou"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1mlmGc2DtnyqGAswptyVGgMr3eWnRq6QYzPFYhRpsLaY",
+  "slot_start": 1793690100000,
+  "slot_end": 1793690520000,
+  "slot_roomId": "lightning-stage"
+}

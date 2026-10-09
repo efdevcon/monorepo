@@ -1,0 +1,26 @@
+{
+  "id": "what-can-ethereum-learn-from-other-networks",
+  "sourceId": "LV3LQY",
+  "title": "What can Ethereum learn from other networks?",
+  "description": "Ethereum's peer-to-peer layer was designed for a protocol that looked very different from the one we run today, and it did its job well. But blob throughput, a growing validator set and more demanding applications turned propagation latency and bandwidth into a real constraint. Meanwhile, the rest of the networking world kept working on the same problems.\r\n\r\nThe talk will introduce the benefits of using transport primitives like QUIC and TLS 1.3, providing fewer round trips, stream multiplexing without head-of-line blocking, etc. To later on dive into how messages are spread, as not every message needs the same treatment: erasure-coded broadcast for large payloads like blocks and blobs, aggregation and batching for the small and frequent ones.\r\n\r\nAlong the way we use as an example networks that already made these bets, like Solana and its block propagation design, and libraries like Iroh. We close on where each piece fits in Ethereum's roadmap.",
+  "track": "Permissionless Networks",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "P2P"
+  ],
+  "language": "en",
+  "speakers": [
+    "mikel-cortes"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1uScg6KW9F-DNgjs7KMgtxhl605gjDhLFkvXmyK1wGfQ",
+  "slot_start": 1793791200000,
+  "slot_end": 1793791620000,
+  "slot_roomId": "lightning-stage"
+}

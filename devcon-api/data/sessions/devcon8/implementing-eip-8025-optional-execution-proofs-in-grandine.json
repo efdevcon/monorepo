@@ -1,0 +1,29 @@
+{
+  "id": "implementing-eip-8025-optional-execution-proofs-in-grandine",
+  "sourceId": "8FCR7F",
+  "title": "Implementing EIP-8025 Optional Execution Proofs in Grandine",
+  "description": "As Ethereum’s gas limit rises, execution validation becomes increasingly expensive: every validator still depends on an execution client that re-executes each payload. EIP-8025 explores a different path—optional execution proofs that let consensus clients verify execution cryptographically.\r\n\r\nUsing our Grandine implementation as a case study, we’ll show what it takes to integrate execution proofs into a real consensus client: SSZ representation and payload binding, safe gossip of multi-megabyte proofs, and recursive verification from a weak-subjectivity checkpoint to the head. We’ll also cover the compatibility issues that arise as EIP-8025 evolves across clients and proving systems.\r\n\r\nWe’ll close with a demo of Grandine receiving and verifying an externally produced execution proof, showing the path from payload binding through proof verification.",
+  "track": "[CLS] - EPF",
+  "type": "CLS - EPF Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Consensus",
+    "Scalability",
+    "ZK"
+  ],
+  "language": "en",
+  "speakers": [
+    "charles-reese",
+    "keshav-sharma"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/14UkZaMSd6JLI6n-KRJHeErBo6sQZ8qAorCiarPFOzog",
+  "slot_start": 1793778300000,
+  "slot_end": 1793779200000,
+  "slot_roomId": "workshop-3"
+}

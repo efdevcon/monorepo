@@ -1,0 +1,27 @@
+{
+  "id": "1014-or-1014-what-breaks-in-tokenized-asset-feeds",
+  "sourceId": "VAH3UG",
+  "title": "1,014 or 1.014: what breaks in tokenized asset feeds",
+  "description": "The most common way a tokenized asset can get mispriced onchain is not an attacker. It is a misplaced decimal in a fund administrator sheet: 1,014 where someone meant 1.014, and everything downstream inherits it until a circuit breaker kicks in. Tokenized assets sit in DeFi as collateral, as derivatives margin, and in AMM pools, mostly since last year. Onchain they look like any other token, so the instinct is to apply oracle checks built for onchain-native assets. Those checks do not all carry over.\r\nSourcing: data for onchain-native assets comes from many independent venues; for a tokenized asset it comes from the custodian.\r\nMonitoring: heartbeat and deviation don't make sense when only one price is published a day. The model for freshness has to change.\r\nFailure handling: a halted feed can be a security precaution, not a bug. Protocols need to define the appropriate behavior in advance.\r\nBuilders leave knowing which of their assumptions break before integrating a tokenized asset.",
+  "track": "Users, Builders, and Agents",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "DeFi",
+    "Security",
+    "Real World"
+  ],
+  "language": "en",
+  "speakers": [
+    "bianca-buzea"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1kxn_v7mB3EsuAh0ssIviJYOzINi1TlBSriXqL3tAkMQ",
+  "slot_start": 1793699400000,
+  "slot_end": 1793699820000,
+  "slot_roomId": "lightning-stage"
+}

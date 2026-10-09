@@ -1,0 +1,27 @@
+{
+  "id": "honey-i-shrunk-the-test-run-protocol-native-execution-client-system-tests-10-faster",
+  "sourceId": "YY3KTY",
+  "title": "Honey, I Shrunk the Test Run: Protocol-Native Execution Client System Tests, 10-??× Faster",
+  "description": "The original consensus-test simulators start a fresh execution client container for every test, although client startup and Docker initialization dominate runtime at roughly 1-7 seconds. EngineX moves the optimization upstream: the test vector generator merges compatible pre-states into shared genesis configurations, then generates independent test chains that can safely execute on one reused client. WireX builds on this design by generating the extra chain structure needed to force full sync without changing what each test asserts, then replaces the existing client-specific offline RLP import with a deterministic mock devp2p peer and the client’s production full-sync path. The result is a 10-??× end-to-end speedup without reducing the corpus, plus implicit reorg and wire-protocol coverage. I’ll show how test generation, together with a few tricks and fixes in the underlying test system, made this possible, and what we learned about safely reusing clients in consensus testing.",
+  "track": "Core Protocol",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "Developers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "EVM",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "danceratopz"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1qo7WBT0pKb8HyrvAozd6zdMJdq-Nb60kvx-b-0aJ4sI",
+  "slot_start": 1793941200000,
+  "slot_end": 1793942700000,
+  "slot_roomId": "lotus-3"
+}

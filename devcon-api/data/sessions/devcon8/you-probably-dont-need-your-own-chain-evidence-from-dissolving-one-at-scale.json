@@ -1,0 +1,28 @@
+{
+  "id": "you-probably-dont-need-your-own-chain-evidence-from-dissolving-one-at-scale",
+  "sourceId": "PA9EBV",
+  "title": "You Probably Don't Need Your Own Chain: Evidence From Dissolving One at Scale",
+  "description": "The appchain thesis is unwinding. Noble rebuilt as a sovereign L1. Sei deleted CosmWasm and kept its chain. We went furthest — dissolved the chain entirely and moved a network serving 100+ chains onto contracts, while it kept serving traffic.\r\n\r\nYour own chain buys consensus-level primitives. It also costs a validator set, a token to defend, and governance to run. Almost nobody audits which side of that ledger their guarantees sit on. We did, mechanism by mechanism.\r\n\r\nChain specs got strictly better: an on-chain hash over off-chain content, verifiable by anyone.\r\n\r\nStake-weighted random pairing moved from consensus to the client, forced by gas and the 256-block BLOCKHASH limit. We show why the guarantee survives, and what you must verify for it to hold.\r\n\r\nDual staking — bonding to a validator and a provider at once — has no analogue without a validator set. We show what replaced it.\r\n\r\nYou leave with the audit: a repeatable method for deciding whether your protocol needs a chain.",
+  "track": "Permissionless Networks",
+  "type": "Talk",
+  "expertise": "Deep prior knowledge",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Security",
+    "P2P",
+    "Censorship Resistance"
+  ],
+  "language": "en",
+  "speakers": [
+    "ofir-eliasi"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1G6GZ0j-Sn69IiWWdmbIe9Aq4M0Sgmjj_XEUQoB8y8Hk",
+  "slot_start": 1793869200000,
+  "slot_end": 1793870700000,
+  "slot_roomId": "lotus-3"
+}

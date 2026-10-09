@@ -1,0 +1,28 @@
+{
+  "id": "how-to-steal-dollar5m-with-a-read-only-bug",
+  "sourceId": "BUMGRG",
+  "title": "How to steal $5M with a read-only bug",
+  "description": "The bug produced a duplicate that could not be written to, so for two weeks it looked like a dead end. I checked tens of thousands of lines and found nothing. What broke it open is that everything downstream still trusted the copy, and once I understood that, the problem stopped being the VM and became a search for a protocol whose price maths I could reach.\r\n\r\nThere were about fifty candidates and no time to read them by hand, so I wrote a tool against decompiled bytecode to find them instead. Metastable went first, for $2M. Then I ran the same eight steps against Bucket Protocol and got $3M. Both were reported and fixed.\r\n\r\nI will show the escalation as it happened, including the two weeks that went nowhere, because that is the part nobody presents. You will leave with a sharper severity instinct: VM-level invariant breaks do not stay contained, and the second exploit is always cheaper than the first.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Open Source",
+    "DeFi",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "bartosz-barwikowski"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1kIY5Tnw3CKoZf5qal3HvGIh-E91U39X7Hvi9kI3gHOU",
+  "slot_start": 1793772000000,
+  "slot_end": 1793772420000,
+  "slot_roomId": "lightning-stage"
+}

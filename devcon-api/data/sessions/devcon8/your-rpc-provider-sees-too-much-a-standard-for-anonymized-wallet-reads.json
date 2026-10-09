@@ -1,0 +1,28 @@
+{
+  "id": "your-rpc-provider-sees-too-much-a-standard-for-anonymized-wallet-reads",
+  "sourceId": "D7ZPJS",
+  "title": "Your RPC provider sees too much: a standard for anonymized wallet reads",
+  "description": "Even when funds are private, metadata isn't: the RPC providers behind most wallets can link the addresses you query to your IP and each other. Anonymizing networks can break that link, but shipping one SDK per wallet×network pair doesn't scale.\r\n\r\nanon-rpc inverts this: a network publishes its client on-chain as a single hash pinned js bundle. Wallets (or apps) fetch the bytes from advisory resolvers, verify the hash, and run them in a Web Worker inside a null-origin iframe with a small capability API providing scoped storage and direct access to network nodes via KPS. Using the optional but encouraged KPS transport improves censorship resistance by avoiding certificate authorities and DNS.\r\n\r\nThe talk teaches the transferable parts: content-addressed code with on-chain update governance, browser sandboxing properties, and where trust still sits. Spec, MIT implementation, and a mainnet demo for running tor-js exists today.\r\n\r\nhttps://privacy-ethereum.github.io/anon-rpc/",
+  "track": "Privacy & Consent",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Wallets",
+    "P2P",
+    "Censorship Resistance",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "andrew"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1WoZLvQX4go6wUWHsV9HTUqyGK00kk64ySrsoNrLMaxE",
+  "slot_start": 1793941200000,
+  "slot_end": 1793942700000,
+  "slot_roomId": "lotus-2"
+}

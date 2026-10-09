@@ -1,0 +1,26 @@
+{
+  "id": "encrypt-the-mempool",
+  "sourceId": "9XTSJT",
+  "title": "Encrypt The Mempool",
+  "description": "Ethereum's public mempool has become unusable for MEV-sensitive transactions, or validators unwilling to propose blocks that have had MEV extracted. Order flows through into opaque private channels. This talk presents the current design state of the Encrypted Mempool problem.\r\n\r\n EIP-8184 introduces commit-before-reveal inclusion: builders commit to encrypted transactions before decryption via sealed transactions and key-timeliness votes integrated with FOCIL. Alternate designs consider threshold infrastructure, using the existing EIP-4844 KZG setup to run rotating validator-committee DKG with on-chain complaint adjudication and no new trusted ceremony.\r\n\r\n I will explain how the problems, the engineering trade-offs in DKG design, and how LUCID prevents front-running while preserving censorship resistance. Attendees will gain concrete insight into why encrypted mempools are architecturally difficult, what remains open, and how client teams can approach designs.",
+  "track": "Core Protocol",
+  "type": "Lightning Talk",
+  "expertise": "Deep prior knowledge",
+  "audience": "Researchers",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Core Protocol",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "justin-florentine"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1-2RgL2aVlBx9dLJilJhsphgly6R3g3-KzVSPzZufdaA",
+  "slot_start": 1793692500000,
+  "slot_end": 1793692920000,
+  "slot_roomId": "lightning-stage"
+}
