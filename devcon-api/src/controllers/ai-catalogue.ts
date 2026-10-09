@@ -16,6 +16,7 @@ aiCatalogueRouter.get(`/events/:id/ai`, publicCache(300), GetAiIndex)
 // One path per page (index, /day/:n, /sessions = all days), query only on /search: see catalogueUrls in utils/ai-catalogue.ts.
 aiCatalogueRouter.get(`/events/:id/ai/day/:day`, publicCache(60), GetAiSessions)
 aiCatalogueRouter.get(`/events/:id/ai/sessions`, publicCache(60), GetAiSessions)
+aiCatalogueRouter.get(`/events/:id/ai/ids/:ids`, publicCache(60), GetAiSessions)
 aiCatalogueRouter.get(`/events/:id/ai/search`, publicCache(60), GetAiSessions)
 
 function apiOrigin(req: Request): string {
@@ -48,8 +49,9 @@ export async function GetAiSessions(req: Request, res: Response) {
     type: get('type'),
     room: get('room'),
     q: get('q'),
-    ids: get('ids')?.split(/[\s,]+/).filter(Boolean),
-    full: get('full') === '1' || get('full') === 'true',
+    ids: (req.params.ids ?? get('ids'))?.split(/[\s,]+/).filter(Boolean),
+    // The /ids/ path is the details lookup, so it is always full.
+    full: req.params.ids !== undefined || get('full') === '1' || get('full') === 'true',
   }
   const { sessions, ctx } = await buildCatalogue(req.params.id, apiOrigin(req))
   res.status(200).type('text/plain; charset=utf-8').send(formatSessionList(sessions, filters, ctx))

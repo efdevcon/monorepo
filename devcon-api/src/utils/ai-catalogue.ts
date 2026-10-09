@@ -172,6 +172,8 @@ export const catalogueUrls = (base: string) => ({
   index: base,
   day: (n: number) => `${base}/day/${n}`,
   all: `${base}/sessions`,
+  /** Full details for a few sessions; a path, not a query, so CDNs cache it. */
+  ids: (codes: string) => `${base}/ids/${codes}`,
   search: `${base}/search`,
 })
 
@@ -193,7 +195,7 @@ export function formatIndex(sessions: CatalogueSession[], hubs: { id: string; na
     `- All days in one page (${sessions.length} sessions, large; use it only if your tool reads long pages in full): ${urls.all}`,
     '',
     '## Narrow a list',
-    `${urls.search}?q=<word in title, description, speaker or tag>&day=<n>&track=<word>&type=<word>&room=<word> (any combination). Full details for specific sessions: ${urls.search}?ids=CODE1,CODE2&full=1`,
+    `Full details for specific sessions: ${urls.ids('CODE1,CODE2')}. Filtered lists: ${urls.search}?q=<word in title, description, speaker or tag>&day=<n>&track=<word>&type=<word>&room=<word> (any combination).`,
     '',
     `Tracks: ${unique(sessions.map((s) => s.track)).join('; ')}`,
     `Formats: ${unique(sessions.map((s) => s.type)).join('; ')}`,
