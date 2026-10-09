@@ -201,8 +201,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_EXPERTISE: 144, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 145, // "Which of the following best describes your target audience?"
     PRETALX_QUESTIONS_TAGS: 146, // "Select 1-3 tags that apply to your talk/workshop."
-    // PRETALX_QUESTIONS_FEATURED: TODO — create the "Featured speaker" question
-    // on devcon8 (same shape as 175/176) and fill in its id.
+    PRETALX_QUESTIONS_FEATURED: 186, // "Featured speaker" (organizer-only curation, created 2026-10-09)
     PRETALX_QUESTIONS_SLIDES_DECK: 181, // "Slides deck" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 182, // "Slides: no Google account" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 183, // "Slides: last edit" (written by the sync; created 2026-09-30)
