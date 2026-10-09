@@ -133,7 +133,7 @@ Details that matter:
   publish by accident. The first Devcon 8 schedule was released on 2026-10-09: the
   webhook dispatched the sync, which committed 316 sessions, 320 speakers and 11 rooms;
   the run-of-show workflow dispatched alongside it failed on the Google Sheets write
-  quota (§12g).
+  quota, fixed the same day (§12g).
 - The devcon-7 sync additionally runs `createPresentations()` (Google Slides) and a
   glossary build - gated `if (eventId === 'devcon-7')` in
   [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts). The
@@ -1161,9 +1161,14 @@ the run of show see them, without the partner re-entering anything.
   The webhook dispatched `sync-pretalx-devcon8` (success: 316 sessions, 320 speakers,
   11 rooms committed, slides off as designed, 43 collision warnings against
   `test-devcon-8`) and `run-of-show-devcon8`, which **failed** on the Google Sheets
-  "Write requests per minute per user" quota while writing the first full schedule.
-  Nothing in the sync depends on it, but the sheet needs a re-run, and a throttled
-  writer before the next release.
+  "Write requests per minute per user" quota while writing the first full schedule
+  (four Sheets writes per tab, about 45 tabs, Google allows 60 a minute). Fixed the same
+  day: every write is spaced to stay under the limit and retried with backoff on 429/5xx,
+  verified with a full Devcon 8 run against a throwaway sheet (32 tabs, 3 minutes, no
+  retries). Found on the way: both run-of-show workflows read the same repo secret
+  `ROS_SPREADSHEET_ID`, so the test release of 2026-10-09 rewrote the AV team's sheet with
+  test data before Ceci's next releases half-rewrote it; the test workflow now reads
+  `ROS_SPREADSHEET_ID_TEST_DEVCON_8`, unset, so it exits before writing.
 - **Meerkat ping for DC8** (#11): Meerkat now pulls the schedule from Pretalx itself and
   exposes one public `POST .../api/v1/pretalx/<event>/sync` per event (one sync a minute
   at most, answers 200 or 202). `notifyClients()` posts there for `test-devcon-8` and
@@ -1189,9 +1194,8 @@ Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube chann
 templates - infra done, §12d), #9 (YouTube OAuth; #11 Meerkat closed 2026-10-09, #10 closed
 2026-08-13: AV write path + token migration verified), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility). §12e's edge caching is now fully active (Render Edge
-Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): the devcon8 run-of-show
-workflow fails on the Sheets write quota and CI still creates no decks for devcon8 (§2d
-checklist).
+Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): CI still creates no decks for devcon8 (§2d checklist); the
+run-of-show quota failure of the same day is fixed.
 
 ## Verification
 

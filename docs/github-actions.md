@@ -1,4 +1,4 @@
-> Handover snapshot from the former maintainer (mid-2026). The source of truth is `.github/workflows/` - some details here are stale (e.g. the pretalx syncs now run against production cfp.devcon.org, the devcon8 and test-devcon-8 syncs have their own workflows, and the AV pipeline is documented in [av/av-stack-overview.md](./av/av-stack-overview.md)). The run-of-show workflow for devcon8 regenerates on every schedule release and failed on the Google Sheets write quota at the first one (2026-10-09).
+> Handover snapshot from the former maintainer (mid-2026). The source of truth is `.github/workflows/` - some details here are stale (e.g. the pretalx syncs now run against production cfp.devcon.org, the devcon8 and test-devcon-8 syncs have their own workflows, and the AV pipeline is documented in [av/av-stack-overview.md](./av/av-stack-overview.md)). The run-of-show workflow for devcon8 regenerates on every schedule release; the test one needs its own `ROS_SPREADSHEET_ID_TEST_DEVCON_8` secret and exits without one.
 
 # ai-content-prep.yml
 

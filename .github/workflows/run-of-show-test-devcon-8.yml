@@ -25,4 +25,6 @@ jobs:
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
           ROS_GOOGLE_CLIENT_EMAIL: ${{ secrets.ROS_GOOGLE_CLIENT_EMAIL }}
           ROS_GOOGLE_PRIVATE_KEY: ${{ secrets.ROS_GOOGLE_PRIVATE_KEY }}
-          ROS_SPREADSHEET_ID: ${{ secrets.ROS_SPREADSHEET_ID }}
+          # Own secret on purpose: ROS_SPREADSHEET_ID is the AV team's Devcon 8 sheet and a
+          # test release must never rewrite it. Unset = the script exits before writing.
+          ROS_SPREADSHEET_ID: ${{ secrets.ROS_SPREADSHEET_ID_TEST_DEVCON_8 }}
