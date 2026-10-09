@@ -13,7 +13,10 @@ import { formatIndex, formatSessionList, type CatalogueFilters } from '@/utils/a
 // text/markdown is not on all of their allowlists.
 export const aiCatalogueRouter = Router()
 aiCatalogueRouter.get(`/events/:id/ai`, publicCache(300), GetAiIndex)
+// One path per page (index, /day/:n, /sessions = all days), query only on /search: see catalogueUrls in utils/ai-catalogue.ts.
+aiCatalogueRouter.get(`/events/:id/ai/day/:day`, publicCache(60), GetAiSessions)
 aiCatalogueRouter.get(`/events/:id/ai/sessions`, publicCache(60), GetAiSessions)
+aiCatalogueRouter.get(`/events/:id/ai/search`, publicCache(60), GetAiSessions)
 
 function apiOrigin(req: Request): string {
   const proto = (req.headers['x-forwarded-proto'] as string | undefined)?.split(',')[0] || req.protocol
@@ -35,10 +38,10 @@ export async function GetAiIndex(req: Request, res: Response) {
 
 export async function GetAiSessions(req: Request, res: Response) {
   // #swagger.tags = ['Events']
-  // #swagger.summary = 'Markdown session list for AI assistants, one line per session (?day=, &track=, &type=, &room=, &q=, &ids=, &full=1).'
+  // #swagger.summary = 'Session list for AI assistants, one line per session: /day/:n, /sessions (all days) or /search?q=&day=&track=&type=&room=&ids=&full=1.'
   if (!store.getEvent(req.params.id)) return res.status(404).send({ status: 404, message: 'Not Found' })
   const get = text(req)
-  const day = get('day')
+  const day = req.params.day ?? get('day')
   const filters: CatalogueFilters = {
     day: day && /^\d+$/.test(day) ? Number(day) : undefined,
     track: get('track'),

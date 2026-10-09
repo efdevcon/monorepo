@@ -136,7 +136,7 @@ export interface PromptInput {
  */
 export function buildAssistantPrompt(input: PromptInput): string {
   // The app's mirror of the API catalogue (catalogueMirror.ts): assistants fetch it without bot challenges.
-  const catalogue = `${input.appOrigin}/ai?event=${encodeURIComponent(input.eventId)}`;
+  const catalogue = `${input.appOrigin}/ai/${encodeURIComponent(input.eventId)}`;
   const starred =
     input.starred.length === 0
       ? "none yet"

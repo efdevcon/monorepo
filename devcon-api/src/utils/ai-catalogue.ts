@@ -162,9 +162,22 @@ export function formatSessionList(sessions: CatalogueSession[], filters: Catalog
 
 const unique = (values: string[]) => [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b))
 
+/**
+ * Catalogue URLs. One path per page (index, each day, all days) so CDNs that
+ * key by path alone (Netlify, in front of the event app's mirror) cache each
+ * variant on its own; only the filtered search carries a query string. The
+ * event app mirrors the same shape under `<app>/ai/<event>` and swaps the base.
+ */
+export const catalogueUrls = (base: string) => ({
+  index: base,
+  day: (n: number) => `${base}/day/${n}`,
+  all: `${base}/sessions`,
+  search: `${base}/search`,
+})
+
 /** The entry page an assistant reads first: what the data is, where each day lives, how to query, how to hand sessions back. */
 export function formatIndex(sessions: CatalogueSession[], hubs: { id: string; name: string }[], ctx: CatalogueContext): string {
-  const base = `${ctx.apiOrigin}/events/${ctx.eventId}/ai/sessions`
+  const urls = catalogueUrls(`${ctx.apiOrigin}/events/${ctx.eventId}/ai`)
   const lines: string[] = [
     `# ${ctx.eventTitle} programme, for AI assistants`,
     '',
@@ -174,12 +187,13 @@ export function formatIndex(sessions: CatalogueSession[], hubs: { id: string; na
   ]
   for (const day of ctx.days) {
     const count = sessions.filter((s) => dayNumberOf(s, ctx.days, ctx.offsetMinutes) === day.number).length
-    lines.push(`- Day ${day.number}, ${dayLabel(day)} (${count} sessions): ${base}?day=${day.number}`)
+    lines.push(`- Day ${day.number}, ${dayLabel(day)} (${count} sessions): ${urls.day(day.number)}`)
   }
   lines.push(
+    `- All days in one page (${sessions.length} sessions, large; use it only if your tool reads long pages in full): ${urls.all}`,
     '',
     '## Narrow a list',
-    `Add any of these to a day URL (or use them without ?day= for all days): &track=<word>, &type=<word>, &room=<word>, &q=<word in title, description, speaker or tag>. Full details for specific sessions: ${base}?ids=CODE1,CODE2&full=1`,
+    `${urls.search}?q=<word in title, description, speaker or tag>&day=<n>&track=<word>&type=<word>&room=<word> (any combination). Full details for specific sessions: ${urls.search}?ids=CODE1,CODE2&full=1`,
     '',
     `Tracks: ${unique(sessions.map((s) => s.track)).join('; ')}`,
     `Formats: ${unique(sessions.map((s) => s.type)).join('; ')}`,

@@ -561,7 +561,7 @@ function testAiPlan() {
     timezoneLabel: "Mumbai time (IST)",
     starred: [{ code: "8LTCLM", title: "A talk" }],
   });
-  check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue: https://app.devcon.org/ai?event=devcon8"));
+  check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue: https://app.devcon.org/ai/devcon8"));
   check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM (A talk)."));
   check("prompt explains the apply link", prompt.includes("https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3"));
   check("prompt stays short enough for a URL prefill", prompt.length < 2000, `${prompt.length} chars`);
@@ -569,14 +569,15 @@ function testAiPlan() {
   const ds = { ...DATASETS.devcon8, apiUrl: "https://api.devcon.org/", eventId: "devcon8" };
   check("catalogueDataset: default without ?event, by API event id with it, unknown is undefined",
     catalogueDataset(null) !== undefined && catalogueDataset("devcon8")?.eventId === "devcon8" && catalogueDataset("nope") === undefined);
-  check("upstreamCatalogueUrl forwards only the catalogue params",
-    upstreamCatalogueUrl(ds, true, new URLSearchParams("day=2&q=zk&event=devcon8&utm=x")) === "https://api.devcon.org/events/devcon8/ai/sessions?day=2&q=zk"
-    && upstreamCatalogueUrl(ds, false, new URLSearchParams("")) === "https://api.devcon.org/events/devcon8/ai");
-  check("mirrorCatalogueUrl carries the event", mirrorCatalogueUrl("https://app.devcon.org", "devcon8") === "https://app.devcon.org/ai?event=devcon8"
-    && mirrorCatalogueUrl("https://app.devcon.org", "devcon8", true, "day=1") === "https://app.devcon.org/ai/sessions?day=1&event=devcon8");
-  const page = "Day 1: https://api.devcon.org/events/devcon8/ai/sessions?day=1\nIndex: https://api.devcon.org/events/devcon8/ai\nIds: https://api.devcon.org/events/devcon8/ai/sessions?ids=A,B&full=1";
+  check("upstreamCatalogueUrl: one path per page, query only on search (unknown params dropped)",
+    upstreamCatalogueUrl(ds, "index", new URLSearchParams("")) === "https://api.devcon.org/events/devcon8/ai"
+    && upstreamCatalogueUrl(ds, "day", new URLSearchParams("q=ignored"), "2") === "https://api.devcon.org/events/devcon8/ai/day/2"
+    && upstreamCatalogueUrl(ds, "sessions", new URLSearchParams("")) === "https://api.devcon.org/events/devcon8/ai/sessions"
+    && upstreamCatalogueUrl(ds, "search", new URLSearchParams("day=2&q=zk&utm=x")) === "https://api.devcon.org/events/devcon8/ai/search?day=2&q=zk");
+  check("mirrorCatalogueUrl is the event's index path", mirrorCatalogueUrl("https://app.devcon.org", "devcon8") === "https://app.devcon.org/ai/devcon8");
+  const page = "Day 1: https://api.devcon.org/events/devcon8/ai/day/1\nIndex: https://api.devcon.org/events/devcon8/ai\nIds: https://api.devcon.org/events/devcon8/ai/search?ids=A,B&full=1";
   check("rewriteCatalogueLinks moves every API link onto the mirror", rewriteCatalogueLinks(page, ds, "https://app.devcon.org") ===
-    "Day 1: https://app.devcon.org/ai/sessions?event=devcon8&day=1\nIndex: https://app.devcon.org/ai?event=devcon8\nIds: https://app.devcon.org/ai/sessions?event=devcon8&ids=A,B&full=1");
+    "Day 1: https://app.devcon.org/ai/devcon8/day/1\nIndex: https://app.devcon.org/ai/devcon8\nIds: https://app.devcon.org/ai/devcon8/search?ids=A,B&full=1");
   check("requestOrigin prefers the forwarded host over the deploy's internal URL",
     requestOrigin(new Request("https://abc123--site.netlify.app/ai", { headers: { "x-forwarded-host": "app.devcon.org", "x-forwarded-proto": "https" } })) === "https://app.devcon.org"
     && requestOrigin(new Request("http://localhost:3000/ai", { headers: { host: "localhost:3000", "x-forwarded-proto": "http" } })) === "http://localhost:3000"

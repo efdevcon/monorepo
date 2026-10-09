@@ -1,53 +1,60 @@
 import { DATASETS, DEFAULT_DATASET_KEY, type Dataset } from "@/data/dataset";
 
 /**
- * The app mirrors devcon-api's AI catalogue under its own origin
- * (`/ai`, `/ai/sessions`): assistants fetch from app.devcon.org, which Netlify
- * serves without bot challenges, while api.devcon.org sits behind Cloudflare,
- * whose bot rules can refuse an assistant's fetcher. The route handlers proxy
+ * The app mirrors devcon-api's AI catalogue under its own origin: assistants
+ * fetch from app.devcon.org, which Netlify serves without bot challenges,
+ * while api.devcon.org sits behind Cloudflare, whose bot rules can refuse an
+ * assistant's fetcher. The route handlers under `src/app/ai/[event]/` proxy
  * the API server-side and rewrite the links in the text so every page an
- * assistant follows stays on the app origin. Pure helpers here, tested in
- * scripts/test-data.ts.
+ * assistant follows stays on the app origin.
+ *
+ * One path per page, mirroring the API's shape (`catalogueUrls` there):
+ *   /ai/<event>            index          cached
+ *   /ai/<event>/day/<n>    one day        cached
+ *   /ai/<event>/sessions   all days       cached
+ *   /ai/<event>/search?…   filters        never cached
+ * Netlify's CDN keys a Next response by path alone (its Netlify-Vary covers
+ * only the RSC params), so a query-string variant must not be cached: a
+ * cached `?event=devcon8` once answered `?event=devcon-7`, and day 1 day 2.
+ * Pure helpers here, tested in scripts/test-data.ts.
  */
 
-/** Query parameters the API's session list understands; anything else is dropped. */
+/** Query parameters the API's search understands; anything else is dropped. */
 export const CATALOGUE_PARAMS = ["day", "track", "type", "room", "q", "ids", "full"] as const;
 
-/** The dataset an `?event=` value names, by API event id; the deployment default without one. */
+export type MirrorPage = "index" | "day" | "sessions" | "search";
+
+/** The dataset an event id names (the API event id, which the hubs ride on). */
 export function catalogueDataset(event: string | null | undefined): Dataset | undefined {
   if (!event) return DATASETS[DEFAULT_DATASET_KEY];
   return Object.values(DATASETS).find((d) => d.eventId === event);
 }
 
-/** Upstream URL for a mirror request: the API's index or session list for `dataset`, with the allowed params. */
-export function upstreamCatalogueUrl(dataset: Dataset, list: boolean, params: URLSearchParams): string {
-  const base = `${dataset.apiUrl.replace(/\/$/, "")}/events/${dataset.eventId}/ai${list ? "/sessions" : ""}`;
+const apiBase = (dataset: Dataset) => `${dataset.apiUrl.replace(/\/$/, "")}/events/${dataset.eventId}/ai`;
+
+/** Upstream URL for a mirror request. */
+export function upstreamCatalogueUrl(dataset: Dataset, page: MirrorPage, params: URLSearchParams, day?: string): string {
+  const base = apiBase(dataset);
+  if (page === "index") return base;
+  if (page === "day") return `${base}/day/${encodeURIComponent(day ?? "")}`;
+  if (page === "sessions") return `${base}/sessions`;
   const query = new URLSearchParams();
   for (const name of CATALOGUE_PARAMS) {
     const value = params.get(name);
     if (value) query.set(name, value);
   }
   const q = query.toString();
-  return q ? `${base}?${q}` : base;
+  return q ? `${base}/search?${q}` : `${base}/search`;
 }
 
-/** The mirror's own URL for an index or list (what the prompt and the rewritten links point at). */
-export function mirrorCatalogueUrl(appOrigin: string, eventId: string, list = false, query = ""): string {
-  const params = new URLSearchParams(query);
-  params.set("event", eventId);
-  return `${appOrigin}/ai${list ? "/sessions" : ""}?${params.toString()}`;
+/** The mirror's index URL for an event (what the prompt and llms.txt point at). */
+export function mirrorCatalogueUrl(appOrigin: string, eventId: string): string {
+  return `${appOrigin}/ai/${encodeURIComponent(eventId)}`;
 }
 
-/** Rewrite the API's links in a catalogue page so they point at the mirror. */
+/** Rewrite the API's links in a catalogue page so they point at the mirror (same path shape, other base). */
 export function rewriteCatalogueLinks(text: string, dataset: Dataset, appOrigin: string): string {
-  const api = `${dataset.apiUrl.replace(/\/$/, "")}/events/${dataset.eventId}/ai`;
-  return text
-    .split(`${api}/sessions?`)
-    .join(`${appOrigin}/ai/sessions?event=${encodeURIComponent(dataset.eventId)}&`)
-    .split(`${api}/sessions`)
-    .join(`${appOrigin}/ai/sessions?event=${encodeURIComponent(dataset.eventId)}`)
-    .split(api)
-    .join(`${appOrigin}/ai?event=${encodeURIComponent(dataset.eventId)}`);
+  return text.split(apiBase(dataset)).join(mirrorCatalogueUrl(appOrigin, dataset.eventId));
 }
 
 export const CATALOGUE_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=600";
@@ -65,28 +72,28 @@ export function requestOrigin(request: Request): string {
   return `${proto}://${host}`;
 }
 
+const plain = (body: string, status: number, cache?: string) =>
+  new Response(body, {
+    status,
+    headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": cache ?? "no-store" },
+  });
+
 /**
- * Shared handler body for both mirror routes: pick the dataset, fetch the API
+ * Shared handler body for the mirror routes: pick the dataset, fetch the API
  * page, rewrite its links, answer as plain text. A failed upstream fetch is a
  * 502 with a one-line explanation the assistant can relay.
  */
-export async function mirrorCatalogue(request: Request, list: boolean): Promise<Response> {
-  const url = new URL(request.url);
-  const dataset = catalogueDataset(url.searchParams.get("event"));
-  if (!dataset) return new Response("Unknown event.", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8" } });
-  const upstream = upstreamCatalogueUrl(dataset, list, url.searchParams);
+export async function mirrorCatalogue(request: Request, event: string, page: MirrorPage, day?: string): Promise<Response> {
+  const dataset = catalogueDataset(event);
+  if (!dataset) return plain("Unknown event.", 404);
+  const upstream = upstreamCatalogueUrl(dataset, page, new URL(request.url).searchParams, day);
   let res: Response;
   try {
     res = await fetch(upstream, { headers: { Accept: "text/plain" }, cache: "no-store" });
   } catch {
-    return new Response("The programme is not reachable right now, try again in a minute.", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8" } });
+    return plain("The programme is not reachable right now, try again in a minute.", 502);
   }
-  if (!res.ok) {
-    return new Response(`The programme is not reachable right now (upstream ${res.status}), try again in a minute.`, { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8" } });
-  }
+  if (!res.ok) return plain(`The programme is not reachable right now (upstream ${res.status}), try again in a minute.`, 502);
   const text = rewriteCatalogueLinks(await res.text(), dataset, requestOrigin(request));
-  return new Response(text, {
-    status: 200,
-    headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": CATALOGUE_CACHE_CONTROL },
-  });
+  return plain(text, 200, page === "search" ? undefined : CATALOGUE_CACHE_CONTROL);
 }

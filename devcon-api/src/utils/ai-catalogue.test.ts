@@ -80,8 +80,10 @@ test('the list is grouped by event day and counts its rows', () => {
 
 test('the index links every day, lists the vocabularies and explains the apply link', () => {
   const md = formatIndex(sessions, [{ id: 'privacy', name: 'Privacy Hub' }], ctx)
-  expect(md).toContain('- Day 1, Tue 3 Nov 2026 (1 sessions): https://api.devcon.org/events/devcon8/ai/sessions?day=1')
+  expect(md).toContain('- Day 1, Tue 3 Nov 2026 (1 sessions): https://api.devcon.org/events/devcon8/ai/day/1')
   expect(md).toContain('- Day 4, Fri 6 Nov 2026 (0 sessions)')
+  expect(md).toContain('(3 sessions, large; use it only if your tool reads long pages in full): https://api.devcon.org/events/devcon8/ai/sessions')
+  expect(md).toContain('https://api.devcon.org/events/devcon8/ai/search?ids=CODE1,CODE2&full=1')
   expect(md).toContain('Tracks: Community Hubs; Core Protocol; Users, Builders, and Agents')
   expect(md).toContain('Community Hubs (filter with &room=<hub name>): Privacy Hub')
   expect(md).toContain('https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3')
