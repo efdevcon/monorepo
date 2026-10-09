@@ -28,6 +28,7 @@ jobs:
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
+          WEBHOOK_MEERKAT_SECRET: ${{ secrets.WEBHOOK_MEERKAT_SECRET }}
           # Optional: lets the sync mirror speaker avatars into Supabase
           # Storage (services/avatar-mirror); skipped gracefully when unset.
           # Deliberately NOT the SUPABASE_URL/SUPABASE_SERVICE_KEY secrets —

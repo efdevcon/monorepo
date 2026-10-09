@@ -8,8 +8,9 @@ Devcon 7 test data (Meerkat set up the `opening-ceremony` session on their side)
   mobile session page, the expanded desktop view and the desktop side panel.
 - Ask side: `event-app/src/app/api/meerkat/go/route.ts`, a cookie-authenticated redirect.
   JWT details for the Meerkat team: `event-app/src/app/api/meerkat/README.md`.
-- Schedule sync (devcon-api): `devcon-api/src/scripts/sync-pretalx.ts`, see the known gap
-  at the end.
+- Schedule sync (devcon-api): `devcon-api/src/scripts/sync-pretalx.ts` pings Meerkat's
+  per-event sync endpoint on every run; Meerkat pulls the schedule from Pretalx itself
+  (see the end).
 
 ```mermaid
 flowchart LR
@@ -20,7 +21,7 @@ flowchart LR
     J --> R[302 to Meerkat<br/>/e/id/qa?token=jwt]
     R --> M[Meerkat verifies<br/>shared secret, starts session]
     Q[SessionQA component] -.reads questions, no auth.-> M
-    SYNC[devcon-api<br/>sync-pretalx.ts] -.schedule sync, DC7 only.-> M
+    SYNC[devcon-api<br/>sync-pretalx.ts] -.sync ping, test-devcon-8 + devcon8.-> M
 ```
 
 ## Reading questions
@@ -114,20 +115,21 @@ Options for the livestream:
    the schedule, so this would not depend on moderators pressing "live" in Meerkat.
    Not built yet.
 3. The same strip on the venue room screens (`/room-screens/<room>`). Those screens already
-   show a "See questions" QR code to the stage presenter view (`/stage/<room name>`, which
+   show a "See questions" QR code to the stage presenter view (`/stage/<room id>`, which
    follows the live session), only when Meerkat lists sessions for that stage.
 
 Prerequisites either way:
 
-1. Devcon 8 sessions in Meerkat with `stage` set to our room, `uid` set to our session
-   slug. Created through Meerkat's admin API (`POST /api/v1/admin/events`, batch upsert
-   keyed by `uid`, `x-api-key` header) or the schedule sync once it covers DC8 (known
-   gap below).
+1. Devcon 8 sessions in Meerkat: their Pretalx sync creates them with `uid` = the Pretalx
+   code and `stage` = the slug of the Pretalx room name (our room id), on a ping from our
+   sync or a manual `POST /api/v1/pretalx/devcon8/sync`, once their "Devcon 8 Mumbai"
+   conference is relinked from `test-devcon-8` to `devcon8` (the path parameter is the
+   Pretalx slug, checked in their source 2026-10-09).
 2. Organizer accounts for the moderators, granted by the Meerkat team through their
    invitations table.
 3. A moderator in each room during sessions, or nothing gets marked live or selected.
 
-To raise with the Meerkat team: the `stage` field in the sync payload, organizer invites,
+To raise with the Meerkat team: relinking their conference to `devcon8`, organizer invites,
 and whether the presenter view could get a transparent overlay mode, which would make the
 stream side a pure browser-source setup.
 
@@ -139,7 +141,9 @@ stream side a pure browser-source setup.
   until it is rotated. Before launch: generate a random secret, set it on the event-app
   site, share it with the Meerkat team through 1Password, and switch both sides together.
   Worth removing the fallback so the route fails closed when the variable is missing.
-- `WEBHOOK_MEERKAT_SECRET` (devcon-api): bearer token for the schedule sync ping.
+- `WEBHOOK_MEERKAT_SECRET` (devcon-api, passed by the three sync workflows): bearer token
+  sent with the schedule sync ping. The current endpoint is public; the token is kept so
+  Meerkat can turn auth back on without a code change.
 - Confirm realtime with the Meerkat team (one SSE connection per open session view); it is
   currently on in `SessionQA.tsx` for testing.
 
@@ -159,10 +163,13 @@ questions API answers for the DC7 test session, and the Meerkat team has impleme
 the JWT hand-over on their side. If DC7 Q&A is ever wanted as an archive, ask the
 Meerkat team whether the data still exists before scripting anything.
 
-## Known gap: DC8 schedule sync
+## DC8 schedule sync (resolved 2026-10-09)
 
-`sync-pretalx.ts` POSTs to a URL hardcoded to `devcon-7`
-(`.../api/v1/sync/devcon/devcon-7`) and is gated to that event, so Devcon 8 schedule
-publishes never notify Meerkat and its session list goes stale. Tracked as #11 in
-`docs/av/av-stack-overview.md`; needs an event-parameterised endpoint agreed with the
-Meerkat team, using the session ids described above.
+Meerkat pulls the schedule from Pretalx itself and exposes one public endpoint per
+event, `POST https://app.meerkat.events/api/v1/pretalx/<event>/sync` (one sync a minute
+at most, answers 200 or 202 with the version and the upserted codes). `sync-pretalx.ts`
+posts there on every run for `test-devcon-8` and `devcon8` (the Pretalx slugs; Meerkat
+looks its conference up by them, `MEERKAT_EVENTS` in the script). Sessions are keyed by Pretalx code and stages by the
+slug of the room name, which is our room id; the room screens query and link by that id.
+The old `meerkat.events/api/v1/sync/devcon/devcon-7` ping is gone. Tracked as #11 in
+`docs/av/av-stack-overview.md`.

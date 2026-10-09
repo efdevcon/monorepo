@@ -141,10 +141,7 @@ async function main() {
     line('Slides: off (SLIDES_EVENTS does not include this event)')
   }
 
-  // Devcon-7 specific integrations
-  if (eventId === 'devcon-7') {
-    await notifyClients()
-  }
+  await notifyClients()
 
   await syncEventData()
   await syncRooms()
@@ -179,25 +176,32 @@ async function main() {
   }
 }
 
+// Meerkat (session Q&A) pulls the released schedule from Pretalx itself; this
+// ping only tells it a new version is out (their side syncs at most once a
+// minute and answers 200 or 202). The path parameter is the PRETALX event slug
+// (Meerkat looks its conference up by it), so the value is our config's
+// PRETALX_EVENT_NAME; a slug no conference is linked to answers 404. The
+// endpoint is public; the bearer token is still sent when set, so Meerkat can
+// turn auth back on without a change here.
+const MEERKAT_EVENTS: Record<string, string> = { 'test-devcon-8': 'test-devcon-8', devcon8: 'devcon8' }
+
 async function notifyClients() {
+  const meerkatEvent = MEERKAT_EVENTS[eventId]
+  if (!meerkatEvent) return
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  if (process.env.WEBHOOK_MEERKAT_SECRET) headers.Authorization = `Bearer ${process.env.WEBHOOK_MEERKAT_SECRET}`
+  else console.warn('WEBHOOK_MEERKAT_SECRET is not set; pinging Meerkat without it')
   try {
-    if (!process.env.WEBHOOK_MEERKAT_SECRET) {
-      console.error('WEBHOOK_MEERKAT_SECRET is not set')
-      return
-    }
-
-    const result = await fetch('https://meerkat.events/api/v1/sync/devcon/devcon-7', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.WEBHOOK_MEERKAT_SECRET}`,
-      },
-    })
-
+    const result = await fetch(`https://app.meerkat.events/api/v1/pretalx/${meerkatEvent}/sync`, { method: 'POST', headers })
     if (result.ok) {
-      console.log('Notified Meerkat')
+      const body: any = await result.json().catch(() => null)
+      const data = body?.data
+      console.log(
+        `Notified Meerkat (${meerkatEvent})` +
+          (data?.version ? ` · schedule ${data.version}, ${data.upserted?.length ?? 0} upserted, ${data.deleted?.length ?? 0} deleted` : '')
+      )
     } else {
-      console.error('Error notifying Meerkat', result)
+      console.error('Error notifying Meerkat', result.status, (await result.text()).slice(0, 200))
     }
   } catch (error) {
     console.error('Error notifying Meerkat', error)

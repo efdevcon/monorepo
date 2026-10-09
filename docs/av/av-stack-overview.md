@@ -68,8 +68,8 @@ There is **no database** and **no media infrastructure of Devcon's own**.
   sessions/speakers/livestreams), the archive
   ([`archive/`](https://github.com/efdevcon/monorepo/tree/main/archive)), devcon.org
   (`/dips`), devcon-ai (RAG embeddings built during sync), and **Meerkat** (session
-  Q&A - fetches sessions from the API, and the sync script pings it on schedule
-  changes; see §3 #11).
+  Q&A - pulls the schedule from Pretalx itself, the sync script pings it on every run
+  so it refreshes; §3 #11).
 
 Consequence: "building the AV pipeline" is entirely a **data** problem. No encoding,
 storage, or player work is implied.
@@ -89,7 +89,8 @@ flowchart TD
     GHA -->|commit Pretalx data| DATA[(devcon-api/data<br/>- devcon monorepo)]
     DATA -.triggers api restart and is the source of truth at boot-up,<br/>giving us eventual consistency.-> API
     API -->|fetch sessions / speakers| APP[Devcon App / event-app]
-    API -->|fetch sessions| MK[Meerkat]
+    GHA -->|sync ping| MK[Meerkat]
+    MK -.->|pulls schedule| PX
 ```
 
 In detail:
@@ -101,7 +102,7 @@ Pretalx (cfp.devcon.org, schedule published)
                  └─ TriggerWorkflow() per WORKFLOW_MAP (hooks.ts)
                       ├─ sync-pretalx-<event>.yml ──> commits devcon-api/data/ ──> API restart
                       │                            ├─> devcon-ai `sync:sessions` (RAG embeddings)
-                      │                            └─> POST meerkat.events sync ping (devcon-7 only, see §3 #11)
+                      │                            └─> POST app.meerkat.events sync ping (test-devcon-8, devcon8; §3 #11)
                       └─ run-of-show-<event>.yml  ──> rebuilds Google Sheet for AV team
 
 AV / encoding vendor
@@ -206,7 +207,7 @@ by hand. "Manual" means someone runs a pnpm script locally.
 | [`run-of-show-{devcon8,test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Rebuilds the AV team's Google Sheet | Webhook-dispatched + manual dispatch | devcon8 / test-devcon-8 (devcon-7 not wired) | Live |
 | `pnpm sync:eventyay <event>` ([`sync-eventyay.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-eventyay.ts)) | Syncs a partner's eventyay schedule (Open Tech Summit) into our Pretalx event: proposals, WIP slots, tags, speakers (§12g) | Manual; dry run by default, `--apply` writes | test-devcon-8 / devcon8 (target table in the script) | Manual |
 | `pnpm pretalx:release <event>` ([`pretalx-release.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/pretalx-release.ts)) | Releases a schedule version through the Pretalx API (orga-UI fallback, §12f) | Manual | `devcon8` refused (`NEVER_RELEASE`); test-devcon-8 and devcon7-sea | Manual |
-| Meerkat ping (`notifyClients()` in [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts)) | POST sync ping to `meerkat.events` | Runs inside the sync script | **devcon-7 only, URL hardcoded** (§3 #11) | Live (DC7 only) |
+| Meerkat ping (`notifyClients()` in [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts)) | POST sync ping to `app.meerkat.events`, which then pulls the schedule from Pretalx | Runs inside the sync script | test-devcon-8 / devcon8 (`MEERKAT_EVENTS` map; ✅ 2026-10-09, §12g) | Live |
 | `pnpm yt` → `syncThumbnails()` ([`yt.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/yt.ts)) | Renders `devcon.org/api/social/av/:id` at 1920×1080 and pushes via `youtube.thumbnails.set()` (105/run for quota) | Manual, interactive browser OAuth | `sessions/devcon-7` hardcoded | Manual |
 | `pnpm yt` → `syncDescriptions()` | Rewrites YouTube **titles** (truncated to fit "by <speaker>" + a hardcoded `\| Devcon SEA` suffix into 100 chars) and **descriptions** (from session description + tags), ledger [`youtube-descriptions.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/youtube-descriptions.json) | **Commented out** in `main()` | devcon-7 + SEA branding hardcoded | Disabled |
 | `pnpm import:yt` ([`import-yt.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/import-yt.ts)) | Imports YouTube playlists ([`data/playlists.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/data/playlists.json)) into session JSONs - how devconnect-arg's 418 sessions got in | Manual, Google **service account** | `eventId = 'devconnect-arg'` hardcoded | Manual |
@@ -254,8 +255,9 @@ devcon-app stays DC7-only; its blocker #3 is moot.
   session), **"Watch livestream"** for the room's stream on the current conference day
   (anchored on *now* via the mockable clock, unlike SessionMedia which anchors on the
   session's own day - intentional; hidden when no stream URL exists), and
-  **"See questions"** to Meerkat's presenter view for the room's stage (only when
-  Meerkat lists sessions for that stage, see `docs/meerkat.md`). `/room-screens` is
+  **"See questions"** to Meerkat's presenter view for the room's stage, keyed
+  by our room id since 2026-10-09 (only when Meerkat lists sessions for that stage, see
+  `docs/meerkat.md`). `/room-screens` is
   the picker, one card per room with its live/next session. devcon-app has the DC7
   predecessor at
   [`devcon-app/src/pages/room-screens/[id].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon-app/src/pages/room-screens/%5Bid%5D.tsx)
@@ -468,7 +470,7 @@ Ranked by severity. Each is a separate fix.
 | 8 | ✅ FIXED 2026-08 (§12) - `stats-video.ts` was hardcoded to devcon-7 + Nov dates | [`stats-video.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/stats-video.ts) | The only AV coverage report couldn't run for DC8; now `pnpm stats:v <eventId>`. |
 | 9 | `yt.ts` uses `@google-cloud/local-auth` (interactive browser OAuth) | [`google.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/clients/google.ts) | Cannot run in CI; YouTube push is manual-only. Nuance: a service-account path exists (`AuthenticateServiceAccount`, used by `import-yt.ts`) but service accounts can only *read* YouTube - writes (thumbnails/titles) need the channel owner's OAuth, so CI would require a stored refresh token. |
 | 10 | ✅ **FIXED + VERIFIED (2026-08-13)** — end-to-end test now passes: `PUT /sessions/sources/:id` on test-devcon-8 returns 204 and the `[skip deploy]` commits land on main. Three bugs were found and fixed along the way: (1) `SessionToJson` assumed DB-era comma-string `tags`/`keywords` and 500'd on the file-store's arrays; (2) session ids are NOT unique across events (test-devcon-8 is a devcon-7 clone) and reads resolved via `sessionMap` (last event wins) while writes used array `findIndex` (first event wins) — an AV write briefly wiped a devcon-7 archive session's AV fields (restored same day); `updateSession` now resolves through the same map as `getSession`; (3) commits serialized the hydrated `slot_room` object into data files — now stripped. Verify with `pnpm av:test-write` (devcon-api) — it aborts if the test session resolves outside test-devcon-8. **TOKEN MIGRATED OFF PERSONAL ACCOUNTS (2026-08-13)**: Render `GITHUB_TOKEN` is now a classic PAT on the **`devcon-website` machine account** (scope `public_repo` only; the account holds Write on the monorepo). Verified end-to-end: `pnpm av:test-write` returns 204/204, both `[skip deploy]` commits land on main, and the commits are **committed by `devcon-website`** — proof Render uses the machine credential, not a person's. The token can also read the Actions API (all 4 `sync-pretalx` workflows visible), so webhook-driven `workflow_dispatch` is covered. No individual's offboarding can break the AV pipeline any more. Also fixed while testing: two writes to the same session within seconds could 409 on a stale contents-API sha and surface as a 500 — `CommitSession` now re-reads the sha and retries (deployed, verified). REMAINING: `PRETALX_API_KEY(_MUMBAI)` repo secrets still need a confirmed owner; set a calendar reminder for the token's expiry. Recommended follow-up: regenerate test-devcon-8 with prefixed session ids so cross-event id ambiguity disappears entirely. | [`github.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/services/github.ts) (`TriggerWorkflow` and `CommitSession`), via `GITHUB_TOKEN` in the API's Render env (the workflow files themselves use the repo-scoped `secrets.GITHUB_TOKEN`, which is fine) | Webhook→workflow triggering and AV session commits die when the account is deprovisioned. `PRETALX_API_KEY(_MUMBAI)` repo secrets need an owner too. |
-| 11 | Meerkat schedule sync ping gated to devcon-7 **and** hardcoded to `meerkat.events/api/v1/sync/devcon/devcon-7` (re-verified 2026-08-10) | [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts) | DC8 schedule publishes never notify Meerkat (session Q&A), so its session list goes stale. Needs an event-parameterised endpoint agreed with the Meerkat team (see [`docs/meerkat.md`](https://github.com/efdevcon/monorepo/blob/main/docs/meerkat.md)). |
+| 11 | ✅ FIXED 2026-10-09 (§12g) - Meerkat schedule sync ping was gated to devcon-7 and hardcoded to the retired `meerkat.events` URL | [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts) | DC8 schedule publishes never notified Meerkat (session Q&A), so its session list went stale. The sync now pings Meerkat's per-event Pretalx sync endpoint for test-devcon-8 and devcon8 (see [`docs/meerkat.md`](https://github.com/efdevcon/monorepo/blob/main/docs/meerkat.md)). |
 | 12 | ✅ FIXED 2026-08 (§12) - `devcon8` event metadata was empty | [`devcon-api/data/events/devcon8.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/data/events/devcon8.json) | The API served a nameless, dateless DC8 event; now hand-authored (title, dates, venue). Event metadata has no sync - it stays hand-authored. |
 
 ## 4. Social/OG cards and the YouTube thumbnail pipeline
@@ -717,8 +719,8 @@ Counts re-verified 2026-08-10 (devcon8 and test-devcon-8 rows: 2026-10-09):
    cfp.devcon.org.
 4. Decide run-of-show mutability policy before the DC8 CFP schedule publishes (§5.1) -
    this is a process decision, not a code one.
-5. Agree an event-parameterised sync endpoint with the Meerkat team and un-gate
-   `notifyClients()` (#11).
+5. ✅ DONE 2026-10-09 (§12g) - Meerkat's per-event sync endpoint is pinged for
+   test-devcon-8 and devcon8 (#11).
 
 **Before DC8 doors open** - livestream surface:
 6. ✅ DONE 2026-08-05 (§12c) - **event-app carries DC8's AV surface** (§2c). Schemas
@@ -1162,6 +1164,19 @@ the run of show see them, without the partner re-entering anything.
   "Write requests per minute per user" quota while writing the first full schedule.
   Nothing in the sync depends on it, but the sheet needs a re-run, and a throttled
   writer before the next release.
+- **Meerkat ping for DC8** (#11): Meerkat now pulls the schedule from Pretalx itself and
+  exposes one public `POST .../api/v1/pretalx/<event>/sync` per event (one sync a minute
+  at most, answers 200 or 202). `notifyClients()` posts there for `test-devcon-8` and
+  `devcon8` on every sync run (the path parameter is the Pretalx slug; Meerkat looks
+  its conference up by it), keeps sending the bearer token
+  when `WEBHOOK_MEERKAT_SECRET` is set, and both workflows now pass that secret.
+  Verified against the test event: Meerkat answered with the released version and the
+  upserted and deleted codes (talks that leave a release are removed on their side too). Meerkat keys sessions by Pretalx code (the app's Q&A block already
+  tries that first) and its stage is the slug of the room name, which equals our room
+  id: the room screens sent the room name, so the "See questions" QR never showed and
+  the presenter link 404ed; they send the id now (`RoomScreen.tsx`). Meerkat has one
+  conference, "Devcon 8 Mumbai", still linked to `test-devcon-8`; the prod ping answers
+  404 until the Meerkat team relinks it to `devcon8`.
 - **Test mirror cleaned up** (2026-10-09): the 43 Open Tech Summit proposals were deleted
   from `test-devcon-8` through the API and test release 0.36 synced them out (11 test
   sessions left), so Devcon 8 syncs no longer report id collisions for them. The 43 test
@@ -1171,8 +1186,8 @@ the run of show see them, without the partner re-entering anything.
 
 Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),
 #6 second half (DC8 asset swap + DC7 location/date/timezone copy in the card
-templates - infra done, §12d), #9/#11 (YouTube OAuth, Meerkat endpoint - #10 is
-now closed: AV write path + token migration verified 2026-08-13), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
+templates - infra done, §12d), #9 (YouTube OAuth; #11 Meerkat closed 2026-10-09, #10 closed
+2026-08-13: AV write path + token migration verified), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
 spread-order fragility). §12e's edge caching is now fully active (Render Edge
 Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): the devcon8 run-of-show
 workflow fails on the Sheets write quota and CI still creates no decks for devcon8 (§2d
@@ -1196,5 +1211,6 @@ No code changes are proposed in this document. To validate the findings above:
 - Sync auth against cfp.devcon.org: run `pnpm sync:pretalx:devcon8` locally - a stale
   base URL / key shows as public endpoints 200 but private events 401 (the redirect
   strips the `Authorization` header, so the failure is silent).
-- Meerkat gating: `grep -n "meerkat" devcon-api/src/scripts/sync-pretalx.ts` - note the
-  `devcon-7`-only guard and hardcoded URL (#11).
+- Meerkat ping: `grep -n "meerkat" devcon-api/src/scripts/sync-pretalx.ts` shows the
+  `MEERKAT_EVENTS` map (#11); `curl -s --get --data-urlencode 'stage=<room id>'
+  https://app.meerkat.events/api/v1/events` lists what Meerkat holds per stage.

@@ -257,12 +257,13 @@ export function RoomScreen({ roomId }: { roomId: string }) {
   }, [qrSessionId]);
   const appQr = qr && qr.sessionId === qrSessionId ? qr.url : null;
 
-  // "See questions" QR to Meerkat's presenter view for this room's stage
-  // (Meerkat stages are our room names): it follows whatever is live or next
-  // there, so one code serves the whole day. Shown only when Meerkat lists sessions
+  // "See questions" QR to Meerkat's presenter view for this room's stage.
+  // Meerkat's stage is the slug of the Pretalx room name, which is our room id
+  // (the room name never matches, checked 2026-10-09): it follows whatever is
+  // live or next there, so one code serves the whole day. Shown only when Meerkat lists sessions
   // for the stage: a room screen is online by definition, and a QR into a 404
   // is worse than none. Keyed by stage so a stale code never lingers.
-  const stage = room?.name ?? null;
+  const stage = room?.id ?? null;
   const [qaQr, setQaQr] = useState<{ stage: string; url: string } | null>(null);
   useEffect(() => {
     if (!stage) return;
