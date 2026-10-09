@@ -128,6 +128,8 @@ async function main() {
   // Get existing sheets
   const existing = await sheets.spreadsheets.get({ spreadsheetId: sheetId })
   const existingSheets = existing.data.sheets || []
+  // The id is a masked secret in CI logs; the title is how a human finds the sheet in Drive.
+  console.log(`  Spreadsheet title: ${existing.data.properties?.title ?? '?'}`)
 
   // Build sheet names: one per day per room
   const sheetConfigs: { name: string; day: string; roomId: string; room: RoomData }[] = []
