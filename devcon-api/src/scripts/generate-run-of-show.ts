@@ -59,6 +59,34 @@ interface RoomData {
   name: string
 }
 
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms))
+}
+
+// Sheets allows 60 write requests per minute per user and a Devcon-sized
+// spreadsheet needs about four per tab, so every write goes through here:
+// spaced out to stay under the limit, and retried with backoff on 429/5xx
+// instead of failing the run (a schedule release triggers one).
+const WRITE_INTERVAL_MS = 1100
+let lastWriteAt = 0
+async function write<T>(what: string, fn: () => Promise<T>, attempts = 6): Promise<T> {
+  for (let i = 0; ; i++) {
+    const wait = lastWriteAt + WRITE_INTERVAL_MS - Date.now()
+    if (wait > 0) await sleep(wait)
+    lastWriteAt = Date.now()
+    try {
+      return await fn()
+    } catch (e: any) {
+      const status = e?.code || e?.response?.status
+      const retryable = status === 429 || (status >= 500 && status < 600)
+      if (!retryable || i >= attempts - 1) throw e
+      const backoff = Math.min(60000, 2000 * 2 ** i)
+      console.log(`  ${what}: HTTP ${status}, retrying in ${backoff / 1000}s`)
+      await sleep(backoff)
+    }
+  }
+}
+
 async function main() {
   const config = getPretalxConfig(eventId)
 
@@ -143,7 +171,7 @@ async function main() {
   }
 
   if (requests.length > 0) {
-    await sheets.spreadsheets.batchUpdate({ spreadsheetId: sheetId, requestBody: { requests } })
+    await write('rebuild tabs', () => sheets.spreadsheets.batchUpdate({ spreadsheetId: sheetId, requestBody: { requests } }))
   }
 
   // Re-fetch to get sheet IDs
@@ -166,17 +194,21 @@ async function main() {
     }
 
     // Clear existing data then write
-    await sheets.spreadsheets.values.clear({
-      spreadsheetId: sheetId,
-      range: `'${sheetConfig.name}'`,
-    })
+    await write(`clear ${sheetConfig.name}`, () =>
+      sheets.spreadsheets.values.clear({
+        spreadsheetId: sheetId,
+        range: `'${sheetConfig.name}'`,
+      })
+    )
 
-    await sheets.spreadsheets.values.update({
-      spreadsheetId: sheetId,
-      range: `'${sheetConfig.name}'!A1`,
-      valueInputOption: 'USER_ENTERED',
-      requestBody: { values: rows },
-    })
+    await write(`write ${sheetConfig.name}`, () =>
+      sheets.spreadsheets.values.update({
+        spreadsheetId: sheetId,
+        range: `'${sheetConfig.name}'!A1`,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: { values: rows },
+      })
+    )
 
     await applyFormatting(sheets, sheetId, sheetGid, rows)
 
@@ -337,16 +369,18 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
   const COL_COUNT = 17
 
   // First: unmerge everything to avoid stale merges from previous runs
-  await sheets.spreadsheets.batchUpdate({
-    spreadsheetId,
-    requestBody: {
-      requests: [{
-        unmergeCells: {
-          range: { sheetId, startRowIndex: 0, endRowIndex: rows.length + 10, startColumnIndex: 0, endColumnIndex: COL_COUNT },
-        },
-      }],
-    },
-  })
+  await write('unmerge', () =>
+    sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      requestBody: {
+        requests: [{
+          unmergeCells: {
+            range: { sheetId, startRowIndex: 0, endRowIndex: rows.length + 10, startColumnIndex: 0, endColumnIndex: COL_COUNT },
+          },
+        }],
+      },
+    })
+  )
 
   // Now apply all formatting
   const requests: any[] = []
@@ -500,7 +534,7 @@ async function applyFormatting(sheets: any, spreadsheetId: string, sheetId: numb
   })
 
   if (requests.length > 0) {
-    await sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests } })
+    await write('format', () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests } }))
   }
 }
 
