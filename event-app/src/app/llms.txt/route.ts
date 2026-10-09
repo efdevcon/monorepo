@@ -1,9 +1,9 @@
 import { DATASETS, DEFAULT_DATASET_KEY } from "@/data/dataset";
-import { CATALOGUE_CACHE_CONTROL, mirrorCatalogueUrl } from "@/data/ai/catalogueMirror";
+import { CATALOGUE_CACHE_CONTROL, mirrorCatalogueUrl, requestOrigin } from "@/data/ai/catalogueMirror";
 
 /** `/llms.txt`: where an assistant finds the programme and how it hands a plan back (the llms.txt convention). */
 export async function GET(request: Request) {
-  const origin = new URL(request.url).origin;
+  const origin = requestOrigin(request);
   const dataset = DATASETS[DEFAULT_DATASET_KEY];
   const text = [
     `# ${dataset.label}`,

@@ -53,6 +53,19 @@ export function rewriteCatalogueLinks(text: string, dataset: Dataset, appOrigin:
 export const CATALOGUE_CACHE_CONTROL = "public, s-maxage=300, stale-while-revalidate=600";
 
 /**
+ * The origin the visitor used. On Netlify a route handler's `request.url`
+ * carries the deploy's internal address (`<deploy id>--site.netlify.app`),
+ * so the links we write must come from the forwarded headers instead, or an
+ * assistant following them leaves the public domain.
+ */
+export function requestOrigin(request: Request): string {
+  const host = request.headers.get("x-forwarded-host")?.split(",")[0].trim() || request.headers.get("host");
+  if (!host) return new URL(request.url).origin;
+  const proto = request.headers.get("x-forwarded-proto")?.split(",")[0].trim() || "https";
+  return `${proto}://${host}`;
+}
+
+/**
  * Shared handler body for both mirror routes: pick the dataset, fetch the API
  * page, rewrite its links, answer as plain text. A failed upstream fetch is a
  * 502 with a one-line explanation the assistant can relay.
@@ -71,7 +84,7 @@ export async function mirrorCatalogue(request: Request, list: boolean): Promise<
   if (!res.ok) {
     return new Response(`The programme is not reachable right now (upstream ${res.status}), try again in a minute.`, { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8" } });
   }
-  const text = rewriteCatalogueLinks(await res.text(), dataset, url.origin);
+  const text = rewriteCatalogueLinks(await res.text(), dataset, requestOrigin(request));
   return new Response(text, {
     status: 200,
     headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": CATALOGUE_CACHE_CONTROL },

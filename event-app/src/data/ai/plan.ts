@@ -151,7 +151,7 @@ export function buildAssistantPrompt(input: PromptInput): string {
     `My current interests: ${starred}.`,
     "",
     "How to work:",
-    "1. Before building anything, ask me a few short questions in one message and wait for my answers: the topics I care about, my level (new to Ethereum, builder, expert), which days I attend, whether I prefer talks, workshops or Community Hub sessions, and how packed my days should be. Make each question a numbered list of options I can pick by number (several allowed), with one free-text line, so answering takes seconds. If you already know some of this about me, preselect what you assume and let me correct it.",
+    "1. Before building anything, ask me a few questions and wait for my answers. Use the most interactive form your interface supports (clickable choices if you have them, otherwise short questions I can answer in a few words), and ask what matters for a good schedule: what I want to get out of the event, the topics and people I care about, my level, which days I attend, how packed my days should be. If you already know some of this about me, say what you assume and let me correct it.",
     "2. Read the day pages (use the filters) before proposing anything.",
     "3. Propose a plan per day in time order. Sessions run in parallel in many rooms, so overlaps are the main pitfall: never schedule two sessions whose times overlap, including the current interests I keep. Check every pair per day before you answer, pick one when two clash and name the other as a backup, and leave short breaks between rooms.",
     "4. One line per session: time, title, CODE, why it fits me. Keep my current interests unless something fits better, and say what you drop.",

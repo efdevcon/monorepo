@@ -27,7 +27,7 @@ import {
   planOverlaps,
   resolvePlan,
 } from "../src/data/ai/plan";
-import { catalogueDataset, mirrorCatalogueUrl, rewriteCatalogueLinks, upstreamCatalogueUrl } from "../src/data/ai/catalogueMirror";
+import { catalogueDataset, mirrorCatalogueUrl, requestOrigin, rewriteCatalogueLinks, upstreamCatalogueUrl } from "../src/data/ai/catalogueMirror";
 import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
@@ -577,6 +577,10 @@ function testAiPlan() {
   const page = "Day 1: https://api.devcon.org/events/devcon8/ai/sessions?day=1\nIndex: https://api.devcon.org/events/devcon8/ai\nIds: https://api.devcon.org/events/devcon8/ai/sessions?ids=A,B&full=1";
   check("rewriteCatalogueLinks moves every API link onto the mirror", rewriteCatalogueLinks(page, ds, "https://app.devcon.org") ===
     "Day 1: https://app.devcon.org/ai/sessions?event=devcon8&day=1\nIndex: https://app.devcon.org/ai?event=devcon8\nIds: https://app.devcon.org/ai/sessions?event=devcon8&ids=A,B&full=1");
+  check("requestOrigin prefers the forwarded host over the deploy's internal URL",
+    requestOrigin(new Request("https://abc123--site.netlify.app/ai", { headers: { "x-forwarded-host": "app.devcon.org", "x-forwarded-proto": "https" } })) === "https://app.devcon.org"
+    && requestOrigin(new Request("http://localhost:3000/ai", { headers: { host: "localhost:3000", "x-forwarded-proto": "http" } })) === "http://localhost:3000"
+    && requestOrigin(new Request("https://app.devcon.org/ai")) === "https://app.devcon.org");
   check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b");
 }
 
