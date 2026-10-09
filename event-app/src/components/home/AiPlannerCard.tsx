@@ -35,7 +35,6 @@ export function AiPlannerCard() {
         : "";
     return buildAssistantPrompt({
       appOrigin: window.location.origin,
-      apiUrl: dataset.apiUrl,
       eventId: dataset.eventId,
       eventTitle: event?.title || dataset.label,
       dates,

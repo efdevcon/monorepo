@@ -118,7 +118,6 @@ export function applyLink(appOrigin: string, add: string[], remove: string[]): s
 
 export interface PromptInput {
   appOrigin: string;
-  apiUrl: string;
   /** The API event id (the Community Hubs ride on the same catalogue). */
   eventId: string;
   eventTitle: string;
@@ -136,7 +135,8 @@ export interface PromptInput {
  * needs no account access to know them.
  */
 export function buildAssistantPrompt(input: PromptInput): string {
-  const catalogue = `${input.apiUrl.replace(/\/$/, "")}/events/${input.eventId}/ai`;
+  // The app's mirror of the API catalogue (catalogueMirror.ts): assistants fetch it without bot challenges.
+  const catalogue = `${input.appOrigin}/ai?event=${encodeURIComponent(input.eventId)}`;
   const starred =
     input.starred.length === 0
       ? "none yet"
@@ -151,7 +151,7 @@ export function buildAssistantPrompt(input: PromptInput): string {
     `My current interests: ${starred}.`,
     "",
     "How to work:",
-    "1. Before building anything, ask me a few short questions in one message and wait for my answers: the topics I care about, my level (new to Ethereum, builder, expert), which days I attend, whether I prefer talks, workshops or Community Hub sessions, and how packed my days should be. If you already know some of this about me, say what you assume and let me correct it.",
+    "1. Before building anything, ask me a few short questions in one message and wait for my answers: the topics I care about, my level (new to Ethereum, builder, expert), which days I attend, whether I prefer talks, workshops or Community Hub sessions, and how packed my days should be. Make each question a numbered list of options I can pick by number (several allowed), with one free-text line, so answering takes seconds. If you already know some of this about me, preselect what you assume and let me correct it.",
     "2. Read the day pages (use the filters) before proposing anything.",
     "3. Propose a plan per day in time order. Sessions run in parallel in many rooms, so overlaps are the main pitfall: never schedule two sessions whose times overlap, including the current interests I keep. Check every pair per day before you answer, pick one when two clash and name the other as a backup, and leave short breaks between rooms.",
     "4. One line per session: time, title, CODE, why it fits me. Keep my current interests unless something fits better, and say what you drop.",

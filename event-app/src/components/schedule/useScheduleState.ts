@@ -85,9 +85,11 @@ export function useScheduleState(
    * starred, whichever programme the schedule is showing. Days, filter
    * options and the timeline's rooms follow the wider list.
    */
-  everyProgrammeSessions?: Session[]
+  everyProgrammeSessions?: Session[],
+  /** Start with the "Interested" toggle on (`/schedule?interests=1`). */
+  initialInterestedOnly = false
 ) {
-  const [interestedOnly, setInterestedOnly] = useState(false);
+  const [interestedOnly, setInterestedOnly] = useState(initialInterestedOnly);
   const sessions =
     interestedOnly && everyProgrammeSessions
       ? everyProgrammeSessions

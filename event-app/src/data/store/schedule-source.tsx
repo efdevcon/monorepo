@@ -13,6 +13,8 @@ import { hubStore } from "./hub-store";
 export type ScheduleSource = "main" | "hubs";
 
 export const HUBS_PARAM = "hubs";
+/** `/schedule?interests=1` opens the schedule with My Interests on (the AI planner's apply page links it). */
+export const INTERESTS_PARAM = "interests";
 
 const ScheduleSourceContext = createContext<ScheduleSource>("main");
 

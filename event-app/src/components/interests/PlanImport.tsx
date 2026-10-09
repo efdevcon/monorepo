@@ -12,6 +12,7 @@ import { useInterested } from "@/data/interested/useInterested";
 import { applyInterestChanges } from "@/data/interested/applyPlan";
 import { useUser } from "@/data/auth/useUser";
 import { shortCommunityHubName } from "@/data/communityHubs";
+import { INTERESTS_PARAM } from "@/data/store/schedule-source";
 import type { Session } from "@/data/models/sessions";
 import {
   isEmptyPlan,
@@ -167,12 +168,11 @@ function Done({ added, removed, signedIn }: { added: number; removed: number; si
       <p className="text-[14px] leading-5 text-dc-muted">
         {signedIn
           ? "They sync to your account, so they show up in the app on your phone too."
-          : "They are saved in this browser. Sign in on My Devcon to see them in the app on your phone."}{" "}
-        In the schedule, the star pill shows My Interests.
+          : "They are saved in this browser. Sign in on My Devcon to see them in the app on your phone."}
       </p>
       <div>
-        <PrimaryLinkButton size="sm" href="/schedule">
-          Open the schedule
+        <PrimaryLinkButton size="sm" href={`/schedule?${INTERESTS_PARAM}=1`}>
+          Open my schedule
         </PrimaryLinkButton>
       </div>
     </div>

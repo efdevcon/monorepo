@@ -25,7 +25,7 @@ import { useSearchParams } from "next/navigation";
 import { useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
 import { communityHubForRoom, isCommunityHubName } from "@/data/communityHubs";
-import { HUBS_PARAM, ScheduleSourceProvider, type ScheduleSource } from "@/data/store/schedule-source";
+import { HUBS_PARAM, INTERESTS_PARAM, ScheduleSourceProvider, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -607,6 +607,10 @@ function ScheduleInner({
   const preview = usePreviewState();
   const { id: detailId, open: openDetail, close: closeDetail } =
     useDetailRoute("session");
+  // `/schedule?interests=1` (the AI planner's apply page, deep links) opens
+  // with My Interests on, also while the pane is already mounted; the toggle
+  // keeps the param in step so the view can be shared (same pattern as ?hubs=1).
+  const interestsInUrl = !!useSearchParams().get(INTERESTS_PARAM);
   const {
     now,
     days,
@@ -634,7 +638,19 @@ function ScheduleInner({
     daySessions,
     resultCount,
     anyLive,
-  } = useScheduleState(sessions, interestedIds, undefined, everySessions);
+  } = useScheduleState(sessions, interestedIds, undefined, everySessions, interestsInUrl);
+  const [seenInterestsInUrl, setSeenInterestsInUrl] = useState(interestsInUrl);
+  if (interestsInUrl !== seenInterestsInUrl) {
+    setSeenInterestsInUrl(interestsInUrl);
+    if (interestsInUrl) setInterestedOnly(true);
+  }
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (url.searchParams.has(INTERESTS_PARAM) === interestedOnly) return;
+    if (interestedOnly) url.searchParams.set(INTERESTS_PARAM, "1");
+    else url.searchParams.delete(INTERESTS_PARAM);
+    window.history.replaceState(window.history.state, "", url.toString());
+  }, [interestedOnly]);
   // Stars that still match a session in this snapshot: a withdrawn talk's
   // star stays in Dexie, and counting it would promise "saved sessions on
   // other days" that no day shows. Over every programme, since My Interests
