@@ -666,8 +666,8 @@ function StoreContent({
                     <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
                     <p className={css['application-card-meta']}>ID required at check-in</p>
                     <p className={css['application-card-description']}>
-                      Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge Proofs to
-                      prove Indian residency.
+                      Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge Proofs to{' '}
+                      <strong>privately</strong> prove your Indian residency. No ID data leaves your device.
                     </p>
                   </div>
                   <div className={css['application-card-footer']}>
