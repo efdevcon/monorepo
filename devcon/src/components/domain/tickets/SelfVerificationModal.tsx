@@ -359,12 +359,12 @@ export function SelfVerificationModal({
         ) : (
           <div className={css['self-content']}>
             <h2 id="self-verification-title" className={css['self-title']}>
-              Verification via Self
+              Private ID verification via Self
             </h2>
 
             <p className={css['self-intro']}>
-              Self allows you to prove your identity using your Aadhaar card without revealing any personal data by
-              using zero-knowledge (ZK) proofs.
+              Self allows you to prove your identity using your Aadhaar card privately, without revealing any personal
+              data, by using zero-knowledge (ZK) proofs.
             </p>
 
             <p className={css['self-intro-link']}>
