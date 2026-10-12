@@ -85,8 +85,8 @@ function PastToggle({
       >
         <span
           className={cn(
-            'absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all',
-            value ? 'left-[18px]' : 'left-0.5'
+            'absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform',
+            value && 'translate-x-4'
           )}
         />
       </button>
@@ -108,7 +108,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
-  const [showPast, setShowPast] = useState(true)
+  const [showPast, setShowPast] = useState(false)
   // Resolved on the client only, so SSR (todayISO = null) renders every event
   // and avoids a hydration mismatch from the past-events filter.
   const [todayISO, setTodayISO] = useState<string | null>(null)
@@ -137,6 +137,11 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
     })
     return groupByMonth(filtered)
   }, [events, query, activeTypes, showPast, todayISO])
+
+  const pastCount = useMemo(
+    () => (todayISO ? events.filter(e => e.date < todayISO).length : null),
+    [events, todayISO]
+  )
 
   const hasResults = groups.length > 0
   // Only show chips for types that actually exist in the data (the form has no
@@ -220,7 +225,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
               </div>
 
               <div className="min-w-0 flex-1 pb-6">
-                <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
                   <div className="flex items-baseline gap-2">
                     <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">
                       {monthFmt.format(isoToUTCDate(group.key))}
@@ -230,7 +235,11 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
                     </span>
                   </div>
                   {gi === 0 && (
-                    <PastToggle value={showPast} onChange={setShowPast} label={t('events.show_past')} />
+                    <PastToggle
+                      value={showPast}
+                      onChange={setShowPast}
+                      label={pastCount === null ? t('events.show_past') : `${t('events.show_past')} (${pastCount})`}
+                    />
                   )}
                 </div>
 
