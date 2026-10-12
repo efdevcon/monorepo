@@ -57,10 +57,13 @@ type Row = {
   logos: LogoEntry[]
 }
 
-// Supporters: Fluid + Base, then Arkiv, Gnosis and Kleros at 44px, then the rest at
-// 36px — 3 + 3 from sm, pairs below sm (sized off row 2 so it always stays bigger).
-// Impact hubs follow the scale of the tier above them, so they always stay smaller.
+// Supporters: Fluid + Base (flagship), then Arkiv, Gnosis and Kleros at 52px (core),
+// then the rest at 40px (starter) — 3 + 3 from sm, pairs below sm (sized off row 2 so
+// it always stays bigger). Impact hubs follow the scale of the tier above them, so
+// they always stay smaller.
 const TOP_ROW: Row = {
+  k: 128,
+  cap: 76,
   maxWidth: 0.8,
   logos: [
     { name: 'Fluid', href: 'https://fluid.io', Logo: Fluid, aspect: 248 / 83 },
@@ -69,7 +72,7 @@ const TOP_ROW: Row = {
 }
 
 const SECOND_ROW: Row = {
-  height: 44,
+  height: 52,
   logos: [
     { name: 'Arkiv', href: 'https://arkiv.network', Logo: Arkiv, aspect: 1389 / 320 },
     { name: 'Gnosis', href: 'https://www.gnosis.io', Logo: Gnosis, aspect: 878 / 230 },
@@ -108,9 +111,9 @@ const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Walletbeat', href: 'https://www.walletbeat.fyi', Logo: Walletbeat, aspect: 327 / 80, scale: 1.1 },
 ]
 
-const OTHER_HEIGHT = 36
-const HUB_K = 56
-const HUB_CAP = 30
+const OTHER_HEIGHT = 40
+const HUB_K = 64
+const HUB_CAP = 34
 // Mobile hubs share tier 2's (heavy) shrink, which leaves wide wordmarks tiny, so
 // there they size up to tier 3's height (never past it, even with optical scale).
 const HUB_K_MOBILE = 86
@@ -194,6 +197,17 @@ const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; cl
   )
 }
 
+// A labelled tier: eyebrow + its rows. Each tier is its own inline-size container
+// (all are full width, so cqw resolves the same across tiers).
+const Tier = ({ label, children }: { label: string; children: React.ReactNode }) => (
+  <div className="w-full flex flex-col items-center gap-[24px] sm:gap-[32px] [container-type:inline-size]">
+    <Reveal>
+      <p className={`${eyebrow} !text-white/80`}>{label}</p>
+    </Reveal>
+    {children}
+  </div>
+)
+
 export const Supporters = () => {
   const t = useTranslations('home.supporters')
   return (
@@ -204,32 +218,34 @@ export const Supporters = () => {
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <div className="w-full flex flex-col items-center gap-[32px] sm:gap-[40px] [container-type:inline-size]">
-          <FitRow row={TOP_ROW} />
-          <FitRow row={SECOND_ROW} />
-          {OTHER_ROWS_DESKTOP.map((row, i) => (
-            <FitRow key={i} row={row} fitTo={[widestRow(OTHER_ROWS_DESKTOP)]} className="hidden sm:block" />
-          ))}
-          {OTHER_ROWS_MOBILE.map((row, i) => (
-            <FitRow key={i} row={row} fitTo={[row, SECOND_ROW]} className="sm:hidden" />
-          ))}
-        </div>
-
-        <div className="w-full flex flex-col items-center gap-[24px] pt-[16px] sm:gap-[32px] sm:pt-[24px] [container-type:inline-size]">
-          <Reveal>
-            <p className={`${eyebrow} !text-white/80`}>{t('impact_hubs')}</p>
-          </Reveal>
-          {HUB_ROWS_DESKTOP.map((row, i) => (
-            <FitRow
-              key={i}
-              row={row}
-              fitTo={[widestRow(HUB_ROWS_DESKTOP), widestRow(OTHER_ROWS_DESKTOP)]}
-              className="hidden sm:block"
-            />
-          ))}
-          {HUB_ROWS_MOBILE.map((row, i) => (
-            <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), SECOND_ROW]} className="sm:hidden" />
-          ))}
+        <div className="w-full flex flex-col items-center gap-[40px] sm:gap-[56px]">
+          <Tier label={t('flagship')}>
+            <FitRow row={TOP_ROW} />
+          </Tier>
+          <Tier label={t('core')}>
+            <FitRow row={SECOND_ROW} />
+          </Tier>
+          <Tier label={t('starter')}>
+            {OTHER_ROWS_DESKTOP.map((row, i) => (
+              <FitRow key={i} row={row} fitTo={[widestRow(OTHER_ROWS_DESKTOP)]} className="hidden sm:block" />
+            ))}
+            {OTHER_ROWS_MOBILE.map((row, i) => (
+              <FitRow key={i} row={row} fitTo={[row, SECOND_ROW]} className="sm:hidden" />
+            ))}
+          </Tier>
+          <Tier label={t('impact_hubs')}>
+            {HUB_ROWS_DESKTOP.map((row, i) => (
+              <FitRow
+                key={i}
+                row={row}
+                fitTo={[widestRow(HUB_ROWS_DESKTOP), widestRow(OTHER_ROWS_DESKTOP)]}
+                className="hidden sm:block"
+              />
+            ))}
+            {HUB_ROWS_MOBILE.map((row, i) => (
+              <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), SECOND_ROW]} className="sm:hidden" />
+            ))}
+          </Tier>
         </div>
 
         <Reveal>

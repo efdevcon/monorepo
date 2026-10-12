@@ -619,6 +619,15 @@ function StoreContent({
                 </div>
               </div>
 
+              {/* Same redeem entry point as the Community banner, surfaced above the fold. */}
+              {launched && (
+                <div className={css['voucher-banner']}>
+                  <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
+                    <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
+                  </button>
+                </div>
+              )}
+
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
 
@@ -639,28 +648,6 @@ function StoreContent({
               </div>
 
               <div className={css['applications-grid']}>
-                <div className={css['application-card']}>
-                  <div className={css['application-card-body']}>
-                    <h3 className={css['application-card-title']}>India Early Bird 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>ID required at check-in</p>
-                    <p className={css['application-card-description']}>
-                      Accessible via the vouchers we distributed during ETH Mumbai in March. Got a voucher? Redeem yours
-                      now!
-                    </p>
-                  </div>
-                  <div className={css['application-card-footer']}>
-                    <CardPrice combined="$99" />
-                    {!launched ? (
-                      <span className={css['opens-label']}>Opens July</span>
-                    ) : (
-                      <button type="button" className={css['apply-btn']} onClick={() => setRedeemOpen(true)}>
-                        <TicketPercent size={16} strokeWidth={2} />
-                        Redeem voucher
-                      </button>
-                    )}
-                  </div>
-                </div>
-
                 <div className={css['application-card']}>
                   <div className={css['application-card-body']}>
                     <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
