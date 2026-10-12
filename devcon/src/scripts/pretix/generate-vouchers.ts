@@ -4,7 +4,7 @@
  * Creates vouchers via Pretix API and stores them in the discount_vouchers table.
  *
  * Usage:
- *   pnpm run pretix:generate-vouchers --count 1 --price 0.01 --tag TestLocalEarlyBird --item-id 6 --collection test-india-early-bird [--max-usages 1] [--dry-run]
+ *   pnpm run pretix:generate-vouchers --count 1 --price 0.01 --tag TestLocalEarlyBird --item-id 136 --collection test-india-early-bird [--max-usages 1] [--dry-run]
  *   pnpm run pretix:generate-vouchers --count 500 --price 99 --tag IndiaEarlyBird --item-id 2 --collection india-early-bird [--dry-run] [--max-usages 1]
  *
  * --price is either an absolute price override (0 = free, 149 = fixed $149) or
