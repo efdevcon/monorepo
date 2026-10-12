@@ -87,6 +87,9 @@ export interface PretalxInstanceConfig {
   PRETALX_QUESTIONS_LENS?: number
   PRETALX_QUESTIONS_ENS?: number
   PRETALX_QUESTIONS_TELEGRAM?: number
+  // Speaker-target text question "What project or organization are you affiliated
+  // with?" (affiliation for lower thirds in the run of show).
+  PRETALX_QUESTIONS_AFFILIATION?: number
 
   // Speaker-target boolean question "Featured speaker" (organizer-curated;
   // surfaces speakers at the top of the event-app list).
@@ -170,6 +173,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_WEBSITE: 166, // "Personal Website, Github, or other relevant link"
     PRETALX_QUESTIONS_ENS: 167, // "Do you have a public Ethereum address or ENS you want to share?"
     PRETALX_QUESTIONS_TELEGRAM: 162, // "What is your Telegram handle? ..."
+    PRETALX_QUESTIONS_AFFILIATION: 157, // "What project or organization are you affiliated with?"
     PRETALX_QUESTIONS_FEATURED: 175, // "Featured speaker" (organizer-only curation, created 2026-08-27)
     PRETALX_QUESTIONS_EXPERTISE: 156, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 158, // "Which of the following best describes your target audience?"
@@ -198,6 +202,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_FARCASTER: 171, // "Farcaster profile"
     PRETALX_QUESTIONS_ENS: 141, // "Do you have a public Ethereum address or ENS you want to share?"
     PRETALX_QUESTIONS_TELEGRAM: 136, // "What is your Telegram handle? ..."
+    PRETALX_QUESTIONS_AFFILIATION: 153, // "What project or organization are you affiliated with?"
     PRETALX_QUESTIONS_EXPERTISE: 144, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 145, // "Which of the following best describes your target audience?"
     PRETALX_QUESTIONS_TAGS: 146, // "Select 1-3 tags that apply to your talk/workshop."
