@@ -19,6 +19,7 @@ import Eez from './images/supporters/impact-hubs/eez.svg'
 import EipsInsight from './images/supporters/impact-hubs/eipsinsight.svg'
 import Ethlabs from './images/supporters/impact-hubs/ethlabs.svg'
 import Gainforest from './images/supporters/impact-hubs/gainforest.svg'
+import Gcc from './images/supporters/impact-hubs/gcc.svg'
 import GrapheneOS from './images/supporters/impact-hubs/grapheneos.svg'
 import Growthepie from './images/supporters/impact-hubs/growthepie.svg'
 import Kohaku from './images/supporters/impact-hubs/kohaku.svg'
@@ -93,6 +94,7 @@ const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Ethereum Economic Zone', href: 'https://eez.io', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
   { name: 'Ethlabs', href: 'https://ethlabs.org', Logo: Ethlabs, aspect: 401 / 80, scale: 0.75 },
   { name: 'Gainforest', href: 'https://www.gainforest.earth', Logo: Gainforest, aspect: 380 / 80 },
+  { name: 'GCC', href: 'https://www.gccofficial.org/en', Logo: Gcc, aspect: 311 / 80 },
   { name: 'GrapheneOS', href: 'https://grapheneos.org', Logo: GrapheneOS, aspect: 344 / 80 },
   { name: 'growthepie', href: 'https://www.growthepie.com', Logo: Growthepie, aspect: 292 / 80 },
   { name: 'Kohaku', href: 'https://github.com/ethereum/kohaku', Logo: Kohaku, aspect: 294 / 80 },
@@ -123,13 +125,13 @@ const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2]).map(logos =>
   height: OTHER_HEIGHT,
   logos,
 }))
-const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [6, 6, 6]).map(logos => ({
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [7, 6, 6]).map(logos => ({
   k: HUB_K,
   cap: HUB_CAP,
   gap: 'min(48px, 5cqw)',
   logos,
 }))
-const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 3]).map(logos => ({
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 2, 2]).map(logos => ({
   k: HUB_K_MOBILE,
   cap: OTHER_HEIGHT,
   max: OTHER_HEIGHT,
