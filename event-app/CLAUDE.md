@@ -149,11 +149,13 @@ Background and history (Serwist setup, precache sizing lessons from Bogota/SEA, 
 
 ## Partner ticket proofs
 
-Lets a partner (ENS) verify "holds a Devcon ticket, of tier india|standard"
+Lets a partner (ENS, the PoW testnet faucet) verify "holds a Devcon ticket, of tier india|standard"
 without learning who the attendee is. We sign, they verify with a pinned public
 address; there's no callback. Issuer: `src/app/api/ticket-proof/` (`proof.ts`
 holds the crypto and the tier mapping). Client: `src/data/tickets/useTicketProof.ts`
-plus `TicketProofButton`, attached to event-ticket rows only (never swag). A
+plus `TicketProofButton` (partner key, label and sheet copy are props; ENS is the
+default), rendered by one perk card per partner under My Devcon
+(`ticket/EnsPerkCard.tsx`, `ticket/FaucetPerkCard.tsx`), attached to event-ticket rows only (never swag). A
 working partner-side reference lives at `/demo/ens-perks` (`src/app/demo/`), which
 is POC-only and should be dropped before production. Full spec, invariants and
 the PWA hand-off reasoning: `docs/ticket-proofs.md`. Tests: `pnpm proof:test`;

@@ -7,6 +7,7 @@ import type { Order, Ticket } from "@/data/tickets/types";
 import { ticketOrdinals } from "@/data/tickets/primary";
 import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
+import { FaucetPerkCard } from "./FaucetPerkCard";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalTarget } from "./QrModals";
 
@@ -337,8 +338,8 @@ export function TicketSections({
         </div>
       )}
 
-      {/* One ENS perk per ticket shown (see TicketProofButton): with a primary
-          that is one card, never the buyer's colleagues' perks. */}
+      {/* One card per partner per ticket shown (see TicketProofButton): with a
+          primary that is one card each, never the buyer's colleagues' perks. */}
       {shownTickets.length > 0 && (
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
@@ -346,6 +347,13 @@ export function TicketSections({
             {shownTickets.map((ticket) => (
               <EnsPerkCard
                 key={ticket.secret}
+                ticket={ticket}
+                showTicketLabel={shownTickets.length > 1}
+              />
+            ))}
+            {shownTickets.map((ticket) => (
+              <FaucetPerkCard
+                key={`faucet-${ticket.secret}`}
                 ticket={ticket}
                 showTicketLabel={shownTickets.length > 1}
               />
