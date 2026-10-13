@@ -13,11 +13,22 @@ import {
   type IssuedProof,
 } from "@/data/tickets/useTicketProof";
 
-const PARTNER = "ens";
+type Tier = IssuedProof["tier"];
+
+/** The ENS sheet copy, keyed on the tier the proof route minted. */
+function describeEnsPerk(tier: Tier): string {
+  return tier === "india"
+    ? "As a verified local attendee you can claim a .eth name (5+ characters) with the first year's registration covered — plus the frENS reward if you already own a name with 10+ years remaining."
+    : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward.";
+}
 
 /**
- * "Claim ENS perks" on a ticket row: mints a partner proof for that specific
- * ticket and hands the link off to a real browser.
+ * "Claim <partner> perks" on a ticket row: mints a partner proof for that
+ * specific ticket and hands the link off to a real browser.
+ *
+ * ENS is the default so the original call sites read unchanged; another partner
+ * passes its key (one of `PARTNERS` in the proof route), its button label and
+ * the sheet copy for its perk.
  *
  * Event tickets only — swag and add-ons deliberately don't get one, since the
  * perk is one per event ticket.
@@ -25,14 +36,23 @@ const PARTNER = "ens";
 export function TicketProofButton({
   ticketSecret,
   freeName = false,
+  partner = "ens",
+  label,
+  describe = describeEnsPerk,
 }: {
   ticketSecret: string;
   /** Display hint only (the proof route decides the real tier): lead with
       the free .eth name where the ticket qualifies for one. */
   freeName?: boolean;
+  /** Partner key the proof is minted for; must be in the server's allowlist. */
+  partner?: string;
+  /** Button label; defaults to the ENS wording. */
+  label?: string;
+  /** Names the actual perk on the hand-off sheet, by minted tier. */
+  describe?: (tier: Tier) => string;
 }) {
   const { proof, pending, error, sheetOpen, request, closeSheet } =
-    useTicketProof(ticketSecret, PARTNER);
+    useTicketProof(ticketSecret, partner);
 
   return (
     <>
@@ -49,9 +69,10 @@ export function TicketProofButton({
       >
         {pending
           ? "Preparing…"
-          : freeName
-            ? "Claim your free .eth name & ENS perks"
-            : "Claim ENS perks"}
+          : (label ??
+            (freeName
+              ? "Claim your free .eth name & ENS perks"
+              : "Claim ENS perks"))}
         <ArrowUpRight className="size-4 shrink-0" />
       </button>
 
@@ -61,6 +82,7 @@ export function TicketProofButton({
             key="proof-handoff"
             proof={proof}
             error={error}
+            describe={describe}
             onClose={closeSheet}
           />
         )}
@@ -81,10 +103,12 @@ export function TicketProofButton({
 function HandoffSheet({
   proof,
   error,
+  describe,
   onClose,
 }: {
   proof: IssuedProof | null;
   error: string | null;
+  describe: (tier: Tier) => string;
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
@@ -148,11 +172,7 @@ function HandoffSheet({
             </h2>
             {/* Name the actual perk so the hop is worth taking. Tier comes
                 from the minted proof, so this needs no extra lookup. */}
-            <p className="mt-2 text-sm text-dc-muted">
-              {proof.tier === "india"
-                ? "As a verified local attendee you can claim a .eth name (5+ characters) with the first year's registration covered — plus the frENS reward if you already own a name with 10+ years remaining."
-                : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward."}
-            </p>
+            <p className="mt-2 text-sm text-dc-muted">{describe(proof.tier)}</p>
             <p className="mt-2 text-sm text-dc-muted">
               {mode === "escape"
                 ? `Open this in your browser to claim on ${proof.partnerLabel}. You'll need to connect a wallet there, which works best outside the app.`
