@@ -130,7 +130,7 @@ function TopicChip({
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
  * Topics as plain pill-chips (the shared Speakers-page vocabulary),
- * Locations / CLS / Session formats / Expertise as checkbox rows, wrapped in
+ * CLS / Locations / Session formats / Expertise as checkbox rows, wrapped in
  * accordions, with the white header (Clear all, close) and the sticky footer
  * (Close, Reset filters). Shells position it: bottom sheet on mobile, right
  * column on desktop.
@@ -254,6 +254,27 @@ export function FilterPanelContent({
           </AccordionSection>
         )}
 
+        {/* Directly under Tracks (feedback round, 2026-10-13): CLS was
+            buried below Locations and got no visibility. */}
+        {clsTracks.length > 0 && (
+          <AccordionSection
+            title="Community-led Sessions (CLS)"
+            count={filters.track.filter((t) => clsTracks.includes(t)).length}
+            defaultOpen={defaultOpen}
+          >
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {clsTracks.map((track) => (
+                <CheckboxRow
+                  key={track}
+                  label={stripCls(track)}
+                  checked={filters.track.includes(track)}
+                  onToggle={() => onToggle("track", track)}
+                />
+              ))}
+            </div>
+          </AccordionSection>
+        )}
+
         {hubSection}
 
         {topics.length > 0 && (
@@ -292,25 +313,6 @@ export function FilterPanelContent({
                   label={room}
                   checked={filters.room.includes(room)}
                   onToggle={() => onToggle("room", room)}
-                />
-              ))}
-            </div>
-          </AccordionSection>
-        )}
-
-        {clsTracks.length > 0 && (
-          <AccordionSection
-            title="Community-led Sessions (CLS)"
-            count={filters.track.filter((t) => clsTracks.includes(t)).length}
-            defaultOpen={defaultOpen}
-          >
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              {clsTracks.map((track) => (
-                <CheckboxRow
-                  key={track}
-                  label={stripCls(track)}
-                  checked={filters.track.includes(track)}
-                  onToggle={() => onToggle("track", track)}
                 />
               ))}
             </div>
