@@ -119,23 +119,30 @@ function TimelineSession({
             compact ? "gap-1.5" : "gap-2"
           )}
         >
-          <span className="flex shrink-0 items-center gap-1">
+          {/* The badge shrinks and truncates like the title: on a 5-minute
+              block a fixed-width "DEVCON" ran past the block's edge (Scott,
+              2026-10-13). The gem keeps its size; the label gives way, and
+              on a block under one slot wide it goes entirely when there is
+              a gem to stand for the track ("D…" said nothing). */}
+          <span className="flex min-w-0 items-center gap-1">
             {theme.gem && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={theme.gem}
                 alt=""
-                className={cn(metaIcon, "object-contain")}
+                className={cn(metaIcon, "shrink-0 object-contain")}
               />
             )}
-            <span
-              className={cn(
-                "font-semibold uppercase tracking-[0.5px] text-dc-fg2",
-                compact ? "text-[10px]" : "text-[12px]"
-              )}
-            >
-              {trackBadgeLabel(session.track, session.room?.id)}
-            </span>
+            {(!theme.gem || width >= m.slotWidth) && (
+              <span
+                className={cn(
+                  "truncate font-semibold uppercase tracking-[0.5px] text-dc-fg2",
+                  compact ? "text-[10px]" : "text-[12px]"
+                )}
+              >
+                {trackBadgeLabel(session.track, session.room?.id)}
+              </span>
+            )}
           </span>
           {wide && (
             <>
