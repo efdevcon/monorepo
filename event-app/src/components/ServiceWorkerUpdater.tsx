@@ -17,7 +17,8 @@ function showUpdateToast(onUpdate: () => void): string | number {
           <p className="text-sm font-semibold text-gray-900">Update available</p>
           <p className="text-xs text-gray-500">A new app version is ready.</p>
         </div>
-        <PrimaryButton size="sm" onClick={onUpdate} className="shrink-0">
+        {/* Desktop: 24px from the text (12px gap + 12px); the dismiss stays at 12. */}
+        <PrimaryButton size="sm" onClick={onUpdate} className="shrink-0 lg:ml-3">
           <RefreshCw className="size-4" />
           Update
         </PrimaryButton>
