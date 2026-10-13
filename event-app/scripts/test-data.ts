@@ -36,6 +36,7 @@ import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
 import { deriveTopicOptions } from "../src/data/topics";
+import { sortRooms } from "../src/components/schedule/utils";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -178,6 +179,39 @@ function testMaterialize() {
 
   const empty = emptySnapshot("x");
   check("empty snapshot", empty.sessions.length === 0 && empty.event === undefined && empty.sessionById.size === 0);
+  // Devcon 8 rooms: app display names and the timeline lane order are keyed
+  // by Pretalx room id; the stored row keeps the Pretalx name.
+  const dc8Rows = normalizeBundle(
+    {
+      ...FIXTURE,
+      rooms: [
+        { id: "workshop-1", name: "Workshop 1" },
+        { id: "stage-4-jasmine", name: "Stage 4 (Jasmine)" },
+        { id: "lightning-stage-1", name: "Lightning Stage 1" },
+        { id: "music-stage", name: "Music stage" },
+        { id: "lotus-1", name: "Lotus 1" },
+        { id: "lotus-stage", name: "Lotus Stage" },
+        { id: "cls-stage", name: "CLS Stage" },
+        { id: "classroom-z", name: "Classroom Z" },
+      ],
+      sessions: ["workshop-1", "stage-4-jasmine", "lightning-stage-1", "music-stage", "lotus-1", "lotus-stage", "cls-stage", "classroom-z"].map((room, i) => ({
+        ...FIXTURE.sessions[0],
+        id: `r${i}`,
+        slot_roomId: room,
+      })),
+    },
+    "devcon8",
+    1_000
+  );
+  const dc8 = materialize(dc8Rows, "devcon8");
+  check("room display names applied at read time", dc8.roomById.get("stage-4-jasmine")!.name === "Jasmine 4" && dc8.roomById.get("lightning-stage-1")!.name === "Lightning Stage" && dc8.roomById.get("music-stage")!.name === "Music Stage" && dc8.roomById.get("lotus-1")!.name === "Lotus 1");
+  check("stored rows keep the Pretalx room name", dc8Rows.rooms.find((r) => r.id === "stage-4-jasmine")!.name === "Stage 4 (Jasmine)");
+  check(
+    "timeline lanes follow the Devcon 8 order, unknown rooms after",
+    eq(sortRooms(dc8.sessions), ["Lotus Stage", "Lotus 1", "Jasmine 4", "Lightning Stage", "CLS Stage", "Workshop 1", "Music Stage", "Classroom Z"])
+  );
+  check("timeline lanes for other events keep the Main Stage / Stage … / A–Z rule", eq(sortRooms(snap.sessions), ["Stage 1", "TBA"]));
+
   const noMeta = materialize({ ...rows, meta: null }, "devcon-7");
   check("no meta → no event", noMeta.event === undefined && noMeta.sessions.length === 2);
 }

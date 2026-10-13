@@ -1,5 +1,6 @@
 import type { Room, Session } from "@/data/models";
 import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
+import { timelineRoomRank } from "@/data/venueRooms";
 
 /** Session timing is stored as unix seconds. */
 export const ms = (unixSeconds: number) => unixSeconds * 1000;
@@ -193,12 +194,19 @@ export function compareRoomNames(a: string, b: string): number {
 }
 
 /**
- * Distinct rooms present in the sessions, ordered like devcon's timeline:
- * "Main Stage" first, then any "Stage …", then the rest alphabetically.
+ * Distinct rooms present in the sessions, as timeline lanes: the Devcon 8
+ * order (`TIMELINE_ROOM_ORDER`, by room id) first, then rooms it doesn't
+ * know — other events, Community Hubs — like devcon's timeline: "Main
+ * Stage" first, then any "Stage …", then the rest alphabetically.
  */
 export function sortRooms(sessions: Session[]): string[] {
-  const rooms = [...new Set(sessions.map(roomName))];
+  const idByName = new Map<string, string | undefined>();
+  for (const s of sessions) idByName.set(roomName(s), s.room?.id);
+  const rooms = [...idByName.keys()];
   return rooms.sort((a, b) => {
+    const ra = timelineRoomRank(idByName.get(a));
+    const rb = timelineRoomRank(idByName.get(b));
+    if (ra !== rb) return ra - rb;
     if (a === "Main Stage") return -1;
     if (b === "Main Stage") return 1;
     const aStage = a.toLowerCase().startsWith("stage");

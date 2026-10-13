@@ -2,6 +2,7 @@ import { datasetForEventId } from "../dataset";
 import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
 import type { ConferenceEvent, Room, Session, Speaker } from "../models";
 import { sessionFormat } from "../sessionFormat";
+import { roomDisplayName } from "../venueRooms";
 import { compact } from "./normalize";
 import type {
   EventMetaRow,
@@ -62,7 +63,9 @@ function placeholderSpeaker(id: string, eventId: string): Speaker {
 export function toRoom(row: RoomRow): Room {
   return compact<Room>({
     id: row.id,
-    name: row.name,
+    // The app's name for the room where Pretalx's reads badly ("Stage 4
+    // (Jasmine)" → "Jasmine 4"); the stored row keeps the Pretalx name.
+    name: roomDisplayName(row.id, row.name),
     description: row.description ?? "",
     info: row.info ?? "",
     capacity: row.capacity,
