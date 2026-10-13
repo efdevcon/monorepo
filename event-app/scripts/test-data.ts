@@ -481,7 +481,7 @@ function testMeerkatHandover() {
     eq(
       deriveTopicOptions([
         tagged(["EVM", "Security"]),
-        tagged(["Consensus"]),
+        tagged(["Scalability"]),
         tagged(["AI"], { speakers: [] }),
         tagged(["Privacy Hub", "Zero knowledge"], hub),
         tagged(["Privacy Hub", "Zero knowledge"], hub),

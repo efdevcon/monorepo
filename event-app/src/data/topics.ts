@@ -4,11 +4,14 @@ import { isCommunityHubSession } from "@/data/communityHubs";
 /**
  * The topic vocabulary for the Pretalx programme: the 16 most-used public
  * tags across every Devcon 8 proposal on cfp.devcon.org (767 submissions,
- * all states, counted 2026-10-13), in that order. A fixed list rather than
- * the top tags of whatever is confirmed, so the pills don't reshuffle with
- * each schedule release and the list reflects what people proposed talks
- * about, not what happened to be accepted. A tag no current session carries
- * is left out at runtime, so an option never matches nothing.
+ * all states, counted 2026-10-13), in that order, plus Post-quantum and
+ * Consensus (19th and 20th by proposals, but the two that make the most
+ * otherwise topic-less confirmed sessions findable: 281 of 328 covered). A
+ * fixed list rather than the top tags of whatever is confirmed, so the pills
+ * don't reshuffle with each schedule release and the list reflects what
+ * people proposed talks about, not what happened to be accepted. A tag no
+ * current session carries is left out at runtime, so an option never
+ * matches nothing.
  */
 export const TOPIC_OPTIONS: readonly string[] = [
   "Security",
@@ -27,6 +30,8 @@ export const TOPIC_OPTIONS: readonly string[] = [
   "Public Goods",
   "Governance",
   "EVM",
+  "Post-quantum",
+  "Consensus",
 ];
 
 /** How many Community Hub topics the filter surfaces offer (top by frequency). */
