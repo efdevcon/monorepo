@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { RefreshCw, Sparkles, X } from "lucide-react";
@@ -25,7 +26,9 @@ export function ServiceWorkerUpdater() {
 
     const promptUpdate = (worker: ServiceWorker) => {
       if (toastId !== undefined) return; // already prompting
+      trackEvent("sw", "update-shown");
       const reload = () => {
+        trackEvent("sw", "update-accepted");
         skipWaitingRequested = true;
         worker.postMessage({ type: "SKIP_WAITING" });
       };

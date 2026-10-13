@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
@@ -181,14 +182,17 @@ export function usePushSubscription() {
         ),
       ]);
       if (permission === "timeout") {
+        trackEvent("push", "permission-unanswered");
         throw new Error(
           "No answer from the notification prompt — look for a bell icon in the address bar and allow notifications there."
         );
       }
       if (permission !== "granted") {
+        trackEvent("push", permission === "denied" ? "permission-denied" : "permission-dismissed");
         setState(permission === "denied" ? "denied" : "off");
         return;
       }
+      trackEvent("push", "permission-granted");
       // First visit: the worker may still be precaching; ready resolves on
       // activation. Bound the wait so a stalled install surfaces as a retry
       // hint instead of an infinite spinner.
@@ -219,6 +223,15 @@ export function usePushSubscription() {
       if (!json.success) throw new Error(json.error || "Failed to subscribe");
       setPrefs(isPushPrefs(json.data) ? json.data : desired);
       setState("on");
+      trackEvent(
+        "push",
+        "subscribed",
+        desired.announcements && desired.reminders
+          ? "both"
+          : desired.reminders
+            ? "reminders"
+            : "announcements"
+      );
     } catch (err) {
       // Roll back a browser-side subscription the server never stored.
       try {
@@ -250,6 +263,7 @@ export function usePushSubscription() {
       }
       setPrefs(null);
       setState("off");
+      trackEvent("push", "unsubscribed");
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -306,6 +320,7 @@ export function usePushSubscription() {
         const json = await res.json();
         if (!json.success) throw new Error(json.error || "Failed to update notifications");
         setPrefs(isPushPrefs(json.data) ? json.data : { ...current, [kind]: value });
+        trackEvent("push", `${kind}-${value ? "on" : "off"}`);
       } catch (err) {
         setError((err as Error).message);
       } finally {

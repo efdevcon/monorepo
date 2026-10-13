@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useEffect, useState, type ComponentType, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import cn from "classnames";
@@ -416,7 +417,14 @@ function InstallInstructionsModal({
               so it leads the card as a real button rather than only appearing
               as written instruction step 1. */}
           {safariIsNextStep && (
-            <PrimaryButton onClick={hop} disabled={!ready} className="mb-5 w-full">
+            <PrimaryButton
+              onClick={() => {
+                trackEvent("install", "safari-hop");
+                hop();
+              }}
+              disabled={!ready}
+              className="mb-5 w-full"
+            >
               {ready ? (
                 <ExternalLink className="size-4" />
               ) : (
@@ -478,11 +486,13 @@ export function useInstallFlow(): {
   const [showInstructions, setShowInstructions] = useState(false);
 
   const install = async () => {
+    trackEvent("install", "tap", installPrompt ? "native" : isIOS() ? "ios" : "manual");
     if (installPrompt) {
       // Real native install (Chrome / Brave / Edge / Samsung / etc.).
       try {
         await installPrompt.prompt();
-        await installPrompt.userChoice;
+        const { outcome } = await installPrompt.userChoice;
+        trackEvent("install", outcome === "accepted" ? "prompt-accepted" : "prompt-dismissed");
       } catch {
         // Prompt already consumed or blocked — fall through to clearing it.
       } finally {
@@ -494,6 +504,7 @@ export function useInstallFlow(): {
     }
     // No native prompt (iOS, Firefox, hardened Chromium) → manual instructions.
     setShowInstructions(true);
+    trackEvent("install", "steps-shown", isIOS() ? "ios" : "manual");
   };
 
   const modal = (

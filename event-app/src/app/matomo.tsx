@@ -2,31 +2,84 @@
 
 import { trackAppRouter } from "@socialgouv/matomo-next";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-
-// Same Matomo instance as devcon.org and the old app. Site 38 is
-// app.devcon.org, which this app takes over when the domain moves. Set
-// NEXT_PUBLIC_MATOMO_SITE_ID to an empty string to turn tracking off for a
-// deploy context (previews build with NODE_ENV=production too).
-const MATOMO_URL = "https://ethereumfoundation.matomo.cloud";
-const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID ?? "38";
+import { useEffect, useRef } from "react";
+import { useUser } from "@/data/auth/useUser";
+import { useInterested } from "@/data/interested/useInterested";
+import { isStandalone } from "@/utils/platform";
+import {
+  DIMENSION,
+  MATOMO_SITE_ID,
+  MATOMO_URL,
+  PUSH_OPEN_HASH,
+  analyticsEnabled,
+  setDimension,
+  starsBand,
+  trackEvent,
+} from "@/data/analytics/track";
 
 /**
- * Page-view tracking for the App Router: one page view per pathname + query
- * change. The tracked URL is built from those two only, never `location.hash`,
- * which matters here because the install bridge lands on
- * `/ticket#access_token=…`. Heatmaps and session recording stay off: the
- * ticket page renders QR secrets. Offline, the tracker script simply fails to
- * load and the queued calls go nowhere; nothing in the app waits on it.
+ * Page views and visit dimensions for Matomo (events: `data/analytics/track.ts`).
  *
- * Must be rendered inside a Suspense boundary (useSearchParams).
+ * One page view per pathname + query change. The tracked URL is built from
+ * those two only, never `location.hash`, which matters here because the
+ * install bridge lands on `/ticket#access_token=…`. Heatmaps and session
+ * recording stay off: the ticket page renders QR secrets. Offline, the
+ * tracker script simply fails to load and the queued calls go nowhere;
+ * nothing in the app waits on it.
+ *
+ * Also: page views made offline are counted and reported as one event when
+ * the connection returns (Matomo cannot see them otherwise), a push-opened
+ * page reports itself (the worker marks the URL with a hash), and the
+ * `appinstalled` event closes the install funnel.
+ *
+ * Must be rendered inside a Suspense boundary (useSearchParams) and inside
+ * the user and data providers (dimensions).
  */
 export function MatomoAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { user } = useUser();
+  const { ids } = useInterested();
+  const signedIn = !!user;
+  const stars = starsBand(ids.size);
+  const offlineViews = useRef(0);
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== "production" || !MATOMO_SITE_ID) return;
+    if (!analyticsEnabled()) return;
+    const onInstalled = () => trackEvent("install", "installed");
+    const onOnline = () => {
+      if (offlineViews.current === 0) return;
+      trackEvent("offline", "used", undefined, offlineViews.current);
+      offlineViews.current = 0;
+    };
+    window.addEventListener("appinstalled", onInstalled);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener("appinstalled", onInstalled);
+      window.removeEventListener("online", onOnline);
+    };
+  }, []);
+
+  // Dimensions are pushed whenever a value changes and ride on every later
+  // hit (page view or event). Declared before the page-view effect so the
+  // first view already carries them. Visit scope keeps the last value.
+  useEffect(() => {
+    setDimension(DIMENSION.displayMode, isStandalone() ? "installed" : "browser");
+    setDimension(DIMENSION.signedIn, signedIn ? "yes" : "no");
+    setDimension(DIMENSION.stars, stars);
+  }, [signedIn, stars]);
+
+  useEffect(() => {
+    if (!analyticsEnabled()) return;
+    if (!navigator.onLine) offlineViews.current += 1;
+    if (window.location.hash === PUSH_OPEN_HASH) {
+      trackEvent("announcements", "push-open", pathname);
+      window.history.replaceState(
+        window.history.state,
+        "",
+        pathname + window.location.search
+      );
+    }
     trackAppRouter({
       url: MATOMO_URL,
       siteId: MATOMO_SITE_ID,

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { deletePref, readPref, writePref } from "@/data/prefs";
 import { Download, X } from "lucide-react";
@@ -38,6 +39,7 @@ function load() {
   });
 }
 function dismiss() {
+  trackEvent("install", "card-dismissed");
   dismissed = true;
   notify();
   void writePref(PREF_KEY, true);

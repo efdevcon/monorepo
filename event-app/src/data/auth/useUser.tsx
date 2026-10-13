@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import {
   createContext,
   useContext,
@@ -160,12 +161,14 @@ function useUserState(): UseUserResult {
       });
       if (error) throw error;
 
+      trackEvent("sign-in", "code-requested");
       toast.success("Code sent! Please check your email.");
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       setError(message);
       toast.error(`Failed to send code: ${message}`);
+      trackEvent("sign-in", "code-failed");
       return false;
     } finally {
       setLoading(false);
@@ -186,6 +189,7 @@ function useUserState(): UseUserResult {
         type: "email",
       });
       if (error) throw error;
+      trackEvent("sign-in", "verified");
 
       // Make the server aware before anything else: PersonalizedManifestLink
       // decides the install sign-in bridge from this cookie. In an iOS browser
@@ -211,6 +215,11 @@ function useUserState(): UseUserResult {
         typeof navigator !== "undefined" && navigator.onLine === false;
       const looksNetwork = /fetch|network|timeout|connection/i.test(message);
       const looksRateLimit = /rate limit|too many|429/i.test(message);
+      trackEvent(
+        "sign-in",
+        "verify-failed",
+        offline || looksNetwork ? "network" : looksRateLimit ? "rate-limit" : "invalid"
+      );
       toast.error(
         offline || looksNetwork
           ? "Can't reach the server — check your connection and try again."
@@ -231,6 +240,7 @@ function useUserState(): UseUserResult {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
       setUser(null);
+      trackEvent("sign-in", "sign-out");
       toast.success("Signed out.");
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import {
   useCallback,
@@ -564,6 +565,7 @@ export function Schedule() {
     // Batched with setSource, so the remounted switch mounts already
     // knowing where its fill comes from.
     setPreviousSource({ from: sourceRef.current, at: performance.now() });
+    trackEvent("schedule", "programme", next);
     setSource(next);
     const url = new URL(window.location.href);
     if (next === "hubs") url.searchParams.set(HUBS_PARAM, "1");
@@ -954,6 +956,7 @@ function ScheduleInner({
     } else {
       pendingTimeRef.current = t; // the list scrolls in the effect below
     }
+    trackEvent("schedule", "view", next);
     setView(next);
   };
   const viewMountedRef = useRef(false);

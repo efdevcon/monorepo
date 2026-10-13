@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
@@ -114,12 +115,28 @@ export function useScheduleState(
   // steering; dropped on any explicit day choice, which must not be undone.
   const dayBeforeSearchRef = useRef<string | null>(null);
   const setSelectedDay = useCallback((key: string) => {
+    trackEvent("schedule", "day", key);
     setUserPickedDay(true);
     dayBeforeSearchRef.current = null;
     setSelectedDayState(key);
   }, []);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(EMPTY);
+
+  // Analytics: one event per search started (never the text) and per
+  // My Interests toggle, from state transitions so every entry point counts.
+  const searchingRef = useRef(false);
+  useEffect(() => {
+    const searching = search.trim().length > 0;
+    if (searching && !searchingRef.current) trackEvent("schedule", "search");
+    searchingRef.current = searching;
+  }, [search]);
+  const interestedOnlyRef = useRef(interestedOnly);
+  useEffect(() => {
+    if (interestedOnlyRef.current === interestedOnly) return;
+    interestedOnlyRef.current = interestedOnly;
+    trackEvent("schedule", "interests-only", interestedOnly ? "on" : "off");
+  }, [interestedOnly]);
 
   // "Jump to now" crosses days: land on the day containing `now` — clamped to
   // the dataset's range (before day 1 → day 1, after the event → last day) —
@@ -165,7 +182,8 @@ export function useScheduleState(
     return opts;
   }, [sessions]);
 
-  const toggleFilter = (facet: FilterFacet, value: string) =>
+  const toggleFilter = (facet: FilterFacet, value: string) => {
+    trackEvent("schedule", "filter", facet);
     setFilters((prev) => {
       const active = prev[facet].includes(value);
       return {
@@ -175,6 +193,7 @@ export function useScheduleState(
           : [...prev[facet], value],
       };
     });
+  };
 
   /** Drops every selection not in `allowed` (the panel's visible options). */
   const retainFilters = (allowed: Record<FilterFacet, string[]>) =>

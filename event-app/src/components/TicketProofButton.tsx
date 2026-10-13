@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { trackEvent } from "@/data/analytics/track";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Copy, ExternalLink, Share2, X } from "lucide-react";
 import {
@@ -81,7 +82,10 @@ export function TicketProofButton({
           on the surrounding EnsPerkCard. */}
       <button
         type="button"
-        onClick={request}
+        onClick={() => {
+          trackEvent("perks", "claim", p.key);
+          void request();
+        }}
         disabled={pending}
         // text-left: buttons center wrapped text by default, which reads
         // wrong when the label breaks onto two lines.
@@ -132,9 +136,14 @@ function HandoffSheet({
   const [copied, setCopied] = useState(false);
   const mode = handoffMode();
 
+  useEffect(() => {
+    if (proof) trackEvent("perks", "sheet-shown", proof.partner);
+  }, [proof]);
+
   const onCopy = async () => {
     if (!proof) return;
     if (await copyLink(proof.claimUrl)) {
+      trackEvent("perks", "copy", proof.partner);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -200,7 +209,10 @@ function HandoffSheet({
             <div className="mt-4 flex flex-col gap-2">
               <button
                 type="button"
-                onClick={() => escapeToBrowser(proof.claimUrl)}
+                onClick={() => {
+                  trackEvent("perks", "open-browser", proof.partner);
+                  escapeToBrowser(proof.claimUrl);
+                }}
                 className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-dc-purple px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 <ExternalLink className="size-4" />
@@ -210,12 +222,13 @@ function HandoffSheet({
               {canShare() && (
                 <button
                   type="button"
-                  onClick={() =>
-                    shareLink(
+                  onClick={() => {
+                    trackEvent("perks", "share", proof.partner);
+                    void shareLink(
                       proof.claimUrl,
                       `${proof.partnerLabel} perks for Devcon attendees`
-                    )
-                  }
+                    );
+                  }}
                   className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-hairline px-5 text-sm font-semibold text-dc-fg2 transition-colors hover:bg-dc-lavender"
                 >
                   <Share2 className="size-4" />

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback } from "react";
 import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
@@ -49,12 +50,14 @@ export function AiPlannerCard() {
   }, [sessions, ids, event]);
 
   const open = (kind: AssistantKind) => {
+    trackEvent("planner", kind === "chatgpt" ? "open-chatgpt" : "open-claude");
     window.open(assistantUrl(kind, prompt()), "_blank", "noopener");
   };
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(prompt());
+      trackEvent("planner", "copy");
       toast.success("Instructions copied, paste them into your assistant");
     } catch {
       toast.error("Couldn't copy the instructions");

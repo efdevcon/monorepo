@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { trackEvent } from "@/data/analytics/track";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { AlertTriangle, Check, Star } from "lucide-react";
 import cn from "classnames";
@@ -38,6 +39,12 @@ export function PlanImport() {
   const [draft, setDraft] = useState("");
   const request = pasted ?? fromUrl;
 
+  // Once per page open: the URL plan is fixed for the page's life.
+  const fromUrlRef = useRef(fromUrl);
+  useEffect(() => {
+    if (!isEmptyPlan(fromUrlRef.current)) trackEvent("planner", "apply-opened");
+  }, []);
+
   const sessions = useSessionsOfAllProgrammes();
   const { ids: starred } = useInterested();
   const { user } = useUser();
@@ -63,6 +70,7 @@ export function PlanImport() {
         plan.remove.map((s) => s.id)
       );
       setDone(result);
+      trackEvent("planner", "applied", undefined, result.added + result.removed);
     } finally {
       setBusy(false);
     }

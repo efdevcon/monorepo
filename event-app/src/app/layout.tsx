@@ -214,15 +214,15 @@ export default function RootLayout({
           <UserProvider>
             <CacheWarmer />
             <InterestSync />
+            <Suspense fallback={null}>
+              <MatomoAnalytics />
+            </Suspense>
             {children}
           </UserProvider>
         </DataProvider>
         <CustomScrollbar />
         <IOSViewportHealer />
         <ServiceWorkerUpdater />
-        <Suspense fallback={null}>
-          <MatomoAnalytics />
-        </Suspense>
         {/* mobileOffset lifts bottom toasts clear of the docked tab bar
             (--nav-clearance: its measured height, 0 where it isn't shown) */}
         <Toaster

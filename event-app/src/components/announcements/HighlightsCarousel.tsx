@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { Sparkle } from "lucide-react";
@@ -69,7 +70,11 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
 
   if (!link.external) {
     return (
-      <Link href={link.href} className={linkClass}>
+      <Link
+        href={link.href}
+        className={linkClass}
+        onClick={() => trackEvent("announcements", "highlight", highlight.title)}
+      >
         {card}
       </Link>
     );
@@ -80,6 +85,7 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
       target="_blank"
       rel="noopener noreferrer"
       className={linkClass}
+      onClick={() => trackEvent("announcements", "highlight", highlight.title)}
     >
       {card}
     </a>

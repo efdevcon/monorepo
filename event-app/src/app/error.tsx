@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useEffect } from "react";
 import { RefreshCw, TriangleAlert } from "lucide-react";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
@@ -19,6 +20,7 @@ export default function Error({
 }) {
   useEffect(() => {
     console.error("Unhandled error:", error);
+    trackEvent("error", "page", window.location.pathname);
   }, [error]);
 
   return (
