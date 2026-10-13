@@ -320,9 +320,23 @@ function Segmented<T extends string | number>({
     h: number;
   } | null>(null);
 
+  // The pill's first position is not a move: without the override below,
+  // every mount slid it from the first segment to the active one — the
+  // Sessions / Community Hubs switch remounts the schedule, and both
+  // switches wiggled on each programme change (tester report,
+  // 2026-10-13). The first measurement paints with an inline
+  // `transition: none`, written to the node directly (not a style prop, so
+  // React never re-applies it); the effect after that paint removes it,
+  // and later moves animate on the class as before.
+  const pillRef = useRef<HTMLDivElement | null>(null);
+  const measuredRef = useRef(false);
   useLayoutEffect(() => {
     const el = buttonRefs.current.get(value);
     if (!el) return;
+    if (!measuredRef.current) {
+      measuredRef.current = true;
+      pillRef.current?.style.setProperty("transition", "none");
+    }
     setIndicator({
       x: el.offsetLeft,
       y: el.offsetTop,
@@ -330,6 +344,9 @@ function Segmented<T extends string | number>({
       h: el.offsetHeight,
     });
   }, [value]);
+  useEffect(() => {
+    if (indicator) pillRef.current?.style.removeProperty("transition");
+  }, [indicator]);
 
   return (
     <div
@@ -348,6 +365,7 @@ function Segmented<T extends string | number>({
               }
             : { visibility: "hidden" }
         }
+        ref={pillRef}
         className="absolute left-0 top-0 rounded-[4px] bg-white shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)] transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
       />
       {items.map(({ value: v, label: text, Icon }) => (
