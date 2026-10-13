@@ -135,14 +135,31 @@ export const SLOT_MINUTES = 10;
 const SLOT_MS = SLOT_MINUTES * 60_000;
 
 /**
+ * Timeline zoom: 1× is the base scale, 2× doubles the width of every
+ * minute so the Lightning Stage's 7-minute talks (a title's first few
+ * characters and a gem at 1× on a phone) read. Chosen with the segmented
+ * control beside the List/Timeline toggle; remembered per device in the
+ * prefs table under TIMELINE_ZOOM_PREF_KEY.
+ */
+export type TimelineZoom = 1 | 2;
+export const TIMELINE_ZOOMS: readonly TimelineZoom[] = [1, 2];
+export const TIMELINE_ZOOM_PREF_KEY = "schedule:timelineZoom";
+
+/**
  * Pixel geometry of the timeline grid. Desktop is the Figma spec; mobile is
  * ~1.8× denser horizontally and ~1.5× shorter (Devcon SEA app parity) so a
  * phone shows ~30 min × 8 rooms instead of ~15 min × 5. An object, not a scale
  * factor: lane and header heights don't shrink in step with slot width.
  */
 export interface TimelineMetrics {
-  /** px per `SLOT_MINUTES` slot. */
+  /** px per `SLOT_MINUTES` slot, at this zoom. */
   slotWidth: number;
+  /**
+   * Horizontal zoom the slot width carries (1 = the breakpoint's base
+   * scale). Content thresholds divide it back out: how much a block can
+   * show is a question of pixels, not minutes.
+   */
+  zoom: TimelineZoom;
   /** px width of the sticky room-name column. */
   roomCol: number;
   /** px height of each room lane. */
@@ -155,6 +172,7 @@ export interface TimelineMetrics {
 
 export const DESKTOP_METRICS: TimelineMetrics = {
   slotWidth: 180, // Figma: 10 min = 180px
+  zoom: 1,
   roomCol: 120,
   laneH: 74,
   headerH: 40,
@@ -163,6 +181,7 @@ export const DESKTOP_METRICS: TimelineMetrics = {
 
 export const MOBILE_METRICS: TimelineMetrics = {
   slotWidth: 100,
+  zoom: 1,
   roomCol: 96,
   laneH: 72,
   headerH: 32,

@@ -18,6 +18,7 @@ import {
   timeAtOffset,
   sessionBox,
   type TimelineMetrics,
+  type TimelineZoom,
 } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
@@ -60,9 +61,12 @@ function TimelineSession({
   // mobile block is 100px a slot with 6px padding, so its meta comes in
   // stages instead — speakers from 25 min, the Featured chip from 35 —
   // otherwise a 20-min block showed a lone person icon beside the chip.
-  const wide = width >= m.slotWidth * 1.5;
-  const showSpeakers = width >= m.slotWidth * (compact ? 2.5 : 1.5);
-  const showFeatured = featured && width >= m.slotWidth * (compact ? 3.5 : 1.5);
+  // Thresholds in base-scale pixels (one slot's width at 1×): at 2× a
+  // 7-minute block is as wide as a 14-minute one was, and shows as much.
+  const slotPx = m.slotWidth / m.zoom;
+  const wide = width >= slotPx * 1.5;
+  const showSpeakers = width >= slotPx * (compact ? 2.5 : 1.5);
+  const showFeatured = featured && width >= slotPx * (compact ? 3.5 : 1.5);
   const padX = compact ? 6 : 12;
   const metaText = compact ? "text-[11px]" : "text-[12px]";
   const metaIcon = compact ? "size-3" : "size-3.5";
@@ -133,7 +137,7 @@ function TimelineSession({
                 className={cn(metaIcon, "shrink-0 object-contain")}
               />
             )}
-            {(!theme.gem || width >= m.slotWidth) && (
+            {(!theme.gem || width >= slotPx) && (
               <span
                 className={cn(
                   "truncate font-semibold uppercase tracking-[0.5px] text-dc-fg2",
@@ -255,6 +259,7 @@ export function ScheduleTimeline({
   initialScrollLeft,
   onScrollLeft,
   headerRaised = false,
+  zoom = 1,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -283,6 +288,8 @@ export function ScheduleTimeline({
   onScrollLeft?: (left: number, leftMs: number) => void;
   /** Mobile: the app header is hidden, so the sticky axis pins 56px higher. */
   headerRaised?: boolean;
+  /** Horizontal zoom (see TimelineZoom): 2 doubles the width of a minute. */
+  zoom?: TimelineZoom;
 }) {
   const isDesktop = useIsDesktop();
   const compact = !isDesktop;
@@ -290,15 +297,15 @@ export function ScheduleTimeline({
   // sits under it, so the column grows by the inset and pads its names past
   // it (the time grid may scroll under the notch; the names may not).
   const safeLeft = useIsPhoneLandscape() && !isDesktop ? safeLeftNow() : 0;
-  const m = useMemo(
-    () =>
-      isDesktop
-        ? DESKTOP_METRICS
-        : safeLeft
-          ? { ...MOBILE_METRICS, roomCol: MOBILE_METRICS.roomCol + safeLeft }
-          : MOBILE_METRICS,
-    [isDesktop, safeLeft]
-  );
+  const m = useMemo(() => {
+    const base = isDesktop ? DESKTOP_METRICS : MOBILE_METRICS;
+    return {
+      ...base,
+      slotWidth: base.slotWidth * zoom,
+      zoom,
+      roomCol: base.roomCol + safeLeft,
+    };
+  }, [isDesktop, safeLeft, zoom]);
 
   const { rooms, slots, startMs, byRoom } = useMemo(
     () => buildTimeline(sessions),
@@ -385,6 +392,28 @@ export function ScheduleTimeline({
     syncHeader(el.scrollLeft);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollToTime]);
+
+  // Zoom change: the time at the centre of the visible time area stays
+  // put, like a camera zooming on its subject. The offset is the one the
+  // last scroll event reported, not a fresh read: by the time this runs
+  // the grid has already been re-laid out at the new width and the browser
+  // may have clamped scrollLeft. Layout effect: lands before paint.
+  const lastLeftRef = useRef(0);
+  const prevSlotWidthRef = useRef(m.slotWidth);
+  useLayoutEffect(() => {
+    const prev = prevSlotWidthRef.current;
+    prevSlotWidthRef.current = m.slotWidth;
+    const el = scrollRef.current;
+    if (prev === m.slotWidth || !el || slots.length === 0) return;
+    const half = Math.max(0, (el.clientWidth - m.roomCol) / 2);
+    const centreMs = timeAtOffset(lastLeftRef.current + half, startMs, prev);
+    const left = Math.max(0, offsetPx(centreMs, startMs, m.slotWidth) - half);
+    el.scrollLeft = left;
+    lastLeftRef.current = el.scrollLeft;
+    syncHeader(el.scrollLeft);
+    onScrollLeft?.(el.scrollLeft, timeAtOffset(el.scrollLeft, startMs, m.slotWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [m.slotWidth]);
 
   // Restore a remembered horizontal offset once the grid is in the DOM (it
   // isn't while `sessions` is empty). Layout effect: lands before paint.
@@ -499,6 +528,7 @@ export function ScheduleTimeline({
         ref={scrollRef}
         onScroll={(e) => {
           const left = e.currentTarget.scrollLeft;
+          lastLeftRef.current = left;
           syncHeader(left);
           onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}

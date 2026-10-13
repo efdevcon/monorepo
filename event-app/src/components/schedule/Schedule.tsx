@@ -20,6 +20,7 @@ import {
   MoveDown,
   MoveUp,
   Tent,
+  type LucideIcon,
 } from "lucide-react";
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
@@ -48,7 +49,15 @@ import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
-import { dayKey, formatDayHeading, ms } from "./utils";
+import {
+  dayKey,
+  formatDayHeading,
+  ms,
+  TIMELINE_ZOOM_PREF_KEY,
+  TIMELINE_ZOOMS,
+  type TimelineZoom,
+} from "./utils";
+import { readPref, writePref } from "@/data/prefs";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   APP_CHROME_OFF_ATTR,
@@ -278,20 +287,32 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
   );
 }
 
-/** List/Timeline segmented control on its recessed track (Figma "Tabs"). */
-function ViewToggle({
-  view,
+/** The floating controls' drop shadow (Live now uses the same recipe). */
+const FLOATING_SHADOW =
+  "shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)]";
+
+/**
+ * Segmented control on its recessed track (Figma "Tabs"): the white pill
+ * slides between segments; measured after render so it lands on the active
+ * label's post-font-weight-swap width. Shared by the List/Timeline toggle
+ * and the timeline zoom switch.
+ */
+function Segmented<T extends string | number>({
+  value,
   onChange,
+  items,
   iconOnly = false,
+  label,
 }: {
-  view: ViewMode;
-  onChange: (v: ViewMode) => void;
+  value: T;
+  onChange: (v: T) => void;
+  items: readonly { value: T; label: string; Icon?: LucideIcon }[];
   /** Icons only, same 40px height: the floating copy next to Live now. */
   iconOnly?: boolean;
+  /** Accessible name of the group. */
+  label: string;
 }) {
-  const buttonRefs = useRef(new Map<ViewMode, HTMLButtonElement | null>());
-  // The white pill slides between segments; measured after render so it lands
-  // on the active label's post-font-weight-swap width.
+  const buttonRefs = useRef(new Map<T, HTMLButtonElement | null>());
   const [indicator, setIndicator] = useState<{
     x: number;
     y: number;
@@ -300,7 +321,7 @@ function ViewToggle({
   } | null>(null);
 
   useLayoutEffect(() => {
-    const el = buttonRefs.current.get(view);
+    const el = buttonRefs.current.get(value);
     if (!el) return;
     setIndicator({
       x: el.offsetLeft,
@@ -308,10 +329,12 @@ function ViewToggle({
       w: el.offsetWidth,
       h: el.offsetHeight,
     });
-  }, [view]);
+  }, [value]);
 
   return (
     <div
+      role="group"
+      aria-label={label}
       className="relative flex h-10 shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
     >
       <div
@@ -327,32 +350,77 @@ function ViewToggle({
         }
         className="absolute left-0 top-0 rounded-[4px] bg-white shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)] transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
       />
-      {(
-        [
-          { mode: "list", label: "List", Icon: List },
-          { mode: "timeline", label: "Timeline", Icon: CalendarRange },
-        ] as const
-      ).map(({ mode, label, Icon }) => (
+      {items.map(({ value: v, label: text, Icon }) => (
         <button
-          key={mode}
+          key={v}
           ref={(el) => {
-            buttonRefs.current.set(mode, el);
+            buttonRefs.current.set(v, el);
           }}
-          onClick={() => onChange(mode)}
-          aria-pressed={view === mode}
+          onClick={() => onChange(v)}
+          aria-pressed={value === v}
           className={cn(
             "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] py-1 text-[14px] leading-none transition-colors",
-            iconOnly ? "px-2.5" : "px-2",
-            view === mode
+            // Text-only segments ("1×") get wider sides for a finger-sized cell.
+            iconOnly ? "px-2.5" : Icon ? "px-2" : "px-3",
+            value === v
               ? "font-bold text-dc-purple"
               : "font-medium text-dc-muted hover:text-dc-fg2"
           )}
         >
-          <Icon className="size-5" />
-          <span className={cn(iconOnly && "sr-only")}>{label}</span>
+          {Icon && <Icon className="size-5" />}
+          <span className={cn(iconOnly && Icon && "sr-only")}>{text}</span>
         </button>
       ))}
     </div>
+  );
+}
+
+const VIEW_ITEMS = [
+  { value: "list", label: "List", Icon: List },
+  { value: "timeline", label: "Timeline", Icon: CalendarRange },
+] as const;
+
+/** List/Timeline switch. */
+function ViewToggle({
+  view,
+  onChange,
+  iconOnly = false,
+}: {
+  view: ViewMode;
+  onChange: (v: ViewMode) => void;
+  iconOnly?: boolean;
+}) {
+  return (
+    <Segmented
+      value={view}
+      onChange={onChange}
+      items={VIEW_ITEMS}
+      iconOnly={iconOnly}
+      label="View"
+    />
+  );
+}
+
+const ZOOM_ITEMS = TIMELINE_ZOOMS.map((z) => ({ value: z, label: `${z}×` }));
+
+/**
+ * Timeline zoom switch (1× / 2×), on the view toggle's track. Only while
+ * the timeline shows: it is that view's camera.
+ */
+function ZoomToggle({
+  zoom,
+  onChange,
+}: {
+  zoom: TimelineZoom;
+  onChange: (z: TimelineZoom) => void;
+}) {
+  return (
+    <Segmented
+      value={zoom}
+      onChange={onChange}
+      items={ZOOM_ITEMS}
+      label="Timeline zoom"
+    />
   );
 }
 
@@ -568,6 +636,25 @@ export function Schedule() {
   // List or timeline: kept here so it carries over a programme switch (the
   // inner view remounts) instead of snapping back to a default.
   const [view, setView] = useState<ViewMode>("list");
+  // Timeline zoom (1× / 2×): kept above the keyed inner view for the same
+  // reason, and remembered per device (the prefs table), so the app reopens
+  // at the scale the person last read the grid at.
+  const [zoom, setZoomState] = useState<TimelineZoom>(1);
+  useEffect(() => {
+    let cancelled = false;
+    void readPref<TimelineZoom>(TIMELINE_ZOOM_PREF_KEY).then((v) => {
+      if (!cancelled && v !== undefined && TIMELINE_ZOOMS.includes(v)) {
+        setZoomState(v);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const setZoom = useCallback((z: TimelineZoom) => {
+    setZoomState(z);
+    void writePref(TIMELINE_ZOOM_PREF_KEY, z);
+  }, []);
   const searchParams = useSearchParams();
   const hubsInUrl = hasHubs && !!searchParams.get(HUBS_PARAM);
   const [source, setSource] = useState<ScheduleSource>(hubsInUrl ? "hubs" : "main");
@@ -609,6 +696,8 @@ export function Schedule() {
         onSourceChange={changeSource}
         view={view}
         setView={setView}
+        zoom={zoom}
+        setZoom={setZoom}
         landedRef={landedRef}
       />
     </ScheduleSourceProvider>
@@ -622,6 +711,8 @@ function ScheduleInner({
   onSourceChange,
   view,
   setView,
+  zoom,
+  setZoom,
   landedRef,
 }: {
   source: ScheduleSource;
@@ -630,6 +721,8 @@ function ScheduleInner({
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
   setView: (v: ViewMode) => void;
+  zoom: TimelineZoom;
+  setZoom: (z: TimelineZoom) => void;
   landedRef: RefObject<boolean>;
 }) {
   const { sessions, isLoading, isError } = useSessions();
@@ -1346,22 +1439,35 @@ function ScheduleInner({
       {!detailId && paneActive && anyLive && (
         <LiveNowButton onClick={jumpToNow} />
       )}
-      {/* Floating list/timeline toggle (mobile), bottom-left opposite Live
-          now, once the in-flow one has scrolled away. Kept mounted for the
-          150ms fade; inert while hidden. Same bottom as Live now: 16px above
-          the tab bar's measured height. */}
+      {/* Floating mobile controls, bottom-left opposite Live now: the
+          list/timeline toggle once the in-flow one has scrolled away (kept
+          mounted for the 150ms fade; inert while hidden), and in timeline
+          view the zoom switch, always there — alone at the left edge until
+          the toggle appears, then sliding right to make room: the toggle's
+          clipping wrapper grows from 0 to its width on the fade's clock (its
+          padding + negative margins keep the drop shadow inside the clip).
+          Same bottom as Live now: 16px above the tab bar's measured height. */}
       {!detailId && paneActive && hasViewRow && (
-        <div
-          aria-hidden={!viewRowScrolledOut}
-          inert={!viewRowScrolledOut || undefined}
-          className={cn(
-            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
-            viewRowScrolledOut
-              ? "translate-y-0 opacity-100"
-              : "pointer-events-none translate-y-2 opacity-0"
+        <div className="fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 flex items-center phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] lg:hidden">
+          <div
+            aria-hidden={!viewRowScrolledOut}
+            inert={!viewRowScrolledOut || undefined}
+            className={cn(
+              "-mx-1 -mb-1 -mt-0.5 overflow-hidden px-1 pb-1 pt-0.5 transition-[opacity,transform,max-width] duration-150 ease-out motion-reduce:transition-none",
+              viewRowScrolledOut
+                ? "max-w-28 translate-y-0 opacity-100"
+                : "pointer-events-none max-w-0 translate-y-2 opacity-0"
+            )}
+          >
+            <div className={cn(FLOATING_SHADOW, "rounded-lg", view === "timeline" && "mr-2")}>
+              <ViewToggle view={view} onChange={changeView} iconOnly />
+            </div>
+          </div>
+          {view === "timeline" && (
+            <div className={cn(FLOATING_SHADOW, "rounded-lg")}>
+              <ZoomToggle zoom={zoom} onChange={setZoom} />
+            </div>
           )}
-        >
-          <ViewToggle view={view} onChange={changeView} iconOnly />
         </div>
       )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
@@ -1431,7 +1537,12 @@ function ScheduleInner({
                 className="w-[348px]"
                 resultCount={totalMatches}
               />
-              <ViewToggle view={view} onChange={changeView} />
+              <div className="flex items-center gap-3">
+                <ViewToggle view={view} onChange={changeView} />
+                {view === "timeline" && (
+                  <ZoomToggle zoom={zoom} onChange={setZoom} />
+                )}
+              </div>
             </div>
 
             {/* Mobile search, in flow: opening it pushes the day tabs and the
@@ -1642,6 +1753,7 @@ function ScheduleInner({
                   }}
                   scrollToTime={timelineScrollToTime}
                   headerRaised={chromeHidden}
+                  zoom={zoom}
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>
