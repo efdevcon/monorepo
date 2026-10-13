@@ -50,12 +50,11 @@ export type AllowlistEntry = PretalxAllowlistEntry | ManualAllowlistEntry
 export const allowlistId = (entry: AllowlistEntry): string => ('manual' in entry ? entry.manual.id : entry.code)
 
 export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
-  // Pretalx name is just "Vitalik"; org answer is "Ethereum". The keynote has no track yet, hence the override.
+  // Pretalx name is just "Vitalik"; org answer is "Ethereum".
   {
     code: 'KYP3UZ',
     name: 'Vitalik Buterin',
     title: 'Co-Founder',
-    track: 'Core Protocol',
     bio: 'Vitalik Buterin co-founded Ethereum, first describing it in a 2013 white paper. Vitalik writes and researches across cryptography, scaling and public goods.',
   },
   // Org answer is "Cyber Ambassador Taiwan, civic.ai".
