@@ -121,16 +121,17 @@ export function safeLeftNow(): number {
 
 /**
  * Set on <html> by the schedule while a phone in landscape shows the list:
- * the mobile app-header row is display:none (AppHeader.tsx), so every
- * offset measured from the header's bottom edge starts at the status-bar
- * inset instead. Distinct from `data-app-header-hidden`, the timeline's
+ * the mobile app-header row and the bottom tab bar are display:none
+ * (AppHeader.tsx, Nav.tsx), so every offset measured from the header's
+ * bottom edge starts at the status-bar inset instead, and --nav-clearance
+ * measures 0. Distinct from `data-app-header-hidden`, the timeline's
  * animated fold, which keeps the row in flow.
  */
-export const APP_HEADER_OFF_ATTR = "data-app-header-off";
+export const APP_CHROME_OFF_ATTR = "data-app-chrome-off";
 
 /** The current breakpoint's header offset, for scroll-position math. */
 export function headerOffsetNow(): number {
-  if (document.documentElement.hasAttribute(APP_HEADER_OFF_ATTR)) {
+  if (document.documentElement.hasAttribute(APP_CHROME_OFF_ATTR)) {
     return safeTopNow();
   }
   return (

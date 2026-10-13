@@ -168,7 +168,14 @@ export function Nav() {
       // The 1px hairline is a ring shadow, not a border (no layout space)
       // and not an outline (outline only follows border-radius from Safari
       // 16.4 — earlier iOS drew it square around the rounded top corners).
-      className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0_0_0_1px_rgba(255,255,255,0.67),0px_-1px_4px_0px_rgba(0,0,0,0.06)] backdrop-blur-[6px] lg:hidden"
+      className={cn(
+        "fixed inset-x-0 bottom-0 z-30 flex items-center gap-1 rounded-t-2xl bg-[rgba(255,255,255,0.33)] px-3 pt-2 font-heading shadow-[0_0_0_1px_rgba(255,255,255,0.67),0px_-1px_4px_0px_rgba(0,0,0,0.06)] backdrop-blur-[6px] lg:hidden",
+        // Gone while the schedule shows on a phone in landscape (<html
+        // data-app-chrome-off>, with the app header): the short viewport
+        // goes to the list or grid; the bar is back on rotating upright.
+        // display:none measures 0, so --nav-clearance follows on its own.
+        "[[data-app-chrome-off]_&]:hidden"
+      )}
       // max(), not 12px + inset: the label row already carries 12px of its
       // own breathing room, so stacking the full home-indicator inset on top
       // read as dead space in the installed PWA (the inset alone clears the

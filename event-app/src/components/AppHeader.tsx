@@ -115,9 +115,9 @@ export function AppHeader() {
         className={cn(
           "flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full",
           // Gone, not slid away: the schedule on a phone in landscape
-          // (<html data-app-header-off>, see headerOffsetNow) — its pills
+          // (<html data-app-chrome-off>, see headerOffsetNow) — its pills
           // move to the day tabs and the row's 56px go to the content.
-          "[[data-app-header-off]_&]:hidden",
+          "[[data-app-chrome-off]_&]:hidden",
           // Bare pages (the map) hide the bar but keep it mounted: see RouteChrome.bare.
           bare && "hidden"
         )}

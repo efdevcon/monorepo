@@ -51,7 +51,7 @@ import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
-  APP_HEADER_OFF_ATTR,
+  APP_CHROME_OFF_ATTR,
   headerOffsetNow,
   safeTopNow,
   useIsDesktop,
@@ -270,7 +270,7 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer phone-landscape:right-[max(16px,var(--safe-right))] items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
+      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer phone-landscape:right-[max(16px,var(--safe-right))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
     >
       <ClockArrowDown className="size-4 shrink-0" />
       Live now
@@ -1044,17 +1044,19 @@ function ScheduleInner({
   // flag skips the scroll frame they cause.
   const programmaticScrollRef = useRef(false);
   const [scrollChromeHidden, setChromeHidden] = useState(false);
-  // Phone in landscape: the header row is gone for as long as the list shows
-  // (both views — the day tabs carry its pills, see `landscapeControls`),
-  // published as <html data-app-header-off> for AppHeader and the offset
-  // math; the scroll fold below stays out of it. (Feedback round,
-  // 2026-10-13: the mock has the tabs at the very top, the grid under them.)
+  // Phone in landscape: the header row and the bottom tab bar are gone for
+  // as long as the list shows (both views — the day tabs carry the header's
+  // pills, see `landscapeControls`; the bar is back on rotating upright),
+  // published as <html data-app-chrome-off> for AppHeader, Nav, the page
+  // layout's bottom padding and the offset math; the scroll fold below
+  // stays out of it. (Feedback round, 2026-10-13: the mock has the tabs at
+  // the very top, the grid under them, the short viewport to the content.)
   const phoneLandscape = useIsPhoneLandscape();
   const headerOff = phoneLandscape && listVisible && !detailId && !isDesktop;
   useLayoutEffect(() => {
     const root = document.documentElement;
-    root.toggleAttribute(APP_HEADER_OFF_ATTR, headerOff);
-    return () => root.removeAttribute(APP_HEADER_OFF_ATTR);
+    root.toggleAttribute(APP_CHROME_OFF_ATTR, headerOff);
+    return () => root.removeAttribute(APP_CHROME_OFF_ATTR);
   }, [headerOff]);
   // Not under a session page: the layer locks the page scroll, so a header
   // hidden at the moment of the tap would have no scroll to bring it back.
@@ -1339,7 +1341,7 @@ function ScheduleInner({
           aria-hidden={!viewRowScrolledOut}
           inert={!viewRowScrolledOut || undefined}
           className={cn(
-            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg phone-landscape:left-[max(16px,var(--safe-left))] shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
+            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
             viewRowScrolledOut
               ? "translate-y-0 opacity-100"
               : "pointer-events-none translate-y-2 opacity-0"
