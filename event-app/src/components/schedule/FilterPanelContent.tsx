@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import type { FilterFacet, Filters } from "./useScheduleState";
-import { getTrackTheme } from "./trackTheme";
+import { clsTrackName, getTrackTheme } from "./trackTheme";
 
 /**
  * Which programme(s) the panel filters. "hubs": the Community Hubs segment,
@@ -25,7 +25,6 @@ export type FilterPanelMode = "main" | "hubs" | "both";
 const NO_HUBS: string[] = [];
 
 const CLS_PREFIX = "[CLS]";
-const stripCls = (v: string) => v.replace(CLS_PREFIX, "").trim();
 
 function AccordionSection({
   title,
@@ -266,7 +265,7 @@ export function FilterPanelContent({
               {clsTracks.map((track) => (
                 <CheckboxRow
                   key={track}
-                  label={stripCls(track)}
+                  label={clsTrackName(track)}
                   checked={filters.track.includes(track)}
                   onToggle={() => onToggle("track", track)}
                 />
