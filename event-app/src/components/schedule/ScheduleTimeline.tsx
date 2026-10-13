@@ -107,12 +107,15 @@ function TimelineSession({
         }}
         className="sticky flex w-fit min-w-0 flex-col items-start gap-1.5"
       >
+        {/* Title: two lines on a phone, one on desktop; three at 2×, where
+            the taller lane has the room. */}
         <span
           className={cn(
             "max-w-full text-dc-fg2",
             compact
-              ? "line-clamp-2 text-[12px] font-semibold leading-[14px]"
-              : "truncate text-[14px] font-bold leading-5"
+              ? "text-[12px] font-semibold leading-[14px]"
+              : "text-[14px] font-bold leading-5",
+            m.zoom === 2 ? "line-clamp-3" : compact ? "line-clamp-2" : "truncate"
           )}
         >
           {session.title}
@@ -297,11 +300,14 @@ export function ScheduleTimeline({
   // sits under it, so the column grows by the inset and pads its names past
   // it (the time grid may scroll under the notch; the names may not).
   const safeLeft = useIsPhoneLandscape() && !isDesktop ? safeLeftNow() : 0;
+  // 2×: a minute is twice as wide and a lane half again as tall (Scott's
+  // call, 2026-10-13: 108px / 111px), so a block holds a 3-line title.
   const m = useMemo(() => {
     const base = isDesktop ? DESKTOP_METRICS : MOBILE_METRICS;
     return {
       ...base,
       slotWidth: base.slotWidth * zoom,
+      laneH: zoom === 2 ? Math.round(base.laneH * 1.5) : base.laneH,
       zoom,
       roomCol: base.roomCol + safeLeft,
     };
