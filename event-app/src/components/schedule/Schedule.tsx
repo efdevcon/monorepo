@@ -1520,11 +1520,25 @@ function ScheduleInner({
                 className="w-[348px]"
                 resultCount={totalMatches}
               />
-              <div className="flex items-center gap-3">
+              <div className="flex items-center">
                 <ViewToggle view={view} onChange={changeView} />
-                {view === "timeline" && (
+                {/* The zoom switch stays mounted and slides in beside the
+                    toggle when the timeline shows — 150ms ease-out like the
+                    floating controls, the exit a touch quicker; the clipping
+                    wrapper grows from 0 to its width and carries the 12px
+                    gap so a hidden switch leaves no gap behind. */}
+                <div
+                  aria-hidden={view !== "timeline"}
+                  inert={view !== "timeline" || undefined}
+                  className={cn(
+                    "overflow-hidden transition-[opacity,transform,max-width,margin] ease-out motion-reduce:transition-none",
+                    view === "timeline"
+                      ? "ml-3 max-w-24 translate-x-0 opacity-100 duration-150"
+                      : "pointer-events-none ml-0 max-w-0 -translate-x-1 opacity-0 duration-100"
+                  )}
+                >
                   <ZoomToggle zoom={zoom} onChange={setZoom} />
-                )}
+                </div>
               </div>
             </div>
 
