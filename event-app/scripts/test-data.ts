@@ -21,6 +21,8 @@ import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuy
 import {
   applyLink,
   assistantUrl,
+  assistantLink,
+  ASSISTANT_URL_BUDGET,
   buildAssistantPrompt,
   parseCodeList,
   parsePlanParams,
@@ -564,9 +566,27 @@ function testAiPlan() {
   });
   check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue index: https://app.devcon.org/ai/devcon8"));
   check("prompt spells out the day pages for fetch tools that only open seen URLs", prompt.includes("https://app.devcon.org/ai/devcon8/day/1 , https://app.devcon.org/ai/devcon8/day/2 , https://app.devcon.org/ai/devcon8/day/3 , https://app.devcon.org/ai/devcon8/day/4"));
-  check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM (A talk)."));
+  check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM."));
   check("prompt explains the apply link", prompt.includes("https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3"));
   check("prompt stays short enough for a URL prefill", prompt.length < 2600, `${prompt.length} chars`);
+  {
+    const many = Array.from({ length: 80 }, (_, i) => ({
+      code: `C${String(i).padStart(5, "0")}`,
+      title: `A fairly long session title number ${i} about something interesting`,
+    }));
+    const input = { appOrigin: "https://app.devcon.org", eventId: "devcon-8", eventTitle: "Devcon 8", dates: "3 to 6 November 2026", timezoneLabel: "Mumbai time (IST)", dayCount: 4, starred: many };
+    const grok = assistantLink("grok", input);
+    const chatgpt = assistantLink("chatgpt", input);
+    check("grok link fits its URL budget with all 80 codes", grok.length <= ASSISTANT_URL_BUDGET.grok && grok.startsWith("https://grok.com/?q=") && grok.includes("C00079"));
+    check("interests are codes only", !buildAssistantPrompt(input).includes("A fairly") && chatgpt.length <= ASSISTANT_URL_BUDGET.chatgpt);
+    const huge = { ...input, starred: Array.from({ length: 400 }, (_, i) => ({ code: `LONGCODE${i}`, title: "t" })) };
+    const capped = assistantLink("grok", huge);
+    check("too many codes are capped with a count", capped.length <= ASSISTANT_URL_BUDGET.grok && capped.includes(encodeURIComponent("more already starred in the app")));
+    const few = buildAssistantPrompt({ ...input, starred: many.slice(0, 3) }, { maxStarred: 2 });
+    check("capped interests count the rest", few.includes("C00000, C00001, and 1 more already starred in the app"));
+    const none = buildAssistantPrompt(input, { maxStarred: 0 });
+    check("zero shown interests still count the rest", none.includes("My current interests: 80 more already starred in the app"));
+  }
   check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", dayCount: 0, starred: [] }).includes("My current interests: none yet."));
   const ds = { ...DATASETS.devcon8, apiUrl: "https://api.devcon.org/", eventId: "devcon8" };
   check("catalogueDataset: default without ?event, by API event id with it, unknown is undefined",
@@ -585,7 +605,7 @@ function testAiPlan() {
     requestOrigin(new Request("https://abc123--site.netlify.app/ai", { headers: { "x-forwarded-host": "app.devcon.org", "x-forwarded-proto": "https" } })) === "https://app.devcon.org"
     && requestOrigin(new Request("http://localhost:3000/ai", { headers: { host: "localhost:3000", "x-forwarded-proto": "http" } })) === "http://localhost:3000"
     && requestOrigin(new Request("https://app.devcon.org/ai")) === "https://app.devcon.org");
-  check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b");
+  check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b" && assistantUrl("grok", "a b") === "https://grok.com/?q=a%20b");
 }
 
 async function main() {

@@ -130,19 +130,36 @@ export interface PromptInput {
   starred: { code: string; title: string }[];
 }
 
+export interface PromptOptions {
+  /** Keep at most this many interests in the prompt; the rest are counted. */
+  maxStarred?: number;
+}
+
+// Codes only: the catalogue the assistant fetches carries the titles, and
+// titles tripled the prompt (grok.com refuses long prefill URLs).
+function interestsLine(starred: PromptInput["starred"], opts: PromptOptions): string {
+  if (starred.length === 0) return "none yet";
+  const shown = opts.maxStarred === undefined ? starred : starred.slice(0, opts.maxStarred);
+  const hidden = starred.length - shown.length;
+  const list = shown.map((s) => s.code).join(", ");
+  if (hidden === 0) return list;
+  // The assistant never sees these, so the apply link cannot drop them: they
+  // simply stay starred.
+  const more = `${hidden} more already starred in the app, which stay as they are`;
+  return list ? `${list}, and ${more}` : more;
+}
+
 /**
- * The prompt the Home card opens in ChatGPT or Claude, or copies for any
- * other assistant. Short enough for a URL prefill (the catalogue is linked,
- * not pasted), and it carries the attendee's current stars so the assistant
- * needs no account access to know them.
+ * The prompt the Home card opens in an assistant (through `assistantLink`,
+ * which shortens the interests to fit that site's URL limit), or copies in
+ * full for any other. The catalogue is linked, not pasted, and the attendee's
+ * current stars travel in the prompt so the assistant needs no account access
+ * to know them.
  */
-export function buildAssistantPrompt(input: PromptInput): string {
+export function buildAssistantPrompt(input: PromptInput, opts: PromptOptions = {}): string {
   // The app's mirror of the API catalogue (catalogueMirror.ts): assistants fetch it without bot challenges.
   const catalogue = `${input.appOrigin}/ai/${encodeURIComponent(input.eventId)}`;
-  const starred =
-    input.starred.length === 0
-      ? "none yet"
-      : input.starred.map((s) => `${s.code} (${s.title})`).join(", ");
+  const starred = interestsLine(input.starred, opts);
   const when = [input.dates, input.timezoneLabel].filter(Boolean).join(", ");
   // Claude's fetch tool only opens URLs it has seen (in the prompt or in a fetched page), so the day pages are spelled out.
   const dayPages = Array.from({ length: input.dayCount }, (_, i) => `${catalogue}/day/${i + 1}`);
@@ -165,10 +182,40 @@ export function buildAssistantPrompt(input: PromptInput): string {
   ].join("\n");
 }
 
-export type AssistantKind = "chatgpt" | "claude";
+export type AssistantKind = "chatgpt" | "claude" | "grok";
 
-/** New-chat links that prefill the prompt (ChatGPT's `?q=`, Claude's `/new?q=`). */
+/** New-chat links that prefill the prompt (ChatGPT's `?q=`, Claude's `/new?q=`, Grok's `?q=`). */
 export function assistantUrl(kind: AssistantKind, prompt: string): string {
   const q = encodeURIComponent(prompt);
-  return kind === "chatgpt" ? `https://chatgpt.com/?q=${q}&hints=search` : `https://claude.ai/new?q=${q}`;
+  if (kind === "chatgpt") return `https://chatgpt.com/?q=${q}&hints=search`;
+  if (kind === "grok") return `https://grok.com/?q=${q}`;
+  return `https://claude.ai/new?q=${q}`;
+}
+
+/**
+ * Longest prefill URL each site takes. grok.com answers 431 somewhere between
+ * 6,000 and 8,000 characters without cookies (measured 2026-10-13), and a
+ * signed-in browser adds its cookies to the same header budget. ChatGPT and
+ * Claude took a 7,500-character prompt in live tests; their cap is the usual
+ * proxy limit.
+ */
+export const ASSISTANT_URL_BUDGET: Record<AssistantKind, number> = {
+  chatgpt: 12_000,
+  claude: 12_000,
+  grok: 4_500,
+};
+
+/**
+ * The link the card opens: the full prompt when it fits the site's budget,
+ * else fewer and fewer interest codes with the rest counted. The copy button
+ * always gets the full prompt.
+ */
+export function assistantLink(kind: AssistantKind, input: PromptInput): string {
+  const budget = ASSISTANT_URL_BUDGET[kind];
+  let max = input.starred.length;
+  for (;;) {
+    const url = assistantUrl(kind, buildAssistantPrompt(input, { maxStarred: max }));
+    if (url.length <= budget || max === 0) return url;
+    max = Math.floor(max / 2);
+  }
 }
