@@ -1,9 +1,10 @@
 "use client";
 
-import { Copy, Globe, Star } from "lucide-react";
+import { Copy, Globe, Share2, Star } from "lucide-react";
 import cn from "classnames";
 import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
+import { shareDetail } from "@/components/ShareButton";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { groupSessionsByDay } from "@/components/schedule/utils";
@@ -259,6 +260,20 @@ function SpeakerProfile({
           <Copy className="size-4 text-dc-purple" />
           Copy name
         </button>
+        {/* Expanded page only: the panel and the mobile page carry the share
+            circle in their chrome (beside Close / in the app header), the
+            dedicated page has no chrome of its own (feedback, 2026-10-13). */}
+        {lg && (
+          <button
+            onClick={() =>
+              void shareDetail({ kind: "speaker", id: speaker.id, title: speaker.name })
+            }
+            className={cn(pill, "border-dc-hairline bg-white")}
+          >
+            <Share2 className="size-4 text-dc-purple" />
+            Share
+          </button>
+        )}
       </div>
     </div>
   );
