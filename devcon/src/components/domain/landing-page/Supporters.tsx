@@ -57,14 +57,14 @@ type Row = {
   logos: LogoEntry[]
 }
 
-// Supporters: Fluid + Base (flagship), then Arkiv, Gnosis and Kleros at 52px (core),
-// then the rest at 40px (starter) — 3 + 3 from sm, pairs below sm (sized off row 2 so
-// it always stays bigger). Impact hubs follow the scale of the tier above them, so
-// they always stay smaller.
+// Supporters: Fluid + Base (flagship, ~100px), then Arkiv, Gnosis and Kleros at 60px
+// (core), then the rest at 40px (starter) — 3 + 3 from sm, pairs below sm (sized off
+// row 2 so it always stays bigger). Impact hubs follow the scale of the tier above
+// them, so they always stay smaller. Every tier shares one column (SUPPORTERS_COLUMN).
 const TOP_ROW: Row = {
-  k: 128,
-  cap: 76,
-  maxWidth: 0.8,
+  k: 172,
+  cap: 100,
+  gap: 'min(144px, 16cqw)',
   logos: [
     { name: 'Fluid', href: 'https://fluid.io', Logo: Fluid, aspect: 248 / 83 },
     { name: 'Base', href: 'https://www.base.org', Logo: Base, aspect: 1280 / 323.84 },
@@ -72,7 +72,7 @@ const TOP_ROW: Row = {
 }
 
 const SECOND_ROW: Row = {
-  height: 52,
+  height: 60,
   logos: [
     { name: 'Arkiv', href: 'https://arkiv.network', Logo: Arkiv, aspect: 1389 / 320 },
     { name: 'Gnosis', href: 'https://www.gnosis.io', Logo: Gnosis, aspect: 878 / 230 },
@@ -114,9 +114,11 @@ const IMPACT_HUBS: LogoEntry[] = [
 const OTHER_HEIGHT = 40
 const HUB_K = 64
 const HUB_CAP = 34
-// Mobile hubs share tier 2's (heavy) shrink, which leaves wide wordmarks tiny, so
-// there they size up to tier 3's height (never past it, even with optical scale).
+// Mobile hubs share the core row's (heavy) shrink, which leaves wide wordmarks tiny,
+// so there they size up to just under tier 3's height (never past it, even with
+// optical scale) — enough below starter that the two tiers still read apart.
 const HUB_K_MOBILE = 86
+const HUB_MAX_MOBILE = 32
 
 const chunk = <T,>(items: T[], sizes: number[]) => {
   let i = 0
@@ -128,19 +130,24 @@ const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2]).map(logos =>
   height: OTHER_HEIGHT,
   logos,
 }))
-const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [7, 6, 6]).map(logos => ({
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [5, 5, 5, 4]).map(logos => ({
   k: HUB_K,
   cap: HUB_CAP,
   gap: 'min(48px, 5cqw)',
   logos,
 }))
-const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 3, 2, 2]).map(logos => ({
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 2, 2, 3, 3]).map(logos => ({
   k: HUB_K_MOBILE,
-  cap: OTHER_HEIGHT,
-  max: OTHER_HEIGHT,
+  cap: HUB_MAX_MOBILE,
+  max: HUB_MAX_MOBILE,
   gap: 'min(48px, 7cqw)',
   logos,
 }))
+
+// Below sm the core row is width-bound (three wordmarks across a phone), and sizing
+// starter and impact off it at full height would leave starter at ⅔ of core. Fitting
+// them to this shorter copy keeps starter at ⅚ of core instead.
+const CORE_MOBILE_REF: Row = { ...SECOND_ROW, height: 48 }
 
 const logoAspect = ({ image, aspect }: LogoEntry) => (image ? image.width / image.height : aspect!)
 const equalAreaHeight = (logo: LogoEntry, k: number, cap: number) =>
@@ -164,8 +171,14 @@ const widestRow = (rows: Row[]) => rows.reduce((a, b) => (rowNaturalWidth(b) > r
 // scale, so a lower tier never ends up bigger than the tier above it. cqw resolves
 // against the nearest inline-size container.
 const DEFAULT_GAP = 'min(56px, 6cqw)'
+// Logo links get an invisible ::after hit area that fills half the gap on every side
+// (--gap within the row, --row-gap between rows), never under 44px. White focus ring
+// so it shows on the purple.
+const LOGO_LINK =
+  "relative flex rounded-[4px] hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:w-[max(44px,calc(100%_+_var(--gap)))] after:h-[max(44px,calc(100%_+_var(--row-gap)))] after:content-['']"
 // Each row enters with the same one-shot Reveal as the section heading.
 const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; className?: string }) => {
+  const t = useTranslations('home.supporters')
   const heights = rowHeights(row)
   const shares = fitTo.map(ref => {
     const available = `(${(ref.maxWidth ?? 1) * 100}cqw - ${ref.logos.length - 1} * ${ref.gap ?? DEFAULT_GAP})`
@@ -173,7 +186,10 @@ const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; cl
   })
   return (
     <Reveal className={className}>
-      <ul className="flex items-center justify-center" style={{ gap: row.gap ?? DEFAULT_GAP }}>
+      <ul
+        className="flex items-center justify-center gap-[var(--gap)]"
+        style={{ '--gap': row.gap ?? DEFAULT_GAP } as React.CSSProperties}
+      >
         {row.logos.map((logo, i) => {
           const fits = shares.map(({ available, naturalWidth }) => `calc(${available} * ${heights[i] / naturalWidth})`)
           return (
@@ -183,8 +199,9 @@ const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; cl
               style={{ '--h': `min(${heights[i]}px, ${fits.join(', ')})` } as React.CSSProperties}
             >
               {logo.href ? (
-                <a href={logo.href} target="_blank" rel="noopener noreferrer" className="flex hover:opacity-80">
+                <a href={logo.href} target="_blank" rel="noopener noreferrer" className={LOGO_LINK}>
                   <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
+                  <span className="sr-only">{t('opens_new_tab')}</span>
                 </a>
               ) : (
                 <LogoImage logo={logo} className="w-auto h-[var(--h)]" />
@@ -198,15 +215,21 @@ const FitRow = ({ row, fitTo = [row], className }: { row: Row; fitTo?: Row[]; cl
 }
 
 // A labelled tier: eyebrow + its rows. Each tier is its own inline-size container
-// (all are full width, so cqw resolves the same across tiers).
+// (all are full width, so cqw resolves the same across tiers). The row gap is 28px on
+// mobile so the smallest logos (~17px) still get a 44px-tall hit area.
 const Tier = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div className="w-full flex flex-col items-center gap-[24px] sm:gap-[32px] [container-type:inline-size]">
     <Reveal>
-      <p className={`${eyebrow} !text-white/80`}>{label}</p>
+      <p className={`${eyebrow} !text-white/85`}>{label}</p>
     </Reveal>
-    {children}
+    <div className="w-full flex flex-col items-center [--row-gap:28px] sm:[--row-gap:32px] gap-[var(--row-gap)]">
+      {children}
+    </div>
   </div>
 )
+
+// Every tier fits one shared column, so the widest tier is never a lower one.
+const SUPPORTERS_COLUMN = 'max-w-[880px]'
 
 export const Supporters = () => {
   const t = useTranslations('home.supporters')
@@ -214,11 +237,11 @@ export const Supporters = () => {
     <div className={`bg-[#7235ed] ${sectionX} py-[48px] sm:py-[64px] xl:py-[80px]`}>
       <div className={`${sectionInner} flex flex-col items-center gap-[32px] sm:gap-[48px]`}>
         <Reveal className="flex flex-col gap-[16px] text-center">
-          <p className={`${eyebrow} !text-white/80`}>{t('eyebrow')}</p>
+          <p className={`${eyebrow} !text-white/85`}>{t('eyebrow')}</p>
           <h2 className={`${sectionHeading} !text-white`}>{t('heading')}</h2>
         </Reveal>
 
-        <div className="w-full flex flex-col items-center gap-[40px] sm:gap-[56px]">
+        <div className={`w-full ${SUPPORTERS_COLUMN} flex flex-col items-center gap-[40px] sm:gap-[56px]`}>
           <Tier label={t('flagship')}>
             <FitRow row={TOP_ROW} />
           </Tier>
@@ -230,7 +253,7 @@ export const Supporters = () => {
               <FitRow key={i} row={row} fitTo={[widestRow(OTHER_ROWS_DESKTOP)]} className="hidden sm:block" />
             ))}
             {OTHER_ROWS_MOBILE.map((row, i) => (
-              <FitRow key={i} row={row} fitTo={[row, SECOND_ROW]} className="sm:hidden" />
+              <FitRow key={i} row={row} fitTo={[row, CORE_MOBILE_REF]} className="sm:hidden" />
             ))}
           </Tier>
           <Tier label={t('impact_hubs')}>
@@ -243,13 +266,13 @@ export const Supporters = () => {
               />
             ))}
             {HUB_ROWS_MOBILE.map((row, i) => (
-              <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), SECOND_ROW]} className="sm:hidden" />
+              <FitRow key={i} row={row} fitTo={[widestRow(HUB_ROWS_MOBILE), CORE_MOBILE_REF]} className="sm:hidden" />
             ))}
           </Tier>
         </div>
 
         <Reveal>
-          <p className="text-[14px] sm:text-[16px] text-white/80">{t('more_soon')}</p>
+          <p className="text-[14px] sm:text-[16px] text-white/85">{t('more_soon')}</p>
         </Reveal>
       </div>
     </div>
