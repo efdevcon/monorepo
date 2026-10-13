@@ -194,6 +194,9 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   useEffect(() => {
     const controls = new OrbitControls(camera, gl.domElement);
     controlsRef.current = controls;
+    // The controls own the canvas's inline cursor (`auto` by default): grab at
+    // rest, grabbing while dragging. Scene's HoverCursor swaps in the pointer.
+    controls.cursorStyle = "grab";
     controls.enableDamping = true;
     controls.zoomToCursor = true; // wheel / pinch zoom anchors on the pointer, not the screen centre
     controls.dampingFactor = 0.12;
