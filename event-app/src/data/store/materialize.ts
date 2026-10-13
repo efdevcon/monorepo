@@ -1,6 +1,7 @@
 import { datasetForEventId } from "../dataset";
 import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
 import type { ConferenceEvent, Room, Session, Speaker } from "../models";
+import { sessionFormat } from "../sessionFormat";
 import { compact } from "./normalize";
 import type {
   EventMetaRow,
@@ -92,7 +93,8 @@ export function toSession(
     title: row.title,
     description: row.description,
     track: row.track,
-    type: row.type,
+    // The app's format vocabulary, not Pretalx's: "CLS - Talk (…)" → "Talk".
+    type: sessionFormat(row.type),
     expertise: row.expertise,
     duration: end - start,
     start,

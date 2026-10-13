@@ -145,6 +145,35 @@ function testMaterialize() {
   check("event built from meta", snap.event?.id === "devcon-7" && eq(snap.event?.featuredSpeakers, ["alice"]));
   check("lists match maps", snap.speakers.length === 2 && snap.rooms.length === 1);
 
+  // Pretalx's CLS type names fold into the app's core formats at read time;
+  // the stored row keeps the Pretalx name.
+  const clsRows = normalizeBundle(
+    {
+      ...FIXTURE,
+      sessions: [
+        { ...FIXTURE.sessions[0], id: "c1", type: "CLS - Talk (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c2", type: "CLS - EPF Talk" },
+        { ...FIXTURE.sessions[0], id: "c3", type: "CLS - Lightning (Academic track)" },
+        { ...FIXTURE.sessions[0], id: "c4", type: "CLS - career workshop (Career fair)" },
+        { ...FIXTURE.sessions[0], id: "c5", type: "CLS - Miniworkshop (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c6", type: "CLS - Panel (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c7", type: "CLS - Fireside chat (OTS)" },
+        { ...FIXTURE.sessions[0], id: "c8", type: "Roundtable - longer format" },
+      ],
+    },
+    "devcon-7",
+    1_000
+  );
+  const clsSnap = materialize(clsRows, "devcon-7");
+  const formatOf = (id: string) => clsSnap.sessionById.get(id)!.type;
+  check("CLS talks fold into Talk", formatOf("c1") === "Talk" && formatOf("c2") === "Talk");
+  check("CLS lightning folds into Lightning Talk", formatOf("c3") === "Lightning Talk");
+  check("CLS workshops fold into Workshop", formatOf("c4") === "Workshop" && formatOf("c5") === "Workshop");
+  check("CLS panel folds into Panel", formatOf("c6") === "Panel");
+  check("unknown CLS format keeps its own name", formatOf("c7") === "Fireside chat");
+  check("non-CLS types untouched", formatOf("c8") === "Roundtable - longer format");
+  check("stored row keeps the Pretalx name", clsRows.sessions[0].type === "CLS - Talk (Open Tech Summit)");
+
   const empty = emptySnapshot("x");
   check("empty snapshot", empty.sessions.length === 0 && empty.event === undefined && empty.sessionById.size === 0);
   const noMeta = materialize({ ...rows, meta: null }, "devcon-7");
