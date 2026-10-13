@@ -36,7 +36,7 @@ import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveRe
 import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
-import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
+import { ghostPill, HeaderToolbar, InterestedPill, ToolbarPills } from "@/components/ActionPills";
 import { RemindersNudgeRow } from "@/components/schedule/RemindersNudgeRow";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -50,7 +50,13 @@ import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
 import { dayKey, formatDayHeading, ms } from "./utils";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
-import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
+import {
+  APP_HEADER_OFF_ATTR,
+  headerOffsetNow,
+  safeTopNow,
+  useIsDesktop,
+  useIsPhoneLandscape,
+} from "@/hooks/useIsDesktop";
 import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 import { usePreviewState } from "@/hooks/usePreviewState";
 
@@ -264,7 +270,7 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
+      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer phone-landscape:right-[max(16px,var(--safe-right))] items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
     >
       <ClockArrowDown className="size-4 shrink-0" />
       Live now
@@ -437,6 +443,8 @@ function GroupHeader({
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
   const isDesktop = useIsDesktop();
+  // Re-measured on rotation: the pin line moves with the header row.
+  const phoneLandscape = useIsPhoneLandscape();
 
   useEffect(() => {
     const el = sentinelRef.current;
@@ -447,6 +455,8 @@ function GroupHeader({
     // top-[103px]/[183px]),
     // the header is stuck. headerOffsetNow() carries the iOS status-bar
     // inset, matching the +var(--safe-top) in those sticky classes.
+    // (Phone landscape: the header row is gone, headerOffsetNow() is the
+    // status-bar inset alone and the tabs pin at the top — 47 + 1 again.)
     const pinLine = headerOffsetNow() + (isDesktop ? 119 : 48);
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -461,7 +471,7 @@ function GroupHeader({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [inPanel, isDesktop]);
+  }, [inPanel, isDesktop, phoneLandscape]);
 
   return (
     <>
@@ -470,7 +480,7 @@ function GroupHeader({
         className={cn(
           "flex items-center justify-between gap-3",
           !inPanel &&
-            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(183px+var(--safe-top))]",
+            "sticky top-[calc(103px+var(--safe-top))] z-10 phone-landscape:top-[calc(47px+var(--safe-top))] lg:top-[calc(183px+var(--safe-top))]",
           // Pinned headers get 4px 0 padding for breathing room, offset by
           // negative margins so flow height stays put (the section is
           // flex-col so the negative margins can't collapse away). Browsers
@@ -1033,15 +1043,29 @@ function ScheduleInner({
   // jumps (Live now, day tabs, view toggle) are not "scrolling down": the
   // flag skips the scroll frame they cause.
   const programmaticScrollRef = useRef(false);
-  const [chromeHidden, setChromeHidden] = useState(false);
+  const [scrollChromeHidden, setChromeHidden] = useState(false);
+  // Phone in landscape: the header row is gone for as long as the list shows
+  // (both views — the day tabs carry its pills, see `landscapeControls`),
+  // published as <html data-app-header-off> for AppHeader and the offset
+  // math; the scroll fold below stays out of it. (Feedback round,
+  // 2026-10-13: the mock has the tabs at the very top, the grid under them.)
+  const phoneLandscape = useIsPhoneLandscape();
+  const headerOff = phoneLandscape && listVisible && !detailId && !isDesktop;
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    root.toggleAttribute(APP_HEADER_OFF_ATTR, headerOff);
+    return () => root.removeAttribute(APP_HEADER_OFF_ATTR);
+  }, [headerOff]);
   // Not under a session page: the layer locks the page scroll, so a header
   // hidden at the moment of the tap would have no scroll to bring it back.
   const chromeCollapsible =
     listVisible &&
     !detailId &&
     !isDesktop &&
+    !phoneLandscape &&
     view === "timeline" &&
     resultCount > 0;
+  const chromeHidden = headerOff || scrollChromeHidden;
   useEffect(() => {
     if (!chromeCollapsible) {
       setChromeHidden(false);
@@ -1095,9 +1119,9 @@ function ScheduleInner({
       return;
     }
     root.setAttribute("data-app-header-animates", "");
-    root.toggleAttribute("data-app-header-hidden", chromeHidden);
+    root.toggleAttribute("data-app-header-hidden", scrollChromeHidden);
     return reset;
-  }, [chromeCollapsible, chromeHidden]);
+  }, [chromeCollapsible, scrollChromeHidden]);
 
   // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
   // Once that row has scrolled under the pinned day tabs, a floating copy
@@ -1315,7 +1339,7 @@ function ScheduleInner({
           aria-hidden={!viewRowScrolledOut}
           inert={!viewRowScrolledOut || undefined}
           className={cn(
-            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
+            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg phone-landscape:left-[max(16px,var(--safe-left))] shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
             viewRowScrolledOut
               ? "translate-y-0 opacity-100"
               : "pointer-events-none translate-y-2 opacity-0"
@@ -1440,6 +1464,28 @@ function ScheduleInner({
               // Desktop: pins under the sticky toolbar above (65px nav +
               // 65px toolbar).
               stackedUnderToolbar
+              // Phone landscape: the header's pills, opposite the dates.
+              // Only this copy listens for the "+1" bubble there; the
+              // header copy is display:none with its row.
+              landscapeControls={
+                !detailId && (
+                  <ToolbarPills
+                    kind="session"
+                    layout="row"
+                    pulseEnabled={paneActive && headerOff}
+                    searchLabel="Search sessions"
+                    searchOpen={headerSearch.searchOpen}
+                    searchActive={headerSearch.searchOpen}
+                    onToggleSearch={headerSearch.toggleSearch}
+                    interestedOnly={interestedOnly}
+                    interestedCount={interestedIds.size}
+                    onToggleInterested={() => setInterestedOnly((v) => !v)}
+                    filterCount={facetFilterTotal}
+                    filtersOpen={filtersOpen}
+                    onOpenFilters={openFilters}
+                  />
+                )
+              }
             >
               <InterestedPill
                 kind="session"
@@ -1477,9 +1523,12 @@ function ScheduleInner({
               ref={contentRef}
               className={cn(
                 "px-4 pt-6 lg:rounded-b-xl lg:bg-dc-panel lg:pb-6",
+                // Phone landscape: the gutters grow to the notch's inset
+                // (16px where there is none).
+                "phone-landscape:pl-[max(16px,var(--safe-left))] phone-landscape:pr-[max(16px,var(--safe-right))]",
                 // Scroll target for day-tab "top" (see scrollListTop); same
                 // pinned-tabs clearance as the group headers.
-                "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]",
+                "scroll-mt-[calc(112px+var(--safe-top))] phone-landscape:scroll-mt-[calc(56px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]",
                 // Mobile timeline sits flush on the panel-grey underlay (see
                 // the timeline branch); the layout's nav clearance is the
                 // only gap left below it.

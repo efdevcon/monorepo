@@ -2,6 +2,13 @@
 
 @source "../../../lib/**/*.{ts,tsx}";
 
+/* A phone held sideways: under the desktop breakpoint, wider than tall, and
+   short (tablets in landscape are lg; a desktop window this short is rare).
+   The schedule drops its header row here and hands the pills to the day
+   tabs. JS twin: PHONE_LANDSCAPE_MEDIA_QUERY in hooks/useIsDesktop.ts — keep
+   the two in lockstep. */
+@custom-variant phone-landscape (@media (max-width: 1023px) and (orientation: landscape) and (max-height: 600px));
+
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #000000;
@@ -116,6 +123,11 @@
      margins, and the JS mirror safeTopNow() (useIsDesktop.ts) — adds this so
      the chrome stays calibrated whether or not the strip exists. */
   --safe-top: env(safe-area-inset-top, 0px);
+  /* The notch side in landscape (one of the two is 0, both are 0 upright).
+     Only the phone-landscape layouts read these; the JS mirror is
+     safeLeftNow() (useIsDesktop.ts). */
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
   /* Rendered height of the mobile bottom tab bar, published (measured) by
      Nav.tsx — it varies with env(safe-area-inset-bottom) between browser tab
      and installed PWA. 0 wherever the bar isn't rendered (desktop, detail

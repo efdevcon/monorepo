@@ -6,7 +6,7 @@ import cn from "classnames";
 import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDesktop";
 import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
@@ -286,7 +286,19 @@ export function ScheduleTimeline({
 }) {
   const isDesktop = useIsDesktop();
   const compact = !isDesktop;
-  const m = isDesktop ? DESKTOP_METRICS : MOBILE_METRICS;
+  // Phone in landscape with the notch on the left: the sticky room column
+  // sits under it, so the column grows by the inset and pads its names past
+  // it (the time grid may scroll under the notch; the names may not).
+  const safeLeft = useIsPhoneLandscape() && !isDesktop ? safeLeftNow() : 0;
+  const m = useMemo(
+    () =>
+      isDesktop
+        ? DESKTOP_METRICS
+        : safeLeft
+          ? { ...MOBILE_METRICS, roomCol: MOBILE_METRICS.roomCol + safeLeft }
+          : MOBILE_METRICS,
+    [isDesktop, safeLeft]
+  );
 
   const { rooms, slots, startMs, byRoom } = useMemo(
     () => buildTimeline(sessions),
@@ -401,7 +413,9 @@ export function ScheduleTimeline({
       className={cn(
         "bg-white",
         // Mobile: full-bleed across the page gutters, hairline top/bottom.
-        "-mx-4 border-y border-dc-hairline",
+        // Phone landscape: the gutters are the notch insets, so pull back
+        // by those — the room column pads its own names past the notch.
+        "-mx-4 border-y border-dc-hairline phone-landscape:-ml-[max(16px,var(--safe-left))] phone-landscape:-mr-[max(16px,var(--safe-right))]",
         // Desktop: the Figma card. overflow-hidden is lg-only on purpose —
         // on mobile it would become the axis header's scroll container.
         "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
@@ -410,7 +424,7 @@ export function ScheduleTimeline({
         // 53 + 9 desktop,
         // the list groups' clearance) so the axis — date corner, time slots
         // and the now pill — lands fully visible instead of under the bar.
-        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
+        "scroll-mt-[calc(112px+var(--safe-top))] phone-landscape:scroll-mt-[calc(56px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
       {/* Time-axis header: its own track, scrollLeft mirrored from the body */}
@@ -433,7 +447,7 @@ export function ScheduleTimeline({
           className="relative flex h-full"
         >
           <div
-            style={{ width: m.roomCol }}
+            style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
             className={cn(
               chromeCell,
               // Same panel grey as the time labels beside it (the glass is
@@ -506,7 +520,7 @@ export function ScheduleTimeline({
           {rooms.map((room) => (
             <div key={room} className="flex" style={{ height: m.laneH }}>
               <div
-                style={{ width: m.roomCol }}
+                style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
                 title={room}
                 className={cn(
                   chromeCell,

@@ -192,19 +192,19 @@ export function HeaderPill({
  * saved items on My Interests (event-wide, not the shown day), applied
  * filters on Filter. Renders nothing while the pane is hidden.
  */
-export function HeaderToolbar({
-  kind,
-  searchLabel,
-  searchOpen,
-  searchActive,
-  onToggleSearch,
-  interestedOnly,
-  interestedCount,
-  onToggleInterested,
-  filterCount,
-  filtersOpen,
-  onOpenFilters,
-}: {
+export function HeaderToolbar(props: ToolbarPillsProps) {
+  const paneActive = usePaneActive();
+  const isDesktop = useIsDesktop();
+  return (
+    <HeaderActionsPortal>
+      {/* Only the visible pill listens: on desktop this bar is display:none
+          and the list toolbar's InterestedPill plays the bubble. */}
+      <ToolbarPills {...props} pulseEnabled={paneActive && !isDesktop} />
+    </HeaderActionsPortal>
+  );
+}
+
+export interface ToolbarPillsProps {
   /** Which interest additions play the "+1" bubble on My Interests. */
   kind: InterestKind;
   /** Accessible name for Search ("Search sessions"); the visible label is shared. */
@@ -218,17 +218,40 @@ export function HeaderToolbar({
   filterCount: number;
   filtersOpen: boolean;
   onOpenFilters: () => void;
+}
+
+/**
+ * The three pills themselves, without the portal: HeaderToolbar puts them
+ * in the app header; the schedule's day tabs host a second copy on a phone
+ * in landscape, where the header row is gone (`landscapeControls`).
+ * `layout`: "header" lets My Interests take the row's slack; "row" keeps
+ * every pill at its own width.
+ */
+export function ToolbarPills({
+  kind,
+  searchLabel,
+  searchOpen,
+  searchActive,
+  onToggleSearch,
+  interestedOnly,
+  interestedCount,
+  onToggleInterested,
+  filterCount,
+  filtersOpen,
+  onOpenFilters,
+  pulseEnabled,
+  layout = "header",
+}: ToolbarPillsProps & {
+  /** Whether this copy plays the "+1" bubble (one listener per visible copy). */
+  pulseEnabled: boolean;
+  layout?: "header" | "row";
 }) {
-  const paneActive = usePaneActive();
-  const isDesktop = useIsDesktop();
-  // Only the visible pill listens: on desktop this bar is display:none and
-  // the list toolbar's InterestedPill plays the bubble.
-  const [pulse, clearPulse] = useInterestPulse(kind, paneActive && !isDesktop);
+  const [pulse, clearPulse] = useInterestPulse(kind, pulseEnabled);
   // Offline, the header's offline icon joins this row: the shorter label
   // keeps every pill legible at phone widths.
   const online = useOnline();
   return (
-    <HeaderActionsPortal>
+    <>
       <HeaderPill
         icon={<Search />}
         label="Search"
@@ -253,7 +276,7 @@ export function HeaderToolbar({
         onPulseEnd={clearPulse}
         onClick={onToggleInterested}
         aria-pressed={interestedOnly}
-        className="min-w-0 flex-1"
+        className={layout === "header" ? "min-w-0 flex-1" : "shrink-0"}
       />
       <HeaderPill
         icon={<ListFilter />}
@@ -265,6 +288,6 @@ export function HeaderToolbar({
         aria-expanded={filtersOpen}
         className="shrink-0"
       />
-    </HeaderActionsPortal>
+    </>
   );
 }
