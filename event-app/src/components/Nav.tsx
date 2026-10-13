@@ -15,7 +15,6 @@ import {
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
 import { handleTabClick } from "@/components/paneContext";
-import { IosHapticOverlay } from "@/components/IosHapticOverlay";
 
 export type NavItem = {
   href: string;
@@ -187,11 +186,14 @@ export function Nav() {
           // Re-tapping the active tab resets its pane (top / "now") instead
           // of navigating, like a native tab bar.
           onClick={(e) => handleTabClick(e, item.href, pathname)}
-          // `relative`: the iOS haptic overlay positions itself over the tab.
-          className="relative flex min-w-px flex-1"
+          // No iOS haptic overlay here any more: the transparent
+          // <input type="checkbox" switch> that played the tick took focus on
+          // every tap, and on iOS 26 the bar dropped ~50px for a few frames
+          // each time (the "jumping menu" report). Android keeps its tick via
+          // tapHaptic in handleTabClick.
+          className="flex min-w-px flex-1"
         >
           <NavTab item={item} active={isNavActive(pathname, item.href)} />
-          <IosHapticOverlay />
         </Link>
       ))}
     </nav>
