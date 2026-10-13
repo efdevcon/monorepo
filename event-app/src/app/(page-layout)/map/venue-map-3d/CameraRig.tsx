@@ -46,6 +46,12 @@ const PHONE_SHIFT_PX = 28;
  * (feedback round, 2026-10-13).
  */
 const DESKTOP_SHIFT_PX = 24;
+/**
+ * Phones: the one-finger pan moves the floor this much faster than the
+ * finger (OrbitControls' default is 1:1, which testers found slow — feedback
+ * round, 2026-10-13). Mouse pan stays 1:1.
+ */
+const TOUCH_PAN_SPEED = 1.15;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
 const TAP_MOVE_PX = 10;
@@ -248,6 +254,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
+    controls.panSpeed = desktop ? 1 : TOUCH_PAN_SPEED;
     // "Left" is the side that shows more of the venue's front (lower azimuth); the higher side looks at the empty back.
     controls.minAzimuthAngle = START_AZIMUTH - MathUtils.degToRad(settings.rotateLeftDeg);
     controls.maxAzimuthAngle = START_AZIMUTH + MathUtils.degToRad(settings.rotateRightDeg);
