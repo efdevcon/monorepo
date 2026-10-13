@@ -103,7 +103,11 @@ export function AppHeader() {
   const { title, back, toolbar, bare } = routeChrome(pathname, detailKind);
 
   return (
-    <header className="sticky top-0 z-30 font-heading">
+    // Folded away (data-app-header-hidden): the bar is translated out of
+    // view but this sticky box still sits over the top 56px at z-30, where
+    // the day tabs now pin — it swallowed their taps until the page was
+    // scrolled back up (tester report, 2026-10-13). No pointer events then.
+    <header className="sticky top-0 z-30 font-heading [[data-app-header-hidden]_&]:pointer-events-none">
       {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
           so the glass itself covers the iOS status-bar strip. Slides up out
           of view while <html data-app-header-hidden> is set (the mobile
