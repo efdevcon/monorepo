@@ -200,7 +200,7 @@ export function Greeting() {
           </>
         ) : (
           <Link
-            href="/ticket"
+            href="/my-devcon"
             className="flex h-10 items-center gap-2 rounded-full border border-dc-hairline bg-white/80 pl-3 pr-4 font-heading text-sm font-bold text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-white motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none"
           >
             <LogIn className="size-4 text-dc-purple" />

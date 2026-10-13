@@ -16,7 +16,7 @@ export function BootShell() {
     <ListSkeleton kind="schedule" label="Loading schedule…" />
   ) : pathname.startsWith("/speakers") ? (
     <ListSkeleton kind="speakers" label="Loading speakers…" />
-  ) : pathname.startsWith("/ticket") ? (
+  ) : pathname.startsWith("/my-devcon") ? (
     <TicketSkeleton />
   ) : (
     <GenericSkeleton />

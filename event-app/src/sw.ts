@@ -36,7 +36,7 @@ const ignoreViewParams = {
 
 const documents = new NetworkFirst({
   cacheName: "pages",
-  // 3 s, not 5: "/" and /ticket are served through this route on every app
+  // 3 s, not 5: "/" and /my-devcon are served through this route on every app
   // open (they are not precached, see the install listener below), and on
   // flaky venue wifi a longer wait before the cached copy reads as a hang.
   networkTimeoutSeconds: 3,
@@ -100,7 +100,7 @@ const serwist: Serwist = new Serwist({
             typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(5_000) : undefined;
           return await fetch(request, { signal });
         } catch {
-          return Response.redirect(`${self.location.origin}/ticket`, 302);
+          return Response.redirect(`${self.location.origin}/my-devcon`, 302);
         }
       },
     },
@@ -289,7 +289,7 @@ const serwist: Serwist = new Serwist({
 serwist.addEventListeners();
 
 /**
- * Warm the runtime page cache with "/" and /ticket at install, so both open
+ * Warm the runtime page cache with "/" and /my-devcon at install, so both open
  * offline on a phone that never visited them online (the ticket QR at the
  * venue entrance, no signal). They are deliberately NOT precached: precache
  * serves cache-first, and these two pages (the ones carrying the install
@@ -300,7 +300,7 @@ serwist.addEventListeners();
  * and offline loads fall back to it. Best effort: a failure here must not
  * fail the install.
  */
-const WARM_PAGES = ["/", "/ticket"];
+const WARM_PAGES = ["/", "/my-devcon"];
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {

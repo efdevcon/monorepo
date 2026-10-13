@@ -46,7 +46,7 @@ const TABS: { path: string; Component: ComponentType }[] = [
     Component: dynamic(() => import("@/components/MapPane").then((m) => m.MapPane), { ssr: false }),
   },
   {
-    path: "/ticket",
+    path: "/my-devcon",
     Component: dynamic(() => import("@/components/Ticket").then((m) => m.Ticket), { ssr: false }),
   },
 ];

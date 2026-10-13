@@ -22,7 +22,7 @@ const withSerwist = withSerwistInit({
   // detail routes (/schedule/[id], /speakers/[id], …) rely on runtime RSC
   // caching + the document fallback instead.
   additionalPrecacheEntries: [
-    // NOT "/" (see the /ticket note below: the install button on the home hero
+    // NOT "/" (see the /my-devcon note below: the install button on the home hero
     // needs the same fresh, personalised HTML).
     { url: "/schedule", revision },
     { url: "/speakers", revision },
@@ -30,7 +30,7 @@ const withSerwist = withSerwistInit({
     { url: "/notifications", revision },
     // The AI planner's apply page (/my-interests?add=…): must open offline.
     { url: "/my-interests", revision },
-    // NOT /ticket (nor "/"). Their HTML must come from the server whenever the
+    // NOT /my-devcon (nor "/"). Their HTML must come from the server whenever the
     // network is there: the root layout's <link rel="manifest"> is
     // personalised from the session cookie (PersonalizedManifestLink), and
     // Safari reads that tag from the HTML it was given when "Add to Home
@@ -95,11 +95,14 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["lib"],
-  // The inbox moved from /announcements to /notifications (2026-09-24); pushes
-  // and links sent before then still point at the old path.
+  // The inbox moved from /announcements to /notifications (2026-09-24) and
+  // My Devcon from /ticket to /my-devcon (2026-10-13, so the tab, the title
+  // and the URL say the same thing); pushes, emails and sign-in links sent
+  // before then still point at the old paths.
   async redirects() {
     return [
       { source: "/announcements", destination: "/notifications", permanent: true },
+      { source: "/ticket", destination: "/my-devcon", permanent: true },
     ];
   },
   env: {

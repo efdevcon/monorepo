@@ -35,7 +35,7 @@ function KeyArtBanner({ title, body, cta }: { title: string; body: string; cta: 
   const { attempt, markFailed } = useRetryOnReconnect();
   return (
     <Link
-      href="/ticket"
+      href="/my-devcon"
       className="group relative flex h-[400px] flex-col justify-end overflow-hidden rounded-xl bg-[#160b2b] p-5 transition-shadow duration-150 ease-out hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple lg:h-[243px] lg:p-6"
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -137,7 +137,7 @@ export function Tickets() {
           </h3>
           <p className="text-[14px] leading-5 text-dc-fg2">
             Several tickets are under this email.{" "}
-            <Link href="/ticket" className="font-bold text-dc-purple hover:underline">
+            <Link href="/my-devcon" className="font-bold text-dc-purple hover:underline">
               Pick yours
             </Link>{" "}
             to see its QR code.

@@ -40,7 +40,7 @@ export function stripIgnoredParams(url: URL): URL {
  * TabPanes.tsx): our Link wrapper disables Next's scroll-to-top for hrefs into
  * these paths so each pane can keep its own scroll position.
  */
-export const TAB_PATHS = ["/", "/schedule", "/speakers", "/map", "/ticket"] as const;
+export const TAB_PATHS = ["/", "/schedule", "/speakers", "/map", "/my-devcon"] as const;
 
 export function isTabPath(pathname: string): boolean {
   return (TAB_PATHS as readonly string[]).includes(pathname);

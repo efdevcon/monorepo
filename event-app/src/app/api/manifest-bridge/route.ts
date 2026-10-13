@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
     start_url: `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`,
     // Without an explicit scope, browsers infer it from start_url's
     // directory — here that would be /api/auth/, meaning literally
-    // everywhere else in the app (/ticket, /, ...) would be considered
+    // everywhere else in the app (/my-devcon, /, ...) would be considered
     // outside the installed app's scope, and iOS treats navigating there
     // as leaving to an external page instead of staying in standalone mode.
     scope: "/",

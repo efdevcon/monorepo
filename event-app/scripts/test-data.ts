@@ -215,7 +215,7 @@ function testRouting() {
   check("other routes are not details", parseDetailPath("/room-screens/stage-1") === null);
   check("isDetailPath", isDetailPath("/speakers/bob") && !isDetailPath("/speakers"));
 
-  check("tabPathOf tab routes", tabPathOf("/schedule") === "/schedule" && tabPathOf("/") === "/");
+  check("tabPathOf tab routes", tabPathOf("/schedule") === "/schedule" && tabPathOf("/") === "/" && tabPathOf("/my-devcon") === "/my-devcon");
   check("tabPathOf detail pages map to their list tab", tabPathOf("/schedule/my-talk") === "/schedule" && tabPathOf("/speakers/bob") === "/speakers");
   check("tabPathOf other routes", tabPathOf("/announcements") === null && tabPathOf("/room-screens/x") === null);
 }

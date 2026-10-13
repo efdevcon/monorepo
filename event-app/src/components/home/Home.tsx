@@ -54,7 +54,7 @@ export function Home() {
           {/* HomeFooterArt ("Devcon 8 India") is parked for a design revisit —
               the component is kept, just not rendered. */}
           {/* Tickets section removed from Home: signed in, the event ticket,
-              swag and perks live only on My Devcon (/ticket). The signed-out
+              swag and perks live only on My Devcon (/my-devcon). The signed-out
               "Your tickets" sign-in banner is parked pending a decision on
               whether it goes for good; restore it with:
               <div>
