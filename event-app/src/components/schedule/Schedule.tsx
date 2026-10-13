@@ -73,31 +73,23 @@ type ViewMode = "list" | "timeline";
 
 /**
  * "Sessions / Community Hubs" switch: which programme the whole page shows.
- * A white pill track whose purple fill slides to the chosen programme (the
- * List/Timeline control's sliding indicator, in the topic pills' selected
- * purple), so it reads as page-level navigation and not as a twin of that
- * control, which keeps its recessed track. Type, 20px icons, gap and colours
- * match List/Timeline so the two read as one family; segments take 12px
- * sides (not that control's 8px) so labels clear the round track's ends.
- * `stretch` fills the row on mobile. A switch remounts the list (and this
- * toggle with it), so `previous` names the programme just left and when:
- * a toggle mounting right after that switch paints its fill there first,
- * then slides it over. Any later mount (My Interests turned off, crossing
- * the desktop breakpoint) just places the fill.
+ * A white pill track whose purple fill sits on the chosen programme (the
+ * List/Timeline control's indicator, in the topic pills' selected purple),
+ * so it reads as page-level navigation and not as a twin of that control,
+ * which keeps its recessed track. Type, 20px icons, gap and colours match
+ * List/Timeline so the two read as one family; segments take 12px sides
+ * (not that control's 8px) so labels clear the round track's ends.
+ * `stretch` fills the row on mobile. The fill never animates: a switch
+ * remounts the list and this toggle with it, and the slide that used to
+ * replay across that remount (and on page load) read as a wiggle (Scott,
+ * 2026-10-13) — the fill is simply placed, on mount and on resize.
  */
-/** The last programme switch: where the fill slides from, and when. */
-type SourceSwitch = { from: ScheduleSource; at: number };
-/** A toggle mounting this soon after a switch belongs to it (the remount). */
-const SLIDE_WINDOW_MS = 1000;
-
 function SourceToggle({
   source,
-  previous,
   onChange,
   stretch = false,
 }: {
   source: ScheduleSource;
-  previous: SourceSwitch | null;
   onChange: (s: ScheduleSource) => void;
   stretch?: boolean;
 }) {
@@ -108,76 +100,18 @@ function SourceToggle({
   // Measured after render so the fill lands on the active label's
   // post-font-weight-swap width; re-measured on resize because the stretched
   // mobile segments change width with the viewport.
-  const indicatorRef = useRef<HTMLDivElement | null>(null);
-  // undefined until the first layout pass decides; null = no slide.
-  const slideFromRef = useRef<ScheduleSource | null | undefined>(undefined);
-  const slidePendingRef = useRef(false);
-  // The first placement (no slide) must snap, not animate in from x 0.
-  const snapPendingRef = useRef(false);
-  const measureOf = useCallback((s: ScheduleSource) => {
-    const el = buttonRefs.current.get(s);
-    return el ? { x: el.offsetLeft, w: el.offsetWidth } : null;
-  }, []);
   useLayoutEffect(() => {
     const measure = () => {
-      const m = measureOf(source);
-      if (m) setIndicator(m);
+      const el = buttonRefs.current.get(source);
+      if (el) setIndicator({ x: el.offsetLeft, w: el.offsetWidth });
     };
-    // Decided once per mount, cleared by the effect below once the slide
-    // has started (not here: StrictMode re-runs this effect on mount and
-    // must see it again). Only a mount caused by the switch itself slides.
-    if (slideFromRef.current === undefined) {
-      const fresh =
-        previous !== null &&
-        previous.from !== source &&
-        performance.now() - previous.at < SLIDE_WINDOW_MS;
-      slideFromRef.current = fresh ? previous.from : null;
-    }
-    const from = slideFromRef.current;
-    if (from) {
-      // Paint the fill at the old segment first; the effect below moves it.
-      slidePendingRef.current = true;
-      setIndicator(measureOf(from));
-    } else {
-      snapPendingRef.current = true;
-      measure();
-    }
+    measure();
     const track = trackRef.current;
     if (!track) return;
-    const ro = new ResizeObserver(() => {
-      if (!slidePendingRef.current) measure();
-    });
+    const ro = new ResizeObserver(measure);
     ro.observe(track);
     return () => ro.disconnect();
-    // `previous` is read once, on mount (see above).
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [source, measureOf]);
-  useLayoutEffect(() => {
-    const el = indicatorRef.current;
-    if (snapPendingRef.current && indicator && el) {
-      // Placed with the transition off and styles flushed, so the hidden →
-      // placed step never runs as an animation.
-      snapPendingRef.current = false;
-      el.style.transition = "none";
-      void el.offsetWidth;
-      el.style.transition = "";
-      return;
-    }
-    if (!slidePendingRef.current || !indicator || !el) return;
-    slidePendingRef.current = false;
-    slideFromRef.current = null;
-    // Snap to the old segment with the transition off (the hidden → placed
-    // step would otherwise animate in from x 0), flush styles so that is the
-    // transition's start, then move the fill on the DOM directly; state
-    // catches up on the ResizeObserver's first measure.
-    el.style.transition = "none";
-    void el.offsetWidth;
-    el.style.transition = "";
-    const m = measureOf(source);
-    if (!m) return;
-    el.style.transform = `translateX(${m.x}px)`;
-    el.style.width = `${m.w}px`;
-  }, [indicator, source, measureOf]);
+  }, [source]);
 
   return (
     <div
@@ -193,14 +127,13 @@ function SourceToggle({
       )}
     >
       <div
-        ref={indicatorRef}
         aria-hidden
         style={
           indicator
             ? { transform: `translateX(${indicator.x}px)`, width: indicator.w }
             : { visibility: "hidden" }
         }
-        className="absolute left-0 top-1 h-8 rounded-full bg-dc-purple transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
+        className="absolute left-0 top-1 h-8 rounded-full bg-dc-purple"
       />
       {(
         [
@@ -684,20 +617,11 @@ export function Schedule() {
     setSeenHubsInUrl(hubsInUrl);
     if (hubsInUrl) setSource("hubs");
   }
-  // The programme just left (and when), for the remounted switch's slide.
-  const [previousSource, setPreviousSource] = useState<SourceSwitch | null>(null);
   // Whether the once-per-app-open landing on "now" has happened. Lives here,
   // above the keyed inner view, so a programme switch (which remounts it)
   // does not land again: testers read that as the app forcing them to "now".
   const landedRef = useRef(false);
-  const sourceRef = useRef(source);
-  useEffect(() => {
-    sourceRef.current = source;
-  }, [source]);
   const changeSource = useCallback((next: ScheduleSource) => {
-    // Batched with setSource, so the remounted switch mounts already
-    // knowing where its fill comes from.
-    setPreviousSource({ from: sourceRef.current, at: performance.now() });
     setSource(next);
     const url = new URL(window.location.href);
     if (next === "hubs") url.searchParams.set(HUBS_PARAM, "1");
@@ -709,7 +633,6 @@ export function Schedule() {
       <ScheduleInner
         key={source}
         source={source}
-        previousSource={previousSource}
         hasHubs={hasHubs}
         onSourceChange={changeSource}
         view={view}
@@ -724,7 +647,6 @@ export function Schedule() {
 
 function ScheduleInner({
   source,
-  previousSource,
   hasHubs,
   onSourceChange,
   view,
@@ -734,7 +656,6 @@ function ScheduleInner({
   landedRef,
 }: {
   source: ScheduleSource;
-  previousSource: SourceSwitch | null;
   hasHubs: boolean;
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
@@ -1503,7 +1424,7 @@ function ScheduleInner({
             (interestedOnly ? (
               <InterestsSpanNote />
             ) : (
-              <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} />
+              <SourceToggle source={source} onChange={onSourceChange} />
             ))}
         </div>
 
@@ -1591,7 +1512,7 @@ function ScheduleInner({
                 {interestedOnly ? (
                   <InterestsSpanNote stretch />
                 ) : (
-                  <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} stretch />
+                  <SourceToggle source={source} onChange={onSourceChange} stretch />
                 )}
               </div>
             )}
