@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { Calendar, CalendarPlus, Clock3, MapPin, Star } from "lucide-react";
+import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
 import { Link } from "@/routing";
 import { useEvent } from "@/data/hooks";
@@ -180,10 +180,14 @@ export function SessionSummary({
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {/* Details show the full track name; list/timeline cards keep the
-                short trackBadgeLabel. */}
+                short trackBadgeLabel. Hub sessions keep the cards' grammar
+                here too: a rounded pill with the tent glyph, topics as
+                rounded chips (the square track badge is the Pretalx
+                programme's). */}
             <span
               className={cn(
-                "rounded-[2px] px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                "inline-flex items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                theme.isHub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
                 theme.neutral && "border border-dc-hairline bg-white"
               )}
               style={
@@ -191,13 +195,14 @@ export function SessionSummary({
               }
             >
               {trackFullLabel(session.track, session.room?.id)}
+              {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
             </span>
             {/* Hub sessions: the sheet's Topic column, as neutral chips after
                 the hub badge (a hub session has no track of its own). */}
             {communityHubTopics(session).map((topic) => (
               <span
                 key={topic}
-                className="rounded-[2px] border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2"
+                className="rounded-full border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2"
               >
                 {topic}
               </span>
