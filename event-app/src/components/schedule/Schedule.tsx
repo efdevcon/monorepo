@@ -445,10 +445,14 @@ function GroupHeader({
   const isDesktop = useIsDesktop();
   // Re-measured on rotation: the pin line moves with the header row.
   const phoneLandscape = useIsPhoneLandscape();
+  // Re-observed when the tab pane comes back: a header that mounted while
+  // the pane was display:none (a live-band change re-keys its segment) only
+  // ever saw a 0×0 rect, so it needs a fresh first notification.
+  const paneActive = usePaneActive();
 
   useEffect(() => {
     const el = sentinelRef.current;
-    if (inPanel || !el) return;
+    if (inPanel || !paneActive || !el) return;
     // The sentinel marks the header's natural position: once it crosses
     // above the pin line (1px past the breakpoint's sticky top offset =
     // app header (+ desktop toolbar) + day-tab strip, see the sticky
@@ -458,20 +462,30 @@ function GroupHeader({
     // (Phone landscape: the header row is gone, headerOffsetNow() is the
     // status-bar inset alone and the tabs pin at the top — 47 + 1 again.)
     const pinLine = headerOffsetNow() + (isDesktop ? 119 : 48);
+    // The root is everything below the pin line, not just the viewport
+    // (the bottom margin runs far past any day's list): "intersecting" then
+    // means "below the pin line" wherever the sentinel is, so pinning is a
+    // state change the observer always reports. With the viewport as the
+    // root, a sentinel that jumped from below the screen to above the pin
+    // line in one frame (the live-now landing, the Live now pill, a
+    // restored scroll) was "not intersecting" before and after, nothing
+    // fired, and the header pinned with no fill — cards scrolled through
+    // its text until it came back down into view (tester report,
+    // 2026-10-13).
     const observer = new IntersectionObserver(
       ([entry]) => {
         // A hidden tab pane (display:none) reports a 0×0 rect that is "not
-        // intersecting" and "above the pin line": ignore it, or every header
-        // flips to stuck while another tab shows and flashes back on return.
+        // intersecting": ignore it, or every header flips to stuck while
+        // another tab shows and flashes back on return.
         const r = entry.boundingClientRect;
         if (r.width === 0 && r.height === 0) return;
-        setStuck(!entry.isIntersecting && r.top < pinLine);
+        setStuck(!entry.isIntersecting);
       },
-      { rootMargin: `-${pinLine}px 0px 0px 0px` }
+      { rootMargin: `-${pinLine}px 0px 1000000px 0px` }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [inPanel, isDesktop, phoneLandscape]);
+  }, [inPanel, paneActive, isDesktop, phoneLandscape]);
 
   return (
     <>
