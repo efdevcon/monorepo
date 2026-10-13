@@ -1,6 +1,9 @@
 // Pure-function tests for the EventStore and routing modules.
 // Run: pnpm data:test
 
+import { fileProblem, safeFileName, validateFeedbackPayload } from "../src/data/feedback/validate";
+import { summarizeUserAgent } from "../src/data/feedback/device";
+import { chunkText, feedbackChildren, feedbackProperties, feedbackTitle } from "../src/data/feedback/notion";
 import { normalizeBundle, compact } from "../src/data/store/normalize";
 import { materialize, emptySnapshot } from "../src/data/store/materialize";
 import { shouldFetch, isBundleShaped } from "../src/data/store/event-store";
@@ -586,6 +589,50 @@ function testAiPlan() {
     check("capped interests count the rest", few.includes("C00000, C00001, and 1 more already starred in the app"));
     const none = buildAssistantPrompt(input, { maxStarred: 0 });
     check("zero shown interests still count the rest", none.includes("My current interests: 80 more already starred in the app"));
+  }
+  {
+    const base = {
+      category: "bug",
+      source: "feedback",
+      message: "The map is blank",
+      email: "a@b.co",
+      page: "/map",
+      diagnostics: { build: "abc1234", device: "iOS 18 Safari 18", displayMode: "installed", online: true, signedIn: false, dataset: { eventId: "devcon-8" }, push: { permission: "granted", subscribed: true } },
+      files: [{ path: "2026-10/123e4567-e89b-12d3-a456-426614174000/shot.png", name: "shot.png", type: "image/png", size: 1234 }],
+    };
+    const valid = validateFeedbackPayload(base);
+    check("feedback: valid payload passes", valid.ok);
+    check("feedback: unknown category fails", !validateFeedbackPayload({ ...base, category: "rant" }).ok);
+    check("feedback: bad email fails", !validateFeedbackPayload({ ...base, email: "nope" }).ok);
+    check("feedback: empty message fails", !validateFeedbackPayload({ ...base, message: "  " }).ok);
+    check("feedback: foreign file path fails", !validateFeedbackPayload({ ...base, files: [{ ...base.files[0], path: "../etc/passwd" }] }).ok);
+    check("feedback: executables refused, images fine", fileProblem("x.exe", 10) !== null && fileProblem("x.png", 10) === null);
+    check("feedback: file names are made safe", safeFileName("../Screen Shot 2026 (1).PNG") === "Screen_Shot_2026_1_.PNG");
+    check(
+      "feedback: iPhone UA summarised",
+      summarizeUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1") === "iOS 18 Safari 18"
+    );
+    check(
+      "feedback: Android Chrome UA summarised",
+      summarizeUserAgent("Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.58 Mobile Safari/537.36") === "Android 14 Chrome 130"
+    );
+    check(
+      "feedback: Brave hint wins over the Chrome UA",
+      summarizeUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36", { brave: true }) === "macOS Brave 130"
+    );
+    check("feedback: title from the first line", feedbackTitle({ category: "idea", source: "feedback", message: "\nDark mode please\nsecond" }) === "Idea: Dark mode please");
+    check("feedback: crash title uses the error", feedbackTitle({ category: "bug", source: "crash", message: "tapped star", error: { message: "x is not a function" } }) === "Crash: x is not a function");
+    check("feedback: rich text chunking", chunkText("a".repeat(4500)).length === 3 && chunkText("").length === 1);
+    if (valid.ok) {
+      const links = [{ name: "shot.png", url: "https://files.example/shot.png?token=1", type: "image/png" }];
+      const props = feedbackProperties(valid.value, links) as Record<string, { select?: { name: string }; checkbox?: boolean; files?: unknown[]; email?: string }>;
+      check(
+        "feedback: Notion properties map the diagnostics",
+        props["Display mode"]?.select?.name === "Installed" && props.Online?.checkbox === true && props["Signed in"]?.checkbox === false && props.Email?.email === "a@b.co" && props.Files?.files?.length === 1
+      );
+      const body = JSON.stringify(feedbackChildren(valid.value, links));
+      check("feedback: page body has the image and the diagnostics", body.includes('"type":"image"') && body.includes('"language":"json"'));
+    }
   }
   check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", dayCount: 0, starred: [] }).includes("My current interests: none yet."));
   const ds = { ...DATASETS.devcon8, apiUrl: "https://api.devcon.org/", eventId: "devcon8" };

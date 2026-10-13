@@ -62,6 +62,7 @@ const EVENTS = {
   sw: ["update-shown", "update-accepted"],
   sync: ["bundle-failed"],
   error: ["page"],
+  feedback: ["open", "sent", "queued", "failed"],
 } as const;
 
 export type EventCategory = keyof typeof EVENTS;

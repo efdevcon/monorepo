@@ -59,6 +59,8 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | sw | update-shown / update-accepted | | Update toast |
 | sync | bundle-failed | event id | Catalogue sync failed while online |
 | error | page | pathname | Route error page rendered |
+| feedback | open | `feedback`, `crash` | Feedback sheet opened |
+| feedback | sent / queued / failed | source | Report sent now, saved for later, or dropped |
 
 ## Rules
 

@@ -12,6 +12,9 @@ import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import { MatomoAnalytics } from "@/app/matomo";
+import { FeedbackSync } from "@/data/feedback/FeedbackSync";
+import { FeedbackSheet } from "@/components/feedback/FeedbackSheet";
+import { FeedbackFab } from "@/components/feedback/FeedbackFab";
 import { Suspense } from "react";
 import APP_CONFIG from "@/CONFIG";
 
@@ -217,6 +220,13 @@ export default function RootLayout({
             <Suspense fallback={null}>
               <MatomoAnalytics />
             </Suspense>
+            {/* Feedback lives here, outside the route segment, so the crash
+                page (app/error.tsx) can still open the sheet. */}
+            <FeedbackSync />
+            <Suspense fallback={null}>
+              <FeedbackSheet />
+            </Suspense>
+            <FeedbackFab />
             {children}
           </UserProvider>
         </DataProvider>

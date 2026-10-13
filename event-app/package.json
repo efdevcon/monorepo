@@ -16,6 +16,7 @@
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
     "announcements:setup-notion": "tsx scripts/setup-notion-announcements.ts",
+    "feedback:setup": "tsx scripts/setup-notion-feedback.ts",
     "push:test": "tsx scripts/send-test-push.ts",
     "otp:test": "tsx scripts/test-otp-input.ts",
     "proof:test": "tsx scripts/test-ticket-proof.ts",
