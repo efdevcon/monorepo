@@ -253,23 +253,9 @@ function Segmented<T extends string | number>({
     h: number;
   } | null>(null);
 
-  // The pill's first position is not a move: without the override below,
-  // every mount slid it from the first segment to the active one — the
-  // Sessions / Community Hubs switch remounts the schedule, and both
-  // switches wiggled on each programme change (tester report,
-  // 2026-10-13). The first measurement paints with an inline
-  // `transition: none`, written to the node directly (not a style prop, so
-  // React never re-applies it); the effect after that paint removes it,
-  // and later moves animate on the class as before.
-  const pillRef = useRef<HTMLDivElement | null>(null);
-  const measuredRef = useRef(false);
   useLayoutEffect(() => {
     const el = buttonRefs.current.get(value);
     if (!el) return;
-    if (!measuredRef.current) {
-      measuredRef.current = true;
-      pillRef.current?.style.setProperty("transition", "none");
-    }
     setIndicator({
       x: el.offsetLeft,
       y: el.offsetTop,
@@ -277,8 +263,26 @@ function Segmented<T extends string | number>({
       h: el.offsetHeight,
     });
   }, [value]);
-  useEffect(() => {
-    if (indicator) pillRef.current?.style.removeProperty("transition");
+  // The pill's first position is not a move: without this, every mount
+  // slid it from the first segment to the active one — the Sessions /
+  // Community Hubs switch remounts the schedule, and both switches
+  // wiggled on each programme change (tester report, 2026-10-13). Placed
+  // with the transition off and the styles flushed, so the hidden →
+  // placed step is the browser's "before" state, then the transition is
+  // handed back for later moves. A layout effect with a forced flush, not
+  // a passive effect: after a click React flushes passive effects before
+  // the browser's next style pass, so an override set and removed between
+  // two style passes never took effect and the slide ran anyway (the
+  // first attempt did that; it showed as the wiggle coming back).
+  const pillRef = useRef<HTMLDivElement | null>(null);
+  const placedRef = useRef(false);
+  useLayoutEffect(() => {
+    const el = pillRef.current;
+    if (!indicator || !el || placedRef.current) return;
+    placedRef.current = true;
+    el.style.setProperty("transition", "none");
+    void el.offsetWidth;
+    el.style.removeProperty("transition");
   }, [indicator]);
 
   return (
