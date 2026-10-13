@@ -1,6 +1,6 @@
 "use client";
 
-import { usePaneActive, useTabReselect } from "@/components/paneContext";
+import { usePaneActive } from "@/components/paneContext";
 import {
   useCallback,
   useEffect,
@@ -8,6 +8,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type RefObject,
 } from "react";
 import {
   CalendarDays,
@@ -556,6 +557,10 @@ export function Schedule() {
   }
   // The programme just left (and when), for the remounted switch's slide.
   const [previousSource, setPreviousSource] = useState<SourceSwitch | null>(null);
+  // Whether the once-per-app-open landing on "now" has happened. Lives here,
+  // above the keyed inner view, so a programme switch (which remounts it)
+  // does not land again: testers read that as the app forcing them to "now".
+  const landedRef = useRef(false);
   const sourceRef = useRef(source);
   useEffect(() => {
     sourceRef.current = source;
@@ -580,6 +585,7 @@ export function Schedule() {
         onSourceChange={changeSource}
         view={view}
         setView={setView}
+        landedRef={landedRef}
       />
     </ScheduleSourceProvider>
   );
@@ -592,6 +598,7 @@ function ScheduleInner({
   onSourceChange,
   view,
   setView,
+  landedRef,
 }: {
   source: ScheduleSource;
   previousSource: SourceSwitch | null;
@@ -599,6 +606,7 @@ function ScheduleInner({
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
   setView: (v: ViewMode) => void;
+  landedRef: RefObject<boolean>;
 }) {
   const { sessions, isLoading, isError } = useSessions();
   // "My Interests" spans both programmes (see useScheduleState).
@@ -837,8 +845,10 @@ function ScheduleInner({
     revealAllGroups();
     setListJumpSignal((n) => n + 1);
   };
-  // Re-tapping the Schedule tab resets to the landing state: today, at "now".
-  useTabReselect(jumpToNow);
+  // No useTabReselect here: re-tapping the Schedule tab used to jump to
+  // "now" and testers read it as a bug (the app moving them on its own). It
+  // now gets the default pane reset, an instant scroll to the top; the Live
+  // now pill and the day bar's ghost pill are the way back to "now".
 
   // List view "jump to now": land on the "Live now" section, else a
   // still-running one, else the next upcoming one. Called from effects so the
@@ -878,11 +888,12 @@ function ScheduleInner({
     }
   };
 
-  // Day tab tap: today lands on "live now" (the same rule as jump-to-now and
-  // the initial landing, falling back to the top once the day is over); any
-  // other day starts at the top of its list. Instant, not smooth: a tab is a
-  // new page, and a smooth scroll through content that just changed reads as
-  // scrolling the wrong day.
+  // Day tab tap: every day starts at the top of its list (the timeline at
+  // the day's start), today included — it used to land on "live now", one
+  // more automatic jump testers read as the app moving them; the Live now
+  // pill does that on request. Instant, not smooth: a tab is a new page, and
+  // a smooth scroll through content that just changed reads as scrolling
+  // the wrong day.
   const selectDay = (key: string) => {
     programmaticScrollRef.current = true;
     setSelectedDay(key);
@@ -890,19 +901,8 @@ function ScheduleInner({
   };
   useLayoutEffect(() => {
     if (!dayJump) return;
-    const isToday = dayJump.key === eventDayKey(now);
-    if (view === "timeline") {
-      // The timeline scrolls itself horizontally on signal; the now-jump also
-      // brings its root into view, the start-jump only resets the offset.
-      if (isToday) {
-        setTimelineJumpSignal((n) => n + 1);
-      } else {
-        setTimelineStartSignal((n) => n + 1);
-        scrollListTop();
-      }
-      return;
-    }
-    if (isToday && scrollListToNow("auto")) return;
+    // The timeline resets its horizontal offset on signal.
+    if (view === "timeline") setTimelineStartSignal((n) => n + 1);
     scrollListTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dayJump]);
@@ -972,14 +972,15 @@ function ScheduleInner({
   // Landing: the first time the selected day's content is actually in the
   // DOM (sessions loaded, day resolved), jump straight to "live now",
   // instantly, before paint, so the list never visibly starts at the top.
-  // Once per mount, and the pane stays mounted across tab switches (TabPanes
-  // restores the scroll position), so in practice once per app open.
+  // Once per app open: the flag lives in the parent (above the programme
+  // switch's remount) and the pane stays mounted across tab switches
+  // (TabPanes restores the scroll position). A later mount — the other
+  // programme — starts at the top of its list instead.
   const contentReady =
     selectedDay !== null &&
     (view === "list"
       ? visibleGroups.length > 0 || completedGroups.length > 0
       : daySessions.length > 0);
-  const landedRef = useRef(false);
   // Deep link (`/schedule/<id>` on app open): the list behind the page shows
   // the session's day, and once the page closes it reveals the session
   // itself rather than landing on "live now". Consumes the landing.
@@ -992,10 +993,18 @@ function ScheduleInner({
     if (key !== selectedDay) setSelectedDay(key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeSession]);
+  const placedRef = useRef(false);
   useLayoutEffect(() => {
     // Only while the list is on screen: scrollIntoView on a hidden
     // (display:none) element is a no-op that would still consume the landing.
-    if (landedRef.current || !contentReady || !listVisible) return;
+    if (placedRef.current || !contentReady || !listVisible) return;
+    placedRef.current = true;
+    if (landedRef.current) {
+      // Remounted after a programme switch: the document is still scrolled
+      // to wherever the previous list was, so start this one at its top.
+      scrollListTop();
+      return;
+    }
     landedRef.current = true;
     if (view === "list") scrollListToNow("auto");
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -45,8 +45,9 @@ render is a screenful of cards, the rest fill in one group per frame, and jumps 
 now") complete the list first so they land on real heights. The speakers × sessions join is memoised
 per store snapshot rather than per mount. Every vertical page jump is instant, never smooth (WebKit
 rasterises everything a smooth scroll passes over). Re-tapping the active tab resets its pane (scroll
-to top; the schedule jumps to "now"); with a detail page open the tap navigates to the bare tab URL,
-which closes it.
+to top); with a detail page open the tap navigates to the bare tab URL, which closes it. The schedule
+lands on "now" once per app open and never jumps on its own after that (programme switch, tab re-tap
+and day-tab taps start at the top; the Live now pill is the way back).
 
 # data architecture
 
