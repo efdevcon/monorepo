@@ -11,6 +11,8 @@ import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
+import { MatomoAnalytics } from "@/app/matomo";
+import { Suspense } from "react";
 import APP_CONFIG from "@/CONFIG";
 
 // Poppins everywhere (the home/announcements redesign dropped Inter — the
@@ -218,6 +220,9 @@ export default function RootLayout({
         <CustomScrollbar />
         <IOSViewportHealer />
         <ServiceWorkerUpdater />
+        <Suspense fallback={null}>
+          <MatomoAnalytics />
+        </Suspense>
         {/* mobileOffset lifts bottom toasts clear of the docked tab bar
             (--nav-clearance: its measured height, 0 where it isn't shown) */}
         <Toaster
