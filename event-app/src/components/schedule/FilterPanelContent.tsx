@@ -285,7 +285,7 @@ export function FilterPanelContent({
             {/* Same chip grammar as Tracks; topics have no track theme, so
                 the active state is the app's purple treatment instead of a
                 per-track pastel. The list is the shared Speakers-page topic
-                vocabulary (top session tags by frequency). */}
+                vocabulary (the curated TOPIC_OPTIONS, src/data/topics.ts). */}
             <div className="flex flex-wrap gap-2">
               {topics.map((topic) => (
                 <TopicChip

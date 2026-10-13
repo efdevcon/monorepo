@@ -169,7 +169,7 @@ export function useScheduleState(
     // Rooms: a combined stage ahead of the halls it is made of (Lotus Stage
     // before Lotus 1–3), not plain alphabetical.
     opts.room.sort(compareRoomNames);
-    // Topics stay in frequency order (not alphabetical) — the same shared
+    // Topics keep the curated order (not alphabetical) — the same shared
     // vocabulary and ordering as the Speakers page's topic filter.
     opts.topic = deriveTopicOptions(sessions);
     return opts;

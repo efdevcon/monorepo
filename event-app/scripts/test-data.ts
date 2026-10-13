@@ -35,6 +35,7 @@ import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
+import { deriveTopicOptions } from "../src/data/topics";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -471,6 +472,23 @@ function testMeerkatHandover() {
       communityHubTopics({}).length === 0 &&
       findCommunityHub("privacy")?.name === "Privacy Hub" &&
       findCommunityHub("nope") === undefined
+  );
+  const tagged = (tags: string[], extra: object = {}) =>
+    ({ tags, speakers: [{ id: "s" }], ...extra }) as unknown as Session;
+  const hub = { room: { id: "community-hub-privacy" }, speakers: [] };
+  check(
+    "topic options: curated tags present, in curated order, then hub topics by frequency; uncurated and speakerless Pretalx tags dropped",
+    eq(
+      deriveTopicOptions([
+        tagged(["EVM", "Security"]),
+        tagged(["Consensus"]),
+        tagged(["AI"], { speakers: [] }),
+        tagged(["Privacy Hub", "Zero knowledge"], hub),
+        tagged(["Privacy Hub", "Zero knowledge"], hub),
+        tagged(["Privacy Hub", "Agents"], hub),
+      ]),
+      ["Security", "EVM", "Privacy Hub", "Zero knowledge", "Agents"]
+    )
   );
   check(
     "community hubs dataset: follows the event, keyed apart from it, none for the test event",
