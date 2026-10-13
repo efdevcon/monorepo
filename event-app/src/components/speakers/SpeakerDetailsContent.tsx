@@ -186,8 +186,9 @@ function SpeakerProfile({
     }
   };
 
+  // 8px before the icon, 12px after the label (Scott, 2026-10-13).
   const pill =
-    "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2";
+    "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border py-1 pl-2 pr-3 text-[12px] leading-none text-dc-fg2";
 
   return (
     <div className="flex flex-col gap-4 p-4">
