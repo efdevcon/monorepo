@@ -161,6 +161,7 @@ function testMaterialize() {
         { ...FIXTURE.sessions[0], id: "c6", type: "CLS - Panel (Open Tech Summit)" },
         { ...FIXTURE.sessions[0], id: "c7", type: "CLS - Fireside chat (OTS)" },
         { ...FIXTURE.sessions[0], id: "c8", type: "Roundtable - longer format" },
+        { ...FIXTURE.sessions[0], id: "c9", track: "Community Hubs" },
       ],
     },
     "devcon-7",
@@ -176,6 +177,7 @@ function testMaterialize() {
   check("non-CLS type drops its qualifier", formatOf("c8") === "Roundtable");
   check("plain types untouched", a.type === "Talk");
   check("stored row keeps the Pretalx name", clsRows.sessions[0].type === "CLS - Talk (Open Tech Summit)");
+  check("the Pretalx \"Community Hubs\" track reads as no track", clsSnap.sessionById.get("c9")!.track === "" && clsRows.sessions.find((r) => r.id === "c9")!.track === "Community Hubs");
 
   const empty = emptySnapshot("x");
   check("empty snapshot", empty.sessions.length === 0 && empty.event === undefined && empty.sessionById.size === 0);

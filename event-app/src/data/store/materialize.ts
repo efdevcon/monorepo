@@ -12,6 +12,8 @@ import type {
   SpeakerRow,
 } from "./types";
 
+const PRETALX_HUBS_TRACK = "Community Hubs";
+
 const DAY_NAMES = [
   "Sunday",
   "Monday",
@@ -95,7 +97,12 @@ export function toSession(
     sourceId: row.sourceId,
     title: row.title,
     description: row.description,
-    track: row.track,
+    // The Pretalx programme files the hubs' opening ceremony under a
+    // "Community Hubs" track; the app has no such track (hub sessions are
+    // their own programme, themed by room), so the session reads as
+    // trackless — Devcon treatment, no Tracks chip, no caption (Scott,
+    // 2026-10-13).
+    track: row.track === PRETALX_HUBS_TRACK ? "" : row.track,
     // The app's format vocabulary, not Pretalx's: "CLS - Talk (…)" → "Talk".
     type: sessionFormat(row.type),
     expertise: row.expertise,
