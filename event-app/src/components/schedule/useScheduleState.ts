@@ -5,7 +5,14 @@ import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
 import { deriveTopicOptions } from "@/data/topics";
-import { dayKey, getDays, getStatus, groupByTime, type TimeGroup } from "./utils";
+import {
+  compareRoomNames,
+  dayKey,
+  getDays,
+  getStatus,
+  groupByTime,
+  type TimeGroup,
+} from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
 export type FilterFacet = "track" | "type" | "room" | "expertise" | "topic";
@@ -159,6 +166,9 @@ export function useScheduleState(
       });
     }
     VALUE_FACETS.forEach((f) => opts[f].sort());
+    // Rooms: a combined stage ahead of the halls it is made of (Lotus Stage
+    // before Lotus 1–3), not plain alphabetical.
+    opts.room.sort(compareRoomNames);
     // Topics stay in frequency order (not alphabetical) — the same shared
     // vocabulary and ordering as the Speakers page's topic filter.
     opts.topic = deriveTopicOptions(sessions);

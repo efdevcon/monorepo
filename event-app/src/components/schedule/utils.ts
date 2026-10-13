@@ -175,6 +175,24 @@ export const NO_ROOM_LABEL = "TBA";
 const roomName = (s: Session) => s.room?.name ?? NO_ROOM_LABEL;
 
 /**
+ * Room-name order for the Locations filter: alphabetical by family (the
+ * first word), and within a family the unnumbered room comes first, then
+ * the numbered ones in numeric order. DC8's "Lotus Stage" is Lotus 1, 2 and
+ * 3 opened into one hall, so it reads as the parent of those three, not as
+ * a sibling filed after them ("Lotus 3 < Lotus Stage" alphabetically).
+ */
+export function compareRoomNames(a: string, b: string): number {
+  const family = (name: string) => name.split(/\s+/)[0].toLowerCase();
+  const fa = family(a);
+  const fb = family(b);
+  if (fa !== fb) return fa.localeCompare(fb);
+  const na = /\d/.test(a);
+  const nb = /\d/.test(b);
+  if (na !== nb) return na ? 1 : -1;
+  return a.localeCompare(b, undefined, { numeric: true });
+}
+
+/**
  * Distinct rooms present in the sessions, ordered like devcon's timeline:
  * "Main Stage" first, then any "Stage …", then the rest alphabetically.
  */
