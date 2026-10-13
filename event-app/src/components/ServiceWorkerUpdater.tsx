@@ -15,7 +15,7 @@ function showUpdateToast(onUpdate: () => void): string | number {
       <div className="flex w-full items-center gap-3 rounded-2xl border border-black/5 bg-white p-3 pl-4 shadow-xl ring-1 ring-black/5">
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-gray-900">Update available</p>
-          <p className="text-xs text-gray-500">A new app version is ready.</p>
+          <p className="text-xs text-gray-500 lg:whitespace-nowrap">A new app version is ready.</p>
         </div>
         {/* Desktop: 24px from the text (12px gap + 12px); the dismiss stays at 12.
             16px sides inline: the sm size's px-6 can't be overridden by class
@@ -38,7 +38,16 @@ function showUpdateToast(onUpdate: () => void): string | number {
         </button>
       </div>
     ),
-    { duration: Infinity }
+    {
+      duration: Infinity,
+      // Desktop: the body copy stays on one line (nowrap above), which
+      // needs a few px more than sonner's fixed 356px slot. The toast
+      // element (position:absolute, no width rule for a custom toast) is
+      // sized to its content and re-centred on the slot: left 50% +
+      // translate (the `translate` property; sonner's own transform keeps
+      // its entry animation). Mobile keeps sonner's full-width rule.
+      className: "lg:left-1/2 lg:w-max lg:-translate-x-1/2",
+    }
   );
 }
 
