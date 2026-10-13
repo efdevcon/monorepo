@@ -74,15 +74,20 @@ export function renderDc8SocialCard(
   // of the stack. Size stays 80px whatever the count; the raised row has the
   // whole card width to itself, so large groups do not need to shrink.
   const avatars = speakers.map((sp: any) => speakerImages.get(sp.id)).filter(Boolean) as string[]
-  const avatarSize = s(80)
-  const overlap = s(-24)
+  // The AV card (1920x1080, 675-tall base) is a video intro frame, not a
+  // social preview: no label band to dodge, so the avatars sit on the footer
+  // baseline next to the Format+Track pill and get more room (2026-10-13).
+  const isAv = H > 640
+  const AVATAR = isAv ? 100 : 80
+  const avatarSize = s(AVATAR)
+  const overlap = s(isAv ? -30 : -24)
 
   // X's title label covers roughly the bottom 56px of a 630-tall card (label
   // plus its margin). The avatar stack is lifted past it, and the centered
   // title zone ends 16px above the stack so long titles cannot run into it.
-  const X_LABEL_BAND = 56
+  const X_LABEL_BAND = isAv ? 0 : 56
   const AVATAR_BOTTOM = 40 + X_LABEL_BAND
-  const COLUMN_BOTTOM = AVATAR_BOTTOM + 80 + 16
+  const COLUMN_BOTTOM = AVATAR_BOTTOM + AVATAR + 16
 
   return new ImageResponse(
     (
