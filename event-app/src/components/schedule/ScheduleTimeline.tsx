@@ -156,7 +156,12 @@ function TimelineSession({
                   )}
                 >
                   <User className={cn(metaIcon, "shrink-0")} />
-                  <span className="truncate">
+                  {/* truncate clips at the padding box, and in this
+                      leading-none row the 12px line box is shorter than
+                      Poppins' glyphs: descenders ("Dang") lost their tails
+                      in Safari. 2px of padding inside the clip, cancelled
+                      by the margin, so the row keeps its height. */}
+                  <span className="-my-0.5 truncate py-0.5">
                     {session.speakers.map((s) => s.name).join(", ")}
                   </span>
                 </span>
