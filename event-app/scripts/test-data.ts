@@ -171,7 +171,8 @@ function testMaterialize() {
   check("CLS workshops fold into Workshop", formatOf("c4") === "Workshop" && formatOf("c5") === "Workshop");
   check("CLS panel folds into Panel", formatOf("c6") === "Panel");
   check("unknown CLS format keeps its own name", formatOf("c7") === "Fireside chat");
-  check("non-CLS types untouched", formatOf("c8") === "Roundtable - longer format");
+  check("non-CLS type drops its qualifier", formatOf("c8") === "Roundtable");
+  check("plain types untouched", a.type === "Talk");
   check("stored row keeps the Pretalx name", clsRows.sessions[0].type === "CLS - Talk (Open Tech Summit)");
 
   const empty = emptySnapshot("x");

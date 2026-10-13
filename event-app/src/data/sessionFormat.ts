@@ -15,9 +15,13 @@
  * specific first ("Lightning Talk" before "Talk", "Miniworkshop" and "career
  * workshop" are workshops). A CLS format with no core match keeps its own
  * name, minus the wrapper, so a new one never disappears into "Other".
+ *
+ * Any other type drops a " - qualifier" suffix ("Roundtable - longer format"
+ * → "Roundtable"): the qualifier is scheduling detail for the programme team.
  */
 
 const CLS_TYPE = /^CLS\s*[-–:]\s*(.+?)\s*(?:\([^)]*\))?\s*$/i;
+const QUALIFIER = /\s+[-–]\s+.*$/;
 
 const CORE_FORMATS: Array<[keyword: string, format: string]> = [
   ["lightning", "Lightning Talk"],
@@ -29,7 +33,7 @@ const CORE_FORMATS: Array<[keyword: string, format: string]> = [
 export function sessionFormat(raw: string): string {
   const name = raw.trim();
   const cls = CLS_TYPE.exec(name)?.[1];
-  if (!cls) return name;
+  if (!cls) return name.replace(QUALIFIER, "");
   const key = cls.toLowerCase();
   const core = CORE_FORMATS.find(([keyword]) => key.includes(keyword));
   if (core) return core[1];
