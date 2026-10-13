@@ -106,12 +106,8 @@ function TimelineSession({
         <span
           className={cn(
             "max-w-full text-dc-fg2",
-            // Phone titles: 17px leading (Poppins' 1.4 content box at 12px),
-            // not 14px — the clamp clips at the line box and Safari cut the
-            // descenders (feedback round, 2026-10-13). Two lines + the meta
-            // row still fit the 52px block interior.
             compact
-              ? "line-clamp-2 text-[12px] font-semibold leading-[17px]"
+              ? "line-clamp-2 text-[12px] font-semibold leading-[14px]"
               : "truncate text-[14px] font-bold leading-5"
           )}
         >
@@ -503,11 +499,7 @@ export function ScheduleTimeline({
                 className={cn(
                   chromeCell,
                   glassCell,
-                  // leading 1.4 = Poppins' own content box (ascent 1.05 +
-                  // descent 0.35): the clamp below clips at the line box,
-                  // and a tighter leading cut the descenders of "(Jasmine)"
-                  // in Safari (feedback round, 2026-10-13).
-                  "sticky left-0 z-10 justify-center border-r text-center font-semibold leading-[1.4]",
+                  "sticky left-0 z-10 justify-center border-r text-center font-semibold leading-[1.2]",
                   // Wrap at spaces (or hyphenate where the browser can);
                   // never mid-word — "Decompressio/n Room" reads worse than
                   // a clipped tail, and the title attr carries the full name.
