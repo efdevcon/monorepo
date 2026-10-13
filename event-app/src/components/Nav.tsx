@@ -55,11 +55,12 @@ export const NAV_ITEMS: NavItem[] = [
     enabled: APP_CONFIG.MAP_ENABLED,
   },
   {
-    // One name everywhere since 2026-10-13: the tab used to read "Me" (Figma
-    // tab-bar redesign) while the header said My Devcon and the URL /ticket.
+    // Mobile tab reads "Me" (Figma tab-bar redesign, Scott 2026-10-13: the
+    // full name crowds the active chip); the header and the URL say My
+    // Devcon (/my-devcon).
     href: "/my-devcon",
     label: "My Devcon",
-    short: "My Devcon",
+    short: "Me",
     icon: CircleUserRound,
     enabled: true,
   },
