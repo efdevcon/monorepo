@@ -2,18 +2,27 @@
 
 import type { Ticket } from "@/data/tickets/types";
 import { Droplets } from "lucide-react";
-import { TicketProofButton } from "@/components/TicketProofButton";
+import {
+  TicketProofButton,
+  type ProofPartner,
+} from "@/components/TicketProofButton";
 import { displayItemName } from "./ticketTheme";
 
-/** Partner keys as registered in the proof route's `PARTNERS`. */
-const FAUCETS = [
-  { partner: "powfaucet-sepolia", network: "Sepolia" },
-  { partner: "powfaucet-hoodi", network: "Hoodi" },
-] as const;
-
-function describeFaucetPerk(network: string): string {
-  return `Your ticket unlocks a ${network} testnet ETH drop for your wallet.`;
+/** One faucet per network, each its own key in the proof route's `PARTNERS`. */
+function faucet(key: string, network: string): ProofPartner {
+  return {
+    key,
+    label: `Claim ${network} ETH`,
+    describe: () =>
+      `Your ticket unlocks a ${network} testnet ETH drop for your wallet.`,
+    handoffHint: "You'll enter the wallet address that should receive the drop.",
+  };
 }
+
+const FAUCETS = [
+  faucet("powfaucet-sepolia", "Sepolia"),
+  faucet("powfaucet-hoodi", "Hoodi"),
+];
 
 /**
  * "Perks" entry for the testnet faucet: the PoW faucet hands Devcon ticket
@@ -48,16 +57,14 @@ export function FaucetPerkCard({
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
           Sepolia and Hoodi testnet ETH for Devcon attendees.
         </p>
-        {/* One faucet per network, each its own partner key: the proof lands
-            on that network's faucet directly, no chooser in between. */}
+        {/* Each network's proof lands on that network's faucet directly, no
+            chooser in between. */}
         <div className="flex flex-wrap gap-x-4">
-          {FAUCETS.map((faucet) => (
+          {FAUCETS.map((partner) => (
             <TicketProofButton
-              key={faucet.partner}
+              key={partner.key}
               ticketSecret={ticket.secret}
-              partner={faucet.partner}
-              label={`Claim ${faucet.network} ETH`}
-              describe={() => describeFaucetPerk(faucet.network)}
+              partner={partner}
             />
           ))}
         </div>
