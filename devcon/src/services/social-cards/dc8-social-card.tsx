@@ -33,9 +33,11 @@ import {
  *   stack is raised past that band while the Format+Track pill stays at the
  *   bottom-right (short labels never reach it)
  * - CLS sessions use the share card's default design instead: gradient bg,
- *   the colored Devcon glyph, no watermark, "CLS – <format>" chip + CLS name
+ *   the colored Devcon glyph, "CLS – <format>" chip + CLS name
  * - unmapped tracks (Invited speaker, Art & Culture…) also fall back to the
  *   gradient, keeping the neutral octagon
+ * - the white logomark watermark is on every card, gradient ones included
+ *   (2026-10-13: it used to be track cards only)
  */
 export function renderDc8SocialCard(
   session: any,
@@ -95,20 +97,18 @@ export function renderDc8SocialCard(
           overflow: 'hidden',
         }}
       >
-        {/* Watermark (track cards only) */}
-        {trackColor && (
-          <img
-            src={socialAssetDataUrl(DC8_LOGOMARK_WHITE)}
-            style={{
-              position: 'absolute',
-              left: s(611),
-              top: s((H - 797) / 2),
-              width: s(468),
-              height: s(797),
-              opacity: 0.5,
-            }}
-          />
-        )}
+        {/* Watermark, on every card */}
+        <img
+          src={socialAssetDataUrl(DC8_LOGOMARK_WHITE)}
+          style={{
+            position: 'absolute',
+            left: s(611),
+            top: s((H - 797) / 2),
+            width: s(468),
+            height: s(797),
+            opacity: 0.5,
+          }}
+        />
 
         {/* Track badge / CLS glyph, bleeding off the bottom-right */}
         {isCls ? (
