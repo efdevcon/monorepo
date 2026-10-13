@@ -19,6 +19,7 @@ import imgHDTJHP from './assets/portraits/jon-stephens.webp'
 import imgJ3CHSG from './assets/portraits/jordi-baylina.webp'
 import imgJ7URYL from './assets/portraits/janmajaya-mall.webp'
 import imgJPTVDC from './assets/portraits/christopher-fabian.webp'
+import imgKC3QAL from './assets/portraits/kevin-jones.webp'
 import imgKYP3UZ from './assets/portraits/vitalik.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
 import imgMAXUYR from './assets/portraits/pg.webp'
@@ -30,6 +31,7 @@ import imgRMPP9E from './assets/portraits/barnabe-monnot.webp'
 import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
+import imgUKPQQY from './assets/portraits/manu-sheel-gupta.webp'
 import imgV88N3U from './assets/portraits/asha-shankar.webp'
 import imgW8UUCW from './assets/portraits/roger-dingledine.webp'
 import imgWLADZ7 from './assets/portraits/cheeky-gorilla.webp'
@@ -191,11 +193,21 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgJPTVDC,
     source: 'pretalx',
   },
+  KC3QAL: {
+    id: 'KC3QAL',
+    name: 'Kevin Jones',
+    organization: 'BuidlGuidl / 1Claw',
+    xHandle: 'cryptomastery_',
+    track: 'Security',
+    image: imgKC3QAL,
+    source: 'pretalx',
+  },
   KYP3UZ: {
     id: 'KYP3UZ',
     name: 'Vitalik',
     organization: 'Ethereum',
     xHandle: 'VitalikButerin',
+    track: 'Privacy & Consent',
     image: imgKYP3UZ,
     source: 'pretalx',
   },
@@ -285,6 +297,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'jchaskin22',
     track: 'Users, Builders, and Agents',
     image: imgTKDN87,
+    source: 'pretalx',
+  },
+  UKPQQY: {
+    id: 'UKPQQY',
+    name: 'Manu Sheel Gupta',
+    organization: 'Libp2p, IPFS, Protocol Labs',
+    xHandle: 'manusheel',
+    track: 'Permissionless Networks',
+    image: imgUKPQQY,
     source: 'pretalx',
   },
   V88N3U: {

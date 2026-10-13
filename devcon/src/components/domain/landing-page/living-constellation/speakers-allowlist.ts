@@ -239,4 +239,18 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Veridise',
     bio: 'Jon Stephens co-founded Veridise, which audits and builds security tools for smart contracts, blockchain systems and zero-knowledge tech. Jon is also a computer science PhD student at UT Austin, researching formal methods and program analysis.',
   }, // Jon Stephens
+  // Org answer is "BuidlGuidl / 1Claw".
+  {
+    code: 'KC3QAL',
+    title: 'Founder',
+    company: '1Claw',
+    bio: 'Kevin Jones founded 1Claw, an AI security startup focused on guardrails and agentic commerce. Kevin is also a core member of BuidlGuidl, teaching developers around the world to build on Ethereum.',
+  }, // Kevin Jones
+  // Org answer is "Libp2p, IPFS, Protocol Labs".
+  {
+    code: 'UKPQQY',
+    title: 'Technical Lead',
+    company: 'libp2p',
+    bio: "Manu Sheel Gupta is a technical lead and maintainer across libp2p, multiformats and IPLD, working on permissionless P2P networks. Manu also builds LeakDetectAI and volunteers with Ethereum's Trillion Dollar Security initiative.",
+  }, // Manu Sheel Gupta
 ]
