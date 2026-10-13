@@ -837,9 +837,8 @@ function ScheduleInner({
     null
   );
   const contentRef = useRef<HTMLDivElement | null>(null);
-  // Time carried across a view toggle (see changeView), and the timeline's
-  // report of the time at its left edge (updated as it scrolls).
-  const pendingTimeRef = useRef<number | null>(null);
+  // The timeline's report of the time at its left edge (updated as it
+  // scrolls); carried into the list's "top of the viewport" on a view toggle.
   const timelineLeftMsRef = useRef<number | null>(null);
   const [timelineScrollToTime, setTimelineScrollToTime] = useState<{
     ms: number;
@@ -1038,38 +1037,26 @@ function ScheduleInner({
     return null;
   };
 
-  // The list's counterpart of "time at the left edge": the group starting at
-  // or after `t` (what's happening from t onward), else the last one.
-  const scrollListToTime = (t: number) => {
-    const target =
-      visibleGroups.find((g) => ms(g.sessions[0].start) >= t) ??
-      visibleGroups[visibleGroups.length - 1];
-    const node = target && groupRefs.current.get(target.key);
-    node?.scrollIntoView({ behavior: "auto", block: "start" });
-  };
-
-  // View toggle: the new view starts at the top of the content and at the
-  // same time the old one was showing — leaving the list, the group at the
-  // top of the viewport; leaving the timeline, the time at its left edge.
-  // Captured here, while the old view is still mounted; applied in the effect
-  // below once the new view is in the DOM.
+  // View toggle. Into the timeline: the grid pans (horizontally, its own
+  // scroll) to the time of the group at the top of the list, so the page
+  // itself does not move. Into the list: the page stays where it is too —
+  // it used to jump down to the group at the timeline's left-edge time,
+  // which from a timeline sitting at the top of the page read as the app
+  // moving the person (tester report, 2026-10-13); the list only pulls the
+  // page up to its start if the content top had scrolled under the tabs.
   const changeView = (next: ViewMode) => {
     if (next === view) return;
     programmaticScrollRef.current = true;
-    const t =
-      view === "list" ? topVisibleGroupStartMs() : timelineLeftMsRef.current;
     if (next === "timeline") {
       // Batched with setView: the timeline mounts with the target already set
       // and positions itself in its own layout effect, before paint.
+      const t = topVisibleGroupStartMs();
       if (t != null) {
         setTimelineScrollToTime((prev) => ({
           ms: t,
           seq: (prev?.seq ?? 0) + 1,
         }));
       }
-      pendingTimeRef.current = null;
-    } else {
-      pendingTimeRef.current = t; // the list scrolls in the effect below
     }
     setView(next);
   };
@@ -1080,10 +1067,6 @@ function ScheduleInner({
       return;
     }
     scrollListTop();
-    const t = pendingTimeRef.current;
-    pendingTimeRef.current = null;
-    if (t != null && view === "list") scrollListToTime(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
 
   // Landing: the first time the selected day's content is actually in the
