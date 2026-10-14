@@ -197,12 +197,18 @@ export function SessionSummary({
               {trackFullLabel(session.track, session.room?.id)}
               {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
             </span>
-            {/* Hub sessions: the sheet's Topic column, as neutral chips after
-                the hub badge (a hub session has no track of its own). */}
+            {/* Topics as neutral chips after the track badge, sharing its
+                corner radius: square with the Pretalx programme's badge,
+                pills with a hub's (the sheet's Topic column; a hub session
+                has no track of its own). Scott, 2026-10-14: the pills had
+                come in with the hubs and clashed beside the square badge. */}
             {communityHubTopics(session).map((topic) => (
               <span
                 key={topic}
-                className="rounded-full border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2"
+                className={cn(
+                  "border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                  theme.isHub ? "rounded-full" : "rounded-[2px]"
+                )}
               >
                 {topic}
               </span>
