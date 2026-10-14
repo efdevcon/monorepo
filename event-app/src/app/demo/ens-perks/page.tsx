@@ -67,7 +67,7 @@ export default async function PartnerPerksDemo({
 
       <footer className="mt-auto flex flex-col gap-3 border-t border-neutral-200 pt-4 text-[12px] text-neutral-500">
         <DemoTools />
-        <Link href="/ticket" className="underline">
+        <Link href="/my-devcon" className="underline">
           Back to the Devcon app
         </Link>
       </footer>
