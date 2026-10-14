@@ -49,15 +49,6 @@
     text-align: center;
     width: 100%;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.65);
-  }
 }
 
 .hero-title {
@@ -65,8 +56,9 @@
   font-weight: 400 !important;
   text-transform: none !important;
   font-size: clamp(3rem, 9vw, 130px) !important;
-  letter-spacing: -2px !important;
-  color: #f9f8fa !important;
+  letter-spacing: -3px !important;
+  color: #fff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
   transform: translateY(-16px);
 
   @media (max-width: $breakpoints-md) {
@@ -296,7 +288,7 @@
 
 .applications-closed-card {
   background: #ffffff;
-  border: 1px solid #ff6600;
+  border: 1px solid #7235ed;
   border-radius: 16px;
   padding: 16px 32px;
   display: flex;
@@ -1165,8 +1157,7 @@
   gap: 64px;
   margin-top: 104px;
 
-  // Stack at <=$lg so the body copy gets the full width instead of squeezing
-  // into a narrow column next to the 400px CTA cell.
+  // Stack at <=$lg so the body copy gets the full width.
   @media (max-width: $breakpoints-lg) {
     flex-direction: column;
     align-items: stretch;
@@ -1200,95 +1191,6 @@
 
   strong {
     font-weight: 700;
-  }
-}
-
-.impact-cta-wrap {
-  flex-shrink: 0;
-  position: relative;
-  width: 400px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: $breakpoints-lg) {
-    width: 100%;
-    height: auto;
-    padding: 64px 0;
-  }
-}
-
-.impact-glyph {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  opacity: 0.1;
-
-  // The Figma glyph is 382x382 centered inside a 400x220 box — it intentionally
-  // overflows top/bottom. Match that so the petals extend above and below the
-  // button without clipping the wrapper.
-  svg {
-    width: 382px;
-    height: 382px;
-    max-width: none;
-  }
-
-  @media (max-width: $breakpoints-md) {
-    svg {
-      width: 280px;
-      height: 280px;
-    }
-  }
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-  gap: 8px;
-  padding: 16px 32px;
-  padding-left: 36px;
-  padding-right: 32px;
-  height: 56px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a0d33;
-  background: #ffffff;
-  border: 1px solid #b08df5;
-  border-radius: 9999px;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px 0 rgba(22, 11, 43, 0.1), 0 1px 2px 0 rgba(22, 11, 43, 0.1);
-  transform: scale(1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.15s;
-
-  svg {
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-  }
-
-  &:hover {
-    background: #ffffff;
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px 0 rgba(114, 53, 237, 0.18), 0 1px 2px 0 rgba(22, 11, 43, 0.08);
-
-    svg {
-      transform: translateX(2px);
-    }
-  }
-
-  @media (max-width: $breakpoints-lg) {
-    width: 100%;
-    height: auto;
-    min-height: 48px;
-    font-size: 16px;
   }
 }
 
@@ -1392,7 +1294,7 @@
   }
 }
 
-/* ─── Apply Now pill + contact note ────────────────────────── */
+/* ─── Applications closed card ─────────────────────────────── */
 
 .apply-section {
   display: flex;
@@ -1403,53 +1305,6 @@
 
   @media (max-width: $breakpoints-md) {
     margin-top: 32px;
-  }
-}
-
-.apply-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 24px;
-  background: #ffffff;
-  border: 1px solid #decffb;
-  border-radius: 360px;
-  padding: 12px;
-  padding-left: 24px;
-
-  @media (max-width: $breakpoints-md) {
-    flex-direction: column;
-    width: 100%;
-    border-radius: 24px;
-    padding: 16px;
-    gap: 16px;
-  }
-}
-
-.apply-pill-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: #221144;
-  white-space: nowrap;
-}
-
-.apply-pill-btn {
-  align-self: auto;
-
-  @media (max-width: $breakpoints-md) {
-    width: 100%;
-  }
-}
-
-.contact-note {
-  font-size: 14px;
-  font-weight: 400;
-  color: #594d73;
-  line-height: 1.43;
-  text-align: center;
-  margin: 0;
-
-  strong {
-    font-weight: 700;
   }
 }
 

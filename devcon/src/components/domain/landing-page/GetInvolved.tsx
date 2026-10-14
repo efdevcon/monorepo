@@ -9,13 +9,13 @@ import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 // Index-aligned with the intl `cards` array — don't reorder either one (hi/mr
 // translations pair by index); displayOrder controls on-screen position instead.
 const cardMeta = [
-  { icon: Users, href: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657', external: true },
+  { icon: Users, closed: true }, // community hubs — applications closed
   { icon: HandHeart, closed: true }, // volunteer — applications closed
-  { icon: Handshake, href: '/supporters', external: false },
+  { icon: Handshake, closed: true }, // supporters — applications closed
 ] as Array<{ icon: typeof Users; href?: string; external?: boolean; closed?: boolean }>
 
-// Volunteer card moved last since its applications closed
-const displayOrder = [0, 2, 1]
+// All three programs are closed for this cycle, so cards show in their natural order
+const displayOrder = [0, 1, 2]
 
 /**
  * "Help make Devcon happen" — Figma node 4917:966. Three contributor cards
@@ -57,7 +57,7 @@ export const GetInvolved = () => {
               <Reveal key={cardIndex} delay={i * 120}>
                 <div className="h-full bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(34,17,68,0.1)] rounded-2xl p-[24px] flex flex-col gap-[24px] justify-between lg:min-h-[224px]">
                   {cardBody}
-                  <span className="text-[16px] font-bold leading-none text-[#221144]/60">{t('applications_closed')}</span>
+                  <span className="text-[16px] font-bold leading-[1.3] text-[#221144]/60">{t('applications_closed')}</span>
                 </div>
               </Reveal>
             )
