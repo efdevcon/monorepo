@@ -24,10 +24,11 @@ import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /**
  * A session block in a room lane (Figma): pastel tile with title + meta and
- * the interest star (desktop). `compact` (mobile metrics) runs the same
- * two-line title + meta row one size down — track label always, time and
- * speakers once the block is wide enough — and drops the star, which ate
- * the tile on the dense mobile grid.
+ * the interest star. `compact` (mobile metrics) runs the same two-line
+ * title + meta row one size down — track label always, time and speakers
+ * once the block is wide enough — and drops the star at 1×, where it ate
+ * the tile on the dense mobile grid; at 2× the block is twice as wide and
+ * the lane 1.5× taller, so the star comes back (tester feedback, 2026-10-14).
  *
  * The text column is `sticky` inside the block (Devcon SEA behaviour): as a
  * long session scrolls under the room column its title stays at the visible
@@ -195,12 +196,14 @@ function TimelineSession({
         </span>
       </div>
       </div>
-      {/* Desktop only (see above). Sits at the block's right end, outside the
-          text cell, so the sticky column can never cover it. Inside
-          the anchor, so the click must not open the session. Hover fill is
-          translucent white, not the cards' lavender: blocks come in every
-          track colour and the pink clashed with most of them. */}
-      {!compact && (
+      {/* Desktop, and phones at 2× (see above). Sits at the block's right
+          end, outside the text cell, so the sticky column can never cover
+          it. Inside the anchor, so the click must not open the session.
+          Hover fill is translucent white, not the cards' lavender: blocks
+          come in every track colour and the pink clashed with most of them.
+          The compact block's 6px side padding is less than the hit area's
+          10px bleed, so there the bleed only runs vertically plus the 6px. */}
+      {(!compact || m.zoom === 2) && (
         <button
           aria-label={
             interested ? "Remove from interested" : "Add to interested"
@@ -211,7 +214,10 @@ function TimelineSession({
             e.stopPropagation();
             void toggle(session.id);
           }}
-          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30"
+          className={cn(
+            "group/star ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30",
+            compact ? "-my-2.5 -mr-1.5" : "-m-2.5"
+          )}
         >
           <Star
             className={cn(
