@@ -57,7 +57,7 @@ export const GetInvolved = () => {
               <Reveal key={cardIndex} delay={i * 120}>
                 <div className="h-full bg-white/50 backdrop-blur-[6px] outline outline-1 outline-[rgba(34,17,68,0.1)] rounded-2xl p-[24px] flex flex-col gap-[24px] justify-between lg:min-h-[224px]">
                   {cardBody}
-                  <span className="text-[16px] font-bold leading-none text-[#221144]/60">{t('applications_closed')}</span>
+                  <span className="text-[16px] font-bold leading-[1.3] text-[#221144]/60">{t('applications_closed')}</span>
                 </div>
               </Reveal>
             )

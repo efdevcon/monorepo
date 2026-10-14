@@ -90,7 +90,7 @@ const useNavigationData = () => {
           },
           {
             title: t('community_hubs'),
-            url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
+            url: 'https://forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191',
             type: 'link',
           },
           {
@@ -251,7 +251,7 @@ const useNavigationData = () => {
         // },
         {
           title: t('community_hubs'),
-          url: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657',
+          url: 'https://forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191',
           type: 'link',
         },
         {
