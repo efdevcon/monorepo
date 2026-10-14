@@ -803,6 +803,12 @@ function ScheduleInner({
   // history; the panel's expand action and shared links use the URL form.
   const [panelSessionId, setPanelSessionId] = useState<string | null>(null);
   const selectedSessionId = isDesktop ? panelSessionId : detailId;
+  // Bumped on every new selection and keyed onto the panel, so each session
+  // opens in a fresh panel: scrolled to the top (the panel's scroller kept
+  // its position across sessions, 2026-10-14) and with its blurb folded
+  // again (the panel content is retained through the exit transition, so
+  // without this a reopen of the same session found the old instance).
+  const [panelGeneration, setPanelGeneration] = useState(0);
   // Desktop: opening or closing the side panel reflows the list under the
   // pointer — 2-up time-slot rows collapse to one column and the main column
   // narrows — which carried the clicked card off to a new place (often off
@@ -823,6 +829,7 @@ function ScheduleInner({
         holdCardRef.current = el
           ? { id: anchor as string, top: el.getBoundingClientRect().top }
           : null;
+        if (id && id !== panelSessionId) setPanelGeneration((g) => g + 1);
         setPanelSessionId(id);
       } else if (id) {
         openDetail(id);
@@ -1245,6 +1252,7 @@ function ScheduleInner({
   // closing panel doesn't collapse into an empty box.
   const livePanelContent = selectedSession ? (
     <SessionDetailsPanel
+      key={panelGeneration}
       session={selectedSession}
       onClose={() => selectSession(null)}
       // Desktop only: on phones this aside is mounted but hidden, and the
