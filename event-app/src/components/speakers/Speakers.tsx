@@ -119,10 +119,18 @@ export function Speakers() {
   const panelSpeakerIdRef = useRef<string | null>(null);
   panelSpeakerIdRef.current = panelSpeakerId;
   const selectedSpeakerId = isDesktop ? panelSpeakerId : detailId;
+  // Bumped on every new selection and keyed onto the panel, so each speaker
+  // opens in a fresh panel scrolled to the top: the panel's scroller kept
+  // its position across speakers, and the content is retained through the
+  // exit transition, so a reopen found the old instance (same fix as the
+  // schedule's session panel, 2026-10-14).
+  const [panelGeneration, setPanelGeneration] = useState(0);
   const selectSpeaker = useCallback(
     (id: string | null) => {
-      if (isDesktop) setPanelSpeakerId(id);
-      else if (id) openDetail(id);
+      if (isDesktop) {
+        if (id && id !== panelSpeakerIdRef.current) setPanelGeneration((g) => g + 1);
+        setPanelSpeakerId(id);
+      } else if (id) openDetail(id);
       else closeDetail();
     },
     [isDesktop, openDetail, closeDetail]
@@ -163,6 +171,7 @@ export function Speakers() {
   // closing panel doesn't collapse into an empty box.
   const livePanelContent = selectedSpeaker ? (
     <SpeakerDetailsPanel
+      key={panelGeneration}
       decorated={selectedSpeaker}
       onClose={() => selectSpeaker(null)}
     />
