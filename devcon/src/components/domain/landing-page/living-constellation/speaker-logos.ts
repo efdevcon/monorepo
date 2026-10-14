@@ -7,7 +7,7 @@ import Circle from './images/logos/circle.svg'
 import Coinbase from './images/logos/coinbase.svg'
 import EdgeCity from './images/logos/edge-city.svg'
 import EthereumFoundation from './images/logos/ethereum-foundation.svg'
-import Ethlabs from './images/logos/ethlabs.svg'
+import ethlabs from './images/logos/ethlabs.png'
 import Freedom from './images/logos/freedom.svg'
 import Giga from './images/logos/giga.svg'
 import Giveth from './images/logos/giveth.svg'
@@ -47,7 +47,7 @@ export const SPEAKER_LOGOS = {
   coinbase: { Logo: Coinbase, aspect: 717 / 128 },
   'edge-city': { Logo: EdgeCity, aspect: 254 / 128 },
   'ethereum-foundation': { Logo: EthereumFoundation, aspect: 402 / 128 },
-  ethlabs: { Logo: Ethlabs, aspect: 642 / 128 },
+  ethlabs: { image: ethlabs },
   freedom: { Logo: Freedom, aspect: 466 / 95 },
   giga: { Logo: Giga, aspect: 274 / 128 },
   giveth: { Logo: Giveth, aspect: 623 / 128 },
