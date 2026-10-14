@@ -34,6 +34,17 @@ export async function middleware(req: NextRequest) {
     return NextResponse.rewrite(target)
   }
 
+  // In-person ticket QR codes: devcon.org/s/<token>. The page (pages/s/[token])
+  // records the scan and binds the browser, so the request must reach it in
+  // one hop: rewrite to the English route instead of bouncing through the
+  // locale redirect. Case-insensitive like /qr/, tokens are lower-case base32.
+  const share = normalizedPathname.match(/^\/(?:(?:en|hi|mr)\/)?s\/([a-z2-7]{12})$/i)
+  if (share) {
+    const target = new URL(`/en/s/${share[1].toLowerCase()}/`, req.url)
+    target.search = req.nextUrl.search // keeps `?view`, the no-count second hop
+    return NextResponse.rewrite(target)
+  }
+
   if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {
     return
   }

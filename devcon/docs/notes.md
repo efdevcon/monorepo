@@ -114,3 +114,39 @@ an image request would poison the redirect of that URL for a day (seen live on
 2026-10-01). Any new query-based variant must follow the same rule. Print guidance: at least 2 cm wide for
 hand-held scanning, larger for screens or banners, never invert colours. The old per-target rules in `netlify.toml` were removed on
 2026-10-01; the early-bird QR rule stays.
+
+## In-person ticket QR sharing (2026-10)
+
+Three pages. `/tickets/qr-admin/` (admin password) is the control page: paste a Pretix redeem
+URL or any link, tick saved links, one button puts a QR on the device; it also embeds a live
+copy of the device page, lists every share with scans and redemptions (ETH and card prices
+with the store's tiles), and offers show again, close, re-open, delete and reset. The saved
+links are a NocoDB table edited from that page, no deploy needed. `/tickets/qr/` (admin or
+read-only password) is the device page: the QR for the active share, "Scanned" after one
+scan, waiting otherwise; `?embed=1` hides its top bar. `/s/<token>/` is the buyer page: the
+QR URL records the scan, binds a voucher share to that browser with a cookie and redirects
+to `/s/<token>/?view`, which renders without counting (a refresh is never a scan) and polls a
+public open-or-closed endpoint so an admin close or re-open shows up within seconds.
+
+Rules worth knowing: every QR is one scan, multi-use vouchers included (show again issues a
+fresh code for the next buyer; it closes the previous share only if nobody scanned it); a
+share replaced before anyone scanned it is closed automatically; "redeemed" means the
+voucher is used up in Pretix (count against max usages), refreshed at most every 30 s and
+applied to every share of the same voucher; prices follow the Pretix ETH plugin (item price
+= ETH price, `fiat_price_usd` metadata = card price scaled by the voucher; `fiat_disabled` =
+ETH only).
+
+Security: all writes need the admin password (`x-admin-key` header, see `utils/adminAuth`);
+the device endpoint (read-only password) returns no redeem URL or voucher code; the public
+status endpoint answers only a boolean for a 60-bit random token; the browser-binding key
+never leaves the server; link URLs are validated on write and filtered to http(s) on read, so
+a hand edit in NocoDB cannot put another scheme into an href.
+
+State: two NocoDB tables in the Ticketing base, ids hardcoded in `src/services/qr-shares.ts`
+(not secret, nothing is readable without `NOCODB_API_TOKEN`); Pretix stays the source of truth. Polling:
+device 2.5 s, admin list 10 s, buyer status 5 s. Code: `src/services/qr-shares.ts` (NocoDB),
+`src/services/qr-share-voucher.ts` (Pretix lookup and prices), `src/utils/qrShareApi.ts`,
+routes in `src/pages/api/qr-share/`, UI in `src/components/domain/tickets/qr-share/`. Helper
+scripts in `src/scripts/qr-share/` (table check, unit tests, NocoDB smoke test, voucher
+describe).
+

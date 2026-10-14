@@ -125,7 +125,7 @@ function getHeaders() {
   }
 }
 
-function getLocalizedString(obj: Record<string, string> | null, locale = 'en'): string {
+export function getLocalizedString(obj: Record<string, string> | null, locale = 'en'): string {
   if (!obj) return ''
   return obj[locale] || obj['en'] || Object.values(obj)[0] || ''
 }
@@ -658,6 +658,10 @@ export interface VoucherInfo {
   /** Pretix `Voucher.quota` — when set, voucher is bound to a quota
    *  (alternative to item-bound). */
   quotaId: number | null
+  /** Pretix `Voucher.comment`, free text the ticketing team writes when minting. */
+  comment?: string
+  /** Pretix `Voucher.valid_until`, ISO or null. */
+  validUntil?: string | null
   error?: string
 }
 
@@ -698,9 +702,10 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
       }
     }
 
-    // Check usage limits
+    // Check usage limits. The counts travel with the refusal so callers can
+    // show "N of M used" instead of parsing the message.
     if (voucher.max_usages > 0 && voucher.redeemed >= voucher.max_usages) {
-      return invalid('Voucher has been fully redeemed')
+      return { ...invalid('Voucher has been fully redeemed'), maxUsages: voucher.max_usages, redeemed: voucher.redeemed }
     }
 
     return {
@@ -714,6 +719,8 @@ export async function validateVoucher(code: string): Promise<VoucherInfo> {
       minUsages: voucher.min_usages || 1,
       variationId: voucher.variation || null,
       quotaId: voucher.quota || null,
+      comment: voucher.comment || '',
+      validUntil: voucher.valid_until || null,
     }
   } catch (e) {
     return invalid(`Failed to validate voucher: ${(e as Error).message}`)

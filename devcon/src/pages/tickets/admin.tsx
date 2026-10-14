@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import Head from 'next/head'
-import { X, Eye, EyeOff } from 'lucide-react'
+import Link from 'next/link'
+import { X, Eye, EyeOff, ExternalLink } from 'lucide-react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider, useAccount, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSwitchChain, useSendTransaction } from 'wagmi'
 import { waitForTransactionReceipt } from 'wagmi/actions'
@@ -3101,6 +3102,16 @@ function AdminContent() {
             />
             Auto-refresh (30s)
           </label>
+          <Link
+            className={css['refresh-btn']}
+            href="/tickets/qr-admin/"
+            target="_blank"
+            rel="noopener"
+            title="In-person sales: share voucher QR codes (opens in a new tab)"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}
+          >
+            QR sharing <ExternalLink size={13} />
+          </Link>
           <button className={css['refresh-btn']} onClick={() => fetchOrders(secret)} disabled={loading}>
             {loading ? 'Loading...' : 'Refresh'}
           </button>
