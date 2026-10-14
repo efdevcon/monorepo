@@ -200,85 +200,90 @@ export function SessionSummary({
         media
       )}
 
-      {/* Title block: title → 8px → (description → 16px → meta → 16px → tags → 16px → pills) */}
+      {/* Title block: title → 8px → (description → 24px → meta → 24px → tags)
+          → 16px → pills. The 24px (Scott, 2026-10-14; was 16) gives the
+          folded blurb's Show more link air before the meta row, and the
+          meta the same before the tags. */}
       <div className="flex flex-col gap-2">
         <h1 className="text-[16px] font-bold leading-6 text-dc-fg2">
           {session.title}
         </h1>
         <div className="flex flex-col gap-4">
-          {session.description && (
-            // Keyed by session so the side panel, which swaps sessions in
-            // place, starts every session folded; closing unmounts it.
-            <Description key={session.id} text={session.description} />
-          )}
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-              <Calendar className="size-3.5 shrink-0" />
-              {formatDayLabel(session)}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-              <Clock3 className="size-3.5 shrink-0" />
-              {formatTimeRange(session)}
-            </span>
-            {/* The location itself is the map link (purple), no separate
-                "Show on map" text: rooms the map knows open on their floor
-                with the footprint highlighted; the rest just open the map. A
-                session without a room keeps the plain "Type" label. */}
-            {location && session.room ? (
-              <Link
-                href={mapHrefForRoom(session.room.id)}
-                className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
-              >
-                <MapPin className="size-3.5 shrink-0" />
-                {location}
-              </Link>
-            ) : location ? (
-              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-                <MapPin className="size-3.5 shrink-0" />
-                {location}
-              </span>
-            ) : null}
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Details show the full track name; list/timeline cards keep the
-                short trackBadgeLabel. Hub sessions keep the cards' grammar
-                here too: a rounded pill with the tent glyph, topics as
-                rounded chips (the square track badge is the Pretalx
-                programme's). */}
-            <span
-              className={cn(
-                "inline-flex items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
-                theme.isHub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
-                theme.neutral && "border border-dc-hairline bg-white"
-              )}
-              style={
-                theme.neutral ? undefined : { backgroundColor: theme.color }
-              }
-            >
-              {trackFullLabel(session.track, session.room?.id)}
-              {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
-            </span>
-            {/* Topics as neutral chips after the track badge, sharing its
-                corner radius: square with the Pretalx programme's badge,
-                pills with a hub's (the sheet's Topic column; a hub session
-                has no track of its own). Scott, 2026-10-14: the pills had
-                come in with the hubs and clashed beside the square badge. */}
-            {communityHubTopics(session).map((topic) => (
-              <span
-                key={topic}
-                className={cn(
-                  "border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
-                  theme.isHub ? "rounded-full" : "rounded-[2px]"
-                )}
-              >
-                {topic}
-              </span>
-            ))}
-            {featured && (
-              <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-                Featured
-              </span>
+          <div className="flex flex-col gap-6">
+            {session.description && (
+              // Keyed by session so the side panel, which swaps sessions in
+              // place, starts every session folded; closing unmounts it.
+              <Description key={session.id} text={session.description} />
             )}
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                <Calendar className="size-3.5 shrink-0" />
+                {formatDayLabel(session)}
+              </span>
+              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                <Clock3 className="size-3.5 shrink-0" />
+                {formatTimeRange(session)}
+              </span>
+              {/* The location itself is the map link (purple), no separate
+                  "Show on map" text: rooms the map knows open on their floor
+                  with the footprint highlighted; the rest just open the map. A
+                  session without a room keeps the plain "Type" label. */}
+              {location && session.room ? (
+                <Link
+                  href={mapHrefForRoom(session.room.id)}
+                  className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
+                >
+                  <MapPin className="size-3.5 shrink-0" />
+                  {location}
+                </Link>
+              ) : location ? (
+                <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                  <MapPin className="size-3.5 shrink-0" />
+                  {location}
+                </span>
+              ) : null}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Details show the full track name; list/timeline cards keep the
+                  short trackBadgeLabel. Hub sessions keep the cards' grammar
+                  here too: a rounded pill with the tent glyph, topics as
+                  rounded chips (the square track badge is the Pretalx
+                  programme's). */}
+              <span
+                className={cn(
+                  "inline-flex items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                  theme.isHub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
+                  theme.neutral && "border border-dc-hairline bg-white"
+                )}
+                style={
+                  theme.neutral ? undefined : { backgroundColor: theme.color }
+                }
+              >
+                {trackFullLabel(session.track, session.room?.id)}
+                {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
+              </span>
+              {/* Topics as neutral chips after the track badge, sharing its
+                  corner radius: square with the Pretalx programme's badge,
+                  pills with a hub's (the sheet's Topic column; a hub session
+                  has no track of its own). Scott, 2026-10-14: the pills had
+                  come in with the hubs and clashed beside the square badge. */}
+              {communityHubTopics(session).map((topic) => (
+                <span
+                  key={topic}
+                  className={cn(
+                    "border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                    theme.isHub ? "rounded-full" : "rounded-[2px]"
+                  )}
+                >
+                  {topic}
+                </span>
+              ))}
+              {featured && (
+                <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
+                  Featured
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Action pills share the row's width equally (flex-1) and wrap
