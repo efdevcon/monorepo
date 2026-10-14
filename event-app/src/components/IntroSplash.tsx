@@ -4,12 +4,13 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { isStandalone } from "@/utils/platform";
 import { MOBILE_MEDIA_QUERY, useMediaQuery } from "@/hooks/useIsDesktop";
+import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "./introCover";
 
-// Also read by the root layout's head script, which injects the pre-paint
-// launch cover (a <style id="intro-cover">) on the first standalone launch.
-const STORAGE_KEY = "event_app_intro_seen";
-const COVER_ID = "intro-cover";
-const BACKDROP = "/login/backdrop.jpg";
+// Shared with the root layout's head script, which injects the pre-paint
+// launch cover (a <style id=INTRO_COVER_ID>) on the first standalone launch.
+const STORAGE_KEY = INTRO_SEEN_KEY;
+const COVER_ID = INTRO_COVER_ID;
+const BACKDROP = INTRO_BACKDROP;
 // How long the launch cover may hold while the backdrop downloads. Past
 // this the app shows without an intro; the flag stays unset so the next
 // launch tries again.

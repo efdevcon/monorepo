@@ -10,6 +10,7 @@ import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
+import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "@/components/introCover";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import APP_CONFIG from "@/CONFIG";
 
@@ -97,8 +98,9 @@ export default function RootLayout({
             logomark at the launch image's size) until IntroSplash has the
             backdrop decoded and takes over — otherwise the app shows for a few
             frames between the launch image and the intro. The cover is a
-            <style> element injected into <head> (id `intro-cover`, which the
-            splash removes), not an attribute on <html>: React 19 skips
+            <style> element injected into <head> (INTRO_COVER_ID, which the
+            splash removes; the ids and paths shared with it live in
+            components/introCover.ts), not an attribute on <html>: React 19 skips
             unexpected head elements when hydrating but reports a changed
             <html> attribute as a mismatch. Starts the backdrop fetch here too,
             rather than when the splash mounts after the data boot gate. The
@@ -108,11 +110,11 @@ export default function RootLayout({
             __html:
               "(function(){try{" +
               "if(!(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true))return;" +
-              "if(localStorage.getItem('event_app_intro_seen')==='true')return;" +
-              "var s=document.createElement('style');s.id='intro-cover';" +
+              `if(localStorage.getItem('${INTRO_SEEN_KEY}')==='true')return;` +
+              `var s=document.createElement('style');s.id='${INTRO_COVER_ID}';` +
               "s.textContent='html::after{content:\"\";position:fixed;inset:0;z-index:80;background:#fff url(/login/devcon-8-logo.svg) center/30vw auto no-repeat}';" +
               "document.head.appendChild(s);" +
-              "var l=document.createElement('link');l.rel='preload';l.as='image';l.href='/login/backdrop.jpg';document.head.appendChild(l);" +
+              `var l=document.createElement('link');l.rel='preload';l.as='image';l.href='${INTRO_BACKDROP}';document.head.appendChild(l);` +
               "setTimeout(function(){s.remove();},5000);}catch(e){}})();",
           }}
         />
