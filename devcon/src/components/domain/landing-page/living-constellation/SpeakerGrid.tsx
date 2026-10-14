@@ -525,7 +525,7 @@ function SpeakerCard({
   )
 }
 
-const CARD_TEXT_CLASS = 'flex flex-1 flex-col gap-0.5 p-3 sm:p-4 sm:pb-3'
+const CARD_TEXT_CLASS = 'flex flex-1 flex-col gap-0.5 p-4 sm:pb-3'
 
 function CardText({
   speaker,
