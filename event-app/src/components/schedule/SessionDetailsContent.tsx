@@ -56,11 +56,9 @@ const pillBase =
   "flex min-h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
-/** Lines of description shown before the fold. */
-const DESCRIPTION_LINES = 6;
-
 /**
- * The session blurb, folded to its first six lines with an ellipsis and a
+ * The session blurb, folded to its first six lines (`line-clamp-6` below;
+ * the fold depth lives in that class alone) with an ellipsis and a
  * centred bold "Show more" link under it (Scott, 2026-10-14: long abstracts
  * pushed the meta, tags and speakers off the panel). One way only: once
  * opened it stays open, there is no "Show less"; the fold returns when the
