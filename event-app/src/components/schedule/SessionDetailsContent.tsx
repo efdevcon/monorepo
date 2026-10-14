@@ -1,5 +1,6 @@
 "use client";
 
+import { useLayoutEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
@@ -54,6 +55,69 @@ export function downloadSessionIcs(session: Session) {
 const pillBase =
   "flex min-h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
+
+/** Lines of description shown before the fold. */
+const DESCRIPTION_LINES = 6;
+
+/**
+ * The session blurb, folded to its first six lines with an ellipsis and a
+ * centred bold "Show more" link under it (Scott, 2026-10-14: long abstracts
+ * pushed the meta, tags and speakers off the panel). One way only: once
+ * opened it stays open, there is no "Show less"; the fold returns when the
+ * details close (the caller unmounts or re-keys this). The link shows only
+ * while the text really overflows the fold — measured, not guessed from the
+ * character count, since the width differs between the side panel, the
+ * phone layer and the expanded page — and the measure re-runs on resize, so
+ * a blurb that fits after a rotation loses its link and one that stops
+ * fitting gains it.
+ */
+function Description({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [overflows, setOverflows] = useState(false);
+  const ref = useRef<HTMLParagraphElement | null>(null);
+  useLayoutEffect(() => {
+    if (expanded) return;
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      // Inside a hidden tab pane everything measures 0×0: keep the last
+      // answer rather than deciding "fits" on nothing.
+      if (el.clientHeight === 0) return;
+      setOverflows(el.scrollHeight > el.clientHeight + 1);
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [expanded, text]);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {/* [overflow-wrap:anywhere]: descriptions carry long unbroken URLs,
+          which otherwise widen the fixed detail layer past the viewport
+          (iOS Safari then widens the whole layout viewport). */}
+      <p
+        ref={ref}
+        className={cn(
+          "text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]",
+          !expanded && "line-clamp-6"
+        )}
+      >
+        <TextWithLinks text={text} />
+      </p>
+      {!expanded && overflows && (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="self-center cursor-pointer text-[14px] font-bold leading-5 text-dc-purple hover:underline"
+        >
+          Show more
+        </button>
+      )}
+    </div>
+  );
+}
 
 /**
  * Session summary (Figma "Session details" section 1): media or track banner,
@@ -143,12 +207,9 @@ export function SessionSummary({
         </h1>
         <div className="flex flex-col gap-4">
           {session.description && (
-            // [overflow-wrap:anywhere]: descriptions carry long unbroken
-            // URLs, which otherwise widen the fixed detail layer past the
-            // viewport (iOS Safari then widens the whole layout viewport).
-            <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
-              <TextWithLinks text={session.description} />
-            </p>
+            // Keyed by session so the side panel, which swaps sessions in
+            // place, starts every session folded; closing unmounts it.
+            <Description key={session.id} text={session.description} />
           )}
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
