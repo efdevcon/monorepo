@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Tent } from "lucide-react";
+import { Tent } from "lucide-react";
 import { PrimaryLinkButton } from "@/components/Buttons";
 import { HUBS_PARAM } from "@/data/store/schedule-source";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
@@ -73,7 +73,6 @@ export function CommunityHubsCard() {
             <PrimaryLinkButton size="sm" href={`/schedule?${HUBS_PARAM}=1`}>
               <Tent className="size-4 shrink-0" />
               View Community Hubs
-              <ArrowRight className="size-4 shrink-0" />
             </PrimaryLinkButton>
           </div>
         </div>
