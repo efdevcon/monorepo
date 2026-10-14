@@ -6,7 +6,6 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, typ
 import IconX from 'assets/icons/twitter.svg'
 import { ctaSecondary } from 'components/common/cta'
 import { speakerAriaLabel, type ConstellationSpeaker } from './types'
-import { speakerTrackTheme, type SpeakerTrackTheme } from './track-theme'
 
 // Grid → centre: critically damped-ish, so the focused card arrives cleanly.
 const TO_CENTRE: Transition = { type: 'spring', stiffness: 340, damping: 30, mass: 0.9 }
@@ -65,6 +64,12 @@ const collapsedClass = (index: number) =>
 
 const INK = '#160b2b'
 const MUTED = '#594d73'
+
+// Organisation logos: square marks get the full height, wide wordmarks less
+// (equal visual area, height = k / √aspect, capped) so a 6:1 wordmark does not
+// dwarf a 1:1 mark beside it. Grid cap is 32px; the focused card goes larger.
+const LOGO_GRID = { k: 52, cap: 32 }
+const LOGO_FOCUSED = { k: 64, cap: 40 }
 
 interface SpeakerGridProps {
   speakers: ConstellationSpeaker[]
@@ -259,7 +264,6 @@ function SpeakerCard({
   revealDelay,
 }: SpeakerCardProps) {
   const t = useTranslations('home.speakers')
-  const track = speakerTrackTheme(speaker.track)
   const [hovered, setHovered] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
   const playful = !focused && !reduceMotion
@@ -466,7 +470,7 @@ function SpeakerCard({
               : CARD_TEXT_CLASS
           }
         >
-          <CardText speaker={speaker} track={track} large={focused} />
+          <CardText speaker={speaker} large={focused} />
           {/* Focus-only extras fade in just behind the flight, bio first. No
             exit animation: the card is back in grid flow the moment it closes,
             and lingering extras would make it taller than its row and push the
@@ -521,16 +525,16 @@ function SpeakerCard({
   )
 }
 
-const CARD_TEXT_CLASS = 'flex flex-1 flex-col gap-0.5 p-3 sm:p-4 sm:pb-3'
+const CARD_TEXT_CLASS = 'flex flex-1 flex-col gap-0.5 p-4'
 
 function CardText({
   speaker,
-  track,
   large,
+  placeholder,
 }: {
   speaker: ConstellationSpeaker
-  track: SpeakerTrackTheme | undefined
   large: boolean
+  placeholder?: boolean
 }) {
   return (
     <>
@@ -549,17 +553,19 @@ function CardText({
           {speaker.title}
         </p>
       )}
-      <p
-        className={`leading-snug ${large ? 'text-[15px]' : 'text-[12px] sm:text-[13px] line-clamp-2'}`}
-        style={{ color: MUTED }}
-      >
-        {speaker.company}
-      </p>
-      {/* Grid: mt-auto lines tags up along the bottom of a row of uneven cards. */}
-      {track && (
-        <div className={large ? 'mt-2' : 'mt-auto pt-1.5'}>
-          <TrackTag track={track} large={large} />
+      {/* Logo when we have one; the company name as text otherwise. Grid:
+          mt-auto lines logos up along the bottom of a row of uneven cards. */}
+      {speaker.logo ? (
+        <div className={large ? 'mt-3' : 'mt-auto pt-2'}>
+          <CompanyLogo speaker={speaker} large={large} placeholder={placeholder} />
         </div>
+      ) : (
+        <p
+          className={`leading-snug ${large ? 'text-[15px]' : 'text-[12px] sm:text-[13px] line-clamp-2'}`}
+          style={{ color: MUTED }}
+        >
+          {speaker.company}
+        </p>
       )}
     </>
   )
@@ -571,24 +577,42 @@ function SlotPlaceholder({ speaker }: { speaker: ConstellationSpeaker }) {
     <div aria-hidden className="invisible flex h-full flex-col">
       <div className="aspect-[10/9] w-full shrink-0" />
       <div className={CARD_TEXT_CLASS}>
-        <CardText speaker={speaker} track={speakerTrackTheme(speaker.track)} large={false} />
+        <CardText speaker={speaker} large={false} placeholder />
       </div>
     </div>
   )
 }
 
-function TrackTag({ track, large = false }: { track: SpeakerTrackTheme; large?: boolean }) {
-  return (
-    <span
-      className={`inline-flex max-w-full items-center gap-1 font-semibold leading-tight text-[#160b2b] ${
-        large
-          ? 'rounded-full py-[3px] pl-1 pr-3 text-[13px]'
-          : 'rounded-[12px] py-[3px] pl-1 pr-2 text-[10px] sm:text-[11px]'
-      }`}
-      style={{ backgroundColor: track.color }}
-    >
-      <Image src={track.image} alt="" className={`shrink-0 ${large ? 'h-7 w-7' : 'h-5 w-5'}`} sizes="28px" />
-      {track.name}
-    </span>
+function CompanyLogo({
+  speaker,
+  large,
+  placeholder,
+}: {
+  speaker: ConstellationSpeaker
+  large: boolean
+  /** Hold the logo's height only. The slot placeholder uses this: a second
+   *  copy of the SVG would duplicate its clip-path / gradient ids, and the
+   *  focused card's logo then resolves them to the hidden copy and vanishes. */
+  placeholder?: boolean
+}) {
+  const logo = speaker.logo
+  if (!logo) return null
+  const { k, cap } = large ? LOGO_FOCUSED : LOGO_GRID
+  const aspect = logo.image ? logo.image.width / logo.image.height : logo.aspect
+  const height = Math.round(Math.min(cap, k / Math.sqrt(aspect)) * (logo.scale ?? 1))
+  // max-w-full: a wide wordmark on a narrow card scales down instead of
+  // overflowing; xMinYMid keeps the shrunken drawing on the left edge.
+  const className = 'block w-auto max-w-full'
+  if (placeholder) return <div aria-hidden style={{ height }} />
+  return logo.image ? (
+    <Image src={logo.image} alt={speaker.company} className={className} style={{ height }} />
+  ) : (
+    <logo.Logo
+      role="img"
+      aria-label={speaker.company}
+      preserveAspectRatio="xMinYMid meet"
+      className={className}
+      style={{ height }}
+    />
   )
 }

@@ -1,6 +1,7 @@
 import type { ConstellationSpeaker } from './types'
 import { SPEAKER_ALLOWLIST, allowlistId } from './speakers-allowlist'
 import { PULLED_SPEAKERS } from './speakers.generated'
+import { SPEAKER_LOGOS } from './speaker-logos'
 
 // Joins the hand-curated allowlist (order, title, bio, overrides) with the
 // Pretalx-pulled profile data (name, organization, X handle, portrait). The
@@ -19,12 +20,14 @@ export const CONSTELLATION_SPEAKERS: ConstellationSpeaker[] = SPEAKER_ALLOWLIST.
   const company = 'manual' in entry ? entry.manual.company : entry.company ?? pulled.organization
   const xHandle = entry.xHandle ?? pulled.xHandle
   const track = entry.track ?? pulled.track
+  const logo = entry.logo ? SPEAKER_LOGOS[entry.logo] : undefined
 
   return {
     id,
     name,
     title: entry.title,
     company,
+    ...(logo ? { logo } : {}),
     image: pulled.image,
     ...(xHandle ? { xHandle } : {}),
     ...(track ? { track } : {}),

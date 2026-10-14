@@ -1,4 +1,5 @@
 import type { StaticImageData } from 'next/image'
+import type { SpeakerLogo } from './speaker-logos'
 
 export interface ConstellationSpeaker {
   id: string
@@ -7,6 +8,9 @@ export interface ConstellationSpeaker {
   // job-title question, so this is optional and may be missing.
   title?: string
   company: string
+  // Organisation logo (speaker-logos.ts). Shown in place of the company name
+  // when present; the name is still read out as the logo's label.
+  logo?: SpeakerLogo
   // Static import so next/image can generate the blur placeholder.
   image: StaticImageData
   // Bare X handle (no @, no URL). The "Follow on X" CTA is hidden when absent.
