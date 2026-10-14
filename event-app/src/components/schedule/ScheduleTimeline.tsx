@@ -395,12 +395,16 @@ export function ScheduleTimeline({
   // Layout effect so it lands before paint; declared after the restore below
   // would be wrong — it must win over a stale restored offset on mount.
   const handledTimeSeqRef = useRef(0);
+  // Last horizontal offset: the scroll handler's report, or the value just
+  // written by one of the effects here (see the zoom effect below).
+  const lastLeftRef = useRef(0);
   useLayoutEffect(() => {
     if (!scrollToTime || scrollToTime.seq <= handledTimeSeqRef.current) return;
     handledTimeSeqRef.current = scrollToTime.seq;
     const el = scrollRef.current;
     if (!el || slots.length === 0) return;
     el.scrollLeft = Math.max(0, offsetPx(scrollToTime.ms, startMs, m.slotWidth));
+    lastLeftRef.current = el.scrollLeft;
     syncHeader(el.scrollLeft);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollToTime]);
@@ -409,8 +413,10 @@ export function ScheduleTimeline({
   // put, like a camera zooming on its subject. The offset is the one the
   // last scroll event reported, not a fresh read: by the time this runs
   // the grid has already been re-laid out at the new width and the browser
-  // may have clamped scrollLeft. Layout effect: lands before paint.
-  const lastLeftRef = useRef(0);
+  // may have clamped scrollLeft. Every programmatic scrollLeft write above
+  // and below updates the ref too: the scroll event it causes is async, and
+  // a width change landing in the same frame would otherwise recentre on
+  // the offset from before the write. Layout effect: lands before paint.
   const prevSlotWidthRef = useRef(m.slotWidth);
   useLayoutEffect(() => {
     const prev = prevSlotWidthRef.current;
@@ -436,6 +442,7 @@ export function ScheduleTimeline({
     if (restoredRef.current || initialScrollLeft == null || !el) return;
     restoredRef.current = true;
     el.scrollLeft = initialScrollLeft;
+    lastLeftRef.current = el.scrollLeft;
     syncHeader(el.scrollLeft);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasGrid]);
