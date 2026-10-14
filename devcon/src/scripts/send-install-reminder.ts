@@ -213,7 +213,7 @@ async function main() {
     // ---- DRY RUN: previews only, no Supabase admin calls, no SMTP ----
     const previewDir = 'generated-codes/previews'
     fs.mkdirSync(previewDir, { recursive: true })
-    const placeholderLink = `${EVENT_APP_ORIGIN}/ticket?token=PREVIEW`
+    const placeholderLink = `${EVENT_APP_ORIGIN}/my-devcon?token=PREVIEW`
     for (const r of recipients.slice(0, 20)) {
       const safeName = r.email.replace(/[^a-z0-9.@-]/gi, '_')
       fs.writeFileSync(path.join(previewDir, `${safeName}.html`), buildReminderHtml(r.name, placeholderLink))
