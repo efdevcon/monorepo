@@ -31,19 +31,22 @@ export const FEATURED_SECTION = "featured";
  * swap lands with the pill. Sections with no speakers are faded and inert.
  *
  * Press-and-slide (tester feedback, 2026-10-14; same feel as the venue map's
- * FloorSlider): pointer events are handled on the rail, not the cells. A
- * press jumps to the section under the finger at once, and holding and
- * sliding along the rail jumps to each section the finger passes — the
- * nearest section WITH speakers, so a thumb over an empty letter still lands
- * somewhere, and dragging past either end sticks to the end cell. Every jump
- * is the same instant teleport a tap does (see Speakers.jumpToSection), so a
- * slide is a run of teleports, like a native iOS index bar. A pointer tap has
- * already jumped on pointerdown, so the click that follows a handled press is
- * ignored; every other click on a cell (Enter / Space, and assistive
- * technology, which synthesises a click with no pointer events) jumps. Empty
- * cells are aria-disabled rather than disabled: a disabled button swallows
- * pointer events in some engines, which would make the slide stutter across
- * gaps.
+ * FloorSlider): pointer events are handled on the rail, not the cells. While
+ * the finger is down the pill and the bold letter follow it — the nearest
+ * section WITH speakers, so a thumb over an empty letter still shows
+ * something, and dragging past either end sticks to the end cell — and the
+ * list jumps ONCE, to that section, on release. Not per cell crossed: a jump
+ * is an instant teleport across an ~80,000px list of inline SVGs (see
+ * Speakers.jumpToSection), and a slide that teleported at every cell fired
+ * ten or more a second, which blanked the page and then killed the WebKit
+ * content process on a phone (Scott's device video, 2026-10-14; the PR #112
+ * crash by another route). A cancelled press (system gesture, second finger)
+ * jumps nowhere. A press has handled its own click, so the click that
+ * follows one is ignored; every other click on a cell (Enter / Space, and
+ * assistive technology, which synthesises a click with no pointer events)
+ * jumps. Empty cells are aria-disabled rather than disabled: a disabled
+ * button swallows pointer events in some engines, which would make the slide
+ * stutter across gaps.
  */
 export function AzIndexRail({
   sections,
@@ -69,6 +72,10 @@ export function AzIndexRail({
   // the rail's height animates, via ResizeObserver) so it hugs the live cell
   // — cells flex-shrink below 24px on short viewports.
   const [pill, setPill] = useState<{ y: number; h: number } | null>(null);
+  // The section under a held finger: the pill and the bold letter show it
+  // ahead of the jump, which only happens on release (see above).
+  const [preview, setPreview] = useState<string | null>(null);
+  const shown = preview ?? activeSection;
   // Whether the pill had a position in the previous commit: the transition
   // only applies between two real positions, otherwise the first placement
   // would visibly sweep down from translateY(0) every time the rail appears.
@@ -79,7 +86,7 @@ export function AzIndexRail({
 
   useLayoutEffect(() => {
     const measure = () => {
-      const el = activeSection ? cellRefs.current.get(activeSection) : null;
+      const el = shown ? cellRefs.current.get(shown) : null;
       // Inside a hidden tab pane (display:none) every cell measures 0×0;
       // keep the last real position instead of parking the pill at the top,
       // which made it sweep down the rail on every return to the tab.
@@ -94,10 +101,11 @@ export function AzIndexRail({
     const observer = new ResizeObserver(measure);
     observer.observe(nav);
     return () => observer.disconnect();
-  }, [activeSection, sections]);
+  }, [shown, sections]);
 
-  // The section last jumped to during the current press, so a finger resting
-  // inside one cell doesn't re-jump on every pointermove.
+  // The section under the finger during the current press: the jump target
+  // on release. Kept in a ref beside the preview state so pointerup reads it
+  // without waiting for a render.
   const press = useRef<{ last: string | null } | null>(null);
   // Set by a handled press and cleared by the click it produces (or the next
   // frame, for a press that produces none): the click after a press must not
@@ -126,7 +134,7 @@ export function AzIndexRail({
     const section = sectionAt(e.clientY);
     press.current = { last: section };
     pressedRef.current = true;
-    if (section) onJump(section);
+    setPreview(section);
   };
   const onPointerMove = (e: PointerEvent<HTMLElement>) => {
     const p = press.current;
@@ -134,17 +142,27 @@ export function AzIndexRail({
     const section = sectionAt(e.clientY);
     if (section && section !== p.last) {
       p.last = section;
-      onJump(section);
+      setPreview(section);
     }
   };
-  const onPointerEnd = () => {
+  const endPress = () => {
+    const p = press.current;
     press.current = null;
+    setPreview(null);
     // The click, if any, is dispatched right after pointerup; a press that
     // ends without one (drag released elsewhere, cancel) must not leave the
     // flag set for an unrelated click later.
     window.setTimeout(() => {
       pressedRef.current = false;
     }, 0);
+    return p;
+  };
+  const onPointerUp = () => {
+    const p = endPress();
+    if (p?.last) onJump(p.last);
+  };
+  const onPointerCancel = () => {
+    endPress();
   };
   const onCellClick = (section: string) => {
     if (pressedRef.current) {
@@ -160,8 +178,8 @@ export function AzIndexRail({
       aria-label="Jump to section"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
-      onPointerUp={onPointerEnd}
-      onPointerCancel={onPointerEnd}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
       // touch-action none: a vertical drag on the rail slides through the
       // letters, it never scrolls the page.
       style={{ touchAction: "none" }}
@@ -187,7 +205,9 @@ export function AzIndexRail({
       />
       {rail.map((section) => {
         const enabled = available.has(section);
-        const active = section === activeSection;
+        // Visual state follows the finger (preview); aria-current stays the
+        // section the list is really at.
+        const active = section === shown;
         return (
           <button
             key={section}
@@ -197,7 +217,7 @@ export function AzIndexRail({
             onClick={() => enabled && onCellClick(section)}
             aria-disabled={!enabled || undefined}
             tabIndex={enabled ? 0 : -1}
-            aria-current={active ? "true" : undefined}
+            aria-current={section === activeSection ? "true" : undefined}
             aria-label={
               section === FEATURED_SECTION ? "Featured speakers" : undefined
             }
