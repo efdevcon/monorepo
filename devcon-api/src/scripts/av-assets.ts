@@ -19,7 +19,7 @@
  * label hides the file from the robot itself (it can neither list, update nor
  * trash it afterwards). An in-drive copy of a file labelled Public inherits
  * Public and keeps it when its bytes are replaced. So every new file starts as
- * a copy of a seed image that a human placed in the AV folder and labelled
+ * a copy of a seed image that a human placed in the photos folder and labelled
  * Public (SEED_NAME), and gets its real content written over it. The robot then
  * owns the file for good. The manifest data/av-assets/<event>.json (committed,
  * so the CI run after each schedule release sees it) keys every file by what it
@@ -75,8 +75,10 @@ const ROOM_FOLDERS: Record<string, string> = {
 const EVENT_FOLDER = '$$EVENT'
 const CARDS_SUBFOLDER = 'Intro Cards' // inside each room/day folder, so the crew's own files stay apart
 const PHOTOS_FOLDER = ['Speaker Assets', 'Photos']
-// A Public-labelled image somewhere under the AV folder, copied for every new file.
-const SEED_NAME = process.env.AV_DRIVE_SEED_NAME || "placeholder (DON'T DELETE).png"
+// A Public-labelled image copied for every new file. It lives in the photos
+// folder, which only this script touches, with a leading underscore so it sorts
+// first; the rest of the AV tree is searched as a fallback if someone moves it.
+const SEED_NAME = process.env.AV_DRIVE_SEED_NAME || "_public placeholder (DON'T DELETE).png"
 const SITE = process.env.AV_CARDS_BASE_URL || 'https://devcon.org'
 const CONCURRENCY = 4
 
@@ -314,8 +316,6 @@ async function main() {
     }
     return null
   }
-  const seedId = await findSeed(DRIVE_FOLDER_ID)
-  if (!seedId) throw new Error(`seed image "${SEED_NAME}" not found under the AV folder: upload one there and set its label to Public`)
   // Cache the lookup promise, not the result: concurrent uploads into the same
   // new folder must share one creation or Drive ends up with duplicates.
   const folderCache = new Map<string, Promise<string>>()
@@ -340,6 +340,8 @@ async function main() {
     for (const seg of segments) id = await childFolder(id, seg)
     return id
   }
+  const seedId = (await findSeed(await resolveFolder(PHOTOS_FOLDER))) ?? (await findSeed(DRIVE_FOLDER_ID))
+  if (!seedId) throw new Error(`seed image "${SEED_NAME}" not found in ${PHOTOS_FOLDER.join('/')} or elsewhere under the AV folder: upload one there and set its label to Public`)
   const writeContent = (fileId: string, name: string, buffer: Buffer, doc = false) =>
     drive.files.update({
       fileId,

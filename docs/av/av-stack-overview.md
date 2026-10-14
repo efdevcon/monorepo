@@ -1211,9 +1211,10 @@ every file an external account uploads "EF Internal" within seconds and the labe
 the file from that account: the service account could add files but never see, update
 or trash them again (and domain-wide delegation is not authorised for it). Copies of a
 Public-labelled file inherit Public and keep it when their bytes are replaced, so every
-file is created as a copy of `placeholder (DON'T DELETE).png` in the AV folder and then
-overwritten with the real content; Google-native files and folders are not labelled, so
-Docs and folders are created directly. Keep that seed image where it is.
+file is created as a copy of `_public placeholder (DON'T DELETE).png` in
+`Speaker Assets/Photos` and then overwritten with the real content; Google-native files
+and folders are not labelled, so Docs and folders are created directly. Keep that seed
+image where it is; if it moves, the script searches the AV tree before giving up.
 
 ### Still open after these changelogs
 
