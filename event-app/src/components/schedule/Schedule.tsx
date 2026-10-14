@@ -1354,6 +1354,7 @@ function ScheduleInner({
           come back, query intact, when it closes. */}
       {!detailId && (
         <HeaderToolbar
+          headerOff={headerOff}
           kind="session"
           searchLabel="Search sessions"
           searchOpen={headerSearch.searchOpen}

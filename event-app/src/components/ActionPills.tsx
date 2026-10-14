@@ -192,14 +192,26 @@ export function HeaderPill({
  * saved items on My Interests (event-wide, not the shown day), applied
  * filters on Filter. Renders nothing while the pane is hidden.
  */
-export function HeaderToolbar(props: ToolbarPillsProps) {
+export function HeaderToolbar({
+  headerOff = false,
+  ...props
+}: ToolbarPillsProps & {
+  /** The app header is folded away (`<html data-app-chrome-off>`, the
+   *  schedule on a phone in landscape): another copy of the pills is the
+   *  visible one, so this copy must not listen for the +1. */
+  headerOff?: boolean;
+}) {
   const paneActive = usePaneActive();
   const isDesktop = useIsDesktop();
   return (
     <HeaderActionsPortal>
       {/* Only the visible pill listens: on desktop this bar is display:none
-          and the list toolbar's InterestedPill plays the bubble. */}
-      <ToolbarPills {...props} pulseEnabled={paneActive && !isDesktop} />
+          and the list toolbar's InterestedPill plays the bubble; with the
+          header off, the day-tab row's ToolbarPills does. */}
+      <ToolbarPills
+        {...props}
+        pulseEnabled={paneActive && !isDesktop && !headerOff}
+      />
     </HeaderActionsPortal>
   );
 }
