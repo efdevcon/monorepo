@@ -14,6 +14,7 @@ import { TicketSkeleton } from "./Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
+import { FeedbackCard } from "./feedback/FeedbackCard";
 
 /**
  * Ticket screen (Figma "My Devcon", Dev Handoff 5088-116/-1059): signed out,
@@ -116,6 +117,8 @@ export function Ticket() {
                 <MyTickets />
               </div>
             </div>
+
+            <FeedbackCard />
 
             {/* @ethereum.org accounts only: rehearsal + nudge reset. */}
             <EfInternalTools />

@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@/routing";
@@ -164,7 +165,11 @@ export function AnnouncementCard({
   // Internal paths navigate in-app; anything else opens a new tab.
   if (!link.external) {
     return (
-      <Link href={link.href} className={linkClass}>
+      <Link
+        href={link.href}
+        className={linkClass}
+        onClick={() => trackEvent("announcements", "open", title)}
+      >
         {body}
       </Link>
     );
@@ -175,6 +180,7 @@ export function AnnouncementCard({
       target="_blank"
       rel="noopener noreferrer"
       className={linkClass}
+      onClick={() => trackEvent("announcements", "open", title)}
     >
       {body}
     </a>

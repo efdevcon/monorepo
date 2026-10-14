@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { usePaneActive } from "@/components/paneContext";
 import {
   useCallback,
@@ -626,6 +627,7 @@ export function Schedule() {
   // does not land again: testers read that as the app forcing them to "now".
   const landedRef = useRef(false);
   const changeSource = useCallback((next: ScheduleSource) => {
+    trackEvent("schedule", "programme", next);
     setSource(next);
     const url = new URL(window.location.href);
     if (next === "hubs") url.searchParams.set(HUBS_PARAM, "1");
@@ -1008,6 +1010,7 @@ function ScheduleInner({
         }));
       }
     }
+    trackEvent("schedule", "view", next);
     setView(next);
   };
   const viewMountedRef = useRef(false);

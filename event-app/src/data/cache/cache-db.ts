@@ -1,4 +1,5 @@
 import Dexie, { Table } from "dexie";
+import type { FeedbackFileRef, FeedbackPayload } from "../feedback/types";
 import type {
   EventMetaRow,
   RoomRow,
@@ -137,6 +138,18 @@ export interface PrefRow {
   value: unknown;
 }
 
+/** A feedback report waiting for a connection (data/feedback/outbox.ts). */
+export interface FeedbackOutboxRow {
+  id: string;
+  createdAt: number;
+  attempts: number;
+  lastError?: string;
+  payload: Omit<FeedbackPayload, "files">;
+  files: { name: string; type: string; blob: Blob }[];
+  /** Files already in the bucket from an earlier attempt, so a retry doesn't upload them again. */
+  uploaded?: FeedbackFileRef[];
+}
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
@@ -146,6 +159,7 @@ class CacheDB extends Dexie {
   interestedSpeakers!: Table<InterestedSpeaker, [string, string]>;
   interestSync!: Table<InterestSyncMeta, string>;
   prefs!: Table<PrefRow, string>;
+  feedbackOutbox!: Table<FeedbackOutboxRow, string>;
   // v7: normalised event catalogue (EventStore). One row per session /
   // speaker / room per event, plus one meta row (version, sync times).
   eventSessions!: Table<SessionRow, [string, string]>;
@@ -217,6 +231,10 @@ class CacheDB extends Dexie {
     // v9: generic device-local preferences, keyed by name (data/prefs.ts).
     this.version(9).stores({
       prefs: "&key",
+    });
+    // v10: feedback reports written offline, sent when the connection returns.
+    this.version(10).stores({
+      feedbackOutbox: "&id, createdAt",
     });
   }
 }

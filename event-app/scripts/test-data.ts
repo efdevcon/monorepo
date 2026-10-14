@@ -1,6 +1,9 @@
 // Pure-function tests for the EventStore and routing modules.
 // Run: pnpm data:test
 
+import { fileProblem, safeFileName, validateFeedbackPayload } from "../src/data/feedback/validate";
+import { summarizeUserAgent } from "../src/data/feedback/device";
+import { chunkText, feedbackChildren, feedbackProperties, feedbackTitle } from "../src/data/feedback/notion";
 import { normalizeBundle, compact } from "../src/data/store/normalize";
 import { materialize, emptySnapshot } from "../src/data/store/materialize";
 import { shouldFetch, isBundleShaped } from "../src/data/store/event-store";
@@ -21,6 +24,8 @@ import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuy
 import {
   applyLink,
   assistantUrl,
+  assistantLink,
+  ASSISTANT_URL_BUDGET,
   buildAssistantPrompt,
   parseCodeList,
   parsePlanParams,
@@ -648,9 +653,71 @@ function testAiPlan() {
   });
   check("prompt points at the app's catalogue mirror", prompt.includes("Catalogue index: https://app.devcon.org/ai/devcon8"));
   check("prompt spells out the day pages for fetch tools that only open seen URLs", prompt.includes("https://app.devcon.org/ai/devcon8/day/1 , https://app.devcon.org/ai/devcon8/day/2 , https://app.devcon.org/ai/devcon8/day/3 , https://app.devcon.org/ai/devcon8/day/4"));
-  check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM (A talk)."));
+  check("prompt carries the current stars by code", prompt.includes("My current interests: 8LTCLM."));
   check("prompt explains the apply link", prompt.includes("https://app.devcon.org/my-interests?add=CODE1,CODE2&remove=CODE3"));
   check("prompt stays short enough for a URL prefill", prompt.length < 2600, `${prompt.length} chars`);
+  {
+    const many = Array.from({ length: 80 }, (_, i) => ({
+      code: `C${String(i).padStart(5, "0")}`,
+      title: `A fairly long session title number ${i} about something interesting`,
+    }));
+    const input = { appOrigin: "https://app.devcon.org", eventId: "devcon-8", eventTitle: "Devcon 8", dates: "3 to 6 November 2026", timezoneLabel: "Mumbai time (IST)", dayCount: 4, starred: many };
+    const grok = assistantLink("grok", input);
+    const chatgpt = assistantLink("chatgpt", input);
+    check("grok link fits its URL budget with all 80 codes", grok.length <= ASSISTANT_URL_BUDGET.grok && grok.startsWith("https://grok.com/?q=") && grok.includes("C00079"));
+    check("interests are codes only", !buildAssistantPrompt(input).includes("A fairly") && chatgpt.length <= ASSISTANT_URL_BUDGET.chatgpt);
+    const huge = { ...input, starred: Array.from({ length: 400 }, (_, i) => ({ code: `LONGCODE${i}`, title: "t" })) };
+    const capped = assistantLink("grok", huge);
+    check("too many codes are capped with a count", capped.length <= ASSISTANT_URL_BUDGET.grok && capped.includes(encodeURIComponent("more already starred in the app")));
+    const few = buildAssistantPrompt({ ...input, starred: many.slice(0, 3) }, { maxStarred: 2 });
+    check("capped interests count the rest", few.includes("C00000, C00001, and 1 more already starred in the app"));
+    const none = buildAssistantPrompt(input, { maxStarred: 0 });
+    check("zero shown interests still count the rest", none.includes("My current interests: 80 more already starred in the app"));
+  }
+  {
+    const base = {
+      category: "bug",
+      source: "feedback",
+      message: "The map is blank",
+      email: "a@b.co",
+      page: "/map",
+      diagnostics: { build: "abc1234", device: "iOS 18 Safari 18", displayMode: "installed", online: true, signedIn: false, dataset: { eventId: "devcon-8" }, push: { permission: "granted", subscribed: true } },
+      files: [{ path: "2026-10/123e4567-e89b-12d3-a456-426614174000/shot.png", name: "shot.png", type: "image/png", size: 1234 }],
+    };
+    const valid = validateFeedbackPayload(base);
+    check("feedback: valid payload passes", valid.ok);
+    check("feedback: unknown category fails", !validateFeedbackPayload({ ...base, category: "rant" }).ok);
+    check("feedback: bad email fails", !validateFeedbackPayload({ ...base, email: "nope" }).ok);
+    check("feedback: empty message fails", !validateFeedbackPayload({ ...base, message: "  " }).ok);
+    check("feedback: foreign file path fails", !validateFeedbackPayload({ ...base, files: [{ ...base.files[0], path: "../etc/passwd" }] }).ok);
+    check("feedback: executables refused, images fine", fileProblem("x.exe", 10) !== null && fileProblem("x.png", 10) === null);
+    check("feedback: file names are made safe", safeFileName("../Screen Shot 2026 (1).PNG") === "Screen_Shot_2026_1_.PNG");
+    check(
+      "feedback: iPhone UA summarised",
+      summarizeUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1") === "iOS 18 Safari 18"
+    );
+    check(
+      "feedback: Android Chrome UA summarised",
+      summarizeUserAgent("Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.58 Mobile Safari/537.36") === "Android 14 Chrome 130"
+    );
+    check(
+      "feedback: Brave hint wins over the Chrome UA",
+      summarizeUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36", { brave: true }) === "macOS Brave 130"
+    );
+    check("feedback: title from the first line", feedbackTitle({ category: "idea", source: "feedback", message: "\nDark mode please\nsecond" }) === "Idea: Dark mode please");
+    check("feedback: crash title uses the error", feedbackTitle({ category: "bug", source: "crash", message: "tapped star", error: { message: "x is not a function" } }) === "Crash: x is not a function");
+    check("feedback: rich text chunking", chunkText("a".repeat(4500)).length === 3 && chunkText("").length === 1);
+    if (valid.ok) {
+      const links = [{ name: "shot.png", url: "https://files.example/shot.png?token=1", type: "image/png" }];
+      const props = feedbackProperties(valid.value, links) as Record<string, { select?: { name: string }; checkbox?: boolean; files?: unknown[]; email?: string }>;
+      check(
+        "feedback: Notion properties map the diagnostics",
+        props["Display mode"]?.select?.name === "Installed" && props.Online?.checkbox === true && props["Signed in"]?.checkbox === false && props.Email?.email === "a@b.co" && props.Files?.files?.length === 1
+      );
+      const body = JSON.stringify(feedbackChildren(valid.value, links));
+      check("feedback: page body has the image and the diagnostics", body.includes('"type":"image"') && body.includes('"language":"json"'));
+    }
+  }
   check("prompt without stars says so", buildAssistantPrompt({ appOrigin: "x", eventId: "e", eventTitle: "E", dates: "", timezoneLabel: "", dayCount: 0, starred: [] }).includes("My current interests: none yet."));
   const ds = { ...DATASETS.devcon8, apiUrl: "https://api.devcon.org/", eventId: "devcon8" };
   check("catalogueDataset: default without ?event, by API event id with it, unknown is undefined",
@@ -669,7 +736,7 @@ function testAiPlan() {
     requestOrigin(new Request("https://abc123--site.netlify.app/ai", { headers: { "x-forwarded-host": "app.devcon.org", "x-forwarded-proto": "https" } })) === "https://app.devcon.org"
     && requestOrigin(new Request("http://localhost:3000/ai", { headers: { host: "localhost:3000", "x-forwarded-proto": "http" } })) === "http://localhost:3000"
     && requestOrigin(new Request("https://app.devcon.org/ai")) === "https://app.devcon.org");
-  check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b");
+  check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b" && assistantUrl("grok", "a b") === "https://grok.com/?q=a%20b");
 }
 
 async function main() {

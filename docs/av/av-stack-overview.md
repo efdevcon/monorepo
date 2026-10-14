@@ -1187,6 +1187,34 @@ the run of show see them, without the partner re-entering anything.
   sessions left), so Devcon 8 syncs no longer report id collisions for them. The 43 test
   decks remain in the test Drive folder.
 
+## 12h. Changelog: AV asset pack in the team's Drive folder, 2026-10-12 to 10-13
+
+`pnpm av:assets devcon8 [--upload]` ([`av-assets.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/av-assets.ts))
+builds and syncs what the stage crew needs offline, and runs in the devcon8 sync
+workflow after every schedule release (secret `AV_DRIVE_FOLDER_ID_DEVCON8`, the
+Google service account, manifest committed as `data/av-assets/devcon8.json`):
+
+- one 1920×1080 intro card per session (the `/api/social/av/` render) under
+  `$$EVENT/<Room>/<Day N - Mon D>/Intro Cards/HH.MM <Title> [CODE].jpg`, so files sort
+  in running order; the AV card got the white logomark on every track and 160 px
+  avatars on the footer baseline (`dc8-social-card.tsx`, AV size only);
+- one speaker photo per scheduled speaker in `Speaker Assets/Photos`, 1024 px from the
+  Pretalx original, else our 256 px mirror (`(256px only)`), else the blockie;
+- the list of speakers without a photo as a Google Doc, rewritten in place.
+
+The manifest keys files by what they are (`card:<code>`, `photo:<code>`), so a
+rescheduled session's card is moved, a changed one rewritten in place, a stale one
+trashed, and links stay stable.
+
+**Drive labelling, and the trick that works around it.** The EF shared drive labels
+every file an external account uploads "EF Internal" within seconds and the label hides
+the file from that account: the service account could add files but never see, update
+or trash them again (and domain-wide delegation is not authorised for it). Copies of a
+Public-labelled file inherit Public and keep it when their bytes are replaced, so every
+file is created as a copy of `placeholder (DON'T DELETE).png` in the AV folder and then
+overwritten with the real content; Google-native files and folders are not labelled, so
+Docs and folders are created directly. Keep that seed image where it is.
+
 ### Still open after these changelogs
 
 Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),

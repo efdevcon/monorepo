@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import {
@@ -161,6 +162,7 @@ function QAFeed({
               href={`/api/meerkat/go?session=${encodeURIComponent(sessionId)}`}
               target={standalone ? undefined : "_blank"}
               rel="noopener noreferrer"
+              onClick={() => trackEvent("session", "qa", sessionId)}
               className="inline-flex items-center gap-1 font-bold text-dc-purple hover:underline"
             >
               Ask a question

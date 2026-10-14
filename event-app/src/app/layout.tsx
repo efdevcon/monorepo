@@ -12,6 +12,11 @@ import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
 import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "@/components/introCover";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
+import { MatomoAnalytics } from "@/app/matomo";
+import { FeedbackSync } from "@/data/feedback/FeedbackSync";
+import { FeedbackSheet } from "@/components/feedback/FeedbackSheet";
+import { FeedbackFab } from "@/components/feedback/FeedbackFab";
+import { Suspense } from "react";
 import APP_CONFIG from "@/CONFIG";
 
 // Poppins everywhere (the home/announcements redesign dropped Inter — the
@@ -241,6 +246,16 @@ export default function RootLayout({
           <UserProvider>
             <CacheWarmer />
             <InterestSync />
+            <Suspense fallback={null}>
+              <MatomoAnalytics />
+            </Suspense>
+            {/* Feedback lives here, outside the route segment, so the crash
+                page (app/error.tsx) can still open the sheet. */}
+            <FeedbackSync />
+            <Suspense fallback={null}>
+              <FeedbackSheet />
+            </Suspense>
+            <FeedbackFab />
             {children}
           </UserProvider>
         </DataProvider>

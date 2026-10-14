@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { BellRing, CircleCheck } from "lucide-react";
@@ -224,6 +225,7 @@ export function PushOnboardingSheet() {
     // out of the effect body so the open is its own render.
     const timer = setTimeout(() => {
       if (!preview) markShown();
+      trackEvent("push", "sheet-shown");
       setPhase("open");
     }, 0);
     return () => clearTimeout(timer);
@@ -260,6 +262,10 @@ export function PushOnboardingSheet() {
 
   // Stable: BottomSheet re-runs its open effect when onOpenChange changes.
   const close = useCallback(() => setPhase("finished"), []);
+  const dismiss = useCallback(() => {
+    trackEvent("push", "sheet-dismissed");
+    close();
+  }, [close]);
   const onOpenChange = useCallback((next: boolean) => !next && close(), [close]);
 
   const onPrimary = () => {
@@ -273,6 +279,7 @@ export function PushOnboardingSheet() {
       return;
     }
     setAttempted(true);
+    trackEvent("push", "sheet-accepted", remindersOnly ? "reminders" : "all");
     if (remindersOnly) {
       void push.setPref("reminders", true);
       return;
@@ -297,7 +304,7 @@ export function PushOnboardingSheet() {
       remindersOnly={remindersOnly}
       online={online}
       onPrimary={onPrimary}
-      onDismiss={close}
+      onDismiss={dismiss}
     />
   );
 

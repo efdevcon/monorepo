@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
@@ -307,7 +308,10 @@ export function SessionSummary({
               {interested ? "Interested" : "Add to Interests"}
             </button>
             <button
-              onClick={() => downloadSessionIcs(session)}
+              onClick={() => {
+                trackEvent("session", "calendar", session.id);
+                downloadSessionIcs(session);
+              }}
               className={pillClass}
             >
               <CalendarPlus className="size-4 text-dc-purple" />

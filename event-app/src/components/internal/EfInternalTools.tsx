@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
-import { FlaskConical, RotateCcw, Sparkles, Tv } from "lucide-react";
+import { FlaskConical, RotateCcw, Sparkles, TriangleAlert, Tv } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { deletePref } from "@/data/prefs";
 import { openDevaBot } from "@/components/ai/devaBotState";
@@ -42,6 +42,9 @@ const toolPill =
  *   for the session) and clears the per-device flags that hide the
  *   third-star push sheet and Home's "Turn on notifications" card, so all
  *   three can be seen again (the two flags after a reload).
+ * - Crash page: throws in render so the route error boundary shows the crash
+ *   screen, to try "Report this" (feedback sheet, Source: Crash) and "Reset
+ *   the app" on a real device, production included.
  * - Mock clock & dataset (MockClockTools) and Event data sync (EventDataTools):
  *   the former floating bug button on Home, moved here 2026-10-02 so it needs
  *   no `?debug` flag and attendees never see it.
@@ -51,8 +54,13 @@ const toolPill =
 export function EfInternalTools() {
   const { user } = useUser();
   const [nudges, setNudges] = useState<"idle" | "cleared">("idle");
+  const [crash, setCrash] = useState(false);
 
   if (!user?.email?.toLowerCase().endsWith(TEAM_DOMAIN)) return null;
+  // Thrown in render, so the route error boundary (app/error.tsx) takes over
+  // exactly as it would for a real crash: the page is replaced by the crash
+  // screen with its "Report this" and "Reset the app" controls.
+  if (crash) throw new Error("Test crash from EF internal tools");
 
   const resetNudges = async () => {
     resetInstallHeroDismissal();
@@ -101,6 +109,20 @@ export function EfInternalTools() {
           <Tv />
           Open
         </Link>
+      </div>
+
+      {/* Crash page */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Crash page</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Throws an error in this page to show the crash screen and try its
+          &ldquo;Report this&rdquo; flow (a report with Source: Crash lands in Notion).
+          &ldquo;Try again&rdquo; brings this page back.
+        </p>
+        <button type="button" onClick={() => setCrash(true)} className={cn(toolPill, "mt-3")}>
+          <TriangleAlert />
+          Crash this page
+        </button>
       </div>
 
       {/* Nudges */}

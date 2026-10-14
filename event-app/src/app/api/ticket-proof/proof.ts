@@ -366,6 +366,22 @@ export const PARTNERS: Record<string, PartnerConfig> = {
     // demoable end-to-end; set to the partner's real claim page in prod.
     claimUrl: process.env.TICKET_PROOF_ENS_CLAIM_URL || "/demo/ens-perks",
   },
+  // The PoW faucet (github.com/pk910/PoWFaucet) is the partner side itself: it
+  // verifies against the pinned signer, swaps the proof for its own login and
+  // keeps a spent-set per instance, so no reference page is bundled here. One
+  // key per network, because each network is its own faucet with its own url.
+  "powfaucet-sepolia": {
+    label: "Sepolia Faucet",
+    claimUrl:
+      process.env.TICKET_PROOF_POWFAUCET_SEPOLIA_CLAIM_URL ||
+      "https://devcon-sepolia-faucet.pk910.de/",
+  },
+  "powfaucet-hoodi": {
+    label: "Hoodi Faucet",
+    claimUrl:
+      process.env.TICKET_PROOF_POWFAUCET_HOODI_CLAIM_URL ||
+      "https://devcon-hoodi-faucet.pk910.de/",
+  },
 };
 
 export function getPartner(name: string): PartnerConfig | null {

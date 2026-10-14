@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { trackEvent } from "@/data/analytics/track";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Copy, ExternalLink, Share2, X } from "lucide-react";
 import {
@@ -13,11 +14,47 @@ import {
   type IssuedProof,
 } from "@/data/tickets/useTicketProof";
 
-const PARTNER = "ens";
+type Tier = IssuedProof["tier"];
 
 /**
- * "Claim ENS perks" on a ticket row: mints a partner proof for that specific
- * ticket and hands the link off to a real browser.
+ * Everything the button needs to know about one partner: the key the proof is
+ * minted for and the copy around it. One object, every field required, so a
+ * partner key can never ship with another partner's wording.
+ */
+export type ProofPartner = {
+  /** Partner key as registered in the proof route's `PARTNERS`. */
+  key: string;
+  /** Button label. */
+  label: string;
+  /** Names the actual perk on the hand-off sheet, by minted tier. */
+  describe: (tier: Tier) => string;
+  /** Sheet copy inside a PWA, after "Open this in your browser to claim on
+      <partner>.": what the user will do on the partner's page. */
+  handoffHint: string;
+};
+
+/** The ENS partner. The label leads with the free .eth name where it applies. */
+function ensPartner(freeName: boolean): ProofPartner {
+  return {
+    key: "ens",
+    label: freeName
+      ? "Claim your free .eth name & ENS perks"
+      : "Claim ENS perks",
+    describe: (tier) =>
+      tier === "india"
+        ? "As a verified local attendee you can claim a .eth name (5+ characters) with the first year's registration covered — plus the frENS reward if you already own a name with 10+ years remaining."
+        : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward.",
+    handoffHint:
+      "You'll need to connect a wallet there, which works best outside the app.",
+  };
+}
+
+/**
+ * "Claim <partner> perks" on a ticket row: mints a partner proof for that
+ * specific ticket and hands the link off to a real browser.
+ *
+ * ENS is the default so the original call sites read unchanged; another partner
+ * passes itself as one `ProofPartner` (key plus copy).
  *
  * Event tickets only — swag and add-ons deliberately don't get one, since the
  * perk is one per event ticket.
@@ -25,14 +62,18 @@ const PARTNER = "ens";
 export function TicketProofButton({
   ticketSecret,
   freeName = false,
+  partner,
 }: {
   ticketSecret: string;
   /** Display hint only (the proof route decides the real tier): lead with
-      the free .eth name where the ticket qualifies for one. */
+      the free .eth name where the ticket qualifies for one. ENS only. */
   freeName?: boolean;
+  /** Another partner with its own copy; left out, this is the ENS button. */
+  partner?: ProofPartner;
 }) {
+  const p = partner ?? ensPartner(freeName);
   const { proof, pending, error, sheetOpen, request, closeSheet } =
-    useTicketProof(ticketSecret, PARTNER);
+    useTicketProof(ticketSecret, p.key);
 
   return (
     <>
@@ -41,17 +82,16 @@ export function TicketProofButton({
           on the surrounding EnsPerkCard. */}
       <button
         type="button"
-        onClick={request}
+        onClick={() => {
+          trackEvent("perks", "claim", p.key);
+          void request();
+        }}
         disabled={pending}
         // text-left: buttons center wrapped text by default, which reads
         // wrong when the label breaks onto two lines.
         className="mt-2 inline-flex min-h-8 cursor-pointer items-center gap-1 text-left text-[14px] font-bold leading-5 text-dc-purple underline-offset-2 enabled:hover:underline disabled:cursor-default disabled:opacity-60"
       >
-        {pending
-          ? "Preparing…"
-          : freeName
-            ? "Claim your free .eth name & ENS perks"
-            : "Claim ENS perks"}
+        {pending ? "Preparing…" : p.label}
         <ArrowUpRight className="size-4 shrink-0" />
       </button>
 
@@ -61,6 +101,8 @@ export function TicketProofButton({
             key="proof-handoff"
             proof={proof}
             error={error}
+            describe={p.describe}
+            handoffHint={p.handoffHint}
             onClose={closeSheet}
           />
         )}
@@ -81,18 +123,27 @@ export function TicketProofButton({
 function HandoffSheet({
   proof,
   error,
+  describe,
+  handoffHint,
   onClose,
 }: {
   proof: IssuedProof | null;
   error: string | null;
+  describe: (tier: Tier) => string;
+  handoffHint: string;
   onClose: () => void;
 }) {
   const [copied, setCopied] = useState(false);
   const mode = handoffMode();
 
+  useEffect(() => {
+    if (proof) trackEvent("perks", "sheet-shown", proof.partner);
+  }, [proof]);
+
   const onCopy = async () => {
     if (!proof) return;
     if (await copyLink(proof.claimUrl)) {
+      trackEvent("perks", "copy", proof.partner);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -148,21 +199,20 @@ function HandoffSheet({
             </h2>
             {/* Name the actual perk so the hop is worth taking. Tier comes
                 from the minted proof, so this needs no extra lookup. */}
-            <p className="mt-2 text-sm text-dc-muted">
-              {proof.tier === "india"
-                ? "As a verified local attendee you can claim a .eth name (5+ characters) with the first year's registration covered — plus the frENS reward if you already own a name with 10+ years remaining."
-                : "Hold an ENS name with 10+ years remaining? Claim the limited-edition frENS reward."}
-            </p>
+            <p className="mt-2 text-sm text-dc-muted">{describe(proof.tier)}</p>
             <p className="mt-2 text-sm text-dc-muted">
               {mode === "escape"
-                ? `Open this in your browser to claim on ${proof.partnerLabel}. You'll need to connect a wallet there, which works best outside the app.`
+                ? `Open this in your browser to claim on ${proof.partnerLabel}. ${handoffHint}`
                 : `Continue on ${proof.partnerLabel} to claim.`}
             </p>
 
             <div className="mt-4 flex flex-col gap-2">
               <button
                 type="button"
-                onClick={() => escapeToBrowser(proof.claimUrl)}
+                onClick={() => {
+                  trackEvent("perks", "open-browser", proof.partner);
+                  escapeToBrowser(proof.claimUrl);
+                }}
                 className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-dc-purple px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 <ExternalLink className="size-4" />
@@ -172,12 +222,13 @@ function HandoffSheet({
               {canShare() && (
                 <button
                   type="button"
-                  onClick={() =>
-                    shareLink(
+                  onClick={() => {
+                    trackEvent("perks", "share", proof.partner);
+                    void shareLink(
                       proof.claimUrl,
                       `${proof.partnerLabel} perks for Devcon attendees`
-                    )
-                  }
+                    );
+                  }}
                   className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-hairline px-5 text-sm font-semibold text-dc-fg2 transition-colors hover:bg-dc-lavender"
                 >
                   <Share2 className="size-4" />

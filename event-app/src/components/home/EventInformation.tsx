@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Check, ChevronDown, Copy } from "lucide-react";
 import { Link } from "@/routing";
 import { LegalLinks } from "./LegalLinks";
+import { openFeedback } from "@/data/feedback/feedbackState";
 
 /**
  * "Event information" at the bottom of Home: an always-open Essentials panel
@@ -143,6 +144,10 @@ export function EventInformation() {
               <a href={ONBOARDING_HREF} className={inlineLink}>
                 Onboarding Area
               </a>
+              . Something wrong with the app?{" "}
+              <button type="button" onClick={() => openFeedback()} className={`${inlineLink} cursor-pointer`}>
+                Send feedback
+              </button>
             </Essential>
           </ul>
         </div>

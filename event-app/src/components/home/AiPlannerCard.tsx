@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/data/analytics/track";
 import { useCallback } from "react";
 import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
@@ -10,7 +11,13 @@ import { useEvent } from "@/data/hooks";
 import { useSessionsOfAllProgrammes } from "@/data/hooks";
 import { useInterested } from "@/data/interested/useInterested";
 import { useOnline } from "@/hooks/useOnline";
-import { assistantUrl, buildAssistantPrompt, sessionCode, type AssistantKind } from "@/data/ai/plan";
+import {
+  assistantLink,
+  buildAssistantPrompt,
+  sessionCode,
+  type AssistantKind,
+  type PromptInput,
+} from "@/data/ai/plan";
 
 /**
  * Home entry to "Plan with your AI": one prompt, opened in ChatGPT or Claude
@@ -26,7 +33,7 @@ export function AiPlannerCard() {
   const { ids } = useInterested();
   const { event } = useEvent();
 
-  const prompt = useCallback(() => {
+  const input = useCallback((): PromptInput => {
     const dataset = getActiveDataset();
     const starred = sessions.filter((s) => ids.has(s.id)).map((s) => ({ code: sessionCode(s), title: s.title }));
     const dayCount =
@@ -37,7 +44,7 @@ export function AiPlannerCard() {
       event?.startDate && event?.endDate
         ? `${eventFmt("en-GB", { day: "numeric" }).format(new Date(event.startDate))} to ${eventFmt("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(new Date(event.endDate))}`
         : "";
-    return buildAssistantPrompt({
+    return {
       appOrigin: window.location.origin,
       eventId: dataset.eventId,
       eventTitle: event?.title || dataset.label,
@@ -45,16 +52,19 @@ export function AiPlannerCard() {
       timezoneLabel: getEventTimeZoneLabel(),
       dayCount,
       starred,
-    });
+    };
   }, [sessions, ids, event]);
+  const prompt = useCallback(() => buildAssistantPrompt(input()), [input]);
 
   const open = (kind: AssistantKind) => {
-    window.open(assistantUrl(kind, prompt()), "_blank", "noopener");
+    trackEvent("planner", `open-${kind}`);
+    window.open(assistantLink(kind, input()), "_blank", "noopener");
   };
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(prompt());
+      trackEvent("planner", "copy");
       toast.success("Instructions copied, paste them into your assistant");
     } catch {
       toast.error("Couldn't copy the instructions");
@@ -84,6 +94,10 @@ export function AiPlannerCard() {
           </PrimaryButton>
           <PrimaryButton size="sm" onClick={() => open("claude")} disabled={!online}>
             Open in Claude
+            <ExternalLink className="size-4 shrink-0" />
+          </PrimaryButton>
+          <PrimaryButton size="sm" onClick={() => open("grok")} disabled={!online}>
+            Open in Grok
             <ExternalLink className="size-4 shrink-0" />
           </PrimaryButton>
           <SecondaryButton size="sm" onClick={copy}>

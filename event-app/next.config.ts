@@ -111,6 +111,9 @@ const nextConfig: NextConfig = {
     // DEPLOY_PRIME_URL, so push tap-through links from a preview open inside
     // a preview install; production sets APP_ORIGIN explicitly.
     APP_ORIGIN: process.env.APP_ORIGIN || process.env.DEPLOY_PRIME_URL || "",
+    // Short commit of the build (Netlify's COMMIT_REF), shown in feedback
+    // reports so "which version?" never needs asking.
+    APP_BUILD: (process.env.COMMIT_REF || "").slice(0, 7) || "dev",
   },
   experimental: {
     // Keep prefetched route payloads in the client router cache for the whole

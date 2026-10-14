@@ -1,3 +1,4 @@
+import { trackEvent } from "@/data/analytics/track";
 import { cacheDB } from "../cache/cache-db";
 import type { Dataset } from "../dataset";
 import { provider } from "../providers/provider";
@@ -248,7 +249,10 @@ export class EventStore {
         status: offline ? "offline" : "error",
         lastError: err instanceof Error ? err.message : String(err),
       });
-      if (!offline) this.scheduleRetry(dataset);
+      if (!offline) {
+        this.scheduleRetry(dataset);
+        trackEvent("sync", "bundle-failed", dataset.eventId);
+      }
       return "failed";
     }
   }

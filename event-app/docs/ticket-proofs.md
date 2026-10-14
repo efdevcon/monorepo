@@ -111,7 +111,22 @@ Server-only, see `.env.example` for the full notes.
 - `TICKET_PROOF_SALT`: keys the identifier hash. Never publish it. The ticket
   secret is the QR payload, so a bare hash of it would let anyone who has seen a
   badge deanonymise that attendee's claim.
-- `TICKET_PROOF_INDIA_ITEM_IDS`, `TICKET_PROOF_ENS_CLAIM_URL`: optional.
+- `TICKET_PROOF_INDIA_ITEM_IDS`, `TICKET_PROOF_ENS_CLAIM_URL`,
+  `TICKET_PROOF_POWFAUCET_SEPOLIA_CLAIM_URL`, `TICKET_PROOF_POWFAUCET_HOODI_CLAIM_URL`: optional.
+
+## Partners
+
+`PARTNERS` in `proof.ts` is the allowlist, keyed by the name the client passes.
+Adding one is an entry there, a perk card under My Devcon and a claim url on the
+partner's side:
+
+- `ens`: the perks described under the reference implementation below.
+- `powfaucet-sepolia`, `powfaucet-hoodi`: the PoW testnet faucets
+  (github.com/pk910/PoWFaucet, module `ticket-proof`), one key per network since
+  each network is its own faucet with its own url. A faucet verifies against the
+  pinned signer, swaps the proof for a login of its own and keeps a spent-set per
+  instance, so one ticket gets one set of perks per network. The card under My
+  Devcon shows one button per network.
 
 Rotating the key invalidates issued proofs and every partner's pin. Changing the
 salt changes every identifier, so partners' spent-sets stop matching and spent

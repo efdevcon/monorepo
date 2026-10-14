@@ -358,7 +358,9 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url: string = event.notification.data?.url || "/notifications";
+  // "#from=push" lets the page report the open as an analytics event (read
+  // and stripped by MatomoAnalytics; keep in step with PUSH_OPEN_HASH there).
+  const url = `${event.notification.data?.url || "/notifications"}#from=push`;
   event.waitUntil(
     (async () => {
       // Reuse an app window when one can be focused and steered; fall back to
