@@ -15,6 +15,8 @@
  * Keep this file free of image imports so the pull script can import it.
  */
 
+import type { SpeakerLogoKey } from './speaker-logos'
+
 interface AllowlistBase {
   /** Role / job title. Hand-filled; the pull script prints the Pretalx bio to help. */
   title?: string
@@ -25,6 +27,9 @@ interface AllowlistBase {
   bio?: string
   /** Track override (or the only source for manual entries); Pretalx supplies it otherwise. */
   track?: string
+  /** Key into SPEAKER_LOGOS (speaker-logos.ts). The card shows the logo instead
+   *  of the company name; leave unset to show the name as text. */
+  logo?: SpeakerLogoKey
   /** URL of the announcement post on X. Provenance only, never rendered. */
   announcedAt?: string
 }
@@ -55,6 +60,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'KYP3UZ',
     name: 'Vitalik Buterin',
     title: 'Co-Founder',
+    logo: 'ethereum-foundation',
     bio: 'Vitalik Buterin co-founded Ethereum, first describing it in a 2013 white paper. Vitalik writes and researches across cryptography, scaling and public goods.',
   },
   // Org answer is "Cyber Ambassador Taiwan, civic.ai".
@@ -68,39 +74,46 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'G9LYGU',
     title: 'Researcher',
     xHandle: 'drakefjustin',
+    logo: 'ethereum-foundation',
     bio: "Justin Drake is a researcher on the Ethereum Foundation's architecture team, working on post-quantum security, zkEVMs and a leaner Ethereum.",
   }, // Justin Drake · Ethereum Foundation
   {
     code: 'W8UUCW',
     title: 'Co-Founder',
+    logo: 'tor',
     bio: 'Roger Dingledine co-founded the Tor Project and was its original developer, building free software that protects people from tracking, censorship and surveillance. Roger works with journalists and activists worldwide.',
   }, // Roger Dingledine · The Tor Project
   {
     code: 'MWSEWZ',
     title: 'Founder',
+    logo: 'polygon',
     bio: 'Sandeep Nailwal founded Polygon and leads the Polygon Foundation as CEO, building toward seamless onchain payments. Sandeep also founded Blockchain for Impact, which supports medical research and Web3 builders.',
   }, // Sandeep Nailwal · Polygon Labs
   {
     code: 'FZ8PA3',
     title: 'CTO',
     company: 'LF Decentralized Trust',
+    logo: 'lfdt',
     bio: "Hart Montgomery is CTO of Linux Foundation Decentralized Trust and executive director of the Post-Quantum Cryptography Alliance. Hart holds a PhD in cryptography from Stanford and helped lead Fujitsu's work on Hyperledger.",
   }, // Hart Montgomery
   {
     code: '8FL8QW',
     title: 'Co-Founder',
     company: 'Aztec',
+    logo: 'aztec',
     bio: 'Zachary Williamson co-founded Aztec Network and chairs the Aztec Foundation. Zachary co-invented PLONK and has spent nearly a decade designing the cryptography behind programmable privacy.',
   }, // Zachary Williamson
   {
     code: 'RMPP9E',
     title: 'Co-Founder',
+    logo: 'ethlabs',
     bio: 'Barnab\u00e9 Monnot co-founded Ethlabs, a non-profit R&D lab growing Ethereum and ETH. Barnab\u00e9 previously co-led Protocol at the Ethereum Foundation.',
   }, // Barnabé Monnot · Ethlabs
   {
     code: '7BLNXR',
     title: 'Founder',
     company: 'Giveth',
+    logo: 'giveth',
     bio: 'Griff Green leads TheDAO Security Fund and co-founded Giveth and Dappnode. Griff has spent a decade on white-hat rescues, from the cleanup after TheDAO hack to recovering $200M+ in the first Parity multisig hack.',
   }, // Griff Green — TODO confirm title
   // No avatar or org answer in Pretalx, so the portrait and company are hand-supplied.
@@ -110,6 +123,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Giga',
     xHandle: 'chrisfabian',
     portrait: 'christopher-fabian.webp',
+    logo: 'giga',
     bio: 'Christopher Fabian co-launched Giga with UNICEF and the ITU to connect every school in the world to the internet, mapping school connectivity in real time and pooling demand to finance it. Christopher also co-founded UNICEF Innovation.',
   }, // Christopher Fabian
   {
@@ -117,47 +131,56 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     title: 'Lawyer & Digital-Rights Researcher',
     company: 'EF Silviculture Society',
     xHandle: 'Fatalmeh',
+    logo: 'ethereum-foundation',
     bio: 'Fatemeh Fannizadeh is a Swiss-qualified lawyer and digital-rights researcher working where regulation, privacy and governance meet. Fatemeh asks who actually gets to take part in decentralized systems, and why.',
   }, // Fatemeh Fannizadeh
   {
     code: '3JEDML',
     title: 'Protocol Engineering Lead',
+    logo: 'monad',
     bio: 'Dorde Mijovic leads protocol engineering at the Monad Foundation. Dorde previously worked on the Solidity compiler at the Ethereum Foundation and co-founded a DeFi project.',
   }, // Dorde Mijovic · Monad Foundation
   {
     code: 'LP7S9M',
     title: 'Product & Project Manager',
     company: 'UNICEF Office of Innovation',
+    logo: 'unicef',
     bio: "Kati Illes runs Web3 prototypes and pilots for UNICEF's Ventures and CryptoFund teams, working where humanitarian fintech meets digital public goods.",
   }, // Kati Illes
   {
     code: '3QYPGS',
     title: 'Researcher & Engineer',
+    logo: 'circle',
     bio: 'Preston Vander Vos is a researcher and engineer at Circle, building Arc, an EVM-compatible blockchain. Preston works across distributed systems, cryptography and mechanism design.',
   }, // Preston Vander Vos · Circle
   {
     code: 'T8KAJP',
     title: 'Co-Founder',
+    logo: 'ack3',
     bio: 'Jan Kalivoda co-founded ack3.ai and works as a security researcher and university lecturer. Jan holds an ETHSecurity badge and is a committed paneer enjoyer.',
   }, // Jan Kalivoda · ack3
   {
     code: 'MPDBM3',
     title: 'Strategy & Operations Lead',
+    logo: 'libp2p',
     bio: 'Johanna Moran leads strategy and operations for libp2p, the peer-to-peer networking stack behind IPFS, Filecoin, Ethereum and Polkadot, and represents it at the IETF. Johanna also co-founded Meshworks.',
   }, // Johanna Moran · libp2p
   {
     code: 'J7URYL',
     title: 'Founder',
+    logo: 'phantom-zone',
     bio: "Janmajaya Mall invents new cryptographic primitives at phantom.zone, building encrypted, shared ways to compute that don't depend on the machine underneath. All of it open source.",
   }, // Janmajaya Mall · phantom.zone
   {
     code: 'TKDN87',
     title: 'Integration Engineer',
+    logo: 'ethereum-foundation',
     bio: "Jason Chaskin is a writer, learner and integration engineer at the Ethereum Foundation, focused on Ethereum's Access Layer.",
   }, // Jason Chaskin · Ethereum Foundation
   {
     code: 'GVKNCK',
     title: 'Founder',
+    logo: 'freedom',
     bio: 'Meinhard Benn has worked with Bitcoin since 2011 and founded SatoshiPay in 2014. Meinhard now builds Freedom Browser, an open-source browser with Swarm, IPFS, Radicle and ENS built in.',
   }, // Meinhard Benn · Freedom Browser
   {
@@ -165,6 +188,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     name: 'Santiago',
     title: 'Developer Relations',
     company: 'Arkiv',
+    logo: 'arkiv',
     bio: 'Santiago is DevRel at Arkiv and has hosted 30+ developer workshops and two builder residencies across Africa, Latin America and Europe. Santiago previously worked at ChainSafe, Lisk and Swisstronik.',
   }, // SantiagoDevRel — Pretalx org answer says Golem Network; the speaker's bio confirms Arkiv
   // Pretalx name is lowercase and the org answer is a paragraph, hence both overrides.
@@ -173,6 +197,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     name: 'Victoria Kozlova',
     title: 'PhD Researcher',
     company: 'Tallinn University of Technology',
+    logo: 'taltech',
     bio: 'Victoria Kozlova is a sociolinguist turned Web3 UI/UX designer turned PhD candidate, researching blockchains and their social implications.',
   },
   // Org answer is "Web3Privacy Now - founder", hence the company override.
@@ -180,11 +205,13 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'MAXUYR',
     title: 'Founder',
     company: 'Web3Privacy Now',
+    logo: 'web3privacy-now',
     bio: 'PG runs operations at Web3Privacy Now, turning its mission into action for privacy-preserving tech. In crypto since 2016, with a passion for the politics of care, activism and the arts.',
   }, // PG
   {
     code: 'NWGADS',
     title: 'Tokenization Tech Lead',
+    logo: 'nethermind',
     bio: 'Eric Marti Haynes leads tokenization tech at Nethermind, having joined as an intern in 2022. Eric designs and builds tokenization systems and researches the standards linking them to DeFi.',
   }, // Eric Marti Haynes · Nethermind
   // No avatar in Pretalx, so the portrait is hand-supplied; org answer
@@ -195,6 +222,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Nouns',
     xHandle: 'b3nedictvs',
     portrait: 'ben-biedermann.webp',
+    logo: 'nouns',
     bio: 'Ben Biedermann is a PhD candidate in digital public infrastructure, studying how small jurisdictions govern decentralized technology. Ben is also Product Lead at Nouns Builder DAO, building open-source tools for onchain governance.',
   }, // Ben Biedermann
   // Org answer adds a note about the talk being personal work.
@@ -202,16 +230,19 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'BW7UUN',
     title: 'Director of Developer Relations',
     company: 'MetaMask',
+    logo: 'metamask',
     bio: 'Francesco Andreoli leads developer relations at MetaMask and has been in Ethereum since 2016. Francesco works where wallets, smart accounts and AI agents meet, and builds open-source agent tooling to test the ideas.',
   }, // Francesco Andreoli
   {
     code: 'WLADZ7',
     title: 'Core Contributor',
+    logo: 'protocol-guild',
     bio: "cheeky-gorilla is a core contributor to Protocol Guild, which funds the maintainers of Ethereum's core protocol so the work the ecosystem depends on keeps happening.",
   }, // cheeky-gorilla · Protocol Guild
   {
     code: 'G9TNL3',
     title: 'go-ethereum Developer',
+    logo: 'ethereum-foundation',
     bio: 'lightclient is a go-ethereum developer, the author of EIP-7702 and a long-time contributor to account abstraction.',
   }, // lightclient · Ethereum Foundation
   // Org answer is "EEZ and ZisK".
@@ -219,16 +250,19 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'J3CHSG',
     title: 'Co-Founder',
     company: 'ZisK',
+    logo: 'zisk',
     bio: 'Jordi Baylina founded SilentSig and created ZisK, an open-source zkVM. Jordi previously co-founded Polygon Hermez, led Polygon zkEVM, and created Circom and snarkJS.',
   }, // Jordi Baylina
   {
     code: 'BRYZ3G',
     title: 'Partnerships & Scouting Lead',
+    logo: 'edge-city',
     bio: 'Telamon Ardavanis leads partnerships and scouting at Edge City, a non-profit society incubator running month-long popup villages. Edge City has hosted 12 villages on 5 continents, with 12,500+ participants from 100+ countries.',
   }, // Telamon Ardavanis · Edge City
   {
     code: 'V88N3U',
     title: 'Head of Privacy',
+    logo: 'coinbase',
     bio: 'Asha Shankar is Head of Privacy at Coinbase, leading privacy risk, assessments and incident response. Asha works where data protection law meets blockchain architecture, building privacy programs that hold up under regulatory scrutiny.',
   }, // Asha Shankar · Coinbase
   // Org answer is "Veridise Inc".
@@ -236,6 +270,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'HDTJHP',
     title: 'Co-Founder & CEO',
     company: 'Veridise',
+    logo: 'veridise',
     bio: 'Jon Stephens co-founded Veridise, which audits and builds security tools for smart contracts, blockchain systems and zero-knowledge tech. Jon is also a computer science PhD student at UT Austin, researching formal methods and program analysis.',
   }, // Jon Stephens
   // Org answer is "BuidlGuidl / 1Claw".
@@ -243,6 +278,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'KC3QAL',
     title: 'Founder',
     company: '1Claw',
+    logo: '1claw',
     bio: 'Kevin Jones founded 1Claw, an AI security startup focused on guardrails and agentic commerce. Kevin is also a core member of BuidlGuidl, teaching developers around the world to build on Ethereum.',
   }, // Kevin Jones
   // Org answer is "Libp2p, IPFS, Protocol Labs".
@@ -250,6 +286,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     code: 'UKPQQY',
     title: 'Technical Lead',
     company: 'libp2p',
+    logo: 'libp2p',
     bio: "Manu Sheel Gupta is a technical lead and maintainer across libp2p, multiformats and IPLD, working on permissionless P2P networks. Manu also builds LeakDetectAI and volunteers with Ethereum's Trillion Dollar Security initiative.",
   }, // Manu Sheel Gupta
 ]
