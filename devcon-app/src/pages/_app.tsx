@@ -39,16 +39,61 @@ let matomoAdded = false
 // Re-export for backwards compatibility with other files
 export { initialFilterState, initialSpeakerFilterState }
 
-// Devcon 8 prep notice. A modal on every full page load, on purpose without
-// any "seen" flag: the old app stays reachable while the new one is built, and
-// each visit should meet the warning. Skipped on the room screens, which are
+// Devcon 8 notice. A modal on every full page load, on purpose without any
+// "seen" flag: the old app stays reachable while the new one is built, and each
+// visit should meet the warning. Skipped on the room screens, which are
 // unattended stage displays.
+//
+// NEXT_PUBLIC_MIGRATION_STATE (build time, netlify.toml) picks the state:
+//   nothing    no notice at all
+//   preparing  "getting ready for Devcon 8" (default). Flips to migrated by
+//              itself once the new app serves this origin, see the probe below.
+//   migrated   "the new app is live, re-install it"
+// Once the new app takes over this origin (docs/app-domain-migration.md), an
+// installed app switches to the new app by itself (same scope, same /sw.js),
+// but iOS keeps the old name and icon until the user adds it to the Home
+// Screen again, hence the re-install copy.
+type MigrationState = 'nothing' | 'preparing' | 'migrated'
+const MIGRATION_STATE: MigrationState = (() => {
+  const value = process.env.NEXT_PUBLIC_MIGRATION_STATE
+  return value === 'nothing' || value === 'migrated' ? value : 'preparing'
+})()
+const NEW_APP_URL = 'https://app.devcon.org/'
+
+// Only the new app serves this file; this one answers 404. HEAD on purpose:
+// the service worker's runtime routes match GET only, so the probe reaches
+// the network and never a cached answer.
+async function newAppIsLive(): Promise<boolean> {
+  if (MIGRATION_STATE === 'migrated') return true
+  try {
+    const res = await fetch('/manifest.webmanifest', { method: 'HEAD', cache: 'no-store' })
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
 function Devcon8Notice() {
   const [open, setOpen] = useState(false) // opens after mount, so server and client render the same
+  const [live, setLive] = useState(MIGRATION_STATE === 'migrated')
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     if (window.location.pathname.includes('/room-screens')) return
-    setOpen(true)
+    const check = () => {
+      setOpen(true)
+      newAppIsLive().then(isLive => {
+        if (!isLive) return
+        setLive(true)
+        // Start the handover now instead of at the next foreground: the new
+        // origin's /sw.js replaces this worker and reloads the page.
+        navigator.serviceWorker
+          ?.getRegistration()
+          .then(registration => registration?.update())
+          .catch(() => undefined)
+      })
+    }
+    check()
     // An installed app on a phone rarely gets a fresh page load: iOS restores
     // the page as it was when the app returns to the foreground. Treat a
     // return after a longer absence as a new visit and show the notice again.
@@ -56,32 +101,65 @@ function Devcon8Notice() {
     let hiddenAt = 0
     const onVisibility = () => {
       if (document.visibilityState === 'hidden') hiddenAt = Date.now()
-      else if (hiddenAt && Date.now() - hiddenAt > REOPEN_AFTER_MS) setOpen(true)
+      else if (hiddenAt && Date.now() - hiddenAt > REOPEN_AFTER_MS) check()
     }
     document.addEventListener('visibilitychange', onVisibility)
     return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
+  const copyLink = () => {
+    navigator.clipboard
+      ?.writeText(NEW_APP_URL)
+      .then(() => {
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      })
+      .catch(() => undefined)
+  }
+
+  const primaryButton = 'rounded-md bg-[#7d52f4] px-4 py-2 text-sm font-semibold text-white hover:opacity-90'
+  const secondaryButton = 'rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold hover:bg-gray-100'
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-lg p-6">
-        <DialogHeader>
-          <DialogTitle>🚧 Preparing for Devcon 8</DialogTitle>
-          <DialogDescription>
-            We&apos;re getting this app ready for Devcon 8 in Mumbai, so some features may be unavailable or behave
-            unexpectedly. Stay tuned: the new app is coming soon.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <button
-              type="button"
-              className="rounded-md bg-[#7d52f4] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
-            >
-              Got it
-            </button>
-          </DialogClose>
-        </DialogFooter>
+        {live ? (
+          <>
+            <DialogHeader>
+              <DialogTitle>🎉 The new Devcon app is live</DialogTitle>
+              <DialogDescription>
+                Add it to your Home Screen again to get the new app with its new icon: open app.devcon.org in Safari or
+                Chrome, then Share and Add to Home Screen. You can delete this one afterwards. On iPhone the button
+                below opens a browser sheet: tap its Safari button first.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="gap-2">
+              <button type="button" className={secondaryButton} onClick={copyLink}>
+                {copied ? 'Copied' : 'Copy link'}
+              </button>
+              <a href={NEW_APP_URL} target="_blank" rel="noopener noreferrer" className={primaryButton}>
+                Open app.devcon.org
+              </a>
+            </DialogFooter>
+          </>
+        ) : (
+          <>
+            <DialogHeader>
+              <DialogTitle>🚧 Preparing for Devcon 8</DialogTitle>
+              <DialogDescription>
+                We&apos;re getting this app ready for Devcon 8 in Mumbai, so some features may be unavailable or behave
+                unexpectedly. Stay tuned: the new app is coming soon.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose asChild>
+                <button type="button" className={primaryButton}>
+                  Got it
+                </button>
+              </DialogClose>
+            </DialogFooter>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   )
@@ -181,7 +259,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Devcon8Notice />
+      {MIGRATION_STATE !== 'nothing' && <Devcon8Notice />}
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
         <link rel="manifest" href="/manifest.json" />
