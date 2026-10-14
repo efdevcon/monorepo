@@ -153,9 +153,6 @@ export default function SupportersProgramPage() {
               {t('hero.body_line_1')}
               <br />
               {t('hero.body_line_2')}
-              <br />
-              <br />
-              <strong>{t('hero.body_tagline')}</strong>
             </p>
           </div>
 
