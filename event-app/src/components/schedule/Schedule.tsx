@@ -1484,7 +1484,9 @@ function ScheduleInner({
                   className={cn(
                     "overflow-hidden transition-[opacity,transform,max-width,margin] ease-out motion-reduce:transition-none",
                     view === "timeline"
-                      ? "ml-3 max-w-24 translate-x-0 opacity-100 duration-150"
+                      // 112px cap: the switch is ~96px, and the clip must
+                      // never cut it where a fallback × glyph runs wider.
+                      ? "ml-3 max-w-28 translate-x-0 opacity-100 duration-150"
                       : "pointer-events-none ml-0 max-w-0 -translate-x-1 opacity-0 duration-100"
                   )}
                 >
