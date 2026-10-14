@@ -57,20 +57,23 @@ if (!eventId) {
 
 const TIMEZONES: Record<string, string> = { devcon8: 'Asia/Kolkata', 'test-devcon-8': 'Asia/Kolkata', 'devcon-7': 'Asia/Bangkok' }
 const TZ = TIMEZONES[eventId] ?? 'UTC'
-// The AV team's own folder names per room id; a room not listed uses its name.
+// Folder name per room id; a room not listed uses its Pretalx name. Room ids
+// are the slugified Pretalx names, so a rename in Pretalx changes the id: keep
+// this map in step or cards move to a freshly created folder (2026-10-14: the
+// stages were renamed and the old "Lotus 1", "Jasmine", "CLS"... folders
+// emptied out; the crew keeps its own files in them, so they are left alone).
 const ROOM_FOLDERS: Record<string, string> = {
-  'lotus-1': 'Lotus 1',
-  'lotus-2': 'Lotus 2',
-  'lotus-3': 'Lotus 3',
-  'lotus-stage': 'Lotus Stage',
-  'stage-4-jasmine': 'Jasmine',
-  'cls-stage': 'CLS',
-  'cls-stage-builders-room': 'CLS Builders Room',
-  'lightning-stage-1': 'Lightning Stage',
+  'main-stage-lotus': 'Main Stage (Lotus)',
+  'lotus-stage-1': 'Lotus Stage 1',
+  'lotus-stage-2': 'Lotus Stage 2',
+  'lotus-stage-3': 'Lotus Stage 3',
+  'jasmine-stage-4': 'Jasmine Stage 4',
+  'community-led-stage': 'Community Led Stage',
+  'cls-builders-room': 'CLS - Builders Room',
+  'lightning-stage': 'Lightning Stage',
   'music-stage': 'Music',
   'workshop-1': 'Workshop 1',
   'workshop-2': 'Workshop 2',
-  'workshop-3': 'Workshop 3',
 }
 const EVENT_FOLDER = '$$EVENT'
 const CARDS_SUBFOLDER = 'Intro Cards' // inside each room/day folder, so the crew's own files stay apart
