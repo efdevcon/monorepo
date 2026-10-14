@@ -9,13 +9,13 @@ import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 // Index-aligned with the intl `cards` array — don't reorder either one (hi/mr
 // translations pair by index); displayOrder controls on-screen position instead.
 const cardMeta = [
-  { icon: Users, href: 'https://forum.devcon.org/t/rfp-13-devcon-8-india-community-hubs/8657', external: true },
+  { icon: Users, closed: true }, // community hubs — applications closed
   { icon: HandHeart, closed: true }, // volunteer — applications closed
-  { icon: Handshake, href: '/supporters', external: false },
+  { icon: Handshake, closed: true }, // supporters — applications closed
 ] as Array<{ icon: typeof Users; href?: string; external?: boolean; closed?: boolean }>
 
-// Volunteer card moved last since its applications closed
-const displayOrder = [0, 2, 1]
+// All three programs are closed for this cycle, so cards show in their natural order
+const displayOrder = [0, 1, 2]
 
 /**
  * "Help make Devcon happen" — Figma node 4917:966. Three contributor cards
