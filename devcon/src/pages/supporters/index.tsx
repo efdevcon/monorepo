@@ -2,8 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
-import { Link } from 'components/common/link'
-import { ArrowRight, Handshake, Compass, Wrench } from 'lucide-react'
+import { Handshake, Compass, Wrench } from 'lucide-react'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
 import IconTelegram from 'assets/icons/telegram.svg'
@@ -14,7 +13,6 @@ import themes from '../themes.module.scss'
 import HeroBackground from './hero-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
 import JaaliBottom from 'assets/images/pages/ecosystem-jaali-bottom.svg'
-import ImpactGlyph from 'assets/images/pages/supporters-impact-glyph.svg'
 import CommunityBannerBg from './community-banner.png'
 import css from './supporters.module.scss'
 import cn from 'classnames'
@@ -44,8 +42,6 @@ import LogoRotki from 'assets/images/supporters-page/figma-logos/rotki.png'
 import LogoSelf from 'assets/images/supporters-page/figma-logos/self.png'
 import EspressoMark from 'assets/images/pages/supporters-logos/espresso-mark.svg'
 import EspressoText from 'assets/images/pages/supporters-logos/espresso-text.svg'
-
-const APPLY_URL = '/form/supporter-application'
 
 // Order matches the Figma's two rows (top row 4283:5385 scrolls right,
 // bottom row 4283:5420 scrolls left). Each entry renders its own logo —
@@ -88,12 +84,27 @@ const SUPPORTER_LOGOS_ROW_2: React.ReactNode[] = [
 
 const WHY_SUPPORT_ICONS = [Handshake, Compass, Wrench] as const
 
-function ApplyButton({ label, className }: { label: string; className?: string }) {
+// Closed-state card, same pattern as speaker-applications / ecosystem-program
+function ApplicationsClosedCard() {
+  const t = useTranslations('supporters_program.applications_closed')
+
   return (
-    <Link to={APPLY_URL} className={cn(css['btn-primary'], className)}>
-      {label}
-      <ArrowRight size={16} strokeWidth={2} />
-    </Link>
+    <div className={css['applications-closed-card']}>
+      <div className={css['applications-closed-inner']}>
+        <div className={css['applications-closed-text']}>
+          <p className={css['applications-closed-heading']}>{t('heading')}</p>
+          <div className={css['applications-closed-body']}>
+            <p>{t('thank_you')}</p>
+            <p>
+              {t('contact_prefix')}
+              <a href={`mailto:${t('contact_email')}`} className={css['inline-link']}>
+                <strong>{t('contact_email')}</strong>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -107,7 +118,6 @@ export default function SupportersProgramPage() {
     { title: t('nav.what_is'), to: '#what-is' },
     { title: t('nav.impact_booths'), to: '#impact' },
     { title: t('nav.values'), to: '#values' },
-    { title: t('nav.apply'), to: '#apply' },
   ]
 
   const whySupportPoints = t.raw('why_support.points') as Array<{ title: string; body: string }>
@@ -150,7 +160,7 @@ export default function SupportersProgramPage() {
           </div>
 
           <div className={css['hero-cta-block']}>
-            <ApplyButton label={t('hero.cta')} />
+            <ApplicationsClosedCard />
           </div>
         </section>
 
@@ -268,15 +278,6 @@ export default function SupportersProgramPage() {
               ))}
             </ul>
           </div>
-          <div className={css['impact-cta-wrap']}>
-            <div className={css['impact-glyph']} aria-hidden="true">
-              <ImpactGlyph />
-            </div>
-            <Link to={APPLY_URL} className={css['btn-outline']}>
-              {t('impact.cta')}
-              <ArrowRight size={16} strokeWidth={2} />
-            </Link>
-          </div>
         </section>
 
         {/* ── CROPS values ─────────────────────────────────────── */}
@@ -303,22 +304,9 @@ export default function SupportersProgramPage() {
           </p>
         </section>
 
-        {/* ── Apply Now pill + contact note ────────────────────── */}
+        {/* ── Applications closed card ──────────────────────────── */}
         <section id="apply" className={cn(css['apply-section'], css['scroll-anchor'])}>
-          <div className={css['apply-pill']}>
-            <span className={css['apply-pill-label']}>{t('apply.label')}</span>
-            <ApplyButton label={t('apply.cta')} className={css['apply-pill-btn']} />
-          </div>
-          <p className={css['contact-note']}>
-            {t('apply.review_prefix')}
-            <strong>{t('apply.review_strong')}</strong>
-            {t('apply.review_suffix')}
-            <br />
-            {t('apply.contact_prefix')}
-            <a href={`mailto:${t('apply.contact_email')}`} className={css['inline-link']}>
-              <strong>{t('apply.contact_email')}</strong>
-            </a>
-          </p>
+          <ApplicationsClosedCard />
         </section>
 
         {/* ── Socials ──────────────────────────────────────────── */}
