@@ -4,7 +4,6 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-  type MouseEvent,
   type PointerEvent,
 } from "react";
 import { MicVocal } from "lucide-react";
@@ -38,11 +37,13 @@ export const FEATURED_SECTION = "featured";
  * nearest section WITH speakers, so a thumb over an empty letter still lands
  * somewhere, and dragging past either end sticks to the end cell. Every jump
  * is the same instant teleport a tap does (see Speakers.jumpToSection), so a
- * slide is a run of teleports, like a native iOS index bar. The cells'
- * onClick is keyboard only (Enter / Space arrive with detail 0); a pointer
- * tap has already jumped on pointerdown and its click is ignored. Empty cells
- * are aria-disabled rather than disabled: a disabled button swallows pointer
- * events in some engines, which would make the slide stutter across gaps.
+ * slide is a run of teleports, like a native iOS index bar. A pointer tap has
+ * already jumped on pointerdown, so the click that follows a handled press is
+ * ignored; every other click on a cell (Enter / Space, and assistive
+ * technology, which synthesises a click with no pointer events) jumps. Empty
+ * cells are aria-disabled rather than disabled: a disabled button swallows
+ * pointer events in some engines, which would make the slide stutter across
+ * gaps.
  */
 export function AzIndexRail({
   sections,
@@ -98,6 +99,10 @@ export function AzIndexRail({
   // The section last jumped to during the current press, so a finger resting
   // inside one cell doesn't re-jump on every pointermove.
   const press = useRef<{ last: string | null } | null>(null);
+  // Set by a handled press and cleared by the click it produces (or the next
+  // frame, for a press that produces none): the click after a press must not
+  // jump a second time, but a click with no press behind it must.
+  const pressedRef = useRef(false);
 
   /** The enabled cell whose centre is nearest the pointer. */
   const sectionAt = (clientY: number): string | null => {
@@ -120,6 +125,7 @@ export function AzIndexRail({
     e.currentTarget.setPointerCapture(e.pointerId);
     const section = sectionAt(e.clientY);
     press.current = { last: section };
+    pressedRef.current = true;
     if (section) onJump(section);
   };
   const onPointerMove = (e: PointerEvent<HTMLElement>) => {
@@ -133,11 +139,18 @@ export function AzIndexRail({
   };
   const onPointerEnd = () => {
     press.current = null;
+    // The click, if any, is dispatched right after pointerup; a press that
+    // ends without one (drag released elsewhere, cancel) must not leave the
+    // flag set for an unrelated click later.
+    window.setTimeout(() => {
+      pressedRef.current = false;
+    }, 0);
   };
-  // Pointer presses are handled on the rail above; a click with detail 0 is
-  // the keyboard (Enter / Space on a focused cell).
-  const onKeyboardClick = (e: MouseEvent<HTMLButtonElement>, section: string) => {
-    if (e.detail !== 0) return;
+  const onCellClick = (section: string) => {
+    if (pressedRef.current) {
+      pressedRef.current = false;
+      return;
+    }
     onJump(section);
   };
 
@@ -181,7 +194,7 @@ export function AzIndexRail({
             ref={(el) => {
               cellRefs.current.set(section, el);
             }}
-            onClick={(e) => enabled && onKeyboardClick(e, section)}
+            onClick={() => enabled && onCellClick(section)}
             aria-disabled={!enabled || undefined}
             tabIndex={enabled ? 0 : -1}
             aria-current={active ? "true" : undefined}
