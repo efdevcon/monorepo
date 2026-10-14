@@ -38,7 +38,37 @@ type SceneProps = {
  */
 function HoverCursor({ hovered }: { hovered: boolean }) {
   const gl = useThree((s) => s.gl);
+  // While a pointer is held the controls own the cursor ("grabbing"): a
+  // footprint swept under the finger mid-drag must not open the hand.
+  const heldRef = useRef(false);
+  const hoveredRef = useRef(hovered);
   useEffect(() => {
+    hoveredRef.current = hovered;
+  }, [hovered]);
+  useEffect(() => {
+    const el = gl.domElement;
+    const apply = () => el.style.setProperty("cursor", hoveredRef.current ? "pointer" : "grab");
+    const onDown = () => {
+      heldRef.current = true;
+    };
+    // The window, not the canvas: a drag released off the canvas ends there.
+    // OrbitControls listens on the document, so its own reset runs first and
+    // this re-applies the hover state over it.
+    const onUp = () => {
+      heldRef.current = false;
+      apply();
+    };
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [gl]);
+  useEffect(() => {
+    if (heldRef.current) return;
     gl.domElement.style.setProperty("cursor", hovered ? "pointer" : "grab");
   }, [gl, hovered]);
   return null;
