@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
+import { pruneOtherEventRows } from "./cache-db";
 import { eventStore } from "../store/event-store";
 import { hubStore } from "../store/hub-store";
 import { communityHubsDataset, getActiveDataset } from "../dataset";
@@ -99,6 +100,8 @@ function useBoot() {
       .then(() => {
         clearTimeout(timer);
         finish();
+        // Off the boot path: rows of the events this device no longer shows.
+        void pruneOtherEventRows([dataset.eventId, ...(hubs ? [hubs.eventId] : [])]);
       });
     return () => clearTimeout(timer);
   }, []);

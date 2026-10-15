@@ -109,11 +109,11 @@ export function communityHubsDataset(base: Dataset): Dataset | undefined {
 
 /**
  * Default dataset used when no `?dataset` param is present. Driven by
- * NEXT_PUBLIC_DEVCON_API_EVENT_ID per deployment; falls back to devcon-7 when
- * that env var is unset or not a known dataset key.
+ * NEXT_PUBLIC_DEVCON_API_EVENT_ID per deployment; falls back to devcon8 (the
+ * live event) when that env var is unset or not a known dataset key.
  */
 export const DEFAULT_DATASET_KEY: DatasetKey =
-  ENV_EVENT && ENV_EVENT in DATASETS ? (ENV_EVENT as DatasetKey) : "devcon-7";
+  ENV_EVENT && ENV_EVENT in DATASETS ? (ENV_EVENT as DatasetKey) : "devcon8";
 
 export function getActiveDatasetKey(): DatasetKey {
   if (typeof window === "undefined") return DEFAULT_DATASET_KEY;

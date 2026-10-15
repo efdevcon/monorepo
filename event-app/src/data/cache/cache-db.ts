@@ -258,3 +258,30 @@ if (cacheDB) {
     console.warn("[cache-db] schema upgrade blocked by another open tab of this app");
   });
 }
+
+/**
+ * Drop the catalogue rows of every event except `keep` (the active dataset
+ * and its Community Hubs programme). The default dataset moved from devcon-7
+ * to devcon8 on 2026-10-15, and a switch through the internal tools leaves
+ * the previous event's rows behind too: about 1 MB per event that nothing
+ * reads any more. Best effort, after the boot hydrate; a failure only logs.
+ */
+export async function pruneOtherEventRows(keep: string[]): Promise<void> {
+  if (!cacheDB) return;
+  try {
+    await cacheDB.transaction(
+      "rw",
+      [cacheDB.eventSessions, cacheDB.eventSpeakers, cacheDB.eventRooms, cacheDB.eventMeta],
+      async () => {
+        await Promise.all([
+          cacheDB.eventSessions.where("eventId").noneOf(keep).delete(),
+          cacheDB.eventSpeakers.where("eventId").noneOf(keep).delete(),
+          cacheDB.eventRooms.where("eventId").noneOf(keep).delete(),
+          cacheDB.eventMeta.where("eventId").noneOf(keep).delete(),
+        ]);
+      }
+    );
+  } catch (err) {
+    console.warn("[cache] could not prune other events' rows:", err);
+  }
+}
