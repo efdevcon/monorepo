@@ -13,7 +13,7 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
 import type { Area, PlanLevel } from "./types";
 
 /** Rooms whose card drops its own blurb and divider while a session is live, so the session is the whole story (Scott: Main Stage). */
-const SESSION_ONLY_ROOMS = new Set(["main-stage"]);
+const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus", "main-stage"]);
 
 /**
  * The bottom card that opens when an area is tapped: theme icon (stages: in

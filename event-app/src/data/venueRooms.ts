@@ -5,28 +5,37 @@
  * programme team's tooling reads them — so both are applied app-side, at
  * read time in `materialize.ts` and in the timeline's room sort. Rooms not
  * listed keep their Pretalx name and sort after these, alphabetically.
+ *
+ * The id IS the slug of the Pretalx name, so a rename in Pretalx changes it
+ * and silently drops the room out of these tables (the 2026-10-14 stage
+ * rename did exactly that). Check against `GET /events/devcon8/rooms` after
+ * any rename; the `data:test` fixture carries the same ids.
  */
 
-/** App names where the Pretalx one reads badly on a card (Scott, 2026-10-13). */
+/**
+ * App names where the Pretalx one reads badly on a card (Scott, 2026-10-13).
+ * Since the 2026-10-14 rename the Pretalx names read well themselves
+ * ("Main Stage (Lotus)", "Lotus Stage 1", "Jasmine Stage 4", "Lightning
+ * Stage"); only the music stage's capitalisation is left to fix.
+ */
 const DISPLAY_NAMES: Record<string, string> = {
-  "lightning-stage-1": "Lightning Stage",
-  "stage-4-jasmine": "Jasmine 4",
   "music-stage": "Music Stage",
 };
 
 /**
- * Timeline lane order: the Lotus hall and its three parts, Jasmine, the
- * Lightning stage, the two CLS stages, the workshops, then the music stage.
+ * Timeline lane order: the Main Stage (the Lotus hall) always first, then its
+ * three parts, Jasmine, the Lightning stage, the two CLS stages, the
+ * workshops, then the music stage. Ids as served on 2026-10-15.
  */
 export const TIMELINE_ROOM_ORDER: readonly string[] = [
-  "lotus-stage",
-  "lotus-1",
-  "lotus-2",
-  "lotus-3",
-  "stage-4-jasmine",
-  "lightning-stage-1",
-  "cls-stage",
-  "cls-stage-builders-room",
+  "main-stage-lotus",
+  "lotus-stage-1",
+  "lotus-stage-2",
+  "lotus-stage-3",
+  "jasmine-stage-4",
+  "lightning-stage",
+  "community-led-stage",
+  "cls-builders-room",
   "workshop-1",
   "workshop-2",
   "music-stage",

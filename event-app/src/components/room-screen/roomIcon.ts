@@ -6,12 +6,15 @@
  * Pure, so the data tests can cover it.
  */
 const ICON_RULES: [RegExp, string][] = [
-  [/^stage-1/i, "fan"],
-  [/^stage-2/i, "lantern"],
-  [/^st(a)?ge-3/i, "mats"],
-  [/^stage-4/i, "leaf"],
-  [/^stage-5/i, "hat"],
-  [/^stage-6/i, "kite"],
+  // Devcon 8 ids since the 2026-10-14 Pretalx rename (Stage 1–3 became the
+  // Lotus stages, 4 Jasmine, 5 the Lightning stage, 6 the community-led
+  // stage), then the "Stage N" ids the test dataset still carries.
+  [/^lotus-stage-1|^stage-1/i, "fan"],
+  [/^lotus-stage-2|^stage-2/i, "lantern"],
+  [/^lotus-stage-3|^st(a)?ge-3/i, "mats"],
+  [/^jasmine-stage|^stage-4/i, "leaf"],
+  [/^lightning-stage|^stage-5/i, "hat"],
+  [/^community-led-stage|^stage-6/i, "kite"],
   [/^main-stage/i, "mask"],
 ];
 

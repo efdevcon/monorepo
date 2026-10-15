@@ -194,14 +194,21 @@ export const NO_ROOM_LABEL = "TBA";
 /** A room's name as used for grouping/sorting in the timeline. */
 const roomName = (s: Session) => s.room?.name ?? NO_ROOM_LABEL;
 
+/** "Main Stage", "Main Stage (Lotus)", … — the room that leads every room list. */
+const isMainStage = (name: string) => /^main stage\b/i.test(name);
+
 /**
- * Room-name order for the Locations filter: alphabetical by family (the
- * first word), and within a family the unnumbered room comes first, then
- * the numbered ones in numeric order. DC8's "Lotus Stage" is Lotus 1, 2 and
- * 3 opened into one hall, so it reads as the parent of those three, not as
- * a sibling filed after them ("Lotus 3 < Lotus Stage" alphabetically).
+ * Room-name order for the Locations filter: the Main Stage first (Didier,
+ * 2026-10-15: always, whatever Pretalx appends to its name), then
+ * alphabetical by family (the first word), and within a family the
+ * unnumbered room before the numbered ones in numeric order, so a hall
+ * reads as the parent of its parts, not as a sibling filed after them
+ * ("Lotus 3 < Lotus Stage" alphabetically).
  */
 export function compareRoomNames(a: string, b: string): number {
+  const ma = isMainStage(a);
+  const mb = isMainStage(b);
+  if (ma !== mb) return ma ? -1 : 1;
   const family = (name: string) => name.split(/\s+/)[0].toLowerCase();
   const fa = family(a);
   const fb = family(b);
@@ -226,8 +233,8 @@ export function sortRooms(sessions: Session[]): string[] {
     const ra = timelineRoomRank(idByName.get(a));
     const rb = timelineRoomRank(idByName.get(b));
     if (ra !== rb) return ra - rb;
-    if (a === "Main Stage") return -1;
-    if (b === "Main Stage") return 1;
+    if (isMainStage(a) && !isMainStage(b)) return -1;
+    if (isMainStage(b) && !isMainStage(a)) return 1;
     const aStage = a.toLowerCase().startsWith("stage");
     const bStage = b.toLowerCase().startsWith("stage");
     if (aStage && !bStage) return -1;

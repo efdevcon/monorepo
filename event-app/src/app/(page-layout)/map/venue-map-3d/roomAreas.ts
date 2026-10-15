@@ -6,6 +6,10 @@ import type { LevelId } from "./types";
  * Pure module: the schedule imports it, so nothing from three may leak in here.
  */
 const ROOM_AREAS: Record<string, { level: LevelId; id: string }> = {
+  // Devcon 8 (id since the 2026-10-14 Pretalx rename) first: `roomIdForArea`
+  // returns the first room behind a footprint, and the live event wins.
+  "main-stage-lotus": { level: "L1", id: "main-stage-mask" },
+  // Devcon 7's id, kept for the archive dataset.
   "main-stage": { level: "L1", id: "main-stage-mask" },
 };
 
