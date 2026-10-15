@@ -1,5 +1,6 @@
 import type { Room, Session } from "@/data/models";
 import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
+import { timelineRoomRank } from "@/data/venueRooms";
 
 /** Session timing is stored as unix seconds. */
 export const ms = (unixSeconds: number) => unixSeconds * 1000;
@@ -134,14 +135,31 @@ export const SLOT_MINUTES = 10;
 const SLOT_MS = SLOT_MINUTES * 60_000;
 
 /**
+ * Timeline zoom: 1× is the base scale, 2× doubles the width of every
+ * minute so the Lightning Stage's 7-minute talks (a title's first few
+ * characters and a gem at 1× on a phone) read. Chosen with the segmented
+ * control beside the List/Timeline toggle; remembered per device in the
+ * prefs table under TIMELINE_ZOOM_PREF_KEY.
+ */
+export type TimelineZoom = 1 | 2;
+export const TIMELINE_ZOOMS: readonly TimelineZoom[] = [1, 2];
+export const TIMELINE_ZOOM_PREF_KEY = "schedule:timelineZoom";
+
+/**
  * Pixel geometry of the timeline grid. Desktop is the Figma spec; mobile is
  * ~1.8× denser horizontally and ~1.5× shorter (Devcon SEA app parity) so a
  * phone shows ~30 min × 8 rooms instead of ~15 min × 5. An object, not a scale
  * factor: lane and header heights don't shrink in step with slot width.
  */
 export interface TimelineMetrics {
-  /** px per `SLOT_MINUTES` slot. */
+  /** px per `SLOT_MINUTES` slot, at this zoom. */
   slotWidth: number;
+  /**
+   * Horizontal zoom the slot width carries (1 = the breakpoint's base
+   * scale). Content thresholds divide it back out: how much a block can
+   * show is a question of pixels, not minutes.
+   */
+  zoom: TimelineZoom;
   /** px width of the sticky room-name column. */
   roomCol: number;
   /** px height of each room lane. */
@@ -154,6 +172,7 @@ export interface TimelineMetrics {
 
 export const DESKTOP_METRICS: TimelineMetrics = {
   slotWidth: 180, // Figma: 10 min = 180px
+  zoom: 1,
   roomCol: 120,
   laneH: 74,
   headerH: 40,
@@ -162,6 +181,7 @@ export const DESKTOP_METRICS: TimelineMetrics = {
 
 export const MOBILE_METRICS: TimelineMetrics = {
   slotWidth: 100,
+  zoom: 1,
   roomCol: 96,
   laneH: 72,
   headerH: 32,
@@ -175,12 +195,37 @@ export const NO_ROOM_LABEL = "TBA";
 const roomName = (s: Session) => s.room?.name ?? NO_ROOM_LABEL;
 
 /**
- * Distinct rooms present in the sessions, ordered like devcon's timeline:
- * "Main Stage" first, then any "Stage …", then the rest alphabetically.
+ * Room-name order for the Locations filter: alphabetical by family (the
+ * first word), and within a family the unnumbered room comes first, then
+ * the numbered ones in numeric order. DC8's "Lotus Stage" is Lotus 1, 2 and
+ * 3 opened into one hall, so it reads as the parent of those three, not as
+ * a sibling filed after them ("Lotus 3 < Lotus Stage" alphabetically).
+ */
+export function compareRoomNames(a: string, b: string): number {
+  const family = (name: string) => name.split(/\s+/)[0].toLowerCase();
+  const fa = family(a);
+  const fb = family(b);
+  if (fa !== fb) return fa.localeCompare(fb);
+  const na = /\d/.test(a);
+  const nb = /\d/.test(b);
+  if (na !== nb) return na ? 1 : -1;
+  return a.localeCompare(b, undefined, { numeric: true });
+}
+
+/**
+ * Distinct rooms present in the sessions, as timeline lanes: the Devcon 8
+ * order (`TIMELINE_ROOM_ORDER`, by room id) first, then rooms it doesn't
+ * know — other events, Community Hubs — like devcon's timeline: "Main
+ * Stage" first, then any "Stage …", then the rest alphabetically.
  */
 export function sortRooms(sessions: Session[]): string[] {
-  const rooms = [...new Set(sessions.map(roomName))];
+  const idByName = new Map<string, string | undefined>();
+  for (const s of sessions) idByName.set(roomName(s), s.room?.id);
+  const rooms = [...idByName.keys()];
   return rooms.sort((a, b) => {
+    const ra = timelineRoomRank(idByName.get(a));
+    const rb = timelineRoomRank(idByName.get(b));
+    if (ra !== rb) return ra - rb;
     if (a === "Main Stage") return -1;
     if (b === "Main Stage") return 1;
     const aStage = a.toLowerCase().startsWith("stage");

@@ -10,6 +10,7 @@ import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
+import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "@/components/introCover";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import { MatomoAnalytics } from "@/app/matomo";
 import { FeedbackSync } from "@/data/feedback/FeedbackSync";
@@ -63,12 +64,15 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    // black-translucent is the only mode where iOS lets the page draw under
-    // the status bar (and the only one where env(safe-area-inset-top) is
-    // non-zero) — with "default" the OS paints that strip opaque white above
-    // the web view, clashing with the header's glass. The header pads itself
-    // by --safe-top (globals.css) so its blur fills the strip instead.
-    statusBarStyle: "black-translucent",
+    // "default": the OS paints the status-bar strip opaque (theme colour,
+    // white) and the page starts below it. It used to be black-translucent so
+    // the header's glass could run under the strip, but since iOS 26 Liquid
+    // Glass draws its own blur over any installed web app that paints under
+    // the status bar (system chrome, no CSS reaches it), which stacked on our
+    // glass and smeared the top of every page. env(safe-area-inset-top) is 0
+    // in this mode; every --safe-top offset (globals.css) still resolves.
+    // iOS reads this at install: testers must re-add the app to see a change.
+    statusBarStyle: "default",
     title: APP_CONFIG.APP_NAME,
   },
 };
@@ -94,6 +98,31 @@ export default function RootLayout({
     >
       <head>
         <PersonalizedManifestLink />
+        {/* First launch of the installed app only: before anything paints,
+            add a cover that continues the native launch screen (white, the
+            logomark at the launch image's size) until IntroSplash has the
+            backdrop decoded and takes over — otherwise the app shows for a few
+            frames between the launch image and the intro. The cover is a
+            <style> element injected into <head> (INTRO_COVER_ID, which the
+            splash removes; the ids and paths shared with it live in
+            components/introCover.ts), not an attribute on <html>: React 19 skips
+            unexpected head elements when hydrating but reports a changed
+            <html> attribute as a mismatch. Starts the backdrop fetch here too,
+            rather than when the splash mounts after the data boot gate. The
+            timeout is a safety net for a route that never mounts IntroSplash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{" +
+              "if(!(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true))return;" +
+              `if(localStorage.getItem('${INTRO_SEEN_KEY}')==='true')return;` +
+              `var s=document.createElement('style');s.id='${INTRO_COVER_ID}';` +
+              "s.textContent='html::after{content:\"\";position:fixed;inset:0;z-index:80;background:#fff url(/login/devcon-8-logo.svg) center/30vw auto no-repeat}';" +
+              "document.head.appendChild(s);" +
+              `var l=document.createElement('link');l.rel='preload';l.as='image';l.href='${INTRO_BACKDROP}';document.head.appendChild(l);` +
+              "setTimeout(function(){s.remove();},5000);}catch(e){}})();",
+          }}
+        />
         {/* iOS native launch-screen images, shown while the installed PWA
             boots — before any JS runs. Standard Apple device-size set. */}
         <link

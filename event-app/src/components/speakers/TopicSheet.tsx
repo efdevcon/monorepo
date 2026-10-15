@@ -25,7 +25,7 @@ export function TopicSheet({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  /** Topic vocabulary, most frequent first — same top slice as desktop. */
+  /** Topic vocabulary in curated order — the same list as desktop. */
   options: string[];
   selected: string[];
   onToggle: (topic: string) => void;

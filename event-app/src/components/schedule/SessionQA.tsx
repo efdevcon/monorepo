@@ -170,7 +170,7 @@ function QAFeed({
             </a>
           ) : (
             <Link
-              href="/ticket"
+              href="/my-devcon"
               className="font-bold text-dc-purple hover:underline"
             >
               Sign in to ask a question

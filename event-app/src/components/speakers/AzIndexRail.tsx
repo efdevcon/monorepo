@@ -1,6 +1,11 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+} from "react";
 import { MicVocal } from "lucide-react";
 import cn from "classnames";
 
@@ -24,6 +29,24 @@ export const FEATURED_SECTION = "featured";
  * on the app's 300ms house curve — a transition (not keyframes) so rapid
  * scroll-spy retargets stay smooth. Letter color shares the same clock so the
  * swap lands with the pill. Sections with no speakers are faded and inert.
+ *
+ * Press-and-slide (tester feedback, 2026-10-14; same feel as the venue map's
+ * FloorSlider): pointer events are handled on the rail, not the cells. While
+ * the finger is down the pill and the bold letter follow it — the nearest
+ * section WITH speakers, so a thumb over an empty letter still shows
+ * something, and dragging past either end sticks to the end cell — and the
+ * list jumps ONCE, to that section, on release. Not per cell crossed: a jump
+ * is an instant teleport across an ~80,000px list of inline SVGs (see
+ * Speakers.jumpToSection), and a slide that teleported at every cell fired
+ * ten or more a second, which blanked the page and then killed the WebKit
+ * content process on a phone (Scott's device video, 2026-10-14; the PR #112
+ * crash by another route). A cancelled press (system gesture, second finger)
+ * jumps nowhere. A press has handled its own click, so the click that
+ * follows one is ignored; every other click on a cell (Enter / Space, and
+ * assistive technology, which synthesises a click with no pointer events)
+ * jumps. Empty cells are aria-disabled rather than disabled: a disabled
+ * button swallows pointer events in some engines, which would make the slide
+ * stutter across gaps.
  */
 export function AzIndexRail({
   sections,
@@ -49,6 +72,10 @@ export function AzIndexRail({
   // the rail's height animates, via ResizeObserver) so it hugs the live cell
   // — cells flex-shrink below 24px on short viewports.
   const [pill, setPill] = useState<{ y: number; h: number } | null>(null);
+  // The section under a held finger: the pill and the bold letter show it
+  // ahead of the jump, which only happens on release (see above).
+  const [preview, setPreview] = useState<string | null>(null);
+  const shown = preview ?? activeSection;
   // Whether the pill had a position in the previous commit: the transition
   // only applies between two real positions, otherwise the first placement
   // would visibly sweep down from translateY(0) every time the rail appears.
@@ -59,7 +86,7 @@ export function AzIndexRail({
 
   useLayoutEffect(() => {
     const measure = () => {
-      const el = activeSection ? cellRefs.current.get(activeSection) : null;
+      const el = shown ? cellRefs.current.get(shown) : null;
       // Inside a hidden tab pane (display:none) every cell measures 0×0;
       // keep the last real position instead of parking the pill at the top,
       // which made it sweep down the rail on every return to the tab.
@@ -74,16 +101,94 @@ export function AzIndexRail({
     const observer = new ResizeObserver(measure);
     observer.observe(nav);
     return () => observer.disconnect();
-  }, [activeSection, sections]);
+  }, [shown, sections]);
+
+  // The section under the finger during the current press: the jump target
+  // on release. Kept in a ref beside the preview state so pointerup reads it
+  // without waiting for a render.
+  const press = useRef<{ last: string | null } | null>(null);
+  // Set by a handled press and cleared by the click it produces (or the next
+  // frame, for a press that produces none): the click after a press must not
+  // jump a second time, but a click with no press behind it must.
+  const pressedRef = useRef(false);
+
+  /** The enabled cell whose centre is nearest the pointer. */
+  const sectionAt = (clientY: number): string | null => {
+    let best: string | null = null;
+    let bestD = Infinity;
+    for (const [section, el] of cellRefs.current) {
+      if (!el || !available.has(section)) continue;
+      const r = el.getBoundingClientRect();
+      const d = Math.abs(clientY - (r.top + r.height / 2));
+      if (d < bestD) {
+        bestD = d;
+        best = section;
+      }
+    }
+    return best;
+  };
+
+  const onPointerDown = (e: PointerEvent<HTMLElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    const section = sectionAt(e.clientY);
+    press.current = { last: section };
+    pressedRef.current = true;
+    setPreview(section);
+  };
+  const onPointerMove = (e: PointerEvent<HTMLElement>) => {
+    const p = press.current;
+    if (!p || !e.currentTarget.hasPointerCapture(e.pointerId)) return;
+    const section = sectionAt(e.clientY);
+    if (section && section !== p.last) {
+      p.last = section;
+      setPreview(section);
+    }
+  };
+  const endPress = () => {
+    const p = press.current;
+    press.current = null;
+    setPreview(null);
+    // The click, if any, is dispatched right after pointerup; a press that
+    // ends without one (drag released elsewhere, cancel) must not leave the
+    // flag set for an unrelated click later.
+    window.setTimeout(() => {
+      pressedRef.current = false;
+    }, 0);
+    return p;
+  };
+  const onPointerUp = () => {
+    const p = endPress();
+    if (p?.last) onJump(p.last);
+  };
+  const onPointerCancel = () => {
+    endPress();
+  };
+  const onCellClick = (section: string) => {
+    if (pressedRef.current) {
+      pressedRef.current = false;
+      return;
+    }
+    onJump(section);
+  };
 
   return (
     <nav
       ref={navRef}
       aria-label="Jump to section"
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
+      // touch-action none: a vertical drag on the rail slides through the
+      // letters, it never scrolls the page.
+      style={{ touchAction: "none" }}
       // h-full on desktop; on mobile the wrapper stretches to the viewport
       // bottom for the background, so the cells take the shorter stack height
       // the measure effect publishes (keeps Z above the floating nav pill).
-      className="relative flex h-full flex-col items-center justify-between py-2 max-lg:h-[var(--az-rail-stack-h,100%)]"
+      // Grab hand: the rail is something you hold and slide (as the map's
+      // floor track), not a column of links.
+      className="relative flex h-full cursor-grab select-none flex-col items-center justify-between py-2 active:cursor-grabbing max-lg:h-[var(--az-rail-stack-h,100%)]"
     >
       <span
         aria-hidden
@@ -100,17 +205,19 @@ export function AzIndexRail({
       />
       {rail.map((section) => {
         const enabled = available.has(section);
-        const active = section === activeSection;
+        // Visual state follows the finger (preview); aria-current stays the
+        // section the list is really at.
+        const active = section === shown;
         return (
           <button
             key={section}
             ref={(el) => {
               cellRefs.current.set(section, el);
             }}
-            onClick={() => enabled && onJump(section)}
-            disabled={!enabled}
+            onClick={() => enabled && onCellClick(section)}
+            aria-disabled={!enabled || undefined}
             tabIndex={enabled ? 0 : -1}
-            aria-current={active ? "true" : undefined}
+            aria-current={section === activeSection ? "true" : undefined}
             aria-label={
               section === FEATURED_SECTION ? "Featured speakers" : undefined
             }
@@ -119,11 +226,14 @@ export function AzIndexRail({
               // Color shares the pill's 300ms clock so the swap lands as the
               // pill arrives (stacked effects on one clock).
               "transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none",
+              // Cursor inherits the rail's grab hand (the whole strip is one
+              // control), so the cells don't flip to a pointer per letter.
+              "cursor-[inherit]",
               !enabled && "text-dc-muted/40",
               enabled &&
                 (active
-                  ? "cursor-pointer font-bold text-white"
-                  : "cursor-pointer text-dc-muted hover:text-dc-purple")
+                  ? "font-bold text-white"
+                  : "text-dc-muted hover:text-dc-purple")
             )}
           >
             {section === FEATURED_SECTION ? (

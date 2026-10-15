@@ -234,6 +234,11 @@ why the import of the Figma isometric illustration did not work). The flat top-d
 - **Unmounting objects fire no pointer-out.** Opening a floor removes the stack handlers and hit
   planes; the hovered floor would stay hovered (pointer cursor stuck). `LevelStack` clears the
   hover on every level change.
+- **OrbitControls owns the canvas element's inline cursor** (three r186: `auto` on connect, then
+  `grab` / `grabbing` once `cursorStyle = "grab"`), and an inline value beats anything inherited,
+  so a `cursor` on the R3F Canvas wrapper never showed — the tester saw an arrow everywhere
+  (2026-10-13). `Scene`'s `HoverCursor` writes the pointer onto `gl.domElement` itself, mounted
+  after `CameraRig` so its effect lands after the controls connect.
 - **A grab must abandon a pending reset.** `pendingResetRef` is otherwise only cleared when a
   tween lands; interrupting the reset tween left it up and the next floor change finished the
   reset instead of keeping the user's rotation. The controls' `start` handler clears it.

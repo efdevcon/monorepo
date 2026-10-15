@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type MutableRefObject } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
 import { POLAR_ANGLE, START_AZIMUTH } from "./isoMath";
 import { CameraRig } from "./CameraRig";
@@ -29,6 +29,51 @@ type SceneProps = {
   cardAnchorRef: MutableRefObject<HTMLDivElement | null>;
 };
 
+/**
+ * Pointer over a footprint or a stacked floor, grab elsewhere — written onto
+ * the canvas element itself. OrbitControls (three r186) owns that element's
+ * inline cursor: `auto` on connect, `grab` / `grabbing` once CameraRig sets
+ * its cursorStyle, and an inline value beats anything inherited, so a cursor
+ * on the Canvas wrapper never showed (tester video, 2026-10-13).
+ */
+function HoverCursor({ hovered }: { hovered: boolean }) {
+  const gl = useThree((s) => s.gl);
+  // While a pointer is held the controls own the cursor ("grabbing"): a
+  // footprint swept under the finger mid-drag must not open the hand.
+  const heldRef = useRef(false);
+  const hoveredRef = useRef(hovered);
+  useEffect(() => {
+    hoveredRef.current = hovered;
+  }, [hovered]);
+  useEffect(() => {
+    const el = gl.domElement;
+    const apply = () => el.style.setProperty("cursor", hoveredRef.current ? "pointer" : "grab");
+    const onDown = () => {
+      heldRef.current = true;
+    };
+    // The window, not the canvas: a drag released off the canvas ends there.
+    // OrbitControls listens on the document, so its own reset runs first and
+    // this re-applies the hover state over it.
+    const onUp = () => {
+      heldRef.current = false;
+      apply();
+    };
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [gl]);
+  useEffect(() => {
+    if (heldRef.current) return;
+    gl.domElement.style.setProperty("cursor", hovered ? "pointer" : "grab");
+  }, [gl, hovered]);
+  return null;
+}
+
 /** The R3F canvas: the stacked plan floors and the camera rig. Client-only (three needs WebGL). */
 export default function Scene({ plan, settings, selectedId, highlightedIds = null, active, debug, reducedMotion, focus, onSelect, onSelectLevel, onInteract, desktop, resetRef, cardAnchorRef }: SceneProps) {
   const poseRef = useRef<CameraPose>({ azimuth: START_AZIMUTH, polar: POLAR_ANGLE });
@@ -38,7 +83,6 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
     if (debug) (window as unknown as { __mapHover?: string | null }).__mapHover = hoveredId;
   }, [debug, hoveredId]);
   const ortho = settings.projection === "ortho";
-  const cursor = hoveredId ? "pointer" : "grab";
   // Every floor stacked: the camera fits the whole pile.
   const stack = settings.level === null ? { count: plan.levels.length, gap: settings.levelGap } : null;
 
@@ -51,7 +95,7 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       onPointerMissed={() => onSelect(null)}
-      style={{ touchAction: "none", cursor }}
+      style={{ touchAction: "none" }}
     >
       <ambientLight intensity={1.6} />
       <directionalLight position={[6, 12, 8]} intensity={1.4} />
@@ -72,6 +116,8 @@ export default function Scene({ plan, settings, selectedId, highlightedIds = nul
         desktop={desktop}
         cardAnchorRef={cardAnchorRef}
       />
+      {/* After CameraRig: its controls write `auto` to the canvas on connect, this effect must land later. */}
+      <HoverCursor hovered={hoveredId !== null} />
       {debug && <Stats />}
     </Canvas>
   );

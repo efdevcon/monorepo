@@ -73,9 +73,10 @@ function BellLink({
 
 /**
  * Mobile controls, portaled into the AppHeader's #header-actions target
- * (same pattern as the speakers page): a labelled Sign in pill when signed out, the
- * inbox bell when signed in. Desktop renders its own inline controls next to
- * the greeting instead.
+ * (same pattern as the speakers page): the inbox bell always — the inbox
+ * and its push switches need no account (feedback round, 2026-10-13) — with
+ * a labelled Sign in pill before it while signed out. Desktop renders its
+ * own inline controls next to the greeting instead.
  */
 function HeaderAuthActions({ user, unread }: AuthProps) {
   const [target, setTarget] = useState<Element | null>(null);
@@ -88,17 +89,18 @@ function HeaderAuthActions({ user, unread }: AuthProps) {
   return (
     <>
       {createPortal(
-        user ? (
+        <>
+          {!user && (
+            <Link
+              href="/my-devcon"
+              className="relative flex h-8 items-center gap-1.5 rounded-full border border-dc-hairline bg-white pl-2.5 pr-3 font-heading text-sm font-bold text-dc-fg2 after:absolute after:-inset-1.5 after:content-['']"
+            >
+              <LogIn className="size-4 text-dc-purple" />
+              Sign in
+            </Link>
+          )}
           <BellLink unread={unread} size="sm" />
-        ) : (
-          <Link
-            href="/ticket"
-            className="relative flex h-8 items-center gap-1.5 rounded-full border border-dc-hairline bg-white pl-2.5 pr-3 font-heading text-sm font-bold text-dc-fg2 after:absolute after:-inset-1.5 after:content-['']"
-          >
-            <LogIn className="size-4 text-dc-purple" />
-            Sign in
-          </Link>
-        ),
+        </>,
         target
       )}
     </>
@@ -200,7 +202,7 @@ export function Greeting() {
           </>
         ) : (
           <Link
-            href="/ticket"
+            href="/my-devcon"
             className="flex h-10 items-center gap-2 rounded-full border border-dc-hairline bg-white/80 pl-3 pr-4 font-heading text-sm font-bold text-dc-fg2 transition-[scale,background-color] duration-150 ease-out hover:bg-white motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none"
           >
             <LogIn className="size-4 text-dc-purple" />

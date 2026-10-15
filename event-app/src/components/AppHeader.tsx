@@ -65,7 +65,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (pathname.startsWith("/schedule")) return { title: "Schedule", toolbar: true };
   if (pathname.startsWith("/speakers")) return { title: "Speakers", toolbar: true };
   if (pathname.startsWith("/map")) return { title: "Map", bare: true };
-  if (pathname.startsWith("/ticket")) return { title: "My Devcon" };
+  if (pathname.startsWith("/my-devcon")) return { title: "My Devcon" };
   if (pathname.startsWith("/notifications")) return { title: "Notifications" };
   if (pathname.startsWith("/my-interests")) return { title: "My Interests" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
@@ -103,7 +103,11 @@ export function AppHeader() {
   const { title, back, toolbar, bare } = routeChrome(pathname, detailKind);
 
   return (
-    <header className="sticky top-0 z-30 font-heading">
+    // Folded away (data-app-header-hidden): the bar is translated out of
+    // view but this sticky box still sits over the top 56px at z-30, where
+    // the day tabs now pin — it swallowed their taps until the page was
+    // scrolled back up (tester report, 2026-10-13). No pointer events then.
+    <header className="sticky top-0 z-30 font-heading [[data-app-header-hidden]_&]:pointer-events-none">
       {/* Mobile: 56px glass bar with page title. pt/min-h grow by --safe-top
           so the glass itself covers the iOS status-bar strip. Slides up out
           of view while <html data-app-header-hidden> is set (the mobile
@@ -114,6 +118,10 @@ export function AppHeader() {
       <div
         className={cn(
           "flex min-h-[calc(3.5rem+var(--safe-top))] items-center justify-between gap-3 border-b border-dc-hairline bg-white/75 px-4 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] duration-200 ease-out motion-reduce:transition-none lg:hidden [[data-app-header-animates]_&]:transition-transform [[data-app-header-hidden]_&]:-translate-y-full",
+          // Gone, not slid away: the schedule on a phone in landscape
+          // (<html data-app-chrome-off>, see headerOffsetNow) — its pills
+          // move to the day tabs and the row's 56px go to the content.
+          "[[data-app-chrome-off]_&]:hidden",
           // Bare pages (the map) hide the bar but keep it mounted: see RouteChrome.bare.
           bare && "hidden"
         )}

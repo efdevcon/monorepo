@@ -6,7 +6,7 @@ import cn from "classnames";
 import { Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDesktop";
 import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
@@ -18,15 +18,17 @@ import {
   timeAtOffset,
   sessionBox,
   type TimelineMetrics,
+  type TimelineZoom,
 } from "./utils";
 import { getTrackTheme, trackBadgeLabel } from "./trackTheme";
 
 /**
  * A session block in a room lane (Figma): pastel tile with title + meta and
- * the interest star (desktop). `compact` (mobile metrics) runs the same
- * two-line title + meta row one size down — track label always, time and
- * speakers once the block is wide enough — and drops the star, which ate
- * the tile on the dense mobile grid.
+ * the interest star. `compact` (mobile metrics) runs the same two-line
+ * title + meta row one size down — track label always, time and speakers
+ * once the block is wide enough — and drops the star at 1×, where it ate
+ * the tile on the dense mobile grid; at 2× the block is twice as wide and
+ * the lane 1.5× taller, so the star comes back (tester feedback, 2026-10-14).
  *
  * The text column is `sticky` inside the block (Devcon SEA behaviour): as a
  * long session scrolls under the room column its title stays at the visible
@@ -60,9 +62,12 @@ function TimelineSession({
   // mobile block is 100px a slot with 6px padding, so its meta comes in
   // stages instead — speakers from 25 min, the Featured chip from 35 —
   // otherwise a 20-min block showed a lone person icon beside the chip.
-  const wide = width >= m.slotWidth * 1.5;
-  const showSpeakers = width >= m.slotWidth * (compact ? 2.5 : 1.5);
-  const showFeatured = featured && width >= m.slotWidth * (compact ? 3.5 : 1.5);
+  // Thresholds in base-scale pixels (one slot's width at 1×): at 2× a
+  // 7-minute block is as wide as a 14-minute one was, and shows as much.
+  const slotPx = m.slotWidth / m.zoom;
+  const wide = width >= slotPx * 1.5;
+  const showSpeakers = width >= slotPx * (compact ? 2.5 : 1.5);
+  const showFeatured = featured && width >= slotPx * (compact ? 3.5 : 1.5);
   const padX = compact ? 6 : 12;
   const metaText = compact ? "text-[11px]" : "text-[12px]";
   const metaIcon = compact ? "size-3" : "size-3.5";
@@ -103,12 +108,15 @@ function TimelineSession({
         }}
         className="sticky flex w-fit min-w-0 flex-col items-start gap-1.5"
       >
+        {/* Title: two lines on a phone, one on desktop; three at 2×, where
+            the taller lane has the room. */}
         <span
           className={cn(
             "max-w-full text-dc-fg2",
             compact
-              ? "line-clamp-2 text-[12px] font-semibold leading-[14px]"
-              : "truncate text-[14px] font-bold leading-5"
+              ? "text-[12px] font-semibold leading-[14px]"
+              : "text-[14px] font-bold leading-5",
+            m.zoom === 2 ? "line-clamp-3" : compact ? "line-clamp-2" : "truncate"
           )}
         >
           {session.title}
@@ -119,23 +127,30 @@ function TimelineSession({
             compact ? "gap-1.5" : "gap-2"
           )}
         >
-          <span className="flex shrink-0 items-center gap-1">
+          {/* The badge shrinks and truncates like the title: on a 5-minute
+              block a fixed-width "DEVCON" ran past the block's edge (Scott,
+              2026-10-13). The gem keeps its size; the label gives way, and
+              on a block under one slot wide it goes entirely when there is
+              a gem to stand for the track ("D…" said nothing). */}
+          <span className="flex min-w-0 items-center gap-1">
             {theme.gem && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={theme.gem}
                 alt=""
-                className={cn(metaIcon, "object-contain")}
+                className={cn(metaIcon, "shrink-0 object-contain")}
               />
             )}
-            <span
-              className={cn(
-                "font-semibold uppercase tracking-[0.5px] text-dc-fg2",
-                compact ? "text-[10px]" : "text-[12px]"
-              )}
-            >
-              {trackBadgeLabel(session.track, session.room?.id)}
-            </span>
+            {(!theme.gem || width >= slotPx) && (
+              <span
+                className={cn(
+                  "truncate font-semibold uppercase tracking-[0.5px] text-dc-fg2",
+                  compact ? "text-[10px]" : "text-[12px]"
+                )}
+              >
+                {trackBadgeLabel(session.track, session.room?.id)}
+              </span>
+            )}
           </span>
           {wide && (
             <>
@@ -156,7 +171,12 @@ function TimelineSession({
                   )}
                 >
                   <User className={cn(metaIcon, "shrink-0")} />
-                  <span className="truncate">
+                  {/* truncate clips at the padding box, and in this
+                      leading-none row the 12px line box is shorter than
+                      Poppins' glyphs: descenders ("Dang") lost their tails
+                      in Safari. 2px of padding inside the clip, cancelled
+                      by the margin, so the row keeps its height. */}
+                  <span className="-my-0.5 truncate py-0.5">
                     {session.speakers.map((s) => s.name).join(", ")}
                   </span>
                 </span>
@@ -176,12 +196,14 @@ function TimelineSession({
         </span>
       </div>
       </div>
-      {/* Desktop only (see above). Sits at the block's right end, outside the
-          text cell, so the sticky column can never cover it. Inside
-          the anchor, so the click must not open the session. Hover fill is
-          translucent white, not the cards' lavender: blocks come in every
-          track colour and the pink clashed with most of them. */}
-      {!compact && (
+      {/* Desktop, and phones at 2× (see above). Sits at the block's right
+          end, outside the text cell, so the sticky column can never cover
+          it. Inside the anchor, so the click must not open the session.
+          Hover fill is translucent white, not the cards' lavender: blocks
+          come in every track colour and the pink clashed with most of them.
+          The compact block's 6px side padding is less than the hit area's
+          10px bleed, so there the bleed only runs vertically plus the 6px. */}
+      {(!compact || m.zoom === 2) && (
         <button
           aria-label={
             interested ? "Remove from interested" : "Add to interested"
@@ -192,7 +214,10 @@ function TimelineSession({
             e.stopPropagation();
             void toggle(session.id);
           }}
-          className="group/star -m-2.5 ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30"
+          className={cn(
+            "group/star ml-auto flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-white/30",
+            compact ? "-my-2.5 -mr-1.5" : "-m-2.5"
+          )}
         >
           <Star
             className={cn(
@@ -243,6 +268,7 @@ export function ScheduleTimeline({
   initialScrollLeft,
   onScrollLeft,
   headerRaised = false,
+  zoom = 1,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -271,10 +297,27 @@ export function ScheduleTimeline({
   onScrollLeft?: (left: number, leftMs: number) => void;
   /** Mobile: the app header is hidden, so the sticky axis pins 56px higher. */
   headerRaised?: boolean;
+  /** Horizontal zoom (see TimelineZoom): 2 doubles the width of a minute. */
+  zoom?: TimelineZoom;
 }) {
   const isDesktop = useIsDesktop();
   const compact = !isDesktop;
-  const m = isDesktop ? DESKTOP_METRICS : MOBILE_METRICS;
+  // Phone in landscape with the notch on the left: the sticky room column
+  // sits under it, so the column grows by the inset and pads its names past
+  // it (the time grid may scroll under the notch; the names may not).
+  const safeLeft = useIsPhoneLandscape() && !isDesktop ? safeLeftNow() : 0;
+  // 2×: a minute is twice as wide and a lane half again as tall (Scott's
+  // call, 2026-10-13: 108px / 111px), so a block holds a 3-line title.
+  const m = useMemo(() => {
+    const base = isDesktop ? DESKTOP_METRICS : MOBILE_METRICS;
+    return {
+      ...base,
+      slotWidth: base.slotWidth * zoom,
+      laneH: zoom === 2 ? Math.round(base.laneH * 1.5) : base.laneH,
+      zoom,
+      roomCol: base.roomCol + safeLeft,
+    };
+  }, [isDesktop, safeLeft, zoom]);
 
   const { rooms, slots, startMs, byRoom } = useMemo(
     () => buildTimeline(sessions),
@@ -352,15 +395,43 @@ export function ScheduleTimeline({
   // Layout effect so it lands before paint; declared after the restore below
   // would be wrong — it must win over a stale restored offset on mount.
   const handledTimeSeqRef = useRef(0);
+  // Last horizontal offset: the scroll handler's report, or the value just
+  // written by one of the effects here (see the zoom effect below).
+  const lastLeftRef = useRef(0);
   useLayoutEffect(() => {
     if (!scrollToTime || scrollToTime.seq <= handledTimeSeqRef.current) return;
     handledTimeSeqRef.current = scrollToTime.seq;
     const el = scrollRef.current;
     if (!el || slots.length === 0) return;
     el.scrollLeft = Math.max(0, offsetPx(scrollToTime.ms, startMs, m.slotWidth));
+    lastLeftRef.current = el.scrollLeft;
     syncHeader(el.scrollLeft);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollToTime]);
+
+  // Zoom change: the time at the centre of the visible time area stays
+  // put, like a camera zooming on its subject. The offset is the one the
+  // last scroll event reported, not a fresh read: by the time this runs
+  // the grid has already been re-laid out at the new width and the browser
+  // may have clamped scrollLeft. Every programmatic scrollLeft write above
+  // and below updates the ref too: the scroll event it causes is async, and
+  // a width change landing in the same frame would otherwise recentre on
+  // the offset from before the write. Layout effect: lands before paint.
+  const prevSlotWidthRef = useRef(m.slotWidth);
+  useLayoutEffect(() => {
+    const prev = prevSlotWidthRef.current;
+    prevSlotWidthRef.current = m.slotWidth;
+    const el = scrollRef.current;
+    if (prev === m.slotWidth || !el || slots.length === 0) return;
+    const half = Math.max(0, (el.clientWidth - m.roomCol) / 2);
+    const centreMs = timeAtOffset(lastLeftRef.current + half, startMs, prev);
+    const left = Math.max(0, offsetPx(centreMs, startMs, m.slotWidth) - half);
+    el.scrollLeft = left;
+    lastLeftRef.current = el.scrollLeft;
+    syncHeader(el.scrollLeft);
+    onScrollLeft?.(el.scrollLeft, timeAtOffset(el.scrollLeft, startMs, m.slotWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [m.slotWidth]);
 
   // Restore a remembered horizontal offset once the grid is in the DOM (it
   // isn't while `sessions` is empty). Layout effect: lands before paint.
@@ -371,6 +442,7 @@ export function ScheduleTimeline({
     if (restoredRef.current || initialScrollLeft == null || !el) return;
     restoredRef.current = true;
     el.scrollLeft = initialScrollLeft;
+    lastLeftRef.current = el.scrollLeft;
     syncHeader(el.scrollLeft);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasGrid]);
@@ -389,7 +461,9 @@ export function ScheduleTimeline({
       className={cn(
         "bg-white",
         // Mobile: full-bleed across the page gutters, hairline top/bottom.
-        "-mx-4 border-y border-dc-hairline",
+        // Phone landscape: the gutters are the notch insets, so pull back
+        // by those — the room column pads its own names past the notch.
+        "-mx-4 border-y border-dc-hairline phone-landscape:-ml-[max(16px,var(--safe-left))] phone-landscape:-mr-[max(16px,var(--safe-right))]",
         // Desktop: the Figma card. overflow-hidden is lg-only on purpose —
         // on mobile it would become the axis header's scroll container.
         "lg:mx-0 lg:overflow-hidden lg:rounded-xl lg:border",
@@ -398,7 +472,7 @@ export function ScheduleTimeline({
         // 53 + 9 desktop,
         // the list groups' clearance) so the axis — date corner, time slots
         // and the now pill — lands fully visible instead of under the bar.
-        "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
+        "scroll-mt-[calc(112px+var(--safe-top))] phone-landscape:scroll-mt-[calc(56px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
       {/* Time-axis header: its own track, scrollLeft mirrored from the body */}
@@ -421,7 +495,7 @@ export function ScheduleTimeline({
           className="relative flex h-full"
         >
           <div
-            style={{ width: m.roomCol }}
+            style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
             className={cn(
               chromeCell,
               // Same panel grey as the time labels beside it (the glass is
@@ -473,6 +547,7 @@ export function ScheduleTimeline({
         ref={scrollRef}
         onScroll={(e) => {
           const left = e.currentTarget.scrollLeft;
+          lastLeftRef.current = left;
           syncHeader(left);
           onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}
@@ -494,7 +569,7 @@ export function ScheduleTimeline({
           {rooms.map((room) => (
             <div key={room} className="flex" style={{ height: m.laneH }}>
               <div
-                style={{ width: m.roomCol }}
+                style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
                 title={room}
                 className={cn(
                   chromeCell,

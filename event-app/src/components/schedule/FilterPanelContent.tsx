@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import type { FilterFacet, Filters } from "./useScheduleState";
-import { getTrackTheme } from "./trackTheme";
+import { clsTrackName, getTrackTheme } from "./trackTheme";
 
 /**
  * Which programme(s) the panel filters. "hubs": the Community Hubs segment,
@@ -25,7 +25,6 @@ export type FilterPanelMode = "main" | "hubs" | "both";
 const NO_HUBS: string[] = [];
 
 const CLS_PREFIX = "[CLS]";
-const stripCls = (v: string) => v.replace(CLS_PREFIX, "").trim();
 
 function AccordionSection({
   title,
@@ -130,7 +129,7 @@ function TopicChip({
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
  * Topics as plain pill-chips (the shared Speakers-page vocabulary),
- * Locations / CLS / Session formats / Expertise as checkbox rows, wrapped in
+ * CLS / Locations / Session formats / Expertise as checkbox rows, wrapped in
  * accordions, with the white header (Clear all, close) and the sticky footer
  * (Close, Reset filters). Shells position it: bottom sheet on mobile, right
  * column on desktop.
@@ -254,6 +253,27 @@ export function FilterPanelContent({
           </AccordionSection>
         )}
 
+        {/* Directly under Tracks (feedback round, 2026-10-13): CLS was
+            buried below Locations and got no visibility. */}
+        {clsTracks.length > 0 && (
+          <AccordionSection
+            title="Community-led Sessions (CLS)"
+            count={filters.track.filter((t) => clsTracks.includes(t)).length}
+            defaultOpen={defaultOpen}
+          >
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {clsTracks.map((track) => (
+                <CheckboxRow
+                  key={track}
+                  label={clsTrackName(track)}
+                  checked={filters.track.includes(track)}
+                  onToggle={() => onToggle("track", track)}
+                />
+              ))}
+            </div>
+          </AccordionSection>
+        )}
+
         {hubSection}
 
         {topics.length > 0 && (
@@ -265,7 +285,7 @@ export function FilterPanelContent({
             {/* Same chip grammar as Tracks; topics have no track theme, so
                 the active state is the app's purple treatment instead of a
                 per-track pastel. The list is the shared Speakers-page topic
-                vocabulary (top session tags by frequency). */}
+                vocabulary (the curated TOPIC_OPTIONS, src/data/topics.ts). */}
             <div className="flex flex-wrap gap-2">
               {topics.map((topic) => (
                 <TopicChip
@@ -292,25 +312,6 @@ export function FilterPanelContent({
                   label={room}
                   checked={filters.room.includes(room)}
                   onToggle={() => onToggle("room", room)}
-                />
-              ))}
-            </div>
-          </AccordionSection>
-        )}
-
-        {clsTracks.length > 0 && (
-          <AccordionSection
-            title="Community-led Sessions (CLS)"
-            count={filters.track.filter((t) => clsTracks.includes(t)).length}
-            defaultOpen={defaultOpen}
-          >
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              {clsTracks.map((track) => (
-                <CheckboxRow
-                  key={track}
-                  label={stripCls(track)}
-                  checked={filters.track.includes(track)}
-                  onToggle={() => onToggle("track", track)}
                 />
               ))}
             </div>

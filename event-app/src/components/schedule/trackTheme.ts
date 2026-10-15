@@ -169,10 +169,21 @@ export function trackBadgeLabel(track: string | undefined, roomId?: string): str
 }
 
 /**
+ * A community-led session's own name, without the "[CLS]" marker Pretalx
+ * carries (the programming lead needs it there to tell CLS from the main
+ * programme). The marker is followed by a separator in DC8 ("[CLS] - EPF",
+ * "[CLS] - OTS"), which goes too — stripping the marker alone left every
+ * name starting with a dash (feedback round, 2026-10-13).
+ */
+export function clsTrackName(track: string): string {
+  return track.replace(/^\s*\[CLS\]\s*[-–:]?\s*/, "").trim();
+}
+
+/**
  * Full track name for the details views (side panel, expanded page, mobile
  * page) — list/timeline cards keep `trackBadgeLabel`. Returns the session's
  * own track name (as the details banner caption already does) so DC7 aliases
- * don't get relabelled with a DC8 name; only the "[CLS]" prefix is stripped.
+ * don't get relabelled with a DC8 name; only the "[CLS]" marker is stripped.
  */
 export function trackFullLabel(track: string | undefined, roomId?: string): string {
   const hub = hubTheme(roomId);
@@ -180,7 +191,7 @@ export function trackFullLabel(track: string | undefined, roomId?: string): stri
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME.name;
   if (raw.startsWith("[CLS]")) {
-    return raw.slice("[CLS]".length).trim() || CLS_THEME.name;
+    return clsTrackName(raw) || CLS_THEME.name;
   }
   return raw;
 }

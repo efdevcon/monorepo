@@ -35,6 +35,17 @@ export function isDesktopNow(): boolean {
 
 export const LANDSCAPE_MEDIA_QUERY = "(orientation: landscape)";
 
+/**
+ * A phone held sideways. Must mirror the `phone-landscape:` variant in
+ * globals.css — the schedule forks its chrome on it in both CSS and JS.
+ */
+export const PHONE_LANDSCAPE_MEDIA_QUERY =
+  "(max-width: 1023px) and (orientation: landscape) and (max-height: 600px)";
+
+export function useIsPhoneLandscape(): boolean {
+  return useMediaQuery(PHONE_LANDSCAPE_MEDIA_QUERY);
+}
+
 /** Viewport wider than tall; `false` until hydration (SSR-safe). */
 export function useIsLandscape(): boolean {
   return useMediaQuery(LANDSCAPE_MEDIA_QUERY);
@@ -82,28 +93,47 @@ export const HEADER_OFFSET_DESKTOP = 65;
  * orientationchange and re-reads lazily.
  */
 let safeTopCache: number | null = null;
+let safeLeftCache: number | null = null;
 if (typeof window !== "undefined") {
   const invalidate = () => {
     safeTopCache = null;
+    safeLeftCache = null;
   };
   window.addEventListener("resize", invalidate);
   window.addEventListener("orientationchange", invalidate);
 }
 
+const readRootPx = (name: string): number =>
+  parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(name)
+  ) || 0;
+
 export function safeTopNow(): number {
-  if (safeTopCache === null) {
-    safeTopCache =
-      parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--safe-top"
-        )
-      ) || 0;
-  }
+  if (safeTopCache === null) safeTopCache = readRootPx("--safe-top");
   return safeTopCache;
 }
 
+/** JS mirror of --safe-left: the notch's width when it sits on the left in landscape, else 0. */
+export function safeLeftNow(): number {
+  if (safeLeftCache === null) safeLeftCache = readRootPx("--safe-left");
+  return safeLeftCache;
+}
+
+/**
+ * Set on <html> by the schedule while a phone in landscape shows the list:
+ * the mobile app-header row and the bottom tab bar are display:none
+ * (AppHeader.tsx, Nav.tsx), so every offset measured from the header's
+ * bottom edge starts at the status-bar inset instead, and --nav-clearance
+ * measures 0. Distinct from `data-app-header-hidden`, the timeline's
+ * animated fold, which keeps the row in flow.
+ */
+export const APP_CHROME_OFF_ATTR = "data-app-chrome-off";
+
 /** The current breakpoint's header offset, for scroll-position math. */
 export function headerOffsetNow(): number {
+  if (document.documentElement.hasAttribute(APP_CHROME_OFF_ATTR)) {
+    return safeTopNow();
+  }
   return (
     (isDesktopNow() ? HEADER_OFFSET_DESKTOP : HEADER_OFFSET_MOBILE) +
     safeTopNow()

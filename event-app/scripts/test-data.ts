@@ -40,6 +40,8 @@ import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
+import { deriveTopicOptions } from "../src/data/topics";
+import { sortRooms } from "../src/components/schedule/utils";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -150,8 +152,73 @@ function testMaterialize() {
   check("event built from meta", snap.event?.id === "devcon-7" && eq(snap.event?.featuredSpeakers, ["alice"]));
   check("lists match maps", snap.speakers.length === 2 && snap.rooms.length === 1);
 
+  // Pretalx's CLS type names fold into the app's core formats at read time;
+  // the stored row keeps the Pretalx name.
+  const clsRows = normalizeBundle(
+    {
+      ...FIXTURE,
+      sessions: [
+        { ...FIXTURE.sessions[0], id: "c1", type: "CLS - Talk (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c2", type: "CLS - EPF Talk" },
+        { ...FIXTURE.sessions[0], id: "c3", type: "CLS - Lightning (Academic track)" },
+        { ...FIXTURE.sessions[0], id: "c4", type: "CLS - career workshop (Career fair)" },
+        { ...FIXTURE.sessions[0], id: "c5", type: "CLS - Miniworkshop (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c6", type: "CLS - Panel (Open Tech Summit)" },
+        { ...FIXTURE.sessions[0], id: "c7", type: "CLS - Fireside chat (OTS)" },
+        { ...FIXTURE.sessions[0], id: "c8", type: "Roundtable - longer format" },
+        { ...FIXTURE.sessions[0], id: "c9", track: "Community Hubs" },
+      ],
+    },
+    "devcon-7",
+    1_000
+  );
+  const clsSnap = materialize(clsRows, "devcon-7");
+  const formatOf = (id: string) => clsSnap.sessionById.get(id)!.type;
+  check("CLS talks fold into Talk", formatOf("c1") === "Talk" && formatOf("c2") === "Talk");
+  check("CLS lightning folds into Lightning Talk", formatOf("c3") === "Lightning Talk");
+  check("CLS workshops fold into Workshop", formatOf("c4") === "Workshop" && formatOf("c5") === "Workshop");
+  check("CLS panel folds into Panel", formatOf("c6") === "Panel");
+  check("unknown CLS format keeps its own name", formatOf("c7") === "Fireside chat");
+  check("non-CLS type drops its qualifier", formatOf("c8") === "Roundtable");
+  check("plain types untouched", a.type === "Talk");
+  check("stored row keeps the Pretalx name", clsRows.sessions[0].type === "CLS - Talk (Open Tech Summit)");
+  check("the Pretalx \"Community Hubs\" track reads as no track", clsSnap.sessionById.get("c9")!.track === "" && clsRows.sessions.find((r) => r.id === "c9")!.track === "Community Hubs");
+
   const empty = emptySnapshot("x");
   check("empty snapshot", empty.sessions.length === 0 && empty.event === undefined && empty.sessionById.size === 0);
+  // Devcon 8 rooms: app display names and the timeline lane order are keyed
+  // by Pretalx room id; the stored row keeps the Pretalx name.
+  const dc8Rows = normalizeBundle(
+    {
+      ...FIXTURE,
+      rooms: [
+        { id: "workshop-1", name: "Workshop 1" },
+        { id: "stage-4-jasmine", name: "Stage 4 (Jasmine)" },
+        { id: "lightning-stage-1", name: "Lightning Stage 1" },
+        { id: "music-stage", name: "Music stage" },
+        { id: "lotus-1", name: "Lotus 1" },
+        { id: "lotus-stage", name: "Lotus Stage" },
+        { id: "cls-stage", name: "CLS Stage" },
+        { id: "classroom-z", name: "Classroom Z" },
+      ],
+      sessions: ["workshop-1", "stage-4-jasmine", "lightning-stage-1", "music-stage", "lotus-1", "lotus-stage", "cls-stage", "classroom-z"].map((room, i) => ({
+        ...FIXTURE.sessions[0],
+        id: `r${i}`,
+        slot_roomId: room,
+      })),
+    },
+    "devcon8",
+    1_000
+  );
+  const dc8 = materialize(dc8Rows, "devcon8");
+  check("room display names applied at read time", dc8.roomById.get("stage-4-jasmine")!.name === "Jasmine 4" && dc8.roomById.get("lightning-stage-1")!.name === "Lightning Stage" && dc8.roomById.get("music-stage")!.name === "Music Stage" && dc8.roomById.get("lotus-1")!.name === "Lotus 1");
+  check("stored rows keep the Pretalx room name", dc8Rows.rooms.find((r) => r.id === "stage-4-jasmine")!.name === "Stage 4 (Jasmine)");
+  check(
+    "timeline lanes follow the Devcon 8 order, unknown rooms after",
+    eq(sortRooms(dc8.sessions), ["Lotus Stage", "Lotus 1", "Jasmine 4", "Lightning Stage", "CLS Stage", "Workshop 1", "Music Stage", "Classroom Z"])
+  );
+  check("timeline lanes for other events keep the Main Stage / Stage … / A–Z rule", eq(sortRooms(snap.sessions), ["Stage 1", "TBA"]));
+
   const noMeta = materialize({ ...rows, meta: null }, "devcon-7");
   check("no meta → no event", noMeta.event === undefined && noMeta.sessions.length === 2);
 }
@@ -189,7 +256,7 @@ function testRouting() {
   check("other routes are not details", parseDetailPath("/room-screens/stage-1") === null);
   check("isDetailPath", isDetailPath("/speakers/bob") && !isDetailPath("/speakers"));
 
-  check("tabPathOf tab routes", tabPathOf("/schedule") === "/schedule" && tabPathOf("/") === "/");
+  check("tabPathOf tab routes", tabPathOf("/schedule") === "/schedule" && tabPathOf("/") === "/" && tabPathOf("/my-devcon") === "/my-devcon");
   check("tabPathOf detail pages map to their list tab", tabPathOf("/schedule/my-talk") === "/schedule" && tabPathOf("/speakers/bob") === "/speakers");
   check("tabPathOf other routes", tabPathOf("/announcements") === null && tabPathOf("/room-screens/x") === null);
 }
@@ -446,6 +513,23 @@ function testMeerkatHandover() {
       communityHubTopics({}).length === 0 &&
       findCommunityHub("privacy")?.name === "Privacy Hub" &&
       findCommunityHub("nope") === undefined
+  );
+  const tagged = (tags: string[], extra: object = {}) =>
+    ({ tags, speakers: [{ id: "s" }], ...extra }) as unknown as Session;
+  const hub = { room: { id: "community-hub-privacy" }, speakers: [] };
+  check(
+    "topic options: curated tags present, in curated order, then hub topics by frequency; uncurated and speakerless Pretalx tags dropped",
+    eq(
+      deriveTopicOptions([
+        tagged(["EVM", "Security"]),
+        tagged(["Scalability"]),
+        tagged(["AI"], { speakers: [] }),
+        tagged(["Privacy Hub", "Zero knowledge"], hub),
+        tagged(["Privacy Hub", "Zero knowledge"], hub),
+        tagged(["Privacy Hub", "Agents"], hub),
+      ]),
+      ["Security", "EVM", "Privacy Hub", "Zero knowledge", "Agents"]
+    )
   );
   check(
     "community hubs dataset: follows the event, keyed apart from it, none for the test event",

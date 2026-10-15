@@ -1,7 +1,7 @@
 "use client";
 
 import { trackEvent } from "@/data/analytics/track";
-import { usePaneActive, useTabReselect } from "@/components/paneContext";
+import { usePaneActive } from "@/components/paneContext";
 import {
   useCallback,
   useEffect,
@@ -9,6 +9,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type RefObject,
 } from "react";
 import {
   CalendarDays,
@@ -20,6 +21,7 @@ import {
   MoveDown,
   MoveUp,
   Tent,
+  type LucideIcon,
 } from "lucide-react";
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
@@ -36,7 +38,7 @@ import { GroupPlaceholder, useProgressiveReveal } from "@/hooks/useProgressiveRe
 import { DetailLayer, useListScrollAcrossDetail } from "@/components/DetailLayer";
 import { ListLoadState } from "@/components/ListLoadState";
 import Session from "@/app/(page-layout)/schedule/[id]/session";
-import { ghostPill, HeaderToolbar, InterestedPill } from "@/components/ActionPills";
+import { ghostPill, HeaderToolbar, InterestedPill, ToolbarPills } from "@/components/ActionPills";
 import { RemindersNudgeRow } from "@/components/schedule/RemindersNudgeRow";
 import { SearchInput } from "@/components/SearchInput";
 import { DayTabs } from "./DayTabs";
@@ -48,9 +50,23 @@ import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
-import { dayKey, formatDayHeading, ms } from "./utils";
+import {
+  dayKey,
+  formatDayHeading,
+  ms,
+  TIMELINE_ZOOM_PREF_KEY,
+  TIMELINE_ZOOMS,
+  type TimelineZoom,
+} from "./utils";
+import { readPref, writePref } from "@/data/prefs";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
-import { useIsDesktop, headerOffsetNow, safeTopNow } from "@/hooks/useIsDesktop";
+import {
+  APP_CHROME_OFF_ATTR,
+  headerOffsetNow,
+  safeTopNow,
+  useIsDesktop,
+  useIsPhoneLandscape,
+} from "@/hooks/useIsDesktop";
 import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
 import { usePreviewState } from "@/hooks/usePreviewState";
 
@@ -58,31 +74,23 @@ type ViewMode = "list" | "timeline";
 
 /**
  * "Sessions / Community Hubs" switch: which programme the whole page shows.
- * A white pill track whose purple fill slides to the chosen programme (the
- * List/Timeline control's sliding indicator, in the topic pills' selected
- * purple), so it reads as page-level navigation and not as a twin of that
- * control, which keeps its recessed track. Type, 20px icons, gap and colours
- * match List/Timeline so the two read as one family; segments take 12px
- * sides (not that control's 8px) so labels clear the round track's ends.
- * `stretch` fills the row on mobile. A switch remounts the list (and this
- * toggle with it), so `previous` names the programme just left and when:
- * a toggle mounting right after that switch paints its fill there first,
- * then slides it over. Any later mount (My Interests turned off, crossing
- * the desktop breakpoint) just places the fill.
+ * A white pill track whose purple fill sits on the chosen programme (the
+ * List/Timeline control's indicator, in the topic pills' selected purple),
+ * so it reads as page-level navigation and not as a twin of that control,
+ * which keeps its recessed track. Type, 20px icons, gap and colours match
+ * List/Timeline so the two read as one family; segments take 12px sides
+ * (not that control's 8px) so labels clear the round track's ends.
+ * `stretch` fills the row on mobile. The fill never animates: a switch
+ * remounts the list and this toggle with it, and the slide that used to
+ * replay across that remount (and on page load) read as a wiggle (Scott,
+ * 2026-10-13) — the fill is simply placed, on mount and on resize.
  */
-/** The last programme switch: where the fill slides from, and when. */
-type SourceSwitch = { from: ScheduleSource; at: number };
-/** A toggle mounting this soon after a switch belongs to it (the remount). */
-const SLIDE_WINDOW_MS = 1000;
-
 function SourceToggle({
   source,
-  previous,
   onChange,
   stretch = false,
 }: {
   source: ScheduleSource;
-  previous: SourceSwitch | null;
   onChange: (s: ScheduleSource) => void;
   stretch?: boolean;
 }) {
@@ -93,76 +101,18 @@ function SourceToggle({
   // Measured after render so the fill lands on the active label's
   // post-font-weight-swap width; re-measured on resize because the stretched
   // mobile segments change width with the viewport.
-  const indicatorRef = useRef<HTMLDivElement | null>(null);
-  // undefined until the first layout pass decides; null = no slide.
-  const slideFromRef = useRef<ScheduleSource | null | undefined>(undefined);
-  const slidePendingRef = useRef(false);
-  // The first placement (no slide) must snap, not animate in from x 0.
-  const snapPendingRef = useRef(false);
-  const measureOf = useCallback((s: ScheduleSource) => {
-    const el = buttonRefs.current.get(s);
-    return el ? { x: el.offsetLeft, w: el.offsetWidth } : null;
-  }, []);
   useLayoutEffect(() => {
     const measure = () => {
-      const m = measureOf(source);
-      if (m) setIndicator(m);
+      const el = buttonRefs.current.get(source);
+      if (el) setIndicator({ x: el.offsetLeft, w: el.offsetWidth });
     };
-    // Decided once per mount, cleared by the effect below once the slide
-    // has started (not here: StrictMode re-runs this effect on mount and
-    // must see it again). Only a mount caused by the switch itself slides.
-    if (slideFromRef.current === undefined) {
-      const fresh =
-        previous !== null &&
-        previous.from !== source &&
-        performance.now() - previous.at < SLIDE_WINDOW_MS;
-      slideFromRef.current = fresh ? previous.from : null;
-    }
-    const from = slideFromRef.current;
-    if (from) {
-      // Paint the fill at the old segment first; the effect below moves it.
-      slidePendingRef.current = true;
-      setIndicator(measureOf(from));
-    } else {
-      snapPendingRef.current = true;
-      measure();
-    }
+    measure();
     const track = trackRef.current;
     if (!track) return;
-    const ro = new ResizeObserver(() => {
-      if (!slidePendingRef.current) measure();
-    });
+    const ro = new ResizeObserver(measure);
     ro.observe(track);
     return () => ro.disconnect();
-    // `previous` is read once, on mount (see above).
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [source, measureOf]);
-  useLayoutEffect(() => {
-    const el = indicatorRef.current;
-    if (snapPendingRef.current && indicator && el) {
-      // Placed with the transition off and styles flushed, so the hidden →
-      // placed step never runs as an animation.
-      snapPendingRef.current = false;
-      el.style.transition = "none";
-      void el.offsetWidth;
-      el.style.transition = "";
-      return;
-    }
-    if (!slidePendingRef.current || !indicator || !el) return;
-    slidePendingRef.current = false;
-    slideFromRef.current = null;
-    // Snap to the old segment with the transition off (the hidden → placed
-    // step would otherwise animate in from x 0), flush styles so that is the
-    // transition's start, then move the fill on the DOM directly; state
-    // catches up on the ResizeObserver's first measure.
-    el.style.transition = "none";
-    void el.offsetWidth;
-    el.style.transition = "";
-    const m = measureOf(source);
-    if (!m) return;
-    el.style.transform = `translateX(${m.x}px)`;
-    el.style.width = `${m.w}px`;
-  }, [indicator, source, measureOf]);
+  }, [source]);
 
   return (
     <div
@@ -178,14 +128,13 @@ function SourceToggle({
       )}
     >
       <div
-        ref={indicatorRef}
         aria-hidden
         style={
           indicator
             ? { transform: `translateX(${indicator.x}px)`, width: indicator.w }
             : { visibility: "hidden" }
         }
-        className="absolute left-0 top-1 h-8 rounded-full bg-dc-purple transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
+        className="absolute left-0 top-1 h-8 rounded-full bg-dc-purple"
       />
       {(
         [
@@ -264,7 +213,7 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
+      className="fixed right-4 bottom-[calc(var(--nav-clearance)+16px)] z-20 flex cursor-pointer phone-landscape:right-[max(16px,var(--safe-right))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] items-center gap-2 rounded-full border border-dc-hairline bg-white py-[11px] pl-[10px] pr-3 text-[14px] font-medium leading-none text-dc-red shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out before:absolute before:-inset-0.5 before:content-[''] hover:bg-dc-live-bg lg:hidden"
     >
       <ClockArrowDown className="size-4 shrink-0" />
       Live now
@@ -272,20 +221,32 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
   );
 }
 
-/** List/Timeline segmented control on its recessed track (Figma "Tabs"). */
-function ViewToggle({
-  view,
+/** The floating controls' drop shadow (Live now uses the same recipe). */
+const FLOATING_SHADOW =
+  "shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)]";
+
+/**
+ * Segmented control on its recessed track (Figma "Tabs"): the white pill
+ * slides between segments; measured after render so it lands on the active
+ * label's post-font-weight-swap width. Shared by the List/Timeline toggle
+ * and the timeline zoom switch.
+ */
+function Segmented<T extends string | number>({
+  value,
   onChange,
+  items,
   iconOnly = false,
+  label,
 }: {
-  view: ViewMode;
-  onChange: (v: ViewMode) => void;
+  value: T;
+  onChange: (v: T) => void;
+  items: readonly { value: T; label: string; Icon?: LucideIcon }[];
   /** Icons only, same 40px height: the floating copy next to Live now. */
   iconOnly?: boolean;
+  /** Accessible name of the group. */
+  label: string;
 }) {
-  const buttonRefs = useRef(new Map<ViewMode, HTMLButtonElement | null>());
-  // The white pill slides between segments; measured after render so it lands
-  // on the active label's post-font-weight-swap width.
+  const buttonRefs = useRef(new Map<T, HTMLButtonElement | null>());
   const [indicator, setIndicator] = useState<{
     x: number;
     y: number;
@@ -294,7 +255,7 @@ function ViewToggle({
   } | null>(null);
 
   useLayoutEffect(() => {
-    const el = buttonRefs.current.get(view);
+    const el = buttonRefs.current.get(value);
     if (!el) return;
     setIndicator({
       x: el.offsetLeft,
@@ -302,10 +263,33 @@ function ViewToggle({
       w: el.offsetWidth,
       h: el.offsetHeight,
     });
-  }, [view]);
+  }, [value]);
+  // The pill's first position is not a move: without this, every mount
+  // slid it from the first segment to the active one — the Sessions /
+  // Community Hubs switch remounts the schedule, and both switches
+  // wiggled on each programme change (tester report, 2026-10-13). Placed
+  // with the transition off and the styles flushed, so the hidden →
+  // placed step is the browser's "before" state, then the transition is
+  // handed back for later moves. A layout effect with a forced flush, not
+  // a passive effect: after a click React flushes passive effects before
+  // the browser's next style pass, so an override set and removed between
+  // two style passes never took effect and the slide ran anyway (the
+  // first attempt did that; it showed as the wiggle coming back).
+  const pillRef = useRef<HTMLDivElement | null>(null);
+  const placedRef = useRef(false);
+  useLayoutEffect(() => {
+    const el = pillRef.current;
+    if (!indicator || !el || placedRef.current) return;
+    placedRef.current = true;
+    el.style.setProperty("transition", "none");
+    void el.offsetWidth;
+    el.style.removeProperty("transition");
+  }, [indicator]);
 
   return (
     <div
+      role="group"
+      aria-label={label}
       className="relative flex h-10 shrink-0 items-center gap-1 rounded-lg bg-dc-lavender p-1 shadow-[inset_0px_1px_1px_rgba(34,17,68,0.15),inset_0px_2px_4px_rgba(34,17,68,0.06)] lg:bg-dc-panel"
     >
       <div
@@ -319,34 +303,80 @@ function ViewToggle({
               }
             : { visibility: "hidden" }
         }
+        ref={pillRef}
         className="absolute left-0 top-0 rounded-[4px] bg-white shadow-[0px_1px_3px_rgba(22,11,43,0.1),0px_1px_2px_rgba(22,11,43,0.1)] transition-[transform,width] duration-150 ease-out motion-reduce:transition-none"
       />
-      {(
-        [
-          { mode: "list", label: "List", Icon: List },
-          { mode: "timeline", label: "Timeline", Icon: CalendarRange },
-        ] as const
-      ).map(({ mode, label, Icon }) => (
+      {items.map(({ value: v, label: text, Icon }) => (
         <button
-          key={mode}
+          key={v}
           ref={(el) => {
-            buttonRefs.current.set(mode, el);
+            buttonRefs.current.set(v, el);
           }}
-          onClick={() => onChange(mode)}
-          aria-pressed={view === mode}
+          onClick={() => onChange(v)}
+          aria-pressed={value === v}
           className={cn(
             "relative z-10 flex min-h-8 cursor-pointer items-center gap-2 rounded-[4px] py-1 text-[14px] leading-none transition-colors",
-            iconOnly ? "px-2.5" : "px-2",
-            view === mode
+            // Text-only segments ("1×") get wider sides for a finger-sized cell.
+            iconOnly ? "px-2.5" : Icon ? "px-2" : "px-3",
+            value === v
               ? "font-bold text-dc-purple"
               : "font-medium text-dc-muted hover:text-dc-fg2"
           )}
         >
-          <Icon className="size-5" />
-          <span className={cn(iconOnly && "sr-only")}>{label}</span>
+          {Icon && <Icon className="size-5" />}
+          <span className={cn(iconOnly && Icon && "sr-only")}>{text}</span>
         </button>
       ))}
     </div>
+  );
+}
+
+const VIEW_ITEMS = [
+  { value: "list", label: "List", Icon: List },
+  { value: "timeline", label: "Timeline", Icon: CalendarRange },
+] as const;
+
+/** List/Timeline switch. */
+function ViewToggle({
+  view,
+  onChange,
+  iconOnly = false,
+}: {
+  view: ViewMode;
+  onChange: (v: ViewMode) => void;
+  iconOnly?: boolean;
+}) {
+  return (
+    <Segmented
+      value={view}
+      onChange={onChange}
+      items={VIEW_ITEMS}
+      iconOnly={iconOnly}
+      label="View"
+    />
+  );
+}
+
+const ZOOM_ITEMS = TIMELINE_ZOOMS.map((z) => ({ value: z, label: `${z}×` }));
+
+/**
+ * Timeline zoom switch (1× / 2×), on the view toggle's track. Only while
+ * the timeline shows: it is that view's camera.
+ */
+function ZoomToggle({
+  zoom,
+  onChange,
+}: {
+  zoom: TimelineZoom;
+  onChange: (z: TimelineZoom) => void;
+}) {
+  return (
+    <Segmented
+      value={zoom}
+      onChange={onChange}
+      items={ZOOM_ITEMS}
+      label="Timeline zoom"
+    />
   );
 }
 
@@ -437,31 +467,49 @@ function GroupHeader({
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
   const isDesktop = useIsDesktop();
+  // Re-measured on rotation: the pin line moves with the header row.
+  const phoneLandscape = useIsPhoneLandscape();
+  // Re-observed when the tab pane comes back: a header that mounted while
+  // the pane was display:none (a live-band change re-keys its segment) only
+  // ever saw a 0×0 rect, so it needs a fresh first notification.
+  const paneActive = usePaneActive();
 
   useEffect(() => {
     const el = sentinelRef.current;
-    if (inPanel || !el) return;
+    if (inPanel || !paneActive || !el) return;
     // The sentinel marks the header's natural position: once it crosses
     // above the pin line (1px past the breakpoint's sticky top offset =
     // app header (+ desktop toolbar) + day-tab strip, see the sticky
     // top-[103px]/[183px]),
     // the header is stuck. headerOffsetNow() carries the iOS status-bar
     // inset, matching the +var(--safe-top) in those sticky classes.
+    // (Phone landscape: the header row is gone, headerOffsetNow() is the
+    // status-bar inset alone and the tabs pin at the top — 47 + 1 again.)
     const pinLine = headerOffsetNow() + (isDesktop ? 119 : 48);
+    // The root is everything below the pin line, not just the viewport
+    // (the bottom margin runs far past any day's list): "intersecting" then
+    // means "below the pin line" wherever the sentinel is, so pinning is a
+    // state change the observer always reports. With the viewport as the
+    // root, a sentinel that jumped from below the screen to above the pin
+    // line in one frame (the live-now landing, the Live now pill, a
+    // restored scroll) was "not intersecting" before and after, nothing
+    // fired, and the header pinned with no fill — cards scrolled through
+    // its text until it came back down into view (tester report,
+    // 2026-10-13).
     const observer = new IntersectionObserver(
       ([entry]) => {
         // A hidden tab pane (display:none) reports a 0×0 rect that is "not
-        // intersecting" and "above the pin line": ignore it, or every header
-        // flips to stuck while another tab shows and flashes back on return.
+        // intersecting": ignore it, or every header flips to stuck while
+        // another tab shows and flashes back on return.
         const r = entry.boundingClientRect;
         if (r.width === 0 && r.height === 0) return;
-        setStuck(!entry.isIntersecting && r.top < pinLine);
+        setStuck(!entry.isIntersecting);
       },
-      { rootMargin: `-${pinLine}px 0px 0px 0px` }
+      { rootMargin: `-${pinLine}px 0px 1000000px 0px` }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [inPanel, isDesktop]);
+  }, [inPanel, paneActive, isDesktop, phoneLandscape]);
 
   return (
     <>
@@ -470,7 +518,7 @@ function GroupHeader({
         className={cn(
           "flex items-center justify-between gap-3",
           !inPanel &&
-            "sticky top-[calc(103px+var(--safe-top))] z-10 lg:top-[calc(183px+var(--safe-top))]",
+            "sticky top-[calc(103px+var(--safe-top))] z-10 phone-landscape:top-[calc(47px+var(--safe-top))] lg:top-[calc(183px+var(--safe-top))]",
           // Pinned headers get 4px 0 padding for breathing room, offset by
           // negative margins so flow height stays put (the section is
           // flex-col so the negative margins can't collapse away). Browsers
@@ -544,6 +592,25 @@ export function Schedule() {
   // List or timeline: kept here so it carries over a programme switch (the
   // inner view remounts) instead of snapping back to a default.
   const [view, setView] = useState<ViewMode>("list");
+  // Timeline zoom (1× / 2×): kept above the keyed inner view for the same
+  // reason, and remembered per device (the prefs table), so the app reopens
+  // at the scale the person last read the grid at.
+  const [zoom, setZoomState] = useState<TimelineZoom>(1);
+  useEffect(() => {
+    let cancelled = false;
+    void readPref<TimelineZoom>(TIMELINE_ZOOM_PREF_KEY).then((v) => {
+      if (!cancelled && v !== undefined && TIMELINE_ZOOMS.includes(v)) {
+        setZoomState(v);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const setZoom = useCallback((z: TimelineZoom) => {
+    setZoomState(z);
+    void writePref(TIMELINE_ZOOM_PREF_KEY, z);
+  }, []);
   const searchParams = useSearchParams();
   const hubsInUrl = hasHubs && !!searchParams.get(HUBS_PARAM);
   const [source, setSource] = useState<ScheduleSource>(hubsInUrl ? "hubs" : "main");
@@ -555,16 +622,11 @@ export function Schedule() {
     setSeenHubsInUrl(hubsInUrl);
     if (hubsInUrl) setSource("hubs");
   }
-  // The programme just left (and when), for the remounted switch's slide.
-  const [previousSource, setPreviousSource] = useState<SourceSwitch | null>(null);
-  const sourceRef = useRef(source);
-  useEffect(() => {
-    sourceRef.current = source;
-  }, [source]);
+  // Whether the once-per-app-open landing on "now" has happened. Lives here,
+  // above the keyed inner view, so a programme switch (which remounts it)
+  // does not land again: testers read that as the app forcing them to "now".
+  const landedRef = useRef(false);
   const changeSource = useCallback((next: ScheduleSource) => {
-    // Batched with setSource, so the remounted switch mounts already
-    // knowing where its fill comes from.
-    setPreviousSource({ from: sourceRef.current, at: performance.now() });
     trackEvent("schedule", "programme", next);
     setSource(next);
     const url = new URL(window.location.href);
@@ -577,11 +639,13 @@ export function Schedule() {
       <ScheduleInner
         key={source}
         source={source}
-        previousSource={previousSource}
         hasHubs={hasHubs}
         onSourceChange={changeSource}
         view={view}
         setView={setView}
+        zoom={zoom}
+        setZoom={setZoom}
+        landedRef={landedRef}
       />
     </ScheduleSourceProvider>
   );
@@ -589,18 +653,22 @@ export function Schedule() {
 
 function ScheduleInner({
   source,
-  previousSource,
   hasHubs,
   onSourceChange,
   view,
   setView,
+  zoom,
+  setZoom,
+  landedRef,
 }: {
   source: ScheduleSource;
-  previousSource: SourceSwitch | null;
   hasHubs: boolean;
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
   setView: (v: ViewMode) => void;
+  zoom: TimelineZoom;
+  setZoom: (z: TimelineZoom) => void;
+  landedRef: RefObject<boolean>;
 }) {
   const { sessions, isLoading, isError } = useSessions();
   // "My Interests" spans both programmes (see useScheduleState).
@@ -714,9 +782,8 @@ function ScheduleInner({
     null
   );
   const contentRef = useRef<HTMLDivElement | null>(null);
-  // Time carried across a view toggle (see changeView), and the timeline's
-  // report of the time at its left edge (updated as it scrolls).
-  const pendingTimeRef = useRef<number | null>(null);
+  // The timeline's report of the time at its left edge (updated as it
+  // scrolls); carried into the list's "top of the viewport" on a view toggle.
   const timelineLeftMsRef = useRef<number | null>(null);
   const [timelineScrollToTime, setTimelineScrollToTime] = useState<{
     ms: number;
@@ -738,6 +805,12 @@ function ScheduleInner({
   // history; the panel's expand action and shared links use the URL form.
   const [panelSessionId, setPanelSessionId] = useState<string | null>(null);
   const selectedSessionId = isDesktop ? panelSessionId : detailId;
+  // Bumped on every new selection and keyed onto the panel, so each session
+  // opens in a fresh panel: scrolled to the top (the panel's scroller kept
+  // its position across sessions, 2026-10-14) and with its blurb folded
+  // again (the panel content is retained through the exit transition, so
+  // without this a reopen of the same session found the old instance).
+  const [panelGeneration, setPanelGeneration] = useState(0);
   // Desktop: opening or closing the side panel reflows the list under the
   // pointer — 2-up time-slot rows collapse to one column and the main column
   // narrows — which carried the clicked card off to a new place (often off
@@ -758,6 +831,7 @@ function ScheduleInner({
         holdCardRef.current = el
           ? { id: anchor as string, top: el.getBoundingClientRect().top }
           : null;
+        if (id && id !== panelSessionId) setPanelGeneration((g) => g + 1);
         setPanelSessionId(id);
       } else if (id) {
         openDetail(id);
@@ -839,8 +913,10 @@ function ScheduleInner({
     revealAllGroups();
     setListJumpSignal((n) => n + 1);
   };
-  // Re-tapping the Schedule tab resets to the landing state: today, at "now".
-  useTabReselect(jumpToNow);
+  // No useTabReselect here: re-tapping the Schedule tab used to jump to
+  // "now" and testers read it as a bug (the app moving them on its own). It
+  // now gets the default pane reset, an instant scroll to the top; the Live
+  // now pill and the day bar's ghost pill are the way back to "now".
 
   // List view "jump to now": land on the "Live now" section, else a
   // still-running one, else the next upcoming one. Called from effects so the
@@ -880,11 +956,12 @@ function ScheduleInner({
     }
   };
 
-  // Day tab tap: today lands on "live now" (the same rule as jump-to-now and
-  // the initial landing, falling back to the top once the day is over); any
-  // other day starts at the top of its list. Instant, not smooth: a tab is a
-  // new page, and a smooth scroll through content that just changed reads as
-  // scrolling the wrong day.
+  // Day tab tap: every day starts at the top of its list (the timeline at
+  // the day's start), today included — it used to land on "live now", one
+  // more automatic jump testers read as the app moving them; the Live now
+  // pill does that on request. Instant, not smooth: a tab is a new page, and
+  // a smooth scroll through content that just changed reads as scrolling
+  // the wrong day.
   const selectDay = (key: string) => {
     programmaticScrollRef.current = true;
     setSelectedDay(key);
@@ -892,19 +969,8 @@ function ScheduleInner({
   };
   useLayoutEffect(() => {
     if (!dayJump) return;
-    const isToday = dayJump.key === eventDayKey(now);
-    if (view === "timeline") {
-      // The timeline scrolls itself horizontally on signal; the now-jump also
-      // brings its root into view, the start-jump only resets the offset.
-      if (isToday) {
-        setTimelineJumpSignal((n) => n + 1);
-      } else {
-        setTimelineStartSignal((n) => n + 1);
-        scrollListTop();
-      }
-      return;
-    }
-    if (isToday && scrollListToNow("auto")) return;
+    // The timeline resets its horizontal offset on signal.
+    if (view === "timeline") setTimelineStartSignal((n) => n + 1);
     scrollListTop();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dayJump]);
@@ -923,38 +989,26 @@ function ScheduleInner({
     return null;
   };
 
-  // The list's counterpart of "time at the left edge": the group starting at
-  // or after `t` (what's happening from t onward), else the last one.
-  const scrollListToTime = (t: number) => {
-    const target =
-      visibleGroups.find((g) => ms(g.sessions[0].start) >= t) ??
-      visibleGroups[visibleGroups.length - 1];
-    const node = target && groupRefs.current.get(target.key);
-    node?.scrollIntoView({ behavior: "auto", block: "start" });
-  };
-
-  // View toggle: the new view starts at the top of the content and at the
-  // same time the old one was showing — leaving the list, the group at the
-  // top of the viewport; leaving the timeline, the time at its left edge.
-  // Captured here, while the old view is still mounted; applied in the effect
-  // below once the new view is in the DOM.
+  // View toggle. Into the timeline: the grid pans (horizontally, its own
+  // scroll) to the time of the group at the top of the list, so the page
+  // itself does not move. Into the list: the page stays where it is too —
+  // it used to jump down to the group at the timeline's left-edge time,
+  // which from a timeline sitting at the top of the page read as the app
+  // moving the person (tester report, 2026-10-13); the list only pulls the
+  // page up to its start if the content top had scrolled under the tabs.
   const changeView = (next: ViewMode) => {
     if (next === view) return;
     programmaticScrollRef.current = true;
-    const t =
-      view === "list" ? topVisibleGroupStartMs() : timelineLeftMsRef.current;
     if (next === "timeline") {
       // Batched with setView: the timeline mounts with the target already set
       // and positions itself in its own layout effect, before paint.
+      const t = topVisibleGroupStartMs();
       if (t != null) {
         setTimelineScrollToTime((prev) => ({
           ms: t,
           seq: (prev?.seq ?? 0) + 1,
         }));
       }
-      pendingTimeRef.current = null;
-    } else {
-      pendingTimeRef.current = t; // the list scrolls in the effect below
     }
     trackEvent("schedule", "view", next);
     setView(next);
@@ -966,23 +1020,20 @@ function ScheduleInner({
       return;
     }
     scrollListTop();
-    const t = pendingTimeRef.current;
-    pendingTimeRef.current = null;
-    if (t != null && view === "list") scrollListToTime(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
 
   // Landing: the first time the selected day's content is actually in the
   // DOM (sessions loaded, day resolved), jump straight to "live now",
   // instantly, before paint, so the list never visibly starts at the top.
-  // Once per mount, and the pane stays mounted across tab switches (TabPanes
-  // restores the scroll position), so in practice once per app open.
+  // Once per app open: the flag lives in the parent (above the programme
+  // switch's remount) and the pane stays mounted across tab switches
+  // (TabPanes restores the scroll position). A later mount — the other
+  // programme — starts at the top of its list instead.
   const contentReady =
     selectedDay !== null &&
     (view === "list"
       ? visibleGroups.length > 0 || completedGroups.length > 0
       : daySessions.length > 0);
-  const landedRef = useRef(false);
   // Deep link (`/schedule/<id>` on app open): the list behind the page shows
   // the session's day, and once the page closes it reveals the session
   // itself rather than landing on "live now". Consumes the landing.
@@ -995,10 +1046,18 @@ function ScheduleInner({
     if (key !== selectedDay) setSelectedDay(key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeSession]);
+  const placedRef = useRef(false);
   useLayoutEffect(() => {
     // Only while the list is on screen: scrollIntoView on a hidden
     // (display:none) element is a no-op that would still consume the landing.
-    if (landedRef.current || !contentReady || !listVisible) return;
+    if (placedRef.current || !contentReady || !listVisible) return;
+    placedRef.current = true;
+    if (landedRef.current) {
+      // Remounted after a programme switch: the document is still scrolled
+      // to wherever the previous list was, so start this one at its top.
+      scrollListTop();
+      return;
+    }
     landedRef.current = true;
     if (view === "list") scrollListToNow("auto");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1027,15 +1086,31 @@ function ScheduleInner({
   // jumps (Live now, day tabs, view toggle) are not "scrolling down": the
   // flag skips the scroll frame they cause.
   const programmaticScrollRef = useRef(false);
-  const [chromeHidden, setChromeHidden] = useState(false);
+  const [scrollChromeHidden, setChromeHidden] = useState(false);
+  // Phone in landscape: the header row and the bottom tab bar are gone for
+  // as long as the list shows (both views — the day tabs carry the header's
+  // pills, see `landscapeControls`; the bar is back on rotating upright),
+  // published as <html data-app-chrome-off> for AppHeader, Nav, the page
+  // layout's bottom padding and the offset math; the scroll fold below
+  // stays out of it. (Feedback round, 2026-10-13: the mock has the tabs at
+  // the very top, the grid under them, the short viewport to the content.)
+  const phoneLandscape = useIsPhoneLandscape();
+  const headerOff = phoneLandscape && listVisible && !detailId && !isDesktop;
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    root.toggleAttribute(APP_CHROME_OFF_ATTR, headerOff);
+    return () => root.removeAttribute(APP_CHROME_OFF_ATTR);
+  }, [headerOff]);
   // Not under a session page: the layer locks the page scroll, so a header
   // hidden at the moment of the tap would have no scroll to bring it back.
   const chromeCollapsible =
     listVisible &&
     !detailId &&
     !isDesktop &&
+    !phoneLandscape &&
     view === "timeline" &&
     resultCount > 0;
+  const chromeHidden = headerOff || scrollChromeHidden;
   useEffect(() => {
     if (!chromeCollapsible) {
       setChromeHidden(false);
@@ -1089,9 +1164,9 @@ function ScheduleInner({
       return;
     }
     root.setAttribute("data-app-header-animates", "");
-    root.toggleAttribute("data-app-header-hidden", chromeHidden);
+    root.toggleAttribute("data-app-header-hidden", scrollChromeHidden);
     return reset;
-  }, [chromeCollapsible, chromeHidden]);
+  }, [chromeCollapsible, scrollChromeHidden]);
 
   // Mobile list/timeline toggle sits next to the "Sessions" heading (design).
   // Once that row has scrolled under the pinned day tabs, a floating copy
@@ -1180,6 +1255,7 @@ function ScheduleInner({
   // closing panel doesn't collapse into an empty box.
   const livePanelContent = selectedSession ? (
     <SessionDetailsPanel
+      key={panelGeneration}
       session={selectedSession}
       onClose={() => selectSession(null)}
       // Desktop only: on phones this aside is mounted but hidden, and the
@@ -1281,6 +1357,7 @@ function ScheduleInner({
           come back, query intact, when it closes. */}
       {!detailId && (
         <HeaderToolbar
+          headerOff={headerOff}
           kind="session"
           searchLabel="Search sessions"
           searchOpen={headerSearch.searchOpen}
@@ -1300,22 +1377,35 @@ function ScheduleInner({
       {!detailId && paneActive && anyLive && (
         <LiveNowButton onClick={jumpToNow} />
       )}
-      {/* Floating list/timeline toggle (mobile), bottom-left opposite Live
-          now, once the in-flow one has scrolled away. Kept mounted for the
-          150ms fade; inert while hidden. Same bottom as Live now: 16px above
-          the tab bar's measured height. */}
+      {/* Floating mobile controls, bottom-left opposite Live now: the
+          list/timeline toggle once the in-flow one has scrolled away (kept
+          mounted for the 150ms fade; inert while hidden), and in timeline
+          view the zoom switch, always there — alone at the left edge until
+          the toggle appears, then sliding right to make room: the toggle's
+          clipping wrapper grows from 0 to its width on the fade's clock (its
+          padding + negative margins keep the drop shadow inside the clip).
+          Same bottom as Live now: 16px above the tab bar's measured height. */}
       {!detailId && paneActive && hasViewRow && (
-        <div
-          aria-hidden={!viewRowScrolledOut}
-          inert={!viewRowScrolledOut || undefined}
-          className={cn(
-            "fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 rounded-lg shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none lg:hidden",
-            viewRowScrolledOut
-              ? "translate-y-0 opacity-100"
-              : "pointer-events-none translate-y-2 opacity-0"
+        <div className="fixed bottom-[calc(var(--nav-clearance)+16px)] left-4 z-20 flex items-center phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(16px,var(--safe-bottom)))] lg:hidden">
+          <div
+            aria-hidden={!viewRowScrolledOut}
+            inert={!viewRowScrolledOut || undefined}
+            className={cn(
+              "-mx-1 -mb-1 -mt-0.5 overflow-hidden px-1 pb-1 pt-0.5 transition-[opacity,transform,max-width] duration-150 ease-out motion-reduce:transition-none",
+              viewRowScrolledOut
+                ? "max-w-28 translate-y-0 opacity-100"
+                : "pointer-events-none max-w-0 translate-y-2 opacity-0"
+            )}
+          >
+            <div className={cn(FLOATING_SHADOW, "rounded-lg", view === "timeline" && "mr-2")}>
+              <ViewToggle view={view} onChange={changeView} iconOnly />
+            </div>
+          </div>
+          {view === "timeline" && (
+            <div className={cn(FLOATING_SHADOW, "rounded-lg")}>
+              <ZoomToggle zoom={zoom} onChange={setZoom} />
+            </div>
           )}
-        >
-          <ViewToggle view={view} onChange={changeView} iconOnly />
         </div>
       )}
       {/* Fullscreen session page for `/schedule/<id>`: mobile as a layer over
@@ -1350,7 +1440,7 @@ function ScheduleInner({
             (interestedOnly ? (
               <InterestsSpanNote />
             ) : (
-              <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} />
+              <SourceToggle source={source} onChange={onSourceChange} />
             ))}
         </div>
 
@@ -1385,7 +1475,28 @@ function ScheduleInner({
                 className="w-[348px]"
                 resultCount={totalMatches}
               />
-              <ViewToggle view={view} onChange={changeView} />
+              <div className="flex items-center">
+                <ViewToggle view={view} onChange={changeView} />
+                {/* The zoom switch stays mounted and slides in beside the
+                    toggle when the timeline shows — 150ms ease-out like the
+                    floating controls, the exit a touch quicker; the clipping
+                    wrapper grows from 0 to its width and carries the 12px
+                    gap so a hidden switch leaves no gap behind. */}
+                <div
+                  aria-hidden={view !== "timeline"}
+                  inert={view !== "timeline" || undefined}
+                  className={cn(
+                    "overflow-hidden transition-[opacity,transform,max-width,margin] ease-out motion-reduce:transition-none",
+                    view === "timeline"
+                      // 112px cap: the switch is ~96px, and the clip must
+                      // never cut it where a fallback × glyph runs wider.
+                      ? "ml-3 max-w-28 translate-x-0 opacity-100 duration-150"
+                      : "pointer-events-none ml-0 max-w-0 -translate-x-1 opacity-0 duration-100"
+                  )}
+                >
+                  <ZoomToggle zoom={zoom} onChange={setZoom} />
+                </div>
+              </div>
             </div>
 
             {/* Mobile search, in flow: opening it pushes the day tabs and the
@@ -1419,7 +1530,7 @@ function ScheduleInner({
                 {interestedOnly ? (
                   <InterestsSpanNote stretch />
                 ) : (
-                  <SourceToggle source={source} previous={previousSource} onChange={onSourceChange} stretch />
+                  <SourceToggle source={source} onChange={onSourceChange} stretch />
                 )}
               </div>
             )}
@@ -1434,6 +1545,28 @@ function ScheduleInner({
               // Desktop: pins under the sticky toolbar above (65px nav +
               // 65px toolbar).
               stackedUnderToolbar
+              // Phone landscape: the header's pills, opposite the dates.
+              // Only this copy listens for the "+1" bubble there; the
+              // header copy is display:none with its row.
+              landscapeControls={
+                !detailId && (
+                  <ToolbarPills
+                    kind="session"
+                    layout="row"
+                    pulseEnabled={paneActive && headerOff}
+                    searchLabel="Search sessions"
+                    searchOpen={headerSearch.searchOpen}
+                    searchActive={headerSearch.searchOpen}
+                    onToggleSearch={headerSearch.toggleSearch}
+                    interestedOnly={interestedOnly}
+                    interestedCount={interestedIds.size}
+                    onToggleInterested={() => setInterestedOnly((v) => !v)}
+                    filterCount={facetFilterTotal}
+                    filtersOpen={filtersOpen}
+                    onOpenFilters={openFilters}
+                  />
+                )
+              }
             >
               <InterestedPill
                 kind="session"
@@ -1471,9 +1604,12 @@ function ScheduleInner({
               ref={contentRef}
               className={cn(
                 "px-4 pt-6 lg:rounded-b-xl lg:bg-dc-panel lg:pb-6",
+                // Phone landscape: the gutters grow to the notch's inset
+                // (16px where there is none).
+                "phone-landscape:pl-[max(16px,var(--safe-left))] phone-landscape:pr-[max(16px,var(--safe-right))]",
                 // Scroll target for day-tab "top" (see scrollListTop); same
                 // pinned-tabs clearance as the group headers.
-                "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]",
+                "scroll-mt-[calc(112px+var(--safe-top))] phone-landscape:scroll-mt-[calc(56px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]",
                 // Mobile timeline sits flush on the panel-grey underlay (see
                 // the timeline branch); the layout's nav clearance is the
                 // only gap left below it.
@@ -1571,6 +1707,7 @@ function ScheduleInner({
                   }}
                   scrollToTime={timelineScrollToTime}
                   headerRaised={chromeHidden}
+                  zoom={zoom}
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>

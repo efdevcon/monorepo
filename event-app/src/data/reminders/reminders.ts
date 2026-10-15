@@ -10,6 +10,7 @@
  * is converted exactly once, in `deriveReminders`.
  */
 import type { Session } from "@/data/models";
+import { roomDisplayName } from "@/data/venueRooms";
 
 /** How long before a starred session starts the reminder goes out / appears. */
 export const REMINDER_LEAD_MS = 10 * 60_000;
@@ -144,7 +145,9 @@ const slotToMs = (v: unknown): number => {
 export function parseReminderCatalogue(json: ReminderBundle): ReminderSession[] {
   const roomName = new Map<string, string>();
   for (const r of json.data?.rooms ?? []) {
-    if (r.id && r.name) roomName.set(r.id, r.name);
+    // The app's display name (venueRooms.ts), as materialize.ts applies it:
+    // the push must name the room as the schedule and the inbox card do.
+    if (r.id && r.name) roomName.set(r.id, roomDisplayName(r.id, r.name));
   }
   const sessions: ReminderSession[] = [];
   for (const s of json.data?.sessions ?? []) {

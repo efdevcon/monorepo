@@ -1,11 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { isStandalone } from "@/utils/platform";
 import { MOBILE_MEDIA_QUERY, useMediaQuery } from "@/hooks/useIsDesktop";
+import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "./introCover";
 
-const STORAGE_KEY = "event_app_intro_seen";
+// Shared with the root layout's head script, which injects the pre-paint
+// launch cover (a <style id=INTRO_COVER_ID>) on the first standalone launch.
+const STORAGE_KEY = INTRO_SEEN_KEY;
+const COVER_ID = INTRO_COVER_ID;
+const BACKDROP = INTRO_BACKDROP;
+// How long the launch cover may hold while the backdrop downloads. Past
+// this the app shows without an intro; the flag stays unset so the next
+// launch tries again.
+const BACKDROP_WAIT_MS = 2500;
 
 const DURATION = 2.4; // seconds
 // grow from right (0 → 0.4) · hold (0.4 → 0.6) · reveal from right (0.6 → 1)
@@ -30,13 +39,44 @@ export function IntroSplash({ children }: { children: React.ReactNode }) {
   // Below `lg` (where the hero image is hidden).
   const isMobile = useMediaQuery(MOBILE_MEDIA_QUERY);
 
+  // The intro starts only once the backdrop is decoded: this effect runs
+  // after the data boot gate, and mounting the splash with a still-loading
+  // 1.4 MB image left the app visible under an empty mask for a few frames.
+  // The head script's launch cover holds until then (cleared below, once the
+  // splash is in the DOM) and is dropped at once when there is no intro.
   useEffect(() => {
+    const clearCover = () => document.getElementById(COVER_ID)?.remove();
     if (!isStandalone() || localStorage.getItem(STORAGE_KEY) === "true") {
+      clearCover();
       return;
     }
-    localStorage.setItem(STORAGE_KEY, "true");
-    setPlaying(true);
+    let settled = false;
+    const img = new Image();
+    img.src = BACKDROP;
+    const start = () => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      localStorage.setItem(STORAGE_KEY, "true");
+      setPlaying(true);
+    };
+    const giveUp = () => {
+      if (settled) return;
+      settled = true;
+      clearCover();
+    };
+    img.decode().then(start, giveUp);
+    const timer = setTimeout(giveUp, BACKDROP_WAIT_MS);
+    return () => {
+      settled = true;
+      clearTimeout(timer);
+    };
   }, []);
+  // Before paint, with the splash already in the DOM: no frame shows the
+  // app between the cover and the intro.
+  useLayoutEffect(() => {
+    if (playing) document.getElementById(COVER_ID)?.remove();
+  }, [playing]);
 
   // Desktop grows from a right-half panel (matching the old login hero).
   // Mobile has no visible hero, so the image wipes in from off-screen right.
@@ -102,7 +142,7 @@ export function IntroSplash({ children }: { children: React.ReactNode }) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/login/backdrop.jpg"
+              src={BACKDROP}
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />

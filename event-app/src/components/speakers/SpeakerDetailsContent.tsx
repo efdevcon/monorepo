@@ -1,9 +1,10 @@
 "use client";
 
-import { Copy, Globe, Star } from "lucide-react";
+import { Copy, Globe, Share2, Star } from "lucide-react";
 import cn from "classnames";
 import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
+import { shareDetail } from "@/components/ShareButton";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { groupSessionsByDay } from "@/components/schedule/utils";
@@ -185,8 +186,9 @@ function SpeakerProfile({
     }
   };
 
+  // 8px before the icon, 12px after the label (Scott, 2026-10-13).
   const pill =
-    "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border px-2 py-1 text-[12px] leading-none text-dc-fg2";
+    "flex min-h-8 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border py-1 pl-2 pr-3 text-[12px] leading-none text-dc-fg2";
 
   return (
     <div className="flex flex-col gap-4 p-4">
@@ -259,6 +261,20 @@ function SpeakerProfile({
           <Copy className="size-4 text-dc-purple" />
           Copy name
         </button>
+        {/* Expanded page only: the panel and the mobile page carry the share
+            circle in their chrome (beside Close / in the app header), the
+            dedicated page has no chrome of its own (feedback, 2026-10-13). */}
+        {lg && (
+          <button
+            onClick={() =>
+              void shareDetail({ kind: "speaker", id: speaker.id, title: speaker.name })
+            }
+            className={cn(pill, "border-dc-hairline bg-white")}
+          >
+            <Share2 className="size-4 text-dc-purple" />
+            Share
+          </button>
+        )}
       </div>
     </div>
   );

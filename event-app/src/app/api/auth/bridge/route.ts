@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
   const { data, error } = await supabaseAdmin.auth.admin.generateLink({
     type: "magiclink",
     email: verified.email,
-    options: { redirectTo: `${origin}/ticket` },
+    options: { redirectTo: `${origin}/my-devcon` },
   });
   const tokenHash = data?.properties?.hashed_token;
   if (error || !tokenHash) {
@@ -87,7 +87,7 @@ export async function GET(request: NextRequest) {
     type: "magiclink",
   }).toString();
 
-  const response = NextResponse.redirect(`${origin}/ticket#${hash}`);
+  const response = NextResponse.redirect(`${origin}/my-devcon#${hash}`);
   pendingCookies.forEach(({ name, value, options }) =>
     response.cookies.set(name, value, options)
   );

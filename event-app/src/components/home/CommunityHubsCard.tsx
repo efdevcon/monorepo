@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { Tent } from "lucide-react";
 import { PrimaryLinkButton } from "@/components/Buttons";
 import { HUBS_PARAM } from "@/data/store/schedule-source";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
@@ -66,9 +66,13 @@ export function CommunityHubsCard() {
             </p>
           </div>
           <div className="flex flex-col gap-3 lg:flex-row">
+            {/* The tent leads the label: it is the hubs' mark everywhere else
+                in the app (schedule switch, cards, badges), and the translucent
+                tent in the photo is too faint to carry the association alone
+                (tester feedback, 2026-10-14). */}
             <PrimaryLinkButton size="sm" href={`/schedule?${HUBS_PARAM}=1`}>
+              <Tent className="size-4 shrink-0" />
               View Community Hubs
-              <ArrowRight className="size-4 shrink-0" />
             </PrimaryLinkButton>
           </div>
         </div>

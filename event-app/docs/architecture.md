@@ -5,7 +5,7 @@ Precaching is deliberately light — only the **app-shell routes** (`/schedule`,
 `/map`, `/announcements`, `/room-screens`, `/offline`) plus a few small chrome assets,
 revisioned by git commit hash so a new deploy busts the shell. Keep in mind when testing the
 production build locally as this will currently look like no changes happens between edits.
-`/` and `/ticket` are the exceptions: they are warmed into the runtime page cache at install and
+`/` and `/my-devcon` are the exceptions: they are warmed into the runtime page cache at install and
 served network-first (3 s, then the cached copy), never precached, because the `<link rel="manifest">`
 is personalised from the session cookie (the install sign-in bridge) and Safari reads that tag from the
 HTML it was handed; a copy frozen at install time installed a signed-out app. The browser session
@@ -35,7 +35,7 @@ id. Shell cache keys ignore the whole query string (`src/routing/viewParams.ts` 
 SW), so tracking params on shared links can't defeat the cache.
 
 **Tab switches** do not mount pages. The five bottom-bar destinations (`/`, `/schedule`, `/speakers`,
-`/map`, `/ticket`) are persistent panes rendered by the layout (`src/components/TabPanes.tsx`): the
+`/map`, `/my-devcon`) are persistent panes rendered by the layout (`src/components/TabPanes.tsx`): the
 route pages render nothing, a pane mounts lazily on its first visit (code-split, client-only) and then
 stays mounted, hidden with `display: none` while another tab shows, keeping its own scroll position.
 Header portals and window-scroll measurements inside pages are gated on `usePaneActive()`, and
@@ -45,8 +45,9 @@ render is a screenful of cards, the rest fill in one group per frame, and jumps 
 now") complete the list first so they land on real heights. The speakers × sessions join is memoised
 per store snapshot rather than per mount. Every vertical page jump is instant, never smooth (WebKit
 rasterises everything a smooth scroll passes over). Re-tapping the active tab resets its pane (scroll
-to top; the schedule jumps to "now"); with a detail page open the tap navigates to the bare tab URL,
-which closes it.
+to top); with a detail page open the tap navigates to the bare tab URL, which closes it. The schedule
+lands on "now" once per app open and never jumps on its own after that (programme switch, tab re-tap
+and day-tab taps start at the top; the Live now pill is the way back).
 
 # data architecture
 

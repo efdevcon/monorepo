@@ -49,7 +49,9 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
       {/* `section` restrains content width (centered column + gutters);
           bottom padding on mobile clears the bottom nav bar, which stays on
           session and speaker pages too. */}
-      <div className={`section ${bottomPad} lg:pb-0`}>
+      {/* [data-app-chrome-off]: the schedule on a phone in landscape hides
+          the bar (Nav.tsx), so the clearance shrinks to a plain gutter. */}
+      <div className={`section ${bottomPad} lg:pb-0 [[data-app-chrome-off]_&]:pb-6`}>
         {/* Bottom-bar tabs stay mounted across switches (TabPanes); their
             route pages render nothing. Other routes render as children. */}
         <TabPanes pathname={pathname} />

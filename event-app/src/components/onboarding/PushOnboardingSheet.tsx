@@ -52,7 +52,7 @@ import { NeedsConnection } from "@/components/NeedsConnection";
  *
  * Steps (no wizard chrome, one card at a time):
  * - signed out: "Sign in to get session reminders". The subscriptions API needs an
- *   account, so the primary goes to /ticket (the sign-in home). If the user
+ *   account, so the primary goes to /my-devcon (the sign-in home). If the user
  *   signs in during the same app session the sheet comes back with the
  *   notification step (still the same "once": nothing re-opens next launch).
  * - signed in, push off: "Get reminded before your sessions". The primary
@@ -101,7 +101,7 @@ const SUBSCRIBE_PREFS = { announcements: true, reminders: true };
 type Step = "signin" | "enable" | "done";
 type Preview = "natural" | Step | "reminders" | "error";
 
-/** Session-level lifecycle: `awaitingSignIn` = sent to /ticket, reopen on sign-in. */
+/** Session-level lifecycle: `awaitingSignIn` = sent to /my-devcon, reopen on sign-in. */
 type Phase = "idle" | "open" | "awaitingSignIn" | "finished";
 
 function readPreview(): Preview | null {
@@ -271,7 +271,7 @@ export function PushOnboardingSheet() {
   const onPrimary = () => {
     if (step === "signin") {
       setPhase("awaitingSignIn");
-      router.push("/ticket");
+      router.push("/my-devcon");
       return;
     }
     if (step === "done") {

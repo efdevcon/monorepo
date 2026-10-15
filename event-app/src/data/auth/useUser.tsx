@@ -54,7 +54,7 @@ const UserContext = createContext<UseUserResult | null>(null);
  * One instance of this state lives in `UserProvider` (root layout) and every
  * `useUser()` reads it. It used to be a plain hook: each of its ~12 call
  * sites registered its own auth listener and re-ran the mount-time session
- * restore, starting from `hasInitialized: false` — so screens like /ticket
+ * restore, starting from `hasInitialized: false` — so screens like /my-devcon
  * that gate on it re-showed "Loading…" on every visit. Mounted once, the
  * state is already settled by the time any page renders.
  */

@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { Search, TextSearch } from "lucide-react";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
+import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
 import { AreaCard } from "./AreaCard";
 import { ControlPill } from "./ControlPill";
@@ -91,6 +92,9 @@ export function VenueMap3D() {
   const active = usePaneActive();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   const desktop = useIsDesktop();
+  // Phones: the area card lands on the floating feedback button's corner (the map pane is a stacking
+  // context, so no z-index inside it can win against the button); hide the button while the card is open.
+  useHideFeedbackFab(selected !== null && !desktop && active);
   const stacked = settings.level === null;
 
   // Phone legend (Scott, 2026-09-18): shown with the stacked view until the first gesture — a camera

@@ -1,8 +1,9 @@
 "use client";
 
+import { useLayoutEffect, useRef, useState } from "react";
 import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
-import { Calendar, CalendarPlus, Clock3, MapPin, Star } from "lucide-react";
+import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
 import { Link } from "@/routing";
 import { useEvent } from "@/data/hooks";
@@ -55,6 +56,67 @@ export function downloadSessionIcs(session: Session) {
 const pillBase =
   "flex min-h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
+
+/**
+ * The session blurb, folded to its first six lines (`line-clamp-6` below;
+ * the fold depth lives in that class alone) with an ellipsis and a
+ * centred bold "Show more" link under it (Scott, 2026-10-14: long abstracts
+ * pushed the meta, tags and speakers off the panel). One way only: once
+ * opened it stays open, there is no "Show less"; the fold returns when the
+ * details close (the caller unmounts or re-keys this). The link shows only
+ * while the text really overflows the fold — measured, not guessed from the
+ * character count, since the width differs between the side panel, the
+ * phone layer and the expanded page — and the measure re-runs on resize, so
+ * a blurb that fits after a rotation loses its link and one that stops
+ * fitting gains it.
+ */
+function Description({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [overflows, setOverflows] = useState(false);
+  const ref = useRef<HTMLParagraphElement | null>(null);
+  useLayoutEffect(() => {
+    if (expanded) return;
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      // Inside a hidden tab pane everything measures 0×0: keep the last
+      // answer rather than deciding "fits" on nothing.
+      if (el.clientHeight === 0) return;
+      setOverflows(el.scrollHeight > el.clientHeight + 1);
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [expanded, text]);
+
+  return (
+    <div className="flex flex-col gap-2">
+      {/* [overflow-wrap:anywhere]: descriptions carry long unbroken URLs,
+          which otherwise widen the fixed detail layer past the viewport
+          (iOS Safari then widens the whole layout viewport). */}
+      <p
+        ref={ref}
+        className={cn(
+          "text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]",
+          !expanded && "line-clamp-6"
+        )}
+      >
+        <TextWithLinks text={text} />
+      </p>
+      {!expanded && overflows && (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="self-center cursor-pointer text-[14px] font-bold leading-5 text-dc-purple hover:underline"
+        >
+          Show more
+        </button>
+      )}
+    </div>
+  );
+}
 
 /**
  * Session summary (Figma "Session details" section 1): media or track banner,
@@ -137,77 +199,90 @@ export function SessionSummary({
         media
       )}
 
-      {/* Title block: title → 8px → (description → 16px → meta → 16px → tags → 16px → pills) */}
+      {/* Title block: title → 8px → (description → 24px → meta → 24px → tags)
+          → 16px → pills. The 24px (Scott, 2026-10-14; was 16) gives the
+          folded blurb's Show more link air before the meta row, and the
+          meta the same before the tags. */}
       <div className="flex flex-col gap-2">
         <h1 className="text-[16px] font-bold leading-6 text-dc-fg2">
           {session.title}
         </h1>
         <div className="flex flex-col gap-4">
-          {session.description && (
-            // [overflow-wrap:anywhere]: descriptions carry long unbroken
-            // URLs, which otherwise widen the fixed detail layer past the
-            // viewport (iOS Safari then widens the whole layout viewport).
-            <p className="text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]">
-              <TextWithLinks text={session.description} />
-            </p>
-          )}
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-              <Calendar className="size-3.5 shrink-0" />
-              {formatDayLabel(session)}
-            </span>
-            <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-              <Clock3 className="size-3.5 shrink-0" />
-              {formatTimeRange(session)}
-            </span>
-            {/* The location itself is the map link (purple), no separate
-                "Show on map" text: rooms the map knows open on their floor
-                with the footprint highlighted; the rest just open the map. A
-                session without a room keeps the plain "Type" label. */}
-            {location && session.room ? (
-              <Link
-                href={mapHrefForRoom(session.room.id)}
-                className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
-              >
-                <MapPin className="size-3.5 shrink-0" />
-                {location}
-              </Link>
-            ) : location ? (
-              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
-                <MapPin className="size-3.5 shrink-0" />
-                {location}
-              </span>
-            ) : null}
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {/* Details show the full track name; list/timeline cards keep the
-                short trackBadgeLabel. */}
-            <span
-              className={cn(
-                "rounded-[2px] px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
-                theme.neutral && "border border-dc-hairline bg-white"
-              )}
-              style={
-                theme.neutral ? undefined : { backgroundColor: theme.color }
-              }
-            >
-              {trackFullLabel(session.track, session.room?.id)}
-            </span>
-            {/* Hub sessions: the sheet's Topic column, as neutral chips after
-                the hub badge (a hub session has no track of its own). */}
-            {communityHubTopics(session).map((topic) => (
-              <span
-                key={topic}
-                className="rounded-[2px] border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2"
-              >
-                {topic}
-              </span>
-            ))}
-            {featured && (
-              <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
-                Featured
-              </span>
+          <div className="flex flex-col gap-6">
+            {session.description && (
+              // Keyed by session so the side panel, which swaps sessions in
+              // place, starts every session folded; closing unmounts it.
+              <Description key={session.id} text={session.description} />
             )}
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                <Calendar className="size-3.5 shrink-0" />
+                {formatDayLabel(session)}
+              </span>
+              <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                <Clock3 className="size-3.5 shrink-0" />
+                {formatTimeRange(session)}
+              </span>
+              {/* The location itself is the map link (purple), no separate
+                  "Show on map" text: rooms the map knows open on their floor
+                  with the footprint highlighted; the rest just open the map. A
+                  session without a room keeps the plain "Type" label. */}
+              {location && session.room ? (
+                <Link
+                  href={mapHrefForRoom(session.room.id)}
+                  className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
+                >
+                  <MapPin className="size-3.5 shrink-0" />
+                  {location}
+                </Link>
+              ) : location ? (
+                <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">
+                  <MapPin className="size-3.5 shrink-0" />
+                  {location}
+                </span>
+              ) : null}
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Details show the full track name; list/timeline cards keep the
+                  short trackBadgeLabel. Hub sessions keep the cards' grammar
+                  here too: a rounded pill with the tent glyph, topics as
+                  rounded chips (the square track badge is the Pretalx
+                  programme's). */}
+              <span
+                className={cn(
+                  "inline-flex items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                  theme.isHub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
+                  theme.neutral && "border border-dc-hairline bg-white"
+                )}
+                style={
+                  theme.neutral ? undefined : { backgroundColor: theme.color }
+                }
+              >
+                {trackFullLabel(session.track, session.room?.id)}
+                {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
+              </span>
+              {/* Topics as neutral chips after the track badge, sharing its
+                  corner radius: square with the Pretalx programme's badge,
+                  pills with a hub's (the sheet's Topic column; a hub session
+                  has no track of its own). Scott, 2026-10-14: the pills had
+                  come in with the hubs and clashed beside the square badge. */}
+              {communityHubTopics(session).map((topic) => (
+                <span
+                  key={topic}
+                  className={cn(
+                    "border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
+                    theme.isHub ? "rounded-full" : "rounded-[2px]"
+                  )}
+                >
+                  {topic}
+                </span>
+              ))}
+              {featured && (
+                <span className="rounded-[2px] bg-dc-featured px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2">
+                  Featured
+                </span>
+              )}
+            </div>
           </div>
 
           {/* Action pills share the row's width equally (flex-1) and wrap

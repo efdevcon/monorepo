@@ -35,6 +35,7 @@ export function DayTabs({
   counts,
   raised = false,
   stackedUnderToolbar = false,
+  landscapeControls,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
@@ -54,6 +55,12 @@ export function DayTabs({
   stackedUnderToolbar?: boolean;
   /** Mobile: the app header is hidden — pin at the top of the viewport. */
   raised?: boolean;
+  /**
+   * Phone in landscape only: the app header's Search / My Interests /
+   * Filter pills, opposite the dates, since the header row is gone there
+   * (feedback round, 2026-10-13).
+   */
+  landscapeControls?: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const stuck = useStuckUnderHeader(ref, stackedUnderToolbar ? DESKTOP_TOOLBAR_H : 0);
@@ -84,7 +91,7 @@ export function DayTabs({
         {/* overflow-x-auto + shrink-0 tabs: with many days or a narrow phone
             the bar must scroll — a packed row would clip later days without
             the fade. */}
-        <div className="flex min-w-0 flex-1 items-stretch justify-start gap-3 overflow-x-auto pl-4 pr-12 lg:flex-initial lg:items-center lg:gap-3 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex min-w-0 flex-1 items-stretch justify-start gap-3 overflow-x-auto pl-4 pr-12 phone-landscape:pl-[max(16px,var(--safe-left))] lg:flex-initial lg:items-center lg:gap-3 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {days.map((day) => {
             const active = day.key === selectedDay;
             return (
@@ -112,6 +119,11 @@ export function DayTabs({
           })}
         </div>
       </div>
+      {landscapeControls && (
+        <div className="hidden shrink-0 items-center gap-2 pr-[max(16px,var(--safe-right))] phone-landscape:flex lg:hidden">
+          {landscapeControls}
+        </div>
+      )}
       {children && (
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           {children}

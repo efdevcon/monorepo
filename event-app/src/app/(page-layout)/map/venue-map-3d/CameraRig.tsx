@@ -37,6 +37,21 @@ const GROUP_FIT_MARGIN = 0.55;
 const TWEEN_MS = 350;
 /** Phones: the centred stack fills the width and its floor labels (24px right of the floors) clipped, so the stacked home view sits this many screen px further right (Scott, 2026-09-17). A single floor has no labels and stays centred. */
 const PHONE_SHIFT_PX = 28;
+/**
+ * Desktop: the canvas runs under the 64px app header and the legend strip
+ * below it (bottom edge ≈116px), while the Find / Search row at the bottom
+ * takes ≈68px, so the band left for the map is not centred on the canvas.
+ * The home views sit this many screen px lower — half the difference — so
+ * the stack is centred in that band instead of touching the legend
+ * (feedback round, 2026-10-13).
+ */
+const DESKTOP_SHIFT_PX = 24;
+/**
+ * Phones: the one-finger pan moves the floor this much faster than the
+ * finger (OrbitControls' default is 1:1, which testers found slow — feedback
+ * round, 2026-10-13). Mouse pan stays 1:1.
+ */
+const TOUCH_PAN_SPEED = 1.15;
 const DOUBLE_TAP_MS = 320;
 const DOUBLE_TAP_PX = 40;
 const TAP_MOVE_PX = 10;
@@ -150,16 +165,25 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   /**
    * Orbit target for the "whole floor" views: the floor centre — pushed along
    * the camera's right vector on phones while the floors are stacked, so the
-   * stack sits left of centre and the floor labels beside it stay on screen.
-   * A single floor has no labels and is centred. In ortho `zoom` is screen px
-   * per world unit, so the shift is exact in px.
+   * stack sits left of centre and the floor labels beside it stay on screen
+   * (a single floor has no labels and is centred), and on desktop pushed
+   * away from the camera along the floor so the view sits lower, centred in
+   * the band between the legend and the bottom controls. In ortho `zoom` is
+   * screen px per world unit, so the shifts are exact in px; a ground step
+   * away from the camera moves the picture down by cos(polar) of its length.
    */
   const homeTarget = (azimuth: number, zoom: number, stacked: boolean) => {
     const t = center.clone();
-    if (stacked && !latest.current.desktop && isOrtho && zoom > 0) {
+    if (!isOrtho || zoom <= 0) return t;
+    if (stacked && !latest.current.desktop) {
       const shift = PHONE_SHIFT_PX / zoom;
       t.x += Math.cos(azimuth) * shift;
       t.z -= Math.sin(azimuth) * shift;
+    }
+    if (latest.current.desktop) {
+      const shift = DESKTOP_SHIFT_PX / (zoom * Math.cos(POLAR_ANGLE));
+      t.x -= Math.sin(azimuth) * shift;
+      t.z -= Math.cos(azimuth) * shift;
     }
     return t;
   };
@@ -176,6 +200,9 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   useEffect(() => {
     const controls = new OrbitControls(camera, gl.domElement);
     controlsRef.current = controls;
+    // The controls own the canvas's inline cursor (`auto` by default): grab at
+    // rest, grabbing while dragging. Scene's HoverCursor swaps in the pointer.
+    controls.cursorStyle = "grab";
     controls.enableDamping = true;
     controls.zoomToCursor = true; // wheel / pinch zoom anchors on the pointer, not the screen centre
     controls.dampingFactor = 0.12;
@@ -227,6 +254,7 @@ export function CameraRig({ groundBounds, settings, stack, reducedMotion, focus,
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
+    controls.panSpeed = desktop ? 1 : TOUCH_PAN_SPEED;
     // "Left" is the side that shows more of the venue's front (lower azimuth); the higher side looks at the empty back.
     controls.minAzimuthAngle = START_AZIMUTH - MathUtils.degToRad(settings.rotateLeftDeg);
     controls.maxAzimuthAngle = START_AZIMUTH + MathUtils.degToRad(settings.rotateRightDeg);

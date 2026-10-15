@@ -1,6 +1,8 @@
 import { datasetForEventId } from "../dataset";
 import { dayKeyToUtcMidnightMs, eventDayKey } from "../eventTime";
 import type { ConferenceEvent, Room, Session, Speaker } from "../models";
+import { sessionFormat } from "../sessionFormat";
+import { roomDisplayName } from "../venueRooms";
 import { compact } from "./normalize";
 import type {
   EventMetaRow,
@@ -9,6 +11,8 @@ import type {
   SessionRow,
   SpeakerRow,
 } from "./types";
+
+const PRETALX_HUBS_TRACK = "Community Hubs";
 
 const DAY_NAMES = [
   "Sunday",
@@ -61,7 +65,9 @@ function placeholderSpeaker(id: string, eventId: string): Speaker {
 export function toRoom(row: RoomRow): Room {
   return compact<Room>({
     id: row.id,
-    name: row.name,
+    // The app's name for the room where Pretalx's reads badly ("Stage 4
+    // (Jasmine)" → "Jasmine 4"); the stored row keeps the Pretalx name.
+    name: roomDisplayName(row.id, row.name),
     description: row.description ?? "",
     info: row.info ?? "",
     capacity: row.capacity,
@@ -91,8 +97,14 @@ export function toSession(
     sourceId: row.sourceId,
     title: row.title,
     description: row.description,
-    track: row.track,
-    type: row.type,
+    // The Pretalx programme files the hubs' opening ceremony under a
+    // "Community Hubs" track; the app has no such track (hub sessions are
+    // their own programme, themed by room), so the session reads as
+    // trackless — Devcon treatment, no Tracks chip, no caption (Scott,
+    // 2026-10-13).
+    track: row.track === PRETALX_HUBS_TRACK ? "" : row.track,
+    // The app's format vocabulary, not Pretalx's: "CLS - Talk (…)" → "Talk".
+    type: sessionFormat(row.type),
     expertise: row.expertise,
     duration: end - start,
     start,

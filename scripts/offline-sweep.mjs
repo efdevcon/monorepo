@@ -97,7 +97,7 @@ async function noBrokenImages(p, label) {
 }
 
 // ---- warm online -----------------------------------------------------------
-const routes = ["/", "/schedule", "/speakers", "/map", "/announcements", "/ticket", "/room-screens"];
+const routes = ["/", "/schedule", "/speakers", "/map", "/announcements", "/my-devcon", "/room-screens"];
 // `load`, not `networkidle`: the image warmer keeps the network busy for a while.
 for (const route of routes) {
   await page.goto(`${base}${route}?${q}`, { waitUntil: "load" });

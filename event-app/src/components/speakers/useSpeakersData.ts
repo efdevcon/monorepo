@@ -123,9 +123,9 @@ function derive(
 
   const byId = new Map(decorated.map((d) => [d.speaker.id, d]));
 
-  // Shared topic vocabulary (top tags by frequency) — the desktop pill row
-  // and the mobile "Filter by Topic" sheet show the same slice, and the
-  // schedule Filters panel reuses the same derivation.
+  // Shared topic vocabulary (the curated TOPIC_OPTIONS present in the data)
+  // — the desktop pill row and the mobile "Filter by Topic" sheet show the
+  // same list, and the schedule Filters panel reuses the same derivation.
   const topicOptions = deriveTopicOptions(sessions);
 
   const typeOptions = [...typeSet].sort((a, b) => a.localeCompare(b));
