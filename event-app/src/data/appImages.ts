@@ -1,7 +1,7 @@
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 import { ROOM_ICON_URLS } from "@/components/room-screen/roomIcon";
 import mapBackground from "@/app/(page-layout)/map/venue-map/bg-image-new.png";
-import { COMMUNITY_HUBS, communityHubLogo } from "@/data/communityHubs";
+import { COMMUNITY_HUBS, communityHubLockup, communityHubLogo } from "@/data/communityHubs";
 
 /**
  * Static images shipped in `public/` and rendered by the app shell.
@@ -42,7 +42,7 @@ export const APP_IMAGES: string[] = [
   // Community Hub logos: the hubs' gem artwork on hub session cards, the
   // timeline and the details banner (see trackTheme.ts hubTheme).
   ...COMMUNITY_HUBS.map(communityHubLogo),
-  ...COMMUNITY_HUBS.flatMap((hub) => (hub.logoStacked ? [hub.logoStacked] : [])),
+  ...COMMUNITY_HUBS.map(communityHubLockup),
   // Stage theme crests on the room-screen picker (small, but under public/, so
   // never in the API-driven warm list; see roomIcon.ts).
   ...ROOM_ICON_URLS,

@@ -9,7 +9,7 @@
  * themes so future events still look designed.
  */
 
-import { communityHubForRoom, communityHubLogo, shortCommunityHubName } from "@/data/communityHubs";
+import { communityHubForRoom, communityHubLockup, communityHubLogo, shortCommunityHubName } from "@/data/communityHubs";
 
 export interface TrackTheme {
   /** Canonical DC8 display name (used for the detail-banner caption). */
@@ -122,7 +122,7 @@ function hubTheme(roomId: string | undefined): TrackTheme | undefined {
         badge: shortCommunityHubName(hub.name),
         color: hub.color,
         gem: communityHubLogo(hub),
-        banner: hub.logoStacked,
+        banner: communityHubLockup(hub),
         isHub: true,
       }
     : undefined;

@@ -17,7 +17,7 @@ export interface CommunityHub {
   color: string;
   /** Logo path under /public when it isn't the default `<id>.svg` (see communityHubLogo). */
   logo?: string;
-  /** Stacked lockup (mark over wordmark) for the session details banner; the mark is used when unset. */
+  /** Lockup (mark + wordmark) for the session details banner when it isn't the default `<id>-lockup.svg` (see communityHubLockup). */
   logoStacked?: string;
 }
 
@@ -27,7 +27,15 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: "aggregation", name: "Aggregation Hub", description: "Bringing Ethereum's fragmented chains, apps and communities back together.", color: "#EDD6FF" },
   { id: "desci", name: "DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards, protocol upgrades and standards adoption.", color: "#D4EBF7" },
-  { id: "india", name: "India Hub", description: "A builder's corner that teaches Ethereum's core properties by building.", color: "#FFE7D1" },
+  {
+    id: "india",
+    name: "India Hub",
+    description: "A builder's corner that teaches Ethereum's core properties by building.",
+    color: "#FFE7D1",
+    // The hub delivered PNGs only (no vector artwork), 400px mark and 800px lockup.
+    logo: "/community-hubs/logos/india.png",
+    logoStacked: "/community-hubs/logos/india-lockup.png",
+  },
   { id: "legal-governance", name: "Legal & Governance Hub", description: "Legal and governance questions around tokens, protocols and onchain organisations.", color: "#B9EFFF" },
   {
     id: "onchain-art",
@@ -35,16 +43,7 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
     color: "#F7D4D4",
   },
-  {
-    id: "open-source",
-    name: "Open Source Hub",
-    description: "Hands-on space that turns attendees into open-source contributors.",
-    color: "#DDFDEC",
-    // TEST (2026-09-25): gem-style artwork trial; revert to the placeholder svg or replace with the final logo.
-    logo: "/community-hubs/logos/open-source-test.png",
-    // TEST (2026-09-25): stacked-lockup trial for the details banner (the art reads "Agentic Hub").
-    logoStacked: "/community-hubs/logos/open-source-stacked-test.png",
-  },
+  { id: "open-source", name: "Open Source Hub", description: "Hands-on space that turns attendees into open-source contributors.", color: "#DDFDEC" },
   { id: "p2p-networking", name: "P2P Networking Hub", description: "The people who build and maintain Ethereum's networking layer.", color: "#A8FFD5" },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Prediction-market builders, researchers, traders and governance contributors.", color: "#F5FFDB" },
   {
@@ -99,12 +98,31 @@ export function communityHubForRoom(roomId: string | undefined): CommunityHub | 
 }
 
 /**
- * The hub's logo, served from /public. Placeholders (initials on the hub's
- * colour) ship under this path until the hubs send their own artwork; replace
- * the file, keep the name.
+ * Cache-bust key for the logo files. The service worker keeps images
+ * cache-first for 30 days under their URL, so a device that warmed the old
+ * placeholders would keep showing them for a month after the artwork changed
+ * under the same file name. Bump when a logo file changes in place.
+ */
+const LOGO_VERSION = "2026-10-15";
+const versioned = (path: string) => `${path}?v=${LOGO_VERSION}`;
+
+/**
+ * The hub's mark (square logo), served from /public: the hubs' own artwork
+ * since 2026-10-15 (`<id>.svg`, run through svgo; India sent PNGs). Shown as
+ * the gem on cards, in the timeline and the filter sheet.
  */
 export function communityHubLogo(hub: CommunityHub): string {
-  return hub.logo ?? `/community-hubs/logos/${hub.id}.svg`;
+  return versioned(hub.logo ?? `/community-hubs/logos/${hub.id}.svg`);
 }
+
+/**
+ * The hub's lockup (mark + wordmark, 16:9 or stacked), the session details
+ * banner. Every hub has one at `<id>-lockup.svg` unless `logoStacked` says
+ * otherwise; the banner sizes it with object-contain, so the aspect is free.
+ */
+export function communityHubLockup(hub: CommunityHub): string {
+  return versioned(hub.logoStacked ?? `/community-hubs/logos/${hub.id}-lockup.svg`);
+}
+
 
 
