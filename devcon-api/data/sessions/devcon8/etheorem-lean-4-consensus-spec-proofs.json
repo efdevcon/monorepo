@@ -1,8 +1,8 @@
 {
   "id": "etheorem-lean-4-consensus-spec-proofs",
-  "sourceId": "BVXDJY",
-  "title": "Etheorem: Lean 4 consensus-spec proofs",
-  "description": "Etheorem is an executable formalization of Ethereum's consensus layer in Lean 4. The same definitions run, pass the official conformance vectors at the current fork frontier, and carry machine-checked proofs. Normally the running code, the tests, and the proofs live in separate artifacts that drift apart. Here they're one set of definitions, so a proof and a passing vector describe the same spec.",
+  "sourceId": "TWALMN",
+  "title": "Etheorem: Lean 4 Consensus-Spec Proofs",
+  "description": "A novel approach to the spec, a single artifact that can we run, test, and prove. Contributions included completeness theorem for merkle branch check widely used in consensus (deposits, lightclient sync, and PeerDAS sampling), protocol arithmetic and  invariants proofs, and various spec model improvements (including modeling Heze fork with FOCIL).",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -11,18 +11,17 @@
   "doNotRecord": false,
   "keywords": [],
   "tags": [
-    "Core Protocol",
     "Consensus",
-    "ZK",
-    "Cryptography"
+    "Formal Verification"
   ],
   "language": "en",
   "speakers": [
+    "ivan-anishchuk",
     "raj-gill"
   ],
   "eventId": "devcon8",
-  "resources_presentation": "https://docs.google.com/presentation/d/1nRsAw0wseSERYhQOnJlnyemVVSMpJFnuBn8S59F7hdQ",
-  "slot_start": 1793785500000,
-  "slot_end": 1793786400000,
+  "resources_presentation": "https://docs.google.com/presentation/d/19GELXoOdaDZPDRFICmUMPaFFb3R5OMqBTVxkk1l8nhw",
+  "slot_start": 1793783400000,
+  "slot_end": 1793784300000,
   "slot_roomId": "workshop-2"
 }
