@@ -70,6 +70,14 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Taiwan',
     bio: "Audrey Tang is Taiwan's Cyber Ambassador-at-Large and served as the country's first digital minister from 2016 to 2024. Audrey brought civic innovation into government, from Taiwan's COVID-19 response to protecting its 2024 elections from cyber interference.",
   }, // Audrey Tang
+  // Org answer is "Founder, Network School".
+  {
+    code: 'QTU93L',
+    title: 'Founder',
+    company: 'Network School',
+    logo: 'network-school',
+    bio: 'Balaji Srinivasan founded Network School and wrote The Network State. Balaji previously served as CTO of Coinbase and as a general partner at Andreessen Horowitz.',
+  }, // Balaji Srinivasan
   {
     code: 'G9LYGU',
     title: 'Researcher',
@@ -289,4 +297,31 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'libp2p',
     bio: "Manu Sheel Gupta is a technical lead and maintainer across libp2p, multiformats and IPLD, working on permissionless P2P networks. Manu also builds LeakDetectAI and volunteers with Ethereum's Trillion Dollar Security initiative.",
   }, // Manu Sheel Gupta
+  {
+    code: 'PXYHQU',
+    title: 'Engineer',
+    logo: 'nyx-foundation',
+    bio: 'Tomoki Adachi is an engineer at Nyx Foundation, working on protocol implementation and verifiable system design. Tomoki previously led product development in the cross-chain space.',
+  }, // Tomoki Adachi · Nyx Foundation
+  {
+    code: '93XWX7',
+    title: 'Co-Founder',
+    logo: 'axiom',
+    bio: 'Yi Sun co-founded Axiom, which builds OpenVM, a modular zkVM framework made for customization and extensibility. Yi previously taught statistics at UChicago and holds a PhD in math from MIT.',
+  }, // Yi Sun · Axiom
+  // Pretalx name is just "Francesco" (X: fradamt); kept as-is.
+  {
+    code: 'HV8WVF',
+    title: 'Researcher',
+    logo: 'ethlabs',
+    bio: 'Francesco is an Ethereum researcher who spent five years at EF Research on consensus, data availability sampling and FOCIL before joining Ethlabs. Francesco now focuses on making Ethereum finalize faster.',
+  }, // Francesco · Ethlabs
+  // Org answer is "LAVA & Borderless Africa".
+  {
+    code: 'PMSDZQ',
+    title: 'Founder & Managing Partner',
+    company: 'LAVA',
+    logo: 'lava',
+    bio: 'Yoseph Ayele is Founder & Managing Partner at LAVA, which invests in founders building new financial infrastructure across Africa. Yoseph co-created Borderless Africa and magma, and previously co-founded the Edmund Hillary Fellowship.',
+  }, // Yoseph Ayele
 ]
