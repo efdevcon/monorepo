@@ -1,0 +1,27 @@
+{
+  "id": "agents-in-the-shell-tee-attested-ai-as-on-chain-oracles",
+  "sourceId": "VFDA3Z",
+  "title": "Agents in the Shell: TEE-Attested AI as On-Chain Oracles",
+  "description": "Prediction markets and on-chain apps increasingly need answers to long-tail questions: did this event happen, what did this page say, who won this niche election. Existing oracle designs cannot serve this demand, since trusted operators do not scale to arbitrary questions and tokenomics-based schemes only pay off for high-value feeds.\r\n\r\nInstead, we run an LLM agent with web search inside an Intel TDX enclave. Anyone can submit any prompt on-chain, and every answer carries a signature chain rooted in hardware attestation that the contract verifies before storing the response. The result is tamper-evident and replayable: you know exactly which code and model produced the answer from exactly which prompt. We walk through the oracle design, plus the mechanism design that ensures agents fulfill their commitments on time.",
+  "track": "Users, Builders, and Agents",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "AI",
+    "Hardware",
+    "Coordination"
+  ],
+  "language": "en",
+  "speakers": [
+    "lin-oshitani"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1hy3AuxP6WH07Nj_f9DDlaxoc0_f9tyEG3bqRLd8Qi6Y",
+  "slot_start": 1793704200000,
+  "slot_end": 1793704620000,
+  "slot_roomId": "lightning-stage"
+}
