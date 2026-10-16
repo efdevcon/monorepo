@@ -1,0 +1,25 @@
+{
+  "id": "project-hummingbird-minimal-images-maximum-trust",
+  "sourceId": "7CUG3V",
+  "title": "Project Hummingbird - Minimal Images, Maximum Trust",
+  "description": "Every container image you pull carries a risk - hundreds of packages you didn't explicitly ask for, vulnerabilities you'll spend weeks triaging, and no proof of how it was built. What if you could start from a base image that ships with near-zero CVEs, includes only what your application needs to run, and provides cryptographic evidence of its entire build process?\n\nProject Hummingbird [1] is an open source initiative that produces minimal, hardened container images built from Fedora sources. Every image is distroless by design, built in a SLSA Level 3 pipeline (Konflux), ships with a signed SBOM, and is reproducible -- you can rebuild it locally and verify you get the same bytes. The images are free, redistributable.\n\nThis talk introduces Project Hummingbird [1] to an audience that cares about container security.\n\nKey Takeaways\n\n- You can start using near-zero CVE, distroless container images today\n\n- Supply chain trust (SLSA3, SBOMs, signatures) is built into every Hummingbird image by default\n\n- The distroless approach doesn't mean giving up usability\n\n- Hummingbird images are reproducible: you can independently verify what you're running\n\n- This is open source, built from Fedora, and redistributable\n\n[1] [https://fedoraproject.org/wiki/Hummingbird](https://fedoraproject.org/wiki/Hummingbird)",
+  "track": "[CLS] - OTS",
+  "type": "CLS - Talk (Open Tech Summit)",
+  "expertise": "",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Infrastructure"
+  ],
+  "language": "en",
+  "speakers": [
+    "gaurav-kamathe"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1e60mCIomZRch703-SNeT_oZBwdr5IIPb_k_OQ6i1HzM",
+  "slot_start": 1793867400000,
+  "slot_end": 1793868300000,
+  "slot_roomId": "cls-builders-room"
+}
