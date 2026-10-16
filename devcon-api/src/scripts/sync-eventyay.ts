@@ -110,7 +110,8 @@ const TARGETS: Record<string, TargetMapping> = {
     source: 'https://eventyay.com/fossasia/ots2026',
     sourceKey: 'eventyay:fossasia/ots2026',
     track: '[CLS] - OTS',
-    rooms: { 'Main Stage': 'CLS Stage', 'Builders Room': 'CLS Stage - Builders Room' },
+    // Room names since the 2026-10-14 Pretalx rename (were "CLS Stage" / "CLS Stage - Builders Room").
+    rooms: { 'Main Stage': 'Community Led Stage', 'Builders Room': 'CLS - Builders Room' },
     types: OTS_TYPES,
     defaultType: 'CLS - Talk (Open Tech Summit)',
     tags: OTS_TAGS,
