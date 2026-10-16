@@ -1,0 +1,26 @@
+{
+  "id": "the-zero-option-is-possible-trustless-ethereum-on-a-phone-without-rpc",
+  "sourceId": "DWL7DB",
+  "title": "The Zero Option Is Possible: Trustless Ethereum on a Phone, Without RPC",
+  "description": "The EF Mandate requires a \"zero option\": wherever an intermediary-free path is possible, it must be built. For chain access, that path now exists. Myotis is an open-source light client for Android, iOS and desktop, as standalone app or embedded SDK: BLS sync-committee verification anchors beacon headers, state is fetched from peers over devp2p/SNAP and checked with Merkle-Patricia proofs. No RPC provider in the loop.\r\n\r\nThe talk covers the following, with a live demo if connectivity allows:\r\n\r\n- Living inside the weak-subjectivity window on a phone that sleeps\r\n- Which trust assumptions remain (checkpoint, bootnodes, peer availability) and how to shrink them\r\n- What doesn't work yet: log queries (log index bundling) and historical data access\r\n- Truly permissionless: apps built on Myotis need no API keys, accounts or rate-limit deals\r\n\r\nUsers leave knowing how to install Myotis and point their wallet at it instead of their usual RPC provider; developers, how to drop RPC from their app.",
+  "track": "Permissionless Networks",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Decentralization",
+    "Wallets",
+    "Sovereignty"
+  ],
+  "language": "en",
+  "speakers": [
+    "dirk-jackel"
+  ],
+  "eventId": "devcon8",
+  "slot_start": 1793790000000,
+  "slot_end": 1793790420000,
+  "slot_roomId": "lotus-stage-1"
+}
