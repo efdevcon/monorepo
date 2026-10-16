@@ -357,6 +357,14 @@ export interface PartnerConfig {
   label: string;
   /** Where the attendee is sent, with the proof in the query string. */
   claimUrl: string;
+  /**
+   * Only mint once the ticket has been checked in at the venue, so a resold or
+   * unused ticket cannot collect a perk with real value. Enforced at mint time
+   * only: the payload is unchanged, so partners verify exactly as before and a
+   * valid proof simply implies the check-in had happened when it was signed.
+   * Off by default so the flow stays testable before the event.
+   */
+  requireCheckIn?: boolean;
 }
 
 export const PARTNERS: Record<string, PartnerConfig> = {
@@ -365,6 +373,9 @@ export const PARTNERS: Record<string, PartnerConfig> = {
     // Defaults to the bundled reference implementation so the flow is
     // demoable end-to-end; set to the partner's real claim page in prod.
     claimUrl: process.env.TICKET_PROOF_ENS_CLAIM_URL || "/demo/ens-perks",
+    // Off while the flow is tested before the event; flip to true before the
+    // ENS perk is unhidden (free .eth names have real value).
+    requireCheckIn: false,
   },
   // The PoW faucet (github.com/pk910/PoWFaucet) is the partner side itself: it
   // verifies against the pinned signer, swaps the proof for its own login and
@@ -386,6 +397,14 @@ export const PARTNERS: Record<string, PartnerConfig> = {
 
 export function getPartner(name: string): PartnerConfig | null {
   return PARTNERS[name.trim().toLowerCase()] ?? null;
+}
+
+/** False when the partner gates on check-in and this ticket has not been scanned in yet. */
+export function passesCheckInGate(
+  partner: Pick<PartnerConfig, "requireCheckIn">,
+  ticket: { hasCheckedIn?: boolean }
+): boolean {
+  return !partner.requireCheckIn || ticket.hasCheckedIn === true;
 }
 
 /** Serialise a proof into query params for the partner's claim URL. */

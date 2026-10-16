@@ -17,6 +17,7 @@ import {
   deriveIdentifier,
   isProvableTicket,
   getSignerAddress,
+  passesCheckInGate,
   proofFromSearchParams,
   proofToSearchParams,
   signTicketProof,
@@ -250,6 +251,12 @@ async function main() {
 
   const malformed = await verifyTicketProof({ ...proof, signature: "0xdead" }, ISSUER);
   check("malformed signature is rejected, not thrown", malformed.valid === false);
+
+  // ---- Check-in gate ---------------------------------------------------
+  check("no gate: an unscanned ticket can mint", passesCheckInGate({}, { hasCheckedIn: false }));
+  check("gate on: an unscanned ticket is refused", !passesCheckInGate({ requireCheckIn: true }, { hasCheckedIn: false }));
+  check("gate on: a ticket without check-in data is refused", !passesCheckInGate({ requireCheckIn: true }, {}));
+  check("gate on: a checked-in ticket can mint", passesCheckInGate({ requireCheckIn: true }, { hasCheckedIn: true }));
 
   console.log(failed === 0 ? "\nall good" : `\n${failed} failing`);
   process.exit(failed === 0 ? 0 : 1);

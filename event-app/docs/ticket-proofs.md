@@ -173,15 +173,16 @@ pnpm proof:demo-link india         # print a ready-made claim link
 pnpm proof:demo-link standard --expired
 ```
 
-## Not implemented yet
+## Check-in gating
 
-**Check-in gating.** A proof is currently issuable whether or not the attendee
-has arrived, so a resold or unused ticket can still collect a perk.
-`hasCheckedIn` is already on the ticket, so the gate itself is a one-line change
-in `src/app/api/ticket-proof/route.ts` (see the TODO there). Two decisions come
-with it: perks become onsite-only, and the partner may want check-in bound *into*
-the proof rather than merely checked at mint time, which is a payload change and
-so needs a `PROOF_DOMAIN` version bump.
+Per partner, `requireCheckIn` in `PARTNERS` (`proof.ts`) refuses to mint until
+the ticket has been checked in at the venue (`hasCheckedIn`, read live from
+Pretix), so a resold or unused ticket cannot collect a perk with real value. For
+ENS it is a constant in `PARTNERS`, off while the flow is tested and to be
+flipped on before the perk is unhidden. The gate applies at mint time only, the
+payload is unchanged, so partners need no change: a valid proof implies the
+check-in had happened when it was signed. Binding check-in *into* the proof
+would be a payload change and needs a `PROOF_DOMAIN` bump.
 
 ## Leaving the PWA
 

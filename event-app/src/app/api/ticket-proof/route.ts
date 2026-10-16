@@ -7,6 +7,7 @@ import {
   classifyTier,
   getPartner,
   isProvableTicket,
+  passesCheckInGate,
   proofToSearchParams,
   signTicketProof,
 } from "./proof";
@@ -140,18 +141,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: gate on check-in. A proof arguably should only be issuable once the
-    // attendee is physically at the event (`match.hasCheckedIn`, already
-    // populated from Pretix `position.checkins`), which would stop a ticket that
-    // is resold or never used from collecting a perk. Deliberately not enforced
-    // yet so the flow can be tested before the event.
-    //
-    // Two consequences to settle before turning it on: perks become
-    // onsite-only, so nobody can claim in advance; and the partner may want
-    // check-in reflected *in* the proof rather than only at mint time, since a
-    // 30-minute-old proof outlives the check the moment it is signed. Adding a
-    // `checkedIn` field to the payload would be a signature-format change, so
-    // it needs the version bump in PROOF_DOMAIN.
+    // Per-partner check-in gate (PartnerConfig.requireCheckIn): perks with
+    // real value only mint once the ticket has been scanned in, so a resold or
+    // unused ticket cannot collect one. Orders are read live from Pretix, so a
+    // check-in counts as soon as it is scanned.
+    if (!passesCheckInGate(partner, match)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `The ${partner.label} perk unlocks once your ticket has been checked in at Devcon. Come back after you've picked up your badge.`,
+        },
+        { status: 403 }
+      );
+    }
+
     const tier = classifyTier(match);
     const proof = await signTicketProof({
       ticketSecret: match.secret,
