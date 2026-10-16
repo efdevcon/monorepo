@@ -64,7 +64,7 @@ export const SPEAKER_LOGOS = {
   nethermind: { Logo: Nethermind, aspect: 755 / 128 },
   'network-school': { Logo: NetworkSchool, aspect: 266 / 128 },
   nouns: { Logo: Nouns, aspect: 341 / 128 },
-  'nyx-foundation': { Logo: Nyx, aspect: 707 / 163 },
+  'nyx-foundation': { Logo: Nyx, aspect: 707 / 163, scale: 1.2 },
   'phantom-zone': { Logo: PhantomZone, aspect: 128 / 128 },
   polygon: { Logo: Polygon, aspect: 464 / 128 },
   'protocol-guild': { Logo: ProtocolGuild, aspect: 1106 / 128 },
