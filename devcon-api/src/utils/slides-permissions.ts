@@ -3,8 +3,10 @@
  * and what has to change to get there. Pure: Drive I/O lives in
  * clients/slides.ts, so this is unit-testable and the sync can print a
  * dry-run plan before touching anything. Policy (docs/av §11.9):
- *   - current speakers hold writer access; a speaker removed from the talk
- *     in Pretalx loses the writer grant the pipeline gave them
+ *   - current speakers hold writer access; access is never revoked: Drive
+ *     does not say who granted a permission, so a removed speaker and a
+ *     co-author shared by hand look the same. Writers who are not speakers
+ *     are only reported (extra-writer) for the team to check by hand
  *   - the AV team group (if configured) holds reader access from creation
  *   - no "anyone with the link" access unless explicitly allowed, which only
  *     happens once the event is over
@@ -25,7 +27,8 @@ export interface DeckPermission {
 export type PermissionChange =
   | { action: 'grant-writer'; email: string }
   | { action: 'upgrade-writer'; permissionId: string; email: string; from: string }
-  | { action: 'revoke-writer'; permissionId: string; email: string }
+  /** Report only: a direct writer who is not a speaker. Never applied. */
+  | { action: 'extra-writer'; email: string }
   | { action: 'grant-group-reader'; email: string }
   | { action: 'remove-public'; permissionId: string; role: string }
 
@@ -35,7 +38,7 @@ export interface PlanInput {
   speakers: string[]
   /** Google Group of the AV team, reader from creation. */
   avGroup?: string | null
-  /** Direct writer grants that must never be revoked (organizers, tooling). */
+  /** Direct writers not to report as non-speakers (organizers, tooling). */
   keep?: string[]
   /** Leave "anyone with the link" grants in place (post-event publishing). */
   allowPublic?: boolean
@@ -70,7 +73,7 @@ export function planDeckPermissions(input: PlanInput): PermissionChange[] {
     // Never touch machine identities: the pipeline's own account, or another
     // integration someone granted on purpose.
     if (email.endsWith('.gserviceaccount.com')) continue
-    changes.push({ action: 'revoke-writer', permissionId: p.id, email })
+    changes.push({ action: 'extra-writer', email })
   }
 
   if (avGroup && !direct.some((p) => p.type === 'group' && norm(p.emailAddress) === avGroup)) {

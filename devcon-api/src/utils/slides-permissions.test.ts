@@ -18,11 +18,12 @@ describe('planDeckPermissions', () => {
     expect(planDeckPermissions({ existing, speakers: ['speaker@example.org'] })).toEqual([])
   })
 
-  test('revokes the writer grant of a speaker removed from the talk', () => {
+  test('never revokes a writer who is not a speaker, only reports it', () => {
+    // A removed speaker and someone shared by hand look the same in Drive.
     const existing = [user('p1', 'old@example.org'), user('p2', 'new@example.org')]
-    expect(planDeckPermissions({ existing, speakers: ['new@example.org'] })).toEqual([
-      { action: 'revoke-writer', permissionId: 'p1', email: 'old@example.org' },
-    ])
+    const changes = planDeckPermissions({ existing, speakers: ['new@example.org'] })
+    expect(changes).toEqual([{ action: 'extra-writer', email: 'old@example.org' }])
+    expect(changes.some((c) => (c.action as string) === 'revoke-writer')).toBe(false)
   })
 
   test('never touches inherited access, kept emails, non-writer roles or service accounts', () => {

@@ -315,10 +315,12 @@ speaker emails; since then the sync writes each deck's URL into a Pretalx questi
    speakers, both meant for test runs. `pnpm slides` (§9) now exits immediately.
    A **permissions pass** (2026-09-18, `reconcilePermissions()` in the sync, rules in
    `utils/slides-permissions.ts`) runs after deck creation for the same events: current
-   speakers get writer, speakers removed in Pretalx lose the writer grant, the AV group
-   from `SLIDES_AV_GROUP` gets reader, `anyone` grants are removed unless
-   `SLIDES_ALLOW_PUBLIC=true`, direct grants listed in `SLIDES_KEEP_EMAILS` and inherited
-   access are never touched. It only reports while `SLIDES_SKIP_PERMISSIONS=true` or
+   speakers get writer, the AV group from `SLIDES_AV_GROUP` gets reader, `anyone` grants
+   are removed unless `SLIDES_ALLOW_PUBLIC=true`. A person's access is never revoked
+   (since 2026-10-16): Drive does not record who granted a permission, so a speaker
+   removed in Pretalx and a co-author shared by hand look the same. Writers who are not
+   speakers are listed in the log ("left as is") for the team to check; addresses in
+   `SLIDES_KEEP_EMAILS` are left out of that list, and inherited access is never touched. It only reports while `SLIDES_SKIP_PERMISSIONS=true` or
    `SLIDES_PERMISSIONS_DRY_RUN=true`. It reads decks by the id in the session JSON, so it
    needs the Google identity to see the decks: as of 2026-09-18 the external service
    account loses sight of files it creates seconds after creation (cause under

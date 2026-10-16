@@ -324,7 +324,9 @@ async function applyChange(drive: ReturnType<GoogleApis['drive']>, fileId: strin
         requestBody: { role: 'writer' },
       })
       return
-    case 'revoke-writer':
+    case 'extra-writer':
+      // Report only: access is never revoked (utils/slides-permissions.ts).
+      return 'left as is'
     case 'remove-public':
       await drive.permissions.delete({ fileId, permissionId: change.permissionId, supportsAllDrives: true })
       return

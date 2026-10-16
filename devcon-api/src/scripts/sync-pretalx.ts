@@ -93,6 +93,7 @@ const summary = {
   speakers: 0,
   decksCreated: 0,
   permissionChanges: 0,
+  extraWriters: 0,
   pretalxWrites: 0,
   noGoogleAccount: 0,
   decksUntouched: 0,
@@ -453,8 +454,10 @@ async function publishDeckLink(session: any, sessionFs: any | undefined, fromPre
 }
 
 // Speaker access is granted at deck creation; this pass keeps it current
-// afterwards (speakers added, swapped or removed in Pretalx), adds the AV
-// team group as reader, and strips public link access. Policy and the exact
+// afterwards (speakers added or swapped in Pretalx get writer), adds the AV
+// team group as reader, and strips public link access. It never revokes a
+// person's access: writers who are not speakers (removed speakers, co-authors
+// shared by hand) are only listed for the team to check. Policy and the exact
 // rules: utils/slides-permissions.ts. It only plans (and prints) unless
 // SLIDES_SKIP_PERMISSIONS is off AND SLIDES_PERMISSIONS_DRY_RUN is not set,
 // so a first run against real decks is a report, not a mutation.
@@ -478,15 +481,18 @@ async function reconcilePermissions(submissions: any[]) {
     decks++
     try {
       const changes = await ReconcileDeckPermissions(deckId, speakerEmails, opts)
-      summary.permissionChanges += changes.length
       for (const c of changes) {
+        if (c.action === 'extra-writer') {
+          summary.extraWriters++
+          line(`= [${session.sourceId}] ${c.email} can edit but is not a speaker, left as is`)
+          continue
+        }
+        summary.permissionChanges++
         const what =
           c.action === 'grant-writer'
             ? `grant writer to ${c.email}`
             : c.action === 'upgrade-writer'
             ? `upgrade ${c.email} from ${c.from} to writer`
-            : c.action === 'revoke-writer'
-            ? `revoke writer from ${c.email} (no longer a speaker)`
             : c.action === 'grant-group-reader'
             ? `grant reader to group ${c.email}`
             : `remove public link access (${c.role})`
@@ -502,6 +508,7 @@ async function reconcilePermissions(submissions: any[]) {
   }
   line(
     `${decks} deck(s) checked · ${summary.permissionChanges} change(s) ${SLIDES_DRY_RUN ? 'planned' : 'applied'}` +
+      (summary.extraWriters ? ` · ${summary.extraWriters} non-speaker writer(s) left as is` : '') +
       (unreadable ? ` · ${unreadable} unreadable` : '')
   )
 }
