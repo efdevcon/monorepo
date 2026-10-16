@@ -29,8 +29,32 @@ const SUPPORT_TAG_COLORS = ['#cdf4d7', '#cddff4', '#d6d5f6', '#f0d7f4', '#ffe0cc
 
 const WHY_JOIN_ICONS = [Microscope, Globe, Rocket]
 
-const APPLY_HREF = 'https://esp.ethereum.foundation/applicants/rfp/rtd8_india_academic/apply'
-const CONTACT_EMAIL = 'university@ethereum.foundation'
+// Closed-state card, same pattern as supporters / ecosystem-program. The page
+// borrows the ecosystem stylesheet, so the border is overridden to this
+// page's purple accent rather than the ecosystem orange.
+function ApplicationsClosedCard() {
+  const t = useTranslations('academic_program.applications_closed')
+
+  return (
+    <div className={cn(css['applications-closed-card'], '!border-[#7235ed]')}>
+      <div className={css['applications-closed-inner']}>
+        <div className={css['applications-closed-text']}>
+          <p className={css['applications-closed-heading']}>{t('heading')}</p>
+          <div className={css['applications-closed-body']}>
+            <p>{t('thank_you')}</p>
+            <p>
+              {t('contact_prefix')}
+              <br />
+              <a href={`mailto:${t('contact_email')}`} className="font-bold text-[#7235ed] hover:underline whitespace-nowrap">
+                {t('contact_email')}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function AcademicProgramPage() {
   const t = useTranslations('academic_program')
@@ -46,7 +70,6 @@ export default function AcademicProgramPage() {
     { title: t('nav.why_join'), to: '#why-join' },
     { title: t('nav.who_can_apply'), to: '#who-can-apply' },
     { title: t('nav.what_you_can_receive'), to: '#what-you-can-receive' },
-    { title: t('nav.apply'), to: '#apply' },
   ]
 
   const WHY_JOIN = WHY_JOIN_ICONS.map((icon, i) => ({
@@ -130,10 +153,7 @@ export default function AcademicProgramPage() {
           </div>
 
           <div className={css['hero-cta-block']}>
-            <Link to={APPLY_HREF} className={css['btn-primary']}>
-              {t('hero.apply_button')}
-              <ArrowRight size={16} strokeWidth={2} />
-            </Link>
+            <ApplicationsClosedCard />
           </div>
         </section>
 
@@ -223,25 +243,9 @@ export default function AcademicProgramPage() {
             </div>
           </div>
 
-          {/* Apply now pill + Follow us */}
-          <div id="apply" className={cn(css['scroll-anchor'], 'flex flex-col gap-6 md:gap-8 items-center w-full')}>
-            <div className="flex flex-col items-center gap-4 w-full">
-              <div className="bg-white border border-[#decffb] rounded-3xl md:rounded-full px-4 md:pl-6 md:pr-4 py-4 md:py-3 flex flex-col md:flex-row gap-3 md:gap-4 items-center w-full md:w-auto max-w-full">
-                <p className="text-base font-bold text-[#214] leading-6 text-center md:text-left">
-                  {t('apply.pill_text')}
-                </p>
-                <Link to={APPLY_HREF} className={css['btn-primary']}>
-                  {t('apply.apply_button')}
-                  <ArrowRight size={16} strokeWidth={2} />
-                </Link>
-              </div>
-              <p className="text-sm text-[#594d73] text-center leading-5 px-4">
-                {t.rich('apply.contact_note', { strong })}{' '}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="font-bold text-[#7235ed] hover:underline break-all">
-                  {CONTACT_EMAIL}
-                </a>
-              </p>
-            </div>
+          {/* Applications closed card */}
+          <div id="apply" className={cn(css['scroll-anchor'], 'flex flex-col items-center w-full')}>
+            <ApplicationsClosedCard />
           </div>
         </section>
 
