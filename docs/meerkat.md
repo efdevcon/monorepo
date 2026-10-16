@@ -88,6 +88,11 @@ created under the slug, like the DC7 test session `opening-ceremony`, keep worki
 when both 404 does the card say "Q&A isn't open yet". A bundle cached before the field
 shipped has no code and goes straight to the slug until the device's next schedule sync.
 
+Shared Q&A: `SHARED_QA` in `event-app/src/data/meerkat.ts` points a session at another
+session's Q&A (feed and hand-off). Devcon 8: the Audrey Tang + Vitalik fireside (`YQMW7V`)
+uses Audrey's keynote Q&A (`89KLNQ`), at the speakers' request. Meerkat's stage view follows
+the session marked live, so moderators keep `89KLNQ` live through the fireside.
+
 ## Displaying questions on stage screens and streams (AV)
 
 Meerkat ships the display side; what is missing is data and operations.
