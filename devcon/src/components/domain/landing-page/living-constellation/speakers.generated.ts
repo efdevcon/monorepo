@@ -7,6 +7,7 @@ import img3JEDML from './assets/portraits/dorde-mijovic.webp'
 import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
+import img93XWX7 from './assets/portraits/yi-sun.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
@@ -16,6 +17,7 @@ import imgG9LYGU from './assets/portraits/justin-drake.webp'
 import imgG9TNL3 from './assets/portraits/lightclient.webp'
 import imgGVKNCK from './assets/portraits/meinhard-benn.webp'
 import imgHDTJHP from './assets/portraits/jon-stephens.webp'
+import imgHV8WVF from './assets/portraits/francesco.webp'
 import imgJ3CHSG from './assets/portraits/jordi-baylina.webp'
 import imgJ7URYL from './assets/portraits/janmajaya-mall.webp'
 import imgJPTVDC from './assets/portraits/christopher-fabian.webp'
@@ -26,7 +28,10 @@ import imgMAXUYR from './assets/portraits/pg.webp'
 import imgMPDBM3 from './assets/portraits/johanna-moran.webp'
 import imgMWSEWZ from './assets/portraits/sandeep-nailwal.webp'
 import imgNWGADS from './assets/portraits/eric-marti-haynes.webp'
+import imgPMSDZQ from './assets/portraits/yoseph-ayele.webp'
+import imgPXYHQU from './assets/portraits/tomoki-adachi.webp'
 import imgQNSFPZ from './assets/portraits/ben-biedermann.webp'
+import imgQTU93L from './assets/portraits/balaji-srinivasan.webp'
 import imgRMPP9E from './assets/portraits/barnabe-monnot.webp'
 import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
@@ -87,6 +92,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: img8FL8QW,
     source: 'pretalx',
   },
+  '93XWX7': {
+    id: '93XWX7',
+    name: 'Yi Sun',
+    organization: 'Axiom',
+    xHandle: 'theyisun',
+    track: 'Core Protocol',
+    image: img93XWX7,
+    source: 'pretalx',
+  },
   B9V8HC: {
     id: 'B9V8HC',
     name: 'victoria kozlova',
@@ -137,7 +151,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'G9LYGU',
     name: 'Justin Drake',
     organization: 'Ethereum Foundation',
-    track: 'Futures Worth Building',
+    track: 'Core Protocol',
     image: imgG9LYGU,
     source: 'pretalx',
   },
@@ -165,6 +179,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'FormallyJon',
     track: 'Security',
     image: imgHDTJHP,
+    source: 'pretalx',
+  },
+  HV8WVF: {
+    id: 'HV8WVF',
+    name: 'Francesco',
+    organization: 'Ethlabs',
+    xHandle: 'fradamt',
+    track: 'Core Protocol',
+    image: imgHV8WVF,
     source: 'pretalx',
   },
   J3CHSG: {
@@ -254,6 +277,24 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgNWGADS,
     source: 'pretalx',
   },
+  PMSDZQ: {
+    id: 'PMSDZQ',
+    name: 'Yoseph Ayele',
+    organization: 'LAVA & Borderless Africa',
+    xHandle: 'yosephayele',
+    track: 'Futures Worth Building',
+    image: imgPMSDZQ,
+    source: 'pretalx',
+  },
+  PXYHQU: {
+    id: 'PXYHQU',
+    name: 'Tomoki Adachi',
+    organization: 'Nyx Foundation',
+    xHandle: 't_adachi6006',
+    track: 'Privacy & Consent',
+    image: imgPXYHQU,
+    source: 'pretalx',
+  },
   QNSFPZ: {
     id: 'QNSFPZ',
     name: 'Ben Biedermann',
@@ -261,6 +302,14 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'b3nedictvs',
     track: 'Rights, Freedoms, and Governance',
     image: imgQNSFPZ,
+    source: 'pretalx',
+  },
+  QTU93L: {
+    id: 'QTU93L',
+    name: 'Balaji Srinivasan',
+    organization: 'Founder, Network School',
+    xHandle: 'balajis',
+    image: imgQTU93L,
     source: 'pretalx',
   },
   RMPP9E: {
@@ -320,6 +369,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'W8UUCW',
     name: 'Roger Dingledine',
     organization: 'The Tor Project',
+    xHandle: 'TorProject',
     track: 'Permissionless Networks',
     image: imgW8UUCW,
     source: 'pretalx',
