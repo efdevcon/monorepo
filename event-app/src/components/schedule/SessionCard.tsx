@@ -32,6 +32,7 @@ export function SessionCard({
   selected = false,
   compact = false,
   dense = false,
+  readOnly = false,
   onOpen,
 }: {
   session: Session;
@@ -45,6 +46,11 @@ export function SessionCard({
    * schedule list's 16px/24 + 8px.
    */
   dense?: boolean;
+  /**
+   * A plain card, no link and no star (the plan import's preview: tapping a
+   * session there would navigate away or pre-empt the apply).
+   */
+  readOnly?: boolean;
   /** Replaces the default open (desktop selects the side panel instead). */
   onOpen?: (id: string) => void;
 }) {
@@ -55,21 +61,18 @@ export function SessionCard({
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
 
-  return (
-    <DetailLink
-      kind="session"
-      id={session.id}
-      onOpen={onOpen}
-      className={cn(
-        "group relative flex gap-4 overflow-clip rounded-lg border bg-white transition-colors duration-150 ease-out",
-        // Hub cards: rails sit on the right, so the text gets its own 16px
-        // left inset instead of the rail + gap.
-        hub && "pl-4",
-        selected
-          ? "border-dc-purple bg-dc-lavender"
-          : "border-dc-hairline hover:border-dc-purple/40"
-      )}
-    >
+  const className = cn(
+    "group relative flex gap-4 overflow-clip rounded-lg border bg-white transition-colors duration-150 ease-out",
+    // Hub cards: rails sit on the right, so the text gets its own 16px
+    // left inset instead of the rail + gap.
+    hub && "pl-4",
+    selected
+      ? "border-dc-purple bg-dc-lavender"
+      : cn("border-dc-hairline", !readOnly && "hover:border-dc-purple/40")
+  );
+
+  const body = (
+    <>
       {/* Mobile: 8px track-colored accent rail (right-hand for hub sessions) */}
       <div
         className={cn(
@@ -167,27 +170,29 @@ export function SessionCard({
           </div>
         </div>
 
-        <button
-          aria-label={
-            interested ? "Remove from interested" : "Add to interested"
-          }
-          aria-pressed={interested}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            void toggle(session.id);
-          }}
-          className="group/star -m-2 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
-        >
-          <Star
-            className={cn(
-              "size-5 transition-colors",
-              interested
-                ? "fill-dc-purple text-dc-purple"
-                : "fill-transparent text-dc-fg group-hover/star:text-dc-purple lg:text-dc-muted lg:group-hover/star:text-dc-purple"
-            )}
-          />
-        </button>
+        {!readOnly && (
+          <button
+            aria-label={
+              interested ? "Remove from interested" : "Add to interested"
+            }
+            aria-pressed={interested}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              void toggle(session.id);
+            }}
+            className="group/star -m-2 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-dc-purple-soft"
+          >
+            <Star
+              className={cn(
+                "size-5 transition-colors",
+                interested
+                  ? "fill-dc-purple text-dc-purple"
+                  : "fill-transparent text-dc-fg group-hover/star:text-dc-purple lg:text-dc-muted lg:group-hover/star:text-dc-purple"
+              )}
+            />
+          </button>
+        )}
       </div>
 
       {/* Mobile: absolute corner badge */}
@@ -220,6 +225,13 @@ export function SessionCard({
         {badge}
         {hub && <Tent className="size-2.5 shrink-0" aria-hidden />}
       </span>
+    </>
+  );
+
+  if (readOnly) return <div className={className}>{body}</div>;
+  return (
+    <DetailLink kind="session" id={session.id} onOpen={onOpen} className={className}>
+      {body}
     </DetailLink>
   );
 }

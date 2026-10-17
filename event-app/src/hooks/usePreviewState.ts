@@ -39,6 +39,20 @@ export function usePreviewQA(): PreviewQA | null {
   return v === "loading" || v === "failed" || v === "empty" || v === "closed" ? v : null;
 }
 
+export type PreviewPlan = "done" | "failed";
+
+/**
+ * The plan import page (`/my-interests`): `?previewPlan=done` shows the
+ * applied state with sample counts, `=failed` the apply-failure note (with an
+ * `?add=` plan), which otherwise need a real apply or a failing write. The
+ * warning states need no preview: `?add=` with unknown or overlapping codes
+ * produces them for real. Outside production only.
+ */
+export function usePreviewPlan(): PreviewPlan | null {
+  const v = usePreviewParam("previewPlan");
+  return v === "done" || v === "failed" ? v : null;
+}
+
 // The URL's query at call time; null on the server and in production, so
 // SSR and hydration always match the real state.
 const noSubscribe = () => () => {};
