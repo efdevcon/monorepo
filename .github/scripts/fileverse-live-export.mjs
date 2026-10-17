@@ -43,8 +43,12 @@ async function diagnose(label) {
 
 // The editor persists its Y.Doc in IndexedDB under the sheet id. Poll until the export stops changing.
 const exportIdb = (ID) =>
-  new Promise((resolve) => {
+  new Promise(async (resolve) => {
     const b64 = (u8) => { let s = ""; for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000)); return btoa(s); };
+    // Never open a database the editor hasn't created yet: indexedDB.open() would create it
+    // empty at version 1, and the editor's own open then finds no object stores and breaks.
+    const names = indexedDB.databases ? (await indexedDB.databases()).map((d) => d.name) : [];
+    if (!names.includes(ID)) return resolve(null);
     const req = indexedDB.open(ID);
     req.onerror = () => resolve(null);
     req.onsuccess = async () => {
