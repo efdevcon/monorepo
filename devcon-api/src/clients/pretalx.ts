@@ -379,7 +379,10 @@ function mapSubmissionType(type: number) {
   if (type === 86) return 'Keynote'
   if (type === 83) return 'Lightning Talk'
   if (type === 90 || type === 91 || type === 93) return 'Workshop' // 1h30, 2h, 1h
-  if (type === 87) return 'Panel' // Mixed Formats (AMA / Roundtable / Fireside)
+  // 87 "Mixed Formats (AMA / Roundtable / Fireside)" was collapsed into Panel
+  // until 2026-10-17; the apps now show it as its own format, since devcon8
+  // has no Panel type and not every session in the bucket is a panel.
+  if (type === 87) return 'Mixed Format'
   // 89 "Experience" is intentionally unmapped: a genuinely new format, so it
   // falls through to the raw Pretalx name rather than a wrong canonical label.
   // test-devcon-8 (mirror of devcon8)
@@ -387,7 +390,7 @@ function mapSubmissionType(type: number) {
   if (type === 98) return 'Keynote'
   if (type === 95) return 'Lightning Talk'
   if (type === 99 || type === 101 || type === 102) return 'Workshop' // 1h, 1h30, 2h
-  if (type === 96) return 'Panel' // Mixed Formats
+  if (type === 96) return 'Mixed Format'
   // 100 "Experience" intentionally unmapped, as above.
 }
 
