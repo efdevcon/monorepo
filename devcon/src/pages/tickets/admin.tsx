@@ -400,6 +400,26 @@ function addressExplorerUrl(address: string, chainId?: number) {
   return base ? `${base}/address/${address}` : `https://blockscan.com/address/${address}`
 }
 
+/** Pretix control-panel page of an order; undefined until the orders payload has loaded. */
+function pretixOrderUrl(
+  data: Pick<OrdersResponse, 'pretixBaseUrl' | 'pretixOrgSlug' | 'pretixEventSlug'> | null | undefined,
+  code: string | null | undefined
+): string | undefined {
+  if (!code || !data?.pretixBaseUrl || !data.pretixOrgSlug || !data.pretixEventSlug) return undefined
+  return `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${code}/`
+}
+
+/** Order code linked to its Pretix page when the URL is known, plain text otherwise. */
+function PretixOrderLink({ code, href }: { code: string | null | undefined; href?: string }) {
+  if (!code) return null
+  if (!href) return <>{code}</>
+  return (
+    <a className={css.link} href={href} target="_blank" rel="noopener noreferrer">
+      {code}
+    </a>
+  )
+}
+
 function truncate(s: string, len = 8) {
   if (!s || s.length <= len * 2 + 2) return s
   return `${s.slice(0, len + 2)}...${s.slice(-len)}`
@@ -890,11 +910,13 @@ function refundOwed(order: CompletedOrder): { usd: string; raw: string; symbol: 
 function RefundModal({
   order,
   secret,
+  pretixOrderUrl,
   onClose,
   onRefunded,
 }: {
   order: CompletedOrder
   secret: string
+  pretixOrderUrl?: string
   onClose: () => void
   onRefunded: () => void
 }) {
@@ -1175,7 +1197,9 @@ function RefundModal({
         <div className={css['modal-details']}>
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Pretix Order</span>
-            <span className={css['modal-value']}>{order.pretixOrderCode}</span>
+            <span className={css['modal-value']}>
+              <PretixOrderLink code={order.pretixOrderCode} href={pretixOrderUrl} />
+            </span>
           </div>
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Amount</span>
@@ -1257,11 +1281,13 @@ function RefundActionCell({
   order,
   secret,
   isConnected,
+  pretixOrderUrl,
   onRefunded,
 }: {
   order: CompletedOrder
   secret: string
   isConnected: boolean
+  pretixOrderUrl?: string
   onRefunded: () => void
 }) {
   const [showModal, setShowModal] = useState(false)
@@ -1360,7 +1386,13 @@ function RefundActionCell({
         {buttonLabel}
       </button>
       {showModal && (
-        <RefundModal order={order} secret={secret} onClose={() => setShowModal(false)} onRefunded={onRefunded} />
+        <RefundModal
+          order={order}
+          secret={secret}
+          pretixOrderUrl={pretixOrderUrl}
+          onClose={() => setShowModal(false)}
+          onRefunded={onRefunded}
+        />
       )}
     </>
   )
@@ -1386,12 +1418,15 @@ function ManualVerifyModal({
   order,
   secret,
   refundedOrphans,
+  orderUrl,
   onClose,
   onVerified,
 }: {
   order: PendingOrder
   secret: string
   refundedOrphans: RefundedOrphansByHash
+  /** Pretix page of the order this verification creates (code known only after). */
+  orderUrl?: (code: string | undefined) => string | undefined
   onClose: () => void
   onVerified: () => void
 }) {
@@ -1569,7 +1604,11 @@ function ManualVerifyModal({
         {step === 'submitting' && <div className={css['modal-status']}>Verifying onchain...</div>}
         {step === 'done' && result && (
           <div className={css['modal-status']}>
-            Verified. Pretix order <code>{result.code}</code> created.
+            Verified. Pretix order{' '}
+            <code>
+              <PretixOrderLink code={result.code} href={orderUrl?.(result.code)} />
+            </code>{' '}
+            created.
           </div>
         )}
         {step === 'error' && (
@@ -1592,11 +1631,13 @@ function ManualVerifyCell({
   order,
   secret,
   refundedOrphans,
+  orderUrl,
   onVerified,
 }: {
   order: PendingOrder
   secret: string
   refundedOrphans: RefundedOrphansByHash
+  orderUrl?: (code: string | undefined) => string | undefined
   onVerified: () => void
 }) {
   const [showModal, setShowModal] = useState(false)
@@ -1615,6 +1656,7 @@ function ManualVerifyCell({
           order={order}
           secret={secret}
           refundedOrphans={refundedOrphans}
+          orderUrl={orderUrl}
           onClose={() => setShowModal(false)}
           onVerified={onVerified}
         />
@@ -1742,13 +1784,7 @@ function WcManualVerifyModal({
           <div className={css['modal-row']}>
             <span className={css['modal-label']}>Order Code</span>
             <span className={`${css['modal-value']} ${css.mono}`}>
-              {pretixOrderUrl ? (
-                <a className={css.link} href={pretixOrderUrl} target="_blank" rel="noopener noreferrer">
-                  {order.orderCode}
-                </a>
-              ) : (
-                order.orderCode
-              )}
+              <PretixOrderLink code={order.orderCode} href={pretixOrderUrl} />
             </span>
           </div>
           <div className={css['modal-row']}>
@@ -2012,7 +2048,11 @@ function WcManualVerifyModal({
         {step === 'submitting' && <div className={css['modal-status']}>Verifying onchain...</div>}
         {step === 'done' && (
           <div className={css['modal-status']}>
-            Verified. Order <code>{order.orderCode}</code> marked paid.
+            Verified. Order{' '}
+            <code>
+              <PretixOrderLink code={order.orderCode} href={pretixOrderUrl} />
+            </code>{' '}
+            marked paid.
           </div>
         )}
         {step === 'error' && (
@@ -2930,14 +2970,7 @@ function AdminContent() {
       <td>{sourceLabel(o.source)}</td>
       <td>
         {o.pretixOrderCode ? (
-          <a
-            className={css.link}
-            href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {o.pretixOrderCode}
-          </a>
+          <PretixOrderLink code={o.pretixOrderCode} href={pretixOrderUrl(data, o.pretixOrderCode)} />
         ) : (
           '—'
         )}
@@ -3004,7 +3037,13 @@ function AdminContent() {
       <td>{formatDate(o.completedAt)}</td>
       {withActions && (
         <td>
-          <RefundActionCell order={o} secret={secret} isConnected={isConnected} onRefunded={() => fetchOrders(secret)} />
+          <RefundActionCell
+            order={o}
+            secret={secret}
+            isConnected={isConnected}
+            pretixOrderUrl={pretixOrderUrl(data, o.pretixOrderCode)}
+            onRefunded={() => fetchOrders(secret)}
+          />
         </td>
       )}
     </tr>
@@ -3768,14 +3807,7 @@ function AdminContent() {
                     <tr key={o.paymentReference ?? `${o.source}-${o.txHash ?? o.pretixOrderCode ?? o.completedAt}`}>
                       <td>
                         {o.pretixOrderCode ? (
-                          <a
-                            className={css.link}
-                            href={`${data?.pretixBaseUrl}/control/event/${data?.pretixOrgSlug}/${data?.pretixEventSlug}/orders/${o.pretixOrderCode}/`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {o.pretixOrderCode}
-                          </a>
+                          <PretixOrderLink code={o.pretixOrderCode} href={pretixOrderUrl(data, o.pretixOrderCode)} />
                         ) : (
                           '—'
                         )}
@@ -3950,6 +3982,7 @@ function AdminContent() {
                               order={o}
                               secret={secret}
                               refundedOrphans={refundedOrphansByHash}
+                              orderUrl={code => pretixOrderUrl(data, code)}
                               onVerified={() => fetchOrders(secret)}
                             />
                           </td>
@@ -4270,11 +4303,7 @@ function AdminContent() {
                           <WcManualVerifyCell
                             order={o}
                             secret={secret}
-                            pretixOrderUrl={
-                              data?.pretixBaseUrl && data?.pretixOrgSlug && data?.pretixEventSlug
-                                ? `${data.pretixBaseUrl}/control/event/${data.pretixOrgSlug}/${data.pretixEventSlug}/orders/${o.orderCode}/`
-                                : undefined
-                            }
+                            pretixOrderUrl={pretixOrderUrl(data, o.orderCode)}
                             refundedOrphans={refundedOrphansByHash}
                             onVerified={() => fetchOrders(secret)}
                           />
