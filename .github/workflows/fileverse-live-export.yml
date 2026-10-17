@@ -1,0 +1,33 @@
+name: Fileverse live export (experiment)
+
+# Experiment: read a dSheet's live state (unpublished collaborator edits) the way an
+# anonymous link editor's browser does. Only works for sheets shared "anyone with the
+# link can edit". Manual trigger only; the link lives in the FILEVERSE_LIVE_TEST_LINK secret.
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: pnpm/action-setup@v4
+      # Isolated from the workspace on purpose: no lockfile changes, nothing installed in the repo.
+      - name: Install Playwright + Yjs
+        run: |
+          mkdir -p /tmp/fv && cd /tmp/fv
+          echo '{"name":"fv-live","private":true,"type":"module"}' > package.json
+          pnpm add playwright@1.48.2 yjs@13.6.20
+          pnpm exec playwright install --with-deps chromium
+          cp "$GITHUB_WORKSPACE/.github/scripts/fileverse-live-export.mjs" /tmp/fv/
+      - name: Export live state
+        working-directory: /tmp/fv
+        env:
+          FILEVERSE_LINK: ${{ secrets.FILEVERSE_LIVE_TEST_LINK }}
+        run: node fileverse-live-export.mjs "$FILEVERSE_LINK"
