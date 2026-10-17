@@ -62,6 +62,10 @@ const withSerwist = withSerwistInit({
     { url: "/schedule/empty-search.gif", revision },
     { url: "/home/community-hubs-tent.svg", revision },
     { url: "/home/community-hubs-tent-mask.svg", revision },
+    // AI planner brand marks on Home's buttons (also in APP_IMAGES).
+    { url: "/home/ai-planner/claude.svg", revision },
+    { url: "/home/ai-planner/chatgpt.svg", revision },
+    { url: "/home/ai-planner/grok.svg", revision },
     { url: "/partners/ens.png", revision },
     // Track gem artwork (~113KB for all nine): every schedule view renders
     // them and the schedule is where offline use concentrates, so they must be
