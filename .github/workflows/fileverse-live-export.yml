@@ -31,3 +31,10 @@ jobs:
         env:
           FILEVERSE_LINK: ${{ secrets.FILEVERSE_LIVE_TEST_LINK }}
         run: node fileverse-live-export.mjs "$FILEVERSE_LINK"
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fileverse-live-screenshots
+          path: /tmp/fv/*.png
+          if-no-files-found: ignore
