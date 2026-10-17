@@ -24,6 +24,7 @@ import Nyx from './images/logos/nyx-foundation.svg'
 import PhantomZone from './images/logos/phantom-zone.svg'
 import Polygon from './images/logos/polygon.svg'
 import ProtocolGuild from './images/logos/protocol-guild.svg'
+import Silviculture from './images/logos/silviculture.svg'
 import TalTech from './images/logos/taltech.svg'
 import Tor from './images/logos/tor.svg'
 import Unicef from './images/logos/unicef.svg'
@@ -68,6 +69,7 @@ export const SPEAKER_LOGOS = {
   'phantom-zone': { Logo: PhantomZone, aspect: 128 / 128 },
   polygon: { Logo: Polygon, aspect: 464 / 128 },
   'protocol-guild': { Logo: ProtocolGuild, aspect: 1106 / 128 },
+  silviculture: { Logo: Silviculture, aspect: 453 / 129 },
   taltech: { Logo: TalTech, aspect: 228 / 128 },
   tor: { Logo: Tor, aspect: 211 / 128 },
   unicef: { Logo: Unicef, aspect: 539 / 128 },
