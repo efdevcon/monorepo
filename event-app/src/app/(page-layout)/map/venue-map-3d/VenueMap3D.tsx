@@ -19,6 +19,7 @@ import { buildFindGroups, type FindEntry } from "./pois";
 import { buildFloorLegends } from "./legend";
 import { DebugPanel } from "./DebugPanel";
 import { DebugCorner, DebugToggle } from "./DebugToggle";
+import { useIsTeam } from "@/data/release/releaseGates";
 import { FloorSlider } from "./FloorSlider";
 import { ControlsLegend } from "./ControlsLegend";
 import { FloorLegend } from "./FloorLegend";
@@ -83,6 +84,8 @@ export function VenueMap3D() {
   // Tuning panel + stats, toggled from the top-left button (not a URL param: the
   // app-wide dev panel owns `?debug` and carries it across every link).
   const [debug, setDebug] = useState(false);
+  // The tuning wrench is a team tool: attendees never get it, released map or not.
+  const team = useIsTeam();
   const [settings, setSettings] = useState<MapSettings>(DEFAULT_SETTINGS);
   const resetRef = useRef<() => void>(() => {});
   // Desktop: the area card sits beside the selected footprint. The scene writes the
@@ -270,9 +273,11 @@ export function VenueMap3D() {
         </>
       )}
       <AreaCard area={selected} levels={plan.levels} group={highlighted !== null} onClose={() => select(null)} anchorRef={cardAnchorRef} />
-      <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
-        <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
-      </DebugCorner>
+      {team && (
+        <DebugCorner panel={debug && <DebugPanel settings={settings} onChange={setSettings} />}>
+          <DebugToggle pressed={debug} onToggle={() => setDebug((d) => !d)} />
+        </DebugCorner>
+      )}
     </div>
   );
 }

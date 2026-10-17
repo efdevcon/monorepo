@@ -8,6 +8,7 @@ import { ticketOrdinals } from "@/data/tickets/primary";
 import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
 import { FaucetPerkCard } from "./FaucetPerkCard";
+import { useReleased } from "@/data/release/releaseGates";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalTarget } from "./QrModals";
 
@@ -94,6 +95,8 @@ export function TicketSections({
   leadSlot?: ReactNode;
 }) {
   const [modal, setModal] = useState<QrModalTarget | null>(null);
+  // Hidden from attendees until released (RELEASED.ensPerk); the team still sees it.
+  const showEnsPerk = useReleased("ensPerk");
 
   // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
   // select rows and the Pretix order page.
@@ -344,7 +347,7 @@ export function TicketSections({
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
-            {shownTickets.map((ticket) => (
+            {showEnsPerk && shownTickets.map((ticket) => (
               <EnsPerkCard
                 key={ticket.secret}
                 ticket={ticket}
