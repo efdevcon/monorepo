@@ -15,7 +15,9 @@ export async function applyInterestChanges(
   addIds: string[],
   removeIds: string[]
 ): Promise<{ added: number; removed: number }> {
-  if (!cacheDB) return { added: 0, removed: 0 };
+  // No IndexedDB (private window, blocked storage): a thrown error, so the
+  // caller shows its failure state instead of a "0 added" success.
+  if (!cacheDB) throw new Error("The interests database is not available");
   const result = await cacheDB.transaction("rw", cacheDB.interested, async () => {
     let added = 0;
     let removed = 0;

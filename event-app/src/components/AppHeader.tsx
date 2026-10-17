@@ -67,7 +67,7 @@ function routeChrome(pathname: string, detail: DetailKind | null): RouteChrome {
   if (pathname.startsWith("/map")) return { title: "Map", bare: true };
   if (pathname.startsWith("/my-devcon")) return { title: "My Devcon" };
   if (pathname.startsWith("/notifications")) return { title: "Notifications" };
-  if (pathname.startsWith("/my-interests")) return { title: "My Interests" };
+  if (pathname.startsWith("/my-interests")) return { title: "Import a plan" };
   if (pathname.startsWith("/room-screens")) return { title: "Room Screens" };
   if (pathname === "/") return { title: "Home" };
   return { title: APP_CONFIG.APP_NAME };

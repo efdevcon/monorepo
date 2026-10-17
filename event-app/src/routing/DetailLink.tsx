@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  useContext,
-  useEffect,
-  useState,
-  type CSSProperties,
-  type MouseEvent,
-  type ReactNode,
-} from "react";
+import { useContext, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 import { NativeNavigationContext, withCarriedParams } from "@/routing";
+import { useHydrated } from "@/hooks/useHydrated";
 import { openDetail } from "@/routing/detailRoute";
 import { detailHref, type DetailKind } from "@/routing/viewParams";
 
@@ -43,10 +37,9 @@ export function DetailLink({
 }) {
   const nativeNav = useContext(NativeNavigationContext);
   const href = detailHref(kind, id);
-  // Carried debug params (dataset, mockNow) only after mount: SSR and the
-  // first client render must match to avoid a hydration mismatch on href.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // Carried debug params (dataset, mockNow) only after hydration: SSR and
+  // the first client render must match to avoid a hydration mismatch on href.
+  const mounted = useHydrated();
   const finalHref = mounted ? withCarriedParams(href) : href;
 
   const onClick = (event: MouseEvent<HTMLAnchorElement>) => {
