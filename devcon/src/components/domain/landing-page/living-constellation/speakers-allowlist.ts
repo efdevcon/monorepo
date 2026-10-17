@@ -139,7 +139,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     title: 'Lawyer & Digital-Rights Researcher',
     company: 'EF Silviculture Society',
     xHandle: 'Fatalmeh',
-    logo: 'ethereum-foundation',
+    logo: 'silviculture',
     bio: 'Fatemeh Fannizadeh is a Swiss-qualified lawyer and digital-rights researcher working where regulation, privacy and governance meet. Fatemeh asks who actually gets to take part in decentralized systems, and why.',
   }, // Fatemeh Fannizadeh
   {
