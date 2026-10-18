@@ -1,5 +1,5 @@
 {
-  "refreshedAt": 1792360852935,
+  "refreshedAt": 1792362846345,
   "hubs": [
     {
       "hub": {
@@ -8,7 +8,7 @@
         "color": "#C2FFDD"
       },
       "publishedAt": 1791908485000,
-      "readAt": 1792360852746,
+      "readAt": 1792362845971,
       "rows": [],
       "problems": []
     },
@@ -19,7 +19,7 @@
         "color": "#EDD6FF"
       },
       "publishedAt": 1791960980000,
-      "readAt": 1792360852846,
+      "readAt": 1792362846242,
       "rows": [],
       "problems": []
     },
@@ -30,7 +30,7 @@
         "color": "#D4F7F4"
       },
       "publishedAt": 1791999455000,
-      "readAt": 1792360852836,
+      "readAt": 1792362846341,
       "rows": [
         {
           "line": 16,
@@ -207,7 +207,7 @@
         "color": "#D4EBF7"
       },
       "publishedAt": 1791909410000,
-      "readAt": 1792360852862,
+      "readAt": 1792362845853,
       "rows": [],
       "problems": [
         "row 4: no session title, skipped"
@@ -220,7 +220,7 @@
         "color": "#FFE7D1"
       },
       "publishedAt": 1792259225000,
-      "readAt": 1792360852575,
+      "readAt": 1792362846048,
       "rows": [
         {
           "line": 4,
@@ -735,7 +735,7 @@
         "color": "#F7D4D4"
       },
       "publishedAt": 1792160020000,
-      "readAt": 1792360852663,
+      "readAt": 1792362846155,
       "rows": [
         {
           "line": 4,
@@ -1585,7 +1585,7 @@
         "row 27 \"Social Hour: Demos &Networking\": Key \"S12\" is already used on row 15, this row falls back to its title"
       ],
       "heldBack": {
-        "readAt": 1792360852774,
+        "readAt": 1792362846266,
         "publishedAt": 1792142285000,
         "sessions": 43,
         "problems": [
@@ -1610,7 +1610,7 @@
         "color": "#FFE8E5"
       },
       "publishedAt": 1791953365000,
-      "readAt": 1792360852647,
+      "readAt": 1792362845770,
       "rows": [],
       "problems": []
     },
@@ -1620,8 +1620,8 @@
         "name": "Resilient Networking Hub",
         "color": "#FFF4E0"
       },
-      "publishedAt": 1792360810000,
-      "readAt": 1792360852735,
+      "publishedAt": 1792362515000,
+      "readAt": 1792362633053,
       "rows": [
         {
           "line": 4,
@@ -1688,13 +1688,38 @@
         {
           "line": 7,
           "key": "S04",
-          "title": "Haskell-libp2p and Protocol Implementation: implementation choices and interoperability across P2P stacks",
+          "title": "Functional languages in p2p and Protocol Implementation: implementation choices and interoperability across P2P stacks",
           "topic": "",
           "description": "",
           "format": "Talk",
-          "speakers": [],
+          "speakers": [
+            "Shouki Tsuda"
+          ],
           "start": 1793683800000,
           "end": 1793685600000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 8,
+          "key": "S05",
+          "title": "Maintainer Meet-up and Network Lab 101:project introductions",
+          "topic": "",
+          "description": "",
+          "format": "AMA",
+          "speakers": [
+            "Daniel Thompson",
+            "Shouki Tsuda",
+            "Sumanjeet",
+            "Soham Bhoir",
+            "Yash Saini"
+          ],
+          "start": 1793685600000,
+          "end": 1793687400000,
           "day": {
             "number": 1,
             "year": 2026,
@@ -1714,7 +1739,8 @@
             "Eth Swarm Leadership",
             "Manu Sheel Gupta",
             "Banri Yamaha",
-            "Steven Mih"
+            "Steven Mih",
+            "Tomoki Adachi"
           ],
           "start": 1793687400000,
           "end": 1793691000000,
@@ -1732,7 +1758,10 @@
           "topic": "",
           "description": "",
           "format": "Workshop",
-          "speakers": [],
+          "speakers": [
+            "Banri Yanahama",
+            "Ryosuke Kaga"
+          ],
           "start": 1793694600000,
           "end": 1793698200000,
           "day": {
@@ -1745,13 +1774,57 @@
         {
           "line": 11,
           "key": "S08",
-          "title": "Haskell-libp2p and Protocol Implementation: implementation choices and interoperability across P2P stacks",
+          "title": "Evidence for AI Inference From Strangers: The Design Behind Mesh-LLM’s Capsules Plugin",
           "topic": "",
           "description": "",
           "format": "Workshop",
-          "speakers": [],
+          "speakers": [
+            "Steven Mih"
+          ],
           "start": 1793698200000,
           "end": 1793701800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 12,
+          "key": "S09",
+          "title": "Building and Sustaining Self-Hosted IPFS Infrastructure: operations, maintenance and accessibility",
+          "topic": "",
+          "description": "",
+          "format": "Workshop",
+          "speakers": [
+            "Anurag Pandey",
+            "Manu Sheel Gupta"
+          ],
+          "start": 1793701800000,
+          "end": 1793705400000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 13,
+          "key": "S10",
+          "title": "Maintainer Meet-up and Network Lab: research questions and collaborative experiments",
+          "topic": "",
+          "description": "",
+          "format": "Workshop",
+          "speakers": [
+            "Sumanjeet",
+            "Daniel Thompson",
+            "Yash Saini",
+            "Soham Bhoir (Case Study)"
+          ],
+          "start": 1793705400000,
+          "end": 1793709000000,
           "day": {
             "number": 1,
             "year": 2026,
@@ -1761,10 +1834,44 @@
         }
       ],
       "problems": [
-        "row 8: no session title, skipped",
-        "row 12: no session title, skipped",
-        "row 13: no session title, skipped"
-      ]
+        "row 14: no session title, skipped",
+        "row 15: no session title, skipped",
+        "row 16: no session title, skipped",
+        "row 17: no session title, skipped",
+        "row 18: no session title, skipped",
+        "row 19: no session title, skipped",
+        "row 20: no session title, skipped",
+        "row 21: no session title, skipped",
+        "row 22: no session title, skipped",
+        "row 23: no session title, skipped"
+      ],
+      "heldBack": {
+        "readAt": 1792362846138,
+        "publishedAt": 1792362760000,
+        "sessions": 0,
+        "problems": [
+          "row 4: no session title, skipped",
+          "row 5: no session title, skipped",
+          "row 6: no session title, skipped",
+          "row 7: no session title, skipped",
+          "row 8: no session title, skipped",
+          "row 9: no session title, skipped",
+          "row 10: no session title, skipped",
+          "row 11: no session title, skipped",
+          "row 12: no session title, skipped",
+          "row 13: no session title, skipped",
+          "row 14: no session title, skipped",
+          "row 15: no session title, skipped",
+          "row 16: no session title, skipped",
+          "row 17: no session title, skipped",
+          "row 18: no session title, skipped",
+          "row 19: no session title, skipped",
+          "row 20: no session title, skipped",
+          "row 21: no session title, skipped",
+          "row 22: no session title, skipped",
+          "row 23: no session title, skipped"
+        ]
+      }
     },
     {
       "hub": {
@@ -1773,7 +1880,7 @@
         "color": "#E9E5FF"
       },
       "publishedAt": 1791794055000,
-      "readAt": 1792360852854,
+      "readAt": 1792362846250,
       "rows": [],
       "problems": []
     },
@@ -1999,7 +2106,7 @@
         "row 35: no session title, skipped"
       ],
       "heldBack": {
-        "readAt": 1792360852757,
+        "readAt": 1792362846234,
         "publishedAt": 1792323420000,
         "sessions": 11,
         "problems": [
