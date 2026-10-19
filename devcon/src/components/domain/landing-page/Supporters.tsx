@@ -292,10 +292,6 @@ export const Supporters = () => {
             ))}
           </Tier>
         </div>
-
-        <Reveal>
-          <p className="text-[14px] sm:text-[16px] text-white/85">{t('more_soon')}</p>
-        </Reveal>
       </div>
     </div>
   )
