@@ -1,6 +1,7 @@
 "use client";
 
 import { usePaneActive } from "@/components/paneContext";
+import { BetaBanner } from "@/components/BetaBanner";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CircleX } from "lucide-react";
 import cn from "classnames";
@@ -465,6 +466,11 @@ export function Speakers() {
       )}
       {detailId && isDesktop && <Speaker key={detailId} id={detailId} />}
 
+      {/* Desktop: full-bleed under the app header, above the page title, in
+          flow (the main column below is width-capped, so it sits outside).
+          Gone with the list while a speaker page takes its place. */}
+      {!(isDesktop && detailId) && <BetaBanner className="hidden lg:flex" />}
+
       <div
         className={cn(
           "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
@@ -558,6 +564,11 @@ export function Speakers() {
                 />
               </TypeTabs>
             </div>
+
+            {/* Mobile: under the pinned format tabs, in flow, so it scrolls
+                away. Stops short of the fixed A-Z rail (w-8), whose lavender
+                strip covers that edge. */}
+            <BetaBanner className="mr-8 flex lg:hidden" />
 
             {/* Content area: brand-neutrals/50 surface on desktop (Figma).
                 The list column carries its own padding so the lavender rail

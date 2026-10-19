@@ -2,6 +2,7 @@
 
 import { trackEvent } from "@/data/analytics/track";
 import { usePaneActive } from "@/components/paneContext";
+import { BetaBanner } from "@/components/BetaBanner";
 import {
   useCallback,
   useEffect,
@@ -1418,6 +1419,11 @@ function ScheduleInner({
       )}
       {detailId && isDesktop && <Session key={detailId} id={detailId} />}
 
+      {/* Desktop: full-bleed under the app header, above the page title, in
+          flow (the main column below is width-capped, so it sits outside).
+          Gone with the list while a session page takes its place. */}
+      {!(isDesktop && detailId) && <BetaBanner className="hidden lg:flex" />}
+
       <div
         className={cn(
           "lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 lg:pb-16 xl:px-0",
@@ -1598,6 +1604,9 @@ function ScheduleInner({
                 )}
               </button>
             </DayTabs>
+
+            {/* Mobile: under the pinned day tabs, in flow, so it scrolls away. */}
+            <BetaBanner className="flex lg:hidden" />
 
             {/* Content area: brand-neutrals/50 surface on desktop (Figma) */}
             <div
