@@ -11,10 +11,12 @@ import img93XWX7 from './assets/portraits/yi-sun.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
+import imgC3VHKH from './assets/portraits/dmytro-matviiv.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
 import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
 import imgG9TNL3 from './assets/portraits/lightclient.webp'
+import imgGAHFAR from './assets/portraits/mooly-sagiv.webp'
 import imgGVKNCK from './assets/portraits/meinhard-benn.webp'
 import imgHDTJHP from './assets/portraits/jon-stephens.webp'
 import imgHV8WVF from './assets/portraits/francesco.webp'
@@ -25,6 +27,7 @@ import imgKC3QAL from './assets/portraits/kevin-jones.webp'
 import imgKYP3UZ from './assets/portraits/vitalik.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
 import imgMAXUYR from './assets/portraits/pg.webp'
+import imgMMELPR from './assets/portraits/matteo-vicari.webp'
 import imgMPDBM3 from './assets/portraits/johanna-moran.webp'
 import imgMWSEWZ from './assets/portraits/sandeep-nailwal.webp'
 import imgNWGADS from './assets/portraits/eric-marti-haynes.webp'
@@ -129,6 +132,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgBW7UUN,
     source: 'pretalx',
   },
+  C3VHKH: {
+    id: 'C3VHKH',
+    name: 'Dmytro Matviiv',
+    organization: 'HackenProof',
+    xHandle: 'DmytroMatviiv',
+    track: 'Security',
+    image: imgC3VHKH,
+    source: 'pretalx',
+  },
   DURU3V: {
     id: 'DURU3V',
     name: 'SantiagoDevRel',
@@ -162,6 +174,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'lightclients',
     track: 'Core Protocol',
     image: imgG9TNL3,
+    source: 'pretalx',
+  },
+  GAHFAR: {
+    id: 'GAHFAR',
+    name: 'Mooly Sagiv',
+    organization: 'Certora',
+    xHandle: 'SagivMooly',
+    track: 'Security',
+    image: imgGAHFAR,
     source: 'pretalx',
   },
   GVKNCK: {
@@ -211,7 +232,8 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
   JPTVDC: {
     id: 'JPTVDC',
     name: 'Christopher Fabian',
-    organization: '',
+    organization: 'UNICEF/Giga',
+    xHandle: 'chrisfabian',
     track: 'Rights, Freedoms, and Governance',
     image: imgJPTVDC,
     source: 'pretalx',
@@ -249,6 +271,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'PG_CDG',
     track: 'Futures Worth Building',
     image: imgMAXUYR,
+    source: 'pretalx',
+  },
+  MMELPR: {
+    id: 'MMELPR',
+    name: 'Matteo Vicari',
+    organization: 'Riva Labs',
+    xHandle: 'mattevicari',
+    track: 'Core Protocol',
+    image: imgMMELPR,
     source: 'pretalx',
   },
   MPDBM3: {
