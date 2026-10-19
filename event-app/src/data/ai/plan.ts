@@ -174,10 +174,10 @@ export function buildAssistantPrompt(input: PromptInput, opts: PromptOptions = {
     "",
     "How to work:",
     "1. Before building anything, ask me a few questions and wait for my answers. Use the most interactive form your interface supports (clickable choices if you have them, otherwise short questions I can answer in a few words), and ask what matters for a good schedule: what I want to get out of the event, the topics and people I care about, my level, which days I attend, how packed my days should be. If you already know some of this about me, say what you assume and let me correct it.",
-    "2. Read the day pages (use the filters) before proposing anything.",
-    "3. Propose a plan per day in time order. Sessions run in parallel in many rooms, so overlaps are the main pitfall: never schedule two sessions whose times overlap, including the current interests I keep. Check every pair per day before you answer, pick one when two clash and name the other as a backup, and leave short breaks between rooms.",
+    "2. Read the day pages before proposing anything. Community Hubs are community-run rooms with hands-on sessions: weigh them like any other session when they fit me, judging rows without a description by title and hub.",
+    "3. Propose a plan per day in time order. Sessions run in parallel in many rooms, so overlaps are the main pitfall: never schedule two sessions whose times overlap, including the current interests I keep. Check every pair per day before you answer, pick one when two clash and name the other as a backup. Back-to-back is fine in the same room; between different rooms leave at least 5 minutes.",
     "4. One line per session: time, title, CODE, why it fits me. Keep my current interests unless something fits better, and say what you drop.",
-    `5. End with this link so I can apply the plan in one tap: ${input.appOrigin}/my-interests?add=CODE1,CODE2&remove=CODE3 (add: new sessions, remove: current interests to drop). Also list the codes as plain text.`,
+    `5. End with this link so I can apply the plan in one tap: ${input.appOrigin}/my-interests?add=CODE1,CODE2&remove=CODE3 (add: new sessions, remove: only codes from My current interests that are no longer in the plan). On every refinement, give the full link again. Also list the codes as plain text.`,
     "6. Refine the plan when I ask.",
   ].join("\n");
 }

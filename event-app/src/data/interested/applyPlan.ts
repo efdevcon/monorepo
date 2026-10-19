@@ -1,4 +1,4 @@
-import { mutate } from "swr";
+import type { ScopedMutator } from "swr";
 import { cacheDB } from "../cache/cache-db";
 import { emitInterestAdded } from "./interestPulse";
 import { requestInterestSync } from "./sync";
@@ -9,13 +9,20 @@ import { requestInterestSync } from "./sync";
  * delete, and every row is `pending` until the account has it. One
  * transaction, so a plan lands whole; the shared SWR key refreshes every
  * subscriber afterwards. Returns what actually changed.
+ *
+ * `mutate` must be the SWR config's (`useSWRConfig().mutate`): the app runs a
+ * custom cache provider that the global `mutate` from "swr" does not see, so
+ * with the global one every open view kept its old list until a reload.
  */
 export async function applyInterestChanges(
   eventId: string,
   addIds: string[],
-  removeIds: string[]
+  removeIds: string[],
+  mutate: ScopedMutator
 ): Promise<{ added: number; removed: number }> {
-  if (!cacheDB) return { added: 0, removed: 0 };
+  // No IndexedDB (private window, blocked storage): a thrown error, so the
+  // caller shows its failure state instead of a "0 added" success.
+  if (!cacheDB) throw new Error("The interests database is not available");
   const result = await cacheDB.transaction("rw", cacheDB.interested, async () => {
     let added = 0;
     let removed = 0;
