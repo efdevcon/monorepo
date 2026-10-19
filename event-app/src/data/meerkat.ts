@@ -20,3 +20,29 @@ const SHARED_QA: Record<string, string> = {
   // (89KLNQ) on Lotus Stage 2 and picks up its unanswered questions.
   YQMW7V: "89KLNQ",
 };
+
+/**
+ * Sessions whose Q&A is open before their day, keyed by Meerkat id (after
+ * SHARED_QA, so a session sharing one of these opens early too). Every other
+ * session's Q&A opens on its own day, event time (SessionQA).
+ */
+const QA_OPEN_EARLY = new Set<string>([
+  // Devcon 8: Audrey Tang's keynote, collecting questions ahead of the day (speakers' team request).
+  "89KLNQ",
+]);
+
+/** True when this Meerkat id takes questions before the session's day. */
+export function qaOpensEarly(meerkatId: string): boolean {
+  return QA_OPEN_EARLY.has(meerkatId);
+}
+
+/**
+ * Rooms that never get a Q&A block (performances, not talks), by room id. Devcon 8: the Music
+ * Stage. Other rooms (ceremonies, workshops, community-led) are still to be decided before the event.
+ */
+const NO_QA_ROOMS = new Set<string>(["music-stage"]);
+
+/** True when sessions in this room have no Q&A at all. */
+export function roomHasNoQa(roomId: string | undefined): boolean {
+  return !!roomId && NO_QA_ROOMS.has(roomId);
+}

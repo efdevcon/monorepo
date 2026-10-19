@@ -20,14 +20,15 @@ import {
 } from "@meerkat-events/react";
 import { Link } from "@/routing";
 import type { Session } from "@/data/models";
-import { meerkatEventId } from "@/data/meerkat";
+import { meerkatEventId, qaOpensEarly } from "@/data/meerkat";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { QASkeleton } from "@/components/Skeletons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
 import { useOnline } from "@/hooks/useOnline";
-import { useRealWorldNowMs } from "@/hooks/useNow";
+import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
+import { eventDayKey } from "@/data/eventTime";
 import { isStandalone } from "@/utils/platform";
 import { relativeTime } from "@/utils/relativeTime";
 
@@ -46,10 +47,13 @@ export function SessionQA({
   session,
   size = "md",
 }: {
-  session: Pick<Session, "id" | "sourceId">;
+  session: Pick<Session, "id" | "sourceId" | "start">;
   size?: Size;
 }) {
   const online = useOnline();
+  // Q&A opens on the session's own day (event time), except for the sessions in
+  // QA_OPEN_EARLY. The mockable clock, so ?mockNow can walk through it.
+  const nowMs = useNowMs(60_000);
   // Meerkat keys events by the Pretalx code (meerkatEventId). Sessions it
   // created under our slug instead (the DC7 test session) still answer on the
   // slug, so a 404 on the code retries once with it; the feed remounts on the
@@ -60,6 +64,20 @@ export function SessionQA({
   const active = slug && slugFor === session.id ? slug : primary;
   const onNotFound = slug && active === primary ? () => setSlugFor(session.id) : undefined;
 
+  // `session.start` is in seconds on the client (materialised sessions).
+  if (!qaOpensEarly(primary) && eventDayKey(nowMs) < eventDayKey(session.start * 1000)) {
+    return (
+      <div className="flex flex-col gap-3">
+        <QAHeading size={size} />
+        <StateMessage
+          icon={MessageCircleOff}
+          title="Q&A isn't open yet"
+          body="Questions open on the day of the session."
+          {...quietCard}
+        />
+      </div>
+    );
+  }
   if (!online) {
     return (
       <div className="flex flex-col gap-3">

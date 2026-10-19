@@ -7,6 +7,7 @@ import { ShareButton } from "@/components/ShareButton";
 import { openDetail } from "@/routing/detailRoute";
 import { SessionDetailsContent } from "./SessionDetailsContent";
 import { SessionQA } from "./SessionQA";
+import { roomHasNoQa } from "@/data/meerkat";
 import { isCommunityHubSession } from "@/data/communityHubs";
 
 /**
@@ -60,7 +61,7 @@ export function SessionDetailsPanel({
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto">
         <SessionDetailsContent session={session}>
-          {!isCommunityHubSession(session) && showQa && <SessionQA session={session} size="sm" />}
+          {!isCommunityHubSession(session) && !roomHasNoQa(session.room?.id) && showQa && <SessionQA session={session} size="sm" />}
         </SessionDetailsContent>
       </div>
     </div>

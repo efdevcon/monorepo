@@ -88,6 +88,12 @@ created under the slug, like the DC7 test session `opening-ceremony`, keep worki
 when both 404 does the card say "Q&A isn't open yet". A bundle cached before the field
 shipped has no code and goes straight to the slug until the device's next schedule sync.
 
+When Q&A opens: on the session's own day (event time, the mockable `useNow` clock), before which the
+card shows "Q&A isn't open yet" without contacting Meerkat. `QA_OPEN_EARLY` in
+`event-app/src/data/meerkat.ts` lists the exceptions (Devcon 8: `89KLNQ`, so the shared fireside too).
+No Q&A at all for rooms in `NO_QA_ROOMS` (same file): the Music Stage (performances). Still to decide
+before the event: ceremonies (Main Stage), Workshop 1 and 2, Community Led Stage and CLS Builders Room.
+
 Shared Q&A: `SHARED_QA` in `event-app/src/data/meerkat.ts` points a session at another
 session's Q&A (feed and hand-off). Devcon 8: the Audrey Tang + Vitalik fireside (`YQMW7V`)
 uses Audrey's keynote Q&A (`89KLNQ`), at the speakers' request. Meerkat's stage view follows
