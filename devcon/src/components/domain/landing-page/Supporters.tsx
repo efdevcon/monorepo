@@ -91,7 +91,7 @@ const CORE_SUPPORTERS: LogoEntry[] = [
 
 const OTHER_SUPPORTERS: LogoEntry[] = [
   { name: 'Bitrefill', href: 'https://www.bitrefill.com', Logo: Bitrefill, aspect: 328 / 80 },
-  { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 219 / 63 },
+  { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 312 / 80 },
   { name: 'CoW Swap', href: 'https://cow.fi', Logo: CowSwap, aspect: 390 / 60 },
   { name: 'ENS', href: 'https://ens.domains', Logo: Ens, aspect: 255 / 80 },
   { name: 'Fair Food Data', href: 'https://fairfooddata.org', Logo: Fairfood, aspect: 369 / 70.2 },
