@@ -1,5 +1,5 @@
 {
-  "refreshedAt": 1792445647999,
+  "refreshedAt": 1792447519835,
   "hubs": [
     {
       "hub": {
@@ -7,9 +7,999 @@
         "name": "Agentic Hub",
         "color": "#C2FFDD"
       },
-      "publishedAt": 1792428655000,
-      "readAt": 1792445646630,
-      "rows": [],
+      "publishedAt": 1792446445000,
+      "readAt": 1792447518942,
+      "rows": [
+        {
+          "line": 4,
+          "key": "S01",
+          "title": "Agents-from-zero onboarding (English and Hindi)",
+          "topic": "Intro",
+          "description": "Start here if agents are new to you. A beginner-friendly workshop in English and Hindi, run by Dev3pack.",
+          "format": "Workshop",
+          "speakers": [
+            "Naina Sachdev"
+          ],
+          "start": 1793676600000,
+          "end": 1793680200000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 5,
+          "key": "S02",
+          "title": "Opening hour: meet and greet and StackChan robot demo",
+          "topic": "Community",
+          "description": "Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard that the sessions all week will fill in.",
+          "format": "Welcome",
+          "speakers": [
+            "Nicolá Arnedo Villanueva"
+          ],
+          "start": 1793680200000,
+          "end": 1793683800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 6,
+          "key": "S03",
+          "title": "x402 and ERC-8183: what works today and what is on the roadmap",
+          "topic": "Intro",
+          "description": "What each standard is for, what works in production now, and what upstream has not shipped yet. Part of the Standards block.",
+          "format": "Talk",
+          "speakers": [
+            "Nicolá Arnedo Villanueva"
+          ],
+          "start": 1793683800000,
+          "end": 1793684400000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 7,
+          "key": "S04",
+          "title": "ERC-8004 in practice: registration works, reputation is the hard part",
+          "topic": "Intro",
+          "description": "Identity registries work. Reputation is easy to game, and top-ranked agents often have little product behind them. Part of the Standards block.",
+          "format": "Talk",
+          "speakers": [
+            "Fortunato Cinquepalmi"
+          ],
+          "start": 1793684400000,
+          "end": 1793685000000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 8,
+          "key": "S05",
+          "title": "Agent payments with real users: three live examples",
+          "topic": "Intro",
+          "description": "Three agent payment setups with real users, how to tell them from test traffic, and what builders can copy. Part of the Standards block.",
+          "format": "Talk",
+          "speakers": [
+            "Lena Hierzi"
+          ],
+          "start": 1793685000000,
+          "end": 1793685600000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 9,
+          "key": "S06",
+          "title": "Panel: will agent payments stick?",
+          "topic": "Intro",
+          "description": "Optimists and sceptics argue x402, ERC-8004 and cards, then fill in the whiteboard map with the room. Part of the Standards block.",
+          "format": "Roundtable",
+          "speakers": [
+            "Nicolá Arnedo Villanueva (moderator)",
+            "Fortunato Cinquepalmi",
+            "Lena Hierzi"
+          ],
+          "start": 1793685600000,
+          "end": 1793687400000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 10,
+          "key": "S07",
+          "title": "Follow the money: reading on-chain agent payment data",
+          "topic": "Research",
+          "description": "Agent payment rails keep shipping, but real usage is much smaller than the headlines suggest. Nicolá walks through a practical method for reading on-chain agent payment data: who the actual buyers and sellers are, how to spot repeated counterparties, bot-driven volume and hackathon or test traffic, and what a believable volume number looks like. Then you pair up, pick a chain or facilitator and classify its top payers and sellers as real, bot or test. Part of the Standards block.",
+          "format": "Workshop",
+          "speakers": [
+            "Nicolá Arnedo Villanueva"
+          ],
+          "start": 1793687400000,
+          "end": 1793689800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 11,
+          "key": "S08",
+          "title": "Signed Is Not Authorized: a live, bounded user mandate inside an x402 payment",
+          "topic": "Governance",
+          "description": "Computing has always tracked what runs, where and how. An agent that pays, signs or decides for you adds a fourth question: on whose authority? Today the answer is a key, and a key cannot tell whether you allow this action now, within these limits. Anantha Krishnan, founder of Sarva Labs and the MOI protocol, shows how authority can be held as live state, and what it looks like when an x402 payment carries a mandate that only the participant can change. Part of the Standards block.",
+          "format": "Talk",
+          "speakers": [
+            "Anantha Krishnan"
+          ],
+          "start": 1793689800000,
+          "end": 1793691000000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 12,
+          "key": "S09",
+          "title": "Standards workshop: 8004, x402, AP2, ACP and MPP disambiguated, and why not just give the agent a card?",
+          "topic": "Intro",
+          "description": "Five agent standards, overlapping names and a lot of confusion. This workshop works from open questions posted by builders. We sort the standards by the job they do (identity, payment or checkout), then walk three common setups: an agent paying for an API, an agent buying from a merchant, and an agent hiring another agent. We close on a question many builders ask: if you can issue an agent a card, why give it a wallet? Part of the Standards block.",
+          "format": "Workshop",
+          "speakers": [
+            "Lena Hierzi",
+            "Anantha Krishnan",
+            "Vedant Anand"
+          ],
+          "start": 1793691000000,
+          "end": 1793694600000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 13,
+          "key": "S10",
+          "title": "Memory your agent owns, with Swarm MCP",
+          "topic": "Tooling",
+          "description": "Agents need memory, but most keep it in a vendor's database or lose it between sessions. Andrá Aráyi (Solar Punk) shows how the Swarm MCP server gives any MCP-compatible agent persistent memory it owns, with a live demo of an agent logbook. Part of the Agent Infra block.",
+          "format": "Demo",
+          "speakers": [
+            "Andrá Aráyi"
+          ],
+          "start": 1793694600000,
+          "end": 1793696400000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 14,
+          "key": "S11",
+          "title": "Evidence has a shelf life: queryable, expiring data for ERC-8004 agents",
+          "topic": "Tooling",
+          "description": "ERC-8004 keeps hashes on-chain but leaves the evidence offchain, with no rule on how long it stays. Arkiv lets agents store validation payloads and coordination state as wallet-owned, queryable data, checked against the on-chain hash and expiring on a set schedule. Part of the Agent Infra block.",
+          "format": "Talk",
+          "speakers": [
+            "Shantelle Awomoyi"
+          ],
+          "start": 1793696400000,
+          "end": 1793698200000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 15,
+          "key": "S12",
+          "title": "Packaged skills that let any agent use a complex protocol correctly",
+          "topic": "Tooling",
+          "description": "How packaged agent skills give any agent the context it needs to use a complex protocol correctly, with the open-source Swarm skills library as a case study. Part of the Agent Infra block.",
+          "format": "Talk",
+          "speakers": [
+            "Andrá Aráyi",
+            "Levente Kiss"
+          ],
+          "start": 1793698200000,
+          "end": 1793698800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 16,
+          "key": "S13",
+          "title": "Evidence under the payment: who asked, who served, what it cost, signed by both sides",
+          "topic": "Tooling",
+          "description": "An open-source evidence layer for agent payments on mesh-llm: both sides seal every exchange, paid or not, as a signed, hash-chained record that any third party can verify offline. A 60-second live demo on a running mesh, then hands-on for up to 15 attendees. Part of the Agent Infra block.",
+          "format": "Workshop",
+          "speakers": [
+            "Steven Mih"
+          ],
+          "start": 1793698800000,
+          "end": 1793700600000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 17,
+          "key": "S14",
+          "title": "Lexon, deterministic AI",
+          "topic": "Tooling",
+          "description": "Henning Diedrich, creator of Lexon, presents small language models based on symbolic AI, as deterministic as a programming language, and live-codes a hybrid workflow that combines generative and symbolic AI so every step stays transparent. Part of the Agent Infra block.",
+          "format": "Demo",
+          "speakers": [
+            "Henning Diedrich"
+          ],
+          "start": 1793700600000,
+          "end": 1793701800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 18,
+          "key": "S15",
+          "title": "Networking and agent competition",
+          "topic": "Community",
+          "description": "Meet the other builders, add what you learned to the Bonfires knowledge base with the QR code, and follow the agent competition on the hub TV.",
+          "format": "Networking",
+          "speakers": [
+            "Paul Lange"
+          ],
+          "start": 1793701800000,
+          "end": 1793705400000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 19,
+          "key": "S16",
+          "title": "Agents-from-zero onboarding",
+          "topic": "Intro",
+          "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack.",
+          "format": "Workshop",
+          "speakers": [
+            "Naina Sachdev",
+            "Gopika Chauhan"
+          ],
+          "start": 1793763000000,
+          "end": 1793766600000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 20,
+          "key": "S17",
+          "title": "Live x402 demo: settling the Tuesday payment in USD₮, USA₮ and local stablecoins",
+          "topic": "Tooling",
+          "description": "An agent pays for a service through x402 and the payment settles live on screen, first with a stablecoin, then with USD₮, and USA₮ if live by then. Part of the Payments block.",
+          "format": "Demo",
+          "speakers": [
+            "Lena Hierzi"
+          ],
+          "start": 1793766600000,
+          "end": 1793767200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 21,
+          "key": "S18",
+          "title": "Agentic payments through x402 with USD₮ and USA₮",
+          "topic": "Tooling",
+          "description": "What adding USD₮ and especially USA₮ means for builders, how settlement works for tokens other than USDC, and how an agent holds funds safely with a self-custodial wallet. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Raquel Carrasco",
+            "Vedant Anand"
+          ],
+          "start": 1793767200000,
+          "end": 1793768400000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 22,
+          "key": "S19",
+          "title": "Agent cards in depth with AgentVault",
+          "topic": "Tooling",
+          "description": "Where agent card payments stand, how they fit next to x402, and what makes AgentVault different on privacy and security, followed by open discussion on card or x402 for which job. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Kartik Mehta"
+          ],
+          "start": 1793768400000,
+          "end": 1793770200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 23,
+          "key": "S20",
+          "title": "Pricing and treasury for a machine",
+          "topic": "Research",
+          "description": "How an agent should price and budget in stablecoins. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Nicolá Arnedo Villanueva"
+          ],
+          "start": 1793770200000,
+          "end": 1793770800000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 24,
+          "key": "S21",
+          "title": "Price feeds and stablecoin pegs",
+          "topic": "Research",
+          "description": "Where an agent gets a price it can trust, and how price feeds track stablecoin pegs. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Aditya Arora"
+          ],
+          "start": 1793770800000,
+          "end": 1793771400000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 25,
+          "key": "S22",
+          "title": "USDG on Arbitrum: paying in an ecosystem stablecoin",
+          "topic": "Research",
+          "description": "Paying in an ecosystem stablecoin over x402, with USDG on Arbitrum as the example. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Daniel Ortega"
+          ],
+          "start": 1793771400000,
+          "end": 1793772000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 26,
+          "key": "S23",
+          "title": "Stablecoins as unit of account: whose money is it?",
+          "topic": "Research",
+          "description": "Who absorbs a freeze or a depeg when the payer is software, and which currency should an agent price in? A roundtable on issuer risk, freezes and the choice of currency. Part of the Payments block.",
+          "format": "Roundtable",
+          "speakers": [
+            "Nicolá Arnedo Villanueva (moderator)",
+            "Aditya Arora",
+            "Daniel Ortega"
+          ],
+          "start": 1793772000000,
+          "end": 1793773800000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 27,
+          "key": "S24",
+          "title": "Security Risks in x402 Agentic Payments and How to Prevent Them",
+          "topic": "Tooling",
+          "description": "AI agents can pay for online services using x402. But mistakes can lead to lost money, the same action happening twice, or a service being used without payment. Zuhaib explains five common risks using practical examples and what developers can do to stop abuse and handle failed payments safely. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Zuhaib"
+          ],
+          "start": 1793773800000,
+          "end": 1793775000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 28,
+          "key": "S25",
+          "title": "FX over x402 and shared liquidity",
+          "topic": "Research",
+          "description": "How FX between stablecoins can run inside an x402 payment, using shared liquidity across DEX pools, with a EUR stablecoin in and USDC out. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "S Rithik Kumar",
+            "Yudhisthra"
+          ],
+          "start": 1793775000000,
+          "end": 1793776200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 29,
+          "key": "S26",
+          "title": "The last mile into INR and EUR, and the payments block wrap",
+          "topic": "Research",
+          "description": "Where the rate comes from and what happens at the off-ramp into local money, then the payments block wrap: finishing the Mumbai to Spain payment on the whiteboard. Part of the Payments block.",
+          "format": "Talk",
+          "speakers": [
+            "Nicolá Arnedo Villanueva",
+            "S Rithik Kumar"
+          ],
+          "start": 1793776200000,
+          "end": 1793777400000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 30,
+          "key": "S27",
+          "title": "Who holds the keys? Self-custodial and permissioned wallets for agents",
+          "topic": "Tooling",
+          "description": "How to give agents spending power without handing over the keys. Self-custodial and permissioned agent wallets from Tether WDK, MetaMask's agent wallet and delegations (ERC-7710 and ERC-7715), and Ethereum account research from Ethlabs. Part of the Payments block.",
+          "format": "Demo",
+          "speakers": [
+            "Raquel Carrasco",
+            "Mislav",
+            "Ayush Bherwani"
+          ],
+          "start": 1793777400000,
+          "end": 1793781000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 31,
+          "key": "S28",
+          "title": "Selling to agents: how an agent finds a service and pays per call",
+          "topic": "Tooling",
+          "description": "An agent finds a service, gets a quote and pays per call in stablecoins on Celo, with no accounts, API keys or subscriptions, and what that means for selling to agents. Questions and open discussion at the end. Part of the Marketplaces block.",
+          "format": "Demo",
+          "speakers": [
+            "Viral Sangani"
+          ],
+          "start": 1793781000000,
+          "end": 1793783400000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 32,
+          "key": "S29",
+          "title": "Building agent products with a small team",
+          "topic": "Tooling",
+          "description": "How agents change the way a small team builds and ships consumer products, and what makes agent features feel simple. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Ankit Tailor"
+          ],
+          "start": 1793783400000,
+          "end": 1793784000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 33,
+          "key": "S30",
+          "title": "Designing agents that act on real assets",
+          "topic": "Tooling",
+          "description": "Permissions, visibility and keeping users in control when agents act on real assets. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Victor Muñz"
+          ],
+          "start": 1793784000000,
+          "end": 1793784600000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 34,
+          "key": "S31",
+          "title": "Your Next Customer Won't Click: Designing for Humans and Agents",
+          "topic": "Tooling",
+          "description": "Your next customer may arrive as an agent that never opens your homepage. Can it discover your offer, understand the price, get permission and pay, or does your product stop at a login screen? Fortunato examines CLI, API and Markdown as product surfaces, then shows why people still need images, comparisons and clear decisions. Leave knowing what the agent should do, what the human should see and where trust must be earned. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Fortunato Cinquepalmi"
+          ],
+          "start": 1793784600000,
+          "end": 1793787000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 35,
+          "key": "S32",
+          "title": "Can an Agent Buy From You? Find, Check, Pay, Get the Result",
+          "topic": "Tooling",
+          "description": "Can an unfamiliar agent arrive at your service and become a paying customer? Follow an agent from llms.txt to an MCP tool, an ERC-8004 registration check, an x402 payment and a returned result. Then inspect the interface contract: typed inputs, versions, review and rollback. Open discussion with Fortunato at the end. Part of the Marketplaces block.",
+          "format": "Demo",
+          "speakers": [
+            "Harish Kotra"
+          ],
+          "start": 1793787000000,
+          "end": 1793788200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 36,
+          "key": "S33",
+          "title": "Networking and agent competition",
+          "topic": "Community",
+          "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo.",
+          "format": "Networking",
+          "speakers": [
+            "Paul Lange"
+          ],
+          "start": 1793788200000,
+          "end": 1793791800000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 37,
+          "key": "S34",
+          "title": "Agents-from-zero onboarding",
+          "topic": "Intro",
+          "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack.",
+          "format": "Workshop",
+          "speakers": [
+            "Naina Sachdev"
+          ],
+          "start": 1793849400000,
+          "end": 1793853000000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 38,
+          "key": "S35",
+          "title": "What ERC-8004 actually means: identity, reputation and validation in practice",
+          "topic": "Research",
+          "description": "ERC-8004 gives agents an identity, a place for reputation and a way to validate their work. Registering an agent is easy. Making reputation mean something is the hard part. This session walks through the three registries, shows what a real registration looks like, and works through one question: after an agent has paid for a service through x402, can the service provider leave feedback, and how would a reputation network get built from that? The last part is open discussion, plus a hands-on step: register or read an agent on the spot. Part of the Marketplaces block.",
+          "format": "Workshop",
+          "speakers": [
+            "Lena Hierzi",
+            "Fortunato Cinquepalmi"
+          ],
+          "start": 1793853000000,
+          "end": 1793856600000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 39,
+          "key": "S36",
+          "title": "Reputation-system failure modes: sybils, review farming, whitewashing",
+          "topic": "Research",
+          "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. This roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming and wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. Speakers compare defences across the stack: payment-gated feedback, identity cost and stake, reviewer-weighted scoring, and verifiable evidence kept on durable storage. Part of the Marketplaces block.",
+          "format": "Roundtable",
+          "speakers": [
+            "YQ",
+            "Steven Mih",
+            "Andrá Aráyi",
+            "Andrei Mitrea"
+          ],
+          "start": 1793856600000,
+          "end": 1793860200000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 40,
+          "key": "S37",
+          "title": "How agents find and pay for services",
+          "topic": "Tooling",
+          "description": "How agents find, trust and pay for a service, with a look at pay-per-call in practice. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Viral Sangani",
+            "Vedant Anand"
+          ],
+          "start": 1793860200000,
+          "end": 1793861400000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 41,
+          "key": "S38",
+          "title": "Agent communication: A2A, MCP and how agents agree on meaning",
+          "topic": "Tooling",
+          "description": "MCP and A2A help agents communicate. A successful connection still needs an explicit agreement about what a tool means and returns. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Harish Kotra"
+          ],
+          "start": 1793861400000,
+          "end": 1793862600000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 42,
+          "key": "S39",
+          "title": "Domain discovery and agent identity",
+          "topic": "Tooling",
+          "description": "How agents are found by domain, and how agent identity fits in. Part of the Marketplaces block.",
+          "format": "Talk",
+          "speakers": [
+            "Lena Hierzi"
+          ],
+          "start": 1793862600000,
+          "end": 1793863800000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 43,
+          "key": "S40",
+          "title": "Lunch",
+          "topic": "Community",
+          "description": "",
+          "format": "Break",
+          "speakers": [],
+          "start": 1793863800000,
+          "end": 1793867400000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 44,
+          "key": "S41",
+          "title": "Agents ×UPI: what machine payments can learn from UPI",
+          "topic": "Governance",
+          "description": "UPI won by making the payment rail shared, open public infrastructure and letting apps compete on top. What should machine payments copy? Piyush Maheshwari (Moi) covers how authority gets granted: scoped delegation, mandates that change in real time, open interoperable infrastructure and public-private governance. Naina Sachdev (Dev3pack) covers how you verify it afterwards: provable mandates, disputes when nobody clicked pay, agent receipts that reconcile like a bank statement, and private but auditable payments. Rithik hosts.",
+          "format": "Roundtable",
+          "speakers": [
+            "Vishnu Menon",
+            "Piyush Maheshwari",
+            "Naina Sachdev"
+          ],
+          "start": 1793867400000,
+          "end": 1793871000000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 45,
+          "key": "S42",
+          "title": "Who Gets Sued When the Agent Makes a Mistake? How to get prepared in a decentralized way with KYC and arbitration",
+          "topic": "Governance",
+          "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can clearly show who authorized the deal. This Agents ×Legal Hub session puts one case through the entire chain: the human or company behind the agent, its delegated mandate, the transaction's policy checks, the promised delivery and the remedy when something goes wrong. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Part of the Permissions and Policies block.",
+          "format": "Roundtable",
+          "speakers": [
+            "Fortunato Cinquepalmi",
+            "Nicolá Arnedo Villanueva",
+            "Facundo Trotz",
+            "Husam"
+          ],
+          "start": 1793871000000,
+          "end": 1793872800000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 46,
+          "key": "S43",
+          "title": "Markets Humans Ignore: Economic Mechanisms for AI Agents",
+          "topic": "Research",
+          "description": "Some economic mechanisms look elegant on paper and struggle to attract people: the reward is too small, the task too repetitive, the decision too time-consuming. What changes when the participant is an AI agent? Using prediction markets, curated information and dispute evaluation as examples, Cléent examines the cost of participation, the reward for useful work and the consequences of being wrong. Part of the Permissions and Policies block.",
+          "format": "Talk",
+          "speakers": [
+            "Cléent Lesaege"
+          ],
+          "start": 1793872800000,
+          "end": 1793874600000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 47,
+          "key": "S44",
+          "title": "Networking and agent competition",
+          "topic": "Community",
+          "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo.",
+          "format": "Networking",
+          "speakers": [
+            "Paul Lange"
+          ],
+          "start": 1793874600000,
+          "end": 1793878200000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 48,
+          "key": "S45",
+          "title": "Agents-from-zero onboarding",
+          "topic": "Intro",
+          "description": "Start here if agents are new to you. A beginner-friendly workshop.",
+          "format": "Workshop",
+          "speakers": [
+            "Lena Hierzi"
+          ],
+          "start": 1793935800000,
+          "end": 1793939400000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 49,
+          "key": "S46",
+          "title": "Machines that pay: robotics and agent payments",
+          "topic": "Community",
+          "description": "What changes when robots and machines pay for things themselves: a community talk on robotics and agent payments.",
+          "format": "Talk",
+          "speakers": [
+            "Nicolá Arnedo Villanueva"
+          ],
+          "start": 1793939400000,
+          "end": 1793943000000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 50,
+          "key": "S47",
+          "title": "Discovery, credibility, payment and what happens after a bad job. E2E how to equip your agent or marketplace to Scale",
+          "topic": "Tooling",
+          "description": "Build the part of your agent business that turns interest into paid work, and a bad experience into a customer you can recover. Bring an agent, API or marketplace idea. We'll pick one and design its complete customer journey on the whiteboard: get discovered through credible profiles, earn trust with verifiable claims and reputation, take x402 payments, define delivery, and handle dissatisfaction through support, refunds and independent dispute resolution. Leave with a customer-flow map, evidence and policy requirements, public code links and one integration you can start building.",
+          "format": "Workshop",
+          "speakers": [
+            "Fortunato Cinquepalmi"
+          ],
+          "start": 1793943000000,
+          "end": 1793946600000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 51,
+          "key": "S48",
+          "title": "Who Answered Your Prompt? The issues in modern inference",
+          "topic": "Tooling",
+          "description": "A talk and open discussion on the issues in modern inference: when you send a prompt, how do you know who, and what, actually answered it?",
+          "format": "Talk",
+          "speakers": [
+            "Ofir Eliasi"
+          ],
+          "start": 1793946600000,
+          "end": 1793950200000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 52,
+          "key": "S49",
+          "title": "Lunch",
+          "topic": "Community",
+          "description": "",
+          "format": "Break",
+          "speakers": [],
+          "start": 1793950200000,
+          "end": 1793953800000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 53,
+          "key": "S50",
+          "title": "Moi authority layer in action",
+          "topic": "Governance",
+          "description": "See how agents act on a user's behalf and how their transactions run via agents on Ethereum, using the Moi authority layer.",
+          "format": "Workshop",
+          "speakers": [
+            "Anantha Krishnan",
+            "Piyush Maheshwari"
+          ],
+          "start": 1793953800000,
+          "end": 1793957400000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 54,
+          "key": "S51",
+          "title": "Competition finals and hub wrap",
+          "topic": "Community",
+          "description": "The finals of the hub competitions and a wrap-up of the week.",
+          "format": "Closing",
+          "speakers": [
+            "Lena Hierzi"
+          ],
+          "start": 1793957400000,
+          "end": 1793959200000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        }
+      ],
       "problems": []
     },
     {
@@ -19,7 +1009,7 @@
         "color": "#EDD6FF"
       },
       "publishedAt": 1791960980000,
-      "readAt": 1792445647236,
+      "readAt": 1792447518733,
       "rows": [],
       "problems": []
     },
@@ -30,7 +1020,7 @@
         "color": "#D4F7F4"
       },
       "publishedAt": 1792433580000,
-      "readAt": 1792445647142,
+      "readAt": 1792447519234,
       "rows": [
         {
           "line": 4,
@@ -693,13 +1683,13 @@
         "name": "EIP Hub",
         "color": "#D4EBF7"
       },
-      "publishedAt": 1792441140000,
-      "readAt": 1792445647365,
+      "publishedAt": 1792447495000,
+      "readAt": 1792447519459,
       "rows": [
         {
           "line": 4,
           "key": "S01",
-          "title": "EIP Hub Workshop",
+          "title": "How Can You Change Ethereum?",
           "topic": "",
           "description": "",
           "format": "Workshop",
@@ -718,8 +1708,8 @@
         },
         {
           "line": 5,
-          "key": "",
-          "title": "Break",
+          "key": "S02",
+          "title": "Lunch & Networking",
           "topic": "",
           "description": "",
           "format": "Break",
@@ -735,7 +1725,7 @@
         },
         {
           "line": 6,
-          "key": "S02",
+          "key": "S03",
           "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
           "topic": "",
           "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public.",
@@ -753,8 +1743,44 @@
           }
         },
         {
-          "line": 9,
+          "line": 7,
           "key": "S04",
+          "title": "-",
+          "topic": "",
+          "description": "",
+          "format": "Talk",
+          "speakers": [
+            "German"
+          ],
+          "start": 1793696400000,
+          "end": 1793700000000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 8,
+          "key": "S05",
+          "title": "EIP Process AMA",
+          "topic": "",
+          "description": "",
+          "format": "AMA",
+          "speakers": [],
+          "start": 1793700000000,
+          "end": 1793701800000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 9,
+          "key": "S06",
           "title": "EIP Signal Quiz Game - Understanding EIPs",
           "topic": "",
           "description": "",
@@ -771,7 +1797,7 @@
         },
         {
           "line": 10,
-          "key": "S05",
+          "key": "S07",
           "title": "EIP Hub Community Hangout - Networking",
           "topic": "",
           "description": "",
@@ -787,11 +1813,45 @@
           }
         },
         {
-          "line": 13,
+          "line": 11,
           "key": "S08",
-          "title": "Ethereum in the Age of Proofs",
+          "title": "EIP Hub Daily Wrap-Up",
           "topic": "",
           "description": "",
+          "format": "Closing",
+          "speakers": [],
+          "start": 1793709000000,
+          "end": 1793709600000,
+          "day": {
+            "number": 1,
+            "year": 2026,
+            "month": 11,
+            "day": 3
+          }
+        },
+        {
+          "line": 12,
+          "key": "S09",
+          "title": "Welcome & Opening Remarks",
+          "topic": "",
+          "description": "",
+          "format": "Welcome",
+          "speakers": [],
+          "start": 1793763000000,
+          "end": 1793763600000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 13,
+          "key": "S10",
+          "title": "Ethereum in the Age of Proofs",
+          "topic": "",
+          "description": "A technical tour of the cryptography and infrastructure shaping Ethereum’s next phase, from PeerDAS and KZG to zkVMs, new proving systems, and post-quantum cryptography. The talk looks at where these technologies are heading and what they could mean for the protocol.",
           "format": "Talk",
           "speakers": [
             "Rachit Anand Srivastava"
@@ -807,10 +1867,10 @@
         },
         {
           "line": 15,
-          "key": "S10",
+          "key": "S12",
           "title": "EIP-8184: LUCID Encrypted Mempool",
           "topic": "",
-          "description": "",
+          "description": "Why encrypting the mempool is hard, and what the latest tradeoffs are.",
           "format": "Talk",
           "speakers": [
             "Justin Florentine"
@@ -826,10 +1886,10 @@
         },
         {
           "line": 16,
-          "key": "S11",
+          "key": "S13",
           "title": "The Price Is Right: Setting Gas Prices for Glamsterdam",
           "topic": "",
-          "description": "",
+          "description": "This talk explores the methodology behind Glamsterdam’s gas repricing work, using EIP-8038 and EIP-2780 to explain how synthetic block testing, cross-client measurements, resource decomposition, and conservative assumptions translate throughput targets into gas costs and shape the final pricing model.",
           "format": "Talk",
           "speakers": [
             "Maria Silva"
@@ -845,10 +1905,10 @@
         },
         {
           "line": 17,
-          "key": "S12",
+          "key": "S14",
           "title": "Frame txs & private payments: EIP-8141 in practice",
           "topic": "",
-          "description": "",
+          "description": "EIP-8141 will enable Frame Transactions, separating transaction validation, gas payment, and execution in a native Ethereum transaction type. Using Armada’s shielded payment architecture as a case study, this talk explores what Frames enable for private transactions, where the current proposal still creates constraints, and what a practical implementation could look like.",
           "format": "Talk",
           "speakers": [
             "Gavin Birch"
@@ -863,8 +1923,25 @@
           }
         },
         {
+          "line": 18,
+          "key": "S15",
+          "title": "Lunch & Networking",
+          "topic": "",
+          "description": "",
+          "format": "Break",
+          "speakers": [],
+          "start": 1793777400000,
+          "end": 1793779200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
           "line": 19,
-          "key": "S14",
+          "key": "S16",
           "title": "Limits to Single Slot Finality",
           "topic": "",
           "description": "",
@@ -882,8 +1959,25 @@
           }
         },
         {
+          "line": 21,
+          "key": "S18",
+          "title": "EIP Process AMA",
+          "topic": "",
+          "description": "",
+          "format": "AMA",
+          "speakers": [],
+          "start": 1793786400000,
+          "end": 1793788200000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
           "line": 22,
-          "key": "S17",
+          "key": "S19",
           "title": "EIP Signal Quiz Game - Protocol & Core Ethereum",
           "topic": "",
           "description": "",
@@ -900,7 +1994,7 @@
         },
         {
           "line": 23,
-          "key": "S18",
+          "key": "S20",
           "title": "EIP Hub Community Hangout - Networking",
           "topic": "",
           "description": "",
@@ -916,11 +2010,45 @@
           }
         },
         {
-          "line": 26,
+          "line": 24,
           "key": "S21",
-          "title": "ERC-8009 & Clear-Signing",
+          "title": "EIP Hub Daily Wrap-Up",
           "topic": "",
           "description": "",
+          "format": "Closing",
+          "speakers": [],
+          "start": 1793795400000,
+          "end": 1793796000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
+        },
+        {
+          "line": 25,
+          "key": "S22",
+          "title": "Welcome & Opening Remarks",
+          "topic": "",
+          "description": "",
+          "format": "Welcome",
+          "speakers": [],
+          "start": 1793849400000,
+          "end": 1793853000000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 26,
+          "key": "S23",
+          "title": "ERC-8009 & Clear-Signing",
+          "topic": "",
+          "description": "Discussion on Clear-Signing as a solution on the main security challenge of Ethereum ecosystem today called 'Blind Signing', with the live demo on real Trezor and Ledger devices.",
           "format": "Talk",
           "speakers": [
             "Daniel Nagy"
@@ -935,8 +2063,42 @@
           }
         },
         {
+          "line": 29,
+          "key": "S26",
+          "title": "Lunch & Networking",
+          "topic": "",
+          "description": "",
+          "format": "Break",
+          "speakers": [],
+          "start": 1793863800000,
+          "end": 1793867400000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 31,
+          "key": "S28",
+          "title": "EIP Process AMA",
+          "topic": "",
+          "description": "",
+          "format": "AMA",
+          "speakers": [],
+          "start": 1793871000000,
+          "end": 1793874600000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
           "line": 32,
-          "key": "S27",
+          "key": "S29",
           "title": "EIP Signal Quiz Game - Applications & ERC Standards",
           "topic": "",
           "description": "",
@@ -953,7 +2115,7 @@
         },
         {
           "line": 33,
-          "key": "S28",
+          "key": "S30",
           "title": "EIP Hub Community Hangout - Networking",
           "topic": "",
           "description": "",
@@ -969,11 +2131,45 @@
           }
         },
         {
-          "line": 36,
+          "line": 34,
           "key": "S31",
-          "title": "Privacy & human connectivity",
+          "title": "EIP Hub Daily Wrap-Up",
           "topic": "",
           "description": "",
+          "format": "Closing",
+          "speakers": [],
+          "start": 1793881800000,
+          "end": 1793882400000,
+          "day": {
+            "number": 3,
+            "year": 2026,
+            "month": 11,
+            "day": 5
+          }
+        },
+        {
+          "line": 35,
+          "key": "S32",
+          "title": "Welcome & Opening Remarks",
+          "topic": "",
+          "description": "",
+          "format": "Welcome",
+          "speakers": [],
+          "start": 1793935800000,
+          "end": 1793936400000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 36,
+          "key": "S33",
+          "title": "Privacy & human connectivity",
+          "topic": "",
+          "description": "What it actually takes to run telecom on-chain, what users will and won’t pay for.",
           "format": "Talk",
           "speakers": [
             "Charchit Kumawat"
@@ -989,10 +2185,10 @@
         },
         {
           "line": 37,
-          "key": "S32",
+          "key": "S34",
           "title": "The Agent Economy: Why AI Needs Crypto Rails",
           "topic": "",
-          "description": "",
+          "description": "AI agents are starting to trade, route liquidity and move real money onchain. Using live perp trading as a case study, this talk shows what agents actually need from crypto rails (permissions, signing, identity and settlement) and where the hype runs ahead of real traction.",
           "format": "Talk",
           "speakers": [
             "Abhay Singh"
@@ -1008,10 +2204,10 @@
         },
         {
           "line": 38,
-          "key": "S33",
+          "key": "S35",
           "title": "Are Confidential Tokens Ready for Enterprise Payments?",
           "topic": "",
-          "description": "",
+          "description": "ERC-7984 standardizes confidential fungible tokens with encrypted balances and transfer amounts. Drawing on building stablecoin cross-border payment rails at DashX, this talk tests the interface against what enterprise payments need: auditability, selective disclosure, reconciliation and fiat settlement.",
           "format": "Talk",
           "speakers": [
             "Dhruv Gera"
@@ -1027,10 +2223,10 @@
         },
         {
           "line": 39,
-          "key": "S34",
+          "key": "S36",
           "title": "Why Your Local-Currency Stablecoin Has No Market",
           "topic": "",
-          "description": "",
+          "description": "Local-currency stablecoins keep launching, but they can’t scale because their liquidity is too thin and too fragmented to trade on. Using data and case studies from issuers and market makers in Aqua0’s beta, this talk shows where the inefficiencies come from, what they cost, and what it takes to fix them.",
           "format": "Talk",
           "speakers": [
             "Yudhishthra"
@@ -1046,10 +2242,10 @@
         },
         {
           "line": 41,
-          "key": "S36",
+          "key": "S38",
           "title": "Building Trustless Systems, Together",
           "topic": "",
-          "description": "",
+          "description": "Exploring the tension between human trust and code-based trustlessness in Ethereum, this talk draws on experiences building the ETHCluj community to examine how open collaboration, accountability, and shared ownership can thrive in a rapidly evolving world shaped by AI, privacy, and security challenges.",
           "format": "Talk",
           "speakers": [
             "Simona Serban"
@@ -1062,32 +2258,67 @@
             "month": 11,
             "day": 6
           }
+        },
+        {
+          "line": 42,
+          "key": "S39",
+          "title": "Lunch & Networking",
+          "topic": "",
+          "description": "",
+          "format": "Break",
+          "speakers": [],
+          "start": 1793950200000,
+          "end": 1793952000000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 43,
+          "key": "S40",
+          "title": "EIP Process AMA",
+          "topic": "",
+          "description": "",
+          "format": "AMA",
+          "speakers": [],
+          "start": 1793952000000,
+          "end": 1793955600000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
+        },
+        {
+          "line": 45,
+          "key": "S42",
+          "title": "EIP Hub Wrap-Up",
+          "topic": "",
+          "description": "",
+          "format": "Closing",
+          "speakers": [],
+          "start": 1793957400000,
+          "end": 1793959200000,
+          "day": {
+            "number": 4,
+            "year": 2026,
+            "month": 11,
+            "day": 6
+          }
         }
       ],
       "problems": [
-        "row 7: no session title, skipped",
-        "row 8: no session title, skipped",
-        "row 11: no session title, skipped",
-        "row 12: no session title, skipped",
         "row 14: no session title, skipped",
-        "row 18: no session title, skipped",
         "row 20: no session title, skipped",
-        "row 21: no session title, skipped",
-        "row 24: no session title, skipped",
-        "row 25: no session title, skipped",
         "row 27: no session title, skipped",
         "row 28: no session title, skipped",
-        "row 29: no session title, skipped",
         "row 30: no session title, skipped",
-        "row 31: no session title, skipped",
-        "row 34: no session title, skipped",
-        "row 35: no session title, skipped",
         "row 40: no session title, skipped",
-        "row 42: no session title, skipped",
-        "row 43: no session title, skipped",
-        "row 44 \"EIP Signal Quiz Game - Enterprise & Adoption\": start \"14:30\" / end \"\" not a time, skipped",
-        "row 45: no session title, skipped",
-        "1 row has no Key (row 5): type any short unique text there, or renaming the session loses its saved stars"
+        "row 44 \"EIP Signal Quiz Game - Enterprise & Adoption\": start \"14:30\" / end \"\" not a time, skipped"
       ]
     },
     {
@@ -1097,7 +2328,7 @@
         "color": "#FFE7D1"
       },
       "publishedAt": 1792434000000,
-      "readAt": 1792445646758,
+      "readAt": 1792447518968,
       "rows": [
         {
           "line": 4,
@@ -1683,7 +2914,7 @@
         "color": "#F7D4D4"
       },
       "publishedAt": 1792412135000,
-      "readAt": 1792445646858,
+      "readAt": 1792447519069,
       "rows": [
         {
           "line": 4,
@@ -2490,7 +3721,7 @@
         "1 row has no Key (row 9): type any short unique text there, or renaming the session loses its saved stars"
       ],
       "heldBack": {
-        "readAt": 1792445647336,
+        "readAt": 1792447519445,
         "publishedAt": 1792439165000,
         "sessions": 30,
         "problems": [
@@ -2507,7 +3738,7 @@
         "color": "#FFE8E5"
       },
       "publishedAt": 1792434200000,
-      "readAt": 1792445646933,
+      "readAt": 1792447519349,
       "rows": [
         {
           "line": 4,
@@ -3192,8 +4423,8 @@
         "name": "Resilient Networking Hub",
         "color": "#FFF4E0"
       },
-      "publishedAt": 1792443925000,
-      "readAt": 1792445647036,
+      "publishedAt": 1792446320000,
+      "readAt": 1792447519333,
       "rows": [
         {
           "line": 4,
@@ -3439,8 +4670,8 @@
         "name": "Security Hub",
         "color": "#E9E5FF"
       },
-      "publishedAt": 1792445590000,
-      "readAt": 1792445647999,
+      "publishedAt": 1792445670000,
+      "readAt": 1792447518849,
       "rows": [
         {
           "line": 4,
@@ -3835,11 +5066,28 @@
             "month": 11,
             "day": 4
           }
+        },
+        {
+          "line": 26,
+          "key": "S23",
+          "title": "On-chain assertions: transactions that check themselves",
+          "topic": "",
+          "description": "",
+          "format": "Workshop",
+          "speakers": [
+            "Sem Bloom"
+          ],
+          "start": 1793783400000,
+          "end": 1793787000000,
+          "day": {
+            "number": 2,
+            "year": 2026,
+            "month": 11,
+            "day": 4
+          }
         }
       ],
-      "problems": [
-        "row 26: no session title, skipped"
-      ]
+      "problems": []
     },
     {
       "hub": {
@@ -4063,7 +5311,7 @@
         "row 35: no session title, skipped"
       ],
       "heldBack": {
-        "readAt": 1792445647352,
+        "readAt": 1792447519361,
         "publishedAt": 1792410175000,
         "sessions": 11,
         "problems": [
@@ -4083,7 +5331,7 @@
         "color": "#A8FFD5"
       },
       "publishedAt": 1792440125000,
-      "readAt": 1792445647775,
+      "readAt": 1792447519832,
       "rows": [
         {
           "line": 4,
