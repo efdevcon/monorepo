@@ -48,6 +48,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: APP_CONFIG.APP_NAME,
+    // Home/list pages only: the detail pages restate their own card (see
+    // data/share-metadata.ts). Twitter inherits these images.
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Devcon 8 India, Mumbai, 3–6 November 2026",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

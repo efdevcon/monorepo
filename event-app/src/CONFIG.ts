@@ -12,8 +12,9 @@
 
 const APP_CONFIG = {
   // App metadata
-  APP_NAME: "Devcon App V1",
-  APP_DESCRIPTION: "Ethereum knitting club.",
+  APP_NAME: "Devcon",
+  APP_DESCRIPTION:
+    "The official app for Devcon 8 India. Explore the schedule and speakers, plan your days, and find your way around the venue. Mumbai, 3–6 November 2026.",
 
   // Public origin of this deployment. Used server-side (e.g.
   // /api/manifest-bridge, push tap-through links) to build absolute URLs —
