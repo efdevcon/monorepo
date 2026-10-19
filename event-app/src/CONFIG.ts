@@ -4,7 +4,7 @@
     [ ] update this file
     [ ] run your own data provider adhering to the provider interface (see data/providers/provider-interface.ts)
     (note: if you use Pretalx and Pretix, you can reuse our data provider implementation (data/providers/pretalx-pretix-data-provider.ts))
-    [ ] update public/app-icon.png and src/app/favicon.ico with your own app icons
+    [ ] replace the app icons in public/ (apple-touch-icon, android-chrome-*, icon-maskable-512, favicon*, og-image.jpg) and src/app/favicon.ico
     [ ] add para api key (for authentication)
     [ ] add supabase keys (for user data storage)
     [ ] apple developer account for publishing the app to the app store (the app is also available as a web app with pwa capabilities, so this is optional)
@@ -12,16 +12,18 @@
 
 const APP_CONFIG = {
   // App metadata
-  APP_NAME: "Devcon App V1",
-  APP_DESCRIPTION: "Ethereum knitting club.",
+  APP_NAME: "Devcon App",
+  APP_DESCRIPTION:
+    "The official app for Devcon 8 India. Explore the schedule and speakers, plan your days, and find your way around the venue. Mumbai, 3–6 November 2026.",
 
   // Public origin of this deployment. Used server-side (e.g.
   // /api/manifest-bridge, push tap-through links) to build absolute URLs —
   // deriving it from the incoming request's own URL isn't reliable behind
   // Netlify's serverless function proxying, which doesn't necessarily
-  // preserve the public host. Inlined at build time by next.config.ts: the
-  // APP_ORIGIN env var, else the deploy's own URL (previews, branch deploys),
-  // else the production site. A push URL only opens inside the installed app
+  // preserve the public host. Inlined at build time by next.config.ts:
+  // Netlify's primary domain on production builds, the deploy's own URL on
+  // previews and branch deploys (APP_ORIGIN overrides both when set), else the
+  // production site. A push URL only opens inside the installed app
   // when it is on that install's origin.
   APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
   // Host of the server-rendered social cards (og:image). The renderers,

@@ -110,11 +110,16 @@ const nextConfig: NextConfig = {
     ];
   },
   env: {
-    // Public origin baked in at build time (see src/CONFIG.ts). Deploy
-    // previews and branch deploys get their own URL from Netlify's build-only
-    // DEPLOY_PRIME_URL, so push tap-through links from a preview open inside
-    // a preview install; production sets APP_ORIGIN explicitly.
-    APP_ORIGIN: process.env.APP_ORIGIN || process.env.DEPLOY_PRIME_URL || "",
+    // Public origin baked in at build time (see src/CONFIG.ts), with nothing
+    // to configure: production builds take Netlify's URL (the site's primary
+    // domain, so app.devcon.org once it is primary); deploy previews and
+    // branch deploys take their own DEPLOY_PRIME_URL, so push tap-through
+    // links from a preview open inside a preview install. APP_ORIGIN, when
+    // set, still overrides both.
+    APP_ORIGIN:
+      process.env.APP_ORIGIN ||
+      (process.env.CONTEXT === "production" ? process.env.URL : process.env.DEPLOY_PRIME_URL) ||
+      "",
     // Short commit of the build (Netlify's COMMIT_REF), shown in feedback
     // reports so "which version?" never needs asking.
     APP_BUILD: (process.env.COMMIT_REF || "").slice(0, 7) || "dev",

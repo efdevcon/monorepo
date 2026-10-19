@@ -39,15 +39,25 @@ const poppinsDevanagari = Poppins({
 });
 
 export const metadata: Metadata = {
-  // Absolute base for og:url / og:image so link previews resolve. APP_ORIGIN
-  // must be set to the public domain in Netlify (falls back to the
-  // netlify.app URL).
+  // Absolute base for og:url / og:image so link previews resolve: the site's
+  // own domain, resolved at build time in next.config.ts (nothing to set).
   metadataBase: new URL(APP_CONFIG.APP_ORIGIN),
   title: APP_CONFIG.APP_NAME,
   description: APP_CONFIG.APP_DESCRIPTION,
   openGraph: {
     type: "website",
     siteName: APP_CONFIG.APP_NAME,
+    // Home/list pages only: the detail pages restate their own card (see
+    // data/share-metadata.ts). Twitter inherits these images.
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
+        alt: "Devcon App, available now. Devcon 8 India, 3–6 November 2026",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
