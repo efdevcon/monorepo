@@ -41,24 +41,25 @@ function MapLoading() {
   return <div className="p-8 text-gray-500">Loading map…</div>;
 }
 
-const inlineLink = "font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
+const inlineLink = "whitespace-nowrap font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
 
-/** The app's centred state recipe (StateMessage) on the app gradient, as the
- *  error and offline pages use; centred between the header and the tab bar. */
+/** The app's centred state recipe (StateMessage) in a white hairline card on
+ *  the app gradient; centred between the header and the tab bar. */
 function MapComingSoon() {
   return (
-    <div className="flex flex-1 items-center justify-center pb-[var(--nav-clearance)] pt-16">
+    <div className="flex flex-1 items-center justify-center px-4 pb-[var(--nav-clearance)] pt-16">
       <div className="app-bg" aria-hidden />
       <StateMessage
         icon={MapIcon}
         title="The venue map is on its way"
+        className="max-w-[420px] rounded-[12px] bg-white py-8 outline outline-dc-hairline"
         body={
           <>
-            We&apos;re putting the finishing touches on the event map. Check out the{" "}
+            We&apos;re adding the finishing touches. In the meantime, plan your days in the{" "}
             <Link href="/schedule" className={inlineLink}>
               Schedule
             </Link>{" "}
-            to plan your days and add your tickets and swag in{" "}
+            and add your tickets and swag in{" "}
             <Link href="/my-devcon" className={inlineLink}>
               My Devcon
             </Link>
