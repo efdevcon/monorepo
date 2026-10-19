@@ -17,6 +17,8 @@ import { applyInterestChanges } from "@/data/interested/applyPlan";
 import { useUser } from "@/data/auth/useUser";
 import { INTERESTS_PARAM } from "@/data/store/schedule-source";
 import { usePreviewPlan } from "@/hooks/usePreviewState";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import type { Session } from "@/data/models/sessions";
 import {
   isEmptyPlan,
@@ -86,6 +88,9 @@ export function PlanImport() {
   // what a visitor without a link came for), the planner card follows.
   const empty = isEmptyPlan(request) && !done;
   const loading = sessions.length === 0;
+  // On phones the floating feedback button sits where the action bar is pinned.
+  const desktop = useIsDesktop();
+  useHideFeedbackFab(!done && !isEmptyPlan(request) && !loading && !desktop);
 
   const apply = async () => {
     setBusy(true);
@@ -205,16 +210,6 @@ export function PlanImport() {
                   or open the app in a regular (not private) window.
                 </Note>
               )}
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <PrimaryButton size="sm" onClick={apply} disabled={busy || nothingToDo}>
-                  <Star className="size-4 shrink-0" />
-                  {nothingToDo
-                    ? "Nothing to change"
-                    : failed
-                      ? "Try again"
-                      : applyLabel(plan.add.length, plan.remove.length)}
-                </PrimaryButton>
-              </div>
               <p className="text-[13px] leading-5 text-dc-muted">
                 {user ? (
                   <>
@@ -225,6 +220,19 @@ export function PlanImport() {
                   "Not signed in: the stars stay in this browser. Sign in on My Devcon to sync them to the app on your phone."
                 )}
               </p>
+            </div>
+            {/* Floats above the tab bar (phones) or the window's bottom edge (desktop) while
+                the plan is on screen, so confirming never depends on scrolling past a long
+                list; it settles at the end of the plan once the page reaches it. Same
+                floating-card surface as the map's area card. */}
+            <div className="sticky bottom-[calc(max(var(--nav-clearance),var(--safe-bottom))+12px)] z-20 flex items-center justify-between gap-3 rounded-2xl bg-white/95 py-3 pl-4 pr-3 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur lg:bottom-6 lg:pl-5">
+              <p className="min-w-0 text-[14px] font-bold leading-5 text-dc-fg2">
+                {nothingToDo ? "Nothing to change" : planSummary(plan.add.length, plan.remove.length)}
+              </p>
+              <PrimaryButton size="sm" className="shrink-0 whitespace-nowrap" onClick={apply} disabled={busy || nothingToDo}>
+                <Star className="size-4 shrink-0" />
+                {nothingToDo ? "Confirm plan" : failed ? "Try again" : applyLabel(plan.add.length, plan.remove.length)}
+              </PrimaryButton>
             </div>
           </div>
         )}
@@ -276,6 +284,12 @@ function PasteCodes({
 }
 
 const sessionsWord = (n: number) => (n === 1 ? "session" : "sessions");
+
+/** The action bar's summary: "47 sessions to add · 2 to remove", "1 session to add", "2 sessions to remove". */
+function planSummary(add: number, remove: number): string {
+  if (!add) return `${remove} ${sessionsWord(remove)} to remove`;
+  return remove ? `${add} ${sessionsWord(add)} to add · ${remove} to remove` : `${add} ${sessionsWord(add)} to add`;
+}
 
 /** "Confirm plan"; a plan that only removes says so: "Remove 1 session". */
 function applyLabel(add: number, remove: number): string {
