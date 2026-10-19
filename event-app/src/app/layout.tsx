@@ -39,9 +39,8 @@ const poppinsDevanagari = Poppins({
 });
 
 export const metadata: Metadata = {
-  // Absolute base for og:url / og:image so link previews resolve. APP_ORIGIN
-  // must be set to the public domain in Netlify (falls back to the
-  // netlify.app URL).
+  // Absolute base for og:url / og:image so link previews resolve: the site's
+  // own domain, resolved at build time in next.config.ts (nothing to set).
   metadataBase: new URL(APP_CONFIG.APP_ORIGIN),
   title: APP_CONFIG.APP_NAME,
   description: APP_CONFIG.APP_DESCRIPTION,
