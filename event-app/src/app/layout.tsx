@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     // data/share-metadata.ts). Twitter inherits these images.
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        type: "image/png",
+        type: "image/jpeg",
         alt: "Devcon 8 India, Mumbai, 3–6 November 2026",
       },
     ],
