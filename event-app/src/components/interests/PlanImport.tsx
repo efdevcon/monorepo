@@ -3,6 +3,7 @@
 import { trackEvent } from "@/data/analytics/track";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useSWRConfig } from "swr";
 import { AlertTriangle, Star } from "lucide-react";
 import cn from "classnames";
 import { PrimaryButton, PrimaryLinkButton, SecondaryButton } from "@/components/Buttons";
@@ -54,6 +55,7 @@ export function PlanImport() {
   // Dev preview of the applied state (`?previewPlan=done`), sample counts.
   const previewPlan = usePreviewPlan();
   const done = applied ?? (previewPlan === "done" ? { added: 4, removed: 1 } : null);
+  const { mutate } = useSWRConfig();
   const [busy, setBusy] = useState(false);
   // The Dexie write failed (storage full, private mode, a closed database);
   // the plan stays on screen so the tap can be repeated.
@@ -92,7 +94,8 @@ export function PlanImport() {
       const result = await applyInterestChanges(
         getActiveDataset().eventId,
         plan.add.map((s) => s.id),
-        plan.remove.map((s) => s.id)
+        plan.remove.map((s) => s.id),
+        mutate
       );
       setDone(result);
       trackEvent("planner", "applied", undefined, result.added + result.removed);
