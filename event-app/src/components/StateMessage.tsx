@@ -30,7 +30,8 @@ export function StateMessage({
 }: {
   icon: LucideIcon;
   title: string;
-  body: string;
+  /** One line; a node when it carries inline links. */
+  body: React.ReactNode;
   className?: string;
   /** Page-level uses (error, offline) render the title as the page's h1. */
   headingLevel?: "h1" | "p";

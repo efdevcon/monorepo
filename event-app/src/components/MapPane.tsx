@@ -3,6 +3,7 @@
 import React from "react";
 import { Map as MapIcon } from "lucide-react";
 import { VenueMap3D } from "@/app/(page-layout)/map/venue-map-3d/VenueMap3D";
+import { StateMessage } from "@/components/StateMessage";
 import { useUser } from "@/data/auth/useUser";
 import { useReleased } from "@/data/release/releaseGates";
 import { Link } from "@/routing";
@@ -40,28 +41,31 @@ function MapLoading() {
   return <div className="p-8 text-gray-500">Loading map…</div>;
 }
 
-const inlineLink = "font-bold text-dc-purple underline underline-offset-2";
+const inlineLink = "font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
 
+/** The app's centred state recipe (StateMessage) on the app gradient, as the
+ *  error and offline pages use; centred between the header and the tab bar. */
 function MapComingSoon() {
   return (
-    <div className="flex flex-1 items-center justify-center bg-dc-lavender px-4 pb-[var(--nav-clearance)] pt-16">
-      <div className="flex w-full max-w-[420px] flex-col items-center gap-4 rounded-[12px] bg-white px-6 py-8 text-center outline outline-dc-hairline">
-        <div className="flex size-14 items-center justify-center rounded-full bg-dc-purple-wash">
-          <MapIcon className="size-7 text-dc-purple" />
-        </div>
-        <h2 className="text-[20px] font-bold leading-7 text-dc-fg2">The venue map is on its way</h2>
-        <p className="text-[14px] leading-5 text-dc-muted">
-          We&apos;re putting the finishing touches on it. Meanwhile, plan your days in the{" "}
-          <Link href="/schedule" className={inlineLink}>
-            Schedule
-          </Link>{" "}
-          and add your ticket in{" "}
-          <Link href="/my-devcon" className={inlineLink}>
-            My Devcon
-          </Link>
-          .
-        </p>
-      </div>
+    <div className="flex flex-1 items-center justify-center pb-[var(--nav-clearance)] pt-16">
+      <div className="app-bg" aria-hidden />
+      <StateMessage
+        icon={MapIcon}
+        title="The venue map is on its way"
+        body={
+          <>
+            We&apos;re putting the finishing touches on the event map. Check out the{" "}
+            <Link href="/schedule" className={inlineLink}>
+              Schedule
+            </Link>{" "}
+            to plan your days and add your tickets and swag in{" "}
+            <Link href="/my-devcon" className={inlineLink}>
+              My Devcon
+            </Link>
+            .
+          </>
+        }
+      />
     </div>
   );
 }
