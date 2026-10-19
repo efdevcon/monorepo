@@ -50,7 +50,7 @@ function MapComingSoon() {
   return (
     <div className="flex flex-1 items-center justify-center px-4 pb-[var(--nav-clearance)] pt-16">
       <div className="app-bg" aria-hidden />
-      <div className="flex w-full max-w-[480px] flex-col items-center gap-6 rounded-[12px] bg-white p-6 text-center font-heading outline outline-dc-hairline">
+      <div className="flex w-full max-w-[480px] flex-col items-center gap-6 rounded-[12px] bg-white p-8 text-center font-heading outline outline-dc-hairline">
         <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
           <MapIcon className="size-7 text-dc-purple" aria-hidden />
         </span>
