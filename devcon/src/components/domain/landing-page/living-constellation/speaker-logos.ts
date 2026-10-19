@@ -3,6 +3,7 @@ import OneClaw from './images/logos/1claw.svg'
 import Ack3 from './images/logos/ack3.svg'
 import Arkiv from './images/logos/arkiv.svg'
 import Aztec from './images/logos/aztec.svg'
+import Certora from './images/logos/certora.svg'
 import Axiom from './images/logos/axiom.svg'
 import Circle from './images/logos/circle.svg'
 import Coinbase from './images/logos/coinbase.svg'
@@ -12,6 +13,7 @@ import ethlabs from './images/logos/ethlabs.png'
 import Freedom from './images/logos/freedom.svg'
 import Giga from './images/logos/giga.svg'
 import Giveth from './images/logos/giveth.svg'
+import HackenProof from './images/logos/hackenproof.svg'
 import Lfdt from './images/logos/lfdt.svg'
 import Lava from './images/logos/lava.svg'
 import libp2p from './images/logos/libp2p.png'
@@ -24,6 +26,7 @@ import Nyx from './images/logos/nyx-foundation.svg'
 import PhantomZone from './images/logos/phantom-zone.svg'
 import Polygon from './images/logos/polygon.svg'
 import ProtocolGuild from './images/logos/protocol-guild.svg'
+import RivaLabs from './images/logos/riva-labs.svg'
 import Silviculture from './images/logos/silviculture.svg'
 import TalTech from './images/logos/taltech.svg'
 import Tor from './images/logos/tor.svg'
@@ -49,6 +52,7 @@ export const SPEAKER_LOGOS = {
   arkiv: { Logo: Arkiv, aspect: 347 / 80 },
   axiom: { Logo: Axiom, aspect: 650 / 128 },
   aztec: { Logo: Aztec, aspect: 499 / 128 },
+  certora: { Logo: Certora, aspect: 420 / 126 },
   circle: { Logo: Circle, aspect: 500 / 128 },
   coinbase: { Logo: Coinbase, aspect: 717 / 128 },
   'edge-city': { Logo: EdgeCity, aspect: 254 / 128 },
@@ -57,6 +61,7 @@ export const SPEAKER_LOGOS = {
   freedom: { Logo: Freedom, aspect: 466 / 95 },
   giga: { Logo: Giga, aspect: 274 / 128 },
   giveth: { Logo: Giveth, aspect: 623 / 128 },
+  hackenproof: { Logo: HackenProof, aspect: 470 / 128, scale: 1.2 },
   lfdt: { Logo: Lfdt, aspect: 597 / 128 },
   lava: { Logo: Lava, aspect: 490 / 101 },
   libp2p: { image: libp2p },
@@ -69,6 +74,7 @@ export const SPEAKER_LOGOS = {
   'phantom-zone': { Logo: PhantomZone, aspect: 128 / 128 },
   polygon: { Logo: Polygon, aspect: 464 / 128 },
   'protocol-guild': { Logo: ProtocolGuild, aspect: 1106 / 128 },
+  'riva-labs': { Logo: RivaLabs, aspect: 404 / 128, scale: 1.2 },
   silviculture: { Logo: Silviculture, aspect: 453 / 129 },
   taltech: { Logo: TalTech, aspect: 228 / 128 },
   tor: { Logo: Tor, aspect: 211 / 128 },
