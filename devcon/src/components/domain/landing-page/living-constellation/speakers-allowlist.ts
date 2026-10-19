@@ -324,4 +324,19 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'lava',
     bio: 'Yoseph Ayele is Founder & Managing Partner at LAVA, which invests in founders building new financial infrastructure across Africa. Yoseph co-created Borderless Africa and magma, and previously co-founded the Edmund Hillary Fellowship.',
   }, // Yoseph Ayele
+  {
+    code: 'MMELPR',
+    title: 'CTO',
+    bio: 'Matteo Vicari is CTO at Riva Labs, a startup building post-quantum digital asset infrastructure. Matteo has developed smart contracts since 2017.',
+  }, // Matteo Vicari · Riva Labs
+  {
+    code: 'C3VHKH',
+    title: 'CEO',
+    bio: 'Dmytro Matviiv is CEO of HackenProof, a bug bounty and crowdsourced audit platform with a community of over 80,000 security researchers. Dmytro has spent 15 years in data encryption, authentication and cybersecurity products.',
+  }, // Dmytro Matviiv · HackenProof
+  {
+    code: 'GAHFAR',
+    title: 'Co-Founder & CEO',
+    bio: 'Mooly Sagiv co-founded Certora and is a professor and chair of Computer Science at Tel Aviv University. Mooly researches large-scale program analysis and is one of the key contributors to shape analysis.',
+  }, // Mooly Sagiv · Certora
 ]
