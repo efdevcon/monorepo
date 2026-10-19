@@ -3,7 +3,6 @@
 import React from "react";
 import { Map as MapIcon } from "lucide-react";
 import { VenueMap3D } from "@/app/(page-layout)/map/venue-map-3d/VenueMap3D";
-import { StateMessage } from "@/components/StateMessage";
 import { useUser } from "@/data/auth/useUser";
 import { useReleased } from "@/data/release/releaseGates";
 import { Link } from "@/routing";
@@ -43,28 +42,35 @@ function MapLoading() {
 
 const inlineLink = "whitespace-nowrap font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
 
-/** The app's centred state recipe (StateMessage) in a white hairline card on
- *  the app gradient; centred between the header and the tab bar. The pointer
- *  to the other tabs is its own paragraph in the action slot. */
+/** The centred state recipe's parts (64px lavender circle, 28px purple mark,
+ *  20px heading, 16px muted lines) laid out by hand in a white hairline card,
+ *  since its gaps differ from StateMessage's: 16px under the title, 8px
+ *  between the two lines. Centred between the header and the tab bar. */
 function MapComingSoon() {
   return (
     <div className="flex flex-1 items-center justify-center px-4 pb-[var(--nav-clearance)] pt-16">
       <div className="app-bg" aria-hidden />
-      {/* The card adds 8px to StateMessage's own 16px gutter: 24px sides, 40px top and bottom. */}
-      <div className="w-full max-w-[420px] rounded-[12px] bg-white px-2 py-10 outline outline-dc-hairline">
-        <StateMessage icon={MapIcon} title="The venue map is on its way" body="We're adding the finishing touches.">
-          <p className="text-[16px] leading-6 text-dc-muted">
-            In the meantime, plan your days in the{" "}
-            <Link href="/schedule" className={inlineLink}>
-              Schedule
-            </Link>{" "}
-            and add your tickets and swag in{" "}
-            <Link href="/my-devcon" className={inlineLink}>
-              My Devcon
-            </Link>
-            .
-          </p>
-        </StateMessage>
+      <div className="flex w-full max-w-[480px] flex-col items-center gap-6 rounded-[12px] bg-white p-6 text-center font-heading outline outline-dc-hairline">
+        <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
+          <MapIcon className="size-7 text-dc-purple" aria-hidden />
+        </span>
+        <div className="flex flex-col gap-4 text-dc-fg">
+          <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px]">The venue map is on its way</p>
+          <div className="flex flex-col gap-2 text-[16px] leading-6 text-dc-muted">
+            <p>We&apos;re adding the finishing touches.</p>
+            <p>
+              In the meantime, plan your days in the{" "}
+              <Link href="/schedule" className={inlineLink}>
+                Schedule
+              </Link>{" "}
+              and add your tickets and swag in{" "}
+              <Link href="/my-devcon" className={inlineLink}>
+                My Devcon
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
