@@ -4,7 +4,7 @@
     [ ] update this file
     [ ] run your own data provider adhering to the provider interface (see data/providers/provider-interface.ts)
     (note: if you use Pretalx and Pretix, you can reuse our data provider implementation (data/providers/pretalx-pretix-data-provider.ts))
-    [ ] update public/app-icon.png and src/app/favicon.ico with your own app icons
+    [ ] replace the app icons in public/ (apple-touch-icon, android-chrome-*, icon-maskable-512, favicon*, og-image.jpg) and src/app/favicon.ico
     [ ] add para api key (for authentication)
     [ ] add supabase keys (for user data storage)
     [ ] apple developer account for publishing the app to the app store (the app is also available as a web app with pwa capabilities, so this is optional)
@@ -12,7 +12,7 @@
 
 const APP_CONFIG = {
   // App metadata
-  APP_NAME: "Devcon",
+  APP_NAME: "Devcon App",
   APP_DESCRIPTION:
     "The official app for Devcon 8 India. Explore the schedule and speakers, plan your days, and find your way around the venue. Mumbai, 3–6 November 2026.",
 

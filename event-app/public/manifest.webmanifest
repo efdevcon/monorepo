@@ -1,6 +1,6 @@
 {
-  "name": "Devcon",
-  "short_name": "Devcon",
+  "name": "Devcon App",
+  "short_name": "Devcon App",
   "description": "The official app for Devcon 8 India. Explore the schedule and speakers, plan your days, and find your way around the venue. Mumbai, 3–6 November 2026.",
   "start_url": "/",
   "scope": "/",
@@ -19,6 +19,12 @@
       "sizes": "512x512",
       "type": "image/png"
     },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
