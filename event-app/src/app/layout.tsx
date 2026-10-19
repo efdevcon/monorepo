@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Devcon 8 India, Mumbai, 3–6 November 2026",
+        alt: "Devcon App, available now. Devcon 8 India, 3–6 November 2026",
       },
     ],
   },
