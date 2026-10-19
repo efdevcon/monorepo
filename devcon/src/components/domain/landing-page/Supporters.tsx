@@ -6,18 +6,26 @@ import Arkiv from './images/supporters/arkiv.svg'
 import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
+import OpenZeppelin from './images/supporters/openzeppelin.svg'
+import Bitrefill from './images/supporters/bitrefill.svg'
 import Circle from './images/supporters/circle.svg'
 import CowSwap from './images/supporters/cow-swap.svg'
 import Ens from './images/supporters/ens.svg'
 import Fairfood from './images/supporters/fairfood.svg'
 import Nethermind from './images/supporters/nethermind.svg'
+import Ordocode from './images/supporters/ordocode.svg'
+import Peer from './images/supporters/peer.svg'
 import TrailOfBits from './images/supporters/trail-of-bits.svg'
+import VirtualProtocol from './images/supporters/virtual-protocol.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
 import DaoFund from './images/supporters/impact-hubs/dao-fund.svg'
+import Ech from './images/supporters/impact-hubs/ech.svg'
+import Eff from './images/supporters/impact-hubs/eff.svg'
 import eag from './images/supporters/impact-hubs/eag.avif'
 import Eez from './images/supporters/impact-hubs/eez.svg'
 import EipsInsight from './images/supporters/impact-hubs/eipsinsight.svg'
 import Ethlabs from './images/supporters/impact-hubs/ethlabs.svg'
+import Fileverse from './images/supporters/impact-hubs/fileverse.svg'
 import Gainforest from './images/supporters/impact-hubs/gainforest.svg'
 import Gcc from './images/supporters/impact-hubs/gcc.svg'
 import GrapheneOS from './images/supporters/impact-hubs/grapheneos.svg'
@@ -27,10 +35,12 @@ import Lfdt from './images/supporters/impact-hubs/lfdt.svg'
 import MoneyLeague from './images/supporters/impact-hubs/money-league.svg'
 import Nimbus from './images/supporters/impact-hubs/nimbus.svg'
 import Railgun from './images/supporters/impact-hubs/railgun.svg'
+import RedGuild from './images/supporters/impact-hubs/red-guild.svg'
 import Seal from './images/supporters/impact-hubs/seal.svg'
 import Swarm from './images/supporters/impact-hubs/swarm.svg'
 import Unicef from './images/supporters/impact-hubs/unicef.svg'
 import Walletbeat from './images/supporters/impact-hubs/walletbeat.svg'
+import Zisk from './images/supporters/impact-hubs/zisk.svg'
 import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/common/styles'
 import { Reveal } from 'components/common/reveal/Reveal'
 
@@ -57,9 +67,10 @@ type Row = {
   logos: LogoEntry[]
 }
 
-// Supporters: Fluid + Base (flagship, ~100px), then Arkiv, Gnosis and Kleros at 60px
-// (core), then the rest at 40px (starter) — 3 + 3 from sm, pairs below sm (sized off
-// row 2 so it always stays bigger). Impact hubs follow the scale of the tier above
+// Supporters: Fluid + Base (flagship, ~100px), then Arkiv, Gnosis, Kleros and
+// OpenZeppelin at 60px in two pairs (core — four across would overflow the column and
+// shrink below starter), then the rest at 40px (starter) — 4 + 3 + 3 from sm, pairs
+// below sm (sized off the core rows so it always stays smaller). Impact hubs follow the scale of the tier above
 // them, so they always stay smaller. Every tier shares one column (SUPPORTERS_COLUMN).
 const TOP_ROW: Row = {
   k: 172,
@@ -71,31 +82,36 @@ const TOP_ROW: Row = {
   ],
 }
 
-const SECOND_ROW: Row = {
-  height: 60,
-  logos: [
-    { name: 'Arkiv', href: 'https://arkiv.network', Logo: Arkiv, aspect: 1389 / 320 },
-    { name: 'Gnosis', href: 'https://www.gnosis.io', Logo: Gnosis, aspect: 878 / 230 },
-    { name: 'Kleros', href: 'https://kleros.io', Logo: Kleros, aspect: 185 / 48 },
-  ],
-}
+const CORE_SUPPORTERS: LogoEntry[] = [
+  { name: 'Arkiv', href: 'https://arkiv.network', Logo: Arkiv, aspect: 1389 / 320 },
+  { name: 'Gnosis', href: 'https://www.gnosis.io', Logo: Gnosis, aspect: 878 / 230 },
+  { name: 'Kleros', href: 'https://kleros.io', Logo: Kleros, aspect: 185 / 48 },
+  { name: 'OpenZeppelin', href: 'https://www.openzeppelin.com', Logo: OpenZeppelin, aspect: 552 / 80 },
+]
 
 const OTHER_SUPPORTERS: LogoEntry[] = [
+  { name: 'Bitrefill', href: 'https://www.bitrefill.com', Logo: Bitrefill, aspect: 328 / 80 },
   { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 219 / 63 },
   { name: 'CoW Swap', href: 'https://cow.fi', Logo: CowSwap, aspect: 390 / 60 },
   { name: 'ENS', href: 'https://ens.domains', Logo: Ens, aspect: 255 / 80 },
   { name: 'Fair Food Data', href: 'https://fairfooddata.org', Logo: Fairfood, aspect: 369 / 70.2 },
   { name: 'Nethermind', href: 'https://www.nethermind.io', Logo: Nethermind, aspect: 586 / 80 },
+  { name: 'OrdoCode', href: 'https://ordocode.ai', Logo: Ordocode, aspect: 432 / 80 },
+  { name: 'Peer', href: 'https://peer.xyz', Logo: Peer, aspect: 228 / 80 },
   { name: 'Trail of Bits', href: 'https://www.trailofbits.com', Logo: TrailOfBits, aspect: 133 / 80 },
+  { name: 'Virtuals Protocol', href: 'https://www.virtuals.io', Logo: VirtualProtocol, aspect: 235 / 80 },
 ]
 
 const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Crossbar', href: 'https://crossbar-inc.com', image: crossbar, scale: 1.15 },
   { name: 'DAO FUND', href: 'https://thedao.fund', Logo: DaoFund, aspect: 81 / 80 },
+  { name: 'ECH Institute', href: 'https://echinstitute.org', Logo: Ech, aspect: 197 / 81 },
+  { name: 'Electronic Frontier Foundation', href: 'https://www.eff.org', Logo: Eff, aspect: 327 / 80 },
   { name: 'EIPsInsight', href: 'https://eipsinsight.com', Logo: EipsInsight, aspect: 442 / 80 },
   { name: 'Ethereum Applications Guild', href: 'https://ethappsguild.org', image: eag, scale: 1.15 },
   { name: 'Ethereum Economic Zone', href: 'https://eez.io', Logo: Eez, aspect: 170 / 80, scale: 1.2 },
   { name: 'Ethlabs', href: 'https://ethlabs.org', Logo: Ethlabs, aspect: 401 / 80, scale: 0.75 },
+  { name: 'Fileverse', href: 'https://fileverse.io', Logo: Fileverse, aspect: 296 / 80 },
   { name: 'Gainforest', href: 'https://www.gainforest.earth', Logo: Gainforest, aspect: 380 / 80 },
   { name: 'GCC', href: 'https://www.gccofficial.org/en', Logo: Gcc, aspect: 311 / 80 },
   { name: 'GrapheneOS', href: 'https://grapheneos.org', Logo: GrapheneOS, aspect: 344 / 80 },
@@ -107,10 +123,13 @@ const IMPACT_HUBS: LogoEntry[] = [
   { name: 'Railgun', href: 'https://railgun.org', Logo: Railgun, aspect: 493 / 80 },
   { name: 'SEAL', href: 'https://securityalliance.org', Logo: Seal, aspect: 262 / 80 },
   { name: 'Swarm', href: 'https://www.ethswarm.org', Logo: Swarm, aspect: 296 / 80 },
+  { name: 'The Red Guild', href: 'https://theredguild.org', Logo: RedGuild, aspect: 529 / 80 },
   { name: 'UNICEF', href: 'https://www.unicefventurefund.org', Logo: Unicef, aspect: 337 / 80 },
   { name: 'Walletbeat', href: 'https://www.walletbeat.fyi', Logo: Walletbeat, aspect: 327 / 80, scale: 1.1 },
+  { name: 'ZisK', href: 'https://zisk.technology', Logo: Zisk, aspect: 327 / 153 },
 ]
 
+const CORE_HEIGHT = 60
 const OTHER_HEIGHT = 40
 const HUB_K = 64
 const HUB_CAP = 34
@@ -125,29 +144,25 @@ const chunk = <T,>(items: T[], sizes: number[]) => {
   return sizes.map(n => items.slice(i, (i += n)))
 }
 
-const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3]).map(logos => ({ height: OTHER_HEIGHT, logos }))
-const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2]).map(logos => ({
+const CORE_ROWS: Row[] = chunk(CORE_SUPPORTERS, [2, 2]).map(logos => ({ height: CORE_HEIGHT, logos }))
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [4, 3, 3]).map(logos => ({ height: OTHER_HEIGHT, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 2]).map(logos => ({
   height: OTHER_HEIGHT,
   logos,
 }))
-const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [5, 5, 5, 4]).map(logos => ({
+const HUB_ROWS_DESKTOP: Row[] = chunk(IMPACT_HUBS, [5, 5, 5, 5, 4]).map(logos => ({
   k: HUB_K,
   cap: HUB_CAP,
   gap: 'min(48px, 5cqw)',
   logos,
 }))
-const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 2, 2, 3, 3]).map(logos => ({
+const HUB_ROWS_MOBILE: Row[] = chunk(IMPACT_HUBS, [3, 3, 3, 3, 2, 3, 3, 2, 2]).map(logos => ({
   k: HUB_K_MOBILE,
   cap: HUB_MAX_MOBILE,
   max: HUB_MAX_MOBILE,
   gap: 'min(48px, 7cqw)',
   logos,
 }))
-
-// Below sm the core row is width-bound (three wordmarks across a phone), and sizing
-// starter and impact off it at full height would leave starter at ⅔ of core. Fitting
-// them to this shorter copy keeps starter at ⅚ of core instead.
-const CORE_MOBILE_REF: Row = { ...SECOND_ROW, height: 48 }
 
 const logoAspect = ({ image, aspect }: LogoEntry) => (image ? image.width / image.height : aspect!)
 const equalAreaHeight = (logo: LogoEntry, k: number, cap: number) =>
@@ -164,6 +179,11 @@ const rowHeights = ({ logos, height, k = 96, cap = 56, max = Infinity }: Row) =>
   logos.map(logo => height ?? Math.min(max, equalAreaHeight(logo, k, cap)))
 const rowNaturalWidth = (row: Row) => rowHeights(row).reduce((sum, h, i) => sum + h * logoAspect(row.logos[i]), 0)
 const widestRow = (rows: Row[]) => rows.reduce((a, b) => (rowNaturalWidth(b) > rowNaturalWidth(a) ? b : a))
+
+// Below sm the core rows are width-bound (two wordmarks across a phone), and sizing
+// starter and impact off the widest one at full height would leave starter at ⅔ of
+// core. Fitting them to this shorter copy keeps starter at ⅚ of core instead.
+const CORE_MOBILE_REF: Row = { ...widestRow(CORE_ROWS), height: 48 }
 
 // Each logo's height is min(its max height, its share of the container width in
 // every reference row): (maxWidth·100cqw − gaps) × h / naturalWidth per row in
@@ -246,7 +266,9 @@ export const Supporters = () => {
             <FitRow row={TOP_ROW} />
           </Tier>
           <Tier label={t('core')}>
-            <FitRow row={SECOND_ROW} />
+            {CORE_ROWS.map((row, i) => (
+              <FitRow key={i} row={row} fitTo={[widestRow(CORE_ROWS)]} />
+            ))}
           </Tier>
           <Tier label={t('starter')}>
             {OTHER_ROWS_DESKTOP.map((row, i) => (
