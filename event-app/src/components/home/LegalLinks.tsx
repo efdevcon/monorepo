@@ -32,7 +32,7 @@ const LEGAL_LINKS: ReadonlyArray<{ label: string; href: string }> = [
 
 export function LegalLinks() {
   return (
-    <ul className="flex flex-wrap gap-x-6 gap-y-3">
+    <ul className="flex flex-wrap gap-x-6 gap-y-1">
       {LEGAL_LINKS.map(({ label, href }) => (
         <li key={href}>
           <a

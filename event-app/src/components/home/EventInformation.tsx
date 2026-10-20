@@ -1,91 +1,147 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
-import { ArrowUpRight, Check, ChevronDown, Copy } from "lucide-react";
-import { Link } from "@/routing";
+import type { ReactNode } from "react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { LegalLinks } from "./LegalLinks";
 import { openFeedback } from "@/data/feedback/feedbackState";
 
 /**
  * "Event information" at the bottom of Home: an always-open Essentials panel
  * (Wi-Fi, venue, help) beside a stack of disclosures for the longer guides,
- * the last of which holds the legal links. Basic first pass: every value is
- * a {Placeholder} until the real copy lands.
+ * the last of which holds the legal links.
  *
  * Disclosures are native <details>/<summary>: keyboard, screen reader and
  * find-in-page support for free, no state to keep. Phones stack the panel
  * over the list; desktop puts them side by side.
  */
 
-// TODO(event-info): replace every {Placeholder} with the real values.
-const WIFI_SSID = "{SSID_NAME}";
-const WIFI_PASSWORD = "{SSID_PW}";
-const SUPPORT_FAQ_HREF = "#"; // {SUPPORT_FAQ_URL}
-const ONBOARDING_HREF = "#"; // {ONBOARDING_AREA_URL}
-
-const GUIDES: ReadonlyArray<{ title: string; body: string }> = [
-  {
-    title: "Venue & Facilities",
-    body: "{Placeholder} Halls, cloakroom, prayer and quiet rooms, food courts, accessibility and first aid.",
-  },
-  {
-    title: "Community",
-    body: "{Placeholder} Community channels, side events and ways to meet other attendees.",
-  },
-  {
-    title: "Safety & Conduct",
-    body: "{Placeholder} Emergency contacts, safety tips and how to report a Code of Conduct concern.",
-  },
-];
+// TODO(event-info): Wi-Fi details are still to come.
+const SUPPORT_FAQ_HREF =
+  "https://ef-events.notion.site/Devcon-India-App-Support-FAQ-3ff638cdc4158059a5ccfbad9e243fb1";
+const VENUE_MAPS_HREF = "https://maps.app.goo.gl/BN2AaTKh2cEy82Sy7";
+const MEETING_ROOMS_HREF = "https://rooms.devcon.org/";
+const GETTING_THERE_HREF = "https://devcon.org/en/travel-guide/#getting-there";
+const TICKET_FAQ_HREF = "https://devcon.org/en/tickets/#faq";
+const SIDE_EVENTS_HREF = "https://devcon.org/en/road-to-devcon/#side-events";
+const TELEGRAM_HREF = "https://t.me/+sitvvHw8D8EzN2Yx";
+const X_HREF = "https://x.com/efdevcon";
+const INSTAGRAM_HREF = "https://instagram.com/efdevcon";
+const EMERGENCY_NUMBER = "108";
 
 const inlineLink =
   "font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
 
-function CopyButton({ value, label }: { value: string; label: string }) {
-  const [copied, setCopied] = useState(false);
-  useEffect(() => {
-    if (!copied) return;
-    const id = setTimeout(() => setCopied(false), 1500);
-    return () => clearTimeout(id);
-  }, [copied]);
+/** Inline link with the north-east arrow every outbound link in this section carries. */
+function OutLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <button
-      type="button"
-      onClick={() =>
-        navigator.clipboard
-          ?.writeText(value)
-          .then(() => setCopied(true))
-          .catch(() => {})
-      }
-      aria-label={copied ? "Copied" : label}
-      // after:-inset-1.5 pads the 32px circle to a 44px hit area.
-      className="relative flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-dc-hairline bg-white transition-colors duration-150 ease-out after:absolute after:-inset-1.5 after:content-[''] hover:bg-dc-purple-wash"
-    >
-      {copied ? (
-        <Check className="size-4 text-dc-purple" />
-      ) : (
-        <Copy className="size-4 text-dc-purple" />
-      )}
-    </button>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={inlineLink}>
+      {children}
+      <ArrowUpRight className="ml-0.5 inline size-3.5 align-[-2px]" />
+    </a>
   );
 }
 
-function Essential({
-  term,
-  action,
-  children,
-}: {
-  term: string;
-  /** Optional control pinned to the row's right edge (e.g. copy). */
-  action?: ReactNode;
-  children: ReactNode;
-}) {
+const GUIDES: ReadonlyArray<{
+  title: string;
+  /** `term` is the bold lead-in; items without one are plain sentences. */
+  items: ReadonlyArray<{ term?: string; body: ReactNode }>;
+}> = [
+  {
+    title: "Venue & Facilities",
+    items: [
+      {
+        term: "Getting there:",
+        body: (
+          <>
+            Read our travel guide on{" "}
+            <OutLink href={GETTING_THERE_HREF}>how to get to Jio World Centre</OutLink>
+          </>
+        ),
+      },
+      {
+        term: "Registration:",
+        body: (
+          <>
+            Bring your ticket QR code to enter the venue. Discounted tickets must show ID,
+            see the <OutLink href={TICKET_FAQ_HREF}>ticket FAQ</OutLink>
+          </>
+        ),
+      },
+      {
+        term: "Meeting Rooms:",
+        body: (
+          <>
+            Book a slot in our <OutLink href={MEETING_ROOMS_HREF}>booking calendar</OutLink>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Community",
+    items: [
+      {
+        term: "Side events:",
+        body: (
+          <>
+            Check out our <OutLink href={SIDE_EVENTS_HREF}>curated list of Side Events</OutLink>{" "}
+            happening in Mumbai
+          </>
+        ),
+      },
+      {
+        term: "Connect with attendees:",
+        body: (
+          <>
+            Join the official <OutLink href={TELEGRAM_HREF}>Devcon 8 India Telegram group</OutLink>
+          </>
+        ),
+      },
+      {
+        body: (
+          <>
+            Follow <OutLink href={X_HREF}>us on X</OutLink>
+          </>
+        ),
+      },
+      {
+        body: (
+          <>
+            Follow <OutLink href={INSTAGRAM_HREF}>us on Instagram</OutLink>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    title: "Safety & Conduct",
+    items: [
+      {
+        term: "Emergency:",
+        body: (
+          <>
+            Call <OutLink href={`tel:${EMERGENCY_NUMBER}`}>{EMERGENCY_NUMBER}</OutLink> for
+            emergency services
+          </>
+        ),
+      },
+      {
+        term: "Evacuation:",
+        body: (
+          <>
+            Look for the <span className="font-bold text-dc-green">green Exit signs</span> and
+            follow staff instructions
+          </>
+        ),
+      },
+    ],
+  },
+];
+
+function Essential({ term, children }: { term: string; children: ReactNode }) {
   return (
-    <li className="flex items-start justify-between gap-3 text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
-      <span>
-        <span className="font-bold">{term}</span> {children}
-      </span>
-      {action}
+    <li className="text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
+      <span className="font-bold">{term}</span> {children}
     </li>
   );
 }
@@ -117,45 +173,37 @@ export function EventInformation() {
             Essentials
           </h3>
           <ul className="mt-3 flex flex-col gap-4">
-            <Essential
-              term="Wi-Fi:"
-              action={<CopyButton value={WIFI_PASSWORD} label="Copy Wi-Fi password" />}
-            >
-              Connect to {WIFI_SSID} with password{" "}
-              <span className="font-bold">{WIFI_PASSWORD}</span>
-            </Essential>
+            <Essential term="Wi-Fi:">Coming soon</Essential>
             <Essential term="Venue address:">
-              <Link href="/map" className={inlineLink}>
-                View on map
-              </Link>
+              <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
             </Essential>
+            <Essential term="Day 1:">Tues, 3 November 2026 from 08:30 – 18:30</Essential>
             <Essential term="Need help?">
-              Read our{" "}
-              <a
-                href={SUPPORT_FAQ_HREF}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={inlineLink}
+              Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>
+            </Essential>
+            <Essential term="Found a bug?">
+              <button
+                type="button"
+                onClick={() => openFeedback()}
+                className={`${inlineLink} cursor-pointer`}
               >
-                Support FAQ
-                <ArrowUpRight className="ml-0.5 inline size-3.5 align-[-2px]" />
-              </a>{" "}
-              or visit the{" "}
-              <a href={ONBOARDING_HREF} className={inlineLink}>
-                Onboarding Area
-              </a>
-              . Something wrong with the app?{" "}
-              <button type="button" onClick={() => openFeedback()} className={`${inlineLink} cursor-pointer`}>
                 Send feedback
-              </button>
+              </button>{" "}
+              to the team
             </Essential>
           </ul>
         </div>
 
         <div className="flex flex-col">
-          {GUIDES.map(({ title, body }) => (
+          {GUIDES.map(({ title, items }) => (
             <Disclosure key={title} title={title}>
-              <p className="text-[14px] leading-5 text-dc-muted">{body}</p>
+              <ul className="flex list-disc flex-col gap-3 pl-5 text-[14px] leading-5 text-dc-fg2 marker:text-dc-muted">
+                {items.map(({ term, body }, i) => (
+                  <li key={term ?? i}>
+                    {term && <span className="font-bold">{term}</span>} {body}
+                  </li>
+                ))}
+              </ul>
             </Disclosure>
           ))}
           <Disclosure title="Legal">
