@@ -27,7 +27,7 @@ export function CommunityHubsCard() {
       >
         Community Hubs
       </h2>
-      <div className="flex flex-col overflow-clip rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] shadow-[0_10px_15px_-3px_rgba(22,11,43,0.1),0_4px_6px_-4px_rgba(22,11,43,0.1)] lg:flex-row lg:items-center lg:gap-8 lg:pl-6">
+      <div className="flex flex-col overflow-clip rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] lg:flex-row lg:items-center lg:gap-8 lg:pl-6">
         {/* Photo: 256px tall full-width band on mobile, 503×225 on the right
             on desktop. */}
         <div className="relative h-[256px] w-full shrink-0 lg:order-last lg:h-[225px] lg:w-[503px] lg:max-w-[45%]">

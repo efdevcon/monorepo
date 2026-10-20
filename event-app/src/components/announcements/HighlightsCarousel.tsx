@@ -29,7 +29,9 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
   const card = (
     <div
       className={cn(
-        "w-[295px] shrink-0 overflow-hidden rounded-xl border border-dc-hairline bg-white",
+        // flex-col + the link's `flex` let every card stretch to the tallest
+        // in the row, so a longer message never leaves ragged bottoms.
+        "flex w-[295px] shrink-0 flex-col overflow-hidden rounded-xl border border-dc-hairline bg-white",
         link &&
           "transition-[scale,box-shadow,border-color] duration-150 ease-out hover:border-dc-purple/40 hover:shadow-sm motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
       )}
@@ -55,7 +57,7 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
           {title}
         </p>
         {message && (
-          <p className="mt-1 line-clamp-2 font-heading text-sm leading-5 text-dc-muted">
+          <p className="mt-1 font-heading text-sm leading-5 text-dc-muted">
             {message}
           </p>
         )}
@@ -66,7 +68,7 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
   if (!link) return card;
 
   const linkClass =
-    "block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
+    "flex rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
 
   if (!link.external) {
     return (
