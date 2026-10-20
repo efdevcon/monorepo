@@ -17,7 +17,6 @@ import {
 import { defaultSlugify } from '@/utils/content'
 import { CreateBlockie } from '@/utils/account'
 import { SERVER_CONFIG } from '@/utils/config'
-import { CommitContentFile } from '@/services/github'
 import * as store from '@/data/store'
 import fs from 'fs'
 import path from 'path'
@@ -29,9 +28,9 @@ import path from 'path'
 // (.github/workflows/fileverse-live-export.yml) reads their live state and
 // commits the cells to LIVE_HUB_SHEETS_PATH; the API reads that file from
 // GitHub (its own disk copy is only as fresh as the last deploy, since the
-// Action's commits skip deploys). The parsed result lives in memory, with one
-// file per event under data/community-hubs/ as a warm start after a restart
-// and a fallback while GitHub is unreachable.
+// Action's commits skip deploys). The parsed result lives in memory only; the
+// deployed copy of the file is the warm start after a restart and the
+// fallback while GitHub is unreachable. Nothing is written back to the repo.
 //
 // The sheet links never reach the API: they live in the Action's
 // COMMUNITY_HUB_SHEETS secret. Hub ids are the ones in COMMUNITY_HUBS.
@@ -87,13 +86,7 @@ interface EventCache {
   configProblems: string[]
   /** When the live export that was last read ran (ms since epoch). */
   exportedAt?: number
-  /** Last version committed to the repository (production only), to commit only real changes. */
-  committedVersion?: string
-  committedAt?: number
 }
-
-/** Production commits the cache file to the repo so a redeploy starts from the last good sheets. */
-const COMMIT_MIN_INTERVAL_MS = 30 * 60_000
 
 const caches = new Map<string, EventCache>()
 
@@ -118,7 +111,7 @@ async function fetchLiveSheets(): Promise<LiveHubSheets> {
     remoteError = error
   }
   try {
-    const local = validLiveSheets(JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'community-hubs', 'sheets.json'), 'utf8')))
+    const local = readLocalSheets()
     console.warn('[community-hubs] live sheets read from the local copy:', remoteError instanceof Error ? remoteError.message : remoteError)
     return local
   } catch {
@@ -131,61 +124,38 @@ function validLiveSheets(data: any): LiveHubSheets {
   return data
 }
 
-const cacheFile = (eventId: string) => path.join(process.cwd(), 'data', 'community-hubs', `${eventId}.json`)
+/** The copy of the live export that shipped with this deploy (or the local checkout). */
+function readLocalSheets(): LiveHubSheets {
+  return validLiveSheets(JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'community-hubs', 'sheets.json'), 'utf8')))
+}
 
-/** Seed from the on-disk copy so a fresh process answers at once; its age still triggers a refresh. */
+/** Seed from the local copy of the live export so a fresh process has something to serve if GitHub is unreachable. */
 function cacheFor(eventId: string): EventCache {
   let cache = caches.get(eventId)
   if (!cache) {
     cache = { refreshedAt: 0, inflight: null, hubs: new Map(), failures: new Map(), configProblems: [] }
     try {
-      const saved = JSON.parse(fs.readFileSync(cacheFile(eventId), 'utf8')) as { refreshedAt: number; hubs: HubData[] }
-      for (const data of saved.hubs) {
-        const hub = COMMUNITY_HUBS.find((h) => h.id === data.hub?.id)
-        if (hub) cache.hubs.set(hub.id, { ...data, hub })
+      const live = readLocalSheets()
+      const event = store.getEvent(eventId)
+      if (event) {
+        for (const hub of COMMUNITY_HUBS) {
+          if (!live.hubs[hub.id]) continue
+          try {
+            cache.hubs.set(hub.id, readHub(hub, live.hubs[hub.id], event))
+          } catch {
+            // Unreadable in the local copy: the first refresh reports it.
+          }
+        }
       }
-      // Never counts as fresh (the process may have been down for a while), but
-      // marks that there is something to serve if GitHub is unreachable.
-      if (cache.hubs.size > 0) cache.refreshedAt = Math.min(saved.refreshedAt || 1, Date.now() - REFRESH_MS)
+      cache.exportedAt = live.exportedAt
+      // Never counts as fresh: the first request still reads GitHub.
+      if (cache.hubs.size > 0) cache.refreshedAt = 1
     } catch {
-      // No file yet, or unreadable: start empty.
+      // No local copy: start empty.
     }
     caches.set(eventId, cache)
   }
   return cache
-}
-
-const serializeCache = (cache: EventCache) => JSON.stringify({ refreshedAt: cache.refreshedAt, hubs: [...cache.hubs.values()] }, null, 2)
-
-function saveCache(eventId: string, cache: EventCache) {
-  const json = serializeCache(cache)
-  try {
-    fs.mkdirSync(path.dirname(cacheFile(eventId)), { recursive: true })
-    fs.writeFileSync(cacheFile(eventId), json)
-  } catch (error) {
-    console.warn('[community-hubs] could not write the cache file:', error instanceof Error ? error.message : error)
-  }
-  void commitCache(eventId, cache, json)
-}
-
-/**
- * Render's disk does not survive a deploy, so production also commits the
- * file (same path, `[skip deploy]` like the AV writes) whenever the served
- * version changed, at most every COMMIT_MIN_INTERVAL_MS. Local runs never
- * commit.
- */
-async function commitCache(eventId: string, cache: EventCache, json: string) {
-  if (SERVER_CONFIG.NODE_ENV !== 'production' || !SERVER_CONFIG.GITHUB_TOKEN) return
-  const version = versionOf(cache)
-  if (cache.committedVersion === version) return
-  if (cache.committedAt && Date.now() - cache.committedAt < COMMIT_MIN_INTERVAL_MS) return
-  cache.committedAt = Date.now()
-  try {
-    await CommitContentFile(`devcon-api/data/community-hubs/${eventId}.json`, json, `[skip deploy] Community Hubs cache (${eventId})`)
-    cache.committedVersion = version
-  } catch (error) {
-    console.warn('[community-hubs] could not commit the cache file:', error instanceof Error ? error.message : error)
-  }
 }
 
 function readHub(hub: CommunityHub, live: LiveHubSheet, event: any): HubData {
@@ -241,7 +211,6 @@ async function refresh(eventId: string, cache: EventCache): Promise<void> {
   // A hub whose link was removed from the secret drops out; a hub that failed to read keeps its last good data.
   for (const id of [...cache.hubs.keys()]) if (!live.hubs[id]) cache.hubs.delete(id)
   cache.refreshedAt = Date.now()
-  if (results.some((r) => r.status === 'fulfilled')) saveCache(eventId, cache)
 }
 
 /** Fresh enough parsed sheets for the event, re-reading the live export at most every REFRESH_MS. Concurrent callers share one refresh. */

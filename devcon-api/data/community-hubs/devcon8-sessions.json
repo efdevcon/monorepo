@@ -1,0 +1,3996 @@
+[
+  {
+    "hub": "Agentic Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-10:00",
+        "title": "Agents-from-zero onboarding (English and Hindi)",
+        "format": "Workshop",
+        "speakers": [
+          "Naina Sachdev"
+        ],
+        "topic": "Intro",
+        "description": "Start here if agents are new to you. A beginner-friendly workshop in English and Hindi, run by Dev3pack."
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "10:00-11:00",
+        "title": "Opening hour: meet and greet and StackChan robot demo",
+        "format": "Welcome",
+        "speakers": [
+          "Nicolás Arnedo Villanueva"
+        ],
+        "topic": "Community",
+        "description": "Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard that the sessions all week will fill in."
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "11:00-11:10",
+        "title": "x402 and ERC-8183: what works today and what is on the roadmap",
+        "format": "Talk",
+        "speakers": [
+          "Nicolás Arnedo Villanueva"
+        ],
+        "topic": "Intro",
+        "description": "What each standard is for, what works in production now, and what upstream has not shipped yet. Part of the Standards block."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "11:10-11:20",
+        "title": "ERC-8004 in practice: registration works, reputation is the hard part",
+        "format": "Talk",
+        "speakers": [
+          "Fortunato Cinquepalmi"
+        ],
+        "topic": "Intro",
+        "description": "Identity registries work. Reputation is easy to game, and top-ranked agents often have little product behind them. Part of the Standards block."
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "11:20-11:30",
+        "title": "Agent payments with real users: three live examples",
+        "format": "Talk",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Intro",
+        "description": "Three agent payment setups with real users, how to tell them from test traffic, and what builders can copy. Part of the Standards block."
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "11:30-12:00",
+        "title": "Panel: will agent payments stick?",
+        "format": "Roundtable",
+        "speakers": [
+          "Nicolás Arnedo Villanueva",
+          "Fortunato Cinquepalmi",
+          "Lena Hierzi"
+        ],
+        "topic": "Intro",
+        "description": "Optimists and sceptics argue x402, ERC-8004 and cards, then fill in the whiteboard map with the room. Part of the Standards block.\n\nModerator: Nicolás Arnedo Villanueva"
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "12:00-12:40",
+        "title": "Follow the money: reading on-chain agent payment data",
+        "format": "Workshop",
+        "speakers": [
+          "Nicolás Arnedo Villanueva"
+        ],
+        "topic": "Research",
+        "description": "Agent payment rails keep shipping, but real usage is much smaller than the headlines suggest. Nicolás walks through a practical method for reading on-chain agent payment data: who the actual buyers and sellers are, how to spot repeated counterparties, bot-driven volume and hackathon or test traffic, and what a believable volume number looks like. Then you pair up, pick a chain or facilitator and classify its top payers and sellers as real, bot or test. Part of the Standards block."
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "12:40-13:00",
+        "title": "Signed Is Not Authorized: a live, bounded user mandate inside an x402 payment",
+        "format": "Talk",
+        "speakers": [
+          "Anantha Krishnan"
+        ],
+        "topic": "Governance",
+        "description": "Computing has always tracked what runs, where and how. An agent that pays, signs or decides for you adds a fourth question: on whose authority? Today the answer is a key, and a key cannot tell whether you allow this action now, within these limits. Anantha Krishnan, founder of Sarva Labs and the MOI protocol, shows how authority can be held as live state, and what it looks like when an x402 payment carries a mandate that only the participant can change. Part of the Standards block."
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "13:00-14:00",
+        "title": "Standards workshop: 8004, x402, AP2, ACP and MPP disambiguated, and why not just give the agent a card?",
+        "format": "Workshop",
+        "speakers": [
+          "Lena Hierzi",
+          "Anantha Krishnan",
+          "Vedant Anand"
+        ],
+        "topic": "Intro",
+        "description": "Five agent standards, overlapping names and a lot of confusion. This workshop works from open questions posted by builders. We sort the standards by the job they do (identity, payment or checkout), then walk three common setups: an agent paying for an API, an agent buying from a merchant, and an agent hiring another agent. We close on a question many builders ask: if you can issue an agent a card, why give it a wallet? Part of the Standards block."
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "14:00-14:30",
+        "title": "Memory your agent owns, with Swarm MCP",
+        "format": "Demo",
+        "speakers": [
+          "András Arányi"
+        ],
+        "topic": "Tooling",
+        "description": "Agents need memory, but most keep it in a vendor's database or lose it between sessions. András Arányi (Solar Punk) shows how the Swarm MCP server gives any MCP-compatible agent persistent memory it owns, with a live demo of an agent logbook. Part of the Agent Infra block."
+      },
+      {
+        "id": "S11",
+        "day": "Tue 3 Nov",
+        "time": "14:30-15:00",
+        "title": "Evidence has a shelf life: queryable, expiring data for ERC-8004 agents",
+        "format": "Talk",
+        "speakers": [
+          "Shantelle Awomoyi"
+        ],
+        "topic": "Tooling",
+        "description": "ERC-8004 keeps hashes on-chain but leaves the evidence offchain, with no rule on how long it stays. Arkiv lets agents store validation payloads and coordination state as wallet-owned, queryable data, checked against the on-chain hash and expiring on a set schedule. Part of the Agent Infra block."
+      },
+      {
+        "id": "S12",
+        "day": "Tue 3 Nov",
+        "time": "15:00-15:10",
+        "title": "Packaged skills that let any agent use a complex protocol correctly",
+        "format": "Talk",
+        "speakers": [
+          "András Arányi",
+          "Levente Kiss"
+        ],
+        "topic": "Tooling",
+        "description": "How packaged agent skills give any agent the context it needs to use a complex protocol correctly, with the open-source Swarm skills library as a case study. Part of the Agent Infra block."
+      },
+      {
+        "id": "S13",
+        "day": "Tue 3 Nov",
+        "time": "15:10-15:40",
+        "title": "Evidence under the payment: who asked, who served, what it cost, signed by both sides",
+        "format": "Workshop",
+        "speakers": [
+          "Steven Mih"
+        ],
+        "topic": "Tooling",
+        "description": "An open-source evidence layer for agent payments on mesh-llm: both sides seal every exchange, paid or not, as a signed, hash-chained record that any third party can verify offline. A 60-second live demo on a running mesh, then hands-on for up to 15 attendees. Part of the Agent Infra block."
+      },
+      {
+        "id": "S14",
+        "day": "Tue 3 Nov",
+        "time": "15:40-16:00",
+        "title": "Lexon, deterministic AI",
+        "format": "Demo",
+        "speakers": [
+          "Henning Diedrich"
+        ],
+        "topic": "Tooling",
+        "description": "Henning Diedrich, creator of Lexon, presents small language models based on symbolic AI, as deterministic as a programming language, and live-codes a hybrid workflow that combines generative and symbolic AI so every step stays transparent. Part of the Agent Infra block."
+      },
+      {
+        "id": "S15",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "Networking and agent competition",
+        "format": "Networking",
+        "speakers": [
+          "Paul Lange"
+        ],
+        "topic": "Community",
+        "description": "Meet the other builders, add what you learned to the Bonfires knowledge base with the QR code, and follow the agent competition on the hub TV."
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "09:00-10:00",
+        "title": "Agents-from-zero onboarding",
+        "format": "Workshop",
+        "speakers": [
+          "Naina Sachdev",
+          "Gopika Chauhan"
+        ],
+        "topic": "Intro",
+        "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack."
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "10:00-10:10",
+        "title": "Live x402 demo: settling the Tuesday payment in USD₮, USA₮ and local stablecoins",
+        "format": "Demo",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Tooling",
+        "description": "An agent pays for a service through x402 and the payment settles live on screen, first with a stablecoin, then with USD₮, and USA₮ if live by then. Part of the Payments block."
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "10:10-10:30",
+        "title": "Agentic payments through x402 with USD₮ and USA₮",
+        "format": "Talk",
+        "speakers": [
+          "Raquel Carrasco",
+          "Vedant Anand"
+        ],
+        "topic": "Tooling",
+        "description": "What adding USD₮ and especially USA₮ means for builders, how settlement works for tokens other than USDC, and how an agent holds funds safely with a self-custodial wallet. Part of the Payments block."
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "10:30-11:00",
+        "title": "Agent cards in depth with AgentVault",
+        "format": "Talk",
+        "speakers": [
+          "Kartik Mehta"
+        ],
+        "topic": "Tooling",
+        "description": "Where agent card payments stand, how they fit next to x402, and what makes AgentVault different on privacy and security, followed by open discussion on card or x402 for which job. Part of the Payments block."
+      },
+      {
+        "id": "S20",
+        "day": "Wed 4 Nov",
+        "time": "11:00-11:10",
+        "title": "Pricing and treasury for a machine",
+        "format": "Talk",
+        "speakers": [
+          "Nicolás Arnedo Villanueva"
+        ],
+        "topic": "Research",
+        "description": "How an agent should price and budget in stablecoins. Part of the Payments block."
+      },
+      {
+        "id": "S21",
+        "day": "Wed 4 Nov",
+        "time": "11:10-11:20",
+        "title": "Price feeds and stablecoin pegs",
+        "format": "Talk",
+        "speakers": [
+          "Aditya Arora"
+        ],
+        "topic": "Research",
+        "description": "Where an agent gets a price it can trust, and how price feeds track stablecoin pegs. Part of the Payments block."
+      },
+      {
+        "id": "S22",
+        "day": "Wed 4 Nov",
+        "time": "11:20-11:30",
+        "title": "USDG on Arbitrum: paying in an ecosystem stablecoin",
+        "format": "Talk",
+        "speakers": [
+          "Daniel Ortega"
+        ],
+        "topic": "Research",
+        "description": "Paying in an ecosystem stablecoin over x402, with USDG on Arbitrum as the example. Part of the Payments block."
+      },
+      {
+        "id": "S23",
+        "day": "Wed 4 Nov",
+        "time": "11:30-12:00",
+        "title": "Stablecoins as unit of account: whose money is it?",
+        "format": "Roundtable",
+        "speakers": [
+          "Nicolás Arnedo Villanueva",
+          "Aditya Arora",
+          "Daniel Ortega"
+        ],
+        "topic": "Research",
+        "description": "Who absorbs a freeze or a depeg when the payer is software, and which currency should an agent price in? A roundtable on issuer risk, freezes and the choice of currency. Part of the Payments block.\n\nModerator: Nicolás Arnedo Villanueva"
+      },
+      {
+        "id": "S24",
+        "day": "Wed 4 Nov",
+        "time": "12:00-12:20",
+        "title": "Security Risks in x402 Agentic Payments and How to Prevent Them",
+        "format": "Talk",
+        "speakers": [
+          "Zuhaib"
+        ],
+        "topic": "Tooling",
+        "description": "AI agents can pay for online services using x402. But mistakes can lead to lost money, the same action happening twice, or a service being used without payment. Zuhaib explains five common risks using practical examples and what developers can do to stop abuse and handle failed payments safely. Part of the Payments block."
+      },
+      {
+        "id": "S25",
+        "day": "Wed 4 Nov",
+        "time": "12:20-12:40",
+        "title": "FX over x402 and shared liquidity",
+        "format": "Talk",
+        "speakers": [
+          "S Rithik Kumar",
+          "Yudhisthra"
+        ],
+        "topic": "Research",
+        "description": "How FX between stablecoins can run inside an x402 payment, using shared liquidity across DEX pools, with a EUR stablecoin in and USDC out. Part of the Payments block."
+      },
+      {
+        "id": "S26",
+        "day": "Wed 4 Nov",
+        "time": "12:40-13:00",
+        "title": "The last mile into INR and EUR, and the payments block wrap",
+        "format": "Talk",
+        "speakers": [
+          "Nicolás Arnedo Villanueva",
+          "S Rithik Kumar"
+        ],
+        "topic": "Research",
+        "description": "Where the rate comes from and what happens at the off-ramp into local money, then the payments block wrap: finishing the Mumbai to Spain payment on the whiteboard. Part of the Payments block."
+      },
+      {
+        "id": "S27",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
+        "title": "Giving agents spending power without the keys: self-custodial and permissioned agent wallets",
+        "format": "Demo",
+        "speakers": [
+          "Raquel Carrasco",
+          "Mislav",
+          "Ayush Bherwani"
+        ],
+        "topic": "Tooling",
+        "description": "AI agents are starting to pay for things: APIs, compute, each other. The hard part is giving them money without giving them your keys. This session puts three answers side by side. First, an agent with its own self-custodial, multi-chain wallet. Second, a user granting an agent a capped, time-bound, revocable allowance from their own smart account. Third, the account layer underneath: smart accounts, EIP-7702, interop and scaling, and what is still unsolved. Each approach is shown live, followed by a frank comparison of when to use which."
+      },
+      {
+        "id": "S28",
+        "day": "Wed 4 Nov",
+        "time": "14:00-14:40",
+        "title": "Selling to agents: how an agent finds a service and pays per call",
+        "format": "Demo",
+        "speakers": [
+          "Viral Sangani"
+        ],
+        "topic": "Tooling",
+        "description": "An agent finds a service, gets a quote and pays per call in stablecoins on Celo, with no accounts, API keys or subscriptions, and what that means for selling to agents. Questions and open discussion at the end. Part of the Marketplaces block."
+      },
+      {
+        "id": "S29",
+        "day": "Wed 4 Nov",
+        "time": "14:40-14:50",
+        "title": "Building agent products with a small team",
+        "format": "Talk",
+        "speakers": [
+          "Ankit Tailor"
+        ],
+        "topic": "Tooling",
+        "description": "How agents change the way a small team builds and ships consumer products, and what makes agent features feel simple. Part of the Marketplaces block."
+      },
+      {
+        "id": "S30",
+        "day": "Wed 4 Nov",
+        "time": "14:50-15:00",
+        "title": "Designing agents that act on real assets",
+        "format": "Talk",
+        "speakers": [
+          "Victor Muñoz"
+        ],
+        "topic": "Tooling",
+        "description": "Permissions, visibility and keeping users in control when agents act on real assets. Part of the Marketplaces block."
+      },
+      {
+        "id": "S31",
+        "day": "Wed 4 Nov",
+        "time": "15:00-15:40",
+        "title": "Your Next Customer Won't Click: Designing for Humans and Agents",
+        "format": "Talk",
+        "speakers": [
+          "Fortunato Cinquepalmi"
+        ],
+        "topic": "Tooling",
+        "description": "Your next customer may arrive as an agent that never opens your homepage. Can it discover your offer, understand the price, get permission and pay, or does your product stop at a login screen? Fortunato examines CLI, API and Markdown as product surfaces, then shows why people still need images, comparisons and clear decisions. Leave knowing what the agent should do, what the human should see and where trust must be earned. Part of the Marketplaces block."
+      },
+      {
+        "id": "S32",
+        "day": "Wed 4 Nov",
+        "time": "15:40-16:00",
+        "title": "Can an Agent Buy From You? Find, Check, Pay, Get the Result",
+        "format": "Demo",
+        "speakers": [
+          "Harish Kotra"
+        ],
+        "topic": "Tooling",
+        "description": "Can an unfamiliar agent arrive at your service and become a paying customer? Follow an agent from llms.txt to an MCP tool, an ERC-8004 registration check, an x402 payment and a returned result. Then inspect the interface contract: typed inputs, versions, review and rollback. Open discussion with Fortunato at the end. Part of the Marketplaces block."
+      },
+      {
+        "id": "S33",
+        "day": "Wed 4 Nov",
+        "time": "16:00-17:00",
+        "title": "Networking and agent competition",
+        "format": "Networking",
+        "speakers": [
+          "Paul Lange"
+        ],
+        "topic": "Community",
+        "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo."
+      },
+      {
+        "id": "S34",
+        "day": "Thu 5 Nov",
+        "time": "09:00-10:00",
+        "title": "Agents-from-zero onboarding",
+        "format": "Workshop",
+        "speakers": [
+          "Naina Sachdev"
+        ],
+        "topic": "Intro",
+        "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack."
+      },
+      {
+        "id": "S35",
+        "day": "Thu 5 Nov",
+        "time": "10:00-11:00",
+        "title": "What ERC-8004 actually means: identity, reputation and validation in practice",
+        "format": "Workshop",
+        "speakers": [
+          "Lena Hierzi",
+          "Fortunato Cinquepalmi"
+        ],
+        "topic": "Research",
+        "description": "ERC-8004 gives agents an identity, a place for reputation and a way to validate their work. Registering an agent is easy. Making reputation mean something is the hard part. This session walks through the three registries, shows what a real registration looks like, and works through one question: after an agent has paid for a service through x402, can the service provider leave feedback, and how would a reputation network get built from that? The last part is open discussion, plus a hands-on step: register or read an agent on the spot. Part of the Marketplaces block."
+      },
+      {
+        "id": "S36",
+        "day": "Thu 5 Nov",
+        "time": "11:00-12:00",
+        "title": "Reputation-system failure modes: sybils, review farming, whitewashing",
+        "format": "Roundtable",
+        "speakers": [
+          "YQ",
+          "Steven Mih",
+          "András Arányi",
+          "Andrei Mitrea"
+        ],
+        "topic": "Research",
+        "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. This roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming and wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. Speakers compare defences across the stack: payment-gated feedback, identity cost and stake, reviewer-weighted scoring, and verifiable evidence kept on durable storage. Part of the Marketplaces block."
+      },
+      {
+        "id": "S37",
+        "day": "Thu 5 Nov",
+        "time": "12:00-12:20",
+        "title": "How agents find and pay for services",
+        "format": "Talk",
+        "speakers": [
+          "Viral Sangani",
+          "Vedant Anand"
+        ],
+        "topic": "Tooling",
+        "description": "How agents find, trust and pay for a service, with a look at pay-per-call in practice. Part of the Marketplaces block."
+      },
+      {
+        "id": "S38",
+        "day": "Thu 5 Nov",
+        "time": "12:20-12:40",
+        "title": "Agent communication: A2A, MCP and how agents agree on meaning",
+        "format": "Talk",
+        "speakers": [
+          "Harish Kotra"
+        ],
+        "topic": "Tooling",
+        "description": "MCP and A2A help agents communicate. A successful connection still needs an explicit agreement about what a tool means and returns. Part of the Marketplaces block."
+      },
+      {
+        "id": "S39",
+        "day": "Thu 5 Nov",
+        "time": "12:40-13:00",
+        "title": "Domain discovery and agent identity",
+        "format": "Talk",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Tooling",
+        "description": "How agents are found by domain, and how agent identity fits in. Part of the Marketplaces block."
+      },
+      {
+        "id": "S40",
+        "day": "Thu 5 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch",
+        "format": "Break",
+        "speakers": [],
+        "topic": "Community"
+      },
+      {
+        "id": "S41",
+        "day": "Thu 5 Nov",
+        "time": "14:00-15:00",
+        "title": "Agents × UPI: what machine payments can learn from UPI",
+        "format": "Roundtable",
+        "speakers": [
+          "Vishnu Menon",
+          "Piyush Maheshwari",
+          "Naina Sachdev"
+        ],
+        "topic": "Governance",
+        "description": "UPI did not win by being the smartest payment technology. It won because India treated the rail as shared, open public infrastructure and let apps compete on top. Agents now pay for services, pay each other and spend on behalf of people, with no human confirming each step. What should machine payments copy from UPI? Vishnu traces the shared history and principles behind UPI, blockchains and agentic payments, and how UPI reached mass adoption. Piyush covers how authority gets granted: shared rails, interoperability by default, scoped delegation, and mandates that can be changed or revoked in real time. Naina covers what happens after the agent spends: once the PIN is gone, how do we prove a payment matched its mandate, settle disputes, produce receipts that reconcile, and keep payments private but auditable?"
+      },
+      {
+        "id": "S42",
+        "day": "Thu 5 Nov",
+        "time": "15:00-15:30",
+        "title": "Who Gets Sued When the Agent Makes a Mistake? How to get prepared in a decentralized way with KYC and arbitration",
+        "format": "Roundtable",
+        "speakers": [
+          "Fortunato Cinquepalmi",
+          "Nicolás Arnedo Villanueva",
+          "Facundo Trotz",
+          "Husam"
+        ],
+        "topic": "Governance",
+        "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can clearly show who authorized the deal. This Agents × Legal Hub session puts one case through the entire chain: the human or company behind the agent, its delegated mandate, the transaction's policy checks, the promised delivery and the remedy when something goes wrong. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Part of the Permissions and Policies block."
+      },
+      {
+        "id": "S43",
+        "day": "Thu 5 Nov",
+        "time": "15:30-16:00",
+        "title": "Markets Humans Ignore: Economic Mechanisms for AI Agents",
+        "format": "Talk",
+        "speakers": [
+          "Clément Lesaege"
+        ],
+        "topic": "Research",
+        "description": "Some economic mechanisms look elegant on paper and struggle to attract people: the reward is too small, the task too repetitive, the decision too time-consuming. What changes when the participant is an AI agent? Using prediction markets, curated information and dispute evaluation as examples, Clément examines the cost of participation, the reward for useful work and the consequences of being wrong. Part of the Permissions and Policies block."
+      },
+      {
+        "id": "S44",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:00",
+        "title": "Networking and agent competition",
+        "format": "Networking",
+        "speakers": [
+          "Paul Lange"
+        ],
+        "topic": "Community",
+        "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo."
+      },
+      {
+        "id": "S45",
+        "day": "Fri 6 Nov",
+        "time": "09:00-10:00",
+        "title": "Agents-from-zero onboarding",
+        "format": "Workshop",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Intro",
+        "description": "Start here if agents are new to you. A beginner-friendly workshop."
+      },
+      {
+        "id": "S46",
+        "day": "Fri 6 Nov",
+        "time": "10:00-11:00",
+        "title": "Machines that pay: robotics and agent payments",
+        "format": "Talk",
+        "speakers": [
+          "Nicolás Arnedo Villanueva"
+        ],
+        "topic": "Community",
+        "description": "What changes when robots and machines pay for things themselves: a community talk on robotics and agent payments."
+      },
+      {
+        "id": "S47",
+        "day": "Fri 6 Nov",
+        "time": "11:00-12:00",
+        "title": "Discovery, credibility, payment and what happens after a bad job. E2E how to equip your agent or marketplace to Scale",
+        "format": "Workshop",
+        "speakers": [
+          "Fortunato Cinquepalmi"
+        ],
+        "topic": "Tooling",
+        "description": "Build the part of your agent business that turns interest into paid work, and a bad experience into a customer you can recover. Bring an agent, API or marketplace idea. We'll pick one and design its complete customer journey on the whiteboard: get discovered through credible profiles, earn trust with verifiable claims and reputation, take x402 payments, define delivery, and handle dissatisfaction through support, refunds and independent dispute resolution. Leave with a customer-flow map, evidence and policy requirements, public code links and one integration you can start building."
+      },
+      {
+        "id": "S48",
+        "day": "Fri 6 Nov",
+        "time": "12:00-13:00",
+        "title": "Who Answered Your Prompt? The issues in modern inference",
+        "format": "Talk",
+        "speakers": [
+          "Ofir Eliasi"
+        ],
+        "topic": "Tooling",
+        "description": "When you call an AI API, you're trusting a black box: which model ran, who served it, and whether it was quietly swapped, quantized or censored. This talk unpacks the hidden trust gaps in modern inference and reviews emerging approaches, from cryptographic proofs to decentralized provider networks, for making every answer accountable."
+      },
+      {
+        "id": "S49",
+        "day": "Fri 6 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch",
+        "format": "Break",
+        "speakers": [],
+        "topic": "Community"
+      },
+      {
+        "id": "S50",
+        "day": "Fri 6 Nov",
+        "time": "14:00-15:00",
+        "title": "Moi authority layer in action",
+        "format": "Workshop",
+        "speakers": [
+          "Anantha Krishnan",
+          "Piyush Maheshwari"
+        ],
+        "topic": "Governance",
+        "description": "See how agents act on a user's behalf and how their transactions run via agents on Ethereum, using the Moi authority layer."
+      },
+      {
+        "id": "S51",
+        "day": "Fri 6 Nov",
+        "time": "15:00-15:30",
+        "title": "Competition finals and hub wrap",
+        "format": "Closing",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Community",
+        "description": "The finals of the hub competitions and a wrap-up of the week."
+      }
+    ]
+  },
+  {
+    "hub": "Aggregation Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": []
+  },
+  {
+    "hub": "DeSci Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [
+      "row 10 \"TBD + QnA\": start \"\" / end \"\" not a time, skipped",
+      "row 11 \"The DeSci Evolution: What worked, what didn't, and what might be next + QnA\": start \"\" / end \"\" not a time, skipped",
+      "row 12 \"From AI-Designed Binders to Robotic Labs: Closing the Drug Discovery Loop + QnA\": start \"\" / end \"\" not a time, skipped",
+      "row 13 \"TBD + QnA\": start \"\" / end \"\" not a time, skipped",
+      "row 25 \"Closing Notes\": start \"\" / end \"\" not a time, skipped"
+    ],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "10:50-11:10",
+        "title": "Opening Notes",
+        "format": "Welcome",
+        "speakers": [
+          "Arya",
+          "Iqra",
+          "Harshita"
+        ]
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "11:10-11:30",
+        "title": "Intro to DeSci India + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Arya Agarwaal"
+        ],
+        "description": "Problems in academia wrt Indian context, where DeSci comes into the picture, how can one participate! X: https://x.com/aryaagarwaal, LinkedIn: https://www.linkedin.com/in/aryaagarwaal/"
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "11:30-12:10",
+        "title": "From Complexity to Clarity: Exploring DeSci, AI & Web3 with Desync Talks + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Harshita Sehgal"
+        ],
+        "description": "This talk introduces the vision behind Desync Talks, our approach to making emerging technologies easier to understand, and how meaningful conversations can encourage curiosity, critical thinking, and wider participation in these ecosystems.Our mission is simple: education over hype, meaningful conversations over noise, and technology that more people can understand.X: https://x.com/DesyncTalks, https://x.com/HarshiSehgal6"
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "12:10-12:30",
+        "title": "Flamingo Stand Challenge",
+        "format": "Networking",
+        "speakers": [
+          "Arya",
+          "Iqra",
+          "Harshita"
+        ],
+        "description": "Challenging the attendees to balance on their non-dominant leg for 45s: Round 1; Challenging the attendees to balance on their non-dominant leg for 45s with an object (sponge ball): Round 2. Winner gets a hub merch!"
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "12:40-13:00",
+        "title": "Is it better to speak or to DAO?",
+        "format": "Networking",
+        "speakers": [
+          "Arya",
+          "Iqra",
+          "Harshita"
+        ],
+        "description": "We present real-life DAO proposals and hypothetical ones. The attendees vote the presented proposal is real or fake. Participant with max correct answers wins a hub merch!"
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "13:00-13:30",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S11",
+        "day": "Tue 3 Nov",
+        "time": "17:30-18:00",
+        "title": "Closing Notes",
+        "format": "Closing",
+        "speakers": [
+          "Arya",
+          "Iqra",
+          "Harshita"
+        ]
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "09:20-09:40",
+        "title": "Opening Notes",
+        "format": "Welcome",
+        "speakers": [
+          "Nfy"
+        ]
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "09:40-10:20",
+        "title": "TBD + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Dr. Jeru Manuel"
+        ],
+        "description": "Future of Biomedicine that will be integrated with AI/ML to usher in Medicine 2.0. Built upon his research experiences; how we have to mimic technology to the closest reality of molecular biological processes. This alone will lead effective healthcare as against the currently practiced sick care! LinkedIn:https://www.linkedin.com/in/jerummanuel/, Website: www.jerumanojmanuel.com"
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "10:20-11:10",
+        "title": "The Missing Primitive: Why DeSci Needs Patient-Owned Health Data? + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Hemal Vora"
+        ],
+        "description": "X: https://x.com/hemal018, LinkedIn: https://www.linkedin.com/in/hemalhealthtech/\n\nSpeaker: Hemal Vora (Privexa.io)"
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "11:10-11:20",
+        "title": "Flash Anzan Game",
+        "format": "Networking",
+        "speakers": [
+          "Nfy"
+        ],
+        "description": "A sequence of numbers will be displayed on the screen (both positive and negative integers(. Paryicpants need to calculate the correct summation. 1v1 faceoff. Winner wins a hub merch!"
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "11:20-12:10",
+        "title": "Intro to DeSci Taiwan + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Malingshu"
+        ],
+        "description": "Intro to DeSci Taiwan + QnA"
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "12:10-13:00",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "13:00-13:40",
+        "title": "TBD + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Hitesh.eth"
+        ]
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "13:40-14:00",
+        "title": "REALITY CHECK?",
+        "format": "Networking",
+        "speakers": [
+          "Nfy"
+        ],
+        "description": "Choose correctly between AI vs Human-generated content. Participant with max scores wins a hub merch."
+      },
+      {
+        "id": "S20",
+        "day": "Wed 4 Nov",
+        "time": "14:00-14:40",
+        "title": "Neuroscience, consciousness and philosophy + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Nfy"
+        ],
+        "description": "How neuroscience is the best field to do any research, how many opportunities there are specifically linking indian philosophy to neuroscience and making moon shot projects that can be funded through desciH"
+      },
+      {
+        "id": "S21",
+        "day": "Wed 4 Nov",
+        "time": "14:40-15:00",
+        "title": "Flash Anzan Game",
+        "format": "Networking",
+        "speakers": [
+          "Nfy"
+        ],
+        "description": "A sequence of numbers will be displayed on the screen (both positive and negative integers(. Paryicpants need to calculate the correct summation. 1v1 faceoff. Winner wins a hub merch!"
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "09:20-09:40",
+        "title": "Opening Notes",
+        "format": "Welcome",
+        "speakers": [
+          "Andre",
+          "Francisco",
+          "Arya"
+        ]
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "09:40-10:20",
+        "title": "Born as ERC-20, Retired as a Soulbound NFT: Smart-Contract Patterns for Carbon Credit Integrity + QnA",
+        "format": "Talk",
+        "speakers": [
+          "André Andrade"
+        ],
+        "description": "LinkedIn: https://www.linkedin.com/in/andré-andrade-650076226"
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "10:30-11:10",
+        "title": "The Landscape as a Living Laboratory: Decentralising Climate Science in the Western Ghats + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Sarika Kulkarni"
+        ],
+        "description": "Western Ghats Climate Conversation"
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "11:10-11:30",
+        "title": "Activity",
+        "format": "Networking",
+        "speakers": [
+          "Andre",
+          "Francisco",
+          "Arya"
+        ]
+      },
+      {
+        "id": "S27",
+        "day": "Thu 5 Nov",
+        "time": "11:30-13:00",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "13:00-14:20",
+        "title": "Workshop on future building, to explore \"existential hope\"",
+        "format": "Workshop",
+        "speakers": [
+          "Zeugh.eth"
+        ],
+        "description": "How to design a future you want and reverse engineer the technical priorities to develop so we get there in time"
+      },
+      {
+        "id": "S29",
+        "day": "Thu 5 Nov",
+        "time": "14:20-15:00",
+        "title": "TBD",
+        "format": "Talk",
+        "speakers": [
+          "Daniel \"Koss\" Knobelsdorf"
+        ],
+        "description": "About 4Seas community. LinkedIn:https://www.linkedin.com/in/knobelsdorf/"
+      },
+      {
+        "id": "S30",
+        "day": "Thu 5 Nov",
+        "time": "15:20-16:00",
+        "title": "TBD",
+        "format": "Talk",
+        "speakers": [
+          "Rodrigo Nuñez"
+        ]
+      },
+      {
+        "id": "S31",
+        "day": "Thu 5 Nov",
+        "time": "16:00-16:30",
+        "title": "Activity",
+        "format": "Networking",
+        "speakers": [
+          "Andre",
+          "Francisco",
+          "Arya"
+        ]
+      },
+      {
+        "id": "S32",
+        "day": "Thu 5 Nov",
+        "time": "16:40-17:00",
+        "title": "Closing Notes",
+        "format": "Closing",
+        "speakers": [
+          "Andre",
+          "Francisco",
+          "Arya"
+        ]
+      },
+      {
+        "id": "S33",
+        "day": "Fri 6 Nov",
+        "time": "09:10-09:30",
+        "title": "Opening Notes",
+        "format": "Welcome",
+        "speakers": [
+          "Messi_Boi",
+          "Iqra"
+        ]
+      },
+      {
+        "id": "S34",
+        "day": "Fri 6 Nov",
+        "time": "09:30-10:20",
+        "title": "The Oracle Problem for Science + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Dhruvang Choudhari"
+        ],
+        "description": "In crypto, we often talk about the oracle problem: how do you bring information from the real world onto a blockchain and make a smart contract act on it?DeSci has a much harder version of the same problem. Imagine a research grant that releases funding when a scientific milestone is achieved. What exactly tells the smart contract that the milestone has been achieved\nAn experiment being completed is not necessarily a successful result. A failed hypothesis can still produce valuable research. Peer review takes time, outcomes are uncertain, and some important scientific progress cannot be reduced to a simple yes or no.X: https://x.com/0xDhruvang, LinkedIn: https://www.linkedin.com/in/dhruvang-choudhari"
+      },
+      {
+        "id": "S35",
+        "day": "Fri 6 Nov",
+        "time": "10:00-10:30",
+        "title": "Intro to DeSci Asia + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Messi_Boi"
+        ],
+        "description": "The vast community of DeSci Asia and their project highlights. X: https://x.com/messi_boii"
+      },
+      {
+        "id": "S36",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:30",
+        "title": "Soul connection",
+        "format": "Networking",
+        "speakers": [
+          "Messi_Boi",
+          "Iqra"
+        ],
+        "description": "Ask each person to describe their time in mumbai in terms of colors, animals, feelings. Ask what did each team member remind them of across the 4-day theme. This connects the living with the non-living elements"
+      },
+      {
+        "id": "S37",
+        "day": "Fri 6 Nov",
+        "time": "11:30-13:00",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S38",
+        "day": "Fri 6 Nov",
+        "time": "13:00-13:30",
+        "title": "Building Web3 Ecosystems: Developer Tooling, Infrastructure & Community Building + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Mouli Chakraborty"
+        ],
+        "description": "Developer Tooling, Infrastructure & Community Building in Web3, with a focus on what it takes to make emerging protocols and ecosystems genuinely usable for developers.\nX:  https://x.com/0x_mouli, LinkedIn: https://www.linkedin.com/in/mouli-chakraborty-9711681b8/"
+      },
+      {
+        "id": "S39",
+        "day": "Fri 6 Nov",
+        "time": "13:30-14:00",
+        "title": "Community Context Mapping",
+        "format": "Talk",
+        "speakers": [
+          "Iqra Sajid"
+        ],
+        "description": "Across the four days of the DeSci Community Hub, we propose using Bonfires, an AI-powered community context and knowledge-mapping platform, to capture insights shared by researchers, builders and attendees through informal discussions, interactive questions and voluntary contributions. On Day 4, we will bring these conversations together in an interactive presentation, exploring a visual knowledge graph of the ideas and connections emerging across the Body, Mind, Heart and Soul themes.\nThe aim is to demonstrate how collective conversations can become an actionable resource for the community, helping researchers discover one another, identify shared problems and continue building together beyond Devcon. X: https://x.com/sasha_7zee, LinkedIn: https://www.linkedin.com/in/iqra-sajid71/"
+      },
+      {
+        "id": "S40",
+        "day": "Fri 6 Nov",
+        "time": "14:00-14:30",
+        "title": "Closing Notes",
+        "format": "Closing",
+        "speakers": [
+          "Messi_Boi",
+          "Iqra"
+        ]
+      }
+    ]
+  },
+  {
+    "hub": "EIP Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [
+      "row 7: no session title, skipped",
+      "row 35: no session title, skipped"
+    ],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "How Can You Change Ethereum?",
+        "format": "Workshop",
+        "speakers": [
+          "Pooja Ranjan",
+          "Jochem Brouwer"
+        ]
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "13:00-13:30",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "13:30-14:30",
+        "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
+        "format": "Talk",
+        "speakers": [
+          "Jochem Brouwer"
+        ],
+        "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public."
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "15:30-16:00",
+        "title": "EIP Process AMA",
+        "format": "AMA",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "EIP Signal Quiz Game - Understanding EIPs",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "EIP Hub Community Connect",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "18:00-18:10",
+        "title": "EIP Hub Daily Wrap-Up",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S09",
+        "day": "Wed 4 Nov",
+        "time": "09:00-09:10",
+        "title": "Welcome & Opening Remarks",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S10",
+        "day": "Wed 4 Nov",
+        "time": "09:10-09:30",
+        "title": "Ethereum in the Age of Proofs",
+        "format": "Talk",
+        "speakers": [
+          "Rachit Anand Srivastava"
+        ],
+        "description": "A technical tour of the cryptography and infrastructure shaping Ethereum’s next phase, from PeerDAS and KZG to zkVMs, new proving systems, and post-quantum cryptography. The talk looks at where these technologies are heading and what they could mean for the protocol."
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "10:00-11:00",
+        "title": "EIP-8184: LUCID Encrypted Mempool",
+        "format": "Talk",
+        "speakers": [
+          "Justin Florentine"
+        ],
+        "description": "Why encrypting the mempool is hard, and what the latest tradeoffs are."
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "11:00-12:00",
+        "title": "The Price Is Right: Setting Gas Prices for Glamsterdam",
+        "format": "Talk",
+        "speakers": [
+          "Maria Silva"
+        ],
+        "description": "This talk explores the methodology behind Glamsterdam’s gas repricing work, using EIP-8038 and EIP-2780 to explain how synthetic block testing, cross-client measurements, resource decomposition, and conservative assumptions translate throughput targets into gas costs and shape the final pricing model."
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "12:00-13:00",
+        "title": "Frame txs & private payments: EIP-8141 in practice",
+        "format": "Talk",
+        "speakers": [
+          "Gavin Birch"
+        ]
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "13:00-13:30",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "13:30-14:30",
+        "title": "Limits to Single Slot Finality",
+        "format": "Talk",
+        "speakers": [
+          "Abhimanyu Nag"
+        ]
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "15:30-16:00",
+        "title": "EIP Process AMA",
+        "format": "AMA",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "16:00-17:00",
+        "title": "EIP Signal Quiz Game - Protocol & Core Ethereum",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "EIP Hub Community Connect",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "18:00-18:10",
+        "title": "EIP Hub Daily Wrap-Up",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S20",
+        "day": "Thu 5 Nov",
+        "time": "09:00-10:00",
+        "title": "Welcome & Opening Remarks",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "10:00-11:00",
+        "title": "ERC-8009 & Clear-Signing",
+        "format": "Talk",
+        "speakers": [
+          "Daniel Nagy"
+        ],
+        "description": "Discussion on Clear-Signing as a solution on the main security challenge of Ethereum ecosystem today called 'Blind Signing', with the live demo on real Trezor and Ledger devices."
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "15:00-16:00",
+        "title": "EIP Process AMA",
+        "format": "AMA",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:00",
+        "title": "EIP Signal Quiz Game - Applications & ERC Standards",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "17:00-18:00",
+        "title": "EIP Hub Community Connect",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "18:00-18:10",
+        "title": "EIP Hub Daily Wrap-Up",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S27",
+        "day": "Fri 6 Nov",
+        "time": "09:00-09:10",
+        "title": "Welcome & Opening Remarks",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S28",
+        "day": "Fri 6 Nov",
+        "time": "09:10-09:30",
+        "title": "Privacy & human connectivity",
+        "format": "Talk",
+        "speakers": [
+          "Charchit Kumawat"
+        ],
+        "description": "What it actually takes to run telecom on-chain, what users will and won’t pay for."
+      },
+      {
+        "id": "S29",
+        "day": "Fri 6 Nov",
+        "time": "09:30-09:50",
+        "title": "The Agent Economy: Why AI Needs Crypto Rails",
+        "format": "Talk",
+        "speakers": [
+          "Abhay Singh"
+        ],
+        "description": "AI agents are starting to trade, route liquidity and move real money onchain. Using live perp trading as a case study, this talk shows what agents actually need from crypto rails (permissions, signing, identity and settlement) and where the hype runs ahead of real traction."
+      },
+      {
+        "id": "S30",
+        "day": "Fri 6 Nov",
+        "time": "09:50-10:30",
+        "title": "Are Confidential Tokens Ready for Enterprise Payments?",
+        "format": "Talk",
+        "speakers": [
+          "Dhruv Gera"
+        ],
+        "description": "ERC-7984 standardizes confidential fungible tokens with encrypted balances and transfer amounts. Drawing on building stablecoin cross-border payment rails at DashX, this talk tests the interface against what enterprise payments need: auditability, selective disclosure, reconciliation and fiat settlement."
+      },
+      {
+        "id": "S31",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:30",
+        "title": "Why Your Local-Currency Stablecoin Has No Market",
+        "format": "Talk",
+        "speakers": [
+          "Yudhishthra"
+        ],
+        "description": "Local-currency stablecoins keep launching, but they can’t scale because their liquidity is too thin and too fragmented to trade on. Using data and case studies from issuers and market makers in Aqua0’s beta, this talk shows where the inefficiencies come from, what they cost, and what it takes to fix them."
+      },
+      {
+        "id": "S33",
+        "day": "Fri 6 Nov",
+        "time": "12:30-13:00",
+        "title": "Building Trustless Systems, Together",
+        "format": "Talk",
+        "speakers": [
+          "Simona Serban"
+        ],
+        "description": "Exploring the tension between human trust and code-based trustlessness in Ethereum, this talk draws on experiences building the ETHCluj community to examine how open collaboration, accountability, and shared ownership can thrive in a rapidly evolving world shaped by AI, privacy, and security challenges."
+      },
+      {
+        "id": "S34",
+        "day": "Fri 6 Nov",
+        "time": "13:00-13:30",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S35",
+        "day": "Fri 6 Nov",
+        "time": "13:30-14:30",
+        "title": "EIP Process AMA",
+        "format": "AMA",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      },
+      {
+        "id": "S36",
+        "day": "Fri 6 Nov",
+        "time": "14:30-15:00",
+        "title": "EIP Signal Quiz Game - Enterprise & Adoption",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S37",
+        "day": "Fri 6 Nov",
+        "time": "15:00-15:30",
+        "title": "EIP Hub Wrap-Up",
+        "format": "Closing",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      }
+    ]
+  },
+  {
+    "hub": "India Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-09:30",
+        "title": "Day 1 Kickoff: Building India's Unstoppable Stack",
+        "format": "Welcome",
+        "speakers": [
+          "Rishikesh Kale"
+        ],
+        "description": "Welcome, hub orientation, and setting the theme for 4 days of co-building."
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "09:30-10:30",
+        "title": "Chai & Connect: Ecosystem Mixer",
+        "format": "Networking",
+        "speakers": [
+          "Rohit Shukla"
+        ],
+        "description": "Meet fellow builders, form teams, and get set up before the first workshop."
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "10:30-11:30",
+        "title": "Can't Be Taken Down: Building Censorship-Resistant Apps with Swarm",
+        "format": "Talk",
+        "speakers": [
+          "Alok"
+        ],
+        "topic": "Governance",
+        "description": "A hands-on look at how ETH Swarm enables decentralised storage and communication, and how to build apps that can’t be taken down."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "11:30-13:30",
+        "title": "Build Battle #1: Unbreakable Protocols Sprint",
+        "format": "Workshop",
+        "speakers": [
+          "Rampall"
+        ],
+        "description": "Today’s challenge goes live on the Loops House Platform. Build and submit, with special swag for the day’s top performer. The space is open to build at your own pace."
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "13:30-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "14:00-15:00",
+        "title": "Your Chain Is Unstoppable. Your RPC Isn't.",
+        "format": "Talk",
+        "speakers": [
+          "Ofir Eliasi"
+        ],
+        "topic": "Tooling",
+        "description": "DApp smart contracts are censorship-resistant, but reliance on centralized RPC gateways creates a single point of failure and control.\nLearn how to architect decentralized access layers and peer-to-peer RPC networks to ensure true end-to-end resilience for your applications."
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "15:00-17:00",
+        "title": "Code Meets Canvas: Generative Art & Open Build",
+        "format": "Networking",
+        "speakers": [
+          "Harsh Gupta"
+        ]
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "17:00-17:30",
+        "title": "Day 1 Wrap: Battle Winners & Swag Drop",
+        "format": "Closing",
+        "speakers": [],
+        "description": "Announcing the day’s top builder and distributing swag."
+      },
+      {
+        "id": "S09",
+        "day": "Wed 4 Nov",
+        "time": "09:00-09:30",
+        "title": "Day 2 Kickoff: Open Source Everything",
+        "format": "Welcome",
+        "speakers": [
+          "Rishikesh Kale"
+        ]
+      },
+      {
+        "id": "S10",
+        "day": "Wed 4 Nov",
+        "time": "09:30-10:30",
+        "title": "Chai & Connect",
+        "format": "Networking",
+        "speakers": [],
+        "description": "Connect with builders and set up for the day."
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "10:30-11:30",
+        "title": "Ship It in the Open: Building Public Goods That Last",
+        "format": "Talk",
+        "speakers": [],
+        "description": "How to find, contribute to, and maintain open source projects, and why building in the open matters."
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "11:30-13:30",
+        "title": "Build Battle #2: Open Infra Sprint",
+        "format": "Workshop",
+        "speakers": [],
+        "description": "Today’s challenge goes live on the Loops House Platform. Build and submit, with special swag for the top performer."
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "13:30-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "14:00-15:00",
+        "title": "Proof of Magic: Live Magic Show",
+        "speakers": [
+          "0xMentalist"
+        ]
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "15:00-17:00",
+        "title": "Open Build: Hack, Ship, Repeat",
+        "speakers": [
+          "Harsh Gupta"
+        ],
+        "description": "Continue building and submit your entries."
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "17:00-17:30",
+        "title": "Day 2 Wrap: Battle Winners & Swag Drop",
+        "format": "Closing",
+        "speakers": [],
+        "description": "Announcing the day’s top builder and distributing swag."
+      },
+      {
+        "id": "S17",
+        "day": "Thu 5 Nov",
+        "time": "09:00-09:30",
+        "title": "Day 3 Kickoff: The Zero-Knowledge Frontier",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S18",
+        "day": "Thu 5 Nov",
+        "time": "09:30-10:30",
+        "title": "Chai & Connect",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S19",
+        "day": "Thu 5 Nov",
+        "time": "10:30-11:30",
+        "title": "Privacy by Default: Building Apps That Protect Users",
+        "format": "Talk",
+        "speakers": [
+          "Viraj"
+        ],
+        "description": "Walk through privacy-preserving tools and techniques for protecting user data in the apps you build."
+      },
+      {
+        "id": "S20",
+        "day": "Thu 5 Nov",
+        "time": "11:30-13:30",
+        "title": "Build Battle #3: Prove It, Don't Reveal It (ZK Sprint)",
+        "format": "Workshop",
+        "speakers": [
+          "Viraj"
+        ],
+        "description": "Today’s challenge goes live on the Loops House Platform. Build and submit, with special swag for the top performer."
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "13:30-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "14:00-15:00",
+        "title": "Privacy & ZK Roundtable with Viraj",
+        "format": "Roundtable",
+        "speakers": []
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "15:00-17:00",
+        "title": "Open Build: Hack, Ship, Repeat",
+        "format": "Networking",
+        "speakers": [
+          "Harsh Gupta"
+        ]
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "17:00-17:30",
+        "title": "Day 3 Wrap: Battle Winners & Swag Drop",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S25",
+        "day": "Fri 6 Nov",
+        "time": "09:00-09:30",
+        "title": "Day 4 Kickoff: Break It Before They Do",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S26",
+        "day": "Fri 6 Nov",
+        "time": "09:30-10:30",
+        "title": "Chai & Connect",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S27",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:30",
+        "title": "Learn about Web3 Security in Practice",
+        "format": "Talk",
+        "speakers": [
+          "Piyush"
+        ],
+        "description": "Common vulnerabilities, secure coding practices, and how to audit and harden your projects."
+      },
+      {
+        "id": "S28",
+        "day": "Fri 6 Nov",
+        "time": "11:30-13:30",
+        "title": "Build Battle #4: Hack & Harden Sprint",
+        "format": "Workshop",
+        "speakers": [
+          "Piyush"
+        ],
+        "description": "Today’s challenge goes live on the Loops House Platform. Build and submit, with special swag for the top performer."
+      },
+      {
+        "id": "S29",
+        "day": "Fri 6 Nov",
+        "time": "13:30-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S30",
+        "day": "Fri 6 Nov",
+        "time": "14:00-15:00",
+        "title": "Security Roundtable: Careers, Hacks & Hard Lessons",
+        "format": "Roundtable",
+        "speakers": [],
+        "description": "Open discussion on security careers, real-world incidents, and best practices."
+      },
+      {
+        "id": "S31",
+        "day": "Fri 6 Nov",
+        "time": "15:00-17:00",
+        "title": "Open Build: The Final Push",
+        "format": "Networking",
+        "speakers": [
+          "Harsh Gupta"
+        ],
+        "description": "Continue building and submit your entries."
+      },
+      {
+        "id": "S32",
+        "day": "Fri 6 Nov",
+        "time": "17:00-17:30",
+        "title": "Grand Finale: Champions, Swag & Farewell",
+        "format": "Closing",
+        "speakers": [],
+        "description": "Announcing the day’s top builder and distributing swag."
+      }
+    ]
+  },
+  {
+    "hub": "Legal & Governance Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-12:00",
+        "title": "Doors Open: Chai & Networking",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "12:00-12:40",
+        "title": "Token Rights 101 (EN)",
+        "format": "Welcome",
+        "speakers": [
+          "Pree",
+          "Team Kleros",
+          "Sam"
+        ],
+        "topic": "Intro",
+        "description": "Every token makes a claim: ownership, access, a share of cashflow, a vote. This session sets the shared vocabulary for the whole hub. It covers the main rights a token can carry, the mechanisms that create or dilute them (vesting, emissions, vote-escrow, delegation), who can change the rules (admin keys, upgrades), and how rights differ for RWAs & NFTs."
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "12:50-13:30",
+        "title": "Token Rights 101 (Local Language: Hindi)",
+        "format": "Welcome",
+        "speakers": [
+          "Balaji Pachai"
+        ],
+        "topic": "Intro",
+        "description": "Same session as Token Rights 101 (EN), delivered in Hindi."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "13:30-14:40",
+        "title": "LUNCH",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "14:40-15:00",
+        "title": "Networking",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "15:00-16:00",
+        "title": "Designing Valuable Tokens",
+        "format": "Talk",
+        "speakers": [
+          "Nate"
+        ],
+        "topic": "Community",
+        "description": "participants designing a protocol with our framework in real time and asking questions/sharing afterward"
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "Nobody Votes. Can Better Deliberation Fix It?",
+        "format": "Talk",
+        "speakers": [
+          "Yuting Jiang"
+        ],
+        "topic": "Tooling",
+        "description": "Most token holders skip the vote because it costs more time & attention than it returns. Civic tech has been working on the same problem in cities and citizen assemblies, using deliberation tools that find where people agree before anything goes to a vote. This session looks at how those tools work, what they have changed in public decision-making, and what DAOs can borrow from them."
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Optimistic Governance: From Vote to Veto",
+        "format": "Demo",
+        "speakers": [
+          "Hugo Oliveira"
+        ],
+        "topic": "Governance",
+        "description": "In optimistic governance, a proposal passes by default unless holders object within a set window. The holder’s right shifts from voting yes or no to blocking what they disagree with. That lowers the turnout problem, but it raises new questions: who is watching when nobody votes, how high should the veto bar be, and what stops a team from passing things quietly? This session covers how the model works, where it is already in use, and what holders give up and gain when silence counts as consent."
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "18:00-18:10",
+        "title": "Closing",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S10",
+        "day": "Thu 5 Nov",
+        "time": "09:00-09:40",
+        "title": "Doors Open: Coffee and Networking",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S11",
+        "day": "Thu 5 Nov",
+        "time": "09:40-10:00",
+        "title": "Welcome and Opening: Legal and Governance Hub Day",
+        "format": "Welcome",
+        "speakers": [
+          "Kleros"
+        ],
+        "description": "Kleros welcomes the room, sets out the three tracks of the day (Agents, Authority and Governance / Applied Governance / Building the Rails) and walks through the agenda."
+      },
+      {
+        "id": "S12",
+        "day": "Thu 5 Nov",
+        "time": "10:00-11:00",
+        "title": "From ODR to AI-Assisted Dispute Resolution - The Future of Arbitration and Mediation",
+        "format": "Talk",
+        "speakers": [
+          "Saravanan Dhandapani"
+        ],
+        "description": "The evolution of online dispute resolution, the growing role of artificial intelligence in arbitration and mediation, and the importance of maintaining fairness, due process and human judgment while adopting new technologies."
+      },
+      {
+        "id": "S13",
+        "day": "Thu 5 Nov",
+        "time": "11:00-12:30",
+        "title": "Dispute Resolution for AI Agents",
+        "format": "Talk",
+        "speakers": [
+          "Facundo Trotz"
+        ],
+        "description": "AI agents are starting to negotiate, buy, sell and sign agreements for people and businesses. So what happens when a deal between two agents goes wrong? Courts and traditional arbitration are too slow and expensive for machine-speed transactions that cross borders, and they weren’t built for disputes where no person made the decision. This talk looks at how decentralised dispute resolution can act as a trust layer for the agent economy. It covers:\n- New kinds of disputes: agents misreading instructions, failing to deliver, or acting beyond their mandate\n- Why agent commerce needs fast, low-cost and enforceable dispute resolution, built into the transaction from the start\n- How on-chain arbitration such as Kleros can resolve agent-to-agent and agent-to-human disputes, with humans still in the loop\n- Open questions on accountability, evidence and due process when the parties are autonomous systems"
+      },
+      {
+        "id": "S14",
+        "day": "Thu 5 Nov",
+        "time": "12:30-13:30",
+        "title": "LUNCH",
+        "format": "Break",
+        "speakers": [],
+        "description": "Lunch and open networking."
+      },
+      {
+        "id": "S15",
+        "day": "Thu 5 Nov",
+        "time": "13:30-15:00",
+        "title": "From Pilot to Practice: Lessons From Decentralised Justice in Junin",
+        "format": "Talk",
+        "speakers": [
+          "Lucia Bocalandro",
+          "Federico Ast",
+          "Facundo Trotz"
+        ],
+        "description": "Can blockchain-based arbitration handle real-world disputes where public institutions are involved? This session looks at what happens when decentralised dispute resolution moves from theory into practice with governments and institutions. Using the Junin (Argentina) pilot as a case study, we'll cover:\n- How cases are scoped, and which disputes suit on-chain resolution\n- What changed in process as the pilot moved from design to live cases\n- Lessons on legitimacy, transparency and trust between public bodies and decentralised systems\n- Open challenges and what comes next for the wider field"
+      },
+      {
+        "id": "S16",
+        "day": "Thu 5 Nov",
+        "time": "15:00-16:00",
+        "title": "Legal and Governance Hub x Agentic Hub Collab: Agents, Authority and Governance",
+        "format": "Talk",
+        "speakers": [
+          "Fortunato",
+          "Facundo",
+          "JB",
+          "Agentic Hub"
+        ],
+        "description": "Speakers: Fortunato (Kleros), Facundo (Kleros), JB (Kleros)"
+      },
+      {
+        "id": "S17",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:00",
+        "title": "AI-Art’s Copyright Disputes",
+        "format": "Talk",
+        "speakers": [
+          "Parul Anand"
+        ],
+        "description": "This research explores how generative AI models (such as Midjourney, Stability AI, and DALL-E 2) have brought a new wave of intellectual property rights (IPR) disputes to the forefront, categorised primarily into input infringement (unauthorised web-scraping and training on copyrighted artwork) and output infringement (producing content substantially similar to an artist's protected expression). The paper evaluates the insufficiencies of current legal routes (such as expensive and protracted class-action lawsuits) and non-legal tools (like Glaze, Nightshade, and robots.txt files). It then proposes a forward-looking AI Art IPR Dispute Resolution Model in Kleros, integrating decentralised blockchain-based arbitration with Digital Rights Management (DRM) systems."
+      },
+      {
+        "id": "S18",
+        "day": "Thu 5 Nov",
+        "time": "17:00-18:00",
+        "title": "Closing",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S19",
+        "day": "Fri 6 Nov",
+        "time": "12:00-13:00",
+        "title": "Who Holds the Keys? Admin Powers, Upgrades & Treasury Drains",
+        "format": "Workshop",
+        "speakers": [
+          "Balaji Pachai"
+        ],
+        "description": "A vote or token balance means little if someone else can pause transfers, upgrade the code, mint new tokens or blacklist wallets. This workshop maps who holds each of those powers, what it can change for holders, and what limits it: multisigs, timelocks, expiry and disclosure. We walk through recent treasury drains, where the failure was usually compromised keys & signers rather than broken code. You leave with good practices for teams and a checklist for holders."
+      }
+    ]
+  },
+  {
+    "hub": "Onchain Art Hub",
+    "changedAt": "2026-10-20T15:49:43.397Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-11:00",
+        "title": "Hub not available",
+        "speakers": []
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "Opening - Meeting Point",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "14:00-15:00",
+        "title": "Devcon Artists Cohort",
+        "format": "Roundtable",
+        "speakers": [
+          "Tomo Saito"
+        ]
+      },
+      {
+        "id": "S05",
+        "day": "Wed 4 Nov",
+        "time": "14:00-16:00",
+        "title": "Patio Station x Onchain Art Hub @ Devcon",
+        "format": "Demo",
+        "speakers": [
+          "Victor"
+        ],
+        "description": "Patio is an experimental, open-source radio that uses the Ethereum and Polygon mempool to stream music without relying on traditional streaming servers.\n\nVictor: https://x.com/victorxva"
+      }
+    ]
+  },
+  {
+    "hub": "Open Source Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:30-11:00",
+        "title": "Community Greet and Chat",
+        "format": "Welcome",
+        "speakers": [
+          "Open Source Hub Team"
+        ]
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "11:00-11:20",
+        "title": "How I survive as a web3 community builder?",
+        "format": "Talk",
+        "speakers": [
+          "Nicole Nguyen"
+        ],
+        "description": "Combination of lighting talk on key survival strategies throughout my 7 year community builder journey across APAC and AMA for prospective builders to curate their own journey"
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "11:30-12:00",
+        "title": "Lightning Talks: 1) Free Pizza Is Not a Community Strategy: What Actually Makes Developers Come Back (Kailash Sharma), 2) Campus to Global: The Power of Student-Led Communities (Verushka Fernandes), 3) Fork it Till You Make it: A Mindset for Your First Open Source Contribution (Soumyadip Chowdhury) 4) Execution Got Cheap. Judgment Didn't (Pragya Bhardwaj)",
+        "format": "Talk",
+        "speakers": [
+          "Kailash Sharma",
+          "Verushka Fernandes",
+          "Soumyadip Chowdhury",
+          "Pragya Bhardwaj"
+        ],
+        "description": "Multiple lightning talks"
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "Workshop: ERC-8009 Discussion & Demo",
+        "format": "Workshop",
+        "speakers": [
+          "Daniel Nagy"
+        ],
+        "topic": "Intro",
+        "description": "ERC-8009 will be demonstrated during the workshop, using real Ledger and Trezor devices. ERC-8009 fixes blind signing, the biggest current web3 security challenge."
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "14:00-15:00",
+        "title": "Lightning Talks: 1) Building an Autonomous AI Security Triager: From LLM to 20,000+ Real Reports (Oleksandr Horlan) 2) AI Can Write the Patch — Can You Get It Merged? (Rachit) 3) Weeks instead of Years: Creating the Loungemesh Hallway Video Platform (Saksham Sirohi), 4) Eventyay: How we are building the event platform that is beating them all with the power of community and AI (Srivatsav Auswin) 5) Voxbento: When 2 Seconds Matter — Building Real-Time AI Captions and Live Interpretations (Arnav Angarkar)",
+        "format": "Talk",
+        "speakers": [
+          "Oleksandr Horlan",
+          "Rachit",
+          "Saksham Sirohi",
+          "Srivatsav Auswin",
+          "Arnav Angarka"
+        ],
+        "description": "Multiple lightning talks"
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "15:00-16:00",
+        "title": "Workshop: Set up Eventyay: Docker Up, PR Out - Get Ready for Your First Contribution to a Real Django + Vue Platform Used by Thousands",
+        "format": "Workshop",
+        "speakers": [
+          "Srivatsav Auswin",
+          "Arnav Angarkar",
+          "Saksham Sirohi",
+          "Rachit"
+        ],
+        "description": "Most first-time contributors never get past setup. In this hands-on workshop, you'll set up Eventyay, FOSSASIA's open source event platform, using Docker Compose. Explore a real Django + Vue codebase, understand its services and logs, and fix a small issue prepared for the workshop. Learn to create a branch, test your changes, and prepare your first pull request. Leave with a working development environment and a workflow you can reuse.\n\nBring: A laptop with Docker and Git installed, plus a GitHub account."
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "CROPS Daily Quizzes",
+        "format": "Other",
+        "speakers": [
+          "Shankar Warang"
+        ],
+        "description": "To drive continuous, high-energy engagement at the Devcon 8 Mumbai Open Source Hub, this proposal introduces a daily interactive quiz activation hosted on the battle-tested Road to Devcon Quest platform. Across all four days of Devcon, attendees will participate in daily 10-minute onchain quiz sessions featuring curated questions on open-source history, Ethereum protocol architecture, technical best practices, and the core CROPS principles (Censorship Resistance, Resistance to Capture, Open Source, Privacy, and Security).\n\nDesigned as a low-friction entry point for both seasoned maintainers and newcomer developers, the activation transforms passive foot traffic into active community participation. Live daily and aggregated leaderboards displayed on the Hub screen will foster friendly competition, spark technical discussions around the answers, and seamlessly funnel participants toward the Hub’s hands-on mentoring stations and first-issue contribution tracks."
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Social Hour: Networking",
+        "format": "Networking",
+        "speakers": [
+          "Open Source Community"
+        ]
+      },
+      {
+        "id": "S09",
+        "day": "Wed 4 Nov",
+        "time": "09:30-11:00",
+        "title": "Community Greet and Chat",
+        "format": "Welcome",
+        "speakers": [
+          "Open Source Hub Team"
+        ]
+      },
+      {
+        "id": "S10",
+        "day": "Wed 4 Nov",
+        "time": "11:00-11:15",
+        "title": "Developing Hackathon-Winning Projects by a 16x Hackathon Winner",
+        "format": "Talk",
+        "speakers": [
+          "Hetvi Siddharth Solanki"
+        ]
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "11:15-11:30",
+        "title": "Why Wall Street Needs Open Source: How Financial Institutions Build Shared Infrastructure",
+        "format": "Talk",
+        "speakers": [
+          "Advait Rane"
+        ],
+        "description": "Financial institutions compete on products, services, and strategy, yet many face common technological challenges. From financial data modelling to application interoperability, institutions frequently develop solutions to similar problems independently, creating duplicated effort and fragmented infrastructure.\n\nOpen-source software and shared standards offer an alternative: enabling organisations to collaborate on common technological foundations while retaining control over their proprietary systems, data, and commercial decisions. However, making this collaboration work requires more than publishing code. It involves aligning incentives, establishing governance, maintaining shared infrastructure, and building trust between organisations with different priorities.\n\nThis talk examines how open-source collaboration operates within the financial services industry through three initiatives:\n\nFINOS Legend: A data-modelling platform originally developed at Goldman Sachs and subsequently contributed to the open-source ecosystem.\n\nFDC3: An open standard designed to enable interoperability between financial desktop applications.\n\nISDA Common Domain Model (CDM): A standardised, machine-readable and machine-executable model for representing financial products and their lifecycle events.\n\nTogether, these examples illustrate different approaches to collaborative infrastructure, from shared development tools and application interfaces to common representations of financial transactions. The talk will examine the problems these initiatives address, the evidence of their adoption, and the organisational and technical challenges involved in sustaining them.\n\nThe discussion will then connect these experiences to Web3, where open-source software underpins protocols, developer tools, and shared infrastructure. Although the technologies and incentives differ, questions around maintenance, security, governance, and long-term funding remain relevant across both ecosystems.\n\nThe central takeaway is a framework for identifying which parts of a technology stack benefit from collaborative development, how organisations can participate without sacrificing their competitive advantages, and what makes shared infrastructure sustainable over time."
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "11:30-12:00",
+        "title": "Lightning Talks 1) AI triager - open source tool to validate security issue (Dmytro Matviiv) 2) Open Source Zero-Knowledge Tooling (Jatin Sahijwani) 3) Building Open-Source AI Agents: From LLMs to Reliable Systems (Rahul Chaube)",
+        "format": "Talk",
+        "speakers": [
+          "Dmytro Matviiv",
+          "Jatin Sahijwani",
+          "Rahul Chaube"
+        ]
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "12:00-13:00",
+        "title": "Workshop: Let the Agent Cook: Teach Your AI Agent to Contribute",
+        "format": "Workshop",
+        "speakers": [
+          "Arnav Angarkar"
+        ],
+        "topic": "Tooling",
+        "description": "From AGENTS.md and agent skills to real pull requests: learn how to guide AI coding agents through open-source and Web3 development."
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
+        "title": "Open Hardware Demos: Badge Magic, ePaper and Pocket Science Lab",
+        "format": "Demo",
+        "speakers": [
+          "Dhruv Rastogi"
+        ],
+        "description": "Program LED name badges with the Badge Magic app, customize ePaper badges, and run experiments with Pocket Science Lab, a pocket-sized open source lab for science and electronics. Drop by, try the devices and learn how to contribute."
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "14:00-15:00",
+        "title": "Lightning Talks: 1) Teams, Shifts and Certificates, All in One Place: Open Source Volunteer and Shift Management (Mukund), 2) From Event Data to Social Campaigns: Automating Event Promotion with Eventyay (Saalim Aqueel), 3) Automating Conference Video Post-Production with VEditor (Om Vanwari), 4) Your Standup, Written by Your Commits: Scrum Helper for Open Source Contributors (Vedansh Sani), 5) 92 PRs, 1,500 Tests, No Broken APIs: Rebuilding Visdom AI Visualizations in Five Layers (Manik Khajuria), 6) From Experiments to Publications: A Reproducibility Suite for Visdom (Rajnish Tiwari), 7) Zero-Boilerplate Dashboards: Live Autologging for Keras and PyTorch with Visdom (Jayant Parashar)",
+        "format": "Talk",
+        "speakers": [
+          "Mukund",
+          "Saalim Aqueel",
+          "Om Vanwari",
+          "Vedansh Sani",
+          "Manik Khajuria",
+          "Rajnish Tiwari",
+          "Jayant Parashar"
+        ]
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "15:00-16:00",
+        "title": "Workshop: How to use Visdom to Visualize Ethereum and Blockchain Data",
+        "format": "Workshop",
+        "speakers": [
+          "Norbert Preining",
+          "Jayant Parashar",
+          "Manik Khajuria",
+          "Rajnish Tiwari",
+          "Vedansh Saini"
+        ],
+        "topic": "Tooling",
+        "description": "Ethereum produces a new block roughly every 12 seconds. In this hands-on workshop, use Visdom and Web3.py to build a live dashboard visualizing blockchain data, including transaction fees, transactions per block, transaction types, and ETH transfers. Learn to save dashboard layouts and explore applications in DeFi, NFTs, node monitoring, and anomaly detection. No blockchain experience required; basic Python is enough.\n\nBring: A laptop with Python 3 and a free Ethereum RPC endpoint."
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "16:00-17:00",
+        "title": "CROPS Daily Quizzes",
+        "format": "Other",
+        "speakers": [
+          "Shankar Warang"
+        ],
+        "description": "To drive continuous, high-energy engagement at the Devcon 8 Mumbai Open Source Hub, this proposal introduces a daily interactive quiz activation hosted on the battle-tested Road to Devcon Quest platform. Across all four days of Devcon, attendees will participate in daily 10-minute onchain quiz sessions featuring curated questions on open-source history, Ethereum protocol architecture, technical best practices, and the core CROPS principles (Censorship Resistance, Resistance to Capture, Open Source, Privacy, and Security).\n\nDesigned as a low-friction entry point for both seasoned maintainers and newcomer developers, the activation transforms passive foot traffic into active community participation. Live daily and aggregated leaderboards displayed on the Hub screen will foster friendly competition, spark technical discussions around the answers, and seamlessly funnel participants toward the Hub’s hands-on mentoring stations and first-issue contribution tracks."
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "Social Hour: Networking",
+        "format": "Networking",
+        "speakers": [
+          "Open Source Contributors"
+        ]
+      },
+      {
+        "id": "S19",
+        "day": "Thu 5 Nov",
+        "time": "09:30-10:30",
+        "title": "Community Greet and Chat",
+        "format": "Welcome",
+        "speakers": [
+          "Open Source Hub Team"
+        ]
+      },
+      {
+        "id": "S20",
+        "day": "Thu 5 Nov",
+        "time": "11:00-11:15",
+        "title": "Making Open Source Funding Easier to Find",
+        "format": "Talk",
+        "speakers": [
+          "Thomas Humphreys"
+        ]
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "11:15-11:30",
+        "title": "Cutting edge coding agents Making",
+        "format": "Talk",
+        "speakers": [
+          "Harpalsinh Jadeja"
+        ]
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "11:30-12:30",
+        "title": "Workshop: Assume the AI Is Compromised: Build and Break an Ethereum Treasury",
+        "format": "Workshop",
+        "speakers": [
+          "Dev Birendra Kanojiya"
+        ],
+        "topic": "Intro",
+        "description": "What remains protected when an AI agent's instructions and its execution key can no longer be trusted?\n\nIn this 45-minute hands-on workshop, we will build and attack an Ethereum bounty treasury using entirely open-source components. A locally running model will read repository content and propose contributor payments. Participants will explore a poisoned README, then bypass the model and submit transactions using a disposable agent key with deliberately limited authority.\n\nWorking from a prepared starter project, participants will compare a vulnerable treasury with a restricted version and complete three protections: enforce approved recipients and payment amounts, prevent duplicate claims, and respect a treasury budget. We will replay the same attack cases against both versions, inspect the resulting balance changes, and complete a legitimate contributor payment.\n\nThe central question is practical: which payment rules can the contract enforce even when the agent behaves maliciously? Human maintainers will remain responsible for approving contributions and bounty terms.\n\nAll exercises will use a local Ethereum development chain and demonstration funds. The reference model will be replaceable, and prepared action traces will keep the exercises reproducible without depending on a successful live prompt injection. No paid model API or real cryptocurrency will be required.\n\nParticipants should bring a laptop and be comfortable with basic programming. A short introduction will cover the Ethereum concepts used in the lab; no prior AI-agent experience is required.\n\nThe planned community output is Compromised Maintainer Lab: an open-source starter project, vulnerable and restricted contracts, attack cases, and replay instructions. Attendees will leave with a working experiment they can inspect, extend, and contribute to."
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "14:00-15:00",
+        "title": "Open Mic: Open Source Demos and Shout-Outs",
+        "format": "Talk",
+        "speakers": [
+          "Open Source Contributors"
+        ]
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "15:00-16:00",
+        "title": "Workshop: Your wallet's reads leak: measure it, then close it",
+        "format": "Workshop",
+        "speakers": [
+          "Jayendra Madaram"
+        ],
+        "description": "Your wallet's reads tell an RPC provider what you hold and where you are. Capture it, measure it, then close it with open tools: EF's anon-rpc standard and PIR. Hands-on; bring a laptop."
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:00",
+        "title": "CROPS Daily Quizzes",
+        "format": "Other",
+        "speakers": [
+          "Shankar Warang"
+        ],
+        "description": "To drive continuous, high-energy engagement at the Devcon 8 Mumbai Open Source Hub, this proposal introduces a daily interactive quiz activation hosted on the battle-tested Road to Devcon Quest platform. Across all four days of Devcon, attendees will participate in daily 10-minute onchain quiz sessions featuring curated questions on open-source history, Ethereum protocol architecture, technical best practices, and the core CROPS principles (Censorship Resistance, Resistance to Capture, Open Source, Privacy, and Security).\n\nDesigned as a low-friction entry point for both seasoned maintainers and newcomer developers, the activation transforms passive foot traffic into active community participation. Live daily and aggregated leaderboards displayed on the Hub screen will foster friendly competition, spark technical discussions around the answers, and seamlessly funnel participants toward the Hub’s hands-on mentoring stations and first-issue contribution tracks."
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "17:00-18:00",
+        "title": "Social Hour: Networking",
+        "format": "Networking",
+        "speakers": [
+          "Open Source Community"
+        ]
+      },
+      {
+        "id": "S27",
+        "day": "Fri 6 Nov",
+        "time": "10:00-11:00",
+        "title": "Community Greet and Chat",
+        "speakers": [
+          "Open Source Hub Team"
+        ]
+      },
+      {
+        "id": "S28",
+        "day": "Fri 6 Nov",
+        "time": "11:00-12:00",
+        "title": "CROPS Daily Quizzes",
+        "format": "Other",
+        "speakers": [
+          "Shankar Warang"
+        ],
+        "description": "To drive continuous, high-energy engagement at the Devcon 8 Mumbai Open Source Hub, this proposal introduces a daily interactive quiz activation hosted on the battle-tested Road to Devcon Quest platform. Across all four days of Devcon, attendees will participate in daily 10-minute onchain quiz sessions featuring curated questions on open-source history, Ethereum protocol architecture, technical best practices, and the core CROPS principles (Censorship Resistance, Resistance to Capture, Open Source, Privacy, and Security).\n\nDesigned as a low-friction entry point for both seasoned maintainers and newcomer developers, the activation transforms passive foot traffic into active community participation. Live daily and aggregated leaderboards displayed on the Hub screen will foster friendly competition, spark technical discussions around the answers, and seamlessly funnel participants toward the Hub’s hands-on mentoring stations and first-issue contribution tracks."
+      },
+      {
+        "id": "S29",
+        "day": "Fri 6 Nov",
+        "time": "12:00-12:30",
+        "title": "What FOSSASIA Maintainers Wish Contributors Knew: Ask Us Anything",
+        "format": "AMA",
+        "speakers": [
+          "Mario Behling",
+          "Norbert Preining",
+          "Srivatsav Auswin"
+        ],
+        "description": "Bring your questions to the people who build and maintain FOSSASIA's open source projects. In this open session, FOSSASIA maintainers and GSoC mentors answer anything from the audience: how to make your first contribution, what maintainers look for in a pull request, how projects like Eventyay, Voxbento, Visdom, PSLab, Badge Magic are run day to day, and how you can get involved in FOSSASIA CodeHeat, Google Summer of Code and other programs."
+      },
+      {
+        "id": "S30",
+        "day": "Fri 6 Nov",
+        "time": "12:30-13:30",
+        "title": "Open Mic: Open Source Demos and Shout-Outs",
+        "format": "Demo",
+        "speakers": [
+          "Open Source Contributors"
+        ]
+      },
+      {
+        "id": "S31",
+        "day": "Fri 6 Nov",
+        "time": "13:30-14:30",
+        "title": "Workshop: One-Click LLM Deployment on Kubernetes: Hands-On with OpenEverest and KServe",
+        "format": "Workshop",
+        "speakers": [
+          "Atharva Mhaske"
+        ],
+        "description": "Deploying an LLM on Kubernetes by hand is toil. This workshop flips that. Apply one OpenEverest Instance. provider-kserve turns it into a KServe model server with an OpenAI API."
+      },
+      {
+        "id": "S32",
+        "day": "Fri 6 Nov",
+        "time": "14:30-15:30",
+        "title": "Social Hour: Demos & Networking",
+        "speakers": []
+      }
+    ]
+  },
+  {
+    "hub": "P2P Networking Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-10:00",
+        "title": "Welcome, open hours and coffee",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "10:00-10:30",
+        "title": "Intro to P2P, Ethereum’s stack and day theme",
+        "format": "Talk",
+        "speakers": [
+          "Yiannis Psarras"
+        ],
+        "topic": "Intro",
+        "description": "Speaker: Yiannis Psarras (ProbeLab)"
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "10:30-11:10",
+        "title": "Decentralization: ChainScope visualisation",
+        "format": "Talk",
+        "speakers": [
+          "Csaba Kiraly"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Csaba Kiraly (EF)"
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "11:10-11:50",
+        "title": "Mempool: current posture, research directions, PQ aggregation",
+        "format": "Talk",
+        "speakers": [
+          "Csaba Kiraly"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Csaba Kiraly (EF)"
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "11:50-12:30",
+        "title": "FOCIL intro",
+        "format": "Talk",
+        "speakers": [
+          "Csaba Kiraly"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Csaba Kiraly (EF)"
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "12:30-13:30",
+        "title": "Lunch and open space",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "13:30-14:30",
+        "title": "MigaLabs metrics dashboards",
+        "format": "Talk",
+        "speakers": [
+          "Leo"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Leo (MigaLabs)"
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "14:30-16:00",
+        "title": "ProbeLab Sonar and view of the state of the network through monitoring tools",
+        "format": "Demo",
+        "speakers": [
+          "Mikel Cortes"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Mikel Cortes (ProbeLab)"
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "TBC - FOCIL roundtable",
+        "format": "Roundtable",
+        "speakers": [
+          "Csaba Kiraly"
+        ],
+        "topic": "Governance",
+        "description": "Speaker: Csaba Kiraly (EF)"
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Open hacking and daily closing",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "09:00-10:00",
+        "title": "Welcome, open hours and coffee",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "10:00-11:00",
+        "title": "Proving Ethereum in 12 seconds: what a distributed GPU cluster needs from the network",
+        "format": "Talk",
+        "speakers": [
+          "Chetany Bhardwaj"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Chetany Bhardwaj (Sigma Prime)"
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "11:00-12:30",
+        "title": "PQ, zk and PQDS: what's the impact on P2P",
+        "format": "Talk",
+        "speakers": [
+          "Kamil Salakhiev"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Kamil Salakhiev (EF)"
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "12:30-13:30",
+        "title": "Lunch and open space",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "13:30-14:40",
+        "title": "Big Blocks, Quick Slots, Fast Diffusion",
+        "format": "Talk",
+        "speakers": [
+          "Csaba Kiraly"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Csaba Kiraly (EF)"
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "14:40-16:00",
+        "title": "Waggle: hands-on message broadcasting",
+        "format": "Workshop",
+        "speakers": [
+          "Daniel Knopik"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Daniel Knopik (Sigma Prime)"
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "16:00-17:00",
+        "title": "What do you send a peer when the pieces are coded?",
+        "format": "Talk",
+        "speakers": [
+          "Har Preet Singh"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Har Preet Singh (Optimum)"
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "Open hacking and daily closing",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S19",
+        "day": "Thu 5 Nov",
+        "time": "09:00-10:00",
+        "title": "Welcome, open hours and coffee",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S20",
+        "day": "Thu 5 Nov",
+        "time": "10:00-10:50",
+        "title": "Private transport for any app using HOPR",
+        "format": "Talk",
+        "speakers": [
+          "Sebastian Bürgel"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Sebastian Bürgel (HOPR)"
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "10:50-11:00",
+        "title": "Break and headsets",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "11:00-11:50",
+        "title": "Protocol for Incentivization of eXits (PIX): paying a remote peer while revealing as little as possible",
+        "format": "Talk",
+        "speakers": [
+          "Sebastian Bürgel",
+          "Lazar Travica"
+        ],
+        "topic": "Research",
+        "description": "Speakers: Sebastian Bürgel, Lazar Travica (HOPR)"
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "11:50-12:30",
+        "title": "Open space and Q&A with the HOPR team",
+        "format": "AMA",
+        "speakers": [
+          "Sebastian Bürgel",
+          "Lazar Travica"
+        ],
+        "topic": "Community",
+        "description": "Speakers: Sebastian Bürgel, Lazar Travica (HOPR)"
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "12:30-13:30",
+        "title": "Lunch and open space",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "13:30-14:30",
+        "title": "Validators Privacy in Ethereum",
+        "format": "Talk",
+        "speakers": [
+          "Kamil Salakhiev",
+          "Yann"
+        ],
+        "topic": "Research",
+        "description": "Speakers: Kamil Salakhiev, Yann (EF)"
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "14:30-16:00",
+        "title": "Gnosis VPN hands-on workshop",
+        "format": "Workshop",
+        "speakers": [
+          "Sebastian Bürgel"
+        ],
+        "topic": "Tooling",
+        "description": "Speaker: Sebastian Bürgel (HOPR)"
+      },
+      {
+        "id": "S27",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:00",
+        "title": "Cross-community roundtable",
+        "format": "Roundtable",
+        "speakers": [
+          "Yiannis Psarras"
+        ],
+        "topic": "Community",
+        "description": "Speaker: Yiannis Psarras (ProbeLab)"
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "17:00-18:00",
+        "title": "Open hacking and daily closing",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S29",
+        "day": "Fri 6 Nov",
+        "time": "09:00-10:00",
+        "title": "Welcome, open hours and coffee",
+        "format": "Welcome",
+        "speakers": []
+      },
+      {
+        "id": "S30",
+        "day": "Fri 6 Nov",
+        "time": "10:00-11:00",
+        "title": "Intro to the day's theme",
+        "format": "Talk",
+        "speakers": [
+          "Yiannis Psarras"
+        ],
+        "topic": "Intro",
+        "description": "Speaker: Yiannis Psarras (ProbeLab)"
+      },
+      {
+        "id": "S31",
+        "day": "Fri 6 Nov",
+        "time": "11:00-12:30",
+        "title": "Gossipsub Improvement Proposals",
+        "format": "Talk",
+        "speakers": [
+          "Yiannis Psarras",
+          "Mikel Cortes",
+          "Sukun"
+        ]
+      },
+      {
+        "id": "S32",
+        "day": "Fri 6 Nov",
+        "time": "12:30-13:30",
+        "title": "Lunch and open space",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S33",
+        "day": "Fri 6 Nov",
+        "time": "13:30-15:00",
+        "title": "Roundtable on approaches to the future of Ethereum's networking",
+        "format": "Roundtable",
+        "speakers": [
+          "Yiannis Psarras"
+        ],
+        "topic": "Research",
+        "description": "Speaker: Yiannis Psarras (ProbeLab)"
+      },
+      {
+        "id": "S34",
+        "day": "Fri 6 Nov",
+        "time": "15:00-15:30",
+        "title": "Open problems roundtable and hub closing",
+        "format": "Closing",
+        "speakers": [
+          "Yiannis Psarras"
+        ],
+        "topic": "Community",
+        "description": "What have we learned over the past few days, and what have we heard about the challenges ahead? What steps are needed to keep performance, stability and resilience at the level they are today.\n\nSpeaker: Yiannis Psarras (ProbeLab)"
+      }
+    ]
+  },
+  {
+    "hub": "Prediction Markets Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": []
+  },
+  {
+    "hub": "Privacy Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "11:00-11:30",
+        "title": "TBC",
+        "format": "Talk",
+        "speakers": []
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "Privacy Bingo",
+        "format": "Networking",
+        "speakers": [
+          "Inaara Lakhani",
+          "Chandresh Jain"
+        ]
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "Can Privacy and Compliance Coexist?",
+        "format": "Fireside Chat",
+        "speakers": [
+          "Asha Shankar",
+          "Akashneelesh",
+          "Agnish",
+          "Sebastian Bürgel"
+        ]
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "14:00-14:30",
+        "title": "TBC",
+        "format": "Talk",
+        "speakers": []
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "14:40-15:20",
+        "title": "zkVMs and post quantum cryptography",
+        "format": "Fireside Chat",
+        "speakers": [
+          "Harsh Bajpai",
+          "Ayush Bhadauria"
+        ]
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "15:30-15:50",
+        "title": "The Need of Privacy in Real Life",
+        "format": "Talk",
+        "speakers": [
+          "Akhil Nanavati"
+        ]
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "16:00-16:20",
+        "title": "TBC",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "16:30-17:00",
+        "title": "Memeing Privacy into Existence",
+        "format": "Workshop",
+        "speakers": [
+          "Nate"
+        ]
+      },
+      {
+        "id": "S10",
+        "day": "Wed 4 Nov",
+        "time": "10:00-10:30",
+        "title": "Personal Privacy Hygiene",
+        "format": "Talk",
+        "speakers": [
+          "Devisha"
+        ]
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "10:40-11:00",
+        "title": "Making Ethereum Home for Institutions",
+        "format": "Talk",
+        "speakers": [
+          "Taem Park"
+        ]
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "11:10-11:40",
+        "title": "Mixnets Explained: Hiding in the Crowd When Everyone is Watching",
+        "format": "Demo",
+        "speakers": [
+          "Sebastian Bürgel"
+        ]
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "11:50-12:20",
+        "title": "TBC",
+        "format": "Talk",
+        "speakers": [
+          "Marina"
+        ]
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "12:30-13:00",
+        "title": "Guess The Stranger",
+        "format": "Other",
+        "speakers": [
+          "Devisha"
+        ]
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "14:00-14:30",
+        "title": "zkAPI: Anonymous Credits for the AI Era",
+        "format": "Talk",
+        "speakers": [
+          "Viraj Patva"
+        ]
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "14:40-15:10",
+        "title": "How to Overcome Limitations of Privacy Protocols Right Now",
+        "format": "Talk",
+        "speakers": [
+          "Arman Aurobindo"
+        ]
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "15:30-16:00",
+        "title": "Privacy Preserving Storage",
+        "format": "Talk",
+        "speakers": [
+          "Kelly Joo"
+        ]
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "16:30-17:00",
+        "title": "Securing Privacy Protocols",
+        "format": "Talk",
+        "speakers": [
+          "Vishal Singh"
+        ]
+      },
+      {
+        "id": "S20",
+        "day": "Thu 5 Nov",
+        "time": "10:00-10:30",
+        "title": "Privacy 101: What is Privacy and Why Should You Care",
+        "format": "Talk",
+        "speakers": [
+          "Ben Renshaw"
+        ],
+        "description": "Intro to privacy in the modern age."
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "10:40-11:30",
+        "title": "Achieving Privacy on Ethereum L1",
+        "format": "Other",
+        "speakers": [
+          "Mike",
+          "Kai",
+          "Gavin"
+        ],
+        "description": "Interactive panel with core privacy building protocols discussing the challenges of building privacy onchain."
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "11:40-12:10",
+        "title": "Keycard and Shell or Privacy UI/UX onchain talk (confirming availability)",
+        "format": "Talk",
+        "speakers": []
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "12:30-13:30",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "13:30-14:20",
+        "title": "Privacy L2s: Different Methodolgies to Achieve Privacy Onchain",
+        "format": "Other",
+        "speakers": [],
+        "description": "A panel filled with experts exploring the diverging trends in privacy centric L2s on Ethereum."
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "14:30-15:20",
+        "title": "Dark Bio: Utilising AI Agents to Analyze Genomic Data in a Privacy Preserving Manner",
+        "format": "Workshop",
+        "speakers": [
+          "Péter Szilágyi"
+        ]
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "15:30-15:50",
+        "title": "Kohaku: Open-Source Privacy Preserving Wallet",
+        "format": "Demo",
+        "speakers": [
+          "Nico Consigny"
+        ]
+      },
+      {
+        "id": "S27",
+        "day": "Thu 5 Nov",
+        "time": "16:00-16:20",
+        "title": "Privacy and Hardware Wallets in a Post-Quantum World",
+        "format": "Demo",
+        "speakers": [
+          "Markus Haas",
+          "Nicola Ceornea"
+        ],
+        "description": "Short demo and presentation on the challenges hardware wallet users face in preparing for Q-Day"
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "16:30-16:50",
+        "title": "De-Google Your Life, a Private Space for Online Collaboration",
+        "format": "Demo",
+        "speakers": [],
+        "description": "Showcasing Fileverse, a privacy preserving alternative to google docs for online collaboration."
+      },
+      {
+        "id": "S29",
+        "day": "Thu 5 Nov",
+        "time": "17:00-17:30",
+        "title": "Privacy x AI: Achieving privacy in the Age of LLMs",
+        "format": "Talk",
+        "speakers": [
+          "Kyle Den Hartog"
+        ],
+        "description": "Privacy tradeoffs when working with AI agents"
+      },
+      {
+        "id": "S30",
+        "day": "Fri 6 Nov",
+        "time": "10:00-10:20",
+        "title": "Designing for On-Chain Privacy Adoption",
+        "format": "Talk",
+        "speakers": [
+          "Dhananjay Mukerji"
+        ]
+      },
+      {
+        "id": "S31",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:10",
+        "title": "Verifying a Real, Qualified Human without Exposing Identity",
+        "format": "Roundtable",
+        "speakers": [
+          "Vibhuti",
+          "Kashvi",
+          "Harsh"
+        ]
+      },
+      {
+        "id": "S32",
+        "day": "Fri 6 Nov",
+        "time": "11:20-11:50",
+        "title": "Privacy in Day-to-Day Life",
+        "format": "Fishbowl",
+        "speakers": [
+          "Chandresh Jain"
+        ]
+      },
+      {
+        "id": "S33",
+        "day": "Fri 6 Nov",
+        "time": "12:00-13:00",
+        "title": "Lunch Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S34",
+        "day": "Fri 6 Nov",
+        "time": "13:00-13:40",
+        "title": "Vibecoding Consumer Apps with Built-In Privacy",
+        "format": "Workshop",
+        "speakers": [
+          "Radhika"
+        ]
+      },
+      {
+        "id": "S35",
+        "day": "Fri 6 Nov",
+        "time": "14:00-14:20",
+        "title": "Mixnets with Lightclients, a Match Made for Privacy",
+        "format": "Talk",
+        "speakers": [
+          "Shankar Warang"
+        ]
+      },
+      {
+        "id": "S36",
+        "day": "Fri 6 Nov",
+        "time": "14:30-15:00",
+        "title": "Privacy is the Only Thing You Can’t Add Later",
+        "format": "Talk",
+        "speakers": [
+          "Jatin Sahijwani"
+        ]
+      }
+    ]
+  },
+  {
+    "hub": "Resilient Networking Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-10:00",
+        "title": "Resilient Networks from Zero: peer identity, discovery, transports and secure connections",
+        "format": "Welcome",
+        "speakers": [
+          "Manu Sheel Gupta",
+          "Miglė Rakitaitė",
+          "Banri Yanahama",
+          "Shouki Tsuda",
+          "Steven Mih",
+          "Tomoki Adachi"
+        ],
+        "topic": "Intro",
+        "description": "Intro and Warm Welcome"
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "10:00-10:30",
+        "title": "Verifiable Actions in Open Systems",
+        "format": "Talk",
+        "speakers": [
+          "Steven Mih",
+          "Anurag",
+          "Manu"
+        ],
+        "topic": "Research",
+        "description": "Verifiable Actions in Open Systems: why independently verifiable evidence matters"
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "10:30-11:00",
+        "title": "When Many-to-Many Isn’t Mixing: privacy measurements and anonymity guarantees in shielded UTXO systems",
+        "format": "Talk",
+        "speakers": [
+          "Tomoki Adachi"
+        ],
+        "topic": "Research",
+        "description": "Examines how well many-to-many transactions actually hide users in shielded UTXO systems, with privacy measurements and the anonymity guarantees they support."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "11:00-11:30",
+        "title": "Functional languages in p2p and Protocol Implementation: implementation choices and interoperability across P2P stacks",
+        "format": "Talk",
+        "speakers": [
+          "Shouki Tsuda"
+        ],
+        "topic": "Tooling",
+        "description": "Looks at how functional programming languages shape P2P protocol implementations, and what that means for interoperability across different P2P stacks."
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "11:30-12:00",
+        "title": "Maintainer Meet-up and Network Lab 101:project introductions",
+        "format": "AMA",
+        "speakers": [
+          "Daniel Thompson",
+          "Shouki Tsuda",
+          "Sumanjeet",
+          "Soham Bhoir",
+          "Yash Saini"
+        ],
+        "topic": "Community",
+        "description": "Open Q&A with maintainers who introduce their projects and answer questions, as a first look at the Network Lab."
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "12:00-13:00",
+        "title": "What Makes a Network Resilient? Research discussion on connectivity, trust, failure and recovery",
+        "format": "Roundtable",
+        "speakers": [
+          "Miglė Rakitaitė",
+          "Manu Sheel Gupta",
+          "Banri Yanahama",
+          "Steven Mih",
+          "Tomoki Adachi",
+          "Thomas Humphreys"
+        ],
+        "topic": "Governance",
+        "description": "A research discussion on what makes a network resilient, covering connectivity, trust, failure and recovery.\n\nSpeaker: Miglė Rakitaitė (Swarm leadership)"
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "14:00-15:00",
+        "title": "Workshop: Formal Verification for Decentralized Systems: practical approaches to reasoning about protocol correctness",
+        "format": "Workshop",
+        "speakers": [
+          "Banri Yanahama",
+          "Ryosuke Kaga"
+        ],
+        "topic": "Tooling",
+        "description": "A hands-on workshop on practical approaches to formal verification, and how to reason about the correctness of decentralized protocols."
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "15:00-16:00",
+        "title": "Evidence for AI Inference From Strangers: The Design Behind Mesh-LLM’s Capsules Plugin",
+        "format": "Workshop",
+        "speakers": [
+          "Steven Mih",
+          "Manu",
+          "Anurag"
+        ],
+        "topic": "Research",
+        "description": "Explores the design of the Capsules plugin in Mesh-LLM and how evidence can be produced when running AI inference on machines operated by strangers."
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "Building and Sustaining Self-Hosted IPFS Infrastructure: operations, maintenance and accessibility",
+        "format": "Workshop",
+        "speakers": [
+          "Anurag Pandey",
+          "Manu Sheel Gupta"
+        ],
+        "topic": "Tooling",
+        "description": "A practical workshop on running a self-hosted IPFS setup, covering day-to-day operations, maintenance and keeping it accessible."
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Maintainer Meet-up and Network Lab: research questions and collaborative experiments",
+        "format": "Workshop",
+        "speakers": [
+          "Sumanjeet",
+          "Daniel Thompson",
+          "Yash Saini",
+          "Soham Bhoir"
+        ],
+        "topic": "Tooling",
+        "description": "A collaborative session where maintainers and participants work through open research questions and run experiments together in the Network Lab."
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "09:00-10:00",
+        "title": "Workshop: Ethereum’s Post-Quantum P2P Migration: protocol challenges and implementation approaches",
+        "format": "Welcome",
+        "speakers": [
+          "Shouki Tsuda",
+          "Ryosuke Kaga"
+        ],
+        "topic": "Research",
+        "description": "A workshop on the challenges of migrating Ethereum's P2P layer to post-quantum cryptography, and the implementation approaches being considered."
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "10:00-11:00",
+        "title": "Verifiable Agent Actions and Trustworthy Receipts, open standards and independently verifiable evidence",
+        "format": "Workshop",
+        "speakers": [
+          "Steven Mih",
+          "Banri Yanahama"
+        ],
+        "topic": "Research",
+        "description": "A workshop on how verifiable agent actions and trustworthy receipts can be built on open standards and independently verifiable evidence."
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "11:00-11:30",
+        "title": "Distributed Quantum Services over P2P Networks, coordinating distributed computation using py-libp2p",
+        "format": "Workshop",
+        "speakers": [
+          "Soham Bhoir"
+        ],
+        "topic": "Research",
+        "description": "Shows how distributed computation can be coordinated across quantum services over P2P networks using py-libp2p."
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "11:30-11:50",
+        "title": "Libp2p and IPFS Case Study in Histopathology Labs",
+        "format": "Talk",
+        "speakers": [
+          "Vishesh Mathur"
+        ],
+        "topic": "Research",
+        "description": "A case study of how libp2p and IPFS are used in histopathology labs to share and store medical imaging data."
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "11:50-12:00",
+        "title": "Building and Sustaining Self-Hosted IPFS Infrastructure, operations, maintenance and accessibility II",
+        "format": "AMA",
+        "speakers": [
+          "Daniel Thompson",
+          "Anurag Pandey",
+          "Manu Sheel Gupta"
+        ],
+        "topic": "Tooling",
+        "description": "A follow-up AMA on running self-hosted IPFS infrastructure, covering operations, maintenance and accessibility."
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "12:00-13:00",
+        "title": "Assessing Ethereum's Protocol Resilience: What's Missing?",
+        "format": "Roundtable",
+        "speakers": [
+          "Thomas Humphreys",
+          "Rodrigo"
+        ],
+        "topic": "Governance",
+        "description": "A roundtable assessing how resilient the Ethereum protocol is today and which gaps still need to be addressed.\n\nSpeaker: Rodrigo (PolyMarket Founding member)"
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "14:00-15:00",
+        "title": "Research Sessions, formal verification, Lean and distributed networking (I session)",
+        "format": "Workshop",
+        "speakers": [
+          "Banri Yanahama",
+          "Tomoki Adachi",
+          "Ryosuke Kaga"
+        ],
+        "topic": "Research",
+        "description": "A research workshop on formal verification, Lean and distributed networking (first session)."
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "15:00-16:00",
+        "title": "Agentic P2P Infrastructure from Zero, discovery, identity, communication and network trust",
+        "format": "Workshop",
+        "speakers": [
+          "Steven Mih",
+          "Yash Saini",
+          "Anurag Pandey"
+        ],
+        "topic": "Tooling",
+        "description": "A workshop on building agentic P2P infrastructure from scratch, covering discovery, identity, communication and network trust."
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "16:00-17:00",
+        "title": "Towards a Credibly Neutral Methodology for Protocol Risk Management and Public Goods Funding in Resilient Networking Ecosystem",
+        "format": "Workshop",
+        "speakers": [
+          "Thomas",
+          "Manu Sheel Gupta",
+          "Vishesh Mathur",
+          "Anurag Pandey"
+        ],
+        "description": "Towards a Credibly Neutral Methodology for Protocol Risk Management and Public Goods Funding in Resilient Networking Ecosystem"
+      },
+      {
+        "id": "S20",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "Resilient Networking from Ground Up using libp2p and IPFS",
+        "format": "Workshop",
+        "speakers": [
+          "Sumanjeet",
+          "Yash Saini",
+          "Daniel Thompson",
+          "Soham Bhoir",
+          "Anurag"
+        ],
+        "topic": "Tooling",
+        "description": "A hands-on workshop on building resilient networks from the ground up with libp2p and IPFS."
+      },
+      {
+        "id": "S21",
+        "day": "Wed 4 Nov",
+        "time": "18:00-18:10",
+        "title": "Demo on Universal Connectivity Project in py-libp2p",
+        "format": "Demo",
+        "speakers": [
+          "Sumanjeet"
+        ],
+        "topic": "Tooling",
+        "description": "A short demo of the Universal Connectivity project built with py-libp2p."
+      },
+      {
+        "id": "S22",
+        "day": "Thu 5 Nov",
+        "time": "09:00-09:40",
+        "title": "Decentralized Office Hours",
+        "format": "AMA",
+        "speakers": [
+          "Swarm technical team"
+        ],
+        "topic": "Community",
+        "description": "Drop-in support for decentralized publishing, storage, streaming and front-end questions.\n\nSpeaker: Swarm technical team (TBC)"
+      },
+      {
+        "id": "S23",
+        "day": "Thu 5 Nov",
+        "time": "09:40-09:50",
+        "title": "Why Media Matters and Why It Belongs on Blockchain",
+        "format": "Welcome",
+        "speakers": [
+          "Miglė Rakitaitė"
+        ],
+        "topic": "Intro",
+        "description": "10-minute opening address on the importance of media and the role of decentralized infrastructure."
+      },
+      {
+        "id": "S24",
+        "day": "Thu 5 Nov",
+        "time": "09:50-10:20",
+        "title": "Decentralized Server: An Introduction to Swarm",
+        "format": "Talk",
+        "speakers": [
+          "Henning Diedrich"
+        ],
+        "topic": "Intro",
+        "description": "20-minute introduction to Swarm and its decentralized server model, followed by 10 minutes of Q&A.\n\nSpeaker: Henning Diedrich (CTO, Swarm Foundation)"
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "10:20-11:05",
+        "title": "Take Your Frontend Off Traditional Hosting",
+        "format": "Workshop",
+        "speakers": [
+          "Rampall"
+        ],
+        "topic": "Tooling",
+        "description": "30-minute decentralized front-end workshop, followed by 15 minutes of Q&A."
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "11:05-11:40",
+        "title": "Decentralized Solutions for Fairer Music Distribution",
+        "format": "Talk",
+        "speakers": [
+          "Alaska",
+          "Subcult"
+        ],
+        "topic": "Community",
+        "description": "25-minute talk on decentralized music distribution, followed by 10 minutes of Q&A."
+      },
+      {
+        "id": "S27",
+        "day": "Thu 5 Nov",
+        "time": "11:40-12:10",
+        "title": "Music Distribution in Practice: Artists, Platforms and Ownership",
+        "format": "Panel",
+        "speakers": [
+          "Mina Spiler"
+        ],
+        "topic": "Community",
+        "description": "A 30-minute panel discussing artists’ real-world experiences of music distribution.\n\nSpecial guests to be announced."
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "12:10-12:45",
+        "title": "Preserving Living Knowledge: Joyma’s Permanent Archive as Decentralised Storage",
+        "format": "Talk",
+        "speakers": [
+          "Henry Bergström"
+        ],
+        "topic": "Research",
+        "description": "25-minute presentation on Joyma’s permanent archive, followed by 10 minutes of Q&A."
+      },
+      {
+        "id": "S29",
+        "day": "Thu 5 Nov",
+        "time": "12:45-13:00",
+        "title": "Open Agentic Commerce: A Market That Kills Itself — Media Edition",
+        "format": "Talk",
+        "speakers": [
+          "Zaryab"
+        ],
+        "topic": "Research",
+        "description": "15-minute talk exploring agentic commerce, ranking and implications for decentralized media."
+      },
+      {
+        "id": "S30",
+        "day": "Thu 5 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch",
+        "format": "Break",
+        "speakers": [],
+        "description": "Lunch break."
+      },
+      {
+        "id": "S31",
+        "day": "Thu 5 Nov",
+        "time": "14:00-15:00",
+        "title": "Decentralized Streaming: From Camera to Viewer",
+        "format": "Workshop",
+        "speakers": [
+          "Levente Kiss",
+          "Solar Punk"
+        ],
+        "topic": "Tooling",
+        "description": "One-hour practical workshop on decentralized streaming."
+      },
+      {
+        "id": "S32",
+        "day": "Thu 5 Nov",
+        "time": "15:00-15:30",
+        "title": "Collaborative Editing in Remix: Live Demo",
+        "format": "Workshop",
+        "speakers": [
+          "Bálint Ujvári",
+          "Solar Punk"
+        ],
+        "topic": "Tooling",
+        "description": "20-minute workshop and demo of Remix’s collaborative editing feature, followed by 10 minutes of Q&A."
+      },
+      {
+        "id": "S33",
+        "day": "Thu 5 Nov",
+        "time": "15:30-16:00",
+        "title": "The Web3 Database",
+        "format": "Talk",
+        "speakers": [
+          "Henning Diedrich"
+        ],
+        "topic": "Tooling",
+        "description": "20-minute talk on the Web3 database, followed by 10 minutes of Q&A.\n\nSpeaker: Henning Diedrich (CTO, Swarm Foundation)"
+      },
+      {
+        "id": "S34",
+        "day": "Thu 5 Nov",
+        "time": "16:00-16:30",
+        "title": "One Key to Publish",
+        "format": "Talk",
+        "speakers": [
+          "Chris Hobcroft"
+        ],
+        "topic": "Tooling",
+        "description": "20-minute talk, followed by 10 minutes of Q&A."
+      },
+      {
+        "id": "S35",
+        "day": "Thu 5 Nov",
+        "time": "16:30-17:30",
+        "title": "Freedom Browser: Browse and Publish on Swarm Without Gateways",
+        "format": "Workshop",
+        "speakers": [
+          "Meinhard Benn"
+        ],
+        "topic": "Tooling",
+        "description": "30-minute hands-on workshop and 30-minute live demo of Freedom Browser."
+      },
+      {
+        "id": "S36",
+        "day": "Fri 6 Nov",
+        "time": "09:00-10:00",
+        "title": "Post-Quantum Cryptography in libp2p: PQ support, migration considerations and cryptographic resilience",
+        "format": "Welcome",
+        "speakers": [
+          "Shouki Tsuda",
+          "Manu Sheel Gupta"
+        ],
+        "topic": "Research",
+        "description": "Covers post-quantum cryptography support in libp2p, including migration considerations and what it means for cryptographic resilience."
+      },
+      {
+        "id": "S37",
+        "day": "Fri 6 Nov",
+        "time": "10:00-10:40",
+        "title": "Scaling Observability Stack for the Internet of Agents",
+        "format": "Talk",
+        "speakers": [
+          "Manu Sheel Gupta",
+          "Steven Mih"
+        ],
+        "topic": "Research",
+        "description": "Verifiable agent actions, SCITT receipts and open standards for trust"
+      },
+      {
+        "id": "S38",
+        "day": "Fri 6 Nov",
+        "time": "10:40-11:00",
+        "title": "Developing observability stack for privacy measurements: shielded UTXO systems and cryptographic design",
+        "format": "Talk",
+        "speakers": [
+          "Tomoki Adachi"
+        ],
+        "topic": "Research",
+        "description": "Presents the development of an observability stack for measuring privacy in shielded UTXO systems, and the cryptographic design behind it."
+      },
+      {
+        "id": "S39",
+        "day": "Fri 6 Nov",
+        "time": "11:00-11:50",
+        "title": "Research Sessions, formal verification, Lean and distributed networking (II session)",
+        "format": "Workshop",
+        "speakers": [
+          "Banri Yanahama",
+          "Ryosuke Kaga"
+        ],
+        "topic": "Research",
+        "description": "A research workshop on formal verification, Lean and distributed networking (second session)."
+      },
+      {
+        "id": "S40",
+        "day": "Fri 6 Nov",
+        "time": "11:50-12:00",
+        "title": "Contributing to IPFS Helia and Kubo?",
+        "format": "AMA",
+        "speakers": [
+          "Daniel Thompson",
+          "Shouki Tsuda",
+          "Sumanjeet",
+          "Soham Bhoir",
+          "Yash Saini"
+        ],
+        "topic": "Tooling",
+        "description": "Open Q&A on how to start contributing to IPFS Helia and Kubo."
+      },
+      {
+        "id": "S41",
+        "day": "Fri 6 Nov",
+        "time": "12:00-13:00",
+        "title": "Making Protocol Resilience Actionable",
+        "format": "Roundtable",
+        "speakers": [
+          "Thomas Humphreys",
+          "Miglė Rakitaitė",
+          "Manu Sheel Gupta",
+          "Banri Yanahama",
+          "Steven Mih",
+          "Tomoki Adachi"
+        ],
+        "topic": "Governance",
+        "description": "A roundtable on turning protocol resilience from an idea into concrete, actionable steps.\n\nSpeaker: Miglė Rakitaitė (Swarm leadership)"
+      },
+      {
+        "id": "S42",
+        "day": "Fri 6 Nov",
+        "time": "14:00-15:00",
+        "title": "Verity Client and Zero-Knowledge Proofs in Ethereum, verifiable computation and protocol security",
+        "format": "Workshop",
+        "speakers": [
+          "Shouki Tsuda"
+        ],
+        "topic": "Research",
+        "description": "A workshop on the Verity client and zero-knowledge proofs in Ethereum, covering verifiable computation and protocol security."
+      },
+      {
+        "id": "S43",
+        "day": "Fri 6 Nov",
+        "time": "15:00-16:00",
+        "title": "Cryptographic resilience and trustworthy infrastructure",
+        "format": "Workshop",
+        "speakers": [
+          "Steven Mih",
+          "Banri Yanahama",
+          "Manu"
+        ],
+        "topic": "Research",
+        "description": "A workshop on cryptographic resilience and the building blocks of trustworthy infrastructure."
+      },
+      {
+        "id": "S44",
+        "day": "Fri 6 Nov",
+        "time": "16:00-17:00",
+        "title": "Resilience Networking Case Study using libp2p and IPFS",
+        "format": "Workshop",
+        "speakers": [
+          "Anurag Pandey",
+          "Manu Sheel Gupta"
+        ],
+        "topic": "Tooling",
+        "description": "A case study on building resilient networks with libp2p and IPFS, and the lessons learned in practice."
+      },
+      {
+        "id": "S45",
+        "day": "Fri 6 Nov",
+        "time": "17:00-18:00",
+        "title": "Distributed Quantum Services over P2P Networks, coordinating distributed computation using py-libp2p",
+        "format": "Workshop",
+        "speakers": [
+          "Sumanjeet",
+          "Daniel Thompson",
+          "Yash Saini",
+          "Soham Bhoir"
+        ],
+        "topic": "Research",
+        "description": "Shows how distributed computation can be coordinated across quantum services over P2P networks using py-libp2p."
+      }
+    ]
+  },
+  {
+    "hub": "Security Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-10:00",
+        "title": "Networking",
+        "format": "Networking",
+        "speakers": [],
+        "description": "Grab a coffee and drop by the Hub."
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "10:00-11:00",
+        "title": "Devcon Opening Ceremony",
+        "format": "Other",
+        "speakers": [],
+        "description": "Getting everyone to the main stage for the opening ceremony"
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "11:00-11:10",
+        "title": "Welcome to the Security Hub",
+        "format": "Welcome",
+        "speakers": [],
+        "topic": "Community",
+        "description": "Why we're here, what the next four days are for, and how to get the most out of them."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "11:10-11:50",
+        "title": "The State of Ethereum Security",
+        "format": "Roundtable",
+        "speakers": [],
+        "description": "An open conversation with everyone in the room. Where are we failing, what's working, and what keeps you up at night?"
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "11:50-12:30",
+        "title": "ETHSecurity Badge Holders: What Should We Fund Next?",
+        "format": "Roundtable",
+        "speakers": [],
+        "description": "Badge holders talk through which security problems matter most and where funding would move the needle."
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "12:30-13:30",
+        "title": "SEAL (part I)",
+        "format": "Talk",
+        "speakers": [
+          "SEAL contributors"
+        ]
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "13:30-14:30",
+        "title": "Lunch break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "14:30-15:30",
+        "title": "SEAL (part II)",
+        "format": "Talk",
+        "speakers": [
+          "SEAL contributors"
+        ]
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "15:30-16:10",
+        "title": "The First 60 Minutes Incident Response Plan",
+        "format": "Talk",
+        "speakers": [
+          "Julia",
+          "Tal"
+        ],
+        "description": "Speakers: Julia, Tal (Zeroshadow)"
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "16:10-16:20",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S11",
+        "day": "Tue 3 Nov",
+        "time": "16:20-17:10",
+        "title": "What the Block Explorer Misses: Using Unique Money Laundering Intel to Contain Active Exploits",
+        "format": "Talk",
+        "speakers": [
+          "Julia",
+          "Tal"
+        ],
+        "description": "Speakers: Julia, Tal (Zeroshadow)"
+      },
+      {
+        "id": "S12",
+        "day": "Tue 3 Nov",
+        "time": "17:10-18:00",
+        "title": "Closing the day",
+        "format": "Closing",
+        "speakers": []
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "09:00-10:00",
+        "title": "Networking",
+        "format": "Networking",
+        "speakers": [],
+        "description": "Grab a coffee and drop by the Hub."
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "10:00-10:20",
+        "title": "Damn Vulnerable Daml: A lightning talk of bug classes with no EVM analogue",
+        "format": "Talk",
+        "speakers": [
+          "Anu"
+        ],
+        "description": "Speaker: Anu (Quill Audits)"
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "10:20-10:50",
+        "title": "Explorations in Agentic Formal Verification",
+        "format": "Talk",
+        "speakers": [
+          "Jon"
+        ],
+        "description": "Speaker: Jon (Quantstamp)"
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "10:50-11:10",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "11:10-11:40",
+        "title": "Security coordination across the libp2p and Ethereum infrastructure ecosystem.",
+        "format": "Workshop",
+        "speakers": [
+          "Manu Gupta"
+        ]
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "11:40-13:00",
+        "title": "Break + Lunch",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "13:00-13:30",
+        "title": "Onay: 2FA for Ethereum transactions",
+        "format": "Talk",
+        "speakers": [
+          "Kaan Uzdogan"
+        ],
+        "description": "Speaker: Kaan Uzdogan (Argot Collective)"
+      },
+      {
+        "id": "S20",
+        "day": "Wed 4 Nov",
+        "time": "13:30-13:50",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S21",
+        "day": "Wed 4 Nov",
+        "time": "13:50-14:20",
+        "title": "Bringing the Learnings of Safety Literature to Ethereum",
+        "format": "Talk",
+        "speakers": [
+          "Mate Soos"
+        ],
+        "description": "Speaker: Mate Soos (Argot Collective)"
+      },
+      {
+        "id": "S22",
+        "day": "Wed 4 Nov",
+        "time": "14:20-14:40",
+        "title": "Break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S23",
+        "day": "Wed 4 Nov",
+        "time": "14:40-15:40",
+        "title": "On-chain assertions: transactions that check themselves",
+        "format": "Workshop",
+        "speakers": [
+          "Sem Bloom"
+        ]
+      }
+    ]
+  },
+  {
+    "hub": "Zuzone Hub",
+    "changedAt": "2026-10-20T15:26:38.307Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "09:00-14:00",
+        "title": "Devcon Registration",
+        "speakers": []
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "14:00-14:30",
+        "title": "Shaka’s Zu music and welcome!",
+        "speakers": []
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Zuzone Town Hall",
+        "speakers": []
+      },
+      {
+        "id": "S04",
+        "day": "Wed 4 Nov",
+        "time": "09:00-11:00",
+        "title": "Community hours. On Nov 4th from 11am - Zuzone/NS Day!",
+        "speakers": []
+      },
+      {
+        "id": "S05",
+        "day": "Wed 4 Nov",
+        "time": "11:00-11:30",
+        "title": "NS Tech Stack",
+        "speakers": [
+          "Shashank"
+        ]
+      },
+      {
+        "id": "S06",
+        "day": "Wed 4 Nov",
+        "time": "11:30-11:40",
+        "title": "NS Kazakhstan",
+        "speakers": [
+          "Aibar"
+        ]
+      },
+      {
+        "id": "S07",
+        "day": "Wed 4 Nov",
+        "time": "11:40-13:00",
+        "title": "NS Community lightning talks",
+        "speakers": [
+          "Akhil",
+          "Aditya",
+          "Juba",
+          "Mateusz",
+          "Sahil",
+          "Anton",
+          "Anna",
+          "Mikhail",
+          "Lazar",
+          "Kovid",
+          "Priyeshu",
+          "Pranit",
+          "Lia",
+          "Yatharth",
+          "Tanisha",
+          "Mohit",
+          "Anirudhe",
+          "Sidd",
+          "Kevan",
+          "Pransh",
+          "Vijay",
+          "Konrad",
+          "Parth",
+          "Mahboob"
+        ]
+      },
+      {
+        "id": "S08",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch break",
+        "format": "Break",
+        "speakers": []
+      },
+      {
+        "id": "S09",
+        "day": "Wed 4 Nov",
+        "time": "14:00-18:00",
+        "title": "NS meetup space / Zuzone community",
+        "speakers": []
+      },
+      {
+        "id": "S10",
+        "day": "Thu 5 Nov",
+        "time": "09:00-11:00",
+        "title": "ZUzone community hours",
+        "speakers": []
+      },
+      {
+        "id": "S11",
+        "day": "Fri 6 Nov",
+        "time": "09:00-11:00",
+        "title": "Community hours. On Nov from 11am-4pm African Builders day",
+        "speakers": []
+      }
+    ]
+  }
+]
