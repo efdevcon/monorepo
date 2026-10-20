@@ -7,6 +7,8 @@ name: Community Hubs live export
 # Only works for sheets shared "anyone with the link can edit". The links live in the
 # COMMUNITY_HUB_SHEETS secret, a JSON object of hub id -> edit link (hub ids in
 # devcon-api/src/utils/community-hubs.ts). Details: docs/community-hubs.md.
+# devcon-api starts it every hour (startLiveExportTimer): GitHub runs this repo's schedules
+# hours late, so the cron below is only a backup.
 on:
   schedule:
     - cron: "7 * * * *"

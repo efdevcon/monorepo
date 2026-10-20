@@ -17,6 +17,7 @@ import {
 import { defaultSlugify } from '@/utils/content'
 import { CreateBlockie } from '@/utils/account'
 import { SERVER_CONFIG } from '@/utils/config'
+import { TriggerWorkflow } from '@/services/github'
 import * as store from '@/data/store'
 import fs from 'fs'
 import path from 'path'
@@ -341,6 +342,26 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
     speakers: [...speakers.values()],
     sessions,
   }
+}
+
+/**
+ * Starts the hourly live export (.github/workflows/fileverse-live-export.yml)
+ * at minute 7 of every hour. The workflow's own cron is only a backup: GitHub
+ * runs this repo's schedules hours late (the daily cleanup fires 4-6 h after
+ * midnight), which an hourly export cannot live with. Production only; a run
+ * that finds nothing new commits nothing, and overlapping runs queue.
+ */
+export function startLiveExportTimer() {
+  if (SERVER_CONFIG.NODE_ENV !== 'production' || !SERVER_CONFIG.GITHUB_TOKEN) return
+  const trigger = () => void TriggerWorkflow('fileverse-live-export.yml').catch((error) => console.warn('[community-hubs] could not start the live export:', error))
+  const now = new Date()
+  const next = new Date(now)
+  next.setUTCMinutes(7, 0, 0)
+  if (next <= now) next.setUTCHours(next.getUTCHours() + 1)
+  setTimeout(() => {
+    trigger()
+    setInterval(trigger, 60 * 60_000)
+  }, next.getTime() - now.getTime())
 }
 
 /** Test hook: forget everything cached (each test starts from the live export). */
