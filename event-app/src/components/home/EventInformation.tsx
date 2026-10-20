@@ -62,7 +62,7 @@ const GUIDES: ReadonlyArray<{
         term: "Registration:",
         body: (
           <>
-            Bring your ticket QR code to collect your badge. Discounted tickets must show ID,
+            Bring your ticket QR code to enter the venue. Discounted tickets must show ID,
             see the <OutLink href={TICKET_FAQ_HREF}>ticket FAQ</OutLink>
           </>
         ),
