@@ -164,10 +164,10 @@ export function EventInformation() {
           </h3>
           <ul className="mt-3 flex flex-col gap-4">
             <Essential term="Wi-Fi:">Coming soon</Essential>
-            <Essential term="Day 1 opening hours:">08:30 – 18:30</Essential>
             <Essential term="Venue address:">
               <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
             </Essential>
+            <Essential term="Day 1 opening hours:">08:30 – 18:30</Essential>
             <Essential term="Need help?">
               Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>. Something wrong
               with the app?{" "}
