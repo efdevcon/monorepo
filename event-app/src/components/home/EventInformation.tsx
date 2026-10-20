@@ -15,13 +15,16 @@ import { openFeedback } from "@/data/feedback/feedbackState";
  * over the list; desktop puts them side by side.
  */
 
-// TODO(event-info): Wi-Fi details and the Support FAQ URL are still to come.
-const SUPPORT_FAQ_HREF = "#"; // {SUPPORT_FAQ_URL}
+// TODO(event-info): Wi-Fi details are still to come.
+const SUPPORT_FAQ_HREF =
+  "https://ef-events.notion.site/Devcon-India-App-Support-FAQ-3ff638cdc4158059a5ccfbad9e243fb1";
 const VENUE_MAPS_HREF = "https://maps.app.goo.gl/BN2AaTKh2cEy82Sy7";
 const MEETING_ROOMS_HREF = "https://rooms.devcon.org/";
 const GETTING_THERE_HREF = "https://devcon.org/en/travel-guide/#getting-there";
 const SIDE_EVENTS_HREF = "https://devcon.org/en/road-to-devcon/#side-events";
 const TELEGRAM_HREF = "https://t.me/+sitvvHw8D8EzN2Yx";
+const X_HREF = "https://x.com/efdevcon";
+const INSTAGRAM_HREF = "https://instagram.com/efdevcon";
 const EMERGENCY_NUMBER = "108";
 
 const inlineLink =
@@ -39,25 +42,26 @@ function OutLink({ href, children }: { href: string; children: ReactNode }) {
 
 const GUIDES: ReadonlyArray<{
   title: string;
-  items: ReadonlyArray<{ term: string; body: ReactNode }>;
+  /** `term` is the bold lead-in; items without one are plain sentences. */
+  items: ReadonlyArray<{ term?: string; body: ReactNode }>;
 }> = [
   {
     title: "Venue & Facilities",
     items: [
       {
-        term: "Meeting Rooms:",
-        body: (
-          <>
-            Book a slot in our <OutLink href={MEETING_ROOMS_HREF}>booking calendar</OutLink>.
-          </>
-        ),
-      },
-      {
         term: "Getting there:",
         body: (
           <>
             Read our travel guide on{" "}
-            <OutLink href={GETTING_THERE_HREF}>how to get to Jio World Centre</OutLink>.
+            <OutLink href={GETTING_THERE_HREF}>how to get to Jio World Centre</OutLink>
+          </>
+        ),
+      },
+      {
+        term: "Meeting Rooms:",
+        body: (
+          <>
+            Book a slot in our <OutLink href={MEETING_ROOMS_HREF}>booking calendar</OutLink>
           </>
         ),
       },
@@ -71,7 +75,7 @@ const GUIDES: ReadonlyArray<{
         body: (
           <>
             Check out our <OutLink href={SIDE_EVENTS_HREF}>curated list of Side Events</OutLink>{" "}
-            happening in Mumbai.
+            happening in Mumbai
           </>
         ),
       },
@@ -79,7 +83,21 @@ const GUIDES: ReadonlyArray<{
         term: "Connect with attendees:",
         body: (
           <>
-            Join the official <OutLink href={TELEGRAM_HREF}>Devcon 8 India Telegram group</OutLink>.
+            Join the official <OutLink href={TELEGRAM_HREF}>Devcon 8 India Telegram group</OutLink>
+          </>
+        ),
+      },
+      {
+        body: (
+          <>
+            Follow <OutLink href={X_HREF}>us on X</OutLink>
+          </>
+        ),
+      },
+      {
+        body: (
+          <>
+            Follow <OutLink href={INSTAGRAM_HREF}>us on Instagram</OutLink>
           </>
         ),
       },
@@ -93,13 +111,18 @@ const GUIDES: ReadonlyArray<{
         body: (
           <>
             Call <OutLink href={`tel:${EMERGENCY_NUMBER}`}>{EMERGENCY_NUMBER}</OutLink> for
-            emergency services.
+            emergency services
           </>
         ),
       },
       {
         term: "Evacuation:",
-        body: <>Look for the green Exit signs and follow staff instructions.</>,
+        body: (
+          <>
+            Look for the <span className="font-bold text-dc-green">green Exit signs</span> and
+            follow staff instructions
+          </>
+        ),
       },
     ],
   },
@@ -141,6 +164,7 @@ export function EventInformation() {
           </h3>
           <ul className="mt-3 flex flex-col gap-4">
             <Essential term="Wi-Fi:">Coming soon</Essential>
+            <Essential term="Day 1 opening hours:">08:30 – 18:30</Essential>
             <Essential term="Venue address:">
               <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
             </Essential>
@@ -162,9 +186,9 @@ export function EventInformation() {
           {GUIDES.map(({ title, items }) => (
             <Disclosure key={title} title={title}>
               <ul className="flex list-disc flex-col gap-3 pl-5 text-[14px] leading-5 text-dc-fg2 marker:text-dc-muted">
-                {items.map(({ term, body }) => (
-                  <li key={term}>
-                    <span className="font-bold">{term}</span> {body}
+                {items.map(({ term, body }, i) => (
+                  <li key={term ?? i}>
+                    {term && <span className="font-bold">{term}</span>} {body}
                   </li>
                 ))}
               </ul>
