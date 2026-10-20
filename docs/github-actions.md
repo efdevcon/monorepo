@@ -20,6 +20,10 @@
 
     Just a type/lint check - can remove if you don't need this
 
+# fileverse-live-export.yml
+
+    Community Hubs live export (added 2026-10-20). Hourly: reads every hub dSheet's live state in headless Chromium (edit links in the COMMUNITY_HUB_SHEETS secret), commits the cells to devcon-api/data/community-hubs/sheets.json with [skip deploy]; the API reads that file from GitHub. Details: docs/community-hubs.md
+
 # rag-sync.yml
 
     Runs against devcon-ai and our content folder, pulling all data into the supabase vector storage we use for RAG

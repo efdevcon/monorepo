@@ -1,40 +1,64 @@
-name: Fileverse live export (experiment)
+name: Community Hubs live export
 
-# Experiment: read a dSheet's live state (unpublished collaborator edits) the way an
-# anonymous link editor's browser does. Only works for sheets shared "anyone with the
-# link can edit". Manual trigger only; the link lives in the FILEVERSE_LIVE_TEST_LINK secret.
+# Every hour, reads each Community Hub dSheet's live state (unpublished collaborator edits
+# included) the way an anonymous link editor's browser does, and commits the cells to
+# devcon-api/data/community-hubs/sheets.json, which the API reads from GitHub.
+# Only works for sheets shared "anyone with the link can edit". The links live in the
+# COMMUNITY_HUB_SHEETS secret, a JSON object of hub id -> edit link (hub ids in
+# devcon-api/src/utils/community-hubs.ts). Details: docs/community-hubs.md.
 on:
+  schedule:
+    - cron: "7 * * * *"
   workflow_dispatch:
+
+concurrency:
+  group: community-hubs-live-export
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   export:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: .github/scripts
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "20"
       - uses: pnpm/action-setup@v4
       # Isolated from the workspace on purpose: no lockfile changes, nothing installed in the repo.
-      - name: Install Playwright + Yjs
+      - name: Install Playwright
         run: |
           mkdir -p /tmp/fv && cd /tmp/fv
           echo '{"name":"fv-live","private":true,"type":"module"}' > package.json
-          pnpm add playwright@1.48.2 yjs@13.6.20
+          pnpm add playwright@1.48.2
           pnpm exec playwright install --with-deps chromium
           cp "$GITHUB_WORKSPACE/.github/scripts/fileverse-live-export.mjs" /tmp/fv/
-      - name: Export live state
+      - name: Read the live sheets
         working-directory: /tmp/fv
         env:
-          FILEVERSE_LINK: ${{ secrets.FILEVERSE_LIVE_TEST_LINK }}
-        run: node fileverse-live-export.mjs "$FILEVERSE_LINK"
-      - name: Upload screenshots
+          COMMUNITY_HUB_SHEETS: ${{ secrets.COMMUNITY_HUB_SHEETS }}
+        run: node fileverse-live-export.mjs /tmp/fv/live
+      - name: Install devcon-api
+        working-directory: ./devcon-api
+        run: pnpm install
+      - name: Write sheets.json
+        working-directory: ./devcon-api
+        run: pnpm community-hubs:live /tmp/fv/live
+      # [skip deploy]: Render must not redeploy the API for a data commit (it reads the file from GitHub).
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: "devcon-api/data/community-hubs/sheets.json"
+          default_author: github_actions
+          message: "[skip deploy] Community Hubs live sheets"
+          pull: "--rebase --autostash"
+      - name: Upload screenshots of failed reads
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fileverse-live-screenshots
-          path: /tmp/fv/*.png
+          name: community-hubs-failed-reads
+          path: /tmp/fv/live/*.png
           if-no-files-found: ignore
+          retention-days: 3

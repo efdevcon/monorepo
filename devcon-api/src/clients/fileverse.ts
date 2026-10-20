@@ -134,6 +134,21 @@ function decodeWorkbookUpdate(json: string): Uint8Array {
   return new Uint8Array(fromBase64(file))
 }
 
+/**
+ * Tabs from the Yjs updates a browser editor keeps for a sheet (its IndexedDB
+ * store): the live collaborative state, where readDSheet only sees what the
+ * owner last published. Used by the Community Hubs live export.
+ */
+export function readTabsFromUpdates(dsheetId: string, updates: Uint8Array[]): DSheetTab[] {
+  const doc = new Y.Doc()
+  try {
+    for (const update of updates) Y.applyUpdate(doc, update)
+    return readTabs(doc.getArray(dsheetId))
+  } finally {
+    doc.destroy()
+  }
+}
+
 function readTabs(sheets: Y.Array<unknown>): DSheetTab[] {
   const tabs: DSheetTab[] = []
   for (const entry of sheets.toArray()) {

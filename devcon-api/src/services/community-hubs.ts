@@ -1,4 +1,4 @@
-import { parseDSheetLink, readDSheet } from '@/clients/fileverse'
+import type { DSheet } from '@/clients/fileverse'
 import {
   COMMUNITY_HUBS,
   COMMUNITY_HUB_TRACK,
@@ -6,10 +6,13 @@ import {
   eventDays,
   eventUtcOffsetMinutes,
   hubSessionId,
+  LIVE_HUB_SHEETS_PATH,
   parseHubSheets,
   shouldKeepPreviousRead,
   type CommunityHub,
   type HubSessionRow,
+  type LiveHubSheet,
+  type LiveHubSheets,
 } from '@/utils/community-hubs'
 import { defaultSlugify } from '@/utils/content'
 import { CreateBlockie } from '@/utils/account'
@@ -19,25 +22,31 @@ import * as store from '@/data/store'
 import fs from 'fs'
 import path from 'path'
 
-// Community Hub schedules, read straight from the hubs' dSheets and served as
-// a bundle shaped like /events/:id/bundle, so the event app can show them
-// through its normal schedule view (as a separate dataset, never mixed into
-// the Pretalx schedule). The sheets are the source of truth: the parsed
-// result lives in memory, with one file per event under data/community-hubs/
-// as a warm start after a restart and a fallback while Fileverse is down.
+// Community Hub schedules, read from the hubs' dSheets and served as a bundle
+// shaped like /events/:id/bundle, so the event app can show them through its
+// normal schedule view (as a separate dataset, never mixed into the Pretalx
+// schedule). The sheets are the source of truth. An hourly GitHub Action
+// (.github/workflows/fileverse-live-export.yml) reads their live state and
+// commits the cells to LIVE_HUB_SHEETS_PATH; the API reads that file from
+// GitHub (its own disk copy is only as fresh as the last deploy, since the
+// Action's commits skip deploys). The parsed result lives in memory, with one
+// file per event under data/community-hubs/ as a warm start after a restart
+// and a fallback while GitHub is unreachable.
 //
-// Hub sheet links come from the COMMUNITY_HUB_SHEETS env var: a JSON object of
-// hub id -> share link, e.g. {"privacy":"https://sheets.fileverse.io/sheet/<id>#k=<key>"}.
-// Hub ids are the ones in COMMUNITY_HUBS.
+// The sheet links never reach the API: they live in the Action's
+// COMMUNITY_HUB_SHEETS secret. Hub ids are the ones in COMMUNITY_HUBS.
 
-/** How long a parsed sheet is reused before Fileverse is asked again. */
+/** How long a parsed sheet is reused before GitHub is asked again. */
 const REFRESH_MS = 2 * 60_000
+/** The Action runs hourly and rewrites the file at least every 6 hours; older than this means it stopped. */
+const EXPORT_STALE_MS = 8 * 60 * 60_000
+const LIVE_SHEETS_URL = `https://api.github.com/repos/efdevcon/monorepo/contents/${LIVE_HUB_SHEETS_PATH}?ref=main`
 
 export interface HubStatus {
   id: string
   name: string
   sessions: number
-  /** When the hub's browser last published the sheet (ms since epoch). */
+  /** When the sheet's cells last changed, as seen by the live export (ms since epoch). */
   publishedAt: number | null
   /** When this API last read the sheet successfully (ms since epoch). */
   readAt: number | null
@@ -76,6 +85,8 @@ interface EventCache {
   /** Per-hub read failures from the last refresh (the hub keeps its previous data). */
   failures: Map<string, string>
   configProblems: string[]
+  /** When the live export that was last read ran (ms since epoch). */
+  exportedAt?: number
   /** Last version committed to the repository (production only), to commit only real changes. */
   committedVersion?: string
   committedAt?: number
@@ -86,26 +97,38 @@ const COMMIT_MIN_INTERVAL_MS = 30 * 60_000
 
 const caches = new Map<string, EventCache>()
 
-export function readHubLinks(): { links: Map<string, string>; problems: string[] } {
-  const problems: string[] = []
-  const links = new Map<string, string>()
-  const raw = process.env.COMMUNITY_HUB_SHEETS
-  if (!raw) return { links, problems: ['COMMUNITY_HUB_SHEETS is not set (JSON object of hub id -> dSheets share link)'] }
-  let parsed: unknown
+/**
+ * The live export as committed on main. The contents API (raw media type) is
+ * not CDN-cached like raw.githubusercontent.com, so a fresh commit shows at
+ * once; the token only lifts the rate limit. The local copy is the fallback.
+ */
+async function fetchLiveSheets(): Promise<LiveHubSheets> {
+  let remoteError: unknown
   try {
-    parsed = JSON.parse(raw)
+    const res = await fetch(LIVE_SHEETS_URL, {
+      headers: {
+        Accept: 'application/vnd.github.raw',
+        'Cache-Control': 'no-cache',
+        ...(SERVER_CONFIG.GITHUB_TOKEN ? { Authorization: `token ${SERVER_CONFIG.GITHUB_TOKEN}` } : {}),
+      },
+    })
+    if (!res.ok) throw new Error(`GitHub responded ${res.status}`)
+    return validLiveSheets(await res.json())
+  } catch (error) {
+    remoteError = error
+  }
+  try {
+    const local = validLiveSheets(JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'community-hubs', 'sheets.json'), 'utf8')))
+    console.warn('[community-hubs] live sheets read from the local copy:', remoteError instanceof Error ? remoteError.message : remoteError)
+    return local
   } catch {
-    return { links, problems: ['COMMUNITY_HUB_SHEETS is not valid JSON'] }
+    throw new Error(`could not read the live sheets: ${remoteError instanceof Error ? remoteError.message : String(remoteError)}`)
   }
-  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return { links, problems: ['COMMUNITY_HUB_SHEETS must be a JSON object'] }
-  for (const [hubId, url] of Object.entries(parsed as Record<string, unknown>)) {
-    if (!COMMUNITY_HUBS.some((h) => h.id === hubId)) {
-      problems.push(`unknown hub id "${hubId}" in COMMUNITY_HUB_SHEETS`)
-      continue
-    }
-    if (typeof url === 'string' && url.trim()) links.set(hubId, url.trim())
-  }
-  return { links, problems }
+}
+
+function validLiveSheets(data: any): LiveHubSheets {
+  if (!data || typeof data.exportedAt !== 'number' || !data.hubs || typeof data.hubs !== 'object') throw new Error('the live sheets file has an unexpected shape')
+  return data
 }
 
 const cacheFile = (eventId: string) => path.join(process.cwd(), 'data', 'community-hubs', `${eventId}.json`)
@@ -122,7 +145,7 @@ function cacheFor(eventId: string): EventCache {
         if (hub) cache.hubs.set(hub.id, { ...data, hub })
       }
       // Never counts as fresh (the process may have been down for a while), but
-      // marks that there is something to serve if Fileverse is unreachable.
+      // marks that there is something to serve if GitHub is unreachable.
       if (cache.hubs.size > 0) cache.refreshedAt = Math.min(saved.refreshedAt || 1, Date.now() - REFRESH_MS)
     } catch {
       // No file yet, or unreadable: start empty.
@@ -165,8 +188,9 @@ async function commitCache(eventId: string, cache: EventCache, json: string) {
   }
 }
 
-async function readHub(hub: CommunityHub, url: string, event: any): Promise<HubData> {
-  const sheet = await readDSheet(parseDSheetLink(url))
+function readHub(hub: CommunityHub, live: LiveHubSheet, event: any): HubData {
+  if (!live.tabs.length) throw new Error(live.error ?? 'the live export has no cells for this sheet')
+  const sheet: DSheet = { dsheetId: hub.id, tabs: live.tabs, publishedAt: live.changedAt }
   const parsed = parseHubSheets(sheet, eventDays(event.startDate, event.endDate), eventUtcOffsetMinutes(event.id))
   if (!parsed.headerFound) throw new Error(parsed.problems[0] ?? 'not a schedule sheet')
   return { hub, publishedAt: sheet.publishedAt, readAt: Date.now(), rows: parsed.sessions, problems: parsed.problems }
@@ -175,17 +199,32 @@ async function readHub(hub: CommunityHub, url: string, event: any): Promise<HubD
 async function refresh(eventId: string, cache: EventCache): Promise<void> {
   const event = store.getEvent(eventId)
   if (!event) throw new Error(`unknown event ${eventId}`)
-  const { links, problems } = readHubLinks()
-  cache.configProblems = problems
-  const hubs = COMMUNITY_HUBS.filter((h) => links.has(h.id))
-  const results = await Promise.allSettled(hubs.map((hub) => readHub(hub, links.get(hub.id)!, event)))
+  // A failed fetch throws: ensureFresh then keeps serving what is cached.
+  const live = await fetchLiveSheets()
+  cache.exportedAt = live.exportedAt
+  const age = Date.now() - live.exportedAt
+  cache.configProblems =
+    age > EXPORT_STALE_MS
+      ? [`the live export last ran ${Math.round(age / 3_600_000)} hours ago: check the "Community Hubs live export" GitHub Action`]
+      : []
+  const hubs = COMMUNITY_HUBS.filter((h) => live.hubs[h.id])
+  const results = hubs.map((hub) => {
+    try {
+      return { status: 'fulfilled' as const, value: readHub(hub, live.hubs[hub.id], event) }
+    } catch (reason) {
+      return { status: 'rejected' as const, reason }
+    }
+  })
   cache.failures = new Map()
   results.forEach((result, i) => {
     const hub = hubs[i]
+    const exportError = live.hubs[hub.id].error
     if (result.status !== 'fulfilled') {
       cache.failures.set(hub.id, result.reason instanceof Error ? result.reason.message : String(result.reason))
       return
     }
+    // The export could not read the sheet this time and kept its previous cells: serve them, say so.
+    if (exportError) cache.failures.set(hub.id, `${exportError} (the previous export is served)`)
     const fresh = result.value
     const prev = cache.hubs.get(hub.id)
     // A typo that breaks rows must not take sessions off the schedule: the
@@ -199,13 +238,13 @@ async function refresh(eventId: string, cache: EventCache): Promise<void> {
       cache.hubs.set(hub.id, { ...fresh, heldBack: undefined })
     }
   })
-  // A hub whose link was removed drops out; a hub that failed to read keeps its last good data.
-  for (const id of [...cache.hubs.keys()]) if (!links.has(id)) cache.hubs.delete(id)
+  // A hub whose link was removed from the secret drops out; a hub that failed to read keeps its last good data.
+  for (const id of [...cache.hubs.keys()]) if (!live.hubs[id]) cache.hubs.delete(id)
   cache.refreshedAt = Date.now()
   if (results.some((r) => r.status === 'fulfilled')) saveCache(eventId, cache)
 }
 
-/** Fresh enough parsed sheets for the event, re-reading Fileverse at most every REFRESH_MS. Concurrent callers share one refresh. */
+/** Fresh enough parsed sheets for the event, re-reading the live export at most every REFRESH_MS. Concurrent callers share one refresh. */
 async function ensureFresh(eventId: string): Promise<EventCache> {
   const cache = cacheFor(eventId)
   if (Date.now() - cache.refreshedAt < REFRESH_MS) return cache
@@ -235,7 +274,7 @@ export async function getCommunityHubVersion(eventId: string): Promise<string> {
 
 export async function getCommunityHubStatus(
   eventId: string
-): Promise<{ version: string; refreshedAt: number; problems: string[]; hubs: HubStatus[] }> {
+): Promise<{ version: string; refreshedAt: number; exportedAt: number | null; problems: string[]; hubs: HubStatus[] }> {
   const cache = await ensureFresh(eventId)
   const hubs: HubStatus[] = COMMUNITY_HUBS.filter((h) => cache.hubs.has(h.id) || cache.failures.has(h.id)).map((h) => {
     const data = cache.hubs.get(h.id)
@@ -252,7 +291,7 @@ export async function getCommunityHubStatus(
         ...(failure ? [`could not read the sheet: ${failure}`] : []),
         ...(held
           ? [
-              `the sheet published at ${new Date(held.publishedAt).toISOString()} is not in service: it parses to ${held.sessions} sessions (${
+              `the sheet as of ${new Date(held.publishedAt).toISOString()} is not in service: it parses to ${held.sessions} sessions (${
                 data!.rows.length
               } served) with ${held.problems.length} problem(s)`,
               ...held.problems,
@@ -261,7 +300,7 @@ export async function getCommunityHubStatus(
       ],
     }
   })
-  return { version: versionOf(cache), refreshedAt: cache.refreshedAt, problems: cache.configProblems, hubs }
+  return { version: versionOf(cache), refreshedAt: cache.refreshedAt, exportedAt: cache.exportedAt ?? null, problems: cache.configProblems, hubs }
 }
 
 export async function getCommunityHubBundle(eventId: string): Promise<CommunityHubBundle> {
@@ -277,6 +316,8 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
     rooms.push({ id: roomId, name: hub.name, description: '', info: '', capacity: null, color: hub.color })
     const taken = new Set<string>()
     for (const row of data.rows) {
+      // Lunch and breaks stay in the hubs' sheets for their own planning but are not sessions in the app.
+      if (row.format.trim().toLowerCase() === 'break') continue
       const speakerIds: string[] = []
       for (const name of row.speakers) {
         const id = defaultSlugify(name)
@@ -317,7 +358,7 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
   }
 }
 
-/** Test hook: forget everything cached (each test starts from Fileverse). */
+/** Test hook: forget everything cached (each test starts from the live export). */
 export function resetCommunityHubCache() {
   caches.clear()
 }

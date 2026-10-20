@@ -22,7 +22,7 @@ const EVENT_UTC_OFFSET_MINUTES: Record<string, number> = { 'devcon-7': 420 }
 export const eventUtcOffsetMinutes = (eventId: string) => EVENT_UTC_OFFSET_MINUTES[eventId] ?? COMMUNITY_HUB_UTC_OFFSET_MINUTES
 
 export interface CommunityHub {
-  /** Short slug, also the key in the COMMUNITY_HUB_SHEETS secret. */
+  /** Short slug, also the key in the COMMUNITY_HUB_SHEETS GitHub Actions secret. */
   id: string
   name: string
   /** The hub's pastel colour (badges, cards); served on the hub's room. Same values as the event app's registry. */
@@ -46,6 +46,24 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: 'security', name: 'Security Hub', color: '#E9E5FF' },
   { id: 'zuzone', name: 'Zuzone Hub', color: '#DEEDE5' },
 ]
+
+/** Repo path of the hourly live export (.github/workflows/fileverse-live-export.yml), which the API reads from GitHub. */
+export const LIVE_HUB_SHEETS_PATH = 'devcon-api/data/community-hubs/sheets.json'
+
+/** The live export: every hub sheet's cells as its editors see them, unpublished edits included. */
+export interface LiveHubSheets {
+  /** When the export last ran (ms since epoch). Rewritten every few hours even when nothing changed, so a stalled export shows. */
+  exportedAt: number
+  hubs: Record<string, LiveHubSheet>
+}
+
+export interface LiveHubSheet {
+  /** When the cells last changed (ms since epoch); the API serves it as the hub's publish time. */
+  changedAt: number
+  tabs: DSheetTab[]
+  /** Set when the latest export could not read the sheet; `tabs` then still hold the previous export (empty if there never was one). */
+  error?: string
+}
 
 export const communityHubRoomId = (hubId: string) => `${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`
 export const isCommunityHubRoom = (roomId: unknown): boolean => typeof roomId === 'string' && roomId.startsWith(COMMUNITY_HUB_ROOM_PREFIX)
