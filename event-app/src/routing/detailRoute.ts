@@ -42,9 +42,12 @@ let closing = false;
 
 /**
  * Close the detail page: back() if we pushed it, else (deep link, first
- * entry) swap the URL for the list tab in place. Never leaves the app. A
- * second tap while a back() is still in flight is ignored, otherwise a quick
- * double tap on the arrow walks one entry too far (and out of the app).
+ * entry) push the list tab as a new entry. Never leaves the app. Pushing
+ * rather than replacing keeps the deep-linked page in the browser history:
+ * a replace left a fresh tab with a single entry, so the browser's own back
+ * button had nowhere to go after the in-app Back. A second tap while a
+ * back() is still in flight is ignored, otherwise a quick double tap on the
+ * arrow walks one entry too far (and out of the app).
  */
 export function closeDetail(kind: DetailKind): void {
   if (closing) return;
@@ -61,7 +64,7 @@ export function closeDetail(kind: DetailKind): void {
     window.history.back();
     return;
   }
-  window.history.replaceState({}, "", withCurrentSearch(DETAIL_ROUTES[kind]));
+  window.history.pushState({}, "", withCurrentSearch(DETAIL_ROUTES[kind]));
 }
 
 /**
