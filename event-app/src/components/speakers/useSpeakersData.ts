@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import { useEvent, useSessions, useSpeakers } from "@/data/hooks";
 import type { ConferenceEvent, Session, Speaker } from "@/data/models";
 import { deriveTopicOptions } from "@/data/topics";
+import { storeFor, useScheduleSource } from "@/data/store/schedule-source";
+import { useStoreState } from "@/data/store/use-event-store";
 
 /**
  * A speaker joined with their sessions. The API's speaker list carries none of
@@ -12,7 +14,7 @@ import { deriveTopicOptions } from "@/data/topics";
  */
 export interface DecoratedSpeaker {
   speaker: Speaker;
-  /** This speaker's sessions, sorted by start time. */
+  /** This speaker's sessions in both programmes (Pretalx and Community Hubs), sorted by start time. */
   sessions: Session[];
   sessionCount: number;
   /** Alphabetical union of the sessions' topic tags. */
@@ -52,6 +54,7 @@ const letterFor = (name: string): string => {
 let memoInputs: {
   speakers: Speaker[];
   sessions: Session[];
+  otherSessions: Session[];
   event: ConferenceEvent | undefined;
 } | null = null;
 let memoDerived: Derived | null = null;
@@ -59,6 +62,7 @@ let memoDerived: Derived | null = null;
 function derive(
   speakers: Speaker[],
   sessions: Session[],
+  otherSessions: Session[],
   event: ConferenceEvent | undefined
 ): Derived {
   if (
@@ -66,6 +70,7 @@ function derive(
     memoInputs &&
     memoInputs.speakers === speakers &&
     memoInputs.sessions === sessions &&
+    memoInputs.otherSessions === otherSessions &&
     memoInputs.event === event
   ) {
     return memoDerived;
@@ -88,6 +93,20 @@ function derive(
     if (session.type) typeSet.add(session.type);
   }
 
+  // Someone speaking on both programmes has the same id in each (the API keys
+  // hub speakers by name slug, like Pretalx): their sessions from the other
+  // programme join their list, so the page and the panel show all of them
+  // whichever programme they were opened from. They don't feed the format
+  // tabs or the featured flag, which belong to this programme.
+  const otherBySpeakerId = new Map<string, Session[]>();
+  for (const session of otherSessions) {
+    for (const sp of session.speakers ?? []) {
+      const list = otherBySpeakerId.get(sp.id);
+      if (list) list.push(session);
+      else otherBySpeakerId.set(sp.id, [session]);
+    }
+  }
+
   // Event-level curation (Pretalx "Featured speaker" question) wins when
   // present; otherwise fall back to speakers with featured sessions.
   const featuredIds = event?.featuredSpeakers?.length
@@ -96,21 +115,22 @@ function derive(
 
   const decorated: DecoratedSpeaker[] = speakers
     .map((speaker) => {
-      const own = (bySpeakerId.get(speaker.id) ?? []).sort(
+      const own = bySpeakerId.get(speaker.id) ?? [];
+      const all = [...own, ...(otherBySpeakerId.get(speaker.id) ?? [])].sort(
         (a, b) => a.start - b.start
       );
       const tags = [
-        ...new Set(own.flatMap((s) => s.tags ?? []).map((t) => t.trim())),
+        ...new Set(all.flatMap((s) => s.tags ?? []).map((t) => t.trim())),
       ]
         .filter(Boolean)
         .sort((a, b) => a.localeCompare(b));
-      const types = [...new Set(own.map((s) => s.type))].filter(
+      const types = [...new Set(all.map((s) => s.type))].filter(
         (t): t is string => !!t
       );
       return {
         speaker,
-        sessions: own,
-        sessionCount: own.length,
+        sessions: all,
+        sessionCount: all.length,
         tags,
         types,
         isFeatured: featuredIds
@@ -130,7 +150,7 @@ function derive(
 
   const typeOptions = [...typeSet].sort((a, b) => a.localeCompare(b));
 
-  memoInputs = { speakers, sessions, event };
+  memoInputs = { speakers, sessions, otherSessions, event };
   memoDerived = { decorated, byId, topicOptions, typeOptions };
   return memoDerived;
 }
@@ -154,13 +174,16 @@ export function useSpeakersData() {
   // Event record carries the organizer-curated featured speaker ids; the
   // event fetch is cached like everything else, so no extra loading state.
   const { event } = useEvent();
+  // The other programme's sessions, for speakers on both (see `derive`).
+  const source = useScheduleSource();
+  const otherSessions = useStoreState(storeFor(source === "hubs" ? "main" : "hubs")).snapshot.sessions;
 
   // Identity-stable per snapshot (see `derive`): list consumers feed these
   // straight into their own memos, so identity churn here would re-filter the
   // whole page each render (project Set/Map-identity gotcha).
   const derived = useMemo(
-    () => derive(speakers, sessions, event),
-    [speakers, sessions, event]
+    () => derive(speakers, sessions, otherSessions, event),
+    [speakers, sessions, otherSessions, event]
   );
 
   // The join needs BOTH halves: loading until each list has data (otherwise

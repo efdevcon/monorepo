@@ -45,8 +45,13 @@ export default function Speaker({ params, id: directId }: SpeakerClientProps) {
   const current = useScheduleSource();
   const main = useStoreState(storeFor("main"));
   const hubs = useStoreState(storeFor("hubs"));
-  const source =
-    !main.snapshot.speakerById.has(id) && hubs.snapshot.speakerById.has(id) ? "hubs" : current;
+  // Someone on both programmes always opens under the main one (their Pretalx
+  // profile); their hub sessions join the list anyway (useSpeakersData).
+  const source = main.snapshot.speakerById.has(id)
+    ? "main"
+    : hubs.snapshot.speakerById.has(id)
+      ? "hubs"
+      : current;
   return (
     <ScheduleSourceProvider source={source}>
       <SpeakerPage id={id} />
