@@ -22,7 +22,7 @@ function useIsBetaDataset(): boolean {
 }
 
 /**
- * "Early access. Schedule subject to change": the full-bleed blue strip on
+ * "Early Access. Schedule subject to change": the full-bleed blue strip on
  * the Schedule and Speakers lists while the Devcon 8 programme settles. Never
  * sticky; it scrolls away with the page. The caller sets the display class
  * (`hidden lg:flex` under the desktop nav, `flex lg:hidden` under the mobile
@@ -42,7 +42,7 @@ export function BetaBanner({ className }: { className?: string }) {
     >
       <FlaskConical className="size-4 shrink-0" aria-hidden />
       <p>
-        <b className="font-bold">Early access</b>. Schedule subject to change
+        <b className="font-bold">Early Access</b>. Schedule subject to change
       </p>
     </div>
   );
