@@ -9,6 +9,10 @@ concurrency:
 
 jobs:
   generate:
+    # Off for now: test-devcon-8 sheets are generated locally (pnpm run-of-show:test)
+    # and there is no ROS_FOLDER_ID secret for them. Dispatches from the Pretalx
+    # webhook still succeed, the run just shows as skipped.
+    if: ${{ false }}
     defaults:
       run:
         working-directory: ./devcon-api
@@ -25,6 +29,5 @@ jobs:
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
           ROS_GOOGLE_CLIENT_EMAIL: ${{ secrets.ROS_GOOGLE_CLIENT_EMAIL }}
           ROS_GOOGLE_PRIVATE_KEY: ${{ secrets.ROS_GOOGLE_PRIVATE_KEY }}
-          # Own secret on purpose: ROS_SPREADSHEET_ID is the AV team's Devcon 8 sheet and a
-          # test release must never rewrite it. Unset = the script exits before writing.
-          ROS_SPREADSHEET_ID: ${{ secrets.ROS_SPREADSHEET_ID_TEST_DEVCON_8 }}
+          ROS_FOLDER_ID: ${{ secrets.ROS_FOLDER_ID }}
+          ROS_TEMPLATE_ID: ${{ secrets.ROS_TEMPLATE_ID }}

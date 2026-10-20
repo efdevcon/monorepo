@@ -23,6 +23,9 @@ jobs:
       - run: pnpm run-of-show:devcon8
         env:
           PRETALX_API_KEY_MUMBAI: ${{ secrets.PRETALX_API_KEY_MUMBAI }}
-          ROS_GOOGLE_CLIENT_EMAIL: ${{ secrets.ROS_GOOGLE_CLIENT_EMAIL }}
-          ROS_GOOGLE_PRIVATE_KEY: ${{ secrets.ROS_GOOGLE_PRIVATE_KEY }}
-          ROS_SPREADSHEET_ID: ${{ secrets.ROS_SPREADSHEET_ID }}
+          # Same service account as av-assets (sync-pretalx-devcon8.yml): it has the AV folder and the template.
+          GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          # The AV team's Drive, shared with av-assets: sheets go to $$EVENT/<Room>/<Day>/.
+          AV_DRIVE_FOLDER_ID_DEVCON8: ${{ secrets.AV_DRIVE_FOLDER_ID_DEVCON8 }}
+          ROS_TEMPLATE_ID: ${{ secrets.ROS_TEMPLATE_ID }}

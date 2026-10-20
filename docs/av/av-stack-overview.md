@@ -103,7 +103,7 @@ Pretalx (cfp.devcon.org, schedule published)
                       ├─ sync-pretalx-<event>.yml ──> commits devcon-api/data/ ──> API restart
                       │                            ├─> devcon-ai `sync:sessions` (RAG embeddings)
                       │                            └─> POST app.meerkat.events sync ping (test-devcon-8, devcon8; §3 #11)
-                      └─ run-of-show-<event>.yml  ──> rebuilds Google Sheet for AV team
+                      └─ run-of-show-<event>.yml  ──> upserts the AV team's run-of-show sheets (§2e)
 
 AV / encoding vendor
   └─PUT /sessions/sources/:id (API key) ──> memory + CommitSession() to git
@@ -204,7 +204,7 @@ by hand. "Manual" means someone runs a pnpm script locally.
 |---|---|---|---|---|
 | Pretalx webhook ([`hooks.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/controllers/hooks.ts)) | Full resync into memory + dispatches workflows | Pretalx "schedule published" plugin webhook | Slug-resolved; unknown slugs rejected with 400 (✅ fixed, §12) | Live |
 | [`sync-pretalx{,-devcon8,-test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Commits `devcon-api/data/` to git (→ Render redeploy), builds devcon-ai RAG embeddings, pings Meerkat | Webhook-dispatched + monthly cron (`0 23 30 * *`) | devcon-7 / devcon8 / test-devcon-8 | Live |
-| [`run-of-show-{devcon8,test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Rebuilds the AV team's Google Sheet | Webhook-dispatched + manual dispatch | devcon8 / test-devcon-8 (devcon-7 not wired) | Live |
+| [`run-of-show-{devcon8,test-devcon-8}.yml`](https://github.com/efdevcon/monorepo/tree/main/.github/workflows) | Upserts the AV team's run-of-show sheets, one per day and stage (§2e) | Webhook-dispatched + manual dispatch | devcon8, into the AV Drive next to the intro cards (since 2026-10-20); the test-devcon-8 job is switched off (`if: false`, run it locally); devcon-7 runs locally from committed data as the preview | Live |
 | `pnpm sync:eventyay <event>` ([`sync-eventyay.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-eventyay.ts)) | Syncs a partner's eventyay schedule (Open Tech Summit) into our Pretalx event: proposals, WIP slots, tags, speakers (§12g) | Manual; dry run by default, `--apply` writes | test-devcon-8 / devcon8 (target table in the script) | Manual |
 | `pnpm pretalx:release <event>` ([`pretalx-release.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/pretalx-release.ts)) | Releases a schedule version through the Pretalx API (orga-UI fallback, §12f) | Manual | `devcon8` refused (`NEVER_RELEASE`); test-devcon-8 and devcon7-sea | Manual |
 | Meerkat ping (`notifyClients()` in [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts)) | POST sync ping to `app.meerkat.events`, which then pulls the schedule from Pretalx | Runs inside the sync script | test-devcon-8 / devcon8 (`MEERKAT_EVENTS` map; ✅ 2026-10-09, §12g) | Live |
@@ -456,6 +456,111 @@ secrets), `SLIDES_EVENTS=test-devcon-8`, `SLIDES_DRIVE_ID=<AV shared drive>`,
 `pnpm sync:pretalx:test`; decks appear in the folder as `<title> [<code>]` and the URLs
 land in `data/sessions/test-devcon-8/*.json`, which should not be committed.
 
+## 2e. Run of show (Google Sheets, DC8)
+
+Rewritten 2026-09-18 with the AV team's own template. Before this the script deleted
+and rebuilt every tab on each Pretalx publish, wiping the crew's notes (old §5.1).
+
+**Shape.** One Google Sheet per day and stage. devcon8 (`AV_TREE_EVENTS`) puts it in the AV
+team's Drive next to the intro cards, `<AV folder>/$$EVENT/<Room>/<Day N - Mon D>/Run of Show ·
+<Stage> · Day N`, with the folder names shared with `av-assets.ts` (`utils/av-drive.ts`);
+other events use `<ROS_FOLDER_ID>/Day N · ddd D MMM/<Stage name>`,
+each copied once from the AV template (`ROS_TEMPLATE_ID`, the team's Google Sheet with
+its `RUN OF SHOW` and `AV & TECH CUES` tabs). The template's header row tells the
+script which **layout** it is: `v1` is the AV team's original template, `v2` the
+proposal built 2026-09-18 (ownership shown in header colours, ACTUAL START and Δ,
+REC from the Pretalx "do not record" flag, TRACK, checkboxes, a CUE TYPE link column
+and a cue tab linked by CUE REF), `v3` the AV team's revision of v2 (2026-10-20, see
+below). Each generated sheet is recognised by its own header row (row 5 for v1/v2,
+row 2 for v3), so sheets keep working with the layout they were created from; layouts can
+live in one folder, which is how the side-by-side preview was made (`ROS_ROOMS=main-stage`
+with the v1 template, `ROS_ROOMS=stage-1` with the v2 template). Layout definitions are
+in `utils/run-of-show.ts`, the format and clearing details per layout in `LAYOUT_IO`. Files are recognised by Drive
+`appProperties` (`ros_event`, `ros_day`, `ros_room`), so renaming a file or a Pretalx
+room is harmless. Each sheet also gets a `CHANGES` tab and a hidden `_style` tab (an
+untouched copy of the template used to re-apply row formats).
+
+**v3 (2026-10-20).** Agreed with the AV team: a DAY / STAGE line, then headers on row 2.
+Columns `# · STATUS · START · DUR · END · Q&A · MC · SESSION · SPEAKERS · SPEAKER CONTACT ·
+FORMAT · SLIDES · DECK OK? · INTRO ANIMATION · STREAMING · REC · MODERATOR · MIC ·
+NOTES · PRETALX ID`. Dropped from v2: ACTUAL START, Δ, TRACK, ON SITE?, the cue sheet and
+the MORNING / AFTERNOON / END OF SHOW rows (the REMOVED section still appears when a
+session leaves). Rules that differ:
+
+- `DUR` is the Pretalx slot, Q&A included (the AV timer table: Talk 20 + 5, Lightning 5 + 2,
+  Mixed 25 + 0, Workshop 50 + 0; the buffer is the gap to the next slot).
+- `Q&A` and `SLIDES` are **fill-once**: the sync writes them only while empty (Q&A from the
+  timer table, other formats 0), then they are the crew's ("Laptop", a longer Q&A). A deck
+  link that later changes in Pretalx is logged on CHANGES and highlighted, never applied.
+- `MC` is a formula: minutes from END to the next live row's START (red when negative).
+- `SPEAKER CONTACT` is synced: Telegram from Pretalx (speakers fetched with contacts, so it
+  is only filled from the Pretalx source), else X, Farcaster or website, one line per speaker.
+- The stage's Q&A QR (`devcon.org/qr/meerkat/<room id>`, redirected by devcon `/api/meerkat/`
+  to the session a Meerkat moderator put live there, else the schedule's) is not a column:
+  `av-assets.ts` saves it as `$$EVENT/<Room>/Q&A QR - <Room>.png` (one per stage, for offline
+  use), and the sync links that file from the Digital Assets tab's "Q&A QR code" row.
+- `STREAMING`, `INTRO ANIMATION` are the crew's. The template's `Digital Assets` and
+  `Livestreaming Information` tabs are the AV team's and never touched.
+
+**Contract with the AV team.** The sync owns columns B..K (`STATUS` .. `SLIDES / MEDIA`)
+plus the key column `PRETALX ID` (R, appended to the template's 17). Columns L..Q
+(`MIC CONFIG` .. `LAST EDITED BY`) are the crew's and are carried over by Pretalx code:
+
+- a session moved within a sheet, to another stage or to another day takes its L..Q
+  values with it (rows are indexed across every sheet before writing);
+- a session that leaves a sheet is parked at the bottom under "REMOVED FROM THIS RUN OF
+  SHOW" as `CANCELLED`, notes intact; the `CHANGES` tab says where it went;
+- rows the crew adds by hand without a `PRETALX ID` (doors open, breaks) are kept and
+  slotted by their `START TIME`;
+- a hand-set `TBC`, `STANDBY` or `DELAYED` survives a resync; `MODERATOR` and
+  `SLIDES / MEDIA` are carried unless the sync has a value (the Google Slides deck URL
+  from §2d lands in `SLIDES / MEDIA`);
+- every difference is appended to `CHANGES` (run, code, session, field, from, to) and
+  the changed cells are highlighted until the next run;
+- `#` is a running `COUNTA` formula, `END TIME` is the template's start + duration
+  formula (v2 adds Δ and the CUE TYPE link), `STATUS` and `FORMAT` keep the template
+  dropdowns (`FORMAT` extended with the Pretalx types; v2 lists are strict), deck URLs
+  render as a `Slides` link, rows auto-fit their wrapped text. Rows are rewritten **in
+  place** below the header (never deleted), so the template's column-wide rules
+  survive. All conditional colours are owned by the sync and re-created every run,
+  because pasting row formats strips them (v1: STATUS; v2: STATUS, REC, Δ, "on stage
+  now", "speaker not on site", banding). A new sheet gets the event time zone (the
+  live rules use `NOW()`), and v2 gets the stage's stream link from the room data.
+  `AV & TECH CUES` is emptied of the template's example content once, when the sheet
+  is created, and never touched again. Dividers: MORNING before 13:00, then AFTERNOON,
+  EVENING from 18:00.
+
+Merge rules are pure and unit-tested in
+[`utils/run-of-show.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/utils/run-of-show.ts);
+[`generate-run-of-show.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/generate-run-of-show.ts)
+does Drive/Sheets I/O only.
+
+**Running it.** `ROS_TEMPLATE_ID` (the v3 template, also a repo secret) and the top folder
+are required (no defaults): `AV_DRIVE_FOLDER_ID_DEVCON8` for devcon8 (the AV Drive, same
+secret as av-assets), `ROS_FOLDER_ID` for the other events;
+`ROS_SOURCE=data` reads `devcon-api/data/` instead of Pretalx (`ROS_DATA_DIR` to point
+at a scratch copy), `ROS_ROOMS` limits rooms, `ROS_DAYS` limits days (1-based numbers,
+counted over the whole event), `ROS_DRY_RUN=true` plans without writing.
+`ROS_ALLOWED_EVENTS` in the script hard-limits which events may be generated; `devcon8`
+was added 2026-10-20 and all its sheets were generated that day (38 sheets, 10 stages over
+4 days). A local `.env` may still carry `ROS_ROOMS` from the devcon-7 preview: pass
+`ROS_ROOMS=` to lift it. `pnpm run-of-show:devcon-7` is the preview from committed data;
+`pnpm run-of-show:test` runs test-devcon-8 from Pretalx. Google credentials: the shared
+`GOOGLE_*` pair (the devcon8 workflow too, the account that has the AV Drive); `ROS_GOOGLE_*`
+is only a fallback when `GOOGLE_*` is unset.
+
+**Drive gotchas found while building this.** The service account is external to the
+EF Workspace. Files it *uploads* into an EF shared drive get the "EF Internal"
+classification within about half a minute and disappear from its view (not trashed,
+just no longer visible), which is what the "vanishing files" of §2d were. Files it
+*copies* and folders it *creates* are fine, so the template must be put in the folder
+by a person and the script only ever copies it. The account is a folder-level member,
+not a drive member, so the script walks the folder tree instead of searching the drive.
+
+**Open with the AV team.** Whether stages without AV (breakouts, classrooms) need
+sheets (`ROS_ROOMS`), whether `FORMAT` should map Pretalx types onto their list instead
+of extending it, and who fills `AV CUE REF` on new rows (left blank today).
+
 ## 3. Devcon 8 blockers - independent hardcodes that fail silently
 
 Ranked by severity. Each is a separate fix.
@@ -526,14 +631,13 @@ template, and has an unreachable 1920×1080 `'video'` branch (`imageType` hardco
 
 ## 5. Destructive-behaviour risks (live footguns)
 
-1. **Run-of-show destroys AV team's manual work.** `applyFormatting()` unmerges and
-   rewrites all formatting, and tabs are destructively rebuilt every run
-   ([`generate-run-of-show.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/generate-run-of-show.ts)).
-   Columns `MODERATOR`, `SLIDES / MEDIA`, `MIC CONFIG`, `INTERNAL NOTES`,
-   `PUBLIC NOTES` are intentionally blank for AV to fill - and for **devcon8 this
-   regenerates automatically on every Pretalx publish**. The handover doc flags this
-   as unresolved. Options: make the sheet immutable and document it, or split
-   generated vs. hand-edited columns onto separate tabs.
+1. ✅ FIXED 2026-09-18 (§2e) - **Run-of-show destroyed the AV team's manual work.**
+   The old script unmerged and rewrote all formatting and rebuilt every tab on each
+   run. It is now a keyed upsert: only columns B..K and the `PRETALX ID` key are
+   written, the crew's columns L..Q travel with the session, and nothing is deleted
+   silently. Residual risk: last write wins if someone is typing in L..Q at the
+   second a publish fires, and hand-applied cell colours do not travel with a moved
+   row (values do).
 2. **Sync can delete committed data.**
    [`sync-pretalx.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/scripts/sync-pretalx.ts)
    `unlinkSync`s any local room/session file whose id is absent from the Pretalx
@@ -719,8 +823,10 @@ Counts re-verified 2026-08-10 (devcon8 and test-devcon-8 rows: 2026-10-09):
    machine account and the AV write path verified end-to-end (#10). Still to do:
    reconfirm ownership of the `PRETALX_API_KEY(_MUMBAI)` secrets against
    cfp.devcon.org.
-4. Decide run-of-show mutability policy before the DC8 CFP schedule publishes (§5.1) -
-   this is a process decision, not a code one.
+4. ✅ DECIDED 2026-09-18 (§2e) - run-of-show mutability: the sync owns columns B..K,
+   the AV team owns L..Q, keyed by Pretalx code. ✅ 2026-10-20: devcon8 is in
+   `ROS_ALLOWED_EVENTS` with the AV team's v3 layout, sheets generated in the AV Drive;
+   the AV team reviews it on real data and the layout gets one round of changes.
 5. ✅ DONE 2026-10-09 (§12g) - Meerkat's per-event sync endpoint is pinged for
    test-devcon-8 and devcon8 (#11).
 
@@ -924,7 +1030,8 @@ describe pre-fix behavior.
   ([`sessions.test.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/controllers/sessions.test.ts)
   x6 tests,
   [`hooks.test.ts`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/src/controllers/hooks.test.ts)
-  x2, `store.test.ts` x1, `generate-run-of-show.test.ts` x2); GitHub and Pretalx
+  x2, `store.test.ts` x1, `generate-run-of-show.test.ts` x2, since folded into
+  `utils/run-of-show.test.ts`, §2e); GitHub and Pretalx
   clients mocked, nothing touches the network.
 - [`package.json`](https://github.com/efdevcon/monorepo/blob/main/devcon-api/package.json):
   jest `moduleNameMapper` for the `@/` / `@lib/` aliases (mirrors tsconfig 1:1) -
@@ -1202,11 +1309,17 @@ Google service account, manifest committed as `data/av-assets/devcon8.json`):
   avatars on the footer baseline (`dc8-social-card.tsx`, AV size only);
 - one speaker photo per scheduled speaker in `Speaker Assets/Photos`, 1024 px from the
   Pretalx original, else our 256 px mirror (`(256px only)`), else the blockie;
-- the list of speakers without a photo as a Google Doc, rewritten in place.
+- the list of speakers without a photo as a Google Doc, rewritten in place;
+- (2026-10-20) one Q&A QR per stage, `$$EVENT/<Room>/Q&A QR - <Room>.png` (2048 px, from
+  the site's own `/qr/meerkat/<room>?svg`), linked from each run-of-show sheet (§2e); none
+  for the Music Stage, which has no Q&A.
 
-The manifest keys files by what they are (`card:<code>`, `photo:<code>`), so a
+The manifest keys files by what they are (`card:<code>`, `photo:<code>`, `qaqr:<room>`), so a
 rescheduled session's card is moved, a changed one rewritten in place, a stale one
-trashed, and links stay stable.
+trashed, and links stay stable. A file that fails to render in a run (a timeout or a 403
+from devcon.org) is not stale: Drive keeps the previous one (fixed 2026-10-20, after a
+burst of 403s trashed four cards; they were restored). Day folders are numbered over the
+whole event, also with `--rooms`.
 
 **Drive labelling, and the trick that works around it.** The EF shared drive labels
 every file an external account uploads "EF Internal" within seconds and the label hides
@@ -1223,10 +1336,9 @@ image where it is; if it moves, the script searches the AV tree before giving up
 Blockers #2 (production devcon8 room stream fields - needs the DC8 YouTube channels),
 #6 second half (DC8 asset swap + DC7 location/date/timezone copy in the card
 templates - infra done, §12d), #9 (YouTube OAuth; #11 Meerkat closed 2026-10-09, #10 closed
-2026-08-13: AV write path + token migration verified), footguns §5.1-5.3 (run-of-show destructive rebuild, sync deletion,
-spread-order fragility). §12e's edge caching is now fully active (Render Edge
-Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): CI still creates no decks for devcon8 (§2d checklist); the
-run-of-show quota failure of the same day is fixed.
+2026-08-13: AV write path + token migration verified), footguns §5.2-5.3 (sync deletion,
+spread-order fragility; §5.1's run-of-show rebuild is fixed, §2e). §12e's edge caching is now fully active (Render Edge
+Caching "All files", 2026-08-19). Added 2026-10-09 (§12g): CI still creates no decks for devcon8 (§2d checklist).
 
 ## Verification
 

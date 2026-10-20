@@ -32,6 +32,8 @@
 
 # run-of-show
 
+    (2026-10: superseded. The run of show is now a keyed upsert into the AV team's Google Sheets; see docs/av/av-stack-overview.md §2e.)
+
     Generates google slides whenever sessions change - more a proof of concept than anything - if you want to test it, you probably have to rotate keys
 
     Lots of unaddressed concerns here - e.g. what happens if the slide users edit the slides and the schedule updates again? kind of rife for conflict where the sync could override custom changes / notes - so maybe best to make it "immutable" and just explain that to the AV team, but yeah, lean on James/Carlota for decisions on this

@@ -10,6 +10,7 @@
  *
  * Local output: devcon-api/.av-assets/<event>/ (gitignored), mirroring Drive:
  *   $$EVENT/<Room>/<Day N - Mon D>/Intro Cards/HH.MM <Title> [CODE].jpg   intro card
+ *   $$EVENT/<Room>/Q&A QR - <Room>.png   the stage screen's Q&A code (one per stage, same every day)
  *   Speaker Assets/Photos/<Speaker Name> [CODE].jpg   up to 1024 px
  *   Speaker Assets/Photos/<Speaker Name> [CODE] (256px only).jpg  photo gone from Pretalx, our small mirror
  *   Speaker Assets/Photos/<Speaker Name> [CODE] (blockie).png     no photo at all
@@ -42,6 +43,7 @@ import sharp from 'sharp'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { getPretalxConfig } from '@/utils/config'
+import { AV_EVENT_FOLDER, avDayFolder, avRoomFolder, qaQrFileName, qaQrKey, qaQrUrl } from '@/utils/av-drive'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -57,25 +59,8 @@ if (!eventId) {
 
 const TIMEZONES: Record<string, string> = { devcon8: 'Asia/Kolkata', 'test-devcon-8': 'Asia/Kolkata', 'devcon-7': 'Asia/Bangkok' }
 const TZ = TIMEZONES[eventId] ?? 'UTC'
-// Folder name per room id; a room not listed uses its Pretalx name. Room ids
-// are the slugified Pretalx names, so a rename in Pretalx changes the id: keep
-// this map in step or cards move to a freshly created folder (2026-10-14: the
-// stages were renamed and the old "Lotus 1", "Jasmine", "CLS"... folders
-// emptied out; the crew keeps its own files in them, so they are left alone).
-const ROOM_FOLDERS: Record<string, string> = {
-  'main-stage-lotus': 'Main Stage (Lotus)',
-  'lotus-stage-1': 'Lotus Stage 1',
-  'lotus-stage-2': 'Lotus Stage 2',
-  'lotus-stage-3': 'Lotus Stage 3',
-  'jasmine-stage-4': 'Jasmine Stage 4',
-  'community-led-stage': 'Community Led Stage',
-  'cls-builders-room': 'CLS - Builders Room',
-  'lightning-stage': 'Lightning Stage',
-  'music-stage': 'Music',
-  'workshop-1': 'Workshop 1',
-  'workshop-2': 'Workshop 2',
-}
-const EVENT_FOLDER = '$$EVENT'
+// Stages without a Q&A, as in event-app/src/data/meerkat.ts (NO_QA_ROOMS): no QR for their screen.
+const NO_QA_ROOMS = ['music-stage']
 const CARDS_SUBFOLDER = 'Intro Cards' // inside each room/day folder, so the crew's own files stay apart
 const PHOTOS_FOLDER = ['Speaker Assets', 'Photos']
 // A Public-labelled image copied for every new file. It lives in the photos
@@ -170,16 +155,17 @@ type Manifest = { files: Record<string, ManifestEntry> }
 
 async function main() {
   console.log(`AV assets · ${eventId} · ${UPLOAD ? 'build + sync Drive' : 'build only'}`)
-  const sessions = readJsonDir(path.join(ROOT, 'data/sessions', eventId))
-    .filter(s => s.slot_start && s.slot_roomId)
+  const scheduled = readJsonDir(path.join(ROOT, 'data/sessions', eventId)).filter(s => s.slot_start && s.slot_roomId)
+  // Day numbers come from the whole event, so a --rooms run names its folders like a full one.
+  const days = [...new Set(scheduled.map(s => dayjs(s.slot_start).tz(TZ).format('YYYY-MM-DD')))].sort()
+  const sessions = scheduled
     .filter(s => ONLY_ROOMS.length === 0 || ONLY_ROOMS.includes(s.slot_roomId))
     .sort((a, b) => a.slot_start - b.slot_start)
   const rooms = Object.fromEntries(readJsonDir(path.join(ROOT, 'data/rooms', eventId)).map(r => [r.id, r]))
   const speakersById = Object.fromEntries(readJsonDir(path.join(ROOT, 'data/speakers')).map(s => [s.id, s]))
-  const days = [...new Set(sessions.map(s => dayjs(s.slot_start).tz(TZ).format('YYYY-MM-DD')))].sort()
   const dayLabel = (startMs: number) => {
-    const d = dayjs(startMs).tz(TZ)
-    return `Day ${days.indexOf(d.format('YYYY-MM-DD')) + 1} - ${d.format('MMM D')}`
+    const day = dayjs(startMs).tz(TZ).format('YYYY-MM-DD')
+    return avDayFolder(day, days.indexOf(day) + 1)
   }
   console.log(`${sessions.length} scheduled sessions · ${days.length} days · rooms: ${[...new Set(sessions.map(s => s.slot_roomId))].join(', ')}`)
 
@@ -190,6 +176,9 @@ async function main() {
 
   const targets: Target[] = []
   const problems: string[] = []
+  // Files that should exist but failed to render this run (a timeout, a hiccup on
+  // devcon.org): keep what Drive has instead of trashing it as stale.
+  const failed = new Set<string>()
 
   // Intro cards
   let cards = 0
@@ -198,14 +187,44 @@ async function main() {
       const { buffer, type } = await fetchBuffer(`${SITE}/api/social/av/${s.id}/`)
       if (!type.startsWith('image/')) throw new Error(`not an image (${type})`)
       const name = `${dayjs(s.slot_start).tz(TZ).format('HH.mm')} ${shortTitle(s.title)} [${s.sourceId}].jpg`
-      const room = ROOM_FOLDERS[s.slot_roomId] ?? rooms[s.slot_roomId]?.name ?? s.slot_roomId
-      targets.push({ key: `card:${s.sourceId}`, drivePath: [EVENT_FOLDER, room, dayLabel(s.slot_start), CARDS_SUBFOLDER, name], buffer })
+      const room = avRoomFolder(s.slot_roomId, rooms[s.slot_roomId]?.name)
+      targets.push({ key: `card:${s.sourceId}`, drivePath: [AV_EVENT_FOLDER, room, dayLabel(s.slot_start), CARDS_SUBFOLDER, name], buffer })
       cards++
     } catch (e: any) {
+      failed.add(`card:${s.sourceId}`)
       problems.push(`card ${s.sourceId} (${s.title.slice(0, 40)}): ${e?.message ?? e}`)
     }
   })
   console.log(`cards: ${cards} rendered`)
+
+  // Q&A QR per stage, in the stage folder so the crew has it offline. The
+  // code is the site's own (/qr/meerkat/<room>, rendered by /api/qr-image/), so
+  // the screen shows exactly what the QR table resolves; nearest-neighbour
+  // scaling keeps the modules sharp at 2048 px.
+  const qaStages = [...new Set(sessions.map(s => s.slot_roomId as string))].filter(id => !NO_QA_ROOMS.includes(id))
+  const qrPng = new Map<string, Promise<Buffer>>()
+  const renderQr = (roomId: string) => {
+    if (!qrPng.has(roomId))
+      qrPng.set(
+        roomId,
+        (async () => {
+          const { buffer, type } = await fetchBuffer(`${qaQrUrl(roomId)}?svg`)
+          if (!type.includes('svg')) throw new Error(`not an SVG (${type})`)
+          return sharp(buffer, { density: 600 }).resize(2048, 2048, { kernel: 'nearest' }).png().toBuffer()
+        })()
+      )
+    return qrPng.get(roomId)!
+  }
+  for (const roomId of qaStages) {
+    try {
+      const room = avRoomFolder(roomId, rooms[roomId]?.name)
+      targets.push({ key: qaQrKey(roomId), drivePath: [AV_EVENT_FOLDER, room, qaQrFileName(room)], buffer: await renderQr(roomId) })
+    } catch (e: any) {
+      failed.add(qaQrKey(roomId))
+      problems.push(`Q&A QR ${roomId}: ${e?.message ?? e}`)
+    }
+  }
+  console.log(`Q&A QR: ${qaStages.length} stage(s)`)
 
   // Speaker photos (every speaker on a scheduled session)
   const speakerIds = [...new Set(sessions.flatMap(s => (s.speakers ?? []) as string[]))]
@@ -249,6 +268,7 @@ async function main() {
       targets.push({ key, drivePath: [...PHOTOS_FOLDER, `${safe(sp.name)} [${sp.sourceId}].jpg`], buffer: jpg })
       photos++
     } catch (e: any) {
+      failed.add(key)
       problems.push(`photo ${sp.name} [${sp.sourceId}]: ${e?.message ?? e}`)
     }
   })
@@ -274,7 +294,7 @@ async function main() {
   const isChanged = (k: string) => !isNew(k) && entry(k).sha256 !== produced.get(k)!.hash
   const isMoved = (k: string) => !isNew(k) && entry(k).path !== produced.get(k)!.pathStr
   // A partial run (--rooms) produces a subset, so nothing outside it counts as stale.
-  const stale = ONLY_ROOMS.length ? [] : Object.keys(manifest.files).filter(k => manifest.files[k].driveId && !produced.has(k))
+  const stale = ONLY_ROOMS.length ? [] : Object.keys(manifest.files).filter(k => manifest.files[k].driveId && !produced.has(k) && !failed.has(k))
   const keys = [...produced.keys()]
   const todo = keys.filter(k => isNew(k) || isChanged(k) || isMoved(k))
   console.log(`\nlocal tree: ${OUT}`)

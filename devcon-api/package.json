@@ -35,6 +35,7 @@
     "run-of-show:test": "ts-node ./src/scripts/generate-run-of-show.ts test-devcon-8",
     "run-of-show:devcon8": "ts-node ./src/scripts/generate-run-of-show.ts devcon8",
     "av:assets": "ts-node ./src/scripts/av-assets.ts",
+    "run-of-show:devcon-7": "ROS_SOURCE=data ts-node ./src/scripts/generate-run-of-show.ts devcon-7",
     "swagger:generate": "ts-node ./src/swagger/generate.ts",
     "ai-schedule-sync": "ts-node src/services/ai/open-ai/sync-vector-store",
     "ai-create-assistants": "ts-node src/services/ai/open-ai/create-assistants.ts",
