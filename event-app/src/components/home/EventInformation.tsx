@@ -169,15 +169,17 @@ export function EventInformation() {
             </Essential>
             <Essential term="Day 1 opening hours:">08:30 – 18:30</Essential>
             <Essential term="Need help?">
-              Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>. Something wrong
-              with the app?{" "}
+              Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>
+            </Essential>
+            <Essential term="Found a bug?">
               <button
                 type="button"
                 onClick={() => openFeedback()}
                 className={`${inlineLink} cursor-pointer`}
               >
                 Send feedback
-              </button>
+              </button>{" "}
+              to the team
             </Essential>
           </ul>
         </div>
