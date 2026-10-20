@@ -21,6 +21,7 @@ const SUPPORT_FAQ_HREF =
 const VENUE_MAPS_HREF = "https://maps.app.goo.gl/BN2AaTKh2cEy82Sy7";
 const MEETING_ROOMS_HREF = "https://rooms.devcon.org/";
 const GETTING_THERE_HREF = "https://devcon.org/en/travel-guide/#getting-there";
+const TICKET_FAQ_HREF = "https://devcon.org/en/tickets/#faq";
 const SIDE_EVENTS_HREF = "https://devcon.org/en/road-to-devcon/#side-events";
 const TELEGRAM_HREF = "https://t.me/+sitvvHw8D8EzN2Yx";
 const X_HREF = "https://x.com/efdevcon";
@@ -54,6 +55,15 @@ const GUIDES: ReadonlyArray<{
           <>
             Read our travel guide on{" "}
             <OutLink href={GETTING_THERE_HREF}>how to get to Jio World Centre</OutLink>
+          </>
+        ),
+      },
+      {
+        term: "Registration:",
+        body: (
+          <>
+            Bring your ticket QR code to collect your badge. Discounted tickets must show ID,
+            see the <OutLink href={TICKET_FAQ_HREF}>ticket FAQ</OutLink>
           </>
         ),
       },
