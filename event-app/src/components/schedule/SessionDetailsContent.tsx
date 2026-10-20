@@ -15,7 +15,7 @@ import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel } from "./trackTheme";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
-import { TextWithLinks } from "@/components/TextWithLinks";
+import { MarkdownText } from "@/components/MarkdownText";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 export function downloadSessionIcs(session: Session) {
@@ -73,7 +73,7 @@ const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 function Description({ text }: { text: string }) {
   const [expanded, setExpanded] = useState(false);
   const [overflows, setOverflows] = useState(false);
-  const ref = useRef<HTMLParagraphElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   useLayoutEffect(() => {
     if (expanded) return;
     const el = ref.current;
@@ -95,16 +95,18 @@ function Description({ text }: { text: string }) {
     <div className="flex flex-col gap-2">
       {/* [overflow-wrap:anywhere]: descriptions carry long unbroken URLs,
           which otherwise widen the fixed detail layer past the viewport
-          (iOS Safari then widens the whole layout viewport). */}
-      <p
+          (iOS Safari then widens the whole layout viewport). Pretalx
+          abstracts are markdown (lists, links, bold), hence MarkdownText;
+          the fold clamps across its paragraphs and lists. */}
+      <div
         ref={ref}
         className={cn(
-          "text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere]",
+          "text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere] [&>*+*]:mt-2",
           !expanded && "line-clamp-6"
         )}
       >
-        <TextWithLinks text={text} />
-      </p>
+        <MarkdownText text={text} />
+      </div>
       {!expanded && overflows && (
         <button
           type="button"

@@ -30,7 +30,7 @@ function trimTrailing(url: string): string {
  * keeps it true whatever the rest of the string does). Everything else in
  * the text is rendered by React as text, never as markup.
  */
-function safeHref(candidate: string): string | null {
+export function safeHref(candidate: string): string | null {
   try {
     const parsed = new URL(candidate);
     if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
