@@ -309,6 +309,11 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
   const rooms: Record<string, unknown>[] = []
   const sessions: Record<string, unknown>[] = []
   const speakers = new Map<string, Record<string, unknown>>()
+  // A hub speaker who also speaks on this event's main programme has the same id (both are the
+  // name's slug): reuse that speaker's photo, bio and socials instead of a generated avatar.
+  // Limited to this event so a namesake from a past Devcon is never merged in, and to full names:
+  // hubs often list first names only ("Vijay"), which may be someone else on the main programme.
+  const mainSpeakers = new Map<string, any>(store.getSpeakers({ event: eventId, take: Number.MAX_SAFE_INTEGER }).items.map((s: any) => [s.id, s]))
   for (const hub of COMMUNITY_HUBS) {
     const data = cache.hubs.get(hub.id)
     if (!data) continue
@@ -323,7 +328,18 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
         const id = defaultSlugify(name)
         if (!id) continue
         speakerIds.push(id)
-        if (!speakers.has(id)) speakers.set(id, { id, name, avatar: CreateBlockie(name), description: '' })
+        if (!speakers.has(id)) {
+          const main = name.trim().split(/\s+/).length > 1 ? mainSpeakers.get(id) : undefined
+          speakers.set(id, {
+            id,
+            name,
+            avatar: main?.avatar || CreateBlockie(name),
+            description: main?.description ?? '',
+            ...(main?.twitter ? { twitter: main.twitter } : {}),
+            ...(main?.github ? { github: main.github } : {}),
+            ...(main?.website ? { website: main.website } : {}),
+          })
+        }
       }
       sessions.push({
         id: hubSessionId(hub.id, row, taken),
