@@ -167,7 +167,7 @@ export function EventInformation() {
             <Essential term="Venue address:">
               <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
             </Essential>
-            <Essential term="Day 1:">Tues 3 November 2026, 08:30 – 18:30</Essential>
+            <Essential term="Day 1:">Tues, 3 November 2026 from 08:30 – 18:30</Essential>
             <Essential term="Need help?">
               Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>
             </Essential>
