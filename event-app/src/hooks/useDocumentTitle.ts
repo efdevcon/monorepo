@@ -14,7 +14,7 @@ import APP_CONFIG from "@/CONFIG";
 export function useDocumentTitle(title: string | null): void {
   useEffect(() => {
     if (!title) return;
-    document.title = `${title} · ${APP_CONFIG.APP_NAME}`;
+    document.title = `${title} - ${APP_CONFIG.APP_NAME}`;
     return () => {
       document.title = APP_CONFIG.APP_NAME;
     };

@@ -88,8 +88,8 @@ export async function GET(request: NextRequest) {
 
   const origin = getRequestOrigin(request);
   const manifest = {
-    name: APP_CONFIG.APP_NAME,
-    short_name: APP_CONFIG.APP_NAME,
+    name: APP_CONFIG.HOME_SCREEN_NAME,
+    short_name: APP_CONFIG.HOME_SCREEN_NAME,
     description: APP_CONFIG.APP_DESCRIPTION,
     start_url: `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`,
     // Without an explicit scope, browsers infer it from start_url's

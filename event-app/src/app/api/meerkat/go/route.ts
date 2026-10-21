@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import APP_CONFIG from "@/CONFIG";
 import { cookieClient } from "../../auth/cookieClient";
 import { createRateLimiter } from "../../tickets/rateLimit";
 import { listLinks } from "../../tickets/links";
@@ -88,7 +89,7 @@ function page(status: number, title: string, message: string): NextResponse {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>${escapeHtml(title)} · Devcon</title>
+<title>${escapeHtml(title)} - ${APP_CONFIG.APP_NAME}</title>
 <style>
   body { margin: 0; min-height: 100dvh; display: grid; place-items: center; background: #f9f8fa; color: #1a0d33; font: 16px/1.5 system-ui, -apple-system, sans-serif; }
   main { max-width: 28rem; padding: 2rem; text-align: center; }

@@ -11,8 +11,17 @@
 */
 
 const APP_CONFIG = {
-  // App metadata
-  APP_NAME: "Devcon App",
+  // App metadata. Two names on purpose:
+  // - HOME_SCREEN_NAME labels the installed app (manifest name/short_name,
+  //   iOS apple-mobile-web-app-title). iOS keeps the name an app was
+  //   installed with until it is re-installed, so it carries the edition,
+  //   like the Devcon VIII icon beside it; each edition gets a re-install push.
+  // - APP_NAME is the title everywhere that updates with a deploy: browser
+  //   tabs ("Schedule - Devcon 8 App"), share previews, the install button.
+  // Marketing copy (posts, QR codes, devcon.org) says "Devcon App".
+  // Titles separate parts with " - ", not a middle dot.
+  APP_NAME: "Devcon 8 App",
+  HOME_SCREEN_NAME: "Devcon 8",
   APP_DESCRIPTION:
     "The official app for Devcon 8 India. Explore the schedule and speakers, plan your days, and find your way around the venue. Mumbai, 3–6 November 2026.",
 

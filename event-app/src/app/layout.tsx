@@ -83,7 +83,8 @@ export const metadata: Metadata = {
     // in this mode; every --safe-top offset (globals.css) still resolves.
     // iOS reads this at install: testers must re-add the app to see a change.
     statusBarStyle: "default",
-    title: APP_CONFIG.APP_NAME,
+    // The Home Screen label iOS proposes at install (and keeps afterwards).
+    title: APP_CONFIG.HOME_SCREEN_NAME,
   },
 };
 

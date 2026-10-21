@@ -93,7 +93,7 @@ export async function detailMetadata(
     const description = summary(session.description) ?? session.track ?? APP_CONFIG.APP_DESCRIPTION;
     const image = cardImage(kind, encoded, `${title} at ${eventLabel}`);
     return {
-      title: `${title} · ${eventLabel}`,
+      title: `${title} - ${eventLabel}`,
       description,
       openGraph: {
         type: "article",
@@ -116,7 +116,7 @@ export async function detailMetadata(
     summary(speaker.description) ?? `${speaker.name} is speaking at ${eventLabel}.`;
   const image = cardImage(kind, encoded, `${speaker.name} is speaking at ${eventLabel}`);
   return {
-    title: `${title} · ${eventLabel}`,
+    title: `${title} - ${eventLabel}`,
     description,
     openGraph: {
       type: "profile",
