@@ -240,14 +240,24 @@ export function useFeaturedWave(): FeaturedWaveResult {
  * when a wave is currently on sale and "View tickets" otherwise, so the label
  * points people to the storefront even before a wave opens.
  */
-export function useTicketsCtaLabel(): { label: 'Get tickets' | 'View tickets'; isLive: boolean } {
-  const { featured } = useFeaturedWave()
+export function useTicketsCtaLabel(): {
+  label: 'Get tickets' | 'View tickets'
+  isLive: boolean
+  /** Buying is possible right now: a live sale OR the special voucher promo. */
+  canBuy: boolean
+  /** False until the client clock has resolved the wave state (SSR + first paint). */
+  mounted: boolean
+} {
+  const { featured, mounted } = useFeaturedWave()
   const offer = useSpecialOffer()
   const isLive = featured?.status === 'live'
   // Active "Get tickets" whenever buying is possible right now — a live sale
   // OR the special voucher promo; passive "View tickets" otherwise. `isLive`
-  // keeps its strict meaning (regular sale live) for gating logic.
-  return { label: isLive || offer.active ? 'Get tickets' : 'View tickets', isLive }
+  // keeps its strict meaning (regular sale live) for gating logic. `canBuy` is
+  // the single home of that rule: translated CTAs (hero, nav) branch on it
+  // instead of re-deriving it from the wave hooks.
+  const canBuy = isLive || offer.active
+  return { label: canBuy ? 'Get tickets' : 'View tickets', isLive, canBuy, mounted }
 }
 
 const INTERNAL_STORE_URL = '/tickets/store'
