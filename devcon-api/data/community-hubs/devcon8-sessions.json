@@ -1037,17 +1037,18 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-21T14:11:07.018Z",
+    "changedAt": "2026-10-21T18:11:19.394Z",
     "problems": [
-      "row 7: no session title, skipped",
-      "row 35: no session title, skipped"
+      "row 9: no session title, skipped",
+      "row 41: no session title, skipped",
+      "4 rows have no Key (rows 8, 20, 27, 28): type any short unique text there, or renaming the session loses its saved stars"
     ],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "12:00-13:00",
-        "title": "How Can You Change Ethereum?",
+        "title": "Your Path Into Ethereum ecosystem with EIP Hub",
         "format": "Workshop",
         "speakers": [
           "Pooja Ranjan",
@@ -1065,7 +1066,7 @@
       {
         "id": "S03",
         "day": "Tue 3 Nov",
-        "time": "13:30-14:30",
+        "time": "13:30-14:10",
         "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
         "format": "Talk",
         "speakers": [
@@ -1074,19 +1075,41 @@
         "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public."
       },
       {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "14:10-14:50",
+        "title": "EIP Selection to Support Fast Fork Cadence",
+        "format": "Talk",
+        "speakers": [
+          "Matthew Keil"
+        ],
+        "description": "Encourage the Ethereum ecosystem to adopt smaller, faster forks that enable more EIPs to ship over time, while planning multiple forks ahead through a clear roadmap to improve resource allocation and accelerate overall development cadence."
+      },
+      {
+        "id": "",
+        "day": "Tue 3 Nov",
+        "time": "14:50-15:30",
+        "title": "-",
+        "format": "Talk",
+        "speakers": [
+          "Stefan"
+        ]
+      },
+      {
         "id": "S05",
         "day": "Tue 3 Nov",
-        "time": "15:30-16:00",
+        "time": "16:00-17:00",
         "title": "EIP Process AMA",
-        "format": "AMA",
+        "format": "Fishbowl",
         "speakers": [
-          "Pooja Ranjan"
+          "Pooja Ranjan",
+          "Jochem Brouwer"
         ]
       },
       {
         "id": "S06",
         "day": "Tue 3 Nov",
-        "time": "16:00-17:00",
+        "time": "17:00-17:30",
         "title": "EIP Signal Quiz Game - Understanding EIPs",
         "format": "Other",
         "speakers": []
@@ -1094,7 +1117,7 @@
       {
         "id": "S07",
         "day": "Tue 3 Nov",
-        "time": "17:00-18:00",
+        "time": "17:30-18:00",
         "title": "EIP Hub Community Connect",
         "format": "Networking",
         "speakers": []
@@ -1129,7 +1152,7 @@
       {
         "id": "S11",
         "day": "Wed 4 Nov",
-        "time": "10:00-11:00",
+        "time": "09:30-10:20",
         "title": "EIP-8184: LUCID Encrypted Mempool",
         "format": "Talk",
         "speakers": [
@@ -1140,7 +1163,7 @@
       {
         "id": "S12",
         "day": "Wed 4 Nov",
-        "time": "11:00-12:00",
+        "time": "10:20-11:00",
         "title": "The Price Is Right: Setting Gas Prices for Glamsterdam",
         "format": "Talk",
         "speakers": [
@@ -1151,7 +1174,7 @@
       {
         "id": "S13",
         "day": "Wed 4 Nov",
-        "time": "12:00-13:00",
+        "time": "11:00-11:40",
         "title": "Frame txs & private payments: EIP-8141 in practice",
         "format": "Talk",
         "speakers": [
@@ -1161,15 +1184,7 @@
       {
         "id": "S14",
         "day": "Wed 4 Nov",
-        "time": "13:00-13:30",
-        "title": "Lunch & Networking",
-        "format": "Break",
-        "speakers": []
-      },
-      {
-        "id": "S15",
-        "day": "Wed 4 Nov",
-        "time": "13:30-14:30",
+        "time": "11:40-12:20",
         "title": "Limits to Single Slot Finality",
         "format": "Talk",
         "speakers": [
@@ -1177,9 +1192,25 @@
         ]
       },
       {
+        "id": "",
+        "day": "Wed 4 Nov",
+        "time": "12:20-13:00",
+        "title": "Open Mic",
+        "format": "Other",
+        "speakers": []
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
+      },
+      {
         "id": "S16",
         "day": "Wed 4 Nov",
-        "time": "15:30-16:00",
+        "time": "14:00-15:00",
         "title": "EIP Process AMA",
         "format": "AMA",
         "speakers": [
@@ -1189,7 +1220,7 @@
       {
         "id": "S17",
         "day": "Wed 4 Nov",
-        "time": "16:00-17:00",
+        "time": "15:00-16:00",
         "title": "EIP Signal Quiz Game - Protocol & Core Ethereum",
         "format": "Other",
         "speakers": []
@@ -1197,7 +1228,7 @@
       {
         "id": "S18",
         "day": "Wed 4 Nov",
-        "time": "17:00-18:00",
+        "time": "16:00-17:00",
         "title": "EIP Hub Community Connect",
         "format": "Networking",
         "speakers": []
@@ -1205,7 +1236,7 @@
       {
         "id": "S19",
         "day": "Wed 4 Nov",
-        "time": "18:00-18:10",
+        "time": "17:00-17:10",
         "title": "EIP Hub Daily Wrap-Up",
         "format": "Closing",
         "speakers": []
@@ -1213,15 +1244,37 @@
       {
         "id": "S20",
         "day": "Thu 5 Nov",
-        "time": "09:00-10:00",
+        "time": "09:00-09:30",
         "title": "Welcome & Opening Remarks",
         "format": "Welcome",
         "speakers": []
       },
       {
+        "id": "",
+        "day": "Thu 5 Nov",
+        "time": "09:30-10:00",
+        "title": "Agent Identity Standards",
+        "format": "Talk",
+        "speakers": [
+          "Prem Makeig"
+        ],
+        "description": "Agents are quickly becoming a new class of blockchain users and will soon be responsible for the vast majority of transactions. Agents need identity to develop reputations and trust, allowing them to cooperate and work together onchain."
+      },
+      {
+        "id": "",
+        "day": "Thu 5 Nov",
+        "time": "10:00-10:40",
+        "title": "The Token Is Standardised. The Institution Isn't: Where Should Ethereum Standards Stop?",
+        "format": "Talk",
+        "speakers": [
+          "Dhruvang Choudhari"
+        ],
+        "description": "Putting an asset on Ethereum is becoming the easy part. The difficult part starts when that asset has investors with different eligibility, jurisdictions, compliance requirements, custody arrangements and transfer rules. I want to look at what standards such as ERC-3643 and ERC-7943 are getting right, where they still leave gaps, and whether we are standardising the right layer of institutional finance."
+      },
+      {
         "id": "S21",
         "day": "Thu 5 Nov",
-        "time": "10:00-11:00",
+        "time": "10:30-11:00",
         "title": "ERC-8009 & Clear-Signing",
         "format": "Talk",
         "speakers": [
@@ -1884,8 +1937,10 @@
   },
   {
     "hub": "Onchain Art Hub",
-    "changedAt": "2026-10-20T15:49:43.397Z",
-    "problems": [],
+    "changedAt": "2026-10-21T18:11:19.394Z",
+    "problems": [
+      "row 9: no session title, skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
