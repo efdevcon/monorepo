@@ -26,7 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      # The branch tip, not the commit the run was started on: a run queued behind another
+      # (concurrency group) would otherwise start from before that run's commit and conflict.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
