@@ -17,7 +17,6 @@ import Nethermind from './images/supporters/nethermind.svg'
 import Ordocode from './images/supporters/ordocode.svg'
 import Peer from './images/supporters/peer.svg'
 import TrailOfBits from './images/supporters/trail-of-bits.svg'
-import VirtualProtocol from './images/supporters/virtual-protocol.svg'
 import World from './images/supporters/world.svg'
 import crossbar from './images/supporters/impact-hubs/crossbar.png'
 import DaoFund from './images/supporters/impact-hubs/dao-fund.svg'
@@ -71,7 +70,7 @@ type Row = {
 
 // Supporters: Fluid + Base (flagship, ~100px), then Arkiv, Gnosis, Kleros and
 // OpenZeppelin at 60px in two pairs (core — four across would overflow the column and
-// shrink below starter), then the rest at 40px (starter) — 3 + 3 + 3 + 3 from sm, pairs
+// shrink below starter), then the rest at 40px (starter) — 3 + 3 + 3 + 2 from sm, pairs
 // below sm (sized off the core rows so it always stays smaller). Impact hubs follow the scale of the tier above
 // them, so they always stay smaller. Every tier shares one column (SUPPORTERS_COLUMN).
 const TOP_ROW: Row = {
@@ -102,7 +101,6 @@ const OTHER_SUPPORTERS: LogoEntry[] = [
   { name: 'OrdoCode', href: 'https://ordocode.ai', Logo: Ordocode, aspect: 432 / 80 },
   { name: 'Peer', href: 'https://peer.xyz', Logo: Peer, aspect: 228 / 80 },
   { name: 'Trail of Bits', href: 'https://www.trailofbits.com', Logo: TrailOfBits, aspect: 133 / 80 },
-  { name: 'Virtuals Protocol', href: 'https://www.virtuals.io', Logo: VirtualProtocol, aspect: 235 / 80 },
   { name: 'World', href: 'https://world.org', Logo: World, aspect: 317 / 80 },
 ]
 
@@ -149,8 +147,8 @@ const chunk = <T,>(items: T[], sizes: number[]) => {
 }
 
 const CORE_ROWS: Row[] = chunk(CORE_SUPPORTERS, [2, 2]).map(logos => ({ height: CORE_HEIGHT, logos }))
-const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3, 3, 3]).map(logos => ({ height: OTHER_HEIGHT, logos }))
-const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 2, 2]).map(logos => ({
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3, 3, 2]).map(logos => ({ height: OTHER_HEIGHT, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 2, 1]).map(logos => ({
   height: OTHER_HEIGHT,
   logos,
 }))
