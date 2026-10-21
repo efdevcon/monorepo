@@ -91,8 +91,9 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 
 /**
  * Desktop "Expanded Session Details" (Figma 5114:1308): Back link, then a
- * viewport-fit two-column card — session summary on the left, Live Q&A +
- * "Speakers (N)" in a 427px right rail. Both columns scroll independently;
+ * viewport-fit two-column card — session summary on the left, "Speakers (N)"
+ * then Live Q&A in a 427px right rail (speakers first, like the side panel:
+ * they're short and fixed, the Q&A grows during the talk). Both columns scroll independently;
  * the rail fades out at its bottom edge until scrolled to the end.
  */
 function ExpandedSession({
@@ -121,8 +122,8 @@ function ExpandedSession({
             <SessionSummary session={session} heading="Session details" />
           </FadingScrollColumn>
           <FadingScrollColumn className="flex w-[427px] shrink-0 flex-col gap-6 border-l border-dc-hairline p-4">
-            {children}
             <SessionSpeakers speakers={session.speakers} size="md" />
+            {children}
           </FadingScrollColumn>
         </div>
       </div>

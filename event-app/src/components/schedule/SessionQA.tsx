@@ -30,6 +30,7 @@ import { useOnline } from "@/hooks/useOnline";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
 import { isStandalone } from "@/utils/platform";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { relativeTime } from "@/utils/relativeTime";
 
 type Size = "sm" | "md";
@@ -236,15 +237,46 @@ const quietCard = {
   className: "rounded-lg border border-dc-hairline bg-white py-6",
 } as const;
 
+/** Questions a phone shows before "Show all", so the speakers below stay in reach. */
+const FOLDED_COUNT = 3;
+
+/**
+ * The feed. On a phone it is folded to its FOLDED_COUNT most upvoted questions (the feed comes
+ * sorted by votes) so a busy Q&A doesn't push the speakers far down the page.
+ * Desktop shows them all: there the speakers sit above the Q&A.
+ * The question being answered always shows, even when it ranks lower. The
+ * link under the list opens the rest and folds it back, in the same centred
+ * bold style as the description's "Show more".
+ */
 function QuestionList({ questions }: { questions: Question[] }) {
   // Real-world clock: questions are stamped when asked, not in event time.
   const nowMs = useRealWorldNowMs(60_000);
+  const [expanded, setExpanded] = useState(false);
+  const folds = !useIsDesktop() && questions.length > FOLDED_COUNT;
+  const shown =
+    expanded || !folds
+      ? questions
+      : questions.filter(
+          (q, i) => i < FOLDED_COUNT || (!q.answeredAt && !!q.selectedAt)
+        );
   return (
-    <ul className="flex flex-col gap-2">
-      {questions.map((q) => (
-        <QuestionCard key={q.id} question={q} nowMs={nowMs} />
-      ))}
-    </ul>
+    <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
+        {shown.map((q) => (
+          <QuestionCard key={q.id} question={q} nowMs={nowMs} />
+        ))}
+      </ul>
+      {folds && (
+        <button
+          type="button"
+          onClick={() => setExpanded((open) => !open)}
+          aria-expanded={expanded}
+          className="self-center cursor-pointer text-[14px] font-bold leading-5 text-dc-purple hover:underline"
+        >
+          {expanded ? "Show fewer" : `Show all ${questions.length} questions`}
+        </button>
+      )}
+    </div>
   );
 }
 
