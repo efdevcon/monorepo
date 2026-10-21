@@ -8,6 +8,7 @@ import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
 import img93XWX7 from './assets/portraits/yi-sun.webp'
+import imgATXLD3 from './assets/portraits/christopher-fabian.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
@@ -22,7 +23,7 @@ import imgHDTJHP from './assets/portraits/jon-stephens.webp'
 import imgHV8WVF from './assets/portraits/francesco.webp'
 import imgJ3CHSG from './assets/portraits/jordi-baylina.webp'
 import imgJ7URYL from './assets/portraits/janmajaya-mall.webp'
-import imgJPTVDC from './assets/portraits/christopher-fabian.webp'
+import imgJPM9NQ from './assets/portraits/max-semenchuk.webp'
 import imgKC3QAL from './assets/portraits/kevin-jones.webp'
 import imgKYP3UZ from './assets/portraits/vitalik.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
@@ -40,6 +41,7 @@ import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
 import imgUKPQQY from './assets/portraits/manu-sheel-gupta.webp'
+import imgUNL78E from './assets/portraits/shayan-eskandari.webp'
 import imgV88N3U from './assets/portraits/asha-shankar.webp'
 import imgW8UUCW from './assets/portraits/roger-dingledine.webp'
 import imgWLADZ7 from './assets/portraits/cheeky-gorilla.webp'
@@ -102,6 +104,14 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'theyisun',
     track: 'Core Protocol',
     image: img93XWX7,
+    source: 'pretalx',
+  },
+  ATXLD3: {
+    id: 'ATXLD3',
+    name: 'Christopher Fabian',
+    organization: 'UNICEF/Giga',
+    track: 'Rights, Freedoms, and Governance',
+    image: imgATXLD3,
     source: 'pretalx',
   },
   B9V8HC: {
@@ -229,13 +239,13 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgJ7URYL,
     source: 'pretalx',
   },
-  JPTVDC: {
-    id: 'JPTVDC',
-    name: 'Christopher Fabian',
-    organization: 'UNICEF/Giga',
-    xHandle: 'chrisfabian',
+  JPM9NQ: {
+    id: 'JPM9NQ',
+    name: 'Max Semenchuk',
+    organization: 'Web3 Institute, Ministry of Digital Transformation of Ukraine',
+    xHandle: 'maxsemenchuk',
     track: 'Rights, Freedoms, and Governance',
-    image: imgJPTVDC,
+    image: imgJPM9NQ,
     source: 'pretalx',
   },
   KC3QAL: {
@@ -386,6 +396,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'manusheel',
     track: 'Permissionless Networks',
     image: imgUKPQQY,
+    source: 'pretalx',
+  },
+  UNL78E: {
+    id: 'UNL78E',
+    name: 'Shayan Eskandari',
+    organization: 'Mother of all VPNs (MoaV.sh)',
+    xHandle: 'sbetamc',
+    track: 'Rights, Freedoms, and Governance',
+    image: imgUNL78E,
     source: 'pretalx',
   },
   V88N3U: {

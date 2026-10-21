@@ -126,7 +126,7 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
   }, // Griff Green — TODO confirm title
   // No avatar or org answer in Pretalx, so the portrait and company are hand-supplied.
   {
-    code: 'JPTVDC',
+    code: 'ATXLD3',
     title: 'Co-Founder',
     company: 'Giga',
     xHandle: 'chrisfabian',
@@ -342,4 +342,20 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'certora',
     bio: 'Mooly Sagiv co-founded Certora and is a professor and chair of Computer Science at Tel Aviv University. Mooly researches large-scale program analysis and is one of the key contributors to shape analysis.',
   }, // Mooly Sagiv · Certora
+  // Org answer is "Web3 Institute, Ministry of Digital Transformation of Ukraine".
+  {
+    code: 'JPM9NQ',
+    title: 'Program Director',
+    company: 'Web3 Institute',
+    logo: 'web3-institute',
+    bio: "Max Semenchuk is Program Director at the Web3 Institute and works with Ukraine's Ministry of Digital Transformation on digital governance, civic resilience and regenerative finance. Max builds future-ready systems through foresight, Web3 technologies and community-led innovation.",
+  }, // Max Semenchuk
+  // Org answer is "Mother of all VPNs (MoaV.sh)".
+  {
+    code: 'UNL78E',
+    title: 'Security Researcher',
+    company: 'MoaV',
+    logo: 'moav',
+    bio: 'Shayan Eskandari is a security researcher, hacker and internet freedom activist working across blockchain, security and digital rights. Shayan co-founded IranUnchained and now builds MoaV, distributed censorship-circumvention infrastructure for hostile networks.',
+  }, // Shayan Eskandari
 ]

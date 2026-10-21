@@ -18,6 +18,7 @@ import Lfdt from './images/logos/lfdt.svg'
 import Lava from './images/logos/lava.svg'
 import libp2p from './images/logos/libp2p.png'
 import MetaMask from './images/logos/metamask.svg'
+import moav from './images/logos/moav.png'
 import Monad from './images/logos/monad.svg'
 import Nethermind from './images/logos/nethermind.svg'
 import NetworkSchool from './images/logos/network-school.svg'
@@ -32,6 +33,7 @@ import TalTech from './images/logos/taltech.svg'
 import Tor from './images/logos/tor.svg'
 import Unicef from './images/logos/unicef.svg'
 import Veridise from './images/logos/veridise.svg'
+import web3Institute from './images/logos/web3-institute.png'
 import Web3PrivacyNow from './images/logos/web3privacy-now.svg'
 import Zisk from './images/logos/zisk.svg'
 
@@ -66,6 +68,7 @@ export const SPEAKER_LOGOS = {
   lava: { Logo: Lava, aspect: 490 / 101 },
   libp2p: { image: libp2p },
   metamask: { Logo: MetaMask, aspect: 133 / 128 },
+  moav: { image: moav },
   monad: { Logo: Monad, aspect: 676 / 128 },
   nethermind: { Logo: Nethermind, aspect: 755 / 128 },
   'network-school': { Logo: NetworkSchool, aspect: 266 / 128 },
@@ -80,6 +83,7 @@ export const SPEAKER_LOGOS = {
   tor: { Logo: Tor, aspect: 211 / 128 },
   unicef: { Logo: Unicef, aspect: 539 / 128 },
   veridise: { Logo: Veridise, aspect: 567 / 128 },
+  'web3-institute': { image: web3Institute },
   'web3privacy-now': { Logo: Web3PrivacyNow, aspect: 465 / 128 },
   zisk: { Logo: Zisk, aspect: 288 / 128 },
 } satisfies Record<string, SpeakerLogo>
