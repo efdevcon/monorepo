@@ -314,10 +314,6 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
   const lens = findAnswer(config.PRETALX_QUESTIONS_LENS)
   const ens = findAnswer(config.PRETALX_QUESTIONS_ENS)
   const telegram = findAnswer(config.PRETALX_QUESTIONS_TELEGRAM)
-  // Boolean pretalx answers arrive as the string 'True'. Collected per event
-  // into the event record's featuredSpeakers by the sync (the speaker FILES
-  // are shared across events, so the flag must not live there).
-  const featuredAnswer = findAnswer(config.PRETALX_QUESTIONS_FEATURED)
 
   // Prefer a real avatar URL. Newer pretalx (cfp.devcon.org) exposes it as
   // `avatar_url`; older data used `avatar`. Pretalx still renders devcon-6/7
@@ -335,7 +331,15 @@ function mapSpeaker(i: any, params: Partial<RequestParams>, config: PretalxInsta
     description: i.biography ?? '',
   }
 
-  if (featuredAnswer === 'True') speaker.featured = true
+  // Featured speakers: an organizer writes #featured in the speaker's Internal
+  // notes, which speakers never see (a speaker question was tickable by the
+  // speakers themselves, 2026-10-21). Only set when the notes were readable
+  // (organizer token), so the sync can tell "nobody featured" from "can't see".
+  // Collected per event into the event record's featuredSpeakers by the sync
+  // (the speaker FILES are shared across events, so the flag must not live there).
+  // The field is null when a speaker has no notes, and absent for a token
+  // that may not read them.
+  if ('internal_notes' in i) speaker.featured = /(^|\s)#featured\b/i.test(i.internal_notes ?? '')
   if (notEmptyOrInvalid(twitter)) speaker.twitter = sanitizeProfileField(twitter)
   if (notEmptyOrInvalid(github)) speaker.github = sanitizeProfileField(github)
   // "Personal Website, Github, or other relevant link": a GitHub URL fills github

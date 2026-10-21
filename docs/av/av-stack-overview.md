@@ -996,14 +996,16 @@ describe pre-fix behavior.
   instead of Lens, and no Keywords question; the test event also lacks Farcaster and
   Tags. Why: without these, speaker socials/expertise/audience/tags sync silently
   empty.
-- **"Featured speaker" question** (speaker target, boolean, organiser-only: not public,
-  not visible to reviewers): `PRETALX_QUESTIONS_FEATURED`, created 2026-08-27 on
-  `test-devcon-8` and `devcon7-sea`, 2026-10-09 on `devcon8` (ids in the config). The
-  sync collects the ticked speakers into the event record's `featuredSpeakers` (speaker
-  files are shared across events, so the flag cannot live there) and only overwrites
-  the list when the question yields answers. event-app lists them first and, while no
-  answer exists, falls back to speakers with a featured session (Pretalx's own
-  `is_featured` on the proposal, mapped as `featured`).
+- **Featured speakers**: an organizer writes `#featured` in the speaker's Internal notes
+  in Pretalx (organizer-only, never shown to speakers). Until 2026-10-21 this was a
+  "Featured speaker" speaker question, but Pretalx shows every active speaker question in
+  the speaker's own profile and speakers ticked it themselves, so it was deactivated on
+  `devcon8` (#186) and its config removed. The sync collects the marked speakers into the
+  event record's `featuredSpeakers` (speaker files are shared across events, so the flag
+  cannot live there), rewriting the list whenever the notes are readable, so it can
+  shrink to empty. event-app lists them first and, while the list is empty, falls back to
+  speakers with a featured session (Pretalx's own `is_featured` on the proposal, mapped as
+  `featured`, a separate organizer-only flag).
 - **`mapSubmissionType` extended with DC8 + test-devcon-8 ids** (blocker #5).
   Talk/Keynote → `Talk`, workshops (1h/1h30/2h) → `Workshop`, Mixed Formats →
   `Panel`, Lightning Talk → `Lightning Talk`. "Experience" (89/100) intentionally
@@ -1265,7 +1267,8 @@ the run of show see them, without the partner re-entering anything.
   surfaces the links Devcon 8 speakers entered there.
 - **Sync problems list** now includes same-event and cross-event session-id collisions
   (§7.7).
-- **"Featured speaker" question on `devcon8`** (2026-10-09, §12 DC8 configuration).
+- **"Featured speaker" question on `devcon8`** (2026-10-09, §12 DC8 configuration;
+  replaced 2026-10-21 by `#featured` in the speaker's Internal notes, see above).
 - **First Devcon 8 schedule release, 2026-10-09**, by the speaker team in the orga UI.
   The webhook dispatched `sync-pretalx-devcon8` (success: 316 sessions, 320 speakers,
   11 rooms committed, slides off as designed, 43 collision warnings against

@@ -91,9 +91,6 @@ export interface PretalxInstanceConfig {
   // with?" (affiliation for lower thirds in the run of show).
   PRETALX_QUESTIONS_AFFILIATION?: number
 
-  // Speaker-target boolean question "Featured speaker" (organizer-curated;
-  // surfaces speakers at the top of the event-app list).
-  PRETALX_QUESTIONS_FEATURED?: number
   PRETALX_QUESTIONS_EXPERTISE?: number
   PRETALX_QUESTIONS_AUDIENCE?: number
   PRETALX_QUESTIONS_TAGS?: number
@@ -150,7 +147,6 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_LENS: 79,
     PRETALX_QUESTIONS_ENS: 75,
     PRETALX_QUESTIONS_TELEGRAM: 103,
-    PRETALX_QUESTIONS_FEATURED: 176, // "Featured speaker" (organizer-only curation, created 2026-08-27)
 
     PRETALX_QUESTIONS_EXPERTISE: 71,
     PRETALX_QUESTIONS_AUDIENCE: 72,
@@ -174,7 +170,6 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_ENS: 167, // "Do you have a public Ethereum address or ENS you want to share?"
     PRETALX_QUESTIONS_TELEGRAM: 162, // "What is your Telegram handle? ..."
     PRETALX_QUESTIONS_AFFILIATION: 157, // "What project or organization are you affiliated with?"
-    PRETALX_QUESTIONS_FEATURED: 175, // "Featured speaker" (organizer-only curation, created 2026-08-27)
     PRETALX_QUESTIONS_EXPERTISE: 156, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 158, // "Which of the following best describes your target audience?"
     PRETALX_QUESTIONS_SLIDES_DECK: 178, // "Slides deck" (written by the sync; created 2026-09-28)
@@ -206,7 +201,6 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_EXPERTISE: 144, // "The session assumes..."
     PRETALX_QUESTIONS_AUDIENCE: 145, // "Which of the following best describes your target audience?"
     PRETALX_QUESTIONS_TAGS: 146, // "Select 1-3 tags that apply to your talk/workshop."
-    PRETALX_QUESTIONS_FEATURED: 186, // "Featured speaker" (organizer-only curation, created 2026-10-09)
     PRETALX_QUESTIONS_SLIDES_DECK: 181, // "Slides deck" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 182, // "Slides: no Google account" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 183, // "Slides: last edit" (written by the sync; created 2026-09-30)

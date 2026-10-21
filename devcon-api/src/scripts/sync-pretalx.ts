@@ -342,13 +342,15 @@ async function syncSessions() {
   line(`${sessions.length} in Pretalx, ${sessionsFs.length} on disk · ${tally(results, deleted)}`)
 
   heading('Speakers')
-  // Featured speakers (organizer-curated pretalx question) live on the EVENT
-  // record: speaker files are shared across events, so a per-event flag there
-  // would leak and get clobbered by other events' syncs. Only overwrite when
-  // the question yields answers, so a seeded list survives a sync that sees none.
+  // Featured speakers (#featured in the speaker's Internal notes in Pretalx) live
+  // on the EVENT record: speaker files are shared across events, so a per-event
+  // flag there would leak and get clobbered by other events' syncs. Rewritten
+  // whenever the notes were readable, so removing everyone empties the list; a
+  // token that cannot read Internal notes leaves the existing list alone.
+  const notesReadable = acceptedSpeakers.some((s: any) => typeof s.featured === 'boolean')
   const featuredSpeakerIds = [...new Set(acceptedSpeakers.filter((s: any) => s.featured === true).map((s: any) => s.id))]
   for (const speaker of acceptedSpeakers) delete speaker.featured
-  if (featuredSpeakerIds.length > 0) {
+  if (notesReadable) {
     const eventPath = `./data/events/${eventId}.json`
     const eventData = JSON.parse(fs.readFileSync(eventPath, 'utf8'))
     fs.writeFileSync(eventPath, JSON.stringify({ ...eventData, featuredSpeakers: featuredSpeakerIds }, null, 2))
