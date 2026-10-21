@@ -170,10 +170,12 @@ test('v5 day tabs (earlier draft): Topic and Key columns, duplicate keys reporte
   expect(v4.sessions[0]).toMatchObject({ key: '', topic: '' })
 })
 
-test('a fresh read is held back only when it has problems and lost sessions', () => {
+test('a fresh read is held back only when it has problems and lost many sessions', () => {
   expect(shouldKeepPreviousRead(undefined, { rows: 0, problems: 3 })).toBe(false) // nothing served yet
   expect(shouldKeepPreviousRead({ rows: 20 }, { rows: 21, problems: 1 })).toBe(false) // additive edit, one bad row
   expect(shouldKeepPreviousRead({ rows: 20 }, { rows: 18, problems: 0 })).toBe(false) // clean deletion
+  expect(shouldKeepPreviousRead({ rows: 19 }, { rows: 18, problems: 1 })).toBe(false) // one title cleared: live, reported
+  expect(shouldKeepPreviousRead({ rows: 35 }, { rows: 30, problems: 5 })).toBe(false) // five times missing: live, reported
   expect(shouldKeepPreviousRead({ rows: 20 }, { rows: 12, problems: 8 })).toBe(true) // banner typed over
 })
 

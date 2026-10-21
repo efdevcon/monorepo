@@ -71,7 +71,7 @@ interface HubData {
   problems: string[]
   /**
    * A newer read that was not put in service because it looked like a broken
-   * edit (parse problems and fewer sessions than what is served). Reported on
+   * edit (parse problems and many fewer sessions than what is served). Reported on
    * the status endpoint so the hub can fix its sheet; cleared by the next
    * clean read.
    */
@@ -198,8 +198,9 @@ async function refresh(eventId: string, cache: EventCache): Promise<void> {
     if (exportError) cache.failures.set(hub.id, `${exportError} (the previous export is served)`)
     const fresh = result.value
     const prev = cache.hubs.get(hub.id)
-    // A typo that breaks rows must not take sessions off the schedule: the
-    // previous read stays in service until the sheet parses at least as well.
+    // An edit that breaks many rows at once must not empty the schedule: the
+    // previous read stays in service until the sheet parses again. A row or two
+    // with a problem go live and are reported (shouldKeepPreviousRead).
     if (prev && shouldKeepPreviousRead({ rows: prev.rows.length }, { rows: fresh.rows.length, problems: fresh.problems.length })) {
       cache.hubs.set(hub.id, {
         ...prev,

@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { AlertTriangle, CheckCircle2, ExternalLink, Loader2, RefreshCw, XCircle } from 'lucide-react'
+import { readStoredPassword, TICKETS_ADMIN_PASSWORD_KEY } from 'utils/adminPassword'
 
 // Internal monitor for the Community Hubs pipeline: the hourly live export
 // (GitHub Action, started by devcon-api) and what the API made of each hub's
 // sheet. Everything here is public already (the API status endpoint and the
-// repo's Actions runs), so the page is unlisted and noindex, not gated.
+// repo's Actions runs), so the page is unlisted and noindex, not gated. The one
+// secret part, each hub's sheet (edit) link, only shows for someone logged in on
+// /tickets/admin with the full admin password (/api/community-hubs/links).
 // Pipeline details: docs/community-hubs.md in the monorepo.
 
 const EVENT_ID = 'devcon8'
@@ -72,8 +75,10 @@ function Tone({ tone, children }: { tone: 'ok' | 'warn' | 'bad'; children: React
 }
 
 function hubTone(hub: HubStatus): 'ok' | 'warn' | 'bad' {
-  if (hub.servedFrom === 'previous') return 'bad'
-  if (hub.problems.length || hub.sessions === 0) return 'warn'
+  // Red only when the hub shows nothing in the app; a sheet held back or with
+  // bad rows still has its sessions live, so it's a fix-when-you-can.
+  if (hub.sessions === 0) return 'bad'
+  if (hub.servedFrom === 'previous' || hub.problems.length) return 'warn'
   return 'ok'
 }
 
@@ -83,6 +88,17 @@ export default function CommunityHubsMonitor() {
   const [errors, setErrors] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
   const [checkedAt, setCheckedAt] = useState<number | null>(null)
+  const [links, setLinks] = useState<Record<string, string>>({})
+
+  // Once per visit: links don't change hour to hour, and no stored password means no request.
+  useEffect(() => {
+    const key = readStoredPassword(TICKETS_ADMIN_PASSWORD_KEY)
+    if (!key) return
+    fetch('/api/community-hubs/links/', { headers: { 'x-admin-key': key } })
+      .then(res => (res.ok ? res.json() : null))
+      .then(body => body?.links && setLinks(body.links))
+      .catch(() => {})
+  }, [])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -242,8 +258,18 @@ export default function CommunityHubsMonitor() {
                           : 'OK'}
                       </Tone>
                     </div>
-                    <p className="text-xs text-[#5b5370]">
+                    <p className="flex items-center gap-3 text-xs text-[#5b5370]">
                       {hub.sessions} sessions · sheet changed {ago(hub.publishedAt, now)}
+                      {links[hub.id] && (
+                        <a
+                          href={links[hub.id]}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 font-semibold text-[#7235ed] hover:underline"
+                        >
+                          Sheet <ExternalLink className="size-3" />
+                        </a>
+                      )}
                     </p>
                   </div>
                   {hub.problems.length > 0 && (

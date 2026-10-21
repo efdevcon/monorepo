@@ -438,12 +438,14 @@ export function hubSessionId(hubId: string, row: Pick<HubSessionRow, 'title' | '
 }
 
 /**
- * Whether a fresh read of a hub's sheet should stay out of service. A sheet
- * that parses with problems and now yields fewer sessions than the served
- * read looks like a broken edit (a banner or time cell typed over), so the
- * previous read keeps serving until the sheet parses at least as well.
- * Additive edits with one bad row still go live (the bad row is reported).
+ * Whether a fresh read of a hub's sheet should stay out of service: only when
+ * it parses with problems AND a large share of the served sessions vanished
+ * (a column typed over, rows pasted out of shape). A row or two with a
+ * problem (a title cleared, a time missing) goes live like any edit and is
+ * reported: holding the whole sheet back for it froze every other edit too
+ * (Legal & Governance, 2026-10-21).
  */
 export function shouldKeepPreviousRead(prev: { rows: number } | undefined, fresh: { rows: number; problems: number }): boolean {
-  return prev !== undefined && fresh.problems > 0 && fresh.rows < prev.rows
+  if (prev === undefined || fresh.problems === 0) return false
+  return prev.rows - fresh.rows > Math.max(3, prev.rows / 4)
 }

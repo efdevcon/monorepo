@@ -32,7 +32,7 @@ Writing to a dSheet programmatically is not practical (realtime socket with owne
 `devcon-api/src/services/community-hubs.ts` reads `sheets.json` from GitHub (contents API on `main`, not CDN-cached; the deployed copy is only the fallback, since the export's commits skip deploys), parses every hub in it and keeps the result in memory for two minutes (concurrent requests share one refresh). A hub's `changedAt` is served as its publish time, so the version the app polls changes only when cells change. The status endpoint reports `exportedAt` and flags an export older than 8 hours. What is served is always the last good read of each hub:
 
 - a sheet that cannot be read or has lost its header row keeps its previous read in service
-- a fresh read that parses with problems and yields fewer sessions than the served one (a banner or time cell typed over) is held back; additive edits with one bad row go live with the bad row reported
+- a fresh read that parses with problems and lost a large share of the served sessions (more than 3 and more than a quarter: a column typed over) is held back; anything smaller (a title cleared, a time missing) goes live with the bad rows reported
 - the status endpoint says per hub whether the latest or the previous read is served and lists the problems to fix
 
 The parsed result lives in memory only. After a restart, and while GitHub is unreachable, the API serves the copy of `sheets.json` that shipped with the deploy; it writes nothing back to the repo (until 2026-10-20 it committed its own per-event cache, `data/community-hubs/<eventId>.json`, which only added timestamp noise once the export existed). Three endpoints, all CDN-cached for 60 s like the event endpoints:
