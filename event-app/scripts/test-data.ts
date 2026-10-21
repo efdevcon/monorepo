@@ -16,6 +16,7 @@ import {
   tabPathOf,
 } from "../src/routing/viewParams";
 import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
+import { installMarker, parseInstallVersion } from "../src/data/install/installVersion";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
 import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
@@ -242,6 +243,15 @@ function testSyncDecision() {
   check("bundle shape: missing arrays rejected", isBundleShaped({ version: "1", event: {} }) === false);
   check("bundle shape: non-string version rejected", isBundleShaped({ ...FIXTURE, version: 1 }) === false);
   check("bundle shape: null rejected", isBundleShaped(null) === false);
+}
+
+function testInstallVersion() {
+  check("install version: parsed from the launch URL", parseInstallVersion("1") === 1 && parseInstallVersion("12") === 12);
+  check(
+    "install version: absent or malformed is null",
+    [null, undefined, "", "0", "-1", "1.5", "abc"].every((raw) => parseInstallVersion(raw) === null)
+  );
+  check("install version: marker carried, or nothing", installMarker(3) === "?install=3" && installMarker(null) === "");
 }
 
 function testRouting() {
@@ -759,6 +769,7 @@ async function main() {
   testMaterialize();
   testSyncDecision();
   testRouting();
+  testInstallVersion();
   testPrimary();
   testRateLimiter();
   testInterestsMerge();

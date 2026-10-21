@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useUser } from "@/data/auth/useUser";
 import { useInterested } from "@/data/interested/useInterested";
+import { INSTALL_PARAM } from "@/data/install/installVersion";
 import { isStandalone } from "@/utils/platform";
 import {
   DIMENSION,
@@ -80,11 +81,16 @@ export function MatomoAnalytics() {
         pathname + window.location.search
       );
     }
+    // An icon launch carries `?install=N` (data/install/installVersion.ts);
+    // tracked as the plain page, the display-mode dimension already says
+    // "installed".
+    const tracked = new URLSearchParams(searchParams.toString());
+    tracked.delete(INSTALL_PARAM);
     trackAppRouter({
       url: MATOMO_URL,
       siteId: MATOMO_SITE_ID,
       pathname,
-      searchParams,
+      searchParams: tracked,
       enableHeartBeatTimer: true,
     });
   }, [pathname, searchParams]);

@@ -26,7 +26,7 @@ function signBridgeToken(email: string): string {
   return `${body}.${sig}`
 }
 
-const EVENT_APP_ORIGIN = 'https://devcon-event-app.netlify.app'
+const EVENT_APP_ORIGIN = 'https://app.devcon.org'
 const TEST_EMAIL = process.env.TEST_EMAIL
 const SUBJECT = '📲 Your Devcon 8 India ticket is ready — install the app'
 

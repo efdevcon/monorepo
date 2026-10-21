@@ -57,6 +57,26 @@ function urlBase64ToUint8Array(base64: string): Uint8Array {
   return Uint8Array.from(raw, (c) => c.charCodeAt(0));
 }
 
+/**
+ * This browser's push subscription, if it is ours. app.devcon.org was the old
+ * Devcon 7 app (docs/app-domain-migration.md): a device that turned its
+ * notifications on still holds that subscription, made with the old app's
+ * VAPID key. Read as ours it showed the toggle "on" with nothing behind it,
+ * and subscribing over it throws InvalidStateError, so a foreign one is
+ * dropped here and the device reads as not subscribed.
+ */
+async function ownSubscription(registration: ServiceWorkerRegistration): Promise<PushSubscription | null> {
+  const sub = await registration.pushManager.getSubscription();
+  const vapidKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
+  const key = sub?.options.applicationServerKey;
+  if (!sub || !vapidKey || !key) return sub;
+  const ours = urlBase64ToUint8Array(vapidKey);
+  const theirs = new Uint8Array(key);
+  if (theirs.length === ours.length && theirs.every((b, i) => b === ours[i])) return sub;
+  await sub.unsubscribe().catch(() => undefined);
+  return null;
+}
+
 /** Bearer header for the app's own API routes (throws when signed out). */
 export async function authHeader(): Promise<Record<string, string>> {
   if (!supabase) throw new Error("Supabase not initialized");
@@ -106,9 +126,7 @@ export function usePushSubscription() {
         // stay hidden the whole time. No active registration simply means
         // "not subscribed yet"; subscribe() awaits readiness itself.
         const registration = await navigator.serviceWorker.getRegistration();
-        const sub = registration?.active
-          ? await registration.pushManager.getSubscription()
-          : null;
+        const sub = registration?.active ? await ownSubscription(registration) : null;
         if (cancelled) return;
         setState(sub ? "on" : "off");
         if (!sub) return;
@@ -210,6 +228,7 @@ export function usePushSubscription() {
           )
         ),
       ]);
+      await ownSubscription(registration);
       const subscription = await registration.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(vapidKey) as BufferSource,

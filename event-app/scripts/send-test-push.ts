@@ -10,7 +10,7 @@ import "dotenv/config";
 import webpush from "web-push";
 import { createClient } from "@supabase/supabase-js";
 
-const APP_ORIGIN = process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app";
+const APP_ORIGIN = process.env.APP_ORIGIN || "https://app.devcon.org";
 
 async function main(): Promise<void> {
   const args = process.argv.slice(2);

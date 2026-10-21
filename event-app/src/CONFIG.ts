@@ -34,7 +34,7 @@ const APP_CONFIG = {
   // previews and branch deploys (APP_ORIGIN overrides both when set), else the
   // production site. A push URL only opens inside the installed app
   // when it is on that install's origin.
-  APP_ORIGIN: process.env.APP_ORIGIN || "https://devcon-event-app.netlify.app",
+  APP_ORIGIN: process.env.APP_ORIGIN || "https://app.devcon.org",
   // Host of the server-rendered social cards (og:image). The renderers,
   // fonts, brand art and Supabase render cache live on devcon.org
   // (devcon/src/pages/api/social/*), so the app only links to them.

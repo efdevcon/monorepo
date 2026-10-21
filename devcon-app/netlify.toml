@@ -17,3 +17,6 @@
 
 [build.environment]
 PNPM_FLAGS = "--filter devcon-app..."
+# Devcon 8 notice shown by the app: nothing | preparing | migrated
+# (src/pages/_app.tsx, docs/app-domain-migration.md).
+NEXT_PUBLIC_MIGRATION_STATE = "preparing"

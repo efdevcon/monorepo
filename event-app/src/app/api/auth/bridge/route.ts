@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { getRequestOrigin } from "../../_lib/origin";
 import { verifyBridgeToken } from "@/data/auth/bridgeToken";
+import { INSTALL_PARAM, installMarker, parseInstallVersion } from "@/data/install/installVersion";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -32,12 +33,17 @@ const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
  * SDK's existing (unchanged) detectSessionInUrl already auto-picks-up on
  * load — same end result client-side as the original hash-based flow, now
  * with the cookie as a bonus for the SSR/manifest-link use case.
+ *
+ * The install version in the start_url (`&install=N`, see
+ * src/data/install/installVersion.ts) is passed on to the page, so the
+ * launch still says which icon it came from.
  */
 export async function GET(request: NextRequest) {
   const origin = getRequestOrigin(request);
   const bridgeToken = request.nextUrl.searchParams.get("bridge") || "";
   const verified = verifyBridgeToken(bridgeToken);
-  const fallback = NextResponse.redirect(origin);
+  const marker = installMarker(parseInstallVersion(request.nextUrl.searchParams.get(INSTALL_PARAM)));
+  const fallback = NextResponse.redirect(`${origin}/${marker}`);
 
   if (!verified || !supabaseUrl || !supabaseAnonKey || !supabaseServiceRoleKey) {
     return fallback;
@@ -87,7 +93,7 @@ export async function GET(request: NextRequest) {
     type: "magiclink",
   }).toString();
 
-  const response = NextResponse.redirect(`${origin}/my-devcon#${hash}`);
+  const response = NextResponse.redirect(`${origin}/my-devcon${marker}#${hash}`);
   pendingCookies.forEach(({ name, value, options }) =>
     response.cookies.set(name, value, options)
   );

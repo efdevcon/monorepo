@@ -10,6 +10,7 @@ import { Toaster } from "sonner";
 import { BadgeCheck, CircleAlert } from "lucide-react";
 import { CustomScrollbar } from "@/components/CustomScrollbar";
 import { ServiceWorkerUpdater } from "@/components/ServiceWorkerUpdater";
+import { LegacyInstallGate } from "@/components/LegacyInstallGate";
 import { INTRO_BACKDROP, INTRO_COVER_ID, INTRO_SEEN_KEY } from "@/components/introCover";
 import { PersonalizedManifestLink } from "@/components/PersonalizedManifestLink";
 import { MatomoAnalytics } from "@/app/matomo";
@@ -253,23 +254,28 @@ export default function RootLayout({
               "window.dispatchEvent(new Event('install-prompt-available'));});})();",
           }}
         />
-        <DataProvider>
-          <UserProvider>
-            <CacheWarmer />
-            <InterestSync />
-            <Suspense fallback={null}>
-              <MatomoAnalytics />
-            </Suspense>
-            {/* Feedback lives here, outside the route segment, so the crash
-                page (app/error.tsx) can still open the sheet. */}
-            <FeedbackSync />
-            <Suspense fallback={null}>
-              <FeedbackSheet />
-            </Suspense>
-            <FeedbackFab />
-            {children}
-          </UserProvider>
-        </DataProvider>
+        {/* An old Devcon 7 install on an iPhone, or an install from the retired
+            pre-launch host, gets a "this app has moved" screen instead of the
+            app (docs/app-domain-migration.md). */}
+        <LegacyInstallGate>
+          <DataProvider>
+            <UserProvider>
+              <CacheWarmer />
+              <InterestSync />
+              <Suspense fallback={null}>
+                <MatomoAnalytics />
+              </Suspense>
+              {/* Feedback lives here, outside the route segment, so the crash
+                  page (app/error.tsx) can still open the sheet. */}
+              <FeedbackSync />
+              <Suspense fallback={null}>
+                <FeedbackSheet />
+              </Suspense>
+              <FeedbackFab />
+              {children}
+            </UserProvider>
+          </DataProvider>
+        </LegacyInstallGate>
         <CustomScrollbar />
         <IOSViewportHealer />
         <ServiceWorkerUpdater />

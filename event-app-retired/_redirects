@@ -1,0 +1,6 @@
+# The app's own "retired host" check (LegacyInstallGate) treats a redirect on
+# the manifest as "this host no longer serves the app".
+/manifest.webmanifest  https://app.devcon.org/manifest.webmanifest  301
+# Every other path shows the moved page (an installed app launches at "/", a
+# tab is sent on to the same path on app.devcon.org by the page's script).
+/*  /index.html  200

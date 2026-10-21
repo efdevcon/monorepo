@@ -38,7 +38,7 @@ const ALLOWED_ORIGINS = [
   'https://devcon-archive.netlify.app',
   'https://meerkat.events',
   'https://connections.cursive.team',
-  'https://devcon-event-app.netlify.app',
+  'https://devcon8-app.netlify.app',
 ]
 
 // Netlify deploy previews get per-PR subdomains
@@ -46,8 +46,10 @@ const ALLOWED_ORIGINS = [
 // PR previews can talk to the API without editing this file per PR. Anchored
 // to the exact deploy-preview format (not a bare suffix match) because this
 // API serves with credentials — a bare suffix could be shadowed by a
-// third-party Netlify site name ending in `--devcon-event-app`.
-const PREVIEW_ORIGIN_RE = /^https:\/\/deploy-preview-\d+--(devcon-event-app|devcon-app|devcon-archive)\.netlify\.app$/
+// third-party Netlify site name ending in `--devcon8-app`. `devcon-event-app`
+// is the event app's name until the app.devcon.org swap renames it, then the
+// name of the retired-host site (docs/app-domain-migration.md).
+const PREVIEW_ORIGIN_RE = /^https:\/\/deploy-preview-\d+--(devcon8-app|devcon-event-app|devcon-app|devcon-archive)\.netlify\.app$/
 
 app.use(
   cors({

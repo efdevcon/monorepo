@@ -5,7 +5,9 @@ const Speaker = (props: any) => {
   const router = useRouter()
 
   useEffect(() => {
-    router.push(`https://app.devcon.org/schedule/${props.params.code}`)
+    // Devcon 7 sessions live in the old app, kept on its netlify.app host
+    // (docs/app-domain-migration.md); app.devcon.org is the Devcon 8 app.
+    router.push(`https://devcon-app.netlify.app/schedule/${props.params.code}`)
   }, [router, props.params.code])
 
   return <></>
