@@ -147,7 +147,12 @@ export function Nav() {
       root.style.setProperty("--nav-clearance", `${el.offsetHeight}px`);
     publish();
     const observer = new ResizeObserver(publish);
-    observer.observe(el);
+    // border-box, not the default content-box: the bar's height changes
+    // through its padding alone when iOS applies the home-indicator inset
+    // after the first paint (a fresh install's first launch), and a
+    // content-box observer never sees a padding change, so the overlays
+    // above the bar were left 22px too low.
+    observer.observe(el, { box: "border-box" });
     return () => {
       observer.disconnect();
       root.style.setProperty("--nav-clearance", "0px");
