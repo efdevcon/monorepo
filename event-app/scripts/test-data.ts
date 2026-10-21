@@ -77,6 +77,7 @@ export const FIXTURE: EventBundle = {
     startDate: "2024-11-12",
     endDate: "2024-11-15",
     featuredSpeakers: ["alice"],
+    scheduleVersion: "0.21",
   },
   rooms: [{ id: "stage-1", name: "Stage 1", capacity: null, youtubeStreamUrl_1: "https://yt/1" }],
   speakers: [
@@ -116,7 +117,7 @@ function testNormalize() {
 
   check("one row per session/speaker/room", rows.sessions.length === 2 && rows.speakers.length === 2 && rows.rooms.length === 1);
   check("meta carries version and timestamps", rows.meta.version === "v-1" && rows.meta.syncedAt === 1_000 && rows.meta.checkedAt === 1_000);
-  check("meta carries event fields", rows.meta.title === "Devcon 7" && eq(rows.meta.featuredSpeakers, ["alice"]));
+  check("meta carries event fields", rows.meta.title === "Devcon 7" && eq(rows.meta.featuredSpeakers, ["alice"]) && rows.meta.scheduleVersion === "0.21");
 
   const a = rows.sessions[0];
   check("session keeps ids, drops embeds", eq(a.speakerIds, ["alice", "ghost"]) && a.roomId === "stage-1" && !("speakers" in a) && !("slot_room" in a));

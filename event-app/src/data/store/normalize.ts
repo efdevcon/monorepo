@@ -104,6 +104,7 @@ export function normalizeBundle(
     featuredSpeakers: Array.isArray(bundle.event?.featuredSpeakers)
       ? bundle.event.featuredSpeakers.map(String)
       : undefined,
+    scheduleVersion: str(bundle.event?.scheduleVersion),
   });
 
   return { sessions, speakers, rooms, meta };

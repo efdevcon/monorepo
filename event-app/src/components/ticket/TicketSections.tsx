@@ -95,8 +95,10 @@ export function TicketSections({
   leadSlot?: ReactNode;
 }) {
   const [modal, setModal] = useState<QrModalTarget | null>(null);
-  // Hidden from attendees until released (RELEASED.ensPerk); the team still sees it.
+  // Hidden until released (RELEASED.ensPerk / faucetPerk); the team can preview
+  // them in EF internal tools. With neither, the Perks section goes, header included.
   const showEnsPerk = useReleased("ensPerk");
+  const showFaucetPerk = useReleased("faucetPerk");
 
   // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
   // select rows and the Pretix order page.
@@ -343,7 +345,7 @@ export function TicketSections({
 
       {/* One card per partner per ticket shown (see TicketProofButton): with a
           primary that is one card each, never the buyer's colleagues' perks. */}
-      {shownTickets.length > 0 && (
+      {shownTickets.length > 0 && (showEnsPerk || showFaucetPerk) && (
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
@@ -354,7 +356,7 @@ export function TicketSections({
                 showTicketLabel={shownTickets.length > 1}
               />
             ))}
-            {shownTickets.map((ticket) => (
+            {showFaucetPerk && shownTickets.map((ticket) => (
               <FaucetPerkCard
                 key={`faucet-${ticket.secret}`}
                 ticket={ticket}

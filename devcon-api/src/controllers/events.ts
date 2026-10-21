@@ -103,7 +103,7 @@ export const BUNDLE_ROOM_FIELDS = [
   'translationUrl',
 ] as const
 
-export const BUNDLE_EVENT_FIELDS = ['id', 'title', 'startDate', 'endDate', 'featuredSpeakers'] as const
+export const BUNDLE_EVENT_FIELDS = ['id', 'title', 'startDate', 'endDate', 'featuredSpeakers', 'scheduleVersion'] as const
 
 /** Copy only `keys` from `item`, skipping null/undefined so absent fields are simply omitted. */
 function project(item: Record<string, any>, keys: readonly string[]) {

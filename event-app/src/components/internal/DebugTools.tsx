@@ -37,7 +37,7 @@ const field =
 const pill =
   "flex h-8 cursor-pointer items-center gap-1.5 rounded-full px-3 text-[13px] font-bold leading-none transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
 const primaryPill = cn(pill, "bg-dc-purple text-white hover:bg-[#6730d5]");
-const quietPill = cn(pill, "border border-dc-hairline bg-white text-dc-fg2 hover:bg-dc-purple-wash");
+export const quietPill = cn(pill, "border border-dc-hairline bg-white text-dc-fg2 hover:bg-dc-purple-wash");
 
 /**
  * Live readout of the effective "now" (venue wall-clock). Reads the same
@@ -61,13 +61,16 @@ function DebugClock({ tz, speed }: { tz: string; speed: number }) {
 
 /** EventStore readout + force sync. */
 export function EventDataTools() {
-  const { status, version, syncedAt, checkedAt, hydrateMs, lastError } = useSyncStatus();
+  const { status, version, scheduleVersion, syncedAt, checkedAt, hydrateMs, lastError } = useSyncStatus();
   // Stored timestamps, not "now": plain formatting is fine here.
   const fmt = (ms: number | null) => (ms ? new Date(ms).toLocaleTimeString() : "never");
   return (
     <div className="mt-3 rounded-md border border-dc-hairline bg-white p-3 text-[12px] leading-4 text-dc-muted">
+      <p className="text-[14px] leading-5 text-dc-fg2">
+        Schedule release: <span className="font-semibold">{scheduleVersion ?? "unknown"}</span>
+      </p>
       <p>
-        status: {status} · version: {version ?? "none"}
+        status: {status} · data version: {version ?? "none"}
       </p>
       <p>
         synced: {fmt(syncedAt)} · checked: {fmt(checkedAt)} · hydrate: {hydrateMs ?? "?"} ms

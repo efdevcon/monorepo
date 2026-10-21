@@ -11,6 +11,15 @@ import { ReminderRehearsal } from "@/components/announcements/ReminderRehearsal"
 import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
 import { EventDataTools, MockClockTools } from "./DebugTools";
+import { OfflineTools } from "./OfflineTools";
+import { Switch } from "@/components/Switch";
+import {
+  RELEASED,
+  RELEASE_GATE_LABELS,
+  setFeaturePreview,
+  usePreviewedFeatures,
+  type ReleaseGate,
+} from "@/data/release/releaseGates";
 
 const TEAM_DOMAIN = "@ethereum.org";
 
@@ -32,6 +41,9 @@ const toolPill =
  * Tools for the EF team on My Devcon (/my-devcon), rendered only for signed-in
  * @ethereum.org accounts; attendees never see the section. Everything here
  * acts on this device or this account only:
+ * - Unreleased features: the app otherwise looks the same for the team as
+ *   for attendees; a switch per feature not yet in RELEASED turns it on for
+ *   this device (src/data/release/releaseGates.ts).
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
  *   the public header on 2026-09-24; this is the team's way in. Beside it,
  *   the inference debugger (/admin/inference-test) for prompt and model work.
@@ -48,6 +60,8 @@ const toolPill =
  * - Mock clock & dataset (MockClockTools) and Event data sync (EventDataTools):
  *   the former floating bug button on Home, moved here 2026-10-02 so it needs
  *   no `?debug` flag and attendees never see it.
+ * - Offline readiness (OfflineTools): connection, service worker, storage,
+ *   image warming progress and coverage, and what each cache holds.
  * - Rehearse reminders (ReminderRehearsal): the session-reminder rehearsal at
  *   a mocked clock, own devices only.
  */
@@ -55,6 +69,8 @@ export function EfInternalTools() {
   const { user } = useUser();
   const [nudges, setNudges] = useState<"idle" | "cleared">("idle");
   const [crash, setCrash] = useState(false);
+  const previewed = usePreviewedFeatures();
+  const unreleased = (Object.keys(RELEASED) as ReleaseGate[]).filter((f) => !RELEASED[f]);
 
   if (!user?.email?.toLowerCase().endsWith(TEAM_DOMAIN)) return null;
   // Thrown in render, so the route error boundary (app/error.tsx) takes over
@@ -80,8 +96,34 @@ export function EfInternalTools() {
         </span>
       </div>
 
+      {/* Unreleased features */}
+      {unreleased.length > 0 && (
+        <div className="mt-4">
+          <p className="text-[14px] font-bold leading-5 text-dc-fg2">Unreleased features</p>
+          <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+            Hidden from everyone, you included, until released. Turn one on to test it on this
+            device.
+          </p>
+          <ul className="mt-3 flex flex-col gap-3">
+            {unreleased.map((feature) => (
+              <li key={feature} className="flex items-center justify-between gap-3">
+                <span className="text-[14px] leading-5 text-dc-fg2">
+                  <span className="font-semibold">{RELEASE_GATE_LABELS[feature].name}</span>
+                  <span className="block text-dc-muted">{RELEASE_GATE_LABELS[feature].description}</span>
+                </span>
+                <Switch
+                  checked={previewed.includes(feature)}
+                  onChange={(on) => setFeaturePreview(feature, on)}
+                  aria-label={`Preview ${RELEASE_GATE_LABELS[feature].name}`}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* Deva (AI assistant) */}
-      <div className="mt-4">
+      <div className={cn("mt-4", unreleased.length > 0 && "border-t border-dc-hairline pt-4")}>
         <p className="text-[14px] font-bold leading-5 text-dc-fg2">Ask Deva</p>
         <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
           The AI assistant, off the public menu for now.
@@ -180,6 +222,16 @@ export function EfInternalTools() {
           sync if something looks stale.
         </p>
         <EventDataTools />
+      </div>
+
+      {/* Offline readiness */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Offline readiness</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Whether this device would work without a connection: the service worker, storage,
+          how far image pre-caching got, and what each cache holds.
+        </p>
+        <OfflineTools />
       </div>
 
       {/* Session reminder rehearsal (folded by default). */}

@@ -81,6 +81,70 @@ let totalFailed = 0;
 let startedAt = 0;
 
 /**
+ * Read-only status for EF internal tools (WarmStatusTools): what the warmer is
+ * doing, this pass's counts, and the last finished pass (the counters reset
+ * when a pass ends). Diagnostics only: nothing in the warmer reads it back.
+ */
+export type WarmPhase =
+  | "idle"
+  | "waiting-for-worker"
+  | "connection-not-allowed"
+  | "running"
+  | "paused-offline"
+  | "done";
+export interface WarmStatus {
+  phase: WarmPhase;
+  /** This pass: images queued, fetched, already cached, failed (HTTP error). */
+  queued: number;
+  fetched: number;
+  skipped: number;
+  failed: number;
+  /** Still to process in this pass. */
+  pending: number;
+  /** Failed on the network, retried when the connection returns. */
+  deferred: number;
+  /** Every image URL handed to the warmer since the page loaded. */
+  known: number;
+  lastPass: { endedAt: number; queued: number; fetched: number; skipped: number; failed: number; seconds: number } | null;
+}
+let phase: WarmPhase = "idle";
+let lastPass: WarmStatus["lastPass"] = null;
+let statusSnapshot: WarmStatus | null = null;
+const statusListeners = new Set<() => void>();
+
+function publish(next?: WarmPhase): void {
+  if (next) phase = next;
+  statusSnapshot = null;
+  statusListeners.forEach((l) => l());
+}
+
+export function subscribeWarmStatus(listener: () => void): () => void {
+  statusListeners.add(listener);
+  return () => statusListeners.delete(listener);
+}
+
+export function getWarmStatus(): WarmStatus {
+  return (statusSnapshot ??= {
+    phase,
+    queued: totalQueued,
+    fetched: totalFetched,
+    skipped: totalSkipped,
+    failed: totalFailed,
+    pending: pendingCount(),
+    deferred: deferred.length,
+    known: queued.size,
+    lastPass,
+  });
+}
+
+/** Every image URL the warmer was given, to check how many the cache holds. */
+export function warmedImageUrls(): string[] {
+  return [...queued];
+}
+
+export { IMAGE_CACHE as WARM_IMAGE_CACHE };
+
+/**
  * Metered or slow connections don't get a background download. `saveData` is an
  * explicit user request to conserve; 2g means the warm would compete with
  * whatever the user is actually trying to do.
@@ -164,6 +228,7 @@ async function fetchChunk(chunk: string[]): Promise<void> {
 async function run(): Promise<void> {
   running = true;
   startedAt = startedAt || Date.now();
+  publish("running");
 
   while (pendingCount() > 0) {
     // Always drain the most important non-empty tier, so anything queued later
@@ -176,6 +241,7 @@ async function run(): Promise<void> {
     const missing = await missingFromCache(batch);
     totalSkipped += batch.length - missing.length;
     if (missing.length > 0) await fetchChunk(missing);
+    publish();
 
     const remaining = pendingCount();
     if (remaining > 0) {
@@ -194,12 +260,21 @@ async function run(): Promise<void> {
   console.info(
     `[warm-images] ${deferred.length ? "paused" : "complete"}: ${totalQueued} image(s) — ${parts.join(", ")} in ${seconds}s`
   );
+  lastPass = {
+    endedAt: Date.now(),
+    queued: totalQueued,
+    fetched: totalFetched,
+    skipped: totalSkipped,
+    failed: totalFailed,
+    seconds: Number(seconds),
+  };
   running = false;
   startedAt = 0;
   totalQueued = 0;
   totalFetched = 0;
   totalSkipped = 0;
   totalFailed = 0;
+  publish(deferred.length ? "paused-offline" : "done");
 }
 
 /**
@@ -246,12 +321,14 @@ function enqueue(tiers: string[][]): void {
     console.info(
       `[warm-images] offline, ${deferred.length} image(s) queued until connection returns`
     );
+    publish("paused-offline");
     return;
   }
 
   if (running) {
     // A later dataset resolved mid-warm; it just extends the queue.
     console.info(`[warm-images] +${added} queued (${totalQueued} total)`);
+    publish();
     return;
   }
   console.info(`[warm-images] warming ${added} image(s)`);
@@ -287,7 +364,10 @@ export function useWarmImages(tiers: (string | null | undefined)[][]): void {
 
   useEffect(() => {
     if (candidates.length === 0) return;
-    if (!connectionAllowsWarming()) return;
+    if (!connectionAllowsWarming()) {
+      publish("connection-not-allowed");
+      return;
+    }
     // Without a controlling service worker nothing would cache the responses,
     // so wait for one to claim the page (see whenControlled) instead of
     // bailing. In dev, where the SW is off, the wait never resolves and
@@ -298,6 +378,7 @@ export function useWarmImages(tiers: (string | null | undefined)[][]): void {
     // enqueue when a newer set has superseded it while we were still waiting,
     // since the newest set is the one worth warming.
     let stale = false;
+    if (phase === "idle" && !navigator.serviceWorker?.controller) publish("waiting-for-worker");
     void whenControlled().then((controlled) => {
       if (controlled && !stale) enqueue(groups);
     });

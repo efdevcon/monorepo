@@ -7,6 +7,8 @@ import type { SyncStatus } from "../store/event-store";
 export function useSyncStatus(): {
   status: SyncStatus;
   version: string | null;
+  /** Pretalx schedule release ("0.21"), when the API sends it. */
+  scheduleVersion: string | null;
   syncedAt: number | null;
   checkedAt: number | null;
   hydrateMs: number | null;
@@ -16,6 +18,7 @@ export function useSyncStatus(): {
   return {
     status,
     version: meta?.version ?? null,
+    scheduleVersion: meta?.scheduleVersion ?? null,
     syncedAt: meta?.syncedAt ?? null,
     checkedAt: meta?.checkedAt ?? null,
     hydrateMs,

@@ -11,6 +11,8 @@ export interface BundleEvent {
   startDate?: string;
   endDate?: string;
   featuredSpeakers?: string[];
+  /** Pretalx release the data comes from ("0.21"), for EF internal tools. */
+  scheduleVersion?: string;
 }
 
 export interface BundleRoom {
@@ -143,6 +145,8 @@ export interface EventMetaRow {
   startDate?: string;
   endDate?: string;
   featuredSpeakers?: string[];
+  /** Pretalx release the data comes from ("0.21"), for EF internal tools. */
+  scheduleVersion?: string;
 }
 
 export interface NormalizedRows {
