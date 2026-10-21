@@ -6,9 +6,10 @@ import { readStoredPassword, TICKETS_ADMIN_PASSWORD_KEY } from 'utils/adminPassw
 // Internal monitor for the Community Hubs pipeline: the hourly live export
 // (GitHub Action, started by devcon-api) and what the API made of each hub's
 // sheet. Everything here is public already (the API status endpoint and the
-// repo's Actions runs), so the page is unlisted and noindex, not gated. The one
-// secret part, each hub's sheet (edit) link, only shows for someone logged in on
-// /tickets/admin with the full admin password (/api/community-hubs/links).
+// repo's Actions runs), so the page is unlisted and noindex, not gated: hubs
+// use it to see which of their rows the app could not read. Someone logged in on
+// /tickets/admin with the full admin password also gets the pipeline view (export
+// freshness, failed runs) and each hub's sheet (edit) link (/api/community-hubs/links).
 // Pipeline details: docs/community-hubs.md in the monorepo.
 
 const EVENT_ID = 'devcon8'
@@ -89,6 +90,7 @@ export default function CommunityHubsMonitor() {
   const [loading, setLoading] = useState(false)
   const [checkedAt, setCheckedAt] = useState<number | null>(null)
   const [links, setLinks] = useState<Record<string, string>>({})
+  const [admin, setAdmin] = useState(false)
 
   // Once per visit: links don't change hour to hour, and no stored password means no request.
   useEffect(() => {
@@ -96,25 +98,35 @@ export default function CommunityHubsMonitor() {
     if (!key) return
     fetch('/api/community-hubs/links/', { headers: { 'x-admin-key': key } })
       .then(res => (res.ok ? res.json() : null))
-      .then(body => body?.links && setLinks(body.links))
+      .then(body => {
+        if (!body?.links) return
+        setLinks(body.links)
+        setAdmin(true)
+      })
       .catch(() => {})
   }, [])
 
   const load = useCallback(async () => {
     setLoading(true)
     const errs: string[] = []
+    // Export runs only for admins: they feed the pipeline view, and GitHub allows
+    // 60 anonymous requests an hour per visitor.
     const [s, r] = await Promise.allSettled([
       fetch(STATUS_URL).then(res => (res.ok ? res.json() : Promise.reject(new Error(`API answered ${res.status}`)))),
-      fetch(RUNS_URL).then(res => (res.ok ? res.json() : Promise.reject(new Error(`GitHub answered ${res.status}`)))),
+      admin
+        ? fetch(RUNS_URL).then(res =>
+            res.ok ? res.json() : Promise.reject(new Error(`GitHub answered ${res.status}`))
+          )
+        : Promise.resolve(null),
     ])
     if (s.status === 'fulfilled') setStatus(s.value.data)
     else errs.push(`Hub status: ${s.reason instanceof Error ? s.reason.message : String(s.reason)}`)
-    if (r.status === 'fulfilled') setRuns(r.value.workflow_runs)
+    if (r.status === 'fulfilled') r.value && setRuns(r.value.workflow_runs)
     else errs.push(`Export runs: ${r.reason instanceof Error ? r.reason.message : String(r.reason)}`)
     setErrors(errs)
     setCheckedAt(Date.now())
     setLoading(false)
-  }, [])
+  }, [admin])
 
   useEffect(() => {
     load()
@@ -146,8 +158,10 @@ export default function CommunityHubsMonitor() {
             <div>
               <h1 className="text-2xl font-bold">Community Hubs monitor</h1>
               <p className="text-sm text-[#5b5370]">
-                Live sheet export and parse problems for {EVENT_ID}. Checked {ago(checkedAt, Date.now())}, refreshes
-                every 5 min.
+                {admin
+                  ? `Live sheet export and parse problems for ${EVENT_ID}.`
+                  : 'Rows of each hub sheet the app could not read, and why.'}{' '}
+                Checked {ago(checkedAt, Date.now())}, refreshes every 5 min.
               </p>
             </div>
             <button
@@ -168,47 +182,52 @@ export default function CommunityHubsMonitor() {
             </div>
           )}
 
+          {/* Last export is public: it tells a hub whether its latest edit was picked up yet. */}
           <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className={CARD}>
               <p className="text-xs uppercase tracking-wide text-[#5b5370]">Last export</p>
               <p className="mt-1 text-lg font-bold">{status ? ago(status.exportedAt, now) : '…'}</p>
               {status && <Tone tone={exportStale ? 'bad' : 'ok'}>{exportStale ? 'Stale' : 'Fresh'}</Tone>}
             </div>
-            <div className={CARD}>
-              <p className="text-xs uppercase tracking-wide text-[#5b5370]">Export runs, 24 h</p>
-              <p className="mt-1 text-lg font-bold">
-                {runs ? `${dayRuns.length - failedRuns.length}/${dayRuns.length} ok` : '…'}
-              </p>
-              {runs && (
-                <Tone tone={failedRuns.length ? 'warn' : 'ok'}>
-                  {failedRuns.length ? `${failedRuns.length} failed` : 'No failures'}
-                </Tone>
-              )}
-            </div>
-            <div className={CARD}>
-              <p className="text-xs uppercase tracking-wide text-[#5b5370]">Hubs needing a look</p>
-              <p className="mt-1 text-lg font-bold">{status ? `${hubsWithProblems} of ${hubs.length}` : '…'}</p>
-              {status && (
-                <Tone tone={hubsWithProblems ? 'warn' : 'ok'}>{hubsWithProblems ? 'Problems' : 'All clean'}</Tone>
-              )}
-            </div>
-            <div className={CARD}>
-              <p className="text-xs uppercase tracking-wide text-[#5b5370]">Sessions served</p>
-              <p className="mt-1 text-lg font-bold">{status ? totalSessions : '…'}</p>
-              {lastRun && (
-                <a
-                  href={lastRun.html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-[#7235ed] hover:underline"
-                >
-                  Last run {lastRun.conclusion} {ago(Date.parse(lastRun.created_at), now)}
-                </a>
-              )}
-            </div>
+            {admin && (
+              <>
+                <div className={CARD}>
+                  <p className="text-xs uppercase tracking-wide text-[#5b5370]">Export runs, 24 h</p>
+                  <p className="mt-1 text-lg font-bold">
+                    {runs ? `${dayRuns.length - failedRuns.length}/${dayRuns.length} ok` : '…'}
+                  </p>
+                  {runs && (
+                    <Tone tone={failedRuns.length ? 'warn' : 'ok'}>
+                      {failedRuns.length ? `${failedRuns.length} failed` : 'No failures'}
+                    </Tone>
+                  )}
+                </div>
+                <div className={CARD}>
+                  <p className="text-xs uppercase tracking-wide text-[#5b5370]">Hubs needing a look</p>
+                  <p className="mt-1 text-lg font-bold">{status ? `${hubsWithProblems} of ${hubs.length}` : '…'}</p>
+                  {status && (
+                    <Tone tone={hubsWithProblems ? 'warn' : 'ok'}>{hubsWithProblems ? 'Problems' : 'All clean'}</Tone>
+                  )}
+                </div>
+                <div className={CARD}>
+                  <p className="text-xs uppercase tracking-wide text-[#5b5370]">Sessions served</p>
+                  <p className="mt-1 text-lg font-bold">{status ? totalSessions : '…'}</p>
+                  {lastRun && (
+                    <a
+                      href={lastRun.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs text-[#7235ed] hover:underline"
+                    >
+                      Last run {lastRun.conclusion} {ago(Date.parse(lastRun.created_at), now)}
+                    </a>
+                  )}
+                </div>
+              </>
+            )}
           </section>
 
-          {(status?.problems.length || failedRuns.length > 0) && (
+          {admin && (status?.problems.length || failedRuns.length > 0) && (
             <section className={CARD}>
               <h2 className="mb-2 text-lg font-bold">Pipeline problems</h2>
               <ul className="flex flex-col gap-1 text-sm">
@@ -286,24 +305,26 @@ export default function CommunityHubsMonitor() {
             })}
           </section>
 
-          <footer className="flex flex-wrap gap-4 text-xs text-[#5b5370]">
-            <a
-              href={RUNS_PAGE}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 hover:underline"
-            >
-              Export runs on GitHub <ExternalLink className="size-3" />
-            </a>
-            <a
-              href={STATUS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 hover:underline"
-            >
-              Raw API status <ExternalLink className="size-3" />
-            </a>
-          </footer>
+          {admin && (
+            <footer className="flex flex-wrap gap-4 text-xs text-[#5b5370]">
+              <a
+                href={RUNS_PAGE}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 hover:underline"
+              >
+                Export runs on GitHub <ExternalLink className="size-3" />
+              </a>
+              <a
+                href={STATUS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 hover:underline"
+              >
+                Raw API status <ExternalLink className="size-3" />
+              </a>
+            </footer>
+          )}
         </div>
       </main>
     </>
