@@ -270,7 +270,7 @@ export default function TravelGuidePage() {
     <Page theme={themes['tickets']} withHero darkFooter>
       <SEO title={t('title')} />
       <PageHero
-        className={`${css['hero-no-side-gradient']} ${css['tg-gutters']} !mb-0`}
+        className={`${css['hero-no-side-gradient']} !mb-0`}
         titleClassName={css['hero-title']}
         title={t('title')}
         heroBackground={HeroBackground}
@@ -281,7 +281,7 @@ export default function TravelGuidePage() {
       {/* overflow-anchor: none — Chrome's scroll anchoring otherwise latches
           onto content below an expanding dropdown and auto-scrolls the page,
           making panels appear to expand upward out of view */}
-      <div className={cn('[overflow-anchor:none]', css['tg-gutters'])}>
+      <div className="[overflow-anchor:none]">
 
       {/* Section: Aamchi Mumbai! — intro + Good to know */}
       <div

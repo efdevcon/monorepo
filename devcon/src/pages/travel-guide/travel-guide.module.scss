@@ -131,14 +131,6 @@ $hairline: rgba(34, 17, 68, 0.1);
 }
 
 /* ─── Responsive layout tiers ─────────────────────────────── */
-/* Figma "sm Desktop (1024px)" and "sm Tablet (768px)": 32px page gutters at
-   both tiers, page-scoped so other pages keep the global 64/16 .section
-   gutters. Two class selectors so this outranks the global .section rules. */
-
-.tg-gutters {
-  @include layout-section-gutters;
-}
-
 /* Section vertical padding: uniform 48px at both new tiers, the shipped
    desktop values from ≥1280. In px because the root font-size is 14px ≤1024. */
 

@@ -1,13 +1,5 @@
 @use 'assets/css/partials/index' as *;
 
-/* ─── Page gutters ──────────────────────────── */
-/* Applied to the Hero wrapper in pages/index.tsx so its .section follows the
-   home ramp (it would otherwise jump 16 → 64px at 768). The landing-page
-   sections themselves use the sectionX/sectionInner Tailwind constants. */
-.home-gutters {
-  @include layout-section-gutters;
-}
-
 /* ─── Keywords ──────────────────────────────── */
 .keywords {
   display: flex;
