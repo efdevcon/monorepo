@@ -1685,8 +1685,10 @@
   },
   {
     "hub": "Legal & Governance Hub",
-    "changedAt": "2026-10-21T08:11:14.003Z",
-    "problems": [],
+    "changedAt": "2026-10-21T09:10:51.680Z",
+    "problems": [
+      "row 24: no session title, skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
@@ -1813,17 +1815,6 @@
         "description": "The evolution of online dispute resolution, the growing role of artificial intelligence in arbitration and mediation, and the importance of maintaining fairness, due process and human judgment while adopting new technologies."
       },
       {
-        "id": "S13",
-        "day": "Thu 5 Nov",
-        "time": "11:00-12:30",
-        "title": "Dispute Resolution for AI Agents",
-        "format": "Talk",
-        "speakers": [
-          "Facundo Trotz"
-        ],
-        "description": "AI agents are starting to negotiate, buy, sell and sign agreements for people and businesses. So what happens when a deal between two agents goes wrong? Courts and traditional arbitration are too slow and expensive for machine-speed transactions that cross borders, and they weren’t built for disputes where no person made the decision. This talk looks at how decentralised dispute resolution can act as a trust layer for the agent economy. It covers:\n- New kinds of disputes: agents misreading instructions, failing to deliver, or acting beyond their mandate\n- Why agent commerce needs fast, low-cost and enforceable dispute resolution, built into the transaction from the start\n- How on-chain arbitration such as Kleros can resolve agent-to-agent and agent-to-human disputes, with humans still in the loop\n- Open questions on accountability, evidence and due process when the parties are autonomous systems"
-      },
-      {
         "id": "S14",
         "day": "Thu 5 Nov",
         "time": "12:30-13:30",
@@ -1853,11 +1844,9 @@
         "format": "Talk",
         "speakers": [
           "Fortunato",
-          "Facundo",
-          "JB",
-          "Agentic Hub"
+          "JB"
         ],
-        "description": "Speakers: Fortunato (Kleros), Facundo (Kleros), JB (Kleros)"
+        "description": "Examines agent transaction liability by tracing a disputed service purchase through its entire chain—covering the principal, delegated mandates, policy checks, verification, and dispute remedies. Designed for market participants, enterprise AI teams, and compliance practitioners."
       },
       {
         "id": "S17",
