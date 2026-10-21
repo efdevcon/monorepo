@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex" />
+    <title>This app has moved - Devcon 8 App</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #fff;
+        color: #160b2b;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        /* Pinned to the viewport like the in-app screen: nothing to scroll, no
+           rubber-band drag in an installed app. */
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      body.show {
+        display: flex;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 384px;
+        text-align: center;
+      }
+      img {
+        height: 64px;
+        width: auto;
+      }
+      h1 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+      }
+      p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 24px;
+        color: #1a0d33;
+      }
+      p.note {
+        font-size: 14px;
+        line-height: 20px;
+        color: #594d73;
+      }
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+      a.primary,
+      button.secondary {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 20px;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      a.primary {
+        background: #7235ed;
+        color: #f9f8fa;
+      }
+      button.secondary {
+        background: #fff;
+        color: #1a0d33;
+        border: 1px solid #e3ddf0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/devcon-8-logo.svg" alt="Devcon 8" />
+      <h1>This app has moved</h1>
+      <p id="how"></p>
+      <p class="note" id="note" hidden>If a browser sheet opens instead of Safari, tap its Safari button.</p>
+      <div class="buttons">
+        <a class="primary" id="open" href="https://app.devcon.org/" target="_blank" rel="noopener noreferrer">Open app.devcon.org</a>
+        <button class="secondary" id="copy" type="button">Copy link</button>
+      </div>
+    </main>
+    <script>
+      (function () {
+        var NEW_ORIGIN = "https://app.devcon.org";
+        var standalone =
+          window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+        // A browser tab has no install to replace: carry on at the new address.
+        if (!standalone) {
+          location.replace(NEW_ORIGIN + location.pathname + location.search + location.hash);
+          return;
+        }
+        // An installed app launched from this host. The worker (sw.js) has
+        // normally done this already; repeated here in case it never ran, and
+        // once more a few seconds later for anything the app's old worker
+        // cached while it was still in charge of this page load.
+        var cleanUp = function () {
+          if ("caches" in window) {
+            caches
+              .keys()
+              .then(function (names) {
+                return Promise.all(names.map(function (name) { return caches.delete(name); }));
+              })
+              .catch(function () {});
+          }
+          if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+              .getRegistrations()
+              .then(function (registrations) {
+                return Promise.all(registrations.map(function (r) { return r.unregister(); }));
+              })
+              .catch(function () {});
+          }
+        };
+        cleanUp();
+        setTimeout(cleanUp, 4000);
+        var ios =
+          /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        document.getElementById("how").textContent =
+          (ios
+            ? "Add the new Devcon app to your Home Screen: open app.devcon.org in Safari, tap Share, then Add to Home Screen."
+            : "Install the new Devcon app: open app.devcon.org in your browser, then Install app or Add to Home Screen.") +
+          " Then delete this icon, it won't work any more.";
+        if (ios) {
+          document.getElementById("note").hidden = false;
+          // A Home Screen app opens other sites in a browser sheet that has no
+          // Add to Home Screen; x-safari-https:// hands the URL to Safari itself.
+          var open = document.getElementById("open");
+          open.href = "x-safari-" + NEW_ORIGIN + "/";
+          open.removeAttribute("target");
+          open.textContent = "Open in Safari";
+        } else if (/Android/.test(navigator.userAgent) && navigator.share) {
+          // Android: an installed app opens other sites in an in-app browser
+          // tab, which has no Install, and Chrome routes its own schemes and
+          // intents there too. The system share sheet is the one hand-off it
+          // leaves alone: picking Chrome there opens a real Chrome tab.
+          var open2 = document.getElementById("open");
+          open2.removeAttribute("target");
+          open2.textContent = "Open in Chrome";
+          var note2 = document.getElementById("note");
+          note2.textContent = "Pick Chrome in the sheet that opens.";
+          note2.hidden = false;
+          open2.addEventListener("click", function (event) {
+            event.preventDefault();
+            navigator.share({ title: "Devcon 8 App", url: NEW_ORIGIN + "/" }).catch(function () {});
+          });
+        }
+        var copy = document.getElementById("copy");
+        copy.addEventListener("click", function () {
+          if (!navigator.clipboard) return;
+          navigator.clipboard
+            .writeText(NEW_ORIGIN + "/")
+            .then(function () {
+              copy.textContent = "Copied";
+              setTimeout(function () { copy.textContent = "Copy link"; }, 2000);
+            })
+            .catch(function () {});
+        });
+        document.body.classList.add("show");
+      })();
+    </script>
+  </body>
+</html>

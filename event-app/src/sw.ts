@@ -15,6 +15,7 @@ import {
   parseDetailPath,
   stripIgnoredParams,
 } from "./routing/viewParams";
+import { INSTALL_PARAM, installMarker, parseInstallVersion } from "./data/install/installVersion";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -94,13 +95,15 @@ const serwist: Serwist = new Serwist({
     {
       matcher: ({ request, url, sameOrigin }) =>
         sameOrigin && request.mode === "navigate" && url.pathname === "/api/auth/bridge",
-      handler: async ({ request }): Promise<Response> => {
+      handler: async ({ request, url }): Promise<Response> => {
         try {
           const signal =
             typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(5_000) : undefined;
           return await fetch(request, { signal });
         } catch {
-          return Response.redirect(`${self.location.origin}/my-devcon`, 302);
+          // Keep the install version the start_url carries (installVersion.ts).
+          const marker = installMarker(parseInstallVersion(url.searchParams.get(INSTALL_PARAM)));
+          return Response.redirect(`${self.location.origin}/my-devcon${marker}`, 302);
         }
       },
     },
@@ -324,6 +327,63 @@ self.addEventListener("message", (event) => {
   if (event.data?.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
+});
+
+// ---------------------------------------------------------------------------
+// Taking over from the old Devcon 7 app. After the domain swap
+// (docs/app-domain-migration.md) an installed copy of the old app fetches this
+// worker from app.devcon.org as its update. Waiting for its pages to close, as
+// every other update does, would leave the old app running for a whole session
+// on a host that no longer serves it. Its precache is the tell: next-pwa's
+// `workbox-precache-*` (this worker's own is `serwist-precache-*`). When it is
+// there, activate at once, reload the old app's pages (they then load this app,
+// and LegacyInstallGate decides what an old install sees) and remove that
+// precache, so the next update of this worker waits for the user as usual.
+// The only skipWaiting in this worker: the pages claimed here run the old app,
+// never an older build of this one.
+// ---------------------------------------------------------------------------
+const OLD_APP_PRECACHE = "workbox-precache";
+
+async function oldAppPrecaches(): Promise<string[]> {
+  try {
+    return (await caches.keys()).filter((name) => name.startsWith(OLD_APP_PRECACHE));
+  } catch {
+    return [];
+  }
+}
+
+// Decided at install: Serwist's own activate step may already have removed
+// outdated precaches by the time ours runs.
+let takingOverOldApp = false;
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    (async () => {
+      takingOverOldApp = (await oldAppPrecaches()).length > 0;
+      if (takingOverOldApp) await self.skipWaiting();
+    })()
+  );
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    (async () => {
+      const names = await oldAppPrecaches();
+      if (!takingOverOldApp && names.length === 0) return;
+      await self.clients.claim();
+      await Promise.all(names.map((name) => caches.delete(name)));
+      const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      // Started here, not awaited: a page's navigation waits for this worker to
+      // finish activating, so awaiting it would hold both up until the browser
+      // gives up (about a minute).
+      for (const client of clients) {
+        void client.navigate(client.url).catch(() => {
+          // Not ours to navigate: the old app reloads on this message.
+          client.postMessage({ type: "SW_UPDATED" });
+        });
+      }
+    })()
+  );
 });
 
 // ---------------------------------------------------------------------------

@@ -19,8 +19,8 @@
  */
 
 export const MEERKAT_EVENT = 'devcon8'
-/** The event app; switch to app.devcon.org when the domain moves (docs/app-domain-migration.md). */
-export const EVENT_APP_ORIGIN = 'https://devcon-event-app.netlify.app'
+/** The event app (docs/app-domain-migration.md). */
+export const EVENT_APP_ORIGIN = 'https://app.devcon.org'
 const MEERKAT_ORIGIN = 'https://app.meerkat.events'
 const SESSIONS_URL = `https://api.devcon.org/sessions?event=${MEERKAT_EVENT}&size=2000&fields=id,sourceId,slot_start,slot_end,slot_roomId`
 

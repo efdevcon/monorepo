@@ -12,7 +12,7 @@ const NOTION_VERSION = "2022-06-28";
 const DEFAULT_DB_ID = "3b9638cdc4158035a9abcff224f3034a";
 const secret = process.env.NOTION_SECRET;
 const dbId = process.env.NOTION_ANNOUNCEMENTS_DB_ID ?? DEFAULT_DB_ID;
-const appOrigin = process.env.APP_ORIGIN ?? "https://devcon-event-app.netlify.app";
+const appOrigin = process.env.APP_ORIGIN ?? "https://app.devcon.org";
 if (!secret) {
   console.error("NOTION_SECRET is required");
   process.exit(1);

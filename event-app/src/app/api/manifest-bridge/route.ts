@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import APP_CONFIG from "@/CONFIG";
 import { getRequestOrigin } from "../_lib/origin";
 import { signBridgeToken, verifyBridgeToken } from "@/data/auth/bridgeToken";
+import { INSTALL_PARAM, INSTALL_VERSION } from "@/data/install/installVersion";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -73,7 +74,9 @@ export async function POST(request: NextRequest) {
 
 /**
  * GET: returns a manifest (same shape as src/app/manifest.ts) whose
- * start_url carries the bridge token through to /api/auth/bridge. A real,
+ * start_url carries the bridge token through to /api/auth/bridge, and the
+ * install version (src/data/install/installVersion.ts) like the static
+ * manifest does. A real,
  * independently-fetchable URL — not something only the page's own JS can
  * resolve — so it works regardless of how/when iOS decides to read it.
  */
@@ -88,10 +91,12 @@ export async function GET(request: NextRequest) {
 
   const origin = getRequestOrigin(request);
   const manifest = {
+    // Same identity as the static manifest (installVersion.ts).
+    id: `/install/${INSTALL_VERSION}`,
     name: APP_CONFIG.HOME_SCREEN_NAME,
     short_name: APP_CONFIG.HOME_SCREEN_NAME,
     description: APP_CONFIG.APP_DESCRIPTION,
-    start_url: `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}`,
+    start_url: `${origin}/api/auth/bridge?bridge=${encodeURIComponent(bridgeToken)}&${INSTALL_PARAM}=${INSTALL_VERSION}`,
     // Without an explicit scope, browsers infer it from start_url's
     // directory — here that would be /api/auth/, meaning literally
     // everywhere else in the app (/my-devcon, /, ...) would be considered

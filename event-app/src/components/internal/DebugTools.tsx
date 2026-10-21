@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RefreshCw } from "lucide-react";
 import cn from "classnames";
 import {
@@ -13,6 +13,7 @@ import {
 import { utcMsToWallClock, wallClockToUtcMs } from "@/data/eventTime";
 import { useNowMs } from "@/hooks/useNow";
 import { useSyncStatus } from "@/data/hooks";
+import { knownInstallVersion, launchInstallVersion } from "@/data/install/deviceInstallVersion";
 import { eventStore } from "@/data/store/event-store";
 
 /**
@@ -62,6 +63,13 @@ function DebugClock({ tz, speed }: { tz: string; speed: number }) {
 /** EventStore readout + force sync. */
 export function EventDataTools() {
   const { status, version, scheduleVersion, syncedAt, checkedAt, hydrateMs, lastError } = useSyncStatus();
+  // Install version (data/install/installVersion.ts): what this launch's URL
+  // says, and the highest this device has launched with. Read after mount: the
+  // URL is browser-only and the device value comes from Dexie.
+  const [install, setInstall] = useState<{ launch: number | null; known: number | null } | null>(null);
+  useEffect(() => {
+    void knownInstallVersion().then((known) => setInstall({ launch: launchInstallVersion(), known }));
+  }, []);
   // Stored timestamps, not "now": plain formatting is fine here.
   const fmt = (ms: number | null) => (ms ? new Date(ms).toLocaleTimeString() : "never");
   return (
@@ -75,6 +83,11 @@ export function EventDataTools() {
       <p>
         synced: {fmt(syncedAt)} · checked: {fmt(checkedAt)} · hydrate: {hydrateMs ?? "?"} ms
       </p>
+      {install && (
+        <p>
+          install version: {install.launch ?? "none"} (launch) · {install.known ?? "none"} (device)
+        </p>
+      )}
       {lastError && <p className="text-dc-error">{lastError}</p>}
       <button
         type="button"

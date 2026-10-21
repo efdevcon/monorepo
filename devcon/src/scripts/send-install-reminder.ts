@@ -56,7 +56,7 @@ function signBridgeToken(email: string): string {
 
 // ---- Campaign copy ----
 const SUBJECT = '📲 Your Devcon 8 India ticket is ready — install the app'
-const EVENT_APP_ORIGIN = process.env.EVENT_APP_ORIGIN || 'https://devcon-event-app.netlify.app'
+const EVENT_APP_ORIGIN = process.env.EVENT_APP_ORIGIN || 'https://app.devcon.org'
 
 function argValue(flag: string): string | null {
   const i = process.argv.indexOf(flag)

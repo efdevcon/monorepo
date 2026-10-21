@@ -1,6 +1,6 @@
 # Devcon App (legacy, Devcon SEA 2024)
 
-Conference app used at Devcon SEA @ [app.devcon.org](https://app.devcon.org/). Kept for archival purposes and UX reference; Devcon 8 uses [event-app](../event-app/) instead.
+Conference app used at Devcon SEA (7) @ [app.devcon.org](https://app.devcon.org/). Kept for archival purposes and UX reference; Devcon 8 uses [event-app](../event-app/) instead.
 
 ## Install and run
 
