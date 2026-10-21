@@ -17,8 +17,12 @@ const STATUS_URL = `https://api.devcon.org/events/${EVENT_ID}/community-hubs`
 const RUNS_URL =
   'https://api.github.com/repos/efdevcon/monorepo/actions/workflows/fileverse-live-export.yml/runs?per_page=30'
 const RUNS_PAGE = 'https://github.com/efdevcon/monorepo/actions/workflows/fileverse-live-export.yml'
-/** The export runs hourly; past this the API is serving stale sheets. */
-const EXPORT_STALE_MS = 2 * 60 * 60_000
+/**
+ * The export runs hourly but only rewrites the file when a sheet changed, or every
+ * 6 h as a heartbeat (community-hubs-live.ts), so exportedAt is the last change.
+ * Stale only past the heartbeat plus margin, the same 8 h the API warns at.
+ */
+const EXPORT_STALE_MS = 8 * 60 * 60_000
 const REFRESH_MS = 5 * 60_000
 
 interface HubStatus {
@@ -182,10 +186,10 @@ export default function CommunityHubsMonitor() {
             </div>
           )}
 
-          {/* Last export is public: it tells a hub whether its latest edit was picked up yet. */}
+          {/* Last sheet change is public: it tells a hub whether its latest edit was picked up yet. */}
           <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className={CARD}>
-              <p className="text-xs uppercase tracking-wide text-[#5b5370]">Last export</p>
+              <p className="text-xs uppercase tracking-wide text-[#5b5370]">Last sheet change</p>
               <p className="mt-1 text-lg font-bold">{status ? ago(status.exportedAt, now) : '…'}</p>
               {status && <Tone tone={exportStale ? 'bad' : 'ok'}>{exportStale ? 'Stale' : 'Fresh'}</Tone>}
             </div>
