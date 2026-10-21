@@ -1,6 +1,6 @@
 # app.devcon.org: old app → event-app
 
-Status 2026-10-21: swap today. `app.devcon.org` is the custom domain of the Netlify site `devcon-app` (old Devcon 7 app). It moves to the event-app site, which is renamed from `devcon-event-app` to `devcon8-app` on the way (why: below). DNS stays as is: the record is a CNAME to a netlify.app host and Netlify routes by hostname, so the swap is a dashboard move only.
+Status: swapped on 2026-10-21 (19:50 UTC). app.devcon.org is event-app; the old pre-launch host serves the retired-host site; the old app stays on devcon-app.netlify.app. `app.devcon.org` is the custom domain of the Netlify site `devcon-app` (old Devcon 7 app). It moves to the event-app site, which is renamed from `devcon-event-app` to `devcon8-app` on the way (why: below). DNS stays as is: the record is a CNAME to a netlify.app host and Netlify routes by hostname, so the swap is a dashboard move only.
 
 Rule for the swap: every install made before it gets a "this app has moved" screen and a clean re-install, whether it was opened yesterday or two weeks ago. Three kinds of install exist.
 
