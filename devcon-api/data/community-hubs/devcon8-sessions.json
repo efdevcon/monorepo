@@ -1067,10 +1067,8 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-21T19:10:26.081Z",
+    "changedAt": "2026-10-22T23:11:21.536Z",
     "problems": [
-      "row 7: no session title, skipped",
-      "row 9: no session title, skipped",
       "row 31: no session title, skipped",
       "row 43: no session title, skipped"
     ],
@@ -1078,7 +1076,30 @@
       {
         "id": "S01",
         "day": "Tue 3 Nov",
-        "time": "12:00-13:00",
+        "time": "12:00-12:20",
+        "title": "EIP Hubs Opening",
+        "format": "Welcome",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "12:20-13:00",
+        "title": "How Fast Is Your Client? Benchmarking the Ethereum Execution Layer for Glamsterdam",
+        "format": "Talk",
+        "speakers": [
+          "Stefan Starflinger",
+          "Rafael Matias",
+          "Louis Tsai"
+        ],
+        "description": "Glamsterdam raises Ethereum's gas limit from 60M to 200M and reprices EVM operations, so every gas cost has to match how long clients actually take to execute it. We walk through the pipeline that measures this end to end: designing benchmarks that isolate single operations, running them on realistic state across all execution clients with benchmarkoor, and replaying the same workloads on devnets and mainnet shadow forks to confirm the results hold on a live network."
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "13:10-14:10",
         "title": "Your Path Into Ethereum ecosystem with EIP Hub",
         "format": "Workshop",
         "speakers": [
@@ -1087,17 +1108,9 @@
         ]
       },
       {
-        "id": "S02",
+        "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "13:00-13:30",
-        "title": "Lunch & Networking",
-        "format": "Break",
-        "speakers": []
-      },
-      {
-        "id": "S03",
-        "day": "Tue 3 Nov",
-        "time": "13:30-14:10",
+        "time": "14:20-15:00",
         "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
         "format": "Talk",
         "speakers": [
@@ -1115,6 +1128,14 @@
           "Matthew Keil"
         ],
         "description": "Encourage the Ethereum ecosystem to adopt smaller, faster forks that enable more EIPs to ship over time, while planning multiple forks ahead through a clear roadmap to improve resource allocation and accelerate overall development cadence."
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "15:30-16:00",
+        "title": "Lunch & Networking",
+        "format": "Break",
+        "speakers": []
       },
       {
         "id": "S07",
