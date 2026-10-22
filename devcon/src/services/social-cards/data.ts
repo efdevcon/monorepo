@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import sharp from 'sharp'
 import { socialAssetDataUrl } from './assets'
-import { cleanDc8SessionType, getDc8TrackBadgePath } from './track-images'
+import { cleanDc8SessionType, DC8_CLS_BADGE, getDc8TrackBadgePath } from './track-images'
 import { isPublicSubmissionState } from './submission-state'
 
 export function devconApiUrl(): string {
@@ -141,7 +141,7 @@ export function getExpertiseColor(expertise?: string) {
 // also used by the session share page).
 export function getTrackImage(track?: string, eventId?: string) {
   if (eventId === 'devcon8') {
-    return socialAssetDataUrl(getDc8TrackBadgePath(track))
+    return socialAssetDataUrl(getDc8TrackBadgePath(track) ?? DC8_CLS_BADGE)
   }
   if (track === 'Core Protocol') return socialAssetDataUrl('dc7/tracks/CoreProtocol.png')
   if (track === 'Cypherpunk & Privacy') return socialAssetDataUrl('dc7/tracks/Cypherpunk.png')

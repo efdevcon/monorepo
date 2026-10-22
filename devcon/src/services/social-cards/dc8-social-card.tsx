@@ -34,8 +34,10 @@ import {
  *   bottom-right (short labels never reach it)
  * - CLS sessions use the share card's default design instead: gradient bg,
  *   the colored Devcon glyph, "CLS – <format>" chip + CLS name
- * - unmapped tracks (Invited speaker, Art & Culture…) also fall back to the
- *   gradient, keeping the neutral octagon
+ * - trackless and unmapped sessions (ceremonies, Music Stage, Invited
+ *   speaker, Art & Culture…) get the same gradient + Devcon glyph, with the
+ *   session's own chip/track label (2026-10-22: they used to borrow the
+ *   Futures Worth Building octagon)
  * - the white logomark watermark is on every card, gradient ones included
  *   (2026-10-13: it used to be track cards only)
  */
@@ -50,6 +52,7 @@ export function renderDc8SocialCard(
   const s = (n: number) => n * scale
 
   const isCls = isDc8ClsTrack(session.track)
+  const badge = isCls ? undefined : getDc8TrackBadgePath(session.track)
   const trackColor = isCls ? undefined : getDc8TrackColor(session.track)
   const background = trackColor ?? 'linear-gradient(to top, #e5ebff 19.98%, #fbfafc 100%)'
   const pillColor = trackColor ?? '#e6ebff'
@@ -115,16 +118,16 @@ export function renderDc8SocialCard(
           }}
         />
 
-        {/* Track badge / CLS glyph, bleeding off the bottom-right */}
-        {isCls ? (
+        {/* Track badge, or the Devcon glyph for CLS and trackless sessions, bleeding off the bottom-right */}
+        {badge ? (
           <img
-            src={socialAssetDataUrl(DC8_CLS_BADGE)}
-            style={{ position: 'absolute', right: s(-40), bottom: s(-120), width: s(362), height: s(616) }}
+            src={socialAssetDataUrl(badge)}
+            style={{ position: 'absolute', left: s(854.5), bottom: s(-32), width: s(380), height: s(380) }}
           />
         ) : (
           <img
-            src={socialAssetDataUrl(getDc8TrackBadgePath(session.track))}
-            style={{ position: 'absolute', left: s(854.5), bottom: s(-32), width: s(380), height: s(380) }}
+            src={socialAssetDataUrl(DC8_CLS_BADGE)}
+            style={{ position: 'absolute', right: s(-40), bottom: s(-120), width: s(362), height: s(616) }}
           />
         )}
 

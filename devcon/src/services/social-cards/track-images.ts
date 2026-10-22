@@ -41,10 +41,12 @@ export function normalizeTrackName(track: string): string {
     .trim()
 }
 
-// Unmapped devcon8 tracks (Art&Culture, Invited speaker, Community Hubs)
-// get a neutral badge rather than DC7 art.
-export function getDc8TrackBadgePath(track?: string): string {
-  return (track && DC8_TRACK_BADGES[normalizeTrackName(track)]) || 'dc8/tracks/futures-worth-track.png'
+// Empty and unmapped devcon8 tracks (ceremonies, Music Stage sets, Art &
+// Culture, Invited speaker…) return undefined — the card draws the Devcon 8
+// logomark (DC8_CLS_BADGE) in the badge slot, matching the app's trackless
+// "Devcon" theme, rather than borrowing another track's art.
+export function getDc8TrackBadgePath(track?: string): string | undefined {
+  return track ? DC8_TRACK_BADGES[normalizeTrackName(track)] : undefined
 }
 
 // Unmapped tracks return undefined — cards fall back to the default gradient.
