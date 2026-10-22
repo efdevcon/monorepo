@@ -33,7 +33,7 @@ jobs:
           ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - uses: pnpm/action-setup@v4
       # Isolated from the workspace on purpose: no lockfile changes, nothing installed in the repo.
       - name: Install Playwright
