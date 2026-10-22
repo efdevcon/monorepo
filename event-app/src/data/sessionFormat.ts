@@ -18,10 +18,17 @@
  *
  * Any other type drops a " - qualifier" suffix ("Roundtable - longer format"
  * → "Roundtable"): the qualifier is scheduling detail for the programme team.
+ *
+ * Fireside chats, roundtables and the talent competition are one-offs that
+ * each added a filter row for a single session; they read as "Mixed Format",
+ * the Pretalx type for the programme's other non-standard sessions (feedback
+ * round, 2026-10-22). Checked before the CLS unwrap, so the Academic track's
+ * fireside folds the same way as the main-programme roundtable.
  */
 
 const CLS_TYPE = /^CLS\s*[-–:]\s*(.+?)\s*(?:\([^)]*\))?\s*$/i;
 const QUALIFIER = /\s+[-–]\s+.*$/;
+const MIXED_FORMAT = /fireside|roundtable|talent competition/i;
 
 const CORE_FORMATS: Array<[keyword: string, format: string]> = [
   ["lightning", "Lightning Talk"],
@@ -32,10 +39,37 @@ const CORE_FORMATS: Array<[keyword: string, format: string]> = [
 
 export function sessionFormat(raw: string): string {
   const name = raw.trim();
+  if (MIXED_FORMAT.test(name)) return "Mixed Format";
   const cls = CLS_TYPE.exec(name)?.[1];
   if (!cls) return name.replace(QUALIFIER, "");
   const key = cls.toLowerCase();
   const core = CORE_FORMATS.find(([keyword]) => key.includes(keyword));
   if (core) return core[1];
   return cls.charAt(0).toUpperCase() + cls.slice(1);
+}
+
+/**
+ * The order the format filters list the core formats in (Speakers format
+ * tabs, schedule "Session formats" rows): by how much of the programme each
+ * holds, not alphabetically, so Talks lead and Panels close (feedback round,
+ * 2026-10-22). A format outside this list (Experience, Keynote, Opening…)
+ * follows, alphabetically.
+ */
+const FORMAT_ORDER = [
+  "Talk",
+  "Lightning Talk",
+  "Mixed Format",
+  "Workshop",
+  "Panel",
+];
+
+export function compareSessionFormats(a: string, b: string): number {
+  const ia = FORMAT_ORDER.indexOf(a);
+  const ib = FORMAT_ORDER.indexOf(b);
+  if (ia !== -1 || ib !== -1) {
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  }
+  return a.localeCompare(b);
 }

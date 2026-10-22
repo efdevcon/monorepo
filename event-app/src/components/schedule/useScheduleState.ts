@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@/data/models";
 import { useNow } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
+import { compareSessionFormats } from "@/data/sessionFormat";
 import { deriveTopicOptions } from "@/data/topics";
 import {
   compareRoomNames,
@@ -183,6 +184,9 @@ export function useScheduleState(
       });
     }
     VALUE_FACETS.forEach((f) => opts[f].sort());
+    // Formats: the core formats in the programme's order (Talks first), the
+    // same list as the Speakers page's format tabs.
+    opts.type.sort(compareSessionFormats);
     // Rooms: a combined stage ahead of the halls it is made of (Lotus Stage
     // before Lotus 1–3), not plain alphabetical.
     opts.room.sort(compareRoomNames);

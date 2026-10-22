@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useEvent, useSessions, useSpeakers } from "@/data/hooks";
 import type { ConferenceEvent, Session, Speaker } from "@/data/models";
+import { compareSessionFormats } from "@/data/sessionFormat";
 import { deriveTopicOptions } from "@/data/topics";
 import { storeFor, useScheduleSource } from "@/data/store/schedule-source";
 import { useStoreState } from "@/data/store/use-event-store";
@@ -148,7 +149,7 @@ function derive(
   // same list, and the schedule Filters panel reuses the same derivation.
   const topicOptions = deriveTopicOptions(sessions);
 
-  const typeOptions = [...typeSet].sort((a, b) => a.localeCompare(b));
+  const typeOptions = [...typeSet].sort(compareSessionFormats);
 
   memoInputs = { speakers, sessions, otherSessions, event };
   memoDerived = { decorated, byId, topicOptions, typeOptions };
