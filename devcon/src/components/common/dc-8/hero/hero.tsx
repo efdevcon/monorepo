@@ -110,7 +110,7 @@ export const Hero = () => {
               {/* Phone + "Plan your schedule" (Figma 5241:501): desktop frame up, and
                   only when the hero is tall enough to hold the 488px block above
                   the social card without climbing into the nav. */}
-              <div className="hidden lg:[@media(min-height:720px)]:flex flex-col items-center gap-[8px] w-[231px] text-white text-center">
+              <div className="hidden lg:[@media(min-height:720px)]:flex flex-col items-center gap-[8px] text-white text-center">
                 <p className={`relative z-10 text-[12px] font-semibold tracking-[2px] uppercase leading-none ${textShadow}`}>
                   {t('app_eyebrow')}
                 </p>

@@ -64,7 +64,7 @@ export const AppPreviewPhone = ({ href, alt, caption }: Props) => {
         </motion.div>
       </div>
       {/* Above the glow: the phone's box-shadow paints over plain siblings */}
-      <span className="relative z-10 font-['Chloe'] text-[44px] leading-none tracking-[-1px] [text-shadow:0_4px_8px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.15)]">
+      <span className="relative z-10 whitespace-nowrap font-['Chloe'] text-[40px] leading-none tracking-[-1px] [text-shadow:0_4px_8px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.15)]">
         {caption}
       </span>
     </Link>
