@@ -14,7 +14,7 @@ const TILT_SPRING = { stiffness: 320, damping: 26, mass: 0.6 }
 type Props = { href: string; alt: string; caption: string }
 
 /**
- * Desktop hero phone: one link (phone + "Install the app") to the event app.
+ * Desktop hero phone: one link (phone + "Plan your schedule") to the event app.
  * The phone leans towards the cursor and takes the shared 1.03 hover scale
  * whenever the link is hovered; the caption only changes the cursor. Under
  * prefers-reduced-motion both go: the tilt here, the scale via motion-safe.

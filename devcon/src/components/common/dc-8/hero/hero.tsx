@@ -107,7 +107,7 @@ export const Hero = () => {
                 column's height is; on md it is just the social card under the
                 buttons. */}
             <div className="flex flex-col items-center gap-[24px] w-full mt-[16px] md:col-start-2 md:row-start-2 lg:row-start-1 lg:row-span-2 lg:self-end lg:w-auto">
-              {/* Phone + "Install the app" (Figma 5241:501): desktop frame up, and
+              {/* Phone + "Plan your schedule" (Figma 5241:501): desktop frame up, and
                   only when the hero is tall enough to hold the 488px block above
                   the social card without climbing into the nav. */}
               <div className="hidden lg:[@media(min-height:720px)]:flex flex-col items-center gap-[8px] w-[231px] text-white text-center">
