@@ -1,7 +1,7 @@
 /**
- * Legal links: the same seven policy links as the devcon.org footer, for
- * every user. Rendered inside the "Legal" disclosure of Home's Event
- * information section (EventInformation.tsx).
+ * Legal links: the seven policy links from the devcon.org footer plus the
+ * Attendee Media Policy, for every user. Rendered inside the "Legal"
+ * disclosure of Home's Event information section (EventInformation.tsx).
  *
  * Hrefs are absolute canonical URLs (the app is on a different origin; the
  * bare devcon.org paths redirect to `/en/…/`). Plain anchors open in a new
@@ -22,6 +22,10 @@ const LEGAL_LINKS: ReadonlyArray<{ label: string; href: string }> = [
   {
     label: "Attendee Guidelines",
     href: "https://devcon.org/Devcon8-Attendee-Guidelines-2026.pdf",
+  },
+  {
+    label: "Attendee Media Policy",
+    href: "https://docs.google.com/document/d/18zUyAaCU3ECt7tNEfuaQIyy7-nItP-3GosroivC2AME/view",
   },
   {
     label: "Booth Guidelines",
