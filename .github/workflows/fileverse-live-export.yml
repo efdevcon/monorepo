@@ -34,6 +34,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+          # the runner image can lag behind a 22.x security release
+          check-latest: true
       - uses: pnpm/action-setup@v4
       # Isolated from the workspace on purpose: no lockfile changes, nothing installed in the repo.
       - name: Install Playwright

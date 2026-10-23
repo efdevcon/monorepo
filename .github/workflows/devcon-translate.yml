@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+          # the runner image can lag behind a 22.x security release
+          check-latest: true
       - uses: pnpm/action-setup@v4
       - name: Install dependencies
         run: pnpm install
