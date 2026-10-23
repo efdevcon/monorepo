@@ -18,12 +18,16 @@ import {
   speakerImageDataUrls,
 } from 'services/social-cards/data'
 import { renderDc8SocialCard } from 'services/social-cards/dc8-social-card'
-import { pngToJpeg, serveCachedImage } from 'services/og-cache'
+import { ogInputHash, pngToJpeg, readLatestOgCache, sendOgImage, serveCachedImage } from 'services/og-cache'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
 const BUCKET = 'social-cards'
+/** Bump when the card design or its assets change: every card re-renders on its next request. */
+const SCHEDULE_CARD_VERSION = 1
+/** Short CDN life: with input-hashed keys the function is the source of truth and cheap on a hit. */
+const SCHEDULE_CDN_MAX_AGE_SECONDS = 3600
 
 // ─── Devcon 7 / SEA card (unchanged) ─────────────────────────────────────────
 // Ported from social-ticket/src/app/schedule/[id]/opengraph-image.tsx - layout,
@@ -206,15 +210,46 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (segments.length > 2 || !id || !/^[a-zA-Z0-9_-]{1,200}$/.test(id)) {
     return res.status(400).send({ success: false, error: 'invalid session id' })
   }
+  // devcon8 CFP talks aren't in the API until confirmed + synced — fall
+  // back to reading the submission straight from Pretalx.
+  const session = (await getSession(id)) ?? (await getSessionFromPretalx(id))
+  if (!session) {
+    // Unknown id, or the API is down: the last card rendered for this id if
+    // there is one (crawlers and the app keep their image), else nothing.
+    const stale = await readLatestOgCache(BUCKET, 'schedule', `${id}-`)
+    if (stale) return sendOgImage(res, stale.bytes, 'stale', SCHEDULE_CDN_MAX_AGE_SECONDS)
+    return res.status(503).send({ success: false, error: 'image render failed' })
+  }
+
+  // The key carries a digest of everything the card is drawn from, so the
+  // image stays as it is while the session is unchanged and is re-rendered
+  // the first time a title, speaker, type, track or slot differs. The app
+  // shows this card on every session page, so a render on a timer would
+  // cost a viewer a few seconds for nothing.
+  const hash = ogInputHash({
+    v: SCHEDULE_CARD_VERSION,
+    eventId: session.eventId,
+    title: session.title,
+    type: session.type,
+    track: session.track,
+    slot_start: session.slot_start,
+    slot_end: session.slot_end,
+    slot_room: session.slot_room,
+    speakers: ((session.speakers as { id?: string; name?: string; avatar?: string }[] | undefined) ?? []).map(s => [
+      s.id,
+      s.name,
+      s.avatar,
+    ]),
+  })
   await serveCachedImage({
     res,
     bucket: BUCKET,
-    key: `schedule/${id}.jpg`,
+    key: `schedule/${id}-${hash}.jpg`,
+    // Inputs unchanged for this long: re-render anyway, for assets and fonts
+    // that change without a version bump.
+    staleAfterMs: 90 * 24 * 60 * 60 * 1000,
+    cdnMaxAgeSeconds: SCHEDULE_CDN_MAX_AGE_SECONDS,
     render: async () => {
-      // devcon8 CFP talks aren't in the API until confirmed + synced — fall
-      // back to reading the submission straight from Pretalx.
-      const session = (await getSession(id)) ?? (await getSessionFromPretalx(id))
-      if (!session) throw new Error('session not found')
       const speakerImages = await speakerImageDataUrls(session)
       const card =
         session.eventId === 'devcon8'

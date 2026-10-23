@@ -1,7 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { trackEvent } from "@/data/analytics/track";
+import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
@@ -12,12 +13,87 @@ import { useInterested } from "@/data/interested/useInterested";
 import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
-import { getTrackTheme, trackFullLabel } from "./trackTheme";
+import { getTrackTheme, trackFullLabel, type TrackTheme } from "./trackTheme";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
 import { MarkdownText } from "@/components/MarkdownText";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
+/**
+ * Banner slot when there is no recording or stream: the session's social
+ * card, the image a shared link shows (devcon.org renders it per session,
+ * 1200x630; the worker caches it like any image, so it stays once seen).
+ * When there is none (hub sessions are not in the card renderer's
+ * programme, an unknown id, offline before first view), the track artwork on
+ * the track colour as before. While the card loads the box shows the track
+ * colour alone; the artwork only appears if the card is still missing after
+ * FALLBACK_AFTER_MS (a card never rendered before takes devcon.org a few
+ * seconds), so the usual cached card doesn't flash artwork first. The box
+ * keeps the card's aspect in both states so the swap never moves the content
+ * below. Keyed by session: the side panel swaps sessions in place.
+ */
+const FALLBACK_AFTER_MS = 2000;
+
+function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme }) {
+  const [card, setCard] = useState<"loading" | "shown" | "none">(
+    isCommunityHubSession(session) ? "none" : "loading"
+  );
+  const [waited, setWaited] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setWaited(true), FALLBACK_AFTER_MS);
+    return () => clearTimeout(timer);
+  }, []);
+  const showArtwork = card === "none" || (card === "loading" && waited);
+  const cardUrl = `${APP_CONFIG.SOCIAL_CARD_ORIGIN}/api/social/schedule/${encodeURIComponent(session.id)}/`;
+  return (
+    <div
+      className="relative aspect-[1200/630] w-full overflow-hidden rounded-xl"
+      style={{ backgroundColor: theme.neutral ? "#f5f1fe" : theme.color }}
+    >
+      {showArtwork && (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2">
+          {theme.banner ? (
+            // Hub's stacked lockup (mark over name): bigger than the mark, sized
+            // off the banner so it scales from the side panel to the expanded page.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={theme.banner} alt={theme.name} className="h-3/5 max-w-[70%] object-contain" />
+          ) : (
+            theme.gem && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={theme.gem}
+                alt={theme.isHub ? theme.name : ""}
+                className="size-[120px] object-contain"
+              />
+            )
+          )}
+          {/* Hub sessions: the hub's logo is the banner, no caption under it. */}
+          {!theme.isHub && (
+            <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
+              {session.track || theme.name}
+            </span>
+          )}
+        </div>
+      )}
+      {card !== "none" && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={cardUrl}
+          alt={session.title}
+          decoding="async"
+          fetchPriority="high"
+          onLoad={() => setCard("shown")}
+          onError={() => setCard("none")}
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover transition-opacity duration-300",
+            card === "shown" ? "opacity-100" : "opacity-0"
+          )}
+        />
+      )}
+    </div>
+  );
+}
+
 export function downloadSessionIcs(session: Session) {
   const dt = (unix: number) =>
     new Date(unix * 1000)
@@ -154,38 +230,7 @@ export function SessionSummary({
   const media = hasMedia ? (
     <SessionMedia session={session} />
   ) : (
-    <div
-      className="flex aspect-[160/90] w-full flex-col items-center justify-center gap-2 rounded-xl"
-      style={{
-        backgroundColor: theme.neutral ? "#f5f1fe" : theme.color,
-      }}
-    >
-      {theme.banner ? (
-        // Hub's stacked lockup (mark over name): bigger than the mark, sized
-        // off the banner so it scales from the side panel to the expanded page.
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={theme.banner}
-          alt={theme.name}
-          className="h-3/5 max-w-[70%] object-contain"
-        />
-      ) : (
-        theme.gem && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={theme.gem}
-            alt={theme.isHub ? theme.name : ""}
-            className="size-[120px] object-contain"
-          />
-        )
-      )}
-      {/* Hub sessions: the hub's logo is the banner, no caption under it. */}
-      {!theme.isHub && (
-        <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
-          {session.track || theme.name}
-        </span>
-      )}
-    </div>
+    <SessionBanner key={session.id} session={session} theme={theme} />
   );
 
   return (

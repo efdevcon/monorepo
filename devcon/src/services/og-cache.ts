@@ -9,9 +9,19 @@
  * stale-fallback response helper.
  */
 import type { NextApiResponse } from 'next'
+import { createHash } from 'node:crypto'
 import sharp from 'sharp'
 
 export const OG_STALE_AFTER_MS = 12 * 60 * 60 * 1000
+
+/**
+ * Short, stable digest of whatever a card is rendered from. Used in cache
+ * keys so a card is re-rendered when its inputs change and only then; the
+ * caller includes a version number for changes to the card design itself.
+ */
+export function ogInputHash(input: unknown): string {
+  return createHash('sha1').update(JSON.stringify(input)).digest('hex').slice(0, 12)
+}
 
 export function ogPublicUrl(bucket: string, key: string): string {
   return `${process.env.SUPABASE_URL}/storage/v1/object/public/${bucket}/${key}`
@@ -29,6 +39,40 @@ export async function readOgCache(bucket: string, key: string): Promise<{ bytes:
     const lastModifiedMs = lastModified ? new Date(lastModified).getTime() : 0
     const ageMs = lastModifiedMs > 0 ? Date.now() - lastModifiedMs : Infinity
     return { bytes: Buffer.from(await r.arrayBuffer()), ageMs }
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Newest cached object whose name starts with `namePrefix` inside `folder`
+ * (for input-hashed keys: the last card rendered for an id, whatever its
+ * inputs were). Null when there is none or Storage can't be listed.
+ */
+export async function readLatestOgCache(
+  bucket: string,
+  folder: string,
+  namePrefix: string
+): Promise<{ bytes: Buffer; ageMs: number } | null> {
+  try {
+    const r = await fetch(`${process.env.SUPABASE_URL}/storage/v1/object/list/${bucket}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prefix: folder,
+        search: namePrefix,
+        limit: 20,
+        sortBy: { column: 'updated_at', order: 'desc' },
+      }),
+      signal: AbortSignal.timeout(2000),
+    })
+    if (!r.ok) return null
+    const objects = (await r.json()) as { name: string }[]
+    const latest = objects.find(o => o.name.startsWith(namePrefix))
+    return latest ? readOgCache(bucket, `${folder}/${latest.name}`) : null
   } catch {
     return null
   }
@@ -105,23 +149,33 @@ export async function pngToJpeg(png: ArrayBuffer, quality = 80): Promise<Buffer>
     .toBuffer()
 }
 
+export function sendOgImage(
+  res: NextApiResponse,
+  bytes: Buffer,
+  cacheState: 'hit' | 'render' | 'stale',
+  cdnMaxAgeSeconds = 43200
+): void {
+  res.setHeader('Content-Type', 'image/jpeg')
+  res.setHeader('Cache-Control', `public, s-maxage=${cdnMaxAgeSeconds}, stale-while-revalidate=86400`)
+  res.setHeader('x-og-cache', cacheState)
+  res.status(200).send(bytes)
+}
+
 export async function serveCachedImage(opts: {
   res: NextApiResponse
   bucket: string
   key: string
   render: () => Promise<Buffer>
   staleAfterMs?: number
+  /** CDN lifetime of the response; the default suits id-keyed cards, input-hashed keys can go shorter. */
+  cdnMaxAgeSeconds?: number
 }): Promise<void> {
   const { res, bucket, key, render } = opts
   const staleAfter = opts.staleAfterMs ?? OG_STALE_AFTER_MS
   const cached = await readOgCache(bucket, key)
 
-  const send = (bytes: Buffer, cacheState: 'hit' | 'render' | 'stale') => {
-    res.setHeader('Content-Type', 'image/jpeg')
-    res.setHeader('Cache-Control', 'public, s-maxage=43200, stale-while-revalidate=86400')
-    res.setHeader('x-og-cache', cacheState)
-    res.status(200).send(bytes)
-  }
+  const send = (bytes: Buffer, cacheState: 'hit' | 'render' | 'stale') =>
+    sendOgImage(res, bytes, cacheState, opts.cdnMaxAgeSeconds)
 
   if (cached && cached.ageMs < staleAfter) return send(cached.bytes, 'hit')
 
