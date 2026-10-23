@@ -679,7 +679,7 @@
   },
   {
     "hub": "DeSci Hub",
-    "changedAt": "2026-10-23T17:09:19.621Z",
+    "changedAt": "2026-10-23T19:11:25.330Z",
     "problems": [
       "row 10 \"TBD + QnA\": start \"13:40\" / end \"\" not a time, skipped",
       "row 11 \"The DeSci Evolution: What Worked, What Didn't, and What Might Be Next + QnA\": start \"\" / end \"\" not a time, skipped",
@@ -915,7 +915,7 @@
         "speakers": [
           "Daniel \"Koss\" Knobelsdorf"
         ],
-        "description": "What role can community living play in longevity? This session introduces the Zuzalu Longevity Chiang Mai space at 4Seas, followed by an open discussion on how shared living, social connection, and community design can support healthier, longer lives.\n\nConnect with the speaker on LinkedIn: https://www.linkedin.com/in/knobelsdorf/"
+        "description": "What role can community living play in longevity? This session introduces the Zuzalu Longevity Chiang Mai space at 4Seas, followed by an open discussion on how shared living, social connection, and community design can support healthier, longer lives for a positive future.\n\nConnect with the speaker on LinkedIn: https://www.linkedin.com/in/knobelsdorf/"
       },
       {
         "id": "",
@@ -1103,7 +1103,7 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-23T16:11:11.621Z",
+    "changedAt": "2026-10-23T19:11:25.330Z",
     "problems": [
       "row 31: no session title, skipped",
       "row 43: no session title, skipped"
@@ -1123,14 +1123,12 @@
         "id": "S02",
         "day": "Tue 3 Nov",
         "time": "12:20-13:00",
-        "title": "How Fast Is Your Client? Benchmarking the Ethereum Execution Layer for Glamsterdam",
+        "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
         "format": "Talk",
         "speakers": [
-          "Stefan Starflinger",
-          "Rafael Matias",
-          "Louis Tsai"
+          "Jochem Brouwer"
         ],
-        "description": "Glamsterdam raises Ethereum's gas limit from 60M to 200M and reprices EVM operations, so every gas cost has to match how long clients actually take to execute it. We walk through the pipeline that measures this end to end: designing benchmarks that isolate single operations, running them on realistic state across all execution clients with benchmarkoor, and replaying the same workloads on devnets and mainnet shadow forks to confirm the results hold on a live network."
+        "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public."
       },
       {
         "id": "S03",
@@ -1147,12 +1145,14 @@
         "id": "S04",
         "day": "Tue 3 Nov",
         "time": "14:20-15:00",
-        "title": "EIP content in the new AI-era: why specification clarity matters more than ever",
+        "title": "How Fast Is Your Client? Benchmarking the Ethereum Execution Layer for Glamsterdam",
         "format": "Talk",
         "speakers": [
-          "Jochem Brouwer"
+          "Stefan Starflinger",
+          "Rafael Matias",
+          "Louis Tsai"
         ],
-        "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public."
+        "description": "Glamsterdam raises Ethereum's gas limit from 60M to 200M and reprices EVM operations, so every gas cost has to match how long clients actually take to execute it. We walk through the pipeline that measures this end to end: designing benchmarks that isolate single operations, running them on realistic state across all execution clients with benchmarkoor, and replaying the same workloads on devnets and mainnet shadow forks to confirm the results hold on a live network."
       },
       {
         "id": "S05",
@@ -2199,7 +2199,7 @@
   },
   {
     "hub": "Onchain Art Hub",
-    "changedAt": "2026-10-23T17:09:19.621Z",
+    "changedAt": "2026-10-23T19:11:25.330Z",
     "problems": [
       "row 11: no session title, skipped",
       "row 13: no session title, skipped",
@@ -2209,15 +2209,16 @@
       {
         "id": "S01",
         "day": "Tue 3 Nov",
-        "time": "09:00-11:00",
-        "title": "Hub not available",
+        "time": "09:00-12:00",
+        "title": "Meeting Point",
+        "format": "Welcome",
         "speakers": []
       },
       {
         "id": "S02",
         "day": "Tue 3 Nov",
         "time": "12:00-13:00",
-        "title": "Opening - Meeting Point",
+        "title": "Onchain Art Hub Opening",
         "format": "Welcome",
         "speakers": []
       },
@@ -4516,14 +4517,16 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-10-22T14:10:29.032Z",
-    "problems": [],
+    "changedAt": "2026-10-23T19:11:25.330Z",
+    "problems": [
+      "row 8: no session title, skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "09:00-14:00",
-        "title": "Devcon Welcome",
+        "title": "Welcome Gathering",
         "speakers": []
       },
       {
@@ -4536,25 +4539,25 @@
       {
         "id": "S03",
         "day": "Tue 3 Nov",
-        "time": "17:00-18:00",
-        "title": "Zuzone Town Hall",
-        "speakers": []
+        "time": "14:30-14:50",
+        "title": "We should tell more stories",
+        "format": "Talk",
+        "speakers": [
+          "Meave"
+        ],
+        "topic": "Community",
+        "description": "Most new technology reaches communities through someone else's story: a pitch deck, a press release, a narrative written from far away. When that happens, people get included on borrowed terms. This session argues that storytelling is infrastructure and a whole layer, just like code or capital or people."
       },
       {
         "id": "S04",
-        "day": "Wed 4 Nov",
-        "time": "09:00-11:00",
-        "title": "Community hours. On Nov 4th from 11am - Zuzone/NS Day!",
-        "speakers": []
-      },
-      {
-        "id": "S05",
-        "day": "Wed 4 Nov",
-        "time": "11:00-11:30",
-        "title": "NS Tech Stack",
+        "day": "Tue 3 Nov",
+        "time": "14:50-15:10",
+        "title": "Building a frontier tech community in Brazil’s magic island",
+        "format": "Talk",
         "speakers": [
-          "Shashank"
-        ]
+          "Zeugh"
+        ],
+        "topic": "Community"
       },
       {
         "id": "S06",
