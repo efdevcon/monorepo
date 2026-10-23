@@ -1,7 +1,7 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-10-21T00:11:09.758Z",
+    "changedAt": "2026-10-23T15:11:11.031Z",
     "problems": [],
     "sessions": [
       {
@@ -229,13 +229,13 @@
         "id": "S19",
         "day": "Wed 4 Nov",
         "time": "10:30-11:00",
-        "title": "Trust your agent with your card: AgentVault",
+        "title": "Agent Vault: the portable login and payments layer for your AI assistants",
         "format": "Talk",
         "speakers": [
           "Kartik Mehta"
         ],
         "topic": "Tooling",
-        "description": "Where agent card payments stand, how they fit next to x402, and what makes AgentVault different on privacy and security, followed by open discussion on card or x402 for which job. Part of the Payments block."
+        "description": "Mainstream consumer adoption of agentic payments has been blocked by a lack of trust and security. Card details could slip in credentials, agents can go rogue and overspend, the list goes on. Kartik Mehta explains the main challenges with agentic payments today, and how Self Labs built Agent Vault to address them head on. Part of the Payments block."
       },
       {
         "id": "S20",
@@ -328,16 +328,14 @@
       {
         "id": "S27",
         "day": "Wed 4 Nov",
-        "time": "13:00-14:00",
-        "title": "Giving agents spending power without the keys: self-custodial and permissioned agent wallets",
-        "format": "Demo",
+        "time": "13:00-13:20",
+        "title": "Permissioned wallets for agents: scoped, revocable allowances with ERC-7715 and ERC-7710",
+        "format": "Talk",
         "speakers": [
-          "Raquel Carrasco",
-          "Mislav",
           "Ayush Bherwani"
         ],
         "topic": "Tooling",
-        "description": "AI agents are starting to pay for things: APIs, compute, each other. The hard part is giving them money without giving them your keys. This session puts three answers side by side. First, an agent with its own self-custodial, multi-chain wallet. Second, a user granting an agent a capped, time-bound, revocable allowance from their own smart account. Third, the account layer underneath: smart accounts, EIP-7702, interop and scaling, and what is still unsolved. Each approach is shown live, followed by a frank comparison of when to use which."
+        "description": "Ayush Bherwani, Senior DevRel Engineer at MetaMask, shows how a user grants an agent a capped, periodic allowance from their own smart account (ERC-7715), how the agent spends it, for example over x402, what happens when the user revokes it, and how one agent can hire another while passing on only narrower permissions (ERC-7710). Part of the Wallet Infra block."
       },
       {
         "id": "S28",
