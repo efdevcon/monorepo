@@ -1,10 +1,8 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-10-23T15:15:22.483Z",
-    "problems": [
-      "row 55: no session title, skipped"
-    ],
+    "changedAt": "2026-10-23T16:11:11.621Z",
+    "problems": [],
     "sessions": [
       {
         "id": "S01",
@@ -337,7 +335,7 @@
           "Ayush Bherwani"
         ],
         "topic": "Tooling",
-        "description": "Ayush Bherwani, Senior DevRel Engineer at MetaMask, shows how a user grants an agent a capped, periodic allowance from their own smart account (ERC-7715), how the agent spends it, for example over x402, what happens when the user revokes it, and how one agent can hire another while passing on only narrower permissions (ERC-7710). Part of the Wallet Infra block."
+        "description": "How does a user grants an agent a capped, periodic allowance from their own smart account (ERC-7715), how the agent spends it, for example over x402, what happens when the user revokes it, and how one agent can hire another while passing on only narrower permissions (ERC-7710)"
       },
       {
         "id": "S28",
@@ -634,6 +632,42 @@
         ],
         "topic": "Community",
         "description": "The finals of the hub competitions and a wrap-up of the week."
+      },
+      {
+        "id": "S52",
+        "day": "Thu 5 Nov",
+        "time": "13:20-14:00",
+        "title": "Agents: when the payment goes wrong, a dispute signal and tamper-evident memory on Swarm",
+        "format": "Demo",
+        "speakers": [
+          "Fortunato Cinquepalmi",
+          "András Arányi"
+        ],
+        "description": "We introduce a failed or contested purchase and shows the verification and dispute step, producing a demo issue signal linked to the transaction. Then we record the event and its logs on Swarm, then retrieve and verify the evidence and compare a tampered exhibit with the original."
+      },
+      {
+        "id": "S53",
+        "day": "Wed 4 Nov",
+        "time": "13:20-13:40",
+        "title": "Accounts for agents: smart accounts, EIP-7702 and interop, and what is still unsolved",
+        "format": "Talk",
+        "speakers": [
+          "Mislav"
+        ],
+        "description": "We are covering the account layer underneath agent wallets: smart accounts, EIP-7702, cross-chain accounts, and what is still unsolved, such as proactive security monitoring of transaction payloads."
+      },
+      {
+        "id": "S54",
+        "day": "Wed 4 Nov",
+        "time": "13:40-14:00",
+        "title": "Who holds the keys? Wallets, permissions and accounts for agents, a moderated panel",
+        "format": "Roundtable",
+        "speakers": [
+          "Lena Hierzi (moderator)",
+          "Mislav",
+          "Ayush Bherwani"
+        ],
+        "description": "How to control you agent? We asks which model fits which job, where the risks sit, and what is still unsolved, with questions from the audience throughout."
       }
     ]
   },
@@ -1070,7 +1104,7 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-22T23:11:21.536Z",
+    "changedAt": "2026-10-23T16:11:11.621Z",
     "problems": [
       "row 31: no session title, skipped",
       "row 43: no session title, skipped"
@@ -1080,7 +1114,7 @@
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "12:00-12:20",
-        "title": "EIP Hubs Opening",
+        "title": "EIP Hub Opening",
         "format": "Welcome",
         "speakers": [
           "Pooja Ranjan"
