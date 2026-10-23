@@ -1,104 +1,44 @@
 import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useWaveStates, useTicketsCtaLabel, useSpecialOffer } from 'hooks/useWaveStates'
-import { CountdownText } from 'components/common/CountdownText'
+import { Link } from 'components/common/link'
+import Logomark from 'assets/icons/devcon-8-india-logomark.svg'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
 
-// "Aug 11" — special-offer end date in the strip message.
-const OFFER_ENDS_FORMATTER = new Intl.DateTimeFormat('en', {
-  month: 'short',
-  day: 'numeric',
-  timeZone: 'UTC',
-})
-
+// Site-wide app callout (Figma 5241:547 desktop, 5240:69234 tablet,
+// 5240:69535 mobile): the schedule is live in the Devcon app. Static copy, no
+// wave state, and shown on every page — /tickets included — so the ticketing
+// strip's route guard is gone with it. Keep id="strip": the header, hero and
+// mobile foldout measure it for their offsets. px literals throughout: the
+// root font-size drops to 14px ≤1024 (index.scss), which shrinks rem utilities.
 export const Strip = () => {
   const t = useTranslations('common.strip')
-  const router = useRouter()
-  const { featured, mounted } = useFeaturedWave()
-  const waveStates = useWaveStates()
-  const { label: ctaLabel } = useTicketsCtaLabel()
-  const isTickets = router.pathname === '/tickets' || router.pathname.startsWith('/tickets/')
-
-  // Special voucher promo (config/waves.ts): strip advertises the offer until
-  // it expires. The CTA still routes to /tickets (not straight to Pretix), so
-  // buyers see every ticket type they may be eligible for first.
-  const { active: showOffer, endsAtDisplay: offerEndsAt } = useSpecialOffer()
-
-  if (isTickets) return null
-
-  const showCountdown = !showOffer && featured?.status === 'countdown' && featured.countdown
-  const showLive = !showOffer && featured?.status === 'live'
-  // Current wave paused (coming-soon / closed) — keep the strip on it (e.g.
-  // "General Admission — Reopens Aug") rather than the generic message.
-  const showPaused = !showCountdown && !showLive && !!featured?.paused
-  // Fallback: no live / countdown / paused current wave — but if there's a
-  // known upcoming wave that just doesn't have exact open times yet (status
-  // 'tbd'), use its name. Skipped when the current wave is paused so we don't
-  // jump ahead to a later "Date TBA" wave (e.g. Final Waves).
-  const upcomingTbd = !showCountdown && !showLive && !showPaused
-    ? waveStates.find(s => s.status === 'tbd')
-    : undefined
-  // "Special offer" during the promo; "On sale" when live; "Coming soon" while
-  // counting down or paused (coming-soon / closed both read as reopening);
-  // generic otherwise.
-  const badge = showOffer
-    ? t('special_badge')
-    : showLive
-    ? t('badge_live')
-    : showCountdown || showPaused
-    ? t('badge_countdown')
-    : t('badge')
 
   return (
     <div id="strip" className="bg-[#1a0d33] w-full">
-      <div className="section py-2.5">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4 min-w-0">
-            <span
-              className={`${
-                showLive || showOffer ? 'bg-[#80df98] text-[#221144]' : 'bg-[#ffa366] text-[#160b2b]'
-              } ${
-                mounted ? '' : 'invisible'
-              } text-xs font-bold leading-4 px-2 py-1 rounded tracking-[1px] uppercase whitespace-nowrap shrink-0`}
-            >
-              {badge}
+      <div className="section py-[8px]">
+        <div className="flex items-center justify-between gap-[16px]">
+          {/* Logomark box is 22px wide (the header glyph below it is 22px, so
+              their centres line up) and the 20px gap puts the message's first
+              letter on the header wordmark's left edge. */}
+          <div className="flex items-center md:gap-[20px] min-w-0">
+            <span className="hidden md:flex w-[22px] shrink-0 justify-center" aria-hidden="true">
+              <Logomark className="w-[18.78px] h-[32px]" />
             </span>
-            <p
-              className={`text-[#f9f8fa] text-sm font-bold leading-5 whitespace-nowrap overflow-hidden text-ellipsis ${
-                mounted ? '' : 'invisible'
-              }`}
-            >
-              {showOffer ? (
-                <>{t('special_message', { date: OFFER_ENDS_FORMATTER.format(offerEndsAt) })}</>
-              ) : showCountdown && featured ? (
-                <>
-                  {featured.wave.name} tickets available in <CountdownText value={featured.countdown} />
-                </>
-              ) : showLive && featured ? (
-                <>{t('message_live')}</>
-              ) : showPaused && featured ? (
-                <>
-                  {featured.wave.name}
-                  {featured.pausedLabel ? ` — ${featured.pausedLabel}` : ' coming soon'}
-                </>
-              ) : upcomingTbd ? (
-                <>
-                  {upcomingTbd.wave.name}
-                  {upcomingTbd.wave.openLabel ? ` — ${upcomingTbd.wave.openLabel}` : ' coming soon'}
-                </>
-              ) : (
-                t('message')
-              )}
+            <p className="text-white text-[12px] leading-[16px] md:text-[14px] md:leading-[20px] md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
+              {t('app_message')}
             </p>
           </div>
           <Link
-            href="/tickets"
-            className="flex gap-1.5 items-center shrink-0 transition-transform hover:scale-[1.02]"
+            to={EVENT_APP_ORIGIN}
+            className="flex items-center gap-[4px] md:gap-[8px] shrink-0 text-white transition-transform hover:scale-[1.02]"
           >
-            <span className="font-bold text-[#a077f3] text-sm">{ctaLabel}</span>
-            <ArrowRight className="text-[#a077f3]" size={14} strokeWidth={2.5} />
+            <span className="font-bold text-[12px] leading-[16px] tracking-[0.25px] md:text-[14px] md:leading-none md:tracking-normal">
+              {/* "Visit Devcon App" from tablet up, just "Devcon App" on phones */}
+              <span className="hidden md:inline">{t('app_cta')}</span>
+              <span className="md:hidden">{t('app_cta_short')}</span>
+            </span>
+            <ArrowUpRight className="w-[12px] h-[12px] md:w-[14px] md:h-[14px]" strokeWidth={2.5} />
           </Link>
         </div>
       </div>

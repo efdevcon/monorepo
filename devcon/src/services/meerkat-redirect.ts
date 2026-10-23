@@ -18,9 +18,9 @@
  * nobody pressing Go live it skips the talk on stage.
  */
 
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
+
 export const MEERKAT_EVENT = 'devcon8'
-/** The event app (docs/app-domain-migration.md). */
-export const EVENT_APP_ORIGIN = 'https://app.devcon.org'
 const MEERKAT_ORIGIN = 'https://app.meerkat.events'
 const SESSIONS_URL = `https://api.devcon.org/sessions?event=${MEERKAT_EVENT}&size=2000&fields=id,sourceId,slot_start,slot_end,slot_roomId`
 

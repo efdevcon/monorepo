@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useTicketsCtaLabel } from 'hooks/useWaveStates'
 import LogoAbout from 'assets/images/pages/about.svg'
 import { HandHeart, HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
@@ -6,6 +7,9 @@ import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
 
 const useNavigationData = () => {
   const t = useTranslations('common.nav')
+  // Header pill + mobile-menu primary CTA: same Get/View tickets rule as every
+  // other ticket CTA on the site.
+  const { canBuy } = useTicketsCtaLabel()
 
   return {
     top: [],
@@ -181,7 +185,7 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: t('view_tickets'),
+        title: canBuy ? t('get_tickets') : t('view_tickets'),
         url: '/tickets',
         type: 'page',
         highlight: 'tickets',

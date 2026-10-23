@@ -6,6 +6,8 @@ import { Link } from 'components/common/link'
 import useNavigationData from '../../useNavigationData'
 import { ArrowUpRight, Twitter, Instagram } from 'lucide-react'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
+import { useTranslations } from 'next-intl'
 
 const Foldout = (props: any) => {
   const headerHeight = useGetElementHeight('header')
@@ -13,6 +15,8 @@ const Foldout = (props: any) => {
   const fullHeaderHeight = headerHeight + stripHeight
   const [mounted, setMounted] = React.useState(false)
   const navigationData = useNavigationData()
+  // Same "Devcon App" label as the strip's phone-width CTA.
+  const tStrip = useTranslations('common.strip')
 
   useEffect(() => {
     setMounted(true)
@@ -49,11 +53,11 @@ const Foldout = (props: any) => {
 
                 <div className={css['cta-row']}>
                   <Link
-                    to="https://devcon.org"
+                    to={EVENT_APP_ORIGIN}
                     className={css['cta-secondary']}
                     onClick={() => props.setFoldoutOpen(false)}
                   >
-                    Subscribe
+                    {tStrip('app_cta_short')}
                     <ArrowUpRight size={16} />
                   </Link>
 
