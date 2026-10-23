@@ -197,11 +197,23 @@ export function parseDay(text: string, days: EventDay[]): EventDay | null {
   return null
 }
 
-/** Speaker names from a free-text cell: "Ada Lovelace, Alan Turing & Grace Hopper". */
+/**
+ * A speaker name as written, without a role in brackets ("Lena Hierzi
+ * (moderator)" is Lena Hierzi: same id, same profile) or a list bullet.
+ */
+export function cleanSpeakerName(raw: string): string {
+  return raw
+    .trim()
+    .replace(/^[-•*]\s*/, '')
+    .replace(/\s*\([^()]*\)\s*$/, '')
+    .trim()
+}
+
+/** Speaker names from a free-text cell: "Ada Lovelace, Alan Turing (moderator) & Grace Hopper". */
 export function parseSpeakers(text: string): string[] {
   const names = text
     .split(/[,;\n]|\s+&\s+|\s+and\s+|\s+\+\s+/i)
-    .map((s) => s.trim().replace(/^[-•*]\s*/, ''))
+    .map(cleanSpeakerName)
     .filter((s) => s && !SPEAKER_PLACEHOLDERS.test(s))
   return [...new Set(names)]
 }
@@ -536,7 +548,7 @@ export function parseSpeakerSheet(tabs: DSheetTab[]): { headerFound: boolean; ro
         continue
       }
       const at = (col: number | undefined) => (col === undefined ? undefined : cells.find((c) => c.col === col))
-      const name = (at(columns.name)?.text ?? '').trim()
+      const name = cleanSpeakerName(at(columns.name)?.text ?? '')
       if (!name) continue
       const line = rowIndex + 1
       rows.push({ line, name, photo: cellLink(at(columns.photo)), social: cellLink(at(columns.social)) })
