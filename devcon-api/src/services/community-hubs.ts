@@ -6,12 +6,15 @@ import {
   eventDays,
   eventUtcOffsetMinutes,
   hubSessionId,
+  HUB_SPEAKER_PHOTOS_PATH,
   LIVE_HUB_SHEETS_PATH,
   parseHubSheets,
   shouldKeepPreviousRead,
   type CommunityHub,
   type HubSessionRow,
   type LiveHubSheet,
+  type HubSpeakerExtra,
+  type HubSpeakerPhotos,
   type LiveHubSheets,
 } from '@/utils/community-hubs'
 import { defaultSlugify } from '@/utils/content'
@@ -41,6 +44,7 @@ const REFRESH_MS = 2 * 60_000
 /** The Action runs hourly and rewrites the file at least every 6 hours; older than this means it stopped. */
 const EXPORT_STALE_MS = 8 * 60 * 60_000
 const LIVE_SHEETS_URL = `https://api.github.com/repos/efdevcon/monorepo/contents/${LIVE_HUB_SHEETS_PATH}?ref=main`
+const SPEAKER_PHOTOS_URL = `https://api.github.com/repos/efdevcon/monorepo/contents/${HUB_SPEAKER_PHOTOS_PATH}?ref=main`
 
 export interface HubStatus {
   id: string
@@ -87,6 +91,9 @@ interface EventCache {
   configProblems: string[]
   /** When the live export that was last read ran (ms since epoch). */
   exportedAt?: number
+  /** The shared speaker sheet, resolved by the export (photo and socials per name slug). Empty when there is none. */
+  speakerExtras: Map<string, HubSpeakerExtra>
+  speakerProblems: string[]
 }
 
 const caches = new Map<string, EventCache>()
@@ -121,8 +128,47 @@ async function fetchLiveSheets(): Promise<LiveHubSheets> {
 }
 
 function validLiveSheets(data: any): LiveHubSheets {
-  if (!data || typeof data.exportedAt !== 'number' || !data.hubs || typeof data.hubs !== 'object') throw new Error('the live sheets file has an unexpected shape')
+  if (!data || typeof data.exportedAt !== 'number' || !data.hubs || typeof data.hubs !== 'object')
+    throw new Error('the live sheets file has an unexpected shape')
   return data
+}
+
+function validSpeakerPhotos(data: any): HubSpeakerPhotos {
+  if (!data || typeof data.exportedAt !== 'number' || !data.speakers || typeof data.speakers !== 'object')
+    throw new Error('the speaker photos file has an unexpected shape')
+  return { ...data, problems: Array.isArray(data.problems) ? data.problems : [] }
+}
+
+function readLocalSpeakerPhotos(): HubSpeakerPhotos {
+  return validSpeakerPhotos(JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data', 'community-hubs', 'speaker-photos.json'), 'utf8')))
+}
+
+/** Same source and fallback as the live sheets. Null when the file exists nowhere yet: the sheet is optional. */
+async function fetchSpeakerPhotos(): Promise<HubSpeakerPhotos | null> {
+  try {
+    const res = await fetch(SPEAKER_PHOTOS_URL, {
+      headers: {
+        Accept: 'application/vnd.github.raw',
+        'Cache-Control': 'no-cache',
+        ...(SERVER_CONFIG.GITHUB_TOKEN ? { Authorization: `token ${SERVER_CONFIG.GITHUB_TOKEN}` } : {}),
+      },
+    })
+    if (res.status === 404) return null
+    if (!res.ok) throw new Error(`GitHub responded ${res.status}`)
+    return validSpeakerPhotos(await res.json())
+  } catch (remoteError) {
+    try {
+      return readLocalSpeakerPhotos()
+    } catch {
+      console.warn('[community-hubs] speaker photos unavailable:', remoteError instanceof Error ? remoteError.message : remoteError)
+      return null
+    }
+  }
+}
+
+function applySpeakerPhotos(cache: EventCache, photos: HubSpeakerPhotos | null) {
+  cache.speakerExtras = new Map(Object.entries(photos?.speakers ?? {}))
+  cache.speakerProblems = (photos?.problems ?? []).map((p) => `speaker sheet: ${p}`)
 }
 
 /** The copy of the live export that shipped with this deploy (or the local checkout). */
@@ -134,7 +180,20 @@ function readLocalSheets(): LiveHubSheets {
 function cacheFor(eventId: string): EventCache {
   let cache = caches.get(eventId)
   if (!cache) {
-    cache = { refreshedAt: 0, inflight: null, hubs: new Map(), failures: new Map(), configProblems: [] }
+    cache = {
+      refreshedAt: 0,
+      inflight: null,
+      hubs: new Map(),
+      failures: new Map(),
+      configProblems: [],
+      speakerExtras: new Map(),
+      speakerProblems: [],
+    }
+    try {
+      applySpeakerPhotos(cache, readLocalSpeakerPhotos())
+    } catch {
+      // No local copy: the first refresh reads GitHub.
+    }
     try {
       const live = readLocalSheets()
       const event = store.getEvent(eventId)
@@ -172,6 +231,7 @@ async function refresh(eventId: string, cache: EventCache): Promise<void> {
   if (!event) throw new Error(`unknown event ${eventId}`)
   // A failed fetch throws: ensureFresh then keeps serving what is cached.
   const live = await fetchLiveSheets()
+  applySpeakerPhotos(cache, await fetchSpeakerPhotos())
   cache.exportedAt = live.exportedAt
   const age = Date.now() - live.exportedAt
   cache.configProblems =
@@ -271,7 +331,13 @@ export async function getCommunityHubStatus(
       ],
     }
   })
-  return { version: versionOf(cache), refreshedAt: cache.refreshedAt, exportedAt: cache.exportedAt ?? null, problems: cache.configProblems, hubs }
+  return {
+    version: versionOf(cache),
+    refreshedAt: cache.refreshedAt,
+    exportedAt: cache.exportedAt ?? null,
+    problems: [...cache.configProblems, ...cache.speakerProblems],
+    hubs,
+  }
 }
 
 export async function getCommunityHubBundle(eventId: string): Promise<CommunityHubBundle> {
@@ -284,6 +350,7 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
   // name's slug): reuse that speaker's photo, bio and socials instead of a generated avatar.
   // Limited to this event so a namesake from a past Devcon is never merged in, and to full names:
   // hubs often list first names only ("Vijay"), which may be someone else on the main programme.
+  // Everyone else: the shared speaker sheet's photo and socials when it lists them, else a blockie.
   const mainSpeakers = new Map<string, any>(store.getSpeakers({ event: eventId, take: Number.MAX_SAFE_INTEGER }).items.map((s: any) => [s.id, s]))
   for (const hub of COMMUNITY_HUBS) {
     const data = cache.hubs.get(hub.id)
@@ -301,14 +368,18 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
         speakerIds.push(id)
         if (!speakers.has(id)) {
           const main = name.trim().split(/\s+/).length > 1 ? mainSpeakers.get(id) : undefined
+          const extra = cache.speakerExtras.get(id)
+          const twitter = main?.twitter || extra?.twitter
+          const github = main?.github || extra?.github
+          const website = main?.website || extra?.website
           speakers.set(id, {
             id,
             name,
-            avatar: main?.avatar || CreateBlockie(name),
+            avatar: main?.avatar || extra?.avatar || CreateBlockie(name),
             description: main?.description ?? '',
-            ...(main?.twitter ? { twitter: main.twitter } : {}),
-            ...(main?.github ? { github: main.github } : {}),
-            ...(main?.website ? { website: main.website } : {}),
+            ...(twitter ? { twitter } : {}),
+            ...(github ? { github } : {}),
+            ...(website ? { website } : {}),
           })
         }
       }
@@ -354,7 +425,8 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
  */
 export function startLiveExportTimer() {
   if (SERVER_CONFIG.NODE_ENV !== 'production' || !SERVER_CONFIG.GITHUB_TOKEN) return
-  const trigger = () => void TriggerWorkflow('fileverse-live-export.yml').catch((error) => console.warn('[community-hubs] could not start the live export:', error))
+  const trigger = () =>
+    void TriggerWorkflow('fileverse-live-export.yml').catch((error) => console.warn('[community-hubs] could not start the live export:', error))
   const now = new Date()
   const next = new Date(now)
   next.setUTCMinutes(7, 0, 0)

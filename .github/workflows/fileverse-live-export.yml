@@ -6,7 +6,9 @@ name: Community Hubs live export
 # devcon8-sessions.json, the same sheets parsed into sessions so commit diffs are readable.
 # Only works for sheets shared "anyone with the link can edit". The links live in the
 # COMMUNITY_HUB_SHEETS secret, a JSON object of hub id -> edit link (hub ids in
-# devcon-api/src/utils/community-hubs.ts). Details: docs/community-hubs.md.
+# devcon-api/src/utils/community-hubs.ts; the id "speakers" is the shared speaker
+# sheet, written to speaker-photos.json with photos mirrored into Supabase).
+# Details: docs/community-hubs.md.
 # devcon-api starts it every hour (startLiveExportTimer): GitHub runs this repo's schedules
 # hours late, so the cron below is only a backup.
 on:
@@ -55,11 +57,15 @@ jobs:
         run: pnpm install
       - name: Write sheets.json
         working-directory: ./devcon-api
+        env:
+          # Speaker photos from the shared speaker sheet are mirrored into the avatar bucket.
+          SUPABASE_URL: ${{ secrets.DEVCON_API_SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.DEVCON_API_SUPABASE_KEY }}
         run: pnpm community-hubs:live /tmp/fv/live
       # [skip deploy]: Render must not redeploy the API for a data commit (it reads the file from GitHub).
       - uses: EndBug/add-and-commit@v9
         with:
-          add: "devcon-api/data/community-hubs/sheets.json devcon-api/data/community-hubs/devcon8-sessions.json"
+          add: "devcon-api/data/community-hubs/sheets.json devcon-api/data/community-hubs/devcon8-sessions.json devcon-api/data/community-hubs/speaker-photos.json"
           default_author: github_actions
           message: "[skip deploy] Community Hubs live sheets"
           pull: "--rebase --autostash"

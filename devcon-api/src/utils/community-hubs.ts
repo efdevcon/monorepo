@@ -65,6 +65,41 @@ export interface LiveHubSheet {
   error?: string
 }
 
+/**
+ * Reserved id in the COMMUNITY_HUB_SHEETS secret for the shared speaker
+ * sheet: one row per hub speaker with a photo and a social link, filled by
+ * the hub leads, so hub speakers get a real photo and socials instead of a
+ * generated avatar. Read by the same hourly export as the hub sheets.
+ */
+export const COMMUNITY_HUB_SPEAKERS_SHEET_ID = 'speakers'
+/** Repo path of the export's result for that sheet, which the API reads from GitHub next to the live sheets. */
+export const HUB_SPEAKER_PHOTOS_PATH = 'devcon-api/data/community-hubs/speaker-photos.json'
+
+/** One hub speaker from the speaker sheet, resolved: `avatar` is the mirrored photo, the socials are handles / a URL as the API serves them. */
+export interface HubSpeakerExtra {
+  name: string
+  avatar?: string
+  twitter?: string
+  github?: string
+  website?: string
+}
+
+export interface HubSpeakerPhotos {
+  exportedAt: number
+  /** Keyed by the name's slug, the id hub speakers get in the bundle. */
+  speakers: Record<string, HubSpeakerExtra>
+  problems: string[]
+}
+
+export interface SpeakerSheetRow {
+  line: number
+  name: string
+  /** Photo URL as written (the cell's text or its inserted link), '' when blank. */
+  photo: string
+  /** Social link or handle as written, '' when blank. */
+  social: string
+}
+
 export const communityHubRoomId = (hubId: string) => `${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`
 export const isCommunityHubRoom = (roomId: unknown): boolean => typeof roomId === 'string' && roomId.startsWith(COMMUNITY_HUB_ROOM_PREFIX)
 
@@ -387,8 +422,9 @@ export function parseHubSheet(
   // and a per-row message would drown the real problems.
   if (missingKeys.length > 0) {
     problems.push(
-      `${missingKeys.length} ${missingKeys.length === 1 ? 'row has' : 'rows have'} no Key (row${missingKeys.length === 1 ? '' : 's'} ${missingKeys.join(', ')}): ` +
-        `type any short unique text there, or renaming the session loses its saved stars`
+      `${missingKeys.length} ${missingKeys.length === 1 ? 'row has' : 'rows have'} no Key (row${
+        missingKeys.length === 1 ? '' : 's'
+      } ${missingKeys.join(', ')}): ` + `type any short unique text there, or renaming the session loses its saved stars`
     )
   }
   return { hubName, headerFound: true, sessions, problems }
@@ -448,4 +484,106 @@ export function hubSessionId(hubId: string, row: Pick<HubSessionRow, 'title' | '
 export function shouldKeepPreviousRead(prev: { rows: number } | undefined, fresh: { rows: number; problems: number }): boolean {
   if (prev === undefined || fresh.problems === 0) return false
   return prev.rows - fresh.rows > Math.max(3, prev.rows / 4)
+}
+
+// ---------------------------------------------------------------------------
+// The shared speaker sheet: Name / Photo URL / Social, matched by header text.
+// ---------------------------------------------------------------------------
+
+const SPEAKER_HEADER_PATTERNS = {
+  name: /^(speaker|name)\b/i,
+  photo: /^(photo|picture|image|avatar)/i,
+  social: /^(social|x\b|twitter|github|link|profile)/i,
+}
+
+/** A cell's link target when one was inserted, else its text. */
+function cellLink(cell: DSheetCell | undefined): string {
+  if (!cell) return ''
+  return (cell.link || cell.text || '').trim()
+}
+
+/**
+ * Rows of the speaker sheet. The header is the first row holding a Name cell
+ * and a Photo or Social cell; every row below it with a name counts. Blank
+ * photo and social are allowed: the row changes nothing (a lead's to-do, not
+ * an error; the export counts them).
+ */
+export function parseSpeakerSheet(tabs: DSheetTab[]): { headerFound: boolean; rows: SpeakerSheetRow[]; problems: string[] } {
+  const rows: SpeakerSheetRow[] = []
+  const problems: string[] = []
+  let headerFound = false
+  for (const tab of tabs) {
+    const byRow = new Map<number, DSheetCell[]>()
+    for (const cell of tab.cells) {
+      const row = byRow.get(cell.row) ?? []
+      row.push(cell)
+      byRow.set(cell.row, row)
+    }
+    const ordered = [...byRow.entries()].sort((a, b) => a[0] - b[0])
+    let columns: { name: number; photo?: number; social?: number } | null = null
+    for (const [rowIndex, cells] of ordered) {
+      if (!columns) {
+        const found: Partial<Record<keyof typeof SPEAKER_HEADER_PATTERNS, number>> = {}
+        for (const c of cells) {
+          for (const [col, pattern] of Object.entries(SPEAKER_HEADER_PATTERNS) as [keyof typeof SPEAKER_HEADER_PATTERNS, RegExp][]) {
+            if (found[col] === undefined && pattern.test(c.text.trim())) found[col] = c.col
+          }
+        }
+        if (found.name !== undefined && (found.photo !== undefined || found.social !== undefined)) {
+          columns = { name: found.name, photo: found.photo, social: found.social }
+          headerFound = true
+        }
+        continue
+      }
+      const at = (col: number | undefined) => (col === undefined ? undefined : cells.find((c) => c.col === col))
+      const name = (at(columns.name)?.text ?? '').trim()
+      if (!name) continue
+      const line = rowIndex + 1
+      rows.push({ line, name, photo: cellLink(at(columns.photo)), social: cellLink(at(columns.social)) })
+    }
+    if (columns) break
+  }
+  if (!headerFound) problems.push('no header row with a Name column and a Photo or Social column (is this the speaker sheet?)')
+  return { headerFound, rows, problems }
+}
+
+/**
+ * A social cell as the API serves speaker socials: `twitter` and `github`
+ * are handles, `website` a URL. Accepts profile URLs, "@handle" (taken as X)
+ * and bare domains.
+ */
+export function parseSocial(text: string): Pick<HubSpeakerExtra, 'twitter' | 'github' | 'website'> {
+  const raw = text.trim()
+  if (!raw) return {}
+  const handle = /^@?([A-Za-z0-9_]{1,30})$/.exec(raw)
+  if (handle) return { twitter: handle[1] }
+  let url: URL
+  try {
+    url = new URL(/^https?:\/\//i.test(raw) ? raw : `https://${raw}`)
+  } catch {
+    return {}
+  }
+  const host = url.hostname.replace(/^www\./, '').toLowerCase()
+  const first = url.pathname.split('/').filter(Boolean)[0]?.replace(/^@/, '')
+  if ((host === 'x.com' || host === 'twitter.com') && first) return { twitter: first }
+  if (host === 'github.com' && first) return { github: first }
+  return { website: url.toString() }
+}
+
+/**
+ * Where to fetch the speaker's picture from: the photo link when given
+ * (file-sharing links turned into direct downloads), else the profile picture
+ * of the social link, X first (the picture people keep current), else nothing.
+ */
+export function avatarSourceFor(photo: string, social: Pick<HubSpeakerExtra, 'twitter' | 'github'>): string | null {
+  const link = photo.trim()
+  if (link) {
+    const drive = /drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]+)/.exec(link)
+    if (drive) return `https://drive.google.com/uc?export=download&id=${drive[1]}`
+    if (/dropbox\.com\//.test(link)) return link.replace(/[?&]dl=0/, '').replace(/[?&]raw=1/, '') + (link.includes('?') ? '&' : '?') + 'raw=1'
+    return /^https?:\/\//i.test(link) ? link : `https://${link}`
+  }
+  if (social.twitter) return `https://unavatar.io/x/${social.twitter}`
+  if (social.github) return `https://github.com/${social.github}.png?size=256`
+  return null
 }
