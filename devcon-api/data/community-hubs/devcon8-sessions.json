@@ -1,8 +1,10 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-10-23T15:11:11.031Z",
-    "problems": [],
+    "changedAt": "2026-10-23T15:15:22.483Z",
+    "problems": [
+      "row 55: no session title, skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
@@ -490,11 +492,14 @@
       {
         "id": "S40",
         "day": "Thu 5 Nov",
-        "time": "13:00-14:00",
-        "title": "Lunch",
-        "format": "Break",
-        "speakers": [],
-        "topic": "Community"
+        "time": "13:00-13:20",
+        "title": "Agents: who are we dealing with, and what did we buy?",
+        "format": "Demo",
+        "speakers": [
+          "Lena Hierzi"
+        ],
+        "topic": "Community",
+        "description": "An agent finds a service, pays for it and returns an answer. What would make you trust the result? Read the ERC-8004 identity and reputation record, discover a service from the usebuy.ai perspective, and follow an x402 purchase on Celo. Inspect the receipt and discuss what feedback a paid interaction can support. Part of the Identity and Agentic Payments block."
       },
       {
         "id": "S41",
@@ -503,7 +508,7 @@
         "title": "Agents × UPI: what machine payments can learn from UPI",
         "format": "Roundtable",
         "speakers": [
-          "Vishnu Menon",
+          "Deon Menezes",
           "Piyush Maheshwari",
           "Naina Sachdev"
         ],
@@ -519,8 +524,7 @@
         "speakers": [
           "Fortunato Cinquepalmi",
           "Nicolás Arnedo Villanueva",
-          "Facundo Trotz",
-          "Husam"
+          "Facundo Trotz"
         ],
         "topic": "Governance",
         "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can clearly show who authorized the deal. This Agents × Legal Hub session puts one case through the entire chain: the human or company behind the agent, its delegated mandate, the transaction's policy checks, the promised delivery and the remedy when something goes wrong. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Part of the Permissions and Policies block."
