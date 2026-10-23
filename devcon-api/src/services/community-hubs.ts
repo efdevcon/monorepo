@@ -94,6 +94,8 @@ interface EventCache {
   /** The shared speaker sheet, resolved by the export (photo and socials per name slug). Empty when there is none. */
   speakerExtras: Map<string, HubSpeakerExtra>
   speakerProblems: string[]
+  /** When the speaker photos file was last written; part of the bundle version so new photos reach the app without a hub sheet changing. */
+  speakerPhotosAt: number
 }
 
 const caches = new Map<string, EventCache>()
@@ -169,6 +171,7 @@ async function fetchSpeakerPhotos(): Promise<HubSpeakerPhotos | null> {
 function applySpeakerPhotos(cache: EventCache, photos: HubSpeakerPhotos | null) {
   cache.speakerExtras = new Map(Object.entries(photos?.speakers ?? {}))
   cache.speakerProblems = (photos?.problems ?? []).map((p) => `speaker sheet: ${p}`)
+  cache.speakerPhotosAt = photos?.exportedAt ?? 0
 }
 
 /** The copy of the live export that shipped with this deploy (or the local checkout). */
@@ -188,6 +191,7 @@ function cacheFor(eventId: string): EventCache {
       configProblems: [],
       speakerExtras: new Map(),
       speakerProblems: [],
+      speakerPhotosAt: 0,
     }
     try {
       applySpeakerPhotos(cache, readLocalSpeakerPhotos())
@@ -293,10 +297,10 @@ async function ensureFresh(eventId: string): Promise<EventCache> {
   return cache
 }
 
-/** Version string the app polls: changes when any hub publishes or the hub set changes. */
+/** Version string the app polls: changes when any hub publishes, the hub set changes, or the speaker photos file is rewritten. */
 function versionOf(cache: EventCache): string {
   const latest = Math.max(0, ...[...cache.hubs.values()].map((h) => h.publishedAt))
-  return `${latest}-${cache.hubs.size}`
+  return `${latest}-${cache.hubs.size}${cache.speakerPhotosAt ? `-${cache.speakerPhotosAt}` : ''}`
 }
 
 export async function getCommunityHubVersion(eventId: string): Promise<string> {

@@ -168,7 +168,9 @@ async function writeSpeakerPhotos(dir: string, now: number) {
   }
   const same =
     previous && JSON.stringify(previous.speakers) === JSON.stringify(sorted) && JSON.stringify(previous.problems) === JSON.stringify(problems)
-  if (previous !== null && same && now - previous.exportedAt < HEARTBEAT_MS) {
+  // No heartbeat rewrite here: the file's exportedAt is part of the bundle
+  // version the app polls, so it must only move when the content does.
+  if (same) {
     console.log(`speakers: ${Object.keys(speakers).length} entries, unchanged`)
     return
   }
