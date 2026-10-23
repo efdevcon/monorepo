@@ -447,6 +447,9 @@ function parseCsv(file: string): Map<string, string> {
 
     // 4. speakers: the real email when known, else the placeholder
     const current = new Set<string>((ours.speakers ?? []).map((s: any) => (s.email || '').toLowerCase()))
+    // A person can have more than one account (two emails, same name): one already
+    // on the proposal counts, or the name match would attach a duplicate.
+    const currentNames = new Set<string>((ours.speakers ?? []).map((s: any) => normName(s.name || '')))
     for (const sc of t.speakers ?? []) {
       const src = srcSpeakers.get(sc)
       const existing = src?.name ? known.get(normName(src.name)) : undefined
@@ -456,7 +459,7 @@ function parseCsv(file: string): Map<string, string> {
         notes.push(`[${u.key}] ${title}: ${src?.name ?? sc} is attached with the placeholder address, replace it by hand with the real one`)
         continue
       }
-      if (!current.has(email)) {
+      if (!current.has(email) && !(src?.name && currentNames.has(normName(src.name)))) {
         const how = emails.get(sc) ? '' : existing ? ` (existing account on ${existing.event})` : ' (placeholder email)'
         bump(emails.get(sc) ? 'speakers attached' : existing ? 'speakers attached (existing account)' : 'speakers attached (placeholder email)')
         await write(`attach speaker ${src?.name ?? sc}${how}`, () => api('POST', `submissions/${ours.code}/add-speaker/`, { email, name: src?.name }))
