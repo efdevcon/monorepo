@@ -2,22 +2,21 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { PlanYourTrip } from './PlanYourTrip'
-import { GetInvolved } from './GetInvolved'
+// import { GetInvolved } from './GetInvolved'
 import { Reveal } from 'components/common/reveal/Reveal'
 import { sectionX, sectionInner } from 'components/common/styles'
 
 /**
  * "Attend Devcon" composite — Figma node 4917:814. Marigold→lavender gradient
- * wrapper holding the jaali border, ticket comparison table, Plan your trip,
- * and Help make Devcon happen, closed off by a bottom-cropped moon glyph row.
+ * wrapper holding the jaali border, ticket comparison table and Plan your trip
+ * (Help make Devcon happen is parked; the moon glyph row that closed the
+ * section is gone).
  */
 export const AttendDevcon = () => {
   const t = useTranslations('home.attend')
 
-  // isolate: new stacking context so the moon row's -z-10 sits above this
-  // section's own background instead of dropping behind it
   return (
-    <div className="relative isolate overflow-x-clip bg-gradient-to-b from-[#fff0e6] to-[#efe7fd]">
+    <div className="relative overflow-x-clip bg-gradient-to-b from-[#fff0e6] to-[#efe7fd]">
       {/* Corner peach washes behind the ticket table (Figma 4917:815) */}
       <div
         aria-hidden
@@ -47,19 +46,13 @@ export const AttendDevcon = () => {
         </div>
       </div>
 
-      <div className="relative">
+      {/* Extra bottom padding so Plan your trip sits clear of the keywords
+          block that follows. */}
+      <div className="relative pb-[32px] lg:pb-[64px]">
         <PlanYourTrip />
-        <GetInvolved />
+        {/* Help make Devcon happen — parked for now. */}
+        {/* <GetInvolved /> */}
       </div>
-
-      {/* Moon glyph row, flush with the section bottom (Figma 4917:966 bottom deco) —
-          CSS-repeated background instead of 16 inline SVGs. -z-10 keeps it above the
-          root background but under the content, which otherwise sits below it in
-          paint order at small widths. */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 inset-x-0 -z-10 h-[100px] md:h-[131px] opacity-30 pointer-events-none select-none bg-repeat-x bg-[position:center_bottom] bg-[length:100px_100%] md:bg-[length:131px_100%] bg-[url('/dc8/dc8-moon-element.svg')]"
-      />
     </div>
   )
 }

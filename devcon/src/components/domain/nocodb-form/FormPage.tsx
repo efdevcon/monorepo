@@ -736,7 +736,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                         <span className="font-bold">Round 3</span> — Apply by September 30, responses sent by October 7
                       </li>
                       <li>
-                        <span className="font-bold">Final Round</span> — Apply by October 23, responses sent by October 30
+                        <span className="font-bold">Final Round</span> — Apply by October 31, responses sent by November 2
                       </li>
                     </ul>
                   </div>

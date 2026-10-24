@@ -4,6 +4,7 @@ import LogoAbout from 'assets/images/pages/about.svg'
 import { HandHeart, HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
 import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
 
 const useNavigationData = () => {
   const t = useTranslations('common.nav')
@@ -53,6 +54,13 @@ const useNavigationData = () => {
             url: '#',
             type: 'header',
             icon: Dc8Glyph,
+          },
+          // The schedule lives in the Devcon app — external, so the foldout
+          // draws its arrow-up-right indicator.
+          {
+            title: t('schedule'),
+            url: `${EVENT_APP_ORIGIN}/schedule`,
+            type: 'link',
           },
           {
             title: t('tickets'),

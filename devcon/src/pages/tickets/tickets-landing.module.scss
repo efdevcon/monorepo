@@ -1,10 +1,17 @@
 @use 'assets/css/partials/index' as *;
 
 /* ─── Hero Override (PageHero) ────────────────────────────── */
+/* Same treatment as travel-guide (height, title, frosted sub-nav, no vignette);
+   only the photo's object-position is tuned for the tickets hero art. */
 
 .hero-no-side-gradient {
   --theme-gradient-background-color: transparent !important;
   --theme-gradient: none !important;
+  /* Shadow under the hero's bottom edge (= the sub-nav strip). Must live on
+     the hero: the strip's own backdrop-filter makes it a backdrop root and
+     Chromium drops outer box-shadows on it. Replaces the default heavy
+     0 2px 4px black @ 43%. */
+  --header-shadow: 0px 1px 4px rgba(34, 17, 68, 0.15);
 
   [class*='background-layer-theme'] {
     display: none !important;
@@ -13,8 +20,6 @@
   background: #fff;
 
   [class*='background-image'] {
-    // mask-image: linear-gradient(to bottom, black calc(100% - 60px), transparent 100%) !important;
-    // -webkit-mask-image: linear-gradi#eaa221ent(to bottom, black calc(100% - 60px), transparent 100%) !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     width: 100% !important;
@@ -35,8 +40,8 @@
 
   [data-type='page-hero-content'] {
     position: relative;
-    height: 65vh !important;
-    max-height: 629px !important;
+    height: 78vh !important;
+    max-height: 755px !important;
   }
 
   [data-type='page-hero-content'] > * {
@@ -52,13 +57,31 @@
     width: 100%;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.65);
+  /* Sub-nav strip per Figma (4851:12343): more opaque fill, no hairlines,
+     12px semibold items. px values because the root font-size is 14px ≤1024. */
+  [class*='page-navigation-container'] {
+    background: rgba(255, 255, 255, 0.77);
+    backdrop-filter: blur(3px);
+    border-top: none;
+    border-bottom: none;
+
+    [class*='page-navigation'] {
+      padding-top: 16px;
+      padding-bottom: 16px; /* with the borders gone, 16+12+16 = 44px */
+
+      > * {
+        padding-right: 24px;
+      }
+    }
+
+    a,
+    [class*='page-navigation'] > div {
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 600 !important; /* semibold */
+      letter-spacing: 0.25px !important;
+      color: #160b2b;
+    }
   }
 }
 
@@ -66,13 +89,28 @@
   font-family: 'Chloe' !important;
   font-weight: 400 !important;
   text-transform: none !important;
-  font-size: clamp(3rem, 12vw, 180px) !important;
-  letter-spacing: -2px !important;
+  /* Sized so the title spans ~70% of the viewport width */
+  font-size: clamp(3rem, 11vw, 160px) !important;
+  letter-spacing: -3px !important;
   color: #f9f8fa !important;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15), 0px 1px 4px rgba(0, 0, 0, 0.1);
   transform: translateY(-16px);
 
-  @media (max-width: $breakpoints-md) {
-    font-size: clamp(4rem, 20vw, 7rem) !important;
+  /* sm Desktop: fixed 160px (the clamp's 11vw only reaches 160 above ~1454px) */
+  @media (min-width: $breakpoints-lg) and (max-width: ($breakpoints-xl - 1)) {
+    font-size: 160px !important;
+    letter-spacing: -4px !important;
+  }
+
+  @media (max-width: ($breakpoints-lg - 1)) {
+    font-size: 111px !important;
+    letter-spacing: -2px !important;
+  }
+
+  @media (max-width: ($breakpoints-md - 1)) {
+    font-size: clamp(4rem, 26vw, 111px) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -2px !important;
   }
 }
 
