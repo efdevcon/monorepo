@@ -5,7 +5,6 @@ import { PageHero } from 'components/common/page-hero'
 import { Link } from 'components/common/link'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
-import { LaunchBanner } from 'components/domain/tickets/LaunchBanner'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsCtaLabel, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
@@ -161,13 +160,18 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
 
   const navLinks = [
     { title: t('nav.overview'), to: '#overview' },
-    { title: t('nav.general_admission'), to: '#general-admission' },
     { title: t('nav.discounts'), to: '#discounts' },
     { title: t('nav.applications'), to: '#applications' },
+    { title: t('nav.general_admission'), to: '#general-admission' },
     { title: t('nav.faq'), to: '#faq' },
   ]
 
   const overviewCards = t.raw('overview.cards') as OverviewCard[]
+  // Display order: Community, Applications, General Admission — local-ticket
+  // sales are the priority this close to the event. The translated array stays
+  // in its canonical order (General Admission, Community, Applications) since
+  // the index identifies each card below.
+  const OVERVIEW_CARD_ORDER = [1, 2, 0]
   const tagOpen = t('overview.tag_open')
   const tagComing = t('overview.tag_coming')
 
@@ -297,9 +301,6 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
 
       <div className={cn(css['landing'], 'section')}>
         <div className="flex flex-col gap-12 md:gap-16">
-          {/* ── Global ticket launch banner (countdown → on sale) ── */}
-          <LaunchBanner />
-
           {/* ── Overview ─────────────────────────────────────────── */}
           <section id="overview" className="scroll-mt-36 flex flex-col gap-8 items-center">
             <div className="flex flex-col gap-4 items-center text-center w-full">
@@ -313,10 +314,11 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
             </div>
 
             <div className="flex flex-col md:flex-row gap-4 w-full">
-              {overviewCards.map((card, i) => {
-                // Cards render in a fixed order across locales (General
-                // Admission, Community, Applications) — identify by index
-                // since titles are translated.
+              {OVERVIEW_CARD_ORDER.map(i => {
+                const card = overviewCards[i]
+                // The translated cards array has a fixed order across locales
+                // (General Admission, Community, Applications) — identify by
+                // index since titles are translated.
                 //
                 // General Admission's tag cycles with the featured wave
                 // (OPENS [date] → OPEN NOW → CLOSED). Community opens at
@@ -350,56 +352,12 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
             </div>
 
             <Link
-              to="#general-admission"
+              to="#discounts"
               className="inline-flex items-center gap-1.5 pl-4 py-4 text-base font-bold text-[#7235ed] hover:opacity-80 transition-opacity"
             >
               {t('overview.learn_more')}
               <ChevronDown className="w-4 h-4" strokeWidth={2} />
             </Link>
-          </section>
-
-          <hr className={css['divider']} />
-
-          {/* ── General Admission ────────────────────────────────── */}
-          <section
-            id="general-admission"
-            className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start"
-          >
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col gap-4">
-                <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
-                  {t('general_admission.eyebrow')}
-                </p>
-                <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
-                  {t('general_admission.heading')}
-                </h2>
-                <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
-                  <strong>{t('general_admission.body_strong')}</strong>
-                  {t('general_admission.body')}
-                </p>
-                <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
-                  <strong>{t('general_admission.subcopy_strong')}</strong>
-                  {t('general_admission.subcopy')}
-                </p>
-              </div>
-              {/* Store CTA only renders while a wave is on sale — no
-                  pre-launch "View tickets" teaser button. */}
-              {isLive && (
-                <NextLink
-                  href={storeUrl}
-                  className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
-                >
-                  {ctaLabel}
-                  <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-                </NextLink>
-              )}
-            </div>
-
-            <TicketTable
-              title={t('general_admission.card_title')}
-              subtitle={t('general_admission.card_subtitle')}
-              rows={generalRows}
-            />
           </section>
 
           <hr className={css['divider']} />
@@ -494,6 +452,50 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               title={t('applications_section.card_title')}
               subtitle={t('applications_section.card_subtitle')}
               rows={applicationRows}
+            />
+          </section>
+
+          <hr className={css['divider']} />
+
+          {/* ── General Admission ────────────────────────────────── */}
+          <section
+            id="general-admission"
+            className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start"
+          >
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
+                <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                  {t('general_admission.eyebrow')}
+                </p>
+                <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                  {t('general_admission.heading')}
+                </h2>
+                <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
+                  <strong>{t('general_admission.body_strong')}</strong>
+                  {t('general_admission.body')}
+                </p>
+                <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
+                  <strong>{t('general_admission.subcopy_strong')}</strong>
+                  {t('general_admission.subcopy')}
+                </p>
+              </div>
+              {/* Store CTA only renders while a wave is on sale — no
+                  pre-launch "View tickets" teaser button. */}
+              {isLive && (
+                <NextLink
+                  href={storeUrl}
+                  className="inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
+                >
+                  {ctaLabel}
+                  <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+                </NextLink>
+              )}
+            </div>
+
+            <TicketTable
+              title={t('general_admission.card_title')}
+              subtitle={t('general_admission.card_subtitle')}
+              rows={generalRows}
             />
           </section>
 
