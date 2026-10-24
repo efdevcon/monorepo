@@ -11,8 +11,11 @@
  *
  * It is a sync, not an import: every run matches sessions on their source
  * code (kept in an organiser-only question, SOURCE_QUESTION below) and only
- * creates what is missing and updates what changed. Nothing is ever deleted:
- * a session that disappears from the source is reported, so a human decides.
+ * creates what is missing and updates what changed. A session (or run) that
+ * disappears from the source is cancelled, which also takes it out of the WIP
+ * schedule. Nothing is deleted, so a cancel can be undone in Pretalx. When a
+ * run would cancel more than MAX_REMOVALS_SHARE of the synced sessions, it
+ * cancels none and reports them, in case the source came back half empty.
  *
  * A session held several times (a workshop run twice) becomes one proposal
  * per run on our side, since our events do not allow several slots per
@@ -121,6 +124,7 @@ const TARGETS: Record<string, TargetMapping> = {
 }
 
 const SOURCE_QUESTION = 'Sync source ID'
+const MAX_REMOVALS_SHARE = 0.2
 const PLACEHOLDER_MAILBOX = process.env.SYNC_PLACEHOLDER_EMAIL || ''
 
 // ── CLI ──
@@ -519,9 +523,18 @@ function parseCsv(file: string): Map<string, string> {
     }
   }
 
-  // Sessions (or runs) that left the source
+  // Sessions (or runs) that left the source: cancelled, which drops their WIP slot
   const live = new Set(units.map(u => u.key))
-  for (const [src, ours] of bySource) if (!live.has(src)) notes.push(`[${src}] -> ${ours.code} "${ours.title}" is no longer in the source schedule (not deleted)`)
+  const gone = [...bySource].filter(([src, ours]) => !live.has(src) && ['accepted', 'confirmed'].includes(ours.state))
+  if (gone.length > Math.max(1, Math.floor(bySource.size * MAX_REMOVALS_SHARE))) {
+    for (const [src, ours] of gone) notes.push(`[${src}] -> ${ours.code} "${ours.title}" is no longer in the source schedule (not cancelled: too many at once)`)
+  } else {
+    for (const [src, ours] of gone) {
+      console.log(`▶ [${src}] ${ours.title}`)
+      bump('cancelled')
+      await write(`cancel ${ours.code}: no longer in the source schedule`, () => api('POST', `submissions/${ours.code}/cancel/`))
+    }
+  }
 
   console.log(`\nDone · ${Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(' · ') || 'nothing to do'}`)
   if (missingRooms.size) console.log(`Rooms without a match (sessions left unscheduled): ${[...missingRooms].join(', ')}`)
