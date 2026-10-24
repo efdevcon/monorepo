@@ -2,9 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import DC8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { Link } from 'components/common/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { ctaPrimary } from 'components/common/cta'
+import { ctaPrimary, ctaSecondary } from 'components/common/cta'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
 import { sectionX, sectionInner, sectionHeading, bodyCopy } from 'components/common/styles'
 
 export const DevconIntro = () => {
@@ -21,11 +22,18 @@ export const DevconIntro = () => {
           <p className={`${bodyCopy} text-[#1a0d33]`}>{t('subheading')}</p>
         </div>
 
-        {/* Intrinsic width at every size per the mobile frame (Button 173px centered) */}
-        <Link to="/tickets" className={`mt-[8px] ${ctaPrimary}`}>
-          {t('cta')}
-          <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-        </Link>
+        {/* Intrinsic-width pills, centred: stacked on phones, side by side from
+            sm. The schedule lives in the Devcon app, hence the external arrow. */}
+        <div className="mt-[8px] flex flex-col sm:flex-row items-center gap-[12px]">
+          <Link to="/tickets" className={ctaPrimary}>
+            {t('cta')}
+            <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+          </Link>
+          <Link to={`${EVENT_APP_ORIGIN}/schedule`} className={ctaSecondary}>
+            {t('cta_schedule')}
+            <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
+          </Link>
+        </div>
       </div>
     </div>
   )
