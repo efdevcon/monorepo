@@ -21,6 +21,13 @@ export interface SideEventCalendar {
 
 export const SIDE_EVENT_CALENDARS: SideEventCalendar[] = [
   {
+    id: '0xspace',
+    name: '0xSpace',
+    url: 'https://0xspace.in/devcon-mumbai-2026',
+    platform: 'website',
+    features: ['filters', 'rsvp', 'submit'],
+  },
+  {
     id: 'mira',
     name: 'Mira',
     url: 'https://miragather.com/Devcon8SideEvents2026',
@@ -54,12 +61,5 @@ export const SIDE_EVENT_CALENDARS: SideEventCalendar[] = [
     url: 'https://docs.google.com/spreadsheets/d/1NZ09OVlqElsM64oUm-8i1yh_A-U0p39BJECthwHCsLA/edit?gid=0#gid=0',
     platform: 'sheet',
     features: ['submit'],
-  },
-  {
-    id: 'mandala',
-    name: 'Mandala Network',
-    url: 'https://docs.google.com/spreadsheets/d/1BNpqu0CHpaSuntTdHAE-3VejQnv7nzKtmgnsZDuQJZs/edit?gid=616164035#gid=616164035',
-    platform: 'sheet',
-    features: ['prices', 'submit'],
   },
 ]
