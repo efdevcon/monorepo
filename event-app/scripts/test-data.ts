@@ -38,6 +38,7 @@ import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
+import { isPretalxCode, sessionLinkFor } from "../src/data/legacySessionLink";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
@@ -759,6 +760,28 @@ function testAiPlan() {
   check("assistant links prefill a new chat", assistantUrl("chatgpt", "a b").startsWith("https://chatgpt.com/?q=a%20b") && assistantUrl("claude", "a b") === "https://claude.ai/new?q=a%20b" && assistantUrl("grok", "a b") === "https://grok.com/?q=a%20b");
 }
 
+function testLegacySessionLink() {
+  const devcon8 = DATASETS.devcon8;
+  check(
+    "legacy link: a Pretalx code is six capitals or digits, never a slug",
+    isPretalxCode("DNNSNX") && isPretalxCode("YSMVJE") &&
+      !isPretalxCode("dnnsnx") && !isPretalxCode("DNNSN") && !isPretalxCode("opening-ceremony")
+  );
+  check(
+    "legacy link: this event's code opens the session here",
+    sessionLinkFor({ id: "pq-ethereum-qanda", eventId: "devcon8" }, devcon8) === "/schedule/pq-ethereum-qanda"
+  );
+  check(
+    "legacy link: a Devcon 7 code goes to the archive",
+    sessionLinkFor({ id: "opening-ceremony", eventId: "devcon-7" }, devcon8) ===
+      "https://archive.devcon.org/devcon-7/opening-ceremony/"
+  );
+  check(
+    "legacy link: other events have no page to send to",
+    sessionLinkFor({ id: "opening-ceremony", eventId: "test-devcon-8" }, devcon8) === null
+  );
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -776,6 +799,7 @@ async function main() {
   testAiPlan();
   await testRetryOnce();
   await testWhenControlled();
+  testLegacySessionLink();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

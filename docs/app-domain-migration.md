@@ -75,7 +75,8 @@ Rollback: move the domain back to `devcon-app` (the rename and the retired site 
 
 ## After the swap
 
-- [ ] devcon.org: `src/pages/sea/schedule/[code].tsx` sends Devcon 7 session links to app.devcon.org; point it at the old app's netlify.app host. Other DC7-era links into the app (featured DC7 speakers, CLS schedule filters in `content/en/pages/index.mdx`) are unused or stale; check.
+- [x] devcon.org: `src/pages/sea/schedule/[code].tsx` sends Devcon 7 session links to app.devcon.org; point it at the old app's netlify.app host (done). Other DC7-era links into the app (featured DC7 speakers, CLS schedule filters in `content/en/pages/index.mdx`) are unused or stale; check.
+- [x] Old session links by Pretalx code (`app.devcon.org/schedule/<code>`, the old app's URL scheme) redirect to the talk on archive.devcon.org (event-app `src/proxy.ts`); a code of the current event opens its session page. The other way round, `devcon.org/schedule/devcon8/<code>/` (acceptance emails) redirects to the session in the app once it is on the published schedule.
 - [ ] Old site: stop builds on `devcon-app`; it stays reachable on its netlify.app host as the Devcon 7 archive.
 - devcon-api links AI catalogue sessions to app.devcon.org (`EVENT_APP_ORIGIN`) and the QR redirect slug `app` points there: both start working with the swap.
 - [ ] Notion announcements page: its "Preview in the app" and "Publish changes" links point at the netlify.app host; they still land (the moved page sends a tab on to app.devcon.org), update when convenient.

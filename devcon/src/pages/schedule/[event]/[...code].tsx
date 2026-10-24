@@ -4,6 +4,7 @@ import { Hero } from 'components/domain/index/hero'
 import { SessionSharing } from 'components/domain/session-sharing'
 import { cleanDc8SessionType } from 'services/social-cards/track-images'
 import { isPublicSubmissionState } from 'services/social-cards/submission-state'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
 
 /**
  * Shareable speaker-card page, linked from CFP acceptance emails so speakers
@@ -28,13 +29,20 @@ import { isPublicSubmissionState } from 'services/social-cards/submission-state'
  * Data comes LIVE from Pretalx (not api.devcon.org): acceptance emails go out
  * before the schedule is published/synced, so the API doesn't know these
  * sessions yet. Confirmed talks only in production.
+ *
+ * Once the talk is on the published schedule (synced to api.devcon.org) the
+ * link redirects to the session's page in the app instead: that is where the
+ * schedule lives, and the app's page carries the same card. The share page
+ * below is for the weeks between acceptance and the schedule going live.
  */
 
 const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
 
-const EVENTS: Record<string, { pretalxSlug: string; seoDescription?: string }> = {
+const EVENTS: Record<string, { pretalxSlug: string; apiEventId?: string; seoDescription?: string }> = {
   devcon8: {
     pretalxSlug: 'devcon8',
+    // Event id on api.devcon.org; set only where the app shows the schedule.
+    apiEventId: 'devcon8',
     seoDescription: 'Join us at Devcon 8, 3 — 6 November 2026 in Mumbai, India',
   },
   // Devcon SEA renders the original 2024 Hero page, wording and all.
@@ -47,6 +55,27 @@ const CODE_RE = /^[A-Za-z0-9_-]{1,120}$/
 // Deliberately narrow: the buster only ever needs to be a short opaque token,
 // and it lands in og:url / og:image.
 const VERSION_RE = /^[A-Za-z0-9_-]{1,40}$/
+
+const DEVCON_API = 'https://api.devcon.org'
+
+/**
+ * The session's id in the app, once the schedule is published and synced to
+ * api.devcon.org (which resolves sessions by Pretalx code as well). Null while
+ * the talk is only accepted, or when the API can't be reached in time: the
+ * share page still works then.
+ */
+async function publishedSessionId(apiEventId: string, code: string): Promise<string | null> {
+  try {
+    const res = await fetch(`${DEVCON_API}/sessions/${encodeURIComponent(code)}?event=${apiEventId}`, {
+      signal: AbortSignal.timeout(3000),
+    })
+    if (!res.ok) return null
+    const json = await res.json()
+    return typeof json?.data?.id === 'string' ? json.data.id : null
+  } catch {
+    return null
+  }
+}
 
 const SpeakerCard = (props: any) => {
   if (!props.params || !props.talk) return null
@@ -134,6 +163,17 @@ export async function getServerSideProps(context: any) {
     (cacheBuster !== undefined && !VERSION_RE.test(cacheBuster))
   ) {
     return { notFound: true }
+  }
+
+  // On the published schedule: the session page in the app is the destination
+  // (the cache-buster variant too). The CDN keeps the answer as long as it
+  // keeps the page below.
+  const sessionId = event.apiEventId ? await publishedSessionId(event.apiEventId, code) : null
+  if (sessionId) {
+    context.res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=3600')
+    return {
+      redirect: { destination: `${EVENT_APP_ORIGIN}/schedule/${encodeURIComponent(sessionId)}`, permanent: false },
+    }
   }
 
   const res = await fetch(

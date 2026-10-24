@@ -32,7 +32,9 @@ opens a tab and no per-card RSC prefetch fires. Offline, the service worker answ
 detail path with the precached shell of its list tab (`src/sw.ts`; the app hydrates from `location`),
 so any detail opens offline, hard reload included, and no `/schedule/[id]` page is ever precached per
 id. Shell cache keys ignore the whole query string (`src/routing/viewParams.ts` is shared by app and
-SW), so tracking params on shared links can't defeat the cache.
+SW), so tracking params on shared links can't defeat the cache. Links from the previous app address a session by its Pretalx
+code (`/schedule/DNNSNX`); `src/proxy.ts` answers those with a 307 (the archive for a Devcon 7 code, the
+session page for one of this event's) via `src/data/legacySessionLink.ts`.
 
 **Tab switches** do not mount pages. The five bottom-bar destinations (`/`, `/schedule`, `/speakers`,
 `/map`, `/my-devcon`) are persistent panes rendered by the layout (`src/components/TabPanes.tsx`): the
