@@ -69,6 +69,7 @@ import FlyfiLogo from './images/stay/flyfi-logo.svg'
 import NirantaLogo from './images/stay/niranta-logo.png'
 import KokioLogo from './images/connectivity/kokio-logo.svg'
 import AiraloLogo from './images/connectivity/airalo-logo.webp'
+import BitrefillLogo from './images/connectivity/bitrefill-logo.svg'
 import AppBlinkit from './images/connectivity/app-blinkit.webp'
 import AppZepto from './images/connectivity/app-zepto.webp'
 import AppSwiggy from './images/connectivity/app-swiggy.webp'
@@ -131,18 +132,20 @@ type EsimMeta = {
   /** Target for the card's `setup_label` link, rendered after the body copy
    *  (URLs live here so they're never machine-translated) */
   setupUrl?: string
-  /** Same contract as HotelMeta.promo — see the note there */
-  promo?: { messageKey: string; code: string }
+  /** Same contract as HotelMeta.promo — see the note there. `code` is optional
+   *  for offers that aren't code-based (the message then just omits `{code}`) */
+  promo?: { messageKey: string; code?: string }
 }
 
 // Zipped positionally with the translated `connectivity.esims` array
 const ESIM_META: EsimMeta[] = [
   {
-    url: 'https://kokio.app/',
-    Logo: KokioLogo,
+    url: 'https://www.bitrefill.com/in/en/esims/bitrefill-esim-india/',
+    Logo: BitrefillLogo,
     logoImg: null,
-    logoAlt: 'Kokio',
-    setupUrl: 'https://dungexn.notion.site/3ba0fed242918083b9fafdc7ad8de742',
+    logoAlt: 'Bitrefill',
+    setupUrl: 'https://www.bitrefill.com/in/en/gift-cards/',
+    promo: { messageKey: 'connectivity.promos.bitrefill' },
   },
   {
     url: 'https://www.airalo.com/india-esim',
@@ -150,6 +153,13 @@ const ESIM_META: EsimMeta[] = [
     logoImg: AiraloLogo,
     logoAlt: 'airalo',
     promo: { messageKey: 'connectivity.promos.airalo', code: 'DEVCON' },
+  },
+  {
+    url: 'https://kokio.app/',
+    Logo: KokioLogo,
+    logoImg: null,
+    logoAlt: 'Kokio',
+    setupUrl: 'https://dungexn.notion.site/3ba0fed242918083b9fafdc7ad8de742',
   },
 ]
 
@@ -950,7 +960,7 @@ export default function TravelGuidePage() {
                           </a>
                           {meta.promo && (
                             <PromoTag className="pointer-events-none">
-                              {t.rich(meta.promo.messageKey, { strong, code: meta.promo.code })}
+                              {t.rich(meta.promo.messageKey, { strong, ...(meta.promo.code ? { code: meta.promo.code } : {}) })}
                             </PromoTag>
                           )}
                         </div>
