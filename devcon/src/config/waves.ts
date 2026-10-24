@@ -150,8 +150,7 @@ export const TICKET_WAVES: TicketWave[] = [
   },
   {
     // General Admission — the standard sale wave. Distinct from
-    // ETH Early Bird (the crypto early-bird phase above) and Final Waves
-    // (the later, higher-priced phase below). Dual-priced: $499 ETH /
+    // ETH Early Bird (the crypto early-bird phase above). Dual-priced: $499 ETH /
     // $999 fiat matches the Figma design. Opens after ETH Early Bird
     // closes; the action stays visible as "Get tickets" so buyers can
     // land on the storefront and see availability even before this
@@ -177,27 +176,6 @@ export const TICKET_WAVES: TicketWave[] = [
     // Pretix quota is created. Without it the wave is schedule-only: it
     // reads as live from its openTime until a later wave activates (see
     // `classify` in hooks/useWaveStates).
-  },
-  {
-    id: 'final-waves',
-    name: 'Final Waves',
-    // The last, highest-priced release — not cheaper than anything after it.
-    description: 'Limited quantity • Final release',
-    bannerBullets: ['Limited quantity', 'Final release'],
-    // Dual-priced per the latest Figma. Legacy `price` mirrors ethPrice
-    // for any consumer that hasn't migrated to the two-field shape.
-    price: '$599',
-    ethPrice: '$599',
-    fiatPrice: '$1199',
-    // Figma shows this row as "Date TBA" in the status column until the
-    // opening window is announced. Displayed when the wave has no
-    // openTimes and no live status.
-    openLabel: 'Date TBA',
-    // Rendered de-emphasized (muted purple name + ETH price, no strikethrough)
-    // per Figma — signals a future/TBA tier distinct from the active waves.
-    dimmed: true,
-    quotaId: 1,
-    // openTimes: [new Date(Date.UTC(2026, 5, 16, 2, 0, 0)), new Date(Date.UTC(2026, 5, 16, 16, 0, 0))],
   },
   // {
   //   id: 'wave-2',
