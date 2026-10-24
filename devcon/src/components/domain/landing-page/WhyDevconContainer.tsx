@@ -1,21 +1,21 @@
 import React from 'react'
 import MoonSymbol from './images/new/moon-symbol-cropped.svg'
 import { DevconIntro } from './DevconIntro'
-import { VideoPreview } from './VideoPreview'
-import { WhyDevconIndia } from './WhyDevconIndia'
-import { KeywordsSection } from './KeywordsSection'
+import { LivingConstellation } from './living-constellation'
 
 /**
- * Wrapper for the Devcon intro + video preview that share a unified background:
- * the cropped moon symbol anchored top-center + radial purple washes fading in
- * from the sides beside the video. Matches Figma node 4917:522
- * (why-devcon-india-container).
+ * Wrapper for the Devcon intro + confirmed speakers, which share one
+ * background: the cropped moon symbol anchored top-center + radial purple
+ * washes fading in from the sides. Based on Figma node 4917:522
+ * (why-devcon-india-container), which held the ticket-sales video where the
+ * speaker grid now sits; the Why Devcon India / keywords blocks it also held
+ * render after the supporters section instead (see landing-page/index).
  */
 export const WhyDevconContainer = () => (
   <div
     className="relative overflow-hidden"
     style={{
-      // Side washes sit beside the video (~33% down the container), Figma 4917:522.
+      // Side washes at ~33% down the container, Figma 4917:522.
       // No base fill — the section is transparent over the page-level
       // #fbfafc→#eaeefe gradient (Figma group 4935:2865).
       background:
@@ -33,9 +33,7 @@ export const WhyDevconContainer = () => (
 
     <div className="relative">
       <DevconIntro />
-      <VideoPreview />
-      <WhyDevconIndia />
-      <KeywordsSection />
+      <LivingConstellation />
     </div>
   </div>
 )

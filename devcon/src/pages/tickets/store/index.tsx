@@ -520,117 +520,6 @@ function StoreContent({
               </div>
             </div>
 
-            {/* ─── Sale Waves ─── */}
-            <section className={css['section']} id="general-admission">
-              <div className={css['section-header']}>
-                <div className={css['section-title-row']}>
-                  <h3 className={css['section-title']}>Sale Waves</h3>
-                  {!mounted ? null : gaClosed && offer.active ? (
-                    <span className={css['open-badge']}>11% OFF</span>
-                  ) : gaClosed ? (
-                    <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
-                  ) : gaOpen && launched ? (
-                    <span className={css['open-badge']}>OPEN</span>
-                  ) : (
-                    <span className={css['opens-badge']}>Opens July</span>
-                  )}
-                </div>
-                <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
-              </div>
-
-              {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
-
-              <div className={css['card']}>
-                <div className={css['card-stacked']}>
-                  <div className={css['card-details']}>
-                    <h3 className={css['discount-card-title']}>General Admission 🎟️</h3>
-                    <p className={css['discount-card-meta']}>Anon-friendly</p>
-                    <p className={css['discount-card-desc']}>
-                      The original, anon-friendly Devcon ticket. Includes full conference access, swag bag, and catering
-                      all week.
-                    </p>
-                  </div>
-                  <div className={css['card-footer']}>
-                    {/* Per Figma: ETH-payable price in the green chip, fiat
-                        price alongside — two payment options, not a discount
-                        strikethrough. */}
-                    <CardPrice eth={`$${gaPrice}`} fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined} />
-                    {gaClosed && offer.active ? (
-                      // Ethereum-turns-11 promo: the voucher deep-link is the
-                      // purchase path while the regular sale is paused.
-                      <a href={offer.url} className={css['checkout-pill']}>
-                        <TicketPercent size={16} strokeWidth={2} />
-                        Redeem 11% off
-                      </a>
-                    ) : gaClosed ? (
-                      <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
-                    ) : !mounted || gaLoading ? (
-                      // Loader (not a label) pre-mount too: the launch gate
-                      // resolves client-side, so a label picked before mount
-                      // flashes stale text on every load.
-                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
-                    ) : !gaOpen || !launched ? (
-                      <span className={css['opens-label']}>Opens July</span>
-                    ) : gaSoldOut || !gaTicket ? (
-                      <span className={css['sold-out-badge']}>Sold out</span>
-                    ) : (
-                      <div className={css['ga-actions']}>
-                        <div className={css['quantity']}>
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(gaTicket, -1)}
-                            disabled={gaQty <= 1}
-                            aria-label="Decrease quantity"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <Input
-                            type="number"
-                            className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
-                            value={gaQty}
-                            min={1}
-                            max={gaTicket.maxPerOrder ?? undefined}
-                            onChange={e => setCartQuantity(gaTicket, parseInt(e.target.value, 10) || 0)}
-                            aria-label="Quantity"
-                          />
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(gaTicket, 1)}
-                            disabled={gaTicket.maxPerOrder != null && gaQty >= gaTicket.maxPerOrder}
-                            aria-label="Increase quantity"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                        <button
-                          type="button"
-                          className={css['checkout-pill']}
-                          onClick={goToPretixCheckout}
-                          disabled={checkoutLoading}
-                        >
-                          {checkoutLoading ? 'Loading…' : 'Checkout'}
-                          <ArrowRight size={16} strokeWidth={2.5} />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Same redeem entry point as the Community banner, surfaced above the fold. */}
-              {launched && (
-                <div className={css['voucher-banner']}>
-                  <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
-                    <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
-                  </button>
-                </div>
-              )}
-
-              <p className={css['gst-note']}>Prices include 18% GST</p>
-            </section>
-
             {/* ─── Community (self-claim discounts) ─── */}
             <section className={css['section']} id="community">
               <div className={css['section-header']}>
@@ -761,6 +650,117 @@ function StoreContent({
                   </div>
                 ))}
               </div>
+
+              <p className={css['gst-note']}>Prices include 18% GST</p>
+            </section>
+
+            {/* ─── Sale Waves ─── */}
+            <section className={css['section']} id="general-admission">
+              <div className={css['section-header']}>
+                <div className={css['section-title-row']}>
+                  <h3 className={css['section-title']}>Sale Waves</h3>
+                  {!mounted ? null : gaClosed && offer.active ? (
+                    <span className={css['open-badge']}>11% OFF</span>
+                  ) : gaClosed ? (
+                    <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
+                  ) : gaOpen && launched ? (
+                    <span className={css['open-badge']}>OPEN</span>
+                  ) : (
+                    <span className={css['opens-badge']}>Opens July</span>
+                  )}
+                </div>
+                <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
+              </div>
+
+              {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
+
+              <div className={css['card']}>
+                <div className={css['card-stacked']}>
+                  <div className={css['card-details']}>
+                    <h3 className={css['discount-card-title']}>General Admission 🎟️</h3>
+                    <p className={css['discount-card-meta']}>Anon-friendly</p>
+                    <p className={css['discount-card-desc']}>
+                      The original, anon-friendly Devcon ticket. Includes full conference access, swag bag, and catering
+                      all week.
+                    </p>
+                  </div>
+                  <div className={css['card-footer']}>
+                    {/* Per Figma: ETH-payable price in the green chip, fiat
+                        price alongside — two payment options, not a discount
+                        strikethrough. */}
+                    <CardPrice eth={`$${gaPrice}`} fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined} />
+                    {gaClosed && offer.active ? (
+                      // Ethereum-turns-11 promo: the voucher deep-link is the
+                      // purchase path while the regular sale is paused.
+                      <a href={offer.url} className={css['checkout-pill']}>
+                        <TicketPercent size={16} strokeWidth={2} />
+                        Redeem 11% off
+                      </a>
+                    ) : gaClosed ? (
+                      <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
+                    ) : !mounted || gaLoading ? (
+                      // Loader (not a label) pre-mount too: the launch gate
+                      // resolves client-side, so a label picked before mount
+                      // flashes stale text on every load.
+                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
+                    ) : !gaOpen || !launched ? (
+                      <span className={css['opens-label']}>Opens July</span>
+                    ) : gaSoldOut || !gaTicket ? (
+                      <span className={css['sold-out-badge']}>Sold out</span>
+                    ) : (
+                      <div className={css['ga-actions']}>
+                        <div className={css['quantity']}>
+                          <button
+                            type="button"
+                            className={css['quantity-btn']}
+                            onClick={() => updateCartQuantity(gaTicket, -1)}
+                            disabled={gaQty <= 1}
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus size={16} />
+                          </button>
+                          <Input
+                            type="number"
+                            className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
+                            value={gaQty}
+                            min={1}
+                            max={gaTicket.maxPerOrder ?? undefined}
+                            onChange={e => setCartQuantity(gaTicket, parseInt(e.target.value, 10) || 0)}
+                            aria-label="Quantity"
+                          />
+                          <button
+                            type="button"
+                            className={css['quantity-btn']}
+                            onClick={() => updateCartQuantity(gaTicket, 1)}
+                            disabled={gaTicket.maxPerOrder != null && gaQty >= gaTicket.maxPerOrder}
+                            aria-label="Increase quantity"
+                          >
+                            <Plus size={16} />
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          className={css['checkout-pill']}
+                          onClick={goToPretixCheckout}
+                          disabled={checkoutLoading}
+                        >
+                          {checkoutLoading ? 'Loading…' : 'Checkout'}
+                          <ArrowRight size={16} strokeWidth={2.5} />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Same redeem entry point as the Community banner, repeated here for GA buyers. */}
+              {launched && (
+                <div className={css['voucher-banner']}>
+                  <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
+                    <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
+                  </button>
+                </div>
+              )}
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>

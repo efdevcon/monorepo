@@ -1,23 +1,19 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import { AnimatedGradientBackground } from './AnimatedGradientBackground'
 import { SpeakerGrid } from './SpeakerGrid'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
 import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
 
-// Warm pastel palette — peach, pink, lavender, blue. Each circle is its own
-// drifting blob so the section never looks like a flat fill.
-const BACKGROUND_COLORS = ['#FFE5D6', '#FFD7E4', '#E0D7FF', '#D7E4FF', '#FFEEDE', '#F4D7FF']
-
-// Section wrapper for the confirmed Devcon 8 speakers: a card grid that reads
-// at a glance (name, role, organisation, track) and opens a focused card on
-// click — see SpeakerGrid for the focus / return choreography.
+// Confirmed Devcon 8 speakers: a card grid that reads at a glance (name, role,
+// organisation, track) and opens a focused card on click — see SpeakerGrid for
+// the focus / return choreography. No background of its own: it sits inside
+// the intro section (WhyDevconContainer) under the Get tickets CTA, on that
+// section's moon + purple washes, so only bottom padding here.
 export function LivingConstellation() {
   const t = useTranslations('home.speakers')
   return (
-    <section id="confirmed-speakers" className="relative w-full overflow-hidden">
-      <AnimatedGradientBackground colors={BACKGROUND_COLORS} speed={11} blur="heavy" />
-      <div className={`relative ${sectionX} py-[48px] sm:py-[64px]`}>
+    <section id="confirmed-speakers" className="relative w-full">
+      <div className={`relative ${sectionX} pb-[48px] sm:pb-[64px]`}>
         <div className={`${sectionInner} flex flex-col gap-[32px] sm:gap-[40px]`}>
           <div className="flex flex-col gap-[16px]">
             <p className={eyebrow}>{t('eyebrow')}</p>
