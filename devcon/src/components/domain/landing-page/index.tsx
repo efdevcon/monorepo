@@ -32,7 +32,7 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
       {/* Its jaali strip is drawn to tuck under the purple band above, and it
           ends on #efe7fd, which the next wash picks up. */}
       <AttendDevcon />
-      {/* Shared backdrop for keywords → carousel: one vertical wash the
+      {/* Shared backdrop for keywords → Join the event: one vertical wash the
           sections sit on transparently — their own gradients (peach ellipses)
           layer on top of it. Starts where AttendDevcon's gradient ends so the
           seam is invisible, and settles on periwinkle ahead of the FAQ. */}
@@ -40,8 +40,8 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
         {/* Why Devcon India — parked for now. */}
         {/* <WhyDevconIndia /> */}
         <KeywordsSection />
-        <JoinTheEvent />
         <VibeCarousel />
+        <JoinTheEvent />
       </div>
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />
