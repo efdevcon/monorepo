@@ -4542,16 +4542,24 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-10-23T19:11:25.330Z",
+    "changedAt": "2026-10-24T14:11:20.803Z",
     "problems": [
-      "row 8: no session title, skipped"
+      "row 8: no session title, skipped",
+      "row 10: no session title, skipped",
+      "row 11: no session title, skipped",
+      "row 12: no session title, skipped",
+      "row 13: no session title, skipped",
+      "row 21: no session title, skipped",
+      "row 22: no session title, skipped",
+      "row 23: no session title, skipped"
     ],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "09:00-14:00",
-        "title": "Welcome Gathering",
+        "title": "Welcome Gathering + community hours",
+        "format": "Welcome",
         "speakers": []
       },
       {
@@ -4559,6 +4567,7 @@
         "day": "Tue 3 Nov",
         "time": "14:00-14:30",
         "title": "Shaka’s Zu music and welcome!",
+        "format": "Welcome",
         "speakers": []
       },
       {
@@ -4586,18 +4595,48 @@
       },
       {
         "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "15:30-15:50",
+        "title": "Simocracy: Digital Sims for Governance and Allocation",
+        "format": "Talk",
+        "speakers": [
+          "Diego Rivera"
+        ]
+      },
+      {
+        "id": "S11",
         "day": "Wed 4 Nov",
-        "time": "11:30-11:40",
+        "time": "09:00-11:00",
+        "title": "Community Hours. Zuzone/NS Day!",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "11:00-11:20",
+        "title": "NS Tech Stack",
+        "format": "Talk",
+        "speakers": [
+          "Shashank"
+        ]
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "11:20-11:40",
         "title": "NS Kazakhstan",
+        "format": "Talk",
         "speakers": [
           "Aibar"
         ]
       },
       {
-        "id": "S07",
+        "id": "S14",
         "day": "Wed 4 Nov",
         "time": "11:40-13:00",
         "title": "NS Community lightning talks",
+        "format": "Talk",
         "speakers": [
           "Akhil",
           "Aditya",
@@ -4626,32 +4665,27 @@
         ]
       },
       {
-        "id": "S08",
+        "id": "S15",
         "day": "Wed 4 Nov",
         "time": "13:00-14:00",
-        "title": "Lunch break",
+        "title": "Lunch",
         "format": "Break",
         "speakers": []
       },
       {
-        "id": "S09",
+        "id": "S16",
         "day": "Wed 4 Nov",
         "time": "14:00-18:00",
-        "title": "NS meetup space / Zuzone community",
+        "title": "NS Community Hang Out",
+        "format": "Networking",
         "speakers": []
       },
       {
-        "id": "S10",
+        "id": "S17",
         "day": "Thu 5 Nov",
         "time": "09:00-11:00",
-        "title": "ZUzone community hours",
-        "speakers": []
-      },
-      {
-        "id": "S11",
-        "day": "Fri 6 Nov",
-        "time": "09:00-09:20",
-        "title": "Community hours. On Nov from 11am-4pm African Builders day",
+        "title": "Community Hours",
+        "format": "Networking",
         "speakers": []
       }
     ]
