@@ -20,27 +20,28 @@ export const LandingPage = ({ faqItems }: LandingPageProps) => {
     <div>
       <VenueDetails />
       {/* Intro copy + Get tickets CTA with the confirmed speakers on the same
-          moon/purple-wash backdrop, then supporters and the ticket comparison —
-          the sections buyers care about most this close to the event. The
-          #fbfafc→#eaeefe wash is Figma group 4935:2865. */}
+          moon/purple-wash backdrop, the tracks right under them, then
+          supporters and the ticket comparison — the sections buyers care
+          about most this close to the event. The #fbfafc→#eaeefe wash is
+          Figma group 4935:2865; the tracks sit transparently on its tail. */}
       <div className="bg-gradient-to-b from-[#fbfafc] to-[#eaeefe]">
         <WhyDevconContainer />
+        <TracksSection />
       </div>
       <Supporters />
       {/* Its jaali strip is drawn to tuck under the purple band above, and it
           ends on #efe7fd, which the next wash picks up. */}
       <AttendDevcon />
-      {/* Shared backdrop for keywords → tracks: one vertical wash the sections
-          sit on transparently — their own gradients (peach ellipses) layer on
-          top of it. Starts where AttendDevcon's gradient ends so the seam is
-          invisible, and settles on the periwinkle the tracks sat on before. */}
+      {/* Shared backdrop for keywords → carousel: one vertical wash the
+          sections sit on transparently — their own gradients (peach ellipses)
+          layer on top of it. Starts where AttendDevcon's gradient ends so the
+          seam is invisible, and settles on periwinkle ahead of the FAQ. */}
       <div className="bg-gradient-to-b from-[#efe7fd] to-[#eaeefe]">
         {/* Why Devcon India — parked for now. */}
         {/* <WhyDevconIndia /> */}
         <KeywordsSection />
         <JoinTheEvent />
         <VibeCarousel />
-        <TracksSection />
       </div>
       <FaqSection items={faqItems} />
       <EarlyBirdBanner />
