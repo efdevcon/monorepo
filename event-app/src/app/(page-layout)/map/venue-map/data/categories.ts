@@ -12,9 +12,9 @@ export const CATEGORIES = [
   { id: "supporters", label: "Supporters", Icon: Store, legend: "Supporters" },
   { id: "food", label: "Food & drink", Icon: Coffee, legend: null },
   { id: "toilets", label: "Washrooms", Icon: Toilet, legend: null },
-  { id: "cowork", label: "Cowork & discussion", Icon: Laptop, legend: "Co-work" },
+  { id: "cowork", label: "Cowork & discussion", Icon: Laptop, legend: "Work & Rest" },
   { id: "checkin", label: "Check-in & swag", Icon: Ticket, legend: null },
-  { id: "fun", label: "Fun & rest", Icon: Gamepad2, legend: "Fun & rest" },
+  { id: "fun", label: "Fun & rest", Icon: Gamepad2, legend: "Fun & Culture" },
   { id: "other", label: "Other", Icon: MapPin, legend: null },
 ] as const satisfies readonly { id: string; label: string; Icon: LucideIcon; legend: string | null }[];
 

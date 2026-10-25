@@ -92,7 +92,7 @@ S4 has no logo yet), optional
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporters,
 Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the only
 lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend (chip
-labels "Community" and "Supporters" since 2026-10-25). `rank` orders a category's rows (Lotus
+labels "Community", "Supporters", "Work & Rest" and "Fun & Culture" since 2026-10-25). `rank` orders a category's rows (Lotus
 halls, then Jasmine, then Music). `COMPOSITES` adds rows that stand for several footprints: the
 Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and the card is titled
 after it with the members as the line beneath (`groupName` in the store, `compositeOf`).
