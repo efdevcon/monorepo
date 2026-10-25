@@ -64,7 +64,10 @@ correctly.
 `RELEASED` in `src/data/release/releaseGates.ts` holds one boolean per feature that ships hidden
 (today: the ENS perk card and the venue map). `useReleased(name)` is true once released, or for a
 signed-in `@ethereum.org` account, so the team keeps testing in production. Attendees get the map tab
-with a "coming soon" card (`MapPane.tsx`). UI gate only; flip the constant to release.
+with a "coming soon" card (`MapPane.tsx`). UI gate only; flip the constant to release. The map has two
+variants while the rebuild lands: `venueMap` shows the prototype (`map/venue-map-3d/`,
+`docs/venue-map-3d.md`), `venueMapNext` on top of it swaps in the rebuilt map on the JWCC plans
+(`map/venue-map/`, `docs/venue-map.md`, `pnpm map:build` / `map:check` / `map:test`).
 
 ## AI schedule planner ("Plan with your AI")
 
