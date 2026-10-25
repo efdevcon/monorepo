@@ -121,7 +121,15 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
     return Math.max(x1 - x0, y1 - y0) * scale < COLUMN_MARKER_MAX_M;
   };
+  // Label frames: stroke-only closed boxes centred outside the floor (the "JASMINE 1 / 2" tabs on the top edge). Dropped, like their text.
+  const slabRing = background[0]?.subpaths.find((s) => s.closed)?.points ?? [];
+  const isLabelFrame = (d: Drawn) => {
+    if (isWall(d) || d.paint.fill || !d.paint.stroke || !d.subpaths.every((s) => s.closed) || !slabRing.length) return false;
+    const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
+    return !pointInRing([(x0 + x1) / 2, (y0 + y1) / 2], slabRing);
+  };
   let columns = 0;
+  let frames = 0;
   let wallN = 0;
   let decoN = 0;
   for (const d of outline) {
@@ -139,11 +147,15 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
       columns++;
       continue;
     }
+    if (isLabelFrame(d)) {
+      frames++;
+      continue;
+    }
     const groupName = d.groups[2] !== undefined && !isDefaultName(d.groups[2]) ? normaliseId(d.groups[2]) : "deco";
     if (d.paint.fill) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", filledPolygons(d), HEIGHTS.deco, d.paint.fill, false, scale), d.id);
     if (d.paint.stroke) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", strokedPolygons(d, []), HEIGHTS.deco, d.paint.stroke, false, scale), d.id);
   }
-  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers dropped`);
+  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers and ${frames} label frames dropped`);
 
   // Colour boxes → areas, joined to the catalogue.
   const usedAreaIds = new Set<string>();

@@ -23,7 +23,7 @@ export const FALLBACK_METRES_PER_PX = 0.05;
  */
 export const HEIGHTS = {
   stage: 5.5,
-  room: 4.5,
+  room: 3,
   kiosk: 2.5,
   zone: 0.3,
   wall: 3,
