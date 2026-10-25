@@ -12,7 +12,7 @@ import { useIsTeam } from "@/data/release/releaseGates";
 import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
 import { FOCUS_ZOOM_DESKTOP, FOCUS_ZOOM_MOBILE } from "./camera/constants";
 import { LEVELS, type LevelId } from "./data/levels";
-import { areaOf, type AreaKey } from "./data/resolve";
+import { areaOf, compositeOf, type AreaKey } from "./data/resolve";
 import { AREA_PARAM, parseAreaParam } from "./data/roomAreas";
 import { buildFloorLegend, FIND_GROUPS, primaryOf, type FindEntry, type LegendEntry } from "./find/catalogue";
 import { FindContent } from "./find/FindContent";
@@ -43,7 +43,7 @@ const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div
  */
 export function VenueMap() {
   const [state, dispatch] = useReducer(reduce, initialState);
-  const { floor, selected, group, focus, resetSeq, panel, query, debug, tuning } = state;
+  const { floor, selected, group, groupName, focus, resetSeq, panel, query, debug, tuning } = state;
   const active = usePaneActive();
   const desktop = useIsDesktop();
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -69,7 +69,8 @@ export function VenueMap() {
   const showAreas = useCallback((keys: AreaKey[]) => {
     const areas = keys.map(areaOf).filter((a): a is NonNullable<typeof a> => a !== null);
     if (!areas.length) return;
-    dispatch({ type: "showAreas", keys: areas.map((a) => a.key), primary: primaryOf(areas), zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE });
+    const composite = compositeOf(areas.map((a) => a.key));
+    dispatch({ type: "showAreas", keys: areas.map((a) => a.key), primary: primaryOf(areas), zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, name: composite?.name });
   }, []);
 
   // Deep link from the schedule ("Show on Map"): `?area=<level>/<id>[,…]`, re-run on every visit of the pane.
@@ -157,7 +158,7 @@ export function VenueMap() {
           </MapSheet>
         </>
       )}
-      <AreaCard area={selectedArea} group={group !== null} onClose={closeCard} anchorRef={cardAnchorRef} />
+      <AreaCard area={selectedArea} group={group !== null} groupName={groupName} groupAreas={group} onClose={closeCard} anchorRef={cardAnchorRef} />
       {team && (
         <DebugCorner panel={debug && <DebugPanel tuning={tuning} floor={floor} onTune={(t) => dispatch({ type: "tune", tuning: t })} onFloor={(level) => (level ? showLevel(level) : dispatch({ type: "showStack" }))} />}>
           <DebugToggle pressed={debug} onToggle={() => dispatch({ type: "toggleDebug" })} />

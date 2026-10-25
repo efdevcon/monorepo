@@ -41,6 +41,8 @@ export type MapState = {
   selected: AreaKey | null;
   /** A found group: every member highlighted, the card parked clear of them. */
   group: AreaKey[] | null;
+  /** What the group stands for when it is a composite (the Main Stage); the card takes the name. */
+  groupName: string | null;
   focus: Focus | null;
   /** Bumps on every reset (tab re-tap, Esc, "All"). */
   resetSeq: number;
@@ -55,7 +57,7 @@ export type MapAction =
   | { type: "toggleFloor"; level: LevelId }
   | { type: "showStack" }
   | { type: "select"; key: AreaKey | null }
-  | { type: "showAreas"; keys: AreaKey[]; primary: AreaKey; zoom: number }
+  | { type: "showAreas"; keys: AreaKey[]; primary: AreaKey; zoom: number; name?: string }
   | { type: "reset" }
   | { type: "openPanel"; panel: PanelId }
   | { type: "closePanel" }
@@ -71,6 +73,7 @@ export const initialState: MapState = {
   floor: LANDING_FLOOR,
   selected: null,
   group: null,
+  groupName: null,
   focus: null,
   resetSeq: 0,
   panel: null,
@@ -81,7 +84,7 @@ export const initialState: MapState = {
 
 const levelOfKey = (key: AreaKey) => key.slice(0, key.indexOf("/")) as LevelId;
 
-const clearSelection = (s: MapState): MapState => (s.selected === null && s.group === null && s.focus === null ? s : { ...s, selected: null, group: null, focus: null });
+const clearSelection = (s: MapState): MapState => (s.selected === null && s.group === null && s.focus === null ? s : { ...s, selected: null, group: null, groupName: null, focus: null });
 
 export function reduce(state: MapState, action: MapAction): MapState {
   switch (action.type) {
@@ -95,7 +98,7 @@ export function reduce(state: MapState, action: MapAction): MapState {
     case "select": {
       if (action.key === null) return clearSelection(state);
       if (levelOfKey(action.key) !== state.floor) return state; // taps only land on the open floor
-      return { ...state, selected: action.key, group: null, focus: null };
+      return { ...state, selected: action.key, group: null, groupName: null, focus: null };
     }
     case "showAreas": {
       if (!action.keys.length || !action.keys.includes(action.primary)) return state;
@@ -106,6 +109,7 @@ export function reduce(state: MapState, action: MapAction): MapState {
         floor: level,
         selected: action.primary,
         group: action.keys.length > 1 ? action.keys : null,
+        groupName: action.keys.length > 1 ? action.name ?? null : null,
         focus: { seq: (state.focus?.seq ?? 0) + 1, keys: action.keys, zoom: action.zoom },
         panel: null,
         query: "",
@@ -131,6 +135,7 @@ export function violations(s: MapState): string[] {
   const out: string[] = [];
   if (s.selected !== null && levelOfKey(s.selected) !== s.floor) out.push("selected off the open floor");
   if (s.group !== null && (s.selected === null || !s.group.includes(s.selected))) out.push("group without its primary selected");
+  if (s.groupName !== null && s.group === null) out.push("group name without a group");
   if (s.panel !== "search" && s.query !== "") out.push("query outside Search");
   if (SINGLE_FLOOR && s.floor === null) out.push("stack with a single floor");
   return out;

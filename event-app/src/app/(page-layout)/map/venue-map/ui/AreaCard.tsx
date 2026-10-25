@@ -6,7 +6,7 @@ import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
-import type { Area } from "../data/resolve";
+import { compositeOf, type Area } from "../data/resolve";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
 
 /** Rooms whose card drops its own blurb while a session is live, so the session is the whole story (the Main Stage). */
@@ -23,13 +23,33 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
  * footprint (the scene writes `--poi-x` / `--poi-y` onto `anchorRef` every
  * rendered frame); a group pick parks it bottom-centre instead.
  */
-export function AreaCard({ area, group, onClose, anchorRef }: { area: Area | null; group: boolean; onClose: () => void; anchorRef: MutableRefObject<HTMLDivElement | null> }) {
+export function AreaCard({
+  area,
+  group,
+  groupName,
+  groupAreas,
+  onClose,
+  anchorRef,
+}: {
+  area: Area | null;
+  group: boolean;
+  /** The group is a composite (the Main Stage): the card is titled after it, with its members as the line beneath. */
+  groupName: string | null;
+  groupAreas: readonly string[] | null;
+  onClose: () => void;
+  anchorRef: MutableRefObject<HTMLDivElement | null>;
+}) {
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
   const open = area !== null;
   // Closing clears the selection and the group together; only follow `group` while open so the wrapper doesn't jump mid-fade.
   const [shownGroup, setShownGroup] = useState(group);
   if (open && group !== shownGroup) setShownGroup(group);
+  // Composite (the Main Stage), held like `shown` so the title doesn't flip while the card fades out.
+  // compositeOf returns the same object for the same members, so identity is enough.
+  const composite = open && groupName && groupAreas ? compositeOf(groupAreas) : null;
+  const [shownComposite, setShownComposite] = useState(composite);
+  if (open && composite !== shownComposite) setShownComposite(composite);
   const stage = shown?.category.id === "stages";
   const discIcon = stage ? shown?.iconUrl : null;
   const inlineIcon = stage ? null : shown?.iconUrl;
@@ -47,7 +67,7 @@ export function AreaCard({ area, group, onClose, anchorRef }: { area: Area | nul
     >
       <div
         role="dialog"
-        aria-label={shown?.name}
+        aria-label={shownComposite ? shownComposite.name : shown?.name}
         aria-hidden={!open}
         className={cn(
           "relative flex flex-col gap-3 rounded-2xl bg-white/95 p-4 shadow-[0_8px_30px_rgba(22,11,43,0.18)] backdrop-blur",
@@ -72,11 +92,11 @@ export function AreaCard({ area, group, onClose, anchorRef }: { area: Area | nul
           )}
           <div className="flex min-w-0 flex-1 flex-col">
             <div className="flex items-center justify-between gap-2">
-              <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
+              <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
-            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.levelName}</span>}
-            {shown?.description && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
+            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.levelName}</span>}
+            {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shownComposite ? shownComposite.description : shown?.description}</p>}
           </div>
         </div>
         {live && (

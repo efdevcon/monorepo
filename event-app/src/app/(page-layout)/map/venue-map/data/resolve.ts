@@ -1,5 +1,5 @@
 import { communityHubLogo, communityHubLockup, findCommunityHub, type CommunityHub } from "@/data/communityHubs";
-import { AREAS, type AreaId, type AreaSpec } from "./areas";
+import { AREAS, COMPOSITES, type AreaId, type AreaSpec, type Composite } from "./areas";
 import { categoryById, type Category } from "./categories";
 import { iconUrl, type IconName } from "./icons.generated";
 import { LEVELS, type LevelId } from "./levels";
@@ -38,6 +38,8 @@ export type Area = {
   boothName: string | null;
   /** Fill behind the icon in the card and lists, for logos drawn in white (supporters). */
   iconBackdrop: string | null;
+  /** List position within the category (areas.ts `rank`). */
+  rank: number;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -74,6 +76,7 @@ function resolveShape(shape: MapShape): Area | null {
     lockupUrl: hub ? communityHubLockup(hub) : null,
     boothName: hub || tenant ? planName : null,
     iconBackdrop: tenant ? shape.fill : null,
+    rank: spec.rank ?? 100,
   };
 }
 
@@ -84,3 +87,16 @@ const areaByKey = new Map<AreaKey, Area>(AREA_LIST.map((a) => [a.key, a]));
 export const areaOf = (key: AreaKey): Area | null => areaByKey.get(key) ?? null;
 export const levelOf = (id: LevelId): MapLevel => plan.levels.find((l) => l.id === id)!;
 export const areasOnLevel = (id: LevelId): Area[] => AREA_LIST.filter((a) => a.level === id);
+
+/** A composite (areas.ts) with its members resolved; composites whose members are not all drawn are skipped. */
+export type ResolvedComposite = Composite & { level: LevelId; areas: Area[] };
+export const COMPOSITE_LIST: readonly ResolvedComposite[] = COMPOSITES.flatMap((c) => {
+  const areas = c.members.map((m) => AREA_LIST.find((a) => a.areaId === m.areaId && (m.instance === undefined ? a.instance === null : a.instance === m.instance))).filter((a): a is Area => a !== undefined);
+  if (areas.length !== c.members.length || new Set(areas.map((a) => a.level)).size !== 1) return [];
+  return [{ ...c, level: areas[0].level, areas }];
+});
+
+/** The composite a highlighted group stands for, if the keys are exactly its members. */
+export function compositeOf(keys: readonly AreaKey[]): ResolvedComposite | null {
+  return COMPOSITE_LIST.find((c) => c.areas.length === keys.length && c.areas.every((a) => keys.includes(a.key))) ?? null;
+}

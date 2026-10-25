@@ -27,8 +27,12 @@ test("search: name and category matches, duplicates collapsed with their count",
 });
 
 test("catalogue: every area is listed once, numbered names carry their number", () => {
-  const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.flatMap((e) => e.areas)));
+  const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.filter((e) => !e.key.includes("composite:")).flatMap((e) => e.areas)));
   assert.equal(listed.length, AREA_LIST.length);
+  const stages = groups.find((g) => g.category.id === "stages")!.floors[0].entries.map((e) => e.name);
+  assert.deepEqual(stages, ["Main Stage", "Lotus Stage 1", "Lotus Stage 2", "Lotus Stage 3", "Jasmine Stage 4", "Music Stage"]);
+  const main = groups.find((g) => g.category.id === "stages")!.floors[0].entries[0];
+  assert.equal(main.areas.length, 3, "the Main Stage row highlights the three Lotus halls");
   const hub7 = AREA_LIST.find((a) => a.areaId === "community-hub" && a.instance === 7);
   assert.equal(hub7?.name, "Privacy Hub", "a booth with a hub takes the hub's name");
   assert.equal(hub7?.boothName, "Hub 7");

@@ -33,13 +33,15 @@ test("select only lands on the open floor; a floor change clears it", () => {
 });
 
 test("showAreas opens the floor, selects the primary, groups the rest and bumps the focus", () => {
-  let s = run([{ type: "showAreas", keys: [key("a"), key("b")], primary: key("b"), zoom: 2 }]);
+  let s = run([{ type: "showAreas", keys: [key("a"), key("b")], primary: key("b"), zoom: 2, name: "Both" }]);
   assert.equal(s.floor, L);
+  assert.equal(s.groupName, "Both");
   assert.equal(s.selected, key("b"));
   assert.deepEqual(s.group, [key("a"), key("b")]);
   assert.equal(s.focus?.seq, 1);
-  s = run([{ type: "showAreas", keys: [key("a")], primary: key("a"), zoom: 2 }], s);
+  s = run([{ type: "showAreas", keys: [key("a")], primary: key("a"), zoom: 2, name: "Both" }], s);
   assert.equal(s.group, null);
+  assert.equal(s.groupName, null, "a single footprint never carries a group name");
   assert.equal(s.focus?.seq, 2, "a repeat pick re-focuses");
   assert.equal(reduce(s, { type: "showAreas", keys: [key("a"), "ZZ/b"], primary: key("a"), zoom: 1 }), s, "mixed floors are rejected");
   s = run([{ type: "select", key: null }], s);

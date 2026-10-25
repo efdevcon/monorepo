@@ -1,18 +1,20 @@
 import { CATEGORIES, type Category } from "../data/categories";
 import { LEVEL_ORDER, LEVELS, levelIndex, type LevelId } from "../data/levels";
-import { AREA_LIST, type Area, type AreaKey } from "../data/resolve";
+import { AREA_LIST, COMPOSITE_LIST, type Area, type AreaKey } from "../data/resolve";
 
 /**
  * One row in Find or Search. Footprints sharing a name on the same floor
  * ("Washroom" ×2) collapse into one entry, so `areas` can hold several;
  * picking it highlights them all.
  */
-export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; iconBackdrop: string | null; areas: Area[]; category: Category };
+export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; iconBackdrop: string | null; areas: Area[]; category: Category; rank: number };
 export type FindFloor = { level: LevelId; name: string; entries: FindEntry[] };
 export type FindGroup = { category: Category; count: number; floors: FindFloor[] };
 
 /** "Hub 2" before "Hub 10". */
 export const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name, undefined, { numeric: true });
+/** Catalogue rank first (Main Stage, then the Lotus halls, then the rest), then by name. */
+export const byRank = (a: { name: string; rank: number }, b: { name: string; rank: number }) => a.rank - b.rank || byName(a, b);
 
 const levelName = new Map<LevelId, string>(LEVELS.map((l) => [l.id, l.name]));
 
@@ -32,9 +34,11 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
     const floors: FindFloor[] = LEVEL_ORDER.filter((id) => perLevel.has(id)).map((id) => ({
       level: id,
       name: levelName.get(id) ?? id,
-      entries: [...perLevel.get(id)!.entries()]
-        .map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category }))
-        .sort(byName),
+      entries: [
+        ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
+        // Composite rows (the Main Stage): one row standing for several footprints.
+        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: null, iconBackdrop: null, areas: c.areas, category, rank: c.rank ?? 100 })),
+      ].sort(byRank),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];
   });

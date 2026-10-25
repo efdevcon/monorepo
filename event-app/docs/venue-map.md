@@ -89,10 +89,13 @@ booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups 
 a chip in the booth's fill in the card and lists; shared booths show both names, Bitget Wallet at
 S4 has no logo yet), optional
 `icon` (sprite PNG) and `roomIds`. `ROOMS` maps Devcon 8 Pretalx room ids to footprints
-(`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporter
-booths, Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the
-only lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend
-(chip labels "Community" and "Supporters" since 2026-10-25).
+(`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporters,
+Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the only
+lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend (chip
+labels "Community" and "Supporters" since 2026-10-25). `rank` orders a category's rows (Lotus
+halls, then Jasmine, then Music). `COMPOSITES` adds rows that stand for several footprints: the
+Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and the card is titled
+after it with the members as the line beneath (`groupName` in the store, `compositeOf`).
 `LEVELS` lists the floors bottom-up with their source file; `LEVEL_ALIASES` is how Search parses
 "level 3" / "l3". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
 

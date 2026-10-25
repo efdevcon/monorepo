@@ -33,6 +33,8 @@ export type AreaSpec = {
   hubs?: Readonly<Record<number, string>>;
   /** Per instance number: who is at that booth (supporters). The logo becomes the sprite, the name the card's; the plan's booth name stays as the booth line. */
   tenants?: Readonly<Record<number, Tenant>>;
+  /** Position in Find and Search lists within the category (lower first, then by name; unset = 100). */
+  rank?: number;
 };
 
 /** A supporter at a booth. `logo` is a path under public/ (white lockups today, on the booth's fill colour in the card). */
@@ -51,9 +53,9 @@ const supporter = (name: string, file: string): Tenant => ({ name, logo: `/maps/
  */
 export const AREAS = {
   // Stages
-  "lotus-stage": { name: "Lotus Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage" },
-  "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage" },
-  "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage" },
+  "lotus-stage": { name: "Lotus Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 10 },
+  "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 20 },
+  "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage", rank: 30 },
   // Community hubs
   "community-hub": {
     name: "Hub #",
@@ -153,6 +155,27 @@ export const AREAS = {
 
 export type AreaId = keyof typeof AREAS;
 export const isAreaId = (id: string): id is AreaId => Object.prototype.hasOwnProperty.call(AREAS, id);
+
+/**
+ * Find rows that stand for several footprints at once: the Main Stage is the
+ * three Lotus halls opened into one, so its row highlights all three (and
+ * the card is titled after it). Members are catalogue ids + instances.
+ */
+export type Composite = { id: string; name: string; description: string; category: CategoryId; rank?: number; members: readonly { areaId: AreaId; instance?: number }[] };
+export const COMPOSITES: readonly Composite[] = [
+  {
+    id: "main-stage",
+    name: "Main Stage",
+    description: "Opening and closing ceremonies, keynotes: the three Lotus halls opened into one.",
+    category: "stages",
+    rank: 0,
+    members: [
+      { areaId: "lotus-stage", instance: 1 },
+      { areaId: "lotus-stage", instance: 2 },
+      { areaId: "lotus-stage", instance: 3 },
+    ],
+  },
+];
 
 /**
  * Schedule rooms whose sessions happen on a footprint. Per area id and
