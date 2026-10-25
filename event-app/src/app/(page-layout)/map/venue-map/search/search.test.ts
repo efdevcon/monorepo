@@ -43,7 +43,10 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.equal(f1?.name, "Fluid");
   assert.equal(f1?.boothName, "Flagship Supporter F1");
   assert.equal(f1?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
-  assert.equal(AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4)?.name, "Starter Supporter S4", "a booth without a tenant keeps the plan name");
+  const s4 = AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4);
+  assert.equal(s4?.name, "Bitget", "every supporter booth has a tenant since 2026-10-25");
+  assert.equal(s4?.boothName, "Starter Supporter S4", "the plan name stays as the booth line");
+  assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters").every((a) => a.boothName && !a.name.includes(" / ")), "shared booths name one supporter only");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");
   const hubs = AREA_LIST.filter((a) => a.areaId === "community-hub");
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));

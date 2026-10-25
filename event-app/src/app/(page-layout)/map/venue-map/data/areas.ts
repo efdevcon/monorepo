@@ -86,7 +86,8 @@ export const AREAS = {
   },
   // Supporter booths
   // Booth assignments from the JWCC floor plan (Scott, 2026-10-25). Logos: the website's white
-  // supporter set, as a test (colour versions may follow). Shared booths show the first name.
+  // supporter set, as a test (colour versions may follow). Shared booths name one supporter only:
+  // which supporters are present changes mid-event and is updated then (Scott, 2026-10-25).
   "flagship-supporter": {
     name: "Flagship Supporter F#",
     description: "Supporter booth.",
@@ -99,7 +100,7 @@ export const AREAS = {
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: supporter("Gnosis", "gnosis"), 2: supporter("Kleros", "kleros"), 3: supporter("Golem", "golem"), 4: supporter("OpenZeppelin", "openzeppelin") },
+    tenants: { 1: supporter("Gnosis", "gnosis"), 2: supporter("Kleros", "kleros"), 3: supporter("Arkiv", "arkiv"), 4: supporter("OpenZeppelin", "openzeppelin") },
   },
   starter: {
     name: "Starter Supporter S#",
@@ -107,27 +108,27 @@ export const AREAS = {
     category: "supporters",
     heightClass: "kiosk",
     tenants: {
-      1: supporter("ENS / Virtuals", "ens"),
+      1: supporter("ENS", "ens"),
       2: supporter("Ordocode", "ordocode"),
       3: supporter("Nethermind", "nethermind"),
-      // 4: Bitget Wallet (no logo in the set yet)
-      5: supporter("World / ZKP2P", "world"),
-      6: supporter("Trail of Bits / Fair Food Data", "trail-of-bits"),
+      4: supporter("Bitget", "bitget"),
+      5: supporter("World", "world"),
+      6: supporter("Trail of Bits", "trail-of-bits"),
       7: supporter("Swarm", "swarm"),
-      8: supporter("LFDT", "lfdt"),
+      8: supporter("Linux Foundation Decentralized Trust", "lfdt"),
       9: supporter("EEZ", "eez"),
       10: supporter("Crossbar", "crossbar"),
       11: supporter("UNICEF", "unicef"),
-      12: supporter("Kohaku / Money League", "kohaku"),
-      13: supporter("EAG", "eag"),
-      14: supporter("EIPsInsight / DAO Fund", "eipsinsight"),
+      12: supporter("Kohaku", "kohaku"),
+      13: supporter("Ethereum Applications Guild", "eag"),
+      14: supporter("EIPsInsight", "eipsinsight"),
       15: supporter("growthepie", "growthepie"),
-      16: supporter("GCC Commons / ZisK", "gcc"),
+      16: supporter("GCC Commons", "gcc"),
       17: supporter("ETH Labs", "eth-labs"),
       18: supporter("Railgun", "railgun"),
       19: supporter("Walletbeat", "walletbeat"),
       20: supporter("Nimbus", "nimbus"),
-      21: supporter("GrapheneOS / Gainforest", "grapheneos"),
+      21: supporter("GrapheneOS", "grapheneos"),
     },
   },
   // Food & drink
