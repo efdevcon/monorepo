@@ -35,6 +35,11 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.ok(hub7?.iconUrl?.includes("/community-hubs/logos/privacy.svg"), "the hub's mark is the sprite");
   assert.ok(hub7?.roomIds.includes("community-hub-privacy"));
   assert.ok(AREA_LIST.some((a) => a.areaId === "escalator" && a.shape.hidden), "escalators are sprite-only places");
+  const f1 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 1);
+  assert.equal(f1?.name, "Fluid");
+  assert.equal(f1?.boothName, "Flagship Supporter F1");
+  assert.equal(f1?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
+  assert.equal(AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4)?.name, "Starter Supporter S4", "a booth without a tenant keeps the plan name");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");
   const hubs = AREA_LIST.filter((a) => a.areaId === "community-hub");
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));

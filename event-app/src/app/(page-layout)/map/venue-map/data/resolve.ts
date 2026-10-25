@@ -34,8 +34,10 @@ export type Area = {
   /** The Community Hub at this booth, when the catalogue assigns one: its mark is the sprite, its lockup the card's. */
   hub: CommunityHub | null;
   lockupUrl: string | null;
-  /** The plan's own name for a hub booth ("Hub 7"), kept beside the hub's name. */
+  /** The plan's own name for a hub or supporter booth ("Hub 7", "Starter Supporter S12"), kept beside the tenant's name. */
   boothName: string | null;
+  /** Fill behind the icon in the card and lists, for logos drawn in white (supporters). */
+  iconBackdrop: string | null;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -52,24 +54,26 @@ function resolveShape(shape: MapShape): Area | null {
   const icon = (instance !== null ? spec.icons?.[instance] : undefined) ?? spec.icon ?? null;
   const planName = spec.name.replace("#", instance === null ? "" : String(instance)).trim();
   const hub = (instance !== null && spec.hubs?.[instance] ? findCommunityHub(spec.hubs[instance]) : undefined) ?? null;
+  const tenant = (instance !== null ? spec.tenants?.[instance] : undefined) ?? null;
   return {
     key: shape.key,
     level: shape.level as LevelId,
     levelName: levelName.get(shape.level) ?? shape.level,
     areaId: shape.areaId as AreaId,
     instance,
-    name: hub ? hub.name : planName,
-    description: hub ? hub.description : spec.description,
+    name: hub ? hub.name : tenant ? tenant.name : planName,
+    description: hub ? hub.description : tenant ? "" : spec.description,
     category: categoryById(spec.category),
     icon,
-    iconUrl: hub ? communityHubLogo(hub) : icon ? iconUrl(icon) : null,
+    iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,
     iconSize: spec.iconSize ?? null,
     shape,
     roomIds: [...(roomsByKey.get(shape.key) ?? []), ...(hub ? [`community-hub-${hub.id}`] : [])],
     hub,
     lockupUrl: hub ? communityHubLockup(hub) : null,
-    boothName: hub ? planName : null,
+    boothName: hub || tenant ? planName : null,
+    iconBackdrop: tenant ? shape.fill : null,
   };
 }
 

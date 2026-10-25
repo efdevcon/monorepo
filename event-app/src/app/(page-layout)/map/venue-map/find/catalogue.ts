@@ -7,7 +7,7 @@ import { AREA_LIST, type Area, type AreaKey } from "../data/resolve";
  * ("Washroom" ×2) collapse into one entry, so `areas` can hold several;
  * picking it highlights them all.
  */
-export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; areas: Area[]; category: Category };
+export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; iconBackdrop: string | null; areas: Area[]; category: Category };
 export type FindFloor = { level: LevelId; name: string; entries: FindEntry[] };
 export type FindGroup = { category: Category; count: number; floors: FindFloor[] };
 
@@ -33,7 +33,7 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       level: id,
       name: levelName.get(id) ?? id,
       entries: [...perLevel.get(id)!.entries()]
-        .map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, areas: group, category }))
+        .map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category }))
         .sort(byName),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];

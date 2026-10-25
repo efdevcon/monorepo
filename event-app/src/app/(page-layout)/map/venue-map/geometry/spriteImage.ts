@@ -19,10 +19,26 @@ export const ALPHA_HIT = 40;
 
 const cache = new Map<string, Promise<SpriteImage>>();
 
+/**
+ * An SVG without width/height has no intrinsic size for <img> in some
+ * browsers (Safari draws it 0×0 or letterboxed): fetch it and give the root
+ * the viewBox's size, served as a blob URL. Other files load as they are.
+ */
+async function sized(url: string): Promise<string> {
+  if (!/\.svg(\?|$)/.test(url)) return url;
+  const text = await (await fetch(url)).text();
+  const root = /<svg\b[^>]*>/.exec(text)?.[0];
+  if (!root || (/\swidth=/.test(root) && /\sheight=/.test(root))) return url;
+  const vb = /viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([-\d.]+)[\s,]+([-\d.]+)\s*"/.exec(root);
+  if (!vb) return url;
+  const fixed = text.replace(root, root.replace(/<svg\b/, `<svg width="${vb[1]}" height="${vb[2]}"`));
+  return URL.createObjectURL(new Blob([fixed], { type: "image/svg+xml" }));
+}
+
 function load(url: string): Promise<SpriteImage> {
   let p = cache.get(url);
   if (!p) {
-    p = new Promise<SpriteImage>((resolve, reject) => {
+    p = sized(url).then((src) => new Promise<SpriteImage>((resolve, reject) => {
       const img = new Image();
       img.decoding = "async";
       img.onload = () => {
@@ -41,8 +57,8 @@ function load(url: string): Promise<SpriteImage> {
         resolve({ texture, aspect, alphaAt: (u, v) => data[(Math.min(h - 1, Math.max(0, Math.floor((1 - v) * h))) * w + Math.min(w - 1, Math.max(0, Math.floor(u * w)))) * 4 + 3] });
       };
       img.onerror = () => reject(new Error(`sprite image failed: ${url}`));
-      img.src = url;
-    });
+      img.src = src;
+    }));
     cache.set(url, p);
   }
   return p;

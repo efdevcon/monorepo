@@ -65,8 +65,10 @@ export function AreaCard({ area, group, onClose, anchorRef }: { area: Area | nul
         <CloseButton onClick={onClose} tabIndex={open ? 0 : -1} className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/2 bg-white shadow-[0_2px_8px_rgba(22,11,43,0.18)]" />
         <div className="flex items-start gap-3 pr-3">
           {inlineIcon && (
-            // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/
-            <img src={inlineIcon} alt="" className="size-12 shrink-0 object-contain" />
+            <span className="flex size-12 shrink-0 items-center justify-center rounded-[6px]" style={shown?.iconBackdrop ? { backgroundColor: shown.iconBackdrop, padding: 6 } : undefined}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- static file under public/ */}
+              <img src={inlineIcon} alt="" className="size-full object-contain" />
+            </span>
           )}
           <div className="flex min-w-0 flex-1 flex-col">
             <div className="flex items-center justify-between gap-2">

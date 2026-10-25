@@ -84,11 +84,15 @@ footprint-derived size is wrong: escalators and elevators 6.5), optional `icons`
 east elevator uses `elevator-left`), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
-as the card's booth line), optional
+as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
+booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
+a chip in the booth's fill in the card and lists; shared booths show both names, Bitget Wallet at
+S4 has no logo yet), optional
 `icon` (sprite PNG) and `roomIds`. `ROOMS` maps Devcon 8 Pretalx room ids to footprints
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporter
 booths, Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the
-only lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend.
+only lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend
+(chip labels "Community" and "Supporters" since 2026-10-25).
 `LEVELS` lists the floors bottom-up with their source file; `LEVEL_ALIASES` is how Search parses
 "level 3" / "l3". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
 
@@ -144,8 +148,9 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   Front faces + polygonOffset, as in the prototype. Sprites (`geometry/spriteImage.ts`) rasterise
   their PNG or SVG once onto a 256 px canvas (texture + per-pixel alpha for the hit test, cached per
   URL; the hub SVGs carry width/height so they rasterise cleanly) and size from the footprint's
-  shorter side (×0.9, clamped 2.4–6.5 m) unless the catalogue sets `iconSize`; they bob while
-  selected. Hidden areas (escalators) have no mesh, only the sprite takes the pointer.
+  shorter side (×0.9, clamped 2.4–6.5 m) unless the catalogue sets `iconSize`, and a wide lockup
+  is capped at 1.15× the footprint's longer side; an SVG without width/height is fetched and given
+  its viewBox size first (Safari draws it 0×0 otherwise). They bob while selected. Hidden areas (escalators) have no mesh, only the sprite takes the pointer.
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
   floor slider bottom-right (multi-floor only), the top strip (controls legend while stacked or
   when the floor has no legend; otherwise one swatch chip per legend category), `AreaCard`

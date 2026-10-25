@@ -31,7 +31,14 @@ export type AreaSpec = {
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
   hubs?: Readonly<Record<number, string>>;
+  /** Per instance number: who is at that booth (supporters). The logo becomes the sprite, the name the card's; the plan's booth name stays as the booth line. */
+  tenants?: Readonly<Record<number, Tenant>>;
 };
+
+/** A supporter at a booth. `logo` is a path under public/ (white lockups today, on the booth's fill colour in the card). */
+export type Tenant = { name: string; logo: string };
+
+const supporter = (name: string, file: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg` });
 
 /**
  * Every tappable layer of the plan SVGs, keyed by area id: the layer name
@@ -74,9 +81,51 @@ export const AREAS = {
     },
   },
   // Supporter booths
-  "flagship-supporter": { name: "Flagship Supporter F#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
-  "core-supporter": { name: "Core Supporter C#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
-  starter: { name: "Starter Supporter S#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
+  // Booth assignments from the JWCC floor plan (Scott, 2026-10-25). Logos: the website's white
+  // supporter set, as a test (colour versions may follow). Shared booths show the first name.
+  "flagship-supporter": {
+    name: "Flagship Supporter F#",
+    description: "Supporter booth.",
+    category: "supporters",
+    heightClass: "kiosk",
+    tenants: { 1: supporter("Fluid", "fluid"), 2: supporter("Base", "base") },
+  },
+  "core-supporter": {
+    name: "Core Supporter C#",
+    description: "Supporter booth.",
+    category: "supporters",
+    heightClass: "kiosk",
+    tenants: { 1: supporter("Gnosis", "gnosis"), 2: supporter("Kleros", "kleros"), 3: supporter("Golem", "golem"), 4: supporter("OpenZeppelin", "openzeppelin") },
+  },
+  starter: {
+    name: "Starter Supporter S#",
+    description: "Supporter booth.",
+    category: "supporters",
+    heightClass: "kiosk",
+    tenants: {
+      1: supporter("ENS / Virtuals", "ens"),
+      2: supporter("Ordocode", "ordocode"),
+      3: supporter("Nethermind", "nethermind"),
+      // 4: Bitget Wallet (no logo in the set yet)
+      5: supporter("World / ZKP2P", "world"),
+      6: supporter("Trail of Bits / Fair Food Data", "trail-of-bits"),
+      7: supporter("Swarm", "swarm"),
+      8: supporter("LFDT", "lfdt"),
+      9: supporter("EEZ", "eez"),
+      10: supporter("Crossbar", "crossbar"),
+      11: supporter("UNICEF", "unicef"),
+      12: supporter("Kohaku / Money League", "kohaku"),
+      13: supporter("EAG", "eag"),
+      14: supporter("EIPsInsight / DAO Fund", "eipsinsight"),
+      15: supporter("growthepie", "growthepie"),
+      16: supporter("GCC Commons / ZisK", "gcc"),
+      17: supporter("ETH Labs", "eth-labs"),
+      18: supporter("Railgun", "railgun"),
+      19: supporter("Walletbeat", "walletbeat"),
+      20: supporter("Nimbus", "nimbus"),
+      21: supporter("GrapheneOS / Gainforest", "grapheneos"),
+    },
+  },
   // Food & drink
   "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
   // Washrooms

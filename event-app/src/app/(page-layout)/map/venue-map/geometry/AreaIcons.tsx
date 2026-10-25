@@ -14,6 +14,8 @@ const ICON_MIN_M = 2.4;
 const ICON_MAX_M = 6.5;
 const ICON_SCALE = 0.9;
 const ICON_LIFT = 0.2;
+const ICON_WIDTH_CAP = 1.15;
+const ICON_MIN_W_M = 1.2;
 /** Selected icon: a gentle bob so the highlighted footprint reads at a glance. */
 const BOB_AMPLITUDE = 0.6;
 const BOB_PERIOD_S = 1.8;
@@ -54,8 +56,14 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     [image]
   );
   const [minX, minZ, maxX, maxZ] = area.shape.bbox;
-  const h = area.iconSize ?? Math.min(ICON_MAX_M, Math.max(ICON_MIN_M, Math.min(maxX - minX, maxZ - minZ) * ICON_SCALE));
-  const w = h * (image?.aspect ?? 1);
+  let h = area.iconSize ?? Math.min(ICON_MAX_M, Math.max(ICON_MIN_M, Math.min(maxX - minX, maxZ - minZ) * ICON_SCALE));
+  let w = h * (image?.aspect ?? 1);
+  // A wide lockup may not overhang its booth by much: cap the width at the footprint's longer side (plus a little), never thinner than ICON_MIN_W_M.
+  const maxW = Math.max(maxX - minX, maxZ - minZ) * ICON_WIDTH_CAP;
+  if (!area.iconSize && w > maxW) {
+    h = Math.max(ICON_MIN_W_M, h * (maxW / w));
+    w = h * (image?.aspect ?? 1);
+  }
   const [cx, cz] = area.shape.anchor;
   const y = (area.shape.base ?? 0) + area.shape.height + ICON_LIFT + h / 2;
 

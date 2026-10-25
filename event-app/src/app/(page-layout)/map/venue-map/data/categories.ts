@@ -8,8 +8,8 @@ import { Coffee, Gamepad2, Laptop, MapPin, Mic, Store, Ticket, Toilet, Users, ty
  */
 export const CATEGORIES = [
   { id: "stages", label: "Stages", Icon: Mic, legend: "Stages" },
-  { id: "hubs", label: "Community hubs", Icon: Users, legend: "Community hubs" },
-  { id: "supporters", label: "Supporter booths", Icon: Store, legend: "Supporter booths" },
+  { id: "hubs", label: "Community hubs", Icon: Users, legend: "Community" },
+  { id: "supporters", label: "Supporter booths", Icon: Store, legend: "Supporters" },
   { id: "food", label: "Food & drink", Icon: Coffee, legend: null },
   { id: "toilets", label: "Washrooms", Icon: Toilet, legend: null },
   { id: "cowork", label: "Cowork & discussion", Icon: Laptop, legend: "Co-work" },

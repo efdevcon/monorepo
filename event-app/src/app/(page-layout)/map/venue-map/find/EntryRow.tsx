@@ -14,10 +14,11 @@ export function EntryRow({ entry, floorTag, onPick }: { entry: FindEntry; floorT
       onClick={() => onPick(entry)}
       className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
     >
-      <span className="flex size-7 shrink-0 items-center justify-center">
+      {/* A white logo sits on a chip in its booth's colour. */}
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-[4px]" style={entry.iconBackdrop ? { backgroundColor: entry.iconBackdrop, padding: 3 } : undefined}>
         {entry.iconUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
-          <img src={entry.iconUrl} alt="" className="size-7 object-contain" />
+          <img src={entry.iconUrl} alt="" className="size-full object-contain" />
         ) : (
           <Icon className="size-4 text-dc-muted" aria-hidden />
         )}
