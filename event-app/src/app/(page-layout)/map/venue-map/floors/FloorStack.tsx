@@ -132,7 +132,7 @@ export function FloorStack({ floor, gap, showIcons, reducedMotion, selected, gro
       const g = groupRefs.current.get(selectedArea.level);
       if (g) {
         const [cx, cz] = selectedArea.shape.anchor;
-        scratch.set(cx, g.position.y + selectedArea.shape.height + CARD_ANCHOR_LIFT_M, cz).project(camera);
+        scratch.set(cx, g.position.y + (selectedArea.shape.base ?? 0) + selectedArea.shape.height + CARD_ANCHOR_LIFT_M, cz).project(camera);
         const x = ((scratch.x + 1) / 2) * size.width;
         const y = ((1 - scratch.y) / 2) * size.height;
         const { w, h } = cardSize.current;

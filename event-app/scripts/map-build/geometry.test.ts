@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { area, cutPolyline, pointInRing, polylabel, ringsToPolygons, signedArea, simplify, strokeToPolygons, type Ring } from "./geometry";
+import { area, bbox, cutPolyline, pointInRing, polylabel, ringsToPolygons, signedArea, simplify, strokeToPolygons, widen, type Ring } from "./geometry";
 
 const square = (x: number, y: number, s: number): Ring => [
   [x, y],
@@ -57,4 +57,13 @@ test("cut: door boxes split a wall into runs, closed loops open up", () => {
   assert.deepEqual(loop[0].points[0], [6, 0]);
   assert.deepEqual(loop[0].points[loop[0].points.length - 1], [4, 0]);
   assert.deepEqual(cutPolyline([[0, 0], [10, 0]], false, [[20, -1, 30, 1]]), [{ points: [[0, 0], [10, 0]], closed: false }]);
+});
+
+test("widen: a thin strip grows along its short axis about its centre, wide shapes are untouched", () => {
+  const strip: Ring = [[10, 0], [11, 0], [11, 20], [10, 20]];
+  const [w] = widen([strip], 4);
+  assert.deepEqual(bbox([w]), [8.5, 0, 12.5, 20]);
+  assert.deepEqual(widen([square(0, 0, 10)], 4), [square(0, 0, 10)]);
+  const flat: Ring = [[0, 5], [20, 5], [20, 6], [0, 6]];
+  assert.deepEqual(bbox(widen([flat], 3)), [0, 4, 20, 7]);
 });

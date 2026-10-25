@@ -29,8 +29,9 @@ function extrude(shape: MapShape): ExtrudeGeometry {
   });
   const g = new ExtrudeGeometry(shapes, { depth: shape.height, bevelEnabled: false, curveSegments: 1 });
   g.rotateX(-Math.PI / 2);
-  // The slab hangs below the floor plane; everything else stands on it.
+  // The slab hangs below the floor plane; everything else stands on it, or on the area it is drawn inside (`base`).
   if (shape.kind === "slab") g.translate(0, -shape.height, 0);
+  else if (shape.base) g.translate(0, shape.base, 0);
   return g;
 }
 

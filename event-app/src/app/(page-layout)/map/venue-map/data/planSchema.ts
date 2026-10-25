@@ -30,6 +30,8 @@ export const mapShapeSchema = z.object({
   bbox: z.tuple([z.number(), z.number(), z.number(), z.number()]),
   /** Extrusion height in metres; the slab extrudes downwards by it. */
   height: z.number(),
+  /** Metres above the floor the extrusion starts: a zone drawn inside another zone stands on it (absent = 0). */
+  base: z.number().optional(),
   fill: z.string(),
   /** Edge lines drawn on the extrusion. */
   outline: z.boolean(),

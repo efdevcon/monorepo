@@ -79,7 +79,7 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
   const h = Math.min(ICON_MAX_M, Math.max(ICON_MIN_M, Math.min(maxX - minX, maxZ - minZ) * ICON_SCALE));
   const w = h * aspect;
   const [cx, cz] = area.shape.anchor;
-  const y = area.shape.height + ICON_LIFT + h / 2;
+  const y = (area.shape.base ?? 0) + area.shape.height + ICON_LIFT + h / 2;
 
   useEffect(() => {
     const s = ref.current;

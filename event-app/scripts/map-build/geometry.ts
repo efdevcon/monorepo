@@ -326,3 +326,22 @@ function clipOutside([a, b]: [Point, Point], box: [number, number, number, numbe
   if (t1 < 1 - 1e-9) out.push([at(t1), b]);
   return out;
 }
+
+/**
+ * Stretches rings whose bounding box is narrower than `minWidth` along their
+ * short axis, about the box centre, until they are that wide. For the stands
+ * the plan draws as thin strips; the long axis is untouched.
+ */
+export function widen(rings: Ring[], minWidth: number): Ring[] {
+  const [minX, minY, maxX, maxY] = bbox(rings);
+  const w = maxX - minX;
+  const h = maxY - minY;
+  const short = Math.min(w, h);
+  if (short <= 0 || short >= minWidth) return rings;
+  const f = minWidth / short;
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  const sx = w <= h ? f : 1;
+  const sy = w <= h ? 1 : f;
+  return rings.map((ring) => ring.map(([x, y]) => [cx + (x - cx) * sx, cy + (y - cy) * sy] as Point));
+}

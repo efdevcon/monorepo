@@ -23,7 +23,7 @@ non-alphanumerics → one dash):
 | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Background`    | `Background`        | Exactly one shape: the **slab**, extruded 4 m downwards. Its fill is the slab colour.                                                                                                                                                                                                                                          |
 | `Colour_Box`    | `Colour_Box`        | One filled shape per **tappable area**, named `<area-id>[-<n>]` (`lotus-stage-2`, `tea-&-coffee-7`, `washroom-9`). `<area-id>` must be a key of `data/areas.ts`; `-<n>` is the instance number. The fill is the footprint's colour.                                                                                            |
-| `Outline`       | `Outline`           | Direct children named `wall`, `wall_2`, … are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). Everything else in the group is flat **decoration** (exit signs, stairs, escalators, arrows, pillars) at 0.15 m. A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. |
+| `Outline`       | `Outline`           | Direct children named `wall`, `wall_2`, … are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). Everything else in the group is flat **decoration** (exit signs, stairs, escalators, arrows) at 0.15 m. A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. Stroke-only closed boxes under 2.5 m (the column markers) are dropped. |
 | `Text & Icon`   | `Text__x26__Icon`   | **Skipped** (the labels and icons are being redrawn; Scott, 2026-10-25). The build reports how many paths it ignored.                                                                                                                                                                                                          |
 | `meta` (opt.)   | `meta`              | A straight line named `scale-<metres>` gives metres per plan px. Without it `FALLBACK_METRES_PER_PX` (0.05 → Level 3 is ~245 × 114 m).                                                                                                                                                                                         |
 
@@ -61,7 +61,9 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 - `plan.generated.json` — `MapBundle` (`planSchema.ts`, zod-validated on write and on import):
   `{ version: 2, units, bounds, levels: [{ id, label, name, bounds, shapes }] }`, every shape
   `{ key: "L3/lotus-stage-2", id, level, kind: slab|wall|area|deco, areaId?, instance?, polygons:
-  [{ outer, holes }], anchor, bbox, height, fill, outline }` in metres (plan x → X, plan y → Z).
+  [{ outer, holes }], anchor, bbox, height, base?, fill, outline }` in metres (plan x → X, plan y
+  → Z). `base` lifts an area drawn inside another one onto the container's top (the tea & coffee
+  stand in the Co-work Area), so two zones never share a cap plane.
   One shape per line so diffs show which footprint moved; ~120 KB (36 KB gz), inside the JS chunk,
   no runtime fetch. No prose: names, categories and icons come from the catalogue at runtime.
 - `rooms.generated.json` — `{ pretalxRoomId: ["L3/lotus-stage-2", …] }` from `ROOMS` in
@@ -73,10 +75,11 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 
 `AREAS` is the single source of truth per area id: display `name` (`#` = the instance number,
 "Hub #" → "Hub 7"; without it numbered copies share the name and collapse in Find, "Washroom ×2"),
-`description` (placeholders today), `category`, `heightClass` (`stage` 8 m, `room` 6 m for the
-washrooms, `kiosk` 3.5 m for supporter booths and the swag station, `zone` 0.3 m flat mat for
-the co-work areas, hubs, tea & coffee, storage and elevators; taller than life on purpose, the
-prototype's proportions), optional
+`description` (placeholders today), `category`, `heightClass` (`stage` 5.5 m, `room` 4.5 m for
+the washrooms, `kiosk` 2.5 m for supporter booths and the swag station, `zone` 0.3 m flat mat
+for the co-work areas, hubs, tea & coffee, storage and elevators; walls are 3 m), optional
+`minWidth` (metres; footprints the plan draws as thin strips are stretched along their short axis
+about their centre, the two tea & coffee bars), optional
 `icon` (sprite PNG) and `roomIds`. `ROOMS` maps Devcon 8 Pretalx room ids to footprints
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporter
 booths, Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the
@@ -162,6 +165,5 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   to it). Phones: the 2:1 floor fits by width, so the landing view is small; a closer phone landing
   (or a portrait start azimuth) is a one-constant change.
 - `main-stage-lotus` → all three Lotus halls is an assumption about how the hall is used.
-- Pillars (the small stroked squares) are flat decoration; columns would be easy if wanted.
 - Remaining floors: add to `LEVELS` and export; the stack, slider, labels and transitions are
   built and tested but have only run with one floor.

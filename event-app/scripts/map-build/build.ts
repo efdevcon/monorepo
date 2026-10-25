@@ -10,8 +10,8 @@ import path from "node:path";
 import { AREAS, isAreaId, ROOMS, type AreaSpec } from "../../src/app/(page-layout)/map/venue-map/data/areas";
 import { LEVELS } from "../../src/app/(page-layout)/map/venue-map/data/levels";
 import { mapBundleSchema, type GroundBounds, type MapBundle, type MapLevel, type MapShape } from "../../src/app/(page-layout)/map/venue-map/data/planSchema";
-import { DOOR_CUT_MARGIN_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HEIGHTS, ICONS_DIR, ROOT, SIMPLIFY_PX } from "./config";
-import { area, bbox, cutPolyline, polylabel, ringsToPolygons, simplify, strokeToPolygons, type Polygon, type Ring } from "./geometry";
+import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HEIGHTS, ICONS_DIR, NESTED_LIFT, ROOT, SIMPLIFY_PX } from "./config";
+import { area, bbox, cutPolyline, pointInRing, polylabel, ringsToPolygons, simplify, strokeToPolygons, widen, type Polygon, type Ring } from "./geometry";
 import { isDefaultName, isTextIconGroup, LAYER_GROUPS, normaliseId, parseName } from "./names";
 import type { Report } from "./report";
 import { walkSvg, type Drawn } from "./svg";
@@ -21,9 +21,10 @@ export type LevelSpec = (typeof LEVELS)[number];
 
 const hex = (c: string) => (c === "white" ? "#ffffff" : c === "black" ? "#000000" : c.toLowerCase());
 
-/** Closed subpaths of a drawn element as polygons (even-odd nesting), simplified. */
-function filledPolygons(d: Drawn): Polygon[] {
-  const rings: Ring[] = d.subpaths.filter((s) => s.closed || s.points.length >= 3).map((s) => simplify(s.points, SIMPLIFY_PX));
+/** Closed subpaths of a drawn element as polygons (even-odd nesting), simplified; `minWidthPx` widens thin strips. */
+function filledPolygons(d: Drawn, minWidthPx = 0): Polygon[] {
+  let rings: Ring[] = d.subpaths.filter((s) => s.closed || s.points.length >= 3).map((s) => simplify(s.points, SIMPLIFY_PX));
+  if (minWidthPx > 0) rings = widen(rings, minWidthPx);
   return ringsToPolygons(rings);
 }
 
@@ -114,6 +115,13 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
   const isWall = (d: Drawn) => d.groups.length === 2 && d.id !== null && /^wall(-\d+)?$/.test(normaliseId(d.id));
   const isDoorPatch = (d: Drawn) => !isWall(d) && d.paint.fill !== null && hex(d.paint.fill) === hex(slabFill);
   const doorCuts = outline.filter(isDoorPatch).map((d) => bbox(d.subpaths.map((s) => s.points)));
+  // Column markers: small stroke-only closed boxes on the floor. Noise in 3D, so they are dropped.
+  const isColumnMarker = (d: Drawn) => {
+    if (isWall(d) || d.paint.fill || !d.paint.stroke || !d.subpaths.every((s) => s.closed)) return false;
+    const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
+    return Math.max(x1 - x0, y1 - y0) * scale < COLUMN_MARKER_MAX_M;
+  };
+  let columns = 0;
   let wallN = 0;
   let decoN = 0;
   for (const d of outline) {
@@ -127,11 +135,15 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
       continue;
     }
     if (isDoorPatch(d)) continue;
+    if (isColumnMarker(d)) {
+      columns++;
+      continue;
+    }
     const groupName = d.groups[2] !== undefined && !isDefaultName(d.groups[2]) ? normaliseId(d.groups[2]) : "deco";
     if (d.paint.fill) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", filledPolygons(d), HEIGHTS.deco, d.paint.fill, false, scale), d.id);
     if (d.paint.stroke) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", strokedPolygons(d, []), HEIGHTS.deco, d.paint.stroke, false, scale), d.id);
   }
-  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls`);
+  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers dropped`);
 
   // Colour boxes → areas, joined to the catalogue.
   const usedAreaIds = new Set<string>();
@@ -152,9 +164,24 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
       continue;
     }
     usedAreaIds.add(areaId);
-    addShape(toShape(spec.id, id, "area", filledPolygons(d), HEIGHTS[entry.heightClass], d.paint.fill, true, scale, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
+    const before = bbox(d.subpaths.map((s) => s.points));
+    const polygons = filledPolygons(d, entry.minWidth ? entry.minWidth / scale : 0);
+    const after = bbox(polygons.flatMap((p) => [p.outer, ...p.holes]));
+    if (entry.minWidth && (after[2] - after[0] - (before[2] - before[0]) > 1e-6 || after[3] - after[1] - (before[3] - before[1]) > 1e-6)) report.info(file, d.id, `widened to ${entry.minWidth} m`);
+    addShape(toShape(spec.id, id, "area", polygons, HEIGHTS[entry.heightClass], d.paint.fill, true, scale, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
   }
   for (const areaId of Object.keys(AREAS)) if (!usedAreaIds.has(areaId)) report.warn(file, areaId, "catalogue entry unused on this floor");
+
+  // An area drawn inside another (the tea & coffee stand in the Co-work Area) stands on it: coplanar caps z-fight otherwise.
+  const areaShapes = shapes.filter((s) => s.kind === "area");
+  for (const inner of areaShapes) {
+    const container = areaShapes
+      .filter((o) => o !== inner && area(o.polygons[0].outer) > area(inner.polygons[0].outer) && o.polygons.some((p) => pointInRing(inner.anchor, p.outer)))
+      .sort((a, b) => area(a.polygons[0].outer) - area(b.polygons[0].outer))[0];
+    if (!container) continue;
+    inner.base = round((container.base ?? 0) + container.height + NESTED_LIFT);
+    report.info(file, inner.id, `stands on ${container.id} (base ${inner.base} m)`);
+  }
 
   const slab = shapes.find((s) => s.kind === "slab");
   const b = slab ? slab.bbox : bbox(shapes.flatMap((s) => s.polygons.flatMap((p) => [p.outer, ...p.holes])));

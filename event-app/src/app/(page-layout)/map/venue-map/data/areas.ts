@@ -21,6 +21,8 @@ export type AreaSpec = {
   heightClass: HeightClass;
   /** Theme sprite (public/maps/devcon-8/icons/<name>.png) standing on the footprint. */
   icon?: IconName;
+  /** Footprints narrower than this (metres) are widened about their centre at build time (the plan draws some stands as thin strips). */
+  minWidth?: number;
   /** Schedule room ids (Pretalx) whose sessions happen here: drives "Show on Map" and the live-session card. */
   roomIds?: readonly string[];
 };
@@ -46,7 +48,7 @@ export const AREAS = {
   "core-supporter": { name: "Core Supporter C#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   starter: { name: "Starter Supporter S#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   // Food & drink
-  "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee" },
+  "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
   // Washrooms
   washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
   // Cowork & discussion

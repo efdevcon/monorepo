@@ -17,14 +17,14 @@ export const ICON_NAMES_PATH = path.join(DATA_DIR, "icons.generated.ts");
 export const FALLBACK_METRES_PER_PX = 0.05;
 
 /**
- * Extrusion heights in metres. Taller than life on purpose: at the fitted
- * zoom a 3 m booth is a sliver, and the prototype's proportions (a stage ≈
- * 3.4 % of the floor's width) read well. Re-tune with the camera.
+ * Extrusion heights in metres. A little taller than life so the blocks read
+ * at the fitted zoom, but no longer towering over the 3 m walls (Scott,
+ * 2026-10-25: stage 8 / room 6 / kiosk 3.5 felt unusually tall).
  */
 export const HEIGHTS = {
-  stage: 8,
-  room: 6,
-  kiosk: 3.5,
+  stage: 5.5,
+  room: 4.5,
+  kiosk: 2.5,
   zone: 0.3,
   wall: 3,
   deco: 0.15,
@@ -37,3 +37,7 @@ export const FLATNESS_PX = 0.25;
 export const SIMPLIFY_PX = 0.2;
 /** Door openings are painted over the walls in the slab colour; the walls are cut back by this margin (plan px) around each. */
 export const DOOR_CUT_MARGIN_PX = 0.5;
+/** An area drawn inside another one starts this far above the container's top (metres), so the two caps never share a plane. */
+export const NESTED_LIFT = 0.05;
+/** Stroke-only closed boxes in the Outline layer smaller than this (metres) are the plan's column markers: not drawn (Scott, 2026-10-25). */
+export const COLUMN_MARKER_MAX_M = 2.5;
