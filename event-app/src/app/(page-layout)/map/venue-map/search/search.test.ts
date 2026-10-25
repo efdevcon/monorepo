@@ -53,4 +53,9 @@ test("floor legend: one swatch chip per category that asks for one", () => {
   const legend = buildFloorLegend(L.id);
   assert.ok(legend.some((e) => e.label === "Stages" && e.swatch === "#0088ee"));
   assert.ok(legend.every((e) => e.areas.length > 0 && e.swatch));
+  const community = legend.find((e) => e.label === "Community")!;
+  assert.ok(community.areas.some((a) => a.areaId === "blue-discussion-corner"), "the yellow discussion corners sit under Community");
+  assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
+  assert.ok(legend.find((e) => e.label === "Work & Rest")!.areas.some((a) => a.areaId === "decompression-zone"));
+  assert.ok(!legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "decompression-zone"));
 });

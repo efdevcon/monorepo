@@ -23,6 +23,8 @@ export type Area = {
   name: string;
   description: string;
   category: Category;
+  /** The legend chip's category (areas.ts `legend`, else the category). */
+  legendCategory: Category;
   icon: IconName | null;
   iconUrl: string | null;
   heightClass: AreaSpec["heightClass"];
@@ -66,6 +68,7 @@ function resolveShape(shape: MapShape): Area | null {
     name: hub ? hub.name : tenant ? tenant.name : planName,
     description: hub ? hub.description : tenant ? "" : spec.description,
     category: categoryById(spec.category),
+    legendCategory: categoryById(spec.legend ?? spec.category),
     icon,
     iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,

@@ -18,6 +18,8 @@ export type AreaSpec = {
   name: string;
   description: string;
   category: CategoryId;
+  /** The legend chip the footprint belongs to when it is not its category's (the yellow discussion corners sit under Community, with the hubs). */
+  legend?: CategoryId;
   heightClass: HeightClass;
   /** Theme sprite (public/maps/devcon-8/icons/<name>.png) standing on the footprint. */
   icon?: IconName;
@@ -135,17 +137,17 @@ export const AREAS = {
   // Cowork & discussion
   "co-work-area": { name: "Co-work Area", description: "Desks, power and wifi.", category: "cowork", heightClass: "zone", icon: "cowork" },
   "quiet-co-work": { name: "Quiet Co-work", description: "Heads-down desks, keep it quiet.", category: "cowork", heightClass: "zone", icon: "cowork" },
-  "blue-discussion-corner": { name: "Blue Discussion Corner", description: "Open discussions, drop in.", category: "cowork", heightClass: "zone", icon: "discussion-corner" },
-  "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", heightClass: "zone", icon: "discussion-corner" },
+  "blue-discussion-corner": { name: "Blue Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner" },
+  "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner" },
   // Check-in & swag
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", heightClass: "kiosk", icon: "swag-station" },
   // Fun & rest
-  "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "fun", heightClass: "zone", icon: "decompression" },
+  "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
   "game-zone": { name: "Game Zone", description: "Games between sessions.", category: "fun", heightClass: "zone", icon: "playground" },
   "art-gallery": { name: "Art Gallery", description: "Art from the community.", category: "fun", heightClass: "zone", icon: "art-gallery" },
   "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
-  "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", heightClass: "zone", icon: "open-hardware-zone" },
+  "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", legend: "hubs", heightClass: "zone", icon: "open-hardware-zone" },
   // Other
   elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 8: "elevator-left" }, iconSize: 6.5 },
   // Named Outline groups: the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).

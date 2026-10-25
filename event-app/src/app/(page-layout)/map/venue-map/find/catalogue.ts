@@ -60,7 +60,8 @@ export type LegendEntry = { key: string; label: string; iconUrl: string | null; 
 /**
  * The open floor's legend: one swatch chip per category that asks for one
  * (categories.ts), in the fill most of its footprints use, listing every
- * footprint of that category on the floor. Floors with nothing to explain
+ * footprint whose legend category it is (areas.ts `legend` moves a footprint
+ * to the chip of its colour: the yellow discussion corners sit with the hubs). Floors with nothing to explain
  * get an empty list.
  */
 export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_LIST): LegendEntry[] {
@@ -68,7 +69,7 @@ export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_L
   const entries: LegendEntry[] = [];
   for (const category of CATEGORIES) {
     if (!category.legend) continue;
-    const members = onFloor.filter((a) => a.category.id === category.id);
+    const members = onFloor.filter((a) => a.legendCategory.id === category.id);
     if (!members.length) continue;
     const fills = new Map<string, number>();
     for (const a of members) fills.set(a.shape.fill, (fills.get(a.shape.fill) ?? 0) + 1);
