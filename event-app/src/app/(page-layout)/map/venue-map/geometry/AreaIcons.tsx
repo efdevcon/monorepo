@@ -16,9 +16,9 @@ const ICON_SCALE = 0.9;
 const ICON_LIFT = 0.2;
 const ICON_WIDTH_CAP = 1.15;
 const ICON_MIN_W_M = 1.2;
-/** Selected icon: a gentle bob so the highlighted footprint reads at a glance. */
-const BOB_AMPLITUDE = 0.6;
-const BOB_PERIOD_S = 1.8;
+/** Selected icon: a gentle bob so the highlighted footprint reads at a glance. Upwards from the rest pose only: the rest pose sits ICON_LIFT above the footprint, so a dip would sink the logo into its box. The rise is the old ±0.6 swing and a bit more, over a slightly shorter period, so it reads as lively, not slow (Scott, 2026-10-25). */
+const BOB_RISE = 1.0;
+const BOB_PERIOD_S = 1.6;
 const DIM_OPACITY = 0.35;
 
 type AreaIconsProps = {
@@ -75,7 +75,7 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     else s.layers.disable(HIT_LAYER);
   }, [area.key, interactive, image]);
 
-  // Bob while selected: the sine starts at rest so selecting doesn't jump the icon; on-demand frames.
+  // Bob while selected: a raised cosine from the rest pose (never below it) so selecting doesn't jump the icon and the sprite never passes through the footprint; on-demand frames.
   const { invalidate } = useThree();
   const bobStart = useRef<number | null>(null);
   useEffect(() => {
@@ -88,7 +88,7 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     const s = ref.current;
     if (!s || bobStart.current === null) return;
     const t = (performance.now() - bobStart.current) / 1000;
-    s.position.y = y + BOB_AMPLITUDE * Math.sin((t / BOB_PERIOD_S) * Math.PI * 2);
+    s.position.y = y + (BOB_RISE / 2) * (1 - Math.cos((t / BOB_PERIOD_S) * Math.PI * 2));
     invalidate();
   });
 
