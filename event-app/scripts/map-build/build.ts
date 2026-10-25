@@ -128,6 +128,7 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
     return !pointInRing([(x0 + x1) / 2, (y0 + y1) / 2], slabRing);
   };
+  const markerGroups = new Map<string, Drawn[]>();
   let columns = 0;
   let frames = 0;
   let wallN = 0;
@@ -143,6 +144,13 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
       continue;
     }
     if (isDoorPatch(d)) continue;
+    // A named Outline subgroup (escalator, escalator_2) is a place drawn as a diagram: not drawn, replaced by its sprite below.
+    if (d.groups[2] !== undefined && !isDefaultName(d.groups[2])) {
+      const list = markerGroups.get(d.groups[2]) ?? [];
+      list.push(d);
+      markerGroups.set(d.groups[2], list);
+      continue;
+    }
     if (isColumnMarker(d)) {
       columns++;
       continue;
@@ -157,8 +165,23 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
   }
   report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers and ${frames} label frames dropped`);
 
-  // Colour boxes → areas, joined to the catalogue.
+  // Named Outline groups → hidden areas over their bounding box: the sprite stands there, nothing is drawn.
   const usedAreaIds = new Set<string>();
+  for (const [groupName, items] of markerGroups) {
+    const { id, areaId, instance } = parseName(groupName);
+    if (!isAreaId(areaId)) {
+      report.error(file, groupName, `named Outline group has no catalogue entry "${areaId}" (data/areas.ts)`);
+      continue;
+    }
+    const entry: AreaSpec = AREAS[areaId];
+    const [x0, y0, x1, y1] = bbox(items.flatMap((d) => d.subpaths.map((s) => s.points)));
+    const rect: Polygon = { outer: [[x0, y0], [x1, y0], [x1, y1], [x0, y1]], holes: [] };
+    usedAreaIds.add(areaId);
+    addShape(toShape(spec.id, id, "area", [rect], HEIGHTS[entry.heightClass], slabFill, false, scale, { areaId, hidden: true, ...(instance === null ? {} : { instance }) }), groupName);
+    report.info(file, groupName, `drawn as its sprite (${items.length} paths hidden)`);
+  }
+
+  // Colour boxes → areas, joined to the catalogue.
   for (const d of byGroup(LAYER_GROUPS.colourBox)) {
     if (isDefaultName(d.id)) {
       report.error(file, d.id, "unnamed colour box (give the layer its area id in Figma)");

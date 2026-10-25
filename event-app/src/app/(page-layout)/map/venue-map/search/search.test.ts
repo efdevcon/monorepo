@@ -30,7 +30,11 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.flatMap((e) => e.areas)));
   assert.equal(listed.length, AREA_LIST.length);
   const hub7 = AREA_LIST.find((a) => a.areaId === "community-hub" && a.instance === 7);
-  assert.equal(hub7?.name, "Hub 7");
+  assert.equal(hub7?.name, "Privacy Hub", "a booth with a hub takes the hub's name");
+  assert.equal(hub7?.boothName, "Hub 7");
+  assert.ok(hub7?.iconUrl?.includes("/community-hubs/logos/privacy.svg"), "the hub's mark is the sprite");
+  assert.ok(hub7?.roomIds.includes("community-hub-privacy"));
+  assert.ok(AREA_LIST.some((a) => a.areaId === "escalator" && a.shape.hidden), "escalators are sprite-only places");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");
   const hubs = AREA_LIST.filter((a) => a.areaId === "community-hub");
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));

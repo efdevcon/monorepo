@@ -1,3 +1,4 @@
+import { communityHubLogo, communityHubLockup, findCommunityHub, type CommunityHub } from "@/data/communityHubs";
 import { AREAS, type AreaId, type AreaSpec } from "./areas";
 import { categoryById, type Category } from "./categories";
 import { iconUrl, type IconName } from "./icons.generated";
@@ -25,9 +26,16 @@ export type Area = {
   icon: IconName | null;
   iconUrl: string | null;
   heightClass: AreaSpec["heightClass"];
+  /** Sprite height override in metres (areas.ts). */
+  iconSize: number | null;
   shape: MapShape;
-  /** Schedule rooms whose sessions happen here (rooms.generated.json). */
+  /** Schedule rooms whose sessions happen here (rooms.generated.json, plus a hub's own room). */
   roomIds: readonly string[];
+  /** The Community Hub at this booth, when the catalogue assigns one: its mark is the sprite, its lockup the card's. */
+  hub: CommunityHub | null;
+  lockupUrl: string | null;
+  /** The plan's own name for a hub booth ("Hub 7"), kept beside the hub's name. */
+  boothName: string | null;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -41,21 +49,27 @@ function resolveShape(shape: MapShape): Area | null {
   if (shape.kind !== "area" || !shape.areaId) return null;
   const spec: AreaSpec = AREAS[shape.areaId as AreaId];
   const instance = shape.instance ?? null;
-  const icon = spec.icon ?? null;
+  const icon = (instance !== null ? spec.icons?.[instance] : undefined) ?? spec.icon ?? null;
+  const planName = spec.name.replace("#", instance === null ? "" : String(instance)).trim();
+  const hub = (instance !== null && spec.hubs?.[instance] ? findCommunityHub(spec.hubs[instance]) : undefined) ?? null;
   return {
     key: shape.key,
     level: shape.level as LevelId,
     levelName: levelName.get(shape.level) ?? shape.level,
     areaId: shape.areaId as AreaId,
     instance,
-    name: spec.name.replace("#", instance === null ? "" : String(instance)).trim(),
-    description: spec.description,
+    name: hub ? hub.name : planName,
+    description: hub ? hub.description : spec.description,
     category: categoryById(spec.category),
     icon,
-    iconUrl: icon ? iconUrl(icon) : null,
+    iconUrl: hub ? communityHubLogo(hub) : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,
+    iconSize: spec.iconSize ?? null,
     shape,
-    roomIds: roomsByKey.get(shape.key) ?? [],
+    roomIds: [...(roomsByKey.get(shape.key) ?? []), ...(hub ? [`community-hub-${hub.id}`] : [])],
+    hub,
+    lockupUrl: hub ? communityHubLockup(hub) : null,
+    boothName: hub ? planName : null,
   };
 }
 

@@ -1,15 +1,14 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useMemo, useRef } from "react";
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
-import { SRGBColorSpace, Sprite, TextureLoader, type Intersection, type Raycaster, type Texture } from "three";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Sprite, type Intersection, type Raycaster } from "three";
 import type { LevelId } from "../data/levels";
 import { areasOnLevel, type Area, type AreaKey } from "../data/resolve";
 import { HIT_LAYER } from "../interaction/pointer";
 import { useHovered } from "../interaction/hoverStore";
+import { ALPHA_HIT, useSpriteImage } from "./spriteImage";
 
-/** Alpha (0–255) below which a sprite pixel doesn't count as a hit. */
-const ALPHA_HIT = 40;
 /** Sprite height in metres: from the footprint's shorter side, clamped so a booth's icon stays legible and a hall's stays modest (smaller since 2026-10-25, Scott: too big on some places). */
 const ICON_MIN_M = 2.4;
 const ICON_MAX_M = 6.5;
@@ -28,56 +27,35 @@ type AreaIconsProps = {
   reducedMotion: boolean;
 };
 
-/** The theme sprites standing on the footprints that have one, always facing the camera. */
+/** The sprites standing on the footprints that have one (theme icons, hub marks), always facing the camera. */
 export function AreaIcons({ level, interactive, selected, group, reducedMotion }: AreaIconsProps) {
   const areas = useMemo(() => areasOnLevel(level).filter((a) => a.iconUrl), [level]);
   return (
-    <Suspense fallback={null}>
+    <>
       {areas.map((area) => (
         <AreaIcon key={area.key} area={area} interactive={interactive} bob={!reducedMotion && (selected === area.key || (group?.has(area.key) ?? false))} dim={selected !== null && selected !== area.key && !(group?.has(area.key) ?? false)} />
       ))}
-    </Suspense>
+    </>
   );
 }
 
-/** Per-pixel alpha of the icon, sampled once, so hovers and taps only register on the drawn part of the quad. */
-function useAlphaMask(texture: Texture) {
-  return useMemo(() => {
-    const image = texture.image as HTMLImageElement | undefined;
-    if (!image || !image.width || typeof document === "undefined") return null;
-    const canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return null;
-    ctx.drawImage(image, 0, 0);
-    const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const w = canvas.width;
-    const h = canvas.height;
-    return (u: number, v: number) => data[(Math.min(h - 1, Math.max(0, Math.floor((1 - v) * h))) * w + Math.min(w - 1, Math.max(0, Math.floor(u * w)))) * 4 + 3];
-  }, [texture]);
-}
-
 function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: boolean; bob: boolean; dim: boolean }) {
-  const texture = useLoader(TextureLoader, area.iconUrl!);
-  const alphaAt = useAlphaMask(texture);
+  const image = useSpriteImage(area.iconUrl!);
   const ref = useRef<Sprite>(null);
   const hovered = useHovered(area.key);
   const raycast = useCallback(
     (raycaster: Raycaster, intersects: Intersection[]) => {
       const sprite = ref.current;
-      if (!sprite) return;
+      if (!sprite || !image) return;
       const hits: Intersection[] = [];
       Sprite.prototype.raycast.call(sprite, raycaster, hits);
-      for (const hit of hits) if (!alphaAt || !hit.uv || alphaAt(hit.uv.x, hit.uv.y) >= ALPHA_HIT) intersects.push(hit);
+      for (const hit of hits) if (!hit.uv || image.alphaAt(hit.uv.x, hit.uv.y) >= ALPHA_HIT) intersects.push(hit);
     },
-    [alphaAt]
+    [image]
   );
-  const image = texture.image as { width: number; height: number } | undefined;
-  const aspect = image && image.height ? image.width / image.height : 1;
   const [minX, minZ, maxX, maxZ] = area.shape.bbox;
-  const h = Math.min(ICON_MAX_M, Math.max(ICON_MIN_M, Math.min(maxX - minX, maxZ - minZ) * ICON_SCALE));
-  const w = h * aspect;
+  const h = area.iconSize ?? Math.min(ICON_MAX_M, Math.max(ICON_MIN_M, Math.min(maxX - minX, maxZ - minZ) * ICON_SCALE));
+  const w = h * (image?.aspect ?? 1);
   const [cx, cz] = area.shape.anchor;
   const y = (area.shape.base ?? 0) + area.shape.height + ICON_LIFT + h / 2;
 
@@ -87,7 +65,7 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     s.userData.hit = { kind: "area", key: area.key };
     if (interactive) s.layers.enable(HIT_LAYER);
     else s.layers.disable(HIT_LAYER);
-  }, [area.key, interactive]);
+  }, [area.key, interactive, image]);
 
   // Bob while selected: the sine starts at rest so selecting doesn't jump the icon; on-demand frames.
   const { invalidate } = useThree();
@@ -97,7 +75,7 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     const s = ref.current;
     if (!bob && s) s.position.y = y;
     invalidate();
-  }, [bob, y, invalidate]);
+  }, [bob, y, invalidate, image]);
   useFrame(() => {
     const s = ref.current;
     if (!s || bobStart.current === null) return;
@@ -106,10 +84,10 @@ function AreaIcon({ area, interactive, bob, dim }: { area: Area; interactive: bo
     invalidate();
   });
 
+  if (!image) return null;
   return (
     <sprite ref={ref} position={[cx, y, cz]} scale={[w, h, 1]} raycast={raycast}>
-      {/* PNG colours are sRGB; without the colour space the sprites render washed out. */}
-      <spriteMaterial map={texture} map-colorSpace={SRGBColorSpace} transparent opacity={dim && !hovered ? DIM_OPACITY : 1} depthWrite={false} toneMapped={false} />
+      <spriteMaterial map={image.texture} transparent opacity={dim && !hovered ? DIM_OPACITY : 1} depthWrite={false} toneMapped={false} />
     </sprite>
   );
 }

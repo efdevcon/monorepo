@@ -35,6 +35,8 @@ export const mapShapeSchema = z.object({
   fill: z.string(),
   /** Edge lines drawn on the extrusion. */
   outline: z.boolean(),
+  /** Not drawn: only the sprite stands here (the plan's escalator drawings, replaced by their icon). */
+  hidden: z.boolean().optional(),
 });
 export type MapShape = z.infer<typeof mapShapeSchema>;
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { LEVELS } from "../data/levels";
-import { iconUrl } from "../data/icons.generated";
 import type { FindEntry } from "./catalogue";
 
 const LABEL = new Map(LEVELS.map((l) => [l.id, l.label]));
@@ -16,9 +15,9 @@ export function EntryRow({ entry, floorTag, onPick }: { entry: FindEntry; floorT
       className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 text-left transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:bg-dc-purple-wash focus-visible:outline-none"
     >
       <span className="flex size-7 shrink-0 items-center justify-center">
-        {entry.icon ? (
+        {entry.iconUrl ? (
           // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/, no optimisation wanted
-          <img src={iconUrl(entry.icon)} alt="" className="size-7 object-contain" />
+          <img src={entry.iconUrl} alt="" className="size-7 object-contain" />
         ) : (
           <Icon className="size-4 text-dc-muted" aria-hidden />
         )}

@@ -73,7 +73,7 @@ export function AreaCard({ area, group, onClose, anchorRef }: { area: Area | nul
               <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shown?.name}</p>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
-            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shown.levelName}</span>}
+            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.levelName}</span>}
             {shown?.description && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shown.description}</p>}
           </div>
         </div>

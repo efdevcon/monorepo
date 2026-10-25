@@ -6,7 +6,6 @@ import { Hand, Mouse, MousePointerClick, Move, Pointer, Rotate3d, ZoomIn, type L
 import { useMediaQuery } from "@/hooks/useIsDesktop";
 import { useOnline } from "@/hooks/useOnline";
 import { LEVELS } from "../data/levels";
-import { iconUrl } from "../data/icons.generated";
 import type { LegendEntry } from "../find/catalogue";
 import { SINGLE_FLOOR } from "../state/mapStore";
 
@@ -110,9 +109,9 @@ export function FloorLegend({ levelName, entries, hidden, onPick }: { levelName:
         <button key={entry.key} type="button" onClick={() => onPick(entry)} className={cn(chip, "pointer-events-auto cursor-pointer transition-colors duration-150 ease-out hover:text-dc-purple")}>
           {entry.swatch ? (
             <span aria-hidden className="size-3.5 shrink-0 rounded-[4px] border border-black/10" style={{ backgroundColor: entry.swatch }} />
-          ) : entry.icon ? (
+          ) : entry.iconUrl ? (
             // eslint-disable-next-line @next/next/no-img-element -- static PNG under public/
-            <img src={iconUrl(entry.icon)} alt="" className="size-5 shrink-0 object-contain" />
+            <img src={entry.iconUrl} alt="" className="size-5 shrink-0 object-contain" />
           ) : null}
           {entry.label}
         </button>

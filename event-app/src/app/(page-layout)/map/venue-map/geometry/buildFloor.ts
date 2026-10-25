@@ -62,6 +62,7 @@ export function buildFloorGeometry(level: LevelId): FloorGeometry {
   const edges: BufferGeometry[] = [];
   const areas: FloorGeometry["areas"] = new Map();
   for (const shape of levelOf(level).shapes) {
+    if (shape.hidden) continue; // sprite only (escalators)
     const g = extrude(shape);
     if (shape.kind === "area") {
       areas.set(shape.key, { geometry: g, edges: new EdgesGeometry(g, EDGE_ANGLE), shape });

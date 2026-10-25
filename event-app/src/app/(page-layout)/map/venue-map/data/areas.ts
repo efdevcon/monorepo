@@ -23,8 +23,14 @@ export type AreaSpec = {
   icon?: IconName;
   /** Footprints narrower than this (metres) are widened about their centre at build time (the plan draws some stands as thin strips). */
   minWidth?: number;
+  /** Sprite height in metres, instead of the size derived from the footprint (the escalators are long and thin). */
+  iconSize?: number;
+  /** Per instance number: a different sprite (the elevator on the east side faces the other way). */
+  icons?: Readonly<Record<number, IconName>>;
   /** Schedule room ids (Pretalx) whose sessions happen here: drives "Show on Map" and the live-session card. */
   roomIds?: readonly string[];
+  /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
+  hubs?: Readonly<Record<number, string>>;
 };
 
 /**
@@ -42,7 +48,31 @@ export const AREAS = {
   "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage" },
   "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage" },
   // Community hubs
-  "community-hub": { name: "Hub #", description: "A community hub booth.", category: "hubs", heightClass: "zone", icon: "community-hub" },
+  "community-hub": {
+    name: "Hub #",
+    description: "A community hub booth.",
+    category: "hubs",
+    heightClass: "zone",
+    icon: "community-hub",
+    // Booth numbers from the JWCC floor plan (Scott, 2026-10-25). 5 and 6 were not on the plan
+    // excerpts: the two hubs left over are placed there provisionally (confirm with Scott).
+    hubs: {
+      1: "india",
+      2: "zuzone",
+      3: "eip",
+      4: "p2p-networking",
+      5: "agentic",
+      6: "legal-governance",
+      7: "privacy",
+      8: "security",
+      9: "resilient-networking",
+      10: "aggregation",
+      11: "prediction-markets",
+      12: "open-source",
+      13: "onchain-art",
+      14: "desci",
+    },
+  },
   // Supporter booths
   "flagship-supporter": { name: "Flagship Supporter F#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   "core-supporter": { name: "Core Supporter C#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
@@ -66,7 +96,9 @@ export const AREAS = {
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
   "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", heightClass: "zone" },
   // Other
-  elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone" },
+  elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 8: "elevator-left" }, iconSize: 6.5 },
+  // Named Outline groups: the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).
+  escalator: { name: "Escalator", description: "", category: "other", heightClass: "zone", icon: "escalator-right", iconSize: 6.5 },
   "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone" },
 } as const satisfies Record<string, AreaSpec>;
 

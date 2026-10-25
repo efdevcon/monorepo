@@ -1,14 +1,13 @@
 import { CATEGORIES, type Category } from "../data/categories";
 import { LEVEL_ORDER, LEVELS, levelIndex, type LevelId } from "../data/levels";
 import { AREA_LIST, type Area, type AreaKey } from "../data/resolve";
-import type { IconName } from "../data/icons.generated";
 
 /**
  * One row in Find or Search. Footprints sharing a name on the same floor
  * ("Washroom" ×2) collapse into one entry, so `areas` can hold several;
  * picking it highlights them all.
  */
-export type FindEntry = { key: string; name: string; level: LevelId; icon: IconName | null; areas: Area[]; category: Category };
+export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; areas: Area[]; category: Category };
 export type FindFloor = { level: LevelId; name: string; entries: FindEntry[] };
 export type FindGroup = { category: Category; count: number; floors: FindFloor[] };
 
@@ -34,7 +33,7 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       level: id,
       name: levelName.get(id) ?? id,
       entries: [...perLevel.get(id)!.entries()]
-        .map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, icon: group[0].icon, areas: group, category }))
+        .map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, areas: group, category }))
         .sort(byName),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];
@@ -52,7 +51,7 @@ export function primaryOf(areas: readonly Area[]): AreaKey {
 }
 
 /** One legend chip: a swatch (per category) or a theme icon (per place), a label, and the footprints a tap shows. */
-export type LegendEntry = { key: string; label: string; icon: IconName | null; swatch: string | null; areas: Area[] };
+export type LegendEntry = { key: string; label: string; iconUrl: string | null; swatch: string | null; areas: Area[] };
 
 /**
  * The open floor's legend: one swatch chip per category that asks for one
@@ -70,7 +69,7 @@ export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_L
     const fills = new Map<string, number>();
     for (const a of members) fills.set(a.shape.fill, (fills.get(a.shape.fill) ?? 0) + 1);
     const swatch = [...fills.entries()].sort((a, b) => b[1] - a[1])[0][0];
-    entries.push({ key: `${level}/legend:${category.id}`, label: category.legend, icon: null, swatch, areas: members });
+    entries.push({ key: `${level}/legend:${category.id}`, label: category.legend, iconUrl: null, swatch, areas: members });
   }
   return entries;
 }
