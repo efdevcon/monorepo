@@ -53,9 +53,9 @@ const supporter = (name: string, file: string): Tenant => ({ name, logo: `/maps/
  */
 export const AREAS = {
   // Stages
-  "lotus-stage": { name: "Lotus Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 10 },
-  "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 20 },
-  "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage", rank: 30 },
+  "lotus-stage": { name: "Lotus Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 10, icon: "lotus" },
+  "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 20, icon: "jasmine" },
+  "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage", rank: 30, icon: "music-stage" },
   // Community hubs
   "community-hub": {
     name: "Hub #",
@@ -142,15 +142,15 @@ export const AREAS = {
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "fun", heightClass: "zone", icon: "decompression" },
   "game-zone": { name: "Game Zone", description: "Games between sessions.", category: "fun", heightClass: "zone", icon: "playground" },
-  "art-gallery": { name: "Art Gallery", description: "Art from the community.", category: "fun", heightClass: "zone" },
-  "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone" },
+  "art-gallery": { name: "Art Gallery", description: "Art from the community.", category: "fun", heightClass: "zone", icon: "art-gallery" },
+  "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
-  "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", heightClass: "zone" },
+  "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", heightClass: "zone", icon: "open-hardware-zone" },
   // Other
   elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 8: "elevator-left" }, iconSize: 6.5 },
   // Named Outline groups: the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).
   escalator: { name: "Escalator", description: "", category: "other", heightClass: "zone", icon: "escalator-right", iconSize: 6.5 },
-  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone" },
+  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone", icon: "storage" },
 } as const satisfies Record<string, AreaSpec>;
 
 export type AreaId = keyof typeof AREAS;

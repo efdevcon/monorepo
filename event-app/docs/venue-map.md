@@ -105,10 +105,11 @@ after it with the members as the line beneath (`groupName` in the store, `compos
 Icons reused from the prototype's theme set (Scott, 2026-10-25): coffee (Tea & Coffee), toilets
 (Washroom), discussion-corner (both corners), cowork (Co-work Area, Quiet Co-work), swag-station,
 decompression, playground (Game Zone), press (Content Corner); new on 2026-10-25: elevator-right
-and escalator-right (the -left variants are in the folder for other floors). Hub booths show their
-hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`; the generic
-community-hub glyph is the fallback for a booth with no hub. Stages, supporter booths, galleries and
-storage have none yet.
+and escalator-right (the -left variants are in the folder for other floors), lotus, jasmine,
+music-stage, art-gallery, poster-display, open-hardware-zone and storage. Hub booths show their
+hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
+their lockup via `tenants`; the generic community-hub glyph is the fallback for a booth with no
+hub. Every catalogue entry now has an icon except a supporter booth with no tenant (Bitget, S4).
 
 ## 4. Runtime: `src/app/(page-layout)/map/venue-map/`
 
