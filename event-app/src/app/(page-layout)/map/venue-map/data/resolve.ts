@@ -1,0 +1,68 @@
+import { AREAS, type AreaId, type AreaSpec } from "./areas";
+import { categoryById, type Category } from "./categories";
+import { iconUrl, type IconName } from "./icons.generated";
+import { LEVELS, type LevelId } from "./levels";
+import { mapBundleSchema, type MapBundle, type MapLevel, type MapShape } from "./planSchema";
+import planJson from "./plan.generated.json";
+import roomsJson from "./rooms.generated.json";
+
+/** Selection / hover key of a footprint: `${level}/${layer id}` (layer ids repeat across floors). */
+export type AreaKey = string;
+
+/**
+ * A tappable footprint joined to its catalogue entry: everything the card,
+ * Find, Search, the legend, the sprites and the live-session hook read.
+ */
+export type Area = {
+  key: AreaKey;
+  level: LevelId;
+  levelName: string;
+  areaId: AreaId;
+  instance: number | null;
+  name: string;
+  description: string;
+  category: Category;
+  icon: IconName | null;
+  iconUrl: string | null;
+  heightClass: AreaSpec["heightClass"];
+  shape: MapShape;
+  /** Schedule rooms whose sessions happen here (rooms.generated.json). */
+  roomIds: readonly string[];
+};
+
+export const plan: MapBundle = mapBundleSchema.parse(planJson);
+export const ROOM_AREAS: Record<string, AreaKey[]> = roomsJson;
+
+const levelName = new Map<string, string>(LEVELS.map((l) => [l.id, l.name]));
+const roomsByKey = new Map<AreaKey, string[]>();
+for (const [roomId, keys] of Object.entries(ROOM_AREAS)) for (const key of keys) roomsByKey.set(key, [...(roomsByKey.get(key) ?? []), roomId]);
+
+function resolveShape(shape: MapShape): Area | null {
+  if (shape.kind !== "area" || !shape.areaId) return null;
+  const spec: AreaSpec = AREAS[shape.areaId as AreaId];
+  const instance = shape.instance ?? null;
+  const icon = spec.icon ?? null;
+  return {
+    key: shape.key,
+    level: shape.level as LevelId,
+    levelName: levelName.get(shape.level) ?? shape.level,
+    areaId: shape.areaId as AreaId,
+    instance,
+    name: spec.name.replace("#", instance === null ? "" : String(instance)).trim(),
+    description: spec.description,
+    category: categoryById(spec.category),
+    icon,
+    iconUrl: icon ? iconUrl(icon) : null,
+    heightClass: spec.heightClass,
+    shape,
+    roomIds: roomsByKey.get(shape.key) ?? [],
+  };
+}
+
+/** Every tappable footprint, in bundle order (floor by floor). Built once at module load; the plan is static. */
+export const AREA_LIST: readonly Area[] = plan.levels.flatMap((l: MapLevel) => l.shapes.map(resolveShape).filter((a): a is Area => a !== null));
+const areaByKey = new Map<AreaKey, Area>(AREA_LIST.map((a) => [a.key, a]));
+
+export const areaOf = (key: AreaKey): Area | null => areaByKey.get(key) ?? null;
+export const levelOf = (id: LevelId): MapLevel => plan.levels.find((l) => l.id === id)!;
+export const areasOnLevel = (id: LevelId): Area[] => AREA_LIST.filter((a) => a.level === id);
