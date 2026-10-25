@@ -122,7 +122,8 @@ export function buildLevel(spec: LevelSpec, report: Report): { level: MapLevel |
         report.error(file, d.id, "a wall must be a stroked line (no fill)");
         continue;
       }
-      addShape(toShape(spec.id, `wall-${++wallN}`, "wall", strokedPolygons(d, doorCuts), HEIGHTS.wall, d.paint.stroke, true, scale), d.id);
+      // Walls take the slab colour, drawn by their edge lines (Scott, 2026-10-25); the plan's stroke colour is ignored.
+      addShape(toShape(spec.id, `wall-${++wallN}`, "wall", strokedPolygons(d, doorCuts), HEIGHTS.wall, slabFill, true, scale), d.id);
       continue;
     }
     if (isDoorPatch(d)) continue;

@@ -3,7 +3,9 @@ import type { IconName } from "./icons.generated";
 
 /**
  * Extrusion classes (metres, deliberately taller than life so the blocks read
- * at the fitted zoom; the plan is ~245 m wide). `zone` is a flat mat.
+ * at the fitted zoom; the plan is ~245 m wide). `zone` is a flat mat: hubs,
+ * tea & coffee, storage and the elevators sit on the floor like the co-work
+ * areas (Scott, 2026-10-25); stages, washrooms and supporter booths stand up.
  */
 export type HeightClass = "stage" | "room" | "kiosk" | "zone";
 
@@ -38,13 +40,13 @@ export const AREAS = {
   "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage" },
   "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage" },
   // Community hubs
-  "community-hub": { name: "Hub #", description: "A community hub booth.", category: "hubs", heightClass: "kiosk", icon: "community-hub" },
+  "community-hub": { name: "Hub #", description: "A community hub booth.", category: "hubs", heightClass: "zone", icon: "community-hub" },
   // Supporter booths
   "flagship-supporter": { name: "Flagship Supporter F#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   "core-supporter": { name: "Core Supporter C#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   starter: { name: "Starter Supporter S#", description: "Supporter booth.", category: "supporters", heightClass: "kiosk" },
   // Food & drink
-  "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "kiosk", icon: "coffee" },
+  "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee" },
   // Washrooms
   washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
   // Cowork & discussion
@@ -62,8 +64,8 @@ export const AREAS = {
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
   "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", heightClass: "zone" },
   // Other
-  elevator: { name: "Elevators", description: "", category: "other", heightClass: "room" },
-  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "room" },
+  elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone" },
+  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone" },
 } as const satisfies Record<string, AreaSpec>;
 
 export type AreaId = keyof typeof AREAS;

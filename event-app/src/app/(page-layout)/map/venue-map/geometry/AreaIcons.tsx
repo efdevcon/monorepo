@@ -10,10 +10,10 @@ import { useHovered } from "../interaction/hoverStore";
 
 /** Alpha (0–255) below which a sprite pixel doesn't count as a hit. */
 const ALPHA_HIT = 40;
-/** Sprite height in metres: from the footprint's shorter side, clamped so a booth's icon stays legible and a hall's stays modest. */
-const ICON_MIN_M = 3;
-const ICON_MAX_M = 11;
-const ICON_SCALE = 1.4;
+/** Sprite height in metres: from the footprint's shorter side, clamped so a booth's icon stays legible and a hall's stays modest (smaller since 2026-10-25, Scott: too big on some places). */
+const ICON_MIN_M = 2.4;
+const ICON_MAX_M = 6.5;
+const ICON_SCALE = 0.9;
 const ICON_LIFT = 0.2;
 /** Selected icon: a gentle bob so the highlighted footprint reads at a glance. */
 const BOB_AMPLITUDE = 0.6;

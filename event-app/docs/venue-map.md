@@ -23,7 +23,7 @@ non-alphanumerics → one dash):
 | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Background`    | `Background`        | Exactly one shape: the **slab**, extruded 4 m downwards. Its fill is the slab colour.                                                                                                                                                                                                                                          |
 | `Colour_Box`    | `Colour_Box`        | One filled shape per **tappable area**, named `<area-id>[-<n>]` (`lotus-stage-2`, `tea-&-coffee-7`, `washroom-9`). `<area-id>` must be a key of `data/areas.ts`; `-<n>` is the instance number. The fill is the footprint's colour.                                                                                            |
-| `Outline`       | `Outline`           | Direct children named `wall`, `wall_2`, … are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m. Everything else in the group is flat **decoration** (exit signs, stairs, escalators, arrows, pillars) at 0.15 m. A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. |
+| `Outline`       | `Outline`           | Direct children named `wall`, `wall_2`, … are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). Everything else in the group is flat **decoration** (exit signs, stairs, escalators, arrows, pillars) at 0.15 m. A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. |
 | `Text & Icon`   | `Text__x26__Icon`   | **Skipped** (the labels and icons are being redrawn; Scott, 2026-10-25). The build reports how many paths it ignored.                                                                                                                                                                                                          |
 | `meta` (opt.)   | `meta`              | A straight line named `scale-<metres>` gives metres per plan px. Without it `FALLBACK_METRES_PER_PX` (0.05 → Level 3 is ~245 × 114 m).                                                                                                                                                                                         |
 
@@ -73,8 +73,10 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 
 `AREAS` is the single source of truth per area id: display `name` (`#` = the instance number,
 "Hub #" → "Hub 7"; without it numbered copies share the name and collapse in Find, "Washroom ×2"),
-`description` (placeholders today), `category`, `heightClass` (`stage` 8 m, `room` 6 m, `kiosk`
-3.5 m, `zone` 0.3 m flat mat; taller than life on purpose, the prototype's proportions), optional
+`description` (placeholders today), `category`, `heightClass` (`stage` 8 m, `room` 6 m for the
+washrooms, `kiosk` 3.5 m for supporter booths and the swag station, `zone` 0.3 m flat mat for
+the co-work areas, hubs, tea & coffee, storage and elevators; taller than life on purpose, the
+prototype's proportions), optional
 `icon` (sprite PNG) and `roomIds`. `ROOMS` maps Devcon 8 Pretalx room ids to footprints
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporter
 booths, Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the
@@ -129,7 +131,7 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   merged edge set (Level 3: 101 statics → 2 draw calls); each area keeps its own extrusion and
   edge lines so its materials can change (`base | hover | selected | dimmed`, cached per colour).
   Front faces + polygonOffset, as in the prototype. Sprites size from the footprint's shorter side
-  (×1.4, clamped 3–11 m), per-pixel alpha hit test, bob while selected.
+  (×0.9, clamped 2.4–6.5 m), per-pixel alpha hit test, bob while selected.
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
   floor slider bottom-right (multi-floor only), the top strip (controls legend while stacked or
   when the floor has no legend; otherwise one swatch chip per legend category), `AreaCard`
@@ -151,8 +153,9 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
 
 ## 6. Open with Scott (2026-10-25)
 
-- Icons: the reused set is provisional; stages, booths, galleries, elevators have none. Sprites on
-  adjacent hub booths overlap at the 3 m minimum.
+- Icons: the reused set is provisional; stages, booths, galleries, elevators have none. The tea &
+  coffee stand inside the Co-work Area sits mid-right in the plan, so its icon stands next to the
+  laptop; moving the footprint towards the bottom edge is a Figma edit + re-export.
 - Descriptions in `areas.ts` are one-line placeholders; booth names are "Flagship Supporter F1" /
   "Core Supporter C2" / "Starter Supporter S12", hubs "Hub N".
 - Scale: no `meta/scale` line yet; 0.05 m/px is a guess (the halls look right, heights are tuned
