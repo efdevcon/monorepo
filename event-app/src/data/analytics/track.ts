@@ -53,7 +53,7 @@ const EVENTS = {
     "sheet-accepted",
     "sheet-dismissed",
   ],
-  planner: ["open-chatgpt", "open-claude", "open-grok", "copy", "apply-opened", "applied"],
+  planner: ["open-chatgpt", "open-claude", "open-grok", "copy", "copy-other-ai", "apply-opened", "applied"],
   perks: ["claim", "sheet-shown", "open-browser", "copy", "share"],
   schedule: ["day", "programme", "view", "interests-only", "filter", "search"],
   session: ["qa", "calendar"],

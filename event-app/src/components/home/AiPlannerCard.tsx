@@ -5,7 +5,7 @@ import { trackEvent } from "@/data/analytics/track";
 import { useCallback, useId, useMemo, useState } from "react";
 import { ArrowRight, ChevronDown, Copy } from "lucide-react";
 import { toast } from "sonner";
-import { BrandButton } from "@/components/Buttons";
+import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import { Link } from "@/routing";
 import { getActiveDataset } from "@/data/dataset";
 import { eventFmt, getEventTimeZoneLabel } from "@/data/eventTime";
@@ -51,9 +51,12 @@ export function AiPlannerCard() {
 }
 
 /**
- * The "Plan with your AI" card: one prompt, opened in ChatGPT, Claude or Grok
- * (new-chat prefill links) or copied for any other assistant, with a
- * disclosure that shows the prompt. The prompt points the assistant at the
+ * The "Plan with your AI" card: one prompt, copied for a local or private
+ * assistant (the first button: the attendee's own AI is the point of the
+ * feature) or opened in Claude, ChatGPT or Grok (new-chat prefill links),
+ * with a disclosure that shows the prompt. The first button is the solid
+ * primary one, the three brands share the quiet outlined style and are told
+ * apart by their marks, not by their colours. The prompt points the assistant at the
  * API's markdown catalogue and carries the attendee's current stars by code,
  * so no account access is involved; the plan comes back as a /my-interests
  * link the attendee confirms in the app. Building the prompt needs nothing
@@ -122,10 +125,12 @@ export function AiPlannerPanel({
     window.open(assistantLink(kind, input()), "_blank", "noopener");
   };
 
-  const copy = async () => {
+  // `action` tells the two copy entries apart in analytics: the row's button
+  // ("copy-other-ai") and the text action beside the prompt ("copy").
+  const copy = async (action: "copy" | "copy-other-ai" = "copy") => {
     try {
       await navigator.clipboard.writeText(prompt());
-      trackEvent("planner", "copy");
+      trackEvent("planner", action);
       toast.success("Prompt copied. Paste it into your assistant to draft a schedule.");
     } catch {
       toast.error("Couldn't copy the prompt");
@@ -144,28 +149,36 @@ export function AiPlannerPanel({
           <h3 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2">{title}</h3>
           <p className="text-[14px] leading-5 text-dc-muted lg:text-[16px] lg:leading-6">{body}</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          {/* Brand fills and marks per Figma (5987:142 / 5987:138 / 5987:134); the
-              marks are the brands' own files, served from public/home/ai-planner.
-              Grok's fill is lifted from Figma's #1a1a1a so it doesn't pair off
-              with ChatGPT's black. */}
-          <BrandButton className="bg-[#d0572f]" onClick={() => open("claude")} disabled={!online}>
+        {/* One line from 1280px wide (16px button sides, 8px gaps); narrower
+            desktops wrap the last button, phones stack. */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-2">
+          {/* Every assistant, the local and private ones first and in the
+              primary colour: they get the prompt through the clipboard, which
+              needs no connection, so that button is never disabled. The brand
+              marks are the brands' own files (public/home/ai-planner), in the
+              text colour; the brand fills of the Figma design (5987:142 /
+              5987:138 / 5987:134) were dropped so the row does not shout. */}
+          <PrimaryButton size="fluid" onClick={() => copy("copy-other-ai")}>
+            <Copy className="size-4 shrink-0" />
+            Local or private AI
+          </PrimaryButton>
+          <SecondaryButton size="fluid" onClick={() => open("claude")} disabled={!online}>
             Ask Claude
-            <BrandMark src="/home/ai-planner/claude.svg" />
-          </BrandButton>
-          <BrandButton className="bg-black" onClick={() => open("chatgpt")} disabled={!online}>
+            <BrandMark src="/home/ai-planner/claude-mark.svg" />
+          </SecondaryButton>
+          <SecondaryButton size="fluid" onClick={() => open("chatgpt")} disabled={!online}>
             Ask ChatGPT
-            <BrandMark src="/home/ai-planner/chatgpt.svg" />
-          </BrandButton>
-          <BrandButton className="bg-[#333333]" onClick={() => open("grok")} disabled={!online}>
+            <BrandMark src="/home/ai-planner/chatgpt-mark.svg" />
+          </SecondaryButton>
+          <SecondaryButton size="fluid" onClick={() => open("grok")} disabled={!online}>
             Ask Grok
-            <BrandMark src="/home/ai-planner/grok.svg" />
-          </BrandButton>
+            <BrandMark src="/home/ai-planner/grok-mark.svg" />
+          </SecondaryButton>
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-[13px] leading-5 text-dc-muted">
-            Opens in a new tab with the prompt pre-filled. You may need to sign in. If it opens empty, copy it and
-            paste. Any other AI works too, local or private ones included: copy the prompt and paste it in.
+            Local or private AI copies the prompt, to paste into any assistant. The others open a new tab with it
+            pre-filled; you may need to sign in, and if it opens empty, copy and paste it instead.
           </p>
           {!online && (
             <p className="text-[13px] leading-5 text-dc-muted">
@@ -192,7 +205,7 @@ export function AiPlannerPanel({
                 )}
               />
             </button>
-            <CopyPromptAction onClick={copy} className="py-3" />
+            <CopyPromptAction onClick={() => copy()} className="py-3" />
           </div>
           {/* Always in the DOM so aria-controls resolves; the prompt is only
               built while open because it reads window.location (client-only). */}
@@ -218,7 +231,7 @@ export function AiPlannerPanel({
         <div className="hidden min-h-[240px] flex-col gap-3 lg:flex">
           <div className="flex items-center justify-between gap-4">
             <p className="text-[12px] font-bold uppercase leading-[18px] tracking-[0.5px] text-dc-muted">Prompt</p>
-            <CopyPromptAction onClick={copy} />
+            <CopyPromptAction onClick={() => copy()} />
           </div>
           <div className="relative min-h-0 flex-1">
             <div className="absolute inset-0 overflow-hidden rounded-[14px] border border-dc-hairline bg-dc-panel">
@@ -243,9 +256,10 @@ const textActionClass =
   "flex w-fit cursor-pointer items-center gap-1.5 text-[14px] font-bold leading-none text-dc-purple transition-colors duration-150 ease-out hover:text-dc-purple-600";
 
 /**
- * "Copy" as a text action beside the prompt's label (desktop aside) or
- * its disclosure (phones, the import page), not a button in the brand row:
- * the row is for opening a chat, copying is for every other assistant.
+ * "Copy" as a text action beside the prompt's label (desktop aside) or its
+ * disclosure (phones, the import page): for whoever has just read the prompt.
+ * The row's "Local or private AI" button is the same action for those who
+ * have not.
  */
 function CopyPromptAction({ onClick, className }: { onClick: () => void; className?: string }) {
   return (

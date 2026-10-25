@@ -29,12 +29,16 @@ const ctaLinkBase =
  * px/py/text class passed in loses or wins by stylesheet order.
  */
 type CtaLinkSize = "md" | "sm" | "fluid";
-/** `fluid`: 44px / 14px on phones, 48px / 16px from lg (the AI planner's row). */
+/**
+ * `fluid`: 44px / 14px on phones, 48px / 16px from lg (the AI planner's row).
+ * 16px sides, not the 24px of the other sizes: the row's four labels have to
+ * share one line of the card's left column on a laptop (743px at 1440).
+ */
 const ctaLinkSize = (size: CtaLinkSize) =>
   size === "sm"
     ? "h-10 gap-2 px-6 text-[14px]"
     : size === "fluid"
-      ? "h-11 gap-2 px-6 text-[14px] lg:h-12 lg:text-[16px]"
+      ? "h-11 gap-2 px-4 text-[14px] lg:h-12 lg:text-[16px]"
       : "gap-2 px-8 py-3.5 text-[16px]";
 
 /** PrimaryButton's look on a link. */
@@ -86,18 +90,6 @@ export function PrimaryButton({
       )}
     />
   );
-}
-
-/**
- * Figma "Button-Default" shell with a caller-supplied fill: 48px tall, 16px
- * bold label from lg (44px / 14px on phones), 24px sides, 8px gap, white
- * text. For the third-party brand buttons (the AI planner's ChatGPT, Claude
- * and Grok), whose fills are the brands' own and so can't be a dc-* token.
- * Hover feedback is the shared scale only; the brand fills have no hover
- * state in Figma.
- */
-export function BrandButton({ className, ...props }: React.ComponentProps<"button">) {
-  return <button {...props} className={cn(ctaBase, ctaLinkSize("fluid"), "text-white", className)} />;
 }
 
 /** White bordered CTA (e.g. "Close"). Tints lavender on hover. */
