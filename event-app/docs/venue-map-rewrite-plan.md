@@ -5,6 +5,12 @@
 files live in `src/app/(page-layout)/map/venue-map-3d/`, the build script in
 `scripts/plan-map-build.mjs`, the project doc in `docs/venue-map-3d.md`.
 **Trigger:** the real per-floor SVG designs are delivered.
+**Executed 2026-10-25** on `add-jio-venue-map` with the JWCC Level 3 export: phases 0–7 in one
+pass, as a separate variant behind the `venueMapNext` gate (phase 8, the swap, is pending the
+remaining floors and Scott's review). The living description of what was built is
+`docs/venue-map.md`; §3 below is superseded by its export contract (layer groups
+`Background / Colour_Box / Outline / Text & Icon` instead of the slash grammar, walls as stroked
+lines, door openings as slab-coloured patches).
 **Rule:** whenever a map feature, constant or decision changes on the branch, update §1 (feature
 checklist) and the changelog here, not just `docs/venue-map-3d.md`.
 
@@ -390,6 +396,11 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-25 — executed: `scripts/map-build/` (TypeScript, no new deps, tests), catalogue
+  `data/areas.ts` + `categories.ts` + `levels.ts`, runtime in `map/venue-map/` per §5 (reducer,
+  camera rig with state-derived commands, single raycast owner, merged statics), prototype kept
+  as the default variant, old pan-zoom map deleted (§0, §8 answered: yes). Single-floor venue
+  handled (`SINGLE_FLOOR`). See `docs/venue-map.md`.
 - 2026-09-17 — first version from the full prototype inventory.
 - 2026-09-17 (later) — ISO + flat view removed, FloorSlider, always-on dimming floor labels, legend
   on top, shortcuts 1/2/3/A, start view 25° left with runtime `projectedExtent` fit, touch = pan /

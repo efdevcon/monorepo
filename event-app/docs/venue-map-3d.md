@@ -1,5 +1,8 @@
 # 3D venue map (prototype)
 
+> Superseded for the JWCC plans by `docs/venue-map.md` (the rebuilt map in `map/venue-map/`,
+> 2026-10-25). This prototype stays as the default Map tab variant until the swap.
+
 The Map tab renders a React Three Fiber scene instead of the old SVG pan-zoom map. This is
 a **prototype built on provisional plans and old event data**: the floor-plan SVGs are
 working exports whose layer names are still being fixed in Figma, the area descriptions
