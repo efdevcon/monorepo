@@ -1,6 +1,5 @@
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 import { ROOM_ICON_URLS } from "@/components/room-screen/roomIcon";
-import mapBackground from "@/app/(page-layout)/map/venue-map/bg-image-new.png";
 import { COMMUNITY_HUBS, communityHubLockup, communityHubLogo } from "@/data/communityHubs";
 
 /**
@@ -29,14 +28,6 @@ import { COMMUNITY_HUBS, communityHubLockup, communityHubLogo } from "@/data/com
 export const TRACK_GEM_IMAGES: string[] = DC8_TRACKS.flatMap((track) =>
   track.gem ? [track.gem] : []
 );
-
-/**
- * Venue map background (a static import, so its URL is hashed and lives under
- * /_next/static/media rather than public/). Rendered as a plain <img> in
- * VenueMap.tsx precisely so this single URL is what the browser requests and
- * what gets warmed; the map SVG itself is inlined in the JS bundle.
- */
-export const MAP_IMAGES: string[] = [mapBackground.src];
 
 export const APP_IMAGES: string[] = [
   // Community Hub logos: the hubs' gem artwork on hub session cards, the
