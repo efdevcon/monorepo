@@ -105,7 +105,6 @@ const V3_HEADERS = [
   'SLIDES',
   'DECK OK?',
   'INTRO ANIMATION',
-  'STREAMING',
   'REC',
   'MODERATOR',
   'MIC',
@@ -249,9 +248,11 @@ export const LAYOUT_V2: RosLayout = {
 
 /**
  * v3 (2026-10-20, the AV team's revision of v2): Q&A and MC minutes, one speaker
- * contact, intro animation and STREAMING; no live timing, track, on-site tick or
- * cue sheet (the stage's Q&A QR is one link on the Digital Assets tab). SLIDES and Q&A are prefilled once so the crew can override
- * them ("Laptop", a longer Q&A). Header on row 2 under a DAY / STAGE line.
+ * contact and intro animation; no live timing, track, on-site tick or cue sheet
+ * (the stage's Q&A QR is one link on the Digital Assets tab). SLIDES and Q&A are
+ * prefilled once so the crew can override them ("Laptop", a longer Q&A). Header
+ * on row 2 under a version / DAY / STAGE line. STREAMING was dropped on
+ * 2026-10-26: NO REC means neither recorded nor streamed.
  */
 export const LAYOUT_V3: RosLayout = {
   name: 'v3',
@@ -273,15 +274,14 @@ export const LAYOUT_V3: RosLayout = {
     slides: 11,
     deckOk: 12,
     intro: 13,
-    streaming: 14,
-    rec: 15,
-    moderator: 16,
-    mic: 17,
-    notes: 18,
-    id: 19,
+    rec: 14,
+    moderator: 15,
+    mic: 16,
+    notes: 17,
+    id: 18,
   },
   synced: ['start', 'dur', 'end', 'segment', 'speakers', 'contact', 'format', 'rec'],
-  carried: ['deckOk', 'intro', 'streaming', 'moderator', 'mic', 'notes'],
+  carried: ['deckOk', 'intro', 'moderator', 'mic', 'notes'],
   fillOnce: ['qa', 'slides'],
   blockDividers: false,
   footer: false,
@@ -381,6 +381,8 @@ export interface RosSession {
   track?: string
   /** false when the speaker opted out of recording */
   record?: boolean
+  /** A Pretalx break or blocker instead of a talk: keyed by a generated code, no REC, deck or Q&A */
+  kind?: 'break' | 'blocker'
   day: string
   roomId: string
   roomName: string
@@ -614,6 +616,7 @@ function syncedValue(field: Field, session: RosSession): string {
     case 'track':
       return session.track || ''
     case 'rec':
+      if (session.kind) return ''
       return session.record === false ? 'NO REC' : 'REC'
     case 'contact':
       return session.contact || ''
@@ -700,8 +703,10 @@ export function planFile(input: PlanInput): FilePlan {
     const slides = (slidesOnce ? prev?.[col.slides] || session.slides : session.slides || prev?.[col.slides]) || ''
     values[col.slides] = slidesCell(slides)
     for (const f of layout.carried) values[col[f]] = prev?.[col[f]] ?? ''
+    // A break or blocker has no deck to tick (an empty checkbox reads back as FALSE).
+    if (session.kind) for (const f of layout.checkboxes) values[col[f]] = ''
     if (fillOnce.includes('qa')) values[col.qa] = prev?.[col.qa] || String(qaMinutesFor(session.type))
-    if (!prev)
+    if (!prev && !session.kind)
       for (const f of layout.checkboxes.length ? layout.checkboxes : (['onSite'] as Field[]))
         if (col[f] !== undefined) values[col[f]] = layout.emptyCheckbox
     applyFormulas(layout, values, firstSheetRow, sheetRow, cuesGid)

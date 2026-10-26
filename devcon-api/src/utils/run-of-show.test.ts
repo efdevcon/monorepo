@@ -396,7 +396,6 @@ test('v3 first run: defaults, synced contact, formulas, no dividers or footer', 
   expect(LAYOUT_V3.headers).not.toContain('Q&A QR')
   expect(first.values[V3.slides]).toBe('=HYPERLINK("https://docs.google.com/presentation/d/x","Slides")')
   expect(first.values[V3.deckOk]).toBe('FALSE')
-  expect(first.values[V3.streaming]).toBe('')
   expect(first.values[V3.num]).toBe('=COUNTA(H$3:H3)')
   expect(first.values[V3.end]).toBe('=IF(C3<>"",C3+D3/1440,"")')
   // MC: the gap to the next live row's START, in minutes
@@ -406,7 +405,7 @@ test('v3 first run: defaults, synced contact, formulas, no dividers or footer', 
 })
 
 test('v3 resync: crew Q&A and a Laptop slide stay, a new deck link is reported but not applied', () => {
-  const laptop = v3Row('AAA111', { qa: '10', slides: 'Laptop', streaming: 'NO STREAM', intro: 'https://example.org/intro.mp4' })
+  const laptop = v3Row('AAA111', { qa: '10', slides: 'Laptop', intro: 'https://example.org/intro.mp4' })
   const linked = v3Row('BBB222', { slides: 'https://docs.google.com/presentation/d/old', start: '11:00', end: '11:30' })
   const p = v3(
     [
@@ -427,7 +426,6 @@ test('v3 resync: crew Q&A and a Laptop slide stay, a new deck link is reported b
   const [a, b] = p.rows
   expect(a.values[V3.qa]).toBe('10')
   expect(a.values[V3.slides]).toBe('Laptop')
-  expect(a.values[V3.streaming]).toBe('NO STREAM')
   expect(a.values[V3.intro]).toBe('https://example.org/intro.mp4')
   expect(a.changed).toEqual([])
   expect(b.values[V3.slides]).toBe('=HYPERLINK("https://docs.google.com/presentation/d/old","Slides")')
@@ -467,6 +465,52 @@ test('v3: the REMOVED section appears only when a session leaves, without MC or 
   expect(p.rows[0].values[0]).toBe(REMOVED_HEADER)
   expect(p.rows[1].values[V3.mc]).toBe('')
   expect(p.rows[1].values[V3.status]).toBe('CANCELLED')
+})
+
+test('v3 has no STREAMING column: REC covers recording and streaming', () => {
+  expect(LAYOUT_V3.headers).not.toContain('STREAMING')
+  expect(LAYOUT_V3.col.streaming).toBeUndefined()
+  expect(LAYOUT_V3.headers[V3.rec]).toBe('REC')
+  expect(LAYOUT_V3.headers[V3.id]).toBe('PRETALX ID')
+  expect(LAYOUT_V3.headers).toHaveLength(19)
+})
+
+test('v3: breaks and blockers are keyed rows without REC, deck tick or Q&A minutes', () => {
+  const lunch = session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '12:30', end: '13:30', durationMin: 60 })
+  const blocker = session({ code: 'BLOCKER-stage-a-1-1', kind: 'blocker', title: 'Private workshop', type: 'Blocker', speakers: '', start: '14:00', end: '15:00', durationMin: 60 })
+  const p = v3([lunch, blocker])
+  const [a, b] = p.rows
+  expect(p.rows.map((r) => r.kind)).toEqual(['session', 'session'])
+  expect(a.values[V3.segment]).toBe('Lunch Break')
+  expect(a.values[V3.format]).toBe('Break')
+  expect(a.values[V3.rec]).toBe('')
+  expect(a.values[V3.deckOk]).toBe('')
+  expect(a.values[V3.qa]).toBe('0')
+  expect(a.values[V3.slides]).toBe('')
+  expect(a.values[V3.id]).toBe('BREAK-stage-a-1-1')
+  expect(b.values[V3.format]).toBe('Blocker')
+  expect(b.values[V3.rec]).toBe('')
+})
+
+test('v3: a break that moves keeps the crew notes and logs the new time', () => {
+  const row = v3Row('BREAK-stage-a-1-1', {
+    segment: 'Lunch Break',
+    format: 'Break',
+    speakers: '',
+    contact: '',
+    rec: '',
+    deckOk: 'FALSE',
+    qa: '0',
+    start: '12:30',
+    end: '13:30',
+    dur: '60',
+    notes: 'walk-in music',
+  })
+  const p = v3([session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '13:00', end: '14:00', durationMin: 60 })], [row])
+  expect(p.rows[0].values[V3.notes]).toBe('walk-in music')
+  // a sheet reads an empty checkbox back as FALSE; a break never carries one
+  expect(p.rows[0].values[V3.deckOk]).toBe('')
+  expect(p.changes.map((c) => c.field)).toEqual(['START TIME', 'END TIME'])
 })
 
 test('link cells: a URL becomes a short label, anything typed by hand stays text', () => {

@@ -20,7 +20,7 @@ export const AV_ROOM_FOLDERS: Record<string, string> = {
   'community-led-stage': 'Community Led Stage',
   'cls-builders-room': 'CLS - Builders Room',
   'lightning-stage': 'Lightning Stage',
-  'music-stage': 'Music',
+  'music-stage': 'Music Stage',
   'workshop-1': 'Workshop 1',
   'workshop-2': 'Workshop 2',
 }
@@ -37,6 +37,10 @@ export function avDayFolder(day: string, n: number): string {
 /** The stage screen's Q&A code: it redirects to the Q&A of the session on stage (devcon /api/meerkat/). */
 export function qaQrUrl(roomId: string): string {
   return `https://devcon.org/qr/meerkat/${roomId}`
+}
+/** Meerkat's presenter view for a stage: its stages are our room ids (event-app's room screen uses the same). */
+export function meerkatStageUrl(roomId: string): string {
+  return `https://app.meerkat.events/stage/${roomId}`
 }
 /** av-assets manifest key of a stage's Q&A QR image (one per stage, the code never changes); the run of show links it from Digital Assets. */
 export function qaQrKey(roomId: string): string {

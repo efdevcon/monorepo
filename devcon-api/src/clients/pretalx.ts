@@ -58,6 +58,43 @@ export async function GetSlots(config: PretalxInstanceConfig = PRETALX_CONFIG) {
   return exhaustResource('slots', config)
 }
 
+export interface ScheduleBlock {
+  kind: 'break' | 'blocker'
+  title: string
+  start: string
+  end: string
+  roomId: string
+}
+
+/**
+ * Slots without a talk (breaks and blockers) from the work-in-progress
+ * schedule, where GetSlots reads the talks' slots too, plus the published
+ * version. Blockers are only listed when the schedule is asked for by id.
+ * For the stage crew's run of show only, never public data.
+ */
+export async function GetScheduleBlocks(config: PretalxInstanceConfig = PRETALX_CONFIG): Promise<{ version: string | null; blocks: ScheduleBlock[] }> {
+  const [schedules, rawRooms, version] = await Promise.all([
+    exhaustResource('schedules', config),
+    exhaustResource('rooms', config),
+    getPublishedScheduleVersion(config),
+  ])
+  const roomSlug = new Map<number, string>(rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)]))
+  const wip = schedules.find((s: any) => s.version === 'wip')
+  const slots = wip ? await exhaustResource(`slots?schedule=${wip.id}`, config) : []
+  const blocks = slots
+    .filter((s: any) => !s.submission && ['break', 'blocker'].includes(s.slot_type) && s.start && s.room)
+    .map(
+      (s: any): ScheduleBlock => ({
+        kind: s.slot_type,
+        title: (typeof s.description === 'string' ? s.description : s.description?.en) || (s.slot_type === 'blocker' ? 'Blocked' : 'Break'),
+        start: s.start,
+        end: s.end,
+        roomId: roomSlug.get(s.room) ?? String(s.room),
+      })
+    )
+  return { version, blocks }
+}
+
 export async function GetSubmissions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const [submissions, slots, rawRooms, speakers] = await Promise.all([
     exhaustResource(`submissions?questions=all&expand=answers.question,track,submission_type,tags`, config),

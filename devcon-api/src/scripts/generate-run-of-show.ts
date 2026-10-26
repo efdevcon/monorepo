@@ -5,6 +5,8 @@
 // template, the v2 proposal, or v3, the AV team's revision of it). Only the schedule columns and the PRETALX ID key
 // are ever rewritten. The crew's columns travel with the session, keyed by its
 // Pretalx code, when it moves within a sheet, to another stage or to another day.
+// Pretalx breaks (published schedule) and blockers (work-in-progress schedule,
+// never published) get rows of their own, keyed by kind, stage, day and order.
 // Sessions that leave a sheet are parked at the bottom as CANCELLED with their
 // notes; every difference is appended to a CHANGES tab and highlighted in the
 // sheet until the next run. Rows are rewritten in place below the header, so the
@@ -29,9 +31,9 @@ import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import { AuthenticateServiceAccount } from '@/clients/google'
-import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { GetRooms, GetScheduleBlocks, GetSessions, GetSpeakers, ScheduleBlock } from '@/clients/pretalx'
 import { getPretalxConfig } from '@/utils/config'
-import { AV_EVENT_FOLDER, avDayFolder, avRoomFolder, qaQrKey, qaQrUrl } from '@/utils/av-drive'
+import { AV_EVENT_FOLDER, avDayFolder, avRoomFolder, meerkatStageUrl, qaQrKey, qaQrUrl } from '@/utils/av-drive'
 import {
   CUES_SHEET,
   EVENT_TIMEZONES,
@@ -113,14 +115,20 @@ interface LayoutIo {
   dayBand: boolean
   /** Cell for the stage name, when the layout has one of its own. */
   stageCell?: string
+  /** v3: one large title line (day, date, stage) in dayCell, free to run across the columns. */
+  titleLine?: boolean
+  /** Cell holding the published Pretalx schedule version. */
+  versionCell?: string
+  /** Cells emptied on every run (an older layout's content the title line replaces). */
+  clearCells?: string[]
   /** Ranges emptied once when a sheet is created: the template's example content. */
   templateClears: string[]
   /** After a shrink, rows below the footer: reset to default (v1) or re-apply the tinted data style (v2). */
   leftover: 'clear' | 'style'
   /** Cell holding the stage's stream link, if the layout has one. */
   streamCell?: string
-  /** Tab listing the AV team's digital assets: the sync fills only the Link (B) of the row whose name matches. */
-  assets?: { tab: string; qaQrRow: RegExp }
+  /** Tab listing the AV team's digital assets: the sync fills only its own rows (Q&A QR, Meerkat stage), found by name. */
+  assets?: { tab: string; qaQrRow: RegExp; qaQrName: string; meerkatRow: RegExp; meerkatName: string }
   strictLists: boolean
 }
 const LAYOUT_IO: Record<string, LayoutIo> = {
@@ -141,13 +149,21 @@ const LAYOUT_IO: Record<string, LayoutIo> = {
     streamCell: 'S3',
     strictLists: true,
   },
-  // Template rows: 1 DAY / STAGE, 2 headers, 3.. examples, then a REMOVED divider and a parked example.
+  // Template rows: 1 version / title line, 2 headers, 3.. examples, then a REMOVED divider and a parked example.
   v3: {
     style: { divider: 8, dataEven: 2, dataOdd: 2 },
     dayCell: 'B1',
     dayBand: false,
-    stageCell: 'C1',
-    assets: { tab: 'Digital Assets', qaQrRow: /^q\s*&\s*a\s+qr/i },
+    titleLine: true,
+    versionCell: 'A1',
+    clearCells: ['C1'],
+    assets: {
+      tab: 'Digital Assets',
+      qaQrRow: /^(app\s+)?q\s*&\s*a\s+qr/i,
+      qaQrName: 'App Q&A QR code',
+      meerkatRow: /^meerkat/i,
+      meerkatName: 'Meerkat stage',
+    },
     templateClears: [`'${CHANGES_SHEET}'!A2:F`],
     leftover: 'style',
     strictLists: true,
@@ -177,6 +193,7 @@ interface DriveItem {
   mimeType: string
   parents?: string[]
   appProperties?: Record<string, string>
+  createdTime?: string
 }
 interface StageFile {
   day: string
@@ -238,6 +255,10 @@ interface Sources {
   speakerName: Map<string, string>
   /** Best way to reach a speaker, by speaker id and code (v3 SPEAKER CONTACT) */
   speakerContact: Map<string, string>
+  /** Breaks and blockers (Pretalx source only) */
+  blocks: ScheduleBlock[]
+  /** Published Pretalx schedule version (Pretalx source only) */
+  version: string | null
 }
 
 /** Telegram first (Pretalx only, it is never in the committed data), then the public handles. */
@@ -267,13 +288,14 @@ function indexSpeakers(speakers: any[]): Pick<Sources, 'speakerName' | 'speakerC
 async function loadFromPretalx(): Promise<Sources> {
   const config = getPretalxConfig(eventId)
   line(`source: Pretalx ${config.PRETALX_BASE_URI}`)
-  const [sessions, rooms, speakers] = await Promise.all([
+  const [sessions, rooms, speakers, { version, blocks }] = await Promise.all([
     GetSessions({}, config) as Promise<RawSession[]>,
     GetRooms(config) as Promise<Room[]>,
     // Contacts are for the stage crew's sheet only; they never reach the public data.
     GetSpeakers({ inclContacts: true }, config) as Promise<any[]>,
+    GetScheduleBlocks(config),
   ])
-  return { sessions, rooms, ...indexSpeakers(speakers) }
+  return { sessions, rooms, ...indexSpeakers(speakers), blocks, version }
 }
 
 function readJsonDir<T>(dir: string): T[] {
@@ -288,7 +310,7 @@ function loadFromData(): Sources {
   line(`source: committed data ${path.relative(process.cwd(), DATA_DIR) || '.'}`)
   const sessions = readJsonDir<RawSession>(path.join(DATA_DIR, 'sessions', eventId))
   const rooms = readJsonDir<Room>(path.join(DATA_DIR, 'rooms', eventId))
-  return { sessions, rooms, ...indexSpeakers(readJsonDir<any>(path.join(DATA_DIR, 'speakers'))) }
+  return { sessions, rooms, ...indexSpeakers(readJsonDir<any>(path.join(DATA_DIR, 'speakers'))), blocks: [], version: null }
 }
 
 function toRosSessions({ sessions: raw, rooms, speakerName, speakerContact }: Sources): RosSession[] {
@@ -331,6 +353,42 @@ function toRosSessions({ sessions: raw, rooms, speakerName, speakerContact }: So
   return out.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : a.title.localeCompare(b.title)))
 }
 
+/** PRETALX ID of a break or blocker row (see toBlockSessions). */
+const BLOCK_CODE = /^(BREAK|BLOCKER)-/
+
+/**
+ * Breaks and blockers as rows. They have no Pretalx code, so the key is kind,
+ * stage, day and their order among that kind on the stage that day: a lunch
+ * break that moves keeps its row and the crew's notes.
+ */
+function toBlockSessions(blocks: ScheduleBlock[], rooms: Room[], dayNumber: (day: string) => number): RosSession[] {
+  const out: RosSession[] = []
+  const seen = new Map<string, number>()
+  for (const b of [...blocks].sort((a, c) => toMs(a.start) - toMs(c.start))) {
+    const startMs = toMs(b.start)
+    const endMs = toMs(b.end)
+    const start = dayjs(startMs).tz(TZ)
+    const day = start.format('YYYY-MM-DD')
+    const group = `${b.kind}/${b.roomId}/${day}`
+    const n = (seen.get(group) ?? 0) + 1
+    seen.set(group, n)
+    out.push({
+      code: `${b.kind.toUpperCase()}-${b.roomId}-${dayNumber(day) || day}-${n}`,
+      kind: b.kind,
+      title: b.title,
+      type: b.kind === 'blocker' ? 'Blocker' : 'Break',
+      speakers: '',
+      start: start.format('HH:mm'),
+      end: dayjs(endMs).tz(TZ).format('HH:mm'),
+      durationMin: Math.round((endMs - startMs) / 60000),
+      day,
+      roomId: b.roomId,
+      roomName: rooms.find((r) => r.id === b.roomId)?.name || b.roomId,
+    })
+  }
+  return out
+}
+
 /** The stage's stream for that day, when the room data has one. */
 function streamUrlFor(room: Room | undefined, dayNumber: number): string | undefined {
   if (!room) return undefined
@@ -355,6 +413,10 @@ function dayLabelCell(day: string, n: number, roomName: string) {
 function shortDayCell(day: string, n: number) {
   return `DAY ${n} · ${dayjs(day).format('ddd')}`
 }
+/** v3's title line: day, date and stage in one cell that runs across the columns. */
+function titleLineCell(day: string, n: number, roomName: string) {
+  return `DAY ${n} · ${dayjs(day).format('ddd D MMM')} · ${roomName}`
+}
 
 async function listChildren(drive: any, parentId: string): Promise<DriveItem[]> {
   const items: DriveItem[] = []
@@ -367,7 +429,7 @@ async function listChildren(drive: any, parentId: string): Promise<DriveItem[]> 
         supportsAllDrives: true,
         pageSize: 200,
         pageToken,
-        fields: 'nextPageToken,files(id,name,mimeType,parents,appProperties)',
+        fields: 'nextPageToken,files(id,name,mimeType,parents,appProperties,createdTime)',
       })
     )
     items.push(...(res.data.files || []))
@@ -399,18 +461,20 @@ async function listManaged(drive: any, roomFolders: Set<string>): Promise<{ dayF
 /**
  * Walk $$EVENT/<Room>/<Day> in the AV tree for our sheets. Folders are the AV
  * team's (also used by av-assets.ts), found by name; sheets by appProperties.
- * With a room allow-list only those rooms' folders are opened.
+ * A sheet the crew moved up into its room folder (a one-day stage) is found
+ * there too. With a room allow-list only those rooms' folders are opened.
  */
 async function listAvTree(drive: any, roomFolders: Set<string>): Promise<DriveItem[]> {
   const isFolder = (f: DriveItem) => f.mimeType === FOLDER_MIME
+  const isSheet = (f: DriveItem) => f.mimeType === 'application/vnd.google-apps.spreadsheet' && mine(f, 'stage')
   const event = (await listChildren(drive, FOLDER_ID!)).find((f) => isFolder(f) && f.name === AV_EVENT_FOLDER)
   if (!event) return []
   const found: DriveItem[] = []
   for (const room of (await listChildren(drive, event.id)).filter(isFolder)) {
     if (ROOMS.length && !roomFolders.has(room.name)) continue
-    for (const day of (await listChildren(drive, room.id)).filter(isFolder)) {
-      found.push(...(await listChildren(drive, day.id)).filter((f) => f.mimeType === 'application/vnd.google-apps.spreadsheet' && mine(f, 'stage')))
-    }
+    const inRoom = await listChildren(drive, room.id)
+    found.push(...inRoom.filter(isSheet))
+    for (const day of inRoom.filter(isFolder)) found.push(...(await listChildren(drive, day.id)).filter(isSheet))
   }
   return found
 }
@@ -517,6 +581,8 @@ interface SheetIds {
   style: number
   changes: number
   cues?: number
+  /** The Digital Assets tab, where a missing Meerkat stage row is inserted. */
+  assets?: number
   rowCount: number
   columnCount: number
   /** Conditional format rules currently on the tab; the v1 sync replaces them by the STATUS colours. */
@@ -649,6 +715,7 @@ async function prepareSheets(
     style: style ?? -1,
     changes: changes ?? -1,
     cues,
+    assets: io.assets ? byTitle(io.assets.tab) : undefined,
     rowCount: grid.rowCount ?? 0,
     columnCount: grid.columnCount ?? 0,
     conditionalRules: (mainTab.conditionalFormats || []).length,
@@ -821,6 +888,10 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
   if (col.streaming !== undefined) requests.push({ setDataValidation: { range: dataRange(col.streaming), rule: list(['STREAM', 'NO STREAM']) } })
   for (const f of layout.checkboxes) {
     requests.push({ setDataValidation: { range: dataRange(col[f]!), rule: { condition: { type: 'BOOLEAN' }, showCustomUi: true } } })
+    // Breaks and blockers have no deck to tick: no checkbox on their rows.
+    plan.rows.forEach((row, i) => {
+      if (row.code && BLOCK_CODE.test(row.code)) requests.push({ setDataValidation: { range: rowRange(FIRST_ROW_INDEX + i, col[f]!, col[f]! + 1) } })
+    })
   }
   if (col.cueType !== undefined && ids.cues !== undefined) {
     requests.push({
@@ -853,6 +924,24 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
         fields: 'userEnteredFormat.horizontalAlignment',
       },
     })
+  }
+  if (io.titleLine) {
+    // A large title line, free to run across the empty cells to its right; the version stays small in A1.
+    requests.push({
+      repeatCell: {
+        range: { sheetId: ids.main, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 1, endColumnIndex: 2 },
+        cell: { userEnteredFormat: { textFormat: { fontSize: 16, bold: true }, wrapStrategy: 'OVERFLOW_CELL', verticalAlignment: 'MIDDLE', horizontalAlignment: 'LEFT' } },
+        fields: 'userEnteredFormat(textFormat.fontSize,textFormat.bold,wrapStrategy,verticalAlignment,horizontalAlignment)',
+      },
+    })
+    requests.push({
+      repeatCell: {
+        range: { sheetId: ids.main, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: 1 },
+        cell: { userEnteredFormat: { textFormat: { fontSize: 9, bold: false }, wrapStrategy: 'OVERFLOW_CELL', verticalAlignment: 'MIDDLE' } },
+        fields: 'userEnteredFormat(textFormat.fontSize,textFormat.bold,wrapStrategy,verticalAlignment)',
+      },
+    })
+    heights.push(setHeight(0, 40))
   }
   // Keep the day line and column headers in view on long sheets.
   requests.push({
@@ -893,7 +982,8 @@ async function writeFile(
   plan: FilePlan,
   rawCount: number,
   runLabel: string,
-  formatOptions: string[]
+  formatOptions: string[],
+  version: string | null
 ) {
   const cols = layout.headers.length
   const n = plan.rows.length
@@ -925,22 +1015,49 @@ async function writeFile(
     r.values.forEach((x, i) => (v[i] = x))
     return v
   })
+  const title = io.titleLine
+    ? titleLineCell(file.day, dayNumber, file.roomName)
+    : io.stageCell
+    ? shortDayCell(file.day, dayNumber)
+    : dayLabelCell(file.day, dayNumber, file.roomName)
   const data: any[] = [
-    {
-      range: `'${SHEET}'!${io.dayCell}`,
-      values: [[io.stageCell ? shortDayCell(file.day, dayNumber) : dayLabelCell(file.day, dayNumber, file.roomName)]],
-    },
+    { range: `'${SHEET}'!${io.dayCell}`, values: [[title]] },
     { range: `'${SHEET}'!A${first}:${last}${first + n - 1}`, values },
   ]
   if (io.stageCell) data.push({ range: `'${SHEET}'!${io.stageCell}`, values: [[file.roomName]] })
-  if (io.assets && file.qaQr) {
-    // The AV team owns the tab and its order; only the Link cell of the "Q&A QR code" row is ours.
-    const names: any = await withRetry(`read ${io.assets.tab} of ${file.label}`, () =>
-      sheets.spreadsheets.values.get({ spreadsheetId, range: `'${io.assets!.tab}'!A1:A200` })
+  for (const cell of io.clearCells || []) data.push({ range: `'${SHEET}'!${cell}`, values: [['']] })
+  if (io.versionCell && version) data.push({ range: `'${SHEET}'!${io.versionCell}`, values: [[`v${version}`]] })
+  if (io.assets) {
+    // The AV team owns the tab and its order; only the Q&A QR and Meerkat stage rows are ours.
+    const assets = io.assets
+    const names: any = await withRetry(`read ${assets.tab} of ${file.label}`, () =>
+      sheets.spreadsheets.values.get({ spreadsheetId, range: `'${assets.tab}'!A1:A200` })
     ).catch(() => null)
-    const at = (names?.data.values || []).findIndex((r: any[]) => io.assets!.qaQrRow.test(String(r[0] ?? '')))
-    if (at >= 0) data.push({ range: `'${io.assets.tab}'!B${at + 1}`, values: [[`=HYPERLINK("${file.qaQr}","Q&A QR · ${file.roomName}")`]] })
-    else line(`! ${file.label}: no "Q&A QR code" row on ${io.assets.tab}, link not written`)
+    const labels: string[] = (names?.data.values || []).map((r: any[]) => String(r[0] ?? ''))
+    const qaAt = labels.findIndex((v) => assets.qaQrRow.test(v))
+    if (qaAt < 0) line(`! ${file.label}: no "${assets.qaQrName}" row on ${assets.tab}, links not written`)
+    else {
+      if (file.qaQr) data.push({ range: `'${assets.tab}'!A${qaAt + 1}:B${qaAt + 1}`, values: [[assets.qaQrName, `=HYPERLINK("${file.qaQr}","App Q&A QR · ${file.roomName}")`]] })
+      let mkAt = labels.findIndex((v) => assets.meerkatRow.test(v))
+      if (mkAt < 0 && ids.assets !== undefined) {
+        // Right under the QR row, pushing the AV team's own rows down rather than overwriting one.
+        await withRetry(`add Meerkat row to ${file.label}`, () =>
+          sheets.spreadsheets.batchUpdate({
+            spreadsheetId,
+            requestBody: {
+              requests: [
+                { insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true } },
+              ],
+            },
+          })
+        )
+        mkAt = qaAt + 1
+      }
+      if (mkAt >= 0) {
+        const url = meerkatStageUrl(file.roomId)
+        data.push({ range: `'${assets.tab}'!A${mkAt + 1}:B${mkAt + 1}`, values: [[assets.meerkatName, `=HYPERLINK("${url}","Meerkat · ${file.roomName}")`]] })
+      }
+    }
   }
   if (!layout.keyInTemplate) data.push({ range: `'${SHEET}'!${last}${layout.headerRow}`, values: [[layout.headers[cols - 1]]] })
   if (io.streamCell) {
@@ -952,6 +1069,13 @@ async function writeFile(
   await withRetry(`format ${file.label}`, () =>
     sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: formatRequests(layout, io, ids, plan, span, formatOptions) } })
   )
+  // Pasting the row style puts a checkbox (set to FALSE) on break and blocker rows too; their box is gone by now, empty the cell.
+  const blockTicks = plan.rows.flatMap((row, i) =>
+    row.code && BLOCK_CODE.test(row.code) ? layout.checkboxes.map((f) => `'${SHEET}'!${colLetter(layout.col[f]!)}${first + i}`) : []
+  )
+  if (blockTicks.length) {
+    await withRetry(`clear break ticks of ${file.label}`, () => sheets.spreadsheets.values.batchClear({ spreadsheetId, requestBody: { ranges: blockTicks } }))
+  }
   if (plan.changes.length) {
     await withRetry(`log changes of ${file.label}`, () =>
       sheets.spreadsheets.values.append({
@@ -1122,15 +1246,23 @@ async function main() {
   heading(`Run of show · ${eventId} · ${TZ}${DRY_RUN ? ' · DRY RUN (nothing written)' : ''}`)
   const sources = SOURCE === 'data' ? loadFromData() : await loadFromPretalx()
   const { rooms } = sources
-  const scheduled = toRosSessions(sources)
+  const talks = toRosSessions(sources)
   // Day numbers come from the whole event, so a filtered run names its folders like a full one.
-  const days = [...new Set(scheduled.map((s) => s.day))].sort()
+  const days = [...new Set(talks.map((s) => s.day))].sort()
   const dayNumber = (day: string) => days.indexOf(day) + 1
+  // Breaks and blockers join a stage's day that has talks; alone they never open a sheet.
+  const withTalks = new Set(talks.map((s) => `${s.day}/${s.roomId}`))
+  const blocks = toBlockSessions(sources.blocks, rooms, dayNumber).filter((b) => withTalks.has(`${b.day}/${b.roomId}`))
+  const scheduled = [...talks, ...blocks]
   const wanted = (roomId: string, day: string) => (!ROOMS.length || ROOMS.includes(roomId)) && (!DAYS.length || DAYS.includes(dayNumber(day)))
   const sessions = scheduled.filter((s) => wanted(s.roomId, s.day))
   summary.sessions = sessions.length
   const limits = [ROOMS.length ? `rooms ${ROOMS.join(', ')}` : '', DAYS.length ? `day ${DAYS.join(', ')}` : ''].filter(Boolean)
-  line(`${sessions.length} scheduled session(s) in ${rooms.length} room(s)${limits.length ? ` · limited to ${limits.join(' · ')}` : ''}`)
+  line(
+    `${sessions.length} scheduled row(s) (${blocks.length} breaks and blockers in total) in ${rooms.length} room(s)${
+      limits.length ? ` · limited to ${limits.join(' · ')}` : ''
+    }${sources.version ? ` · schedule v${sources.version}` : ''}`
+  )
   if (!sessions.length) {
     line('nothing scheduled, nothing to write')
     return
@@ -1202,6 +1334,13 @@ async function main() {
       file = { day, roomId, roomName, label: `${roomName} · ${n ? `Day ${n}` : day}`, fileKey, sessions: [] }
       files.set(fileKey, file)
     }
+    // Two sheets for one stage and day: keep the older one, which holds the crew's work.
+    if (file.drive && file.drive.id !== f.id) {
+      const [keep, extra] = (file.drive.createdTime || '') <= (f.createdTime || '') ? [file.drive, f] : [f, file.drive]
+      line(`! ${file.label}: two sheets, using the one created ${keep.createdTime?.slice(0, 10)}; the copy created ${extra.createdTime?.slice(0, 16)} is left alone (https://docs.google.com/spreadsheets/d/${extra.id})`)
+      file.drive = keep
+      continue
+    }
     file.drive = f
   }
   const allDays = [...new Set([...files.values()].map((f) => f.day))].sort()
@@ -1224,7 +1363,13 @@ async function main() {
   if (!AV_TREE) for (const day of allDays) folderFor.set(day, await ensureDayFolder(drive, dayFolders, day, numberOf(day)))
   for (const file of ordered) {
     try {
-      const folder = AV_TREE ? await ensureAvFolder(drive, file, numberOf(file.day)) : folderFor.get(file.day)!
+      // A sheet that exists stays where the crew keeps it: folders are only made for a new one.
+      const folder =
+        AV_TREE && file.drive
+          ? { id: file.drive.parents?.[0] || '', name: file.label, mimeType: FOLDER_MIME }
+          : AV_TREE
+          ? await ensureAvFolder(drive, file, numberOf(file.day))
+          : folderFor.get(file.day)!
       const { item, created } = await ensureStageFile(drive, file, folder, stageFileName(file, numberOf(file.day)))
       if (!item) {
         line(`? ${file.label}: would be created from the template`)
@@ -1290,7 +1435,8 @@ async function main() {
         plan,
         ex.rawCount,
         runLabel,
-        formatOptions
+        formatOptions,
+        sources.version
       )
       summary.filesWritten++
     } catch (e: any) {
