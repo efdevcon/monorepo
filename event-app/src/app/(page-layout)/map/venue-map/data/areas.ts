@@ -234,5 +234,7 @@ export const ROOMS: Record<string, readonly { areaId: AreaId; instance?: number 
   "workshop-1": [{ areaId: "workshop", instance: 1 }],
   "workshop-2": [{ areaId: "workshop", instance: 2 }],
   "community-led-stage": [{ areaId: "cls-stage" }],
+  // Until the CLS Builders Room gets its own box (planned 2026-10-28): its Open Tech Summit sessions point at the hangout area beside the stage, roughly where they happen (Scott, 2026-10-26).
+  "cls-builders-room": [{ areaId: "cls-hangout-area" }],
   "music-stage": [{ areaId: "music-stage" }],
 };

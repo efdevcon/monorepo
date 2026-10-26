@@ -53,6 +53,7 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.ok(suites[0].entries.some((e) => e.name === "Tangerine Whistle Suite 105a"));
   assert.ok(AREA_LIST.some((a) => a.key === "L2/lightning-stage" && a.roomIds.includes("lightning-stage")), "the Lightning Stage maps to its Pretalx room");
   assert.ok(AREA_LIST.some((a) => a.key === "L0/cls-stage" && a.roomIds.includes("community-led-stage")));
+  assert.ok(AREA_LIST.some((a) => a.key === "L0/cls-hangout-area" && a.roomIds.includes("cls-builders-room")), "the Builders Room sessions show the hangout area for now");
   assert.ok(AREA_LIST.filter((a) => a.areaId === "escalator").every((a) => a.shape.hidden), "unnamed escalator symbols on the lower floors are sprite-only places too");
   assert.equal(AREA_LIST.filter((a) => a.areaId === "escalator").length, 9, "two on each floor, three on Level 2");
   assert.equal(AREA_LIST.find((a) => a.key === "L0/elevator-2")?.icon, "elevator-left", "east elevators face the other way");

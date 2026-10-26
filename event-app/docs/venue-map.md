@@ -218,7 +218,8 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   (`escalator`, `escalator_2`), the stair symbols (`stairs`, `stairs_2`; Level 2 has `stairs-`, `stairs-_2`…), and group the loose
   labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
   named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
-  `cls-builders-room` has no place on the plan, so its sessions have no "Show on Map".
+  `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
+  sessions' "Show on Map" points at the hangout area, roughly where they happen.
 - Icons missing for the new floors: Lightning Stage, Community Led Stage, CLS Hangout Area,
   the workshops, the suites, Help Desk, Cloak Room & Lost and Found, Poster Printing Station,
   Speakers Lounge, Interview Room, Baby Care Room, stairs (Registration and Badge Pickup reuse
