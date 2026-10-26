@@ -38,7 +38,7 @@ const DECK_RE = /^https:\/\/(docs|drive)\.google\.com\//
 // While speakers cannot open their decks (Drive sharing paused on the event's
 // shared drive), show a notice with the link instead of redirecting straight
 // into a Google "request access" page. Flip back to false once access is back.
-const DECK_ACCESS_PAUSED: Record<string, boolean> = { devcon8: true }
+const DECK_ACCESS_PAUSED: Record<string, boolean> = { devcon8: false }
 
 const AccessPaused = ({ deck }: { deck: string }) => (
   <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
