@@ -44,7 +44,8 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.deepEqual(stageFloors.find((f) => f.level === "L0")!.entries.map((e) => e.name), ["Community Led Stage", "CLS Builders Room"]);
   const main = stageFloors.find((f) => f.level === L3)!.entries[0];
   assert.equal(main.areas.length, 3, "the Main Stage row highlights the three Lotus halls");
-  assert.deepEqual(groups.find((g) => g.category.id === "workshops")!.floors.flatMap((f) => f.entries.map((e) => e.name)), ["Workshop 1", "Workshop 2"]);
+  const hubFloors = groups.find((g) => g.category.id === "hubs")!.floors;
+  assert.deepEqual(hubFloors.find((f) => f.level === "L2")!.entries.map((e) => e.name), ["Workshop 1", "Workshop 2"], "the workshops are community places");
   const suites = groups.find((g) => g.category.id === "suites")!.floors;
   assert.deepEqual(suites.map((f) => [f.level, f.entries.length]), [["L1", 6], ["L2", 8]]);
   assert.ok(suites[0].entries.some((e) => e.name === "Frontier Suite 102"), "a numbered suite layer carries its room number");
@@ -87,5 +88,5 @@ test("floor legend: one swatch chip per category that asks for one", () => {
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
   assert.deepEqual(buildFloorLegend("L0").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Check-in", "#128242"], ["Fun & Culture", "#aa99dd"]]);
   assert.deepEqual(buildFloorLegend("L1").map((e) => e.label), ["Suites"]);
-  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Workshops", "#edb529"], ["Suites", "#90ec65"]]);
+  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Suites", "#90ec65"], ["Community", "#edb529"]]);
 });

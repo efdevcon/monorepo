@@ -396,6 +396,9 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
+  walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
+  "Community"); Food Garden icon fixed at 16 m (`iconSize`).
 - 2026-10-26 — Levels 0–2 added from Scott's exports (`L0`–`L2.svg`): floors registered on the
   elevator marks (`register.ts`; the frames are at 1.32× / 1.5× Level 3's scale), tolerant Outline
   rules (unnamed walls by stroke width on floors that name none, hatches, escalator symbols by

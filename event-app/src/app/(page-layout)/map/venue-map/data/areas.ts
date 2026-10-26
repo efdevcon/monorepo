@@ -62,8 +62,8 @@ export const AREAS = {
   "cls-stage": { name: "Community Led Stage", description: "Community-led sessions.", category: "stages", heightClass: "stage", rank: 40 },
   // The blue box beside the Community Led Stage on the Level 0 plan was unnamed in the export; named in the committed copy as the CLS Builders Room (the other CLS room in Pretalx). Confirm with Scott.
   "cls-builders-room": { name: "CLS Builders Room", description: "Community-led sessions for builders.", category: "stages", heightClass: "room", rank: 50 },
-  // Workshops
-  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "workshops", heightClass: "room" },
+  // Workshops (Level 2): community places, listed with the hubs (Scott, 2026-10-26)
+  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room" },
   // Suites (Level 1 and 2): the plan names them after Ethereum upgrades with the room number; the layer names carry both.
   "frontier-suite": { name: "Frontier Suite #", description: "", category: "suites", heightClass: "room" },
   "homestead-suite-104b": { name: "Homestead Suite 104b", description: "", category: "suites", heightClass: "room" },
@@ -154,7 +154,7 @@ export const AREAS = {
   },
   // Food & drink
   "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
-  "food-garden": { name: "Food Garden", description: "Food stalls and seating.", category: "food", heightClass: "zone", icon: "food-area" },
+  "food-garden": { name: "Food Garden", description: "Food stalls and seating.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
   washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
   // Cowork & discussion
