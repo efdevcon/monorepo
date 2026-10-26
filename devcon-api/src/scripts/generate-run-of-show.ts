@@ -25,6 +25,7 @@
 // ROS_DATA_DIR (data mode, defaults to devcon-api/data), ROS_ROOMS (csv room id
 // allow-list), ROS_DRY_RUN=true (read and plan only). Google credentials as in
 // `clients/google.ts`.
+import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
 import dayjs from 'dayjs'
@@ -54,7 +55,7 @@ import {
   REC_OFF,
   REC_ON,
 } from '@/utils/run-of-show'
-import { GetDeckActivity } from '@/clients/slides'
+import { ListDeckActivity } from '@/clients/slides'
 import { deckIdFromUrl } from '@/utils/slides-permissions'
 
 dayjs.extend(utc)
@@ -85,6 +86,8 @@ const DAYS = (process.env.ROS_DAYS || '')
   .map((s) => parseInt(s.trim(), 10))
   .filter((n) => n > 0)
 const DRY_RUN = process.env.ROS_DRY_RUN === 'true'
+// Rewrite every sheet even when nothing differs from the last write (e.g. after the crew reformatted one).
+const FORCE = process.env.ROS_FORCE === 'true'
 const AV_TREE = AV_TREE_EVENTS.includes(eventId)
 // The AV tree's top folder is the one av-assets uses (same secret, AV_DRIVE_FOLDER_ID_<EVENT>).
 const FOLDER_ID = AV_TREE ? process.env[`AV_DRIVE_FOLDER_ID_${eventId.toUpperCase().replace(/-/g, '_')}`] : process.env.ROS_FOLDER_ID
@@ -224,7 +227,7 @@ interface StageFile {
 }
 
 const problems: string[] = []
-const summary = { filesCreated: 0, filesWritten: 0, sessions: 0, changes: 0 }
+const summary = { filesCreated: 0, filesWritten: 0, filesSkipped: 0, sessions: 0, changes: 0 }
 const startedAt = Date.now()
 
 function heading(text: string) {
@@ -244,11 +247,21 @@ function toMs(value: number | string): number {
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms))
 }
+// ROS_PROFILE=1: total time per kind of Google call, printed at the end (where does a run spend its time).
+const PROFILE = process.env.ROS_PROFILE === '1'
+const profile = new Map<string, { calls: number; ms: number }>()
 /** Google quotas are per minute; back off on 429/5xx instead of failing the run. */
 async function withRetry<T>(what: string, fn: () => Promise<T>, attempts = 6): Promise<T> {
+  const kind = what.replace(/ (of|in|for|into|to) .*$/, '')
+  const started = Date.now()
   for (let i = 0; ; i++) {
     try {
-      return await fn()
+      const result = await fn()
+      if (PROFILE) {
+        const p = profile.get(kind) || { calls: 0, ms: 0 }
+        profile.set(kind, { calls: p.calls + 1, ms: p.ms + Date.now() - started })
+      }
+      return result
     } catch (e: any) {
       const status = e?.code || e?.response?.status
       const retryable = status === 429 || (status >= 500 && status < 600)
@@ -436,16 +449,18 @@ function titleLineCell(day: string, n: number, roomName: string) {
   return `DAY ${n} · ${dayjs(day).format('ddd D MMM')} · ${roomName}`
 }
 
-async function listChildren(drive: any, parentId: string): Promise<DriveItem[]> {
+/** Every item matching a Drive query (all pages); `everywhere` searches all drives the account can see. */
+async function listQuery(drive: any, q: string, what: string, everywhere = false): Promise<DriveItem[]> {
   const items: DriveItem[] = []
   let pageToken: string | undefined
   do {
-    const res: any = await withRetry('list folder', () =>
+    const res: any = await withRetry(what, () =>
       drive.files.list({
-        q: `'${parentId}' in parents and trashed=false`,
+        q,
         includeItemsFromAllDrives: true,
         supportsAllDrives: true,
-        pageSize: 200,
+        ...(everywhere ? { corpora: 'allDrives' } : {}),
+        pageSize: 1000,
         pageToken,
         fields: 'nextPageToken,files(id,name,mimeType,parents,appProperties,createdTime)',
       })
@@ -454,6 +469,9 @@ async function listChildren(drive: any, parentId: string): Promise<DriveItem[]> 
     pageToken = res.data.nextPageToken
   } while (pageToken)
   return items
+}
+function listChildren(drive: any, parentId: string): Promise<DriveItem[]> {
+  return listQuery(drive, `'${parentId}' in parents and trashed=false`, 'list folder')
 }
 
 /**
@@ -487,14 +505,23 @@ async function listAvTree(drive: any, roomFolders: Set<string>): Promise<DriveIt
   const isSheet = (f: DriveItem) => f.mimeType === 'application/vnd.google-apps.spreadsheet' && mine(f, 'stage')
   const event = (await listChildren(drive, FOLDER_ID!)).find((f) => isFolder(f) && f.name === AV_EVENT_FOLDER)
   if (!event) return []
-  const found: DriveItem[] = []
-  for (const room of (await listChildren(drive, event.id)).filter(isFolder)) {
-    if (ROOMS.length && !roomFolders.has(room.name)) continue
-    const inRoom = await listChildren(drive, room.id)
-    found.push(...inRoom.filter(isSheet))
-    for (const day of inRoom.filter(isFolder)) found.push(...(await listChildren(drive, day.id)).filter(isSheet))
-  }
-  return found
+  const rooms = (await listChildren(drive, event.id)).filter((f) => isFolder(f) && (!ROOMS.length || roomFolders.has(f.name)))
+  if (!rooms.length) return []
+  // Three queries instead of one listing per room and day folder: the day folders of
+  // every room at once, then every tagged sheet; a sheet counts only inside this tree.
+  const days = await listQuery(
+    drive,
+    `mimeType='${FOLDER_MIME}' and trashed=false and (${rooms.map((r) => `'${r.id}' in parents`).join(' or ')})`,
+    'list day folders'
+  )
+  const places = new Set([...rooms, ...days].map((f) => f.id))
+  const tagged = await listQuery(
+    drive,
+    `mimeType='application/vnd.google-apps.spreadsheet' and trashed=false and appProperties has { key='ros_event' and value='${eventId}' } and appProperties has { key='ros_kind' and value='stage' }`,
+    'find sheets',
+    true
+  )
+  return tagged.filter((f) => isSheet(f) && (f.parents || []).some((p) => places.has(p)))
 }
 
 // One lookup per folder: several sheets share a room folder, which must be created once.
@@ -743,12 +770,53 @@ async function prepareSheets(
   }
 }
 
+/**
+ * Everything a run reads from one sheet, in two calls (read quota is 60 a minute):
+ * the main tab as displayed (headers and rows), then as formulas (the URL behind a
+ * link) together with the Digital Assets labels. Read once, before any write.
+ */
+interface SheetData {
+  shown: any[][]
+  formulas: any[][]
+  /** Column A of the Digital Assets tab; null when the tab is missing */
+  assets: any[][] | null
+}
+const sheetData = new Map<string, Promise<SheetData>>()
+function readSheetData(sheets: any, spreadsheetId: string, label: string): Promise<SheetData> {
+  if (!sheetData.has(spreadsheetId)) {
+    sheetData.set(
+      spreadsheetId,
+      (async () => {
+        const main = `'${SHEET}'!A1:Z`
+        const assetsTab = LAYOUT_IO.v3.assets?.tab
+        const shown: any = await withRetry(`read ${label}`, () => sheets.spreadsheets.values.get({ spreadsheetId, range: main }))
+        const ranges = assetsTab ? [main, `'${assetsTab}'!A1:A200`] : [main]
+        const formulas: any = await withRetry(`read formulas of ${label}`, () =>
+          sheets.spreadsheets.values.batchGet({ spreadsheetId, ranges, valueRenderOption: 'FORMULA' })
+        ).catch(async (e: Error) => {
+          // A sheet without the Digital Assets tab rejects the whole batch: read the main tab alone.
+          if (ranges.length === 1) throw e
+          return withRetry(`read formulas of ${label}`, () =>
+            sheets.spreadsheets.values.batchGet({ spreadsheetId, ranges: [main], valueRenderOption: 'FORMULA' })
+          )
+        })
+        const got = formulas.data.valueRanges || []
+        return { shown: shown.data.values || [], formulas: got[0]?.values || [], assets: got[1] ? got[1].values || [] : null }
+      })()
+    )
+  }
+  return sheetData.get(spreadsheetId)!
+}
+
+/** 0-based index of a column letter (A = 0). */
+function colLetterIndex(letters: string): number {
+  return letters.split('').reduce((n, ch) => n * 26 + ch.charCodeAt(0) - 64, 0) - 1
+}
+
 /** A sheet keeps working with the layout it was created from, even if the template changes later. */
 async function readSheetLayout(sheets: any, spreadsheetId: string, label: string): Promise<RosLayout | null> {
-  const res: any = await withRetry(`read headers of ${label}`, () =>
-    sheets.spreadsheets.values.get({ spreadsheetId, range: `'${SHEET}'!A1:Z${TOP_ROWS}` })
-  )
-  return detectLayoutInRows(res.data.values || [])
+  const data = await readSheetData(sheets, spreadsheetId, label)
+  return detectLayoutInRows(data.shown.slice(0, TOP_ROWS))
 }
 
 async function readExisting(
@@ -760,15 +828,11 @@ async function readExisting(
 ): Promise<{ rows: ExistingRow[]; rawCount: number }> {
   const last = colLetter(layout.headers.length - 1)
   const first = firstRow(layout)
-  const res: any = await withRetry(`read rows of ${label}`, () =>
-    sheets.spreadsheets.values.get({ spreadsheetId, range: `'${SHEET}'!A${first}:${last}`, valueRenderOption: 'FORMATTED_VALUE' })
-  )
+  const data = await readSheetData(sheets, spreadsheetId, label)
+  const width = colLetterIndex(last) + 1
+  const raw: any[][] = data.shown.slice(first - 1).map((r) => r.slice(0, width))
   // Link columns (SLIDES, Q&A QR) hold HYPERLINK formulas; compare and carry the URL, not the label.
-  const formulas: any = await withRetry(`read links of ${label}`, () =>
-    sheets.spreadsheets.values.get({ spreadsheetId, range: `'${SHEET}'!A${first}:${last}`, valueRenderOption: 'FORMULA' })
-  )
-  const raw: any[][] = res.data.values || []
-  const cells: any[][] = formulas.data.values || []
+  const cells: any[][] = data.formulas.slice(first - 1)
   const linkCols = Object.keys(LINK_FIELDS)
     .map((f) => layout.col[f as keyof typeof layout.col])
     .filter((c): c is number => c !== undefined)
@@ -1091,7 +1155,6 @@ async function writeFile(
   }
   structure.push({ unmergeCells: { range: used } })
   structure.push({ updateCells: { range: used, fields: 'userEnteredValue' } })
-  await withRetry(`prepare ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: structure } }))
 
   const values = plan.rows.map((r) => {
     const v: (string | number)[] = new Array(cols).fill('')
@@ -1110,13 +1173,12 @@ async function writeFile(
   if (io.stageCell) data.push({ range: `'${SHEET}'!${io.stageCell}`, values: [[file.roomName]] })
   for (const cell of io.clearCells || []) data.push({ range: `'${SHEET}'!${cell}`, values: [['']] })
   if (io.versionCell && version) data.push({ range: `'${SHEET}'!${io.versionCell}`, values: [[`v${version}`]] })
+  let insertMeerkatRow: any = null
   if (io.assets) {
     // The AV team owns the tab and its order; only the Q&A QR and Meerkat stage rows are ours.
     const assets = io.assets
-    const names: any = await withRetry(`read ${assets.tab} of ${file.label}`, () =>
-      sheets.spreadsheets.values.get({ spreadsheetId, range: `'${assets.tab}'!A1:A200` })
-    ).catch(() => null)
-    const labels: string[] = (names?.data.values || []).map((r: any[]) => String(r[0] ?? ''))
+    const read = await readSheetData(sheets, spreadsheetId, file.label).catch(() => null)
+    const labels: string[] = (read?.assets || []).map((r: any[]) => String(r[0] ?? ''))
     const qaAt = labels.findIndex((v) => assets.qaQrRow.test(v))
     if (qaAt < 0) line(`! ${file.label}: no "${assets.qaQrName}" row on ${assets.tab}, links not written`)
     else {
@@ -1124,16 +1186,7 @@ async function writeFile(
       let mkAt = labels.findIndex((v) => assets.meerkatRow.test(v))
       if (mkAt < 0 && ids.assets !== undefined) {
         // Right under the QR row, pushing the AV team's own rows down rather than overwriting one.
-        await withRetry(`add Meerkat row to ${file.label}`, () =>
-          sheets.spreadsheets.batchUpdate({
-            spreadsheetId,
-            requestBody: {
-              requests: [
-                { insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true } },
-              ],
-            },
-          })
-        )
+        insertMeerkatRow = { insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true } }
         mkAt = qaAt + 1
       }
       if (mkAt >= 0) {
@@ -1146,16 +1199,27 @@ async function writeFile(
   if (io.streamCell) {
     data.push({ range: `'${SHEET}'!${io.streamCell}`, values: [[file.streamUrl ? `=HYPERLINK("${file.streamUrl}","▶ Live stream")` : '']] })
   }
-  await withRetry(`write rows of ${file.label}`, () =>
-    sheets.spreadsheets.values.batchUpdate({ spreadsheetId, requestBody: { valueInputOption: 'USER_ENTERED', data } })
-  )
-  await withRetry(`format ${file.label}`, () =>
-    sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: formatRequests(layout, io, ids, plan, span, formatOptions, version) } })
-  )
+  const format = formatRequests(layout, io, ids, plan, span, formatOptions, version)
   // Pasting the row style puts a checkbox (set to FALSE) on break and blocker rows too; their box is gone by now, empty the cell.
   const blockTicks = plan.rows.flatMap((row, i) =>
     row.code && BLOCK_CODE.test(row.code) ? layout.checkboxes.map((f) => `'${SHEET}'!${colLetter(layout.col[f]!)}${first + i}`) : []
   )
+  // Everything this run would send. When it matches what the last write sent and the
+  // schedule has no change here, the sheet already looks like this: leave it alone.
+  // A code change to values or formats changes the fingerprint, so it still lands.
+  const fingerprint = crypto
+    .createHash('sha1')
+    .update(JSON.stringify({ structure, data, format, blockTicks, insertMeerkatRow }))
+    .digest('hex')
+  if (!FORCE && !plan.changes.length && file.drive?.appProperties?.ros_hash === fingerprint) return { written: false, fingerprint }
+
+  await withRetry(`prepare ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: structure } }))
+  if (insertMeerkatRow)
+    await withRetry(`add Meerkat row to ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: [insertMeerkatRow] } }))
+  await withRetry(`write rows of ${file.label}`, () =>
+    sheets.spreadsheets.values.batchUpdate({ spreadsheetId, requestBody: { valueInputOption: 'USER_ENTERED', data } })
+  )
+  await withRetry(`format ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: format } }))
   if (blockTicks.length) {
     await withRetry(`clear break ticks of ${file.label}`, () => sheets.spreadsheets.values.batchClear({ spreadsheetId, requestBody: { ranges: blockTicks } }))
   }
@@ -1170,6 +1234,7 @@ async function writeFile(
       })
     )
   }
+  return { written: true, fingerprint }
 }
 
 /** Conditional colours per layout, over the rows written this run (formulas anchor on the first generated row). */
@@ -1354,19 +1419,22 @@ async function main() {
   const wanted = (roomId: string, day: string) => (!ROOMS.length || ROOMS.includes(roomId)) && (!DAYS.length || DAYS.includes(dayNumber(day)))
   const sessions = scheduled.filter((s) => wanted(s.roomId, s.day))
   summary.sessions = sessions.length
-  // On the day itself, talks still to come get their deck checked live: the
-  // last slides run (which records "untouched" in Pretalx) may be hours old.
-  const now = dayjs().tz(TZ)
-  const today = now.format('YYYY-MM-DD')
-  const live = sessions.filter((s) => !s.kind && s.day === today && s.end > now.format('HH:mm') && deckIdFromUrl(s.slides))
-  for (const s of live) {
+  // "Slides (untouched)" from Drive itself on every run (one folder listing for all
+  // decks); the Pretalx answer from the last slides run is only the fallback.
+  const withDeck = sessions.filter((s) => !s.kind && deckIdFromUrl(s.slides))
+  if (withDeck.length && SOURCE !== 'data') {
     try {
-      s.slidesUntouched = (await GetDeckActivity(deckIdFromUrl(s.slides)!)).untouched
+      const started = Date.now()
+      const activity = await ListDeckActivity(withDeck.map((s) => deckIdFromUrl(s.slides)!))
+      for (const s of withDeck) {
+        const a = activity.get(deckIdFromUrl(s.slides)!)
+        if (a) s.slidesUntouched = a.untouched
+      }
+      line(`deck activity read from Drive for ${activity.size} deck(s) in ${((Date.now() - started) / 1000).toFixed(1)}s`)
     } catch (e) {
-      line(`! [${s.code}] deck activity not checked: ${(e as Error).message}`)
+      line(`! deck activity not read from Drive, using the last slides run: ${(e as Error).message}`)
     }
   }
-  if (live.length) line(`deck activity checked live for ${live.length} talk(s) still to come today`)
   const limits = [ROOMS.length ? `rooms ${ROOMS.join(', ')}` : '', DAYS.length ? `day ${DAYS.join(', ')}` : ''].filter(Boolean)
   line(
     `${sessions.length} scheduled row(s) (${blocks.length} breaks and blockers in total) in ${rooms.length} room(s)${
@@ -1534,7 +1602,7 @@ async function main() {
     }
     if (!ids || !file.drive) continue
     try {
-      await writeFile(
+      const result = await writeFile(
         sheets,
         file.drive.id,
         fileLayout,
@@ -1548,7 +1616,15 @@ async function main() {
         formatOptions,
         sources.version
       )
+      if (!result.written) {
+        summary.filesSkipped++
+        continue
+      }
       summary.filesWritten++
+      // Remember what was sent, so the next run can skip the sheet while nothing differs.
+      await withRetry(`stamp ${file.label}`, () =>
+        drive.files.update({ fileId: file.drive!.id, supportsAllDrives: true, requestBody: { appProperties: { ros_hash: result.fingerprint } } })
+      )
     } catch (e: any) {
       problem(`${file.label}: ${e.message}`)
     }
@@ -1556,9 +1632,14 @@ async function main() {
 
   const secs = Math.round((Date.now() - startedAt) / 1000)
   heading(
-    `Done in ${secs}s · ${summary.sessions} sessions · ${summary.filesCreated} sheet(s) created · ${summary.filesWritten} written · ${summary.changes} change(s) logged`
+    `Done in ${secs}s · ${summary.sessions} sessions · ${summary.filesCreated} sheet(s) created · ${summary.filesWritten} written · ${summary.filesSkipped} unchanged · ${summary.changes} change(s) logged`
   )
   line(`https://drive.google.com/drive/folders/${FOLDER_ID}`)
+  if (PROFILE) {
+    heading('time per kind of Google call (retries included)')
+    for (const [kind, p] of [...profile].sort((a, b) => b[1].ms - a[1].ms))
+      line(`${(p.ms / 1000).toFixed(1).padStart(6)}s  ${String(p.calls).padStart(3)}×  ${kind}`)
+  }
   if (problems.length) {
     heading(`${problems.length} problem(s):`)
     for (const p of problems) line(`✗ ${p}`)
