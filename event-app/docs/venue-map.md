@@ -129,7 +129,10 @@ Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and th
 after it with the members as the line beneath (`groupName` in the store, `compositeOf`); its Find row shows
 the members' icon (the lotus; Scott, 2026-10-26).
 `LEVELS` lists the floors bottom-up with their source file (L0–L3); `LEVEL_KEYS` are the
-single-key shortcuts (the floor's own number, L0 → 0); `LEVEL_ALIASES` is how Search parses
+single-key shortcuts (the floor's own number, L0 → 0); `SEARCH_TERMS` (`data/searchTerms.ts`) are the
+words Search answers beyond the names and category labels ("meeting" → the suites, "lunch" → food &
+drink, "exit" → escalators and stairs; a term matches as the whole query, as its start from three
+letters, or as a whole word inside it; Scott, 2026-10-26); `LEVEL_ALIASES` is how Search parses
 "level 3" / "l3" / "ground floor". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
 
 `data/resolve.ts` joins the bundle to the catalogue once at module load into `Area` view models
@@ -159,7 +162,7 @@ floors/        placement.ts (rest poses + transition plan, tested), FloorStack, 
 geometry/      buildFloor.ts (merged statics + per-area extrusions, module cache), materials, FloorMeshes, AreaIcons
 interaction/   hoverStore (useSyncExternalStore), pointer.ts (single raycast owner), usePointer
 find/          catalogue.ts (Find groups, legend, group primary; tested), FindContent, EntryRow
-search/        search.ts (floor-aware query parsing; tested), SearchContent
+search/        search.ts (floor-aware query parsing + custom terms from data/searchTerms.ts; tested), SearchContent
 ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea, FloorSlider,
                TopStrip (ControlsLegend + FloorLegend), useMapShortcuts, Debug
 ```

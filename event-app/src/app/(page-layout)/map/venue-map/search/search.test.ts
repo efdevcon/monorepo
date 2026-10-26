@@ -30,6 +30,18 @@ test("search: name and category matches, duplicates collapsed with their count",
   assert.deepEqual(searchFind(groups, "   "), { floor: null, hits: [] });
 });
 
+test("search: custom terms bring up their categories and areas", () => {
+  const suites = searchFind(groups, "meeting room").hits;
+  assert.ok(suites.length > 0 && suites.every((h) => h.category.id === "suites"), "meeting room → the suites only");
+  assert.equal(searchFind(groups, "mee").hits.length, suites.length, "a prefix of three letters matches");
+  assert.ok(searchFind(groups, "me").hits.every((h) => h.category.id !== "suites" || h.name.toLowerCase().includes("me")), "two letters stay a name search");
+  const food = searchFind(groups, "lunch").hits;
+  assert.ok(food.length > 0 && food.every((h) => h.category.id === "food"), "lunch → food & drink");
+  const ways = searchFind(groups, "where is the exit").hits;
+  assert.ok(ways.length > 0 && ways.every((h) => h.areas.every((a) => a.areaId === "escalator" || a.areaId === "stairs")), "a whole word inside the query matches");
+  assert.equal(searchFind(groups, "exit l3").hits.length, 2, "escalators and stairs on Level 3, one row each");
+});
+
 test("catalogue: every area is listed once, numbered names carry their number", () => {
   const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.filter((e) => !e.key.includes("composite:")).flatMap((e) => e.areas)));
   assert.equal(listed.length, AREA_LIST.length);
