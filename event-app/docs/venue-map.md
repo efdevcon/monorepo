@@ -223,8 +223,8 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
   sessions' "Show on Map" points at the hangout area, roughly where they happen.
-- Icons still missing: Lightning Stage, Community Led Stage, CLS Hangout Area (Registration keeps
-  the prototype's wristband icon, the Food Garden its food-area icon, both provisional). Stairs are
+- Icons still missing: CLS Hangout Area (the Food Garden reuses the food-area icon, provisional;
+  the Lightning Stage, Community Led Stage and a redrawn wristband arrived 2026-10-26). Stairs are
   only named on Level 2; the other floors' stair symbols stay flat until their groups are named.
 - Suites / the magenta rooms (Speakers Lounge, Interview Room, Baby Care Room): category names
   and descriptions are guesses from the plan; the magenta rooms sit under Other with no legend
