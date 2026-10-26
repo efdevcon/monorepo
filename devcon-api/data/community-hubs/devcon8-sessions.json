@@ -1102,11 +1102,8 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-23T19:11:25.330Z",
-    "problems": [
-      "row 31: no session title, skipped",
-      "row 43: no session title, skipped"
-    ],
+    "changedAt": "2026-10-26T12:57:10.296Z",
+    "problems": [],
     "sessions": [
       {
         "id": "S01",
@@ -1116,7 +1113,8 @@
         "format": "Welcome",
         "speakers": [
           "Pooja Ranjan"
-        ]
+        ],
+        "topic": "Community"
       },
       {
         "id": "S02",
@@ -1127,6 +1125,7 @@
         "speakers": [
           "Jochem Brouwer"
         ],
+        "topic": "Governance",
         "description": "We are all using AIs much more than in the past. We point our AIs to implement specifications, such as EIP documents. These documents are not only used as the root source of truth *now*, but will also be like this in the future. It is therefore even more important that the quality of these documents is as high as possible. Not just for core developers, but also for AIs which implement it, and for the general communication with the public."
       },
       {
@@ -1137,7 +1136,8 @@
         "format": "Workshop",
         "speakers": [
           "Pooja Ranjan",
-          "Jochem Brouwer"
+          "Dhanush Naik",
+          "Subhrajeet Bhattacharjee"
         ]
       },
       {
@@ -1272,9 +1272,12 @@
         "id": "S17",
         "day": "Wed 4 Nov",
         "time": "12:20-13:00",
-        "title": "Open Mic",
-        "format": "Other",
-        "speakers": []
+        "title": "Post-Quantum Ethereum on the Execution Layer: From EIP-7885 to EIP-8288",
+        "format": "Talk",
+        "speakers": [
+          "Yoon Hyoung Lee"
+        ],
+        "description": "Ethereum now has multiple paths toward post-quantum security, from lattice-based cryptography and EIP-7885 to hash-based signatures combined with proof aggregation. This talk compares these approaches through their performance, standardization, cryptographic assumptions, and the additional complexity introduced by specialized signature schemes and aggregation layers such as EIP-8288."
       },
       {
         "id": "S18",
@@ -1369,6 +1372,17 @@
           "Simona Serban"
         ],
         "description": "Exploring the tension between human trust and code-based trustlessness in Ethereum, this talk draws on experiences building the ETHCluj community to examine how open collaboration, accountability, and shared ownership can thrive in a rapidly evolving world shaped by AI, privacy, and security challenges."
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "11:30-12:10",
+        "title": "EIP-7702 in Practice for Dapps",
+        "format": "Talk",
+        "speakers": [
+          "Thirumurugan Sivalingam"
+        ],
+        "description": "Since Pectra, 67 million EOAs carry smart account code, and most dapps still treat them like 2021 wallets: approve, then act, then pay gas. This talk shows how a dapp should actually use EIP-7702 through ERC-5792 and ERC-7715, where integrations are going wrong, and why the same EOA can now be run by a passkey with no seed phrase."
       },
       {
         "id": "S29",
@@ -1475,6 +1489,17 @@
           "Kevin Jones"
         ],
         "description": "A billion agents are about to come onchain, but none of the infrastructure was built to support that. We will discuss techniques like MPC, TEEs and HSMs to solve the agentic trust problem and power the agentic economy."
+      },
+      {
+        "id": "S40",
+        "day": "Fri 6 Nov",
+        "time": "12:00-13:00",
+        "title": "Self-Sovereign Tokens: Rethinking Onchain Representation",
+        "format": "Talk",
+        "speakers": [
+          "German"
+        ],
+        "description": "Apeiron Protocol proposes a token architecture where users or entities govern Signs through their own Console, with protected state isolated in ConsoleStorage and modular execution delegated to optional Cartridges. The talk explores explicit incoming acceptance, EXTCODEHASH-based remote compliance, and the separation of representation, instance identity, and metadata."
       },
       {
         "id": "S41",
