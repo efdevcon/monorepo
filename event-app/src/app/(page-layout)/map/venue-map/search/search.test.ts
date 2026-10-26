@@ -87,9 +87,20 @@ test("floor legend: one swatch chip per category that asks for one", () => {
   assert.ok(legend.find((e) => e.label === "Work & Rest")!.areas.some((a) => a.areaId === "decompression-zone"));
   assert.ok(!legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "decompression-zone"));
   assert.ok(legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "swag-station"), "the Swag Station sits with the places of its colour");
-  assert.ok(buildFloorLegend("L0").find((e) => e.label === "Stages")!.areas.some((a) => a.areaId === "cls-hangout-area"), "the CLS Hangout Area is blue like the stages");
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
-  assert.deepEqual(buildFloorLegend("L0").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Check-in", "#128242"], ["Fun & Culture", "#aa99dd"]]);
-  assert.deepEqual(buildFloorLegend("L1").map((e) => e.label), ["Suites"]);
-  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Suites", "#90ec65"], ["Community", "#edb529"]]);
+});
+
+test("floor legend: Levels 0–2 list their place types with the theme icon, in spec order", () => {
+  const l0 = buildFloorLegend("L0");
+  assert.deepEqual(
+    l0.map((e) => e.label),
+    ["Community Led Stage", "CLS Hangout Area", "Registration", "Badge Pickup", "Help Desk", "Cloak Room", "Food Garden", "Poster Printing Station", "Poster Display"]
+  );
+  assert.ok(l0.every((e) => e.iconUrl || e.swatch), "a chip has an icon or a swatch");
+  assert.equal(l0.find((e) => e.label === "CLS Hangout Area")?.swatch, "#0088ee", "no icon yet: a swatch in the footprint's fill");
+  assert.equal(l0.find((e) => e.label === "Badge Pickup")?.areas.length, 2, "both pickup desks under one chip");
+  assert.ok(!l0.some((e) => e.label.startsWith("Washroom") || e.label.startsWith("Elevator")), "wayfinding and washrooms stay out");
+  assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Suites", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
+  assert.ok(buildFloorLegend("L1")[0].iconUrl?.endsWith("/suites.png"), "a category chip takes the first member's icon");
+  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Suites", 8], ["Baby Care Room", 1]]);
 });

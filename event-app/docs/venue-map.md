@@ -106,6 +106,12 @@ lucide mapping; `legend` on a category puts one swatch chip for it into the floo
 labels "Community", "Supporters", "Work & Rest" and "Fun & Culture" since 2026-10-25). `legend` on an area moves it to another
 category's chip (the yellow discussion corners and the Open Hardware Zone sit under Community, the
 colour they share with the hubs; the Decompression Zone is a `cowork` area, under Work & Rest).
+That colour legend is Level 3's. Levels 0–2 list their place types instead (`data/legend.ts`,
+Scott, 2026-10-26, like the prototype's mixed legend): one chip per spec in spec order, by
+`areaId` (every footprint of the type on the floor, "Badge Pickup" covers both desks) or by
+`category` (the suites, fourteen ids), with the type's theme icon or a swatch in its fill while
+it has none (the CLS Hangout Area); washrooms, tea & coffee, elevators, escalators and stairs are
+left out as self-explanatory. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
 also carries Levels 0–2: the Community Led Stage (L0, `stages`) and the CLS Hangout Area beside it
 (L0, `hubs`, under the Stages chip by its colour; Scott, 2026-10-26), the Lightning
@@ -184,7 +190,8 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   its viewBox size first (Safari draws it 0×0 otherwise). They bob while selected (upwards from the rest pose only, so the logo never dips into its booth; 2026-10-25). Hidden areas (escalators) have no mesh, only the sprite takes the pointer.
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
   floor slider bottom-right (multi-floor only), the top strip (controls legend while stacked or
-  when the floor has no legend; otherwise one swatch chip per legend category), `AreaCard`
+  when the floor has no legend; otherwise the floor's legend chips, icons per place type on
+  Levels 0–2, one swatch per legend category on Level 3), `AreaCard`
   (stages keep the icon disc, everything else inline; desktop beside the footprint via
   `--poi-x/--poi-y` written by `FloorStack` per frame, group picks bottom-centre), live session
   from the footprint's `roomIds`, shortcuts (digits, F, /, Esc/A), the team-only wrench + tuning

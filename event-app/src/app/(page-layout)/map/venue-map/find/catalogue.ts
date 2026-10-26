@@ -1,4 +1,6 @@
+import { AREAS } from "../data/areas";
 import { CATEGORIES, type Category } from "../data/categories";
+import { FLOOR_LEGENDS } from "../data/legend";
 import { LEVEL_ORDER, LEVELS, levelIndex, type LevelId } from "../data/levels";
 import { AREA_LIST, COMPOSITE_LIST, type Area, type AreaKey } from "../data/resolve";
 
@@ -58,15 +60,30 @@ export function primaryOf(areas: readonly Area[]): AreaKey {
 export type LegendEntry = { key: string; label: string; iconUrl: string | null; swatch: string | null; areas: Area[] };
 
 /**
- * The open floor's legend: one swatch chip per category that asks for one
- * (categories.ts), in the fill most of its footprints use, listing every
- * footprint whose legend category it is (areas.ts `legend` moves a footprint
- * to the chip of its colour: the yellow discussion corners sit with the hubs). Floors with nothing to explain
- * get an empty list.
+ * The open floor's legend. A floor listed in legend.ts gets one chip per
+ * spec, in spec order: the type's theme icon (a swatch in its fill while it
+ * has none) and label, tapping it shows every footprint of the type on the
+ * floor (Levels 0–2 since 2026-10-26). Any other floor gets one swatch chip
+ * per category that asks for one (categories.ts), in the fill most of its
+ * footprints use, listing every footprint whose legend category it is
+ * (areas.ts `legend` moves a footprint to the chip of its colour: the yellow
+ * discussion corners sit with the hubs). Floors with nothing to explain get
+ * an empty list.
  */
 export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_LIST): LegendEntry[] {
   const onFloor = areas.filter((a) => a.level === level);
   const entries: LegendEntry[] = [];
+  const specs = FLOOR_LEGENDS[level];
+  if (specs) {
+    for (const spec of specs) {
+      const members = "areaId" in spec ? onFloor.filter((a) => a.areaId === spec.areaId) : onFloor.filter((a) => a.category.id === spec.category);
+      if (!members.length) continue;
+      const label = "label" in spec && spec.label ? spec.label : AREAS[members[0].areaId].name.replace(/\s*#$/, "");
+      const key = "areaId" in spec ? `${level}/legend:${spec.areaId}` : `${level}/legend:${spec.category}`;
+      entries.push({ key, label, iconUrl: members[0].iconUrl, swatch: members[0].iconUrl ? null : members[0].shape.fill, areas: members });
+    }
+    return entries;
+  }
   for (const category of CATEGORIES) {
     if (!category.legend) continue;
     const members = onFloor.filter((a) => a.legendCategory.id === category.id);

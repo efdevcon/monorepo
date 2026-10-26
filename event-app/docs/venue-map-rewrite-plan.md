@@ -396,6 +396,8 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 (legend) — Levels 0–2 legends list place types with their icons (`data/legend.ts`
+  specs, by area id or category); Level 3 keeps the colour legend for now.
 - 2026-10-26 (icons) — eleven sprites from Scott's icons folder wired to the lower floors' places
   (stairs on Level 2 become sprite-only places); Pretalx `cls-builders-room` → CLS Hangout Area for now.
 - 2026-10-26 (feedback) — parked floors taken off the hit layer (they stole hovers and taps through
