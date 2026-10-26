@@ -1,6 +1,8 @@
 import type { StaticImageData } from 'next/image'
 import OneClaw from './images/logos/1claw.svg'
+import ZeroXParc from './images/logos/0xparc.svg'
 import Ack3 from './images/logos/ack3.svg'
+import argotCollective from './images/logos/argot-collective.png'
 import Arkiv from './images/logos/arkiv.svg'
 import Aztec from './images/logos/aztec.svg'
 import Certora from './images/logos/certora.svg'
@@ -13,6 +15,7 @@ import ethlabs from './images/logos/ethlabs.png'
 import Freedom from './images/logos/freedom.svg'
 import Giga from './images/logos/giga.svg'
 import Giveth from './images/logos/giveth.svg'
+import gnosis from './images/logos/gnosis.png'
 import HackenProof from './images/logos/hackenproof.svg'
 import Lfdt from './images/logos/lfdt.svg'
 import Lava from './images/logos/lava.svg'
@@ -49,8 +52,10 @@ export type SpeakerLogo = { scale?: number } & (
 )
 
 export const SPEAKER_LOGOS = {
+  '0xparc': { Logo: ZeroXParc, aspect: 673 / 128 },
   '1claw': { Logo: OneClaw, aspect: 610 / 128 },
   ack3: { Logo: Ack3, aspect: 507 / 128 },
+  'argot-collective': { image: argotCollective },
   arkiv: { Logo: Arkiv, aspect: 347 / 80 },
   axiom: { Logo: Axiom, aspect: 650 / 128 },
   aztec: { Logo: Aztec, aspect: 499 / 128 },
@@ -63,6 +68,7 @@ export const SPEAKER_LOGOS = {
   freedom: { Logo: Freedom, aspect: 466 / 95 },
   giga: { Logo: Giga, aspect: 274 / 128 },
   giveth: { Logo: Giveth, aspect: 623 / 128 },
+  gnosis: { image: gnosis },
   hackenproof: { Logo: HackenProof, aspect: 470 / 128, scale: 1.2 },
   lfdt: { Logo: Lfdt, aspect: 597 / 128 },
   lava: { Logo: Lava, aspect: 490 / 101 },
