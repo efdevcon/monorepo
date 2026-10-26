@@ -1307,9 +1307,13 @@ workflow after every schedule release (secret `AV_DRIVE_FOLDER_ID_DEVCON8`, the
 Google service account, manifest committed as `data/av-assets/devcon8.json`):
 
 - one 1920×1080 intro card per session (the `/api/social/av/` render) under
-  `$$EVENT/<Room>/<Day N - Mon D>/Intro Cards/HH.MM <Title> [CODE].jpg`, so files sort
+  `$$EVENT/<Room>/<Day N - Mon D>/YouTube Cards/HH.MM <Title> [CODE].jpg` (renamed from Intro Cards on 2026-10-26), so files sort
   in running order; the AV card got the white logomark on every track and 160 px
   avatars on the footer baseline (`dc8-social-card.tsx`, AV size only);
+- (2026-10-26) the same card at each stage screen's native size (`/api/social/av-screen/<WxH>/<id>/`,
+  sizes per room in `AV_SCREEN_SIZES`, `utils/av-drive.ts`) under `<Day>/Screen Cards/`, with one
+  `<WxH>` subfolder per size only where a room has several screens (Main Stage: 4032×1512 centre,
+  3192×1512 sides);
 - one speaker photo per scheduled speaker in `Speaker Assets/Photos`, 1024 px from the
   Pretalx original, else our 256 px mirror (`(256px only)`), else the blockie;
 - the list of speakers without a photo as a Google Doc, rewritten in place;

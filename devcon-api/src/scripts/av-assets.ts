@@ -9,8 +9,9 @@
  *   pnpm av:assets devcon8 --rooms lotus-1,cls-stage   # limit to some rooms (never trashes anything)
  *
  * Local output: devcon-api/.av-assets/<event>/ (gitignored), mirroring Drive:
- *   $$EVENT/<Room>/<Day N - Mon D>/Intro Cards/HH.MM <Title> [CODE].jpg   intro card
- *   $$EVENT/<Room>/<Day N - Mon D>/Screen Cards/<WxH>/HH.MM <Title> [CODE].jpg   the same card at a stage screen's size
+ *   $$EVENT/<Room>/<Day N - Mon D>/YouTube Cards/HH.MM <Title> [CODE].jpg   intro card (1920x1080)
+ *   $$EVENT/<Room>/<Day N - Mon D>/Screen Cards/HH.MM <Title> [CODE].jpg   the same card at the stage screen's size
+ *   $$EVENT/<Room>/<Day N - Mon D>/Screen Cards/<WxH>/…   one folder per size when a room has several screens
  *   $$EVENT/<Room>/Q&A QR - <Room>.png   the stage screen's Q&A code (one per stage, same every day)
  *   Speaker Assets/Photos/<Speaker Name> [CODE].jpg   up to 1024 px
  *   Speaker Assets/Photos/<Speaker Name> [CODE] (256px only).jpg  photo gone from Pretalx, our small mirror
@@ -28,7 +29,7 @@
  * is (card of session X, photo of speaker Y), not by its path: a rescheduled
  * session's card is moved and renamed, a changed one is rewritten in place
  * (same id, same link), a stale one is trashed. Folders are not labelled, so
- * missing room, day or "Intro Cards" folders are created on the way.
+ * missing room, day or "YouTube Cards" folders are created on the way.
  *
  * Env: AV_DRIVE_FOLDER_ID_<EVENT> (the AV top folder), GOOGLE_CLIENT_EMAIL and
  * GOOGLE_PRIVATE_KEY (the service account, granted access to that folder).
@@ -62,8 +63,8 @@ const TIMEZONES: Record<string, string> = { devcon8: 'Asia/Kolkata', 'test-devco
 const TZ = TIMEZONES[eventId] ?? 'UTC'
 // Stages without a Q&A, as in event-app/src/data/meerkat.ts (NO_QA_ROOMS): no QR for their screen.
 const NO_QA_ROOMS = ['music-stage']
-const CARDS_SUBFOLDER = 'Intro Cards' // inside each room/day folder, so the crew's own files stay apart
-const SCREEN_CARDS_SUBFOLDER = 'Screen Cards' // then one folder per screen size
+const CARDS_SUBFOLDER = 'YouTube Cards' // inside each room/day folder, so the crew's own files stay apart
+const SCREEN_CARDS_SUBFOLDER = 'Screen Cards' // plus one folder per size when a room has several screens
 const PHOTOS_FOLDER = ['Speaker Assets', 'Photos']
 // A Public-labelled image copied for every new file. It lives in the photos
 // folder, which only this script touches, with a leading underscore so it sorts
@@ -209,7 +210,8 @@ async function main() {
       if (!type.startsWith('image/')) throw new Error(`not an image (${type})`)
       const name = `${dayjs(s.slot_start).tz(TZ).format('HH.mm')} ${shortTitle(s.title)} [${s.sourceId}].jpg`
       const room = avRoomFolder(s.slot_roomId, rooms[s.slot_roomId]?.name)
-      targets.push({ key, drivePath: [AV_EVENT_FOLDER, room, dayLabel(s.slot_start), SCREEN_CARDS_SUBFOLDER, size, name], buffer })
+      const sizeFolder = AV_SCREEN_SIZES[s.slot_roomId].length > 1 ? [size] : []
+      targets.push({ key, drivePath: [AV_EVENT_FOLDER, room, dayLabel(s.slot_start), SCREEN_CARDS_SUBFOLDER, ...sizeFolder, name], buffer })
       screenCards++
     } catch (e: any) {
       failed.add(key)
