@@ -131,8 +131,9 @@ the members' icon (the lotus; Scott, 2026-10-26).
 `LEVELS` lists the floors bottom-up with their source file (L0–L3); `LEVEL_KEYS` are the
 single-key shortcuts (the floor's own number, L0 → 0); `SEARCH_TERMS` (`data/searchTerms.ts`) are the
 words Search answers beyond the names and category labels ("meeting" → the suites, "lunch" → food &
-drink, "exit" → escalators and stairs; a term matches as the whole query, as its start from three
-letters, or as a whole word inside it; Scott, 2026-10-26); `LEVEL_ALIASES` is how Search parses
+drink, "exit" → escalators and stairs, "toilet", "lift", "badge", "merch", "nap" and some thirty
+more rows, approved by Scott on 2026-10-26; a term matches as the whole query, as its start from three
+letters, or as a whole word inside it; a test checks every target exists); `LEVEL_ALIASES` is how Search parses
 "level 3" / "l3" / "ground floor". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
 
 `data/resolve.ts` joins the bundle to the catalogue once at module load into `Area` view models

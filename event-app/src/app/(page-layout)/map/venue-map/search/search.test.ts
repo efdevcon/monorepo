@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { buildFindGroups, buildFloorLegend, primaryOf } from "../find/catalogue";
 import { LEVELS } from "../data/levels";
 import { AREA_LIST } from "../data/resolve";
+import { SEARCH_TERMS } from "../data/searchTerms";
 import { parseFloorQuery, searchFind } from "./search";
 
 const L = LEVELS[0];
@@ -40,6 +41,19 @@ test("search: custom terms bring up their categories and areas", () => {
   const ways = searchFind(groups, "where is the exit").hits;
   assert.ok(ways.length > 0 && ways.every((h) => h.areas.every((a) => a.areaId === "escalator" || a.areaId === "stairs")), "a whole word inside the query matches");
   assert.equal(searchFind(groups, "exit l3").hits.length, 2, "escalators and stairs on Level 3, one row each");
+  assert.ok(searchFind(groups, "toilet").hits.every((h) => h.category.id === "toilets"), "toilet → washrooms");
+  assert.ok(searchFind(groups, "lift").hits.every((h) => h.areas.every((a) => a.areaId === "elevator")), "lift → elevators");
+  assert.ok(searchFind(groups, "main stage").hits.some((h) => h.key.includes("composite:")), "main stage keeps the Main Stage row");
+});
+
+test("search terms: every target exists in the catalogue (a typo would match nothing)", () => {
+  const categories = new Set(groups.map((g) => g.category.id));
+  const areaIds = new Set(AREA_LIST.map((a) => a.areaId));
+  for (const row of SEARCH_TERMS) {
+    for (const c of row.categories ?? []) assert.ok(categories.has(c), `category ${c}`);
+    for (const a of row.areas ?? []) assert.ok(areaIds.has(a), `area ${a}`);
+    for (const term of row.terms) assert.equal(term, term.toLowerCase().trim(), `term "${term}" is lower-case and trimmed`);
+  }
 });
 
 test("catalogue: every area is listed once, numbered names carry their number", () => {
