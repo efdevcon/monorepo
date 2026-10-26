@@ -39,7 +39,8 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       entries: [
         ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
         // Composite rows (the Main Stage): one row standing for several footprints.
-        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: null, iconBackdrop: null, areas: c.areas, category, rank: c.rank ?? 100 })),
+        // A composite row carries its members' icon (the Main Stage shows the lotus; Scott, 2026-10-26).
+        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].iconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100 })),
       ].sort(byRank),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];

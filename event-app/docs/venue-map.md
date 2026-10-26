@@ -126,7 +126,8 @@ colour), the Food Garden, Poster Printing Station, Speakers Lounge, Interview Ro
 and `stairs` (every floor's four stairwells, the stairs icon). Elevators 2/4/6/8 (east side) use `elevator-left`.
 `COMPOSITES` adds rows that stand for several footprints: the
 Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and the card is titled
-after it with the members as the line beneath (`groupName` in the store, `compositeOf`).
+after it with the members as the line beneath (`groupName` in the store, `compositeOf`); its Find row shows
+the members' icon (the lotus; Scott, 2026-10-26).
 `LEVELS` lists the floors bottom-up with their source file (L0–L3); `LEVEL_KEYS` are the
 single-key shortcuts (the floor's own number, L0 → 0); `LEVEL_ALIASES` is how Search parses
 "level 3" / "l3" / "ground floor". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
