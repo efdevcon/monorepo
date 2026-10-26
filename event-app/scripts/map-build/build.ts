@@ -11,7 +11,7 @@ import path from "node:path";
 import { AREAS, isAreaId, ROOMS, type AreaSpec } from "../../src/app/(page-layout)/map/venue-map/data/areas";
 import { LEVELS } from "../../src/app/(page-layout)/map/venue-map/data/levels";
 import { mapBundleSchema, type GroundBounds, type MapBundle, type MapLevel, type MapShape } from "../../src/app/(page-layout)/map/venue-map/data/planSchema";
-import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, NESTED_LIFT, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, WALL_MIN_STROKE_PX } from "./config";
+import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, WALL_MIN_STROKE_PX } from "./config";
 import { area, bbox, cutPolyline, pointInRing, polylabel, ringsToPolygons, simplify, strokeToPolygons, widen, type Polygon, type Ring } from "./geometry";
 import { isDefaultName, isGeometryGroup, isTextIconGroup, LAYER_GROUPS, normaliseId, parseName } from "./names";
 import type { Point } from "./path";
@@ -186,6 +186,13 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   };
   // Label frames: stroke-only closed boxes centred outside the floor (the "JASMINE 1 / 2" tabs on the top edge). Dropped, like their text.
   const slabRing = background[0]?.subpaths.find((s) => s.closed)?.points ?? [];
+  // The 2D outline ring: one closed stroke drawn around the whole slab, outside it. Not a wall in 3D (Scott, 2026-10-26).
+  const slabBox = slabRing.length ? bbox([slabRing]) : null;
+  const isOutlineRing = (d: Drawn) => {
+    if (!slabBox || !isStrokeOnly(d) || d.subpaths.length !== 1 || !d.subpaths[0].closed) return false;
+    const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
+    return slabBox[0] - x0 >= OUTLINE_RING_MIN_PX && slabBox[1] - y0 >= OUTLINE_RING_MIN_PX && x1 - slabBox[2] >= OUTLINE_RING_MIN_PX && y1 - slabBox[3] >= OUTLINE_RING_MIN_PX;
+  };
   const isLabelFrame = (d: Drawn) => {
     if (!isStrokeOnly(d) || !d.subpaths.every((s) => s.closed) || !slabRing.length) return false;
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
@@ -209,6 +216,7 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   let decoN = 0;
   let columns = 0;
   let frames = 0;
+  let rings = 0;
   const addWall = (d: Drawn) => addShape(toShape(spec.id, `wall-${++wallN}`, "wall", strokedPolygons(d, doorCuts), HEIGHTS.wall, slabFill, true, frame), d.id);
   const addDeco = (d: Drawn, groupName: string) => {
     if (d.paint.fill) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", filledPolygons(d), HEIGHTS.deco, d.paint.fill, false, frame), d.id);
@@ -216,6 +224,10 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   };
   const symbolGroups = new Map<string, Drawn[]>();
   for (const d of outline) {
+    if (isOutlineRing(d)) {
+      rings++;
+      continue;
+    }
     if (isNamedWall(d)) {
       if (!d.paint.stroke) {
         report.error(file, d.id, "a wall must be a stroked line (no fill)");
@@ -246,7 +258,8 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     }
     addDeco(d, "deco");
   }
-  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers and ${frames} label frames dropped; ${hatches.size} hatches flat; ${escalators.length} escalator symbols found by structure`);
+  if (rings > 1) report.warn(file, null, `${rings} outline rings around the slab dropped; expected at most one`);
+  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers, ${frames} label frames and ${rings} outline ring dropped; ${hatches.size} hatches flat; ${escalators.length} escalator symbols found by structure`);
 
   // Symbol groups → hidden areas over their bounding box (the sprite stands there, nothing is drawn), or flat decoration while the catalogue entry has no icon yet.
   const { usedAreaIds } = result;

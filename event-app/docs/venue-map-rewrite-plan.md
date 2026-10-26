@@ -396,6 +396,8 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 (walls) — the 2D outline ring around Levels 0–2 (a closed stroke outside the slab) is
+  dropped by the build (`OUTLINE_RING_MIN_PX`); it stood off the floor as a second wall.
 - 2026-10-26 (legend) — every floor's legend lists place types with their icons (`data/legend.ts`
   specs, by area id or category, `swatch` keeps a colour square: Level 3's Community and
   Supporters); game-zone icon.

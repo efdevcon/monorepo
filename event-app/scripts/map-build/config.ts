@@ -49,6 +49,13 @@ export const SIMPLIFY_PX = 0.2;
 export const DOOR_CUT_MARGIN_PX = 0.5;
 /** An area drawn inside another one starts this far above the container's top (metres), so the two caps never share a plane. */
 export const NESTED_LIFT = 0.05;
+/**
+ * A closed stroke-only ring in the Outline layer whose box reaches at least this far (plan px)
+ * beyond the slab on every side is the plan's 2D outline ring (the production company draws one
+ * around Levels 0–2, 20 px out): useful on paper, a stray wall in 3D, so it is dropped even when
+ * named `wall` (Scott, 2026-10-26). Level 3's thick ring sits on the slab edge and stays.
+ */
+export const OUTLINE_RING_MIN_PX = 5;
 /** Stroke-only closed boxes in the Outline layer smaller than this (metres) are the plan's column markers: not drawn (Scott, 2026-10-25). */
 export const COLUMN_MARKER_MAX_M = 2.5;
 /**
