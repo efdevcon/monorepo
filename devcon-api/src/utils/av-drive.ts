@@ -29,6 +29,19 @@ export function avRoomFolder(roomId: string, roomName?: string): string {
   return AV_ROOM_FOLDERS[roomId] ?? roomName ?? roomId
 }
 
+// Stage screens (LED walls) per room, at their native resolution (AV
+// production sheet, 22 Oct): the main stage has three walls, two sizes. Each
+// size gets its own copy of every intro card (devcon.org /api/social/av-screen/).
+// Rooms not listed have no known screen and get none.
+export const AV_SCREEN_SIZES: Record<string, string[]> = {
+  'main-stage-lotus': ['4032x1512', '3192x1512'],
+  'jasmine-stage-4': ['1680x1008'],
+  'community-led-stage': ['2016x1176'],
+  'lightning-stage': ['1920x1080'],
+  'workshop-1': ['1920x1080'],
+  'workshop-2': ['1920x1080'],
+}
+
 /** `day` is the event-local date (YYYY-MM-DD), `n` its 1-based number among the event's days. */
 export function avDayFolder(day: string, n: number): string {
   return `Day ${n} - ${dayjs(day).format('MMM D')}`

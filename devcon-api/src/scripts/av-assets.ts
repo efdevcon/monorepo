@@ -10,6 +10,7 @@
  *
  * Local output: devcon-api/.av-assets/<event>/ (gitignored), mirroring Drive:
  *   $$EVENT/<Room>/<Day N - Mon D>/Intro Cards/HH.MM <Title> [CODE].jpg   intro card
+ *   $$EVENT/<Room>/<Day N - Mon D>/Screen Cards/<WxH>/HH.MM <Title> [CODE].jpg   the same card at a stage screen's size
  *   $$EVENT/<Room>/Q&A QR - <Room>.png   the stage screen's Q&A code (one per stage, same every day)
  *   Speaker Assets/Photos/<Speaker Name> [CODE].jpg   up to 1024 px
  *   Speaker Assets/Photos/<Speaker Name> [CODE] (256px only).jpg  photo gone from Pretalx, our small mirror
@@ -43,7 +44,7 @@ import sharp from 'sharp'
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
 import { getPretalxConfig } from '@/utils/config'
-import { AV_EVENT_FOLDER, avDayFolder, avRoomFolder, qaQrFileName, qaQrKey, qaQrUrl } from '@/utils/av-drive'
+import { AV_EVENT_FOLDER, AV_SCREEN_SIZES, avDayFolder, avRoomFolder, qaQrFileName, qaQrKey, qaQrUrl } from '@/utils/av-drive'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -62,6 +63,7 @@ const TZ = TIMEZONES[eventId] ?? 'UTC'
 // Stages without a Q&A, as in event-app/src/data/meerkat.ts (NO_QA_ROOMS): no QR for their screen.
 const NO_QA_ROOMS = ['music-stage']
 const CARDS_SUBFOLDER = 'Intro Cards' // inside each room/day folder, so the crew's own files stay apart
+const SCREEN_CARDS_SUBFOLDER = 'Screen Cards' // then one folder per screen size
 const PHOTOS_FOLDER = ['Speaker Assets', 'Photos']
 // A Public-labelled image copied for every new file. It lives in the photos
 // folder, which only this script touches, with a leading underscore so it sorts
@@ -196,6 +198,25 @@ async function main() {
     }
   })
   console.log(`cards: ${cards} rendered`)
+
+  // Screen cards: the intro card again at each stage screen's native size.
+  const screenJobs = sessions.flatMap(s => (AV_SCREEN_SIZES[s.slot_roomId] ?? []).map(size => ({ s, size })))
+  let screenCards = 0
+  await pool(screenJobs, CONCURRENCY, async ({ s, size }) => {
+    const key = `screen:${size}:${s.sourceId}`
+    try {
+      const { buffer, type } = await fetchBuffer(`${SITE}/api/social/av-screen/${size}/${s.id}/`)
+      if (!type.startsWith('image/')) throw new Error(`not an image (${type})`)
+      const name = `${dayjs(s.slot_start).tz(TZ).format('HH.mm')} ${shortTitle(s.title)} [${s.sourceId}].jpg`
+      const room = avRoomFolder(s.slot_roomId, rooms[s.slot_roomId]?.name)
+      targets.push({ key, drivePath: [AV_EVENT_FOLDER, room, dayLabel(s.slot_start), SCREEN_CARDS_SUBFOLDER, size, name], buffer })
+      screenCards++
+    } catch (e: any) {
+      failed.add(key)
+      problems.push(`screen card ${size} ${s.sourceId} (${s.title.slice(0, 40)}): ${e?.message ?? e}`)
+    }
+  })
+  console.log(`screen cards: ${screenCards} rendered (${Object.keys(AV_SCREEN_SIZES).length} rooms)`)
 
   // Q&A QR per stage, in the stage folder so the crew has it offline. The
   // code is the site's own (/qr/meerkat/<room>, rendered by /api/qr-image/), so

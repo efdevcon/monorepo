@@ -21,6 +21,9 @@ import {
  * (the Figma canvas), the AV route 1920×1080 (scale 1.6 on a 675-tall base —
  * same 40px margins, header/footer anchored to the edges, description
  * centered, so the taller 16:9 canvas stretches only the middle zone).
+ * Stage screens wider than that (LED walls up to ~2.7:1, av-screen route)
+ * scale by height on a 675-tall base instead: the extra width goes to the
+ * title column, the watermark and badge stay anchored to the right edge.
  *
  * Layout rules from the frames:
  * - solid per-track canvas color; the Format+Track pill bg always matches it
@@ -47,7 +50,9 @@ export function renderDc8SocialCard(
   fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer },
   size: { width: number; height: number }
 ) {
-  const scale = size.width / 1200
+  let scale = size.width / 1200
+  if (size.height / scale < 630) scale = size.height / 675
+  const W = size.width / scale // base-unit canvas width (1200, more on wide stage screens)
   const H = size.height / scale // base-unit canvas height (630 OG, 675 YT)
   const s = (n: number) => n * scale
 
@@ -110,7 +115,7 @@ export function renderDc8SocialCard(
           src={socialAssetDataUrl(DC8_LOGOMARK_WHITE)}
           style={{
             position: 'absolute',
-            left: s(611),
+            left: s(W - 589),
             top: s((H - 797) / 2),
             width: s(468),
             height: s(797),
@@ -122,7 +127,7 @@ export function renderDc8SocialCard(
         {badge ? (
           <img
             src={socialAssetDataUrl(badge)}
-            style={{ position: 'absolute', left: s(854.5), bottom: s(-32), width: s(380), height: s(380) }}
+            style={{ position: 'absolute', left: s(W - 345.5), bottom: s(-32), width: s(380), height: s(380) }}
           />
         ) : (
           <img
@@ -161,7 +166,7 @@ export function renderDc8SocialCard(
             left: s(40),
             top: s(104),
             height: s(H - COLUMN_BOTTOM - 104),
-            width: s(745),
+            width: s(745 + W - 1200),
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
