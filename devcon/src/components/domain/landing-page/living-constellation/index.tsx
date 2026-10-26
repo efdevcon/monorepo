@@ -1,8 +1,12 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'components/common/link'
+import { EVENT_APP_ORIGIN } from 'config/eventApp'
 import { SpeakerGrid } from './SpeakerGrid'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
 import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
+import { ctaSecondary } from 'components/common/cta'
 
 // Confirmed Devcon 8 speakers: a card grid that reads at a glance (name, role,
 // organisation, track) and opens a focused card on click — see SpeakerGrid for
@@ -20,7 +24,17 @@ export function LivingConstellation() {
             <h2 className={sectionHeading}>{t('heading')}</h2>
           </div>
           <SpeakerGrid speakers={CONSTELLATION_SPEAKERS} />
-          <p className={`${bodyCopy} text-center text-[#1a0d33]`}>{t('added_weekly')}</p>
+          <div className="flex flex-col items-center gap-[24px]">
+            <p className={`${bodyCopy} text-center text-[#1a0d33]`}>{t('added_weekly')}</p>
+            <Link
+              to={`${EVENT_APP_ORIGIN}/speakers`}
+              className={ctaSecondary}
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+            >
+              {t('view_all_app')}
+              <ArrowUpRight className="w-[16px] h-[16px]" strokeWidth={2.5} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
