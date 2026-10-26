@@ -480,10 +480,11 @@ in `utils/run-of-show.ts`, the format and clearing details per layout in `LAYOUT
 room is harmless. Each sheet also gets a `CHANGES` tab and a hidden `_style` tab (an
 untouched copy of the template used to re-apply row formats).
 
-**v3 (2026-10-20).** Agreed with the AV team: a DAY / STAGE line, then headers on row 2.
+**v3 (2026-10-20).** Agreed with the AV team: a title line (schedule version in A1, `DAY n ·
+ddd D MMM · Stage` in B1, both 16 pt bold), then headers on row 2.
 Columns `# · STATUS · START · DUR · END · Q&A · MC · SESSION · SPEAKERS · SPEAKER CONTACT ·
-FORMAT · SLIDES · DECK OK? · INTRO ANIMATION · STREAMING · REC · MODERATOR · MIC ·
-NOTES · PRETALX ID`. Dropped from v2: ACTUAL START, Δ, TRACK, ON SITE?, the cue sheet and
+FORMAT · SLIDES · DECK OK? · INTRO ANIMATION · REC · MODERATOR · MIC · NOTES · PRETALX ID`
+(STREAMING dropped 2026-10-26: REC covers both). Dropped from v2: ACTUAL START, Δ, TRACK, ON SITE?, the cue sheet and
 the MORNING / AFTERNOON / END OF SHOW rows (the REMOVED section still appears when a
 session leaves). Rules that differ:
 
@@ -499,8 +500,22 @@ session leaves). Rules that differ:
   to the session a Meerkat moderator put live there, else the schedule's) is not a column:
   `av-assets.ts` saves it as `$$EVENT/<Room>/Q&A QR - <Room>.png` (one per stage, for offline
   use), and the sync links that file from the Digital Assets tab's "Q&A QR code" row.
-- `STREAMING`, `INTRO ANIMATION` are the crew's. The template's `Digital Assets` and
-  `Livestreaming Information` tabs are the AV team's and never touched.
+- `INTRO ANIMATION` is the crew's. The template's `Digital Assets` and
+  `Livestreaming Information` tabs are the AV team's; the sync only renames the QR row to
+  "App Q&A QR code" and adds a "Meerkat stage" row under it (`app.meerkat.events/stage/<room id>`).
+- `REC` reads `REC + STREAM` or `NO REC · NO STREAM` (2026-10-26; the old `REC` / `NO REC`
+  read as equal, so the wording change logged nothing).
+- `SLIDES` label: `Slides`, `Slides (untouched)` while the deck was never edited (the
+  "Slides: last edit" answer the slides run writes to Pretalx, checked live in Drive on the
+  event day for talks still to come), `Own laptop` when the speaker answered so in the
+  "How will you present your talk?" question (`PRETALX_QUESTIONS_PRESENTING`, required single
+  choice: "With the Devcon slides deck" / "From my own laptop"). Text the crew typed wins.
+- Pretalx breaks and blockers are rows keyed `BREAK-<room>-<day>-<n>` / `BLOCKER-…` (from the
+  work-in-progress schedule, `GetScheduleBlocks`). They render as one bar (SESSION..MIC merged,
+  dark blue for breaks, dark grey for blockers) with no REC, deck tick, Q&A or MC; FORMAT is
+  not compared for them because the merged cells read back empty.
+- SLIDES, REC and PRETALX ID widen when their text does not fit (REC always fits
+  `NO REC · NO STREAM`); a column the crew made wider is left alone.
 
 **Contract with the AV team.** The sync owns columns B..K (`STATUS` .. `SLIDES / MEDIA`)
 plus the key column `PRETALX ID` (R, appended to the template's 17). Columns L..Q

@@ -320,6 +320,12 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
       ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT)?.answer
       : undefined
   if (typeof lastEdit === 'string' && lastEdit.trim()) session.slidesLastEdit = lastEdit.trim()
+  // How the speaker will present (deck, own laptop, video, no slides): crew data for the run of show.
+  const presenting =
+    params.inclContacts && config.PRETALX_QUESTIONS_PRESENTING
+      ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_PRESENTING)?.answer
+      : undefined
+  if (typeof presenting === 'string' && presenting.trim()) session.presentingAnswer = presenting.trim()
   // The Pretalx state, for the slides passes only (accepted vs confirmed, and
   // decks left behind by declined talks); the public data has no use for it.
   if (params.inclContacts && typeof i.state === 'string') session.pretalxState = i.state

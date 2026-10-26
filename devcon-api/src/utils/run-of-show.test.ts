@@ -23,6 +23,7 @@ import {
   linkCell,
   blockFor,
   qaMinutesFor,
+  presentingFromAnswer,
 } from './run-of-show'
 
 // Synthetic fixtures only: made-up codes, titles and times.
@@ -308,7 +309,7 @@ test('v2 layout: track and recording are synced, checkboxes default to FALSE, fo
   const p = plan([s], [], A, LAYOUT_V2, { cuesGid: 42 })
   const row = p.rows.find((r) => r.kind === 'session')!
   expect(row.values[V2.track]).toBe('Core')
-  expect(row.values[V2.rec]).toBe('NO REC')
+  expect(row.values[V2.rec]).toBe('NO REC · NO STREAM')
   expect(row.values[V2.deckOk]).toBe('FALSE')
   expect(row.values[V2.onSite]).toBe('FALSE')
   expect(row.values[V2.num]).toBe('=COUNTA(H$6:H7)')
@@ -333,7 +334,7 @@ test('v2 layout: crew columns travel and a recording opt-out is reported as a ch
   expect(row.values[V2.mic]).toBe('Handheld')
   expect(row.values[V2.cueRef]).toBe('AV-007')
   expect(notes(row, LAYOUT_V2)).toBe('green room 09:30')
-  expect(p.changes).toEqual([{ code: 'AAA111', title: 'Example talk', field: 'REC', from: 'REC', to: 'NO REC' }])
+  expect(p.changes).toEqual([{ code: 'AAA111', title: 'Example talk', field: 'REC', from: 'REC', to: 'NO REC · NO STREAM' }])
   expect(row.changed).toEqual([V2.rec])
 })
 
@@ -485,7 +486,9 @@ test('v3: breaks and blockers are keyed rows without REC, deck tick or Q&A minut
   expect(a.values[V3.format]).toBe('Break')
   expect(a.values[V3.rec]).toBe('')
   expect(a.values[V3.deckOk]).toBe('')
-  expect(a.values[V3.qa]).toBe('0')
+  expect(a.values[V3.qa]).toBe('')
+  // no MC gap on a break: the next session's start is what counts
+  expect(a.values[V3.mc]).toBe('')
   expect(a.values[V3.slides]).toBe('')
   expect(a.values[V3.id]).toBe('BREAK-stage-a-1-1')
   expect(b.values[V3.format]).toBe('Blocker')
@@ -517,4 +520,55 @@ test('link cells: a URL becomes a short label, anything typed by hand stays text
   expect(linkCell('https://devcon.org/qr/meerkat/a?svg&download', 'QR')).toBe('=HYPERLINK("https://devcon.org/qr/meerkat/a?svg&download","QR")')
   expect(linkCell('Laptop', 'Slides')).toBe('Laptop')
   expect(hyperlinkTarget('=HYPERLINK("https://devcon.org/qr/meerkat/a?svg&download","QR")')).toBe('https://devcon.org/qr/meerkat/a?svg&download')
+})
+
+const TG = 'Ada Example: TG @ada'
+
+test('REC says what it means: REC + STREAM or NO REC · NO STREAM; the old REC / NO REC values are not a change', () => {
+  const p = v3(
+    [session({ contact: TG }), session({ code: 'BBB222', start: '11:00', end: '11:30', record: false, contact: TG })],
+    [v3Row('AAA111', { rec: 'REC' }), v3Row('BBB222', { rec: 'NO REC', start: '11:00', end: '11:30' })]
+  )
+  expect(p.rows[0].values[V3.rec]).toBe('REC + STREAM')
+  expect(p.rows[1].values[V3.rec]).toBe('NO REC · NO STREAM')
+  expect(p.changes).toEqual([])
+  // a real opt-out is still reported, from the value the sheet showed
+  const q = v3([session({ record: false, contact: TG })], [v3Row('AAA111', { rec: 'REC + STREAM' })])
+  expect(q.changes).toEqual([{ code: 'AAA111', title: 'Example talk', field: 'REC', from: 'REC + STREAM', to: 'NO REC · NO STREAM' }])
+})
+
+test('an untouched deck is labelled "Slides (untouched)" until the speaker edits it', () => {
+  const url = 'https://docs.google.com/presentation/d/x'
+  const p = v3([session({ slides: url, slidesUntouched: true })])
+  expect(p.rows[0].values[V3.slides]).toBe(`=HYPERLINK("${url}","Slides (untouched)")`)
+  // the sheet reads the link back as its URL: the label follows the deck, not a change
+  const q = v3([session({ slides: url, slidesUntouched: false, contact: TG })], [v3Row('AAA111', { slides: url })])
+  expect(q.rows[0].values[V3.slides]).toBe(`=HYPERLINK("${url}","Slides")`)
+  expect(q.changes).toEqual([])
+})
+
+test('the presentation method names the SLIDES cell, a value typed by the crew still wins', () => {
+  const url = 'https://docs.google.com/presentation/d/x'
+  const cell = (over: Partial<RosSession>, prev?: string) =>
+    v3([session({ slides: url, ...over })], prev === undefined ? [] : [v3Row('AAA111', { slides: prev })]).rows[0].values[V3.slides]
+  expect(cell({ presenting: 'deck' })).toBe(`=HYPERLINK("${url}","Slides")`)
+  expect(cell({ presenting: 'laptop', slidesUntouched: true })).toBe(`=HYPERLINK("${url}","Own laptop")`)
+  expect(cell({ presenting: 'laptop', slides: undefined })).toBe('Own laptop')
+  // our own plain label is not mistaken for the crew's text when the answer changes
+  expect(cell({ presenting: 'deck', slides: undefined }, 'Own laptop')).toBe('')
+  expect(cell({ presenting: 'laptop' }, 'Laptop + clicker')).toBe('Laptop + clicker')
+})
+
+test('the Pretalx answer is read as deck or own laptop, by keyword so a reworded option still maps', () => {
+  expect(presentingFromAnswer('Slides in the Google Slides deck Devcon created for me')).toBe('deck')
+  expect(presentingFromAnswer('My own laptop (plug in: HDMI or USB-C)')).toBe('laptop')
+  expect(presentingFromAnswer('')).toBeUndefined()
+  expect(presentingFromAnswer(undefined)).toBeUndefined()
+})
+
+test('a break row read back from its merged bar (FORMAT and the rest empty) is not a change', () => {
+  const row = v3Row('BREAK-stage-a-1-1', { segment: 'Lunch Break', format: '', speakers: '', contact: '', rec: '', deckOk: '', qa: '', start: '12:30', end: '13:30', dur: '60' })
+  const p = v3([session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '12:30', end: '13:30', durationMin: 60 })], [row])
+  expect(p.changes).toEqual([])
+  expect(p.rows[0].values[V3.format]).toBe('Break')
 })

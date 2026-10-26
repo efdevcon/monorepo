@@ -50,7 +50,12 @@ import {
   hyperlinkTarget,
   parseExistingRows,
   planFile,
+  presentingFromAnswer,
+  REC_OFF,
+  REC_ON,
 } from '@/utils/run-of-show'
+import { GetDeckActivity } from '@/clients/slides'
+import { deckIdFromUrl } from '@/utils/slides-permissions'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -95,6 +100,13 @@ const firstRow = (layout: RosLayout) => layout.headerRow + 1
 const firstIndex = (layout: RosLayout) => layout.headerRow
 const HIGHLIGHT = { red: 1, green: 0.92, blue: 0.6 }
 const PARKED_TEXT = { red: 0.6, green: 0.6, blue: 0.6 }
+// Breaks and blockers read as a bar across the running order (like the v2
+// session dividers), not as sessions: dark blue for breaks, dark grey for a room held.
+const WHITE = { red: 1, green: 1, blue: 1 }
+const BLOCK_STYLE = {
+  break: { bg: { red: 0.12, green: 0.22, blue: 0.42 }, fg: WHITE },
+  blocker: { bg: { red: 0.33, green: 0.35, blue: 0.38 }, fg: WHITE },
+}
 const STATUS_COLOURS: Record<string, { bg: any; fg: any }> = {
   CONFIRMED: { bg: { red: 0.83, green: 0.93, blue: 0.85 }, fg: { red: 0.11, green: 0.45, blue: 0.2 } },
   TBC: { bg: { red: 1, green: 0.95, blue: 0.78 }, fg: { red: 0.55, green: 0.4, blue: 0 } },
@@ -181,6 +193,9 @@ interface RawSession {
   slot_end?: number | string | null
   slot_roomId?: string | null
   resources_presentation?: string
+  /** "untouched" or "edited <date>", from the last slides run (Pretalx question) */
+  slidesLastEdit?: string
+  presentingAnswer?: string
 }
 interface Room {
   id: string
@@ -289,7 +304,8 @@ async function loadFromPretalx(): Promise<Sources> {
   const config = getPretalxConfig(eventId)
   line(`source: Pretalx ${config.PRETALX_BASE_URI}`)
   const [sessions, rooms, speakers, { version, blocks }] = await Promise.all([
-    GetSessions({}, config) as Promise<RawSession[]>,
+    // With contacts: also brings the crew-only answers (deck activity, presentation method).
+    GetSessions({ inclContacts: true }, config) as Promise<RawSession[]>,
     GetRooms(config) as Promise<Room[]>,
     // Contacts are for the stage crew's sheet only; they never reach the public data.
     GetSpeakers({ inclContacts: true }, config) as Promise<any[]>,
@@ -342,6 +358,8 @@ function toRosSessions({ sessions: raw, rooms, speakerName, speakerContact }: So
       end: dayjs(endMs).tz(TZ).format('HH:mm'),
       durationMin: Math.round((endMs - startMs) / 60000),
       slides: s.resources_presentation || undefined,
+      slidesUntouched: s.slidesLastEdit === 'untouched',
+      presenting: presentingFromAnswer(s.presentingAnswer),
       contact,
       track: s.track || '',
       record: !s.doNotRecord,
@@ -587,6 +605,8 @@ interface SheetIds {
   columnCount: number
   /** Conditional format rules currently on the tab; the v1 sync replaces them by the STATUS colours. */
   conditionalRules: number
+  /** Pixel width of each column of the main tab, as the crew left it */
+  columnWidths: number[]
 }
 
 async function prepareSheets(
@@ -609,7 +629,7 @@ async function prepareSheets(
   const meta: any = await withRetry(`read ${label}`, () =>
     sheets.spreadsheets.get({
       spreadsheetId,
-      fields: 'sheets(properties(sheetId,title,index,gridProperties(rowCount,columnCount)),conditionalFormats(ranges))',
+      fields: 'sheets(properties(sheetId,title,index,gridProperties(rowCount,columnCount)),conditionalFormats(ranges),data(columnMetadata(pixelSize)))',
     })
   )
   const tabs: any[] = meta.data.sheets || []
@@ -719,6 +739,7 @@ async function prepareSheets(
     rowCount: grid.rowCount ?? 0,
     columnCount: grid.columnCount ?? 0,
     conditionalRules: (mainTab.conditionalFormats || []).length,
+    columnWidths: (mainTab.data?.[0]?.columnMetadata || []).map((c: any) => c.pixelSize ?? 100),
   }
 }
 
@@ -763,7 +784,15 @@ async function readExisting(
   return { rows: parseExistingRows(raw, layout, fileKey, label), rawCount: raw.length }
 }
 
-function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: FilePlan, span: number, formatOptions: string[]): any[] {
+function formatRequests(
+  layout: RosLayout,
+  io: LayoutIo,
+  ids: SheetIds,
+  plan: FilePlan,
+  span: number,
+  formatOptions: string[],
+  version: string | null
+): any[] {
   const cols = layout.headers.length
   const col = layout.col
   const FIRST_ROW_INDEX = firstIndex(layout)
@@ -835,6 +864,28 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
         },
       })
     }
+    const block = row.kind === 'session' && row.code ? BLOCK_CODE.exec(row.code)?.[1] : undefined
+    if (block) {
+      // One bar from SESSION to MIC showing the break's name; times, MC, NOTES and the
+      // PRETALX ID stay in their own cells. Colours come from the conditional rule.
+      const barEnd = (col.mic ?? col.segment!) + 1
+      requests.push({ mergeCells: { range: rowRange(r, col.segment!, barEnd), mergeType: 'MERGE_ALL' } })
+      requests.push({
+        repeatCell: {
+          range: rowRange(r, 0, styleCols),
+          cell: { userEnteredFormat: { textFormat: { bold: true } } },
+          fields: 'userEnteredFormat.textFormat.bold',
+        },
+      })
+      requests.push({
+        repeatCell: {
+          range: rowRange(r, col.segment!, barEnd),
+          cell: { userEnteredFormat: { horizontalAlignment: 'CENTER', verticalAlignment: 'MIDDLE', textFormat: { fontSize: 12, bold: true } } },
+          fields: 'userEnteredFormat(horizontalAlignment,verticalAlignment,textFormat.fontSize,textFormat.bold)',
+        },
+      })
+      heights.push(setHeight(r, 34))
+    }
     for (const c of row.changed) {
       requests.push({
         repeatCell: {
@@ -884,7 +935,7 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
   requests.push({ setDataValidation: { range: dataRange(col.status!), rule: list(layout.statusOptions) } })
   requests.push({ setDataValidation: { range: dataRange(col.format!), rule: list(formatOptions) } })
   if (col.mic !== undefined && layout.micOptions) requests.push({ setDataValidation: { range: dataRange(col.mic), rule: list(layout.micOptions) } })
-  if (col.rec !== undefined) requests.push({ setDataValidation: { range: dataRange(col.rec), rule: list(['REC', 'NO REC']) } })
+  if (col.rec !== undefined) requests.push({ setDataValidation: { range: dataRange(col.rec), rule: list([REC_ON, REC_OFF]) } })
   if (col.streaming !== undefined) requests.push({ setDataValidation: { range: dataRange(col.streaming), rule: list(['STREAM', 'NO STREAM']) } })
   for (const f of layout.checkboxes) {
     requests.push({ setDataValidation: { range: dataRange(col[f]!), rule: { condition: { type: 'BOOLEAN' }, showCustomUi: true } } })
@@ -926,7 +977,7 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
     })
   }
   if (io.titleLine) {
-    // A large title line, free to run across the empty cells to its right; the version stays small in A1.
+    // A large title line, free to run across the empty cells to its right; the schedule version in A1 at the same size.
     requests.push({
       repeatCell: {
         range: { sheetId: ids.main, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 1, endColumnIndex: 2 },
@@ -937,10 +988,21 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
     requests.push({
       repeatCell: {
         range: { sheetId: ids.main, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: 1 },
-        cell: { userEnteredFormat: { textFormat: { fontSize: 9, bold: false }, wrapStrategy: 'OVERFLOW_CELL', verticalAlignment: 'MIDDLE' } },
+        cell: { userEnteredFormat: { textFormat: { fontSize: 16, bold: true }, wrapStrategy: 'CLIP', verticalAlignment: 'MIDDLE' } },
         fields: 'userEnteredFormat(textFormat.fontSize,textFormat.bold,wrapStrategy,verticalAlignment)',
       },
     })
+    // The title starts in B1, so the version cannot overflow: widen # when "v0.36" does not fit.
+    const versionWidth = Math.ceil((version ? `v${version}`.length : 0) * 11 + 16)
+    if (version && versionWidth > (ids.columnWidths[0] ?? 100)) {
+      requests.push({
+        updateDimensionProperties: {
+          range: { sheetId: ids.main, dimension: 'COLUMNS', startIndex: 0, endIndex: 1 },
+          properties: { pixelSize: versionWidth },
+          fields: 'pixelSize',
+        },
+      })
+    }
     heights.push(setHeight(0, 40))
   }
   // Keep the day line and column headers in view on long sheets.
@@ -960,6 +1022,27 @@ function formatRequests(layout: RosLayout, io: LayoutIo, ids: SheetIds, plan: Fi
         fields: 'pixelSize',
       },
     })
+  }
+  // Widen a column when its longest text no longer fits ("Slides (untouched)",
+  // "NO REC · NO STREAM", a break's PRETALX ID); a column the crew made wider is left as is.
+  // REC is sized for its longest value on every sheet, so all sheets line up and a later
+  // opt-out never truncates (the NO REC cell is bold).
+  const alwaysFit: Record<number, string[]> = col.rec !== undefined ? { [col.rec]: [REC_ON, REC_OFF] } : {}
+  for (const c of [col.slides, col.rec, col.id]) {
+    if (c === undefined) continue
+    const shown = (v: string | number | undefined) => /^=HYPERLINK\("[^"]*","([^"]*)"\)$/i.exec(String(v ?? ''))?.[1] ?? String(v ?? '')
+    const texts = [...plan.rows.filter((row) => row.kind === 'session' || row.kind === 'manual').map((row) => shown(row.values[c])), ...(alwaysFit[c] ?? [])]
+    const longest = Math.max(0, ...texts.map((t) => t.length))
+    const needed = Math.ceil(longest * 8 + 24)
+    if (needed > (ids.columnWidths[c] ?? 100)) {
+      requests.push({
+        updateDimensionProperties: {
+          range: { sheetId: ids.main, dimension: 'COLUMNS', startIndex: c, endIndex: c + 1 },
+          properties: { pixelSize: needed },
+          fields: 'pixelSize',
+        },
+      })
+    }
   }
   // Fit rows to their wrapped content, then pin the structural rows back to the template heights.
   requests.push({
@@ -1067,7 +1150,7 @@ async function writeFile(
     sheets.spreadsheets.values.batchUpdate({ spreadsheetId, requestBody: { valueInputOption: 'USER_ENTERED', data } })
   )
   await withRetry(`format ${file.label}`, () =>
-    sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: formatRequests(layout, io, ids, plan, span, formatOptions) } })
+    sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: formatRequests(layout, io, ids, plan, span, formatOptions, version) } })
   )
   // Pasting the row style puts a checkbox (set to FALSE) on break and blocker rows too; their box is gone by now, empty the cell.
   const blockTicks = plan.rows.flatMap((row, i) =>
@@ -1120,6 +1203,20 @@ function conditionalRules(layout: RosLayout, ids: SheetIds, n: number): any[] {
         { backgroundColor: { red: 0.97, green: 0.97, blue: 0.955 } }
       )
     )
+    // Breaks and blockers: one bar across the row, above the banding (the row
+    // format alone loses to it on even rows), below "on stage now".
+    for (const [prefix, look] of [
+      ['BREAK-', BLOCK_STYLE.break],
+      ['BLOCKER-', BLOCK_STYLE.blocker],
+    ] as const) {
+      out.push(
+        rule(
+          [range(0, cols)],
+          { type: 'CUSTOM_FORMULA', values: [{ userEnteredValue: `=LEFT(${L('id')},${prefix.length})="${prefix}"` }] },
+          { backgroundColor: look.bg, textFormat: { foregroundColor: look.fg, bold: true } }
+        )
+      )
+    }
     out.push(
       rule(
         [range(0, cols)],
@@ -1180,7 +1277,7 @@ function conditionalRules(layout: RosLayout, ids: SheetIds, n: number): any[] {
       )
     }
     const noGo: [number | undefined, string][] = [
-      [col.rec, 'NO REC'],
+      [col.rec, REC_OFF],
       [col.streaming, 'NO STREAM'],
     ]
     for (const [c, text] of noGo) {
@@ -1257,6 +1354,19 @@ async function main() {
   const wanted = (roomId: string, day: string) => (!ROOMS.length || ROOMS.includes(roomId)) && (!DAYS.length || DAYS.includes(dayNumber(day)))
   const sessions = scheduled.filter((s) => wanted(s.roomId, s.day))
   summary.sessions = sessions.length
+  // On the day itself, talks still to come get their deck checked live: the
+  // last slides run (which records "untouched" in Pretalx) may be hours old.
+  const now = dayjs().tz(TZ)
+  const today = now.format('YYYY-MM-DD')
+  const live = sessions.filter((s) => !s.kind && s.day === today && s.end > now.format('HH:mm') && deckIdFromUrl(s.slides))
+  for (const s of live) {
+    try {
+      s.slidesUntouched = (await GetDeckActivity(deckIdFromUrl(s.slides)!)).untouched
+    } catch (e) {
+      line(`! [${s.code}] deck activity not checked: ${(e as Error).message}`)
+    }
+  }
+  if (live.length) line(`deck activity checked live for ${live.length} talk(s) still to come today`)
   const limits = [ROOMS.length ? `rooms ${ROOMS.join(', ')}` : '', DAYS.length ? `day ${DAYS.join(', ')}` : ''].filter(Boolean)
   line(
     `${sessions.length} scheduled row(s) (${blocks.length} breaks and blockers in total) in ${rooms.length} room(s)${
