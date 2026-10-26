@@ -7,6 +7,7 @@ import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
 import OpenZeppelin from './images/supporters/openzeppelin.svg'
+import Bitget from './images/supporters/bitget.svg'
 import Bitrefill from './images/supporters/bitrefill.svg'
 import Circle from './images/supporters/circle.svg'
 import CowSwap from './images/supporters/cow-swap.svg'
@@ -91,6 +92,7 @@ const CORE_SUPPORTERS: LogoEntry[] = [
 ]
 
 const OTHER_SUPPORTERS: LogoEntry[] = [
+  { name: 'Bitget', href: 'https://www.bitget.com', Logo: Bitget, aspect: 266 / 80 },
   { name: 'Bitrefill', href: 'https://www.bitrefill.com', Logo: Bitrefill, aspect: 328 / 80 },
   { name: 'Circle', href: 'https://www.circle.com', Logo: Circle, aspect: 312 / 80 },
   { name: 'CoW Swap', href: 'https://cow.fi', Logo: CowSwap, aspect: 390 / 60 },
@@ -147,8 +149,8 @@ const chunk = <T,>(items: T[], sizes: number[]) => {
 }
 
 const CORE_ROWS: Row[] = chunk(CORE_SUPPORTERS, [2, 2]).map(logos => ({ height: CORE_HEIGHT, logos }))
-const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3, 3, 2]).map(logos => ({ height: OTHER_HEIGHT, logos }))
-const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 2, 1]).map(logos => ({
+const OTHER_ROWS_DESKTOP: Row[] = chunk(OTHER_SUPPORTERS, [3, 3, 3, 3]).map(logos => ({ height: OTHER_HEIGHT, logos }))
+const OTHER_ROWS_MOBILE: Row[] = chunk(OTHER_SUPPORTERS, [2, 2, 2, 2, 2, 2]).map(logos => ({
   height: OTHER_HEIGHT,
   logos,
 }))
