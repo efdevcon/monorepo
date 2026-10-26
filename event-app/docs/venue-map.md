@@ -106,12 +106,15 @@ lucide mapping; `legend` on a category puts one swatch chip for it into the floo
 labels "Community", "Supporters", "Work & Rest" and "Fun & Culture" since 2026-10-25). `legend` on an area moves it to another
 category's chip (the yellow discussion corners and the Open Hardware Zone sit under Community, the
 colour they share with the hubs; the Decompression Zone is a `cowork` area, under Work & Rest).
-That colour legend is Level 3's. Levels 0–2 list their place types instead (`data/legend.ts`,
-Scott, 2026-10-26, like the prototype's mixed legend): one chip per spec in spec order, by
+That colour legend is the fallback for a floor without a spec list; every floor has one now
+(`data/legend.ts`, Scott, 2026-10-26, like the prototype's mixed legend): one chip per spec in spec order, by
 `areaId` (every footprint of the type on the floor, "Badge Pickup" covers both desks) or by
 `category` (the suites, fourteen ids), with the type's theme icon or a swatch in its fill while
-it has none (the CLS Hangout Area); washrooms, tea & coffee, elevators, escalators and stairs are
-left out as self-explanatory. A floor with a spec list never falls back to the colour legend.
+it has none (the CLS Hangout Area); a category spec with `swatch` keeps the colour square (Level 3's
+Community and Supporters, matched on the legend category so the yellow corners stay under Community).
+Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory, and
+Level 3 stays short: the three stage kinds, Community, Supporters, Swag Station, Game Zone,
+Decompression Zone. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
 also carries Levels 0–2: the Community Led Stage (L0, `stages`) and the CLS Hangout Area beside it
 (L0, `hubs`, under the Stages chip by its colour; Scott, 2026-10-26), the Lightning
@@ -133,7 +136,7 @@ single-key shortcuts (the floor's own number, L0 → 0); `LEVEL_ALIASES` is how 
 
 Icons reused from the prototype's theme set (Scott, 2026-10-25): coffee (Tea & Coffee), toilets
 (Washroom), discussion-corner (both corners), cowork (Co-work Area, Quiet Co-work), swag-station,
-decompression, playground (Game Zone), press (Content Corner); new on 2026-10-25: elevator-right
+decompression, press (Content Corner), game-zone (a controller since 2026-10-26, was playground); new on 2026-10-25: elevator-right
 and escalator-right (the -left variants are in the folder for other floors), lotus, jasmine,
 music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
 `JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
@@ -191,7 +194,7 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
   floor slider bottom-right (multi-floor only), the top strip (controls legend while stacked or
   when the floor has no legend; otherwise the floor's legend chips, icons per place type on
-  Levels 0–2, one swatch per legend category on Level 3), `AreaCard`
+  Level 3's Community and Supporters as swatches), `AreaCard`
   (stages keep the icon disc, everything else inline; desktop beside the footprint via
   `--poi-x/--poi-y` written by `FloorStack` per frame, group picks bottom-centre), live session
   from the footprint's `roomIds`, shortcuts (digits, F, /, Esc/A), the team-only wrench + tuning

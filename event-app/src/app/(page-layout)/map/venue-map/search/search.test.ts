@@ -77,16 +77,24 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));
 });
 
-test("floor legend: one swatch chip per category that asks for one", () => {
+test("floor legend: Level 3 keeps the Community and Supporters swatches and lists the rest by icon", () => {
   const legend = buildFloorLegend(L3);
-  assert.ok(legend.some((e) => e.label === "Stages" && e.swatch === "#0088ee"));
-  assert.ok(legend.every((e) => e.areas.length > 0 && e.swatch));
+  assert.deepEqual(
+    legend.map((e) => e.label),
+    ["Lotus Stages", "Jasmine Stage", "Music Stage", "Community", "Supporters", "Swag Station", "Game Zone", "Decompression Zone"]
+  );
+  assert.ok(legend.every((e) => e.areas.length > 0));
+  assert.equal(legend[0].areas.length, 3, "one chip for the three Lotus halls");
   const community = legend.find((e) => e.label === "Community")!;
+  assert.equal(community.swatch, "#edb529", "a swatch, not the first hub's logo");
+  assert.equal(community.iconUrl, null);
   assert.ok(community.areas.some((a) => a.areaId === "blue-discussion-corner"), "the yellow discussion corners sit under Community");
   assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
-  assert.ok(legend.find((e) => e.label === "Work & Rest")!.areas.some((a) => a.areaId === "decompression-zone"));
-  assert.ok(!legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "decompression-zone"));
-  assert.ok(legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "swag-station"), "the Swag Station sits with the places of its colour");
+  assert.equal(community.areas.filter((a) => a.areaId === "community-hub").length, 14);
+  const supporters = legend.find((e) => e.label === "Supporters")!;
+  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths");
+  assert.ok(supporters.swatch && !supporters.iconUrl);
+  assert.ok(legend.find((e) => e.label === "Game Zone")!.iconUrl?.endsWith("/game-zone.png"));
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
 });
 

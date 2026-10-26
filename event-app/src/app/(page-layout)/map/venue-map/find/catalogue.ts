@@ -70,17 +70,25 @@ export type LegendEntry = { key: string; label: string; iconUrl: string | null; 
  * discussion corners sit with the hubs). Floors with nothing to explain get
  * an empty list.
  */
+/** The fill most of the footprints use. */
+function commonFill(members: readonly Area[]): string {
+  const fills = new Map<string, number>();
+  for (const a of members) fills.set(a.shape.fill, (fills.get(a.shape.fill) ?? 0) + 1);
+  return [...fills.entries()].sort((a, b) => b[1] - a[1])[0][0];
+}
+
 export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_LIST): LegendEntry[] {
   const onFloor = areas.filter((a) => a.level === level);
   const entries: LegendEntry[] = [];
   const specs = FLOOR_LEGENDS[level];
   if (specs) {
     for (const spec of specs) {
-      const members = "areaId" in spec ? onFloor.filter((a) => a.areaId === spec.areaId) : onFloor.filter((a) => a.category.id === spec.category);
+      const members = "areaId" in spec ? onFloor.filter((a) => a.areaId === spec.areaId) : onFloor.filter((a) => a.legendCategory.id === spec.category);
       if (!members.length) continue;
       const label = "label" in spec && spec.label ? spec.label : AREAS[members[0].areaId].name.replace(/\s*#$/, "");
       const key = "areaId" in spec ? `${level}/legend:${spec.areaId}` : `${level}/legend:${spec.category}`;
-      entries.push({ key, label, iconUrl: members[0].iconUrl, swatch: members[0].iconUrl ? null : members[0].shape.fill, areas: members });
+      const asSwatch = ("swatch" in spec && spec.swatch) || !members[0].iconUrl;
+      entries.push({ key, label, iconUrl: asSwatch ? null : members[0].iconUrl, swatch: asSwatch ? commonFill(members) : null, areas: members });
     }
     return entries;
   }
@@ -88,10 +96,7 @@ export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_L
     if (!category.legend) continue;
     const members = onFloor.filter((a) => a.legendCategory.id === category.id);
     if (!members.length) continue;
-    const fills = new Map<string, number>();
-    for (const a of members) fills.set(a.shape.fill, (fills.get(a.shape.fill) ?? 0) + 1);
-    const swatch = [...fills.entries()].sort((a, b) => b[1] - a[1])[0][0];
-    entries.push({ key: `${level}/legend:${category.id}`, label: category.legend, iconUrl: null, swatch, areas: members });
+    entries.push({ key: `${level}/legend:${category.id}`, label: category.legend, iconUrl: null, swatch: commonFill(members), areas: members });
   }
   return entries;
 }
