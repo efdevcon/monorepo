@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { area, bbox, cutPolyline, pointInRing, polylabel, ringsToPolygons, signedArea, simplify, strokeToPolygons, widen, type Ring } from "./geometry";
+import { area, bbox, cutPolyline, notchHoles, pointInRing, polylabel, ringsToPolygons, signedArea, simplify, strokeToPolygons, widen, type Ring } from "./geometry";
 
 const square = (x: number, y: number, s: number): Ring => [
   [x, y],
@@ -18,6 +18,24 @@ test("rings: even-odd nesting gives outers and holes, oriented", () => {
   assert.ok(signedArea(big.outer) > 0 && signedArea(big.holes[0]) < 0);
   const inner = polys.find((p) => area(p.outer) === 1)!;
   assert.equal(inner.holes.length, 0);
+});
+
+test("notch: a hole drawn to the outer edge opens onto it, an inner hole stays", () => {
+  // A void 0.3 short of the bottom edge (y = 10) and a real hole in the middle.
+  const [slab] = ringsToPolygons([square(0, 0, 10), [[3, 9.7], [3, 5], [7, 5], [7, 9.7]], square(1, 1, 1)]);
+  assert.equal(slab.holes.length, 2);
+  const { polygon, notched } = notchHoles(slab, 1);
+  assert.equal(notched.length, 1);
+  assert.equal(polygon.holes.length, 1);
+  assert.equal(area(polygon.holes[0]), 1);
+  assert.equal(Math.round(area(polygon.outer) * 1000) / 1000, 80);
+  assert.ok(!pointInRing([5, 8], polygon.outer));
+  assert.ok(pointInRing([5, 2], polygon.outer));
+  // The contacts land on the edge itself: no sliver left.
+  assert.ok(polygon.outer.some(([x, y]) => x === 3 && y === 10) && polygon.outer.some(([x, y]) => x === 7 && y === 10));
+  // A hole touching the edge in two places is a bridge, left alone.
+  const [bridge] = ringsToPolygons([square(0, 0, 10), [[1, 9.9], [1, 5], [9, 5], [9, 9.9], [8, 9.9], [8, 6], [2, 6], [2, 9.9]]]);
+  assert.equal(notchHoles(bridge, 1).notched.length, 0);
 });
 
 test("simplify: drops collinear points, keeps corners", () => {

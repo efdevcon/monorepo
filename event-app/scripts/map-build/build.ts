@@ -11,8 +11,8 @@ import path from "node:path";
 import { AREAS, isAreaId, ROOMS, type AreaSpec } from "../../src/app/(page-layout)/map/venue-map/data/areas";
 import { LEVELS } from "../../src/app/(page-layout)/map/venue-map/data/levels";
 import { mapBundleSchema, type GroundBounds, type MapBundle, type MapLevel, type MapShape } from "../../src/app/(page-layout)/map/venue-map/data/planSchema";
-import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, WALL_MIN_STROKE_PX } from "./config";
-import { area, bbox, cutPolyline, pointInRing, polylabel, ringsToPolygons, simplify, strokeToPolygons, widen, type Polygon, type Ring } from "./geometry";
+import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, EXTERIOR_WALL_TOL_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, STAIRS_SYMBOL_M, VOID_EDGE_EPS_PX, WALL_MIN_STROKE_PX } from "./config";
+import { area, bbox, cutPolyline, notchHoles, pointInRing, polylabel, ringsToPolygons, simplify, strokeToPolygons, widen, type Polygon, type Ring } from "./geometry";
 import { isDefaultName, isGeometryGroup, isTextIconGroup, LAYER_GROUPS, normaliseId, parseName } from "./names";
 import type { Point } from "./path";
 import { registerFrames, type Frame, type RegistrationInput } from "./register";
@@ -98,11 +98,13 @@ const isStrokeOnly = (d: Drawn) => !d.paint.fill && d.paint.stroke !== null;
 /**
  * Outline subgroups the plan draws as symbols, found by their structure when
  * nobody named them: hatches (stair treads, operable-wall ticks: three or
- * more stroke-only lines and nothing else) stay flat, and escalators (the
+ * more stroke-only lines and nothing else) stay flat, while escalators (the
  * plan's symbol: one closed and two open stroke-only lines with two filled
- * arrows in a child group) become sprite-only areas like the named ones.
+ * arrows in a child group) and stairs (two filled shapes in the plan's line
+ * colour, the steps and the arrow, about 2 m across) become sprite-only areas
+ * like the named ones. Only unnamed groups count; a named group is itself.
  */
-function classifySubgroups(outline: Drawn[]): { hatches: Set<string>; escalators: string[] } {
+function classifySubgroups(outline: Drawn[], metresPerPx: number, lineColour: string | null): { hatches: Set<string>; escalators: string[]; stairs: string[] } {
   const direct = new Map<string, Drawn[]>();
   const subtree = new Map<string, Drawn[]>();
   for (const d of outline) {
@@ -117,14 +119,23 @@ function classifySubgroups(outline: Drawn[]): { hatches: Set<string>; escalators
   }
   const hatches = new Set<string>();
   const escalators: string[] = [];
+  const stairs: string[] = [];
   for (const [key, members] of direct) {
     if (members.length >= HATCH_MIN_STROKES && members.every(isStrokeOnly)) hatches.add(key);
+    if (!key.split("/").every((g) => isDefaultName(g))) continue;
     const all = subtree.get(key) ?? [];
     const strokes = members.filter(isStrokeOnly);
     const fills = all.filter((d) => d.paint.fill !== null);
     if (strokes.length === 3 && strokes.filter((d) => d.subpaths.every((s) => s.closed)).length === 1 && fills.length === 2 && all.length === 5) escalators.push(key);
+    if (all.length === 2 && members.length === 2 && fills.length === 2 && lineColour !== null && fills.every((d) => hex(d.paint.fill!) === hex(lineColour) && d.paint.stroke === null)) {
+      const [x0, y0, x1, y1] = bbox(all.flatMap((d) => d.subpaths.map((s) => s.points)));
+      const [min, max] = STAIRS_SYMBOL_M;
+      const w = (x1 - x0) * metresPerPx;
+      const h = (y1 - y0) * metresPerPx;
+      if (w >= min && w <= max && h >= min && h <= max) stairs.push(key);
+    }
   }
-  return { hatches, escalators };
+  return { hatches, escalators, stairs };
 }
 
 export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): { level: MapLevel | null; textIconCount: number; usedAreaIds: Set<string> } {
@@ -138,10 +149,18 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   }
   if (!normaliseId(rootGroup).includes(spec.id.slice(1))) report.warn(file, rootGroup, `root group is "${rootGroup}", expected the floor's number in it (${spec.id})`);
 
+  // Background → the slab. Levels 1–2 export it as a boolean (`Subtract`) loose on the frame since 2026-10-26: accepted, with a nudge to group it.
+  let background = inLayer(loaded, LAYER_GROUPS.background);
+  if (!background.length) {
+    background = drawn.filter((d) => d.groups.length === 1 && d.paint.fill !== null && /^(subtract|union)(_\d+)?$/i.test(d.id ?? ""));
+    if (background.length) report.warn(file, background[0].id, "the slab is a boolean loose on the frame: put it in the Background group in Figma");
+  }
+
   // Everything under the root that is not a geometry layer is text and icons: skipped, counted, and named once when it is not the Text & Icon layer.
   const stray = new Set<string>();
   for (const d of drawn) {
     if (d.groups.length >= 2 && isGeometryGroup(layerOf(d))) continue;
+    if (background.includes(d)) continue;
     result.textIconCount++;
     if (d.groups.length < 2) stray.add("(loose on the frame)");
     else if (!isTextIconGroup(layerOf(d))) stray.add(d.groups[1]);
@@ -166,16 +185,25 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     shapes.push(s);
   };
 
-  // Background → the slab.
-  const background = inLayer(loaded, LAYER_GROUPS.background);
   if (background.length !== 1) report.error(file, null, `Background must hold exactly one shape (found ${background.length})`);
   const slabFill = background[0]?.paint.fill ?? "#e4e0f8";
-  if (background[0]) addShape(toShape(spec.id, "slab", "slab", filledPolygons(background[0]), HEIGHTS.slab, slabFill, true, frame), "slab");
+  // A hole drawn to the slab edge is a balcony void: a notch in the slab, and the exterior wall is cut over it (voidCuts).
+  const voidCuts: [number, number, number, number][] = [];
+  if (background[0]) {
+    const slabPolygons = filledPolygons(background[0]).map((p) => {
+      const { polygon, notched } = notchHoles(p, VOID_EDGE_EPS_PX);
+      for (const ring of notched) voidCuts.push(bbox([ring]));
+      return polygon;
+    });
+    addShape(toShape(spec.id, "slab", "slab", slabPolygons, HEIGHTS.slab, slabFill, true, frame), "slab");
+  }
 
   // Outline: walls, flat decoration, door openings (slab-coloured patches), symbol groups.
   const outline = inLayer(loaded, LAYER_GROUPS.outline);
-  const { hatches, escalators } = classifySubgroups(outline);
   const isNamedWall = (d: Drawn) => d.id !== null && /^wall(-\d+)?$/.test(normaliseId(d.id));
+  // The plan's line colour: what its named walls are stroked in (the stairs symbol is filled with it).
+  const lineColour = outline.find((d) => isNamedWall(d) && d.paint.stroke)?.paint.stroke ?? outline.find((d) => isStrokeOnly(d) && d.paint.strokeWidth >= WALL_MIN_STROKE_PX)?.paint.stroke ?? null;
+  const { hatches, escalators, stairs } = classifySubgroups(outline, frame.metresPerPx, lineColour);
   const isDoorPatch = (d: Drawn) => !isNamedWall(d) && d.paint.fill !== null && hex(d.paint.fill) === hex(slabFill);
   const doorCuts = outline.filter(isDoorPatch).map((d) => bbox(d.subpaths.map((s) => s.points)));
   // Column markers: small stroke-only closed boxes on the floor. Noise in 3D, so they are dropped.
@@ -193,23 +221,33 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
     return slabBox[0] - x0 >= OUTLINE_RING_MIN_PX && slabBox[1] - y0 >= OUTLINE_RING_MIN_PX && x1 - slabBox[2] >= OUTLINE_RING_MIN_PX && y1 - slabBox[3] >= OUTLINE_RING_MIN_PX;
   };
+  // The exterior wall: a named wall drawn on the slab's edge (its box is the slab's). Cut over the balcony voids, by half its width, so each void opens onto the floor below (Scott, 2026-10-26).
+  const isExteriorWall = (d: Drawn) => {
+    if (!slabBox || !isNamedWall(d)) return false;
+    const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
+    return Math.abs(x0 - slabBox[0]) <= EXTERIOR_WALL_TOL_PX && Math.abs(y0 - slabBox[1]) <= EXTERIOR_WALL_TOL_PX && Math.abs(x1 - slabBox[2]) <= EXTERIOR_WALL_TOL_PX && Math.abs(y1 - slabBox[3]) <= EXTERIOR_WALL_TOL_PX;
+  };
   const isLabelFrame = (d: Drawn) => {
     if (!isStrokeOnly(d) || !d.subpaths.every((s) => s.closed) || !slabRing.length) return false;
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
     return !pointInRing([(x0 + x1) / 2, (y0 + y1) / 2], slabRing);
   };
-  // Unnamed walls, on a floor that names none: the plan's wall strokes, outside any hatch and not a hatch in one path (a stair run of many short strokes). A floor that names its walls has only those (Level 3's hall-name tabs are drawn at wall width too).
-  const namesWalls = outline.some(isNamedWall);
+  // Unnamed walls, on a floor that names no interior wall: the plan's wall strokes, outside any hatch and not a hatch in one path (a stair run of many short strokes). A floor that names its interior walls has only those (Level 3's hall-name tabs are drawn at wall width too); naming only the rings (Level 2 since 2026-10-26) does not switch the fallback off.
+  const namesWalls = outline.some((d) => isNamedWall(d) && !isOutlineRing(d) && !isExteriorWall(d));
   const isImplicitWall = (d: Drawn) => !namesWalls && isStrokeOnly(d) && d.paint.strokeWidth >= WALL_MIN_STROKE_PX && !hatches.has(subgroupOf(d)) && d.subpaths.length < HATCH_MIN_STROKES;
   /** The named subgroup an element sits in (first named ancestor below the layer, at any depth), or the unnamed escalator symbol it belongs to. */
   const namedGroupOf = (d: Drawn) => d.groups.slice(2).find((g) => !isDefaultName(g)) ?? null;
-  const namedEscalatorCount = new Set(outline.map(namedGroupOf).filter((g): g is string => g !== null && parseName(g).areaId === "escalator")).size;
+  const namedCount = (areaId: string) => new Set(outline.map(namedGroupOf).filter((g): g is string => g !== null && parseName(g).areaId === areaId)).size;
+  const namedEscalatorCount = namedCount("escalator");
+  const namedStairsCount = namedCount("stairs");
   const symbolOf = (d: Drawn): string | null => {
     const named = namedGroupOf(d);
     if (named !== null) return named;
     const key = subgroupOf(d);
-    const i = escalators.findIndex((e) => key === e || key.startsWith(`${e}/`));
-    return i === -1 ? null : `escalator-${namedEscalatorCount + i + 1}`;
+    const e = escalators.findIndex((g) => key === g || key.startsWith(`${g}/`));
+    if (e !== -1) return `escalator-${namedEscalatorCount + e + 1}`;
+    const s = stairs.findIndex((g) => key === g || key.startsWith(`${g}/`));
+    return s === -1 ? null : `stairs-${namedStairsCount + s + 1}`;
   };
 
   let wallN = 0;
@@ -217,7 +255,11 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   let columns = 0;
   let frames = 0;
   let rings = 0;
-  const addWall = (d: Drawn) => addShape(toShape(spec.id, `wall-${++wallN}`, "wall", strokedPolygons(d, doorCuts), HEIGHTS.wall, slabFill, true, frame), d.id);
+  const addWall = (d: Drawn) => {
+    const half = d.paint.strokeWidth / 2;
+    const cuts = isExteriorWall(d) ? [...doorCuts, ...voidCuts.map(([x0, y0, x1, y1]): [number, number, number, number] => [x0 - half, y0 - half, x1 + half, y1 + half])] : doorCuts;
+    addShape(toShape(spec.id, `wall-${++wallN}`, "wall", strokedPolygons(d, cuts), HEIGHTS.wall, slabFill, true, frame), d.id);
+  };
   const addDeco = (d: Drawn, groupName: string) => {
     if (d.paint.fill) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", filledPolygons(d), HEIGHTS.deco, d.paint.fill, false, frame), d.id);
     if (d.paint.stroke) addShape(toShape(spec.id, `${groupName}-${++decoN}`, "deco", strokedPolygons(d, []), HEIGHTS.deco, d.paint.stroke, false, frame), d.id);
@@ -259,7 +301,7 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     addDeco(d, "deco");
   }
   if (rings > 1) report.warn(file, null, `${rings} outline rings around the slab dropped; expected at most one`);
-  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${columns} column markers, ${frames} label frames and ${rings} outline ring dropped; ${hatches.size} hatches flat; ${escalators.length} escalator symbols found by structure`);
+  report.info(file, null, `${doorCuts.length} door openings cut from ${wallN} walls; ${voidCuts.length} balcony voids opened on the slab edge; ${columns} column markers, ${frames} label frames and ${rings} outline ring dropped; ${hatches.size} hatches flat; ${escalators.length} escalator and ${stairs.length} stairs symbols found by structure`);
 
   // Symbol groups → hidden areas over their bounding box (the sprite stands there, nothing is drawn), or flat decoration while the catalogue entry has no icon yet.
   const { usedAreaIds } = result;

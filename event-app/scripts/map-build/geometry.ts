@@ -345,3 +345,77 @@ export function widen(rings: Ring[], minWidth: number): Ring[] {
   const sy = w <= h ? 1 : f;
   return rings.map((ring) => ring.map(([x, y]) => [cx + (x - cx) * sx, cy + (y - cy) * sy] as Point));
 }
+
+/** Where `p` sits on the ring's edges: the edge index and its parameter along it, when within `eps` of one. */
+function edgeContact(ring: Ring, p: Point, eps: number): { index: number; t: number } | null {
+  for (let i = 0; i < ring.length; i++) {
+    const a = ring[i];
+    const b = ring[(i + 1) % ring.length];
+    const dx = b[0] - a[0];
+    const dy = b[1] - a[1];
+    const len2 = dx * dx + dy * dy;
+    if (len2 === 0) continue;
+    const t = ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / len2;
+    if (t < -1e-9 || t > 1 + 1e-9) continue;
+    if (Math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dy)) <= eps) return { index: i, t: Math.min(1, Math.max(0, t)) };
+  }
+  return null;
+}
+
+/**
+ * A hole drawn up to the outer ring, spliced into it as a notch: its vertices
+ * on one outer edge (within `eps`) are the contacts, the rest of its ring is
+ * inserted into that edge between the contacts' projections. Null when the
+ * hole is not that simple (no two contacts, contacts on different edges, or
+ * two separate contact runs).
+ */
+function spliceNotch(outer: Ring, hole: Ring, eps: number): Ring | null {
+  const n = hole.length;
+  const contacts = hole.map((p) => edgeContact(outer, p, eps));
+  const onEdge = contacts.filter((c) => c !== null).length;
+  if (onEdge < 2 || onEdge === n) return null;
+  let start = -1;
+  for (let i = 0; i < n; i++) {
+    if (contacts[i] && !contacts[(i + 1) % n]) {
+      start = (i + 1) % n;
+      break;
+    }
+  }
+  if (start < 0) return null;
+  const chain: Ring = [];
+  let i = start;
+  while (!contacts[i]) {
+    chain.push(hole[i]);
+    i = (i + 1) % n;
+  }
+  // One run off the edge, every contact on the same edge: otherwise it is a bridge, not a notch.
+  if (chain.length !== n - onEdge) return null;
+  const c1 = contacts[(start - 1 + n) % n]!;
+  const c2 = contacts[i]!;
+  if (contacts.some((c) => c !== null && c.index !== c1.index)) return null;
+  const a = outer[c1.index];
+  const b = outer[(c1.index + 1) % outer.length];
+  const at = (t: number): Point => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+  const insert: Ring = c1.t <= c2.t ? [at(c1.t), ...chain, at(c2.t)] : [at(c2.t), ...chain.reverse(), at(c1.t)];
+  return [...outer.slice(0, c1.index + 1), ...insert, ...outer.slice(c1.index + 1)];
+}
+
+/**
+ * Holes that reach the outer ring (the balcony voids Levels 1–2 draw to the
+ * slab edge, 2026-10-26) become notches in the outer ring, so the slab has
+ * no sliver and no coincident side face there. `notched` lists the holes
+ * that were opened; the others stay holes.
+ */
+export function notchHoles(polygon: Polygon, eps: number): { polygon: Polygon; notched: Ring[] } {
+  let outer = polygon.outer;
+  const holes: Ring[] = [];
+  const notched: Ring[] = [];
+  for (const hole of polygon.holes) {
+    const spliced = spliceNotch(outer, hole, eps);
+    if (spliced) {
+      outer = spliced;
+      notched.push(hole);
+    } else holes.push(hole);
+  }
+  return { polygon: { outer, holes }, notched };
+}

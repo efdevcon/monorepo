@@ -22,9 +22,9 @@ three geometry groups, matched by name after normalisation (lower-case, runs of 
 
 | Figma layer     | Export id           | What the build makes of it                                                                                                                                                                                                                                                                                                     |
 | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Background`    | `Background`        | Exactly one shape: the **slab**, extruded 4 m downwards. Its fill is the slab colour.                                                                                                                                                                                                                                          |
+| `Background`    | `Background`        | Exactly one shape: the **slab**, extruded 4 m downwards. Its fill is the slab colour. Levels 1–2 (re-exported 2026-10-26 with their balcony voids, from `…/JWC/To add/Updates/`) leave it as a boolean (`Subtract`) loose on the frame: accepted with a warning, group it under `Background` in Figma. A hole drawn to the slab edge is a **balcony void**: it becomes a notch in the slab (`notchHoles`, `VOID_EDGE_EPS_PX`) and the exterior wall is cut over it (below), so the void opens onto the floor below (Scott, 2026-10-26).                                                                                                                                                                                                                                          |
 | `Colour_Box`    | `Colour_Box`        | One filled shape per **tappable area**, named `<area-id>[-<n>]` (`lotus-stage-2`, `tea-&-coffee-7`, `washroom-9`). `<area-id>` must be a key of `data/areas.ts`; `-<n>` is the instance number. The fill is the footprint's colour.                                                                                            |
-| `Outline`       | `Outline`           | Paths named `wall`, `wall_2`, … (at any depth) are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). On a floor that names **no** wall (Levels 1–2; Level 0 names its walls and escalators since its 2026-10-26 re-export), every stroke-only line at least `WALL_MIN_STROKE_PX` (4 px) wide is a wall instead, the plan drawing walls at ~4.8 px and detail lines at ~2 px; a floor that names its walls has exactly those (Level 3's Lotus hall-name tabs are drawn at wall width). Everything else in the group is flat **decoration** (exit signs, stairs, arrows) at 0.15 m, including a **hatch**: an unnamed subgroup of three or more stroke-only lines and nothing else (stair treads, the ticks of an operable wall). A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. Stroke-only closed boxes under 2.5 m (the column markers) and stroke-only closed boxes centred outside the slab (the hall-name tabs on the top edge) are dropped, and so is the plan's **2D outline ring**: one closed stroke whose box reaches `OUTLINE_RING_MIN_PX` (5 px) beyond the slab on every side (Levels 0–2 draw one ~20 px out; it read as a second wall standing off the floor in 3D, Scott, 2026-10-26), named `wall` or not. Level 3's thick ring sits on the slab edge and is its exterior wall. A **named** subgroup (`escalator`, `escalator_2`, `stairs`) is a place drawn as a diagram: its paths are hidden and it becomes a sprite-only area over the group's bounding box, joined to the catalogue like a colour box; while the catalogue entry has no icon (stairs today) the symbol stays drawn as decoration and is not tappable. An **unnamed** subgroup shaped like the plan's escalator symbol (one closed and two open stroke-only lines plus a child group of two filled arrows) is an escalator too, numbered `escalator-<n>` after the named ones. |
+| `Outline`       | `Outline`           | Paths named `wall`, `wall_2`, … (at any depth) are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). On a floor that names **no interior** wall (Level 2, which names only its two rings; Levels 0–1 name their walls and escalators since their 2026-10-26 re-exports), every stroke-only line at least `WALL_MIN_STROKE_PX` (4 px) wide is a wall instead, the plan drawing walls at ~4.8 px and detail lines at ~2 px; a floor that names its interior walls has exactly those (Level 3's Lotus hall-name tabs are drawn at wall width). The **exterior wall** is the named wall whose box is the slab's (`EXTERIOR_WALL_TOL_PX`): it is also cut over the balcony voids, by half its width. Everything else in the group is flat **decoration** (exit signs, stairs, arrows) at 0.15 m, including a **hatch**: an unnamed subgroup of three or more stroke-only lines and nothing else (stair treads, the ticks of an operable wall). A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. Stroke-only closed boxes under 2.5 m (the column markers) and stroke-only closed boxes centred outside the slab (the hall-name tabs on the top edge) are dropped, and so is the plan's **2D outline ring**: one closed stroke whose box reaches `OUTLINE_RING_MIN_PX` (5 px) beyond the slab on every side (Levels 0–2 draw one ~20 px out; it read as a second wall standing off the floor in 3D, Scott, 2026-10-26), named `wall` or not. Level 3's thick ring sits on the slab edge and is its exterior wall. A **named** subgroup (`escalator`, `escalator_2`, `stairs`) is a place drawn as a diagram: its paths are hidden and it becomes a sprite-only area over the group's bounding box, joined to the catalogue like a colour box; while the catalogue entry has no icon the symbol stays drawn as decoration and is not tappable (none today). An **unnamed** subgroup shaped like the plan's escalator symbol (one closed and two open stroke-only lines plus a child group of two filled arrows) is an escalator too, numbered `escalator-<n>` after the named ones. An unnamed subgroup that is the plan's **stairs** symbol (exactly two filled shapes in the line colour the walls are stroked in, the steps and the arrow, `STAIRS_SYMBOL_M` 1.5–3.5 m on each side) is a stairs place the same way, `stairs-<n>` after the named ones: every floor's four stairwells show the stairs icon since 2026-10-26. |
 | `Text & Icon`   | `Text__x26__Icon`   | **Skipped** (the labels and icons are being redrawn; Scott, 2026-10-25). Levels 0–2 export their labels as loose groups beside the layers instead; those are skipped the same way, with one warning per floor naming them. The build reports how many paths it ignored.                                                      |
 | `meta` (opt.)   | `meta`              | A straight line named `scale-<metres>` gives metres per plan px. Without it the reference floor (`REFERENCE_LEVEL`, L3) uses `FALLBACK_METRES_PER_PX` (0.05 → Level 3 is ~245 × 114 m) and every other floor is **registered** on it, see below.                                                                                |
 
@@ -123,7 +123,7 @@ green chip; named after Ethereum upgrades with their room number, `frontier-suit
 Suite 102", `tangerine-whistle-suite-105a` is its own id), Registration / Badge Pickup / Help Desk /
 Cloak Room (`checkin`, which now has a "Check-in" chip; the Swag Station moved to the Fun chip of its
 colour), the Food Garden, Poster Printing Station, Speakers Lounge, Interview Room, Baby Care Room,
-and `stairs` (no icon yet, so not tappable). Elevators 2/4/6/8 (east side) use `elevator-left`.
+and `stairs` (every floor's four stairwells, the stairs icon). Elevators 2/4/6/8 (east side) use `elevator-left`.
 `COMPOSITES` adds rows that stand for several footprints: the
 Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and the card is titled
 after it with the members as the line beneath (`groupName` in the store, `compositeOf`).
@@ -140,8 +140,8 @@ decompression, press (Content Corner), game-zone (a controller since 2026-10-26,
 and escalator-right (the -left variants are in the folder for other floors), lotus, jasmine,
 music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
 `JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
-interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (so the named
-`stairs` groups on Level 2 are sprite-only places now), plus a restyled swag-station. Hub booths show their
+interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
+structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station. Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
 their lockup via `tenants`; the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).
@@ -170,8 +170,14 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   and Find/Search drop their floor headers and tags.
 - **Camera commands derive from state**: `CameraRig.tsx` compares `focus.seq`, `resetSeq` and the
   stack key in one effect (focus > reset > settle) and drives `rig.ts`, which owns OrbitControls,
-  the fit (`projectedExtent` of the floor/stack box, exact at any azimuth, `FIT_MARGIN` 0.82),
-  the zoom clamps (0.85×–6× fit), tweens (350 ms double-tap, 800 ms floor/reset/focus, 0 under
+  the fit (`projectedExtent` of the stack's box, or of the open floor's own bounds: Levels 1–2 are the
+  south band and sat low and small in the building's box, so every floor change re-fits; exact at any
+  azimuth; desktop `FIT_MARGIN` 0.82 all round, phones fit the width to `PHONE_FIT_GUTTER_PX` 8 px
+  gutters, the stack keeping `PHONE_LABEL_ROOM_PX` 42 px on the right for the labels' column (20px
+  labels, 12px off the corner) and sitting `PHONE_STACK_LIFT_PX` 72 px above centre in portrait so the
+  lowest label clears the floor slider; Scott, 2026-10-26),
+  the zoom clamps (0.85×–6× fit, 10× on phones, where supporter lockups and small booths were hard to
+  read and tap at 6×), tweens (350 ms double-tap, 800 ms floor/reset/focus, 0 under
   reduced motion), the per-frame target clamp to the floor, and `touched` (a grab interrupts a
   tween and stops resize from re-applying the start pose). A focus pending when the client-only
   canvas mounts (a deep link) still runs: the previous-seq ref starts at 0.
@@ -192,7 +198,9 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   is capped at 1.15× the footprint's longer side; an SVG without width/height is fetched and given
   its viewBox size first (Safari draws it 0×0 otherwise). They bob while selected (upwards from the rest pose only, so the logo never dips into its booth; 2026-10-25). Hidden areas (escalators) have no mesh, only the sprite takes the pointer.
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
-  floor slider bottom-right (multi-floor only), the top strip (controls legend while stacked or
+  floor slider bottom-right (multi-floor only), a phone in landscape dropping the bottom tab bar while
+  the pane is active (`<html data-app-chrome-off>`, as the schedule does; the pills and the strip clear
+  the notch via `--safe-left` / `--safe-right`; Scott, 2026-10-26), the top strip (controls legend while stacked or
   when the floor has no legend; otherwise the floor's legend chips, icons per place type on
   Level 3's Community and Supporters as swatches), `AreaCard`
   (stages keep the icon disc, everything else inline; desktop beside the footprint via
@@ -221,21 +229,22 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
 - Descriptions in `areas.ts` are one-line placeholders; booth names are "Flagship Supporter F1" /
   "Core Supporter C2" / "Starter Supporter S12", hubs "Hub N".
 - Scale: no `meta/scale` line yet; 0.05 m/px is a guess (the halls look right, heights are tuned
-  to it). Phones: the 2:1 floor fits by width, so the landing view is small; a closer phone landing
-  (or a portrait start azimuth) is a one-constant change.
+  to it). Phones fit the width to 8 px gutters since 2026-10-26; the stack's right gutter holds the
+  labels' column, so the stack is narrower than a single floor by that much.
 - `main-stage-lotus` → all three Lotus halls is an assumption about how the hall is used.
 - Levels 0–2 (2026-10-26): the exports name their colour boxes but not their stairs, and leave
   the labels loose beside the layers, so the build's fallbacks (§1) carry them; Level 0's
   re-export later that day names its walls and escalators (and cuts door openings into the
-  exterior walls). In Figma, when next touched: name the escalator groups on Levels 1–2
-  (`escalator`, `escalator_2`), the stair symbols (`stairs`, `stairs_2`; Level 2 has `stairs-`, `stairs-_2`…), and group the loose
-  labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
+  exterior walls); Levels 1–2's re-exports the same day add the balcony voids and name Level 1's
+  walls. In Figma, when next touched: name the stair symbols (`stairs`, `stairs_2`; Level 2 has
+  `stairs-`, `stairs-_2`…; the build finds the others by structure meanwhile), put Levels 1–2's
+  `Subtract` slab inside their `Background` group, name Level 2's interior walls as Level 1's are, and
+  group the loose labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
   named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
   sessions' "Show on Map" points at the hangout area, roughly where they happen.
 - Icons still missing: CLS Hangout Area (the Food Garden reuses the food-area icon, provisional;
-  the Lightning Stage, Community Led Stage and a redrawn wristband arrived 2026-10-26). Stairs are
-  only named on Level 2; the other floors' stair symbols stay flat until their groups are named.
+  the Lightning Stage, Community Led Stage and a redrawn wristband arrived 2026-10-26).
 - Suites / the magenta rooms (Speakers Lounge, Interview Room, Baby Care Room): category names
   and descriptions are guesses from the plan; the magenta rooms sit under Other with no legend
   chip. The workshops are Community (Scott, 2026-10-26).

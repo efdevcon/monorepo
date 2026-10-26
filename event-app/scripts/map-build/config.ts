@@ -56,6 +56,20 @@ export const NESTED_LIFT = 0.05;
  * named `wall` (Scott, 2026-10-26). Level 3's thick ring sits on the slab edge and stays.
  */
 export const OUTLINE_RING_MIN_PX = 5;
+/**
+ * A slab hole whose vertices come within this (plan px) of the slab's outer ring is a balcony
+ * void drawn to the edge (Levels 1–2 since their 2026-10-26 re-export): it becomes a notch in the
+ * ring, and the exterior wall is cut over it, so the void opens onto the floor below (Scott, 2026-10-26).
+ */
+export const VOID_EDGE_EPS_PX = 1;
+/** A named wall whose box sits within this (plan px) of the slab's box on every side is the exterior wall. */
+export const EXTERIOR_WALL_TOL_PX = 6;
+/**
+ * The plan's stairs symbol (two filled shapes in the line colour: the steps and the arrow) spans
+ * this range (metres) on each side; an unnamed Outline subgroup of exactly that is a stairs place,
+ * like the named `stairs` groups on Level 2 (Scott, 2026-10-26: every floor shows the stairs icon).
+ */
+export const STAIRS_SYMBOL_M: [number, number] = [1.5, 3.5];
 /** Stroke-only closed boxes in the Outline layer smaller than this (metres) are the plan's column markers: not drawn (Scott, 2026-10-25). */
 export const COLUMN_MARKER_MAX_M = 2.5;
 /**
