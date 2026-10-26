@@ -1,7 +1,7 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-10-26T18:21:23.910Z",
+    "changedAt": "2026-10-26T22:11:25.301Z",
     "problems": [],
     "sessions": [
       {
@@ -14,7 +14,7 @@
           "Naina Sachdev"
         ],
         "topic": "Intro",
-        "description": "Start here if agents are new to you. A beginner-friendly workshop in English and Hindi, run by Dev3pack."
+        "description": "New to AI agents? Start here. This beginner workshop runs in English and Hindi and takes you from \"what is an agent\" to building and running a simple one yourself. Naina Sachdev, India Chapter Lead at Dev3pack and an AI engineer who builds multi-agent systems, guides you step by step, with no prior agent experience needed. Bring a laptop. You leave with a working agent and the vocabulary to follow the rest of the week, from payments to identity and trust."
       },
       {
         "id": "S02",
@@ -26,7 +26,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Community",
-        "description": "Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard that the sessions all week will fill in."
+        "description": "Kick off the Agents Hub with a relaxed first hour. Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard. Over the week every session adds a piece to the map, from identity and payments to trust and disputes. The hub is a small community space with no stage, so come in, ask questions and find the people working on what you care about. Nicolá Arnedo Villanueva, who works in developer relations on agentic payments, hosts."
       },
       {
         "id": "S03",
@@ -38,7 +38,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Intro",
-        "description": "What each standard is for, what works in production now, and what upstream has not shipped yet. Part of the Standards block."
+        "description": "x402 lets a service charge an AI agent per request over plain HTTP. ERC-8183 is a newer standard for agents hiring each other with escrowed payment. Nicolá Arnedo Villanueva, developer relations engineer and writer on agentic payments, gives a ten-minute reality check: what each standard is for, what already runs in production, and what upstream has not shipped yet. A quick orientation for anyone who wants to know which pieces they can build on today."
       },
       {
         "id": "S04",
@@ -50,7 +50,7 @@
           "Fortunato Cinquepalmi"
         ],
         "topic": "Intro",
-        "description": "Identity registries work. Reputation is easy to game, and top-ranked agents often have little product behind them. Part of the Standards block."
+        "description": "ERC-8004 gives AI agents an onchain identity and a place for reputation. Registering an agent is easy. Making reputation mean something is not. Fortunato Cinquepalmi, Product Lead at Kleros, explains why the identity side works, why scores are easy to game, and why top-ranked agents often have little product behind them. A ten-minute talk for builders deciding whether to trust an agent score."
       },
       {
         "id": "S05",
@@ -62,7 +62,7 @@
           "Lena Hierzi"
         ],
         "topic": "Intro",
-        "description": "Three agent payment setups with real users, how to tell them from test traffic, and what builders can copy. Part of the Standards block."
+        "description": "Plenty of agent payment demos exist. Few have real users. Lena Hierzi, DevRel Lead at Celo Core Co, shows three agent payment setups that people actually use, how to tell them apart from test traffic and wash trading, and which parts a builder can copy for their own project. Ten minutes, with examples you can look up afterwards."
       },
       {
         "id": "S06",
@@ -76,7 +76,7 @@
           "Lena Hierzi"
         ],
         "topic": "Intro",
-        "description": "Optimists and sceptics argue x402, ERC-8004 and cards, then fill in the whiteboard map with the room. Part of the Standards block.\n\nModerator: Nicolás Arnedo Villanueva"
+        "description": "Agent payment rails keep shipping, but is anyone using them? Nicolá Arnedo Villanueva moderates Fortunato Cinquepalmi (Kleros) and Lena Hierzi (Celo Core Co) as optimists and sceptics argue the case for x402, ERC-8004 and plain card payments. Where is real demand, what is hype, and what would change your mind? Halfway through, the room helps fill in the agent stack map on the whiteboard. Expect disagreement and questions from the audience."
       },
       {
         "id": "S07",
@@ -88,7 +88,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Research",
-        "description": "Agent payment rails keep shipping, but real usage is much smaller than the headlines suggest. Nicolás walks through a practical method for reading on-chain agent payment data: who the actual buyers and sellers are, how to spot repeated counterparties, bot-driven volume and hackathon or test traffic, and what a believable volume number looks like. Then you pair up, pick a chain or facilitator and classify its top payers and sellers as real, bot or test. Part of the Standards block."
+        "description": "Agent payment headlines are huge, while real usage is much smaller. This hands-on workshop teaches a practical method for reading on-chain agent payment data. Nicolá Arnedo Villanueva, who writes about agentic payments, shows how to find the real buyers and sellers, spot repeated counterparties, bot-driven volume and hackathon or test traffic, and judge what a believable volume number looks like. Then you pair up, pick a chain or facilitator, and classify its top payers and sellers as real, bot or test. Bring a laptop."
       },
       {
         "id": "S08",
@@ -100,7 +100,7 @@
           "Anantha Krishnan"
         ],
         "topic": "Governance",
-        "description": "Computing has always tracked what runs, where and how. An agent that pays, signs or decides for you adds a fourth question: on whose authority? Today the answer is a key, and a key cannot tell whether you allow this action now, within these limits. Anantha Krishnan, founder of Sarva Labs and the MOI protocol, shows how authority can be held as live state, and what it looks like when an x402 payment carries a mandate that only the participant can change. Part of the Standards block."
+        "description": "A signature proves a key signed. It does not prove you allow this action now, within these limits. When an agent pays or decides for you, the question is on whose authority. Anantha Krishnan, founder of Sarva Labs and the MOI protocol, shows how authority can be held as live state, and what an x402 payment looks like when it carries a mandate that only the participant can change. Useful for anyone designing how agents get permission to spend."
       },
       {
         "id": "S09",
@@ -113,7 +113,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Intro",
-        "description": "Five agent standards, overlapping names and a lot of confusion. This workshop works from open questions posted by builders. We sort the standards by the job they do (identity, payment or checkout), then walk three common setups: an agent paying for an API, an agent buying from a merchant, and an agent hiring another agent. We close on a question many builders ask: if you can issue an agent a card, why give it a wallet? Part of the Standards block."
+        "description": "Five agent standards, overlapping names and a lot of confusion. This workshop works from open questions posted by builders. Lena Hierzi (Celo Core Co) and Nicolá Arnedo Villanueva sort the standards by the job they do, identity, payment or checkout, then walk three common setups: an agent paying for an API, an agent buying from a merchant, and an agent hiring another agent. It closes on a question many builders ask: if you can issue an agent a card, why give it a wallet? Bring your own questions."
       },
       {
         "id": "S10",
@@ -125,7 +125,7 @@
           "András Arányi"
         ],
         "topic": "Tooling",
-        "description": "Agents need memory, but most keep it in a vendor's database or lose it between sessions. András Arányi (Solar Punk) shows how the Swarm MCP server gives any MCP-compatible agent persistent memory it owns, with a live demo of an agent logbook. Part of the Agent Infra block."
+        "description": "Most agents keep their memory in a vendor's database or lose it between sessions. Andrá Aráyi, CTO at Solar Punk, shows how the Swarm MCP server gives any MCP-compatible agent persistent memory that the agent owner controls, stored on the decentralised Swarm network. Live demo: an agent keeps a logbook, you see what it wrote, and the memory survives a restart. MCP is the open protocol agents use to call tools. Good for builders who want portable, user-owned agent state."
       },
       {
         "id": "S11",
@@ -137,7 +137,7 @@
           "Shantelle Awomoyi"
         ],
         "topic": "Tooling",
-        "description": "ERC-8004 keeps hashes on-chain but leaves the evidence offchain, with no rule on how long it stays. Arkiv lets agents store validation payloads and coordination state as wallet-owned, queryable data, checked against the on-chain hash and expiring on a set schedule. Part of the Agent Infra block."
+        "description": "ERC-8004 stores hashes onchain but leaves the actual evidence offchain, with no rule on how long it stays available. Shantelle Awomoyi, Head of Ecosystem at Golem Factory, shows how Arkiv, a queryable data layer for Ethereum, lets agents keep validation payloads and coordination state as wallet-owned data. Each record is checked against its onchain hash and expires on a schedule you set. Learn how to keep agent evidence verifiable without keeping it forever."
       },
       {
         "id": "S12",
@@ -150,7 +150,7 @@
           "Levente Kiss"
         ],
         "topic": "Tooling",
-        "description": "How packaged agent skills give any agent the context it needs to use a complex protocol correctly, with the open-source Swarm skills library as a case study. Part of the Agent Infra block."
+        "description": "Agents often misuse complex protocols because they lack context. Packaged skills fix that by bundling instructions, examples and checks that any agent can load. Andrá Aráyi, CTO at Solar Punk, and Levente Kiss use the open-source Swarm skills library as a case study: how a skill is structured, how an agent picks it up, and how to publish one for your own protocol. A ten-minute talk for builders who want agents to use their tools correctly."
       },
       {
         "id": "S13",
@@ -162,7 +162,7 @@
           "Steven Mih"
         ],
         "topic": "Tooling",
-        "description": "An open-source evidence layer for agent payments on mesh-llm: both sides seal every exchange, paid or not, as a signed, hash-chained record that any third party can verify offline. A 60-second live demo on a running mesh, then hands-on for up to 15 attendees. Part of the Agent Infra block."
+        "description": "When an agent pays another agent, who can later prove what happened? Steven Mih, founder and CEO of Action State Group and a maintainer of Mesh-LLM, shows an open-source evidence layer for agent payments. Both sides seal every exchange, paid or not, as a signed, hash-chained record that any third party can verify offline. Start with a 60-second live demo on a running mesh of inference nodes, then get hands-on, with places for up to 15 attendees."
       },
       {
         "id": "S14",
@@ -174,7 +174,7 @@
           "Henning Diedrich"
         ],
         "topic": "Tooling",
-        "description": "Henning Diedrich, creator of Lexon, presents small language models based on symbolic AI, as deterministic as a programming language, and live-codes a hybrid workflow that combines generative and symbolic AI so every step stays transparent. Part of the Agent Infra block."
+        "description": "Language models are fluent but unpredictable. Henning Diedrich, creator of the plain-text smart contract language Lexon and head of protocol at Swarm, presents small language models built on symbolic AI that behave as deterministically as a programming language. He live-codes a hybrid workflow that combines generative and symbolic AI, so every step stays transparent and checkable. For anyone who needs agents whose decisions can be explained."
       },
       {
         "id": "S15",
@@ -186,7 +186,7 @@
           "Paul Lange"
         ],
         "topic": "Community",
-        "description": "Meet the other builders, add what you learned to the Bonfires knowledge base with the QR code, and follow the agent competition on the hub TV."
+        "description": "Wind down the first day with the other builders. Compare notes on what you heard, add what you learned to the hub knowledge base by scanning the Bonfires QR code, and follow the agent competition live on the hub TV. No agenda, no stage, just a small room full of people building with agents. Paul Lange from Celo engineering runs the competition. A good moment to find collaborators for the rest of the week."
       },
       {
         "id": "S16",
@@ -199,7 +199,7 @@
           "Gopika Chauhan"
         ],
         "topic": "Intro",
-        "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack."
+        "description": "New to AI agents? Start here. This beginner workshop takes you from \"what is an agent\" to building and running a simple one yourself. Naina Sachdev (India Chapter Lead at Dev3pack) and Gopika Chauhan (Dev3pack, IIT Mandi) guide you step by step, with no prior agent experience needed. Bring a laptop. You leave with a working agent and the vocabulary to follow the rest of the week, from payments to identity and trust."
       },
       {
         "id": "S17",
@@ -211,7 +211,7 @@
           "Lena Hierzi"
         ],
         "topic": "Tooling",
-        "description": "An agent pays for a service through x402 and the payment settles live on screen, first with a stablecoin, then with USD₮, and USA₮ if live by then. Part of the Payments block."
+        "description": "Watch an agent pay for a service through x402 and see the payment settle live on screen. First with a regular stablecoin, then with USD₮, and with USA₮ if it is live by then. Lena Hierzi, DevRel Lead at Celo Core Co, who works on bringing regulated local stablecoins into agent payments, narrates each step: what the agent sends, what the service checks and what lands on chain. Ten minutes, and you can repeat it yourself afterwards."
       },
       {
         "id": "S18",
@@ -223,7 +223,7 @@
           "Vedant Anand"
         ],
         "topic": "Tooling",
-        "description": "What adding USD₮ and especially USA₮ means for builders, how settlement works for tokens other than USDC, and how an agent holds funds safely with a self-custodial wallet. Part of the Payments block."
+        "description": "x402 started with USDC, but agents will pay in many tokens. Vedant Anand, co-founder of Bags and a maintainer of the x402 protocol, explains how settlement works for tokens other than USDC. He covers EIP-2612 permit payments, plain ERC-20 transfers and what a local stablecoin needs to be supported. Based on his merged x402 work, with practical advice for builders who want their API to accept more than one currency."
       },
       {
         "id": "S19",
@@ -235,7 +235,7 @@
           "Kartik Mehta"
         ],
         "topic": "Tooling",
-        "description": "Mainstream consumer adoption of agentic payments has been blocked by a lack of trust and security. Card details could slip in credentials, agents can go rogue and overspend, the list goes on. Kartik Mehta explains the main challenges with agentic payments today, and how Self Labs built Agent Vault to address them head on. Part of the Payments block."
+        "description": "Mainstream adoption of agentic payments is held back by trust and security: card details can leak, and agents can go rogue and overspend. Kartik Mehta, Solutions Engineer at Self Labs, a zero-knowledge identity and proof-of-humanity protocol, explains the main challenges with agentic payments today and how Self built Agent Vault, a portable login and payments layer for your AI assistants, to address them. Learn where agent card payments stand and how they compare with x402, then join an open discussion on which to use for which job."
       },
       {
         "id": "S20",
@@ -247,7 +247,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Research",
-        "description": "How an agent should price and budget in stablecoins. Part of the Payments block."
+        "description": "An agent that sells a service must decide what to charge, in which currency, and how much risk to hold. Nicolá Arnedo Villanueva, who writes about agentic payments, gives a ten-minute introduction to pricing and treasury for a machine: setting prices in stablecoins, keeping a budget and reserves, and what changes when no human reviews each sale. Sets up the roundtable that follows."
       },
       {
         "id": "S21",
@@ -259,7 +259,7 @@
           "Aditya Arora"
         ],
         "topic": "Research",
-        "description": "Where an agent gets a price it can trust, and how price feeds track stablecoin pegs. Part of the Payments block."
+        "description": "An agent that pays or prices in stablecoins needs a price it can trust, and a stablecoin is only worth one dollar if its peg holds. Aditya Arora explains where agents can get reliable prices, how price feeds track stablecoin pegs, and what an agent should do when the feed and the market disagree. Ten minutes for builders who automate payments or treasury."
       },
       {
         "id": "S22",
@@ -271,7 +271,7 @@
           "Daniel Ortega"
         ],
         "topic": "Research",
-        "description": "Paying in an ecosystem stablecoin over x402, with USDG on Arbitrum as the example. Part of the Payments block."
+        "description": "Not every agent will pay in USDC. Daniel Ortega shows what it takes to accept and pay with an ecosystem stablecoin over x402, using USDG on Arbitrum as the example. Ten minutes on how the token settles, what a builder needs to change in an x402 setup, and where the trade-offs sit compared with the largest stablecoins."
       },
       {
         "id": "S23",
@@ -285,7 +285,7 @@
           "Daniel Ortega"
         ],
         "topic": "Research",
-        "description": "Who absorbs a freeze or a depeg when the payer is software, and which currency should an agent price in? A roundtable on issuer risk, freezes and the choice of currency. Part of the Payments block.\n\nModerator: Nicolás Arnedo Villanueva"
+        "description": "When the payer is software, who absorbs a freeze or a depeg? Nicolá Arnedo Villanueva moderates Aditya Arora and Daniel Ortega on issuer risk, freezes and the choice of currency for pricing an agent service. Should an agent price in dollars, a local currency or whatever it holds? Bring your own case: the audience joins the discussion, and the group fills in the payments part of the whiteboard map."
       },
       {
         "id": "S24",
@@ -297,7 +297,7 @@
           "Zuhaib"
         ],
         "topic": "Tooling",
-        "description": "AI agents can pay for online services using x402. But mistakes can lead to lost money, the same action happening twice, or a service being used without payment. Zuhaib explains five common risks using practical examples and what developers can do to stop abuse and handle failed payments safely. Part of the Payments block."
+        "description": "AI agents can pay for online services with x402. Mistakes can mean lost money, the same payment happening twice, or a service used without being paid. Zuhaib, co-founder of Slot Zero Security and a smart contract security researcher, explains five common risks with practical examples, and what developers can do to stop abuse and handle failed payments safely. Useful for anyone running an agent that spends or an API that charges."
       },
       {
         "id": "S25",
@@ -310,7 +310,7 @@
           "Yudhisthra"
         ],
         "topic": "Research",
-        "description": "How FX between stablecoins can run inside an x402 payment, using shared liquidity across DEX pools, with a EUR stablecoin in and USDC out. Part of the Payments block."
+        "description": "Paying across currencies is a foreign exchange problem in disguise. S Rithik Kumar (COO) and Yudhisthra (CTO) of Aqua0 show how FX between stablecoins can run inside an x402 payment, using shared liquidity across DEX pools: the agent pays in a euro stablecoin and the service receives USDC. Learn why thin liquidity breaks cross-currency agent payments and how one deposit can back many pools at once."
       },
       {
         "id": "S26",
@@ -323,7 +323,7 @@
           "S Rithik Kumar"
         ],
         "topic": "Research",
-        "description": "Where the rate comes from and what happens at the off-ramp into local money, then the payments block wrap: finishing the Mumbai to Spain payment on the whiteboard. Part of the Payments block."
+        "description": "A payment is only finished when someone can spend the money. Nicolá Arnedo Villanueva and S Rithik Kumar follow a payment from Mumbai to Spain: where the exchange rate comes from, what happens at the off-ramp into rupees or euros, and what still breaks. The session also wraps up the payments sessions by completing the Mumbai to Spain payment on the whiteboard map with the room."
       },
       {
         "id": "S27",
@@ -335,7 +335,7 @@
           "Ayush Bherwani"
         ],
         "topic": "Tooling",
-        "description": "How does a user grants an agent a capped, periodic allowance from their own smart account (ERC-7715), how the agent spends it, for example over x402, what happens when the user revokes it, and how one agent can hire another while passing on only narrower permissions (ERC-7710)"
+        "description": "How do you let an agent spend without handing over your keys? Ayush Bherwani, Senior DevRel Engineer at MetaMask, shows how ERC-7715 and ERC-7710 let a user grant an agent a capped, time-limited and revocable allowance from their own smart account. See what a permission request looks like, how an agent redeems it, and how you take it back at any time. For builders giving agents limited spending power."
       },
       {
         "id": "S28",
@@ -347,7 +347,7 @@
           "Viral Sangani"
         ],
         "topic": "Tooling",
-        "description": "An agent finds a service, gets a quote and pays per call in stablecoins on Celo, with no accounts, API keys or subscriptions, and what that means for selling to agents. Questions and open discussion at the end. Part of the Marketplaces block."
+        "description": "Can software become your customer? Viral Sangani, co-founder and CTO at Cesto and builder of usebuy.ai, shows an agent that finds a service, gets a quote and pays per call in stablecoins on Celo, with no account, API key or subscription. See what the seller has to publish so agents can discover and trust it, and what that means for pricing. For anyone who wants to sell to agents."
       },
       {
         "id": "S29",
@@ -359,7 +359,7 @@
           "Ankit Tailor"
         ],
         "topic": "Tooling",
-        "description": "How agents change the way a small team builds and ships consumer products, and what makes agent features feel simple. Part of the Marketplaces block."
+        "description": "Agents changed how a small team can ship a consumer product. Ankit Tailor, founding engineer at Cesto, whose apps have handled over 100 million onchain transactions, shares how his team uses agents to build faster, what makes an agent feature feel simple to users, and what still needs a human. For product builders deciding where agents belong in their workflow."
       },
       {
         "id": "S30",
@@ -371,7 +371,7 @@
           "Victor Muñoz"
         ],
         "topic": "Tooling",
-        "description": "Permissions, visibility and keeping users in control when agents act on real assets. Part of the Marketplaces block."
+        "description": "Once an agent can trade or move assets, design decisions become safety decisions. Victor Muñz, developer relations at Flare who also builds multi-agent trading and payment systems, covers permissions, visibility and keeping users in control when agents act on real assets. Learn how to make agent actions understandable before they happen, and easy to stop. Leaves time for questions from the room."
       },
       {
         "id": "S31",
@@ -383,7 +383,7 @@
           "Fortunato Cinquepalmi"
         ],
         "topic": "Tooling",
-        "description": "Your next customer may arrive as an agent that never opens your homepage. Can it discover your offer, understand the price, get permission and pay, or does your product stop at a login screen? Fortunato examines CLI, API and Markdown as product surfaces, then shows why people still need images, comparisons and clear decisions. Leave knowing what the agent should do, what the human should see and where trust must be earned. Part of the Marketplaces block."
+        "description": "Your next customer may arrive as an agent that never opens your homepage. Can it discover your offer, understand the price, get permission and pay, or does your product stop at a login screen? Fortunato Cinquepalmi, Product Lead at Kleros, looks at CLI, API and Markdown as product surfaces, and why people still need images, comparisons and clear decisions. Leave knowing what the agent should do, what the human should see and where trust must be earned."
       },
       {
         "id": "S32",
@@ -395,7 +395,7 @@
           "Harish Kotra"
         ],
         "topic": "Tooling",
-        "description": "Can an unfamiliar agent arrive at your service and become a paying customer? Follow an agent from llms.txt to an MCP tool, an ERC-8004 registration check, an x402 payment and a returned result. Then inspect the interface contract: typed inputs, versions, review and rollback. Open discussion with Fortunato at the end. Part of the Marketplaces block."
+        "description": "Can an unfamiliar agent arrive at your service and become a paying customer? Harish Kotra, developer relations specialist, follows one agent from an llms.txt file to an MCP tool, an ERC-8004 registration check, an x402 payment and a returned result. Then he inspects the interface contract: typed inputs, versions, review and rollback. Ends with open discussion with Fortunato Cinquepalmi. Bring an API you want agents to use."
       },
       {
         "id": "S33",
@@ -407,7 +407,7 @@
           "Paul Lange"
         ],
         "topic": "Community",
-        "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo."
+        "description": "Close the day with the other builders. Compare notes on the payments sessions, add what you learned to the hub knowledge base by scanning the Bonfires QR code, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo. A small room, no stage, and a good time to find collaborators. Paul Lange from Celo engineering runs the competition."
       },
       {
         "id": "S34",
@@ -419,7 +419,7 @@
           "Naina Sachdev"
         ],
         "topic": "Intro",
-        "description": "Start here if agents are new to you. A beginner-friendly workshop run by Dev3pack."
+        "description": "New to AI agents? Start here. This beginner workshop takes you from \"what is an agent\" to building and running a simple one yourself. Naina Sachdev (India Chapter Lead at Dev3pack) and Gopika Chauhan (Dev3pack, IIT Mandi) guide you step by step, with no prior agent experience needed. Bring a laptop. You leave with a working agent and the vocabulary to follow the rest of the week, including identity and trust."
       },
       {
         "id": "S35",
@@ -433,7 +433,7 @@
           "Harpreet Singh"
         ],
         "topic": "Research",
-        "description": "ERC-8004 gives agents an identity, a place for reputation and a way to validate their work. Registering an agent is easy. Making reputation mean something is the hard part. This session walks through the three registries, shows what a real registration looks like, and works through one question: after an agent has paid for a service through x402, can the service provider leave feedback, and how would a reputation network get built from that? The last part is open discussion, plus a hands-on step: register or read an agent on the spot. Part of the Marketplaces block."
+        "description": "ERC-8004 gives AI agents an identity, a place for reputation and a way to validate their work. Registering an agent is easy. Making reputation mean something is the hard part. Lena Hierzi (Celo Core Co) and Fortunato Cinquepalmi (Kleros) walk through the three registries and a real registration, and ask: after an agent is paid through x402, can the service leave feedback, and how would a reputation network grow from that? Harpreet Singh (Namespace, ENS) covers agent identity with ENS names. Finish with open discussion and a hands-on step: register or read an agent live."
       },
       {
         "id": "S36",
@@ -448,7 +448,7 @@
           "Andrei Mitrea"
         ],
         "topic": "Research",
-        "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. This roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming and wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. Speakers compare defences across the stack: payment-gated feedback, identity cost and stake, reviewer-weighted scoring, and verifiable evidence kept on durable storage. Part of the Marketplaces block."
+        "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. This roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming with wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. YQ (founder of AltLayer and 8004scan), Steven Mih (Action State Group), Andrá Aráyi and Andrei Mitrea (Solar Punk) compare defences: payment-gated feedback, identity cost and stake, weighted scoring and verifiable evidence on durable storage."
       },
       {
         "id": "S37",
@@ -461,7 +461,7 @@
           "Vedant Anand"
         ],
         "topic": "Tooling",
-        "description": "How agents find, trust and pay for a service, with a look at pay-per-call in practice. Part of the Marketplaces block."
+        "description": "How does an agent find a service it can trust, and pay for it? Viral Sangani (Cesto, usebuy.ai) shows pay-per-call buying in practice, including discovery, quotes and receipts. Vedant Anand (Bags, x402 maintainer) explains how x402 settles for tokens beyond USDC. Twenty minutes that connect finding a service with paying for it, and set up the live demo later in the day."
       },
       {
         "id": "S38",
@@ -473,7 +473,7 @@
           "Harish Kotra"
         ],
         "topic": "Tooling",
-        "description": "MCP and A2A help agents communicate. A successful connection still needs an explicit agreement about what a tool means and returns. Part of the Marketplaces block."
+        "description": "MCP lets an agent call tools and A2A lets agents talk to each other, but a working connection does not guarantee shared meaning. Harish Kotra, developer relations specialist, shows why an explicit agreement about what a tool means and returns matters, with typed contracts as the fix. Learn how to make your agent interface checkable by another agent."
       },
       {
         "id": "S39",
@@ -485,7 +485,7 @@
           "Lena Hierzi"
         ],
         "topic": "Tooling",
-        "description": "How agents are found by domain, and how agent identity fits in. Part of the Marketplaces block."
+        "description": "Before an agent can be trusted, someone has to find it. Lena Hierzi, DevRel Lead at Celo Core Co, shows how agents can be discovered through domain names, and how identity, including ERC-8004 registration, fits on top of that. Learn how a buyer links a domain to an agent and what proof that link gives you. A short talk that leads into the live demo that follows."
       },
       {
         "id": "S40",
@@ -497,7 +497,7 @@
           "Lena Hierzi"
         ],
         "topic": "Community",
-        "description": "An agent finds a service, pays for it and returns an answer. What would make you trust the result? Read the ERC-8004 identity and reputation record, discover a service from the usebuy.ai perspective, and follow an x402 purchase on Celo. Inspect the receipt and discuss what feedback a paid interaction can support. Part of the Identity and Agentic Payments block."
+        "description": "An agent finds a service, pays for it and returns an answer. What would make you trust the result? Lena Hierzi (Celo Core Co) reads the agent's ERC-8004 identity and reputation record, discovers a service from the usebuy.ai side, and follows an x402 purchase on Celo. Then she inspects the receipt and discusses what feedback a paid interaction can support. Part one of a live, three-part workflow from identity to resolution."
       },
       {
         "id": "S41",
@@ -511,7 +511,7 @@
           "Naina Sachdev"
         ],
         "topic": "Governance",
-        "description": "UPI did not win by being the smartest payment technology. It won because India treated the rail as shared, open public infrastructure and let apps compete on top. Agents now pay for services, pay each other and spend on behalf of people, with no human confirming each step. What should machine payments copy from UPI? Vishnu traces the shared history and principles behind UPI, blockchains and agentic payments, and how UPI reached mass adoption. Piyush covers how authority gets granted: shared rails, interoperability by default, scoped delegation, and mandates that can be changed or revoked in real time. Naina covers what happens after the agent spends: once the PIN is gone, how do we prove a payment matched its mandate, settle disputes, produce receipts that reconcile, and keep payments private but auditable?"
+        "description": "UPI won because India treated the payment rail as shared, open infrastructure and let apps compete on top. Agents now pay for services and for each other with no human confirming each step. What should machine payments copy from UPI? Deon Menezes, Piyush Maheshwari (Moi) and Naina Sachdev (Dev3pack) discuss shared rails, interoperability, scoped delegation and mandates that can be changed in real time, and what happens after the spend: proving a payment matched its mandate, settling disputes and receipts that reconcile."
       },
       {
         "id": "S42",
@@ -525,7 +525,7 @@
           "Facundo Trotz"
         ],
         "topic": "Governance",
-        "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can clearly show who authorized the deal. This Agents × Legal Hub session puts one case through the entire chain: the human or company behind the agent, its delegated mandate, the transaction's policy checks, the promised delivery and the remedy when something goes wrong. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Part of the Permissions and Policies block."
+        "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can show who authorized the deal. This session from the Agents ×Legal hub puts one case through the whole chain: the person or company behind the agent, its delegated mandate, the policy checks, the promised delivery and the remedy. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Nicolá Arnedo Villanueva and Facundo Trotz lead."
       },
       {
         "id": "S43",
@@ -537,7 +537,7 @@
           "Clément Lesaege"
         ],
         "topic": "Research",
-        "description": "Some economic mechanisms look elegant on paper and struggle to attract people: the reward is too small, the task too repetitive, the decision too time-consuming. What changes when the participant is an AI agent? Using prediction markets, curated information and dispute evaluation as examples, Clément examines the cost of participation, the reward for useful work and the consequences of being wrong. Part of the Permissions and Policies block."
+        "description": "Some economic mechanisms look elegant on paper and attract few people: the reward is too small, the task too repetitive, the decision too slow. What changes when the participant is an AI agent? Cléent Lesaege, CTO and founder of Kleros and Seer, uses prediction markets, curated information and dispute evaluation as examples to examine the cost of taking part, the reward for useful work and the penalty for being wrong."
       },
       {
         "id": "S44",
@@ -549,7 +549,7 @@
           "Paul Lange"
         ],
         "topic": "Community",
-        "description": "Meet the other builders, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo."
+        "description": "Wrap up the identity and trust sessions with the other builders. Compare notes on what you saw in the live demo, add what you learned to the hub knowledge base by scanning the Bonfires QR code, follow the agent competition on the hub TV and try a live x402 payment at the chai vending demo. A small room, no stage. Paul Lange from Celo engineering runs the competition."
       },
       {
         "id": "S45",
@@ -561,7 +561,7 @@
           "Lena Hierzi"
         ],
         "topic": "Intro",
-        "description": "Start here if agents are new to you. A beginner-friendly workshop."
+        "description": "New to AI agents? Start here. This beginner workshop takes you from \"what is an agent\" to building and running a simple one yourself. Lena Hierzi, DevRel Lead at Celo Core Co, guides you step by step, with no prior agent experience needed. Bring a laptop. You leave with a working agent and the vocabulary to follow the day, from machine payments to authority and trust."
       },
       {
         "id": "S46",
@@ -573,7 +573,7 @@
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Community",
-        "description": "What changes when robots and machines pay for things themselves: a community talk on robotics and agent payments."
+        "description": "What changes when a robot or other machine pays for things itself? Nicolá Arnedo Villanueva, who writes about agentic payments, opens the community day with a talk on robotics and agent payments: what a machine needs to buy a service, who authorizes the spend, and where the first real use cases appear. Followed by community sessions chosen on the whiteboard. Come with your own examples."
       },
       {
         "id": "S47",
@@ -585,7 +585,7 @@
           "Fortunato Cinquepalmi"
         ],
         "topic": "Tooling",
-        "description": "Build the part of your agent business that turns interest into paid work, and a bad experience into a customer you can recover. Bring an agent, API or marketplace idea. We'll pick one and design its complete customer journey on the whiteboard: get discovered through credible profiles, earn trust with verifiable claims and reputation, take x402 payments, define delivery, and handle dissatisfaction through support, refunds and independent dispute resolution. Leave with a customer-flow map, evidence and policy requirements, public code links and one integration you can start building."
+        "description": "Build the part of your agent business that turns interest into paid work, and a bad experience into a customer you can recover. Bring an agent, API or marketplace idea. Fortunato Cinquepalmi, Product Lead at Kleros, leads the group in picking one and designing its full customer journey on the whiteboard: get discovered through credible profiles, earn trust with verifiable claims, take x402 payments, define delivery, and handle dissatisfaction through support, refunds and independent dispute resolution. Leave with a customer-flow map, policy requirements and public code links."
       },
       {
         "id": "S48",
@@ -597,7 +597,7 @@
           "Ofir Eliasi"
         ],
         "topic": "Tooling",
-        "description": "When you call an AI API, you're trusting a black box: which model ran, who served it, and whether it was quietly swapped, quantized or censored. This talk unpacks the hidden trust gaps in modern inference and reviews emerging approaches, from cryptographic proofs to decentralized provider networks, for making every answer accountable."
+        "description": "When you call an AI API, you trust a black box: which model ran, who served it, and whether it was swapped, quantized or censored on the way. Ofir Eliasi, CTO of Lava Network, which builds secure routing for AI inference, unpacks the hidden trust gaps in modern inference and reviews emerging fixes, from cryptographic proofs to decentralized provider networks, that make every answer accountable. For anyone building on third-party models."
       },
       {
         "id": "S49",
@@ -619,7 +619,7 @@
           "Piyush Maheshwari"
         ],
         "topic": "Governance",
-        "description": "See how agents act on a user's behalf and how their transactions run via agents on Ethereum, using the Moi authority layer."
+        "description": "What does it look like when an agent acts for you on authority you can take back? Anantha Krishnan, founder of Sarva Labs and the MOI protocol, and Piyush Maheshwari (Moi) show the Moi authority layer in action: an agent acts only on a live, bounded mandate from the person it works for, and only that person can change it. Follow how transactions run through agents on Ethereum and see a mandate being narrowed and revoked."
       },
       {
         "id": "S51",
@@ -643,7 +643,7 @@
           "Fortunato Cinquepalmi",
           "András Arányi"
         ],
-        "description": "We introduce a failed or contested purchase and shows the verification and dispute step, producing a demo issue signal linked to the transaction. Then we record the event and its logs on Swarm, then retrieve and verify the evidence and compare a tampered exhibit with the original."
+        "description": "What happens when a paid agent job goes wrong? Andrá Aráyi, CTO at Solar Punk, stages a failed or contested purchase and shows a demo dispute signal linked to the transaction. He records the event and its logs on Swarm, then retrieves and verifies the evidence and compares a tampered copy with the original. Then the room changes the story: alter a reputation signal, a payment fact or a memory entry, and vote by QR to see which signals changed your confidence. Leave with the whole workflow, from identity to resolution, and an open-source demo to adapt."
       },
       {
         "id": "S53",
@@ -654,7 +654,7 @@
         "speakers": [
           "Mislav"
         ],
-        "description": "We are covering the account layer underneath agent wallets: smart accounts, EIP-7702, cross-chain accounts, and what is still unsolved, such as proactive security monitoring of transaction payloads."
+        "description": "Agent wallets sit on top of Ethereum accounts, and accounts are changing. Mislav, researcher at Ethlabs and former CEO of the interop protocol Klaster, explains how smart accounts and EIP-7702 let a normal address behave like a programmable one, how this helps across chains, and which problems are still open for agents. A practical view of what the account layer can and cannot do today."
       },
       {
         "id": "S54",
@@ -667,7 +667,7 @@
           "Mislav",
           "Ayush Bherwani"
         ],
-        "description": "How to control you agent? We asks which model fits which job, where the risks sit, and what is still unsolved, with questions from the audience throughout."
+        "description": "Self-custody, smart accounts, delegated permissions: which approach should an agent use, and who is responsible when it goes wrong? Lena Hierzi (Celo Core Co) moderates Mislav (Ethlabs) and Ayush Bherwani (MetaMask) in a frank comparison of when to use which, with questions from the room. Leave with a clearer rule of thumb for giving agents money without giving them your keys."
       }
     ]
   },
