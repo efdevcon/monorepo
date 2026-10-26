@@ -66,7 +66,7 @@ export type MapAction =
   | { type: "tune"; tuning: Partial<Tuning> };
 
 /** One floor: it is always open (a stack of one is just that floor). */
-export const SINGLE_FLOOR = LEVELS.length === 1;
+export const SINGLE_FLOOR = (LEVELS as readonly unknown[]).length === 1;
 export const LANDING_FLOOR: LevelId | null = SINGLE_FLOOR ? LEVELS[0].id : null;
 
 export const initialState: MapState = {

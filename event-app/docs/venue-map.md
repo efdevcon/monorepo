@@ -15,17 +15,27 @@ prototype.
 
 One Figma frame per floor, exported as SVG with **"Include id attribute" ON** (the first export
 of Level 3 came without ids: 746 anonymous paths, nothing to join; re-export rather than guess)
-and dropped at `public/maps/jwcc/source/<LEVEL>.svg` (`L3.svg` today). Each floor's frame holds
-exactly four top-level groups, matched by name after normalisation (lower-case, runs of
-non-alphanumerics → one dash):
+and dropped at `public/maps/jwcc/source/<LEVEL>.svg` (`L0`–`L3` since 2026-10-26; Scott's exports
+live in `~/Documents/EF/Devcon 8/Product/PWA/Map/JWC/Edited - Tests/`). Each floor's frame holds
+three geometry groups, matched by name after normalisation (lower-case, runs of non-alphanumerics
+→ one dash); anything else under the frame is text and icons and is skipped:
 
 | Figma layer     | Export id           | What the build makes of it                                                                                                                                                                                                                                                                                                     |
 | --------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Background`    | `Background`        | Exactly one shape: the **slab**, extruded 4 m downwards. Its fill is the slab colour.                                                                                                                                                                                                                                          |
 | `Colour_Box`    | `Colour_Box`        | One filled shape per **tappable area**, named `<area-id>[-<n>]` (`lotus-stage-2`, `tea-&-coffee-7`, `washroom-9`). `<area-id>` must be a key of `data/areas.ts`; `-<n>` is the instance number. The fill is the footprint's colour.                                                                                            |
-| `Outline`       | `Outline`           | Direct children named `wall`, `wall_2`, … are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). Everything else in the group is flat **decoration** (exit signs, stairs, escalators, arrows) at 0.15 m. A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. Stroke-only closed boxes under 2.5 m (the column markers) and stroke-only closed boxes centred outside the slab (the hall-name tabs on the top edge) are dropped. A **named** subgroup (`escalator`, `escalator_2`) is a place drawn as a diagram: its paths are hidden and it becomes a sprite-only area over the group's bounding box, joined to the catalogue like a colour box. |
-| `Text & Icon`   | `Text__x26__Icon`   | **Skipped** (the labels and icons are being redrawn; Scott, 2026-10-25). The build reports how many paths it ignored.                                                                                                                                                                                                          |
-| `meta` (opt.)   | `meta`              | A straight line named `scale-<metres>` gives metres per plan px. Without it `FALLBACK_METRES_PER_PX` (0.05 → Level 3 is ~245 × 114 m).                                                                                                                                                                                         |
+| `Outline`       | `Outline`           | Paths named `wall`, `wall_2`, … (at any depth) are **walls**: stroked lines, expanded to the stroke width (mitred) and extruded 3 m in the slab colour, drawn by their edge lines (the plan's stroke colour is ignored; Scott, 2026-10-25). On a floor that names **no** wall (Levels 0–2), every stroke-only line at least `WALL_MIN_STROKE_PX` (4 px) wide is a wall instead, the plan drawing walls at ~4.8 px and detail lines at ~2 px; a floor that names its walls has exactly those (Level 3's Lotus hall-name tabs are drawn at wall width). Everything else in the group is flat **decoration** (exit signs, stairs, arrows) at 0.15 m, including a **hatch**: an unnamed subgroup of three or more stroke-only lines and nothing else (stair treads, the ticks of an operable wall). A shape filled in the slab colour is a **door opening**: it is not drawn, and the walls passing through its box are cut. Stroke-only closed boxes under 2.5 m (the column markers) and stroke-only closed boxes centred outside the slab (the hall-name tabs on the top edge) are dropped. A **named** subgroup (`escalator`, `escalator_2`, `stairs`) is a place drawn as a diagram: its paths are hidden and it becomes a sprite-only area over the group's bounding box, joined to the catalogue like a colour box; while the catalogue entry has no icon (stairs today) the symbol stays drawn as decoration and is not tappable. An **unnamed** subgroup shaped like the plan's escalator symbol (one closed and two open stroke-only lines plus a child group of two filled arrows) is an escalator too, numbered `escalator-<n>` after the named ones. |
+| `Text & Icon`   | `Text__x26__Icon`   | **Skipped** (the labels and icons are being redrawn; Scott, 2026-10-25). Levels 0–2 export their labels as loose groups beside the layers instead; those are skipped the same way, with one warning per floor naming them. The build reports how many paths it ignored.                                                      |
+| `meta` (opt.)   | `meta`              | A straight line named `scale-<metres>` gives metres per plan px. Without it the reference floor (`REFERENCE_LEVEL`, L3) uses `FALLBACK_METRES_PER_PX` (0.05 → Level 3 is ~245 × 114 m) and every other floor is **registered** on it, see below.                                                                                |
+
+**Registration.** The four frames are exported at different sizes (Level 0 is 1.32× and Levels 1–2
+are 1.5× Level 3's scale), so the build lines the floors up on marks every floor draws: the
+`elevator` colour boxes (`REGISTRATION_AREA`). A floor is scaled so its left- and right-most
+elevator centres are as far apart as the reference floor's and shifted so their midpoint lands
+on the same world point (`register.ts`, tested); a `meta/scale` line overrides the scale, the shift
+still comes from the marks. Levels 1–2 are the building's south band, so they land ~70 m down the
+Level 3 footprint. A floor without two elevators keeps the fallback scale at the origin, with a
+warning. Each level's `units` in the bundle records the result.
 
 Normalisation examples: `tea-&-coffee-7` → `tea-coffee-7` (area `tea-coffee`, instance 7),
 `wall_3` → `wall-3`, `Text__x26__Icon` → `text-x26-icon`. Figma's default names (`Vector_12`,
@@ -47,25 +57,26 @@ pnpm map:test             # node:test suites of the build and the pure runtime m
 
 Pure TypeScript run with `tsx`, no new dependencies: `xml.ts` (Figma's XML subset), `path.ts`
 (path data → flattened subpaths, adaptive flatness 0.25 px, arcs via centre parameterisation),
-`transform.ts`, `svg.ts` (walk with composed CTM + the forbidden checks), `geometry.ts`
+`transform.ts`, `svg.ts` (walk with composed CTM + the forbidden checks), `register.ts`
+(floor registration on the elevator marks), `geometry.ts`
 (even-odd ring nesting, orientation, RDP simplify 0.2 px, polylabel anchor, stroke → polygon
 with mitred joins, door-box cutting), `names.ts` (the grammar above), `build.ts` (classification
 and the catalogue join), `report.ts`, `index.ts` (CLI). Heights and the fallback scale live in
 `config.ts`. Any ERROR exits 1 and writes nothing: an unnamed colour box, an area id with no
 catalogue entry, a catalogue entry no floor uses, a numbered name without an instance, a
-duplicate id, an icon with no PNG, a room mapped to an undrawn footprint, floors whose viewBox or
-scale differ.
+duplicate id, an icon with no PNG, a room mapped to an undrawn footprint.
 
 Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 
 - `plan.generated.json` — `MapBundle` (`planSchema.ts`, zod-validated on write and on import):
-  `{ version: 2, units, bounds, levels: [{ id, label, name, bounds, shapes }] }`, every shape
+  `{ version: 3, bounds, levels: [{ id, label, name, units, bounds, shapes }] }` (`units` = the
+  floor's scale, viewBox and registration offset, for reasoning about a floor that sits wrong), every shape
   `{ key: "L3/lotus-stage-2", id, level, kind: slab|wall|area|deco, areaId?, instance?, polygons:
   [{ outer, holes }], anchor, bbox, height, base?, fill, outline }` in metres (plan x → X, plan y
   → Z). `base` lifts an area drawn inside another one onto the container's top (the tea & coffee
   stand in the Co-work Area), so two zones never share a cap plane.
-  One shape per line so diffs show which footprint moved; ~120 KB (36 KB gz), inside the JS chunk,
-  no runtime fetch. No prose: names, categories and icons come from the catalogue at runtime.
+  One shape per line so diffs show which footprint moved; ~330 KB for four floors (inside the JS
+  chunk, no runtime fetch). No prose: names, categories and icons come from the catalogue at runtime.
 - `rooms.generated.json` — `{ pretalxRoomId: ["L3/lotus-stage-2", …] }` from `ROOMS` in
   `areas.ts`, the only thing `data/roomAreas.ts` (pure, imported by the schedule) reads.
 - `icons.generated.ts` — the `IconName` union from `public/maps/devcon-8/icons/*.png`, so a typo
@@ -95,11 +106,20 @@ lucide mapping; `legend` on a category puts one swatch chip for it into the floo
 labels "Community", "Supporters", "Work & Rest" and "Fun & Culture" since 2026-10-25). `legend` on an area moves it to another
 category's chip (the yellow discussion corners and the Open Hardware Zone sit under Community, the
 colour they share with the hubs; the Decompression Zone is a `cowork` area, under Work & Rest).
-`rank` orders a category's rows (Lotus halls, then Jasmine, then Music). `COMPOSITES` adds rows that stand for several footprints: the
+`rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
+also carries Levels 0–2: the Community Led Stage and CLS Builders Room (L0, `stages`), the Lightning
+Stage (L2), `workshop` 1–2 (category `workshops`, yellow chip), fourteen suites (category `suites`,
+green chip; named after Ethereum upgrades with their room number, `frontier-suite-102` → "Frontier
+Suite 102", `tangerine-whistle-suite-105a` is its own id), Registration / Badge Pickup / Help Desk /
+Cloak Room (`checkin`, which now has a "Check-in" chip; the Swag Station moved to the Fun chip of its
+colour), the Food Garden, Poster Printing Station, Speakers Lounge, Interview Room, Baby Care Room,
+and `stairs` (no icon yet, so not tappable). Elevators 2/4/6/8 (east side) use `elevator-left`.
+`COMPOSITES` adds rows that stand for several footprints: the
 Main Stage (rank 0, first under Stages) highlights the three Lotus halls, and the card is titled
 after it with the members as the line beneath (`groupName` in the store, `compositeOf`).
-`LEVELS` lists the floors bottom-up with their source file; `LEVEL_ALIASES` is how Search parses
-"level 3" / "l3". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
+`LEVELS` lists the floors bottom-up with their source file (L0–L3); `LEVEL_KEYS` are the
+single-key shortcuts (the floor's own number, L0 → 0); `LEVEL_ALIASES` is how Search parses
+"level 3" / "l3" / "ground floor". Adding a floor: one `LEVELS` entry + the export + `pnpm map:build`.
 
 `data/resolve.ts` joins the bundle to the catalogue once at module load into `Area` view models
 (`AREA_LIST`, `areaOf(key)`, `areasOnLevel`): everything else reads `Area`, never the bundle.
@@ -189,5 +209,16 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   to it). Phones: the 2:1 floor fits by width, so the landing view is small; a closer phone landing
   (or a portrait start azimuth) is a one-constant change.
 - `main-stage-lotus` → all three Lotus halls is an assumption about how the hall is used.
-- Remaining floors: add to `LEVELS` and export; the stack, slider, labels and transitions are
-  built and tested but have only run with one floor.
+- Levels 0–2 (2026-10-26): the exports name their colour boxes but not their walls, escalators
+  or stairs, and leave the labels loose beside the layers, so the build's fallbacks (§1) carry
+  them. In Figma, when next touched: name the escalator groups (`escalator`, `escalator_2`), the
+  stair symbols (`stairs`, `stairs_2`; Level 2 has `stairs-`, `stairs-_2`…), and group the loose
+  labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
+  named `cls-builders-room` in the committed copy only (the other CLS room in Pretalx; confirm).
+- Icons missing for the new floors: Lightning Stage, Community Led Stage, CLS Builders Room,
+  the workshops, the suites, Help Desk, Cloak Room & Lost and Found, Poster Printing Station,
+  Speakers Lounge, Interview Room, Baby Care Room, stairs (Registration and Badge Pickup reuse
+  the prototype's wristband icon, the Food Garden its food-area icon, both provisional).
+- Suites / Workshops / the magenta rooms (Speakers Lounge, Interview Room, Baby Care Room):
+  category names and descriptions are guesses from the plan; the magenta rooms sit under Other
+  with no legend chip.

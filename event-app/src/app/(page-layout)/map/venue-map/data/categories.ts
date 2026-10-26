@@ -1,4 +1,4 @@
-import { Coffee, Gamepad2, Laptop, MapPin, Mic, Store, Ticket, Toilet, Users, type LucideIcon } from "lucide-react";
+import { Coffee, DoorOpen, Gamepad2, Laptop, MapPin, Mic, Store, Ticket, Toilet, Users, Wrench, type LucideIcon } from "lucide-react";
 
 /**
  * The Find categories, in list order. The only place that maps a category to
@@ -8,12 +8,14 @@ import { Coffee, Gamepad2, Laptop, MapPin, Mic, Store, Ticket, Toilet, Users, ty
  */
 export const CATEGORIES = [
   { id: "stages", label: "Stages", Icon: Mic, legend: "Stages" },
+  { id: "workshops", label: "Workshops", Icon: Wrench, legend: "Workshops" },
+  { id: "suites", label: "Suites", Icon: DoorOpen, legend: "Suites" },
   { id: "hubs", label: "Community hubs", Icon: Users, legend: "Community" },
   { id: "supporters", label: "Supporters", Icon: Store, legend: "Supporters" },
   { id: "food", label: "Food & drink", Icon: Coffee, legend: null },
   { id: "toilets", label: "Washrooms", Icon: Toilet, legend: null },
   { id: "cowork", label: "Cowork & discussion", Icon: Laptop, legend: "Work & Rest" },
-  { id: "checkin", label: "Check-in & swag", Icon: Ticket, legend: null },
+  { id: "checkin", label: "Check-in & swag", Icon: Ticket, legend: "Check-in" },
   { id: "fun", label: "Fun & rest", Icon: Gamepad2, legend: "Fun & Culture" },
   { id: "other", label: "Other", Icon: MapPin, legend: null },
 ] as const satisfies readonly { id: string; label: string; Icon: LucideIcon; legend: string | null }[];

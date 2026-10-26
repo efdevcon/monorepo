@@ -5,7 +5,7 @@ import cn from "classnames";
 import { Hand, Mouse, MousePointerClick, Move, Pointer, Rotate3d, ZoomIn, type LucideIcon } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useIsDesktop";
 import { useOnline } from "@/hooks/useOnline";
-import { LEVELS } from "../data/levels";
+import { LEVEL_KEYS, LEVELS } from "../data/levels";
 import type { LegendEntry } from "../find/catalogue";
 import { SINGLE_FLOOR } from "../state/mapStore";
 
@@ -74,8 +74,8 @@ export function ControlsLegend({ hidden, dismissed }: { hidden: boolean; dismiss
           <span aria-hidden className="h-4 w-px bg-dc-hairline" />
           {!SINGLE_FLOOR && (
             <span className={chip}>
-              {LEVELS.map((_, i) => (
-                <Kbd key={i}>{i + 1}</Kbd>
+              {LEVELS.map((l) => (
+                <Kbd key={l.id}>{LEVEL_KEYS[l.id]}</Kbd>
               ))}
               Floors
             </span>

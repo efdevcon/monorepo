@@ -43,18 +43,21 @@ export type MapShape = z.infer<typeof mapShapeSchema>;
 export const boundsSchema = z.object({ minX: z.number(), minZ: z.number(), maxX: z.number(), maxZ: z.number() });
 export type GroundBounds = z.infer<typeof boundsSchema>;
 
+/** How the floor's plan px became world metres: `world = px × metresPerPlanPx + offset` (registration on the reference floor, scripts/map-build/register.ts). Nothing at runtime reads it; it is there to reason about a floor that sits wrong. */
+export const levelUnitsSchema = z.object({ metresPerPlanPx: z.number().positive(), viewBox: z.tuple([z.number(), z.number(), z.number(), z.number()]), offset: z.tuple([z.number(), z.number()]) });
+
 export const mapLevelSchema = z.object({
   id: z.enum(LEVEL_ORDER as [string, ...string[]]),
   label: z.string(),
   name: z.string(),
+  units: levelUnitsSchema,
   bounds: boundsSchema,
   shapes: z.array(mapShapeSchema),
 });
 export type MapLevel = z.infer<typeof mapLevelSchema>;
 
 export const mapBundleSchema = z.object({
-  version: z.literal(2),
-  units: z.object({ metresPerPlanPx: z.number().positive(), viewBox: z.tuple([z.number(), z.number(), z.number(), z.number()]) }),
+  version: z.literal(3),
   /** Union of every floor's footprint. */
   bounds: boundsSchema,
   levels: z.array(mapLevelSchema).min(1),

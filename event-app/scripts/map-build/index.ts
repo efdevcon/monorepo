@@ -18,10 +18,10 @@ import type { MapBundle } from "../../src/app/(page-layout)/map/venue-map/data/p
 /** Compact JSON with one shape per line: diffs show which footprint moved, and the file stays small. */
 function serializeBundle(bundle: MapBundle): string {
   const levels = bundle.levels.map((l) => {
-    const head = JSON.stringify({ id: l.id, label: l.label, name: l.name, bounds: l.bounds }).slice(1, -1);
+    const head = JSON.stringify({ id: l.id, label: l.label, name: l.name, units: l.units, bounds: l.bounds }).slice(1, -1);
     return `  {${head},"shapes":[\n${l.shapes.map((s) => `   ${JSON.stringify(s)}`).join(",\n")}\n  ]}`;
   });
-  return `{"version":2,"units":${JSON.stringify(bundle.units)},"bounds":${JSON.stringify(bundle.bounds)},"levels":[\n${levels.join(",\n")}\n]}\n`;
+  return `{"version":3,"bounds":${JSON.stringify(bundle.bounds)},"levels":[\n${levels.join(",\n")}\n]}\n`;
 }
 
 const args = process.argv.slice(2);

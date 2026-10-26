@@ -396,6 +396,13 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 — Levels 0–2 added from Scott's exports (`L0`–`L2.svg`): floors registered on the
+  elevator marks (`register.ts`; the frames are at 1.32× / 1.5× Level 3's scale), tolerant Outline
+  rules (unnamed walls by stroke width on floors that name none, hatches, escalator symbols by
+  structure, named symbol groups without an icon stay flat), loose label groups skipped, bundle v3
+  with per-level `units`; catalogue + categories (`workshops`, `suites`, Check-in chip) for the
+  new floors, Pretalx rooms for the Lightning Stage, workshops and the two CLS rooms; shortcut keys
+  are the floor numbers. See `docs/venue-map.md` §1, §3, §6.
 - 2026-10-25 — executed: `scripts/map-build/` (TypeScript, no new deps, tests), catalogue
   `data/areas.ts` + `categories.ts` + `levels.ts`, runtime in `map/venue-map/` per §5 (reducer,
   camera rig with state-derived commands, single raycast owner, merged statics), prototype kept

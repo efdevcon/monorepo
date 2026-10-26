@@ -17,7 +17,7 @@ function run(actions: MapAction[], from: MapState = initialState): MapState {
 
 test("landing: a single floor is open, several are stacked", () => {
   assert.equal(initialState.floor, LANDING_FLOOR);
-  assert.equal(SINGLE_FLOOR, LEVELS.length === 1);
+  assert.equal(SINGLE_FLOOR, (LEVELS as readonly unknown[]).length === 1);
   assert.deepEqual(violations(initialState), []);
 });
 

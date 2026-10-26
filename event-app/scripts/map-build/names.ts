@@ -36,3 +36,6 @@ export const LAYER_GROUPS = {
 
 /** The exported form of "Text & Icon" normalises to `text-x26-icon`; accept the plain spelling too. */
 export const isTextIconGroup = (id: string) => id === LAYER_GROUPS.textIcon || id === "text-icon";
+
+/** The layer groups the build reads geometry from (plus `meta`); everything else under the root is skipped as text and icons. */
+export const isGeometryGroup = (id: string) => id === LAYER_GROUPS.background || id === LAYER_GROUPS.colourBox || id === LAYER_GROUPS.outline || id === "meta";

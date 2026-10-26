@@ -10,11 +10,21 @@ export const ROOMS_PATH = path.join(DATA_DIR, "rooms.generated.json");
 export const ICON_NAMES_PATH = path.join(DATA_DIR, "icons.generated.ts");
 
 /**
- * Metres per plan px when the export carries no `meta/scale-<m>` line. The
- * Level 3 plan is 4895 px wide; at 0.05 that is ~245 m, about the length of
- * the JWCC exhibition halls.
+ * Metres per plan px of the reference floor when its export carries no
+ * `meta/scale-<m>` line. The Level 3 plan is 4895 px wide; at 0.05 that is
+ * ~245 m, about the length of the JWCC exhibition halls.
  */
 export const FALLBACK_METRES_PER_PX = 0.05;
+/**
+ * The floors are exported at whatever size their Figma frame has, so each
+ * one is registered on the reference floor: scaled so its registration
+ * footprints (the elevator shafts, which every floor draws) are as far apart
+ * as the reference floor's, and shifted so their midpoint lands on the same
+ * world point. A `meta/scale-<m>` line on a floor overrides the scale, the
+ * shift still comes from the marks. See register.ts.
+ */
+export const REFERENCE_LEVEL = "L3";
+export const REGISTRATION_AREA = "elevator";
 
 /**
  * Extrusion heights in metres. A little taller than life so the blocks read
@@ -41,3 +51,13 @@ export const DOOR_CUT_MARGIN_PX = 0.5;
 export const NESTED_LIFT = 0.05;
 /** Stroke-only closed boxes in the Outline layer smaller than this (metres) are the plan's column markers: not drawn (Scott, 2026-10-25). */
 export const COLUMN_MARKER_MAX_M = 2.5;
+/**
+ * The plan draws its walls as ~4.8 px strokes (9.7 px for the outer wall)
+ * and its detail lines (stair treads, partitions) at ~2 px, whatever the
+ * frame's scale, so on a floor that names no walls an unnamed stroke-only
+ * line in the Outline layer at least this wide is a wall. A floor that
+ * names its walls (`wall`, `wall_2`, …) has exactly those.
+ */
+export const WALL_MIN_STROKE_PX = 4;
+/** An unnamed Outline subgroup holding only stroke-only lines, this many or more, is a hatch (stair treads, operable-wall ticks): flat decoration, never walls. A single stroke-only path with this many subpaths counts the same. */
+export const HATCH_MIN_STROKES = 3;
