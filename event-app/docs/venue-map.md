@@ -129,7 +129,10 @@ Icons reused from the prototype's theme set (Scott, 2026-10-25): coffee (Tea & C
 (Washroom), discussion-corner (both corners), cowork (Co-work Area, Quiet Co-work), swag-station,
 decompression, playground (Game Zone), press (Content Corner); new on 2026-10-25: elevator-right
 and escalator-right (the -left variants are in the folder for other floors), lotus, jasmine,
-music-stage, art-gallery, poster-display, open-hardware-zone and storage. Hub booths show their
+music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
+`JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
+interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (so the named
+`stairs` groups on Level 2 are sprite-only places now), plus a restyled swag-station. Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
 their lockup via `tenants`; the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).
@@ -220,10 +223,9 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
   sessions' "Show on Map" points at the hangout area, roughly where they happen.
-- Icons missing for the new floors: Lightning Stage, Community Led Stage, CLS Hangout Area,
-  the workshops, the suites, Help Desk, Cloak Room & Lost and Found, Poster Printing Station,
-  Speakers Lounge, Interview Room, Baby Care Room, stairs (Registration and Badge Pickup reuse
-  the prototype's wristband icon, the Food Garden its food-area icon, both provisional).
+- Icons still missing: Lightning Stage, Community Led Stage, CLS Hangout Area (Registration keeps
+  the prototype's wristband icon, the Food Garden its food-area icon, both provisional). Stairs are
+  only named on Level 2; the other floors' stair symbols stay flat until their groups are named.
 - Suites / the magenta rooms (Speakers Lounge, Interview Room, Baby Care Room): category names
   and descriptions are guesses from the plan; the magenta rooms sit under Other with no legend
   chip. The workshops are Community (Scott, 2026-10-26).

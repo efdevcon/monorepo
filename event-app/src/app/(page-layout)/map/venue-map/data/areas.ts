@@ -64,22 +64,22 @@ export const AREAS = {
   // The blue box beside the Community Led Stage (Scott, 2026-10-26): a community place, under the Stages chip by its colour.
   "cls-hangout-area": { name: "CLS Hangout Area", description: "Hang out around the Community Led Stage.", category: "hubs", legend: "stages", heightClass: "room", rank: 5 },
   // Workshops (Level 2): community places, listed with the hubs (Scott, 2026-10-26)
-  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room" },
+  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room", icon: "workshop" },
   // Suites (Level 1 and 2): the plan names them after Ethereum upgrades with the room number; the layer names carry both.
-  "frontier-suite": { name: "Frontier Suite #", description: "", category: "suites", heightClass: "room" },
-  "homestead-suite-104b": { name: "Homestead Suite 104b", description: "", category: "suites", heightClass: "room" },
-  "tangerine-whistle-suite-105a": { name: "Tangerine Whistle Suite 105a", description: "", category: "suites", heightClass: "room" },
-  "spurious-dragon-suite-105a": { name: "Spurious Dragon Suite 105a", description: "", category: "suites", heightClass: "room" },
-  "byzantium-suite-105b": { name: "Byzantium Suite 105b", description: "", category: "suites", heightClass: "room" },
-  "constantinople-suite-105b": { name: "Constantinople Suite 105b", description: "", category: "suites", heightClass: "room" },
-  "bellatrix-suite": { name: "Bellatrix Suite #", description: "", category: "suites", heightClass: "room" },
-  "the-merge-suite": { name: "The Merge Suite #", description: "", category: "suites", heightClass: "room" },
-  "shapella-suite-207a": { name: "Shapella Suite 207a", description: "", category: "suites", heightClass: "room" },
-  "dencun-suite-207b": { name: "Dencun Suite 207b", description: "", category: "suites", heightClass: "room" },
-  "pectra-suite-207c": { name: "Pectra Suite 207c", description: "", category: "suites", heightClass: "room" },
-  "fusaka-suite-208a": { name: "Fusaka Suite 208a", description: "", category: "suites", heightClass: "room" },
-  "glamsterdam-suite-208b": { name: "Glamsterdam Suite 208b", description: "", category: "suites", heightClass: "room" },
-  "hegota-suite-208c": { name: "Hegota Suite 208c", description: "", category: "suites", heightClass: "room" },
+  "frontier-suite": { name: "Frontier Suite #", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "homestead-suite-104b": { name: "Homestead Suite 104b", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "tangerine-whistle-suite-105a": { name: "Tangerine Whistle Suite 105a", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "spurious-dragon-suite-105a": { name: "Spurious Dragon Suite 105a", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "byzantium-suite-105b": { name: "Byzantium Suite 105b", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "constantinople-suite-105b": { name: "Constantinople Suite 105b", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "bellatrix-suite": { name: "Bellatrix Suite #", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "the-merge-suite": { name: "The Merge Suite #", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "shapella-suite-207a": { name: "Shapella Suite 207a", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "dencun-suite-207b": { name: "Dencun Suite 207b", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "pectra-suite-207c": { name: "Pectra Suite 207c", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "fusaka-suite-208a": { name: "Fusaka Suite 208a", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "glamsterdam-suite-208b": { name: "Glamsterdam Suite 208b", description: "", category: "suites", heightClass: "room", icon: "suites" },
+  "hegota-suite-208c": { name: "Hegota Suite 208c", description: "", category: "suites", heightClass: "room", icon: "suites" },
   // Community hubs
   "community-hub": {
     name: "Hub #",
@@ -166,27 +166,27 @@ export const AREAS = {
   // Check-in & swag
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
   registration: { name: "Registration", description: "Check in and collect your badge.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
-  "badge-pickup": { name: "Badge Pickup #", description: "Collect your badge.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
-  "help-desk": { name: "Help Desk", description: "Questions about the event.", category: "checkin", heightClass: "kiosk" },
-  "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Leave your bags; lost property is kept here.", category: "checkin", heightClass: "kiosk" },
+  "badge-pickup": { name: "Badge Pickup #", description: "Collect your badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
+  "help-desk": { name: "Help Desk", description: "Questions about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Leave your bags; lost property is kept here.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
   "game-zone": { name: "Game Zone", description: "Games between sessions.", category: "fun", heightClass: "zone", icon: "playground" },
   "art-gallery": { name: "Art Gallery", description: "Art from the community.", category: "fun", heightClass: "zone", icon: "art-gallery" },
   "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
-  "poster-printing-station": { name: "Poster Printing Station", description: "Print your poster for the display.", category: "fun", heightClass: "zone" },
+  "poster-printing-station": { name: "Poster Printing Station", description: "Print your poster for the display.", category: "fun", heightClass: "zone", icon: "poster-printing-station" },
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
   "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", legend: "hubs", heightClass: "zone", icon: "open-hardware-zone" },
   // Other
-  "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room" },
-  "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room" },
-  "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room" },
+  "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge" },
+  "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room" },
+  "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room", icon: "baby-care-room" },
   // Elevators: odd instances stand on the west side, even on the east, facing the other way.
   elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 2: "elevator-left", 4: "elevator-left", 6: "elevator-left", 8: "elevator-left" }, iconSize: 6.5 },
   // Outline symbol groups (named, or found by their drawing): the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).
   escalator: { name: "Escalator", description: "", category: "other", heightClass: "zone", icon: "escalator-right", iconSize: 6.5 },
-  // Stairs stay the plan's flat symbol until there is an icon (the build draws a symbol group whose entry has no icon as decoration).
-  stairs: { name: "Stairs", description: "", category: "other", heightClass: "zone" },
+  // Stairs: the plan's symbol group is replaced by the sprite like the escalators (icon since 2026-10-26).
+  stairs: { name: "Stairs", description: "", category: "other", heightClass: "zone", icon: "stairs", iconSize: 5 },
   "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone", icon: "storage" },
 } as const satisfies Record<string, AreaSpec>;
 
