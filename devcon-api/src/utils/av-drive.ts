@@ -30,13 +30,17 @@ export function avRoomFolder(roomId: string, roomName?: string): string {
 }
 
 // Stage screens (LED walls) per room, at their native resolution (AV
-// production sheet, 22 Oct): the main stage has three walls, two sizes. Each
+// overview, 26 Oct): Lotus Stage 1-3 each have a wall, the main stage uses all three (two sizes). Each
 // size gets its own copy of every intro card (devcon.org /api/social/av-screen/).
 // Rooms not listed have no known screen and get none.
 export const AV_SCREEN_SIZES: Record<string, string[]> = {
-  'main-stage-lotus': ['4032x1512', '3192x1512'],
+  'main-stage-lotus': ['4032x1512', '3192x1512'], // the three Lotus walls together
+  'lotus-stage-1': ['3192x1512'],
+  'lotus-stage-2': ['4032x1512'],
+  'lotus-stage-3': ['3192x1512'],
   'jasmine-stage-4': ['1680x1008'],
   'community-led-stage': ['2016x1176'],
+  'cls-builders-room': ['2016x1176'], // same pavilion as the Community Led Stage
   'lightning-stage': ['1920x1080'],
   'workshop-1': ['1920x1080'],
   'workshop-2': ['1920x1080'],
