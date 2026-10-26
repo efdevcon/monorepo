@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
 import { Search, TextSearch } from "lucide-react";
@@ -9,7 +9,7 @@ import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import { useIsTeam } from "@/data/release/releaseGates";
-import { isDesktopNow, useIsDesktop, useMediaQuery } from "@/hooks/useIsDesktop";
+import { APP_CHROME_OFF_ATTR, isDesktopNow, useIsDesktop, useIsPhoneLandscape, useMediaQuery } from "@/hooks/useIsDesktop";
 import { FOCUS_ZOOM_DESKTOP, FOCUS_ZOOM_MOBILE } from "./camera/constants";
 import { LEVELS, type LevelId } from "./data/levels";
 import { areaOf, compositeOf, type AreaKey } from "./data/resolve";
@@ -55,6 +55,16 @@ export function VenueMap() {
   const groupSet = useMemo(() => (group ? new Set<AreaKey>(group) : null), [group]);
   // Phones: the card lands on the floating feedback button's corner; hide the button while the card is open.
   useHideFeedbackFab(selected !== null && !desktop && active);
+  // A phone in landscape drops the bottom tab bar while the map shows, as the schedule does (<html data-app-chrome-off>, Nav.tsx):
+  // the short viewport goes to the floor; the bar is back on rotating upright or leaving the tab (Scott, 2026-10-26).
+  const phoneLandscape = useIsPhoneLandscape();
+  const chromeOff = phoneLandscape && !desktop && active;
+  useLayoutEffect(() => {
+    if (!chromeOff) return;
+    const root = document.documentElement;
+    root.toggleAttribute(APP_CHROME_OFF_ATTR, true);
+    return () => root.removeAttribute(APP_CHROME_OFF_ATTR);
+  }, [chromeOff]);
 
   // Phone legend: shown until the first gesture, back whenever the stack returns. Derived in render.
   const [legendGestured, setLegendGestured] = useState(false);
@@ -121,7 +131,7 @@ export function VenueMap() {
       {/* Top strip: the controls while stacked, the open floor's legend otherwise (floors with nothing to explain show the controls). */}
       {stacked || legend.length === 0 ? <ControlsLegend hidden={stripHidden} dismissed={legendGestured} /> : <FloorLegend levelName={levelName} entries={legend} hidden={stripHidden} onPick={pickEntry} />}
       {/* Phones have no header bar on /map, so the header's offline marker moves to the map's top-right corner. */}
-      <div className="pointer-events-none fixed right-4 top-[calc(var(--safe-top)+12px)] z-10 lg:hidden">
+      <div className="pointer-events-none fixed right-4 top-[calc(var(--safe-top)+12px)] z-10 phone-landscape:right-[max(16px,var(--safe-right))] lg:hidden">
         <OfflineIndicator />
       </div>
       {/* Bottom controls: Find + Search pills bottom-left, the floor slider bottom-right; on phones the card covers them, so they fade out and go inert. */}
@@ -129,6 +139,8 @@ export function VenueMap() {
         inert={(selected !== null && !desktop) || undefined}
         className={cn(
           "pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex items-end justify-between transition-opacity duration-150 ease-out motion-reduce:transition-none lg:inset-x-6 lg:bottom-6",
+          // Landscape with the bar gone: the pills clear the notch and the home indicator.
+          "phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:right-[max(16px,var(--safe-right))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(12px,var(--safe-bottom)))]",
           selected !== null && "max-lg:opacity-0"
         )}
       >

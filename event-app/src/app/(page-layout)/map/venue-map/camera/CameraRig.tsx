@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, type MutableRefObject } from "react";
+import { useEffect, useMemo, useRef, type MutableRefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
+import type { LevelId } from "../data/levels";
 import type { GroundBounds } from "../data/planSchema";
 import type { AreaKey } from "../data/resolve";
 import { areaOf, plan } from "../data/resolve";
@@ -14,6 +15,8 @@ import { easeOutQuint } from "./tween";
 export type CameraRigProps = {
   /** Floors stacked (count + gap) or null when one floor shows. */
   stack: { count: number; gap: number } | null;
+  /** The open floor (its own bounds are what the whole-floor views frame), null while stacked. */
+  floor: LevelId | null;
   desktop: boolean;
   reducedMotion: boolean;
   rotateLeftDeg: number;
@@ -33,10 +36,11 @@ export type CameraRigProps = {
  * settle), in that priority: when a floor opens because of a focus, the
  * focus tween is the one that runs. Resize re-fits through the rig.
  */
-export function CameraRig({ stack, desktop, reducedMotion, rotateLeftDeg, rotateRightDeg, focus, resetSeq, debug, onInteract, rigRef }: CameraRigProps) {
+export function CameraRig({ stack, floor, desktop, reducedMotion, rotateLeftDeg, rotateRightDeg, focus, resetSeq, debug, onInteract, rigRef }: CameraRigProps) {
   const { camera, gl, size, invalidate } = useThree();
   const bounds: GroundBounds = plan.bounds;
-  const env: RigEnv = { size, stack, desktop, rotateLeftDeg, rotateRightDeg };
+  const floorBounds = useMemo(() => (floor ? (plan.levels.find((l) => l.id === floor)?.bounds ?? null) : null), [floor]);
+  const env: RigEnv = { size, stack, floorBounds, desktop, rotateLeftDeg, rotateRightDeg };
   const envRef = useRef(env);
   envRef.current = env;
   const onInteractRef = useRef(onInteract);
@@ -65,9 +69,9 @@ export function CameraRig({ stack, desktop, reducedMotion, rotateLeftDeg, rotate
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.width, size.height, desktop, rotateLeftDeg, rotateRightDeg]);
 
-  // Stack ↔ floor: re-fit on the floors' clock, keeping the user's turn. Skipped on mount and when a focus or reset runs in the same commit.
+  // Stack ↔ floor, or floor → floor (each floor has its own fit): re-fit on the floors' clock, keeping the user's turn. Skipped on mount and when a focus or reset runs in the same commit.
   // A focus that is already pending when the canvas mounts (a deep link lands before the client-only Scene) still runs: prevFocus starts at 0.
-  const stackKey = stack ? `${stack.count}:${stack.gap}` : "floor";
+  const stackKey = stack ? `${stack.count}:${stack.gap}` : `floor:${floor}`;
   const prevStack = useRef(stackKey);
   const prevFocus = useRef(0);
   const prevReset = useRef(resetSeq);

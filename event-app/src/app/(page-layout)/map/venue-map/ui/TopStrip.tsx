@@ -22,7 +22,7 @@ export function TopStrip({ hidden, dismissed = false, label, children }: { hidde
       aria-hidden={hidden}
       aria-label={label}
       className={cn(
-        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex justify-center phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:right-[max(16px,var(--safe-right))] lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
         !online && "max-lg:right-[120px]",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
         hidden ? "opacity-0" : "opacity-100",

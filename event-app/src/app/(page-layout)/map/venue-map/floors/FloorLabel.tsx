@@ -15,7 +15,8 @@ import { hoverStore, useHoveredLevel } from "../interaction/hoverStore";
  * opens the floor, hovering it hovers the floor (same hover key as the
  * pointer over the floor itself). Re-anchored each frame at whichever corner
  * of the building's extent (every floor's bounds together) is right-most on
- * screen, 24px off it (40px on desktop), so the labels line up in one column
+ * screen, 24px off it (12px on phones, where the column lives in the fit's
+ * right gutter, PHONE_LABEL_ROOM_PX), so the labels line up in one column
  * however deep each floor is (Scott, 2026-10-26).
  * Only the button takes the pointer; the drei Html wrapper stays transparent.
  */
@@ -54,7 +55,7 @@ export function FloorLabel({ level, onOpen }: { level: LevelId; onOpen: () => vo
           onPointerLeave={() => hoverStore.set(null)}
           className={cn(
             "pointer-events-auto block cursor-pointer whitespace-nowrap font-heading font-bold leading-none tracking-[-0.5px] text-dc-muted hover:text-dc-purple",
-            "translate-x-6 -translate-y-1/2 text-[24px] lg:text-[40px]",
+            "translate-x-3 -translate-y-1/2 text-[20px] lg:translate-x-6 lg:text-[40px]",
             "transition-[opacity,color] duration-150 ease-out motion-reduce:transition-none",
             dimmed ? "opacity-30" : "opacity-100"
           )}

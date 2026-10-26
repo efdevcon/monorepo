@@ -19,16 +19,20 @@ export const ORTHO_RADIUS = 800;
 export const NEAR = 1;
 export const FAR = 4000;
 
-/** Leaves room for the legend above and the controls below the fitted floor. */
+/** Leaves room for the legend above and the controls below the fitted floor (desktop; the vertical fit on phones). */
 export const FIT_MARGIN = 0.82;
+/** Phones fit the floor by width instead: this gutter on the left (and the right while one floor shows), so the floor nearly touches the edges (Scott, 2026-10-26). */
+export const PHONE_FIT_GUTTER_PX = 8;
+/** Phones, stacked: the right gutter holds the floor labels' column (20px labels, 12px off the corner). */
+export const PHONE_LABEL_ROOM_PX = 42;
+/** Phones, stacked: the stack sits this many px above centre so the lowest label clears the floor slider (iPhone 15, Scott, 2026-10-26). */
+export const PHONE_STACK_LIFT_PX = 72;
 /** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
 export const GROUP_FIT_MARGIN = 0.55;
-/** Zoom clamps as multiples of the fit. */
+/** Zoom clamps as multiples of the fit; phones zoom further in, where supporter lockups and small booths were hard to read and tap at 6× (Scott, 2026-10-26). */
 export const MIN_ZOOM_FACTOR = 0.85;
 export const MAX_ZOOM_FACTOR = 6;
-
-/** Phones: the stacked home view sits this many screen px right of centre so the floor labels clear the edge. */
-export const PHONE_SHIFT_PX = 28;
+export const MAX_ZOOM_FACTOR_MOBILE = 10;
 /** Desktop: the home views sit this much lower, centred in the band between the legend strip and the bottom controls. */
 export const DESKTOP_SHIFT_PX = 24;
 /** Phones pan a little faster than the finger (testers found 1:1 slow, 2026-10-13). */

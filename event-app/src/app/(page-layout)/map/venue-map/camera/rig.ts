@@ -4,7 +4,7 @@ import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycast
 export type MapCamera = OrthographicCamera | PerspectiveCamera;
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { GroundBounds } from "../data/planSchema";
-import { DESKTOP_SHIFT_PX, FIT_MARGIN, GROUP_FIT_MARGIN, MAX_ZOOM_FACTOR, MIN_ZOOM_FACTOR, ORTHO_RADIUS, PHONE_SHIFT_PX, POLAR_ANGLE, START_AZIMUTH, TOUCH_PAN_SPEED } from "./constants";
+import { DESKTOP_SHIFT_PX, FIT_MARGIN, GROUP_FIT_MARGIN, MAX_ZOOM_FACTOR, MAX_ZOOM_FACTOR_MOBILE, MIN_ZOOM_FACTOR, ORTHO_RADIUS, PHONE_FIT_GUTTER_PX, PHONE_LABEL_ROOM_PX, PHONE_STACK_LIFT_PX, POLAR_ANGLE, START_AZIMUTH, TOUCH_PAN_SPEED } from "./constants";
 import { fitZoom, projectedExtent } from "./fit";
 import { easeOutCubic, progress, type Easing } from "./tween";
 
@@ -16,6 +16,8 @@ export type RigEnv = {
   size: { width: number; height: number };
   /** Floors stacked (count and gap in metres) or null when one floor shows: widens the fit. */
   stack: { count: number; gap: number } | null;
+  /** The open floor's own ground bounds (the whole-floor views fit and centre on it; the south-band floors sit low in the building's box otherwise), null while stacked. */
+  floorBounds: GroundBounds | null;
   desktop: boolean;
   rotateLeftDeg: number;
   rotateRightDeg: number;
@@ -44,7 +46,6 @@ export class CameraRigController {
   onInteract: (() => void) | null = null;
   private readonly raycaster = new Raycaster();
   private readonly floorPlane = new Plane(new Vector3(0, 1, 0), 0);
-  private readonly centre: Vector3;
 
   constructor(
     readonly camera: MapCamera,
@@ -54,7 +55,6 @@ export class CameraRigController {
     private readonly invalidate: () => void
   ) {
     this.env = env;
-    this.centre = new Vector3((bounds.minX + bounds.maxX) / 2, 0, (bounds.minZ + bounds.maxZ) / 2);
     const controls = new OrbitControls(camera, element);
     this.controls = controls;
     controls.cursorStyle = "grab";
@@ -103,12 +103,25 @@ export class CameraRigController {
     c.maxAzimuthAngle = START_AZIMUTH + MathUtils.degToRad(this.env.rotateRightDeg);
   }
 
-  /** Zoom (ortho) or distance (perspective) at which the floor, or the stack, fits the viewport at `azimuth`. */
+  /** What the whole-floor views frame: the building while stacked, the open floor alone otherwise. */
+  private viewBounds(): GroundBounds {
+    return this.env.stack ? this.bounds : (this.env.floorBounds ?? this.bounds);
+  }
+
+  /**
+   * Zoom (ortho) or distance (perspective) at which the floor, or the stack, fits the viewport at `azimuth`.
+   * Desktop keeps FIT_MARGIN all round; phones fit the width to the gutters (the stack leaves the
+   * labels' column on the right) and only the height to the margin.
+   */
   computeFit(azimuth = START_AZIMUTH) {
-    const { size, stack } = this.env;
+    const { size, stack, desktop } = this.env;
     const spread = stack ? ((stack.count - 1) * stack.gap) / 2 : 0;
-    const extent = projectedExtent(this.bounds, -spread, spread, azimuth, POLAR_ANGLE);
-    if (this.isOrtho) return { zoom: fitZoom(extent, size, FIT_MARGIN), radius: ORTHO_RADIUS };
+    const extent = projectedExtent(this.viewBounds(), -spread, spread, azimuth, POLAR_ANGLE);
+    if (this.isOrtho) {
+      if (desktop) return { zoom: fitZoom(extent, size, FIT_MARGIN), radius: ORTHO_RADIUS };
+      const width = size.width - PHONE_FIT_GUTTER_PX - (stack ? PHONE_LABEL_ROOM_PX : PHONE_FIT_GUTTER_PX);
+      return { zoom: Math.min(width / extent.width, (size.height * FIT_MARGIN) / extent.height), radius: ORTHO_RADIUS };
+    }
     const cam = this.camera as PerspectiveCamera;
     const fov = MathUtils.degToRad(cam.fov);
     const visibleH = Math.max(extent.height, extent.width / (size.width / size.height)) / FIT_MARGIN;
@@ -122,29 +135,40 @@ export class CameraRigController {
 
   applyZoomClamps() {
     const c = this.controls;
+    const maxFactor = this.env.desktop ? MAX_ZOOM_FACTOR : MAX_ZOOM_FACTOR_MOBILE;
     if (this.isOrtho) {
       c.minZoom = this.fit.zoom * MIN_ZOOM_FACTOR;
-      c.maxZoom = this.fit.zoom * MAX_ZOOM_FACTOR;
+      c.maxZoom = this.fit.zoom * maxFactor;
     } else {
-      c.minDistance = this.fit.radius / MAX_ZOOM_FACTOR;
+      c.minDistance = this.fit.radius / maxFactor;
       c.maxDistance = this.fit.radius / MIN_ZOOM_FACTOR;
     }
   }
 
   /**
-   * Orbit target of the whole-floor views: the floor centre, pushed along
-   * the camera's right vector on phones while stacked (the floor labels need
-   * the room) and away from the camera on desktop (the view sits lower,
-   * centred between the legend strip and the bottom controls). In ortho,
-   * zoom is screen px per world unit, so the shifts are exact in px.
+   * Orbit target of the whole-floor views: the centre of what is framed
+   * (the building or the open floor), pushed along the camera's right vector
+   * on phones while stacked (the floor labels' column sits in the right
+   * gutter, so the stack is centred in the band left of it) and towards the
+   * camera there too (the stack sits higher, clear of the floor slider), and
+   * away from the camera on desktop (the view sits lower, centred between the
+   * legend strip and the bottom controls). In ortho, zoom is screen px per
+   * world unit, so the shifts are exact in px.
    */
   homeTarget(azimuth: number, zoom: number, stacked: boolean): Vector3 {
-    const t = this.centre.clone();
+    const b = this.viewBounds();
+    const t = new Vector3((b.minX + b.maxX) / 2, 0, (b.minZ + b.maxZ) / 2);
     if (!this.isOrtho || zoom <= 0) return t;
     if (stacked && !this.env.desktop) {
-      const shift = PHONE_SHIFT_PX / zoom;
+      const shift = (PHONE_LABEL_ROOM_PX - PHONE_FIT_GUTTER_PX) / 2 / zoom;
       t.x += Math.cos(azimuth) * shift;
       t.z -= Math.sin(azimuth) * shift;
+      if (this.env.size.height > this.env.size.width) {
+        // Portrait only: in landscape the height is the fit's constraint and the stack is centred.
+        const lift = PHONE_STACK_LIFT_PX / (zoom * Math.cos(POLAR_ANGLE));
+        t.x += Math.sin(azimuth) * lift;
+        t.z += Math.cos(azimuth) * lift;
+      }
     }
     if (this.env.desktop) {
       const shift = DESKTOP_SHIFT_PX / (zoom * Math.cos(POLAR_ANGLE));
