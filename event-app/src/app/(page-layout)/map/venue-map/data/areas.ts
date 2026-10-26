@@ -61,7 +61,8 @@ export const AREAS = {
   "lightning-stage": { name: "Lightning Stage", description: "Short talks, back to back.", category: "stages", heightClass: "stage", rank: 25 },
   "cls-stage": { name: "Community Led Stage", description: "Community-led sessions.", category: "stages", heightClass: "stage", rank: 40 },
   // The blue box beside the Community Led Stage on the Level 0 plan was unnamed in the export; named in the committed copy as the CLS Builders Room (the other CLS room in Pretalx). Confirm with Scott.
-  "cls-builders-room": { name: "CLS Builders Room", description: "Community-led sessions for builders.", category: "stages", heightClass: "room", rank: 50 },
+  // The blue box beside the Community Led Stage (Scott, 2026-10-26): a community place, under the Stages chip by its colour.
+  "cls-hangout-area": { name: "CLS Hangout Area", description: "Hang out around the Community Led Stage.", category: "hubs", legend: "stages", heightClass: "room", rank: 5 },
   // Workshops (Level 2): community places, listed with the hubs (Scott, 2026-10-26)
   workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room" },
   // Suites (Level 1 and 2): the plan names them after Ethereum upgrades with the room number; the layer names carry both.
@@ -233,6 +234,5 @@ export const ROOMS: Record<string, readonly { areaId: AreaId; instance?: number 
   "workshop-1": [{ areaId: "workshop", instance: 1 }],
   "workshop-2": [{ areaId: "workshop", instance: 2 }],
   "community-led-stage": [{ areaId: "cls-stage" }],
-  "cls-builders-room": [{ areaId: "cls-builders-room" }],
   "music-stage": [{ areaId: "music-stage" }],
 };

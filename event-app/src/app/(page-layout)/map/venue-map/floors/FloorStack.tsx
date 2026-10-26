@@ -41,8 +41,9 @@ type Tween = FloorMove & { start: number; duration: number };
 /**
  * Positions the floors and animates floor changes (placement.ts decides the
  * poses, this runs the tweens on refs, no React per frame). In the stack each
- * floor carries a hit plane and a label; an open floor's areas and sprites
- * take the pointer instead. Also writes the desktop card anchor.
+ * floor carries a hit plane and a label; the open floor's areas and sprites
+ * take the pointer instead (only that floor's: the parked floors are invisible
+ * but a raycaster still hits them). Also writes the desktop card anchor.
  */
 export function FloorStack({ floor, gap, showIcons, reducedMotion, selected, group, desktop, onOpenFloor, cardAnchorRef }: FloorStackProps) {
   const { camera, size, invalidate } = useThree();
@@ -160,10 +161,11 @@ export function FloorStack({ floor, gap, showIcons, reducedMotion, selected, gro
           position-y={poses.current.get(l.id)?.y ?? 0}
           visible={poses.current.get(l.id)?.visible ?? true}
         >
-          <FloorMeshes level={l.id} interactive={!stacked} selected={selected} group={group} />
+          {/* Only the open floor takes the pointer: the raycaster ignores `visible`, so a parked floor would be hit through the open one (2026-10-26). */}
+          <FloorMeshes level={l.id} interactive={floor === l.id} selected={selected} group={group} />
           {stacked && <FloorHitPlane level={l.id} />}
           {stacked && <FloorLabel level={l.id} onOpen={() => onOpenFloor(l.id)} />}
-          {showIcons && <AreaIcons level={l.id} interactive={!stacked} selected={selected} group={group} reducedMotion={reducedMotion} />}
+          {showIcons && <AreaIcons level={l.id} interactive={floor === l.id} selected={selected} group={group} reducedMotion={reducedMotion} />}
         </group>
       ))}
     </>

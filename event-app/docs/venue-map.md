@@ -107,7 +107,8 @@ labels "Community", "Supporters", "Work & Rest" and "Fun & Culture" since 2026-1
 category's chip (the yellow discussion corners and the Open Hardware Zone sit under Community, the
 colour they share with the hubs; the Decompression Zone is a `cowork` area, under Work & Rest).
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
-also carries Levels 0–2: the Community Led Stage and CLS Builders Room (L0, `stages`), the Lightning
+also carries Levels 0–2: the Community Led Stage (L0, `stages`) and the CLS Hangout Area beside it
+(L0, `hubs`, under the Stages chip by its colour; Scott, 2026-10-26), the Lightning
 Stage (L2), `workshop` 1–2 (category `hubs`, the Find chip now labelled "Community"; they share the hubs' yellow and so their chip), fourteen suites (category `suites`,
 green chip; named after Ethereum upgrades with their room number, `frontier-suite-102` → "Frontier
 Suite 102", `tangerine-whistle-suite-105a` is its own id), Registration / Badge Pickup / Help Desk /
@@ -163,7 +164,8 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   tween and stops resize from re-applying the start pose). A focus pending when the client-only
   canvas mounts (a deep link) still runs: the previous-seq ref starts at 0.
 - **One raycast owner** (`pointer.ts`) on the canvas element: hover on every mouse move against the
-  `HIT_LAYER` (areas and sprites while the floor is open, the per-floor hit planes while stacked),
+  `HIT_LAYER` (the open floor's areas and sprites, the per-floor hit planes while stacked; a
+  parked floor is invisible but a raycaster still hits it, so only the open floor is on the layer),
   frozen once a press travels past 10 px; taps on release (area → select, floor → open, nothing →
   close the card); double-tap → `rig.zoomAt`. No R3F pointer events anywhere, so there is no
   over/out pairing. Hover lives in `hoverStore`; each mesh subscribes to its own key, the cursor
@@ -215,8 +217,9 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   exterior walls). In Figma, when next touched: name the escalator groups on Levels 1–2
   (`escalator`, `escalator_2`), the stair symbols (`stairs`, `stairs_2`; Level 2 has `stairs-`, `stairs-_2`…), and group the loose
   labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
-  named `cls-builders-room` in the committed copy only (the other CLS room in Pretalx; confirm).
-- Icons missing for the new floors: Lightning Stage, Community Led Stage, CLS Builders Room,
+  named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
+  `cls-builders-room` has no place on the plan, so its sessions have no "Show on Map".
+- Icons missing for the new floors: Lightning Stage, Community Led Stage, CLS Hangout Area,
   the workshops, the suites, Help Desk, Cloak Room & Lost and Found, Poster Printing Station,
   Speakers Lounge, Interview Room, Baby Care Room, stairs (Registration and Badge Pickup reuse
   the prototype's wristband icon, the Food Garden its food-area icon, both provisional).

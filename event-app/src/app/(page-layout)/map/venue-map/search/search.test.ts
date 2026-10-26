@@ -41,10 +41,11 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   );
   const stages = stageFloors.find((f) => f.level === L3)!.entries.map((e) => e.name);
   assert.deepEqual(stages, ["Main Stage", "Lotus Stage 1", "Lotus Stage 2", "Lotus Stage 3", "Jasmine Stage 4", "Music Stage"]);
-  assert.deepEqual(stageFloors.find((f) => f.level === "L0")!.entries.map((e) => e.name), ["Community Led Stage", "CLS Builders Room"]);
+  assert.deepEqual(stageFloors.find((f) => f.level === "L0")!.entries.map((e) => e.name), ["Community Led Stage"]);
   const main = stageFloors.find((f) => f.level === L3)!.entries[0];
   assert.equal(main.areas.length, 3, "the Main Stage row highlights the three Lotus halls");
   const hubFloors = groups.find((g) => g.category.id === "hubs")!.floors;
+  assert.deepEqual(hubFloors.find((f) => f.level === "L0")!.entries.map((e) => e.name), ["CLS Hangout Area"]);
   assert.deepEqual(hubFloors.find((f) => f.level === "L2")!.entries.map((e) => e.name), ["Workshop 1", "Workshop 2"], "the workshops are community places");
   const suites = groups.find((g) => g.category.id === "suites")!.floors;
   assert.deepEqual(suites.map((f) => [f.level, f.entries.length]), [["L1", 6], ["L2", 8]]);
@@ -85,6 +86,7 @@ test("floor legend: one swatch chip per category that asks for one", () => {
   assert.ok(legend.find((e) => e.label === "Work & Rest")!.areas.some((a) => a.areaId === "decompression-zone"));
   assert.ok(!legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "decompression-zone"));
   assert.ok(legend.find((e) => e.label === "Fun & Culture")!.areas.some((a) => a.areaId === "swag-station"), "the Swag Station sits with the places of its colour");
+  assert.ok(buildFloorLegend("L0").find((e) => e.label === "Stages")!.areas.some((a) => a.areaId === "cls-hangout-area"), "the CLS Hangout Area is blue like the stages");
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
   assert.deepEqual(buildFloorLegend("L0").map((e) => [e.label, e.swatch]), [["Stages", "#0088ee"], ["Check-in", "#128242"], ["Fun & Culture", "#aa99dd"]]);
   assert.deepEqual(buildFloorLegend("L1").map((e) => e.label), ["Suites"]);

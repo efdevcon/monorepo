@@ -396,6 +396,9 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 (feedback) — parked floors taken off the hit layer (they stole hovers and taps through
+  the open floor); floor labels anchored on the whole building's extent so they form one column;
+  the blue box beside the CLS stage is the CLS Hangout Area (Community, Pretalx room unmapped).
 - 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
   walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
   "Community"); Food Garden icon fixed at 16 m (`iconSize`).

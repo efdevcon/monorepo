@@ -6,24 +6,26 @@ import { Html } from "@react-three/drei";
 import { Group, Vector3 } from "three";
 import cn from "classnames";
 import { LEVELS, type LevelId } from "../data/levels";
-import { levelOf } from "../data/resolve";
+import { plan } from "../data/resolve";
 import { hoverStore, useHoveredLevel } from "../interaction/hoverStore";
 
 /**
  * The floor's short label beside it in the stack, always visible, the other
  * floors' labels dimming while one floor is hovered. A button: clicking it
  * opens the floor, hovering it hovers the floor (same hover key as the
- * pointer over the floor itself). Re-anchored each frame at whichever
- * footprint corner is right-most on screen, 24px off it (40px on desktop).
+ * pointer over the floor itself). Re-anchored each frame at whichever corner
+ * of the building's extent (every floor's bounds together) is right-most on
+ * screen, 24px off it (40px on desktop), so the labels line up in one column
+ * however deep each floor is (Scott, 2026-10-26).
  * Only the button takes the pointer; the drei Html wrapper stays transparent.
  */
 export function FloorLabel({ level, onOpen }: { level: LevelId; onOpen: () => void }) {
   const anchor = useRef<Group>(null);
   const spec = LEVELS.find((l) => l.id === level)!;
   const pts = useMemo(() => {
-    const b = levelOf(level).bounds;
+    const b = plan.bounds;
     return [new Vector3(b.minX, 1, b.minZ), new Vector3(b.maxX, 1, b.minZ), new Vector3(b.maxX, 1, b.maxZ), new Vector3(b.minX, 1, b.maxZ)];
-  }, [level]);
+  }, []);
   const scratch = useMemo(() => new Vector3(), []);
   const hoveredLevel = useHoveredLevel();
   const dimmed = hoveredLevel !== null && hoveredLevel !== level;
