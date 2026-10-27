@@ -21,40 +21,44 @@ export interface CommunityHub {
   logoStacked?: string;
 }
 
-/** Official names from the Community Hubs coordinator (2026-10-07), alphabetical. */
+/**
+ * Official names from the Community Hubs coordinator (2026-10-07), alphabetical.
+ * Blurbs are condensed from the forum announcement
+ * (forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191; Scott, 2026-10-27).
+ */
 export const COMMUNITY_HUBS: CommunityHub[] = [
-  { id: "agentic", name: "Agentic Hub", description: "AI agents paying, trading and negotiating on Ethereum.", color: "#C2FFDD" },
-  { id: "aggregation", name: "Aggregation Hub", description: "Bringing Ethereum's fragmented chains, apps and communities back together.", color: "#EDD6FF" },
-  { id: "desci", name: "DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
-  { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards, protocol upgrades and standards adoption.", color: "#D4EBF7" },
+  { id: "agentic", name: "Agentic Hub", description: "The open agent stack: ERC-8004, x402, account abstraction and agent security, with live agent competitions.", color: "#C2FFDD" },
+  { id: "aggregation", name: "Aggregation Hub", description: "Mapping Ethereum's technical and social fragmentation, 70+ live rollups included, and making the case for coordination without uniformity.", color: "#EDD6FF" },
+  { id: "desci", name: "DeSci Hub", description: "Four days of decentralised science: scientists, builders and funders co-creating tools that treat research as a public good.", color: "#D4F7F4" },
+  { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards and protocol upgrades: technical discussions, office hours and how standards get adopted.", color: "#D4EBF7" },
   {
     id: "india",
     name: "India Hub",
-    description: "A builder's corner that teaches Ethereum's core properties by building.",
+    description: "A four-day builders' space: each day teaches one core Ethereum property, from censorship resistance to privacy, by building.",
     color: "#FFE7D1",
     // The hub delivered PNGs only (no vector artwork), 400px mark and 800px lockup.
     logo: "/community-hubs/logos/india.png",
     logoStacked: "/community-hubs/logos/india-lockup.png",
   },
-  { id: "legal-governance", name: "Legal & Governance Hub", description: "Legal and governance questions around tokens, protocols and onchain organisations.", color: "#B9EFFF" },
+  { id: "legal-governance", name: "Legal & Governance Hub", description: "Ownership, access, cashflow and voting rights across tokens, NFTs and RWAs, with India's legal-tech and digital-rights communities.", color: "#B9EFFF" },
   {
     id: "onchain-art",
     name: "Onchain Art Hub",
-    description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
+    description: "Musicians, painters, designers and digital artists showing how Ethereum relates to their work.",
     color: "#F7D4D4",
   },
-  { id: "open-source", name: "Open Source Hub", description: "Hands-on space that turns attendees into open-source contributors.", color: "#DDFDEC" },
-  { id: "p2p-networking", name: "P2P Networking Hub", description: "The people who build and maintain Ethereum's networking layer.", color: "#A8FFD5" },
-  { id: "prediction-markets", name: "Prediction Markets Hub", description: "Prediction-market builders, researchers, traders and governance contributors.", color: "#F5FFDB" },
+  { id: "open-source", name: "Open Source Hub", description: "Turning attendees into open-source contributors: leave with a merged PR, a funding roadmap or a maintainer partnership.", color: "#DDFDEC" },
+  { id: "p2p-networking", name: "P2P Networking Hub", description: "A vendor-neutral space for builders of Ethereum's networking layer: workshops, protocol teardowns and open debugging on libp2p and devp2p.", color: "#A8FFD5" },
+  { id: "prediction-markets", name: "Prediction Markets Hub", description: "Builders, researchers, traders and governance contributors on liquidity, market design, resolution and futarchy.", color: "#F5FFDB" },
   {
     id: "privacy",
     name: "Privacy Hub",
-    description: "Building, exploring and using privacy on Ethereum, onchain and off.",
+    description: "Privacy on and around Ethereum, including the offchain layers (RPCs, wallets, indexers) that decide whether onchain privacy holds.",
     color: "#FFE8E5",
   },
-  { id: "resilient-networking", name: "Resilient Networking Hub", description: "Where Ethereum security meets P2P networking.", color: "#FFF4E0" },
-  { id: "security", name: "Security Hub", description: "Closing the gap between Ethereum's security research and practice.", color: "#E9E5FF" },
-  { id: "zuzone", name: "Zuzone Hub", description: "Founders of Zuzalu-aligned permanent hubs and pop-up cities.", color: "#DEEDE5" },
+  { id: "resilient-networking", name: "Resilient Networking Hub", description: "How information leaks across communication layers, even in well-designed apps, and how to find, measure and mitigate it.", color: "#FFF4E0" },
+  { id: "security", name: "Security Hub", description: "Security at the centre of Ethereum's credibility, after more than $1 billion lost to hacks in the first half of 2026.", color: "#E9E5FF" },
+  { id: "zuzone", name: "Zuzone Hub", description: "Founders of Zuzalu-aligned permanent hubs and pop-up cities sharing experience and long-term governance experiments.", color: "#DEEDE5" },
 ];
 
 /** Hub rooms in the API bundle are `community-hub-<hub id>`. */
