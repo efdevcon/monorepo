@@ -84,7 +84,7 @@ in via `POST /api/interests/sync`; announcement read state). Dexie is used
 because IndexedDB has far larger limits than localStorage; abstract it away behind hooks.
 
 Two stores, two programmes as views (`src/data/programme.ts`): the Community programme is the hub store
-plus the Pretalx sessions whose track starts with `[CLS]`, Sessions is the rest. Community-led groups
+plus the Pretalx sessions whose track starts with `[CLS]`; the Tracks programme (the Devcon schedule) is the rest. Community-led groups
 are registered in `src/data/communityLed.ts` and look and filter like hubs (the `community` facet,
 keys `hub:<id>` / `cls:<id>`). Views about places read the whole catalogue (`useSessionsOfAllProgrammes`).
 

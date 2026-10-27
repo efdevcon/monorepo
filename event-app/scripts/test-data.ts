@@ -826,6 +826,10 @@ function testProgramme() {
   const unknown = communityLedGroup("[CLS] - New Thing");
   check("unknown track synthesises", unknown?.id === "new-thing" && unknown.name === "New Thing" && unknown.badge === "New Thing" && unknown.color === "#e9e5f6" && !unknown.logo);
   check("non-CLS track has no group", communityLedGroup("Security") === undefined && communityLedGroup(undefined) === undefined);
+  // A known group under another spelling of its track (a separator or padding
+  // edit in Pretalx) keeps the registry's name and colour, never a second theme.
+  check("known track under another spelling resolves", communityLedGroup("[CLS]: OTS")?.name === "Open Tech Summit" && communityLedGroup("  [CLS] -OTS ")?.color === communityLedGroup("[CLS] - OTS")?.color);
+  check("communityOf follows the spelling-tolerant lookup", communityOf(mkSession("x", "  [CLS] -OTS "))?.color === communityLedGroup("[CLS] - OTS")?.color);
   check("clsTrackName strips marker and separator", clsTrackName("[CLS] - EPF") === "EPF" && clsTrackName("[CLS]: OTS") === "OTS");
   check("eight groups, unique ids and tracks", COMMUNITY_LED_GROUPS.length === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.id)).size === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.track)).size === 8);
   const taken = new Set([...DC8_TRACKS.map((t) => t.color.toLowerCase()), ...COMMUNITY_HUBS.map((h) => h.color.toLowerCase())]);

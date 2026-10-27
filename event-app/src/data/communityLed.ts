@@ -69,10 +69,15 @@ const slug = (name: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+// Registry ids are the slugs of their track names, so another spelling of a
+// known track ("[CLS]: OTS", padding, a different dash) still lands on its entry.
+const byId = new Map(COMMUNITY_LED_GROUPS.map((g) => [g.id, g]));
+
 /**
- * The group behind a "[CLS]" track: the registry entry for a known track, a
- * synthesised one (name, badge and id from the track, the fallback colour)
- * for an unknown track, undefined for any other track.
+ * The group behind a "[CLS]" track: the registry entry for a known track (by
+ * exact track, else by the slug of its name, so a re-spelled track keeps its
+ * identity), a synthesised one (name, badge and id from the track, the
+ * fallback colour) for an unknown track, undefined for any other track.
  */
 export function communityLedGroup(track: string | undefined): CommunityLedGroup | undefined {
   if (!track || !CLS_MARKER.test(track)) return undefined;
@@ -80,5 +85,6 @@ export function communityLedGroup(track: string | undefined): CommunityLedGroup 
   const known = byTrack.get(trimmed);
   if (known) return known;
   const name = clsTrackName(trimmed) || "Community-led";
-  return { id: slug(name) || "community-led", track: trimmed, name, badge: name, color: COMMUNITY_LED_FALLBACK_COLOR };
+  const id = slug(name) || "community-led";
+  return byId.get(id) ?? { id, track: trimmed, name, badge: name, color: COMMUNITY_LED_FALLBACK_COLOR };
 }
