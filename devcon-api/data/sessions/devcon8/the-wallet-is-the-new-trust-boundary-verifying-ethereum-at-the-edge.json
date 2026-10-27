@@ -2,7 +2,7 @@
   "id": "the-wallet-is-the-new-trust-boundary-verifying-ethereum-at-the-edge",
   "sourceId": "Z3G7WS",
   "title": "The Wallet Is the New Trust Boundary: Verifying Ethereum at the Edge",
-  "description": "Ethereum is trustless at the protocol layer, yet most wallets still depend on centralized RPC providers for blockchain state, eth_call, logs, and transaction simulation. This introduces a critical trust boundary outside the protocol, where applications accept information without independent verification. Read privacy is affected as well, exposing user behavior and intent to infrastructure providers.\r\n\r\nStateless verification combines execution and consensus proofs to verify blockchain data locally without running a full node or maintaining blockchain state. Trustless verification and read privacy must become protocol-level capabilities rather than application-specific features. \r\n\r\nVerification and read privacy belong at the protocol layer, not the infrastructure layer. Wallets should verify rather than trust blockchain data, regardless of where it originates. The integration into the Ethereum Wallet SDK Kohaku demonstrates that this architecture is practical today.",
+  "description": "Ethereum is trustless at the protocol layer, yet most wallets still depend on centralized RPC providers for blockchain state, eth_call, logs, and transaction simulation. This introduces a critical trust boundary outside the protocol, where applications accept information without independent verification. Read privacy is affected as well, exposing user behavior and intent to infrastructure providers.\r\n\r\nStateless verification combines execution and consensus proofs to verify blockchain data locally without running a full node or maintaining blockchain state. Trustless verification and read privacy must become protocol-level capabilities rather than application-specific features. \r\n\r\nVerification and read privacy belong at the protocol layer, not the infrastructure layer. Wallets should verify rather than trust blockchain data, regardless of where it originates. Also, simulation and analysis of transaction before they are sent, is an essential part of the trustless process.",
   "track": "Open & Verifiable Stack",
   "type": "Talk",
   "expertise": "Some familiarity with the topic",
@@ -12,8 +12,10 @@
   "keywords": [],
   "tags": [
     "Core Protocol",
+    "AI",
     "Security",
-    "Privacy"
+    "Privacy",
+    "Verifiability"
   ],
   "language": "en",
   "speakers": [
