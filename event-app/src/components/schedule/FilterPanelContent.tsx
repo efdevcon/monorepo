@@ -13,6 +13,7 @@ import {
 import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import type { FilterFacet, Filters } from "./useScheduleState";
 import { getTrackTheme } from "./trackTheme";
+import { formatDayKeyLabel } from "./utils";
 import type { CommunityRef } from "@/data/programme";
 
 /**
@@ -34,6 +35,30 @@ const COMMUNITY_SECTIONS: ReadonlyArray<{ section: CommunityRef["section"]; titl
   { section: "hub", title: "Community Hubs" },
   { section: "cls", title: "Community-led Sessions" },
 ];
+
+const MULTI_DAY_LABEL = "Multiple days";
+
+/**
+ * Community-led groups by the venue day they run on, days in order, then one
+ * "Multiple days" group for those spanning more than one. Names keep the
+ * alphabetical order they arrive in.
+ */
+function groupCommunitiesByDay(list: CommunityRef[]): Array<{ key: string; label: string; items: CommunityRef[] }> {
+  const byDay = new Map<string, CommunityRef[]>();
+  const multi: CommunityRef[] = [];
+  for (const c of list) {
+    if (c.days.length > 1) multi.push(c);
+    else {
+      const day = c.days[0] ?? "";
+      byDay.set(day, [...(byDay.get(day) ?? []), c]);
+    }
+  }
+  const groups = [...byDay.keys()]
+    .sort()
+    .map((day) => ({ key: day, label: day ? formatDayKeyLabel(day) : MULTI_DAY_LABEL, items: byDay.get(day)! }));
+  if (multi.length > 0) groups.push({ key: "multi", label: MULTI_DAY_LABEL, items: multi });
+  return groups;
+}
 
 function AccordionSection({
   title,
@@ -235,11 +260,15 @@ export function FilterPanelContent({
             "[CLS]" groups (one merged "Communities" list read as one thing;
             Scott, 2026-10-27): first in the Community programme, under Tracks
             when My Interests spans both. Both pick through the one community
-            facet; each section counts only its own keys. */}
+            facet; each section counts only its own keys. The community-led
+            section is sub-grouped by the day each group runs on, with the
+            ones spanning several days together at the end (a flat list of
+            nine names said nothing about when; Scott, 2026-10-27). */}
         {mode !== "main" &&
           COMMUNITY_SECTIONS.map(({ section, title }) => {
             const list = communities.filter((c) => c.section === section);
             if (list.length === 0) return null;
+            const groups = section === "cls" ? groupCommunitiesByDay(list) : [{ key: "all", label: null, items: list }];
             return (
               <AccordionSection
                 key={section}
@@ -247,33 +276,42 @@ export function FilterPanelContent({
                 count={list.filter((c) => filters.community.includes(c.key)).length}
                 defaultOpen={defaultOpen}
               >
-                <div className="flex flex-wrap gap-2">
-                  {list.map((c) => {
-                    const active = filters.community.includes(c.key);
-                    return (
-                      <button
-                        key={c.key}
-                        onClick={() => onToggle("community", c.key)}
-                        className={cn(
-                          "flex min-h-8 cursor-pointer items-center gap-2 rounded-full px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
-                          active
-                            ? "border border-transparent font-semibold"
-                            : "border border-dc-hairline bg-white font-normal"
-                        )}
-                        style={active ? { backgroundColor: c.color } : undefined}
-                      >
-                        {c.logo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={c.logo} alt="" className="size-3.5 object-contain" />
-                        ) : c.kind === "hub" ? (
-                          <Tent className="size-3.5 shrink-0" aria-hidden />
-                        ) : (
-                          <Users className="size-3.5 shrink-0" aria-hidden />
-                        )}
-                        {c.name}
-                      </button>
-                    );
-                  })}
+                <div className="flex flex-col gap-3">
+                  {groups.map((group) => (
+                    <div key={group.key} className="flex flex-col gap-2">
+                      {group.label && (
+                        <h4 className="text-[14px] font-medium leading-5 text-dc-muted">{group.label}</h4>
+                      )}
+                      <div className="flex flex-wrap gap-2">
+                        {group.items.map((c) => {
+                          const active = filters.community.includes(c.key);
+                          return (
+                            <button
+                              key={c.key}
+                              onClick={() => onToggle("community", c.key)}
+                              className={cn(
+                                "flex min-h-8 cursor-pointer items-center gap-2 rounded-full px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
+                                active
+                                  ? "border border-transparent font-semibold"
+                                  : "border border-dc-hairline bg-white font-normal"
+                              )}
+                              style={active ? { backgroundColor: c.color } : undefined}
+                            >
+                              {c.logo ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={c.logo} alt="" className="size-3.5 object-contain" />
+                              ) : c.kind === "hub" ? (
+                                <Tent className="size-3.5 shrink-0" aria-hidden />
+                              ) : (
+                                <Users className="size-3.5 shrink-0" aria-hidden />
+                              )}
+                              {c.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </AccordionSection>
             );
