@@ -69,7 +69,7 @@ export const AREAS = {
   "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 20, icon: "jasmine" },
   "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage", rank: 30, icon: "music-stage" },
   "lightning-stage": { name: "Lightning Stage", description: "Short talks, back to back.", category: "stages", heightClass: "stage", rank: 25, icon: "lightning-stage", room: "204A/B" },
-  "cls-stage": { name: "Community Led Stage", description: "Community-led sessions.", category: "stages", heightClass: "stage", rank: 40, icon: "community-led-stage" },
+  "cls-stage": { name: "Community Led Stage", description: "Community-led sessions.", category: "stages", heightClass: "stage", rank: 40, icon: "community-led-stage", iconSize: 10 },
   // The blue box beside the Community Led Stage on the Level 0 plan was unnamed in the export; named in the committed copy as the CLS Builders Room (the other CLS room in Pretalx). Confirm with Scott.
   // The blue box beside the Community Led Stage (Scott, 2026-10-26): a community place, under the Stages chip by its colour.
   "cls-hangout-area": { name: "CLS Hangout Area", description: "Hang out around the Community Led Stage.", category: "hubs", legend: "stages", heightClass: "room", rank: 5 },

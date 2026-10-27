@@ -91,7 +91,7 @@ washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag st
 for the co-work areas, hubs, tea & coffee, storage and elevators; walls are 3 m), optional
 `minWidth` (metres; footprints the plan draws as thin strips are stretched along their short axis
 about their centre, the two tea & coffee bars), optional `iconSize` (sprite height in metres when the
-footprint-derived size is wrong: escalators and elevators 6.5), optional `icons` (per instance: the
+footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5), optional `icons` (per instance: the
 east elevator uses `elevator-left`), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
