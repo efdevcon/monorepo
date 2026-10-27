@@ -79,7 +79,9 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
   chunk, no runtime fetch). No prose: names, categories and icons come from the catalogue at runtime.
 - `rooms.generated.json` — `{ roomId: ["L3/lotus-stage-2", …] }` from `ROOMS` in
   `areas.ts` plus one `community-hub-<hub id>` room per hub booth (`hubs` on an area; the hubs' programme
-  keys its rooms that way, so hub sessions' locations link to the booth since 2026-10-27, Scott), the only
+  keys its rooms that way, so hub sessions' locations link to the booth since 2026-10-27, Scott; the three
+  community-run spaces the programme lists as hubs, Music Stage, Game Zone and Open Hardware Zone, are
+  explicit `ROOMS` entries onto their own footprints), the only
   thing `data/roomAreas.ts` (pure, imported by the schedule) reads.
 - `icons.generated.ts` — the `IconName` union from `public/maps/devcon-8/icons/*.png`, so a typo
   in the catalogue is a type error.
