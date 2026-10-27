@@ -106,6 +106,8 @@ export interface PretalxInstanceConfig {
   PRETALX_QUESTIONS_SLIDES_DECK?: number
   PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT?: number
   PRETALX_QUESTIONS_SLIDES_LAST_EDIT?: number
+  /** "How will you present?" (speaker-facing choice), read by the run of show */
+  PRETALX_QUESTIONS_PRESENTING?: number
 
   // Shared-drive folder that receives this event's decks (docs/av §2d). Per
   // event on purpose: test decks and Devcon 8 decks must never share a folder.
@@ -175,6 +177,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_SLIDES_DECK: 178, // "Slides deck" (written by the sync; created 2026-09-28)
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 179, // "Slides: no Google account" (written by the sync; created 2026-09-28)
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 180, // "Slides: last edit" (written by the sync; created 2026-09-29)
+    PRETALX_QUESTIONS_PRESENTING: 187, // "How will you present your talk?" (speaker's choice, read by the run of show; created 2026-10-26)
     SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_TEST_DEVCON_8,
     SLIDES_DELEGATE_TRACKS: ['[CLS] - OTS'],
     SLIDES_PLACEHOLDER_DELEGATE: process.env.SLIDES_PLACEHOLDER_DELEGATE_TEST_DEVCON_8,
@@ -204,6 +207,7 @@ export const PRETALX_INSTANCES: Record<string, PretalxInstanceConfig> = {
     PRETALX_QUESTIONS_SLIDES_DECK: 181, // "Slides deck" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_NO_GOOGLE_ACCOUNT: 182, // "Slides: no Google account" (written by the sync; created 2026-09-30)
     PRETALX_QUESTIONS_SLIDES_LAST_EDIT: 183, // "Slides: last edit" (written by the sync; created 2026-09-30)
+    PRETALX_QUESTIONS_PRESENTING: 188, // "How will you present your talk?" (speaker's choice, read by the run of show; created 2026-10-26)
     // The slides passes also need devcon8 in SLIDES_ALLOWED_EVENTS (sync-pretalx.ts).
     SLIDES_FOLDER_ID: process.env.SLIDES_FOLDER_ID_DEVCON8,
     SLIDES_DELEGATE_TRACKS: ['[CLS] - OTS'],

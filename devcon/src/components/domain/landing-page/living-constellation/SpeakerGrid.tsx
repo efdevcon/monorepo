@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { ChevronDown } from 'lucide-react'
 import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, type Transition } from 'framer-motion'
 import IconX from 'assets/icons/twitter.svg'
-import { ctaSecondary } from 'components/common/cta'
 import { speakerAriaLabel, type ConstellationSpeaker } from './types'
 
 // Grid → centre: critically damped-ish, so the focused card arrives cleanly.
@@ -183,8 +183,14 @@ export function SpeakerGrid({ speakers }: SpeakerGridProps) {
       {!expanded && speakers.length > SHOWN_2_COL && (
         // Only shown at the widths where cards are actually hidden.
         <div className={`flex justify-center ${speakers.length > SHOWN_3_COL ? 'lg:hidden' : 'sm:hidden'}`}>
-          <button type="button" onClick={expand} className={ctaSecondary} style={{ fontFamily: 'Poppins, sans-serif' }}>
+          {/* Tertiary text link, same recipe as the Get Involved card CTAs. */}
+          <button
+            type="button"
+            onClick={expand}
+            className="inline-flex items-center gap-2 text-[#7235ed] font-bold text-[16px] leading-none hover:underline"
+          >
             {t('view_all')}
+            <ChevronDown className="w-4 h-4" strokeWidth={2.5} />
           </button>
         </div>
       )}

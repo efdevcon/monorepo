@@ -70,11 +70,13 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     company: 'Taiwan',
     bio: "Audrey Tang is Taiwan's Cyber Ambassador-at-Large and served as the country's first digital minister from 2016 to 2024. Audrey brought civic innovation into government, from Taiwan's COVID-19 response to protecting its 2024 elections from cyber interference.",
   }, // Audrey Tang
-  // Org answer is "Founder, Network School".
+  // Was Pretalx QTU93L (org answer "Founder, Network School"); that record
+  // disappeared from Pretalx on 2026-10-26, so the portrait pulled earlier is
+  // kept as a manual entry until Pretalx has Balaji again.
   {
-    code: 'QTU93L',
+    manual: { id: 'QTU93L', name: 'Balaji Srinivasan', company: 'Network School', portrait: 'balaji-srinivasan.webp' },
     title: 'Founder',
-    company: 'Network School',
+    xHandle: 'balajis',
     logo: 'network-school',
     bio: 'Balaji Srinivasan founded Network School and wrote The Network State. Balaji previously served as CTO of Coinbase and as a general partner at Andreessen Horowitz.',
   }, // Balaji Srinivasan
@@ -91,6 +93,30 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'tor',
     bio: 'Roger Dingledine co-founded the Tor Project and was its original developer, building free software that protects people from tracking, censorship and surveillance. Roger works with journalists and activists worldwide.',
   }, // Roger Dingledine · The Tor Project
+  // Pretalx has two profiles for Tomasz; WYUF7P carries the org answer
+  // ("Complete Robot, Nethermind") and both robotics sessions. UMHKHP is the
+  // other one. No Complete Robot logo yet, so the card shows Nethermind.
+  {
+    code: 'WYUF7P',
+    title: 'Founder',
+    company: 'Nethermind',
+    logo: 'nethermind',
+    bio: "Tomasz Stanczak founded Nethermind, the Ethereum core development company behind one of the protocol's execution clients, and served as Co-Executive Director of the Ethereum Foundation. Tomasz now builds Complete Robot, an AI-native company combining AI and robotics to speed up data center and energy infrastructure.",
+  }, // Tomasz Stanczak
+  {
+    code: '3UKEUC',
+    title: 'Co-Founder',
+    logo: 'gnosis',
+    bio: 'Friederike Ernst co-founded Gnosis, which has spent a decade building Ethereum infrastructure and occasionally releasing it into the wild (Safe, CoW Protocol). A physicist by training, Friederike co-initiated the Ethereum Economic Zone and remains on speaking terms with the laws of physics.',
+  }, // Friederike Ernst · Gnosis
+  // Org answer is "0xPARC, Digital Sciences Institute".
+  {
+    code: 'TUKEUK',
+    title: 'Founder',
+    company: '0xPARC',
+    logo: '0xparc',
+    bio: 'gubsheep founded the 0xPARC Foundation and works on programmable cryptography. gubsheep previously created Dark Forest, the first non-cryptocurrency application of zkSNARKs, and supported applied zero-knowledge R&D at the Ethereum Foundation.',
+  }, // gubsheep
   {
     code: 'MWSEWZ',
     title: 'Founder',
@@ -358,4 +384,26 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'moav',
     bio: 'Shayan Eskandari is a security researcher, hacker and internet freedom activist working across blockchain, security and digital rights. Shayan co-founded IranUnchained and now builds MoaV, distributed censorship-circumvention infrastructure for hostile networks.',
   }, // Shayan Eskandari
+  // Bio only says "building Sourcify"; Scott chose "Builder" (2026-10-26).
+  {
+    code: 'T9HFLF',
+    title: 'Builder',
+    logo: 'argot-collective',
+    bio: 'Kaan Uzdogan builds Sourcify, first at the Ethereum Foundation and now within the Argot Collective. Kaan is also part of the Department of Decentralization, the team that organizes ETHBerlin and Protocol Berg.',
+  }, // Kaan Uzdogan · Argot Collective
+  // Org answer is "Ethereum Foundation, iO team".
+  {
+    code: 'M8K3DS',
+    title: 'Cryptography Researcher',
+    company: 'Ethereum Foundation',
+    logo: 'ethereum-foundation',
+    bio: 'Sora Suegami is a cryptography researcher and engineer at the Ethereum Foundation, working to make indistinguishability obfuscation practical. Sora co-founded ZK Email, which uses zero-knowledge proofs to verify email contents privately.',
+  }, // Sora Suegami
+  // No X handle in Pretalx.
+  {
+    code: 'RJGCKJ',
+    title: 'Blockchain Lead',
+    logo: 'unicef',
+    bio: 'Arun Maharajan is Blockchain Lead on the Solutions Team at the UNICEF Office of Innovation, working with the UN and Web3 ecosystems on pilots and projects for social, humanitarian and financial outcomes. Arun has a special interest in new mechanisms for financial inclusion and transparent governance.',
+  }, // Arun Maharajan · UNICEF
 ]

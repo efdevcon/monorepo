@@ -39,7 +39,7 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | push | sheet-shown | | Onboarding sheet opened |
 | push | sheet-accepted | `all`, `reminders` | Its primary button |
 | push | sheet-dismissed | | "Not now" |
-| planner | open-chatgpt / open-claude / open-grok / copy | | Home "Plan with your AI" card |
+| planner | open-chatgpt / open-claude / open-grok / copy / copy-other-ai | | Home "Plan with your AI" card (copy: the text action by the prompt, copy-other-ai: the row's button) |
 | planner | apply-opened | | `/my-interests` opened with a plan in the URL |
 | planner | applied | value = sessions added + removed | Plan applied |
 | perks | claim | partner key | Claim button tapped (`ens`, `powfaucet-sepolia`, `powfaucet-hoodi`) |

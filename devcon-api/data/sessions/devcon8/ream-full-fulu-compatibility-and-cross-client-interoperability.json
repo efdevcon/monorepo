@@ -2,7 +2,7 @@
   "id": "ream-full-fulu-compatibility-and-cross-client-interoperability",
   "sourceId": "7ZJ3EX",
   "title": "Ream: Full Fulu Compatibility and Cross-Client Interoperability",
-  "description": "Bringing Ream to Ethereum’s Fulu upgrade required changes across several core parts of the consensus client. This talk focuses on three areas: integrating PeerDAS and data availability into block processing, making synchronization work beyond controlled devnets, and achieving interoperability with other Ethereum consensus clients.\r\n\r\nWe share the design decisions, implementation challenges, and failure modes we encountered while moving from specification-level support to live-network sync and mixed-client testing with Kurtosis. The goal is to give a practical view of what it takes to make a new consensus client actually work in the post-Fulu Ethereum network.",
+  "description": "Fusaka changed how every consensus client handles blob data, peers and the beacon state. We took Ream through it in five steps, some with two tracks in parallel:\r\n\r\n1. Closing the gap against the Fulu consensus-specs.\r\n2. Full-custody PeerDAS, where blocks wait for their data, alongside range sync.\r\n3. Kurtosis interop with other clients, alongside backfill sync.\r\n4. Custody mode: storing only the columns a node is responsible for.\r\n5. Following Ethereum mainnet, alongside running our own Hoodi validator.\r\n\r\nWe'll share what broke on the way: spec mismatches like the fork digest that only showed up next to other clients; sync that held up on a devnet but stalled on a live network; validator APIs that external validator clients couldn't use, so our validators missed votes; and state processing that took seconds per mainnet block until we reworked it.\r\n\r\nIf you build or maintain a consensus client, you'll leave with a practical picture of what it takes to make one work on post-Fusaka Ethereum.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -18,7 +18,7 @@
   "language": "en",
   "speakers": [
     "hans",
-    "daniel-pham"
+    "daniel"
   ],
   "eventId": "devcon8",
   "resources_presentation": "https://docs.google.com/presentation/d/1ACVA9Sy0DKM8kQqNhZoQLHKOJ2CPJpfdiK0xSVDUPfM",

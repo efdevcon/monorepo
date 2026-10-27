@@ -140,7 +140,7 @@ function SourceToggle({
       {(
         [
           { value: "main", label: "Sessions", Icon: CalendarDays },
-          { value: "hubs", label: "Community Hubs", Icon: Tent },
+          { value: "hubs", label: "Community", Icon: Tent },
         ] as const
       ).map(({ value, label, Icon }) => {
         const active = source === value;

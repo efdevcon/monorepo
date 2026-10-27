@@ -105,7 +105,6 @@ const V3_HEADERS = [
   'SLIDES',
   'DECK OK?',
   'INTRO ANIMATION',
-  'STREAMING',
   'REC',
   'MODERATOR',
   'MIC',
@@ -249,9 +248,11 @@ export const LAYOUT_V2: RosLayout = {
 
 /**
  * v3 (2026-10-20, the AV team's revision of v2): Q&A and MC minutes, one speaker
- * contact, intro animation and STREAMING; no live timing, track, on-site tick or
- * cue sheet (the stage's Q&A QR is one link on the Digital Assets tab). SLIDES and Q&A are prefilled once so the crew can override
- * them ("Laptop", a longer Q&A). Header on row 2 under a DAY / STAGE line.
+ * contact and intro animation; no live timing, track, on-site tick or cue sheet
+ * (the stage's Q&A QR is one link on the Digital Assets tab). SLIDES and Q&A are
+ * prefilled once so the crew can override them ("Laptop", a longer Q&A). Header
+ * on row 2 under a version / DAY / STAGE line. STREAMING was dropped on
+ * 2026-10-26: NO REC means neither recorded nor streamed.
  */
 export const LAYOUT_V3: RosLayout = {
   name: 'v3',
@@ -273,15 +274,14 @@ export const LAYOUT_V3: RosLayout = {
     slides: 11,
     deckOk: 12,
     intro: 13,
-    streaming: 14,
-    rec: 15,
-    moderator: 16,
-    mic: 17,
-    notes: 18,
-    id: 19,
+    rec: 14,
+    moderator: 15,
+    mic: 16,
+    notes: 17,
+    id: 18,
   },
   synced: ['start', 'dur', 'end', 'segment', 'speakers', 'contact', 'format', 'rec'],
-  carried: ['deckOk', 'intro', 'streaming', 'moderator', 'mic', 'notes'],
+  carried: ['deckOk', 'intro', 'moderator', 'mic', 'notes'],
   fillOnce: ['qa', 'slides'],
   blockDividers: false,
   footer: false,
@@ -366,6 +366,8 @@ export const EVENT_TIMEZONES: Record<string, string> = {
 const KEEP_STATUSES = ['TBC', 'STANDBY', 'DELAYED', 'LIVE', 'DONE']
 export const CUES_SHEET = 'AV & TECH CUES'
 
+export type PresentingMethod = 'deck' | 'laptop'
+
 export interface RosSession {
   code: string
   title: string
@@ -376,11 +378,17 @@ export interface RosSession {
   end: string
   durationMin: number
   slides?: string
+  /** The deck was never edited after the pipeline created it */
+  slidesUntouched?: boolean
+  /** How the speaker said they will present (Pretalx question); unanswered reads as the deck */
+  presenting?: PresentingMethod
   /** One line per speaker: Telegram, else another handle (v3) */
   contact?: string
   track?: string
   /** false when the speaker opted out of recording */
   record?: boolean
+  /** A Pretalx break or blocker instead of a talk: keyed by a generated code, no REC, deck or Q&A */
+  kind?: 'break' | 'blocker'
   day: string
   roomId: string
   roomName: string
@@ -508,9 +516,38 @@ export function endTimeFormula(sheetRow: number): string {
 export function linkCell(value: string, label: string): string {
   return /^https?:\/\//i.test(value) ? `=HYPERLINK("${value.replace(/"/g, '')}","${label}")` : value
 }
-export function slidesCell(value: string): string {
-  return linkCell(value, 'Slides')
+export function slidesCell(value: string, label = 'Slides'): string {
+  return linkCell(value, label)
 }
+
+/**
+ * What the SLIDES cell says: the speaker's presentation method when they
+ * answered it, else whether the deck we created for them was ever edited.
+ */
+export const SLIDES_LABELS = {
+  deck: 'Slides',
+  untouched: 'Slides (untouched)',
+  laptop: 'Own laptop',
+} as const
+const OWN_SLIDES_LABELS = new Set<string>(Object.values(SLIDES_LABELS))
+
+export function slidesLabel(session: Pick<RosSession, 'presenting' | 'slidesUntouched'>): string {
+  if (session.presenting === 'laptop') return SLIDES_LABELS.laptop
+  return session.slidesUntouched ? SLIDES_LABELS.untouched : SLIDES_LABELS.deck
+}
+
+/** The Pretalx answer to "How will you present?", matched by keyword so a reworded option keeps working. */
+export function presentingFromAnswer(answer: string | undefined): PresentingMethod | undefined {
+  const text = (answer || '').trim()
+  if (!text) return undefined
+  return /laptop/i.test(text) ? 'laptop' : 'deck'
+}
+
+// REC covers recording and streaming (one decision in Pretalx), so the cell says both.
+export const REC_ON = 'REC + STREAM'
+export const REC_OFF = 'NO REC · NO STREAM'
+/** Values written before 2026-10-26: read as their current wording, so a resync reports no change. */
+const LEGACY_VALUES: Partial<Record<Field, Record<string, string>>> = { rec: { REC: REC_ON, 'NO REC': REC_OFF } }
 /** Synced link columns shown as a label; the sheet is read back as the URL behind it (see hyperlinkTarget). */
 export const LINK_FIELDS: Partial<Record<Field, string>> = { slides: 'Slides' }
 
@@ -614,7 +651,8 @@ function syncedValue(field: Field, session: RosSession): string {
     case 'track':
       return session.track || ''
     case 'rec':
-      return session.record === false ? 'NO REC' : 'REC'
+      if (session.kind) return ''
+      return session.record === false ? REC_OFF : REC_ON
     case 'contact':
       return session.contact || ''
     default:
@@ -696,15 +734,26 @@ export function planFile(input: PlanInput): FilePlan {
     for (const f of layout.synced) values[col[f]] = syncedValue(f, session)
     // Fill-once SLIDES keeps whatever is in the cell (a crew "Laptop", or the
     // first link); otherwise the Pretalx deck wins and the old link is a fallback.
+    // Our own labels are not crew text: they follow the deck and the speaker's answer.
     const slidesOnce = fillOnce.includes('slides')
-    const slides = (slidesOnce ? prev?.[col.slides] || session.slides : session.slides || prev?.[col.slides]) || ''
-    values[col.slides] = slidesCell(slides)
+    const prevSlides = prev?.[col.slides] || ''
+    const crewSlides = prevSlides && !/^https?:\/\//i.test(prevSlides) && !OWN_SLIDES_LABELS.has(prevSlides) ? prevSlides : ''
+    const prevLink = /^https?:\/\//i.test(prevSlides) ? prevSlides : ''
+    const slides = (slidesOnce ? crewSlides || prevLink || session.slides : session.slides || crewSlides || prevLink) || ''
+    const slidesText = slidesLabel(session)
+    const plainLabel = !session.kind && slidesText !== SLIDES_LABELS.deck && slidesText !== SLIDES_LABELS.untouched
+    values[col.slides] = slides ? slidesCell(slides, slidesText) : plainLabel ? slidesText : ''
     for (const f of layout.carried) values[col[f]] = prev?.[col[f]] ?? ''
-    if (fillOnce.includes('qa')) values[col.qa] = prev?.[col.qa] || String(qaMinutesFor(session.type))
-    if (!prev)
+    // A break or blocker has no deck to tick (an empty checkbox reads back as FALSE).
+    if (session.kind) for (const f of layout.checkboxes) values[col[f]] = ''
+    // A break has no Q&A: the cell sits inside the break's bar on the sheet.
+    if (fillOnce.includes('qa')) values[col.qa] = session.kind ? '' : prev?.[col.qa] || String(qaMinutesFor(session.type))
+    if (!prev && !session.kind)
       for (const f of layout.checkboxes.length ? layout.checkboxes : (['onSite'] as Field[]))
         if (col[f] !== undefined) values[col[f]] = layout.emptyCheckbox
     applyFormulas(layout, values, firstSheetRow, sheetRow, cuesGid)
+    // A break shows no MC gap: the bar is the gap.
+    if (session.kind && col.mc !== undefined) values[col.mc] = ''
     values[col.id] = session.code
 
     const changed: number[] = []
@@ -725,9 +774,11 @@ export function planFile(input: PlanInput): FilePlan {
         changed.push(col.status)
       }
       for (const f of layout.synced) {
+        // A break's FORMAT follows its kind and sits inside its merged bar, which reads back empty.
+        if (session.kind && f === 'format') continue
         const before = prev[col[f]]
         const after = f === 'slides' ? slides : syncedValue(f, session)
-        if (before === after) continue
+        if (before === after || LEGACY_VALUES[f]?.[before] === after) continue
         changes.push({ code: session.code, title: session.title, field: FIELD_LABELS[f] || f.toUpperCase(), from: before, to: after })
         if (!changed.includes(col[f])) changed.push(col[f])
       }

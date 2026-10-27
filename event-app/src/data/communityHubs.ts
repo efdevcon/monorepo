@@ -22,15 +22,17 @@ export interface CommunityHub {
 }
 
 /**
- * Official names from the Community Hubs coordinator (2026-10-07), alphabetical.
- * Blurbs are condensed from the forum announcement
- * (forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191; Scott, 2026-10-27).
+ * Official hub names from the Community Hubs coordinator (2026-10-07), plus
+ * three community-run spaces on the same sheets (Open Hardware Zone, Game
+ * Zone, Music Stage), alphabetical. Hub blurbs are condensed from the forum
+ * announcement (forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191; Scott, 2026-10-27).
  */
 export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: "agentic", name: "Agentic Hub", description: "The open agent stack: ERC-8004, x402, account abstraction and agent security, with live agent competitions.", color: "#C2FFDD" },
   { id: "aggregation", name: "Aggregation Hub", description: "Mapping Ethereum's technical and social fragmentation, 70+ live rollups included, and making the case for coordination without uniformity.", color: "#EDD6FF" },
   { id: "desci", name: "DeSci Hub", description: "Four days of decentralised science: scientists, builders and funders co-creating tools that treat research as a public good.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards and protocol upgrades: technical discussions, office hours and how standards get adopted.", color: "#D4EBF7" },
+  { id: "game-zone", name: "Game Zone", description: "Community-run games and play.", color: "#FFD6EC" },
   {
     id: "india",
     name: "India Hub",
@@ -41,12 +43,14 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     logoStacked: "/community-hubs/logos/india-lockup.png",
   },
   { id: "legal-governance", name: "Legal & Governance Hub", description: "Ownership, access, cashflow and voting rights across tokens, NFTs and RWAs, with India's legal-tech and digital-rights communities.", color: "#B9EFFF" },
+  { id: "music-stage", name: "Music Stage", description: "Live sets, DJs and Open Source Orchestra jams anyone can join.", color: "#FFF0A8" },
   {
     id: "onchain-art",
     name: "Onchain Art Hub",
     description: "Musicians, painters, designers and digital artists showing how Ethereum relates to their work.",
     color: "#F7D4D4",
   },
+  { id: "open-hardware-zone", name: "Open Hardware Zone", description: "Open-source hardware showcases and hands-on maker workshops.", color: "#E2E8F0" },
   { id: "open-source", name: "Open Source Hub", description: "Turning attendees into open-source contributors: leave with a merged PR, a funding roadmap or a maintainer partnership.", color: "#DDFDEC" },
   { id: "p2p-networking", name: "P2P Networking Hub", description: "A vendor-neutral space for builders of Ethereum's networking layer: workshops, protocol teardowns and open debugging on libp2p and devp2p.", color: "#A8FFD5" },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Builders, researchers, traders and governance contributors on liquidity, market design, resolution and futarchy.", color: "#F5FFDB" },

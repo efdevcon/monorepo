@@ -63,9 +63,11 @@ const withSerwist = withSerwistInit({
     { url: "/home/community-hubs-tent.svg", revision },
     { url: "/home/community-hubs-tent-mask.svg", revision },
     // AI planner brand marks on Home's buttons (also in APP_IMAGES).
-    { url: "/home/ai-planner/claude.svg", revision },
-    { url: "/home/ai-planner/chatgpt.svg", revision },
-    { url: "/home/ai-planner/grok.svg", revision },
+    // "-mark" files: the marks turned dark (2026-10-25) and images are
+    // CacheFirst for 30 days, so the white originals had to change name.
+    { url: "/home/ai-planner/claude-mark.svg", revision },
+    { url: "/home/ai-planner/chatgpt-mark.svg", revision },
+    { url: "/home/ai-planner/grok-mark.svg", revision },
     { url: "/partners/ens.png", revision },
     // Track gem artwork (~113KB for all nine): every schedule view renders
     // them and the schedule is where offline use concentrates, so they must be

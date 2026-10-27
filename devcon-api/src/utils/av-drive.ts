@@ -20,13 +20,30 @@ export const AV_ROOM_FOLDERS: Record<string, string> = {
   'community-led-stage': 'Community Led Stage',
   'cls-builders-room': 'CLS - Builders Room',
   'lightning-stage': 'Lightning Stage',
-  'music-stage': 'Music',
+  'music-stage': 'Music Stage',
   'workshop-1': 'Workshop 1',
   'workshop-2': 'Workshop 2',
 }
 
 export function avRoomFolder(roomId: string, roomName?: string): string {
   return AV_ROOM_FOLDERS[roomId] ?? roomName ?? roomId
+}
+
+// Stage screens (LED walls) per room, at their native resolution (AV
+// overview, 26 Oct): Lotus Stage 1-3 each have a wall, the main stage uses all three (two sizes). Each
+// size gets its own copy of every intro card (devcon.org /api/social/av-screen/).
+// Rooms not listed have no known screen and get none.
+export const AV_SCREEN_SIZES: Record<string, string[]> = {
+  'main-stage-lotus': ['4032x1512', '3192x1512'], // the three Lotus walls together
+  'lotus-stage-1': ['3192x1512'],
+  'lotus-stage-2': ['4032x1512'],
+  'lotus-stage-3': ['3192x1512'],
+  'jasmine-stage-4': ['1680x1008'],
+  'community-led-stage': ['2016x1176'],
+  'cls-builders-room': ['2016x1176'], // same pavilion as the Community Led Stage
+  'lightning-stage': ['1920x1080'],
+  'workshop-1': ['1920x1080'],
+  'workshop-2': ['1920x1080'],
 }
 
 /** `day` is the event-local date (YYYY-MM-DD), `n` its 1-based number among the event's days. */
@@ -37,6 +54,10 @@ export function avDayFolder(day: string, n: number): string {
 /** The stage screen's Q&A code: it redirects to the Q&A of the session on stage (devcon /api/meerkat/). */
 export function qaQrUrl(roomId: string): string {
   return `https://devcon.org/qr/meerkat/${roomId}`
+}
+/** Meerkat's presenter view for a stage: its stages are our room ids (event-app's room screen uses the same). */
+export function meerkatStageUrl(roomId: string): string {
+  return `https://app.meerkat.events/stage/${roomId}`
 }
 /** av-assets manifest key of a stage's Q&A QR image (one per stage, the code never changes); the run of show links it from Digital Assets. */
 export function qaQrKey(roomId: string): string {

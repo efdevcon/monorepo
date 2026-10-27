@@ -58,6 +58,43 @@ export async function GetSlots(config: PretalxInstanceConfig = PRETALX_CONFIG) {
   return exhaustResource('slots', config)
 }
 
+export interface ScheduleBlock {
+  kind: 'break' | 'blocker'
+  title: string
+  start: string
+  end: string
+  roomId: string
+}
+
+/**
+ * Slots without a talk (breaks and blockers) from the work-in-progress
+ * schedule, where GetSlots reads the talks' slots too, plus the published
+ * version. Blockers are only listed when the schedule is asked for by id.
+ * For the stage crew's run of show only, never public data.
+ */
+export async function GetScheduleBlocks(config: PretalxInstanceConfig = PRETALX_CONFIG): Promise<{ version: string | null; blocks: ScheduleBlock[] }> {
+  const [schedules, rawRooms, version] = await Promise.all([
+    exhaustResource('schedules', config),
+    exhaustResource('rooms', config),
+    getPublishedScheduleVersion(config),
+  ])
+  const roomSlug = new Map<number, string>(rawRooms.map((r: any) => [r.id, r.name?.en ? defaultSlugify(r.name.en) : String(r.id)]))
+  const wip = schedules.find((s: any) => s.version === 'wip')
+  const slots = wip ? await exhaustResource(`slots?schedule=${wip.id}`, config) : []
+  const blocks = slots
+    .filter((s: any) => !s.submission && ['break', 'blocker'].includes(s.slot_type) && s.start && s.room)
+    .map(
+      (s: any): ScheduleBlock => ({
+        kind: s.slot_type,
+        title: (typeof s.description === 'string' ? s.description : s.description?.en) || (s.slot_type === 'blocker' ? 'Blocked' : 'Break'),
+        start: s.start,
+        end: s.end,
+        roomId: roomSlug.get(s.room) ?? String(s.room),
+      })
+    )
+  return { version, blocks }
+}
+
 export async function GetSubmissions(params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
   const [submissions, slots, rawRooms, speakers] = await Promise.all([
     exhaustResource(`submissions?questions=all&expand=answers.question,track,submission_type,tags`, config),
@@ -283,6 +320,12 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
       ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_SLIDES_LAST_EDIT)?.answer
       : undefined
   if (typeof lastEdit === 'string' && lastEdit.trim()) session.slidesLastEdit = lastEdit.trim()
+  // How the speaker will present (deck, own laptop, video, no slides): crew data for the run of show.
+  const presenting =
+    params.inclContacts && config.PRETALX_QUESTIONS_PRESENTING
+      ? i.answers?.find((a: any) => a.question?.id === config.PRETALX_QUESTIONS_PRESENTING)?.answer
+      : undefined
+  if (typeof presenting === 'string' && presenting.trim()) session.presentingAnswer = presenting.trim()
   // The Pretalx state, for the slides passes only (accepted vs confirmed, and
   // decks left behind by declined talks); the public data has no use for it.
   if (params.inclContacts && typeof i.state === 'string') session.pretalxState = i.state

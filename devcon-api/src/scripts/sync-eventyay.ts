@@ -81,6 +81,7 @@ interface TargetMapping {
 const OTS_TYPES = {
   Talk: 'CLS - Talk (Open Tech Summit)',
   'Lightning Talk': 'CLS - Lightning Talk (Open Tech Summit)',
+  'Spotlight Talk': 'CLS - Lightning Talk (Open Tech Summit)',
   Workshop: 'CLS - Miniworkshop (Open Tech Summit)',
   'Mini Workshop': 'CLS - Miniworkshop (Open Tech Summit)',
   'Panel Discussion': 'CLS - Panel (Open Tech Summit)',

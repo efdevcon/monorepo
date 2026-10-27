@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { isPublicSubmissionState } from 'services/social-cards/submission-state'
 
 /**
@@ -34,7 +35,34 @@ const CODE_RE = /^[A-Za-z0-9_-]{1,120}$/
 // but an open redirect to arbitrary URLs is not worth the shortcut.
 const DECK_RE = /^https:\/\/(docs|drive)\.google\.com\//
 
+// While speakers cannot open their decks (Drive sharing paused on the event's
+// shared drive), show a notice with the link instead of redirecting straight
+// into a Google "request access" page. Flip back to false once access is back.
+const DECK_ACCESS_PAUSED: Record<string, boolean> = { devcon8: false }
+
+const AccessPaused = ({ deck }: { deck: string }) => (
+  <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+    <Head>
+      <title>Your slides · Devcon</title>
+      <meta name="robots" content="noindex" />
+    </Head>
+    <div className="max-w-md w-full bg-white border border-slate-200 rounded-xl p-6 flex flex-col gap-4 text-slate-800">
+      <h1 className="text-xl font-semibold">Slides are temporarily not editable</h1>
+      <p>
+        Speakers can&apos;t open or edit their slides right now. We&apos;re restoring access very soon.
+      </p>
+      <p>Your deck and your edits are safe. Please come back to this same link a bit later.</p>
+      <a href={deck} className="self-start text-sm underline text-slate-600" rel="noopener noreferrer">
+        Try opening my slides
+      </a>
+    </div>
+  </div>
+)
+
 const NoDeck = () => <div className="p-2">No presentation link found. Please contact the organisers.</div>
+
+const PresentationPage = ({ pausedDeck }: { pausedDeck?: string }) =>
+  pausedDeck ? <AccessPaused deck={pausedDeck} /> : <NoDeck />
 
 export async function getServerSideProps(context: any) {
   const event = EVENTS[context.params.event]
@@ -64,9 +92,10 @@ export async function getServerSideProps(context: any) {
   }
 
   if (link && DECK_RE.test(link)) {
+    if (DECK_ACCESS_PAUSED[context.params.event]) return { props: { pausedDeck: link } }
     return { redirect: { destination: link, permanent: false } }
   }
   return { props: {} }
 }
 
-export default NoDeck
+export default PresentationPage

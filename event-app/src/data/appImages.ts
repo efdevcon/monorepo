@@ -44,9 +44,9 @@ export const APP_IMAGES: string[] = [
   "/home/tickets-banner.webp",
   "/home/community-hubs.jpg",
   // AI planner brand logos (public/home/ai-planner), on the Home card's buttons.
-  "/home/ai-planner/chatgpt.svg",
-  "/home/ai-planner/claude.svg",
-  "/home/ai-planner/grok.svg",
+  "/home/ai-planner/chatgpt-mark.svg",
+  "/home/ai-planner/claude-mark.svg",
+  "/home/ai-planner/grok-mark.svg",
   "/login/signin-keyart.webp",
   // Small chrome — precached too, listed here so a cache miss still self-heals.
   "/home/community-hubs-tent.svg",

@@ -5,6 +5,7 @@ import type { StaticImageData } from 'next/image'
 
 import img3JEDML from './assets/portraits/dorde-mijovic.webp'
 import img3QYPGS from './assets/portraits/preston-vander-vos.webp'
+import img3UKEUC from './assets/portraits/friederike-ernst.webp'
 import img7BLNXR from './assets/portraits/griff-green.webp'
 import img8FL8QW from './assets/portraits/zachary-williamson.webp'
 import img93XWX7 from './assets/portraits/yi-sun.webp'
@@ -27,6 +28,7 @@ import imgJPM9NQ from './assets/portraits/max-semenchuk.webp'
 import imgKC3QAL from './assets/portraits/kevin-jones.webp'
 import imgKYP3UZ from './assets/portraits/vitalik.webp'
 import imgLP7S9M from './assets/portraits/kati-illes.webp'
+import imgM8K3DS from './assets/portraits/sora-suegami.webp'
 import imgMAXUYR from './assets/portraits/pg.webp'
 import imgMMELPR from './assets/portraits/matteo-vicari.webp'
 import imgMPDBM3 from './assets/portraits/johanna-moran.webp'
@@ -36,15 +38,19 @@ import imgPMSDZQ from './assets/portraits/yoseph-ayele.webp'
 import imgPXYHQU from './assets/portraits/tomoki-adachi.webp'
 import imgQNSFPZ from './assets/portraits/ben-biedermann.webp'
 import imgQTU93L from './assets/portraits/balaji-srinivasan.webp'
+import imgRJGCKJ from './assets/portraits/arun-maharajan.webp'
 import imgRMPP9E from './assets/portraits/barnabe-monnot.webp'
 import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
+import imgT9HFLF from './assets/portraits/kaan-uzdogan.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
+import imgTUKEUK from './assets/portraits/gubsheep.webp'
 import imgUKPQQY from './assets/portraits/manu-sheel-gupta.webp'
 import imgUNL78E from './assets/portraits/shayan-eskandari.webp'
 import imgV88N3U from './assets/portraits/asha-shankar.webp'
 import imgW8UUCW from './assets/portraits/roger-dingledine.webp'
 import imgWLADZ7 from './assets/portraits/cheeky-gorilla.webp'
+import imgWYUF7P from './assets/portraits/tomasz-stanczak.webp'
 import imgZDA7LS from './assets/portraits/fatemeh-fannizadeh.webp'
 
 export interface PulledSpeaker {
@@ -79,12 +85,21 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: img3QYPGS,
     source: 'pretalx',
   },
+  '3UKEUC': {
+    id: '3UKEUC',
+    name: 'Friederike Ernst',
+    organization: 'Gnosis',
+    xHandle: 'tw_tter',
+    track: 'Futures Worth Building',
+    image: img3UKEUC,
+    source: 'pretalx',
+  },
   '7BLNXR': {
     id: '7BLNXR',
     name: 'Griff Green',
     organization: 'TheDAO Security Fund & Giveth',
     xHandle: 'griffgreen',
-    track: 'Security',
+    track: 'Community Hubs',
     image: img7BLNXR,
     source: 'pretalx',
   },
@@ -110,7 +125,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'ATXLD3',
     name: 'Christopher Fabian',
     organization: 'UNICEF/Giga',
-    track: 'Rights, Freedoms, and Governance',
+    track: 'Futures Worth Building',
     image: imgATXLD3,
     source: 'pretalx',
   },
@@ -244,7 +259,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Max Semenchuk',
     organization: 'Web3 Institute, Ministry of Digital Transformation of Ukraine',
     xHandle: 'maxsemenchuk',
-    track: 'Rights, Freedoms, and Governance',
     image: imgJPM9NQ,
     source: 'pretalx',
   },
@@ -272,6 +286,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     organization: 'UNICEF, Office of Innovation, Cryptofund',
     track: 'Futures Worth Building',
     image: imgLP7S9M,
+    source: 'pretalx',
+  },
+  M8K3DS: {
+    id: 'M8K3DS',
+    name: 'Sora Suegami',
+    organization: 'Ethereum Foundation, iO team',
+    xHandle: 'SoraSue77',
+    track: 'Applied Cryptography',
+    image: imgM8K3DS,
     source: 'pretalx',
   },
   MAXUYR: {
@@ -348,9 +371,16 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
   QTU93L: {
     id: 'QTU93L',
     name: 'Balaji Srinivasan',
-    organization: 'Founder, Network School',
-    xHandle: 'balajis',
+    organization: 'Network School',
     image: imgQTU93L,
+    source: 'manual',
+  },
+  RJGCKJ: {
+    id: 'RJGCKJ',
+    name: 'Arun Maharajan',
+    organization: 'UNICEF',
+    track: 'Futures Worth Building',
+    image: imgRJGCKJ,
     source: 'pretalx',
   },
   RMPP9E: {
@@ -380,6 +410,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgT8KAJP,
     source: 'pretalx',
   },
+  T9HFLF: {
+    id: 'T9HFLF',
+    name: 'Kaan Uzdogan',
+    organization: 'Argot Collective',
+    xHandle: 'kaanuzdogan',
+    track: 'Security',
+    image: imgT9HFLF,
+    source: 'pretalx',
+  },
   TKDN87: {
     id: 'TKDN87',
     name: 'Jason Chaskin',
@@ -389,12 +428,22 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgTKDN87,
     source: 'pretalx',
   },
+  TUKEUK: {
+    id: 'TUKEUK',
+    name: 'gubsheep',
+    organization: '0xPARC, Digital Sciences Institute',
+    xHandle: 'gubsheep',
+    track: 'Applied Cryptography',
+    image: imgTUKEUK,
+    source: 'pretalx',
+  },
   UKPQQY: {
     id: 'UKPQQY',
     name: 'Manu Sheel Gupta',
-    organization: 'Libp2p, IPFS, Protocol Labs',
+    organization:
+      'Libp2p, IPFS, Protocol Labs, Eth Swarm, SEETA, Meshworks, Diagnosity, Nyx Foundation, Invisible.Garden',
     xHandle: 'manusheel',
-    track: 'Permissionless Networks',
+    track: 'Community Hubs',
     image: imgUKPQQY,
     source: 'pretalx',
   },
@@ -431,6 +480,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'cheekygorilla0x',
     track: 'Core Protocol',
     image: imgWLADZ7,
+    source: 'pretalx',
+  },
+  WYUF7P: {
+    id: 'WYUF7P',
+    name: 'Tomasz Stanczak',
+    organization: 'Complete Robot, Nethermind',
+    xHandle: 'tkstanczak',
+    track: 'Open & Verifiable Stack',
+    image: imgWYUF7P,
     source: 'pretalx',
   },
   ZDA7LS: {

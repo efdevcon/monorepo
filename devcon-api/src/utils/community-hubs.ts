@@ -29,15 +29,22 @@ export interface CommunityHub {
   color: string
 }
 
-/** The 14 Devcon 8 hubs, official names from the Community Hubs coordinator (2026-10-07), alphabetical. */
+/**
+ * The 14 Devcon 8 hubs (official names from the Community Hubs coordinator, 2026-10-07) and three
+ * community-run spaces on the same sheet template (Open Hardware Zone, Game Zone, Music Stage),
+ * alphabetical.
+ */
 export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: 'agentic', name: 'Agentic Hub', color: '#C2FFDD' },
   { id: 'aggregation', name: 'Aggregation Hub', color: '#EDD6FF' },
   { id: 'desci', name: 'DeSci Hub', color: '#D4F7F4' },
   { id: 'eip', name: 'EIP Hub', color: '#D4EBF7' },
+  { id: 'game-zone', name: 'Game Zone', color: '#FFD6EC' },
   { id: 'india', name: 'India Hub', color: '#FFE7D1' },
   { id: 'legal-governance', name: 'Legal & Governance Hub', color: '#B9EFFF' },
+  { id: 'music-stage', name: 'Music Stage', color: '#FFF0A8' },
   { id: 'onchain-art', name: 'Onchain Art Hub', color: '#F7D4D4' },
+  { id: 'open-hardware-zone', name: 'Open Hardware Zone', color: '#E2E8F0' },
   { id: 'open-source', name: 'Open Source Hub', color: '#DDFDEC' },
   { id: 'p2p-networking', name: 'P2P Networking Hub', color: '#A8FFD5' },
   { id: 'prediction-markets', name: 'Prediction Markets Hub', color: '#F5FFDB' },
