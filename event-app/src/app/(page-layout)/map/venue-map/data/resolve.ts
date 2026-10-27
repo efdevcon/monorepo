@@ -42,6 +42,8 @@ export type Area = {
   iconBackdrop: string | null;
   /** List position within the category (areas.ts `rank`). */
   rank: number;
+  /** The place's own site (areas.ts `website`), "Visit website" on the card. */
+  website: string | null;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -80,6 +82,7 @@ function resolveShape(shape: MapShape): Area | null {
     boothName: hub || tenant ? planName : null,
     iconBackdrop: tenant ? shape.fill : null,
     rank: spec.rank ?? 100,
+    website: spec.website ?? null,
   };
 }
 

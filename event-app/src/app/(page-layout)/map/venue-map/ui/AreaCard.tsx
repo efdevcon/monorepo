@@ -2,7 +2,7 @@
 
 import { useState, type MutableRefObject } from "react";
 import cn from "classnames";
-import { ChevronRight, Clock3, Presentation, User } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
@@ -15,8 +15,9 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
 /**
  * The card that opens when an area is tapped: theme icon (stages: in the
  * disc on the top edge; everything else inline left of the text), name, the
- * floor it is on, a short description, and for footprints backed by a
- * schedule room the session running there now, tagged "Live now". Stays
+ * floor it is on, a short description, a "Visit website" link when the
+ * catalogue has the place's site, and for footprints backed by a schedule
+ * room the session running there now, tagged "Live now". Stays
  * mounted so it can slide out; the last area is kept while it fades.
  *
  * Phones: fixed above the tab bar, full width. Desktop: beside the selected
@@ -97,6 +98,12 @@ export function AreaCard({
             </div>
             {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.levelName}</span>}
             {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shownComposite ? shownComposite.description : shown?.description}</p>}
+            {shown?.website && !shownComposite && !sessionOnly && (
+              <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="mt-2 inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline">
+                Visit website
+                <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
+              </a>
+            )}
           </div>
         </div>
         {live && (

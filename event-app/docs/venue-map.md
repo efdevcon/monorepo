@@ -99,7 +99,8 @@ as the card's booth line), optional `tenants` (booth number → `{ name, logo }`
 booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a shared booth names one supporter only, since who is
 present changes mid-event and is updated then; Scott, 2026-10-25), optional
-`icon` (sprite PNG) and `roomIds`. `ROOMS` maps Devcon 8 Pretalx room ids to footprints
+`icon` (sprite PNG), `roomIds` and `website` (the place's own site, https; the card shows "Visit website" under the description with
+the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27). `ROOMS` maps Devcon 8 Pretalx room ids to footprints
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporters,
 Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the only
 lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend (chip

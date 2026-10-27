@@ -37,6 +37,8 @@ export type AreaSpec = {
   tenants?: Readonly<Record<number, Tenant>>;
   /** Position in Find and Search lists within the category (lower first, then by name; unset = 100). */
   rank?: number;
+  /** The place's own site, linked as "Visit website" under the card's description (https only). */
+  website?: string;
 };
 
 /** A supporter at a booth. `logo` is a path under public/ (white lockups today, on the booth's fill colour in the card). */
@@ -176,7 +178,15 @@ export const AREAS = {
   "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
   "poster-printing-station": { name: "Poster Printing Station", description: "Print your poster for the display.", category: "fun", heightClass: "zone", icon: "poster-printing-station" },
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
-  "open-hardware-zone": { name: "Open Hardware Zone", description: "Open hardware, hands on.", category: "fun", legend: "hubs", heightClass: "zone", icon: "open-hardware-zone" },
+  "open-hardware-zone": {
+    name: "Open Hardware Zone",
+    description: "Open hardware, hands on, with Maker's Asylum: the Goa makerspace and community of makers, builders and problem-solvers behind #MakeBreakCreate.",
+    category: "fun",
+    legend: "hubs",
+    heightClass: "zone",
+    icon: "open-hardware-zone",
+    website: "https://www.makersasylum.com/",
+  },
   // Other
   "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge" },
   "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room" },
