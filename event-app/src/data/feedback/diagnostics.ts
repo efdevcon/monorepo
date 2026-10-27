@@ -1,5 +1,6 @@
 "use client";
 
+import { currentStorageMode } from "@/data/cache/cache-db";
 import { getActiveDataset } from "@/data/dataset";
 import { getEventTimeZone } from "@/data/eventTime";
 import { storeFor } from "@/data/store/schedule-source";
@@ -31,12 +32,13 @@ export async function collectDiagnostics(known: {
       const estimate = await navigator.storage?.estimate?.();
       return {
         indexedDB: typeof indexedDB !== "undefined",
+        mode: currentStorageMode(),
         persisted: persisted ?? null,
         usageMB: estimate?.usage ? Math.round(estimate.usage / 1_048_576) : null,
         quotaMB: estimate?.quota ? Math.round(estimate.quota / 1_048_576) : null,
       };
     } catch {
-      return { indexedDB: typeof indexedDB !== "undefined" };
+      return { indexedDB: typeof indexedDB !== "undefined", mode: currentStorageMode() };
     }
   })();
 

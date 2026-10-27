@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
-import { pruneOtherEventRows } from "./cache-db";
+import { openCacheDB, pruneOtherEventRows } from "./cache-db";
 import { eventStore } from "../store/event-store";
 import { hubStore } from "../store/hub-store";
 import { communityHubsDataset, getActiveDataset } from "../dataset";
@@ -72,38 +72,59 @@ export function DataProvider({ children }: { children: ReactNode }) {
  */
 const BOOT_TIMEOUT_MS = 3_000;
 
+/**
+ * Shown once per launch when the database runs in memory (no IndexedDB:
+ * WebKit's Lockdown Mode). The attendee gets the full app back by excluding
+ * the site, which Apple documents as Safari's page menu, Website Settings,
+ * Lockdown Mode off.
+ */
+const MEMORY_STORAGE_NOTICE =
+  "This browser blocks app storage (Lockdown Mode or a privacy setting), so the app works online only and forgets everything when closed. For the full app, allow app.devcon.org in Safari: page menu, Website Settings, Lockdown Mode off.";
+
 function useBoot() {
   const providerRef = useRef<Map<string, unknown> | null>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const { cache, initPromise } = createDexieCacheProvider();
-    providerRef.current = cache;
-    let done = false;
-    const finish = () => {
-      if (done) return;
-      done = true;
-      setReady(true);
-    };
-    const timer = setTimeout(() => {
-      if (done) return;
-      console.warn("[boot] storage did not answer in time, starting without it");
-      toast.warning("Storage is busy in another tab. Close other Devcon tabs so the schedule can be saved offline.", {
-        duration: 8_000,
-      });
-      finish();
-    }, BOOT_TIMEOUT_MS);
-    const dataset = getActiveDataset();
-    const hubs = communityHubsDataset(dataset);
-    Promise.all([initPromise, eventStore.hydrate(dataset), hubs ? hubStore.hydrate(hubs) : undefined])
-      .catch((err) => console.warn("[boot] hydrate failed, starting empty:", err))
-      .then(() => {
-        clearTimeout(timer);
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // The database first: with IndexedDB this resolves at once; without it
+    // the in-memory engine loads (one extra chunk), so the deadline below
+    // starts only afterwards and that download can never trip it.
+    void openCacheDB().then((mode) => {
+      if (cancelled) return;
+      const { cache, initPromise } = createDexieCacheProvider();
+      providerRef.current = cache;
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        setReady(true);
+      };
+      timer = setTimeout(() => {
+        if (done) return;
+        console.warn("[boot] storage did not answer in time, starting without it");
+        toast.warning("Storage is busy in another tab. Close other Devcon tabs so the schedule can be saved offline.", {
+          duration: 8_000,
+        });
         finish();
-        // Off the boot path: rows of the events this device no longer shows.
-        void pruneOtherEventRows([dataset.eventId, ...(hubs ? [hubs.eventId] : [])]);
-      });
-    return () => clearTimeout(timer);
+      }, BOOT_TIMEOUT_MS);
+      const dataset = getActiveDataset();
+      const hubs = communityHubsDataset(dataset);
+      Promise.all([initPromise, eventStore.hydrate(dataset), hubs ? hubStore.hydrate(hubs) : undefined])
+        .catch((err) => console.warn("[boot] hydrate failed, starting empty:", err))
+        .then(() => {
+          clearTimeout(timer);
+          finish();
+          // Off the boot path: rows of the events this device no longer shows.
+          void pruneOtherEventRows([dataset.eventId, ...(hubs ? [hubs.eventId] : [])]);
+        });
+      if (mode === "memory") toast.warning(MEMORY_STORAGE_NOTICE, { id: "memory-storage", duration: 20_000 });
+    });
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, []);
 
   return { ready, cacheProvider: providerRef.current };

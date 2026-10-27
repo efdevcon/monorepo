@@ -148,17 +148,20 @@ class FakeProvider implements IEventDataProvider {
 }
 
 async function main() {
-  // cache-db creates its singleton only when window exists. Its Dexie tables are
-  // replaced below before any IndexedDB operation is attempted.
+  // The boot gate opens the database; in Node that is the in-memory engine
+  // (no IndexedDB). Its catalogue tables are replaced below with fakes before
+  // any operation is attempted.
   Object.defineProperty(globalThis, "window", {
     value: { location: { search: "" } },
     configurable: true,
   });
 
-  const [{ cacheDB }, { EventStore }] = await Promise.all([
+  const [cacheDb, { EventStore }] = await Promise.all([
     import("../src/data/cache/cache-db"),
     import("../src/data/store/event-store"),
   ]);
+  await cacheDb.openCacheDB();
+  const { cacheDB } = cacheDb;
 
   const installDb = (db: FakeCatalogueDb) => {
     for (const key of ["eventSessions", "eventSpeakers", "eventRooms", "eventMeta"] as const) {

@@ -1,4 +1,4 @@
-import Dexie, { Table } from "dexie";
+import Dexie, { Table, type DexieOptions } from "dexie";
 import type { FeedbackFileRef, FeedbackPayload } from "../feedback/types";
 import type {
   EventMetaRow,
@@ -150,6 +150,12 @@ export interface FeedbackOutboxRow {
   uploaded?: FeedbackFileRef[];
 }
 
+/** Where this session's data lives: IndexedDB, or memory when the browser has none. */
+export type StorageMode = "persistent" | "memory";
+
+/** The IndexedDB implementation Dexie opens: the browser's, or the in-memory engine. */
+type StorageDeps = Pick<DexieOptions, "indexedDB" | "IDBKeyRange">;
+
 class CacheDB extends Dexie {
   cache!: Table<CacheEntry, string>;
   inferenceRuns!: Table<InferenceRun, string>;
@@ -167,8 +173,8 @@ class CacheDB extends Dexie {
   eventRooms!: Table<RoomRow, [string, string]>;
   eventMeta!: Table<EventMetaRow, string>;
 
-  constructor() {
-    super("SWRCacheDB");
+  constructor(deps?: StorageDeps) {
+    super("SWRCacheDB", deps);
     this.version(1).stores({
       cache: "&key, timestamp", // & = primary key, timestamp = index
     });
@@ -239,24 +245,61 @@ class CacheDB extends Dexie {
   }
 }
 
-// Only create Dexie instance in browser environment
-export const cacheDB =
-  typeof window !== "undefined" ? new CacheDB() : (null as unknown as CacheDB);
+/**
+ * The app's database: null on the server and until `openCacheDB()` has run,
+ * which the boot gate (`DataProvider`) does before anything under it renders.
+ * The null cast keeps the call sites short; the `if (!cacheDB)` guards they
+ * carry are for the server and for an engine that failed to load.
+ */
+export let cacheDB: CacheDB = null as unknown as CacheDB;
+let storageMode: StorageMode | null = null;
 
-if (cacheDB) {
+/** How `openCacheDB()` opened the database; null before it ran or when it failed. */
+export function currentStorageMode(): StorageMode | null {
+  return storageMode;
+}
+
+/**
+ * Open the database once. With IndexedDB this is synchronous work. Without
+ * it (WebKit's Lockdown Mode removes IndexedDB from every browser on the
+ * device since Safari 17, and Dexie then throws from the first `where()`),
+ * the app loads an in-memory engine and runs on it for the session: every
+ * Dexie call works, nothing survives a reload, and the boot gate says so.
+ * If that engine fails to load, `cacheDB` stays null as on the server.
+ */
+export async function openCacheDB(): Promise<StorageMode | null> {
+  if (cacheDB) return storageMode;
+  const g = globalThis as { indexedDB?: unknown; IDBKeyRange?: unknown };
+  if (g.indexedDB && g.IDBKeyRange) {
+    cacheDB = withTabHandlers(new CacheDB());
+    storageMode = "persistent";
+    return storageMode;
+  }
+  try {
+    const mem = await import(/* webpackChunkName: "memory-storage" */ "fake-indexeddb");
+    cacheDB = withTabHandlers(new CacheDB({ indexedDB: mem.indexedDB, IDBKeyRange: mem.IDBKeyRange }));
+    storageMode = "memory";
+  } catch (err) {
+    console.warn("[cache-db] no IndexedDB and the in-memory engine did not load; running without storage:", err);
+  }
+  return storageMode;
+}
+
+function withTabHandlers(db: CacheDB): CacheDB {
   // Two tabs on different app versions: the newer one needs this connection
   // closed to run its schema upgrade, otherwise it hangs "blocked" (its boot
   // gate times out and it runs without storage). Close here; every Dexie
   // call in this tab already tolerates failure (memory-only for the session).
-  cacheDB.on("versionchange", () => {
-    cacheDB.close();
+  db.on("versionchange", () => {
+    db.close();
     console.warn(
       "[cache-db] closed: a newer app version upgraded the database in another tab; reload to reopen storage"
     );
   });
-  cacheDB.on("blocked", () => {
+  db.on("blocked", () => {
     console.warn("[cache-db] schema upgrade blocked by another open tab of this app");
   });
+  return db;
 }
 
 /**

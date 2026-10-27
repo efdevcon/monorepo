@@ -95,6 +95,9 @@ const withSerwist = withSerwistInit({
     // Match app/api/... AND app/(group)/api/... so route groups don't slip through
     /\/app\/(?:\([^)]+\)\/)?api\//,
     /\/route-[a-f0-9]+\.js$/,
+    // The in-memory IndexedDB engine (data/cache/cache-db.ts): fetched only by
+    // a browser without IndexedDB, which has no service worker either.
+    /memory-storage/,
   ],
 });
 

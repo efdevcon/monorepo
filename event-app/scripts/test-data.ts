@@ -16,6 +16,7 @@ import {
   tabPathOf,
 } from "../src/routing/viewParams";
 import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
+import { cacheDB, openCacheDB } from "../src/data/cache/cache-db";
 import { installMarker, parseInstallVersion } from "../src/data/install/installVersion";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
 import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
@@ -855,6 +856,24 @@ function testTrackTheme() {
   check("Devcon tracks are not community", getTrackTheme("Security").isCommunity !== true && getTrackTheme("").isCommunity !== true);
 }
 
+/**
+ * Without IndexedDB (WebKit's Lockdown Mode removes it from every browser on
+ * the device) the database opens on an in-memory engine and every Dexie call
+ * works for the session. Node has no IndexedDB either, so this is that path.
+ */
+async function testMemoryStorage() {
+  check("precondition: no IndexedDB in this runtime", typeof globalThis.indexedDB === "undefined");
+  check("cacheDB is null until the boot gate opens it", cacheDB === null);
+  const mode = await openCacheDB();
+  check("opens in memory mode without IndexedDB", mode === "memory");
+  check("cacheDB is set after open", cacheDB !== null);
+  await cacheDB.cache.put({ key: "k", value: { a: 1 }, timestamp: 5 });
+  check("round trip through the memory db", eq((await cacheDB.cache.get("k"))?.value, { a: 1 }));
+  const recent = await cacheDB.cache.where("timestamp").above(1).toArray();
+  check("where() works on the memory db (the boot path that crashed)", recent.length === 1);
+  check("a second open keeps the db and its mode", (await openCacheDB()) === "memory");
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -874,6 +893,7 @@ async function main() {
   testAiPlan();
   await testRetryOnce();
   await testWhenControlled();
+  await testMemoryStorage();
   testLegacySessionLink();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
