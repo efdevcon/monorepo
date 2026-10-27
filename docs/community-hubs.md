@@ -23,6 +23,8 @@ Only the owner's browser publishes: collaborators' edits live in the realtime ro
 2. `pnpm community-hubs:live <dump dir>` (devcon-api) turns them into cells with `readTabsFromUpdates` (same cell reading as the published path) and writes `devcon-api/data/community-hubs/sheets.json`: per hub its tabs, `changedAt` (when the cells last changed) and the read error if any (a failed hub keeps its previous cells). The file is rewritten only when cells change, or every 6 hours as a heartbeat (`exportedAt`). Next to it, `devcon8-sessions.json` holds the same sheets parsed into sessions as the app shows them (id, day, time, title, format, speakers, topic, description, plus each hub's problems), without per-read timestamps, so a commit's diff reads as "this session changed". The API does not read it.
 3. The workflow commits it with `[skip deploy]`, so Render does not redeploy.
 
+To pause the export (a frozen schedule, a broken sheet), set `EXPORT_PAUSED` to `"true"` at the top of the workflow file and commit with `[skip deploy]`: runs still start every hour but skip the export job, nothing is read or committed, and the API keeps serving the last committed `sheets.json`. Set it back to `"false"` to resume. The status endpoint flags an export older than 8 hours, so a long pause shows there as stale, by design.
+
 The links live only in the Action's `COMMUNITY_HUB_SHEETS` secret (JSON object of hub id to edit link). Anyone holding a link can edit that sheet: the export never logs them and the file holds cells only. Failed reads leave a screenshot artifact (3 days).
 
 Writing to a dSheet programmatically is not practical (realtime socket with owner tokens), so the sync is read only.

@@ -11,6 +11,16 @@ name: Community Hubs live export
 # Details: docs/community-hubs.md.
 # devcon-api starts it every hour (startLiveExportTimer): GitHub runs this repo's schedules
 # hours late, so the cron below is only a backup.
+#
+# Pausing: set EXPORT_PAUSED below to "true" and commit (with "[skip deploy]" in the message,
+# nothing else changes). Every run then skips the export job, so no sheet is read and no commit
+# is made, while the API keeps serving the last committed sheets.json unchanged. The API's
+# hourly dispatch keeps starting runs; they finish in seconds as "skipped". Set it back to
+# "false" to resume with the next run. Note the API's status endpoint flags an export older than
+# 8 hours, so a long pause shows there as a stale export by design.
+env:
+  EXPORT_PAUSED: "true"
+
 on:
   schedule:
     - cron: "7 * * * *"
@@ -24,7 +34,18 @@ permissions:
   contents: write
 
 jobs:
+  # A job-level `if` cannot read the workflow's env, so this tiny job turns the switch into
+  # an output the export job can be gated on. Paused runs show one skipped job.
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      paused: ${{ steps.switch.outputs.paused }}
+    steps:
+      - id: switch
+        run: echo "paused=$EXPORT_PAUSED" >> "$GITHUB_OUTPUT"
   export:
+    needs: gate
+    if: needs.gate.outputs.paused != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
