@@ -5,7 +5,7 @@ import {
   isCommunityHubSession,
   shortCommunityHubName,
 } from "@/data/communityHubs";
-import { communityLedGroup } from "@/data/communityLed";
+import { communityLedGroup, communityLedLogo } from "@/data/communityLed";
 import type { Session } from "@/data/models/sessions";
 import type { ScheduleSource } from "@/data/store/schedule-source";
 
@@ -82,7 +82,7 @@ export function communityOf(session: Pick<Session, "track" | "room">): Community
     name: group.name,
     badge: group.badge,
     color: group.color,
-    logo: group.logo,
+    logo: communityLedLogo(group),
     lockup: group.lockup,
     kind: "cls",
   };

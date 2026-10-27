@@ -3,8 +3,9 @@
  * track and the others. The programme team marks their sessions in Pretalx
  * with a "[CLS] - <name>" track; that string is theirs and must not be
  * renamed upstream. In the app a group is shown like a Community Hub (its
- * own name, badge and pastel; a logo only where one exists) and filters
- * beside the hubs in the Community programme. An unknown "[CLS]" track
+ * own name, badge and pastel; the shared community-led mark as its logo
+ * unless it has one of its own) and filters beside the hubs in the
+ * Community programme. An unknown "[CLS]" track
  * synthesises an entry from its name, so a new community never breaks the
  * view or falls back to a bare "CLS" badge. Hubs: `src/data/communityHubs.ts`.
  */
@@ -18,7 +19,7 @@ export interface CommunityLedGroup {
   badge: string;
   /** Pastel surface colour for badges, rails and filter chips. */
   color: string;
-  /** Mark (square logo) under /public, when the group has one. */
+  /** Mark (square logo) under /public, when the group has one of its own; else COMMUNITY_LED_LOGO. */
   logo?: string;
   /** Lockup for the session details banner, when the group has one. */
   lockup?: string;
@@ -29,6 +30,19 @@ const CLS_MARKER = /^\s*\[CLS\]/;
 
 /** Colour of a group the registry does not know: the lavender CLS used to share. */
 export const COMMUNITY_LED_FALLBACK_COLOR = "#e9e5f6";
+
+/**
+ * The mark every community-led group shows unless it brings its own: the
+ * CLS icon (Scott, 2026-10-27), on cards, the timeline and the filter chips
+ * where the Pretalx tracks show their gems. Precached beside the gems in
+ * next.config.ts and listed in APP_IMAGES.
+ */
+export const COMMUNITY_LED_LOGO = "/schedule/gems/community-led.png";
+
+/** The group's mark: its own logo, else the shared community-led one. */
+export function communityLedLogo(group: Pick<CommunityLedGroup, "logo">): string {
+  return group.logo ?? COMMUNITY_LED_LOGO;
+}
 
 /** Pastels of their own, apart from the nine track colours and the hubs' (data:test enforces it). */
 export const COMMUNITY_LED_GROUPS: CommunityLedGroup[] = [
