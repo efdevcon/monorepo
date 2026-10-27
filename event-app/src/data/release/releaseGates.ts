@@ -17,10 +17,8 @@ export const RELEASED = {
   ensPerk: false,
   /** Testnet faucet perk card on My Devcon. */
   faucetPerk: false,
-  /** Venue map tab; attendees get a "coming soon" placeholder instead. */
+  /** Venue map tab (src/app/(page-layout)/map/venue-map); attendees get a "coming soon" placeholder instead. */
   venueMap: false,
-  /** The rebuilt map on the JWCC plans (src/app/(page-layout)/map/venue-map) in place of the prototype. */
-  venueMapNext: false,
 } as const;
 
 export type ReleaseGate = keyof typeof RELEASED;
@@ -29,8 +27,7 @@ export type ReleaseGate = keyof typeof RELEASED;
 export const RELEASE_GATE_LABELS: Record<ReleaseGate, { name: string; description: string }> = {
   ensPerk: { name: "ENS perk", description: "The free .eth name card on My Devcon." },
   faucetPerk: { name: "Testnet faucet", description: "The testnet faucet perk card on My Devcon." },
-  venueMap: { name: "Venue map", description: "The Map tab instead of its “coming soon” placeholder." },
-  venueMapNext: { name: "New venue map (JWCC)", description: "The rebuilt map on the JWCC plans instead of the prototype; needs Venue map on." },
+  venueMap: { name: "Venue map", description: "The Map tab (the 3D map on the JWCC plans) instead of its “coming soon” placeholder." },
 };
 
 const TEAM_DOMAIN = "@ethereum.org";

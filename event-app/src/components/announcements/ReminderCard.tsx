@@ -5,7 +5,7 @@ import { MapPin, PlayCircle } from "lucide-react";
 import { Link } from "@/routing";
 import { DetailLink } from "@/routing/DetailLink";
 import { useNowMs } from "@/hooks/useNow";
-import { useMapHrefForRoom } from "@/data/map/mapHref";
+import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import { useSession } from "@/data/hooks";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { SpeakerSessionMiniCard } from "@/components/speakers/SpeakerSessionMiniCard";
@@ -54,7 +54,7 @@ export function ReminderCard({
   // Event clock: reminders are dated against the schedule (mockable).
   const nowMs = useNowMs(60_000);
   const { sessionId, title, roomId, roomName, startMs, remindAtMs } = reminder;
-  const mapHref = useMapHrefForRoom(roomId);
+  const mapHref = mapHrefForRoom(roomId);
   // From the EventStore snapshot (no fetch); the reminder was derived from
   // this same catalogue, so it is only ever missing mid-resync.
   const { session } = useSession(sessionId);

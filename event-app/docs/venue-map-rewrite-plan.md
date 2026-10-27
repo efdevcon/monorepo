@@ -1,18 +1,19 @@
 # 3D venue map — from-scratch rewrite plan (living document)
 
 **Status:** written 2026-09-17 from a full inventory of the prototype (then on
-`3d-map-prototype`, merged to `main` via PR #131); moved into the repo 2026-09-21. Runtime
-files live in `src/app/(page-layout)/map/venue-map-3d/`, the build script in
-`scripts/plan-map-build.mjs`, the project doc in `docs/venue-map-3d.md`.
+`3d-map-prototype`, merged to `main` via PR #131); moved into the repo 2026-09-21. The prototype's
+runtime files (`src/app/(page-layout)/map/venue-map-3d/`), build script
+(`scripts/plan-map-build.mjs`) and doc (`docs/venue-map-3d.md`) were deleted on 2026-10-27; see git
+history up to `9c6f482a4`.
 **Trigger:** the real per-floor SVG designs are delivered.
 **Executed 2026-10-25** on `add-jio-venue-map` with the JWCC Level 3 export: phases 0–7 in one
-pass, as a separate variant behind the `venueMapNext` gate (phase 8, the swap, is pending the
-remaining floors and Scott's review). The living description of what was built is
+pass, as a separate variant behind the `venueMapNext` gate. **Phase 8 done 2026-10-27:** the
+prototype is gone and the new map is what `venueMap` shows. The living description of what was built is
 `docs/venue-map.md`; §3 below is superseded by its export contract (layer groups
 `Background / Colour_Box / Outline / Text & Icon` instead of the slash grammar, walls as stroked
 lines, door openings as slab-coloured patches).
 **Rule:** whenever a map feature, constant or decision changes on the branch, update §1 (feature
-checklist) and the changelog here, not just `docs/venue-map-3d.md`.
+checklist) and the changelog here, not just `docs/venue-map.md`.
 
 **Why:** the prototype grew feature-by-feature against provisional SVGs; the plan is to rebuild
 the approach cleanly with the real SVGs, preserving every feature and dropping the isometric
@@ -333,7 +334,7 @@ ui/        ControlPill.tsx MapPanel.tsx MapSheet.tsx AreaCard.tsx useLiveSession
   floor legend (`categories.filter(c => c.legend)`), AreaCard, icons, live session all read
   `Area`; `categories.ts` is the only lucide mapping.
 
-## 6. Phases and verification
+## 6. Phases and verification (closed 2026-10-27: phases 0–8 done, phase 8's real-browser pass in Arc by Scott)
 Baseline: `pnpm dev` once (generates `next-env.d.ts`), then `pnpm typecheck` + `pnpm lint`.
 Screenshots: `node ../scripts/shot.mjs /map --port <port> --widths 390,1440 --out <dir>` (one
 `--out` per state, the file name is derived from the path); one-off playwright-core scripts in
@@ -370,7 +371,7 @@ states (`/map?area=L1/main-stage-mask`); legend-only, panel and hover states nee
 Phases 1–7 run on the v2 JSON built from today's provisional SVGs; when the real SVGs arrive only
 the phase-0 shim is removed and `pnpm map:build` re-run.
 
-## 7. Risks / check in Arc, not only headless
+## 7. Risks / check in Arc, not only headless (checked in Arc by Scott, 2026-10-27)
 - Materials/lighting/hover looked right headless and wrong in Arc once (floor-shadow experiment):
   check merged vertex-colour statics, polygonOffset edge quality, sRGB sprites at DPR 2.
 - Custom raycast owner: one raycast per pointermove against ~130 objects/floor is cheap; confirm no
@@ -387,7 +388,7 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Phone Search sheet cannot autofocus (iOS needs a synchronous focus inside the tap; the sheet
   mounts on open). Keep the search content mounted (as `HeaderSearchDrawer` does) if it matters.
 
-## 8. Open questions for Scott
+## 8. Open questions for Scott (closed 2026-10-27: all resolved; the slash grammar gave way to the layer-group contract in `docs/venue-map.md`, `bg-image-new.png` is unreferenced, the catalogue keeps one tea-and-coffee entry, stage room ids live in `data/roomAreas.ts`, category chips stay deferred, the legend is per floor in `data/legend.ts`)
 - Confirm the `room/…` `zone/…` slash grammar is comfortable in Figma (alternative: `room-` prefix).
 - Delete `bg-image-new.png` + its CacheWarmer entry with the old map?
 - Merge `coffee-station-*` into `food-area-*` or keep both catalogue entries?
@@ -409,6 +410,12 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
   walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
   "Community"); Food Garden icon fixed at 16 m (`iconSize`).
+- 2026-10-27 (later) — plan closed: §6 phases 0–8 done, §7 checked in Arc, §8 answered. The live
+  list of product items is `docs/venue-map.md` §6 from here.
+- 2026-10-27 — phase 8: prototype deleted (`venue-map-3d/`, `plan-map-build.mjs`,
+  `docs/venue-map-3d.md`, provisional SVGs), `venueMapNext` gate removed, `MapPane` mounts
+  `VenueMap` under `venueMap` alone, session details and reminder cards call this map's
+  `mapHrefForRoom` directly (`src/data/map/mapHref.ts` deleted).
 - 2026-10-26 — Levels 0–2 added from Scott's exports (`L0`–`L2.svg`): floors registered on the
   elevator marks (`register.ts`; the frames are at 1.32× / 1.5× Level 3's scale), tolerant Outline
   rules (unnamed walls by stroke width on floors that name none, hatches, escalator symbols by
