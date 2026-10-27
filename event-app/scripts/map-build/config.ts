@@ -73,6 +73,13 @@ export const STAIRS_SYMBOL_M: [number, number] = [1.5, 3.5];
 /** Stroke-only closed boxes in the Outline layer smaller than this (metres) are the plan's column markers: not drawn (Scott, 2026-10-25). */
 export const COLUMN_MARKER_MAX_M = 2.5;
 /**
+ * A stroke-only closed box in the Outline layer with one edge lying on a colour box's edge, within
+ * this (plan px), is a name tab drawn against that footprint (the "LOTUS 1 / 2 / 3" frames on the
+ * Lotus halls' top edge, which held the halls' names): dropped, like the tabs on the slab's edge
+ * (Scott, 2026-10-27: the names are gone, the frames read as empty boxes in 3D).
+ */
+export const LABEL_TAB_TOL_PX = 3;
+/**
  * The plan draws its walls as ~4.8 px strokes (9.7 px for the outer wall)
  * and its detail lines (stair treads, partitions) at ~2 px, whatever the
  * frame's scale, so on a floor that names no walls an unnamed stroke-only

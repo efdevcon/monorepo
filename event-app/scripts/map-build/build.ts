@@ -11,7 +11,7 @@ import path from "node:path";
 import { AREAS, isAreaId, ROOMS, type AreaSpec } from "../../src/app/(page-layout)/map/venue-map/data/areas";
 import { LEVELS } from "../../src/app/(page-layout)/map/venue-map/data/levels";
 import { mapBundleSchema, type GroundBounds, type MapBundle, type MapLevel, type MapShape } from "../../src/app/(page-layout)/map/venue-map/data/planSchema";
-import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, EXTERIOR_WALL_TOL_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, STAIRS_SYMBOL_M, VOID_EDGE_EPS_PX, WALL_MIN_STROKE_PX } from "./config";
+import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, EXTERIOR_WALL_TOL_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, LABEL_TAB_TOL_PX, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, STAIRS_SYMBOL_M, VOID_EDGE_EPS_PX, WALL_MIN_STROKE_PX } from "./config";
 import { area, bbox, cutPolyline, notchHoles, pointInRing, polylabel, ringsToPolygons, simplify, strokeToPolygons, widen, type Polygon, type Ring } from "./geometry";
 import { isDefaultName, isGeometryGroup, isTextIconGroup, LAYER_GROUPS, normaliseId, parseName } from "./names";
 import type { Point } from "./path";
@@ -212,8 +212,16 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
     return Math.max(x1 - x0, y1 - y0) * frame.metresPerPx < COLUMN_MARKER_MAX_M;
   };
-  // Label frames: stroke-only closed boxes centred outside the floor (the "JASMINE 1 / 2" tabs on the top edge). Dropped, like their text.
+  // Label frames: stroke-only closed boxes centred outside the floor (the "JASMINE 1 / 2" tabs on the top edge), or drawn against a
+  // colour box's edge (the "LOTUS 1 / 2 / 3" tabs on the halls; Scott, 2026-10-27). Dropped, like their text.
   const slabRing = background[0]?.subpaths.find((s) => s.closed)?.points ?? [];
+  const areaBoxes = inLayer(loaded, LAYER_GROUPS.colourBox).map((d) => bbox(d.subpaths.map((s) => s.points)));
+  const abutsArea = ([x0, y0, x1, y1]: [number, number, number, number]) =>
+    areaBoxes.some(([ax0, ay0, ax1, ay1]) => {
+      const alongX = x0 < ax1 - LABEL_TAB_TOL_PX && x1 > ax0 + LABEL_TAB_TOL_PX;
+      const alongY = y0 < ay1 - LABEL_TAB_TOL_PX && y1 > ay0 + LABEL_TAB_TOL_PX;
+      return (alongX && (Math.abs(y1 - ay0) <= LABEL_TAB_TOL_PX || Math.abs(y0 - ay1) <= LABEL_TAB_TOL_PX)) || (alongY && (Math.abs(x1 - ax0) <= LABEL_TAB_TOL_PX || Math.abs(x0 - ax1) <= LABEL_TAB_TOL_PX));
+    });
   // The 2D outline ring: one closed stroke drawn around the whole slab, outside it. Not a wall in 3D (Scott, 2026-10-26).
   const slabBox = slabRing.length ? bbox([slabRing]) : null;
   const isOutlineRing = (d: Drawn) => {
@@ -229,8 +237,8 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
   };
   const isLabelFrame = (d: Drawn) => {
     if (!isStrokeOnly(d) || !d.subpaths.every((s) => s.closed) || !slabRing.length) return false;
-    const [x0, y0, x1, y1] = bbox(d.subpaths.map((s) => s.points));
-    return !pointInRing([(x0 + x1) / 2, (y0 + y1) / 2], slabRing);
+    const box = bbox(d.subpaths.map((s) => s.points));
+    return !pointInRing([(box[0] + box[2]) / 2, (box[1] + box[3]) / 2], slabRing) || abutsArea(box);
   };
   // Unnamed walls, on a floor that names no interior wall: the plan's wall strokes, outside any hatch and not a hatch in one path (a stair run of many short strokes). A floor that names its interior walls has only those (Level 3's hall-name tabs are drawn at wall width too); naming only the rings (Level 2 since 2026-10-26) does not switch the fallback off.
   const namesWalls = outline.some((d) => isNamedWall(d) && !isOutlineRing(d) && !isExteriorWall(d));
