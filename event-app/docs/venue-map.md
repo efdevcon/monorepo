@@ -77,8 +77,10 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
   stand in the Co-work Area), so two zones never share a cap plane.
   One shape per line so diffs show which footprint moved; ~330 KB for four floors (inside the JS
   chunk, no runtime fetch). No prose: names, categories and icons come from the catalogue at runtime.
-- `rooms.generated.json` — `{ pretalxRoomId: ["L3/lotus-stage-2", …] }` from `ROOMS` in
-  `areas.ts`, the only thing `data/roomAreas.ts` (pure, imported by the schedule) reads.
+- `rooms.generated.json` — `{ roomId: ["L3/lotus-stage-2", …] }` from `ROOMS` in
+  `areas.ts` plus one `community-hub-<hub id>` room per hub booth (`hubs` on an area; the hubs' programme
+  keys its rooms that way, so hub sessions' locations link to the booth since 2026-10-27, Scott), the only
+  thing `data/roomAreas.ts` (pure, imported by the schedule) reads.
 - `icons.generated.ts` — the `IconName` union from `public/maps/devcon-8/icons/*.png`, so a typo
   in the catalogue is a type error.
 

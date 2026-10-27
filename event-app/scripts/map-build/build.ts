@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { AREAS, isAreaId, ROOMS, type AreaSpec } from "../../src/app/(page-layout)/map/venue-map/data/areas";
+import { COMMUNITY_HUB_ROOM_PREFIX } from "../../src/data/communityHubs";
 import { LEVELS } from "../../src/app/(page-layout)/map/venue-map/data/levels";
 import { mapBundleSchema, type GroundBounds, type MapBundle, type MapLevel, type MapShape } from "../../src/app/(page-layout)/map/venue-map/data/planSchema";
 import { COLUMN_MARKER_MAX_M, DOOR_CUT_MARGIN_PX, EXTERIOR_WALL_TOL_PX, FALLBACK_METRES_PER_PX, FLATNESS_PX, HATCH_MIN_STROKES, HEIGHTS, ICONS_DIR, LABEL_TAB_TOL_PX, NESTED_LIFT, OUTLINE_RING_MIN_PX, REFERENCE_LEVEL, REGISTRATION_AREA, ROOT, SIMPLIFY_PX, STAIRS_SYMBOL_M, VOID_EDGE_EPS_PX, WALL_MIN_STROKE_PX } from "./config";
@@ -423,11 +424,17 @@ export function buildBundle(report: Report): MapBundle | null {
   return bundle;
 }
 
-/** `{ roomId: AreaKey[] }` for roomAreas.ts: every schedule room's footprints. */
+/**
+ * `{ roomId: AreaKey[] }` for roomAreas.ts: every schedule room's footprints. The Pretalx rooms come
+ * from ROOMS; a Community Hub's room (`community-hub-<hub id>`, the hubs' programme) is the booth the
+ * catalogue seats the hub at (`hubs` on an area), so hub sessions link to the map too (Scott, 2026-10-27).
+ */
 export function buildRooms(bundle: MapBundle, report: Report): Record<string, string[]> {
   const keys = new Set(bundle.levels.flatMap((l) => l.shapes.filter((s) => s.kind === "area").map((s) => s.key)));
+  const entries: [string, readonly { areaId: string; instance?: number }[]][] = Object.entries(ROOMS);
+  for (const [areaId, spec] of Object.entries(AREAS as Record<string, AreaSpec>)) for (const [instance, hubId] of Object.entries(spec.hubs ?? {})) entries.push([`${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`, [{ areaId, instance: Number(instance) }]]);
   const out: Record<string, string[]> = {};
-  for (const [roomId, refs] of Object.entries(ROOMS)) {
+  for (const [roomId, refs] of entries) {
     const resolved: string[] = [];
     for (const ref of refs) {
       const id = ref.instance === undefined ? ref.areaId : `${ref.areaId}-${ref.instance}`;
