@@ -114,6 +114,23 @@
       opacity: 1;
     }
   }
+  /* The venue map's "Try landscape mode" tip (TopStrip.tsx): the phone glyph
+     turns on its side, holds, and turns back upright, once every 4 s. */
+  --animate-map-tip-rotate: map-tip-rotate 4s ease-in-out infinite;
+  @keyframes map-tip-rotate {
+    0%,
+    15% {
+      transform: rotate(0deg);
+    }
+    30%,
+    65% {
+      transform: rotate(-90deg);
+    }
+    80%,
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 }
 
 :root {

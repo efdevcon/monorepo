@@ -5,6 +5,12 @@
 files live in `src/app/(page-layout)/map/venue-map-3d/`, the build script in
 `scripts/plan-map-build.mjs`, the project doc in `docs/venue-map-3d.md`.
 **Trigger:** the real per-floor SVG designs are delivered.
+**Executed 2026-10-25** on `add-jio-venue-map` with the JWCC Level 3 export: phases 0–7 in one
+pass, as a separate variant behind the `venueMapNext` gate (phase 8, the swap, is pending the
+remaining floors and Scott's review). The living description of what was built is
+`docs/venue-map.md`; §3 below is superseded by its export contract (layer groups
+`Background / Colour_Box / Outline / Text & Icon` instead of the slash grammar, walls as stroked
+lines, door openings as slab-coloured patches).
 **Rule:** whenever a map feature, constant or decision changes on the branch, update §1 (feature
 checklist) and the changelog here, not just `docs/venue-map-3d.md`.
 
@@ -390,6 +396,31 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Which categories beyond stages belong in the floor legend (community hubs? discussion corners?).
 
 ## Changelog
+- 2026-10-26 (walls) — the 2D outline ring around Levels 0–2 (a closed stroke outside the slab) is
+  dropped by the build (`OUTLINE_RING_MIN_PX`); it stood off the floor as a second wall.
+- 2026-10-26 (legend) — every floor's legend lists place types with their icons (`data/legend.ts`
+  specs, by area id or category, `swatch` keeps a colour square: Level 3's Community and
+  Supporters); game-zone icon.
+- 2026-10-26 (icons) — eleven sprites from Scott's icons folder wired to the lower floors' places
+  (stairs on Level 2 become sprite-only places); Pretalx `cls-builders-room` → CLS Hangout Area for now.
+- 2026-10-26 (feedback) — parked floors taken off the hit layer (they stole hovers and taps through
+  the open floor); floor labels anchored on the whole building's extent so they form one column;
+  the blue box beside the CLS stage is the CLS Hangout Area (Community, Pretalx room unmapped).
+- 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
+  walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
+  "Community"); Food Garden icon fixed at 16 m (`iconSize`).
+- 2026-10-26 — Levels 0–2 added from Scott's exports (`L0`–`L2.svg`): floors registered on the
+  elevator marks (`register.ts`; the frames are at 1.32× / 1.5× Level 3's scale), tolerant Outline
+  rules (unnamed walls by stroke width on floors that name none, hatches, escalator symbols by
+  structure, named symbol groups without an icon stay flat), loose label groups skipped, bundle v3
+  with per-level `units`; catalogue + categories (`workshops`, `suites`, Check-in chip) for the
+  new floors, Pretalx rooms for the Lightning Stage, workshops and the two CLS rooms; shortcut keys
+  are the floor numbers. See `docs/venue-map.md` §1, §3, §6.
+- 2026-10-25 — executed: `scripts/map-build/` (TypeScript, no new deps, tests), catalogue
+  `data/areas.ts` + `categories.ts` + `levels.ts`, runtime in `map/venue-map/` per §5 (reducer,
+  camera rig with state-derived commands, single raycast owner, merged statics), prototype kept
+  as the default variant, old pan-zoom map deleted (§0, §8 answered: yes). Single-floor venue
+  handled (`SINGLE_FLOOR`). See `docs/venue-map.md`.
 - 2026-09-17 — first version from the full prototype inventory.
 - 2026-09-17 (later) — ISO + flat view removed, FloorSlider, always-on dimming floor labels, legend
   on top, shortcuts 1/2/3/A, start view 25° left with runtime `projectedExtent` fit, touch = pan /

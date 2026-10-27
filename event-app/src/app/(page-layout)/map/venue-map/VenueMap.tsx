@@ -1,808 +1,181 @@
-'use client';
-// https://github.com/timmywil/panzoom
-import React, { useRef, useEffect, useState } from 'react';
-import { usePanzoom, PanzoomControls } from './panzoom';
-import { useTabReselect } from '@/components/paneContext';
-import MapWrapper from './maps/MapWrapper';
-import cn from 'classnames';
-import css from './map.module.scss';
-import { useSearchParams, useRouter } from 'next/navigation';
-// import { getViewportPosition } from './utils/svgToLookup';
-import MapPane from './components/panes';
-import { SurfaceFilters, ListFilters } from './components/filters';
-import { HomeIcon } from 'lucide-react';
-import { poisData } from '@/data/pois';
-import { districtsData } from '@/data/districts';
-import { poiGroupsData } from '@/data/poiGroups';
-import { supportersData } from '@/data/supporters';
-import backgroundImage from './bg-image-new.png';
+"use client";
 
-const initialFilters = {
-  search: '', // Search term, not supported yet but added for future use
-  selection: null, // Array for flexibility in case we want to build more complex filter combinations
-} as {
-  search: string;
-  selection: string | null;
-};
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
+import cn from "classnames";
+import { useSearchParams } from "next/navigation";
+import { Search, TextSearch } from "lucide-react";
+import { usePaneActive, useTabReselect } from "@/components/paneContext";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
+import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
+import { useIsTeam } from "@/data/release/releaseGates";
+import { APP_CHROME_OFF_ATTR, isDesktopNow, useIsDesktop, useIsPhoneLandscape, useMediaQuery } from "@/hooks/useIsDesktop";
+import { FOCUS_ZOOM_DESKTOP, FOCUS_ZOOM_MOBILE } from "./camera/constants";
+import { LEVELS, type LevelId } from "./data/levels";
+import { areaOf, compositeOf, type AreaKey } from "./data/resolve";
+import { AREA_PARAM, parseAreaParam } from "./data/roomAreas";
+import { buildFloorLegend, FIND_GROUPS, primaryOf, type FindEntry, type LegendEntry } from "./find/catalogue";
+import { FindContent } from "./find/FindContent";
+import { SearchContent } from "./search/SearchContent";
+import { initialState, reduce, SINGLE_FLOOR } from "./state/mapStore";
+import { AreaCard } from "./ui/AreaCard";
+import { ControlPill } from "./ui/ControlPill";
+import { DebugCorner, DebugPanel, DebugToggle } from "./ui/Debug";
+import { FloorSlider } from "./ui/FloorSlider";
+import { MapPanel } from "./ui/MapPanel";
+import { MapSheet } from "./ui/MapSheet";
+import { ControlsLegend, FloorLegend } from "./ui/TopStrip";
+import { useMapShortcuts } from "./ui/useMapShortcuts";
 
-const baseZoomLevel = 4.1;
+// three touches WebGL, so the scene only ever renders in the browser.
+const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div className="p-8 text-dc-muted">Loading map…</div> });
 
-export const VenueMap = () => {
-  // const router = useRouter();
-  const svgRef = useRef<SVGSVGElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  // const [elementLookup, setElementLookup] = useState<SVGLookup>({});
-  // const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
-  const [hoveredElement, setHoveredElement] = useState<string | null>(null);
-  const searchParams = useSearchParams();
-  const [listFiltersOpen, setListFiltersOpen] = useState(false);
-  const initialZoomLevel = useRef<number | null>(null);
-  // const [elementData, setElementData] = useState<{ [key: string]: any }>({
-  //   'art-exhibition': {
-  //     groups: ['art'],
-  //   },
-  //   'entrance-1': {
-  //     groups: ['art'],
-  //   },
-  //   'cowork-8': {
-  //     groups: ['coworks'],
-  //   },
-  //   'cowork-1': {
-  //     groups: ['coworks'],
-  //   },
-  // });
-  const [zoomLevel, setZoomLevel] = useState<'zoomed-in' | 'zoomed-out'>(
-    'zoomed-out'
-  );
+/**
+ * The venue map (JWCC plans): the floors extruded from the top-down SVGs
+ * and rendered in 3D. Drag turns the floor (horizontal only, clamped),
+ * right-drag pans, wheel zooms; on phones one finger pans, two fingers turn
+ * and pinch-zoom. Double-tap zooms in on a point, a tap on a place opens
+ * AreaCard, re-tapping the Map tab resets the view. Find (bottom-left) lists
+ * every place by category, Search beside it finds them by name; the top
+ * strip explains the controls while the floors are stacked and the open
+ * floor's colours otherwise. State lives in one reducer (state/mapStore.ts);
+ * the camera reacts to it (camera/CameraRig.tsx).
+ */
+export function VenueMap() {
+  const [state, dispatch] = useReducer(reduce, initialState);
+  const { floor, selected, group, groupName, focus, resetSeq, panel, query, debug, tuning } = state;
+  const active = usePaneActive();
+  const desktop = useIsDesktop();
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const team = useIsTeam();
+  const cardAnchorRef = useRef<HTMLDivElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const stacked = floor === null;
+  const selectedArea = selected ? areaOf(selected) : null;
+  const groupSet = useMemo(() => (group ? new Set<AreaKey>(group) : null), [group]);
+  // Phones: the card lands on the floating feedback button's corner; hide the button while the card is open.
+  useHideFeedbackFab(selected !== null && !desktop && active);
+  // A phone in landscape drops the bottom tab bar while the map shows, as the schedule does (<html data-app-chrome-off>, Nav.tsx):
+  // the short viewport goes to the floor; the bar is back on rotating upright or leaving the tab (Scott, 2026-10-26).
+  const phoneLandscape = useIsPhoneLandscape();
+  const chromeOff = phoneLandscape && !desktop && active;
+  useLayoutEffect(() => {
+    if (!chromeOff) return;
+    const root = document.documentElement;
+    root.toggleAttribute(APP_CHROME_OFF_ATTR, true);
+    return () => root.removeAttribute(APP_CHROME_OFF_ATTR);
+  }, [chromeOff]);
 
-  const [currentFilters, setCurrentFilters] =
-    useState<typeof initialFilters>(initialFilters);
+  // Phone legend: shown until the first gesture, back whenever the stack returns. Derived in render.
+  const [legendGestured, setLegendGestured] = useState(false);
+  const [legendStacked, setLegendStacked] = useState(stacked);
+  if (stacked !== legendStacked) {
+    setLegendStacked(stacked);
+    if (stacked) setLegendGestured(false);
+  }
+  const onInteract = useCallback(() => setLegendGestured(true), []);
 
-  const selection = searchParams.get('filter');
+  /** Show footprints (all on one floor): open the floor, select the one nearest the group's centre, highlight the rest, send the camera. */
+  const showAreas = useCallback((keys: AreaKey[]) => {
+    const areas = keys.map(areaOf).filter((a): a is NonNullable<typeof a> => a !== null);
+    if (!areas.length) return;
+    const composite = compositeOf(areas.map((a) => a.key));
+    dispatch({ type: "showAreas", keys: areas.map((a) => a.key), primary: primaryOf(areas), zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, name: composite?.name });
+  }, []);
 
-  const reset = () => {
-    setCurrentFilters(initialFilters);
-    setListFiltersOpen(false);
-  };
-
-  const { panzoomInstance, interactionsLocked, recentlyInteractedRef } =
-    usePanzoom(
-      'venue-map',
-      setZoomLevel,
-      zoomLevel,
-      reset,
-      selection ? baseZoomLevel : undefined
-    );
-
-  // Re-tapping the Map tab resets the map like the Home control: filters
-  // cleared, view back to the initial position and zoom, and any URL
-  // selection dropped (replaceState is Next-integrated, no fetch). Only the
-  // `filter` param goes; dataset / mockNow / debug params are carried across
-  // the whole app and must survive.
-  const resetView = () => {
-    reset();
-    if (panzoomInstance) {
-      panzoomInstance.pause();
-      panzoomInstance.moveTo(0, 0);
-      panzoomInstance.zoomAbs(0, 0, 1);
-      panzoomInstance.resume();
-    }
-    if (selection) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete('filter');
-      window.history.replaceState({}, '', url.toString());
-    }
-  };
-  useTabReselect(resetView);
-
+  // Deep link from the schedule ("Show on Map"): `?area=<level>/<id>[,…]`, re-run on every visit of the pane.
+  const areaParam = useSearchParams().get(AREA_PARAM);
+  const visit = areaParam && active ? areaParam : null;
   useEffect(() => {
-    const selection = searchParams.get('filter');
-
-    if (selection && panzoomInstance) {
-      setListFiltersOpen(false);
-
-      setCurrentFilters({
-        ...currentFilters,
-        selection: selection,
-      });
-
-      setTimeout(() => {
-        // focusOnElement(selection);
-        moveToElement(selection, false);
-      }, 50);
-
-      // focusOnElement(selection);
-
-      // router.replace(`/map`);
-    }
-  }, [searchParams, panzoomInstance]);
-
-  const hasActiveFilters =
-    currentFilters.selection !== null || currentFilters.search.length > 0;
-
-  /*
-    Each click should resolve up until it finds an element with notion data available
-    When no notion data available, return null
-  */
-  const resolveClickable = (id: string): string | null => {
-    // Check if element exists in POI data
-    const poiData = poisData.find((poi) => poi.layerName === id);
-    if (poiData) return id;
-
-    // Check if element exists in supporter data
-    const supporterData = Object.values(supportersData).find(
-      (supporter) => supporter.layerName === id
-    );
-    if (supporterData) return id;
-
-    // Check if element exists in district data
-    const districtData = Object.values(districtsData).find(
-      (district: any) => district.layerName === id
-    );
-    if (districtData) return id;
-
-    // Check if element exists in POI group data
-    const groupData = Object.values(poiGroupsData).find(
-      (group: any) => group.layerName === id
-    );
-    if (groupData) return id;
-
-    // No notion data available for this element
-    return null;
-  };
-
-  // Apply hover effect to all SVG elements dynamically
-  useEffect(() => {
-    if (!svgRef.current) return;
-
-    // Inject glow filter into SVG if it doesn't exist
-    if (!svgRef.current.querySelector('#glow')) {
-      let defs = svgRef.current.querySelector('defs');
-      if (!defs) {
-        defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-        svgRef.current.insertBefore(defs, svgRef.current.firstChild);
-      }
-
-      const filter = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'filter'
-      );
-      filter.setAttribute('id', 'glow');
-      filter.setAttribute('x', '-50%');
-      filter.setAttribute('y', '-50%');
-      filter.setAttribute('width', '200%');
-      filter.setAttribute('height', '200%');
-
-      const feFlood = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feFlood'
-      );
-      feFlood.setAttribute('flood-color', 'rgba(0, 115, 222, 1)');
-      feFlood.setAttribute('result', 'flood');
-
-      const feComposite = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feComposite'
-      );
-      feComposite.setAttribute('in', 'flood');
-      feComposite.setAttribute('in2', 'SourceGraphic');
-      feComposite.setAttribute('operator', 'in');
-      feComposite.setAttribute('result', 'mask');
-
-      const feGaussianBlur = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feGaussianBlur'
-      );
-      feGaussianBlur.setAttribute('in', 'mask');
-      feGaussianBlur.setAttribute('stdDeviation', '3');
-      feGaussianBlur.setAttribute('result', 'blur');
-
-      const feMerge = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feMerge'
-      );
-
-      const feMergeNode1 = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feMergeNode'
-      );
-      feMergeNode1.setAttribute('in', 'blur');
-
-      const feMergeNode2 = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'feMergeNode'
-      );
-      feMergeNode2.setAttribute('in', 'SourceGraphic');
-
-      feMerge.appendChild(feMergeNode1);
-      feMerge.appendChild(feMergeNode2);
-
-      filter.appendChild(feFlood);
-      filter.appendChild(feComposite);
-      filter.appendChild(feGaussianBlur);
-      filter.appendChild(feMerge);
-
-      defs.insertBefore(filter, defs.firstChild);
-    }
-
-    const svgElements = svgRef.current.querySelectorAll('[id]:not(g)');
-
-    svgElements.forEach((element) => {
-      const isSelected = currentFilters.selection === element.id;
-      const isHovered = false; // hoveredElement === element.id;
-
-      const svgElement = element as SVGElement;
-      if (isSelected || isHovered) {
-        // svgElement.classList.add(css['pulse']);
-        svgElement.style.filter = 'url(#glow)';
-      } else if (hasActiveFilters) {
-        // svgElement.classList.remove(css['pulse']);
-        // Selected fallback
-        // svgElement.style.opacity = '0.15';
-        // svgElement.style.transition = 'opacity 0.5s ease-in-out';
-        svgElement.style.filter = 'none';
-      } /*else if (hoveredElement) {
-        // Hover fallback
-        svgElement.style.opacity = '0.5';
-        svgElement.style.filter = 'none';
-      } */ else {
-        // Reset fallback
-        // svgElement.classList.remove(css['pulse']);
-        if (svgElement.style.opacity) {
-          svgElement.style.opacity = '';
-        }
-        if (svgElement.style.filter) {
-          svgElement.style.filter = '';
-        }
-      }
-    });
-  }, [currentFilters.selection, hoveredElement, hasActiveFilters]);
-
-  const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as SVGElement;
-
-    if (
-      target &&
-      target.id &&
-      target.tagName !== 'g' &&
-      target.tagName !== 'svg' &&
-      target.id !== 'venue-map'
-    ) {
-      // target.classList.add('highlight-active');
-      // target.classList.add(css['highlighted']);
-
-      if (hoveredElement !== target.id) {
-        setHoveredElement(target.id);
-      }
-    }
-  };
-
-  const handleSVGMouseOut = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as SVGElement;
-    if (
-      target &&
-      target.id &&
-      target.tagName !== 'g' &&
-      target.tagName !== 'svg' &&
-      target.id !== 'venue-map'
-    ) {
-      // target.classList.remove(css['highlighted']);
-      setHoveredElement(null);
-    }
-  };
-
-  // const zoomToElement = (id: string) => {
-  //   const svgElement = document.getElementById(id);
-  //   if (!svgElement || !panzoomInstance || !containerRef.current) return;
-  //   const containerRect = containerRef.current.getBoundingClientRect();
-  //   const targetCenterX = containerRect.left + containerRect.width / 2;
-  //   const targetCenterY = containerRect.top + containerRect.height / 2;
-
-  //   const { scale: currentZoom } = panzoomInstance.getTransform();
-
-  //   panzoomInstance.zoomAbs(
-  //     targetCenterX,
-  //     targetCenterY,
-  //     Math.max(currentZoom, baseZoomLevel)
-  //   );
-  // };
-
-  const moveToElement = (id: string, smooth: boolean = true, offset = 50) => {
-    const svgElement = document.getElementById(id);
-    if (!svgElement || !panzoomInstance || !containerRef.current) return;
-    const elementRect = svgElement.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const elementCenterX = elementRect.left + elementRect.width / 2;
-    const elementCenterY = elementRect.top + elementRect.height / 2;
-    const targetCenterX = containerRect.left + containerRect.width / 2;
-    const targetCenterY = containerRect.top + containerRect.height / 2;
-
-    const deltaX = targetCenterX - elementCenterX;
-    const deltaY = targetCenterY - elementCenterY;
-
-    if (smooth) {
-      panzoomInstance.moveBy(deltaX, deltaY - offset, true);
-    } else {
-      panzoomInstance.moveBy(deltaX, deltaY - offset, false);
-    }
-  };
-
-  const focusOnElement = (id: string, offset: number = 50) => {
-    const svgElement = document.getElementById(id);
-
-    if (!svgElement || !panzoomInstance || !containerRef.current) return;
-
-    const currentTransform = panzoomInstance.getTransform();
-    const targetZoom = Math.max(currentTransform.scale, baseZoomLevel);
-
-    // Get element and container rectangles
-    const elementRect = svgElement.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
-
-    // Element center in container-relative coordinates
-    const elementScreenX =
-      elementRect.left + elementRect.width / 2 - containerRect.left;
-    const elementScreenY =
-      elementRect.top + elementRect.height / 2 - containerRect.top;
-
-    // Target position in container-relative coordinates (center of container)
-    const targetScreenX = containerRect.width / 2;
-    const targetScreenY = containerRect.height / 2 - offset;
-
-    // Calculate element's position in SVG coordinate space (unaffected by transform)
-    // Using: svgPos = (screenPos - transform.offset) / scale
-    const elementSvgX =
-      (elementScreenX - currentTransform.x) / currentTransform.scale;
-    const elementSvgY =
-      (elementScreenY - currentTransform.y) / currentTransform.scale;
-
-    // Calculate what the transform offset should be to position this SVG point at target
-    // Using: screenPos = svgPos * scale + transform.offset
-    // Rearranging: transform.offset = screenPos - svgPos * scale
-    const targetTransformX = targetScreenX - elementSvgX * targetZoom;
-    const targetTransformY = targetScreenY - elementSvgY * targetZoom;
-
-    // Calculate the focal point that produces the desired transform when zooming
-    // From panzoom source: transform.x = focalX - ratio * (focalX - transform.x)
-    // We want: targetTransformX = focalX - ratio * (focalX - currentTransform.x)
-    // Solving: focalX = (targetTransformX - ratio * currentTransform.x) / (1 - ratio)
-    const ratio = targetZoom / currentTransform.scale;
-
-    // Handle edge case where there's no zoom change (ratio = 1)
-    if (Math.abs(ratio - 1) < 0.001) {
-      const deltaX = targetTransformX - currentTransform.x;
-      const deltaY = targetTransformY - currentTransform.y;
-
-      // Validate deltas before moving
-      if (!isFinite(deltaX) || !isFinite(deltaY)) {
-        console.error('Invalid pan deltas:', {
-          deltaX,
-          deltaY,
-          targetTransformX,
-          targetTransformY,
-          currentTransform,
-        });
-        return;
-      }
-
-      panzoomInstance.moveBy(deltaX, deltaY, true);
-    } else {
-      const focalX =
-        (targetTransformX - ratio * currentTransform.x) / (1 - ratio);
-      const focalY =
-        (targetTransformY - ratio * currentTransform.y) / (1 - ratio);
-
-      // Validate focal points and zoom values before calling smoothZoomAbs
-      if (
-        !isFinite(focalX) ||
-        !isFinite(focalY) ||
-        !isFinite(targetZoom) ||
-        targetZoom <= 0
-      ) {
-        console.error('Invalid zoom parameters:', {
-          focalX,
-          focalY,
-          targetZoom,
-          ratio,
-          currentTransform,
-          targetTransformX,
-          targetTransformY,
-          elementSvgX,
-          elementSvgY,
-        });
-        return;
-      }
-
-      panzoomInstance.smoothZoomAbs(focalX, focalY, targetZoom);
-
-      if (zoomLevel === 'zoomed-out') {
-        setTimeout(() => {
-          moveToElement(id, true, 0);
-        }, 500);
-      }
-    }
-  };
-
-
-  const onSVGElementClick = (
-    id: string,
-    event: React.MouseEvent<SVGElement>
-  ) => {
-    // if (elementLookup[id] && !interactionsLocked) {
-    // const isCurrentlySelected = selectedElement === id;
-    // setSelectedElement(isCurrentlySelected ? null : id);
-
-    // console.log(id, 'id');
-
-    // Bubble up DOM tree until we find an element with notion data
-    let currentElement = event.target as SVGElement | null;
-    let resolvedId: string | null = null;
-
-    while (currentElement && currentElement.tagName !== 'svg') {
-      let id = currentElement.id;
-      if (id === 'onboarding_2') id = 'onboarding';
-      if (id === 'registration-1') id = 'registration';
-      if (id === 'media-area') id = 'media';
-      if (id === 'food-truck-1') id = 'food-truck';
-
-      console.log(id, 'currentElement.id');
-      if (id) {
-        const clicked = resolveClickable(id);
-        if (clicked) {
-          resolvedId = clicked;
-          break;
-        }
-      }
-      currentElement = currentElement.parentElement as SVGElement | null;
-    }
-
-    if (!resolvedId) {
-      const pavillions = [
-        'building-green-pavilion',
-        'building-the-cave',
-        'building-the-hub-amphitheater',
-        'building-main-arena',
-        'building-quiet-cowork',
-        'building-red-pavilion',
-        'building-blue-pavilion',
-        'building-music-stage',
-        'building-yellow-pavillion',
-        'building-entertainment',
-      ];
-
-      // Check if clicked element or any parent is a pavilion
-      let checkElement = event.target as SVGElement | null;
-      while (checkElement && checkElement.tagName !== 'svg') {
-        if (checkElement.id && pavillions.includes(checkElement.id)) {
-          console.log('focusing on pavilion', checkElement.id);
-          // Ignore clicks if user recently panned/zoomed
-          if (recentlyInteractedRef.current) {
-            return;
-          }
-
-          focusOnElement(checkElement.id, 0);
-          return;
-        }
-        checkElement = checkElement.parentElement as SVGElement | null;
-      }
-    }
-
-    const currentZoom = panzoomInstance?.getTransform().scale;
-
-    // Prevent selection if zoom level changed (user was zooming, not clicking)
-    if (
-      initialZoomLevel.current !== null &&
-      currentZoom !== initialZoomLevel.current
-    ) {
-      initialZoomLevel.current = null;
-      return;
-    }
-
-    initialZoomLevel.current = null;
-
-    setListFiltersOpen(false);
-
-    if (currentFilters.selection && !resolvedId) {
-      //  } && resolvedId !== currentFilters.selection) {
-      setCurrentFilters({
-        ...currentFilters,
-        selection: null,
-      });
-    } else {
-      setCurrentFilters({
-        ...currentFilters,
-        selection: resolvedId,
-      });
-
-      console.log('setting selection', resolvedId);
-
-      if (resolvedId) {
-        focusOnElement(resolvedId);
-      }
-    }
-  };
+    if (!visit) return;
+    const target = parseAreaParam(visit);
+    if (target) showAreas(target.keys);
+  }, [visit, showAreas]);
+
+  const reset = useCallback(() => dispatch({ type: "reset" }), []);
+  useTabReselect(reset);
+  const closePanel = useCallback(() => dispatch({ type: "closePanel" }), []);
+  const openFind = useCallback(() => dispatch({ type: "openPanel", panel: "find" }), []);
+  const openSearch = useCallback(() => dispatch({ type: "openPanel", panel: "search" }), []);
+  const closeCard = useCallback(() => dispatch({ type: "select", key: null }), []);
+  const showLevel = useCallback((level: LevelId) => dispatch({ type: "openFloor", level }), []);
+  const toggleLevel = useCallback((level: LevelId) => dispatch({ type: "toggleFloor", level }), []);
+  const pickEntry = (entry: Pick<FindEntry, "areas"> | LegendEntry) => showAreas(entry.areas.map((a) => a.key));
+  useMapShortcuts({ showLevel, reset, openFind, openSearch, closeCard }, { enabled: panel === null, hasCard: selected !== null });
+
+  const legend = useMemo(() => (floor ? buildFloorLegend(floor) : []), [floor]);
+  const levelName = LEVELS.find((l) => l.id === floor)?.name ?? "";
+  const stripHidden = selected !== null || panel !== null;
 
   return (
-    <div
-      ref={containerRef}
-      id="venue-container"
-      className={cn(
-        'relative w-full h-full overflow-hidden grow flex py-16 px-4',
-        // 'gradient-background',
-        css.map,
-        zoomLevel === 'zoomed-in' && css['zoomed-in'],
-        zoomLevel === 'zoomed-out' && css['zoomed-out'],
-        hoveredElement && css['highlight-active']
-        // hasActiveFilters && css['has-selection-or-hover']
-      )}
-      onClick={(e) => {
-        e.stopPropagation();
-        reset();
-      }}
-      onTouchEnd={(e) => {
-        e.stopPropagation();
-        reset();
-      }}
-    >
-      {/* Plain <img>, not next/image: the optimizer would serve per-device
-          width variants under /_next/image, which the SW can only cache once a
-          device has opened the map online. The imported asset is one stable
-          hashed URL, warmed by CacheWarmer (MAP_IMAGES) so the map has its
-          background offline even on the first visit. quality={100} meant the
-          optimizer saved nothing anyway. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={backgroundImage.src}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
+    // min-w-0 / min-h-0: the canvas keeps its last intrinsic size, and a flex item's default
+    // `min-width: auto` would stop this root shrinking below it when the window narrows.
+    <div className="relative min-h-0 min-w-0 flex-1">
+      <Scene
+        floor={floor}
+        selected={selected}
+        group={groupSet}
+        focus={focus}
+        resetSeq={resetSeq}
+        tuning={tuning}
+        active={active}
+        debug={debug}
+        reducedMotion={reducedMotion}
+        desktop={desktop}
+        onTapArea={(key) => dispatch({ type: "select", key })}
+        onTapFloor={toggleLevel}
+        onTapBackground={closeCard}
+        onInteract={onInteract}
+        cardAnchorRef={cardAnchorRef}
       />
-      {/* Panzoom container */}
-      <div
-        id="venue-map"
-        className="relative w-full"
-        onMouseOver={handleSVGMouseOver}
-        onMouseOut={handleSVGMouseOut}
-      >
-        <MapWrapper
-          ref={svgRef}
-          onSVGElementClick={onSVGElementClick}
-          onInteractionStart={() => {
-            if (panzoomInstance) {
-              initialZoomLevel.current = panzoomInstance.getTransform().scale;
-            }
-          }}
-        />
-
-        {/* Pin layer overlay - moves with the panzoom */}
-        {/* <div
-          className="absolute top-0 left-0 overflow-visible"
-          style={{ pointerEvents: 'none' }}
-        >
-          {hoveredElement && elementLookup[hoveredElement] && (
-            <Pin
-              key={hoveredElement}
-              x={elementLookup[hoveredElement].centerX * svgScale.scaleX}
-              y={elementLookup[hoveredElement].centerY * svgScale.scaleY}
-              label={hoveredElement}
-              color="#FF0000"
-              size={16}
-            />
-          )}
-        </div> */}
+      {/* Top strip: the controls while stacked, the open floor's legend otherwise (floors with nothing to explain show the controls). */}
+      {stacked || legend.length === 0 ? <ControlsLegend hidden={stripHidden} dismissed={legendGestured} /> : <FloorLegend levelName={levelName} entries={legend} hidden={stripHidden} onPick={pickEntry} />}
+      {/* Phones have no header bar on /map, so the header's offline marker moves to the map's top-right corner. */}
+      <div className="pointer-events-none fixed right-4 top-[calc(var(--safe-top)+12px)] z-10 phone-landscape:right-[max(16px,var(--safe-right))] lg:hidden">
+        <OfflineIndicator />
       </div>
-
-      <MapPane
-        selection={currentFilters.selection}
-        setSelection={(selection) =>
-          setCurrentFilters({
-            ...currentFilters,
-            selection: selection as string | null,
-          })
-        }
-      />
-      {/* Filters */}
-      {/* <div className="absolute top-4 left-4 flex flex-col gap-2 z-10"> */}
-      {/* {allPossibleFilters.groups.map((group) => (
-          <button
-            key={group}
-            className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              panzoomInstance?.moveTo(0, 0);
-              panzoomInstance?.smoothZoomAbs(0, 0, 1);
-              setCurrentFilters({ ...currentFilters, selection: group });
-            }}
-            onTouchEnd={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              panzoomInstance?.moveTo(0, 0);
-              panzoomInstance?.smoothZoomAbs(0, 0, 1);
-              setCurrentFilters({ ...currentFilters, selection: group });
-            }}
-          >
-            {group}
-          </button>
-        ))} */}
-      {/* </div> */}
-
-      {/* Zoom controls. bottom clears the docked tab bar (--nav-clearance:
-          its measured height incl. safe-area, from Nav.tsx) + the old 12px
-          gap — the full-width bar covers the screen-bottom strip the old
-          floating pill left open. */}
+      {/* Bottom controls: Find + Search pills bottom-left, the floor slider bottom-right; on phones the card covers them, so they fade out and go inert. */}
       <div
-        className="absolute bottom-[calc(var(--nav-clearance)+12px)] lg:bottom-16 right-3 shadow-xs flex flex-col gap-2 z-10"
-        onTouchStartCapture={(e) => e.stopPropagation()}
-        onPointerDownCapture={(e) => e.stopPropagation()}
-      >
-        {/* <button
-          className="basic-button white-button small-button"
-          onMouseDown={(e) => e.stopPropagation()}
-          data-prevent-interaction-element={true}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              panzoomInstance.smoothZoom(0, 0, 1.1);
-            }
-          }}
-          onTouchEnd={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              panzoomInstance.smoothZoom(0, 0, 1.1);
-            }
-          }}
-        >
-          +
-        </button>
-        <button
-          className="basic-button white-button small-button"
-          onMouseDown={(e) => e.stopPropagation()}
-          data-prevent-interaction-element={true}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              reset();
-
-              panzoomInstance.pause();
-
-              panzoomInstance.moveTo(0, 0);
-              panzoomInstance.zoomAbs(0, 0, 1);
-
-              panzoomInstance.resume();
-            }
-          }}
-          onTouchEnd={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              reset();
-              panzoomInstance.pause();
-              panzoomInstance.moveTo(0, 0);
-              panzoomInstance.zoomAbs(0, 0, 1);
-              panzoomInstance.resume();
-            }
-          }}
-        >
-          -
-        </button> */}
-        <button
-          className="basic-button white-button small-button !px-2"
-          data-prevent-interaction-element={true}
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              reset();
-
-              panzoomInstance.pause();
-
-              panzoomInstance.moveTo(0, 0);
-              panzoomInstance.zoomAbs(0, 0, 1);
-
-              panzoomInstance.resume();
-            }
-          }}
-          onTouchEnd={(e) => {
-            e.stopPropagation();
-            if (panzoomInstance) {
-              reset();
-
-              panzoomInstance.pause();
-
-              panzoomInstance.moveTo(0, 0);
-              panzoomInstance.zoomAbs(0, 0, 1);
-
-              panzoomInstance.resume();
-            }
-          }}
-        >
-          <HomeIcon className="w-4 h-4 !text-[rgba(0,115,222,1)]" />
-        </button>
-      </div>
-
-      <div
+        inert={(selected !== null && !desktop) || undefined}
         className={cn(
-          'absolute bottom-[calc(var(--nav-clearance)+8px)] lg:bottom-[68px] flex justify-center text-white items-center text-center left-0 opacity-80 w-full z-[10] text-[11px] font-bold transition-opacity duration-300',
-          zoomLevel === 'zoomed-in' && '!opacity-0 pointer-events-none'
+          "pointer-events-none fixed inset-x-4 bottom-[calc(var(--nav-clearance)+12px)] z-10 flex items-end justify-between transition-opacity duration-150 ease-out motion-reduce:transition-none lg:inset-x-6 lg:bottom-6",
+          // Landscape with the bar gone: the pills clear the notch and the home indicator.
+          "phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:right-[max(16px,var(--safe-right))] phone-landscape:bottom-[calc(var(--nav-clearance)+max(12px,var(--safe-bottom)))]",
+          selected !== null && "max-lg:opacity-0"
         )}
       >
-        Zoom in for details
+        <div className="flex items-center gap-2">
+          <ControlPill icon={TextSearch} label="Find" trigger="find" open={panel === "find"} onClick={() => (panel === "find" ? closePanel() : openFind())} />
+          <ControlPill icon={Search} label="Search" trigger="search" open={panel === "search"} onClick={() => (panel === "search" ? closePanel() : openSearch())} />
+        </div>
+        {!SINGLE_FLOOR && <FloorSlider value={floor} onSlide={showLevel} onToggle={toggleLevel} onAll={reset} />}
       </div>
-
-      <SurfaceFilters
-        selection={currentFilters.selection}
-        setSelection={(selection) => {
-          setCurrentFilters({
-            ...currentFilters,
-            selection: selection,
-          });
-          if (selection) {
-            focusOnElement(selection);
-          }
-        }}
-      />
-      <ListFilters
-        open={listFiltersOpen}
-        setOpen={setListFiltersOpen}
-        selection={currentFilters.selection}
-        setSelection={(selection) => {
-          setCurrentFilters({
-            ...currentFilters,
-            selection: selection,
-          });
-          if (selection) {
-            focusOnElement(selection);
-          }
-        }}
-      />
+      {/* One shell per breakpoint so only one Escape handler is live per panel. */}
+      {desktop ? (
+        <>
+          <MapPanel id="map-find-panel" label="Find a place" open={panel === "find"} onClose={closePanel}>
+            <FindContent groups={FIND_GROUPS} onPick={pickEntry} onClose={closePanel} />
+          </MapPanel>
+          <MapPanel id="map-search-panel" label="Search the map" open={panel === "search"} onClose={closePanel} inputRef={searchInputRef}>
+            <SearchContent groups={FIND_GROUPS} query={query} onQueryChange={(q) => dispatch({ type: "setQuery", query: q })} onPick={pickEntry} onPickFloor={showLevel} onClose={closePanel} inputRef={searchInputRef} floorTags={!SINGLE_FLOOR} />
+          </MapPanel>
+        </>
+      ) : (
+        <>
+          <MapSheet label="Find a place" open={panel === "find"} onOpenChange={(open) => (open ? openFind() : closePanel())}>
+            <FindContent groups={FIND_GROUPS} onPick={pickEntry} onClose={closePanel} />
+          </MapSheet>
+          <MapSheet label="Search the map" open={panel === "search"} onOpenChange={(open) => (open ? openSearch() : closePanel())}>
+            <SearchContent groups={FIND_GROUPS} query={query} onQueryChange={(q) => dispatch({ type: "setQuery", query: q })} onPick={pickEntry} onPickFloor={showLevel} onClose={closePanel} floorTags={!SINGLE_FLOOR} />
+          </MapSheet>
+        </>
+      )}
+      <AreaCard area={selectedArea} group={group !== null} groupName={groupName} groupAreas={group} onClose={closeCard} anchorRef={cardAnchorRef} />
+      {team && (
+        <DebugCorner panel={debug && <DebugPanel tuning={tuning} floor={floor} onTune={(t) => dispatch({ type: "tune", tuning: t })} onFloor={(level) => (level ? showLevel(level) : dispatch({ type: "showStack" }))} />}>
+          <DebugToggle pressed={debug} onToggle={() => dispatch({ type: "toggleDebug" })} />
+        </DebugCorner>
+      )}
     </div>
   );
-};
-
-/*
-  1) Select multiple svg elements (via filter selection, e.g. "toilet" should map to all toilets) + highlight them
-  2) Resolve information by id (e.g. "toilet-1" should show information about the toilet (if there is any))
-  3) Deep linking - e.g. /map&filter=toilet-1
-  4) Search - e.g. /map?search="toilet"
-
-
-  
-    1) Zoom into element programatically by id (so we can use it via search params / url deep link)
-    2) Place pin on elements
-    3) Highlight elements
-    4) Get current zoom level
-    5) Show different parts of the map depending on the zoom level (low to high fidelity)
-*/
-
-/*
-  1) All data should be fetched and ready
-  
-  2) On click, set id DONE
-    2.1) Pane should receive the current selection DONE
-    2.2) Pane should have different views depending on the selection
-      2.2.0) Shared building blocks - ID, share link, close button, background
-      2.2.1) Fallback - just show ID, share link, close button, etc.
-      2.2.2) Building - show everything in the building
-      2.2.3) Stage - programming + link to stage
-      2.2.4) ???? etc etc etc
-
-  3) Map pane needs to block less of the view
-    3.1) Zoom should be offset from the pane instead of absolute center
-
-  4) Links point to pois DONE
-
-  5) UI
-    5.1) List
-    5.2) Shortcut
-    5.3) Zoom controls
-
-
-  6) UX
-    if panning or zooming, prevent clicks / selections
-    zooming sometimes goes haywire and pans somewhere crazy 
-*/
-
-/*
-
-  
-
-*/
+}
