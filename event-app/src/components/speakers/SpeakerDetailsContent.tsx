@@ -206,8 +206,9 @@ function SpeakerProfile({
           )}
         </div>
       )}
-      {/* Panel/mobile: two equal pills; expanded: auto-width pills, 12px apart. */}
-      <div className={cn(lg ? "flex items-center gap-3" : "grid grid-cols-2 gap-3")}>
+      {/* Two equal pills filling the row at every size (the expanded page's
+          auto-width pair looked stranded under a long bio; Scott, 2026-10-27). */}
+      <div className="grid grid-cols-2 gap-3">
         <button
           onClick={() => void toggle(speaker.id)}
           className={cn(
