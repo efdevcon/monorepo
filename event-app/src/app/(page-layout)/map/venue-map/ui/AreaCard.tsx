@@ -52,8 +52,8 @@ export function AreaCard({
   const [shownComposite, setShownComposite] = useState(composite);
   if (open && composite !== shownComposite) setShownComposite(composite);
   const stage = shown?.category.id === "stages";
-  const discIcon = stage ? shown?.iconUrl : null;
-  const inlineIcon = stage ? null : shown?.iconUrl;
+  const discIcon = stage ? shown?.cardIconUrl : null;
+  const inlineIcon = stage ? null : shown?.cardIconUrl;
   const live = useLiveSessionForArea(shown);
   const sessionOnly = live !== null && shown !== null && shown.roomIds.some((r) => SESSION_ONLY_ROOMS.has(r));
 

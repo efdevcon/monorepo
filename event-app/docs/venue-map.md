@@ -97,7 +97,9 @@ Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sp
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
 as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
 booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
-a chip in the booth's fill in the card and lists; a shared booth names one supporter only, since who is
+a chip in the booth's fill in the card and lists; a tenant may name a `cardLogo` for those chips when the booth's own
+`logo` is a compact mark that fits its top as a decal (six starter booths carry `<name>-full.svg` for the chips since
+2026-10-27, Scott); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then; Scott, 2026-10-25), optional
 `icon` (sprite PNG), `roomIds` and `website` (the place's own site, https; the card shows "Visit website" under the description with
 the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27). `ROOMS` maps Devcon 8 Pretalx room ids to footprints

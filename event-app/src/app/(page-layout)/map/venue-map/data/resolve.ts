@@ -26,7 +26,10 @@ export type Area = {
   /** The legend chip's category (areas.ts `legend`, else the category). */
   legendCategory: Category;
   icon: IconName | null;
+  /** The image standing on the footprint (sprite or decal). */
   iconUrl: string | null;
+  /** The image for the card and the Find / Search / legend chips: a supporter's full lockup where the booth carries a compact one (areas.ts `cardLogo`), else `iconUrl`. */
+  cardIconUrl: string | null;
   heightClass: AreaSpec["heightClass"];
   /** Sprite height override in metres (areas.ts). */
   iconSize: number | null;
@@ -73,6 +76,7 @@ function resolveShape(shape: MapShape): Area | null {
     legendCategory: categoryById(spec.legend ?? spec.category),
     icon,
     iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
+    cardIconUrl: hub ? communityHubLogo(hub) : tenant ? (tenant.cardLogo ?? tenant.logo) : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,
     iconSize: spec.iconSize ?? null,
     shape,

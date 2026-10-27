@@ -41,10 +41,14 @@ export type AreaSpec = {
   website?: string;
 };
 
-/** A supporter at a booth. `logo` is a path under public/ (white lockups today, on the booth's fill colour in the card). */
-export type Tenant = { name: string; logo: string };
+/**
+ * A supporter at a booth. `logo` is a path under public/ (white lockups, on the booth's fill colour): the
+ * decal on the booth, and the card and list chips unless `cardLogo` names a fuller lockup for those (the
+ * compact marks that fit a small booth's top are too terse for a chip; Scott, 2026-10-27).
+ */
+export type Tenant = { name: string; logo: string; cardLogo?: string };
 
-const supporter = (name: string, file: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg` });
+const supporter = (name: string, file: string, cardFile?: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg`, ...(cardFile ? { cardLogo: `/maps/jwcc/supporters/${cardFile}.svg` } : {}) });
 
 /**
  * Every tappable layer of the plan SVGs, keyed by area id: the layer name
@@ -134,25 +138,25 @@ export const AREAS = {
     tenants: {
       1: supporter("ENS", "ens"),
       2: supporter("Ordocode", "ordocode"),
-      3: supporter("Nethermind", "nethermind"),
+      3: supporter("Nethermind", "nethermind", "nethermind-full"),
       4: supporter("Bitget", "bitget"),
       5: supporter("World", "world"),
       6: supporter("Trail of Bits", "trail-of-bits"),
       7: supporter("Swarm", "swarm"),
       8: supporter("Linux Foundation Decentralized Trust", "lfdt"),
-      9: supporter("EEZ", "eez"),
+      9: supporter("EEZ", "eez", "eez-full"),
       10: supporter("Crossbar", "crossbar"),
       11: supporter("UNICEF", "unicef"),
       12: supporter("Kohaku", "kohaku"),
-      13: supporter("Ethereum Applications Guild", "eag"),
+      13: supporter("Ethereum Applications Guild", "eag", "eag-full"),
       14: supporter("EIPsInsight", "eipsinsight"),
       15: supporter("growthepie", "growthepie"),
       16: supporter("GCC Commons", "gcc"),
       17: supporter("ETH Labs", "eth-labs"),
       18: supporter("Railgun", "railgun"),
-      19: supporter("Walletbeat", "walletbeat"),
-      20: supporter("Nimbus", "nimbus"),
-      21: supporter("GrapheneOS", "grapheneos"),
+      19: supporter("Walletbeat", "walletbeat", "walletbeat-full"),
+      20: supporter("Nimbus", "nimbus", "nimbus-full"),
+      21: supporter("GrapheneOS", "grapheneos", "grapheneos-full"),
     },
   },
   // Food & drink

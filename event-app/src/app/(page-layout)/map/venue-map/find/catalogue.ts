@@ -37,10 +37,10 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       level: id,
       name: levelName.get(id) ?? id,
       entries: [
-        ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].iconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
+        ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].cardIconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
         // Composite rows (the Main Stage): one row standing for several footprints.
         // A composite row carries its members' icon (the Main Stage shows the lotus; Scott, 2026-10-26).
-        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].iconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100 })),
+        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].cardIconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100 })),
       ].sort(byRank),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];
@@ -88,8 +88,8 @@ export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_L
       if (!members.length) continue;
       const label = "label" in spec && spec.label ? spec.label : AREAS[members[0].areaId].name.replace(/\s*#$/, "");
       const key = "areaId" in spec ? `${level}/legend:${spec.areaId}` : `${level}/legend:${spec.category}`;
-      const asSwatch = ("swatch" in spec && spec.swatch) || !members[0].iconUrl;
-      entries.push({ key, label, iconUrl: asSwatch ? null : members[0].iconUrl, swatch: asSwatch ? commonFill(members) : null, areas: members });
+      const asSwatch = ("swatch" in spec && spec.swatch) || !members[0].cardIconUrl;
+      entries.push({ key, label, iconUrl: asSwatch ? null : members[0].cardIconUrl, swatch: asSwatch ? commonFill(members) : null, areas: members });
     }
     return entries;
   }
