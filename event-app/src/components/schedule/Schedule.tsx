@@ -51,7 +51,7 @@ import { FilterPanelContent, type FilterPanelMode } from "./FilterPanelContent";
 import { FilterStatusBar } from "./FilterStatusBar";
 import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
-import { useScheduleState, type DecoratedGroup } from "./useScheduleState";
+import { useScheduleState, type DecoratedGroup, type FilterFacet } from "./useScheduleState";
 import {
   dayKey,
   formatDayHeading,
@@ -963,6 +963,19 @@ function ScheduleInner({
     setSelectedDay(key);
     setDayJump((prev) => ({ n: (prev?.n ?? 0) + 1, key }));
   };
+  // A filter pick from the panel. Turning on a community-led group also
+  // selects the first day it runs on (as a day-tab tap would), unless the
+  // active day already has its sessions, so the pick shows something instead
+  // of an empty day; the hubs leave the day alone (Scott, 2026-10-27).
+  const toggleFilterFromPanel = (facet: FilterFacet, value: string) => {
+    toggleFilter(facet, value);
+    if (facet !== "community" || filters.community.includes(value)) return;
+    const ref = communityOptions.find((c) => c.key === value);
+    if (!ref || ref.section !== "cls" || ref.days.length === 0) return;
+    if (selectedDay !== null && ref.days.includes(selectedDay)) return;
+    const day = ref.days[0];
+    if (days.some((d) => d.key === day)) selectDay(day);
+  };
   useLayoutEffect(() => {
     if (!dayJump) return;
     // The timeline resets its horizontal offset on signal.
@@ -1266,7 +1279,7 @@ function ScheduleInner({
       <FilterPanelContent
         options={filterOptions}
         filters={filters}
-        onToggle={toggleFilter}
+        onToggle={toggleFilterFromPanel}
         onClear={clearFilters}
         onClose={() => setFiltersOpen(false)}
         defaultOpen
@@ -1788,7 +1801,7 @@ function ScheduleInner({
           onOpenChange={setFiltersOpen}
           options={filterOptions}
           filters={filters}
-          onToggle={toggleFilter}
+          onToggle={toggleFilterFromPanel}
           onClear={clearFilters}
           mode={filterMode}
           communities={communityOptions}
