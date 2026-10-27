@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Map as MapIcon } from "lucide-react";
-import { VenueMap3D } from "@/app/(page-layout)/map/venue-map-3d/VenueMap3D";
 import { VenueMap } from "@/app/(page-layout)/map/venue-map/VenueMap";
 import { useUser } from "@/data/auth/useUser";
 import { useReleased } from "@/data/release/releaseGates";
@@ -16,21 +15,20 @@ import { Link } from "@/routing";
  *
  * Until RELEASED.venueMap, everyone gets MapComingSoon instead (the tab and
  * every "on map" link stay, as Devconnect's app did with its map); the team
- * turns the real map on per device in EF internal tools. Two variants while
- * the rebuild lands: the prototype (venue-map-3d) by default, the new map on
- * the JWCC plans (venue-map) behind the venueMapNext gate.
+ * turns the real map on per device in EF internal tools.
  */
 export function MapPane() {
   const { hasInitialized } = useUser();
   const released = useReleased("venueMap");
-  const next = useReleased("venueMapNext");
 
   return (
     <div className="fixed inset-0 z-0 flex">
       {!hasInitialized ? (
         <MapLoading />
       ) : released ? (
-        <React.Suspense fallback={<MapLoading />}>{next ? <VenueMap /> : <VenueMap3D />}</React.Suspense>
+        <React.Suspense fallback={<MapLoading />}>
+          <VenueMap />
+        </React.Suspense>
       ) : (
         <MapComingSoon />
       )}

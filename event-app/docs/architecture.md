@@ -177,6 +177,6 @@ Production build (`pnpm preview`) against the production API, mobile viewport.
 
 ## Venue map
 
-The Map tab is a React Three Fiber prototype fed by generated bundles from the floor-plan SVGs
-(`pnpm map:build:plan`). Pipelines, interaction model, design decisions and gotchas:
-`docs/venue-map-3d.md`.
+The Map tab is a React Three Fiber scene of the JWCC floor plans, fed by a generated bundle
+built from Figma's per-floor SVG exports (`pnpm map:build`). Export contract, build, runtime,
+design decisions and gotchas: `docs/venue-map.md`.

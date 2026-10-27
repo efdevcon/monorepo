@@ -1,18 +1,19 @@
 # 3D venue map — from-scratch rewrite plan (living document)
 
 **Status:** written 2026-09-17 from a full inventory of the prototype (then on
-`3d-map-prototype`, merged to `main` via PR #131); moved into the repo 2026-09-21. Runtime
-files live in `src/app/(page-layout)/map/venue-map-3d/`, the build script in
-`scripts/plan-map-build.mjs`, the project doc in `docs/venue-map-3d.md`.
+`3d-map-prototype`, merged to `main` via PR #131); moved into the repo 2026-09-21. The prototype's
+runtime files (`src/app/(page-layout)/map/venue-map-3d/`), build script
+(`scripts/plan-map-build.mjs`) and doc (`docs/venue-map-3d.md`) were deleted on 2026-10-27; see git
+history up to `9c6f482a4`.
 **Trigger:** the real per-floor SVG designs are delivered.
 **Executed 2026-10-25** on `add-jio-venue-map` with the JWCC Level 3 export: phases 0–7 in one
-pass, as a separate variant behind the `venueMapNext` gate (phase 8, the swap, is pending the
-remaining floors and Scott's review). The living description of what was built is
+pass, as a separate variant behind the `venueMapNext` gate. **Phase 8 done 2026-10-27:** the
+prototype is gone and the new map is what `venueMap` shows. The living description of what was built is
 `docs/venue-map.md`; §3 below is superseded by its export contract (layer groups
 `Background / Colour_Box / Outline / Text & Icon` instead of the slash grammar, walls as stroked
 lines, door openings as slab-coloured patches).
 **Rule:** whenever a map feature, constant or decision changes on the branch, update §1 (feature
-checklist) and the changelog here, not just `docs/venue-map-3d.md`.
+checklist) and the changelog here, not just `docs/venue-map.md`.
 
 **Why:** the prototype grew feature-by-feature against provisional SVGs; the plan is to rebuild
 the approach cleanly with the real SVGs, preserving every feature and dropping the isometric
@@ -409,6 +410,10 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
   walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
   "Community"); Food Garden icon fixed at 16 m (`iconSize`).
+- 2026-10-27 — phase 8: prototype deleted (`venue-map-3d/`, `plan-map-build.mjs`,
+  `docs/venue-map-3d.md`, provisional SVGs), `venueMapNext` gate removed, `MapPane` mounts
+  `VenueMap` under `venueMap` alone, session details and reminder cards call this map's
+  `mapHrefForRoom` directly (`src/data/map/mapHref.ts` deleted).
 - 2026-10-26 — Levels 0–2 added from Scott's exports (`L0`–`L2.svg`): floors registered on the
   elevator marks (`register.ts`; the frames are at 1.32× / 1.5× Level 3's scale), tolerant Outline
   rules (unnamed walls by stroke width on floors that name none, hatches, escalator symbols by

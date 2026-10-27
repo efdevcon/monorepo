@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { trackEvent } from "@/data/analytics/track";
-import { useMapHrefForRoom } from "@/data/map/mapHref";
+import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
@@ -214,7 +214,7 @@ export function SessionSummary({
   const theme = getTrackTheme(session.track, session.room?.id);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
-  const mapHref = useMapHrefForRoom(session.room?.id);
+  const mapHref = mapHrefForRoom(session.room?.id);
 
   // The track banner yields to media: recordings always take the top slot,
   // and live/soon sessions may render the room livestream there instead.

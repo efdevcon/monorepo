@@ -1,15 +1,16 @@
 # Venue map (JWCC plans)
 
-The Map tab's rebuilt map: the real floor plans of the Jio World Convention Centre, extruded
-from Figma's top-down SVG exports and rendered in 3D with React Three Fiber. Built from scratch
-on 2026-10-25 along `docs/venue-map-rewrite-plan.md`; the prototype it replaces
-(`src/app/(page-layout)/map/venue-map-3d/`, `docs/venue-map-3d.md`) stays as a separate variant
-until the team is happy with this one.
+The Map tab: the real floor plans of the Jio World Convention Centre, extruded from Figma's
+top-down SVG exports and rendered in 3D with React Three Fiber. Built from scratch on 2026-10-25
+along `docs/venue-map-rewrite-plan.md`; the prototype it replaced
+(`src/app/(page-layout)/map/venue-map-3d/`, `docs/venue-map-3d.md`, `scripts/plan-map-build.mjs`,
+the provisional SVGs under `public/maps/devcon-8/source/`) was deleted on 2026-10-27 (in git
+history up to `9c6f482a4`). Mentions of "the prototype" below are about that design lineage.
 
 Code: `src/app/(page-layout)/map/venue-map/` (entry `VenueMap.tsx`), build:
-`scripts/map-build/`. `src/components/MapPane.tsx` mounts it when both release gates are on
-(`venueMap` and `venueMapNext`, EF internal tools on My Devcon); `venueMap` alone shows the
-prototype.
+`scripts/map-build/`. `src/components/MapPane.tsx` mounts it when the `venueMap` release gate
+is on (EF internal tools on My Devcon); attendees get the "coming soon" card until the gate is
+released.
 
 ## 1. Inputs: the Figma export contract
 
@@ -227,9 +228,9 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   panel (desktop), `window.__mapCamera` / `__mapHover` / `__mapControls` while the wrench is on.
 - Deep link `?area=L3/lotus-stage-2` (several keys comma-separated: the Main Stage link highlights
   all three Lotus halls) re-runs on every visit of the pane, as an effect dispatching `showAreas`. The session
-  details' location link and the reminder cards build it through `useMapHrefForRoom` (`src/data/map/mapHref.ts`),
-  which picks this map's `roomAreas.ts` or the prototype's by the `venueMapNext` gate: the two keep different keys,
-  and until 2026-10-27 both consumers used the prototype's, so nothing highlighted on this map (Scott).
+  details' location link and the reminder cards build it with `mapHrefForRoom` from `data/roomAreas.ts`
+  (until 2026-10-27 both consumers used the prototype's builder, whose keys differed, so nothing
+  highlighted on this map; Scott).
 
 ## 5. Verification
 
