@@ -18,6 +18,16 @@ const RUNS_URL =
   'https://api.github.com/repos/efdevcon/monorepo/actions/workflows/fileverse-live-export.yml/runs?per_page=30'
 const RUNS_PAGE = 'https://github.com/efdevcon/monorepo/actions/workflows/fileverse-live-export.yml'
 /**
+ * The pause switch lives in the workflow file itself (EXPORT_PAUSED at its top, see
+ * docs/community-hubs.md): while "true", runs skip the export, no sheet is read and the
+ * API keeps serving the last export. Read from the raw file (public, open CORS, cached
+ * five minutes by GitHub) so this page says so instead of showing a mysterious stale export.
+ */
+const WORKFLOW_RAW_URL =
+  'https://raw.githubusercontent.com/efdevcon/monorepo/main/.github/workflows/fileverse-live-export.yml'
+const WORKFLOW_PAGE = 'https://github.com/efdevcon/monorepo/blob/main/.github/workflows/fileverse-live-export.yml'
+const PAUSE_SWITCH = /^\s*EXPORT_PAUSED:\s*"?(true|false)"?/m
+/**
  * The export runs hourly but only rewrites the file when a sheet changed, or every
  * 6 h as a heartbeat (community-hubs-live.ts), so exportedAt is the last change.
  * Stale only past the heartbeat plus margin, the same 8 h the API warns at.
@@ -51,6 +61,9 @@ interface Run {
   created_at: string
   html_url: string
 }
+
+/** The API's own "export stopped" problem: expected, not alarming, while syncing is paused. */
+const isStaleExportProblem = (problem: string) => /live export last ran/.test(problem)
 
 function ago(ms: number | null | undefined, now: number): string {
   if (!ms) return 'never'
@@ -95,6 +108,8 @@ export default function CommunityHubsMonitor() {
   const [checkedAt, setCheckedAt] = useState<number | null>(null)
   const [links, setLinks] = useState<Record<string, string>>({})
   const [admin, setAdmin] = useState(false)
+  // null until the workflow file has been read (or could not be).
+  const [paused, setPaused] = useState<boolean | null>(null)
 
   // Once per visit: links don't change hour to hour, and no stored password means no request.
   useEffect(() => {
@@ -115,18 +130,24 @@ export default function CommunityHubsMonitor() {
     const errs: string[] = []
     // Export runs only for admins: they feed the pipeline view, and GitHub allows
     // 60 anonymous requests an hour per visitor.
-    const [s, r] = await Promise.allSettled([
+    const [s, r, w] = await Promise.allSettled([
       fetch(STATUS_URL).then(res => (res.ok ? res.json() : Promise.reject(new Error(`API answered ${res.status}`)))),
       admin
         ? fetch(RUNS_URL).then(res =>
             res.ok ? res.json() : Promise.reject(new Error(`GitHub answered ${res.status}`))
           )
         : Promise.resolve(null),
+      // For everyone: a hub whose edits stop landing should see why.
+      fetch(WORKFLOW_RAW_URL).then(res =>
+        res.ok ? res.text() : Promise.reject(new Error(`GitHub answered ${res.status}`))
+      ),
     ])
     if (s.status === 'fulfilled') setStatus(s.value.data)
     else errs.push(`Hub status: ${s.reason instanceof Error ? s.reason.message : String(s.reason)}`)
     if (r.status === 'fulfilled') r.value && setRuns(r.value.workflow_runs)
     else errs.push(`Export runs: ${r.reason instanceof Error ? r.reason.message : String(r.reason)}`)
+    if (w.status === 'fulfilled') setPaused(PAUSE_SWITCH.exec(w.value)?.[1] === 'true')
+    else errs.push(`Sync switch: ${w.reason instanceof Error ? w.reason.message : String(w.reason)}`)
     setErrors(errs)
     setCheckedAt(Date.now())
     setLoading(false)
@@ -140,6 +161,11 @@ export default function CommunityHubsMonitor() {
 
   const now = checkedAt ?? Date.now()
   const exportStale = status ? !status.exportedAt || now - status.exportedAt > EXPORT_STALE_MS : false
+  const freshness: { tone: 'ok' | 'warn' | 'bad'; label: string } = paused
+    ? { tone: 'warn', label: 'Sync paused' }
+    : exportStale
+    ? { tone: 'bad', label: 'Stale' }
+    : { tone: 'ok', label: 'Fresh' }
   const dayRuns = (runs ?? []).filter(run => now - Date.parse(run.created_at) < 24 * 60 * 60_000)
   const failedRuns = dayRuns.filter(run => run.status === 'completed' && run.conclusion !== 'success')
   const lastRun = runs?.find(run => run.status === 'completed')
@@ -186,12 +212,41 @@ export default function CommunityHubsMonitor() {
             </div>
           )}
 
+          {paused && (
+            <div className={`${CARD} border-amber-200 bg-amber-50 text-sm text-amber-900`}>
+              <p className="flex items-center gap-2 font-semibold">
+                <AlertTriangle className="size-4 shrink-0" />
+                Live syncing is paused
+              </p>
+              <p className="mt-1">
+                Sheet edits are not being picked up: the app keeps showing the programme as last exported
+                {status?.exportedAt ? ` ${ago(status.exportedAt, now)}` : ''}. The Devcon team publishes Community Hubs
+                updates manually for now, so an edit reaches the app with the next manual update.
+                {admin && ' The problems below are those of that last export.'}
+              </p>
+              {admin && (
+                <p className="mt-1">
+                  Resume by setting EXPORT_PAUSED to false in the{' '}
+                  <a
+                    href={WORKFLOW_PAGE}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 font-semibold hover:underline"
+                  >
+                    workflow file <ExternalLink className="size-3" />
+                  </a>
+                  . Runs keep starting every hour and skip the export while paused.
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Last sheet change is public: it tells a hub whether its latest edit was picked up yet. */}
           <section className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <div className={CARD}>
               <p className="text-xs uppercase tracking-wide text-[#5b5370]">Last sheet change</p>
               <p className="mt-1 text-lg font-bold">{status ? ago(status.exportedAt, now) : '…'}</p>
-              {status && <Tone tone={exportStale ? 'bad' : 'ok'}>{exportStale ? 'Stale' : 'Fresh'}</Tone>}
+              {status && <Tone tone={freshness.tone}>{freshness.label}</Tone>}
             </div>
             {admin && (
               <>
@@ -235,12 +290,19 @@ export default function CommunityHubsMonitor() {
             <section className={CARD}>
               <h2 className="mb-2 text-lg font-bold">Pipeline problems</h2>
               <ul className="flex flex-col gap-1 text-sm">
-                {status?.problems.map(p => (
-                  <li key={p} className="flex gap-2">
-                    <XCircle className="mt-0.5 size-4 shrink-0 text-red-600" />
-                    {p}
-                  </li>
-                ))}
+                {status?.problems.map(p =>
+                  paused && isStaleExportProblem(p) ? (
+                    <li key={p} className="flex gap-2 text-[#5b5370]">
+                      <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
+                      <span>{p}. Expected while syncing is paused.</span>
+                    </li>
+                  ) : (
+                    <li key={p} className="flex gap-2">
+                      <XCircle className="mt-0.5 size-4 shrink-0 text-red-600" />
+                      {p}
+                    </li>
+                  )
+                )}
                 {failedRuns.map(run => (
                   <li key={run.id} className="flex gap-2">
                     <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-600" />
