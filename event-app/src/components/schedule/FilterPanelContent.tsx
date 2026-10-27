@@ -7,23 +7,26 @@ import {
   ArrowRightToLine,
   Check,
   ChevronDown,
+  Tent,
+  Users,
 } from "lucide-react";
 import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import type { FilterFacet, Filters } from "./useScheduleState";
-import { clsTrackName, getTrackTheme } from "./trackTheme";
+import { getTrackTheme } from "./trackTheme";
+import type { CommunityRef } from "@/data/programme";
 
 /**
- * Which programme(s) the panel filters. "hubs": the Community Hubs segment,
- * where every session shares one track and the hubs double as the
- * locations, so Tracks and Locations are dropped and the hub tags read as
- * "Hubs"; the rows' Topic column fills "Topics". "both": My Interests
- * spanning the two programmes, which adds a "Hubs" section under Tracks
- * (pulled out of Topics).
+ * Which programme(s) the panel filters. "hubs": the Community programme
+ * (the hubs' sheets and the community-led sessions), where Tracks is
+ * dropped and "Communities" leads; the sheets' Topic column fills "Topics".
+ * "both": My Interests spanning the two programmes, which keeps Tracks and
+ * adds "Communities" under it. "main": the Devcon programme, no communities.
  */
 export type FilterPanelMode = "main" | "hubs" | "both";
 
-const NO_HUBS: string[] = [];
+const NO_COMMUNITIES: CommunityRef[] = [];
 
+/** A "[CLS]" track is a community, never a Tracks chip. */
 const CLS_PREFIX = "[CLS]";
 
 function AccordionSection({
@@ -128,11 +131,12 @@ function TopicChip({
 
 /**
  * Filter panel body (Figma "Full filter panel"): Tracks as gem pill-chips,
- * Topics as plain pill-chips (the shared Speakers-page vocabulary),
- * CLS / Locations / Session formats / Expertise as checkbox rows, wrapped in
- * accordions, with the white header (Clear all, close) and the sticky footer
- * (Close, Reset filters). Shells position it: bottom sheet on mobile, right
- * column on desktop.
+ * Communities as pill-chips with the community's mark, Topics as plain
+ * pill-chips (the shared Speakers-page vocabulary), Locations / Session
+ * formats / Expertise as checkbox rows, wrapped in accordions, with the
+ * white header (Clear all, close) and the sticky footer (Close, Reset
+ * filters). Shells position it: bottom sheet on mobile, right column on
+ * desktop.
  */
 export function FilterPanelContent({
   options,
@@ -142,7 +146,7 @@ export function FilterPanelContent({
   onClose,
   defaultOpen = false,
   mode = "main",
-  hubs = NO_HUBS,
+  communities = NO_COMMUNITIES,
 }: {
   options: Record<FilterFacet, string[]>;
   filters: Filters;
@@ -152,43 +156,10 @@ export function FilterPanelContent({
   /** Whether accordion sections start expanded (desktop panel). */
   defaultOpen?: boolean;
   mode?: FilterPanelMode;
-  /**
-   * Hub names on offer ("hubs" / "both" modes). A hub session's only tag is
-   * its hub's name, so they filter through the "topic" facet; listed apart
-   * because the topic vocabulary is capped and skips speakerless sessions.
-   */
-  hubs?: string[];
+  /** The communities (hubs and community-led groups) in the sessions in view ("hubs" / "both" modes). */
+  communities?: CommunityRef[];
 }) {
-  const { tracks, clsTracks } = useMemo(
-    () => ({
-      tracks: options.track.filter((t) => !t.startsWith(CLS_PREFIX)),
-      clsTracks: options.track.filter((t) => t.startsWith(CLS_PREFIX)),
-    }),
-    [options.track]
-  );
-  // Hub names ride the topic facet too; they get their own section below.
-  const topics = useMemo(
-    () => (mode === "main" ? options.topic : options.topic.filter((t) => !hubs.includes(t))),
-    [mode, options.topic, hubs]
-  );
-  const hubSection = mode !== "main" && hubs.length > 0 && (
-    <AccordionSection
-      title="Hubs"
-      count={filters.topic.filter((t) => hubs.includes(t)).length}
-      defaultOpen={defaultOpen}
-    >
-      <div className="flex flex-wrap gap-2">
-        {hubs.map((hub) => (
-          <TopicChip
-            key={hub}
-            label={hub}
-            active={filters.topic.includes(hub)}
-            onToggle={() => onToggle("topic", hub)}
-          />
-        ))}
-      </div>
-    </AccordionSection>
-  );
+  const tracks = useMemo(() => options.track.filter((t) => !t.startsWith(CLS_PREFIX)), [options.track]);
 
   // Mobile renders as a bottom-anchored sheet — square bottom corners there;
   // the desktop side panel floats, so it keeps all four.
@@ -215,7 +186,7 @@ export function FilterPanelContent({
         {mode !== "hubs" && tracks.length > 0 && (
           <AccordionSection
             title="Tracks"
-            // CLS picks share filters.track — count only this section's own.
+            // Only this section's own picks.
             count={filters.track.filter((t) => tracks.includes(t)).length}
             defaultOpen={defaultOpen}
           >
@@ -253,33 +224,51 @@ export function FilterPanelContent({
           </AccordionSection>
         )}
 
-        {/* Directly under Tracks (feedback round, 2026-10-13): CLS was
-            buried below Locations and got no visibility. */}
-        {clsTracks.length > 0 && (
+        {/* Every community in view, hubs and community-led groups alike, as
+            one list (a hub's sheet and a "[CLS]" track are the same kind of
+            thing to an attendee): first in the Community programme, under
+            Tracks when My Interests spans both. */}
+        {mode !== "main" && communities.length > 0 && (
           <AccordionSection
-            title="Community-led Sessions (CLS)"
-            count={filters.track.filter((t) => clsTracks.includes(t)).length}
+            title="Communities"
+            count={filters.community.length}
             defaultOpen={defaultOpen}
           >
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              {clsTracks.map((track) => (
-                <CheckboxRow
-                  key={track}
-                  label={clsTrackName(track)}
-                  checked={filters.track.includes(track)}
-                  onToggle={() => onToggle("track", track)}
-                />
-              ))}
+            <div className="flex flex-wrap gap-2">
+              {communities.map((c) => {
+                const active = filters.community.includes(c.key);
+                return (
+                  <button
+                    key={c.key}
+                    onClick={() => onToggle("community", c.key)}
+                    className={cn(
+                      "flex min-h-8 cursor-pointer items-center gap-2 rounded-full px-3 py-1 text-[12px] leading-none text-dc-fg2 hover:border-dc-purple",
+                      active
+                        ? "border border-transparent font-semibold"
+                        : "border border-dc-hairline bg-white font-normal"
+                    )}
+                    style={active ? { backgroundColor: c.color } : undefined}
+                  >
+                    {c.logo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={c.logo} alt="" className="size-3.5 object-contain" />
+                    ) : c.kind === "hub" ? (
+                      <Tent className="size-3.5 shrink-0" aria-hidden />
+                    ) : (
+                      <Users className="size-3.5 shrink-0" aria-hidden />
+                    )}
+                    {c.name}
+                  </button>
+                );
+              })}
             </div>
           </AccordionSection>
         )}
 
-        {hubSection}
-
-        {topics.length > 0 && (
+        {options.topic.length > 0 && (
           <AccordionSection
             title="Topics"
-            count={filters.topic.filter((t) => topics.includes(t)).length}
+            count={filters.topic.length}
             defaultOpen={defaultOpen}
           >
             {/* Same chip grammar as Tracks; topics have no track theme, so
@@ -287,7 +276,7 @@ export function FilterPanelContent({
                 per-track pastel. The list is the shared Speakers-page topic
                 vocabulary (the curated TOPIC_OPTIONS, src/data/topics.ts). */}
             <div className="flex flex-wrap gap-2">
-              {topics.map((topic) => (
+              {options.topic.map((topic) => (
                 <TopicChip
                   key={topic}
                   label={topic}
@@ -299,7 +288,7 @@ export function FilterPanelContent({
           </AccordionSection>
         )}
 
-        {mode !== "hubs" && options.room.length > 0 && (
+        {options.room.length > 0 && (
           <AccordionSection
             title="Locations"
             count={filters.room.length}

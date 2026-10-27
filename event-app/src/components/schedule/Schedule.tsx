@@ -28,8 +28,9 @@ import cn from "classnames";
 import { useSearchParams } from "next/navigation";
 import { useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
-import { communityHubForRoom, isCommunityHubName } from "@/data/communityHubs";
-import { HUBS_PARAM, INTERESTS_PARAM, ScheduleSourceProvider, type ScheduleSource } from "@/data/store/schedule-source";
+import { isCommunityLed } from "@/data/programme";
+import { useStoreState } from "@/data/store/use-event-store";
+import { HUBS_PARAM, INTERESTS_PARAM, ScheduleSourceProvider, storeFor, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -74,7 +75,7 @@ import { usePreviewState } from "@/hooks/usePreviewState";
 type ViewMode = "list" | "timeline";
 
 /**
- * "Sessions / Community Hubs" switch: which programme the whole page shows.
+ * "Tracks / Community" switch: which programme the whole page shows.
  * A white pill track whose purple fill sits on the chosen programme (the
  * List/Timeline control's indicator, in the topic pills' selected purple),
  * so it reads as page-level navigation and not as a twin of that control,
@@ -139,7 +140,7 @@ function SourceToggle({
       />
       {(
         [
-          { value: "main", label: "Sessions", Icon: CalendarDays },
+          { value: "main", label: "Tracks", Icon: CalendarDays },
           { value: "hubs", label: "Community", Icon: Tent },
         ] as const
       ).map(({ value, label, Icon }) => {
@@ -589,7 +590,12 @@ function GroupHeader({
  * and scroll state start fresh for the other programme.
  */
 export function Schedule() {
-  const hasHubs = !!communityHubsDataset(getActiveDataset());
+  // The Tracks/Community switch shows whenever the Community view has
+  // anything in it: a hubs programme for this dataset, or community-led
+  // sessions in the Pretalx schedule (src/data/programme.ts).
+  const mainSessions = useStoreState(storeFor("main")).snapshot.sessions;
+  const hasCls = useMemo(() => mainSessions.some(isCommunityLed), [mainSessions]);
+  const hasCommunity = !!communityHubsDataset(getActiveDataset()) || hasCls;
   // List or timeline: kept here so it carries over a programme switch (the
   // inner view remounts) instead of snapping back to a default.
   const [view, setView] = useState<ViewMode>("list");
@@ -613,7 +619,7 @@ export function Schedule() {
     void writePref(TIMELINE_ZOOM_PREF_KEY, z);
   }, []);
   const searchParams = useSearchParams();
-  const hubsInUrl = hasHubs && !!searchParams.get(HUBS_PARAM);
+  const hubsInUrl = hasCommunity && !!searchParams.get(HUBS_PARAM);
   const [source, setSource] = useState<ScheduleSource>(hubsInUrl ? "hubs" : "main");
   // A link into `/schedule?hubs=1` while the pane is mounted switches over;
   // the param disappearing (detail pages drop the query) does not switch back.
@@ -640,7 +646,7 @@ export function Schedule() {
       <ScheduleInner
         key={source}
         source={source}
-        hasHubs={hasHubs}
+        hasCommunity={hasCommunity}
         onSourceChange={changeSource}
         view={view}
         setView={setView}
@@ -654,7 +660,7 @@ export function Schedule() {
 
 function ScheduleInner({
   source,
-  hasHubs,
+  hasCommunity,
   onSourceChange,
   view,
   setView,
@@ -663,7 +669,7 @@ function ScheduleInner({
   landedRef,
 }: {
   source: ScheduleSource;
-  hasHubs: boolean;
+  hasCommunity: boolean;
   onSourceChange: (s: ScheduleSource) => void;
   view: ViewMode;
   setView: (v: ViewMode) => void;
@@ -700,6 +706,7 @@ function ScheduleInner({
     clearFilters,
     activeFilterCount,
     facetFilterCounts,
+    communityOptions,
     visibleGroups,
     completedGroups,
     completedCount,
@@ -731,40 +738,28 @@ function ScheduleInner({
     [everySessions, interestedIds]
   );
 
-  // Filter panel shape: the Community Hubs segment drops Tracks/Locations
-  // and calls the hub tags "Hubs"; My Interests spanning both programmes
-  // adds a Hubs section. Hub names come from the sessions in view (a hub
-  // session's only tag is its hub's name, so they filter as topics).
+  // Filter panel shape: the Community programme drops Tracks and leads with
+  // Communities (hubs and community-led groups, from `communityOptions`);
+  // My Interests spanning both programmes shows Tracks and Communities.
+  // Locations shows in every mode (the hubs' own "rooms" excepted).
   const filterMode: FilterPanelMode =
-    hasHubs && interestedOnly ? "both" : source === "hubs" ? "hubs" : "main";
-  const hubFilterOptions = useMemo(() => {
-    if (filterMode === "main") return [];
-    const names = new Set<string>();
-    for (const s of filterMode === "both" ? everySessions : sessions) {
-      const hub = communityHubForRoom(s.room?.id);
-      if (hub) names.add(hub.name);
-    }
-    return [...names].sort();
-  }, [filterMode, everySessions, sessions]);
+    hasCommunity && interestedOnly ? "both" : source === "hubs" ? "hubs" : "main";
 
-  // My Interests reshapes the panel (its Hubs section comes and goes; on the
-  // Community Hubs segment Tracks and Locations too), but selections outlive
-  // the toggle: keep only what the new panel still shows, or a hidden pick
+  // My Interests reshapes the panel (its Communities section comes and goes;
+  // on the Community programme Tracks too), but selections outlive the
+  // toggle: keep only what the new panel still shows, or a hidden pick
   // keeps filtering an empty list. Adjusted during render when the mode
   // changes (React's "state from props" pattern), not in an effect.
   const [seenFilterMode, setSeenFilterMode] = useState(filterMode);
   if (filterMode !== seenFilterMode) {
     setSeenFilterMode(filterMode);
-    const shown = filterMode !== "hubs";
     retainFilters({
-      track: shown ? filterOptions.track : [],
-      room: shown ? filterOptions.room : [],
+      track: filterMode !== "hubs" ? filterOptions.track : [],
+      community: filterMode === "main" ? [] : filterOptions.community,
+      room: filterOptions.room,
       type: filterOptions.type,
       expertise: filterOptions.expertise,
-      topic:
-        filterMode === "main"
-          ? filterOptions.topic.filter((t) => !isCommunityHubName(t))
-          : [...filterOptions.topic, ...hubFilterOptions],
+      topic: filterOptions.topic,
     });
   }
 
@@ -1276,7 +1271,7 @@ function ScheduleInner({
         onClose={() => setFiltersOpen(false)}
         defaultOpen
         mode={filterMode}
-        hubs={hubFilterOptions}
+        communities={communityOptions}
       />
     </div>
   ) : null;
@@ -1442,7 +1437,7 @@ function ScheduleInner({
           <h1 className="text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
             Schedule
           </h1>
-          {hasHubs &&
+          {hasCommunity &&
             (interestedOnly ? (
               <InterestsSpanNote />
             ) : (
@@ -1531,7 +1526,7 @@ function ScheduleInner({
                 programme navigation (an open search drawer sits above it,
                 against the header). It scrolls away with the page like the
                 search does; DayTabs alone pins. */}
-            {hasHubs && !detailId && (
+            {hasCommunity && !detailId && (
               <div className="bg-dc-lavender px-4 pb-1 pt-3 lg:hidden">
                 {interestedOnly ? (
                   <InterestsSpanNote stretch />
@@ -1653,7 +1648,6 @@ function ScheduleInner({
                   <FilterStatusBar
                     counts={facetFilterCounts}
                     onClear={clearFilters}
-                    topicLabel={filterMode === "hubs" ? "Hubs" : undefined}
                   />
                 </div>
               </div>
@@ -1663,7 +1657,6 @@ function ScheduleInner({
                 <FilterStatusBar
                   counts={facetFilterCounts}
                   onClear={clearFilters}
-                  topicLabel={filterMode === "hubs" ? "Hubs" : undefined}
                 />
               </div>
 
@@ -1798,7 +1791,7 @@ function ScheduleInner({
           onToggle={toggleFilter}
           onClear={clearFilters}
           mode={filterMode}
-          hubs={hubFilterOptions}
+          communities={communityOptions}
         />
       )}
     </main>

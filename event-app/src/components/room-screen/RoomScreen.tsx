@@ -5,7 +5,7 @@ import cn from "classnames";
 import QRCode from "qrcode";
 import { Clock, Users } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
-import { useEvent, useRoom, useSessions } from "@/data/hooks";
+import { useEvent, useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
@@ -218,7 +218,10 @@ function Message({ children }: { children: React.ReactNode }) {
 export function RoomScreen({ roomId }: { roomId: string }) {
   const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
-  const { sessions, isLoading: sessionsLoading } = useSessions({ roomId });
+  // A place reads the whole catalogue, whatever programme a session is shown in.
+  const everySession = useSessionsOfAllProgrammes();
+  const sessions = useMemo(() => everySession.filter((s) => s.room?.id === roomId), [everySession, roomId]);
+  const { isLoading: sessionsLoading } = useSessions();
   const { event } = useEvent();
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);

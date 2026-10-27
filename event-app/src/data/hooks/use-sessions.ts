@@ -4,6 +4,7 @@ import { useCallback, useMemo } from "react";
 import { communityHubsDataset, getActiveDataset } from "../dataset";
 import type { Session } from "../models";
 import type { StoreState } from "../store/event-store";
+import { programmeSessions } from "../programme";
 import { storeFor, useScheduleSource, type ScheduleSource } from "../store/schedule-source";
 import { useEventStore, useStoreState } from "../store/use-event-store";
 
@@ -35,11 +36,20 @@ export function statusFlags(state: StoreState, hasData: boolean) {
   return { isLoading, error, isValidating: status === "syncing" };
 }
 
-/** Force a full re-sync of one programme's store (the old SWR `mutate`). */
+/**
+ * Force a full re-sync of a programme (the old SWR `mutate`). The Community
+ * programme spans both stores (the hubs' sheets and the community-led part
+ * of the Pretalx schedule), so refreshing it syncs both.
+ */
 export function forceSync(source: ScheduleSource = "main") {
-  const dataset = source === "hubs" ? communityHubsDataset(getActiveDataset()) : getActiveDataset();
-  if (!dataset) return Promise.resolve("failed" as const);
-  return storeFor(source).sync(dataset, { force: true });
+  const main = getActiveDataset();
+  const mainSync = storeFor("main").sync(main, { force: true });
+  if (source !== "hubs") return mainSync;
+  const hubs = communityHubsDataset(main);
+  if (!hubs) return mainSync;
+  return Promise.all([mainSync, storeFor("hubs").sync(hubs, { force: true })]).then(([a, b]) =>
+    a === "failed" || b === "failed" ? ("failed" as const) : b
+  );
 }
 
 /** `mutate` for the store behind the current schedule source. */
@@ -64,18 +74,37 @@ export function filterSessions(all: Session[], f: SessionFilters): Session[] {
 }
 
 /**
- * All sessions of the active event, filtered in memory. Reads the EventStore
- * snapshot: no network here, ever. Filtering happens on the shared list, so
- * `useSessions({ roomId })` costs a filter pass, not a fetch.
+ * The sessions of one programme, as a view over both stores (`programmeSessions`):
+ * the Pretalx schedule minus the community-led sessions for "main", those
+ * sessions followed by the hubs' for "hubs". No network here, ever.
+ */
+export function useSessionsOfProgramme(source: ScheduleSource): Session[] {
+  const main = useStoreState(storeFor("main"));
+  const hubs = useStoreState(storeFor("hubs"));
+  return useMemo(
+    () => programmeSessions(main.snapshot.sessions, hubs.snapshot.sessions, source),
+    [main.snapshot, hubs.snapshot, source]
+  );
+}
+
+/**
+ * The current programme's sessions (not a store's: see `useSessionsOfProgramme`),
+ * filtered in memory. Filtering happens on the shared list, so
+ * `useSessions({ roomId })` costs a filter pass, not a fetch. Views about
+ * places rather than programmes (room screens, the map) read
+ * `useSessionsOfAllProgrammes` instead.
  */
 export function useSessions(filters?: SessionFilters) {
   const state = useEventStore();
+  const programme = useSessionsOfProgramme(useScheduleSource());
   const { track, type, roomId, search } = filters ?? {};
   const sessions = useMemo(
-    () => filterSessions(state.snapshot.sessions, { track, type, roomId, search }),
-    [state.snapshot, track, type, roomId, search]
+    () => filterSessions(programme, { track, type, roomId, search }),
+    [programme, track, type, roomId, search]
   );
-  const flags = statusFlags(state, state.snapshot.sessions.length > 0);
+  // "Has data" is the view, so the Community programme never reads as loading
+  // while its community-led sessions are already in from the main store.
+  const flags = statusFlags(state, programme.length > 0);
   const mutate = useForceSync();
   return {
     sessions,

@@ -6,6 +6,7 @@ export {
   useSessionsByTrack,
   useSessionsByDay,
   useSessionsOfAllProgrammes,
+  useSessionsOfProgramme,
   type SessionFilters,
 } from "./use-sessions";
 

@@ -7,6 +7,8 @@ import { useNow } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
 import { compareSessionFormats } from "@/data/sessionFormat";
 import { deriveTopicOptions } from "@/data/topics";
+import { communityOf, communityOptions, type CommunityRef } from "@/data/programme";
+import { isCommunityHubName, isCommunityHubSession } from "@/data/communityHubs";
 import {
   compareRoomNames,
   dayKey,
@@ -17,16 +19,17 @@ import {
 } from "./utils";
 
 /** Facets a session can be filtered by (each multi-select). */
-export type FilterFacet = "track" | "type" | "room" | "expertise" | "topic";
+export type FilterFacet = "track" | "community" | "type" | "room" | "expertise" | "topic";
 export type Filters = Record<FilterFacet, string[]>;
 
 /** The single-valued facets — "topic" matches against the session's tags
  *  array instead, so it can't go through `sessionValue`. */
-const VALUE_FACETS = ["track", "type", "room", "expertise"] as const;
+const VALUE_FACETS = ["track", "community", "type", "room", "expertise"] as const;
 type ValueFacet = (typeof VALUE_FACETS)[number];
 
 const EMPTY: Filters = {
   track: [],
+  community: [],
   type: [],
   room: [],
   expertise: [],
@@ -37,6 +40,9 @@ function sessionValue(session: Session, facet: ValueFacet): string | undefined {
   switch (facet) {
     case "track":
       return session.track;
+    case "community":
+      // A namespaced key (`hub:<id>` / `cls:<id>`), never a display name.
+      return communityOf(session)?.key;
     case "type":
       return session.type;
     case "room":
@@ -160,9 +166,15 @@ export function useScheduleState(
     setSelectedDayState(target);
   };
 
+  // The communities (hubs and community-led groups) in view, with their
+  // names and colours for the panel's chips; `filterOptions.community` is
+  // their keys in the same order.
+  const communityRefs = useMemo(() => communityOptions(sessions), [sessions]);
+
   const filterOptions = useMemo(() => {
     const opts: Record<FilterFacet, string[]> = {
       track: [],
+      community: [],
       type: [],
       room: [],
       expertise: [],
@@ -170,12 +182,15 @@ export function useScheduleState(
     };
     const seen: Record<ValueFacet, Set<string>> = {
       track: new Set(),
+      community: new Set(),
       type: new Set(),
       room: new Set(),
       expertise: new Set(),
     };
     for (const s of sessions) {
       VALUE_FACETS.forEach((f) => {
+        // A hub's "room" is the hub itself, reached through Communities.
+        if (f === "room" && isCommunityHubSession(s)) return;
         const v = sessionValue(s, f);
         if (v && !seen[f].has(v)) {
           seen[f].add(v);
@@ -184,6 +199,8 @@ export function useScheduleState(
       });
     }
     VALUE_FACETS.forEach((f) => opts[f].sort());
+    // Communities by name, not by key.
+    opts.community = communityRefs.map((c) => c.key);
     // Formats: the core formats in the programme's order (Talks first), the
     // same list as the Speakers page's format tabs.
     opts.type.sort(compareSessionFormats);
@@ -192,9 +209,10 @@ export function useScheduleState(
     opts.room.sort(compareRoomNames);
     // Topics keep the curated order (not alphabetical) — the same shared
     // vocabulary and ordering as the Speakers page's topic filter.
-    opts.topic = deriveTopicOptions(sessions);
+    // A hub's name is its first tag; it is a community now, not a topic.
+    opts.topic = deriveTopicOptions(sessions).filter((t) => !isCommunityHubName(t));
     return opts;
-  }, [sessions]);
+  }, [sessions, communityRefs]);
 
   const toggleFilter = (facet: FilterFacet, value: string) => {
     trackEvent("schedule", "filter", facet);
@@ -486,6 +504,7 @@ export function useScheduleState(
     activeFilterCount,
     facetFilterCounts,
     filterOptions,
+    communityOptions: communityRefs,
     groups,
     decoratedGroups,
     completedGroups,

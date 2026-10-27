@@ -1,12 +1,11 @@
 "use client";
 
 import { useMemo } from "react";
-import { useEvent, useSessions, useSpeakers } from "@/data/hooks";
+import { useEvent, useSessions, useSessionsOfProgramme, useSpeakers } from "@/data/hooks";
 import type { ConferenceEvent, Session, Speaker } from "@/data/models";
 import { compareSessionFormats } from "@/data/sessionFormat";
 import { deriveTopicOptions } from "@/data/topics";
-import { storeFor, useScheduleSource } from "@/data/store/schedule-source";
-import { useStoreState } from "@/data/store/use-event-store";
+import { useScheduleSource } from "@/data/store/schedule-source";
 
 /**
  * A speaker joined with their sessions. The API's speaker list carries none of
@@ -175,9 +174,10 @@ export function useSpeakersData() {
   // Event record carries the organizer-curated featured speaker ids; the
   // event fetch is cached like everything else, so no extra loading state.
   const { event } = useEvent();
-  // The other programme's sessions, for speakers on both (see `derive`).
+  // The other programme's view, for speakers on both (see `derive`): a
+  // speaker's community-led sessions join their list from either side.
   const source = useScheduleSource();
-  const otherSessions = useStoreState(storeFor(source === "hubs" ? "main" : "hubs")).snapshot.sessions;
+  const otherSessions = useSessionsOfProgramme(source === "hubs" ? "main" : "hubs");
 
   // Identity-stable per snapshot (see `derive`): list consumers feed these
   // straight into their own memos, so identity churn here would re-filter the

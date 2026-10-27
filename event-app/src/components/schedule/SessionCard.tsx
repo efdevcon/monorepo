@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock3, MapPin, Star, Tent, User } from "lucide-react";
+import { Clock3, MapPin, Star, Tent, User, Users } from "lucide-react";
 import cn from "classnames";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
@@ -19,10 +19,12 @@ const locationLabel = (session: Session) =>
  * track (bottom-right) badges. Desktop: 60px gem-art rail, 16px title, badges
  * inline. The star toggles the local "Interested" state without navigating.
  *
- * Community Hub sessions (Figma 5168:238) set themselves apart from the
- * Devcon programme: the rail (and the hub's logo in it) moves to the right
- * edge, the track badge becomes a round pill with a hairline border and a
- * tent glyph, and the corner badges shift to clear the right-hand rail.
+ * Community sessions (hubs, Figma 5168:238, and community-led groups) set
+ * themselves apart from the Devcon programme: the rail (and the community's
+ * logo in it) moves to the right edge, the track badge becomes a round pill
+ * with a hairline border and a glyph (a tent for a hub, people for a
+ * community-led group), and the corner badges shift to clear the right-hand
+ * rail.
  *
  * "Featured" is Pretalx's organizer-curated is_featured flag. It replaced the
  * old title/room-based KEYNOTE heuristic (one tag, one signal).
@@ -57,6 +59,7 @@ export function SessionCard({
   const theme = getTrackTheme(session.track, session.room?.id);
   const badge = trackBadgeLabel(session.track, session.room?.id);
   const featured = session.featured === true;
+  const community = theme.isCommunity === true;
   const hub = theme.isHub === true;
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
@@ -65,7 +68,7 @@ export function SessionCard({
     "group relative flex gap-4 overflow-clip rounded-lg border bg-white transition-colors duration-150 ease-out",
     // Hub cards: rails sit on the right, so the text gets its own 16px
     // left inset instead of the rail + gap.
-    hub && "pl-4",
+    community && "pl-4",
     selected
       ? "border-dc-purple bg-dc-lavender"
       : cn("border-dc-hairline", !readOnly && "hover:border-dc-purple/40")
@@ -73,12 +76,12 @@ export function SessionCard({
 
   const body = (
     <>
-      {/* Mobile: 8px track-colored accent rail (right-hand for hub sessions) */}
+      {/* Mobile: 8px track-colored accent rail (right-hand for community sessions) */}
       <div
         className={cn(
           "w-2 shrink-0 self-stretch lg:hidden",
           theme.neutral && "border-r border-dc-hairline bg-white",
-          hub && "order-last rounded-r-[4px]"
+          community && "order-last rounded-r-[4px]"
         )}
         style={theme.neutral ? undefined : { backgroundColor: theme.color }}
       />
@@ -88,7 +91,7 @@ export function SessionCard({
         className={cn(
           "hidden w-[60px] shrink-0 items-center justify-center self-stretch p-1 lg:flex",
           theme.neutral && "border-r border-dc-hairline bg-white",
-          hub && "order-last rounded-r-[4px]"
+          community && "order-last rounded-r-[4px]"
         )}
         style={theme.neutral ? undefined : { backgroundColor: theme.color }}
       >
@@ -106,7 +109,7 @@ export function SessionCard({
         className={cn(
           "flex min-w-0 flex-1 items-center gap-4 py-4 pl-0",
           // Hub cards: the card's gap-4 already spaces the star from the rail.
-          hub ? "pr-0" : "pr-4"
+          community ? "pr-0" : "pr-4"
         )}
       >
         <div className={cn("flex min-w-0 flex-1 flex-col", dense ? "gap-3" : "gap-2")}>
@@ -130,7 +133,7 @@ export function SessionCard({
             <span
               className={cn(
                 "hidden shrink-0 items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2 lg:inline-flex",
-                hub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[4px]",
+                community ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[4px]",
                 theme.neutral && "border border-dc-hairline bg-white"
               )}
               style={
@@ -139,6 +142,7 @@ export function SessionCard({
             >
               {badge}
               {hub && <Tent className="size-3 shrink-0" aria-hidden />}
+              {theme.isCLS && <Users className="size-3 shrink-0" aria-hidden />}
             </span>
             {hub &&
               communityHubTopics(session).map((topic) => (
@@ -200,8 +204,8 @@ export function SessionCard({
         <span
           className={cn(
             "absolute top-0 rounded-bl-[2px] bg-dc-featured px-2 py-1 text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg",
-            // Hub cards: clear the right-hand rail (8px mobile, 60px desktop).
-            hub ? "right-2 lg:right-[60px]" : "right-0",
+            // Community cards: clear the right-hand rail (8px mobile, 60px desktop).
+            community ? "right-2 lg:right-[60px]" : "right-0",
             // Compact 2-up desktop cells drop the inline chip (Figma 4325),
             // so the corner badge steps in there — Featured must always be
             // visible.
@@ -214,8 +218,8 @@ export function SessionCard({
       <span
         className={cn(
           "absolute bottom-2 px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg lg:hidden",
-          // Hub cards: round pill + tent, 8px clear of the right-hand rail.
-          hub
+          // Community cards: round pill + glyph, 8px clear of the right-hand rail.
+          community
             ? "right-4 flex items-center gap-1 rounded-full border border-dc-hairline"
             : "right-2 rounded-[2px]",
           theme.neutral && "border border-dc-hairline bg-white"
@@ -224,6 +228,7 @@ export function SessionCard({
       >
         {badge}
         {hub && <Tent className="size-2.5 shrink-0" aria-hidden />}
+        {theme.isCLS && <Users className="size-2.5 shrink-0" aria-hidden />}
       </span>
     </>
   );

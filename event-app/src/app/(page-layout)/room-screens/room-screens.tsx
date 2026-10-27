@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Monitor, Users } from "lucide-react";
-import { useRooms, useSessions } from "@/data/hooks";
+import { useRooms, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Room, Session } from "@/data/models";
 import APP_CONFIG from "@/CONFIG";
 import { Link } from "@/routing";
@@ -81,7 +81,8 @@ function RoomCard({ room, sessions, nowMs }: { room: Room; sessions: Session[]; 
 
 export default function RoomScreens() {
   const { rooms, isLoading, isError, error } = useRooms();
-  const { sessions } = useSessions();
+  // Places read the whole catalogue, whatever programme a session is shown in.
+  const sessions = useSessionsOfAllProgrammes();
   const nowMs = useNowMs(60_000);
   const byRoom = useMemo(() => {
     const map = new Map<string, Session[]>();

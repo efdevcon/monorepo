@@ -83,6 +83,11 @@ tickets, and browser-local user state (interested stars, which also sync to the 
 in via `POST /api/interests/sync`; announcement read state). Dexie is used
 because IndexedDB has far larger limits than localStorage; abstract it away behind hooks.
 
+Two stores, two programmes as views (`src/data/programme.ts`): the Community programme is the hub store
+plus the Pretalx sessions whose track starts with `[CLS]`, Sessions is the rest. Community-led groups
+are registered in `src/data/communityLed.ts` and look and filter like hubs (the `community` facet,
+keys `hub:<id>` / `cls:<id>`). Views about places read the whole catalogue (`useSessionsOfAllProgrammes`).
+
 Ticket identity: the Supabase account (email OTP) is the identity; `/api/tickets` returns tickets
 matched by email plus positions the account attached (`devcon8_ticket_links`), attached first. The
 client derives one primary ticket (`src/data/tickets/primary.ts`): an attached ticket, else the sole

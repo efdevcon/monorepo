@@ -1,7 +1,7 @@
 "use client";
 
 import APP_CONFIG from "@/CONFIG";
-import { useSessions, useSpeakers, useRooms } from "@/data/hooks";
+import { useSessionsOfAllProgrammes, useSpeakers, useRooms } from "@/data/hooks";
 import { useWarmImages } from "@/data/hooks/use-warm-images";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useTickets } from "@/data/tickets/useTickets";
@@ -34,7 +34,8 @@ const SUPPORTER_LOGOS = Object.values(supportersData).flatMap((supporter) => [
  * that already read the same keys.
  */
 export function CacheWarmer() {
-  const { sessions } = useSessions();
+  // The whole catalogue, whatever programme a session is shown in.
+  const sessions = useSessionsOfAllProgrammes();
   const { speakers } = useSpeakers();
   useRooms();
 

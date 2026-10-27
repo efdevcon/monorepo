@@ -3,13 +3,20 @@
  *
  * Every track resolves to a Devcon 8 theme: a pastel color (drives the card
  * rail, badges, filter chips, timeline blocks and detail banner) plus a "gem"
- * artwork. Devcon 7 test data uses older track names, so an alias table maps
- * them onto the nearest DC8 theme — presentation-only, the session data is
- * never touched. Unknown tracks hash deterministically into the 9 canonical
- * themes so future events still look designed.
+ * artwork. Community sessions resolve to their community instead: a hub by
+ * the session's room, a community-led group ("[CLS] - …" tracks) by the
+ * track, each with its own name, badge and pastel (`src/data/communityHubs.ts`,
+ * `src/data/communityLed.ts`). Devcon 7 test data uses older track names, so
+ * an alias table maps them onto the nearest DC8 theme — presentation-only,
+ * the session data is never touched. Unknown tracks hash deterministically
+ * into the 9 canonical themes so future events still look designed.
  */
 
 import { communityHubForRoom, communityHubLockup, communityHubLogo, shortCommunityHubName } from "@/data/communityHubs";
+import { communityLedGroup } from "@/data/communityLed";
+
+// Kept here for the callers that always found it in this module.
+export { clsTrackName } from "@/data/communityLed";
 
 export interface TrackTheme {
   /** Canonical DC8 display name (used for the detail-banner caption). */
@@ -22,10 +29,12 @@ export interface TrackTheme {
   gem: string | null;
   /** DEVCON treatment: white surfaces with a hairline border, no tint. */
   neutral?: boolean;
-  /** Community-led session ("[CLS] …" tracks). */
+  /** Community-led session ("[CLS] …" tracks): themed as its group. */
   isCLS?: boolean;
   /** Community Hub session: `gem` is the hub's logo and stands alone in the details banner. */
   isHub?: boolean;
+  /** Hub or community-led: the cards' and details' community grammar keys on it. */
+  isCommunity?: boolean;
   /** Hub's stacked lockup, shown larger in the details banner in place of `gem`; a hub without one shows `gem` with its name under it. */
   banner?: string;
 }
@@ -52,15 +61,6 @@ export const DEVCON_THEME: TrackTheme = {
   color: "#ffffff",
   gem: "/schedule/devcon8-logomark.svg",
   neutral: true,
-};
-
-/** Community-led sessions share one lavender theme (no gem artwork). */
-export const CLS_THEME: TrackTheme = {
-  name: "Community-led Session",
-  badge: "CLS",
-  color: "#e9e5f6",
-  gem: null,
-  isCLS: true,
 };
 
 /**
@@ -124,6 +124,27 @@ function hubTheme(roomId: string | undefined): TrackTheme | undefined {
         gem: communityHubLogo(hub),
         banner: communityHubLockup(hub) ?? undefined,
         isHub: true,
+        isCommunity: true,
+      }
+    : undefined;
+}
+
+/**
+ * Community-led sessions are themed by their group (its name, badge and
+ * pastel; a logo where one exists), from the "[CLS] - …" track. An unknown
+ * group still gets a name and the shared fallback colour.
+ */
+function communityLedTheme(track: string | undefined): TrackTheme | undefined {
+  const group = communityLedGroup(track);
+  return group
+    ? {
+        name: group.name,
+        badge: group.badge,
+        color: group.color,
+        gem: group.logo ?? null,
+        banner: group.lockup,
+        isCLS: true,
+        isCommunity: true,
       }
     : undefined;
 }
@@ -133,7 +154,8 @@ export function getTrackTheme(track: string | undefined, roomId?: string): Track
   if (hub) return hub;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME;
-  if (raw.startsWith("[CLS]")) return CLS_THEME;
+  const community = communityLedTheme(raw);
+  if (community) return community;
 
   const key = normalizeTrackKey(raw);
   const exact = byName.get(key);
@@ -159,7 +181,8 @@ export function trackBadgeLabel(track: string | undefined, roomId?: string): str
   if (hub) return hub.badge;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME.badge;
-  if (raw.startsWith("[CLS]")) return CLS_THEME.badge;
+  const group = communityLedGroup(raw);
+  if (group) return group.badge;
 
   const key = normalizeTrackKey(raw);
   const theme = byName.get(key) ?? aliasByKey.get(key);
@@ -169,29 +192,16 @@ export function trackBadgeLabel(track: string | undefined, roomId?: string): str
 }
 
 /**
- * A community-led session's own name, without the "[CLS]" marker Pretalx
- * carries (the programming lead needs it there to tell CLS from the main
- * programme). The marker is followed by a separator in DC8 ("[CLS] - EPF",
- * "[CLS] - OTS"), which goes too — stripping the marker alone left every
- * name starting with a dash (feedback round, 2026-10-13).
- */
-export function clsTrackName(track: string): string {
-  return track.replace(/^\s*\[CLS\]\s*[-–:]?\s*/, "").trim();
-}
-
-/**
  * Full track name for the details views (side panel, expanded page, mobile
  * page) — list/timeline cards keep `trackBadgeLabel`. Returns the session's
  * own track name (as the details banner caption already does) so DC7 aliases
- * don't get relabelled with a DC8 name; only the "[CLS]" marker is stripped.
+ * don't get relabelled with a DC8 name; a community-led session reads as its
+ * group's name.
  */
 export function trackFullLabel(track: string | undefined, roomId?: string): string {
   const hub = hubTheme(roomId);
   if (hub) return hub.name;
   const raw = track?.trim();
   if (!raw) return DEVCON_THEME.name;
-  if (raw.startsWith("[CLS]")) {
-    return clsTrackName(raw) || CLS_THEME.name;
-  }
-  return raw;
+  return communityLedGroup(raw)?.name ?? raw;
 }

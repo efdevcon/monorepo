@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   useSessions,
+  useSessionsOfAllProgrammes,
   useSpeakers,
   useRooms,
 } from "@/data/hooks";
@@ -11,7 +12,9 @@ export default function DataDashboard() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
 
   // Use SWR hooks for data fetching
-  const { sessions, isLoading: sessionsLoading } = useSessions();
+  const { isLoading: sessionsLoading } = useSessions();
+  // The whole catalogue, whatever programme a session is shown in.
+  const sessions = useSessionsOfAllProgrammes();
   const { speakers, isLoading: speakersLoading } = useSpeakers();
   const { rooms, isLoading: roomsLoading } = useRooms();
 

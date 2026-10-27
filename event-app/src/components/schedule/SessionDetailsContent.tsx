@@ -5,7 +5,7 @@ import { trackEvent } from "@/data/analytics/track";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
-import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
+import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent, Users } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
 import { Link } from "@/routing";
 import { useEvent } from "@/data/hooks";
@@ -300,14 +300,15 @@ export function SessionSummary({
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {/* Details show the full track name; list/timeline cards keep the
-                  short trackBadgeLabel. Hub sessions keep the cards' grammar
-                  here too: a rounded pill with the tent glyph, topics as
+                  short trackBadgeLabel. Community sessions (hubs and
+                  community-led groups) keep the cards' grammar here too: a
+                  rounded pill with the tent or people glyph, topics as
                   rounded chips (the square track badge is the Pretalx
                   programme's). */}
               <span
                 className={cn(
                   "inline-flex items-center px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
-                  theme.isHub ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
+                  theme.isCommunity ? "gap-1 rounded-full border border-dc-hairline" : "rounded-[2px]",
                   theme.neutral && "border border-dc-hairline bg-white"
                 )}
                 style={
@@ -316,6 +317,7 @@ export function SessionSummary({
               >
                 {trackFullLabel(session.track, session.room?.id)}
                 {theme.isHub && <Tent className="size-3 shrink-0" aria-hidden />}
+                {theme.isCLS && <Users className="size-3 shrink-0" aria-hidden />}
               </span>
               {/* Topics as neutral chips after the track badge, sharing its
                   corner radius: square with the Pretalx programme's badge,
@@ -327,7 +329,7 @@ export function SessionSummary({
                   key={topic}
                   className={cn(
                     "border border-dc-hairline bg-white px-1.5 py-[3px] text-[12px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-fg2",
-                    theme.isHub ? "rounded-full" : "rounded-[2px]"
+                    theme.isCommunity ? "rounded-full" : "rounded-[2px]"
                   )}
                 >
                   {topic}

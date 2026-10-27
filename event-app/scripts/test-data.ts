@@ -38,6 +38,10 @@ import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
+import { communityOf, communityOptions, isCommunityLed, programmeOf, programmeSessions } from "../src/data/programme";
+import { COMMUNITY_LED_GROUPS, clsTrackName, communityLedGroup } from "../src/data/communityLed";
+import { COMMUNITY_HUBS } from "../src/data/communityHubs";
+import { DC8_TRACKS, getTrackTheme, trackBadgeLabel, trackFullLabel } from "../src/components/schedule/trackTheme";
 import { isPretalxCode, sessionLinkFor } from "../src/data/legacySessionLink";
 import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
@@ -67,6 +71,18 @@ const check = (label: string, ok: boolean, note = "") => {
   console.log(`${ok ? "PASS" : "FAIL"}  ${label}${note ? ` (${note})` : ""}`);
 };
 const eq = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+
+/** A bare session for the programme and theme tests: a track, optionally a room. */
+const mkSession = (id: string, track: string, roomId?: string): Session => ({
+  id,
+  speakers: [],
+  title: id,
+  track,
+  duration: 30,
+  start: 0,
+  end: 1800,
+  room: roomId ? { id: roomId, name: roomId, description: "", info: "" } : undefined,
+});
 
 // 2024-11-13 08:30 UTC = 15:30 Asia/Bangkok (devcon-7 venue timezone).
 const T0 = Date.UTC(2024, 10, 13, 8, 30);
@@ -167,8 +183,10 @@ function testMaterialize() {
         { ...FIXTURE.sessions[0], id: "c4", type: "CLS - career workshop (Career fair)" },
         { ...FIXTURE.sessions[0], id: "c5", type: "CLS - Miniworkshop (Open Tech Summit)" },
         { ...FIXTURE.sessions[0], id: "c6", type: "CLS - Panel (Open Tech Summit)" },
-        { ...FIXTURE.sessions[0], id: "c7", type: "CLS - Fireside chat (OTS)" },
-        { ...FIXTURE.sessions[0], id: "c8", type: "Roundtable - longer format" },
+        { ...FIXTURE.sessions[0], id: "c7", type: "CLS - Demo (OTS)" },
+        { ...FIXTURE.sessions[0], id: "c8", type: "Keynote - longer format" },
+        { ...FIXTURE.sessions[0], id: "c10", type: "CLS - Fireside chat (Academic track)" },
+        { ...FIXTURE.sessions[0], id: "c11", type: "Roundtable - longer format" },
         { ...FIXTURE.sessions[0], id: "c9", track: "Community Hubs" },
       ],
     },
@@ -181,8 +199,9 @@ function testMaterialize() {
   check("CLS lightning folds into Lightning Talk", formatOf("c3") === "Lightning Talk");
   check("CLS workshops fold into Workshop", formatOf("c4") === "Workshop" && formatOf("c5") === "Workshop");
   check("CLS panel folds into Panel", formatOf("c6") === "Panel");
-  check("unknown CLS format keeps its own name", formatOf("c7") === "Fireside chat");
-  check("non-CLS type drops its qualifier", formatOf("c8") === "Roundtable");
+  check("unknown CLS format keeps its own name", formatOf("c7") === "Demo");
+  check("non-CLS type drops its qualifier", formatOf("c8") === "Keynote");
+  check("one-off formats read as Mixed Format", formatOf("c10") === "Mixed Format" && formatOf("c11") === "Mixed Format");
   check("plain types untouched", a.type === "Talk");
   check("stored row keeps the Pretalx name", clsRows.sessions[0].type === "CLS - Talk (Open Tech Summit)");
   check("the Pretalx \"Community Hubs\" track reads as no track", clsSnap.sessionById.get("c9")!.track === "" && clsRows.sessions.find((r) => r.id === "c9")!.track === "Community Hubs");
@@ -782,6 +801,56 @@ function testLegacySessionLink() {
   );
 }
 
+function testProgramme() {
+  console.log("\n== programme membership");
+  check("[CLS] track is community-led", isCommunityLed(mkSession("a", "[CLS] - OTS")));
+  check("padded [CLS] track is community-led", isCommunityLed(mkSession("b", "  [CLS] -OTS ")));
+  check("plain track is not", !isCommunityLed(mkSession("c", "Core Protocol")));
+  check("empty track is not", !isCommunityLed(mkSession("d", "")));
+  check("hub session is in hubs", programmeOf(mkSession("h", "", "community-hub-privacy")) === "hubs");
+  check("CLS session is in hubs", programmeOf(mkSession("a", "[CLS] - EPF", "workshop-2")) === "hubs");
+  check("Devcon session is in main", programmeOf(mkSession("c", "Security", "workshop-2")) === "main");
+  const main = [mkSession("c", "Security"), mkSession("a", "[CLS] - OTS"), mkSession("e", "")];
+  const hubs = [mkSession("h", "", "community-hub-privacy")];
+  const mainView = programmeSessions(main, hubs, "main");
+  const hubsView = programmeSessions(main, hubs, "hubs");
+  check("main view drops CLS, keeps order", eq(mainView.map((s) => s.id), ["c", "e"]));
+  check("community view is CLS then hubs", eq(hubsView.map((s) => s.id), ["a", "h"]));
+  check("views partition the union", mainView.length + hubsView.length === main.length + hubs.length && !mainView.some((s) => hubsView.includes(s)));
+  check("empty hub store still yields CLS", eq(programmeSessions(main, [], "hubs").map((s) => s.id), ["a"]));
+
+  // The community-led registry: known tracks by exact match, unknown ones
+  // synthesised so a new community never breaks the view.
+  check("known track resolves", communityLedGroup("[CLS] - OTS")?.id === "ots" && communityLedGroup("[CLS] - OTS")?.name === "Open Tech Summit");
+  check("padded known track resolves", communityLedGroup("  [CLS] - Defi 101 ")?.id === "defi-101");
+  const unknown = communityLedGroup("[CLS] - New Thing");
+  check("unknown track synthesises", unknown?.id === "new-thing" && unknown.name === "New Thing" && unknown.badge === "New Thing" && unknown.color === "#e9e5f6" && !unknown.logo);
+  check("non-CLS track has no group", communityLedGroup("Security") === undefined && communityLedGroup(undefined) === undefined);
+  check("clsTrackName strips marker and separator", clsTrackName("[CLS] - EPF") === "EPF" && clsTrackName("[CLS]: OTS") === "OTS");
+  check("eight groups, unique ids and tracks", COMMUNITY_LED_GROUPS.length === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.id)).size === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.track)).size === 8);
+  const taken = new Set([...DC8_TRACKS.map((t) => t.color.toLowerCase()), ...COMMUNITY_HUBS.map((h) => h.color.toLowerCase())]);
+  check("group colours are pastels of their own", COMMUNITY_LED_GROUPS.every((g) => /^#[0-9a-f]{6}$/i.test(g.color) && !taken.has(g.color.toLowerCase())) && new Set(COMMUNITY_LED_GROUPS.map((g) => g.color.toLowerCase())).size === 8);
+  const hubRef = communityOf(mkSession("h", "", "community-hub-privacy"));
+  check("hub ref", hubRef?.key === "hub:privacy" && hubRef.kind === "hub" && hubRef.name === "Privacy Hub" && hubRef.badge === "Privacy" && !!hubRef.logo);
+  const clsRef = communityOf(mkSession("a", "[CLS] - Academic", "workshop-1"));
+  check("CLS ref", clsRef?.key === "cls:academic" && clsRef.kind === "cls" && clsRef.name === "Academic Track" && clsRef.badge === "Academic");
+  check("Devcon session has no community", communityOf(mkSession("c", "Security", "workshop-1")) === undefined);
+  const opts = communityOptions([mkSession("1", "[CLS] - OTS"), mkSession("2", "", "community-hub-privacy"), mkSession("3", "[CLS] - OTS"), mkSession("4", "[CLS] - Academic"), mkSession("5", "Security")]);
+  check("options unique and sorted by name", eq(opts.map((o) => o.key), ["cls:academic", "cls:ots", "hub:privacy"]));
+}
+
+function testTrackTheme() {
+  console.log("\n== track theme");
+  const ots = getTrackTheme("[CLS] - OTS");
+  check("CLS track themes as its group", ots.name === "Open Tech Summit" && ots.badge === "OTS" && ots.isCLS === true && ots.isCommunity === true && ots.isHub !== true);
+  check("CLS badge and full label", trackBadgeLabel("[CLS] - OTS") === "OTS" && trackFullLabel("[CLS] - OTS") === "Open Tech Summit");
+  const novel = getTrackTheme("[CLS] - New Thing");
+  check("unknown CLS track keeps a name and the fallback colour", novel.badge === "New Thing" && novel.color === "#e9e5f6" && novel.isCLS === true);
+  const hub = getTrackTheme("[CLS] - OTS", "community-hub-privacy");
+  check("hub room wins over the track", hub.isHub === true && hub.isCommunity === true && hub.name === "Privacy Hub");
+  check("Devcon tracks are not community", getTrackTheme("Security").isCommunity !== true && getTrackTheme("").isCommunity !== true);
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -790,6 +859,8 @@ async function main() {
   testIosVersion();
   testPassBarcode();
   testMaterialize();
+  testProgramme();
+  testTrackTheme();
   testSyncDecision();
   testRouting();
   testInstallVersion();

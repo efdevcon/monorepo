@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import APP_CONFIG from "@/CONFIG";
 import { DATASETS, DEFAULT_DATASET_KEY, type Dataset, type DatasetKey } from "./dataset";
 import { detailHref, type DetailKind } from "@/routing/viewParams";
+import { trackFullLabel } from "@/components/schedule/trackTheme";
 
 /**
  * Per-item social metadata for the detail pages (`/schedule/[id]`,
@@ -90,7 +91,9 @@ export async function detailMetadata(
     );
     if (!session?.title) return {};
     const title = session.title;
-    const description = summary(session.description) ?? session.track ?? APP_CONFIG.APP_DESCRIPTION;
+    // A community-led session's fallback reads as its community, never the raw "[CLS] - …" track.
+    const description =
+      summary(session.description) ?? (session.track ? trackFullLabel(session.track) : undefined) ?? APP_CONFIG.APP_DESCRIPTION;
     const image = cardImage(kind, encoded, `${title} at ${eventLabel}`);
     return {
       title: `${title} - ${eventLabel}`,
