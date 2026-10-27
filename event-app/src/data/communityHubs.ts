@@ -21,12 +21,17 @@ export interface CommunityHub {
   logoStacked?: string;
 }
 
-/** Official names from the Community Hubs coordinator (2026-10-07), alphabetical. */
+/**
+ * Official hub names from the Community Hubs coordinator (2026-10-07), plus
+ * three community-run spaces on the same sheets (Open Hardware Zone, Game
+ * Zone, Music Stage), alphabetical.
+ */
 export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: "agentic", name: "Agentic Hub", description: "AI agents paying, trading and negotiating on Ethereum.", color: "#C2FFDD" },
   { id: "aggregation", name: "Aggregation Hub", description: "Bringing Ethereum's fragmented chains, apps and communities back together.", color: "#EDD6FF" },
   { id: "desci", name: "DeSci Hub", description: "Where open science meets Ethereum.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards, protocol upgrades and standards adoption.", color: "#D4EBF7" },
+  { id: "game-zone", name: "Game Zone", description: "Community-run games and play.", color: "#FFD6EC" },
   {
     id: "india",
     name: "India Hub",
@@ -37,12 +42,14 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     logoStacked: "/community-hubs/logos/india-lockup.png",
   },
   { id: "legal-governance", name: "Legal & Governance Hub", description: "Legal and governance questions around tokens, protocols and onchain organisations.", color: "#B9EFFF" },
+  { id: "music-stage", name: "Music Stage", description: "Live sets, DJs and Open Source Orchestra jams anyone can join.", color: "#FFF0A8" },
   {
     id: "onchain-art",
     name: "Onchain Art Hub",
     description: "Devcon's artist-focused hub for musicians, painters, designers and digital artists.",
     color: "#F7D4D4",
   },
+  { id: "open-hardware-zone", name: "Open Hardware Zone", description: "Open-source hardware showcases and hands-on maker workshops.", color: "#E2E8F0" },
   { id: "open-source", name: "Open Source Hub", description: "Hands-on space that turns attendees into open-source contributors.", color: "#DDFDEC" },
   { id: "p2p-networking", name: "P2P Networking Hub", description: "The people who build and maintain Ethereum's networking layer.", color: "#A8FFD5" },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Prediction-market builders, researchers, traders and governance contributors.", color: "#F5FFDB" },
