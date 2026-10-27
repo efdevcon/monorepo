@@ -33,7 +33,7 @@ export const APP_IMAGES: string[] = [
   // Community Hub logos: the hubs' gem artwork on hub session cards, the
   // timeline and the details banner (see trackTheme.ts hubTheme).
   ...COMMUNITY_HUBS.map(communityHubLogo),
-  ...COMMUNITY_HUBS.map(communityHubLockup),
+  ...COMMUNITY_HUBS.flatMap((hub) => communityHubLockup(hub) ?? []),
   // Stage theme crests on the room-screen picker (small, but under public/, so
   // never in the API-driven warm list; see roomIcon.ts).
   ...ROOM_ICON_URLS,
