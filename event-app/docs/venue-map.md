@@ -104,8 +104,8 @@ as the card's booth line), optional `tenants` (booth number → `{ name, logo }`
 booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a tenant may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
-2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus, Kohaku and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
-present changes mid-event and is updated then; Scott, 2026-10-25), optional
+2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
+present changes mid-event and is updated then (S12 is Fair Food Data from 2026-10-27; Kohaku moves to another spot later in the week, its two marks stay in the folder for that; Scott, 2026-10-25 / 10-27), optional
 `icon` (sprite PNG), `roomIds`, `website` (the place's own site, https; the card shows "Visit website" under the description with
 the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27) and `room` /
 `rooms` (the venue's room name or number, after the floor on the card: "Level 2 · 204A/B" for the Lightning Stage, 205A/B and
