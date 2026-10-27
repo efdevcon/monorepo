@@ -57,6 +57,8 @@ export interface CommunityRef {
   logo?: string;
   lockup?: string;
   kind: "hub" | "cls";
+  /** Which filter section lists it: a hub can opt into the community-led one (the Music Stage). */
+  section: "hub" | "cls";
 }
 
 /** The community behind a session: the hub by room first (a hub row's track is blank), else the group by track. */
@@ -72,6 +74,7 @@ export function communityOf(session: Pick<Session, "track" | "room">): Community
       logo: communityHubLogo(hub),
       lockup: communityHubLockup(hub) ?? undefined,
       kind: "hub",
+      section: hub.listedWithCommunityLed ? "cls" : "hub",
     };
   }
   const group = communityLedGroup(session.track);
@@ -85,6 +88,7 @@ export function communityOf(session: Pick<Session, "track" | "room">): Community
     logo: communityLedLogo(group),
     lockup: group.lockup,
     kind: "cls",
+    section: "cls",
   };
 }
 

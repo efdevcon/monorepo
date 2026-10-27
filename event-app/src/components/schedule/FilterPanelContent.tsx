@@ -29,10 +29,10 @@ const NO_COMMUNITIES: CommunityRef[] = [];
 /** A "[CLS]" track is a community, never a Tracks chip. */
 const CLS_PREFIX = "[CLS]";
 
-/** The two community sections, in panel order. */
-const COMMUNITY_SECTIONS: ReadonlyArray<{ kind: CommunityRef["kind"]; title: string }> = [
-  { kind: "hub", title: "Community Hubs" },
-  { kind: "cls", title: "Community-led Sessions" },
+/** The two community sections, in panel order (a community's `section` picks). */
+const COMMUNITY_SECTIONS: ReadonlyArray<{ section: CommunityRef["section"]; title: string }> = [
+  { section: "hub", title: "Community Hubs" },
+  { section: "cls", title: "Community-led Sessions" },
 ];
 
 function AccordionSection({
@@ -237,12 +237,12 @@ export function FilterPanelContent({
             when My Interests spans both. Both pick through the one community
             facet; each section counts only its own keys. */}
         {mode !== "main" &&
-          COMMUNITY_SECTIONS.map(({ kind, title }) => {
-            const list = communities.filter((c) => c.kind === kind);
+          COMMUNITY_SECTIONS.map(({ section, title }) => {
+            const list = communities.filter((c) => c.section === section);
             if (list.length === 0) return null;
             return (
               <AccordionSection
-                key={kind}
+                key={section}
                 title={title}
                 count={list.filter((c) => filters.community.includes(c.key)).length}
                 defaultOpen={defaultOpen}
