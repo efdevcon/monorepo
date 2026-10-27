@@ -7,6 +7,7 @@ import type { LevelId } from "../data/levels";
 import { areasOnLevel, type Area, type AreaKey } from "../data/resolve";
 import { HIT_LAYER } from "../interaction/pointer";
 import { useHovered } from "../interaction/hoverStore";
+import type { Tuning } from "../state/mapStore";
 import { ALPHA_HIT, useSpriteImage } from "./spriteImage";
 
 /** Sprite height in metres: from the footprint's shorter side, clamped so a booth's icon stays legible and a hall's stays modest (smaller since 2026-10-25, Scott: too big on some places). */
@@ -20,6 +21,9 @@ const ICON_MIN_W_M = 1.2;
 const BOB_RISE = 1.0;
 const BOB_PERIOD_S = 1.6;
 const DIM_OPACITY = 0.35;
+/** Decal (a supporter lockup stuck flat on its booth's top, `supporterLogos: "decal"`): share of the booth's sides it may cover, and how far above the cap it lies (clear of z-fighting). */
+const DECAL_FILL = 0.82;
+const DECAL_LIFT = 0.03;
 
 type AreaIconsProps = {
   level: LevelId;
@@ -27,17 +31,59 @@ type AreaIconsProps = {
   selected: AreaKey | null;
   group: ReadonlySet<AreaKey> | null;
   reducedMotion: boolean;
+  supporterLogos: Tuning["supporterLogos"];
 };
 
-/** The sprites standing on the footprints that have one (theme icons, hub marks), always facing the camera. */
-export function AreaIcons({ level, interactive, selected, group, reducedMotion }: AreaIconsProps) {
+/** A supporter booth: the catalogue names a tenant there (a hub booth carries its hub instead). */
+const isSupporterBooth = (a: Area) => a.boothName !== null && a.hub === null;
+
+/** The sprites standing on the footprints that have one (theme icons, hub marks), always facing the camera; supporter lockups lie flat on their booth instead in the decal experiment. */
+export function AreaIcons({ level, interactive, selected, group, reducedMotion, supporterLogos }: AreaIconsProps) {
   const areas = useMemo(() => areasOnLevel(level).filter((a) => a.iconUrl), [level]);
   return (
     <>
-      {areas.map((area) => (
-        <AreaIcon key={area.key} area={area} interactive={interactive} bob={!reducedMotion && (selected === area.key || (group?.has(area.key) ?? false))} dim={selected !== null && selected !== area.key && !(group?.has(area.key) ?? false)} />
-      ))}
+      {areas.map((area) => {
+        const dim = selected !== null && selected !== area.key && !(group?.has(area.key) ?? false);
+        if (supporterLogos === "decal" && isSupporterBooth(area)) return <BoothDecal key={area.key} area={area} dim={dim} />;
+        return <AreaIcon key={area.key} area={area} interactive={interactive} bob={!reducedMotion && (selected === area.key || (group?.has(area.key) ?? false))} dim={dim} />;
+      })}
     </>
+  );
+}
+
+/**
+ * A supporter's lockup lying on its booth's top, like a sign painted on the
+ * cap: along the booth's longer side, filling DECAL_FILL of it (and no more
+ * than that share of the shorter side), lettering upright from the start
+ * view (the south-east): a booth long on X reads left to right, one long on
+ * Z reads bottom to top. Not on the hit layer: the cap beneath takes the tap.
+ */
+function BoothDecal({ area, dim }: { area: Area; dim: boolean }) {
+  const image = useSpriteImage(area.iconUrl!);
+  const hovered = useHovered(area.key);
+  const [minX, minZ, maxX, maxZ] = area.shape.bbox;
+  const sx = maxX - minX;
+  const sz = maxZ - minZ;
+  const alongZ = sz > sx;
+  const long = Math.max(sx, sz) * DECAL_FILL;
+  const short = Math.min(sx, sz) * DECAL_FILL;
+  const aspect = image?.aspect ?? 1;
+  let w = long;
+  let h = w / aspect;
+  if (h > short) {
+    h = short;
+    w = h * aspect;
+  }
+  const [cx, cz] = area.shape.anchor;
+  const y = (area.shape.base ?? 0) + area.shape.height + DECAL_LIFT;
+  if (!image) return null;
+  return (
+    <group position={[cx, y, cz]} rotation={[0, alongZ ? Math.PI / 2 : 0, 0]}>
+      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[w, h]} />
+        <meshBasicMaterial map={image.texture} transparent opacity={dim && !hovered ? DIM_OPACITY : 1} depthWrite={false} toneMapped={false} polygonOffset polygonOffsetFactor={-2} />
+      </mesh>
+    </group>
   );
 }
 

@@ -60,6 +60,13 @@ export function DebugPanel({ tuning, floor, onTune, onFloor }: { tuning: Tuning;
         Show icons
         <input type="checkbox" checked={tuning.showIcons} onChange={(e) => onTune({ showIcons: e.target.checked })} />
       </label>
+      <label className="mb-2 flex items-center justify-between gap-2">
+        Supporter logos
+        <select className="rounded border border-dc-border px-1 py-0.5" value={tuning.supporterLogos} onChange={(e) => onTune({ supporterLogos: e.target.value as Tuning["supporterLogos"] })}>
+          <option value="float">floating</option>
+          <option value="decal">on the booth</option>
+        </select>
+      </label>
       {(
         [
           ["rotateLeftDeg", "Rotate left"],

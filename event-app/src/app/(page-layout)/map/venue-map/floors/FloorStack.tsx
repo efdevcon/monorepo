@@ -13,12 +13,14 @@ import { FloorMeshes } from "../geometry/FloorMeshes";
 import { hoverStore } from "../interaction/hoverStore";
 import { FloorHitPlane } from "./FloorHitPlane";
 import { FloorLabel } from "./FloorLabel";
+import type { Tuning } from "../state/mapStore";
 import { planFloorTransition, stackY, type FloorMove, type FloorPose } from "./placement";
 
 type FloorStackProps = {
   floor: LevelId | null;
   gap: number;
   showIcons: boolean;
+  supporterLogos: Tuning["supporterLogos"];
   reducedMotion: boolean;
   selected: AreaKey | null;
   group: ReadonlySet<AreaKey> | null;
@@ -45,7 +47,7 @@ type Tween = FloorMove & { start: number; duration: number };
  * take the pointer instead (only that floor's: the parked floors are invisible
  * but a raycaster still hits them). Also writes the desktop card anchor.
  */
-export function FloorStack({ floor, gap, showIcons, reducedMotion, selected, group, desktop, onOpenFloor, cardAnchorRef }: FloorStackProps) {
+export function FloorStack({ floor, gap, showIcons, supporterLogos, reducedMotion, selected, group, desktop, onOpenFloor, cardAnchorRef }: FloorStackProps) {
   const { camera, size, invalidate } = useThree();
   const groupRefs = useRef(new Map<LevelId, Group>());
   const poses = useRef<Map<LevelId, FloorPose>>(new Map(LEVELS.map((l) => [l.id, { y: floor === null ? stackY(l.id, gap) : 0, visible: floor === null || l.id === floor }])));
@@ -165,7 +167,7 @@ export function FloorStack({ floor, gap, showIcons, reducedMotion, selected, gro
           <FloorMeshes level={l.id} interactive={floor === l.id} selected={selected} group={group} />
           {stacked && <FloorHitPlane level={l.id} />}
           {stacked && <FloorLabel level={l.id} onOpen={() => onOpenFloor(l.id)} />}
-          {showIcons && <AreaIcons level={l.id} interactive={floor === l.id} selected={selected} group={group} reducedMotion={reducedMotion} />}
+          {showIcons && <AreaIcons level={l.id} interactive={floor === l.id} selected={selected} group={group} reducedMotion={reducedMotion} supporterLogos={supporterLogos} />}
         </group>
       ))}
     </>

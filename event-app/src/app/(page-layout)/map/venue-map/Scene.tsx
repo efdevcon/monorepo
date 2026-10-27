@@ -49,7 +49,7 @@ export default function Scene(props: SceneProps) {
       <ambientLight intensity={1.6} />
       <directionalLight position={[60, 120, 80]} intensity={1.4} />
       <CameraRig stack={stack} floor={floor} desktop={desktop} reducedMotion={reducedMotion} rotateLeftDeg={tuning.rotateLeftDeg} rotateRightDeg={tuning.rotateRightDeg} focus={focus} resetSeq={resetSeq} debug={debug} onInteract={props.onInteract} rigRef={rigRef} />
-      <FloorStack floor={floor} gap={tuning.levelGap} showIcons={tuning.showIcons} reducedMotion={reducedMotion} selected={selected} group={group} desktop={desktop} onOpenFloor={props.onTapFloor} cardAnchorRef={cardAnchorRef} />
+      <FloorStack floor={floor} gap={tuning.levelGap} showIcons={tuning.showIcons} supporterLogos={tuning.supporterLogos} reducedMotion={reducedMotion} selected={selected} group={group} desktop={desktop} onOpenFloor={props.onTapFloor} cardAnchorRef={cardAnchorRef} />
       <PointerOwner {...props} rigRef={rigRef} />
       {debug && <Stats />}
     </Canvas>
