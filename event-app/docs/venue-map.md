@@ -98,11 +98,13 @@ description the card's, its room joins `roomIds` for the live session, and the p
 as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
 booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a tenant may name a `cardLogo` for those chips when the booth's own
-`logo` is a compact mark that fits its top as a decal (six starter booths carry `<name>-full.svg` for the chips since
-2026-10-27, Scott); a shared booth names one supporter only, since who is
+`logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
+2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus, Kohaku and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then; Scott, 2026-10-25), optional
-`icon` (sprite PNG), `roomIds` and `website` (the place's own site, https; the card shows "Visit website" under the description with
-the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27). `ROOMS` maps Devcon 8 Pretalx room ids to footprints
+`icon` (sprite PNG), `roomIds`, `website` (the place's own site, https; the card shows "Visit website" under the description with
+the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27) and `room` /
+`rooms` (the venue's room name or number, after the floor on the card: "Level 2 · 204A/B" for the Lightning Stage, 205A/B and
+206A/B for the workshops, Business Lounge 1 / 2 for the Interview Room and the Baby Care Room; Scott, 2026-10-27). `ROOMS` maps Devcon 8 Pretalx room ids to footprints
 (`main-stage-lotus` → the three Lotus halls). `CATEGORIES` (Stages, Community hubs, Supporters,
 Food & drink, Washrooms, Cowork & discussion, Check-in & swag, Fun & rest, Other) is the only
 lucide mapping; `legend` on a category puts one swatch chip for it into the floor legend (chip
@@ -218,7 +220,10 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   from the footprint's `roomIds`, shortcuts (digits, F, /, Esc/A), the team-only wrench + tuning
   panel (desktop), `window.__mapCamera` / `__mapHover` / `__mapControls` while the wrench is on.
 - Deep link `?area=L3/lotus-stage-2` (several keys comma-separated: the Main Stage link highlights
-  all three Lotus halls) re-runs on every visit of the pane, as an effect dispatching `showAreas`.
+  all three Lotus halls) re-runs on every visit of the pane, as an effect dispatching `showAreas`. The session
+  details' location link and the reminder cards build it through `useMapHrefForRoom` (`src/data/map/mapHref.ts`),
+  which picks this map's `roomAreas.ts` or the prototype's by the `venueMapNext` gate: the two keep different keys,
+  and until 2026-10-27 both consumers used the prototype's, so nothing highlighted on this map (Scott).
 
 ## 5. Verification
 

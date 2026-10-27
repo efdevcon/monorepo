@@ -47,6 +47,8 @@ export type Area = {
   rank: number;
   /** The place's own site (areas.ts `website`), "Visit website" on the card. */
   website: string | null;
+  /** The venue's room name or number (areas.ts `room` / `rooms`), after the floor on the card. */
+  room: string | null;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -87,6 +89,7 @@ function resolveShape(shape: MapShape): Area | null {
     iconBackdrop: tenant ? shape.fill : null,
     rank: spec.rank ?? 100,
     website: spec.website ?? null,
+    room: (instance !== null ? spec.rooms?.[instance] : undefined) ?? spec.room ?? null,
   };
 }
 

@@ -39,6 +39,10 @@ export type AreaSpec = {
   rank?: number;
   /** The place's own site, linked as "Visit website" under the card's description (https only). */
   website?: string;
+  /** The venue's room name or number, shown after the floor on the card ("Level 2 · 204A/B"). */
+  room?: string;
+  /** Per instance number: the same for numbered layers (Workshop 1 → 205A/B). */
+  rooms?: Readonly<Record<number, string>>;
 };
 
 /**
@@ -64,13 +68,13 @@ export const AREAS = {
   "lotus-stage": { name: "Lotus Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 10, icon: "lotus" },
   "jasmine-stage": { name: "Jasmine Stage #", description: "Talks and panels.", category: "stages", heightClass: "stage", rank: 20, icon: "jasmine" },
   "music-stage": { name: "Music Stage", description: "Live music through the day.", category: "stages", heightClass: "stage", rank: 30, icon: "music-stage" },
-  "lightning-stage": { name: "Lightning Stage", description: "Short talks, back to back.", category: "stages", heightClass: "stage", rank: 25, icon: "lightning-stage" },
+  "lightning-stage": { name: "Lightning Stage", description: "Short talks, back to back.", category: "stages", heightClass: "stage", rank: 25, icon: "lightning-stage", room: "204A/B" },
   "cls-stage": { name: "Community Led Stage", description: "Community-led sessions.", category: "stages", heightClass: "stage", rank: 40, icon: "community-led-stage" },
   // The blue box beside the Community Led Stage on the Level 0 plan was unnamed in the export; named in the committed copy as the CLS Builders Room (the other CLS room in Pretalx). Confirm with Scott.
   // The blue box beside the Community Led Stage (Scott, 2026-10-26): a community place, under the Stages chip by its colour.
   "cls-hangout-area": { name: "CLS Hangout Area", description: "Hang out around the Community Led Stage.", category: "hubs", legend: "stages", heightClass: "room", rank: 5 },
   // Workshops (Level 2): community places, listed with the hubs (Scott, 2026-10-26)
-  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room", icon: "workshop" },
+  workshop: { name: "Workshop #", description: "Hands-on workshops.", category: "hubs", heightClass: "room", icon: "workshop", rooms: { 1: "205A/B", 2: "206A/B" } },
   // Suites (Level 1 and 2): the plan names them after Ethereum upgrades with the room number; the layer names carry both.
   "frontier-suite": { name: "Frontier Suite #", description: "", category: "suites", heightClass: "room", icon: "suites" },
   "homestead-suite-104b": { name: "Homestead Suite 104b", description: "", category: "suites", heightClass: "room", icon: "suites" },
@@ -137,8 +141,8 @@ export const AREAS = {
     heightClass: "kiosk",
     tenants: {
       1: supporter("ENS", "ens"),
-      2: supporter("Ordocode", "ordocode"),
-      3: supporter("Nethermind", "nethermind", "nethermind-full"),
+      2: supporter("Ordocode", "ordocode", "ordocode-full"),
+      3: supporter("Nethermind", "nethermind"),
       4: supporter("Bitget", "bitget"),
       5: supporter("World", "world"),
       6: supporter("Trail of Bits", "trail-of-bits"),
@@ -147,7 +151,7 @@ export const AREAS = {
       9: supporter("EEZ", "eez", "eez-full"),
       10: supporter("Crossbar", "crossbar"),
       11: supporter("UNICEF", "unicef"),
-      12: supporter("Kohaku", "kohaku"),
+      12: supporter("Kohaku", "kohaku", "kohaku-full"),
       13: supporter("Ethereum Applications Guild", "eag", "eag-full"),
       14: supporter("EIPsInsight", "eipsinsight"),
       15: supporter("growthepie", "growthepie"),
@@ -167,8 +171,8 @@ export const AREAS = {
   // Cowork & discussion
   "co-work-area": { name: "Co-work Area", description: "Desks, power and wifi.", category: "cowork", heightClass: "zone", icon: "cowork" },
   "quiet-co-work": { name: "Quiet Co-work", description: "Heads-down desks, keep it quiet.", category: "cowork", heightClass: "zone", icon: "cowork" },
-  "blue-discussion-corner": { name: "Blue Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner" },
-  "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner" },
+  "blue-discussion-corner": { name: "Blue Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner", iconSize: 4.5 },
+  "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner", iconSize: 4.5 },
   // Check-in & swag
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
   registration: { name: "Registration", description: "Check in and collect your badge.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
@@ -177,11 +181,11 @@ export const AREAS = {
   "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Leave your bags; lost property is kept here.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
-  "game-zone": { name: "Game Zone", description: "Games between sessions.", category: "fun", heightClass: "zone", icon: "game-zone" },
-  "art-gallery": { name: "Art Gallery", description: "Art from the community.", category: "fun", heightClass: "zone", icon: "art-gallery" },
+  "game-zone": { name: "Game Zone", description: "Ethereum games worth playing, and the people building them. Curated by nejc, back for a second Devcon.", category: "fun", heightClass: "zone", icon: "game-zone" },
+  "art-gallery": { name: "Art Gallery", description: "What does Ethereum look, sound and feel like beyond the code? The Infinite Garden Artist Cohort 2026 shows two months of answers.", category: "fun", heightClass: "zone", icon: "art-gallery" },
   "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
   "poster-printing-station": { name: "Poster Printing Station", description: "Print your poster for the display.", category: "fun", heightClass: "zone", icon: "poster-printing-station" },
-  "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press" },
+  "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press", iconSize: 4.5 },
   "open-hardware-zone": {
     name: "Open Hardware Zone",
     description: "Open hardware, hands on, with Maker's Asylum: the Goa makerspace and community of makers, builders and problem-solvers behind #MakeBreakCreate.",
@@ -193,8 +197,8 @@ export const AREAS = {
   },
   // Other
   "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge" },
-  "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room" },
-  "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room", icon: "baby-care-room" },
+  "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room", room: "Business Lounge 1" },
+  "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room", icon: "baby-care-room", room: "Business Lounge 2" },
   // Elevators: odd instances stand on the west side, even on the east, facing the other way.
   elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 2: "elevator-left", 4: "elevator-left", 6: "elevator-left", 8: "elevator-left" }, iconSize: 6.5 },
   // Outline symbol groups (named, or found by their drawing): the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).

@@ -96,7 +96,7 @@ export function AreaCard({
               <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
-            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.levelName}</span>}
+            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>}
             {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shownComposite ? shownComposite.description : shown?.description}</p>}
             {shown?.website && !shownComposite && !sessionOnly && (
               <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="mt-2 inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline">
