@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { trackEvent } from "@/data/analytics/track";
+import { useMapHrefForRoom } from "@/data/map/mapHref";
 import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent } from "lucide-react";
@@ -14,7 +15,6 @@ import { SessionMedia, sessionHasMedia } from "./SessionMedia";
 import { SessionSpeakerCard } from "./SessionSpeakerCard";
 import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel, type TrackTheme } from "./trackTheme";
-import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map-3d/roomAreas";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
 import { MarkdownText } from "@/components/MarkdownText";
 
@@ -214,6 +214,7 @@ export function SessionSummary({
   const theme = getTrackTheme(session.track, session.room?.id);
   const { isInterested, toggle } = useInterested();
   const interested = isInterested(session.id);
+  const mapHref = useMapHrefForRoom(session.room?.id);
 
   // The track banner yields to media: recordings always take the top slot,
   // and live/soon sessions may render the room livestream there instead.
@@ -276,7 +277,7 @@ export function SessionSummary({
                   session without a room keeps the plain "Type" label. */}
               {location && session.room ? (
                 <Link
-                  href={mapHrefForRoom(session.room.id)}
+                  href={mapHref}
                   className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-purple underline-offset-2 hover:underline"
                 >
                   <MapPin className="size-3.5 shrink-0" />

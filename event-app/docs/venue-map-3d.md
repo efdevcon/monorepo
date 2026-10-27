@@ -105,7 +105,9 @@ Pretalx/Notion schedule  →  event store (Dexie, src/data)  →  useSessions({ 
 roomAreas.ts: ROOM_AREAS { "main-stage": { level: "L1", id: "main-stage-mask" } }
 ```
 
-- **Show on Map** (session details) → `mapHrefForRoom(roomId)` → `/map?area=<level>/<id>`.
+- **Show on Map** (session details) → `mapHrefForRoom(roomId)` → `/map?area=<level>/<id>`. Since 2026-10-27 the
+  consumers call `useMapHrefForRoom` (`src/data/map/mapHref.ts`), which uses this builder only while the rebuilt
+  map (`venueMapNext`) is off.
   `VenueMap3D` treats the param as derived state keyed on the param and on the pane being
   active (a visit counter makes the same room re-focus on a second visit) and calls
   `showShapes([shape])`.
