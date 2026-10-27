@@ -17,8 +17,8 @@ export interface CommunityHub {
   color: string;
   /** Logo path under /public when it isn't the default `<id>.svg` (see communityHubLogo). */
   logo?: string;
-  /** Lockup (mark + wordmark) for the session details banner when it isn't the default `<id>-lockup.svg` (see communityHubLockup). */
-  logoStacked?: string;
+  /** Lockup (mark + wordmark) for the session details banner when it isn't the default `<id>-lockup.svg` (see communityHubLockup); null for a hub with no lockup, whose banner shows the mark with the name under it. */
+  logoStacked?: string | null;
 }
 
 /**
@@ -43,7 +43,16 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     logoStacked: "/community-hubs/logos/india-lockup.png",
   },
   { id: "legal-governance", name: "Legal & Governance Hub", description: "Ownership, access, cashflow and voting rights across tokens, NFTs and RWAs, with India's legal-tech and digital-rights communities.", color: "#B9EFFF" },
-  { id: "music-stage", name: "Music Stage", description: "Live sets, DJs and Open Source Orchestra jams anyone can join.", color: "#FFF0A8" },
+  {
+    id: "music-stage",
+    name: "Music Stage",
+    description: "Live sets, DJs and Open Source Orchestra jams anyone can join.",
+    color: "#FFF0A8",
+    // The venue map's Music Stage sprite stands in for a hub mark; no lockup, the
+    // details banner shows the sprite with "Music Stage" under it (Scott, 2026-10-27).
+    logo: "/maps/devcon-8/icons/music-stage.png",
+    logoStacked: null,
+  },
   {
     id: "onchain-art",
     name: "Onchain Art Hub",
@@ -127,8 +136,11 @@ export function communityHubLogo(hub: CommunityHub): string {
  * The hub's lockup (mark + wordmark, 16:9 or stacked), the session details
  * banner. Every hub has one at `<id>-lockup.svg` unless `logoStacked` says
  * otherwise; the banner sizes it with object-contain, so the aspect is free.
+ * Null for a hub without one (the Music Stage): the banner shows the mark
+ * with the hub's name under it instead.
  */
-export function communityHubLockup(hub: CommunityHub): string {
+export function communityHubLockup(hub: CommunityHub): string | null {
+  if (hub.logoStacked === null) return null;
   return versioned(hub.logoStacked ?? `/community-hubs/logos/${hub.id}-lockup.svg`);
 }
 

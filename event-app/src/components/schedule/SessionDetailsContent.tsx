@@ -54,25 +54,33 @@ function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme
         <div className="flex h-full w-full flex-col items-center justify-center gap-2">
           {theme.banner ? (
             // Hub's stacked lockup (mark over name): bigger than the mark, sized
-            // off the banner so it scales from the side panel to the expanded page.
+            // off the banner so it scales from the side panel to the expanded page
+            // (3/4 of its height, up a quarter from 3/5; Scott, 2026-10-27).
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={theme.banner} alt={theme.name} className="h-3/5 max-w-[70%] object-contain" />
+            <img src={theme.banner} alt={theme.name} className="h-3/4 max-w-[87.5%] object-contain" />
           ) : (
             theme.gem && (
+              // A hub's mark sits smaller than a track gem, with the name under it (Scott, 2026-10-27).
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={theme.gem}
                 alt={theme.isHub ? theme.name : ""}
-                className="size-[120px] object-contain"
+                className={cn("object-contain", theme.isHub ? "size-[88px]" : "size-[120px]")}
               />
             )
           )}
-          {/* Hub sessions: the hub's logo is the banner, no caption under it. */}
-          {!theme.isHub && (
-            <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
-              {session.track || theme.name}
-            </span>
-          )}
+          {/* Hub sessions: the hub's lockup is the banner, no caption under it. A hub
+              without a lockup (the Music Stage) shows its mark with its name under it,
+              in the foreground colour (Scott, 2026-10-27). */}
+          {theme.isHub
+            ? !theme.banner && (
+                <span className="px-4 text-center text-[16px] font-medium leading-6 text-dc-fg">{theme.name}</span>
+              )
+            : (
+                <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
+                  {session.track || theme.name}
+                </span>
+              )}
         </div>
       )}
       {card !== "none" && (

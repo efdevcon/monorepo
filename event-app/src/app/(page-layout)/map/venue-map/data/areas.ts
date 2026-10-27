@@ -151,7 +151,7 @@ export const AREAS = {
       9: supporter("EEZ", "eez", "eez-full"),
       10: supporter("Crossbar", "crossbar"),
       11: supporter("UNICEF", "unicef"),
-      12: supporter("Kohaku", "kohaku", "kohaku-full"),
+      12: supporter("Fair Food Data", "fair-food-data"),
       13: supporter("Ethereum Applications Guild", "eag", "eag-full"),
       14: supporter("EIPsInsight", "eipsinsight"),
       15: supporter("growthepie", "growthepie"),
