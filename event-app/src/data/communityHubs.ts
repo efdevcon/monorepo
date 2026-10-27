@@ -43,7 +43,14 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     logoStacked: "/community-hubs/logos/india-lockup.png",
   },
   { id: "legal-governance", name: "Legal & Governance Hub", description: "Ownership, access, cashflow and voting rights across tokens, NFTs and RWAs, with India's legal-tech and digital-rights communities.", color: "#B9EFFF" },
-  { id: "music-stage", name: "Music Stage", description: "Live sets, DJs and Open Source Orchestra jams anyone can join.", color: "#FFF0A8" },
+  {
+    id: "music-stage",
+    name: "Music Stage",
+    description: "Live sets, DJs and Open Source Orchestra jams anyone can join.",
+    color: "#FFF0A8",
+    // The venue map's Music Stage sprite stands in for a hub mark (Scott, 2026-10-27).
+    logo: "/maps/devcon-8/icons/music-stage.png",
+  },
   {
     id: "onchain-art",
     name: "Onchain Art Hub",
