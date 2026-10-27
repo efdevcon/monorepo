@@ -37,7 +37,7 @@ type AreaIconsProps = {
 /** A supporter booth: the catalogue names a tenant there (a hub booth carries its hub instead). */
 const isSupporterBooth = (a: Area) => a.boothName !== null && a.hub === null;
 
-/** The sprites standing on the footprints that have one (theme icons, hub marks), always facing the camera; supporter lockups lie flat on their booth instead in the decal experiment. */
+/** The sprites standing on the footprints that have one (theme icons, hub marks), always facing the camera; supporter lockups lie flat on their booth instead (`supporterLogos: "decal"`, the default). */
 export function AreaIcons({ level, interactive, selected, group, reducedMotion, supporterLogos }: AreaIconsProps) {
   const areas = useMemo(() => areasOnLevel(level).filter((a) => a.iconUrl), [level]);
   return (

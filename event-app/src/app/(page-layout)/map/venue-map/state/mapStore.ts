@@ -23,11 +23,11 @@ export type Tuning = {
   /** Zoom factor per double tap. */
   zoomStep: number;
   projection: "ortho" | "perspective";
-  /** Supporter lockups: a sprite floating over the booth (today's look) or a decal stuck flat on its top (to compare; Scott, 2026-10-27). */
+  /** Supporter lockups: a decal stuck flat on the booth's top (the look since 2026-10-27, Scott) or a sprite floating over it (the earlier look, kept to compare; a mixed rule by booth size may follow review). */
   supporterLogos: "float" | "decal";
 };
 
-export const DEFAULT_TUNING: Tuning = { levelGap: 60, showIcons: true, rotateLeftDeg: 75, rotateRightDeg: 85, zoomStep: 1.8, projection: "ortho", supporterLogos: "float" };
+export const DEFAULT_TUNING: Tuning = { levelGap: 60, showIcons: true, rotateLeftDeg: 75, rotateRightDeg: 85, zoomStep: 1.8, projection: "ortho", supporterLogos: "decal" };
 
 export type Focus = {
   /** Bumps on every focus so the camera re-runs for the same target. */
