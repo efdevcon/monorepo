@@ -334,7 +334,7 @@ ui/        ControlPill.tsx MapPanel.tsx MapSheet.tsx AreaCard.tsx useLiveSession
   floor legend (`categories.filter(c => c.legend)`), AreaCard, icons, live session all read
   `Area`; `categories.ts` is the only lucide mapping.
 
-## 6. Phases and verification
+## 6. Phases and verification (closed 2026-10-27: phases 0–8 done, phase 8's real-browser pass in Arc by Scott)
 Baseline: `pnpm dev` once (generates `next-env.d.ts`), then `pnpm typecheck` + `pnpm lint`.
 Screenshots: `node ../scripts/shot.mjs /map --port <port> --widths 390,1440 --out <dir>` (one
 `--out` per state, the file name is derived from the path); one-off playwright-core scripts in
@@ -371,7 +371,7 @@ states (`/map?area=L1/main-stage-mask`); legend-only, panel and hover states nee
 Phases 1–7 run on the v2 JSON built from today's provisional SVGs; when the real SVGs arrive only
 the phase-0 shim is removed and `pnpm map:build` re-run.
 
-## 7. Risks / check in Arc, not only headless
+## 7. Risks / check in Arc, not only headless (checked in Arc by Scott, 2026-10-27)
 - Materials/lighting/hover looked right headless and wrong in Arc once (floor-shadow experiment):
   check merged vertex-colour statics, polygonOffset edge quality, sRGB sprites at DPR 2.
 - Custom raycast owner: one raycast per pointermove against ~130 objects/floor is cheap; confirm no
@@ -388,7 +388,7 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - Phone Search sheet cannot autofocus (iOS needs a synchronous focus inside the tap; the sheet
   mounts on open). Keep the search content mounted (as `HeaderSearchDrawer` does) if it matters.
 
-## 8. Open questions for Scott
+## 8. Open questions for Scott (closed 2026-10-27: all resolved; the slash grammar gave way to the layer-group contract in `docs/venue-map.md`, `bg-image-new.png` is unreferenced, the catalogue keeps one tea-and-coffee entry, stage room ids live in `data/roomAreas.ts`, category chips stay deferred, the legend is per floor in `data/legend.ts`)
 - Confirm the `room/…` `zone/…` slash grammar is comfortable in Figma (alternative: `room-` prefix).
 - Delete `bg-image-new.png` + its CacheWarmer entry with the old map?
 - Merge `coffee-station-*` into `food-area-*` or keep both catalogue entries?
@@ -410,6 +410,8 @@ the phase-0 shim is removed and `pnpm map:build` re-run.
 - 2026-10-26 (later) — Level 0 re-export (named walls and escalators, door openings in the exterior
   walls, floor arrows moved); workshops moved under the Community category (Find chip relabelled
   "Community"); Food Garden icon fixed at 16 m (`iconSize`).
+- 2026-10-27 (later) — plan closed: §6 phases 0–8 done, §7 checked in Arc, §8 answered. The live
+  list of product items is `docs/venue-map.md` §6 from here.
 - 2026-10-27 — phase 8: prototype deleted (`venue-map-3d/`, `plan-map-build.mjs`,
   `docs/venue-map-3d.md`, provisional SVGs), `venueMapNext` gate removed, `MapPane` mounts
   `VenueMap` under `venueMap` alone, session details and reminder cards call this map's
