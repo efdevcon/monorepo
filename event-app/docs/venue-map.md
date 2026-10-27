@@ -164,7 +164,9 @@ Scene.tsx      Canvas, lights, CameraRig, FloorStack, PointerOwner, Stats
 state/         mapStore.ts (reducer + invariants, tested)
 camera/        constants, fit (projectedExtent), tween, gestures (tap state machine, tested),
                rig.ts (imperative OrbitControls wrapper), CameraRig.tsx
-floors/        placement.ts (rest poses + transition plan, tested), FloorStack, FloorHitPlane, FloorLabel
+floors/        placement.ts (rest poses + transition plan, tested; STACK_GAP_SCALE: the gap above Level 0 is 1.5× the
+               tuning gap and the two above it 1.1×, since Level 0's far half rose on screen into the narrow Level 1
+               and the two slabs read as one on phones; the fit uses stackSpan; Scott, 2026-10-27), FloorStack, FloorHitPlane, FloorLabel
 geometry/      buildFloor.ts (merged statics + per-area extrusions, module cache), materials, FloorMeshes, AreaIcons
 interaction/   hoverStore (useSyncExternalStore), pointer.ts (single raycast owner), usePointer
 find/          catalogue.ts (Find groups, legend, group primary; tested), FindContent, EntryRow

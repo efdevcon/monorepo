@@ -14,8 +14,8 @@ type Tween = { from: ViewState; to: ViewState; start: number; duration: number; 
 export type RigEnv = {
   /** Viewport in CSS px. */
   size: { width: number; height: number };
-  /** Floors stacked (count and gap in metres) or null when one floor shows: widens the fit. */
-  stack: { count: number; gap: number } | null;
+  /** Floors stacked (the stack's height in metres, lowest to highest rest pose) or null when one floor shows: widens the fit. */
+  stack: { span: number } | null;
   /** The open floor's own ground bounds (the whole-floor views fit and centre on it; the south-band floors sit low in the building's box otherwise), null while stacked. */
   floorBounds: GroundBounds | null;
   desktop: boolean;
@@ -115,7 +115,7 @@ export class CameraRigController {
    */
   computeFit(azimuth = START_AZIMUTH) {
     const { size, stack, desktop } = this.env;
-    const spread = stack ? ((stack.count - 1) * stack.gap) / 2 : 0;
+    const spread = stack ? stack.span / 2 : 0;
     const extent = projectedExtent(this.viewBounds(), -spread, spread, azimuth, POLAR_ANGLE);
     if (this.isOrtho) {
       if (desktop) return { zoom: fitZoom(extent, size, FIT_MARGIN), radius: ORTHO_RADIUS };

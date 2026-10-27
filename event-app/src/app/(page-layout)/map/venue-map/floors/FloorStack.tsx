@@ -14,7 +14,7 @@ import { hoverStore } from "../interaction/hoverStore";
 import { FloorHitPlane } from "./FloorHitPlane";
 import { FloorLabel } from "./FloorLabel";
 import type { Tuning } from "../state/mapStore";
-import { planFloorTransition, stackY, type FloorMove, type FloorPose } from "./placement";
+import { planFloorTransition, stackSpan, stackY, type FloorMove, type FloorPose } from "./placement";
 
 type FloorStackProps = {
   floor: LevelId | null;
@@ -65,7 +65,7 @@ export function FloorStack({ floor, gap, showIcons, supporterLogos, reducedMotio
     }
     const b = plan.bounds;
     const floorHalfH = Math.hypot(b.maxX - b.minX, b.maxZ - b.minZ) / 2;
-    return ((viewHalfH + floorHalfH) / Math.sin(POLAR_ANGLE)) * 1.1 + (LEVELS.length * gap) / 2;
+    return ((viewHalfH + floorHalfH) / Math.sin(POLAR_ANGLE)) * 1.1 + stackSpan(gap) / 2 + gap;
   };
 
   useEffect(() => {

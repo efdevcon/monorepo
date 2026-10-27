@@ -6,7 +6,8 @@ import { Stats } from "@react-three/drei";
 import { CameraRig } from "./camera/CameraRig";
 import { TWEEN_MS } from "./camera/constants";
 import type { CameraRigController } from "./camera/rig";
-import { LEVELS, type LevelId } from "./data/levels";
+import type { LevelId } from "./data/levels";
+import { stackSpan } from "./floors/placement";
 import type { AreaKey } from "./data/resolve";
 import { FloorStack } from "./floors/FloorStack";
 import { usePointer } from "./interaction/usePointer";
@@ -35,7 +36,7 @@ export default function Scene(props: SceneProps) {
   const { floor, selected, group, focus, resetSeq, tuning, active, debug, reducedMotion, desktop, cardAnchorRef } = props;
   const rigRef = useRef<CameraRigController | null>(null);
   const ortho = tuning.projection === "ortho";
-  const stack = floor === null ? { count: LEVELS.length, gap: tuning.levelGap } : null;
+  const stack = floor === null ? { span: stackSpan(tuning.levelGap) } : null;
   return (
     <Canvas
       key={tuning.projection}

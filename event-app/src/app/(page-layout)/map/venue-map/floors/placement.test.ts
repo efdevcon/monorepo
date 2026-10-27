@@ -1,13 +1,17 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { LEVELS } from "../data/levels";
-import { planFloorTransition, restY, stackY } from "./placement";
+import { planFloorTransition, restY, STACK_GAP_SCALE, stackSpan, stackY } from "./placement";
 
 const ids = LEVELS.map((l) => l.id);
 
 test("stack rests around zero, an open floor sits at zero with the others parked on their side", () => {
   const ys = ids.map((id) => stackY(id, 10));
-  assert.ok(Math.abs(ys.reduce((a, b) => a + b, 0)) < 1e-9);
+  assert.ok(Math.abs(ys[0] + ys[ys.length - 1]) < 1e-9, "the stack is centred on its middle");
+  assert.ok(ys.every((y, i) => i === 0 || y > ys[i - 1]), "floors rise in order");
+  const scales = ids.slice(1).map((id) => STACK_GAP_SCALE[id] ?? 1);
+  assert.equal(stackSpan(10), 10 * scales.reduce((a, b) => a + b, 0));
+  for (let i = 1; i < ids.length; i++) assert.ok(Math.abs(ys[i] - ys[i - 1] - 10 * scales[i - 1]) < 1e-9, `gap below ${ids[i]} is scaled`);
   const shown = ids[0];
   assert.equal(restY(shown, shown, 10, 500), 0);
   for (const id of ids.slice(1)) assert.equal(restY(id, shown, 10, 500), 500);

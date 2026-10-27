@@ -13,8 +13,8 @@ import { CameraRigController, type MapCamera, type RigEnv } from "./rig";
 import { easeOutQuint } from "./tween";
 
 export type CameraRigProps = {
-  /** Floors stacked (count + gap) or null when one floor shows. */
-  stack: { count: number; gap: number } | null;
+  /** Floors stacked (the stack's height, metres) or null when one floor shows. */
+  stack: { span: number } | null;
   /** The open floor (its own bounds are what the whole-floor views frame), null while stacked. */
   floor: LevelId | null;
   desktop: boolean;
@@ -71,7 +71,7 @@ export function CameraRig({ stack, floor, desktop, reducedMotion, rotateLeftDeg,
 
   // Stack ↔ floor, or floor → floor (each floor has its own fit): re-fit on the floors' clock, keeping the user's turn. Skipped on mount and when a focus or reset runs in the same commit.
   // A focus that is already pending when the canvas mounts (a deep link lands before the client-only Scene) still runs: prevFocus starts at 0.
-  const stackKey = stack ? `${stack.count}:${stack.gap}` : `floor:${floor}`;
+  const stackKey = stack ? `stack:${stack.span}` : `floor:${floor}`;
   const prevStack = useRef(stackKey);
   const prevFocus = useRef(0);
   const prevReset = useRef(resetSeq);

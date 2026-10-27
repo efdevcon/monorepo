@@ -11,8 +11,31 @@ import { LEVELS, levelIndex, type LevelId } from "../data/levels";
 export type FloorPose = { y: number; visible: boolean };
 export type FloorMove = { level: LevelId; fromY: number; toY: number; hideAtEnd: boolean };
 
+/**
+ * Gap between a floor and the one below it, as a multiple of the tuning gap.
+ * Level 1 sits further above Level 0: Levels 1–2 are the narrow south band
+ * while Level 0 is the whole footprint, so at the isometric pitch Level 0's
+ * far half rises on screen into Level 1's near edge and the two slabs read
+ * as one at the fitted phone view (Scott, 2026-10-27). Unlisted floors: 1.
+ */
+export const STACK_GAP_SCALE: Partial<Record<LevelId, number>> = { L1: 1.5, L2: 1.1, L3: 1.1 };
+
+/** Rest heights of every floor in the stack, bottom first, centred on y = 0 (the stack's middle, not its mean). */
+export function stackYs(gap: number): number[] {
+  const ys = [0];
+  for (const { id } of LEVELS.slice(1)) ys.push(ys[ys.length - 1] + gap * (STACK_GAP_SCALE[id] ?? 1));
+  const mid = ys[ys.length - 1] / 2;
+  return ys.map((y) => y - mid);
+}
+
 /** Rest height of a floor in the stack. */
-export const stackY = (id: LevelId, gap: number) => (levelIndex(id) - (LEVELS.length - 1) / 2) * gap;
+export const stackY = (id: LevelId, gap: number) => stackYs(gap)[levelIndex(id)];
+
+/** Height of the whole stack, lowest to highest rest pose. */
+export const stackSpan = (gap: number) => {
+  const ys = stackYs(gap);
+  return ys[ys.length - 1] - ys[0];
+};
 
 /** Rest height of a floor while `shown` is open: 0 for the shown floor, parked above or below otherwise. */
 export const restY = (id: LevelId, shown: LevelId | null, gap: number, exit: number) =>
