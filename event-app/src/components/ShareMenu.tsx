@@ -18,9 +18,11 @@ export function shareUrl(kind: DetailKind, id: string): string {
 }
 
 /**
- * The post the X option pre-fills (the link follows as the post's URL).
- * First person, from an attendee: the share is theirs, not the programme's
- * (Scott's draft, 2026-10-27).
+ * The text that goes with the link into the platform share sheet. First
+ * person, from an attendee: the share is theirs, not the programme's
+ * (Scott's draft, 2026-10-27). Written for an X post; the X option itself was
+ * pulled the same day (x.com's intent page hung in every browser tried) and
+ * can come back as a row here.
  */
 export function sharePostText(kind: DetailKind, title: string): string {
   const lead = "I'm at @EFDevcon in Mumbai, India.";
@@ -29,7 +31,7 @@ export function sharePostText(kind: DetailKind, title: string): string {
     : `${lead} Don't miss ${title} on stage`;
 }
 
-/** X (Twitter) glyph — lucide's brand icons are deprecated, so inline SVG. */
+/** X (Twitter) glyph — lucide's brand icons are deprecated, so inline SVG. The speaker header's social links use it. */
 export function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
@@ -45,11 +47,12 @@ const GUTTER = 16;
 const EXIT_MS = 100;
 
 /**
- * "Share" pill that opens a small menu anchored under it: copy the link,
- * post on X, and the platform's own share sheet where there is one ("More
- * options", so Signal, WhatsApp and the rest stay a tap away). Replaces the
- * bare native sheet, which on desktop browsers offers next to nothing
- * (Scott, 2026-10-27).
+ * "Share" pill that opens a small menu anchored under it: copy the link, and
+ * the platform's own share sheet where there is one ("More options", so
+ * Signal, WhatsApp and the rest stay a tap away). Replaces the bare native
+ * sheet, which on desktop browsers offers next to nothing (Scott,
+ * 2026-10-27). A "Post on X" row shipped and was pulled the same day: x.com's
+ * intent page hung in every browser tried, so it waits on X.
  *
  * The menu is portalled to the body and positioned from the pill's rect:
  * the pill sits inside scroll containers (side panel, expanded columns with
@@ -179,15 +182,6 @@ export function ShareMenu({
     }
   };
 
-  const postOnX = () => {
-    close(true);
-    trackEvent(kind, "share-x", id);
-    const intent = new URL("https://x.com/intent/post");
-    intent.searchParams.set("text", text);
-    intent.searchParams.set("url", url);
-    window.open(intent.toString(), "_blank", "noopener,noreferrer");
-  };
-
   const nativeShare = async () => {
     close(true);
     trackEvent(kind, "share-native", id);
@@ -239,14 +233,10 @@ export function ShareMenu({
               <Link2 className="size-4 shrink-0 text-dc-purple" />
               Copy link
             </button>
-            <button type="button" role="menuitem" onClick={postOnX} className={item}>
-              <XIcon className="size-4 shrink-0 text-dc-purple" />
-              Post on X
-            </button>
             {canNativeShare && (
               <button type="button" role="menuitem" onClick={() => void nativeShare()} className={item}>
                 <Share2 className="size-4 shrink-0 text-dc-purple" />
-                More options…
+                More options
               </button>
             )}
           </div>,
