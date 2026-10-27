@@ -124,7 +124,7 @@ Decompression Zone. A floor with a spec list never falls back to the colour lege
 also carries Levels 0–2: the Community Led Stage (L0, `stages`) and the CLS Hangout Area beside it
 (L0, `hubs`, under the Stages chip by its colour; Scott, 2026-10-26), the Lightning
 Stage (L2), `workshop` 1–2 (category `hubs`, the Find chip now labelled "Community"; they share the hubs' yellow and so their chip), fourteen suites (category `suites`,
-green chip; named after Ethereum upgrades with their room number as "{Name} - Suite {number}" since 2026-10-27 (Scott),
+green chip; named after Ethereum upgrades with their room number as "{Name} - Suite {number}" since 2026-10-27 (Scott; the room letter upper-cased, "Suite 105A", unlike the plan's lower case),
 `frontier-suite-102` → "Frontier - Suite 102", `tangerine-whistle-suite-105a` is its own id), Registration / Badge Pickup / Help Desk /
 Cloak Room (`checkin`, which now has a "Check-in" chip; the Swag Station moved to the Fun chip of its
 colour), the Food Garden, Poster Printing Station, Speakers Lounge, Interview Room, Baby Care Room,

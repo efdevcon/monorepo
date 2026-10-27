@@ -76,7 +76,7 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   const suites = groups.find((g) => g.category.id === "suites")!.floors;
   assert.deepEqual(suites.map((f) => [f.level, f.entries.length]), [["L1", 6], ["L2", 8]]);
   assert.ok(suites[0].entries.some((e) => e.name === "Frontier - Suite 102"), "a numbered suite layer carries its room number");
-  assert.ok(suites[0].entries.some((e) => e.name === "Tangerine Whistle - Suite 105a"));
+  assert.ok(suites[0].entries.some((e) => e.name === "Tangerine Whistle - Suite 105A"));
   assert.ok(AREA_LIST.some((a) => a.key === "L2/lightning-stage" && a.roomIds.includes("lightning-stage")), "the Lightning Stage maps to its Pretalx room");
   assert.ok(AREA_LIST.some((a) => a.key === "L0/cls-stage" && a.roomIds.includes("community-led-stage")));
   assert.ok(AREA_LIST.some((a) => a.key === "L0/cls-hangout-area" && a.roomIds.includes("cls-builders-room")), "the Builders Room sessions show the hangout area for now");
