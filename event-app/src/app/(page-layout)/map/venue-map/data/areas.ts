@@ -165,7 +165,7 @@ export const AREAS = {
   },
   // Food & drink
   "tea-coffee": { name: "Tea & Coffee", description: "Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
-  "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks will be available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
+  "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
   washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
   // Cowork & discussion
@@ -175,10 +175,10 @@ export const AREAS = {
   "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner", iconSize: 4.5 },
   // Check-in & swag
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
-  registration: { name: "Registration", description: "Check in and collect your badge.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
-  "badge-pickup": { name: "Badge Pickup #", description: "Collect your badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
-  "help-desk": { name: "Help Desk", description: "Questions about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
-  "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Leave your bags; lost property is kept here.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
+  registration: { name: "Registration", description: "Check in and collect your wristband.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
+  "badge-pickup": { name: "Badge Pickup #", description: "Create a Devcon badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
+  "help-desk": { name: "Help Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Check in your bag or ask about lost property.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
   "game-zone": { name: "Game Zone", description: "Ethereum games worth playing, and the people building them. Curated by nejc, back for a second Devcon.", category: "fun", heightClass: "zone", icon: "game-zone" },
