@@ -186,8 +186,8 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   gutters, the stack keeping `PHONE_LABEL_ROOM_PX` 42 px on the right for the labels' column (20px
   labels, 12px off the corner) and sitting `PHONE_STACK_LIFT_PX` 72 px above centre in portrait so the
   lowest label clears the floor slider; Scott, 2026-10-26),
-  the zoom clamps (0.85×–6× fit, 10× on phones, where supporter lockups and small booths were hard to
-  read and tap at 6×), tweens (350 ms double-tap, 800 ms floor/reset/focus, 0 under
+  the zoom clamps (0.85×–14× fit on every device since 2026-10-27, Scott; was 6×, then 10× on phones, where supporter
+  lockups and small booths were hard to read and tap), tweens (350 ms double-tap, 800 ms floor/reset/focus, 0 under
   reduced motion), the per-frame target clamp to the floor, and `touched` (a grab interrupts a
   tween and stops resize from re-applying the start pose). A focus pending when the client-only
   canvas mounts (a deep link) still runs: the previous-seq ref starts at 0.

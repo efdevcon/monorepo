@@ -29,10 +29,10 @@ export const PHONE_LABEL_ROOM_PX = 42;
 export const PHONE_STACK_LIFT_PX = 72;
 /** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
 export const GROUP_FIT_MARGIN = 0.55;
-/** Zoom clamps as multiples of the fit; phones zoom further in, where supporter lockups and small booths were hard to read and tap at 6× (Scott, 2026-10-26). */
+/** Zoom clamps as multiples of the fit: 14× everywhere since 2026-10-27 (Scott; was 6×, then 10× on phones, where supporter lockups and small booths were hard to read and tap). */
 export const MIN_ZOOM_FACTOR = 0.85;
-export const MAX_ZOOM_FACTOR = 6;
-export const MAX_ZOOM_FACTOR_MOBILE = 10;
+export const MAX_ZOOM_FACTOR = 14;
+export const MAX_ZOOM_FACTOR_MOBILE = 14;
 /** Desktop: the home views sit this much lower, centred in the band between the legend strip and the bottom controls. */
 export const DESKTOP_SHIFT_PX = 24;
 /** Phones pan a little faster than the finger (testers found 1:1 slow, 2026-10-13). */
