@@ -1,10 +1,9 @@
 "use client";
 
-import { Copy, Globe, Share2, Star } from "lucide-react";
+import { Globe, Star } from "lucide-react";
 import cn from "classnames";
-import { toast } from "sonner";
 import { Avatar } from "@/components/Avatar";
-import { shareDetail } from "@/components/ShareButton";
+import { ShareMenu, XIcon } from "@/components/ShareMenu";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { groupSessionsByDay } from "@/components/schedule/utils";
@@ -23,20 +22,6 @@ function GithubIcon({ className }: { className?: string }) {
       className={className}
     >
       <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.67.41.36.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5" />
-    </svg>
-  );
-}
-
-/** X (Twitter) glyph — lucide's brand icons are deprecated, so inline SVG. */
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden
-      className={className}
-    >
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
 }
@@ -159,7 +144,7 @@ function SpeakerHeaderBand({
   );
 }
 
-/** Bio, topic-tag recap and the Interested / Copy-name pills. */
+/** Bio, topic-tag recap and the Interested / Share pills. */
 function SpeakerProfile({
   decorated,
   scale,
@@ -171,20 +156,6 @@ function SpeakerProfile({
   const lg = scale === "lg";
   const { isInterested, toggle } = useInterestedSpeakers();
   const interested = isInterested(speaker.id);
-
-  const copyName = async () => {
-    try {
-      await navigator.clipboard.writeText(speaker.name);
-      toast(
-        <span>
-          <span className="font-semibold">{speaker.name}</span> copied to
-          clipboard.
-        </span>
-      );
-    } catch {
-      toast("Couldn’t copy the name.");
-    }
-  };
 
   // 8px before the icon, 12px after the label (Scott, 2026-10-13).
   const pill =
@@ -254,27 +225,14 @@ function SpeakerProfile({
           />
           {interested ? "Interested" : "Add to Interests"}
         </button>
-        <button
-          onClick={() => void copyName()}
+        {/* Share took Copy name's slot on every layout; the chrome's share
+            circle went with it, one entry point per page (Scott, 2026-10-27). */}
+        <ShareMenu
+          kind="speaker"
+          id={speaker.id}
+          title={speaker.name}
           className={cn(pill, "border-dc-hairline bg-white")}
-        >
-          <Copy className="size-4 text-dc-purple" />
-          Copy name
-        </button>
-        {/* Expanded page only: the panel and the mobile page carry the share
-            circle in their chrome (beside Close / in the app header), the
-            dedicated page has no chrome of its own (feedback, 2026-10-13). */}
-        {lg && (
-          <button
-            onClick={() =>
-              void shareDetail({ kind: "speaker", id: speaker.id, title: speaker.name })
-            }
-            className={cn(pill, "border-dc-hairline bg-white")}
-          >
-            <Share2 className="size-4 text-dc-purple" />
-            Share
-          </button>
-        )}
+        />
       </div>
     </div>
   );

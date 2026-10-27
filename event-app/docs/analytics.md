@@ -52,6 +52,8 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | schedule | search | | A search started (never the text) |
 | session | qa | session id | "Ask a question" opened |
 | session | calendar | session id | "Add to Calendar" |
+| session | share-copy / share-x / share-native | session id | Share menu: link copied, X post opened, platform share sheet opened |
+| speaker | share-copy / share-x / share-native | speaker id | Share menu on the speaker page, same three options |
 | announcements | open | title | Announcement card with a link tapped |
 | announcements | highlight | title | Highlight card tapped |
 | announcements | push-open | pathname | Page opened from a push notification (worker marks the URL with `#from=push`, stripped on the page) |
