@@ -90,6 +90,10 @@ email match, else the tab asks (a select among the email-matched tickets, or an 
 as a screenshot, PDF or `.pkpass`, decoded on the device). Only the primary is shown; see `CLAUDE.md`
 for the rules.
 
+The browser's Supabase client (`src/data/auth/supabase.ts`) calls supabase.co directly and retries a
+request that failed on the network through `/supabase/*` on the app's own origin (a proxy rule in
+`netlify.toml`). Never by default: Supabase's per-address rate limits keep seeing each device.
+
 Offline UX: `useOnline` (`src/hooks/useOnline.ts`) is the single connectivity source. The header
 marker is an icon-only pill whose tooltip/aria-label reads "Offline, schedule from HH:MM" (last sync time), image retries hang off the same
 subscription, and live-only features (Q&A, streams, chat, ticket refresh, push, sign-in) render one
@@ -150,7 +154,7 @@ flowchart TD
     end
     subgraph SW["Service worker (Serwist)"]
         SHELL[Precache app-shell routes<br/>git-hash revisioned, view params ignored]
-        RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* untouched]
+        RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised, 10 s deadline)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* untouched]
         REDIR[/schedule/<id> → /schedule?session=<id>]
         UPD[New SW installs] --> TOAST[Update toast] -->|user clicks Reload| SKIP[SKIP_WAITING → activate → reload]
     end

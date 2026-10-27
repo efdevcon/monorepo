@@ -61,6 +61,7 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | error | page | pathname | Route error page rendered |
 | feedback | open | `feedback`, `crash` | Feedback sheet opened |
 | feedback | sent / queued / failed | source | Report sent now, saved for later, or dropped |
+| network | supabase-proxy | service (`auth/v1`, `storage/v1`) | A Supabase request failed on the network and went through the app's own origin instead |
 
 ## Rules
 

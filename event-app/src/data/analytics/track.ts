@@ -63,6 +63,7 @@ const EVENTS = {
   sync: ["bundle-failed"],
   error: ["page"],
   feedback: ["open", "sent", "queued", "failed"],
+  network: ["supabase-proxy"],
 } as const;
 
 export type EventCategory = keyof typeof EVENTS;

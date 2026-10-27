@@ -16,6 +16,7 @@ import {
   stripIgnoredParams,
 } from "./routing/viewParams";
 import { INSTALL_PARAM, installMarker, parseInstallVersion } from "./data/install/installVersion";
+import { timeoutSignal } from "./utils/timeoutSignal";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -35,6 +36,46 @@ const ignoreViewParams = {
     stripIgnoredParams(new URL(request.url)).toString(),
 };
 
+/**
+ * Deadline for the network attempt of a NetworkFirst strategy. Its
+ * `networkTimeoutSeconds` only decides when a cached copy is served; with
+ * nothing cached, Serwist keeps waiting for the network (it races the timeout
+ * against the fetch, then awaits the fetch). A connection that hangs instead
+ * of failing, seen on an installed iOS app whose requests to this origin never
+ * came back while other hosts answered, then leaves the request pending for
+ * good: a tab tap lit its chip and nothing happened, and relaunching did not
+ * help. Aborting the fetch makes the strategy throw, and every caller has a
+ * path that works without the network: the detail route answers with the
+ * precached tab shell, the document rule with the /offline page, and Next
+ * answers a failed RSC fetch with a full navigation, which the precached
+ * shells satisfy. A cached copy is never lost to it: an aborted fetch falls
+ * back to the cache like any other failure.
+ */
+function networkDeadline(seconds: number) {
+  return {
+    requestWillFetch: async ({ request }: { request: Request }) => {
+      const signal = timeoutSignal(seconds * 1000);
+      if (!signal) return request;
+      try {
+        // A navigation request copied with options becomes a same-origin one;
+        // the server renders the same page for both.
+        return new Request(request, { signal });
+      } catch {
+        return request;
+      }
+    },
+  };
+}
+
+/**
+ * Longer than the strategies' timeouts on purpose: it only matters when
+ * nothing is cached, and there the failure path has a visible cost (the
+ * offline page, or a full reload for a tab tap), so a slow venue network must
+ * not read as a dead one. Ten seconds is past what a payload of a few KB
+ * takes on bad wifi and well short of the minutes the hang cost.
+ */
+const NETWORK_DEADLINE_SECONDS = 10;
+
 const documents = new NetworkFirst({
   cacheName: "pages",
   // 3 s, not 5: "/" and /my-devcon are served through this route on every app
@@ -42,6 +83,7 @@ const documents = new NetworkFirst({
   // flaky venue wifi a longer wait before the cached copy reads as a hang.
   networkTimeoutSeconds: 3,
   plugins: [
+    networkDeadline(NETWORK_DEADLINE_SECONDS),
     ignoreViewParams,
     new CacheableResponsePlugin({ statuses: [200] }),
     new ExpirationPlugin({
@@ -64,6 +106,9 @@ const detailDocuments = new NetworkFirst({
   cacheName: "pages-detail",
   networkTimeoutSeconds: 5,
   plugins: [
+    // The same as the timeout: on a miss the precached shell shows the same
+    // detail from the local store, so there is nothing to wait longer for.
+    networkDeadline(5),
     ignoreViewParams,
     new CacheableResponsePlugin({ statuses: [200] }),
     new ExpirationPlugin({
@@ -97,9 +142,7 @@ const serwist: Serwist = new Serwist({
         sameOrigin && request.mode === "navigate" && url.pathname === "/api/auth/bridge",
       handler: async ({ request, url }): Promise<Response> => {
         try {
-          const signal =
-            typeof AbortSignal.timeout === "function" ? AbortSignal.timeout(5_000) : undefined;
-          return await fetch(request, { signal });
+          return await fetch(request, { signal: timeoutSignal(5_000) });
         } catch {
           // Keep the install version the start_url carries (installVersion.ts).
           const marker = installMarker(parseInstallVersion(url.searchParams.get(INSTALL_PARAM)));
@@ -151,6 +194,7 @@ const serwist: Serwist = new Serwist({
         // shell is identical anyway (all data is client-side via SWR).
         networkTimeoutSeconds: 2,
         plugins: [
+          networkDeadline(NETWORK_DEADLINE_SECONDS),
           ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
@@ -164,6 +208,7 @@ const serwist: Serwist = new Serwist({
         cacheName: "pages-rsc",
         networkTimeoutSeconds: 2,
         plugins: [
+          networkDeadline(NETWORK_DEADLINE_SECONDS),
           ignoreViewParams,
           new CacheableResponsePlugin({ statuses: [200] }),
           new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
@@ -181,6 +226,8 @@ const serwist: Serwist = new Serwist({
     // reaches the page as "Load failed" (seen right after signing in). The
     // RSC and document rules above exclude `/api/` so nothing else catches
     // them; /api/auth/bridge navigations are the one exception, handled first.
+    // The `/supabase/*` proxy path (src/data/auth/supabase.ts) falls through
+    // the same way: no RSC header, no document destination.
     {
       matcher: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
       handler: new CacheFirst({
@@ -312,7 +359,9 @@ self.addEventListener("install", (event) => {
         await Promise.all(
           WARM_PAGES.map(async (path) => {
             const request = new Request(path, { credentials: "same-origin" });
-            const response = await fetch(request);
+            // With a deadline: a fetch that hangs here would hold the install,
+            // and with it the whole worker, until the browser gives up on it.
+            const response = await fetch(request, { signal: timeoutSignal(15_000) });
             if (response.ok) await cache.put(request, response);
           })
         );
