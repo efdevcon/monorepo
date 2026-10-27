@@ -183,8 +183,8 @@ export const AREAS = {
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
   "game-zone": { name: "Game Zone", description: "Ethereum games worth playing, and the people building them. Curated by nejc, back for a second Devcon.", category: "fun", heightClass: "zone", icon: "game-zone" },
   "art-gallery": { name: "Art Gallery", description: "What does Ethereum look, sound and feel like beyond the code? The Infinite Garden Artist Cohort 2026 shows two months of answers.", category: "fun", heightClass: "zone", icon: "art-gallery" },
-  "poster-display": { name: "Poster Display", description: "Research posters.", category: "fun", heightClass: "zone", icon: "poster-display" },
-  "poster-printing-station": { name: "Poster Printing Station", description: "Print your poster for the display.", category: "fun", heightClass: "zone", icon: "poster-printing-station" },
+  "poster-display": { name: "Poster Display", description: "Posters made by attendees at the Poster Printing Station. Let your imagination run free and help fill the venue with the creativity of the Devcon community.", category: "fun", heightClass: "zone", icon: "poster-display" },
+  "poster-printing-station": { name: "Poster Printing Station", description: "Create your own original poster and display it at Devcon. Choose your favourite designs, frames and colours on screen, or pick up a brush and add your own personal touch.", category: "fun", heightClass: "zone", icon: "poster-printing-station" },
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press", iconSize: 4.5 },
   "open-hardware-zone": {
     name: "Open Hardware Zone",
