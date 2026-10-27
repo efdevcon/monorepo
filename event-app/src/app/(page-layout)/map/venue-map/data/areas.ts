@@ -156,8 +156,8 @@ export const AREAS = {
     },
   },
   // Food & drink
-  "tea-coffee": { name: "Tea & Coffee", description: "Hot drinks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
-  "food-garden": { name: "Food Garden", description: "Food stalls and seating.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
+  "tea-coffee": { name: "Tea & Coffee", description: "Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
+  "food-garden": { name: "Food Garden", description: "Open 12:00 – 14:30 every day. Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
   washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
   // Cowork & discussion
