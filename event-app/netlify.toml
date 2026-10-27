@@ -3,3 +3,23 @@
 
 [build.environment]
 PNPM_FLAGS = "--filter event-app..."
+# Reverse proxy to the Supabase project, for browsers that cannot reach
+# supabase.co directly. The app tries it only after a direct request failed on
+# the network (src/data/auth/supabase.ts, which mirrors this list of paths).
+# Only what the browser needs: auth, and the signed uploads of the feedback
+# form. Anything wider would be a free relay to the project's storage and
+# REST API on this site's bandwidth. An edge rule rather than a Next rewrite,
+# so request bodies (feedback uploads) are not bound by the function payload
+# limit and no function runs for it. The host must be the one in
+# NEXT_PUBLIC_SUPABASE_URL.
+[[redirects]]
+    from = "/supabase/auth/v1/*"
+    to = "https://mealmslwugsqqyoesrxd.supabase.co/auth/v1/:splat"
+    status = 200
+    force = true
+
+[[redirects]]
+    from = "/supabase/storage/v1/object/upload/sign/*"
+    to = "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/upload/sign/:splat"
+    status = 200
+    force = true

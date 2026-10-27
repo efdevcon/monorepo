@@ -3,6 +3,7 @@
 import { supabase } from "@/data/auth/supabase";
 import { cacheDB } from "@/data/cache/cache-db";
 import { trackEvent } from "@/data/analytics/track";
+import { timeoutSignal } from "@/utils/timeoutSignal";
 import { FEEDBACK_BUCKET, type FeedbackFileRef, type FeedbackPayload } from "./types";
 
 /**
@@ -25,11 +26,21 @@ export type SendResult =
 
 const MAX_ATTEMPTS = 10;
 
+/**
+ * Deadline for the two API calls of a report. A request that hangs instead of
+ * failing (seen on an installed iOS app) kept the sheet busy for minutes
+ * before the report was queued; an abort counts as network trouble, so the
+ * report goes to the outbox and FeedbackSync retries it. The file upload
+ * itself has no deadline: a large screen recording may take longer than this.
+ */
+const REQUEST_TIMEOUT_MS = 20_000;
+
 async function postJson(url: string, body: unknown): Promise<{ status: number; json: { success?: boolean; error?: string; data?: unknown } }> {
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
+    signal: timeoutSignal(REQUEST_TIMEOUT_MS),
   });
   const json = await res.json().catch(() => ({}));
   return { status: res.status, json };
