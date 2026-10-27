@@ -54,9 +54,10 @@ function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme
         <div className="flex h-full w-full flex-col items-center justify-center gap-2">
           {theme.banner ? (
             // Hub's stacked lockup (mark over name): bigger than the mark, sized
-            // off the banner so it scales from the side panel to the expanded page.
+            // off the banner so it scales from the side panel to the expanded page
+            // (3/4 of its height, up a quarter from 3/5; Scott, 2026-10-27).
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={theme.banner} alt={theme.name} className="h-3/5 max-w-[70%] object-contain" />
+            <img src={theme.banner} alt={theme.name} className="h-3/4 max-w-[87.5%] object-contain" />
           ) : (
             theme.gem && (
               // A hub's mark sits smaller than a track gem, with the name under it (Scott, 2026-10-27).
