@@ -196,7 +196,7 @@ export const AREAS = {
     website: "https://www.makersasylum.com/",
   },
   // Other
-  "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge" },
+  "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge", room: "Viewing Gallery" },
   "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room", room: "Business Lounge 1" },
   "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room", icon: "baby-care-room", room: "Business Lounge 2" },
   // Elevators: odd instances stand on the west side, even on the east, facing the other way.
