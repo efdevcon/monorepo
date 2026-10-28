@@ -1,0 +1,31 @@
+{
+  "id": "privacy-preserving-coordination-rails-for-municipal-energy-communities",
+  "sourceId": "NBRCQS",
+  "title": "Privacy Preserving Coordination Rails for Municipal Energy Communities",
+  "description": "In the COMMUNITAS Horizon Europe project, 48 households in Denmark, Spain and Italy trade electricity in an hourly uniform price auction on an Arbitrum Orbit L3. Each home bids from one wallet using its meter data, so the chain keeps a permanent record of that home's demand under one address. Jawurek et al. (2011) matched pseudonymous smart meter traces to households, and an hourly bid history is a coarser trace of the same kind.\r\n\r\nThe anonymity set is a way to measure this exposure. What counts is the entropy of the observer's guess, not the number of members: 48 households give at most log2(48), about 5.6 bits, and each bid linked to the same address lowers it. Semaphore v4 membership proofs with per-epoch nullifiers and ERC-5564 stealth addresses, which I am adding under an EF PhD Fellowship, remove that link between trades. No proof makes the set larger than the community, so a small energy community has a hard ceiling on the privacy it can offer.",
+  "abstract": "Forty-eight households in three European energy communities trade electricity every hour on an Arbitrum Orbit L3, each from its own wallet, so every home leaves a public and linkable record of its demand on chain. I use the anonymity set literature to measure how much that crowd hides and how far Semaphore membership proofs and stealth addresses, the subject of my EF PhD Fellowship, can restore it.",
+  "track": "[CLS] - Academic",
+  "type": "CLS - Lightning (Academic track)",
+  "expertise": "Some familiarity with the topic",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "ZK",
+    "Identity",
+    "Real World",
+    "Coordination",
+    "Research",
+    "Privacy"
+  ],
+  "language": "en",
+  "speakers": [
+    "dinis"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1_zmmFoJMsSfjAaVw3qU0bJKVYcSgLQCWKfC7-BshmWY",
+  "slot_start": 1793868000000,
+  "slot_end": 1793868600000,
+  "slot_roomId": "lightning-stage"
+}
