@@ -1,9 +1,12 @@
 import React from 'react'
 import Image from 'next/image'
-import { ArrowDown } from 'lucide-react'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
+import { Link } from 'components/common/link'
+import { ctaSecondary } from 'components/common/cta'
 import { sectionX, sectionInner, sectionLabel } from 'components/common/styles'
+import { DEVCON_8_PHOTOS_URL } from 'config/devconIx'
 import VibeOpening from './images/new/vibe-opening.jpg'
 import VibeJd from './images/new/vibe-jd.jpg'
 import VibeCrowd from './images/new/vibe-crowd.jpg'
@@ -32,8 +35,10 @@ const IMAGES = [
 
 /**
  * Auto-scrolling photo marquee — Figma node 4917:713. Full-bleed tiles with a
- * static "Catch the Devcon vibe" label; pauses on hover and under
+ * static "Relive the Devcon vibe" label; pauses on hover and under
  * prefers-reduced-motion (guard lives in the shared InfiniteScroll styles).
+ * Post-event: a "View all photos" CTA under the marquee points at the full
+ * album (external drive, placeholder URL in config/devconIx).
  */
 export const VibeCarousel = () => {
   const t = useTranslations('home.vibe')
@@ -58,6 +63,12 @@ export const VibeCarousel = () => {
           ))}
         </div>
       </InfiniteScroll>
+      <div className={`${sectionX} mt-[12px] flex justify-center`}>
+        <Link to={DEVCON_8_PHOTOS_URL} className={ctaSecondary}>
+          {t('view_all')}
+          <ArrowUpRight className="w-4 h-4" strokeWidth={2.5} />
+        </Link>
+      </div>
     </div>
   )
 }
