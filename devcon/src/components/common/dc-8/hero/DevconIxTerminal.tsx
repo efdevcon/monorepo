@@ -68,8 +68,8 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
       if (active && active !== document.body && active.matches(INTERACTIVE)) return
       e.preventDefault()
       // Not el.click(): the shared Link swallows synthetic clicks. Route the
-      // same way a real click would.
-      if (/^https?:/.test(href)) window.location.assign(href)
+      // same way a real click would — external URLs open in a new tab there.
+      if (/^https?:/.test(href)) window.open(href, '_blank', 'noopener,noreferrer')
       else router.push(href)
     }
     window.addEventListener('keydown', onKeyDown)
