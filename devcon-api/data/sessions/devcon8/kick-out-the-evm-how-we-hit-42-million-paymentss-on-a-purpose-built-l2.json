@@ -1,0 +1,25 @@
+{
+  "id": "kick-out-the-evm-how-we-hit-42-million-paymentss-on-a-purpose-built-l2",
+  "sourceId": "CBN7VL",
+  "title": "Kick out the EVM: How we hit 42 million payments/s on a purpose-built L2",
+  "description": "Most L2s inherit the EVM and its limits. What happens if an L2 does exactly one thing? We built Paychannels, a payments-only L2 on Polygon that scales as a fleet of independent hubs, to find out. Throughput scaled linearly: every server we added contributed about 450k payments/s. On 100 commodity servers it sustained over 45 million fully verified payments/s, each confirmed in about 20 microseconds.\r\n\r\nUsing that system as a case study, this talk covers:\r\n- what specialization unlocks: orders-of-magnitude throughput, near-zero fees, blinded state with selective disclosure, and KYC/sanctions policy enforced in the protocol\r\n- freedom to choose your own cryptography, including post-quantum signatures\r\n- what you give up, and how to benchmark it honestly\r\n\r\nWe then trace the same pattern through non-EVM, app-specific L2s like Lighter, and end with a practical test for when your app should leave the EVM.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "No prior knowledge",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Scalability",
+    "EVM"
+  ],
+  "language": "en",
+  "speakers": [
+    "mudit-gupta"
+  ],
+  "eventId": "devcon8",
+  "slot_start": 1793790000000,
+  "slot_end": 1793791500000,
+  "slot_roomId": "lotus-stage-2"
+}

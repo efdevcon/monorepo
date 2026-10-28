@@ -19,6 +19,8 @@ export interface CommunityHub {
   logo?: string;
   /** Lockup (mark + wordmark) for the session details banner when it isn't the default `<id>-lockup.svg` (see communityHubLockup); null for a hub with no lockup, whose banner shows the mark with the name under it. */
   logoStacked?: string | null;
+  /** Listed with the community-led sessions in the filter panel rather than the hubs (the Music Stage: a stage, not a booth). */
+  listedWithCommunityLed?: true;
 }
 
 /**
@@ -52,6 +54,9 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     // details banner shows the sprite with "Music Stage" under it (Scott, 2026-10-27).
     logo: "/maps/devcon-8/icons/music-stage.png",
     logoStacked: null,
+    // A stage with a programme, not a booth: filters beside the community-led
+    // sessions, not the hubs (Scott, 2026-10-27).
+    listedWithCommunityLed: true,
   },
   {
     id: "onchain-art",

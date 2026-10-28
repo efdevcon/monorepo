@@ -66,6 +66,15 @@ const GUIDES: ReadonlyArray<{
           </>
         ),
       },
+      {
+        term: "Parking:",
+        body: (
+          <>
+            Attendees are welcome to drive to and park at Jio World Centre. Pick up a parking
+            voucher at registration.
+          </>
+        ),
+      },
     ],
   },
   {
@@ -168,6 +177,7 @@ export function EventInformation() {
             <Essential term="Venue address:">
               <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
             </Essential>
+            <Essential term="Entry & Exit:">Enter at Gate 20, exit at Gate 19</Essential>
             <Essential term="Day 1:">Tues, 3 November 2026 from 08:30 – 18:30</Essential>
             <Essential term="Need help?">
               Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>

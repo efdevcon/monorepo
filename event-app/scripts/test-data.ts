@@ -40,6 +40,7 @@ import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { communityOf, communityOptions, isCommunityLed, programmeOf, programmeSessions } from "../src/data/programme";
+import { eventDayKey } from "../src/data/eventTime";
 import { COMMUNITY_LED_GROUPS, clsTrackName, communityLedGroup } from "../src/data/communityLed";
 import { COMMUNITY_HUBS } from "../src/data/communityHubs";
 import { DC8_TRACKS, getTrackTheme, trackBadgeLabel, trackFullLabel } from "../src/components/schedule/trackTheme";
@@ -831,6 +832,17 @@ function testProgramme() {
   // edit in Pretalx) keeps the registry's name and colour, never a second theme.
   check("known track under another spelling resolves", communityLedGroup("[CLS]: OTS")?.name === "Open Tech Summit" && communityLedGroup("  [CLS] -OTS ")?.color === communityLedGroup("[CLS] - OTS")?.color);
   check("communityOf follows the spelling-tolerant lookup", communityOf(mkSession("x", "  [CLS] -OTS "))?.color === communityLedGroup("[CLS] - OTS")?.color);
+  // The filter panel groups community-led options by the days they run on:
+  // one entry per community, carrying every venue day of its sessions, sorted.
+  const dayA = T0 / 1000;
+  const dayB = dayA + 86400;
+  const optionDays = communityOptions([
+    { ...mkSession("o2", "[CLS] - OTS"), start: dayB },
+    { ...mkSession("o1", "[CLS] - OTS"), start: dayA },
+    { ...mkSession("o3", "[CLS] - OTS"), start: dayA + 60 },
+    { ...mkSession("e1", "[CLS] - EPF"), start: dayB },
+  ]);
+  check("communityOptions collects each community's days, sorted and deduped", eq(optionDays.map((c) => [c.id, c.days]), [["epf", [eventDayKey(dayB * 1000)]], ["ots", [eventDayKey(dayA * 1000), eventDayKey(dayB * 1000)]]]));
   check("clsTrackName strips marker and separator", clsTrackName("[CLS] - EPF") === "EPF" && clsTrackName("[CLS]: OTS") === "OTS");
   check("eight groups, unique ids and tracks", COMMUNITY_LED_GROUPS.length === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.id)).size === 8 && new Set(COMMUNITY_LED_GROUPS.map((g) => g.track)).size === 8);
   const taken = new Set([...DC8_TRACKS.map((t) => t.color.toLowerCase()), ...COMMUNITY_HUBS.map((h) => h.color.toLowerCase())]);

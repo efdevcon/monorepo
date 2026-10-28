@@ -3,7 +3,6 @@
 import { Maximize2 } from "lucide-react";
 import type { Session } from "@/data/models";
 import { CloseButton } from "@/components/Buttons";
-import { ShareButton } from "@/components/ShareButton";
 import { openDetail } from "@/routing/detailRoute";
 import { SessionDetailsContent } from "./SessionDetailsContent";
 import { SessionQA } from "./SessionQA";
@@ -44,18 +43,11 @@ export function SessionDetailsPanel({
             type="button"
             onClick={() => openDetail("session", session.id)}
             aria-label="Expand session details"
-            // CloseButton's circular recipe (Buttons.tsx), same as ShareButton's
-            // panel variant.
+            // CloseButton's circular recipe (Buttons.tsx).
             className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full bg-dc-panel transition-colors duration-150 ease-out hover:bg-dc-purple-soft"
           >
             <Maximize2 className="size-4 text-dc-fg2" />
           </button>
-          <ShareButton
-            kind="session"
-            id={session.id}
-            title={session.title}
-            variant="panel"
-          />
           <CloseButton onClick={onClose} aria-label="Close session details" />
         </div>
       </div>

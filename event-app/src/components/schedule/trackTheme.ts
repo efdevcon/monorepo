@@ -13,7 +13,7 @@
  */
 
 import { communityHubForRoom, communityHubLockup, communityHubLogo, shortCommunityHubName } from "@/data/communityHubs";
-import { communityLedGroup } from "@/data/communityLed";
+import { communityLedGroup, communityLedLogo } from "@/data/communityLed";
 
 // Kept here for the callers that always found it in this module.
 export { clsTrackName } from "@/data/communityLed";
@@ -25,7 +25,7 @@ export interface TrackTheme {
   badge: string;
   /** Pastel background hex. */
   color: string;
-  /** Gem artwork path under /public, or null for the neutral/CLS themes. */
+  /** Gem artwork path under /public, or null for a theme without one. */
   gem: string | null;
   /** DEVCON treatment: white surfaces with a hairline border, no tint. */
   neutral?: boolean;
@@ -131,8 +131,9 @@ function hubTheme(roomId: string | undefined): TrackTheme | undefined {
 
 /**
  * Community-led sessions are themed by their group (its name, badge and
- * pastel; a logo where one exists), from the "[CLS] - …" track. An unknown
- * group still gets a name and the shared fallback colour.
+ * pastel; its own logo, else the shared community-led mark), from the
+ * "[CLS] - …" track. An unknown group still gets a name and the shared
+ * fallback colour.
  */
 function communityLedTheme(track: string | undefined): TrackTheme | undefined {
   const group = communityLedGroup(track);
@@ -141,7 +142,7 @@ function communityLedTheme(track: string | undefined): TrackTheme | undefined {
         name: group.name,
         badge: group.badge,
         color: group.color,
-        gem: group.logo ?? null,
+        gem: communityLedLogo(group),
         banner: group.lockup,
         isCLS: true,
         isCommunity: true,

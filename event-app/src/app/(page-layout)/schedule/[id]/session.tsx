@@ -9,7 +9,6 @@ import { closeDetail } from "@/routing/detailRoute";
 import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
 import { DetailSkeleton } from "@/components/Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
-import { ShareButton } from "@/components/ShareButton";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import {
   SessionDetailsContent,
@@ -185,15 +184,15 @@ function useAtScrollEnd(ref: React.RefObject<HTMLElement | null>) {
 }
 
 /**
- * Share and "Add to Calendar" circle buttons in the app header (Figma
- * fullscreen session details keeps the actions top-right in the 56px bar).
- * The portal is gated on the pane being visible, so a hidden tab's detail
- * never injects buttons into another tab's header.
+ * "Add to Calendar" circle button in the app header (Figma fullscreen
+ * session details keeps the actions top-right in the 56px bar). Share left
+ * the header for the Share pill in the summary, one entry point on every
+ * layout (Scott, 2026-10-27). The portal is gated on the pane being visible,
+ * so a hidden tab's detail never injects buttons into another tab's header.
  */
 function HeaderActions({ session }: { session: SessionModel }) {
   return (
     <HeaderActionsPortal>
-      <ShareButton kind="session" id={session.id} title={session.title} />
       <button
         onClick={() => downloadSessionIcs(session)}
         aria-label="Add to calendar"

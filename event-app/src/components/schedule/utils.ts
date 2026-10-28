@@ -33,6 +33,17 @@ const dayHeadingFmt = new Intl.DateTimeFormat("en-US", {
 export const formatDayHeading = (key: string) =>
   dayHeadingFmt.format(new Date(dayKeyToUtcMidnightMs(key)));
 
+// "Tue, Nov 3" from a "YYYY-MM-DD" day key (formatDayLabel's shape, for callers
+// holding a key rather than a session). UTC-pinned like dayHeadingFmt.
+const dayKeyLabelFmt = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+export const formatDayKeyLabel = (key: string) =>
+  dayKeyLabelFmt.format(new Date(dayKeyToUtcMidnightMs(key)));
+
 // 24-hour, zero-padded ("09:30") per the Figma design.
 export const formatTime = (unixSeconds: number) =>
   eventFmt("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false })
