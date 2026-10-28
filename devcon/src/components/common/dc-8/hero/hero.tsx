@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import BannerImage from './images/devcon-8-india-bg.png'
-import Terminal from './images/dcix-terminal.png'
 import DevconLogo from './images/devcon-8-india-logo.svg'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
@@ -11,6 +10,7 @@ import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import { DEVCON_IX_ANNOUNCEMENT_URL } from 'config/devconIx'
 import { useTranslations } from 'next-intl'
+import { DevconIxTerminal } from './DevconIxTerminal'
 
 // Post-event hero (Figma Current-work 6068:341). The ticket/app CTAs, the
 // "Going to Devcon?" phone and its eyebrow are gone; the right column is the
@@ -57,10 +57,12 @@ export const Hero = () => {
           bottom-aligned and pushed apart). Mobile: one centred column —
           logo+text, terminal, social card. md+: a 2×2 grid — logo+text over
           the social card on the left (the card stretches to that column, as
-          in Figma), the terminal spanning both rows on the right. */}
+          in Figma), the terminal spanning both rows on the right. Row 1 is
+          1fr so the terminal's extra height lands above the text, not
+          between the text and the social card (that gap stays 32px, Figma). */}
       <div className="absolute bottom-0 left-0 right-0 pb-[40px] lg:pb-[56px]">
         <div className="section">
-          <div className="flex flex-col items-center gap-[24px] md:grid md:grid-cols-[auto_320px] lg:grid-cols-[auto_428px] md:grid-rows-[auto_auto] md:items-end md:justify-between md:gap-x-[32px] md:gap-y-[16px] lg:gap-y-[32px]">
+          <div className="flex flex-col items-center gap-[24px] md:grid md:grid-cols-[auto_320px] lg:grid-cols-[auto_428px] md:grid-rows-[1fr_auto] md:items-end md:justify-between md:gap-x-[32px] md:gap-y-[16px] lg:gap-y-[32px]">
             {/* Logo + location (Figma 6068:355: gap 24) */}
             <div
               className={`flex flex-col items-center md:items-start gap-[16px] lg:gap-[24px] md:col-start-1 md:row-start-1 ${textShadow}`}
@@ -72,23 +74,14 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Devcon IX terminal + caption (Figma 6068:574): one link to the
-                announcement. */}
-            <Link
-              to={DEVCON_IX_ANNOUNCEMENT_URL}
-              className="group flex flex-col items-center gap-[16px] lg:gap-[24px] w-full max-w-[300px] md:w-[320px] md:max-w-none lg:w-[428px] md:col-start-2 md:row-start-1 md:row-span-2 md:self-end md:justify-self-end text-[#a6ffe9] hover:text-[#a6ffe9]"
-            >
-              <Image
-                src={Terminal}
-                alt={t('terminal_alt')}
-                priority
-                sizes="(max-width: 767px) 300px, (max-width: 1023px) 320px, 428px"
-                className="w-full h-auto transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.02]"
-              />
-              <p className="w-full font-terminal text-[28px] lg:text-[36px] leading-none text-center [text-shadow:0_1px_6px_rgba(0,26,19,0.63)]">
-                {t('announcement_cta')}
-              </p>
-            </Link>
+            {/* Devcon IX terminal + caption (Figma 6068:574), with the old
+                phone's cursor tilt. */}
+            <DevconIxTerminal
+              href={DEVCON_IX_ANNOUNCEMENT_URL}
+              alt={t('terminal_alt')}
+              caption={t('announcement_cta')}
+              className="w-full max-w-[300px] md:w-[320px] md:max-w-none lg:w-[428px] md:col-start-2 md:row-start-1 md:row-span-2 md:self-end md:justify-self-end"
+            />
 
             {/* Social links (Figma 6068:552: full width of the left column) */}
             <div className="w-full md:col-start-1 md:row-start-2 backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(255,255,255,0.1)] rounded-[8px] px-[16px] py-[8px] flex items-center justify-between gap-[16px] [&_path]:!fill-white">
