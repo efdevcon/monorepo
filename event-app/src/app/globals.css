@@ -2,12 +2,14 @@
 
 @source "../../../lib/**/*.{ts,tsx}";
 
-/* A phone held sideways: under the desktop breakpoint, wider than tall, and
-   short (tablets in landscape are lg; a desktop window this short is rare).
-   The schedule drops its header row here and hands the pills to the day
-   tabs. JS twin: PHONE_LANDSCAPE_MEDIA_QUERY in hooks/useIsDesktop.ts — keep
-   the two in lockstep. */
-@custom-variant phone-landscape (@media (max-width: 1023px) and (orientation: landscape) and (max-height: 600px));
+/* A handheld held sideways: under the desktop breakpoint, wider than tall,
+   and either a touch device (phones, and foldables such as the iPhone Duo
+   open, whose landscape screen is taller than a phone's) or short, which
+   keeps a narrow desktop window on the upright layout (tablets in landscape
+   are lg). The schedule drops its header row here and hands the pills to the
+   day tabs. JS twin: PHONE_LANDSCAPE_MEDIA_QUERY in hooks/useIsDesktop.ts —
+   keep the two in lockstep. */
+@custom-variant phone-landscape (@media (max-width: 1023px) and (orientation: landscape) and ((max-height: 600px) or (pointer: coarse)));
 
 @theme inline {
   --color-background: #ffffff;

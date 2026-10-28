@@ -36,11 +36,14 @@ export function isDesktopNow(): boolean {
 export const LANDSCAPE_MEDIA_QUERY = "(orientation: landscape)";
 
 /**
- * A phone held sideways. Must mirror the `phone-landscape:` variant in
- * globals.css — the schedule forks its chrome on it in both CSS and JS.
+ * A handheld held sideways: a touch device under the desktop breakpoint in
+ * landscape (phones, foldables open), or any such viewport at most 600px
+ * tall (keeps a narrow desktop window upright). Must mirror the
+ * `phone-landscape:` variant in globals.css — the schedule forks its chrome
+ * on it in both CSS and JS.
  */
 export const PHONE_LANDSCAPE_MEDIA_QUERY =
-  "(max-width: 1023px) and (orientation: landscape) and (max-height: 600px)";
+  "(max-width: 1023px) and (orientation: landscape) and ((max-height: 600px) or (pointer: coarse))";
 
 export function useIsPhoneLandscape(): boolean {
   return useMediaQuery(PHONE_LANDSCAPE_MEDIA_QUERY);
