@@ -46,6 +46,8 @@ export interface BundleSession {
   sourceId?: string;
   title?: string;
   description?: string;
+  /** Pretalx's short summary; the details page shows it over the description. */
+  abstract?: string;
   track?: string;
   type?: string;
   expertise?: string;
@@ -92,6 +94,7 @@ export interface SessionRow {
   sourceId?: string;
   title: string;
   description: string;
+  abstract?: string;
   track: string;
   type: string;
   expertise: string;

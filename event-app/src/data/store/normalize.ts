@@ -47,6 +47,7 @@ export function normalizeBundle(
       sourceId: str(s.sourceId),
       title: s.title ?? "",
       description: s.description ?? "",
+      abstract: str(s.abstract),
       track: s.track ?? "",
       type: s.type ?? "Talk",
       expertise: s.expertise ?? "",
