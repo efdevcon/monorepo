@@ -24,5 +24,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1mlmGc2DtnyqGAswptyVGgMr3eWnRq6QYzPFYhRpsLaY",
   "slot_start": 1793690100000,
   "slot_end": 1793690520000,
-  "slot_roomId": "lightning-stage"
+  "slot_roomId": "lightning-stage",
+  "abstract": "The EVM’s quadratic memory pricing caps usable memory at roughly 3MB per transaction. EIP-7923 replaces it with a sparse-page, linear-cost model enabling 64MB per transaction — implemented via POSIX mmap and benchmarked on real hardware."
 }

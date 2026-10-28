@@ -21,5 +21,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1muIO3aqfFDJSAItEgIBR0SOQh2tIXUx3q--5wnNQO_I",
   "slot_start": 1793858400000,
   "slot_end": 1793859300000,
-  "slot_roomId": "community-led-stage"
+  "slot_roomId": "community-led-stage",
+  "abstract": "Observability platforms like DataDog deliver excellent out-of-the-box experience, but at scale their per-host, per-GB, and per-trace pricing can balloon into one of the largest line items in an infrastructure budget. This talk walks through how we replaced DataDog end-to-end with a fully open-source stack — Prometheus for metrics, Loki with Promtail for log aggregation, Jaeger for distributed tracing, and Grafana as the unified visualization and alerting layer — without compromising on the three pillars of observability. I'll cover the real architecture we ran in production: how the pieces fit together, the ingestion and storage trade-offs versus a managed SaaS product, and the migration path from existing DataDog dashboards and alerts. I'll also be candid about where open source falls short of DataDog (correlation across signals, out-of-the-box APM magic, support SLAs) and how we worked around those gaps. Attendees will leave with a practical blueprint for evaluating whether a self-hosted LGTM-style stack makes sense for their org, along with real cost and operational trade-offs from running it at scale."
 }

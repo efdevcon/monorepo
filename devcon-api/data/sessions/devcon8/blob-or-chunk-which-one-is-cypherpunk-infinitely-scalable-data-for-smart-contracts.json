@@ -24,5 +24,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1Q01r7u3b0q0o4BJR1PFYnc84TlgtF2WkKZiq8n52qxg",
   "slot_start": 1793784600000,
   "slot_end": 1793785020000,
-  "slot_roomId": "lightning-stage"
+  "slot_roomId": "lightning-stage",
+  "abstract": "Blobs are the reflexive answer to contract data — but Solidity can't read them, only EOAs can write them, and they vanish in ~18 days: blobs are publication, not storage. This talk derives what unbounded contract data with on-chain-grade guarantees really takes: a 32-byte anchor the EVM opens with native keccak proofs, availability enforced by bonded litigable receipts, EIP-3668 reads that verify instead of trust, and queries where censorship is fraud-provable. No blobs, no KZG, no SNARKs."
 }

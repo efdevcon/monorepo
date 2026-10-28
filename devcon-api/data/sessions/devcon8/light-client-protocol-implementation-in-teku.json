@@ -22,5 +22,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1JreSLunXG5X7-BNLjXEa1CZ1j-_sD8zUanXIIBPJz50",
   "slot_start": 1793767800000,
   "slot_end": 1793768700000,
-  "slot_roomId": "workshop-2"
+  "slot_roomId": "workshop-2",
+  "abstract": "Teku did not have server side light client support, which meant light clients could not sync from it. Over EPF Cohort 7 I implemented that support end to end, i.e, the Altair spec layer, update generation, and persistence. The talk covers how a consensus client produces light client updates and serve them."
 }

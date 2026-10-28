@@ -24,5 +24,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1km1g3fyfI37YbpdIlmtsKRKaOll1tIDCjIy0WYS17Ug",
   "slot_start": 1793871000000,
   "slot_end": 1793872500000,
-  "slot_roomId": "lotus-stage-1"
+  "slot_roomId": "lotus-stage-1",
+  "abstract": "STARK proofs are post-quantum; the ECDSA signatures authorizing account transactions are not. We benchmarked Falcon-512 verification in four hash-to-point variants inside a real account's `__validate__`, showing that even standards-compliant (FIPS 206 draft) PQ verification fits today's validation caps, no protocol change needed, just account abstraction."
 }
