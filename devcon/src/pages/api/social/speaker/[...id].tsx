@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { poppinsFonts } from 'services/social-cards/assets'
-import { avatarDataUrl, getCommunityHubSessions, getSpeaker } from 'services/social-cards/data'
+import { avatarDataUrl, getCommunityHubBundle, getSpeaker } from 'services/social-cards/data'
 import { renderDc8SpeakerCard } from 'services/social-cards/dc8-speaker-card'
 import { speakerCardFacts } from 'services/social-cards/speaker-card-facts'
 import { pngToJpeg, serveCachedImage } from 'services/og-cache'
@@ -37,16 +37,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     bucket: BUCKET,
     key: `speaker/${id}.jpg`,
     render: async () => {
-      const speaker = await getSpeaker(id)
+      // Hub speakers share the Pretalx speaker's id (both are name slugs), so
+      // their hub sessions join the count, the tags and the programme tag,
+      // as on the app's speaker list; a speaker only the hubs know (no
+      // Pretalx profile, so /speakers/:id is a 404) gets the card from the
+      // bundle's speaker record (2026-10-28).
+      const [pretalxSpeaker, hubs] = await Promise.all([getSpeaker(id), getCommunityHubBundle(eventId)])
+      const speaker = pretalxSpeaker ?? hubs.speakers.find((s: any) => s.id === id)
       if (!speaker) throw new Error('speaker not found')
 
       const sessions: any[] = (speaker.sessions ?? []).filter((s: any) => s.eventId === eventId)
-      // Hub speakers share the Pretalx speaker's id (both are name slugs), so
-      // their hub sessions join the count, the tags and the programme tag,
-      // as on the app's speaker list.
-      const hubSessions = (await getCommunityHubSessions(eventId)).filter(
-        (s: any) => Array.isArray(s.speakerIds) && s.speakerIds.includes(id)
-      )
+      const hubSessions = hubs.sessions.filter((s: any) => Array.isArray(s.speakerIds) && s.speakerIds.includes(id))
       const facts = speakerCardFacts(sessions, hubSessions)
 
       // 224px avatar at 2x → 512px source.
