@@ -66,6 +66,15 @@ const GUIDES: ReadonlyArray<{
           </>
         ),
       },
+      {
+        term: "Parking:",
+        body: (
+          <>
+            Attendees are welcome to drive to and park at Jio World Centre. Pick up a parking
+            voucher at registration.
+          </>
+        ),
+      },
     ],
   },
   {
