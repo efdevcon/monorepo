@@ -127,7 +127,17 @@ function QAHeading({ size, count, live }: { size: Size; count?: number; live?: b
             title="Live updates connected"
           />
         )}
-        Powered by Meerkat
+        <span>
+          Powered by{" "}
+          <a
+            href="https://meerkat.events"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-dc-fg"
+          >
+            Meerkat
+          </a>
+        </span>
       </span>
     </div>
   );
