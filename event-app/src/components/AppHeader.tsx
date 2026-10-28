@@ -122,6 +122,10 @@ export function AppHeader() {
           // (<html data-app-chrome-off>, see headerOffsetNow) — its pills
           // move to the day tabs and the row's 56px go to the content.
           "[[data-app-chrome-off]_&]:hidden",
+          // Plain white instead of glass while the app runs without storage
+          // (<html data-memory-storage>, Nav.tsx has the same): WebKit's
+          // Lockdown Mode renders no backdrop filter.
+          "[[data-memory-storage]_&]:bg-white [[data-memory-storage]_&]:backdrop-blur-none",
           // Bare pages (the map) hide the bar but keep it mounted: see RouteChrome.bare.
           bare && "hidden"
         )}
@@ -190,7 +194,7 @@ export function AppHeader() {
           and it's a 1fr/auto/1fr grid so the menu is centred on the screen
           whatever the logo and the right-hand controls measure.
           --safe-top matters here too (iPad PWA). */}
-      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-0">
+      <div className="hidden border-b border-dc-hairline bg-white/75 px-8 pb-3 pt-[calc(0.75rem+var(--safe-top))] backdrop-blur-[4px] lg:block xl:px-0 [[data-memory-storage]_&]:bg-white [[data-memory-storage]_&]:backdrop-blur-none">
         <div className="mx-auto grid w-full max-w-[1312px] grid-cols-[1fr_auto_1fr] items-center gap-6">
         <Link href="/" prefetch className="shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}

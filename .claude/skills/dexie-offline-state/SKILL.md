@@ -77,7 +77,9 @@ the 24h cache window. Keep all persistence in that DB.
 ## Gotchas
 
 - `cacheDB` is `null` on the server/static export — guard with
-  `typeof window !== "undefined"`.
+  `typeof window !== "undefined"`. It is opened by `openCacheDB()` (called
+  first by `DataProvider`); without IndexedDB (WebKit Lockdown Mode) that is
+  an in-memory engine for the session, so never assume a write persists.
 - Anything reading the cache or the EventStore must render under `DataProvider`
   (`src/app/layout.tsx`), which waits for IndexedDB hydration of both.
 - Under `STATIC_EXPORT` (Capacitor native) there are no API routes; hooks hitting

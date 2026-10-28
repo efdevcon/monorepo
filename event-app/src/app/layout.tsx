@@ -121,18 +121,15 @@ export default function RootLayout({
             unexpected head elements when hydrating but reports a changed
             <html> attribute as a mismatch. Starts the backdrop fetch here too,
             rather than when the splash mounts after the data boot gate. The
-            timeout is a safety net for a route that never mounts IntroSplash. */}
+            timeout is a safety net for a route that never mounts IntroSplash.
+            One template literal on purpose: Next 16.1's SWC minifier inlines
+            the imported constants into a `"…" + `…${x}…` + "…"` chain and
+            then drops pieces of it while folding the concatenation (the
+            served script lost the `return` and the textContent line and
+            failed to parse in every browser). A single literal folds right. */}
         <script
           dangerouslySetInnerHTML={{
-            __html:
-              "(function(){try{" +
-              "if(!(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true))return;" +
-              `if(localStorage.getItem('${INTRO_SEEN_KEY}')==='true')return;` +
-              `var s=document.createElement('style');s.id='${INTRO_COVER_ID}';` +
-              "s.textContent='html::after{content:\"\";position:fixed;inset:0;z-index:80;background:#fff url(/login/devcon-8-logo.svg) center/30vw auto no-repeat}';" +
-              "document.head.appendChild(s);" +
-              `var l=document.createElement('link');l.rel='preload';l.as='image';l.href='${INTRO_BACKDROP}';document.head.appendChild(l);` +
-              "setTimeout(function(){s.remove();},5000);}catch(e){}})();",
+            __html: `(function(){try{if(!(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true))return;if(localStorage.getItem('${INTRO_SEEN_KEY}')==='true')return;var s=document.createElement('style');s.id='${INTRO_COVER_ID}';s.textContent='html::after{content:"";position:fixed;inset:0;z-index:80;background:#fff url(/login/devcon-8-logo.svg) center/30vw auto no-repeat}';document.head.appendChild(s);var l=document.createElement('link');l.rel='preload';l.as='image';l.href='${INTRO_BACKDROP}';document.head.appendChild(l);setTimeout(function(){s.remove();},5000);}catch(e){}})();`,
           }}
         />
         {/* iOS native launch-screen images, shown while the installed PWA

@@ -75,8 +75,12 @@ Catalogue data (sessions, speakers, rooms, the event record) lives in the **Even
   `useSession(id)`, `useSpeakers`, `useRoom`, `useEvent`, `useSyncStatus`, …). Derived hooks filter
   the in-memory snapshot, so they never cost a request and stay offline-safe; the room-screen kiosk
   filters by room the same way.
-- Boot: `DataProvider` (`src/data/cache/swr-config.tsx`) hydrates the store and the SWR cache in
-  parallel and renders children when both are ready, so the first paint has data and no flash.
+- Boot: `DataProvider` (`src/data/cache/swr-config.tsx`) opens the database first
+  (`openCacheDB()` in `cache-db.ts`: IndexedDB, or an in-memory engine loaded on demand when the
+  browser has none, as under WebKit's Lockdown Mode, which also removes service workers and the
+  Cache API; the app then runs online-only for the session and says so in a toast), then hydrates
+  the store and the SWR cache in parallel and renders children when both are ready, so the first
+  paint has data and no flash.
 
 SWR + the Dexie `cache` table remain for the small, differently-shaped state: announcements,
 tickets, and browser-local user state (interested stars, which also sync to the account when signed

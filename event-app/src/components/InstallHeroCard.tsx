@@ -170,6 +170,10 @@ export function InstallHeroCard({
           key={attempt}
           src="/home/install-app.jpg"
           onError={markFailed}
+          // Decoration, so it yields to route and data requests on a slow
+          // link (without a service worker every tab tap fetches its chunks).
+          fetchPriority="low"
+          decoding="async"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
@@ -293,6 +297,10 @@ export function InstallCompactCard() {
           key={attempt}
           src="/home/install-app.jpg"
           onError={markFailed}
+          // Decoration, so it yields to route and data requests on a slow
+          // link (without a service worker every tab tap fetches its chunks).
+          fetchPriority="low"
+          decoding="async"
           alt=""
           className="absolute inset-0 h-full w-full object-cover object-center"
         />

@@ -180,7 +180,11 @@ export function Nav() {
         // data-app-chrome-off>, with the app header): the short viewport
         // goes to the list or grid; the bar is back on rotating upright.
         // display:none measures 0, so --nav-clearance follows on its own.
-        "[[data-app-chrome-off]_&]:hidden"
+        "[[data-app-chrome-off]_&]:hidden",
+        // Plain white instead of glass while the app runs without storage
+        // (<html data-memory-storage>): WebKit's Lockdown Mode renders no
+        // backdrop filter, and 33% white over unblurred content is unreadable.
+        "[[data-memory-storage]_&]:bg-white [[data-memory-storage]_&]:backdrop-blur-none"
       )}
       // max(), not 12px + inset: the label row already carries 12px of its
       // own breathing room, so stacking the full home-indicator inset on top
