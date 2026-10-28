@@ -61,6 +61,8 @@ export const LIVE_HUB_SHEETS_PATH = 'devcon-api/data/community-hubs/sheets.json'
 export interface LiveHubSheets {
   /** When the export last ran (ms since epoch). Rewritten every few hours even when nothing changed, so a stalled export shows. */
   exportedAt: number
+  /** Content release, bumped by one on every export that changes a sheet's cells or the speaker photos (shown as "v12"). Absent before 2026-10-28. */
+  release?: number
   hubs: Record<string, LiveHubSheet>
 }
 

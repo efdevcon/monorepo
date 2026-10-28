@@ -72,7 +72,10 @@ export async function mirrorAvatar(sourceUrl: string): Promise<string> {
   const original = Buffer.from(await source.arrayBuffer())
 
   // rotate() with no args auto-orients from EXIF before the square crop.
-  const webp = await sharp(original).rotate().resize(SIZE, SIZE, { fit: 'cover' }).webp({ quality: WEBP_QUALITY }).toBuffer()
+  // failOn 'error': some phone cameras write JPEGs that libjpeg only warns
+  // about ("Invalid SOS parameters for sequential JPEG") and that decode fine;
+  // sharp's default treats warnings as fatal. Truly broken files still fail.
+  const webp = await sharp(original, { failOn: 'error' }).rotate().resize(SIZE, SIZE, { fit: 'cover' }).webp({ quality: WEBP_QUALITY }).toBuffer()
 
   const key = publicUrl.split('/').pop() as string
   const upload = () =>

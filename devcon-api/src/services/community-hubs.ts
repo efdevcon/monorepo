@@ -61,7 +61,8 @@ export interface HubStatus {
 
 export interface CommunityHubBundle {
   version: string
-  event: { id: string; title: string; startDate?: string; endDate?: string }
+  /** scheduleVersion carries the content release ("12"), where the Pretalx bundle carries its schedule release. */
+  event: { id: string; title: string; startDate?: string; endDate?: string; scheduleVersion?: string }
   rooms: Record<string, unknown>[]
   speakers: Record<string, unknown>[]
   sessions: Record<string, unknown>[]
@@ -91,6 +92,8 @@ interface EventCache {
   configProblems: string[]
   /** When the live export that was last read ran (ms since epoch). */
   exportedAt?: number
+  /** The export's content release (LiveHubSheets.release), shown as "v12". */
+  release?: number
   /** The shared speaker sheet, resolved by the export (photo and socials per name slug). Empty when there is none. */
   speakerExtras: Map<string, HubSpeakerExtra>
   speakerProblems: string[]
@@ -212,6 +215,7 @@ function cacheFor(eventId: string): EventCache {
         }
       }
       cache.exportedAt = live.exportedAt
+      cache.release = live.release
       // Never counts as fresh: the first request still reads GitHub.
       if (cache.hubs.size > 0) cache.refreshedAt = 1
     } catch {
@@ -237,6 +241,7 @@ async function refresh(eventId: string, cache: EventCache): Promise<void> {
   const live = await fetchLiveSheets()
   applySpeakerPhotos(cache, await fetchSpeakerPhotos())
   cache.exportedAt = live.exportedAt
+  cache.release = live.release
   const age = Date.now() - live.exportedAt
   cache.configProblems =
     age > EXPORT_STALE_MS
@@ -309,7 +314,14 @@ export async function getCommunityHubVersion(eventId: string): Promise<string> {
 
 export async function getCommunityHubStatus(
   eventId: string
-): Promise<{ version: string; refreshedAt: number; exportedAt: number | null; problems: string[]; hubs: HubStatus[] }> {
+): Promise<{
+  version: string
+  release: number | null
+  refreshedAt: number
+  exportedAt: number | null
+  problems: string[]
+  hubs: HubStatus[]
+}> {
   const cache = await ensureFresh(eventId)
   const hubs: HubStatus[] = COMMUNITY_HUBS.filter((h) => cache.hubs.has(h.id) || cache.failures.has(h.id)).map((h) => {
     const data = cache.hubs.get(h.id)
@@ -337,6 +349,7 @@ export async function getCommunityHubStatus(
   })
   return {
     version: versionOf(cache),
+    release: cache.release ?? null,
     refreshedAt: cache.refreshedAt,
     exportedAt: cache.exportedAt ?? null,
     problems: [...cache.configProblems, ...cache.speakerProblems],
@@ -413,6 +426,7 @@ export async function getCommunityHubBundle(eventId: string): Promise<CommunityH
       title: `${event?.title ?? eventId} Community Hubs`,
       ...(event?.startDate ? { startDate: event.startDate } : {}),
       ...(event?.endDate ? { endDate: event.endDate } : {}),
+      ...(cache.release ? { scheduleVersion: String(cache.release) } : {}),
     },
     rooms,
     speakers: [...speakers.values()],

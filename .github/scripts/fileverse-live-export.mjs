@@ -50,7 +50,15 @@ async function exportHub(browser, hubId, url) {
     let updates = null;
     let last = -1;
     let stable = 0;
-    for (let i = 0; i < 60; i++) {
+    // A healthy sheet is read in 13-26 s. A load that broke (a script chunk that failed
+    // to download leaves an empty page that never recovers) is reloaded after 30 s
+    // without data, at most twice, and the sheet gives up after 90 s.
+    for (let i = 0; i < 45; i++) {
+      if (i > 0 && i % 15 === 0 && !updates?.length) {
+        console.log(`[${hubId}] no data after ${Math.round((Date.now() - t0) / 1000)}s, reloading`);
+        await page.reload({ waitUntil: "domcontentloaded", timeout: 60_000 }).catch(() => {});
+        answered = false;
+      }
       await page.waitForTimeout(2000);
       if (!answered) {
         const input = page.locator('[role="dialog"] input:visible, [class*="modal" i] input:visible').first();

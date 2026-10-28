@@ -10,7 +10,7 @@ import { Link } from "@/routing";
 import { ReminderRehearsal } from "@/components/announcements/ReminderRehearsal";
 import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
-import { EventDataTools, MockClockTools } from "./DebugTools";
+import { CommunityHubsDataTools, EventDataTools, MockClockTools } from "./DebugTools";
 import { OfflineTools } from "./OfflineTools";
 import { Switch } from "@/components/Switch";
 import {
@@ -222,6 +222,7 @@ export function EfInternalTools() {
           sync if something looks stale.
         </p>
         <EventDataTools />
+        <CommunityHubsDataTools />
       </div>
 
       {/* Offline readiness */}

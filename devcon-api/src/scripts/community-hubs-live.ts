@@ -15,6 +15,9 @@
 // mirrored into our avatar bucket (SUPABASE_URL / SUPABASE_KEY; without them
 // the source links are kept as they are).
 // Run with `pnpm community-hubs:live <dump dir>`.
+// Local runs read the Supabase keys from .env (CI passes them as env vars);
+// without them every mirrored photo would fall back to its source link.
+import 'dotenv/config'
 import fs from 'fs'
 import path from 'path'
 import { readTabsFromUpdates } from '@/clients/fileverse'
@@ -54,7 +57,7 @@ async function main() {
   const dir = process.argv[2]
   if (!dir) throw new Error('usage: community-hubs-live <dump dir>')
   const now = Date.now()
-  await writeSpeakerPhotos(dir, now)
+  const speakersChanged = await writeSpeakerPhotos(dir, now)
   let previous: LiveHubSheets = { exportedAt: 0, hubs: {} }
   try {
     previous = JSON.parse(fs.readFileSync(OUT, 'utf8'))
@@ -98,15 +101,20 @@ async function main() {
   if (read === 0) throw new Error('no hub sheet could be read, leaving the file as it is')
 
   const changed = JSON.stringify(hubs) !== JSON.stringify(previous.hubs)
-  if (!changed && now - previous.exportedAt < HEARTBEAT_MS) {
+  if (!changed && !speakersChanged && now - previous.exportedAt < HEARTBEAT_MS) {
     console.log('nothing changed, file left as it is')
     return
   }
-  const next: LiveHubSheets = { exportedAt: now, hubs }
+  // One more release for any content change (cells or speaker photos); a
+  // heartbeat rewrite keeps the number.
+  const release = (previous.release ?? 0) + (changed || speakersChanged ? 1 : 0)
+  const next: LiveHubSheets = { exportedAt: now, release, hubs }
   fs.mkdirSync(path.dirname(OUT), { recursive: true })
   fs.writeFileSync(OUT, JSON.stringify(next, null, 1) + '\n')
   writeReadable(hubs)
-  console.log(changed ? `wrote ${OUT}` : `wrote ${OUT} (heartbeat, no cell changes)`)
+  console.log(
+    changed || speakersChanged ? `wrote ${OUT} (release v${release})` : `wrote ${OUT} (heartbeat, no content changes, release v${release})`
+  )
 }
 
 /**
@@ -114,14 +122,15 @@ async function main() {
  * mirrored photo and socials. Mirroring is idempotent (keyed by source URL),
  * so an hourly run costs one HEAD per photo. A dump that failed, or no dump
  * at all (no `speakers` entry in the secret), leaves the previous file alone.
+ * Returns whether the file was rewritten.
  */
-async function writeSpeakerPhotos(dir: string, now: number) {
+async function writeSpeakerPhotos(dir: string, now: number): Promise<boolean> {
   const file = path.join(dir, `${COMMUNITY_HUB_SPEAKERS_SHEET_ID}.json`)
-  if (!fs.existsSync(file)) return
+  if (!fs.existsSync(file)) return false
   const dump: Dump = JSON.parse(fs.readFileSync(file, 'utf8'))
   if (dump.error || !dump.dsheetId || !dump.updates?.length) {
     console.warn(`speakers: FAILED (${dump.error ?? 'no live data in the dump'}), keeping the previous file`)
-    return
+    return false
   }
   const tabs = readTabsFromUpdates(
     dump.dsheetId,
@@ -172,12 +181,13 @@ async function writeSpeakerPhotos(dir: string, now: number) {
   // version the app polls, so it must only move when the content does.
   if (same) {
     console.log(`speakers: ${Object.keys(speakers).length} entries, unchanged`)
-    return
+    return false
   }
   const next: HubSpeakerPhotos = { exportedAt: now, speakers: sorted, problems }
   fs.mkdirSync(path.dirname(SPEAKERS_OUT), { recursive: true })
   fs.writeFileSync(SPEAKERS_OUT, JSON.stringify(next, null, 1) + '\n')
   console.log(`speakers: wrote ${SPEAKERS_OUT} (${Object.keys(speakers).length} entries, ${problems.length} problem(s))`)
+  return true
 }
 
 /** The sheets as the API parses them, one entry per session in local (event) time: for reading diffs, not read by the API. */

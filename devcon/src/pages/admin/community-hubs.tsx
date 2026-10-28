@@ -47,6 +47,8 @@ interface HubStatus {
 
 interface Status {
   version: string
+  /** Content release, bumped on every export that changes a sheet or the speaker photos (null before it existed). */
+  release?: number | null
   refreshedAt: number
   exportedAt: number | null
   problems: string[]
@@ -246,6 +248,7 @@ export default function CommunityHubsMonitor() {
             <div className={CARD}>
               <p className="text-xs uppercase tracking-wide text-[#5b5370]">Last sheet change</p>
               <p className="mt-1 text-lg font-bold">{status ? ago(status.exportedAt, now) : '…'}</p>
+              {status?.release ? <p className="text-xs text-[#5b5370]">Release v{status.release}</p> : null}
               {status && <Tone tone={freshness.tone}>{freshness.label}</Tone>}
             </div>
             {admin && (

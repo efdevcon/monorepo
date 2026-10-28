@@ -679,14 +679,13 @@
   },
   {
     "hub": "DeSci Hub",
-    "changedAt": "2026-10-27T15:14:48.819Z",
+    "changedAt": "2026-10-28T09:02:30.981Z",
     "problems": [
       "row 10 \"TBD + QnA\": start \"13:40\" / end \"\" not a time, skipped",
       "row 11 \"The DeSci Evolution: What Worked, What Didn't, and What Might Be Next + QnA\": start \"\" / end \"\" not a time, skipped",
       "row 12 \"From AI-Designed Binders to Robotic Labs: Closing the Drug Discovery Loop + QnA\": start \"\" / end \"\" not a time, skipped",
       "row 13 \"TBD + QnA\": start \"\" / end \"\" not a time, skipped",
-      "row 25: no session title, skipped",
-      "3 rows have no Key (rows 22, 23, 29): type any short unique text there, or renaming the session loses its saved stars"
+      "row 25: no session title, skipped"
     ],
     "sessions": [
       {
@@ -847,7 +846,7 @@
         "description": "Think fast, calculate faster! In this 1v1 Flash Anzan challenge, numbers, both positive and negative, will flash on the screen. Add them up correctly to beat your opponent and win a DeSci Hub merch. Bring your friends or colleagues and put your mental math skills to the test!"
       },
       {
-        "id": "",
+        "id": "S101",
         "day": "Wed 4 Nov",
         "time": "14:10-14:30",
         "title": "REALITY CHECK?",
@@ -859,7 +858,7 @@
         "description": "Can you tell AI apart from human creativity? Test your instincts by identifying whether each piece of content was created by AI or a human. Score the most correct answers to win DeSci Hub merch!"
       },
       {
-        "id": "",
+        "id": "S102",
         "day": "Wed 4 Nov",
         "time": "14:30-15:10",
         "title": "The Missing Primitive: Why DeSci Needs Patient-Owned Health Data? + QnA",
@@ -919,7 +918,7 @@
         "description": "What role can community living play in longevity? This session introduces the Zuzalu Longevity Chiang Mai space at 4Seas, followed by an open discussion on how shared living, social connection, and community design can support healthier, longer lives for a positive future.\n\nConnect with the speaker on LinkedIn: https://www.linkedin.com/in/knobelsdorf/"
       },
       {
-        "id": "",
+        "id": "S104",
         "day": "Thu 5 Nov",
         "time": "10:10-10:50",
         "title": "Born as ERC-20, Retired as a Soulbound NFT: Smart-Contract Patterns for Carbon Credit Integrity + QnA",
@@ -1103,15 +1102,18 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-26T12:57:10.296Z",
-    "problems": [],
+    "changedAt": "2026-10-28T08:44:36.903Z",
+    "problems": [
+      "row 8: no session title, skipped",
+      "row 16: no session title, skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "12:00-12:20",
         "title": "EIP Hub Opening",
-        "format": "Welcome",
+        "format": "Keynote",
         "speakers": [
           "Pooja Ranjan"
         ],
@@ -1153,17 +1155,6 @@
           "Louis Tsai"
         ],
         "description": "Glamsterdam raises Ethereum's gas limit from 60M to 200M and reprices EVM operations, so every gas cost has to match how long clients actually take to execute it. We walk through the pipeline that measures this end to end: designing benchmarks that isolate single operations, running them on realistic state across all execution clients with benchmarkoor, and replaying the same workloads on devnets and mainnet shadow forks to confirm the results hold on a live network."
-      },
-      {
-        "id": "S05",
-        "day": "Tue 3 Nov",
-        "time": "15:00-15:30",
-        "title": "EIP Selection to Support Fast Fork Cadence",
-        "format": "Talk",
-        "speakers": [
-          "Matthew Keil"
-        ],
-        "description": "Encourage the Ethereum ecosystem to adopt smaller, faster forks that enable more EIPs to ship over time, while planning multiple forks ahead through a clear roadmap to improve resource allocation and accelerate overall development cadence."
       },
       {
         "id": "S06",
@@ -1226,17 +1217,6 @@
           "Rachit Anand Srivastava"
         ],
         "description": "A technical tour of the cryptography and infrastructure shaping Ethereum’s next phase, from PeerDAS and KZG to zkVMs, new proving systems, and post-quantum cryptography. The talk looks at where these technologies are heading and what they could mean for the protocol."
-      },
-      {
-        "id": "S13",
-        "day": "Wed 4 Nov",
-        "time": "09:30-10:20",
-        "title": "EIP-8184: LUCID Encrypted Mempool",
-        "format": "Talk",
-        "speakers": [
-          "Justin Florentine"
-        ],
-        "description": "Why encrypting the mempool is hard, and what the latest tradeoffs are."
       },
       {
         "id": "S14",
@@ -1495,12 +1475,12 @@
         "id": "S40",
         "day": "Fri 6 Nov",
         "time": "12:00-13:00",
-        "title": "Self-Sovereign Tokens: Rethinking Onchain Representation",
+        "title": "More like Ethereum, less like SaaS: Infra guarantees for onchain business",
         "format": "Talk",
         "speakers": [
-          "German"
+          "Gavin Birch"
         ],
-        "description": "Apeiron Protocol proposes a token architecture where users or entities govern Signs through their own Console, with protected state isolated in ConsoleStorage and modular execution delegated to optional Cartridges. The talk explores explicit incoming acceptance, EXTCODEHASH-based remote compliance, and the separation of representation, instance identity, and metadata."
+        "description": "As businesses move payments, treasury, and financial operations onchain, more and more they depend on infrastructure they don't control. This talk explores how Ethereum properties such as credible exit, permissionless access, replaceable intermediaries, and constrained governance can become practical business-continuity guarantees, and why privacy systems expose where those guarantees still break down."
       },
       {
         "id": "S41",
@@ -1514,11 +1494,12 @@
         "id": "S42",
         "day": "Fri 6 Nov",
         "time": "13:30-14:00",
-        "title": "EIP Process AMA",
-        "format": "AMA",
+        "title": "Self-Sovereign Tokens: Rethinking Onchain Representation",
+        "format": "Talk",
         "speakers": [
-          "Pooja Ranjan"
-        ]
+          "German"
+        ],
+        "description": "Apeiron Protocol proposes a token architecture where users or entities govern Signs through their own Console, with protected state isolated in ConsoleStorage and modular execution delegated to optional Cartridges. The talk explores explicit incoming acceptance, EXTCODEHASH-based remote compliance, and the separation of representation, instance identity, and metadata."
       },
       {
         "id": "S43",
@@ -1542,7 +1523,7 @@
   },
   {
     "hub": "Game Zone",
-    "changedAt": "2026-10-27T12:16:52.728Z",
+    "changedAt": "2026-10-28T08:47:29.221Z",
     "problems": [],
     "sessions": []
   },
@@ -1859,10 +1840,9 @@
   },
   {
     "hub": "Legal & Governance Hub",
-    "changedAt": "2026-10-27T06:15:57.500Z",
+    "changedAt": "2026-10-28T09:02:30.981Z",
     "problems": [
-      "row 16: no session title, skipped",
-      "17 rows have no Key (rows 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 36, 37): type any short unique text there, or renaming the session loses its saved stars"
+      "row 16: no session title, skipped"
     ],
     "sessions": [
       {
@@ -1960,7 +1940,7 @@
         "speakers": []
       },
       {
-        "id": "",
+        "id": "S101",
         "day": "Wed 4 Nov",
         "time": "09:00-10:30",
         "title": "Doors Open: Coffee & Networking",
@@ -1969,7 +1949,7 @@
         "description": "☕️"
       },
       {
-        "id": "",
+        "id": "S102",
         "day": "Wed 4 Nov",
         "time": "10:30-11:00",
         "title": "From Tribe to Agent",
@@ -1980,7 +1960,7 @@
         "description": "People have always built institutions to coordinate, hold assets and make decisions together. What changes when those decisions are made by software? This opening talk traces the path from human communities to DAOs and agentic organisations, asking which foundations still matter: identity, shared rules, recognised authority and someone who answers when things go wrong."
       },
       {
-        "id": "",
+        "id": "S103",
         "day": "Wed 4 Nov",
         "time": "11:00-11:40",
         "title": "Who Do You Sue?",
@@ -1992,7 +1972,7 @@
         "description": "An agent signs a deal, moves funds or causes a loss. Who does the other party bring a claim against, and where? This roundtable follows a dispute from identifying the responsible party to choosing a forum and enforcing a decision. We’ll examine what contracts, registries and onchain arbitration can resolve, and where accountability still breaks down."
       },
       {
-        "id": "",
+        "id": "S105",
         "day": "Wed 4 Nov",
         "time": "12:10-12:20",
         "title": "Hydration Break",
@@ -2001,7 +1981,7 @@
         "description": "☕️🫖🧃🧉"
       },
       {
-        "id": "",
+        "id": "S106",
         "day": "Wed 4 Nov",
         "time": "12:20-13:00",
         "title": "The Public Round Is Back: Raising Onchain in 2026",
@@ -2010,7 +1990,7 @@
         "description": "Raising from a community puts difficult questions back on the table: what is being sold, what rights come with it, and who is accountable after the raise? This roundtable examines public token fundraising through investor protection, disclosure, access restrictions and treasury governance. What would a public round need to get right to earn lasting trust?"
       },
       {
-        "id": "",
+        "id": "S107",
         "day": "Wed 4 Nov",
         "time": "13:00-14:00",
         "title": "Lunch Break",
@@ -2019,7 +1999,7 @@
         "description": "🍱"
       },
       {
-        "id": "",
+        "id": "S108",
         "day": "Wed 4 Nov",
         "time": "14:00-14:30",
         "title": "Community Fishbowl",
@@ -2031,7 +2011,7 @@
         "description": "Bring a live problem from something you’re building, advising or governing. This open discussion gives the room a chance to test ideas against practical experience, from agent permissions and DAO disputes to privacy and entity formation. Participants rotate through the conversation, with an open chair for anyone who can sharpen the question or offer a useful counterexample."
       },
       {
-        "id": "",
+        "id": "S109",
         "day": "Wed 4 Nov",
         "time": "14:30-15:00",
         "title": "Paid in Dollars, Taxed in Rupees: What Breaks for Indian Founders, and what Actually Works?",
@@ -2040,7 +2020,7 @@
         "description": "Your work is global, your payment arrives in dollars or stablecoins, and your tax obligations remain local. For people working from India, this roundtable explores how employment, contracting and token compensation create different questions around income, valuation, reporting and cross-border payments. What records and arrangements should be in place before the first payment arrives?"
       },
       {
-        "id": "",
+        "id": "S110",
         "day": "Wed 4 Nov",
         "time": "15:00-15:40",
         "title": "Who Owns the Upside When the Founder is an Agent?",
@@ -2049,7 +2029,7 @@
         "description": "An agent creates a product, earns revenue and reinvests the proceeds. Who should own the business, and who can claim what it produces? This roundtable separates ownership, control and economic rights, examining the competing claims of developers, operators, funders and users. We’ll ask how those rights could be documented, changed and enforced as the agent becomes more autonomous."
       },
       {
-        "id": "",
+        "id": "S111",
         "day": "Wed 4 Nov",
         "time": "15:40-16:00",
         "title": "Hydration Break",
@@ -2058,7 +2038,7 @@
         "description": "☕️🫖🧃🧉"
       },
       {
-        "id": "",
+        "id": "S112",
         "day": "Wed 4 Nov",
         "time": "16:00-16:40",
         "title": "Agents & Personhood",
@@ -2070,7 +2050,7 @@
         "description": "Does an autonomous agent need legal personhood, or can existing entities and human responsibility do the job? This roundtable examines what recognition would actually give an agent: the ability to hold assets, enter contracts, bear obligations and appear in a dispute. We’ll compare company wrappers with registry-based approaches and ask what safeguards must accompany any new legal status."
       },
       {
-        "id": "",
+        "id": "S113",
         "day": "Wed 4 Nov",
         "time": "16:40-17:20",
         "title": "Privacy & Credentials",
@@ -2083,7 +2063,7 @@
         "description": "An onchain entity may need to prove who can act, whether a condition is met, or where funds came from without exposing its entire history. This roundtable explores credentials, selective disclosure, and confidential transactions as accountability tools. Who issues the proof, who can challenge or revoke it, and what should happen when a regulator or court needs more information?"
       },
       {
-        "id": "",
+        "id": "S114",
         "day": "Wed 4 Nov",
         "time": "17:20-18:00",
         "title": "Liability, Records & Justice",
@@ -2092,7 +2072,7 @@
         "description": "When an autonomous system causes harm, resolving the dispute depends on more than identifying a bug. This roundtable connects security failures, reliable records and access to justice: what evidence must survive, who can rely on it, and how responsibility becomes a remedy. Drawing on onchain security and government records, we’ll examine the path from incident to enforceable outcome."
       },
       {
-        "id": "",
+        "id": "S115",
         "day": "Wed 4 Nov",
         "time": "18:00-18:30",
         "title": "Closing & Networking",
@@ -2104,7 +2084,7 @@
         "description": "🌾"
       },
       {
-        "id": "",
+        "id": "S116",
         "day": "Thu 5 Nov",
         "time": "09:00-10:00",
         "title": "Doors open:Coffee +networking",
@@ -2193,7 +2173,7 @@
         "speakers": []
       },
       {
-        "id": "",
+        "id": "S117",
         "day": "Fri 6 Nov",
         "time": "09:00-09:30",
         "title": "Doors open: Coffee + networking",
@@ -2201,7 +2181,7 @@
         "speakers": []
       },
       {
-        "id": "",
+        "id": "S118",
         "day": "Fri 6 Nov",
         "time": "09:30-11:00",
         "title": "Better Governance UX, Better Governance",
@@ -2561,10 +2541,9 @@
   },
   {
     "hub": "Onchain Art Hub",
-    "changedAt": "2026-10-26T16:10:36.914Z",
+    "changedAt": "2026-10-28T09:02:30.981Z",
     "problems": [
-      "row 12: no session title, skipped",
-      "7 rows have no Key (rows 8, 9, 10, 13, 14, 17, 18): type any short unique text there, or renaming the session loses its saved stars"
+      "row 12: no session title, skipped"
     ],
     "sessions": [
       {
@@ -2602,7 +2581,7 @@
         ]
       },
       {
-        "id": "",
+        "id": "S101",
         "day": "Wed 4 Nov",
         "time": "10:30-11:00",
         "title": "Onchain Art Hub - Culture Is the Crop—Why Onchain Art Matters",
@@ -2613,7 +2592,7 @@
         "description": "Jasmine Stage 4—Ethereum is more than technology; it’s a movement, and movements survive through the culture people build around them. This talk explores how onchain art preserves that culture and opens a door for newcomers, and why we should support it in every market, so we can nurture, protect, and grow this space in the right direction."
       },
       {
-        "id": "",
+        "id": "S102",
         "day": "Wed 4 Nov",
         "time": "11:00-13:00",
         "title": "Create Culture—Partake in the creation of Onchain Art Fanzine",
@@ -2624,7 +2603,7 @@
         "description": "A open-studio workshop where analog meets digital and image meets sound. Everyone makes something, and everything made becomes a page, a track, a fragment of an onchain art fanzine we build together. dwn2erth leads you through the process and captures it along the way. Come make culture instead of just consuming it.  dwn2erth: https://x.com/dwn2erth"
       },
       {
-        "id": "",
+        "id": "S103",
         "day": "Wed 4 Nov",
         "time": "13:00-14:00",
         "title": "Lunch",
@@ -2643,7 +2622,7 @@
         "description": "Patio is an experimental, open-source radio that uses the Ethereum and Polygon mempool to stream music without relying on traditional streaming servers.\n\nVictor: https://x.com/victorxva"
       },
       {
-        "id": "",
+        "id": "S105",
         "day": "Thu 5 Nov",
         "time": "11:30-13:00",
         "title": "Onchain Art Hub X Game Zone—Beast NFTs Remix",
@@ -2656,7 +2635,7 @@
         "description": "Onchain Art Hub and the Devcon Game Zone team up for a 2-sessions flash vibe-a-thon: an open creative sprint where you remix the Beast universe into art, games and onchain experiments. Artists and developers can work side by side or solo, and no crypto or coding skills are needed to join. Start with a quick intro to Loot and Beast NFTs, then create.\n\n\nThe day starts at the Onchain Art Hub (11:30 AM to 1:00 PM) with a hands-on art session inspired by Beast NFTs. After a lunch break (1:00 to 2:00 PM), we head to the Devcon Game Zone (2:00 to 3:30 PM), where artists and developers remix the art into games, tools and experiments.  Nejc: https://x.com/heynejc  Shubham Shakti: https://x.com/0xShubh4m  dwn2erth: https://x.com/dwn2erth"
       },
       {
-        "id": "",
+        "id": "S106",
         "day": "Thu 5 Nov",
         "time": "13:00-14:00",
         "title": "Lunch",
@@ -2688,7 +2667,7 @@
         "description": "Art, Luck and Magic Internet Money is a talk on how modern creatives build a body of work, find audiences, and expand their surface area for luck, through art history, onchain culture, and AI. Stay for the workshop that follows, where you’ll map your own side doors and leave with a 30-day strategy and a seven-day content plan.  awkquarian: https://x.com/rakshitaphilip"
       },
       {
-        "id": "",
+        "id": "S107",
         "day": "Fri 6 Nov",
         "time": "11:00-13:00",
         "title": "Create Culture—Partake in the creation of Onchain Art Fanzine",
@@ -2699,7 +2678,7 @@
         "description": "A open-studio workshop where analog meets digital and image meets sound. Everyone makes something, and everything made becomes a page, a track, a fragment of an onchain art fanzine we build together. dwn2erth leads you through the process and captures it along the way. Come make culture instead of just consuming it.  dwn2erth: https://x.com/dwn2erth"
       },
       {
-        "id": "",
+        "id": "S108",
         "day": "Fri 6 Nov",
         "time": "13:00-14:00",
         "title": "Lunch",
@@ -3452,7 +3431,7 @@
   },
   {
     "hub": "Privacy Hub",
-    "changedAt": "2026-10-26T18:21:23.910Z",
+    "changedAt": "2026-10-28T09:13:21.643Z",
     "problems": [],
     "sessions": [
       {
@@ -3479,11 +3458,11 @@
       {
         "id": "S03",
         "day": "Tue 3 Nov",
-        "time": "12:00-13:00",
+        "time": "12:00-12:40",
         "title": "The Right to Disappear Onchain",
         "format": "Fireside Chat",
         "speakers": [
-          "Asha Shankar",
+          "Uddalak",
           "Akashneelesh",
           "Agnish"
         ]
@@ -3500,10 +3479,10 @@
         "id": "S05",
         "day": "Tue 3 Nov",
         "time": "14:00-14:30",
-        "title": "TBC",
+        "title": "Building Unstoppable Private Apps",
         "format": "Talk",
         "speakers": [
-          "Zac"
+          "Zachary Williamson"
         ]
       },
       {
@@ -3550,7 +3529,7 @@
       {
         "id": "S10",
         "day": "Wed 4 Nov",
-        "time": "10:00-10:30",
+        "time": "10:00-10:20",
         "title": "Fixing the Incentive Gap in Decentralized VPNs",
         "format": "Talk",
         "speakers": [
@@ -3559,6 +3538,16 @@
       },
       {
         "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "10:30-10:50",
+        "title": "An Introductory Guide on Privacy Enhancing Technologies",
+        "format": "Talk",
+        "speakers": [
+          "Kate Stapleton"
+        ]
+      },
+      {
+        "id": "S12",
         "day": "Wed 4 Nov",
         "time": "11:00-11:20",
         "title": "Making Ethereum Home for Institutions",
@@ -3569,7 +3558,7 @@
         "description": "Institutions want to move onchain, but they need privacy that hides activity from the public while staying visible to operators and regulators. This talk will cover what kind of privacy institutions actually need, and how a hybrid ZK + TEE approach can help them onboard to Ethereum without compromising on compliance or performance."
       },
       {
-        "id": "S12",
+        "id": "S13",
         "day": "Wed 4 Nov",
         "time": "11:30-11:50",
         "title": "How to Overcome Limitations of Privacy Protocols Right Now",
@@ -3579,17 +3568,28 @@
         ]
       },
       {
-        "id": "S13",
+        "id": "S14",
         "day": "Wed 4 Nov",
-        "time": "12:00-13:00",
+        "time": "12:00-12:50",
+        "title": "Lessons from Zcash & Tachyon for Ethereum",
+        "format": "Roundtable",
+        "speakers": [
+          "Harsh Bajpai",
+          "Whitepaper Reading Club"
+        ]
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "13:00-14:00",
         "title": "Lunch Break",
         "format": "Break",
         "speakers": []
       },
       {
-        "id": "S14",
+        "id": "S16",
         "day": "Wed 4 Nov",
-        "time": "13:00-13:30",
+        "time": "13:30-13:50",
         "title": "zkAPI: Anonymous Credits for the AI Era",
         "format": "Talk",
         "speakers": [
@@ -3597,21 +3597,9 @@
         ]
       },
       {
-        "id": "S15",
+        "id": "S17",
         "day": "Wed 4 Nov",
-        "time": "13:40-14:20",
-        "title": "Everyday Privacy Practices in a High-Surveillance Environment",
-        "format": "Roundtable",
-        "speakers": [
-          "Marina",
-          "Julia",
-          "Devisha"
-        ]
-      },
-      {
-        "id": "S16",
-        "day": "Wed 4 Nov",
-        "time": "14:30-15:10",
+        "time": "14:00-14:30",
         "title": "Private Stablecoin Rails for Indian Remittances",
         "format": "Fireside Chat",
         "speakers": [
@@ -3621,9 +3609,22 @@
         ]
       },
       {
-        "id": "S17",
+        "id": "S18",
         "day": "Wed 4 Nov",
-        "time": "15:20-15:50",
+        "time": "14:40-15:10",
+        "title": "Everyday Privacy Practices in a High-Surveillance Environment",
+        "format": "Roundtable",
+        "speakers": [
+          "Marina",
+          "Julia",
+          "Daavya",
+          "Devisha"
+        ]
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "15:20-15:40",
         "title": "Sorry, Your Data Was Leaked: Rethinking Who Holds Our Data",
         "format": "Talk",
         "speakers": [
@@ -3631,9 +3632,9 @@
         ]
       },
       {
-        "id": "S18",
+        "id": "S20",
         "day": "Wed 4 Nov",
-        "time": "16:00-16:30",
+        "time": "15:50-16:20",
         "title": "Vibecoding Consumer Apps with Built-In Privacy",
         "format": "Workshop",
         "speakers": [
@@ -3641,9 +3642,9 @@
         ]
       },
       {
-        "id": "S19",
+        "id": "S21",
         "day": "Wed 4 Nov",
-        "time": "16:40-17:00",
+        "time": "16:30-16:50",
         "title": "Securing Privacy Protocols",
         "format": "Talk",
         "speakers": [
@@ -3651,7 +3652,7 @@
         ]
       },
       {
-        "id": "S20",
+        "id": "S22",
         "day": "Thu 5 Nov",
         "time": "10:00-10:30",
         "title": "Privacy 101: What is Privacy and Why Should You Care",
@@ -3662,7 +3663,7 @@
         "description": "Intro to privacy in the modern age."
       },
       {
-        "id": "S21",
+        "id": "S23",
         "day": "Thu 5 Nov",
         "time": "10:40-11:30",
         "title": "Achieving Privacy on Ethereum L1",
@@ -3676,7 +3677,7 @@
         "description": "Interactive panel with core privacy building protocols discussing the challenges of building privacy onchain."
       },
       {
-        "id": "S22",
+        "id": "S24",
         "day": "Thu 5 Nov",
         "time": "11:40-12:10",
         "title": "Open-source Hardware Wallets",
@@ -3687,7 +3688,7 @@
         "description": "Learn about how Keycard is building an open-source transparent hardware wallet and keeping yourself safe from supply chain attacks."
       },
       {
-        "id": "S23",
+        "id": "S25",
         "day": "Thu 5 Nov",
         "time": "12:30-13:30",
         "title": "Lunch Break",
@@ -3695,7 +3696,7 @@
         "speakers": []
       },
       {
-        "id": "S24",
+        "id": "S26",
         "day": "Thu 5 Nov",
         "time": "13:30-14:20",
         "title": "Privacy L2s: Different Methodolgies to Achieve Privacy Onchain",
@@ -3708,7 +3709,7 @@
         "description": "A fireside chat exploring the diverging trends in privacy centric L2s on Ethereum."
       },
       {
-        "id": "S25",
+        "id": "S27",
         "day": "Thu 5 Nov",
         "time": "14:30-15:00",
         "title": "Utilising AI Agents to Analyze Genomic Data in a Privacy Preserving Manner",
@@ -3719,9 +3720,9 @@
         "description": "A short presentation on why a personal enclave for genomic and health data is important and how you can run analysis in a sandboxed environment."
       },
       {
-        "id": "S26",
+        "id": "S28",
         "day": "Thu 5 Nov",
-        "time": "15:30-15:50",
+        "time": "15:00-15:20",
         "title": "Privacy x AI: Achieving Privacy in the Age of AI agents",
         "format": "Talk",
         "speakers": [
@@ -3730,7 +3731,7 @@
         "description": "How to use AI agents in a privacy preserving manner to keep your data safe"
       },
       {
-        "id": "S27",
+        "id": "S29",
         "day": "Thu 5 Nov",
         "time": "16:00-16:20",
         "title": "Privacy and Hardware Wallets in a Post-Quantum World",
@@ -3742,7 +3743,7 @@
         "description": "Short demo and presentation on the challenges hardware wallet users face in preparing for Q-Day"
       },
       {
-        "id": "S28",
+        "id": "S30",
         "day": "Thu 5 Nov",
         "time": "16:30-16:50",
         "title": "Decentralize your Life - A Practical Talk on FOSS Tools for Everyday Privacy",
@@ -3754,7 +3755,7 @@
         "description": "Learn about Fileverse, GrapheneOS, and how to bring a little bit of privacy into your home."
       },
       {
-        "id": "S29",
+        "id": "S31",
         "day": "Fri 6 Nov",
         "time": "10:00-10:20",
         "title": "Designing for On-Chain Privacy Adoption",
@@ -3764,7 +3765,7 @@
         ]
       },
       {
-        "id": "S30",
+        "id": "S32",
         "day": "Fri 6 Nov",
         "time": "10:30-11:10",
         "title": "Privacy around x402",
@@ -3776,9 +3777,9 @@
         ]
       },
       {
-        "id": "S31",
+        "id": "S33",
         "day": "Fri 6 Nov",
-        "time": "11:20-11:50",
+        "time": "11:20-11:40",
         "title": "Memeing Privacy into Existence",
         "format": "Workshop",
         "speakers": [
@@ -3786,7 +3787,7 @@
         ]
       },
       {
-        "id": "S32",
+        "id": "S34",
         "day": "Fri 6 Nov",
         "time": "12:00-13:00",
         "title": "Lunch Break",
@@ -3794,7 +3795,7 @@
         "speakers": []
       },
       {
-        "id": "S33",
+        "id": "S35",
         "day": "Fri 6 Nov",
         "time": "13:30-13:50",
         "title": "Private Finance on Public Networks",
@@ -3804,7 +3805,7 @@
         ]
       },
       {
-        "id": "S34",
+        "id": "S36",
         "day": "Fri 6 Nov",
         "time": "14:00-14:20",
         "title": "Mixnets with Lightclients, a Match Made for Privacy",
@@ -3814,9 +3815,9 @@
         ]
       },
       {
-        "id": "S35",
+        "id": "S37",
         "day": "Fri 6 Nov",
-        "time": "14:30-15:00",
+        "time": "14:30-14:50",
         "title": "Privacy is the Only Thing You Can’t Add Later",
         "format": "Talk",
         "speakers": [
@@ -4430,10 +4431,8 @@
   },
   {
     "hub": "Security Hub",
-    "changedAt": "2026-10-23T13:11:06.086Z",
-    "problems": [
-      "2 rows have no Key (rows 18, 25): type any short unique text there, or renaming the session loses its saved stars"
-    ],
+    "changedAt": "2026-10-28T09:02:30.981Z",
+    "problems": [],
     "sessions": [
       {
         "id": "S01",
@@ -4569,7 +4568,7 @@
         ]
       },
       {
-        "id": "",
+        "id": "S101",
         "day": "Wed 4 Nov",
         "time": "10:20-10:30",
         "title": "Break",
@@ -4637,7 +4636,7 @@
         ]
       },
       {
-        "id": "",
+        "id": "S102",
         "day": "Wed 4 Nov",
         "time": "13:30-13:50",
         "title": "Break",
@@ -4875,7 +4874,7 @@
         "title": "Clauditing: using agents to supercharge your understanding",
         "format": "Talk",
         "speakers": [
-          "George Kobakhidze",
+          "Georgy Kobakhidze",
           "Davit Kobakhidze"
         ]
       },
@@ -4926,13 +4925,12 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-10-27T15:14:48.819Z",
+    "changedAt": "2026-10-28T08:44:36.903Z",
     "problems": [
       "row 11: no session title, skipped",
       "row 12: no session title, skipped",
       "row 13: no session title, skipped",
       "row 22: no session title, skipped",
-      "row 24: no session title, skipped",
       "row 27: no session title, skipped",
       "row 28: no session title, skipped",
       "row 29: no session title, skipped"
@@ -4995,7 +4993,9 @@
         "title": "Simocracy: Digital Sims for Governance and Allocation",
         "format": "Talk",
         "speakers": [
-          "Diego Rivera"
+          "Diego Rivera",
+          "Member of Technical Staff",
+          "GainForest"
         ],
         "topic": "Governance"
       },
@@ -5109,6 +5109,16 @@
         "title": "Open discussions at the hub",
         "format": "Networking",
         "speakers": []
+      },
+      {
+        "id": "S21",
+        "day": "Thu 5 Nov",
+        "time": "16:30-16:50",
+        "title": "Communities and culture",
+        "format": "Talk",
+        "speakers": [
+          "Parth"
+        ]
       },
       {
         "id": "S22",

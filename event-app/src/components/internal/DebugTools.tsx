@@ -6,6 +6,7 @@ import cn from "classnames";
 import {
   DATASETS,
   DEFAULT_DATASET_KEY,
+  communityHubsDataset,
   getActiveDataset,
   getActiveDatasetKey,
   type DatasetKey,
@@ -15,6 +16,8 @@ import { useNowMs } from "@/hooks/useNow";
 import { useSyncStatus } from "@/data/hooks";
 import { knownInstallVersion, launchInstallVersion } from "@/data/install/deviceInstallVersion";
 import { eventStore } from "@/data/store/event-store";
+import { hubStore } from "@/data/store/hub-store";
+import { useStoreState } from "@/data/store/use-event-store";
 
 /**
  * Two rows of the EF internal tools on My Devcon:
@@ -92,6 +95,56 @@ export function EventDataTools() {
       <button
         type="button"
         onClick={() => void eventStore.sync(getActiveDataset(), { force: true })}
+        className={cn(quietPill, "mt-2")}
+      >
+        <RefreshCw className="size-3.5 text-dc-purple" />
+        Force sync
+      </button>
+    </div>
+  );
+}
+
+/**
+ * The Community Hubs bundle version in words. devcon-api builds it as
+ * `<last sheet change>-<hub count>[-<speaker photos written>]` (versionOf in
+ * services/community-hubs.ts); anything else is shown as it is.
+ */
+function hubsVersionLabel(version: string | null): string {
+  if (!version) return "none";
+  const [changed, count, photos] = version.split("-").map(Number);
+  if (!changed || !count) return version;
+  // Stored timestamps, not "now": plain formatting is fine here.
+  const at = (ms: number) =>
+    new Date(ms).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  return `${count} hubs · last sheet change ${at(changed)}` + (photos ? ` · speaker photos ${at(photos)}` : "");
+}
+
+/** Community Hubs store readout (its own store, see hub-store.ts) + force sync. */
+export function CommunityHubsDataTools() {
+  const { status, meta, lastError } = useStoreState(hubStore);
+  const dataset = communityHubsDataset(getActiveDataset());
+  if (!dataset) return null;
+  const fmt = (ms: number | null | undefined) => (ms ? new Date(ms).toLocaleTimeString() : "never");
+  const version = meta?.version ?? null;
+  // The hubs bundle carries its content release ("12") where the Pretalx
+  // bundle carries the schedule release.
+  const release = meta?.scheduleVersion;
+  return (
+    <div className="mt-3 rounded-md border border-dc-hairline bg-white p-3 text-[12px] leading-4 text-dc-muted">
+      <p className="text-[14px] leading-5 text-dc-fg2">
+        Community Hubs release: <span className="font-semibold">{release ? `v${release}` : "unknown"}</span>
+      </p>
+      <p>{hubsVersionLabel(version)}</p>
+      <p>
+        status: {status} · data version: {version ?? "none"}
+      </p>
+      <p>
+        synced: {fmt(meta?.syncedAt)} · checked: {fmt(meta?.checkedAt)}
+      </p>
+      {lastError && <p className="text-dc-error">{lastError}</p>}
+      <button
+        type="button"
+        onClick={() => void hubStore.sync(dataset, { force: true })}
         className={cn(quietPill, "mt-2")}
       >
         <RefreshCw className="size-3.5 text-dc-purple" />
