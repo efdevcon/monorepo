@@ -5,7 +5,8 @@ import {
   isCommunityHubSession,
   shortCommunityHubName,
 } from "@/data/communityHubs";
-import { communityLedGroup } from "@/data/communityLed";
+import { communityLedGroup, communityLedLogo } from "@/data/communityLed";
+import { eventDayKey } from "@/data/eventTime";
 import type { Session } from "@/data/models/sessions";
 import type { ScheduleSource } from "@/data/store/schedule-source";
 
@@ -57,10 +58,15 @@ export interface CommunityRef {
   logo?: string;
   lockup?: string;
   kind: "hub" | "cls";
+  /** Which filter section lists it: a hub can opt into the community-led one (the Music Stage). */
+  section: "hub" | "cls";
+  /** Venue-day keys ("YYYY-MM-DD", sorted) its sessions fall on: one session's day from `communityOf`, every day from `communityOptions`. */
+  days: string[];
 }
 
 /** The community behind a session: the hub by room first (a hub row's track is blank), else the group by track. */
-export function communityOf(session: Pick<Session, "track" | "room">): CommunityRef | undefined {
+export function communityOf(session: Pick<Session, "track" | "room" | "start">): CommunityRef | undefined {
+  const days = [eventDayKey(session.start * 1000)];
   const hub = communityHubForRoom(session.room?.id);
   if (hub) {
     return {
@@ -72,6 +78,8 @@ export function communityOf(session: Pick<Session, "track" | "room">): Community
       logo: communityHubLogo(hub),
       lockup: communityHubLockup(hub) ?? undefined,
       kind: "hub",
+      section: hub.listedWithCommunityLed ? "cls" : "hub",
+      days,
     };
   }
   const group = communityLedGroup(session.track);
@@ -82,18 +90,27 @@ export function communityOf(session: Pick<Session, "track" | "room">): Community
     name: group.name,
     badge: group.badge,
     color: group.color,
-    logo: group.logo,
+    logo: communityLedLogo(group),
     lockup: group.lockup,
     kind: "cls",
+    section: "cls",
+    days,
   };
 }
 
-/** The communities present in a list of sessions, once each, by name. */
+/**
+ * The communities present in a list of sessions, once each, by name, each
+ * carrying every venue day its sessions fall on (the filter panel groups the
+ * community-led ones by day).
+ */
 export function communityOptions(sessions: Session[]): CommunityRef[] {
   const byKey = new Map<string, CommunityRef>();
   for (const session of sessions) {
     const ref = communityOf(session);
-    if (ref && !byKey.has(ref.key)) byKey.set(ref.key, ref);
+    if (!ref) continue;
+    const seen = byKey.get(ref.key);
+    if (!seen) byKey.set(ref.key, ref);
+    else if (!seen.days.includes(ref.days[0])) seen.days = [...seen.days, ref.days[0]].sort();
   }
   return [...byKey.values()].sort((a, b) => a.name.localeCompare(b.name));
 }

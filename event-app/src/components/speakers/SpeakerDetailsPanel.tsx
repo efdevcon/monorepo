@@ -2,7 +2,6 @@
 
 import { Maximize2 } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
-import { ShareButton } from "@/components/ShareButton";
 import { openDetail } from "@/routing/detailRoute";
 import type { DecoratedSpeaker } from "./useSpeakersData";
 import { SpeakerDetailsContent } from "./SpeakerDetailsContent";
@@ -38,18 +37,11 @@ export function SpeakerDetailsPanel({
             type="button"
             onClick={() => openDetail("speaker", decorated.speaker.id)}
             aria-label="Expand speaker details"
-            // CloseButton's circular recipe (Buttons.tsx), same as ShareButton's
-            // panel variant.
+            // CloseButton's circular recipe (Buttons.tsx).
             className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-full bg-dc-panel transition-colors duration-150 ease-out hover:bg-dc-purple-soft"
           >
             <Maximize2 className="size-4 text-dc-fg2" />
           </button>
-          <ShareButton
-            kind="speaker"
-            id={decorated.speaker.id}
-            title={decorated.speaker.name}
-            variant="panel"
-          />
           <CloseButton onClick={onClose} aria-label="Close speaker details" />
         </div>
       </div>

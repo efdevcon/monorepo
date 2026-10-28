@@ -85,6 +85,9 @@ const withSerwist = withSerwistInit({
     { url: "/schedule/gems/rights-freedoms-governance.webp", revision },
     { url: "/schedule/gems/security.webp", revision },
     { url: "/schedule/gems/users-builders-agents.webp", revision },
+    // The community-led groups' shared mark (COMMUNITY_LED_LOGO in
+    // src/data/communityLed.ts), shown wherever the gems are.
+    { url: "/schedule/gems/community-led.png", revision },
   ],
   reloadOnOnline: false,
   exclude: [

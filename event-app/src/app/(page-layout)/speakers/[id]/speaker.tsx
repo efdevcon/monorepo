@@ -4,10 +4,9 @@ import { use } from "react";
 import { ArrowLeft } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { closeDetail } from "@/routing/detailRoute";
-import { DetailNotFound, HeaderActionsPortal } from "@/components/DetailLayer";
+import { DetailNotFound } from "@/components/DetailLayer";
 import { DetailSkeleton } from "@/components/Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
-import { ShareButton } from "@/components/ShareButton";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { useSpeakersData } from "@/components/speakers/useSpeakersData";
 import { ScheduleSourceProvider, storeFor, useScheduleSource } from "@/data/store/schedule-source";
@@ -121,13 +120,6 @@ function SpeakerPage({ id }: { id: string }) {
           content box tricks can't reach the layout's bottom-nav padding,
           which otherwise shows the gradient below short AND long profiles. */}
       <div className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden" aria-hidden />
-      <HeaderActionsPortal>
-        <ShareButton
-          kind="speaker"
-          id={decorated.speaker.id}
-          title={decorated.speaker.name}
-        />
-      </HeaderActionsPortal>
       <SpeakerDetailsContent decorated={decorated} />
     </main>
   );

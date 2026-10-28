@@ -17,6 +17,7 @@ import { formatDayLabel, formatTimeRange } from "./utils";
 import { getTrackTheme, trackFullLabel, type TrackTheme } from "./trackTheme";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
 import { MarkdownText } from "@/components/MarkdownText";
+import { ShareMenu } from "@/components/ShareMenu";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 /**
@@ -346,7 +347,9 @@ export function SessionSummary({
           {/* Action pills share the row's width equally (flex-1) and wrap
               onto a new line if they can't (the old mobile scroll-and-fade
               row hid the last pill past the screen edge). The map link is
-              the location line above. */}
+              the location line above. Share sits between Interested and the
+              calendar on every layout, the page's one share entry point
+              (Scott, 2026-10-27). */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => void toggle(session.id)}
@@ -365,6 +368,7 @@ export function SessionSummary({
               />
               {interested ? "Interested" : "Add to Interests"}
             </button>
+            <ShareMenu kind="session" id={session.id} title={session.title} className={pillClass} />
             <button
               onClick={() => {
                 trackEvent("session", "calendar", session.id);
