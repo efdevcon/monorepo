@@ -201,6 +201,17 @@ export const Navigation = (props: any) => {
   const prevActiveRef = React.useRef<string | null>(null)
   const activeIndexRef = React.useRef<number>(-1)
   const itemRefs = React.useRef<(HTMLLIElement | null)[]>([])
+  const groupRef = React.useRef<HTMLDivElement | null>(null)
+  // Width of the open item's card, for re-clamping on resize
+  const activeWidthRef = React.useRef(DEFAULT_FOLDOUT_WIDTH)
+  // The card is left-anchored to its nav item. With no tickets pill after
+  // Archive any more, the last item sits at the group's right edge and a
+  // left-anchored card would run off the viewport — pull it back so its
+  // right edge never passes the group's.
+  const clampMenuX = (x: number, width: number) => {
+    const groupWidth = groupRef.current?.clientWidth
+    return groupWidth ? Math.max(0, Math.min(x, groupWidth - width)) : x
+  }
   const activeContentRef = React.useRef<HTMLDivElement | null>(null)
   const closeTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
   const instantTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -218,7 +229,7 @@ export const Navigation = (props: any) => {
   React.useEffect(() => {
     const onResize = () => {
       const el = itemRefs.current[activeIndexRef.current]
-      if (el) setMenuX(el.offsetLeft)
+      if (el) setMenuX(clampMenuX(el.offsetLeft, activeWidthRef.current))
     }
     window.addEventListener('resize', onResize)
     return () => {
@@ -261,7 +272,9 @@ export const Navigation = (props: any) => {
 
     const nextIdx = foldableItems.findIndex((i: LinkType) => i.title === title)
     const el = itemRefs.current[nextIdx]
-    if (el) setMenuX(el.offsetLeft)
+    const width = foldableItems[nextIdx]?.foldoutWidth ?? DEFAULT_FOLDOUT_WIDTH
+    activeWidthRef.current = width
+    if (el) setMenuX(clampMenuX(el.offsetLeft, width))
     activeIndexRef.current = nextIdx
 
     if (prev && prev !== title) {
@@ -439,6 +452,7 @@ export const Navigation = (props: any) => {
     <div className={css['nav-wrapper']}>
       {/* Foldable group: items with children + shared foldout */}
       <div
+        ref={groupRef}
         className={css['nav-foldable-group']}
         onMouseLeave={handleClearActive}
       >

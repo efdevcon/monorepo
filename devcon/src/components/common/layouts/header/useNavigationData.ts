@@ -29,14 +29,9 @@ const useNavigationData = () => {
           url: '/about',
           type: 'page',
         },
-        {
-          title: t('blog'),
-          url: '/blogs',
-          type: 'page',
-        },
         // Post-event: the Attend dropdown is gone, so its schedule (still
         // the Devcon app — external, hence the arrow-up-right indicator)
-        // and travel guide live here now.
+        // and travel guide live here now; Blog closes the list.
         {
           title: t('schedule'),
           url: `${EVENT_APP_ORIGIN}/schedule`,
@@ -45,6 +40,11 @@ const useNavigationData = () => {
         {
           title: t('travel_guide'),
           url: '/travel-guide',
+          type: 'page',
+        },
+        {
+          title: t('blog'),
+          url: '/blogs',
           type: 'page',
         },
       ],
