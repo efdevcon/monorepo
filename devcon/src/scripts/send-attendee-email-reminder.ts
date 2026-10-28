@@ -46,7 +46,7 @@ import { EMAIL_HEADER_ROW, EMAIL_COLOR_SCHEME_META, emailEyebrow } from '../serv
 import { TICKETING, TICKETING_ENV, getPretixApiToken, pretixEventUrl } from '../config/ticketing'
 
 // ---- Campaign copy ----
-const SUBJECT = '🎟️ Your Devcon 8 India tickets: who is using each one?'
+const SUBJECT = '[ACTION REQUIRED] 🎟️ Your Devcon 8 India tickets: who is using each one?'
 const MATOMO_PARAMS = 'mtm_campaign=attendee-email-reminder&mtm_source=email&mtm_medium=email'
 
 // ---- CLI ----
@@ -167,15 +167,18 @@ const modifyLink = (orderUrl: string) => `${orderUrl.replace(/\/?$/, '/')}modify
 function buildReminderHtml(recipient: Recipient, testBanner = false): string {
   const total = recipient.orders.reduce((sum, order) => sum + order.ticketsWithBuyer, 0)
   const several = recipient.orders.length > 1
+  // One button per order (Pretix edits a whole order at once), so the intro
+  // names the orders and each button says how many tickets it covers.
   const intro = several
-    ? `your orders below hold <strong>${total} tickets</strong> that are all under your email.`
+    ? `your ${recipient.orders.length} orders below hold <strong>${total} tickets</strong> that are all under your email.`
     : `your order <strong>${recipient.orders[0].code}</strong> holds <strong>${total} tickets</strong> that are all under your email.`
+  const tickets = (n: number) => `${n} ticket${n === 1 ? '' : 's'}`
   const buttons = recipient.orders
     .map(
       order => `
               <div style="text-align: center; margin-bottom: 12px;">
                 <a href="${modifyLink(order.url)}" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #fffffe; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
-                  ${several ? `Update order ${order.code}` : 'Update attendee emails'}
+                  ${several ? `Update order ${order.code} (${tickets(order.ticketsWithBuyer)})` : 'Update attendee emails'}
                 </a>
               </div>`
     )
