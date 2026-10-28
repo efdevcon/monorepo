@@ -75,6 +75,7 @@ export const BUNDLE_SESSION_FIELDS = [
   'sourceId',
   'title',
   'description',
+  'abstract',
   'track',
   'type',
   'expertise',
