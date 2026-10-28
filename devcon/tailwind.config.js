@@ -12,6 +12,8 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
         heading: ['Poppins', 'sans-serif'],
         body: ['Poppins', 'sans-serif'],
+        // Retro terminal face for the Devcon IX announcement strip + hero caption
+        terminal: ['VT323', 'monospace'],
       },
     },
   },
