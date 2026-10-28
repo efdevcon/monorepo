@@ -1,0 +1,26 @@
+{
+  "id": "glamsterdam-for-app-developers-what-ethereums-next-fork-changes-for-you",
+  "sourceId": "DAL7VQ",
+  "title": "Glamsterdam for App Developers: What Ethereum's Next Fork Changes for You",
+  "description": "https://docs.google.com/presentation/d/1q3xMElFXdash-Djm7i4OyDZ6cQJhHuV0/edit?usp=sharing&ouid=104333225551483296917&rtpof=true&sd=true\r\n\r\nGlamsterdam is not just a generic protocol-level upgrade: it changes what app developers can build and what can break. This talk focuses on the application-layer impact. We cover the 64 KiB contract size limit (up from 24 KiB) and what it means for libraries and diamond proxies, deeper stack access (DUPN/SWAPN/EXCHANGE) that removes most \"stack too deep\" errors, EIP-7708 logs for every ETH transfer that make ETH indexable via eth_getLogs, the new SLOTNUM opcode, gas repricing (state-creation costs, cheaper no-value calls), a higher gas limit floor, and the CREATE2 factory becoming required chain state. For each change: before, after, and the catches (e.g. higher deploy costs, log edge cases). Attendees get a concrete checklist for contracts, indexers and tooling.",
+  "track": "Users, Builders, and Agents",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Roadmap",
+    "EVM",
+    "Developer Tooling"
+  ],
+  "language": "en",
+  "speakers": [
+    "rahul-kothari"
+  ],
+  "eventId": "devcon8",
+  "slot_start": 1793791800000,
+  "slot_end": 1793793300000,
+  "slot_roomId": "lotus-stage-2"
+}
