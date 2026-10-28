@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import APP_CONFIG from "@/CONFIG";
-import { DATASETS, DEFAULT_DATASET_KEY, type Dataset, type DatasetKey } from "./dataset";
+import { communityHubsDataset, DATASETS, DEFAULT_DATASET_KEY, type Dataset, type DatasetKey } from "./dataset";
 import { detailHref, type DetailKind } from "@/routing/viewParams";
 import { trackFullLabel } from "@/components/schedule/trackTheme";
 
@@ -58,6 +58,25 @@ async function getJson<T>(url: string): Promise<T | null> {
   }
 }
 
+type SpeakerSummary = { id?: string; name?: string; description?: string };
+
+/**
+ * A speaker only the Community Hubs know: no Pretalx profile, so
+ * `/speakers/:id` is a 404 and the page rendered the app's generic card
+ * (2026-10-28). Their record is in the hubs' bundle (devcon-api builds it
+ * live from the hubs' sheets), under the same name-slug id the app's
+ * `/speakers/<id>` page resolves through the hub store. Datasets whose hubs
+ * come from a static file (the devcon-7 test sheets) have no such endpoint.
+ */
+async function hubSpeaker(dataset: Dataset, id: string): Promise<SpeakerSummary | null> {
+  const hubs = communityHubsDataset(dataset);
+  if (!hubs?.communityHubsOf || hubs.staticBundleUrl) return null;
+  const bundle = await getJson<{ speakers?: SpeakerSummary[] }>(
+    `${hubs.apiUrl}/events/${encodeURIComponent(hubs.communityHubsOf)}/community-hubs/bundle`
+  );
+  return bundle?.speakers?.find((s) => s.id === id) ?? null;
+}
+
 /**
  * Card image on devcon.org. Trailing slash is load-bearing: devcon.org
  * 308-redirects bare paths and social scrapers don't follow redirects.
@@ -110,9 +129,8 @@ export async function detailMetadata(
     };
   }
 
-  const speaker = await getJson<{ name?: string; description?: string }>(
-    `${dataset.apiUrl}/speakers/${encoded}`
-  );
+  const speaker =
+    (await getJson<SpeakerSummary>(`${dataset.apiUrl}/speakers/${encoded}`)) ?? (await hubSpeaker(dataset, id));
   if (!speaker?.name) return {};
   const title = speaker.name;
   const description =
