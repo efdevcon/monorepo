@@ -68,10 +68,10 @@ export const Hero = () => {
               className={`flex flex-col items-center md:items-start gap-[16px] lg:gap-[24px] md:col-start-1 md:row-start-1 ${textShadow}`}
             >
               <DevconLogo className="w-[162px] md:w-[176px] lg:w-[263px] h-auto text-white" />
-              <div className="flex flex-col items-center md:items-start gap-[4px] lg:gap-[8px] text-[#f9f8fa] text-center md:text-left tracking-[-0.5px]">
-                <h1 className="text-[32px] lg:text-[48px] font-extrabold leading-[1.2]">{t('location')}</h1>
-                <p className="text-[24px] lg:text-[35px] font-normal leading-[1.2] lg:leading-[28.8px]">{t('dates')}</p>
-              </div>
+              {/* Post-event: location only, no date line */}
+              <h1 className="text-[32px] lg:text-[48px] font-extrabold leading-[1.2] text-[#f9f8fa] text-center md:text-left tracking-[-0.5px]">
+                {t('location')}
+              </h1>
             </div>
 
             {/* Devcon IX terminal + caption (Figma 6068:574), with the old
