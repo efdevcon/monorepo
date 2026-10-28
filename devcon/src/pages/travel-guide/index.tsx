@@ -9,7 +9,6 @@ import { VenueDetails } from 'components/common/VenueDetails'
 import { AccordionGroup } from 'components/domain/travel-guide/AccordionGroup'
 import { InfoTable } from 'components/domain/travel-guide/InfoTable'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
-import DC8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { VideoPlayer } from 'components/domain/travel-guide/VideoPlayer'
 import JaaliBottom from './images/decor/jaali-bottom-border.svg'
 import JaaliSide from './images/decor/jaali-side-border.svg'
@@ -18,7 +17,6 @@ import { PromoTag } from 'components/domain/travel-guide/PromoTag'
 import { Link } from 'components/common/link'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import {
-  ArrowRight,
   ArrowUpRight,
   Ban,
   Banknote,
@@ -51,7 +49,6 @@ import TravelAirport from './images/travel/airport-t2.jpg'
 import TravelTrain from './images/travel/by-train-cst-arch.jpg'
 import TravelParking from './images/travel/bkc-parking.jpg'
 import VideoDevconMumbaiThumb from './images/videos/video-devcon-mumbai-thumb.jpg'
-import WelcomeBoothCard from './images/venue/dc8-img-welcome-booth-card.jpg'
 import Dc8LogomarkWhite from './images/venue/dc8-logomark-white.svg'
 import VideoNidhiThumb from './images/videos/video-nidhi-thumb.jpg'
 import CultureGateway from './images/culture/culture-gateway.jpg'
@@ -312,21 +309,6 @@ export default function TravelGuidePage() {
               <p className={css['lead']}>{t('intro.lead')}</p>
               <p className={css['body']}>{t('intro.body')}</p>
             </div>
-            <div className="w-full md:w-auto mt-[8px] md:mt-0 flex flex-col md:flex-row md:flex-wrap gap-3">
-              <Link to="/tickets" className={css['btn-primary']} target="_blank" rel="noopener noreferrer">
-                {t('intro.cta_tickets')}
-                <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/speaker-applications#tracks"
-                className={css['btn-secondary']}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('intro.cta_whats_on')}
-                <ArrowRight size={16} />
-              </Link>
-            </div>
           </div>
           <div className="right lg:flex-1 lg:min-w-0">
             <h3 className={css['heading-3']} style={{ marginBottom: 24 }}>
@@ -562,7 +544,7 @@ export default function TravelGuidePage() {
             </div>
           </div>
 
-          {/* Travel Tips + Welcome Booth cards */}
+          {/* Travel Tips card (the welcome-booth card and banner are gone post-event) */}
           <RevealGroup className="mt-[48px] flex flex-col md:flex-row gap-[24px] items-stretch">
             <Reveal delay={120} className="md:flex-1">
               <div className="h-full rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-6 flex flex-col gap-6">
@@ -571,46 +553,9 @@ export default function TravelGuidePage() {
                 <Markdown className={cn(css['prose'], 'mt-auto')}>{t('getting_there.tips_visa')}</Markdown>
               </div>
             </Reveal>
-            <Reveal delay={240} className="md:flex-1">
-              <div className="h-full relative rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] overflow-hidden p-6 flex flex-col justify-end min-h-96">
-              <Image
-                src={WelcomeBoothCard}
-                alt=""
-                aria-hidden="true"
-                fill
-                sizes="(max-width: 1024px) 100vw, 644px"
-                className="object-cover object-top"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{ background: 'linear-gradient(to bottom, rgba(231,236,255,0) 0%, rgba(231,236,255,0.97) 47.5%)' }}
-              />
-              <div
-                className="absolute top-6 left-6"
-                style={{ filter: 'drop-shadow(0 2px 16px #ABFBF9) drop-shadow(0 2px 8px rgba(255, 255, 255, 0.68))' }}
-              >
-                <Image src={DC8Logo} alt="Devcon 8 India" className="h-16 w-auto" />
-              </div>
-              <div className="relative flex flex-col gap-3">
-                <h3 className={css['heading-3']}>{t('getting_there.booth_heading')}</h3>
-                <p className={css['body']} style={{ color: '#1a0d33' }}>
-                  {t('getting_there.booth_body_1')}
-                </p>
-                <p className={css['body']} style={{ color: '#1a0d33' }}>
-                  {t('getting_there.booth_body_2')}
-                </p>
-              </div>
-              </div>
-            </Reveal>
           </RevealGroup>
         </div>
       </div>
-
-      {/* Purple welcome-booth banner */}
-      <ArtBanner background="#7235ed" textClassName="text-white">
-        {t('getting_there.banner')}
-      </ArtBanner>
 
       {/* Section: Where to stay */}
       <div
@@ -1239,10 +1184,6 @@ export default function TravelGuidePage() {
                 <Markdown className={css['prose']}>{t('events.body_1')}</Markdown>
                 <p className={css['body']}>{t('events.body_2')}</p>
               </div>
-              <Link to="/road-to-devcon" className={css['btn-secondary']}>
-                {t('events.cta')}
-                <ArrowRight size={16} />
-              </Link>
             </div>
             {/* Images sit above the text when stacked; the large hackathon
                 image only exists in the side-by-side layout */}
