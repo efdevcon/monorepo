@@ -2,7 +2,7 @@
   "id": "your-dapp-is-90percent-web2-rebuilding-one-app-on-the-open-stack",
   "sourceId": "BZGM7J",
   "title": "Your dApp is 90% Web2: Rebuilding One App on the Open Stack.",
-  "description": "Most ‘Web3 apps’ are one smart contract wrapped in a stack nobody can check: the site on Vercel, the data in Supabase, sign-in through Google, the code on GitHub. Take any one of those away and the app is gone.\r\n\r\nSo we run the honest experiment. First we list everything the app quietly depends on and mark who you are forced to trust. Then we rebuild it live on open pieces: data anyone can query and verify, storage where the address is the file's own fingerprint, login with a wallet instead of an account. You build along in your own repo. (e.g, Metamask, Ethereum Sepolia, Arkiv, Walrus, ENS)\r\n\r\nEvery layer gets a verdict: solved, partial, or missing. Hosting, source control, CI, naming and RPC access are where it gets uncomfortable. Some have no open replacement yet.\r\n\r\nWe close with lessons from nearly a decade of building open data infrastructure and a concrete build-list of the missing pieces. Hands-on, educational, and honest about what does not exist yet.",
+  "description": "Take a normal map app: places, reviews, photos. Press X-ray and you see what it quietly depends on: a server, a database, a bucket, an account system, a host, a domain, a code host and a CI pipeline. Each of these has taken real apps down: a datacenter fire, cloud and CDN outages, a code host removing a project, a poisoned npm package.\r\n\r\nThen we rebuild it on stage, layer by layer. Login moves to a wallet, and the app is now hybrid, like most dApps. Then the data becomes Arkiv entities anyone can query, photos and map tiles move to Swarm, users sign their own writes, and the app, its name, its source code and its build move to Web3 pieces. Each step is animated, explained and run live, until the X-ray shows 100% Web3.\r\n\r\nWe close with how it was built overnight by a team of AI coding agents: the prompts, the tools and the checks.",
   "track": "Open & Verifiable Stack",
   "type": "Workshop",
   "expertise": "Some familiarity with the topic",
@@ -25,5 +25,5 @@
   "slot_start": 1793853000000,
   "slot_end": 1793856000000,
   "slot_roomId": "workshop-1",
-  "abstract": "Can you build an app today with no centralized company in the middle? We find out live. We take one ordinary app, a habit tracker, and rebuild it on open foundations one layer at a time: data, storage, login. The room follows along in a repo. Every layer gets an honest verdict: solved, partial, or missing. You leave with a working app and the real list of what is still missing."
+  "abstract": "Most dApps are a Connect Wallet button on top of a Web2 stack. We take one app, a small Google Maps clone, and move it live from Web2 to hybrid to 100% Web3, one layer at a time, while the room adds places to the map from their phones. You leave knowing what every layer of your own app depends on and how to move it, plus the AI agent workflow that built it."
 }
