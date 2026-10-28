@@ -36,6 +36,9 @@ export function CommunityHubsCard() {
             key={attempt}
             src="/home/community-hubs.jpg"
             onError={markFailed}
+            // Decoration: yields to route and data requests on a slow link.
+            fetchPriority="low"
+            decoding="async"
             alt=""
             className="absolute inset-0 size-full object-cover [mask-image:linear-gradient(to_top,transparent,black_48px)] lg:[mask-image:linear-gradient(to_right,transparent,black_64px)]"
           />
