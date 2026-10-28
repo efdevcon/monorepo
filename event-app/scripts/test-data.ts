@@ -18,6 +18,7 @@ import {
 import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
 import { cacheDB, openCacheDB } from "../src/data/cache/cache-db";
 import { installMarker, parseInstallVersion } from "../src/data/install/installVersion";
+import { isTeamEmail, previewableGates } from "../src/data/release/previewAccess";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
 import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
@@ -895,6 +896,20 @@ async function testMemoryStorage() {
   );
 }
 
+function testPreviewAccess() {
+  console.log("\n--- release gate preview access ---");
+  const gates = ["ensPerk", "faucetPerk", "venueMap"] as const;
+  check("team email previews every unreleased feature", previewableGates("someone@ethereum.org", gates).join(",") === gates.join(","));
+  check("team check is case-insensitive", isTeamEmail("Someone@Ethereum.org"));
+  check("@ens.domains previews the ENS perk only", previewableGates("someone@ens.domains", gates).join(",") === "ensPerk");
+  check("partner domain is case-insensitive", previewableGates("Someone@ENS.domains", gates).join(",") === "ensPerk");
+  check("partner domain is a suffix, not a substring", previewableGates("ens.domains@example.com", gates).length === 0);
+  check("partner is not the team", !isTeamEmail("someone@ens.domains"));
+  check("other accounts preview nothing", previewableGates("someone@example.com", gates).length === 0);
+  check("signed out previews nothing", previewableGates(undefined, gates).length === 0);
+  check("a released feature is not listed", previewableGates("someone@ens.domains", ["venueMap"]).length === 0);
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -912,6 +927,7 @@ async function main() {
   testRateLimiter();
   testInterestsMerge();
   testAiPlan();
+  testPreviewAccess();
   await testRetryOnce();
   await testWhenControlled();
   await testMemoryStorage();

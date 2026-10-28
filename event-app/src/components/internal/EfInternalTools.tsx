@@ -14,14 +14,13 @@ import { CommunityHubsDataTools, EventDataTools, MockClockTools } from "./DebugT
 import { OfflineTools } from "./OfflineTools";
 import { Switch } from "@/components/Switch";
 import {
-  RELEASED,
   RELEASE_GATE_LABELS,
   setFeaturePreview,
+  usePreviewableFeatures,
   usePreviewedFeatures,
   type ReleaseGate,
 } from "@/data/release/releaseGates";
-
-const TEAM_DOMAIN = "@ethereum.org";
+import { isTeamEmail } from "@/data/release/previewAccess";
 
 /** Per-device "already shown / dismissed" flags of the notification nudges. */
 const NUDGE_PREF_KEYS = [
@@ -39,8 +38,10 @@ const toolPill =
 
 /**
  * Tools for the EF team on My Devcon (/my-devcon), rendered only for signed-in
- * @ethereum.org accounts; attendees never see the section. Everything here
- * acts on this device or this account only:
+ * @ethereum.org accounts; attendees never see the section. A partner account
+ * (PARTNER_PREVIEW_DOMAINS in src/data/release/previewAccess.ts) gets the
+ * unreleased-features switches alone, for its own feature, as a "Partner
+ * preview" section. Everything here acts on this device or this account only:
  * - Unreleased features: the app otherwise looks the same for the team as
  *   for attendees; a switch per feature not yet in RELEASED turns it on for
  *   this device (src/data/release/releaseGates.ts).
@@ -70,9 +71,11 @@ export function EfInternalTools() {
   const [nudges, setNudges] = useState<"idle" | "cleared">("idle");
   const [crash, setCrash] = useState(false);
   const previewed = usePreviewedFeatures();
-  const unreleased = (Object.keys(RELEASED) as ReleaseGate[]).filter((f) => !RELEASED[f]);
+  // The team sees every unreleased feature; a partner account only its own.
+  const unreleased = usePreviewableFeatures();
+  const team = isTeamEmail(user?.email);
 
-  if (!user?.email?.toLowerCase().endsWith(TEAM_DOMAIN)) return null;
+  if (!team && unreleased.length === 0) return null;
   // Thrown in render, so the route error boundary (app/error.tsx) takes over
   // exactly as it would for a real crash: the page is replaced by the crash
   // screen with its "Report this" and "Reset the app" controls.
@@ -83,6 +86,45 @@ export function EfInternalTools() {
     await Promise.all(NUDGE_PREF_KEYS.map((k) => deletePref(k)));
     setNudges("cleared");
   };
+
+  const previewSwitches = (
+    <ul className="mt-3 flex flex-col gap-3">
+      {unreleased.map((feature) => (
+        <li key={feature} className="flex items-center justify-between gap-3">
+          <span className="text-[14px] leading-5 text-dc-fg2">
+            <span className="font-semibold">{RELEASE_GATE_LABELS[feature].name}</span>
+            <span className="block text-dc-muted">{RELEASE_GATE_LABELS[feature].description}</span>
+          </span>
+          <Switch
+            checked={previewed.includes(feature)}
+            onChange={(on) => setFeaturePreview(feature, on)}
+            aria-label={`Preview ${RELEASE_GATE_LABELS[feature].name}`}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+
+  if (!team) {
+    // Partner account: only the switches for its own unreleased feature(s).
+    return (
+      <section
+        aria-label="Partner preview"
+        className="mt-6 rounded-xl border border-dc-hairline bg-dc-lavender p-4 font-heading lg:p-6"
+      >
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-[16px] font-bold leading-6 text-dc-fg2">Partner preview</h2>
+          <span className="rounded-[2px] bg-white px-1.5 py-[3px] text-[10px] font-semibold uppercase leading-none tracking-[0.5px] text-dc-purple">
+            {user?.email?.slice(user.email.lastIndexOf("@"))} only
+          </span>
+        </div>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Hidden from attendees until released. Turn it on to test it on this device.
+        </p>
+        {previewSwitches}
+      </section>
+    );
+  }
 
   return (
     <section
@@ -104,21 +146,7 @@ export function EfInternalTools() {
             Hidden from everyone, you included, until released. Turn one on to test it on this
             device.
           </p>
-          <ul className="mt-3 flex flex-col gap-3">
-            {unreleased.map((feature) => (
-              <li key={feature} className="flex items-center justify-between gap-3">
-                <span className="text-[14px] leading-5 text-dc-fg2">
-                  <span className="font-semibold">{RELEASE_GATE_LABELS[feature].name}</span>
-                  <span className="block text-dc-muted">{RELEASE_GATE_LABELS[feature].description}</span>
-                </span>
-                <Switch
-                  checked={previewed.includes(feature)}
-                  onChange={(on) => setFeaturePreview(feature, on)}
-                  aria-label={`Preview ${RELEASE_GATE_LABELS[feature].name}`}
-                />
-              </li>
-            ))}
-          </ul>
+          {previewSwitches}
         </div>
       )}
 
