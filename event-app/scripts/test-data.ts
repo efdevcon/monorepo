@@ -109,6 +109,7 @@ export const FIXTURE: EventBundle = {
       sourceId: "ABC123",
       title: "Talk A",
       description: "About A",
+      abstract: "A in short",
       track: "Security",
       type: "Talk",
       expertise: "Beginner",
@@ -149,6 +150,7 @@ function testNormalize() {
   check("Pretalx code kept as sourceId, omitted when absent", a.sourceId === "ABC123" && !("sourceId" in rows.sessions[1]));
   check("no undefined keys on rows", rows.sessions.every((r) => Object.values(r).every((v) => v !== undefined)));
   check("missing text fields default to empty strings", rows.sessions[1].description === "" && rows.sessions[1].track === "" && rows.sessions[1].type === "Talk");
+  check("abstract kept, omitted when absent", a.abstract === "A in short" && !("abstract" in rows.sessions[1]));
   check("room null capacity omitted", !("capacity" in rows.rooms[0]));
   check("compact strips undefined", eq(compact({ a: 1, b: undefined }), { a: 1 }));
 }
@@ -161,6 +163,7 @@ function testMaterialize() {
   const a = snap.sessionById.get("talk-a")!;
   check("start/end in seconds, duration derived", a.start === Math.floor(T0 / 1000) && a.duration === 30 * 60);
   check("room joined by id", a.room?.name === "Stage 1" && a.room?.youtubeStreamUrl_1 === "https://yt/1");
+  check("abstract materialised beside the description", a.abstract === "A in short" && a.description === "About A" && snap.sessionById.get("talk-b")!.abstract === undefined);
   check("speakers joined by id, shared references", a.speakers[0] === snap.speakerById.get("alice"));
   check("unknown speaker id becomes a placeholder", a.speakers[1].id === "ghost" && a.speakers[1].name === "ghost");
   check("unknown room id leaves room undefined", snap.sessionById.get("talk-b")!.room === undefined);

@@ -27,6 +27,38 @@ export async function getSpeaker(id: string): Promise<any | null> {
   return data ?? null
 }
 
+export interface CommunityHubBundle {
+  /** Sessions with `speakerIds`, `tags` as [hub name, topic]. */
+  sessions: any[]
+  /** Hub speakers (name slugs like Pretalx's, so someone on both programmes has one id). */
+  speakers: any[]
+}
+
+/**
+ * The Community Hubs' own programme (devcon-api builds it live from the hubs'
+ * sheets). The speaker share card counts a Pretalx speaker's hub sessions
+ * too, like the app's speaker list, and renders a hub-only speaker (unknown
+ * to /speakers/:id) from the bundle's speaker record. Empty on any failure:
+ * a card without the hub sessions beats no card, and the next render after
+ * the cache expires tries again.
+ */
+export async function getCommunityHubBundle(eventId: string): Promise<CommunityHubBundle> {
+  const empty: CommunityHubBundle = { sessions: [], speakers: [] }
+  try {
+    const res = await fetch(`${devconApiUrl()}/events/${eventId}/community-hubs/bundle`, {
+      signal: AbortSignal.timeout(8000),
+    })
+    if (!res.ok) return empty
+    const { data } = await res.json()
+    return {
+      sessions: Array.isArray(data?.sessions) ? data.sessions : [],
+      speakers: Array.isArray(data?.speakers) ? data.speakers : [],
+    }
+  } catch {
+    return empty
+  }
+}
+
 const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
 // Events worth asking Pretalx about when the API misses (newest first).
 const PRETALX_FALLBACK_EVENTS = ['devcon8']

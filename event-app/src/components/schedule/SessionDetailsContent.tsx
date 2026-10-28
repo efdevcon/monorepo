@@ -236,6 +236,12 @@ export function SessionSummary({
     .filter(Boolean)
     .join(" - ");
   const featured = session.featured === true;
+  // Pretalx asks speakers for a short abstract and an optional long
+  // description; the page showed the description, which reads as the long
+  // form (speakers' feedback, 2026-10-28). The abstract leads, the
+  // description stands in while a bundle predates the field or a hub session
+  // (sheet rows carry one text) has nothing else.
+  const blurb = session.abstract || session.description;
 
   const media = hasMedia ? (
     <SessionMedia session={session} />
@@ -266,10 +272,10 @@ export function SessionSummary({
         </h1>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-6">
-            {session.description && (
+            {blurb && (
               // Keyed by session so the side panel, which swaps sessions in
               // place, starts every session folded; closing unmounts it.
-              <Description key={session.id} text={session.description} />
+              <Description key={session.id} text={blurb} />
             )}
             <div className="flex flex-wrap items-center gap-3">
               <span className="inline-flex items-center gap-1 text-[14px] leading-none text-dc-fg2">

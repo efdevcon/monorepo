@@ -23,5 +23,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1QyhhmLXOxqP1pjywncFII80OYknCpKU7Ilvn_Dm_37U",
   "slot_start": 1793869800000,
   "slot_end": 1793870220000,
-  "slot_roomId": "lotus-stage-1"
+  "slot_roomId": "lotus-stage-1",
+  "abstract": "Post-quantum Ethereum needs a signature scheme that does not yet exist. SPHINCS comes closest: it is standardized, and its security rests on hash functions alone. But it was built for everyone, not for us. leanSPHINCS is the search for the best stateless scheme once you fix Ethereum's requirements: 128-bit security, a 2^24 key lifetime, and keygen and signing fast enough for a hardware wallet. The Ethereum Foundation is running sig.golf, an open autoresearch competition, to find it."
 }

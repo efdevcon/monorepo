@@ -24,5 +24,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1ecM6tuAx53r0KesVtqylJQzV56X-D_5zd1LQUo6RxtM",
   "slot_start": 1793876400000,
   "slot_end": 1793877900000,
-  "slot_roomId": "lotus-stage-3"
+  "slot_roomId": "lotus-stage-3",
+  "abstract": "Rollups need independent nodes to execute blocks, but outside the consensus committee that work is unpaid. Lottery rewards sound natural and fail for a simple reason: the state root is public, so a free-rider can copy it. This talk shows why signatures do not fix the attack, and how to bind a reward claim to both execution and the node's own secret."
 }

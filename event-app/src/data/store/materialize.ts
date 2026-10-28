@@ -97,6 +97,7 @@ export function toSession(
     sourceId: row.sourceId,
     title: row.title,
     description: row.description,
+    abstract: row.abstract,
     // The Pretalx programme files the hubs' opening ceremony under a
     // "Community Hubs" track; the app has no such track (hub sessions are
     // their own programme, themed by room), so the session reads as

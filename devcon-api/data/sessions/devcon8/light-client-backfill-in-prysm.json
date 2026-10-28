@@ -22,5 +22,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1N5qstsZnUONDVp6EgjdkXEEdOJhmWxSemMY7UgeBXxY",
   "slot_start": 1793766600000,
   "slot_end": 1793767500000,
-  "slot_roomId": "workshop-2"
+  "slot_roomId": "workshop-2",
+  "abstract": "Checkpoint-synced beacon nodes lack historical light client data, and supply decays as the network grows. This talk covers designing and implementing a fork-less backfill protocol in Prysm that lets any node trustlessly reconstruct old-period LC updates and bootstraps by downloading per-period proofs and locally re-running the spec's `is_better_update` ranking."
 }

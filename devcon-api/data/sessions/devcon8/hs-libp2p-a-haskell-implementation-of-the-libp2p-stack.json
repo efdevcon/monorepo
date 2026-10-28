@@ -22,5 +22,6 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1h04VogKdRok4-hf1lry5TJgADZaPyxTK1_rnO478fj4",
   "slot_start": 1793791800000,
   "slot_end": 1793792220000,
-  "slot_roomId": "lightning-stage"
+  "slot_roomId": "lightning-stage",
+  "abstract": "Ethereum's entire p2p layer runs on libp2p, but only a handful of implementations maintain it, and when they silently disagree on the spec the network fractures. I built a full libp2p stack from scratch in Haskell (Noise, Yamux, Kademlia DHT, GossipSub) and joined the cross-client interop effort. This talk is what a fresh, strongly-typed implementation reveals about Ethereum's networking spec — and why implementation diversity at the network layer matters."
 }

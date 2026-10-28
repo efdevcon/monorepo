@@ -4,6 +4,7 @@ import { ImageResponse } from '@vercel/og'
 import makeBlockie from 'ethereum-blockies-base64'
 import { Speech } from 'lucide-react'
 import { socialAssetDataUrl, type PoppinsFonts } from './assets'
+import { estimateTextWidth, fitTags, type SpeakerProgramme } from './speaker-card-facts'
 import { DC8_LOGOMARK_WHITE } from './track-images'
 
 export interface Dc8SpeakerCardInput {
@@ -12,9 +13,13 @@ export interface Dc8SpeakerCardInput {
   avatar: string | null
   featured: boolean
   sessionCount: number
-  /** Topic tags, already capped by the caller (design shows three). */
+  /** Which programme(s) the speaker appears in; one filled tag each, before the session count. */
+  programmes: SpeakerProgramme[]
+  /** Topic tags in display order; the footer shows the first three that fit beside the count. */
   tags: string[]
 }
+
+const PROGRAMME_LABEL: Record<SpeakerProgramme, string> = { tracks: 'Tracks', community: 'Community' }
 
 const W = 1200
 const H = 630
@@ -23,6 +28,22 @@ const CARD_W = 1075
 const CARD_H = 576
 const CARD_X = (W - CARD_W) / 2
 const CARD_Y = (H - CARD_H) / 2
+// Footer metrics, shared by the layout and the width estimate that decides
+// how many topic tags fit (see speaker-card-facts.ts).
+const FOOTER_W = CARD_W - 80
+const FOOTER_GAP = 24
+const TAG_FONT = 18
+const TAG_PAD = 24 // 10px padding + 2px border, each side
+const TAG_GAP = 12
+const COUNT_FONT = 24
+const COUNT_ICON = 32 + 12
+// Poppins SemiBold uppercase with 0.5px tracking comes to about 0.72em per
+// wide glyph (a rendered "ACCOUNT ABSTRACTION" chip is 2% narrower than
+// this says); the 24px Regular mixed-case count is nearer 0.5em and gets
+// 0.6em. Both err towards one tag fewer, never towards overflow.
+const WIDE_EM = 0.72
+const COUNT_EM = 0.6
+const tagWidth = (tag: string) => estimateTextWidth(tag.toUpperCase(), TAG_FONT, WIDE_EM) + TAG_PAD
 
 /**
  * Devcon 8 speaker share card (Figma: Dev Handoff 5118:6111
@@ -34,11 +55,20 @@ const CARD_Y = (H - CARD_H) / 2
  * Body: 224px ringed avatar (marigold ring + FEATURED tag for featured
  * speakers, purple-300 ring otherwise — the app's rule) beside the name
  * (52px bold, 2-line clamp) and "is speaking at Devcon 8 India"; footer row
- * with the session count and up to three outlined topic tags.
+ * with the programme tag(s) ("Tracks" / "Community", the Schedule tab's
+ * switch; the topic tag's outline recipe in purple, added 2026-10-28) and
+ * the session count on the left, and on the right up to three outlined
+ * topic tags, as many as the width left by the count allows.
  */
 export function renderDc8SpeakerCard(input: Dc8SpeakerCardInput, fonts: PoppinsFonts) {
   const ringColor = input.featured ? '#ffa366' : '#b08df5'
   const sessionLabel = `${input.sessionCount} ${input.sessionCount === 1 ? 'Session' : 'Sessions'}`
+  const programmeLabels = input.programmes.map(p => PROGRAMME_LABEL[p])
+  const leftWidth =
+    programmeLabels.reduce((sum, label) => sum + tagWidth(label) + TAG_GAP, 0) +
+    COUNT_ICON +
+    estimateTextWidth(sessionLabel, COUNT_FONT, COUNT_EM)
+  const tags = fitTags(input.tags, FOOTER_W - leftWidth - FOOTER_GAP, { width: tagWidth, gap: TAG_GAP })
 
   return new ImageResponse(
     (
@@ -195,7 +225,7 @@ export function renderDc8SpeakerCard(input: Dc8SpeakerCardInput, fonts: PoppinsF
             </div>
           </div>
 
-          {/* Footer: session count left, topic tags right */}
+          {/* Footer: programme tag(s) + session count left, topic tags right */}
           <div
             style={{
               position: 'absolute',
@@ -208,22 +238,43 @@ export function renderDc8SpeakerCard(input: Dc8SpeakerCardInput, fonts: PoppinsF
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', color: '#594d73' }}>
+              {programmeLabels.map(label => (
+                <span
+                  key={label}
+                  style={{
+                    display: 'flex',
+                    marginRight: TAG_GAP,
+                    padding: '6px 10px',
+                    borderRadius: 2,
+                    border: '2px solid #7235ed',
+                    color: '#7235ed',
+                    fontSize: TAG_FONT,
+                    fontWeight: 600,
+                    lineHeight: 1,
+                    letterSpacing: 0.5,
+                    textTransform: 'uppercase',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {label}
+                </span>
+              ))}
               <Speech width={32} height={32} strokeWidth={2} color="#594d73" />
-              <span style={{ marginLeft: 12, fontSize: 24, lineHeight: 1.3, letterSpacing: -0.25 }}>{sessionLabel}</span>
+              <span style={{ marginLeft: 12, fontSize: COUNT_FONT, lineHeight: 1.3, letterSpacing: -0.25 }}>{sessionLabel}</span>
             </div>
-            {input.tags.length > 0 && (
+            {tags.length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                {input.tags.map((tag, index) => (
+                {tags.map((tag, index) => (
                   <span
                     key={tag}
                     style={{
                       display: 'flex',
-                      marginLeft: index > 0 ? 12 : 0,
+                      marginLeft: index > 0 ? TAG_GAP : 0,
                       padding: '6px 10px',
                       borderRadius: 2,
                       border: '2px solid #594d73',
                       color: '#594d73',
-                      fontSize: 18,
+                      fontSize: TAG_FONT,
                       fontWeight: 600,
                       lineHeight: 1,
                       letterSpacing: 0.5,

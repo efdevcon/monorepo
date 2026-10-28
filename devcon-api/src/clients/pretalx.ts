@@ -281,6 +281,10 @@ function mapSession(i: any, params: Partial<RequestParams>, config: PretalxInsta
     title: i.title,
     // Pretalx returns '' (not null) for an empty description; fall back to the abstract then too.
     description: i.description || i.abstract,
+    // The short summary Pretalx asks for first (required there, the
+    // description is optional). The event app's session details show it,
+    // falling back to the description when it is empty (2026-10-28).
+    abstract: i.abstract ?? '',
     // Newer pretalx (cfp.devcon.org) returns track/submission_type as expanded
     // objects `{id, name:{en}}`; older instances used a bare `{en}` / numeric id.
     // Read both shapes so the migrated events keep their track labels and types.
