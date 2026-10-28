@@ -123,8 +123,9 @@ export default function AboutPage() {
           id="intro"
           className="section"
           style={{
-            paddingTop: '2rem',
-            paddingBottom: '2rem',
+            // px, not rem: the root font-size drops to 14px ≤1024 (index.scss)
+            paddingTop: 48,
+            paddingBottom: 48,
             background:
               'radial-gradient(ellipse at center bottom, rgba(255,194,153,0.3) 0%, rgba(253,222,203,0.15) 40%, transparent 80%)',
           }}
