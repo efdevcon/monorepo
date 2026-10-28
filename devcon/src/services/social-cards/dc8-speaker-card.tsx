@@ -56,7 +56,7 @@ const tagWidth = (tag: string) => estimateTextWidth(tag.toUpperCase(), TAG_FONT,
  * speakers, purple-300 ring otherwise — the app's rule) beside the name
  * (52px bold, 2-line clamp) and "is speaking at Devcon 8 India"; footer row
  * with the programme tag(s) ("Tracks" / "Community", the Schedule tab's
- * switch; the topic tag's outline recipe in purple, added 2026-10-28) and
+ * switch; the topic tag's recipe filled purple with white text, 2026-10-28) and
  * the session count on the left, and on the right up to three outlined
  * topic tags, as many as the width left by the count allows.
  */
@@ -247,7 +247,8 @@ export function renderDc8SpeakerCard(input: Dc8SpeakerCardInput, fonts: PoppinsF
                     padding: '6px 10px',
                     borderRadius: 2,
                     border: '2px solid #7235ed',
-                    color: '#7235ed',
+                    background: '#7235ed',
+                    color: '#ffffff',
                     fontSize: TAG_FONT,
                     fontWeight: 600,
                     lineHeight: 1,
