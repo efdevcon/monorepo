@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import { Link } from 'components/common/link'
-import { Search, ArrowRight } from 'lucide-react'
+import { Search } from 'lucide-react'
 import cn from 'classnames'
 import { useLocale, useTranslations } from 'next-intl'
 import { EVENT_TYPES, type EventType, type RoadEvent } from './events'
 
-// Where "Apply now" (get an event listed) points — the rtd-event-form.
+// Fallback card link for events without a URL — the rtd-event-form.
 const LISTING_FORM_URL = '/form/rtd-event-form'
 
 // ISO 'YYYY-MM-DD' (or 'YYYY-MM') → a UTC Date, so locale date formatters
@@ -108,7 +108,8 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
-  const [showPast, setShowPast] = useState(false)
+  // Post-event: the whole year is behind us, so past events show by default.
+  const [showPast, setShowPast] = useState(true)
   // Resolved on the client only, so SSR (todayISO = null) renders every event
   // and avoids a hydration mismatch from the past-events filter.
   const [todayISO, setTodayISO] = useState<string | null>(null)
@@ -268,23 +269,6 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
         </Link>
       </div>
 
-      {/* "Get listed" CTA */}
-      <div className="relative mt-8 flex flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl bg-white/70 px-6 py-6 shadow-[0_2px_8px_rgba(34,17,68,0.08)] md:flex-row md:gap-6">
-        <p className="text-center text-lg font-extrabold text-[#160b2b] sm:text-xl">{t('events.cta_text')}</p>
-        <Link
-          to={LISTING_FORM_URL}
-          className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-[background-color,transform] duration-150 ease-out hover:scale-[1.03] hover:bg-[#5f23d6] active:scale-[0.97] md:w-auto"
-        >
-          {t('events.cta_button')}
-        </Link>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/road-to-devcon/deva.png"
-          alt=""
-          aria-hidden
-          className="pointer-events-none absolute right-2 hidden h-[118px] w-auto select-none lg:block"
-        />
-      </div>
     </section>
   )
 }
