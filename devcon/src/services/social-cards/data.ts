@@ -27,6 +27,26 @@ export async function getSpeaker(id: string): Promise<any | null> {
   return data ?? null
 }
 
+/**
+ * The Community Hubs' own programme (devcon-api builds it live from the hubs'
+ * sheets): sessions with `speakerIds`, `tags` as [hub name, topic]. The
+ * speaker share card counts a Pretalx speaker's hub sessions too, like the
+ * app's speaker list. Empty on any failure: a card without the hub sessions
+ * beats no card, and the next render after the cache expires tries again.
+ */
+export async function getCommunityHubSessions(eventId: string): Promise<any[]> {
+  try {
+    const res = await fetch(`${devconApiUrl()}/events/${eventId}/community-hubs/bundle`, {
+      signal: AbortSignal.timeout(8000),
+    })
+    if (!res.ok) return []
+    const { data } = await res.json()
+    return Array.isArray(data?.sessions) ? data.sessions : []
+  } catch {
+    return []
+  }
+}
+
 const PRETALX_BASE = process.env.PRETALX_BASE_URL || 'https://cfp.devcon.org/api'
 // Events worth asking Pretalx about when the API misses (newest first).
 const PRETALX_FALLBACK_EVENTS = ['devcon8']

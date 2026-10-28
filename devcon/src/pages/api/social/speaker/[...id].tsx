@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { poppinsFonts } from 'services/social-cards/assets'
-import { avatarDataUrl, getSpeaker } from 'services/social-cards/data'
+import { avatarDataUrl, getCommunityHubSessions, getSpeaker } from 'services/social-cards/data'
 import { renderDc8SpeakerCard } from 'services/social-cards/dc8-speaker-card'
+import { speakerCardFacts } from 'services/social-cards/speaker-card-facts'
 import { pngToJpeg, serveCachedImage } from 'services/og-cache'
 
 const BUCKET = 'social-cards'
 // The card says "is speaking at Devcon 8 India", so count/tags come from the
 // DC8 sessions only (devcon-api event id).
 const DC8_EVENT_ID = 'devcon8'
-const MAX_TAGS = 3
 
 /**
  * Speaker share card (Figma 5118:6111), consumed as og:image by the event
@@ -41,28 +41,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!speaker) throw new Error('speaker not found')
 
       const sessions: any[] = (speaker.sessions ?? []).filter((s: any) => s.eventId === eventId)
-      // Same derivation as the event app's speaker list: tag union, trimmed,
-      // deduped, alphabetical, first three.
-      const tags = Array.from(
-        new Set(
-          sessions.flatMap((s: any) => (s.tags ?? []) as string[]).map(t => t.trim()).filter(Boolean)
-        )
+      // Hub speakers share the Pretalx speaker's id (both are name slugs), so
+      // their hub sessions join the count, the tags and the programme tag,
+      // as on the app's speaker list.
+      const hubSessions = (await getCommunityHubSessions(eventId)).filter(
+        (s: any) => Array.isArray(s.speakerIds) && s.speakerIds.includes(id)
       )
-        .sort((a, b) => a.localeCompare(b))
-        .slice(0, MAX_TAGS)
+      const facts = speakerCardFacts(sessions, hubSessions)
 
       // 224px avatar at 2x → 512px source.
       const avatar = await avatarDataUrl(speaker.avatar, 512)
-      const card = renderDc8SpeakerCard(
-        {
-          name: speaker.name ?? id,
-          avatar,
-          featured: sessions.some((s: any) => s.featured === true),
-          sessionCount: sessions.length,
-          tags,
-        },
-        poppinsFonts()
-      )
+      const card = renderDc8SpeakerCard({ name: speaker.name ?? id, avatar, ...facts }, poppinsFonts())
       return pngToJpeg(await card.arrayBuffer())
     },
   })
