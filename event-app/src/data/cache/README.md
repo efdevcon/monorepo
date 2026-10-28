@@ -35,7 +35,7 @@ SWR in-memory cache  ──persisted to──▶  Dexie (IndexedDB)
 
 | File | Role |
 |------|------|
-| `cache-db.ts` | Declares the Dexie database (`SWRCacheDB`) and its tables: the SWR `cache`, the user-state tables, and the EventStore tables (`eventSessions`, `eventSpeakers`, `eventRooms`, `eventMeta`, v7). Opened by the boot gate through `openCacheDB()`: on IndexedDB, or on an in-memory engine (`fake-indexeddb`, loaded on demand) when the browser has none, as under WebKit's Lockdown Mode. `null` on the server and until then. |
+| `cache-db.ts` | Declares the Dexie database (`SWRCacheDB`) and its tables: the SWR `cache`, the user-state tables, and the EventStore tables (`eventSessions`, `eventSpeakers`, `eventRooms`, `eventMeta`, v7). Opened by the boot gate through `openCacheDB()`: on IndexedDB, or on an in-memory engine (`fake-indexeddb`, loaded on demand and installed as the page's IndexedDB globals too, since Dexie's Safari open path reads `indexedDB.databases()` from the global) when the browser has none, as under WebKit's Lockdown Mode. `null` on the server and until then. |
 | `indexeddb-cache.ts` | Wraps a `Map` so every `set`/`delete`/`clear` is mirrored to Dexie, and hydrates the map from Dexie on boot. Exposes `createDexieCacheProvider()` and `cleanupOldCacheEntries()`. |
 | `swr-config.tsx` | `DataProvider` wires that Dexie-backed map in as SWR's `provider` and hydrates the EventStore in parallel. **Waits for both before rendering** to avoid a race where Dexie's async load overwrites SWR state and to give the first paint data. Then starts the store's sync triggers. Mounted in `src/app/layout.tsx`. |
 

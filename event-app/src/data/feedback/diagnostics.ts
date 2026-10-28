@@ -26,19 +26,22 @@ export async function collectDiagnostics(known: {
     connection?: { effectiveType?: string; saveData?: boolean };
   };
 
+  // In memory mode the indexedDB global is the in-memory engine, not the browser's.
+  const mode = currentStorageMode();
+  const hasIndexedDB = mode ? mode === "persistent" : typeof indexedDB !== "undefined";
   const storage = await (async () => {
     try {
       const persisted = await navigator.storage?.persisted?.();
       const estimate = await navigator.storage?.estimate?.();
       return {
-        indexedDB: typeof indexedDB !== "undefined",
-        mode: currentStorageMode(),
+        indexedDB: hasIndexedDB,
+        mode,
         persisted: persisted ?? null,
         usageMB: estimate?.usage ? Math.round(estimate.usage / 1_048_576) : null,
         quotaMB: estimate?.quota ? Math.round(estimate.quota / 1_048_576) : null,
       };
     } catch {
-      return { indexedDB: typeof indexedDB !== "undefined", mode: currentStorageMode() };
+      return { indexedDB: hasIndexedDB, mode };
     }
   })();
 

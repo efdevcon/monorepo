@@ -884,6 +884,12 @@ async function testMemoryStorage() {
   const recent = await cacheDB.cache.where("timestamp").above(1).toArray();
   check("where() works on the memory db (the boot path that crashed)", recent.length === 1);
   check("a second open keeps the db and its mode", (await openCacheDB()) === "memory");
+  // Dexie's open path on Safari polls indexedDB.databases() on the global, not
+  // on the dependency it was given, so memory mode must install the globals.
+  check(
+    "memory mode installs the engine as the indexedDB global",
+    typeof globalThis.indexedDB === "object" && typeof globalThis.indexedDB.databases === "function"
+  );
 }
 
 async function main() {

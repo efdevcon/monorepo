@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import { isOnlineNow } from "@/hooks/useOnline";
 import { createDexieCacheProvider } from "./indexeddb-cache";
-import { openCacheDB, pruneOtherEventRows } from "./cache-db";
+import { MEMORY_STORAGE_ATTR, openCacheDB, pruneOtherEventRows } from "./cache-db";
 import { eventStore } from "../store/event-store";
 import { hubStore } from "../store/hub-store";
 import { communityHubsDataset, getActiveDataset } from "../dataset";
@@ -119,7 +119,10 @@ function useBoot() {
           // Off the boot path: rows of the events this device no longer shows.
           void pruneOtherEventRows([dataset.eventId, ...(hubs ? [hubs.eventId] : [])]);
         });
-      if (mode === "memory") toast.warning(MEMORY_STORAGE_NOTICE, { id: "memory-storage", duration: 20_000 });
+      if (mode === "memory") {
+        document.documentElement.toggleAttribute(MEMORY_STORAGE_ATTR, true);
+        toast.warning(MEMORY_STORAGE_NOTICE, { id: "memory-storage", duration: 20_000 });
+      }
     });
     return () => {
       cancelled = true;

@@ -152,6 +152,13 @@ export interface FeedbackOutboxRow {
 
 /** Where this session's data lives: IndexedDB, or memory when the browser has none. */
 export type StorageMode = "persistent" | "memory";
+/**
+ * `<html data-memory-storage>` while the app runs on the in-memory engine,
+ * set by the boot gate. The app chrome (tab bar, header) reads it to drop
+ * its glass for a plain background: WebKit's Lockdown Mode, the browser that
+ * lands in memory mode, renders no backdrop filters (seen on device).
+ */
+export const MEMORY_STORAGE_ATTR = "data-memory-storage";
 
 /** The IndexedDB implementation Dexie opens: the browser's, or the in-memory engine. */
 type StorageDeps = Pick<DexieOptions, "indexedDB" | "IDBKeyRange">;
@@ -277,12 +284,42 @@ export async function openCacheDB(): Promise<StorageMode | null> {
   }
   try {
     const mem = await import(/* webpackChunkName: "memory-storage" */ "fake-indexeddb");
+    installMemoryGlobals(mem);
     cacheDB = withTabHandlers(new CacheDB({ indexedDB: mem.indexedDB, IDBKeyRange: mem.IDBKeyRange }));
     storageMode = "memory";
   } catch (err) {
     console.warn("[cache-db] no IndexedDB and the in-memory engine did not load; running without storage:", err);
   }
   return storageMode;
+}
+
+/** The IndexedDB interfaces the memory engine provides, under their standard global names. */
+const MEMORY_GLOBALS = [
+  "indexedDB",
+  "IDBCursor",
+  "IDBCursorWithValue",
+  "IDBDatabase",
+  "IDBFactory",
+  "IDBIndex",
+  "IDBKeyRange",
+  "IDBObjectStore",
+  "IDBOpenDBRequest",
+  "IDBRequest",
+  "IDBTransaction",
+  "IDBVersionChangeEvent",
+] as const;
+
+/**
+ * Makes the memory engine the page's IndexedDB. Handing it to Dexie is not
+ * enough: Dexie's open path on Safari (its Safari 14 workaround, taken when
+ * `navigator.userAgentData` is absent) polls `indexedDB.databases()` on the
+ * global, which under Lockdown Mode is a ReferenceError. Same property
+ * descriptors as `fake-indexeddb/auto`, which ships without types.
+ */
+function installMemoryGlobals(mem: typeof import("fake-indexeddb")) {
+  for (const name of MEMORY_GLOBALS) {
+    Object.defineProperty(globalThis, name, { value: mem[name], configurable: true, writable: true });
+  }
 }
 
 function withTabHandlers(db: CacheDB): CacheDB {
