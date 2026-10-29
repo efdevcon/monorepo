@@ -5,14 +5,13 @@ import { useTranslations } from 'next-intl'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { SEO } from 'components/domain/seo'
-import { AtSign, ArrowUpRight, CircleAlert } from 'lucide-react'
+import { AtSign, CircleAlert } from 'lucide-react'
 import themes from './themes.module.scss'
 import HeroBackground from './past-events-hero.png'
 import MoonBackground from 'assets/images/pages/faq-moon-bg.svg'
 import css from './application-guidelines.module.scss'
 import cn from 'classnames'
 import { getMessages } from 'utils/intl'
-import { APPLY_URL } from 'components/common/tracks/track-images'
 
 // Fixed, ordered section keys. Each maps to `sections.<key>` in the
 // `application_guidelines` intl namespace and to an anchor id (underscores → hyphens).
@@ -188,12 +187,6 @@ export default function ApplicationGuidelinesPage() {
                   <div className={css['prose']}>
                     <ReactMarkdown components={markdownComponents}>{section.body}</ReactMarkdown>
                   </div>
-                  {section.key === 'decision' && (
-                    <a className={css['apply-button']} href={APPLY_URL} target="_blank" rel="noopener noreferrer">
-                      <span>{t('apply_cta')}</span>
-                      <ArrowUpRight size={16} strokeWidth={2} className={css['apply-button-arrow']} aria-hidden="true" />
-                    </a>
-                  )}
                 </div>
               ))}
             </div>
