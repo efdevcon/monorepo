@@ -2,8 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
-import { Link } from 'components/common/link'
-import { ArrowRight } from 'lucide-react'
 import themes from '../themes.module.scss'
 import HeroBackground from './hero-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
@@ -19,26 +17,10 @@ import Photo6 from './photo-6.png'
 import css from './ecosystem-program.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
-import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6]
 
 const SUPPORT_TAG_COLORS = ['#ffe0cc', '#f0d7f4', '#d6d5f6', '#cddff4', '#cdf4d7']
-
-const STUDENT_APPLICATION_ROWS: TicketRow[] = [
-  {
-    name: 'Indian Students',
-    price: '$25',
-    action: 'Apply',
-    actionHref: '/form/student-application',
-  },
-  {
-    name: 'International Students',
-    price: '$99',
-    action: 'Apply',
-    actionHref: '/form/student-application',
-  },
-]
 
 function ApplicationsClosedCard() {
   const t = useTranslations('ecosystem_program.applications_closed')
@@ -62,14 +44,12 @@ function ApplicationsClosedCard() {
 
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
-  const applicationRowsResolved: TicketRow[] = STUDENT_APPLICATION_ROWS
 
   const navLinks = [
     { title: t('nav.about'), to: '#about' },
     { title: t('nav.ecosystem_needs'), to: '#ecosystem-needs' },
     { title: t('nav.who_can_apply'), to: '#who-can-apply' },
     { title: t('nav.what_you_can_receive'), to: '#what-you-can-receive' },
-    { title: t('nav.apply'), to: '#apply' },
   ]
 
   const ecosystemBullets = t.raw('ecosystem_needs.bullets') as Array<{ strong: string; rest: string }>
@@ -84,12 +64,6 @@ export default function EcosystemProgramPage() {
   const receiveBullets = t.raw('what_you_can_receive.bullets') as Array<
     string | { prefix: string; strong: string; suffix: string }
   >
-  const otherSupportBullets = t.raw('other_support.bullets') as Array<{
-    prefix: string
-    strong: string
-    suffix: string
-  }>
-  const applicationRows = t.raw('other_support.rows') as Array<{ name: string; price: string; date: string }>
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -248,9 +222,6 @@ export default function EcosystemProgramPage() {
             <ApplicationsClosedCard />
 
             <p className={css['budget-note-footer']}>
-              {t('budget_note.footer_prefix')}
-              <strong>{t('budget_note.footer_strong')}</strong>.
-              <br />
               {t('budget_note.footer_contact')} <a href="mailto:ecosystem@devcon.org">ecosystem@devcon.org</a>
             </p>
           </div>
@@ -266,43 +237,6 @@ export default function EcosystemProgramPage() {
           </div>
         </section>
 
-        {/* ── Other Support Section ─────────────────────────────── */}
-        <section className={cn(css['other-support'], 'expand')}>
-          <div className={css['other-support-left']}>
-            <div className={css['other-support-text']}>
-              <p className={css['section-tag']}>{t('other_support.tag')}</p>
-              <h3 className={css['heading-3']}>{t('other_support.heading')}</h3>
-              <div className={css['body']}>
-                <p style={{ marginBottom: 16 }}>
-                  {t('other_support.body_intro_prefix')}
-                  <strong>{t('other_support.body_intro_strong')}</strong>
-                  {t('other_support.body_intro_suffix')}
-                </p>
-                <ul className={css['detail-list']} style={{ marginBottom: 16 }}>
-                  {otherSupportBullets.map((b, i) => (
-                    <li key={i}>
-                      {b.prefix}
-                      <strong>{b.strong}</strong>
-                      {b.suffix}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <Link to="/tickets" className={css['btn-secondary']}>
-              {t('other_support.view_all_tickets')}
-              <ArrowRight size={16} strokeWidth={2} />
-            </Link>
-          </div>
-
-          <div className={css['other-support-right']}>
-            <TicketTable
-              title={t('other_support.card_title')}
-              subtitle={t('other_support.card_subtitle')}
-              rows={applicationRowsResolved}
-            />
-          </div>
-        </section>
       </div>
     </Page>
   )
