@@ -44,7 +44,7 @@ export function SEO(props: SEOProps) {
 
   const globalTitle = 'Devcon 8 India'
   const globalDescription =
-    'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers. Join us 3–6 November 2026 in Mumbai, India.'
+    'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers. Devcon 8 took place 3–6 November 2026 in Mumbai, India.'
   const globalImage = 'https://www.devcon.org/assets/images/new-og.jpg'
 
   let description = globalDescription

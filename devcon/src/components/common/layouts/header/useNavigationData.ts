@@ -125,11 +125,13 @@ const useNavigationData = () => {
           url: '/about',
           type: 'page',
         },
-        {
-          title: t('faq'),
-          url: '/tickets/faq',
-          type: 'page',
-        },
+        // FAQ hidden post-event: its NocoDB content is all pre-event ticketing
+        // copy. Restore once the entries are reworked or unpublished.
+        // {
+        //   title: t('faq'),
+        //   url: '/tickets/faq',
+        //   type: 'page',
+        // },
         // {
         //   title: 'Program',
         //   url: '/programming',
@@ -184,11 +186,12 @@ const useNavigationData = () => {
           url: 'https://forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191',
           type: 'link',
         },
-        {
-          title: t('media_press'),
-          url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
-          type: 'link',
-        },
+        // Media & Press (press-accreditation form) hidden post-event.
+        // {
+        //   title: t('media_press'),
+        //   url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
+        //   type: 'link',
+        // },
         {
           title: t('press_kit'),
           // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
