@@ -76,7 +76,6 @@ import AppSwiggy from './images/connectivity/app-swiggy.webp'
 import AppZomato from './images/connectivity/app-zomato.webp'
 import AppUber from './images/connectivity/app-uber.webp'
 import AppOla from './images/connectivity/app-ola.webp'
-import AppRapido from './images/connectivity/app-rapido.webp'
 import css from './travel-guide.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
@@ -171,7 +170,6 @@ const APP_ICONS = [
   { src: AppZomato, alt: 'Zomato', whiteBg: false },
   { src: AppUber, alt: 'Uber', whiteBg: false },
   { src: AppOla, alt: 'Ola', whiteBg: true },
-  { src: AppRapido, alt: 'Rapido', whiteBg: false },
 ]
 
 // Zipped positionally with the translated `stay.areas` array
