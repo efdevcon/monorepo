@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
-import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
+import { CircleCheckBig, Asterisk } from 'lucide-react'
 import { useIsLaunched } from 'hooks/useWaveStates'
-import { ctaPrimary, ctaSecondary } from 'components/common/cta'
 import { sectionHeading, bodyCopy, eyebrow as eyebrowStyle } from 'components/common/styles'
-import { GLOBAL_LAUNCH_TIME } from 'config/waves'
+import { GLOBAL_LAUNCH_TIME, TICKETS_WRAPPED } from 'config/waves'
 import { UpiGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
 import { useUpiPrices, upiPriceFor, type UpiProduct } from 'hooks/useUpiPrices'
 
@@ -16,9 +14,13 @@ interface IncludedItem {
   icon: IconKind
 }
 
+// 'closed' is the post-event state (config/waves TICKETS_WRAPPED): a red
+// CLOSED tag, same shape as the green OPEN one.
+type ColumnStatus = 'open' | 'coming' | 'closed'
+
 interface Column {
   id: string
-  status: 'open' | 'coming'
+  status: ColumnStatus
   title: string
   tab_label?: string
   subtitle: string
@@ -37,15 +39,9 @@ interface Column {
   best_for: string
   included: IncludedItem[]
   how_it_works: string[]
-  cta_label: string
-  cta_href: string
-  cta_variant: 'primary' | 'secondary'
   // Per-column override for the "coming" tag text; falls back to the shared
   // labels.tag_coming ("COMING SOON") when unset.
   coming_label?: string
-  // When true the JOIN DEVCON row renders no CTA for this column — used for
-  // Community before the global launch, when there's nothing to buy yet.
-  hide_cta?: boolean
 }
 
 const IncludedIcon = ({ kind }: { kind: IconKind }) => {
@@ -56,13 +52,18 @@ const IncludedIcon = ({ kind }: { kind: IconKind }) => {
 // px literals throughout this file: the mobile layout only ever renders <1024
 // where the root font-size is 14px (index.scss), so rem utilities would land
 // 12.5% under the Figma values.
-const StatusTag = ({ status, openLabel, comingLabel }: { status: 'open' | 'coming'; openLabel: string; comingLabel: string }) => (
+const STATUS_TAG_STYLE: Record<ColumnStatus, string> = {
+  open: 'bg-[#aaeaba] text-[#221144]',
+  coming: 'bg-[#f2f1f4] text-[#221144]',
+  // Same red as the store's "Sold out" badge.
+  closed: 'bg-[#fff0f0] text-[#b42124]',
+}
+
+const StatusTag = ({ status, openLabel, comingLabel }: { status: ColumnStatus; openLabel: string; comingLabel: string }) => (
   <span
-    className={`inline-flex items-center self-start px-[10px] py-[8px] rounded-[4px] text-[12px] font-bold tracking-[0.5px] uppercase whitespace-nowrap leading-none ${
-      status === 'open' ? 'bg-[#aaeaba] text-[#221144]' : 'bg-[#f2f1f4] text-[#221144]'
-    }`}
+    className={`inline-flex items-center self-start px-[10px] py-[8px] rounded-[4px] text-[12px] font-bold tracking-[0.5px] uppercase whitespace-nowrap leading-none ${STATUS_TAG_STYLE[status]}`}
   >
-    {status === 'open' ? openLabel : comingLabel}
+    {status === 'open' ? openLabel : status === 'closed' ? 'CLOSED' : comingLabel}
   </span>
 )
 
@@ -72,23 +73,6 @@ const UPCOMING_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
   month: 'long',
   timeZone: 'UTC',
 })
-
-const CtaButton = ({
-  label,
-  href,
-  variant,
-  className = '',
-}: {
-  label: string
-  href: string
-  variant: 'primary' | 'secondary'
-  className?: string
-}) => (
-  <Link to={href} className={`${variant === 'primary' ? ctaPrimary : ctaSecondary} ${className}`}>
-    {label}
-    <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-  </Link>
-)
 
 // Shared cell/typography recipes for the desktop grid + mobile card
 const cellBorder = 'border-t border-l border-solid border-[rgba(34,17,68,0.1)]'
@@ -197,10 +181,6 @@ const MobileCard = ({
         ))}
       </ul>
     </div>
-
-    {!column.hide_cta && (
-      <CtaButton label={column.cta_label} href={column.cta_href} variant={column.cta_variant} className="w-full" />
-    )}
   </div>
 )
 
@@ -230,7 +210,6 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
     best_for: string
     included: string
     how_it_works: string
-    join_devcon: string
     tag_open: string
     tag_coming: string
     swipe_hint?: string
@@ -239,14 +218,17 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
   const { launched } = useIsLaunched()
   const upiPrices = useUpiPrices()
 
-  // Inject the launch state into the Community column so its status / CTA
-  // follow the global ticket launch instead of the static snapshot baked
-  // into translations.
+  // Inject the launch state into the Community column so its status follows
+  // the global ticket launch instead of the static snapshot baked into
+  // translations.
   const columns: Column[] = rawColumns.map(rawCol => {
     // Live rupee "from" price for columns that lead with a UPI product; the
     // "+" matches the USD figure ("$35+") and signals pricier tiers above.
     const inr = upiPriceFor(upiPrices, rawCol.upiProduct)
     const col: Column = inr ? { ...rawCol, price_inr: `${inr}+` } : rawCol
+    // Post-event: every column is CLOSED; prices stay as the record of what
+    // each path cost.
+    if (TICKETS_WRAPPED) return { ...col, status: 'closed' }
     // Community self-claiming discounts open at the global ticket launch:
     // "OPENS JULY" before, OPEN during (matches the during-launch Figma
     // where every column reads OPEN).
@@ -256,7 +238,6 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
         : {
             ...col,
             coming_label: `OPENS ${UPCOMING_MONTH_FORMATTER.format(GLOBAL_LAUNCH_TIME).toUpperCase()}`,
-            hide_cta: true,
           }
     }
     return col
@@ -388,19 +369,6 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* JOIN DEVCON row */}
-        <div className="flex items-stretch">
-          <RowLabel withTopBorder>{labels.join_devcon}</RowLabel>
-          {columns.map(col => (
-            <div
-              key={col.id}
-              className={`flex-1 min-w-0 flex items-center px-4 py-4 ${cellBorder}`}
-            >
-              {!col.hide_cta && <CtaButton label={col.cta_label} href={col.cta_href} variant={col.cta_variant} />}
             </div>
           ))}
         </div>

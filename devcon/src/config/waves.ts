@@ -76,6 +76,15 @@ export const CURRENT_WAVE_ID = 'wave-ga'
 export type GaSaleState = 'open' | 'coming-soon' | 'closed'
 export const GA_SALE_STATE: GaSaleState = 'open'
 
+// ── Post-event ───────────────────────────────────────────────────────────
+// Devcon 8 India has wrapped. While true, every ticket product reads as closed
+// regardless of the wave state above: /tickets rows become "Sale ended" audit
+// rows with CLOSED tags and no CTAs, the store swaps its OPEN badges, buy /
+// verify / apply buttons and voucher entry points for CLOSED labels, and the
+// voucher deep links (/tickets/store/#redeem, /tickets/store/redeem) explain
+// that redemption has ended. Flip to false to restore the wave-driven states.
+export const TICKETS_WRAPPED = true
+
 // Midnight US Pacific at the END of 11 Aug 2026 (= 12 Aug 2026 07:00 UTC;
 // Pacific is PDT/UTC-7 in August) — the single moment the paused GA sale
 // reopens AND the special offer below ends (they hand over in the same
