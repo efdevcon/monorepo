@@ -193,10 +193,13 @@ export function ServiceWorkerUpdater() {
           if (toastId !== undefined) toast.dismiss(toastId);
           toastId = undefined;
         };
-        // Same id: sonner swaps the content of the toast already showing.
+        // Same id: sonner swaps the content of the toast already showing. The
+        // key is only set once there is an id: sonner spreads the options over
+        // its own id, so an explicit `id: undefined` makes it create a toast
+        // under a different id than the one it returns.
         toastId = toast.custom(
           () => <UpdateToast state={state} onUpdate={onUpdate} onReload={onReload} onDismiss={onDismiss} />,
-          { ...TOAST_OPTIONS, id: toastId }
+          toastId === undefined ? TOAST_OPTIONS : { ...TOAST_OPTIONS, id: toastId }
         );
       },
     });
