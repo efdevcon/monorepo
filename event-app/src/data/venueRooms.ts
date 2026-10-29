@@ -50,3 +50,19 @@ export function timelineRoomRank(id: string | undefined): number {
   const i = id ? TIMELINE_ROOM_ORDER.indexOf(id) : -1;
   return i === -1 ? Infinity : i;
 }
+
+/**
+ * Hub-programme rooms that are the same physical place as a Pretalx room:
+ * the Music Stage's week-long programme comes from the Community Hubs
+ * bundle under `community-hub-music-stage`, while the picker, the kiosk
+ * and Pretalx know the stage as `music-stage`. A room screen shows the
+ * sessions of every id listed for its room (Scott, 2026-10-29).
+ */
+const ROOM_SCREEN_ALIASES: Record<string, readonly string[]> = {
+  "music-stage": ["community-hub-music-stage"],
+};
+
+/** The room ids a room screen shows: the room itself plus its aliases. */
+export function roomScreenRoomIds(roomId: string): string[] {
+  return [roomId, ...(ROOM_SCREEN_ALIASES[roomId] ?? [])];
+}

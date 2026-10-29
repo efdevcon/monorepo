@@ -11,6 +11,7 @@ import { useNowMs } from "@/hooks/useNow";
 import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
 import { eventDayKey, eventFmt } from "@/data/eventTime";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
+import { roomScreenRoomIds } from "@/data/venueRooms";
 import { roomIconUrl } from "./roomIcon";
 
 /**
@@ -187,9 +188,13 @@ function Message({ children }: { children: React.ReactNode }) {
 export function RoomScreen({ roomId }: { roomId: string }) {
   const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
-  // A place reads the whole catalogue, whatever programme a session is shown in.
+  // A place reads the whole catalogue, whatever programme a session is shown
+  // in, under every id the place goes by (the Music Stage's hub programme).
   const everySession = useSessionsOfAllProgrammes();
-  const sessions = useMemo(() => everySession.filter((s) => s.room?.id === roomId), [everySession, roomId]);
+  const sessions = useMemo(() => {
+    const ids = new Set(roomScreenRoomIds(roomId));
+    return everySession.filter((s) => s.room?.id !== undefined && ids.has(s.room.id));
+  }, [everySession, roomId]);
   const { isLoading: sessionsLoading } = useSessions();
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);

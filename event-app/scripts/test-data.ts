@@ -40,6 +40,7 @@ import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
+import { roomScreenRoomIds } from "../src/data/venueRooms";
 import { communityOf, communityOptions, isCommunityLed, programmeOf, programmeSessions } from "../src/data/programme";
 import { eventDayKey } from "../src/data/eventTime";
 import { COMMUNITY_LED_GROUPS, clsTrackName, communityLedGroup } from "../src/data/communityLed";
@@ -253,6 +254,7 @@ function testMaterialize() {
       ["Main Stage (Lotus)", "CLS - Builders Room", "Community Led Stage", "Jasmine Stage 4", "Lightning Stage", "Lotus Stage", "Lotus Stage 1", "Lotus Stage 2", "Lotus Stage 3", "Music Stage", "Workshop 1", "Workshop 2"]
     )
   );
+  check("room screen aliases: the Music Stage shows its hub programme too", eq(roomScreenRoomIds("music-stage"), ["music-stage", "community-hub-music-stage"]) && eq(roomScreenRoomIds("lotus-stage-1"), ["lotus-stage-1"]));
   check("room screen icons follow the renamed Devcon 8 ids", roomIconUrl("main-stage-lotus")!.endsWith("/lotus.png") && roomIconUrl("lotus-stage-2")!.endsWith("/lotus.png") && roomIconUrl("lightning-stage")!.endsWith("/lightning-stage.png") && roomIconUrl("workshop-2")!.endsWith("/workshop.png") && roomIconUrl("stage-1")!.endsWith("/lotus.png"));
   check("timeline lanes for other events keep the Main Stage / Stage … / A–Z rule", eq(sortRooms(snap.sessions), ["Stage 1", "TBA"]));
 

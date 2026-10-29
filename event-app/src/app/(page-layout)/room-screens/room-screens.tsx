@@ -9,6 +9,7 @@ import { Link } from "@/routing";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, getStatus } from "@/components/schedule/utils";
 import { roomIconUrl } from "@/components/room-screen/roomIcon";
+import { roomScreenRoomIds } from "@/data/venueRooms";
 
 /**
  * Picker order (Scott, 2026-10-29): the Main Stage, its three Lotus parts,
@@ -144,7 +145,12 @@ export default function RoomScreens() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {ordered.map((room) => (
-          <RoomCard key={room.id} room={room} sessions={byRoom.get(room.id) ?? []} nowMs={nowMs} />
+          <RoomCard
+            key={room.id}
+            room={room}
+            sessions={roomScreenRoomIds(room.id).flatMap((id) => byRoom.get(id) ?? [])}
+            nowMs={nowMs}
+          />
         ))}
       </div>
       </div>
