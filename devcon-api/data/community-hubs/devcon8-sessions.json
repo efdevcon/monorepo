@@ -679,13 +679,10 @@
   },
   {
     "hub": "DeSci Hub",
-    "changedAt": "2026-10-28T09:02:30.981Z",
+    "changedAt": "2026-10-29T11:35:27.373Z",
     "problems": [
-      "row 10 \"TBD + QnA\": start \"13:40\" / end \"\" not a time, skipped",
-      "row 11 \"The DeSci Evolution: What Worked, What Didn't, and What Might Be Next + QnA\": start \"\" / end \"\" not a time, skipped",
-      "row 12 \"From AI-Designed Binders to Robotic Labs: Closing the Drug Discovery Loop + QnA\": start \"\" / end \"\" not a time, skipped",
-      "row 13 \"TBD + QnA\": start \"\" / end \"\" not a time, skipped",
-      "row 25: no session title, skipped"
+      "row 12 \"TBD + QnA\": start \"\" / end \"\" not a time, skipped",
+      "row 24: no session title, skipped"
     ],
     "sessions": [
       {
@@ -726,27 +723,13 @@
       {
         "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "12:30-12:40",
-        "title": "Flamingo Stand Challenge",
+        "time": "12:30-13:00",
+        "title": "Cross-hub Connect: Aggregation Hub x DeSci Hub",
         "format": "Networking",
         "speakers": [
-          "Iqra",
-          "Harshita"
+          "Aggregation Hub"
         ],
-        "description": "How steady are you? Stand on your non-dominant leg for 45 seconds, then do it again while holding an object. Last one standing wins Hub merch!"
-      },
-      {
-        "id": "S05",
-        "day": "Tue 3 Nov",
-        "time": "12:40-13:00",
-        "title": "To DAO or not to DAO?",
-        "format": "Networking",
-        "speakers": [
-          "Iqra",
-          "Harshita",
-          "Arya"
-        ],
-        "description": "Can you tell a real DAO proposal from a fake one? We’ll present a mix of real-world and hypothetical DAO proposals, and you’ll vote on which ones are real. Get the most answers right to win exclusive DeSci Hub merch!"
+        "description": "Discussing the differences between Ethereum usage here in India compared to Europe"
       },
       {
         "id": "S06",
@@ -755,6 +738,39 @@
         "title": "Break",
         "format": "Break",
         "speakers": []
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "13:40-14:10",
+        "title": "The DeSci Evolution: What Worked, What Didn't, and What Might Be Next + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Ella McCarthy-Page"
+        ],
+        "description": "What will it take to move DeSci forward? Explore three key pillars of innovation: Web3 technology, AI-augmented scientific research, and legal frameworks such as token-equity models for early-stage funding. Discover how these approaches can work together to support new ways of funding, conducting, and advancing science.\n\nConnect with the speaker on LinkedIn: https://www.linkedin.com/in/ella-mccarthy-page/"
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "14:20-14:50",
+        "title": "Open-source mRNA vaccine trials, biosecurity, and developing medicines to save 1 million lives each year + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Soham Sankaran"
+        ],
+        "description": "Join Soham Sankaran, founder of PopVax, to explore open-source RNA vaccine research, biosecurity, and the ambition to develop medicines that could save one million lives each year. Discover how new approaches to vaccine development and open scientific collaboration could help make life-saving medicines more accessible, followed by an open Q&A.\n\nConnect with the speaker and PopVax:\n\nSoham Sankaran on X: https://x.com/sohamsankaran\nPopVax on X: https://x.com/PopVaxIndia"
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "15:00-15:30",
+        "title": "From AI-Designed Binders to Robotic Labs: Closing the Drug Discovery Loop + QnA",
+        "format": "Talk",
+        "speakers": [
+          "Johannes Weniger"
+        ],
+        "description": "What happens when AI agents meet protein design and automated experimentation? Drawing on lessons from the Adaptyv x Anthropic Binder Design Challenge, this talk explores how AI agents can accelerate research and how robotic labs can generate the experimental data needed to validate ideas and drive the next scientific breakthrough.\n\nConnect with the speaker on LinkedIn: https://www.linkedin.com/in/johannes-weniger/"
       },
       {
         "id": "S11",
@@ -1102,10 +1118,11 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-28T08:44:36.903Z",
+    "changedAt": "2026-10-29T11:35:27.373Z",
     "problems": [
       "row 8: no session title, skipped",
-      "row 16: no session title, skipped"
+      "row 16: no session title, skipped",
+      "row 34: no session title, skipped"
     ],
     "sessions": [
       {
@@ -1369,17 +1386,17 @@
         "id": "S29",
         "day": "Thu 5 Nov",
         "time": "12:10-13:00",
-        "title": "EIP Process AMA",
-        "format": "AMA",
+        "title": "Verify, authorise, execute: ERC-8126, ERC-8196 and the road to ERC-8004 Final",
+        "format": "Talk",
         "speakers": [
-          "Pooja Ranjan",
-          "Jochem Brouwer"
-        ]
+          "Leigh Cronian"
+        ],
+        "description": "Three standards address the same problem from different angles: ERC-8004 registers and validates agents, ERC-8126 verifies them and produces a 0-100 risk score, and ERC-8196 limits what a verified agent can do to an owner's policy. This talk composes all three in a working implementation, deployed and Sourcify-verified on Sepolia, and sets out what remains to take ERC-8004 to Final."
       },
       {
         "id": "S30",
         "day": "Thu 5 Nov",
-        "time": "13:00-14:00",
+        "time": "13:00-13:30",
         "title": "Lunch & Networking",
         "format": "Break",
         "speakers": []
@@ -1388,9 +1405,12 @@
         "id": "S31",
         "day": "Thu 5 Nov",
         "time": "15:00-16:00",
-        "title": "EIP Hub Community Connect",
-        "format": "Networking",
-        "speakers": []
+        "title": "EIP Process AMA",
+        "format": "AMA",
+        "speakers": [
+          "Pooja Ranjan",
+          "Jochem Brouwer"
+        ]
       },
       {
         "id": "S32",
@@ -1529,14 +1549,14 @@
   },
   {
     "hub": "India Hub",
-    "changedAt": "2026-10-20T15:26:38.307Z",
+    "changedAt": "2026-10-29T09:20:45.797Z",
     "problems": [],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "09:00-09:30",
-        "title": "Day 1 Kickoff: Building India's Unstoppable Stack",
+        "title": "Building India's Unstoppable Stack with India Hub",
         "format": "Welcome",
         "speakers": [
           "Rishikesh Kale"
@@ -1570,7 +1590,7 @@
         "id": "S04",
         "day": "Tue 3 Nov",
         "time": "11:30-13:30",
-        "title": "Build Battle #1: Unbreakable Protocols Sprint",
+        "title": "Build Battle #1: Censorship-Free World",
         "format": "Workshop",
         "speakers": [
           "Rampall"
@@ -1620,7 +1640,7 @@
         "id": "S09",
         "day": "Wed 4 Nov",
         "time": "09:00-09:30",
-        "title": "Day 2 Kickoff: Open Source Everything",
+        "title": "Open Source Everything",
         "format": "Welcome",
         "speakers": [
           "Rishikesh Kale"
@@ -1632,7 +1652,9 @@
         "time": "09:30-10:30",
         "title": "Chai & Connect",
         "format": "Networking",
-        "speakers": [],
+        "speakers": [
+          "Harsh Gupta"
+        ],
         "description": "Connect with builders and set up for the day."
       },
       {
@@ -1720,7 +1742,7 @@
         "id": "S20",
         "day": "Thu 5 Nov",
         "time": "11:30-13:30",
-        "title": "Build Battle #3: Prove It, Don't Reveal It (ZK Sprint)",
+        "title": "Build Battle #3: Prove It, Don't Reveal It",
         "format": "Workshop",
         "speakers": [
           "Viraj"
@@ -1840,7 +1862,7 @@
   },
   {
     "hub": "Legal & Governance Hub",
-    "changedAt": "2026-10-28T09:02:30.981Z",
+    "changedAt": "2026-10-29T11:48:54.569Z",
     "problems": [
       "row 16: no session title, skipped"
     ],
@@ -1912,9 +1934,11 @@
         "day": "Tue 3 Nov",
         "time": "16:00-17:00",
         "title": "Nobody Votes. Can Better Deliberation Fix It?",
-        "format": "Talk",
+        "format": "Roundtable",
         "speakers": [
-          "Yuting Jiang"
+          "Yuting Jiang",
+          "Diego Rivera",
+          "Jimin Lee"
         ],
         "topic": "Tooling",
         "description": "Most token holders skip the vote because it costs more time & attention than it returns. Civic tech has been working on the same problem in cities and citizen assemblies, using deliberation tools that find where people agree before anything goes to a vote. This session looks at how those tools work, what they have changed in public decision-making, and what DAOs can borrow from them."
@@ -1924,9 +1948,9 @@
         "day": "Tue 3 Nov",
         "time": "17:00-18:00",
         "title": "Optimistic Governance: From Vote to Veto",
-        "format": "Demo",
+        "format": "Talk",
         "speakers": [
-          "Hugo Oliveira"
+          "Hugo Volz Oliveira"
         ],
         "topic": "Governance",
         "description": "In optimistic governance, a proposal passes by default unless holders object within a set window. The holder’s right shifts from voting yes or no to blocking what they disagree with. That lowers the turnout problem, but it raises new questions: who is watching when nobody votes, how high should the veto bar be, and what stops a team from passing things quietly? This session covers how the model works, where it is already in use, and what holders give up and gain when silence counts as consent."
@@ -2541,10 +2565,8 @@
   },
   {
     "hub": "Onchain Art Hub",
-    "changedAt": "2026-10-28T09:02:30.981Z",
-    "problems": [
-      "row 12: no session title, skipped"
-    ],
+    "changedAt": "2026-10-29T11:35:27.373Z",
+    "problems": [],
     "sessions": [
       {
         "id": "S01",
@@ -2573,12 +2595,23 @@
       {
         "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "14:00-15:00",
-        "title": "Devcon Artists Cohort",
+        "time": "15:00-16:30",
+        "title": "Devcon Artists Cohort Talk and Gallery Tour",
         "format": "Roundtable",
         "speakers": [
           "Tomo Saito"
         ]
+      },
+      {
+        "id": "S109",
+        "day": "Tue 3 Nov",
+        "time": "16:00-17:00",
+        "title": "CypherMom Office Hours",
+        "format": "Workshop",
+        "speakers": [
+          "Statuette"
+        ],
+        "description": "Sessions where people come tell me about what they are doing and I lecture them on why it should be more decentralized and open. Imagine mall santa, but cyphermom"
       },
       {
         "id": "S101",
@@ -2620,6 +2653,28 @@
           "Victor"
         ],
         "description": "Patio is an experimental, open-source radio that uses the Ethereum and Polygon mempool to stream music without relying on traditional streaming servers.\n\nVictor: https://x.com/victorxva"
+      },
+      {
+        "id": "S110",
+        "day": "Wed 4 Nov",
+        "time": "15:00-16:00",
+        "title": "A Field Guide to NFT Permanence",
+        "format": "Talk",
+        "speakers": [
+          "Akuti"
+        ],
+        "description": "You own the token. Can you still see the art? More than one in four popular NFTs are already dead, and almost nobody notices. Learn where NFTs really live, who can change them, how to check yours and how to keep them alive. And if you make them: how to build NFTs that outlast you."
+      },
+      {
+        "id": "S104",
+        "day": "Wed 4 Nov",
+        "time": "16:10-16:40",
+        "title": "Do Wires Dream of Veins- An Artist’s Experiments with Technology",
+        "format": "Talk",
+        "speakers": [
+          "Harshit Agrawal"
+        ],
+        "description": "Grounded in a decade of work across Al and contemporary art, this talk probes data colonisation, algorithmic bias and the climatic costs of machine learning. Harshit Agrawal frames computation as a material for critical enquiry.  Harshit Agrawal: https://x.com/harshitrnnh"
       },
       {
         "id": "S105",
@@ -4431,7 +4486,7 @@
   },
   {
     "hub": "Security Hub",
-    "changedAt": "2026-10-28T09:02:30.981Z",
+    "changedAt": "2026-10-29T11:35:27.373Z",
     "problems": [],
     "sessions": [
       {
@@ -4815,17 +4870,9 @@
         ]
       },
       {
-        "id": "S39",
-        "day": "Thu 5 Nov",
-        "time": "14:50-15:00",
-        "title": "Break",
-        "format": "Break",
-        "speakers": []
-      },
-      {
         "id": "S40",
         "day": "Thu 5 Nov",
-        "time": "15:00-15:30",
+        "time": "14:50-15:30",
         "title": "Solidity compiler",
         "format": "Talk",
         "speakers": [
@@ -4914,9 +4961,19 @@
         "speakers": []
       },
       {
+        "id": "S103",
+        "day": "Fri 6 Nov",
+        "time": "14:10-14:30",
+        "title": "Walletbeat",
+        "format": "Workshop",
+        "speakers": [
+          "Walletbeat team"
+        ]
+      },
+      {
         "id": "S50",
         "day": "Fri 6 Nov",
-        "time": "14:00-15:30",
+        "time": "14:30-15:30",
         "title": "Closing the Hub: learnings and next steps",
         "format": "Roundtable",
         "speakers": []
@@ -4925,8 +4982,9 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-10-28T08:44:36.903Z",
+    "changedAt": "2026-10-29T09:20:45.797Z",
     "problems": [
+      "row 6: no session title, skipped",
       "row 11: no session title, skipped",
       "row 12: no session title, skipped",
       "row 13: no session title, skipped",
@@ -4951,18 +5009,6 @@
         "title": "Shaka’s Zu music and welcome!",
         "format": "Welcome",
         "speakers": []
-      },
-      {
-        "id": "S03",
-        "day": "Tue 3 Nov",
-        "time": "14:30-14:50",
-        "title": "We should tell more stories",
-        "format": "Talk",
-        "speakers": [
-          "Meave"
-        ],
-        "topic": "Community",
-        "description": "Most new technology reaches communities through someone else's story: a pitch deck, a press release, a narrative written from far away. When that happens, people get included on borrowed terms. This session argues that storytelling is infrastructure and a whole layer, just like code or capital or people."
       },
       {
         "id": "S04",
