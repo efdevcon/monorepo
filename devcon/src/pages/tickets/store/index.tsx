@@ -47,6 +47,7 @@ const CardPrice = ({ price, priceInr }: { price: string; priceInr?: string }) =>
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
+import { TICKETS_WRAPPED } from 'config/waves'
 import { useIsLaunched } from 'hooks/useWaveStates'
 import { useUpiPrices, upiPriceFor, type UpiProduct } from 'hooks/useUpiPrices'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
@@ -353,24 +354,29 @@ function StoreContent() {
                 className={css['countdown-banner-bg']}
                 sizes="(max-width: 1024px) 100vw, 1400px"
               />
-              <div className={css['countdown-grid']}>
-                <div className={css['countdown-item']}>
-                  <span className={css['countdown-value']}>{countdown.days}</span>
-                  <span className={css['countdown-label']}>Days</span>
+              {TICKETS_WRAPPED ? (
+                // Post-event: the countdown has nothing left to count.
+                <p className={css['countdown-message']}>Devcon 8 has wrapped – thank you!</p>
+              ) : (
+                <div className={css['countdown-grid']}>
+                  <div className={css['countdown-item']}>
+                    <span className={css['countdown-value']}>{countdown.days}</span>
+                    <span className={css['countdown-label']}>Days</span>
+                  </div>
+                  <div className={css['countdown-item']}>
+                    <span className={css['countdown-value']}>{String(countdown.hours).padStart(2, '0')}</span>
+                    <span className={css['countdown-label']}>Hours</span>
+                  </div>
+                  <div className={css['countdown-item']}>
+                    <span className={css['countdown-value']}>{String(countdown.minutes).padStart(2, '0')}</span>
+                    <span className={css['countdown-label']}>Minutes</span>
+                  </div>
+                  <div className={css['countdown-item']}>
+                    <span className={css['countdown-value']}>{String(countdown.seconds).padStart(2, '0')}</span>
+                    <span className={css['countdown-label']}>Seconds</span>
+                  </div>
                 </div>
-                <div className={css['countdown-item']}>
-                  <span className={css['countdown-value']}>{String(countdown.hours).padStart(2, '0')}</span>
-                  <span className={css['countdown-label']}>Hours</span>
-                </div>
-                <div className={css['countdown-item']}>
-                  <span className={css['countdown-value']}>{String(countdown.minutes).padStart(2, '0')}</span>
-                  <span className={css['countdown-label']}>Minutes</span>
-                </div>
-                <div className={css['countdown-item']}>
-                  <span className={css['countdown-value']}>{String(countdown.seconds).padStart(2, '0')}</span>
-                  <span className={css['countdown-label']}>Seconds</span>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* ─── Community (self-claim discounts) ─── */}
@@ -378,7 +384,9 @@ function StoreContent() {
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Community</h3>
-                  {launched ? (
+                  {TICKETS_WRAPPED ? (
+                    <span className={css['closed-badge']}>CLOSED</span>
+                  ) : launched ? (
                     <span className={css['open-badge']}>OPEN</span>
                   ) : (
                     <span className={css['opens-badge']}>Opens July</span>
@@ -412,7 +420,9 @@ function StoreContent() {
                         ) : (
                           <CardPrice price={card.price ?? ''} priceInr={upiPriceFor(upiPrices, card.upiProduct) ?? undefined} />
                         )}
-                        {!launched ? (
+                        {TICKETS_WRAPPED ? (
+                          <span className={css['opens-label']}>Closed</span>
+                        ) : !launched ? (
                           <span className={css['opens-label']}>Opens July</span>
                         ) : cardSoldOut ? (
                           <span className={css['sold-out-badge']}>Sold out</span>
@@ -447,8 +457,10 @@ function StoreContent() {
                 })}
               </div>
 
-              {/* Voucher redemption also opens at launch — no entry point before. */}
-              {launched && (
+              {/* Voucher redemption also opens at launch — no entry point before,
+                  and none after the event (the #redeem deep link still opens the
+                  modal, which then explains that redemption has closed). */}
+              {launched && !TICKETS_WRAPPED && (
                 // /tickets/store/#redeem lands here and opens the redeem modal (see the hash effect above).
                 <div className={css['voucher-banner']} id="redeem">
                   <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
@@ -465,7 +477,11 @@ function StoreContent() {
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>Applications</h3>
-                  <span className={css['open-badge']}>OPEN</span>
+                  {TICKETS_WRAPPED ? (
+                    <span className={css['closed-badge']}>CLOSED</span>
+                  ) : (
+                    <span className={css['open-badge']}>OPEN</span>
+                  )}
                 </div>
               </div>
 
@@ -483,7 +499,9 @@ function StoreContent() {
                       ) : (
                         <CardPrice price={card.price ?? ''} priceInr={upiPriceFor(upiPrices, card.upiProduct) ?? undefined} />
                       )}
-                      {discountSoldOut(card.type) ? (
+                      {TICKETS_WRAPPED ? (
+                        <span className={css['opens-label']}>Closed</span>
+                      ) : discountSoldOut(card.type) ? (
                         <span className={css['sold-out-badge']}>Sold out</span>
                       ) : card.pretixItemId !== undefined ? (
                         <button
@@ -512,7 +530,11 @@ function StoreContent() {
               <div className={css['section-header']}>
                 <div className={css['section-title-row']}>
                   <h3 className={css['section-title']}>General Admission</h3>
-                  <span className={css['open-badge']}>OPEN</span>
+                  {TICKETS_WRAPPED ? (
+                    <span className={css['closed-badge']}>CLOSED</span>
+                  ) : (
+                    <span className={css['open-badge']}>OPEN</span>
+                  )}
                 </div>
                 <p className={css['section-subtitle']}>
                   Daily passes for a single day of Devcon. Open to anyone, available until sold out.
@@ -534,7 +556,9 @@ function StoreContent() {
                   </div>
                   <div className={css['card-footer']}>
                     <CardPrice price="$259" />
-                    {dailyPassSoldOut ? (
+                    {TICKETS_WRAPPED ? (
+                      <span className={css['opens-label']}>Closed</span>
+                    ) : dailyPassSoldOut ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
                       <div className={css['ga-actions']}>
