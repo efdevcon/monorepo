@@ -58,7 +58,7 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | announcements | highlight | title | Highlight card tapped |
 | announcements | push-open | pathname | Page opened from a push notification (worker marks the URL with `#from=push`, stripped on the page) |
 | offline | used | value = page views made offline | Sent once when the connection returns |
-| sw | update-shown / update-accepted | | Update toast |
+| sw | update-shown / update-accepted / update-slow / update-reload | | Update toast: prompt shown, Update clicked, switch still pending after the reload bound, Reload clicked from that state |
 | sync | bundle-failed | event id | Catalogue sync failed while online |
 | error | page | pathname | Route error page rendered |
 | feedback | open | `feedback`, `crash` | Feedback sheet opened |

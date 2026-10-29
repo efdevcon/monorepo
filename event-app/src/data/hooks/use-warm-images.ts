@@ -67,6 +67,14 @@ const queues: string[][] = [];
 const queued = new Set<string>();
 let running = false;
 /**
+ * Set by pauseImageWarming (the update toast): the pass stops and its in-flight
+ * fetches are aborted, so the worker has no event of ours in flight while the
+ * new worker tries to take over. Never resumed: the page reloads after the
+ * switch.
+ */
+let paused = false;
+const inFlight = new Set<AbortController>();
+/**
  * URLs whose fetch failed for connectivity reasons. Held here rather than
  * dropped, and flushed back into the queue on the next `online` event — losing
  * the network mid-warm otherwise meant those images stayed uncached until the
@@ -91,6 +99,7 @@ export type WarmPhase =
   | "connection-not-allowed"
   | "running"
   | "paused-offline"
+  | "paused-update"
   | "done";
 export interface WarmStatus {
   phase: WarmPhase;
@@ -200,14 +209,16 @@ async function missingFromCache(urls: string[]): Promise<string[]> {
 async function fetchChunk(chunk: string[]): Promise<void> {
   let cursor = 0;
   const worker = async () => {
-    while (cursor < chunk.length) {
+    while (cursor < chunk.length && !paused) {
       const url = chunk[cursor++];
+      const controller = new AbortController();
+      inFlight.add(controller);
       try {
         // `mode: "cors"` on purpose: it must match how the <img> tags request
         // these (they carry crossOrigin="anonymous"). Cache.match keys on URL
         // alone, so warming with no-cors would store an opaque response that a
         // later CORS-mode <img> request would find and then refuse to render.
-        const response = await fetch(url, { mode: "cors", credentials: "omit" });
+        const response = await fetch(url, { mode: "cors", credentials: "omit", signal: controller.signal });
         if (response.ok) {
           totalFetched++;
         } else {
@@ -216,9 +227,16 @@ async function fetchChunk(chunk: string[]): Promise<void> {
           totalFailed++;
         }
       } catch {
+        if (paused) {
+          // Aborted by the pause: back in the queue, so the counts stay right.
+          (queues[0] ??= []).unshift(url);
+          continue;
+        }
         // A thrown fetch means network, not HTTP: keep it for a retry once the
         // connection is back.
         deferred.push(url);
+      } finally {
+        inFlight.delete(controller);
       }
     }
   };
@@ -230,7 +248,7 @@ async function run(): Promise<void> {
   startedAt = startedAt || Date.now();
   publish("running");
 
-  while (pendingCount() > 0) {
+  while (pendingCount() > 0 && !paused) {
     // Always drain the most important non-empty tier, so anything queued later
     // at a higher priority is picked up on the next chunk.
     const tier = queues.find((t) => t && t.length > 0);
@@ -250,6 +268,12 @@ async function run(): Promise<void> {
       );
       await nextIdle();
     }
+  }
+
+  if (paused) {
+    running = false;
+    publish("paused-update");
+    return;
   }
 
   const seconds = ((Date.now() - startedAt) / 1000).toFixed(1);
@@ -294,6 +318,21 @@ function armOnlineResume(): void {
     totalQueued += resumed.length;
     if (!running) void run();
   });
+}
+
+/**
+ * Stop warming and abort its in-flight fetches. The update toast calls this
+ * before asking the new worker to take over, which Chrome holds back while the
+ * old worker still has a fetch event in flight: right after a load that is the
+ * warmer, for tens of seconds. The pass is not resumed; the page reloads once
+ * the switch is done.
+ */
+export function pauseImageWarming(): void {
+  if (paused) return;
+  paused = true;
+  for (const controller of inFlight) controller.abort();
+  inFlight.clear();
+  if (!running) publish("paused-update");
 }
 
 function pendingCount(): number {

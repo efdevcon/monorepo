@@ -60,7 +60,7 @@ const EVENTS = {
   speaker: ["share-copy", "share-native"],
   announcements: ["open", "highlight", "push-open"],
   offline: ["used"],
-  sw: ["update-shown", "update-accepted"],
+  sw: ["update-shown", "update-accepted", "update-slow", "update-reload"],
   sync: ["bundle-failed"],
   error: ["page"],
   feedback: ["open", "sent", "queued", "failed"],
