@@ -9,7 +9,7 @@ import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
-import { eventDayKey, eventFmt } from "@/data/eventTime";
+import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
 import { roomScreenRoomIds } from "@/data/venueRooms";
 import { roomIconUrl } from "./roomIcon";
@@ -217,9 +217,24 @@ export function RoomScreen({ roomId }: { roomId: string }) {
     () => sorted.filter((s) => s.start * 1000 > nowMs && s.id !== currentSession?.id).slice(0, MAX_UPCOMING),
     [sorted, nowMs, currentSession]
   );
+  // Grouped by venue day: today's rows sit under "Up next", later days under
+  // "Tomorrow" or "In N days" (Scott, 2026-10-29).
   const todayKey = eventDayKey(nowMs);
-  const todaySessions = laterSessions.filter((s) => eventDayKey(s.start * 1000) === todayKey);
-  const tomorrowSessions = laterSessions.filter((s) => eventDayKey(s.start * 1000) !== todayKey);
+  const dayGroups = useMemo(() => {
+    const groups: { key: string; label: string | null; sessions: Session[] }[] = [];
+    for (const s of laterSessions) {
+      const key = eventDayKey(s.start * 1000);
+      let group = groups.find((g) => g.key === key);
+      if (!group) {
+        const days = Math.round((dayKeyToUtcMidnightMs(key) - dayKeyToUtcMidnightMs(todayKey)) / 86_400_000);
+        group = { key, label: days <= 0 ? null : days === 1 ? "Tomorrow" : `In ${days} days`, sessions: [] };
+        groups.push(group);
+      }
+      group.sessions.push(s);
+    }
+    return groups;
+  }, [laterSessions, todayKey]);
+  const hasTodaySessions = dayGroups.some((g) => g.label === null);
 
   // The app QR encodes the absolute session URL; the tile's link stays
   // relative so the markup is hydration-safe.
@@ -361,28 +376,23 @@ export function RoomScreen({ roomId }: { roomId: string }) {
           }}
         >
           {/* "Up next" heads today's sessions; a rail with only tomorrow's shows "Tomorrow" alone (Scott, 2026-10-29). */}
-          {(todaySessions.length > 0 || laterSessions.length === 0) && (
+          {(hasTodaySessions || laterSessions.length === 0) && (
             <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
           )}
           {laterSessions.length > 0 ? (
             <div className="flex min-h-0 flex-col gap-[1em] overflow-hidden">
-              {todaySessions.length > 0 && (
-                <ul className="flex shrink-0 flex-col gap-[0.5em]">
-                  {todaySessions.map((session) => (
-                    <UpcomingCard key={session.id} session={session} />
-                  ))}
-                </ul>
-              )}
-              {tomorrowSessions.length > 0 && (
-                <>
-                  <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Tomorrow</h2>
+              {dayGroups.map((group) => (
+                <div key={group.key} className="flex shrink-0 flex-col gap-[1em]">
+                  {group.label && (
+                    <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">{group.label}</h2>
+                  )}
                   <ul className="flex shrink-0 flex-col gap-[0.5em]">
-                    {tomorrowSessions.map((session) => (
+                    {group.sessions.map((session) => (
                       <UpcomingCard key={session.id} session={session} />
                     ))}
                   </ul>
-                </>
-              )}
+                </div>
+              ))}
             </div>
           ) : (
             <p className="rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] text-dc-muted" style={GLASS}>
