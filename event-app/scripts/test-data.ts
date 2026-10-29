@@ -253,7 +253,7 @@ function testMaterialize() {
       ["Main Stage (Lotus)", "CLS - Builders Room", "Community Led Stage", "Jasmine Stage 4", "Lightning Stage", "Lotus Stage", "Lotus Stage 1", "Lotus Stage 2", "Lotus Stage 3", "Music Stage", "Workshop 1", "Workshop 2"]
     )
   );
-  check("room screen icons follow the renamed Devcon 8 ids", roomIconUrl("main-stage-lotus")!.endsWith("/mask.png") && roomIconUrl("lotus-stage-2")!.endsWith("/lantern.png") && roomIconUrl("lightning-stage")!.endsWith("/hat.png") && roomIconUrl("stage-1")!.endsWith("/fan.png"));
+  check("room screen icons follow the renamed Devcon 8 ids", roomIconUrl("main-stage-lotus")!.endsWith("/lotus.png") && roomIconUrl("lotus-stage-2")!.endsWith("/lotus.png") && roomIconUrl("lightning-stage")!.endsWith("/lightning-stage.png") && roomIconUrl("workshop-2")!.endsWith("/workshop.png") && roomIconUrl("stage-1")!.endsWith("/lotus.png"));
   check("timeline lanes for other events keep the Main Stage / Stage … / A–Z rule", eq(sortRooms(snap.sessions), ["Stage 1", "TBA"]));
 
   const noMeta = materialize({ ...rows, meta: null }, "devcon-7");
@@ -594,7 +594,7 @@ function testMeerkatHandover() {
       parsed.success && parsed.data.event.id === dataset.eventId && parsed.data.sessions.length > 0
     );
   }
-  check("room icon: themed stages resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/mask.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/hat.png" && roomIconUrl("classroom-a") === null);
+  check("room icon: map places resolve, others don't", roomIconUrl("main-stage") === "/maps/devcon-8/icons/lotus.png" && roomIconUrl("stage-5-cls") === "/maps/devcon-8/icons/lightning-stage.png" && roomIconUrl("cls-builders-room") === "/maps/devcon-8/icons/community-led-stage.png" && roomIconUrl("classroom-a") === null);
 }
 
 function testIosVersion() {
