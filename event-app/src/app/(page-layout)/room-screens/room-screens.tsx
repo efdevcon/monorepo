@@ -50,9 +50,9 @@ function RoomCard({ room, sessions, nowMs }: { room: Room; sessions: Session[]; 
   return (
     <Link
       href={`/room-screens/${room.id}`}
-      className="group flex flex-col gap-3 rounded-xl border border-dc-hairline bg-white p-4 transition-colors hover:border-dc-purple/40"
+      className="group flex flex-col rounded-xl border border-dc-hairline bg-white p-4 transition-colors hover:border-dc-purple/40"
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
         <div className="min-w-0">
           <h2 className="truncate text-[16px] font-bold leading-6 text-dc-fg2">{room.name}</h2>
           {room.description && <p className="truncate text-[13px] leading-5 text-dc-muted">{room.description}</p>}
@@ -71,7 +71,7 @@ function RoomCard({ room, sessions, nowMs }: { room: Room; sessions: Session[]; 
         )}
       </div>
 
-      <div className="flex min-w-0 flex-col text-[13px] leading-5 text-dc-fg2">
+      <div className="mb-3 flex min-w-0 flex-col text-[13px] leading-5 text-dc-fg2">
         {status.kind === "live" && (
           <p className="flex min-w-0 items-center gap-2">
             <span className="size-2 shrink-0 rounded-full bg-[#e11d48]" />
