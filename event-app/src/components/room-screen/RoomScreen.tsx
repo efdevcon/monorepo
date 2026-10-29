@@ -9,7 +9,7 @@ import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
-import { eventFmt } from "@/data/eventTime";
+import { eventDayKey, eventFmt } from "@/data/eventTime";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
 import { roomIconUrl } from "./roomIcon";
 
@@ -198,11 +198,15 @@ export function RoomScreen({ roomId }: { roomId: string }) {
     return live ?? sorted.find((s) => s.start * 1000 > nowMs) ?? null;
   }, [sorted, nowMs]);
   const sessionIsLive = currentSession ? getStatus(currentSession, nowMs) === "live" : false;
-  // The rail: what follows the session on screen.
+  // The rail: what follows the session on screen, today's sessions then
+  // tomorrow's under their own heading (Scott, 2026-10-29).
   const laterSessions = useMemo(
     () => sorted.filter((s) => s.start * 1000 > nowMs && s.id !== currentSession?.id).slice(0, MAX_UPCOMING),
     [sorted, nowMs, currentSession]
   );
+  const todayKey = eventDayKey(nowMs);
+  const todaySessions = laterSessions.filter((s) => eventDayKey(s.start * 1000) === todayKey);
+  const tomorrowSessions = laterSessions.filter((s) => eventDayKey(s.start * 1000) !== todayKey);
 
   // The app QR encodes the absolute session URL; the tile's link stays
   // relative so the markup is hydration-safe.
@@ -280,7 +284,7 @@ export function RoomScreen({ roomId }: { roomId: string }) {
                       Starts in {humanizeWait(minutesUntil(currentSession, nowMs))}
                     </p>
                   )}
-                  <h1 className="line-clamp-3 text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
+                  <h1 className="line-clamp-3 pb-[0.15em] text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
                     {currentSession.title}
                   </h1>
                 </div>
@@ -345,11 +349,25 @@ export function RoomScreen({ roomId }: { roomId: string }) {
         >
           <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
           {laterSessions.length > 0 ? (
-            <ul className="flex min-h-0 flex-col gap-[0.5em] overflow-hidden">
-              {laterSessions.map((session) => (
-                <UpcomingCard key={session.id} session={session} />
-              ))}
-            </ul>
+            <div className="flex min-h-0 flex-col gap-[1em] overflow-hidden">
+              {todaySessions.length > 0 && (
+                <ul className="flex shrink-0 flex-col gap-[0.5em]">
+                  {todaySessions.map((session) => (
+                    <UpcomingCard key={session.id} session={session} />
+                  ))}
+                </ul>
+              )}
+              {tomorrowSessions.length > 0 && (
+                <>
+                  <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Tomorrow</h2>
+                  <ul className="flex shrink-0 flex-col gap-[0.5em]">
+                    {tomorrowSessions.map((session) => (
+                      <UpcomingCard key={session.id} session={session} />
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
           ) : (
             <p className="rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] text-dc-muted" style={GLASS}>
               No more sessions in this room today.
