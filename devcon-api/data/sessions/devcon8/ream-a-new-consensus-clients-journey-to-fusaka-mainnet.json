@@ -1,8 +1,9 @@
 {
-  "id": "ream-full-fulu-compatibility-and-cross-client-interoperability",
+  "id": "ream-a-new-consensus-clients-journey-to-fusaka-mainnet",
   "sourceId": "7ZJ3EX",
-  "title": "Ream: Full Fulu Compatibility and Cross-Client Interoperability",
+  "title": "Ream: A new consensus client's journey to Fusaka mainnet",
   "description": "Fusaka changed how every consensus client handles blob data, peers and the beacon state. We took Ream through it in five steps, some with two tracks in parallel:\r\n\r\n1. Closing the gap against the Fulu consensus-specs.\r\n2. Full-custody PeerDAS, where blocks wait for their data, alongside range sync.\r\n3. Kurtosis interop with other clients, alongside backfill sync.\r\n4. Custody mode: storing only the columns a node is responsible for.\r\n5. Following Ethereum mainnet, alongside running our own Hoodi validator.\r\n\r\nWe'll share what broke on the way: spec mismatches like the fork digest that only showed up next to other clients; sync that held up on a devnet but stalled on a live network; validator APIs that external validator clients couldn't use, so our validators missed votes; and state processing that took seconds per mainnet block until we reworked it.\r\n\r\nIf you build or maintain a consensus client, you'll leave with a practical picture of what it takes to make one work on post-Fusaka Ethereum.",
+  "abstract": "A few months ago, Ream was an Electra client that only ran on its own devnet. We'll tell the story of adding PeerDAS, getting it to talk to other clients in Kurtosis, and finally watching it follow Ethereum mainnet and run a validator on Hoodi.\r\nAlong the way, we'll share what Fusaka really asks of a consensus client, and the bugs we only found once real peers showed up.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -24,6 +25,5 @@
   "resources_presentation": "https://docs.google.com/presentation/d/1ACVA9Sy0DKM8kQqNhZoQLHKOJ2CPJpfdiK0xSVDUPfM",
   "slot_start": 1793788200000,
   "slot_end": 1793789100000,
-  "slot_roomId": "workshop-2",
-  "abstract": "A few months ago, Ream was an Electra client that only ran on its own devnet. We'll tell the story of adding PeerDAS, getting it to talk to other clients in Kurtosis, and finally watching it follow Ethereum mainnet and run a validator on Hoodi.\r\nAlong the way, we'll share what Fusaka really asks of a consensus client, and the bugs we only found once real peers showed up."
+  "slot_roomId": "workshop-2"
 }
