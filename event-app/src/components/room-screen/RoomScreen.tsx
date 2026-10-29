@@ -105,10 +105,17 @@ function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
   );
 }
 
+/** A session's speakers once each: a sheet can list the same person twice (seen 2026-10-29). */
+function uniqueSpeakers(session: Session): Session["speakers"] {
+  const seen = new Set<string>();
+  return session.speakers.filter((sp) => !seen.has(sp.id) && seen.add(sp.id));
+}
+
 /** Overlapping avatars then the names, comma-separated. */
 function Speakers({ session }: { session: Session }) {
-  if (session.speakers.length === 0) return null;
-  const shown = session.speakers.slice(0, MAX_AVATARS);
+  const speakers = uniqueSpeakers(session);
+  if (speakers.length === 0) return null;
+  const shown = speakers.slice(0, MAX_AVATARS);
   return (
     <div className="flex min-w-0 items-center gap-[1em]">
       <div className="flex shrink-0 items-center">
@@ -123,7 +130,7 @@ function Speakers({ session }: { session: Session }) {
         ))}
       </div>
       <p className="min-w-0 truncate text-[1.25em] leading-[normal] tracking-[-0.0125em] text-dc-fg">
-        {session.speakers.map((sp) => sp.name).join(", ")}
+        {speakers.map((sp) => sp.name).join(", ")}
       </p>
     </div>
   );
@@ -131,6 +138,7 @@ function Speakers({ session }: { session: Session }) {
 
 /** One row of the Up next rail. */
 function UpcomingCard({ session }: { session: Session }) {
+  const speakers = uniqueSpeakers(session);
   return (
     <li className="flex items-center rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em]" style={GLASS}>
       <div className="flex min-w-0 flex-1 items-start gap-[1.25em]">
@@ -141,9 +149,9 @@ function UpcomingCard({ session }: { session: Session }) {
           <p className="text-[1em] font-bold leading-[1.5] tracking-[-0.0156em] text-dc-fg">{session.title}</p>
           <div className="flex min-w-0 items-start gap-[0.75em]">
             <TrackPill track={session.track} roomId={session.room?.id} size="sm" />
-            {session.speakers.length > 0 && (
+            {speakers.length > 0 && (
               <p className="min-w-0 flex-1 truncate text-[1em] leading-[normal] tracking-[-0.0156em] text-dc-fg">
-                {session.speakers.map((sp) => sp.name).join(", ")}
+                {speakers.map((sp) => sp.name).join(", ")}
               </p>
             )}
           </div>
