@@ -7,7 +7,6 @@ import { Clock3 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
 import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
-import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
 import { eventFmt } from "@/data/eventTime";
@@ -39,7 +38,8 @@ const GLASS: CSSProperties = {
   WebkitBackdropFilter: "blur(0.375em)",
 };
 
-const FIXED_NOTICE = "If the room is full please view on livestream or ask volunteers for any overflow rooms.";
+const FIXED_NOTICE =
+  "If the room is full please view on livestream or ask volunteers for any overflow rooms. Every session streams in the app with live translation.";
 const MAX_UPCOMING = 5;
 const MAX_AVATARS = 4;
 
@@ -191,7 +191,6 @@ export function RoomScreen({ roomId }: { roomId: string }) {
   const everySession = useSessionsOfAllProgrammes();
   const sessions = useMemo(() => everySession.filter((s) => s.room?.id === roomId), [everySession, roomId]);
   const { isLoading: sessionsLoading } = useSessions();
-  const { announcements } = useAnnouncements({ enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED });
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);
   const currentSession = useMemo(() => {
@@ -203,15 +202,6 @@ export function RoomScreen({ roomId }: { roomId: string }) {
   const laterSessions = useMemo(
     () => sorted.filter((s) => s.start * 1000 > nowMs && s.id !== currentSession?.id).slice(0, MAX_UPCOMING),
     [sorted, nowMs, currentSession]
-  );
-  // The two latest announcements beside the fixed notice.
-  const latestNotices = useMemo(
-    () =>
-      [...announcements]
-        .sort((a, b) => new Date(b.sendAt).getTime() - new Date(a.sendAt).getTime())
-        .slice(0, 2)
-        .map((a) => a.message || a.title),
-    [announcements]
   );
 
   // The app QR encodes the absolute session URL; the tile's link stays
@@ -258,13 +248,13 @@ export function RoomScreen({ roomId }: { roomId: string }) {
         style={{ backgroundColor: BAR_BG }}
       >
         <div className="flex min-w-0 items-center gap-[1em]">
-          <h2 className="truncate text-[2.25em] font-bold leading-none tracking-[-0.0139em]">{room.name}</h2>
+          <h2 className="whitespace-nowrap text-[2.25em] font-bold leading-none tracking-[-0.0139em]">{room.name}</h2>
           {roomIcon && (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={roomIcon} alt="" className="h-[2.25em] w-auto shrink-0 object-contain" />
           )}
         </div>
-        <div className="flex shrink-0 items-end gap-[0.75em] text-right font-bold">
+        <div className="flex shrink-0 items-baseline gap-[0.75em] text-right font-bold">
           <p className="text-[1em] leading-[1.38] tracking-[-0.03125em]">{dateLabel}</p>
           <p className="text-[2.25em] leading-none tracking-[-0.0139em] tabular-nums">{formatTime(nowMs / 1000)}</p>
         </div>
@@ -274,7 +264,7 @@ export function RoomScreen({ roomId }: { roomId: string }) {
       <main className="relative grid min-h-0 grid-cols-[minmax(0,52.5fr)_minmax(0,35.5fr)] items-start gap-[4em] p-[4em]">
         {currentSession ? (
           <section
-            className="flex max-h-full min-h-0 flex-col gap-[2em] overflow-hidden rounded-[1.25em] border border-dc-hairline p-[2em]"
+            className="flex max-h-full min-h-0 flex-col gap-[2em] self-start overflow-hidden rounded-[1.25em] border border-dc-hairline p-[2em]"
             style={GLASS}
           >
             <div className="flex min-h-0 flex-col gap-[2em]">
@@ -347,10 +337,10 @@ export function RoomScreen({ roomId }: { roomId: string }) {
         )}
 
         <aside
-          className="flex max-h-full min-h-0 flex-col gap-[1em]"
+          className="flex h-full min-h-0 flex-col gap-[1em] self-stretch"
           style={{
-            maskImage: "linear-gradient(to bottom, black 85%, transparent)",
-            WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent)",
+            maskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
           }}
         >
           <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
@@ -368,18 +358,9 @@ export function RoomScreen({ roomId }: { roomId: string }) {
         </aside>
       </main>
 
-      {/* FOOTER: the fixed notice and the latest announcements */}
-      <footer
-        className="relative flex items-center gap-[3em] px-[4em] py-[1em] text-[1em] leading-none text-white"
-        style={{ backgroundColor: BAR_BG }}
-      >
-        <p className="shrink-0 font-bold tracking-[0.03em]">NOTIFICATIONS</p>
-        <p className="shrink-0 truncate tracking-[-0.0156em]">{FIXED_NOTICE}</p>
-        {latestNotices.map((notice, i) => (
-          <p key={i} className="min-w-0 flex-1 truncate tracking-[-0.0156em]">
-            {notice}
-          </p>
-        ))}
+      {/* FOOTER: the fixed notice, centred */}
+      <footer className="relative flex items-center px-[4em] py-[1em] text-white" style={{ backgroundColor: BAR_BG }}>
+        <p className="min-w-0 flex-1 truncate text-center text-[1em] leading-none tracking-[-0.0156em]">{FIXED_NOTICE}</p>
       </footer>
     </Surface>
   );
