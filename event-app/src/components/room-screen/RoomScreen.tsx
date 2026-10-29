@@ -146,7 +146,7 @@ function UpcomingCard({ session }: { session: Session }) {
           {formatTime(session.start)}
         </p>
         <div className="flex min-w-0 flex-1 flex-col justify-center gap-[0.75em]">
-          <p className="text-[1em] font-bold leading-[1.5] tracking-[-0.0156em] text-dc-fg">{session.title}</p>
+          <p className="line-clamp-2 text-[1em] font-bold leading-[1.5] tracking-[-0.0156em] text-dc-fg">{session.title}</p>
           <div className="flex min-w-0 items-start gap-[0.75em]">
             <TrackPill track={session.track} roomId={session.room?.id} size="sm" />
             {speakers.length > 0 && (
@@ -297,7 +297,7 @@ export function RoomScreen({ roomId }: { roomId: string }) {
                       Starts in {humanizeWait(minutesUntil(currentSession, nowMs))}
                     </p>
                   )}
-                  <h1 className="line-clamp-3 pb-[0.15em] text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
+                  <h1 className="line-clamp-2 pb-[0.15em] text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
                     {currentSession.title}
                   </h1>
                 </div>
@@ -360,7 +360,10 @@ export function RoomScreen({ roomId }: { roomId: string }) {
             WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
           }}
         >
-          <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
+          {/* "Up next" heads today's sessions; a rail with only tomorrow's shows "Tomorrow" alone (Scott, 2026-10-29). */}
+          {(todaySessions.length > 0 || laterSessions.length === 0) && (
+            <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
+          )}
           {laterSessions.length > 0 ? (
             <div className="flex min-h-0 flex-col gap-[1em] overflow-hidden">
               {todaySessions.length > 0 && (
