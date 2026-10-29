@@ -710,7 +710,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                 {schema?.title || 'Form'}
               </h2>
               <p className="text-sm text-[#1a0d33] leading-5 text-center whitespace-pre-line">
-                This form is closed, please check back later.
+                This form is now closed. Thanks to everyone who applied for Devcon 8.
               </p>
               <Link
                 href="/"

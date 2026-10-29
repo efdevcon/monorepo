@@ -2,7 +2,7 @@ import React from 'react'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import { SEO } from 'components/domain/seo'
-import { MapPin, CarFront, Clock, UserRound, CircleAlert, TriangleAlert, ArrowUpRight } from 'lucide-react'
+import { MapPin, CarFront, Clock, UserRound, TriangleAlert, ArrowUpRight } from 'lucide-react'
 import themes from './themes.module.scss'
 import HeroBackground from './past-events-hero.png'
 import MoonBackground from 'assets/images/pages/faq-moon-bg.svg'
@@ -18,7 +18,7 @@ export default function ChildcarePage() {
     <Page theme={themes['tickets']} withHero darkFooter>
       <SEO
         title="Childcare"
-        description="Childcare option for Devcon 8 attendees — KLAY Equinox offers a special discounted rate near the venue in Mumbai."
+        description="The childcare option shared with Devcon 8 attendees — KLAY Equinox offered a special discounted rate near the venue in Mumbai."
       />
 
       <PageHero
@@ -39,13 +39,13 @@ export default function ChildcarePage() {
           </h1>
           <div className={css['intro-description']}>
             <p>
-              To help make Devcon more accessible for attendees traveling with young children, KLAY Equinox is offering
-              a special discounted rate directly to Devcon 8 attendees.
+              To help make Devcon more accessible for attendees traveling with young children, KLAY Equinox offered a
+              special discounted rate directly to Devcon 8 attendees during the event.
             </p>
             <p>
               KLAY Equinox is an independent childcare provider located approximately 2.4 km from the Devcon 8 venue at
-              Jio World Convention Centre (around 8 minutes by car). Devcon is sharing this option to help families
-              plan their time during the event. For more information, please visit the{' '}
+              Jio World Convention Centre (around 8 minutes by car). Devcon shared this option to help families plan
+              their time during the event. For more information, please visit the{' '}
               <a href={KLAY_WEBSITE} target="_blank" rel="noopener noreferrer">
                 official KLAY Equinox website
               </a>
@@ -96,8 +96,8 @@ export default function ChildcarePage() {
                 <div className={css['info-body']}>
                   <p className={css['info-label']}>Point of contact</p>
                   <p>
-                    KLAY has assigned a dedicated contact to assist Devcon 8 attendees with enquiries, registration,
-                    availability, and childcare arrangements.
+                    KLAY assigned a dedicated contact for Devcon 8 attendees&apos; enquiries, registration, availability,
+                    and childcare arrangements.
                   </p>
                   <p>
                     Shilpa Waghmare — <a href={`mailto:${KLAY_EMAIL}`}>{KLAY_EMAIL}</a>
@@ -109,23 +109,6 @@ export default function ChildcarePage() {
               Attendees should confirm current operating hours, availability, age requirements, and registration
               conditions directly with KLAY.
             </p>
-          </div>
-
-          {/* How to access the discount */}
-          <div className={css['card']}>
-            <h2 className={css['card-title']}>How to Access the Devcon Discount</h2>
-            <ol className={css['steps']}>
-              <li>Contact KLAY Equinox directly to enquire about availability.</li>
-              <li>
-                Mention that you are attending <strong>Devcon 8</strong>.
-              </li>
-              <li>Present your valid Devcon ticket during registration to receive the special attendee rate.</li>
-              <li>Complete any registration forms required by KLAY before your child&apos;s first visit.</li>
-            </ol>
-            <div className={css['note-callout']}>
-              <CircleAlert size={18} strokeWidth={2} className={css['note-callout-icon']} aria-hidden="true" />
-              <p>Availability is subject to centre capacity, so early booking is encouraged.</p>
-            </div>
           </div>
 
           {/* Important notes */}
@@ -143,10 +126,6 @@ export default function ChildcarePage() {
               <li>
                 Devcon does not guarantee availability or provide transportation, escorts, or supervision between the
                 event venue and the KLAY premises.
-              </li>
-              <li>
-                To better support Devcon families, KLAY Equinox intends to provide a dedicated childcare area for
-                children of Devcon 8 attendees, subject to operational feasibility and centre capacity.
               </li>
               <li>
                 Parents and guardians should review KLAY&apos;s terms, policies, eligibility requirements, and
@@ -171,20 +150,6 @@ export default function ChildcarePage() {
               KLAY&apos;s terms and conditions, policies, and any applicable law. The Ethereum Foundation assumes no
               responsibility for the provision of the childcare services by KLAY or for any of their acts or omissions.
             </p>
-          </div>
-
-          {/* Contact CTA */}
-          <hr className={css['cta-divider']} />
-          <div className={css['cta-card']}>
-            <p className={css['cta-title']}>Ready to arrange childcare?</p>
-            <a
-              href={`mailto:${KLAY_EMAIL}`}
-              className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-[#7235ed] px-8 py-3.5 text-base font-bold text-white transition-[background-color,transform] duration-150 ease-out hover:scale-[1.03] hover:bg-[#5f23d6] active:scale-[0.97] md:w-auto"
-              aria-label="Contact KLAY Equinox by email"
-            >
-              Contact KLAY Equinox
-              <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
-            </a>
           </div>
         </div>
       </section>
