@@ -169,7 +169,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     title: 'Indian Student 🇮🇳',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
+      'A limited amount of discounted tickets were distributed to students from all over India looking to explore Ethereum.',
     price: '$25',
     upiProduct: 'indian-student',
     buttonLabel: 'Apply now',
@@ -180,7 +180,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     title: 'International Student 🌎',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
+      'A limited amount of tickets were distributed to students from around the world who wished to learn more about Ethereum.',
     price: '$99',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
@@ -309,11 +309,11 @@ function StoreContent() {
               </div>
               <h2 className={css['sidebar-title']}>Ticket Store</h2>
               <p className={css['sidebar-description']}>
-                Secure your place at Devcon India, where the people behind decentralized systems come together to learn,
+                Ticket sales for Devcon 8 India have closed. Thank you to everyone who joined us in Mumbai to learn,
                 build, and connect.
               </p>
               <div className={css['sidebar-includes']}>
-                <p className={css['sidebar-includes-label']}>Included in ticket:</p>
+                <p className={css['sidebar-includes-label']}>Every ticket included:</p>
                 <ul className={css['sidebar-includes-list']}>
                   <li className={css['sidebar-includes-item']}>
                     <Ticket size={20} strokeWidth={1.5} aria-hidden="true" />
@@ -393,8 +393,8 @@ function StoreContent() {
                   )}
                 </div>
                 <p className={css['section-subtitle']}>
-                  Daily India Pass and self-claim discounts — no application required. Tickets are non-transferable and
-                  limited.
+                  Daily India Pass and self-claim discounts — no application was required. Tickets were non-transferable
+                  and limited.
                 </p>
               </div>
 
@@ -537,7 +537,7 @@ function StoreContent() {
                   )}
                 </div>
                 <p className={css['section-subtitle']}>
-                  Daily passes for a single day of Devcon. Open to anyone, available until sold out.
+                  Daily passes for a single day of Devcon. Open to anyone, available until they sold out.
                 </p>
               </div>
 
@@ -550,8 +550,7 @@ function StoreContent() {
                       Single-day access, up to {dailyPassMax} passes per order
                     </p>
                     <p className={css['discount-card-desc']}>
-                      This ticket grants access to a single day of Devcon, with lunch &amp; swag included. You may use
-                      this ticket for entry beginning only on Nov. 4.
+                      This ticket granted access to a single day of Devcon, with lunch &amp; swag included.
                     </p>
                   </div>
                   <div className={css['card-footer']}>
