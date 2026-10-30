@@ -26,6 +26,8 @@ import { QASkeleton } from "@/components/Skeletons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
+import { signInHref } from "@/routing/returnTo";
+import { detailHref } from "@/routing/viewParams";
 import { useOnline } from "@/hooks/useOnline";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
@@ -89,7 +91,13 @@ export function SessionQA({
   }
   return (
     <MeerkatProvider>
-      <QAFeed key={active} sessionId={active} size={size} onNotFound={onNotFound} />
+      <QAFeed
+        key={active}
+        sessionId={active}
+        returnTo={detailHref("session", session.id)}
+        size={size}
+        onNotFound={onNotFound}
+      />
     </MeerkatProvider>
   );
 }
@@ -135,11 +143,14 @@ function QAHeading({ size, count, live }: { size: Size; count?: number; live?: b
 
 function QAFeed({
   sessionId,
+  returnTo,
   size,
   onNotFound,
 }: {
   /** Meerkat's event id: the Pretalx code, or the slug on the retry. */
   sessionId: string;
+  /** This session's own page (`/schedule/<id>`), where sign-in brings the user back to (routing/returnTo.ts). */
+  returnTo: string;
   size: Size;
   /** Present while another id is still worth trying: called on a 404 instead of showing "not open". */
   onNotFound?: () => void;
@@ -174,16 +185,20 @@ function QAFeed({
         // The page (md) docks it: on phones it floats at the bottom of the
         // screen, above the tab bar, with only the button taking taps (the page
         // leaves room for it through data-qa-cta); from lg to the bottom of the Q&A
-        // column, edge to edge over the column's 16px padding. In the side
-        // panel (sm) it floats at the panel's bottom edge: absolute against
-        // SessionDetailsPanel's root, so it stays put while the content scrolls.
+        // column, edge to edge over the column's 16px padding, on a translucent
+        // band (QA_CTA_BAND). In the side panel (sm) it docks at the panel's
+        // bottom edge on the same band: absolute against SessionDetailsPanel's
+        // root, so it stays put while the content scrolls behind it.
         <div
           data-qa-cta
           className={cn(
             "z-10",
             size === "md"
-              ? "pointer-events-none fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:pointer-events-auto lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:border-t lg:border-dc-hairline lg:bg-white/75 lg:p-4 lg:backdrop-blur-[4px]"
-              : "pointer-events-none absolute inset-x-0 bottom-0 p-4"
+              ? cn(
+                  "pointer-events-none fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:pointer-events-auto lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:p-4",
+                  QA_CTA_BAND_LG
+                )
+              : cn("absolute inset-x-0 bottom-0 p-4", QA_CTA_BAND)
           )}
         >
           {user ? (
@@ -196,13 +211,16 @@ function QAFeed({
               target={standalone ? undefined : "_blank"}
               rel="noopener noreferrer"
               onClick={() => trackEvent("session", "qa", sessionId)}
-              className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}
+              className={cn(QA_CTA_CLASS, size === "md" ? "lg:shadow-none" : "shadow-none")}
             >
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
             </PrimaryAnchorButton>
           ) : (
-            <PrimaryLinkButton href="/my-devcon" className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}>
+            <PrimaryLinkButton
+              href={signInHref(returnTo)}
+              className={cn(QA_CTA_CLASS, size === "md" ? "lg:shadow-none" : "shadow-none")}
+            >
               Sign in to ask a question
             </PrimaryLinkButton>
           )}
@@ -242,9 +260,17 @@ function QAFeed({
   );
 }
 
-/** Full width; floating, with the feedback button's shadow. */
+/** Full width; floating, with the feedback button's shadow (dropped where it sits on the band). */
 const QA_CTA_CLASS =
   "pointer-events-auto w-full whitespace-nowrap shadow-[0_4px_12px_rgba(22,11,43,0.25)]";
+
+/**
+ * The band a docked button sits on: a hairline and frosted white over the
+ * content scrolling behind it, so the list never shows through the button
+ * (the side panel showed the speakers through it, 2026-10-30).
+ */
+const QA_CTA_BAND = "border-t border-dc-hairline bg-white/75 backdrop-blur-[4px]";
+const QA_CTA_BAND_LG = "lg:border-t lg:border-dc-hairline lg:bg-white/75 lg:backdrop-blur-[4px]";
 
 /** The compact state recipe in the Q&A slot's quiet white card. */
 const quietCard = {

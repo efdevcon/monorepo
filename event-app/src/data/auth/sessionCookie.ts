@@ -12,10 +12,45 @@ import { isIOS, isStandalone } from "@/utils/platform";
  */
 let lastSyncedToken: string | null = null;
 
+// Mirrors in flight, for whenSessionCookieSettled. The auth listener and
+// verifyOtp both call syncSessionCookie on a sign-in, so this is a count.
+let inFlight = 0;
+let settledWaiters: (() => void)[] = [];
+
+function settle(): void {
+  inFlight -= 1;
+  if (inFlight > 0) return;
+  const waiters = settledWaiters;
+  settledWaiters = [];
+  waiters.forEach((resolve) => resolve());
+}
+
+/**
+ * Resolves once no cookie mirror is in flight (at once when none is). For
+ * code that leaves My Devcon right after a sign-in towards a server-gated
+ * action (the session page's "Ask a question" reads the cookie): the user
+ * state flips at SIGNED_IN, a round trip before the cookie exists, and a
+ * tap in that gap is told to sign in again. Bounded, so a hung request never
+ * strands anyone on the sign-in page; a failed mirror degrades as before.
+ */
+export function whenSessionCookieSettled(timeoutMs = 4000): Promise<void> {
+  if (inFlight === 0) return Promise.resolve();
+  return new Promise((resolve) => {
+    const done = () => {
+      clearTimeout(timer);
+      settledWaiters = settledWaiters.filter((w) => w !== done);
+      resolve();
+    };
+    const timer = setTimeout(done, timeoutMs);
+    settledWaiters.push(done);
+  });
+}
+
 export async function syncSessionCookie(session: Session | null | undefined): Promise<boolean> {
   if (!session?.access_token || !session.refresh_token) return false;
   if (session.access_token === lastSyncedToken) return true;
   if (typeof navigator !== "undefined" && navigator.onLine === false) return false;
+  inFlight += 1;
   try {
     const res = await fetch("/api/auth/session", {
       method: "POST",
@@ -30,6 +65,8 @@ export async function syncSessionCookie(session: Session | null | undefined): Pr
     return res.ok;
   } catch {
     return false;
+  } finally {
+    settle();
   }
 }
 

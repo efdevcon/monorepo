@@ -2,10 +2,14 @@
 
 import { usePaneActive } from "@/components/paneContext";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
+import { whenSessionCookieSettled } from "@/data/auth/sessionCookie";
+import { useRouter } from "@/routing";
+import { RETURN_PARAM, safeReturnPath } from "@/routing/returnTo";
 import { HEADER_ACTIONS_ID } from "@/components/AppHeader";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { InstallCompactCard, InstallHeroCard } from "./InstallHeroCard";
@@ -29,6 +33,30 @@ export function Ticket() {
   const desktop = useIsDesktop();
 
   const preview = usePreviewState();
+
+  // Sent here to sign in by another page (the session page's Q&A puts its
+  // own path in `?next=`): once signed in, go back there. The effect also
+  // covers the post-verify reload on iOS (the param survives it) and a
+  // signed-in user landing here with the param. Only in-app paths are
+  // followed (routing/returnTo.ts), and only while this pane is the one on
+  // screen: the pane stays mounted behind the other tabs. The user state
+  // flips at SIGNED_IN, before the session cookie mirror has landed, and the
+  // page we return to may act on that cookie at once ("Ask a question"), so
+  // the return waits for the mirror (bounded, sessionCookie.ts).
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const paneActive = usePaneActive();
+  const returnTo = safeReturnPath(searchParams.get(RETURN_PARAM));
+  useEffect(() => {
+    if (!paneActive || !user || !returnTo) return;
+    let cancelled = false;
+    void whenSessionCookieSettled().then(() => {
+      if (!cancelled) router.replace(returnTo);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [paneActive, user, returnTo, router]);
 
   // Auth not resolved yet: the page frame with a ticket-shaped placeholder,
   // so neither the sign-in form nor the tickets flash in.

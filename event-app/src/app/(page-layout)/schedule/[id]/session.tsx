@@ -143,6 +143,12 @@ const BOTTOM_FADE_MASK =
  * Vertical scroll container whose bottom 56px fades while more content is
  * below. A mask (not an overlay) so the fade reads over any content; lifted
  * once scrolled to the end so the last item isn't permanently dim.
+ *
+ * Positioned on purpose: a scroll container only clips the absolutely
+ * positioned descendants it is the containing block of. With every ancestor
+ * static, the Q&A list's `sr-only` vote labels (absolute, 1px) landed on the
+ * document instead and a session with many questions grew the page by their
+ * full height below the panel, a long blank scroll (2026-10-30).
  */
 function FadingScrollColumn({
   className,
@@ -158,7 +164,7 @@ function FadingScrollColumn({
   return (
     <div
       ref={ref}
-      className={cn("overflow-y-auto", className)}
+      className={cn("relative overflow-y-auto", className)}
       style={
         atEnd || !fade
           ? undefined

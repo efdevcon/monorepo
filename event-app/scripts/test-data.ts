@@ -77,6 +77,9 @@ import {
   reminderBody,
   reminderId,
 } from "../src/data/reminders/reminders";
+import { RETURN_PARAM, safeReturnPath, signInHref } from "../src/routing/returnTo";
+import { syncSessionCookie, whenSessionCookieSettled } from "../src/data/auth/sessionCookie";
+import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
 
 let failed = 0;
@@ -943,6 +946,47 @@ function testTeamTestPush() {
   check("product team list reads its env var", eq(productTeamEmails({ PUSH_PRODUCT_TEAM_EMAILS: "x@example.org" }), ["x@example.org"]));
 }
 
+async function testSessionCookieSettled() {
+  console.log("\n--- the return after sign-in waits for the session cookie mirror ---");
+  const realFetch = globalThis.fetch;
+  let resolveFetch: ((r: Response) => void) | null = null;
+  globalThis.fetch = (() => new Promise<Response>((res) => { resolveFetch = res; })) as typeof fetch;
+  const probe = (ms: number) => Promise.race([whenSessionCookieSettled(1000).then(() => "settled"), new Promise<string>((r) => setTimeout(() => r("pending"), ms))]);
+  try {
+    check("nothing in flight: settles at once", (await probe(50)) === "settled");
+    const sync = syncSessionCookie({ access_token: "a1", refresh_token: "r1" } as AuthSession);
+    check("mirror in flight: waits", (await probe(50)) === "pending");
+    resolveFetch!(new Response("{}", { status: 200 }));
+    await sync;
+    check("mirror done: settles", (await probe(50)) === "settled");
+    const hung = syncSessionCookie({ access_token: "a2", refresh_token: "r2" } as AuthSession);
+    const t = Date.now();
+    await whenSessionCookieSettled(80);
+    const waited = Date.now() - t;
+    check("hung mirror: the wait is bounded", waited >= 70 && waited < 500, `${waited}ms`);
+    resolveFetch!(new Response("{}", { status: 200 }));
+    await hung;
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+}
+
+function testReturnAfterSignIn() {
+  console.log("\n--- return to the page that asked for sign-in ---");
+  check("sign-in href carries the session path", signInHref("/schedule/abc-123") === `/my-devcon?${RETURN_PARAM}=%2Fschedule%2Fabc-123`);
+  check("sign-in href without a safe target is plain My Devcon", signInHref("https://evil.example") === "/my-devcon");
+  check("in-app path accepted", safeReturnPath("/schedule/abc-123") === "/schedule/abc-123");
+  check("in-app path with query and hash accepted", safeReturnPath("/schedule/abc?hubs=1#qa") === "/schedule/abc?hubs=1#qa");
+  check("protocol-relative rejected", safeReturnPath("//evil.example/x") === null);
+  check("backslash variant rejected", safeReturnPath("/\\evil.example/x") === null);
+  check("absolute URL rejected", safeReturnPath("https://evil.example/x") === null);
+  check("scheme rejected", safeReturnPath("javascript:alert(1)") === null);
+  check("relative path rejected", safeReturnPath("schedule/abc") === null);
+  check("control characters rejected", safeReturnPath("/schedule/abc\n") === null);
+  check("empty and missing rejected", safeReturnPath("") === null && safeReturnPath(null) === null && safeReturnPath(undefined) === null);
+  check("My Devcon itself is not a return target (no loop)", safeReturnPath("/my-devcon") === null && safeReturnPath("/my-devcon?next=%2Fx") === null);
+}
+
 function testServiceWorkerUpdateFlow() {
   console.log("\n--- service worker update flow ---");
   const SKIP = JSON.stringify({ type: "SKIP_WAITING" });
@@ -1107,6 +1151,8 @@ async function main() {
   testAiPlan();
   testPreviewAccess();
   testServiceWorkerUpdateFlow();
+  testReturnAfterSignIn();
+  await testSessionCookieSettled();
   testTeamTestPush();
   await testRetryOnce();
   await testWhenControlled();
