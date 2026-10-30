@@ -109,9 +109,7 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.equal(f2?.name, "Base");
   assert.equal(f2?.boothName, "Flagship Supporter F2");
   assert.equal(f2?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
-  const f1 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 1);
-  assert.equal(f1?.name, "Flagship Supporter F1", "a vacant booth keeps the plan's name");
-  assert.equal(f1?.boothName, null);
+  assert.ok(!AREA_LIST.some((a) => a.areaId === "flagship-supporter" && a.instance === 1), "booth F1 was removed from the plan (2026-10-30)");
   const s4 = AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4);
   assert.equal(s4?.name, "Bitget", "every supporter booth has a tenant since 2026-10-25");
   assert.equal(s4?.boothName, "Starter Supporter S4", "the plan name stays as the booth line");
@@ -136,7 +134,7 @@ test("floor legend: Level 3 keeps the Community and Supporters swatches and list
   assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
   assert.equal(community.areas.filter((a) => a.areaId === "community-hub").length, 14);
   const supporters = legend.find((e) => e.label === "Supporters")!;
-  assert.equal(supporters.areas.length, 28, "flagship, core and starter booths, plus the CoW Swap stand listed under Supporters");
+  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths (F1 gone since 2026-10-30), plus the CoW Swap stand listed under Supporters");
   assert.ok(supporters.swatch && !supporters.iconUrl);
   assert.ok(legend.find((e) => e.label === "Game Zone")!.iconUrl?.endsWith("/game-zone.png"));
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");

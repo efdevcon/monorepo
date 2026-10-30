@@ -131,7 +131,7 @@ export const AREAS = {
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    // F1 is vacant since 2026-10-30 (Fluid removed, Scott).
+    // Only F2 is drawn: F1's box was removed from the committed L3.svg on 2026-10-30 (Fluid left; mirror it in Figma).
     tenants: { 2: "base" },
   },
   "core-supporter": {
