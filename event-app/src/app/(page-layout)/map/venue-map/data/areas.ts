@@ -1,13 +1,15 @@
 import type { CategoryId } from "./categories";
 import type { IconName } from "./icons.generated";
+import type { SupporterId } from "./supporters";
 
 /**
  * Extrusion classes (metres, deliberately taller than life so the blocks read
  * at the fitted zoom; the plan is ~245 m wide). `zone` is a flat mat: hubs,
  * tea & coffee, storage and the elevators sit on the floor like the co-work
- * areas (Scott, 2026-10-25); stages, washrooms, suites and supporter booths stand up.
+ * areas (Scott, 2026-10-25); stages, washrooms, suites and supporter booths stand up; `stand`
+ * is half a kiosk (the CoW Swap coffee stand among the booths, Scott, 2026-10-30).
  */
-export type HeightClass = "stage" | "room" | "kiosk" | "zone";
+export type HeightClass = "stage" | "room" | "kiosk" | "stand" | "zone";
 
 export type AreaSpec = {
   /**
@@ -16,6 +18,7 @@ export type AreaSpec = {
    * and collapse into one Find row ("Washroom ×2").
    */
   name: string;
+  /** May link another place as `[label](area:<area id>)`: the card renders it as a button that shows that place (the Ticket Help Desk points at the Info Desk). */
   description: string;
   category: CategoryId;
   /** The legend chip the footprint belongs to when it is not its category's (the yellow discussion corners sit under Community, with the hubs). */
@@ -29,12 +32,21 @@ export type AreaSpec = {
   iconSize?: number;
   /** Per instance number: a different sprite (the elevator on the east side faces the other way). */
   icons?: Readonly<Record<number, IconName>>;
+  /** Per instance number: a sprite height of its own (the Level 3 washroom beside the hubs, whose full-size icon covered them). */
+  iconSizes?: Readonly<Record<number, number>>;
+  /**
+   * Per instance number: a footprint under a shared layer name that is a place of its own (the CoW Swap tea &
+   * coffee stand on Level 3): its own name, description and icon; `host` names the supporter running it, whose
+   * logo takes the card and list chips on the footprint's fill like a booth's, and lists the place under
+   * Supporters as well as its own category.
+   */
+  variants?: Readonly<Record<number, Variant>>;
   /** Schedule room ids (Pretalx) whose sessions happen here: drives "Show on Map" and the live-session card. */
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
   hubs?: Readonly<Record<number, string>>;
-  /** Per instance number: who is at that booth (supporters). The logo becomes the sprite, the name the card's; the plan's booth name stays as the booth line. */
-  tenants?: Readonly<Record<number, Tenant>>;
+  /** Per instance number: who is at that booth (supporters.ts). The logo becomes the sprite, the name, blurb and links the card's; the plan's booth name stays as the booth line. */
+  tenants?: Readonly<Record<number, SupporterId>>;
   /** Position in Find and Search lists within the category (lower first, then by name; unset = 100). */
   rank?: number;
   /** The place's own site, linked as "Visit website" under the card's description (https only). */
@@ -45,14 +57,8 @@ export type AreaSpec = {
   rooms?: Readonly<Record<number, string>>;
 };
 
-/**
- * A supporter at a booth. `logo` is a path under public/ (white lockups, on the booth's fill colour): the
- * decal on the booth, and the card and list chips unless `cardLogo` names a fuller lockup for those (the
- * compact marks that fit a small booth's top are too terse for a chip; Scott, 2026-10-27).
- */
-export type Tenant = { name: string; logo: string; cardLogo?: string };
-
-const supporter = (name: string, file: string, cardFile?: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg`, ...(cardFile ? { cardLogo: `/maps/jwcc/supporters/${cardFile}.svg` } : {}) });
+/** A place of its own under a shared layer name (`variants`); `host` is the supporter running it (supporters.ts), `heightClass` overrides the layer's at build time. */
+export type Variant = { name: string; description: string; icon?: IconName; host?: SupporterId; website?: string; heightClass?: HeightClass };
 
 /**
  * Every tappable layer of the plan SVGs, keyed by area id: the layer name
@@ -117,22 +123,23 @@ export const AREAS = {
     },
   },
   // Supporter booths
-  // Booth assignments from the JWCC floor plan (Scott, 2026-10-25). Logos: the website's white
-  // supporter set, as a test (colour versions may follow). Shared booths name one supporter only:
-  // which supporters are present changes mid-event and is updated then (Scott, 2026-10-25).
+  // Booth assignments from the JWCC floor plan (Scott, 2026-10-25); who each id is, with blurb, site and X, is in
+  // supporters.ts. Logos: the website's white supporter set, as a test (colour versions may follow). Shared booths
+  // name one supporter only: which supporters are present changes mid-event and is updated then (Scott, 2026-10-25).
   "flagship-supporter": {
     name: "Flagship Supporter F#",
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: supporter("Fluid", "fluid"), 2: supporter("Base", "base") },
+    // Only F2 is drawn: F1's box was removed from the committed L3.svg on 2026-10-30 (Fluid left; mirror it in Figma).
+    tenants: { 2: "base" },
   },
   "core-supporter": {
     name: "Core Supporter C#",
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: supporter("Gnosis", "gnosis"), 2: supporter("Kleros", "kleros"), 3: supporter("Arkiv", "arkiv"), 4: supporter("OpenZeppelin", "openzeppelin") },
+    tenants: { 1: "gnosis", 2: "kleros", 3: "arkiv", 4: "openzeppelin" },
   },
   starter: {
     name: "Starter Supporter S#",
@@ -140,34 +147,46 @@ export const AREAS = {
     category: "supporters",
     heightClass: "kiosk",
     tenants: {
-      1: supporter("ENS", "ens"),
-      2: supporter("Ordocode", "ordocode", "ordocode-full"),
-      3: supporter("Nethermind", "nethermind"),
-      4: supporter("Bitget", "bitget"),
-      5: supporter("World", "world"),
-      6: supporter("Trail of Bits", "trail-of-bits"),
-      7: supporter("Swarm", "swarm"),
-      8: supporter("Linux Foundation Decentralized Trust", "lfdt"),
-      9: supporter("EEZ", "eez", "eez-full"),
-      10: supporter("Crossbar", "crossbar"),
-      11: supporter("UNICEF", "unicef"),
-      12: supporter("Fair Food Data", "fair-food-data"),
-      13: supporter("Ethereum Applications Guild", "eag", "eag-full"),
-      14: supporter("EIPsInsight", "eipsinsight"),
-      15: supporter("growthepie", "growthepie"),
-      16: supporter("GCC Commons", "gcc"),
-      17: supporter("ETH Labs", "eth-labs"),
-      18: supporter("Railgun", "railgun"),
-      19: supporter("Walletbeat", "walletbeat", "walletbeat-full"),
-      20: supporter("Nimbus", "nimbus", "nimbus-full"),
-      21: supporter("GrapheneOS", "grapheneos", "grapheneos-full"),
+      1: "ens",
+      2: "ordocode",
+      3: "nethermind",
+      4: "bitget",
+      5: "world",
+      6: "trail-of-bits",
+      7: "swarm",
+      8: "lfdt",
+      9: "eez",
+      10: "crossbar",
+      11: "unicef",
+      12: "fair-food-data",
+      13: "eag",
+      14: "eipsinsight",
+      15: "growthepie",
+      16: "gcc",
+      17: "eth-labs",
+      18: "railgun",
+      19: "walletbeat",
+      20: "nimbus",
+      21: "grapheneos",
     },
   },
   // Food & drink
-  "tea-coffee": { name: "Tea & Coffee", description: "Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
+  "tea-coffee": {
+    name: "Tea & Coffee",
+    description: "Tea, coffee and snacks all day.",
+    category: "food",
+    heightClass: "zone",
+    icon: "coffee",
+    minWidth: 2.5,
+    // The CoW Swap cup a fifth larger than the footprint-derived 3.3 m (Scott, 2026-10-30).
+    iconSizes: { 8: 4 },
+    // The stand above the supporter booths is hosted by CoW Swap: its own cup, name and description, and CoW Swap's lockup on the card (Scott, 2026-10-30).
+    variants: { 8: { name: "CoW Swap (Coffee Stand)", description: "Tea, coffee and snacks all day, served by CoW Swap.", icon: "cow-swap-coffee-cup", host: "cow-swap", heightClass: "stand" } },
+  },
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
-  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
+  // Washroom 9 (Level 3) stands right behind hubs 8–10; its icon is a size down so it stops covering them (Scott, 2026-10-30).
+  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets", iconSizes: { 9: 4.5 } },
   // Cowork & discussion
   "co-work-area": { name: "Co-work Area", description: "Desks, power and wifi.", category: "cowork", heightClass: "zone", icon: "cowork" },
   "quiet-co-work": { name: "Quiet Co-work", description: "Heads-down desks, keep it quiet.", category: "cowork", heightClass: "zone", icon: "cowork" },
@@ -177,7 +196,9 @@ export const AREAS = {
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
   registration: { name: "Registration", description: "Check in and collect your wristband.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
   "badge-pickup": { name: "Badge Pickup #", description: "Create a Devcon badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
-  "help-desk": { name: "Help Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  // Two desks: the Help Desk is ticketing only, the Info Desk (by the registration entrance, added 2026-10-30) is the volunteers' general one (Scott).
+  "help-desk": { name: "Ticket Help Desk", description: "Ticketing help only: a ticket that won't scan, a missing or transferred ticket, the wrong ticket type, or any other problem with your ticket. For general questions about the event, head to the [Info Desk](area:info-desk).", category: "checkin", heightClass: "kiosk", icon: "ticket-help-desk" },
+  "info-desk": { name: "Info Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
   "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Check in your bag or ask about lost property.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },

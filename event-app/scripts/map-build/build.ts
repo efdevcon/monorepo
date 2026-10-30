@@ -322,14 +322,15 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     }
     const entry: AreaSpec = AREAS[areaId];
     usedAreaIds.add(areaId);
-    if (!entry.icon) {
+    const variant = instance === null ? undefined : entry.variants?.[instance];
+    if (!(variant?.icon ?? entry.icon)) {
       for (const d of items) addDeco(d, id);
       report.info(file, groupName, `"${entry.name}" has no icon yet: drawn as the plan's symbol, not tappable`);
       continue;
     }
     const [x0, y0, x1, y1] = bbox(items.flatMap((d) => d.subpaths.map((s) => s.points)));
     const rect: Polygon = { outer: [[x0, y0], [x1, y0], [x1, y1], [x0, y1]], holes: [] };
-    addShape(toShape(spec.id, id, "area", [rect], HEIGHTS[entry.heightClass], slabFill, false, frame, { areaId, hidden: true, ...(instance === null ? {} : { instance }) }), groupName);
+    addShape(toShape(spec.id, id, "area", [rect], HEIGHTS[variant?.heightClass ?? entry.heightClass], slabFill, false, frame, { areaId, hidden: true, ...(instance === null ? {} : { instance }) }), groupName);
     report.info(file, groupName, `drawn as its sprite (${items.length} paths hidden)`);
   }
 
@@ -355,7 +356,8 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     const polygons = filledPolygons(d, entry.minWidth ? entry.minWidth / frame.metresPerPx : 0);
     const after = bbox(polygons.flatMap((p) => [p.outer, ...p.holes]));
     if (entry.minWidth && (after[2] - after[0] - (before[2] - before[0]) > 1e-6 || after[3] - after[1] - (before[3] - before[1]) > 1e-6)) report.info(file, d.id, `widened to ${entry.minWidth} m`);
-    addShape(toShape(spec.id, id, "area", polygons, HEIGHTS[entry.heightClass], d.paint.fill, true, frame, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
+    const variant = instance === null ? undefined : entry.variants?.[instance];
+    addShape(toShape(spec.id, id, "area", polygons, HEIGHTS[variant?.heightClass ?? entry.heightClass], d.paint.fill, true, frame, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
   }
 
   // An area drawn inside another (the tea & coffee stand in the Co-work Area) stands on it: coplanar caps z-fight otherwise.
@@ -408,7 +410,8 @@ export function buildBundle(report: Report): MapBundle | null {
   for (const areaId of Object.keys(AREAS)) if (!used.has(areaId)) report.error("data/areas.ts", areaId, "catalogue entry matches no layer on any floor");
   // Icons must exist.
   for (const [areaId, entry] of Object.entries(AREAS) as [string, AreaSpec][]) {
-    if (entry.icon && !fs.existsSync(path.join(ICONS_DIR, `${entry.icon}.png`))) report.error("data/areas.ts", areaId, `icon "${entry.icon}" has no PNG under public/maps/devcon-8/icons`);
+    const icons = [entry.icon, ...Object.values(entry.icons ?? {}), ...Object.values(entry.variants ?? {}).map((v) => v.icon)].flatMap((i) => (i ? [i] : []));
+    for (const icon of icons) if (!fs.existsSync(path.join(ICONS_DIR, `${icon}.png`))) report.error("data/areas.ts", areaId, `icon "${icon}" has no PNG under public/maps/devcon-8/icons`);
   }
   if (!levels.length) return null;
   const bounds: GroundBounds = levels.reduce(

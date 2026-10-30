@@ -13,9 +13,12 @@ import { Link } from "@/routing";
  * behind the floating nav (nav is z-30), so the app chrome appears to overlay
  * the map.
  *
- * Until RELEASED.venueMap, everyone gets MapComingSoon instead (the tab and
- * every "on map" link stay, as Devconnect's app did with its map); the team
- * turns the real map on per device in EF internal tools.
+ * Released to everyone since 2026-10-30 (RELEASED.venueMap): the map mounts
+ * at once, without waiting for the auth session (Scott, 2026-10-30). Flipping
+ * the gate back off gives everyone MapComingSoon instead (the tab and every
+ * "on map" link stay, as Devconnect's app did with its map) and the team turns
+ * the real map on per device in EF internal tools; only then does the pane
+ * wait for the session, which decides between the two.
  */
 export function MapPane() {
   const { hasInitialized } = useUser();
@@ -23,12 +26,12 @@ export function MapPane() {
 
   return (
     <div className="fixed inset-0 z-0 flex">
-      {!hasInitialized ? (
-        <MapLoading />
-      ) : released ? (
+      {released ? (
         <React.Suspense fallback={<MapLoading />}>
           <VenueMap />
         </React.Suspense>
+      ) : !hasInitialized ? (
+        <MapLoading />
       ) : (
         <MapComingSoon />
       )}

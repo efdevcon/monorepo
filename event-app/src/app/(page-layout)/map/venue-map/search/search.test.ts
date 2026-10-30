@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { test } from "node:test";
 import { buildFindGroups, buildFloorLegend, primaryOf } from "../find/catalogue";
 import { LEVELS } from "../data/levels";
 import { AREA_LIST } from "../data/resolve";
 import { SEARCH_TERMS } from "../data/searchTerms";
+import { SUPPORTERS, type Supporter } from "../data/supporters";
 import { parseFloorQuery, searchFind } from "./search";
 
 const L = LEVELS[0];
@@ -19,9 +22,18 @@ test("floor parsing: aliases, scoped text, bare digits stay names", () => {
 
 test("search: name and category matches, duplicates collapsed with their count", () => {
   const { hits } = searchFind(groups, "coffee");
-  assert.equal(hits.length, 3, "the tea & coffee footprints are one row per floor (L1, L2, L3)");
-  assert.equal(hits.find((h) => h.level === L3)?.areas.length, 5, "five on Level 3");
-  assert.deepEqual(hits.map((h) => h.level), ["L1", "L2", "L3"], "same name sorts by floor");
+  assert.equal(hits.length, 4, "the tea & coffee footprints are one row per floor (L1, L2, L3), plus the CoW Swap stand's own row");
+  assert.equal(hits.find((h) => h.level === L3 && h.name === "Tea & Coffee")?.areas.length, 4, "four unnamed stands on Level 3");
+  const cow = hits.find((h) => h.name === "CoW Swap (Coffee Stand)")!;
+  assert.ok(cow && cow.areas.length === 1 && !cow.iconBackdrop && cow.iconUrl?.endsWith("/cow-swap-coffee-cup.png"), "the hosted stand is one row, with its own cup under Food & drink");
+  assert.equal(hits.filter((h) => h.key === cow.key).length, 1, "listed under Food & drink and Supporters, but one hit");
+  const cowBooth = groups.find((g) => g.category.id === "supporters")!.floors.flatMap((f) => f.entries).find((e) => e.key === cow.key)!;
+  assert.ok(cowBooth.iconBackdrop && cowBooth.iconUrl?.endsWith("/cow-swap.svg"), "under Supporters it carries the host's lockup on a chip");
+  assert.equal(cow.areas[0].heightClass, "stand", "half a booth high");
+  const onFloor = searchFind(groups, "level 3").hits.filter((h) => h.key === cow.key);
+  assert.equal(onFloor.length, 1);
+  assert.ok(onFloor[0].secondary && onFloor[0].iconBackdrop, "a bare floor query keeps the stand in the Supporters run, with the lockup like its neighbours");
+  assert.deepEqual(hits.map((h) => h.level), ["L3", "L1", "L2", "L3"], "same name sorts by floor");
   assert.equal(searchFind(groups, "coffee l1").hits.length, 1, "a floor in the query scopes it");
   const washrooms = searchFind(groups, "washrooms").hits;
   assert.ok(washrooms.some((h) => h.name === "Washroom"), "category label matches");
@@ -35,7 +47,8 @@ test("search: custom terms bring up their categories and areas", () => {
   const suites = searchFind(groups, "meeting room").hits;
   assert.ok(suites.length > 0 && suites.every((h) => h.category.id === "suites"), "meeting room → the suites only");
   assert.equal(searchFind(groups, "mee").hits.length, suites.length, "a prefix of three letters matches");
-  assert.ok(searchFind(groups, "me").hits.every((h) => h.category.id !== "suites" || h.name.toLowerCase().includes("me")), "two letters stay a name search");
+  assert.ok(searchFind(groups, "lu").hits.every((h) => h.category.id !== "food" || h.name.toLowerCase().includes("lu")), "two letters stay a name search");
+  assert.equal(searchFind(groups, "lun").hits.length, searchFind(groups, "lunch").hits.length, "a prefix of three letters matches");
   const food = searchFind(groups, "lunch").hits;
   assert.ok(food.length > 0 && food.every((h) => h.category.id === "food"), "lunch → food & drink");
   const ways = searchFind(groups, "where is the exit").hits;
@@ -58,7 +71,9 @@ test("search terms: every target exists in the catalogue (a typo would match not
 
 test("catalogue: every area is listed once, numbered names carry their number", () => {
   const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.filter((e) => !e.key.includes("composite:")).flatMap((e) => e.areas)));
-  assert.equal(listed.length, AREA_LIST.length);
+  assert.equal(new Set(listed).size, AREA_LIST.length);
+  assert.equal(listed.length, AREA_LIST.length + 1, "the CoW Swap stand is listed twice: Food & drink and Supporters");
+  assert.ok(groups.find((g) => g.category.id === "supporters")!.floors.some((f) => f.entries.some((e) => e.name === "CoW Swap (Coffee Stand)")));
   const stageFloors = groups.find((g) => g.category.id === "stages")!.floors;
   assert.deepEqual(
     stageFloors.map((f) => f.level),
@@ -90,14 +105,15 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.ok(hub7?.iconUrl?.includes("/community-hubs/logos/privacy.svg"), "the hub's mark is the sprite");
   assert.ok(hub7?.roomIds.includes("community-hub-privacy"));
   assert.ok(AREA_LIST.some((a) => a.areaId === "escalator" && a.shape.hidden), "escalators are sprite-only places");
-  const f1 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 1);
-  assert.equal(f1?.name, "Fluid");
-  assert.equal(f1?.boothName, "Flagship Supporter F1");
-  assert.equal(f1?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
+  const f2 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 2);
+  assert.equal(f2?.name, "Base");
+  assert.equal(f2?.boothName, "Flagship Supporter F2");
+  assert.equal(f2?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
+  assert.ok(!AREA_LIST.some((a) => a.areaId === "flagship-supporter" && a.instance === 1), "booth F1 was removed from the plan (2026-10-30)");
   const s4 = AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4);
   assert.equal(s4?.name, "Bitget", "every supporter booth has a tenant since 2026-10-25");
   assert.equal(s4?.boothName, "Starter Supporter S4", "the plan name stays as the booth line");
-  assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters").every((a) => a.boothName && !a.name.includes(" / ")), "shared booths name one supporter only");
+  assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters" && a.boothName).every((a) => !a.name.includes(" / ")), "shared booths name one supporter only");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");
   const hubs = AREA_LIST.filter((a) => a.areaId === "community-hub");
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));
@@ -118,7 +134,7 @@ test("floor legend: Level 3 keeps the Community and Supporters swatches and list
   assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
   assert.equal(community.areas.filter((a) => a.areaId === "community-hub").length, 14);
   const supporters = legend.find((e) => e.label === "Supporters")!;
-  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths");
+  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths (F1 gone since 2026-10-30), plus the CoW Swap stand listed under Supporters");
   assert.ok(supporters.swatch && !supporters.iconUrl);
   assert.ok(legend.find((e) => e.label === "Game Zone")!.iconUrl?.endsWith("/game-zone.png"));
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
@@ -128,13 +144,24 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
   const l0 = buildFloorLegend("L0");
   assert.deepEqual(
     l0.map((e) => e.label),
-    ["Community Led Stage", "CLS Hangout Area", "Registration", "Badge Pickup", "Help Desk", "Cloak Room", "Food Garden", "Poster Printing Station", "Poster Display"]
+    ["Community Led Stage", "CLS Hangout Area", "Registration", "Badge Pickup", "Ticket Help Desk", "Info Desk", "Cloak Room", "Food Garden", "Poster Printing Station", "Poster Display"]
   );
   assert.ok(l0.every((e) => e.iconUrl || e.swatch), "a chip has an icon or a swatch");
   assert.equal(l0.find((e) => e.label === "CLS Hangout Area")?.swatch, "#0088ee", "no icon yet: a swatch in the footprint's fill");
   assert.equal(l0.find((e) => e.label === "Badge Pickup")?.areas.length, 2, "both pickup desks under one chip");
   assert.ok(!l0.some((e) => e.label.startsWith("Washroom") || e.label.startsWith("Elevator")), "wayfinding and washrooms stay out");
-  assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Suites", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
+  assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Meeting rooms", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
   assert.ok(buildFloorLegend("L1")[0].iconUrl?.endsWith("/suites.png"), "a category chip takes the first member's icon");
-  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Suites", 8], ["Baby Care Room", 1]]);
+  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Meeting rooms", 8], ["Baby Care Room", 1]]);
+});
+
+test("supporters: every seated supporter has a blurb, a site and a logo file; X is https when set", () => {
+  const booths = AREA_LIST.filter((a) => (a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters")) && a.iconBackdrop !== null);
+  assert.ok(booths.length >= 27, "the seated booths and the hosted coffee stand (F1 is vacant)");
+  for (const a of booths) {
+    assert.ok(a.description.length > 20 && a.description.length <= 280, `${a.name}: blurb length`);
+    assert.match(a.website ?? "", /^https:\/\//, `${a.name}: site`);
+    if (a.x) assert.match(a.x, /^https:\/\/x\.com\/[A-Za-z0-9_]+$/, `${a.name}: X profile`);
+  }
+  for (const s of Object.values<Supporter>(SUPPORTERS)) for (const file of [s.logo, s.cardLogo]) if (file) assert.ok(fs.existsSync(path.join(process.cwd(), "public/maps/jwcc/supporters", `${file}.svg`)), `${s.name}: ${file}.svg`);
 });

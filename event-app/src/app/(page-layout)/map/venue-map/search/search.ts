@@ -2,7 +2,7 @@ import { byName, sortByLevel, type FindEntry, type FindGroup } from "../find/cat
 import { LEVEL_ALIASES, type LevelId } from "../data/levels";
 import { SEARCH_TERMS } from "../data/searchTerms";
 
-/** Shortest query that can match a term by its start ("mee" → meeting; "me" would pull the suites into every name search). */
+/** Shortest query that can match a term by its start ("lun" → lunch; "lu" would pull the food into every name search). */
 const TERM_PREFIX_MIN = 3;
 
 /** The categories and areas the query's custom terms (data/searchTerms.ts) stand for. */
@@ -54,15 +54,31 @@ export function searchFind(groups: FindGroup[], query: string): SearchResult {
   let floorName = level ?? "";
   let floorCount = 0;
   const targets = termTargets(rest);
+  // A place listed under two categories (the CoW Swap stand: Food & drink and Supporters) is one hit: for a text query its own
+  // category's row (its own icon), whichever group comes first; a bare floor query lists category by category, so the row stays
+  // where it was found.
+  const seen = new Map<string, number>();
+  const counted = new Set<string>();
   for (const group of groups) {
     const categoryHit = rest !== "" && (group.category.label.toLowerCase().includes(rest) || targets.categories.has(group.category.id));
     for (const floor of group.floors) {
       if (level && floor.level !== level) continue;
       if (level) {
         floorName = floor.name;
-        floorCount += floor.entries.length;
+        floorCount += floor.entries.filter((e) => !counted.has(e.key)).length;
+        for (const e of floor.entries) counted.add(e.key);
       }
-      for (const entry of floor.entries) if (rest === "" || categoryHit || entry.name.toLowerCase().includes(rest) || entry.areas.some((a) => targets.areas.has(a.areaId))) hits.push(entry);
+      for (const entry of floor.entries) {
+        const at = seen.get(entry.key);
+        if (at !== undefined) {
+          if (!entry.secondary && rest !== "") hits[at] = entry;
+          continue;
+        }
+        if (rest === "" || categoryHit || entry.name.toLowerCase().includes(rest) || entry.areas.some((a) => targets.areas.has(a.areaId))) {
+          seen.set(entry.key, hits.length);
+          hits.push(entry);
+        }
+      }
     }
   }
   return { floor: level ? { level, name: floorName, count: floorCount } : null, hits: rest === "" ? hits : hits.sort((a, b) => byName(a, b) || sortByLevel(a, b)) };

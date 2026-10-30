@@ -9,7 +9,18 @@ import { AREA_LIST, COMPOSITE_LIST, type Area, type AreaKey } from "../data/reso
  * ("Washroom" ×2) collapse into one entry, so `areas` can hold several;
  * picking it highlights them all.
  */
-export type FindEntry = { key: string; name: string; level: LevelId; iconUrl: string | null; iconBackdrop: string | null; areas: Area[]; category: Category; rank: number };
+export type FindEntry = {
+  key: string;
+  name: string;
+  level: LevelId;
+  iconUrl: string | null;
+  iconBackdrop: string | null;
+  areas: Area[];
+  category: Category;
+  rank: number;
+  /** The row sits under one of the place's `alsoCategories` (the CoW Swap stand under Supporters), not its own; Search prefers the own row. */
+  secondary: boolean;
+};
 export type FindFloor = { level: LevelId; name: string; entries: FindEntry[] };
 export type FindGroup = { category: Category; count: number; floors: FindFloor[] };
 
@@ -20,15 +31,21 @@ export const byRank = (a: { name: string; rank: number }, b: { name: string; ran
 
 const levelName = new Map<LevelId, string>(LEVELS.map((l) => [l.id, l.name]));
 
-/** Every tappable footprint grouped by category then floor, same-name copies per floor collapsed. Built once; the plan is static. */
+/**
+ * Every tappable footprint grouped by category then floor, same-name copies per floor collapsed; a place with
+ * `alsoCategories` (the CoW Swap stand, under Supporters too) is a row in each: its own icon under its own category,
+ * the host's lockup on a chip under the host's (Scott, 2026-10-30). Built once; the plan is static.
+ */
 export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[] {
   const buckets = new Map<string, Map<LevelId, Map<string, Area[]>>>();
   for (const area of areas) {
-    const perLevel = buckets.get(area.category.id) ?? new Map<LevelId, Map<string, Area[]>>();
-    buckets.set(area.category.id, perLevel);
-    const perName = perLevel.get(area.level) ?? new Map<string, Area[]>();
-    perLevel.set(area.level, perName);
-    perName.set(area.name, [...(perName.get(area.name) ?? []), area]);
+    for (const category of [area.category, ...area.alsoCategories]) {
+      const perLevel = buckets.get(category.id) ?? new Map<LevelId, Map<string, Area[]>>();
+      buckets.set(category.id, perLevel);
+      const perName = perLevel.get(area.level) ?? new Map<string, Area[]>();
+      perLevel.set(area.level, perName);
+      perName.set(area.name, [...(perName.get(area.name) ?? []), area]);
+    }
   }
   return CATEGORIES.flatMap((category) => {
     const perLevel = buckets.get(category.id);
@@ -37,10 +54,15 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       level: id,
       name: levelName.get(id) ?? id,
       entries: [
-        ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].cardIconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
+        ...[...perLevel.get(id)!.entries()].map(([name, group]) => {
+          const secondary = category.id !== group[0].category.id;
+          // A hosted place's own row carries its own icon; its secondary row (and a booth's) the lockup on a chip.
+          const ownIcon = !secondary && group[0].alsoCategories.length > 0 && group[0].placeIconUrl !== null;
+          return { key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: ownIcon ? group[0].placeIconUrl : group[0].cardIconUrl, iconBackdrop: ownIcon ? null : group[0].iconBackdrop, areas: group, category, rank: group[0].rank, secondary };
+        }),
         // Composite rows (the Main Stage): one row standing for several footprints.
         // A composite row carries its members' icon (the Main Stage shows the lotus; Scott, 2026-10-26).
-        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].cardIconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100 })),
+        ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].cardIconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100, secondary: false })),
       ].sort(byRank),
     }));
     return [{ category, count: floors.reduce((n, f) => n + f.entries.length, 0), floors }];
@@ -84,7 +106,8 @@ export function buildFloorLegend(level: LevelId, areas: readonly Area[] = AREA_L
   const specs = FLOOR_LEGENDS[level];
   if (specs) {
     for (const spec of specs) {
-      const members = "areaId" in spec ? onFloor.filter((a) => a.areaId === spec.areaId) : onFloor.filter((a) => a.legendCategory.id === spec.category);
+      // A category chip also takes the places listed under it as a second category (the CoW Swap stand under Supporters), as Find does.
+      const members = "areaId" in spec ? onFloor.filter((a) => a.areaId === spec.areaId) : onFloor.filter((a) => a.legendCategory.id === spec.category || a.alsoCategories.some((c) => c.id === spec.category));
       if (!members.length) continue;
       const label = "label" in spec && spec.label ? spec.label : AREAS[members[0].areaId].name.replace(/\s*#$/, "");
       const key = "areaId" in spec ? `${level}/legend:${spec.areaId}` : `${level}/legend:${spec.category}`;

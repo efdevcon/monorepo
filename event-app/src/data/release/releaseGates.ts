@@ -19,8 +19,8 @@ export const RELEASED = {
   ensPerk: false,
   /** Testnet faucet perk card on My Devcon. */
   faucetPerk: false,
-  /** Venue map tab (src/app/(page-layout)/map/venue-map); attendees get a "coming soon" placeholder instead. */
-  venueMap: false,
+  /** Venue map tab (src/app/(page-layout)/map/venue-map). Released to everyone on 2026-10-30 (Scott); the "coming soon" placeholder stays in MapPane for a rollback. */
+  venueMap: true,
 } as const;
 
 export type ReleaseGate = keyof typeof RELEASED;

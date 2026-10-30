@@ -35,6 +35,8 @@ export const HEIGHTS = {
   stage: 5.5,
   room: 3,
   kiosk: 2.5,
+  /** A low counter: half a kiosk (the CoW Swap coffee stand among the supporter booths; Scott, 2026-10-30). */
+  stand: 1.25,
   zone: 0.3,
   wall: 3,
   deco: 0.15,

@@ -8,9 +8,9 @@ the provisional SVGs under `public/maps/devcon-8/source/`) was deleted on 2026-1
 history up to `9c6f482a4`). Mentions of "the prototype" below are about that design lineage.
 
 Code: `src/app/(page-layout)/map/venue-map/` (entry `VenueMap.tsx`), build:
-`scripts/map-build/`. `src/components/MapPane.tsx` mounts it when the `venueMap` release gate
-is on (EF internal tools on My Devcon); attendees get the "coming soon" card until the gate is
-released.
+`scripts/map-build/`. `src/components/MapPane.tsx` mounts it under the `venueMap` release gate,
+released to everyone on 2026-10-30 (Scott); turned back off, attendees get the "coming soon" card and the
+team turns the map on per device in EF internal tools.
 
 ## 1. Inputs: the Figma export contract
 
@@ -92,17 +92,28 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 `AREAS` is the single source of truth per area id: display `name` (`#` = the instance number,
 "Hub #" → "Hub 7"; without it numbered copies share the name and collapse in Find, "Washroom ×2"),
 `description` (placeholders today), `category`, `heightClass` (`stage` 5.5 m, `room` 3 m for the
-washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag station, `zone` 0.3 m flat mat
+washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag station, `stand` 1.25 m (half a kiosk, the CoW Swap
+coffee stand among the booths, via its variant's `heightClass`), `zone` 0.3 m flat mat
 for the co-work areas, hubs, tea & coffee, storage and elevators; walls are 3 m), optional
 `minWidth` (metres; footprints the plan draws as thin strips are stretched along their short axis
 about their centre, the two tea & coffee bars), optional `iconSize` (sprite height in metres when the
-footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5), optional `icons` (per instance: the
-east elevator uses `elevator-left`), optional `hubs` (booth number →
+footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5) and `iconSizes` (the same per
+instance: Level 3's washroom 9 stands right behind hubs 8–10, so its icon is 4.5 instead of the derived 6.5, which covered them; Scott, 2026-10-30), optional `icons` (per instance: the
+east elevator uses `elevator-left`), optional `variants` (per instance: a footprint under a shared layer name that is a place of its own, with its own
+name, description, icon and height class, and a `host` supporter whose white lockup takes the card chip on the footprint's fill, like a booth's, and lists
+the place under Supporters as well as its own category (`Area.alsoCategories`; Find shows a row in each: the place's own icon under its own category,
+the host's lockup under Supporters, `FindEntry.secondary` marks the latter; Search dedupes by key, keeping the own row for a text query and the row
+it met first for a bare floor query; a category legend chip takes these places too, so Level 3's Supporters chip lights the stand). Today: `tea-&-coffee-8`, the stand above the supporter booths, is "CoW Swap (Coffee Stand)"
+with the `cow-swap-coffee-cup` icon, `supporters/cow-swap.svg` and the `stand` height; Scott, 2026-10-30). A `description` may link another place as
+`[label](area:<id>)`: the card renders it as a button that shows that place on the card's floor, else on the lowest floor that has it (the Ticket
+Help Desk points at the Info Desk), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
-as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
-booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
-a chip in the booth's fill in the card and lists; a tenant may name a `cardLogo` for those chips when the booth's own
+as the card's booth line), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with
+its name, blurb (two sentences at most, from the supporter's own site; OpenZeppelin's and Dedaub's wording from Scott), `website` and `x`
+profile, which the card shows as the speaker page's X and globe icon links (Scott, 2026-10-30; Circle and Dedaub are in the registry but seated
+at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
+a chip in the booth's fill in the card and lists; a supporter may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
 2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then (S12 is Fair Food Data from 2026-10-27; Kohaku moves to another spot later in the week, its two marks stay in the folder for that; Scott, 2026-10-25 / 10-27), optional
@@ -122,7 +133,8 @@ That colour legend is the fallback for a floor without a spec list; every floor 
 `category` (the suites, fourteen ids), with the type's theme icon or a swatch in its fill while
 it has none (the CLS Hangout Area); a category spec with `swatch` keeps the colour square (Level 3's
 Community and Supporters, matched on the legend category so the yellow corners stay under Community).
-Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory, and
+Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory (Level 0 lists both desks: the Ticket Help Desk is
+ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30), and
 Level 3 stays short: the three stage kinds, Community, Supporters, Swag Station, Game Zone,
 Decompression Zone. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
@@ -158,7 +170,7 @@ music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on
 interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
 structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station. Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
-their lockup via `tenants`; the generic community-hub glyph is the fallback for a booth with no
+their lockup via `tenants` (supporters.ts); the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).
 
 ## 4. Runtime: `src/app/(page-layout)/map/venue-map/`
@@ -221,7 +233,9 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   (`MapSheet`); Scott, 2026-10-26/27), the top strip (controls legend while stacked or
   when the floor has no legend; on a touch device held upright a "Tip: Try landscape mode" banner with a
   turning phone glyph sits under the controls, gone in landscape and from lg up (Scott, 2026-10-27); otherwise the floor's legend chips, icons per place type on
-  Level 3's Community and Supporters as swatches), `AreaCard`
+  Level 3's Community and Supporters as swatches; from lg up the strip is `w-max` capped at the viewport, where the chips wrap: anchored at left 50% it
+  shrank to fit the half viewport to its right, and Safari, which lets a button flex item shrink below its content, squeezed Level 3's chips into each
+  other while Chrome held them at content width; Scott, 2026-10-30), `AreaCard`
   (stages keep the icon disc, everything else inline; desktop beside the footprint via
   `--poi-x/--poi-y` written by `FloorStack` per frame, group picks bottom-centre), live session
   from the footprint's `roomIds`, shortcuts (digits, F, /, Esc/A), the team-only wrench + tuning
@@ -262,7 +276,10 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   `stairs-`, `stairs-_2`…; the build finds the others by structure meanwhile), put Levels 1–2's
   `Subtract` slab inside their `Background` group, name Level 2's interior walls as Level 1's are, and
   group the loose labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
-  named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
+  named `cls-hangout-area` in the committed copy only (name it in Figma), the `flagship-supporter-1` box on Level 3 is deleted
+  from the committed `L3.svg` only (Fluid left, 2026-10-30: delete it in Figma too), and the `info-desk` colour box on Level 0 (a Help Desk-sized
+  box outside the registration entrance, between washroom 1 and the entrance arrow, 2026-10-30) exists in the committed `L0.svg` only: draw it in
+  Figma before the next export or the re-export drops it. Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
   sessions' "Show on Map" points at the hangout area, roughly where they happen.
 - Icons still missing: CLS Hangout Area (the Food Garden reuses the food-area icon, provisional;

@@ -8,7 +8,7 @@ import { Coffee, DoorOpen, Gamepad2, Laptop, MapPin, Mic, Store, Ticket, Toilet,
  */
 export const CATEGORIES = [
   { id: "stages", label: "Stages", Icon: Mic, legend: "Stages" },
-  { id: "suites", label: "Suites", Icon: DoorOpen, legend: "Suites" },
+  { id: "suites", label: "Meeting rooms", Icon: DoorOpen, legend: "Meeting rooms" },
   { id: "hubs", label: "Community", Icon: Users, legend: "Community" },
   { id: "supporters", label: "Supporters", Icon: Store, legend: "Supporters" },
   { id: "food", label: "Food & drink", Icon: Coffee, legend: null },
