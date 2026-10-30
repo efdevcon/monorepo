@@ -109,7 +109,7 @@ Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sp
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
 as the card's booth line), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with
 its name, blurb (two sentences at most, from the supporter's own site; OpenZeppelin's and Dedaub's wording from Scott), `website` and `x`
-profile, which the card shows as "Visit website" / "Follow on X" (Scott, 2026-10-30; Circle and Dedaub are in the registry but seated
+profile, which the card shows as the speaker page's X and globe icon links (Scott, 2026-10-30; Circle and Dedaub are in the registry but seated
 at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a supporter may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since

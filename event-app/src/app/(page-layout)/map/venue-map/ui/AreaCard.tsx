@@ -2,8 +2,9 @@
 
 import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
-import { ArrowUpRight, ChevronRight, Clock3, Presentation, User } from "lucide-react";
+import { ChevronRight, Clock3, Globe, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
+import { XIcon } from "@/components/ShareMenu";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
 import { isAreaId, type AreaId } from "../data/areas";
@@ -38,7 +39,8 @@ function Description({ text, onShowArea, tabbable }: { text: string; onShowArea:
   return <>{parts}</>;
 }
 
-const outLink = "inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline";
+/** The speaker page's social links: 20px glyphs in 24px boxes, 12px apart, X first then web. */
+const socialLink = "flex size-6 items-center justify-center text-dc-purple transition-opacity hover:opacity-80";
 
 /** Rooms whose card drops its own blurb while a session is live, so the session is the whole story (the Main Stage). */
 const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
@@ -46,7 +48,7 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
 /**
  * The card that opens when an area is tapped: theme icon (stages: in the
  * disc on the top edge; everything else inline left of the text), name, the
- * floor it is on, a short description, "Visit website" and "Follow on X" links when the
+ * floor it is on, a short description, X and website icon links (as on the speaker page) when the
  * catalogue has them (supporters always; a description's place links become buttons
  * that show that place via `onShowArea`), and for footprints backed by a schedule
  * room the session running there now, tagged "Live now". Stays
@@ -138,17 +140,15 @@ export function AreaCard({
               </p>
             )}
             {shown && (shown.website || shown.x) && !shownComposite && !sessionOnly && (
-              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
-                {shown.website && (
-                  <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className={outLink}>
-                    Visit website
-                    <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
+              <div className="mt-2 flex items-center gap-3">
+                {shown.x && (
+                  <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name} on X`} className={socialLink}>
+                    <XIcon className="size-5" />
                   </a>
                 )}
-                {shown.x && (
-                  <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className={outLink}>
-                    Follow on X
-                    <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
+                {shown.website && (
+                  <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name}’s website`} className={socialLink}>
+                    <Globe className="size-5" />
                   </a>
                 )}
               </div>
