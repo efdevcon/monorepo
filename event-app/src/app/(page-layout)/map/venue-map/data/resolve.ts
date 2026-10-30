@@ -80,7 +80,7 @@ function resolveShape(shape: MapShape): Area | null {
     iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
     cardIconUrl: hub ? communityHubLogo(hub) : tenant ? (tenant.cardLogo ?? tenant.logo) : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,
-    iconSize: spec.iconSize ?? null,
+    iconSize: (instance !== null ? spec.iconSizes?.[instance] : undefined) ?? spec.iconSize ?? null,
     shape,
     roomIds: [...(roomsByKey.get(shape.key) ?? []), ...(hub ? [`community-hub-${hub.id}`] : [])],
     hub,

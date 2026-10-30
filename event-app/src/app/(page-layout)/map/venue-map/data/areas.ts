@@ -29,6 +29,8 @@ export type AreaSpec = {
   iconSize?: number;
   /** Per instance number: a different sprite (the elevator on the east side faces the other way). */
   icons?: Readonly<Record<number, IconName>>;
+  /** Per instance number: a sprite height of its own (the Level 3 washroom beside the hubs, whose full-size icon covered them). */
+  iconSizes?: Readonly<Record<number, number>>;
   /** Schedule room ids (Pretalx) whose sessions happen here: drives "Show on Map" and the live-session card. */
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
@@ -167,7 +169,8 @@ export const AREAS = {
   "tea-coffee": { name: "Tea & Coffee", description: "Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
-  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets" },
+  // Washroom 9 (Level 3) stands right behind hubs 8–10; its icon is a size down so it stops covering them (Scott, 2026-10-30).
+  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets", iconSizes: { 9: 4.5 } },
   // Cowork & discussion
   "co-work-area": { name: "Co-work Area", description: "Desks, power and wifi.", category: "cowork", heightClass: "zone", icon: "cowork" },
   "quiet-co-work": { name: "Quiet Co-work", description: "Heads-down desks, keep it quiet.", category: "cowork", heightClass: "zone", icon: "cowork" },
