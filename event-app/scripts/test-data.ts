@@ -77,6 +77,7 @@ import {
   reminderBody,
   reminderId,
 } from "../src/data/reminders/reminders";
+import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -921,6 +922,27 @@ function testPreviewAccess() {
   check("a released feature is not listed", previewableGates("someone@ens.domains", ["venueMap"]).length === 0);
 }
 
+function testTeamTestPush() {
+  console.log("\n--- team test push (Notion \"Test push\" checkbox) ---");
+  const row = (status: "draft" | "scheduled" | "sending" | "sent", flag: boolean) => ({ status, flag });
+  check("new row, unticked: draft", nextTestStatus(undefined, false) === "draft");
+  check("new row, ticked: scheduled", nextTestStatus(undefined, true) === "scheduled");
+  check("tick after a sent test re-arms it", nextTestStatus(row("sent", false), true) === "scheduled");
+  check("tick after a cancelled test re-arms it", nextTestStatus(row("draft", false), true) === "scheduled");
+  check("still ticked, scheduled: unchanged", nextTestStatus(row("scheduled", true), true) === "scheduled");
+  check("still ticked, sending: unchanged", nextTestStatus(row("sending", true), true) === "sending");
+  check("still ticked, sent: no second send", nextTestStatus(row("sent", true), true) === "sent");
+  check("untick before the minute tick cancels", nextTestStatus(row("scheduled", true), false) === "draft");
+  check("untick during a send does not cancel it", nextTestStatus(row("sending", true), false) === "sending");
+  check("untick after a send keeps the history", nextTestStatus(row("sent", true), false) === "sent");
+  check("test title is prefixed", testPushTitle("Doors open at 9am") === "Test: Doors open at 9am");
+  check("Notion checkboxes map by audience", eq(notionTestFlags({ "Test push (team)": { checkbox: true } }), { team: true, product: false }));
+  check("missing checkboxes read as unticked", eq(notionTestFlags({}), { team: false, product: false }));
+  check("env email list: trimmed, lower-cased, de-duplicated", eq(parseEmailList(" A@example.org, b@example.org,a@example.org "), ["a@example.org", "b@example.org"]));
+  check("env email list: unset or empty reaches nobody", eq(parseEmailList(undefined), []) && eq(parseEmailList(" , "), []));
+  check("product team list reads its env var", eq(productTeamEmails({ PUSH_PRODUCT_TEAM_EMAILS: "x@example.org" }), ["x@example.org"]));
+}
+
 function testServiceWorkerUpdateFlow() {
   console.log("\n--- service worker update flow ---");
   const SKIP = JSON.stringify({ type: "SKIP_WAITING" });
@@ -1085,6 +1107,7 @@ async function main() {
   testAiPlan();
   testPreviewAccess();
   testServiceWorkerUpdateFlow();
+  testTeamTestPush();
   await testRetryOnce();
   await testWhenControlled();
   await testMemoryStorage();

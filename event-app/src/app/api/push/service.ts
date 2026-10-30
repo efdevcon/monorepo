@@ -20,6 +20,12 @@ import webpush from "web-push";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import APP_CONFIG from "@/CONFIG";
 import type { Announcement } from "@/data/announcements/types";
+import {
+  PRODUCT_TEAM_EMAILS_ENV,
+  productTeamEmails,
+  testPushTitle,
+  type TestAudience,
+} from "../announcements/testPush";
 
 const CHUNK_SIZE = 50;
 /** Extra attempts after the first, for transient (429/5xx/network) failures. */
@@ -434,4 +440,140 @@ export async function dispatchDueAnnouncements(): Promise<DispatchResult> {
   }
 
   return { claimed: claimed.length, sent, subscribers: subs.length };
+}
+
+/**
+ * The devices of a list of accounts, matched on the auth email. Subscriptions
+ * only carry the user id, so the join with auth.users lives in a definer RPC
+ * (migration 20261030120000) that the service role alone may call.
+ */
+export async function getSubscriptionsForEmails(
+  emails: readonly string[]
+): Promise<PushSubscriptionRow[]> {
+  const { data, error } = await getSupabase().rpc(
+    "devcon8_push_subscriptions_for_emails",
+    { p_emails: emails.map((e) => e.toLowerCase()) }
+  );
+  if (error) throw new Error(`subscription lookup failed: ${error.message}`);
+  return (data ?? []) as PushSubscriptionRow[];
+}
+
+export interface TestDispatchResult {
+  claimed: number;
+  sent: {
+    id: string;
+    title: string;
+    audience: TestAudience;
+    ok: number;
+    fail: number;
+  }[];
+}
+
+/**
+ * Test sends armed from Notion (announcements/testPush.ts): rows of
+ * `devcon8_announcement_tests` whose box is ticked and whose status is
+ * `scheduled`, each to its audience only, with a "Test: " title. Same shape
+ * as `dispatchDueAnnouncements` (atomic claim, `sent` after the fan-out,
+ * stalled `sending` rows reclaimed), but no Send At, no Visible and no feed
+ * purge: a test changes nothing attendees see. The real announcement row is
+ * never written.
+ */
+export async function dispatchDueTestPushes(): Promise<TestDispatchResult> {
+  const db = getSupabase();
+  const nowIso = new Date().toISOString();
+  const stalledBefore = new Date(Date.now() - STALL_MS).toISOString();
+
+  const { data: fresh, error: freshError } = await db
+    .from("devcon8_announcement_tests")
+    .update({ status: "sending", updated_at: nowIso })
+    .eq("status", "scheduled")
+    .eq("flag", true)
+    .select("announcement_id, audience");
+  if (freshError) throw new Error(`test claim failed: ${freshError.message}`);
+
+  const { data: stalled, error: stalledError } = await db
+    .from("devcon8_announcement_tests")
+    .update({ status: "sending", updated_at: nowIso })
+    .eq("status", "sending")
+    .eq("flag", true)
+    .lt("updated_at", stalledBefore)
+    .select("announcement_id, audience");
+  if (stalledError) throw new Error(`test reclaim failed: ${stalledError.message}`);
+
+  const claimed = [...(fresh ?? []), ...(stalled ?? [])] as {
+    announcement_id: string;
+    audience: TestAudience;
+  }[];
+  if (claimed.length === 0) return { claimed: 0, sent: [] };
+
+  const { data: announcements, error: readError } = await db
+    .from("devcon8_announcements")
+    .select("id, title, message, url")
+    .in("id", [...new Set(claimed.map((c) => c.announcement_id))]);
+  if (readError) throw new Error(`test announcement read failed: ${readError.message}`);
+  const byId = new Map((announcements ?? []).map((a) => [a.id, a]));
+
+  // One subscriber read per audience per run, however many rows are due.
+  const subsByAudience = new Map<TestAudience, PushSubscriptionRow[]>();
+  const audienceSubs = async (audience: TestAudience): Promise<PushSubscriptionRow[]> => {
+    const cached = subsByAudience.get(audience);
+    if (cached) return cached;
+    let subs: PushSubscriptionRow[];
+    if (audience === "product") {
+      const emails = productTeamEmails();
+      if (emails.length === 0) {
+        console.warn(`[push] ${PRODUCT_TEAM_EMAILS_ENV} is not set; product-team test reaches nobody`);
+      }
+      subs = emails.length > 0 ? await getSubscriptionsForEmails(emails) : [];
+    } else {
+      subs = await getSubscriptions({ teamOnly: true });
+    }
+    subsByAudience.set(audience, subs);
+    return subs;
+  };
+
+  const sent: TestDispatchResult["sent"] = [];
+  for (const claim of claimed) {
+    const announcement = byId.get(claim.announcement_id);
+    // A missing row (deleted under the claim) still completes, with zero
+    // deliveries, so it cannot be reclaimed forever.
+    const subs = announcement ? await audienceSubs(claim.audience) : [];
+    const result =
+      announcement && subs.length > 0
+        ? await fanOut(
+            subs,
+            buildPayload({ ...announcement, title: testPushTitle(announcement.title) })
+          )
+        : { ok: 0, fail: 0, errors: {} };
+    const { error } = await db
+      .from("devcon8_announcement_tests")
+      .update({
+        status: "sent",
+        sent_ok: result.ok,
+        sent_fail: result.fail,
+        error_breakdown: Object.keys(result.errors).length ? result.errors : null,
+        sent_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      })
+      .eq("announcement_id", claim.announcement_id)
+      .eq("audience", claim.audience)
+      .eq("status", "sending");
+    if (error) {
+      // Leave the row in `sending`; the stall window will reclaim it.
+      console.error(
+        `[push] failed to mark test ${claim.announcement_id}/${claim.audience} sent:`,
+        error.message
+      );
+      continue;
+    }
+    sent.push({
+      id: claim.announcement_id,
+      title: announcement?.title ?? "(missing announcement)",
+      audience: claim.audience,
+      ok: result.ok,
+      fail: result.fail,
+    });
+  }
+
+  return { claimed: claimed.length, sent };
 }

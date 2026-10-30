@@ -18,6 +18,13 @@
 import { createHash } from "node:crypto";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import type { Announcement } from "@/data/announcements/types";
+import {
+  TEST_AUDIENCE_KEYS,
+  nextTestStatus,
+  notionTestFlags,
+  type TestAudience,
+  type TestPushStatus,
+} from "./testPush";
 
 // Single source of truth for the payload shape lives with the client types
 // (same pattern as tickets: api/tickets/pretix.ts imports from data/tickets).
@@ -56,6 +63,8 @@ interface NotionRow {
   push: boolean;
   visible: boolean;
   featured: boolean;
+  /** The test checkboxes, by audience (testPush.ts). */
+  tests: Record<TestAudience, boolean>;
 }
 
 let supabase: SupabaseClient | null = null;
@@ -239,6 +248,7 @@ async function fetchNotionRows(): Promise<NotionRow[]> {
         push: p.Push?.checkbox ?? false,
         visible: p.Visible?.checkbox ?? false,
         featured: p.Featured?.checkbox ?? false,
+        tests: notionTestFlags(p),
       });
     }
     cursor = data.has_more ? data.next_cursor : undefined;
@@ -320,7 +330,109 @@ export async function syncAnnouncements(): Promise<number> {
     if (error) throw new Error(`announcement hide failed: ${error.message}`);
   }
 
+  // Test sends are best-effort: the content sync above is the critical path
+  // and must not fail because the tests table is missing or unreachable.
+  try {
+    await syncTestFlags(db, rows, removed, now);
+  } catch (err) {
+    console.warn("[announcements] test-push sync skipped:", (err as Error).message);
+  }
+
   return upserts.length;
+}
+
+interface TestRow {
+  announcement_id: string;
+  audience: TestAudience;
+  flag: boolean;
+  status: TestPushStatus;
+}
+
+/**
+ * Notion test checkboxes -> `devcon8_announcement_tests`, one row per
+ * announcement and audience. The status moves on the checkbox edge
+ * (`nextTestStatus`), so only rows whose box changed are written: an
+ * untouched row keeps its `updated_at`, which the dispatcher reads as the
+ * stall clock of a running send. Highlights never get a row, they are never
+ * pushed. Rows gone from Notion lose any pending test; history stays.
+ */
+async function syncTestFlags(
+  db: SupabaseClient,
+  rows: readonly NotionRow[],
+  removed: readonly string[],
+  now: string
+): Promise<void> {
+  const { data, error } = await db
+    .from("devcon8_announcement_tests")
+    .select("announcement_id, audience, flag, status");
+  if (error) throw new Error(`test read failed: ${error.message}`);
+  const key = (id: string, audience: string) => `${id}:${audience}`;
+  const existing = new Map(
+    ((data ?? []) as TestRow[]).map((r) => [key(r.announcement_id, r.audience), r])
+  );
+
+  // Arming is an upsert (the row may not exist yet). Cancelling is a
+  // conditional update instead: an untick that lands while the dispatcher
+  // has just claimed the row (`sending`) must not write `draft` over it, so
+  // the status only moves where it still says `scheduled`; the flag always
+  // follows the box, so the next tick is a rising edge again.
+  const arm: (TestRow & { updated_at: string })[] = [];
+  const unticked: { announcement_id: string; audience: TestAudience }[] = [];
+  for (const row of rows) {
+    if (row.type !== "announcement") continue;
+    for (const audience of TEST_AUDIENCE_KEYS) {
+      const ticked = row.tests[audience];
+      const current = existing.get(key(row.id, audience));
+      if (ticked) {
+        if (current?.flag) continue; // still ticked: whatever state it reached stands
+        arm.push({
+          announcement_id: row.id,
+          audience,
+          flag: true,
+          status: nextTestStatus(current, true),
+          updated_at: now,
+        });
+      } else if (current?.flag) {
+        unticked.push({ announcement_id: row.id, audience });
+      }
+    }
+  }
+  if (arm.length > 0) {
+    const { error: upsertError } = await db
+      .from("devcon8_announcement_tests")
+      .upsert(arm, { onConflict: "announcement_id,audience" });
+    if (upsertError) throw new Error(`test upsert failed: ${upsertError.message}`);
+  }
+  for (const { announcement_id, audience } of unticked) {
+    const { error: cancelError } = await db
+      .from("devcon8_announcement_tests")
+      .update({ status: nextTestStatus({ status: "scheduled", flag: true }, false), updated_at: now })
+      .eq("announcement_id", announcement_id)
+      .eq("audience", audience)
+      .eq("status", "scheduled");
+    if (cancelError) throw new Error(`test cancel failed: ${cancelError.message}`);
+    const { error: flagError } = await db
+      .from("devcon8_announcement_tests")
+      .update({ flag: false, updated_at: now })
+      .eq("announcement_id", announcement_id)
+      .eq("audience", audience);
+    if (flagError) throw new Error(`test flag reset failed: ${flagError.message}`);
+  }
+
+  if (removed.length > 0) {
+    const { error: cancelError } = await db
+      .from("devcon8_announcement_tests")
+      .update({ status: "draft", flag: false, updated_at: now })
+      .in("announcement_id", removed)
+      .eq("status", "scheduled");
+    if (cancelError) throw new Error(`test cancel failed: ${cancelError.message}`);
+    const { error: flagError } = await db
+      .from("devcon8_announcement_tests")
+      .update({ flag: false, updated_at: now })
+      .in("announcement_id", removed)
+      .eq("flag", true);
+    if (flagError) throw new Error(`test flag reset failed: ${flagError.message}`);
+  }
 }
 
 /**

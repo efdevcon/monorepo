@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { purgeCache } from "@netlify/functions";
-import { dispatchDueAnnouncements } from "../service";
+import { dispatchDueAnnouncements, dispatchDueTestPushes } from "../service";
 import { dispatchDueSessionReminders } from "../reminders";
 import { CACHE_TAG } from "../../announcements/service";
 
@@ -9,8 +9,10 @@ import { CACHE_TAG } from "../../announcements/service";
  * (netlify/functions/push-dispatch.mts) and gated by PUSH_DISPATCH_SECRET.
  * Claims due announcements atomically and fans out — see service.ts for the
  * crash-safety design — and, independently, the session reminders for
- * starred sessions entering their 10-minute window (reminders.ts). Safe to
- * call concurrently or manually (idempotent: a second caller claims nothing).
+ * starred sessions entering their 10-minute window (reminders.ts) and the
+ * team-only test sends armed from Notion (announcements/testPush.ts). Safe
+ * to call concurrently or manually (idempotent: a second caller claims
+ * nothing).
  */
 export const dynamic = "force-dynamic";
 
@@ -28,11 +30,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Two independent senders: a failing bundle fetch must never hold back an
-  // announcement, and vice versa. Both run at once (they share no rows).
-  const [announcements, reminders] = await Promise.allSettled([
+  // Three independent senders: a failing bundle fetch must never hold back an
+  // announcement, and vice versa. All run at once (they share no rows).
+  const [announcements, reminders, tests] = await Promise.allSettled([
     dispatchDueAnnouncements(),
     dispatchDueSessionReminders(),
+    dispatchDueTestPushes(),
   ]);
 
   if (announcements.status === "fulfilled") {
@@ -71,6 +74,14 @@ export async function POST(request: NextRequest) {
     console.error("[/api/push/dispatch] reminders error:", reminders.reason);
   }
 
+  if (tests.status === "fulfilled") {
+    if (tests.value.claimed > 0) {
+      console.log(`[/api/push/dispatch] tests claimed=${tests.value.claimed}`, tests.value.sent);
+    }
+  } else {
+    console.error("[/api/push/dispatch] tests error:", tests.reason);
+  }
+
   if (announcements.status === "rejected" && reminders.status === "rejected") {
     return NextResponse.json(
       { success: false, error: "Dispatch failed" },
@@ -83,6 +94,7 @@ export async function POST(request: NextRequest) {
       announcements:
         announcements.status === "fulfilled" ? announcements.value : null,
       reminders: reminders.status === "fulfilled" ? reminders.value : null,
+      tests: tests.status === "fulfilled" ? tests.value : null,
     },
   });
 }
