@@ -105,14 +105,17 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.ok(hub7?.iconUrl?.includes("/community-hubs/logos/privacy.svg"), "the hub's mark is the sprite");
   assert.ok(hub7?.roomIds.includes("community-hub-privacy"));
   assert.ok(AREA_LIST.some((a) => a.areaId === "escalator" && a.shape.hidden), "escalators are sprite-only places");
+  const f2 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 2);
+  assert.equal(f2?.name, "Base");
+  assert.equal(f2?.boothName, "Flagship Supporter F2");
+  assert.equal(f2?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
   const f1 = AREA_LIST.find((a) => a.areaId === "flagship-supporter" && a.instance === 1);
-  assert.equal(f1?.name, "Fluid");
-  assert.equal(f1?.boothName, "Flagship Supporter F1");
-  assert.equal(f1?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
+  assert.equal(f1?.name, "Flagship Supporter F1", "a vacant booth keeps the plan's name");
+  assert.equal(f1?.boothName, null);
   const s4 = AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4);
   assert.equal(s4?.name, "Bitget", "every supporter booth has a tenant since 2026-10-25");
   assert.equal(s4?.boothName, "Starter Supporter S4", "the plan name stays as the booth line");
-  assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters").every((a) => a.boothName && !a.name.includes(" / ")), "shared booths name one supporter only");
+  assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters" && a.boothName).every((a) => !a.name.includes(" / ")), "shared booths name one supporter only");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");
   const hubs = AREA_LIST.filter((a) => a.areaId === "community-hub");
   assert.ok(hubs.map((a) => a.key).includes(primaryOf(hubs)));
@@ -155,8 +158,8 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
 });
 
 test("supporters: every seated supporter has a blurb, a site and a logo file; X is https when set", () => {
-  const booths = AREA_LIST.filter((a) => a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters"));
-  assert.ok(booths.length >= 28, "27 booths and the hosted coffee stand");
+  const booths = AREA_LIST.filter((a) => (a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters")) && a.iconBackdrop !== null);
+  assert.ok(booths.length >= 27, "the seated booths and the hosted coffee stand (F1 is vacant)");
   for (const a of booths) {
     assert.ok(a.description.length > 20 && a.description.length <= 280, `${a.name}: blurb length`);
     assert.match(a.website ?? "", /^https:\/\//, `${a.name}: site`);

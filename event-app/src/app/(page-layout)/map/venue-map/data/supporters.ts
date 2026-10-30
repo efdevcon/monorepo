@@ -20,7 +20,6 @@ export type Supporter = {
 };
 
 export const SUPPORTERS = {
-  fluid: { name: "Fluid", logo: "fluid", description: "Instadapp's unified liquidity layer on Ethereum: lending, vault borrowing and a DEX sharing one pool of liquidity.", website: "https://fluid.io", x: "https://x.com/0xfluid" },
   base: { name: "Base", logo: "base", description: "Coinbase's Ethereum Layer 2, built on the OP Stack to bring the next billion users onchain.", website: "https://www.base.org", x: "https://x.com/base" },
   gnosis: { name: "Gnosis", logo: "gnosis", description: "Financial infrastructure on Ethereum: Gnosis Chain, Gnosis Pay's self-custodial card and Circles, governed by GnosisDAO.", website: "https://www.gnosis.io", x: "https://x.com/gnosis_" },
   kleros: { name: "Kleros", logo: "kleros", description: "A decentralised arbitration protocol: disputes resolved by crowdsourced jurors, from curated lists to escrow and insurance.", website: "https://kleros.io", x: "https://x.com/Kleros_io" },

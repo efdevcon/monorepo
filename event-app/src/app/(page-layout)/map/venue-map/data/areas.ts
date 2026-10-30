@@ -131,7 +131,8 @@ export const AREAS = {
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: "fluid", 2: "base" },
+    // F1 is vacant since 2026-10-30 (Fluid removed, Scott).
+    tenants: { 2: "base" },
   },
   "core-supporter": {
     name: "Core Supporter C#",
