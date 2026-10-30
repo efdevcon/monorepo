@@ -80,6 +80,8 @@ import {
 import { RETURN_PARAM, safeReturnPath, signInHref } from "../src/routing/returnTo";
 import { syncSessionCookie, whenSessionCookieSettled } from "../src/data/auth/sessionCookie";
 import { authCookieName, jwtExpiresAt, parseAuthCookie } from "../src/data/auth/authCookie";
+import { HEAL_EXPIRY_MARGIN_S, healScriptBody } from "../src/app/api/meerkat/go/heal";
+import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
 
@@ -995,6 +997,98 @@ function testAuthCookieParser() {
   check("malformed token has no expiry", jwtExpiresAt("abc") === null && jwtExpiresAt("a.b.c") === null && jwtExpiresAt("") === null);
 }
 
+async function testHealScript() {
+  console.log("\n--- Meerkat hand-off page heals its cookie from the app's own session ---");
+  const cfg = { storageKey: "sb-abcdefghijklmnopqrst-auth-token", supabaseUrl: "https://abcdefghijklmnopqrst.supabase.co", anonKey: "anon-key" };
+  const href = "https://app.example/api/meerkat/go?session=ABC123";
+  const refreshUrl = `${cfg.supabaseUrl}/auth/v1/token?grant_type=refresh_token`;
+  const proxyUrl = "https://app.example/supabase/auth/v1/token?grant_type=refresh_token";
+  const nowS = () => Math.floor(Date.now() / 1000);
+  interface Call { url: string; init: { method?: string; headers?: Record<string, string>; body?: string; credentials?: string } }
+  type Answer = { status: number; body?: unknown } | "network";
+  interface Run { calls: Call[]; replaced: string | null; stored: () => unknown; waitHidden: boolean; failHidden: boolean; title: string; lockName: string | null; lockMode: string | null }
+  async function run(stored: unknown, answer: (call: Call, n: number) => Answer, opts: { locks?: boolean; writable?: boolean } = {}): Promise<Run> {
+    const store = new Map<string, string>();
+    if (stored !== null) store.set(cfg.storageKey, typeof stored === "string" ? stored : JSON.stringify(stored));
+    const calls: Call[] = [];
+    const out: Run = {
+      calls, replaced: null, waitHidden: false, failHidden: true, title: "Q&A - App", lockName: null, lockMode: null,
+      stored: () => { const v = store.get(cfg.storageKey); return v === undefined ? null : JSON.parse(v); },
+    };
+    const wait = { get hidden() { return out.waitHidden; }, set hidden(v: boolean) { out.waitHidden = v; } };
+    const fail = { get hidden() { return out.failHidden; }, set hidden(v: boolean) { out.failHidden = v; }, getAttribute: (n: string) => (n === "data-title" ? "Sign in first - App" : null) };
+    const timers: NodeJS.Timeout[] = [];
+    let parsing = true;
+    const sandbox = {
+      localStorage: {
+        getItem: (k: string) => store.get(k) ?? null,
+        setItem: (k: string, v: string) => { if (opts.writable === false) throw new Error("QuotaExceededError"); store.set(k, String(v)); },
+        removeItem: (k: string) => store.delete(k),
+      },
+      fetch: async (url: string, init: Call["init"]) => {
+        const call = { url, init }; calls.push(call);
+        const a = answer(call, calls.length);
+        if (a === "network") throw new TypeError("Failed to fetch");
+        return { ok: a.status < 300, status: a.status, json: async () => a.body };
+      },
+      location: { href, origin: "https://app.example", replace: (u: string) => { out.replaced = u; } },
+      // The script sits in <head>: while it runs, the body is not parsed yet and lookups return null.
+      document: { getElementById: (id: string) => (parsing ? null : id === "heal-wait" ? wait : id === "heal-fail" ? fail : null), get title() { return out.title; }, set title(v: string) { out.title = v; } },
+      navigator: opts.locks === false ? {} : { locks: { request: (name: string, o: { mode: string }, fn: () => unknown) => { out.lockName = name; out.lockMode = o.mode; return Promise.resolve().then(fn); } } },
+      URL, console, clearTimeout, AbortController,
+      setTimeout: (fn: () => void, ms: number) => { const t = setTimeout(fn, ms); t.unref(); timers.push(t); return t; },
+    };
+    vm.runInNewContext(healScriptBody(cfg), sandbox);
+    parsing = false;
+    await new Promise((r) => setTimeout(r, 50));
+    timers.forEach(clearTimeout);
+    return out;
+  }
+  const ok = { status: 200 };
+  const live = { access_token: "eyJ.live.sig", refresh_token: "r1", expires_at: nowS() + 3600, user: { id: "u1" } };
+  const stale = { ...live, access_token: "eyJ.stale.sig", expires_at: nowS() - 60 };
+  const renewed = { access_token: "eyJ.new.sig", refresh_token: "r2", token_type: "bearer", expires_in: 3600, user: { id: "u1" } };
+  const body = (c: Call) => JSON.parse(c.init.body ?? "{}") as Record<string, string>;
+  const urls = (r: Run) => r.calls.map((c) => c.url).join(",");
+  const retried = `${href}&retried=1`;
+
+  let r = await run(null, () => ok);
+  check("no stored session: nothing fetched, sign-in content revealed", r.calls.length === 0 && r.replaced === null && r.waitHidden && !r.failHidden);
+  r = await run("{not json", () => ok);
+  check("garbage in storage: revealed, no throw", r.calls.length === 0 && r.waitHidden && !r.failHidden);
+
+  r = await run(live, () => ok);
+  check("live session: mirrored once, then the page reloads with retried=1", r.calls.length === 1 && r.calls[0].url === "/api/auth/session" && r.calls[0].init.method === "POST" && body(r.calls[0]).access_token === "eyJ.live.sig" && body(r.calls[0]).refresh_token === "r1" && r.replaced === retried, `${urls(r)} -> ${r.replaced}`);
+  check("live session: storage untouched, waiting state kept until the reload", eq(r.stored(), live) && !r.waitHidden && r.failHidden);
+  check("runs under auth-js's own cross-tab lock", r.lockName === `lock:${cfg.storageKey}` && r.lockMode === "exclusive", `${r.lockName} ${r.lockMode}`);
+
+  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok));
+  check("expired session: refreshed at Supabase with the anon key, then the new pair mirrored", r.calls.length === 2 && r.calls[0].url === refreshUrl && r.calls[0].init.headers?.apikey === cfg.anonKey && body(r.calls[0]).refresh_token === "r1" && r.calls[1].url === "/api/auth/session" && body(r.calls[1]).access_token === "eyJ.new.sig" && body(r.calls[1]).refresh_token === "r2" && r.replaced === retried, urls(r));
+  const written = (r.stored() ?? {}) as Partial<typeof renewed> & { expires_at?: number };
+  check("expired session: the new session is written back for the app, with expires_at", written.access_token === "eyJ.new.sig" && written.refresh_token === "r2" && written.user?.id === "u1" && typeof written.expires_at === "number" && Math.abs(written.expires_at - (nowS() + 3600)) <= 5, JSON.stringify(written.expires_at));
+
+  r = await run({ ...live, expires_at: nowS() + HEAL_EXPIRY_MARGIN_S - 5 }, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok));
+  check("a token about to expire is refreshed rather than mirrored", r.calls[0]?.url === refreshUrl && r.replaced === retried, urls(r));
+
+  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 400, body: { error: "invalid_grant" } } : ok));
+  check("refresh refused: nothing mirrored, storage left to the app, sign-in content revealed with its title", r.calls.length === 1 && eq(r.stored(), stale) && r.replaced === null && r.waitHidden && !r.failHidden && r.title === "Sign in first - App");
+
+  r = await run(stale, (c) => (c.url === refreshUrl ? "network" : c.url === proxyUrl ? { status: 200, body: renewed } : ok));
+  check("Supabase unreachable: the same-origin proxy is tried, without credentials", r.calls[1]?.url === proxyUrl && r.calls[1].init.credentials === "omit" && r.calls[1].init.headers?.apikey === cfg.anonKey && r.replaced === retried, urls(r));
+
+  r = await run(stale, () => "network");
+  check("everything unreachable: revealed, storage untouched", r.calls.length === 2 && eq(r.stored(), stale) && r.replaced === null && r.waitHidden && !r.failHidden);
+
+  r = await run(live, (c, n) => (c.url === "/api/auth/session" && n === 1 ? { status: 401 } : c.url === refreshUrl ? { status: 200, body: renewed } : ok));
+  check("server refuses a token the device clock calls live: refreshed once, then mirrored", r.calls.length === 3 && r.calls[1].url === refreshUrl && body(r.calls[2]).access_token === "eyJ.new.sig" && r.replaced === retried, urls(r));
+
+  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok), { writable: false });
+  check("storage not writable: no refresh at all (the app would lose its token family)", r.calls.length === 0 && r.replaced === null && !r.failHidden);
+
+  r = await run(live, () => ok, { locks: false });
+  check("without the Web Locks API the heal still runs", r.calls.length === 1 && r.replaced === retried);
+}
+
 function testReturnAfterSignIn() {
   console.log("\n--- return to the page that asked for sign-in ---");
   check("sign-in href carries the session path", signInHref("/schedule/abc-123") === `/my-devcon?${RETURN_PARAM}=%2Fschedule%2Fabc-123`);
@@ -1178,6 +1272,7 @@ async function main() {
   testReturnAfterSignIn();
   await testSessionCookieSettled();
   testAuthCookieParser();
+  await testHealScript();
   testTeamTestPush();
   await testRetryOnce();
   await testWhenControlled();

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import APP_CONFIG from "@/CONFIG";
 import { cookieUser } from "@/data/auth/cookieUser";
 import { authCookieName } from "@/data/auth/authCookie";
+import { healScript } from "./heal";
 import { signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
 import { createRateLimiter } from "../../tickets/rateLimit";
@@ -45,9 +46,10 @@ export async function GET(request: NextRequest) {
     // Two different failures hide behind one 401: no cookie at all (the
     // browser never mirrored its sign-in), or a cookie whose access token
     // has expired since the last mirror. The log line tells them apart. The
-    // page first tries to heal itself: the app's own session lives in this
-    // origin's localStorage, so when it is there the page mirrors it and
-    // reloads once (`retried`); only without one does it ask to sign in.
+    // page first tries to heal itself (heal.ts): the app's own session lives
+    // in this origin's localStorage, so when it is there the page mirrors
+    // it, refreshing it first when it has expired too, and reloads once
+    // (`retried`); only when that fails is the sign-in content shown.
     console.warn(
       `[/api/meerkat/go] not signed in: cookie=${hadCookie ? "present" : "absent"}` +
         (reason ? ` reason=${reason}` : "")
@@ -57,7 +59,7 @@ export async function GET(request: NextRequest) {
       401,
       "Sign in first",
       hadCookie
-        ? "Your sign-in has expired here. Open the Devcon app again, then tap Ask a question."
+        ? "Your sign-in has expired. Sign in again, then tap Ask a question."
         : "You're not signed in here. Sign in on the Devcon app, then tap Ask a question again.",
       { back, signIn: signInHref(back), heal: !retried }
     );
@@ -100,7 +102,7 @@ interface PageLinks {
   back?: string;
   /** Sign-in page that returns to the session afterwards (401 only). */
   signIn?: string;
-  /** Try to mirror the app's own session into the cookie and reload once (401 only). */
+  /** Mirror the app's own session into the cookie, refreshing it first if it has expired, and reload once (401 only). */
   heal?: boolean;
 }
 
@@ -109,14 +111,16 @@ interface PageLinks {
  * browser, but in place in the installed app, where there is no tab to close
  * and a dead end would strand people. So every page offers "Back to the app",
  * the sign-in pages offer the sign-in itself, and a missing or expired cookie
- * heals without anyone noticing when the app is signed in: the session
- * auth-js keeps in this origin's localStorage is mirrored and the page
- * reloads once. No CSP on this app, so the inline script is fine.
+ * heals without anyone noticing when the app is signed in (heal.ts): while
+ * the script works, the page shows only "Opening Q&A"; the sign-in content
+ * is rendered hidden and revealed if the heal gives up (or without script).
+ * No CSP on this app, so the inline script is fine.
  */
 function page(status: number, title: string, message: string, links: PageLinks = {}): NextResponse {
-  const storageKey = process.env.NEXT_PUBLIC_SUPABASE_URL ? authCookieName(process.env.NEXT_PUBLIC_SUPABASE_URL) : null;
-  const heal = links.heal && storageKey
-    ? `<script>(function(){try{var raw=localStorage.getItem(${JSON.stringify(storageKey)});if(!raw)return;var s=JSON.parse(raw);if(!s||!s.access_token||!s.refresh_token)return;fetch("/api/auth/session",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({access_token:s.access_token,refresh_token:s.refresh_token})}).then(function(r){if(!r.ok)return;var u=new URL(location.href);u.searchParams.set("retried","1");location.replace(u.toString());});}catch(e){}})();</script>`
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const heal = links.heal && supabaseUrl && anonKey
+    ? healScript({ storageKey: authCookieName(supabaseUrl), supabaseUrl, anonKey })
     : "";
   const backLink = links.back
     ? `<a class="btn primary" href="${escapeHtml(links.back)}" onclick="if(history.length>1){history.back();return false}">Back to the app</a>`
@@ -124,13 +128,29 @@ function page(status: number, title: string, message: string, links: PageLinks =
   const signInLink = links.signIn
     ? `<a class="btn" href="${escapeHtml(links.signIn)}">Sign in</a>`
     : "";
+  const fullTitle = `${title} - ${APP_CONFIG.APP_NAME}`;
+  const content = `<h1>${escapeHtml(title)}</h1>
+  <p>${escapeHtml(message)}</p>
+  <div class="actions">${signInLink}${backLink}</div>`;
+  const body = heal
+    ? `<main id="heal-wait">
+  <h1>Opening Q&amp;A</h1>
+  <p>Checking your sign-in.</p>
+</main>
+<main id="heal-fail" hidden data-title="${escapeHtml(fullTitle)}">
+  ${content}
+</main>
+<noscript><style>#heal-wait{display:none}#heal-fail{display:block}</style></noscript>`
+    : `<main>
+  ${content}
+</main>`;
   const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>${escapeHtml(title)} - ${APP_CONFIG.APP_NAME}</title>
+<title>${escapeHtml(heal ? `Q&A - ${APP_CONFIG.APP_NAME}` : fullTitle)}</title>
 <style>
   body { margin: 0; min-height: 100dvh; display: grid; place-items: center; background: #f9f8fa; color: #1a0d33; font: 16px/1.5 system-ui, -apple-system, sans-serif; }
   main { max-width: 28rem; padding: 2rem; text-align: center; }
@@ -143,11 +163,7 @@ function page(status: number, title: string, message: string, links: PageLinks =
 ${heal}
 </head>
 <body>
-<main>
-  <h1>${escapeHtml(title)}</h1>
-  <p>${escapeHtml(message)}</p>
-  <div class="actions">${signInLink}${backLink}</div>
-</main>
+${body}
 </body>
 </html>
 `;
