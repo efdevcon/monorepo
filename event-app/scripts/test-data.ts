@@ -19,6 +19,15 @@ import { isTransientFetchError, retryOnce } from "../src/utils/retryOnce";
 import { cacheDB, openCacheDB } from "../src/data/cache/cache-db";
 import { installMarker, parseInstallVersion } from "../src/data/install/installVersion";
 import { isTeamEmail, previewableGates } from "../src/data/release/previewAccess";
+import {
+  MARKER_TTL_MS,
+  MAX_FALLBACK_RELOADS,
+  TAKEOVER_TIMEOUT_MS,
+  createUpdateFlow,
+  type UpdateMarker,
+  type UpdateState,
+  type WaitingWorker,
+} from "../src/utils/serviceWorkerUpdate";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
 import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
@@ -912,6 +921,151 @@ function testPreviewAccess() {
   check("a released feature is not listed", previewableGates("someone@ens.domains", ["venueMap"]).length === 0);
 }
 
+function testServiceWorkerUpdateFlow() {
+  console.log("\n--- service worker update flow ---");
+  const SKIP = JSON.stringify({ type: "SKIP_WAITING" });
+  type FakeWorker = WaitingWorker & { messages: string[] };
+  const worker = (): FakeWorker => {
+    const w: FakeWorker = { messages: [], postMessage: (m) => w.messages.push(JSON.stringify(m)) };
+    return w;
+  };
+  const NOW = 1_700_000_000_000;
+  const harness = (opts: { waiting?: FakeWorker | null; installing?: boolean; marker?: UpdateMarker | null } = {}) => {
+    const calls: string[] = [];
+    const states: UpdateState[] = [];
+    let timer: { fn: () => void; ms: number } | null = null;
+    const st = { waiting: opts.waiting ?? null, installing: opts.installing ?? false, marker: opts.marker ?? null };
+    const flow = createUpdateFlow({
+      waiting: () => st.waiting,
+      installing: () => st.installing,
+      pauseWarming: () => calls.push("pause"),
+      reload: () => calls.push("reload"),
+      readMarker: () => st.marker,
+      writeMarker: (m) => {
+        st.marker = m;
+      },
+      setTimeout: (fn, ms) => {
+        timer = { fn, ms };
+        return 1;
+      },
+      clearTimeout: () => {
+        timer = null;
+      },
+      now: () => NOW,
+      onState: (s) => states.push(s),
+    });
+    return {
+      flow,
+      calls,
+      states,
+      st,
+      fire: () => {
+        const t = timer;
+        timer = null;
+        t?.fn();
+      },
+      armedMs: () => timer?.ms ?? null,
+    };
+  };
+
+  // The click.
+  {
+    const w = worker();
+    const h = harness({ waiting: w });
+    h.flow.updateAvailable();
+    check("a waiting worker shows the prompt", h.states.at(-1) === "available");
+    h.flow.requestUpdate();
+    check("the click pauses the image warmer before asking the worker to take over", h.calls[0] === "pause" && w.messages[0] === SKIP);
+    check("the click shows the updating state", h.states.at(-1) === "updating" && h.flow.state === "updating");
+    check("the click remembers the request for a reload", h.st.marker?.reloads === 0 && h.st.marker?.at === NOW);
+    check("the click arms the takeover timeout", h.armedMs() === TAKEOVER_TIMEOUT_MS);
+    const w3 = worker();
+    h.flow.workerInstalled(w3);
+    check("a newer worker installed after the click is asked to take over too", w3.messages[0] === SKIP && h.flow.state === "updating");
+    h.flow.controllerChanged();
+    check("the new worker taking control reloads once and forgets the request", h.calls.at(-1) === "reload" && h.st.marker === null && h.armedMs() === null);
+  }
+  // The worker waiting at click time is the one asked, not the one the prompt saw.
+  {
+    const w1 = worker();
+    const h = harness({ waiting: w1 });
+    h.flow.workerInstalled(w1);
+    check("a worker finishing its install shows the prompt", h.states.at(-1) === "available");
+    const w2 = worker();
+    h.st.waiting = w2;
+    h.flow.requestUpdate();
+    check("the click asks the worker waiting now, not the one the prompt saw", w2.messages[0] === SKIP && w1.messages.length === 0);
+  }
+  {
+    const h = harness();
+    h.flow.controllerChanged();
+    check("a first install taking control does not reload", !h.calls.includes("reload") && h.flow.state === "idle");
+  }
+  // Nothing happens in time: reload to help the old worker let go.
+  {
+    const w = worker();
+    const h = harness({ waiting: w });
+    h.flow.requestUpdate();
+    h.fire();
+    check("no takeover in time reloads with the request carried over", h.calls.at(-1) === "reload" && h.st.marker?.reloads === 1);
+  }
+  // After that reload: resume without a click.
+  {
+    const w = worker();
+    const h = harness({ waiting: w, marker: { at: NOW - 1000, reloads: 1 } });
+    h.flow.start();
+    check("a carried-over request resumes as updating without a click", h.calls[0] === "pause" && w.messages[0] === SKIP && h.flow.state === "updating");
+    h.fire();
+    check("the second timeout reloads once more", h.calls.at(-1) === "reload" && h.st.marker?.reloads === 2);
+  }
+  {
+    const w = worker();
+    const h = harness({ waiting: w, marker: { at: NOW - 1000, reloads: MAX_FALLBACK_RELOADS } });
+    h.flow.start();
+    h.fire();
+    check("after the last reload the flow waits and says so instead of reloading again", !h.calls.includes("reload") && h.flow.state === "slow");
+    h.flow.controllerChanged();
+    check("the takeover still reloads from the slow state", h.calls.at(-1) === "reload" && h.st.marker === null);
+  }
+  {
+    const h = harness({ marker: { at: NOW - 1000, reloads: 1 } });
+    h.flow.start();
+    check("the switch done during the reload reloads once more under the new worker", h.calls.at(-1) === "reload" && h.st.marker === null);
+  }
+  {
+    const h = harness({ marker: { at: NOW - 1000, reloads: MAX_FALLBACK_RELOADS } });
+    h.flow.start();
+    check("with no reloads left and nothing waiting the request is dropped", !h.calls.includes("reload") && h.st.marker === null && h.flow.state === "idle");
+  }
+  {
+    const w = worker();
+    const h = harness({ waiting: w, marker: { at: NOW - MARKER_TTL_MS - 1, reloads: 1 } });
+    h.flow.start();
+    check("a stale request is ignored and cleared", w.messages.length === 0 && h.st.marker === null && h.flow.state === "idle");
+  }
+  // Clicks with nothing waiting.
+  {
+    const h = harness();
+    h.flow.requestUpdate();
+    check("a click with no worker waiting or installing just reloads", h.calls.at(-1) === "reload" && h.st.marker === null);
+  }
+  {
+    const h = harness({ installing: true });
+    h.flow.requestUpdate();
+    check("a click while a newer worker installs waits for it", !h.calls.includes("reload") && h.flow.state === "updating" && h.armedMs() === TAKEOVER_TIMEOUT_MS);
+    const w = worker();
+    h.flow.workerInstalled(w);
+    check("and asks it to take over once installed", w.messages[0] === SKIP);
+  }
+  {
+    const w = worker();
+    const h = harness({ waiting: w });
+    h.flow.requestUpdate();
+    h.flow.dispose();
+    check("dispose drops the timeout", h.armedMs() === null);
+  }
+}
+
 async function main() {
   testNormalize();
   testReminders();
@@ -930,6 +1084,7 @@ async function main() {
   testInterestsMerge();
   testAiPlan();
   testPreviewAccess();
+  testServiceWorkerUpdateFlow();
   await testRetryOnce();
   await testWhenControlled();
   await testMemoryStorage();

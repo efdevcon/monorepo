@@ -26,6 +26,7 @@ const PHASE_LABEL: Record<WarmPhase, string> = {
   "connection-not-allowed": "skipped: Save-Data or a 2G connection",
   running: "warming",
   "paused-offline": "paused until the connection returns",
+  "paused-update": "paused for the app update",
   done: "done",
 };
 

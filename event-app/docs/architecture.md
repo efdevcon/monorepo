@@ -120,11 +120,19 @@ form.
 
 Updates are **opt-in, never forced** (`skipWaiting: false`, `clientsClaim: true`). When a new
 worker installs while one is already controlling the page, `ServiceWorkerUpdater.tsx` shows a
-persistent "Update available" toast with a Reload button; only on click does it `postMessage`
-SKIP_WAITING to the waiting worker, which activates and triggers a single reload. The app also
-calls `registration.update()` on `visibilitychange`, so returning to the tab proactively checks
-for new versions. We don't do skipwaiting as that may lead to inconsistencies in some edge cases:
-_either everything updates, or nothing does, as a heuristic._
+persistent "Update available" toast with an Update button; only on click does it `postMessage`
+SKIP_WAITING to the worker waiting at that moment, which activates and triggers a single reload.
+The app also calls `registration.update()` on `visibilitychange` and every minute, so an open tab
+keeps checking for new versions. We don't do skipwaiting as that may lead to inconsistencies in
+some edge cases: _either everything updates, or nothing does, as a heuristic._
+
+Chrome only lets the new worker take over once the old one has no fetch event in flight, and a
+page that keeps it busy (the image warmer right after a load, hover prefetches, another tab) can
+hold the switch for up to five minutes. The click therefore pauses the image warmer (aborting its
+fetches), shows an "Updating" state, and if the new worker has not taken control after a few
+seconds reloads the page, carrying the request in sessionStorage so the flow resumes without a
+second click; after a bounded number of reloads it says it is still updating and waits. The
+state machine with its reasons: `src/utils/serviceWorkerUpdate.ts`, checked in `scripts/test-data.ts`.
 
 clientsClaim: true is important to allow offline to work on the first visit
 
@@ -165,7 +173,7 @@ flowchart TD
         SHELL[Precache app-shell routes<br/>git-hash revisioned, view params ignored]
         RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised, 10 s deadline)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* untouched]
         REDIR[/schedule/<id> → /schedule?session=<id>]
-        UPD[New SW installs] --> TOAST[Update toast] -->|user clicks Reload| SKIP[SKIP_WAITING → activate → reload]
+        UPD[New SW installs] --> TOAST[Update toast] -->|user clicks Update| SKIP[pause warmer → SKIP_WAITING → activate → reload<br/>no takeover in time: reload and resume]
     end
     Data -. devcon-api never cached by the SW .- RT
 ```
