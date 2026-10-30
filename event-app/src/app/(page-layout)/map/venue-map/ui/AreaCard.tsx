@@ -38,14 +38,16 @@ function Description({ text, onShowArea, tabbable }: { text: string; onShowArea:
   return <>{parts}</>;
 }
 
+const outLink = "inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline";
+
 /** Rooms whose card drops its own blurb while a session is live, so the session is the whole story (the Main Stage). */
 const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
 
 /**
  * The card that opens when an area is tapped: theme icon (stages: in the
  * disc on the top edge; everything else inline left of the text), name, the
- * floor it is on, a short description, a "Visit website" link when the
- * catalogue has the place's site (a description's place links become buttons
+ * floor it is on, a short description, "Visit website" and "Follow on X" links when the
+ * catalogue has them (supporters always; a description's place links become buttons
  * that show that place via `onShowArea`), and for footprints backed by a schedule
  * room the session running there now, tagged "Live now". Stays
  * mounted so it can slide out; the last area is kept while it fades.
@@ -135,11 +137,21 @@ export function AreaCard({
                 <Description text={shownComposite ? shownComposite.description : shown!.description} onShowArea={onShowArea} tabbable={open} />
               </p>
             )}
-            {shown?.website && !shownComposite && !sessionOnly && (
-              <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="mt-2 inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline">
-                Visit website
-                <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
-              </a>
+            {shown && (shown.website || shown.x) && !shownComposite && !sessionOnly && (
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+                {shown.website && (
+                  <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className={outLink}>
+                    Visit website
+                    <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
+                  </a>
+                )}
+                {shown.x && (
+                  <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className={outLink}>
+                    Follow on X
+                    <ArrowUpRight className="ml-0.5 size-3.5 shrink-0" aria-hidden />
+                  </a>
+                )}
+              </div>
             )}
           </div>
         </div>

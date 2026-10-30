@@ -1,5 +1,6 @@
 import type { CategoryId } from "./categories";
 import type { IconName } from "./icons.generated";
+import type { SupporterId } from "./supporters";
 
 /**
  * Extrusion classes (metres, deliberately taller than life so the blocks read
@@ -44,8 +45,8 @@ export type AreaSpec = {
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
   hubs?: Readonly<Record<number, string>>;
-  /** Per instance number: who is at that booth (supporters). The logo becomes the sprite, the name the card's; the plan's booth name stays as the booth line. */
-  tenants?: Readonly<Record<number, Tenant>>;
+  /** Per instance number: who is at that booth (supporters.ts). The logo becomes the sprite, the name, blurb and links the card's; the plan's booth name stays as the booth line. */
+  tenants?: Readonly<Record<number, SupporterId>>;
   /** Position in Find and Search lists within the category (lower first, then by name; unset = 100). */
   rank?: number;
   /** The place's own site, linked as "Visit website" under the card's description (https only). */
@@ -56,17 +57,8 @@ export type AreaSpec = {
   rooms?: Readonly<Record<number, string>>;
 };
 
-/**
- * A supporter at a booth. `logo` is a path under public/ (white lockups, on the booth's fill colour): the
- * decal on the booth, and the card and list chips unless `cardLogo` names a fuller lockup for those (the
- * compact marks that fit a small booth's top are too terse for a chip; Scott, 2026-10-27).
- */
-export type Tenant = { name: string; logo: string; cardLogo?: string };
-
-/** A place of its own under a shared layer name (`variants`); `heightClass` overrides the layer's at build time. */
-export type Variant = { name: string; description: string; icon?: IconName; host?: Tenant; website?: string; heightClass?: HeightClass };
-
-const supporter = (name: string, file: string, cardFile?: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg`, ...(cardFile ? { cardLogo: `/maps/jwcc/supporters/${cardFile}.svg` } : {}) });
+/** A place of its own under a shared layer name (`variants`); `host` is the supporter running it (supporters.ts), `heightClass` overrides the layer's at build time. */
+export type Variant = { name: string; description: string; icon?: IconName; host?: SupporterId; website?: string; heightClass?: HeightClass };
 
 /**
  * Every tappable layer of the plan SVGs, keyed by area id: the layer name
@@ -131,22 +123,22 @@ export const AREAS = {
     },
   },
   // Supporter booths
-  // Booth assignments from the JWCC floor plan (Scott, 2026-10-25). Logos: the website's white
-  // supporter set, as a test (colour versions may follow). Shared booths name one supporter only:
-  // which supporters are present changes mid-event and is updated then (Scott, 2026-10-25).
+  // Booth assignments from the JWCC floor plan (Scott, 2026-10-25); who each id is, with blurb, site and X, is in
+  // supporters.ts. Logos: the website's white supporter set, as a test (colour versions may follow). Shared booths
+  // name one supporter only: which supporters are present changes mid-event and is updated then (Scott, 2026-10-25).
   "flagship-supporter": {
     name: "Flagship Supporter F#",
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: supporter("Fluid", "fluid"), 2: supporter("Base", "base") },
+    tenants: { 1: "fluid", 2: "base" },
   },
   "core-supporter": {
     name: "Core Supporter C#",
     description: "Supporter booth.",
     category: "supporters",
     heightClass: "kiosk",
-    tenants: { 1: supporter("Gnosis", "gnosis"), 2: supporter("Kleros", "kleros"), 3: supporter("Arkiv", "arkiv"), 4: supporter("OpenZeppelin", "openzeppelin") },
+    tenants: { 1: "gnosis", 2: "kleros", 3: "arkiv", 4: "openzeppelin" },
   },
   starter: {
     name: "Starter Supporter S#",
@@ -154,27 +146,27 @@ export const AREAS = {
     category: "supporters",
     heightClass: "kiosk",
     tenants: {
-      1: supporter("ENS", "ens"),
-      2: supporter("Ordocode", "ordocode", "ordocode-full"),
-      3: supporter("Nethermind", "nethermind"),
-      4: supporter("Bitget", "bitget"),
-      5: supporter("World", "world"),
-      6: supporter("Trail of Bits", "trail-of-bits"),
-      7: supporter("Swarm", "swarm"),
-      8: supporter("Linux Foundation Decentralized Trust", "lfdt"),
-      9: supporter("EEZ", "eez", "eez-full"),
-      10: supporter("Crossbar", "crossbar"),
-      11: supporter("UNICEF", "unicef"),
-      12: supporter("Fair Food Data", "fair-food-data"),
-      13: supporter("Ethereum Applications Guild", "eag", "eag-full"),
-      14: supporter("EIPsInsight", "eipsinsight"),
-      15: supporter("growthepie", "growthepie"),
-      16: supporter("GCC Commons", "gcc"),
-      17: supporter("ETH Labs", "eth-labs"),
-      18: supporter("Railgun", "railgun"),
-      19: supporter("Walletbeat", "walletbeat", "walletbeat-full"),
-      20: supporter("Nimbus", "nimbus", "nimbus-full"),
-      21: supporter("GrapheneOS", "grapheneos", "grapheneos-full"),
+      1: "ens",
+      2: "ordocode",
+      3: "nethermind",
+      4: "bitget",
+      5: "world",
+      6: "trail-of-bits",
+      7: "swarm",
+      8: "lfdt",
+      9: "eez",
+      10: "crossbar",
+      11: "unicef",
+      12: "fair-food-data",
+      13: "eag",
+      14: "eipsinsight",
+      15: "growthepie",
+      16: "gcc",
+      17: "eth-labs",
+      18: "railgun",
+      19: "walletbeat",
+      20: "nimbus",
+      21: "grapheneos",
     },
   },
   // Food & drink
@@ -188,7 +180,7 @@ export const AREAS = {
     // The CoW Swap cup a fifth larger than the footprint-derived 3.3 m (Scott, 2026-10-30).
     iconSizes: { 8: 4 },
     // The stand above the supporter booths is hosted by CoW Swap: its own cup, name and description, and CoW Swap's lockup on the card (Scott, 2026-10-30).
-    variants: { 8: { name: "CoW Swap (Coffee Stand)", description: "Tea, coffee and snacks all day, served by CoW Swap.", icon: "cow-swap-coffee-cup", host: supporter("CoW Swap", "cow-swap"), heightClass: "stand" } },
+    variants: { 8: { name: "CoW Swap (Coffee Stand)", description: "Tea, coffee and snacks all day, served by CoW Swap.", icon: "cow-swap-coffee-cup", host: "cow-swap", heightClass: "stand" } },
   },
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms

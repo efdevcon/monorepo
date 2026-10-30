@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { test } from "node:test";
 import { buildFindGroups, buildFloorLegend, primaryOf } from "../find/catalogue";
 import { LEVELS } from "../data/levels";
 import { AREA_LIST } from "../data/resolve";
 import { SEARCH_TERMS } from "../data/searchTerms";
+import { SUPPORTERS, type Supporter } from "../data/supporters";
 import { parseFloorQuery, searchFind } from "./search";
 
 const L = LEVELS[0];
@@ -146,4 +149,15 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
   assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Meeting rooms", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
   assert.ok(buildFloorLegend("L1")[0].iconUrl?.endsWith("/suites.png"), "a category chip takes the first member's icon");
   assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Meeting rooms", 8], ["Baby Care Room", 1]]);
+});
+
+test("supporters: every seated supporter has a blurb, a site and a logo file; X is https when set", () => {
+  const booths = AREA_LIST.filter((a) => a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters"));
+  assert.ok(booths.length >= 28, "27 booths and the hosted coffee stand");
+  for (const a of booths) {
+    assert.ok(a.description.length > 20 && a.description.length <= 280, `${a.name}: blurb length`);
+    assert.match(a.website ?? "", /^https:\/\//, `${a.name}: site`);
+    if (a.x) assert.match(a.x, /^https:\/\/x\.com\/[A-Za-z0-9_]+$/, `${a.name}: X profile`);
+  }
+  for (const s of Object.values<Supporter>(SUPPORTERS)) for (const file of [s.logo, s.cardLogo]) if (file) assert.ok(fs.existsSync(path.join(process.cwd(), "public/maps/jwcc/supporters", `${file}.svg`)), `${s.name}: ${file}.svg`);
 });

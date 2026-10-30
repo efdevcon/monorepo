@@ -107,9 +107,11 @@ with the `cow-swap-coffee-cup` icon, `supporters/cow-swap.svg` and the `stand` h
 `[label](area:<id>)`: the card renders it as a button that shows that place (the Ticket Help Desk points at the Info Desk), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
-as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
-booths, logos under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
-a chip in the booth's fill in the card and lists; a tenant may name a `cardLogo` for those chips when the booth's own
+as the card's booth line), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with
+its name, blurb (two sentences at most, from the supporter's own site; OpenZeppelin's and Dedaub's wording from Scott), `website` and `x`
+profile, which the card shows as "Visit website" / "Follow on X" (Scott, 2026-10-30; Circle and Dedaub are in the registry but seated
+at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
+a chip in the booth's fill in the card and lists; a supporter may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
 2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then (S12 is Fair Food Data from 2026-10-27; Kohaku moves to another spot later in the week, its two marks stay in the folder for that; Scott, 2026-10-25 / 10-27), optional
@@ -166,7 +168,7 @@ music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on
 interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
 structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station. Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
-their lockup via `tenants`; the generic community-hub glyph is the fallback for a booth with no
+their lockup via `tenants` (supporters.ts); the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).
 
 ## 4. Runtime: `src/app/(page-layout)/map/venue-map/`
