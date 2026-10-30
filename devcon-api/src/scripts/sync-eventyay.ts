@@ -103,7 +103,12 @@ const TARGETS: Record<string, TargetMapping> = {
     source: 'https://eventyay.com/fossasia/ots2026',
     sourceKey: 'eventyay:fossasia/ots2026',
     track: '[CLS] - OTS',
-    rooms: { 'Main Stage': 'Stage 6 (CLS)', 'Builders Room': 'CLS Stage - Builders Room' },
+    rooms: {
+      'Main Stage': 'Stage 6 (CLS)',
+      'Builders Room': 'CLS Stage - Builders Room',
+      'OTS Main Stage': 'Stage 6 (CLS)',
+      'OTS Builders Room': 'CLS Stage - Builders Room',
+    },
     types: OTS_TYPES,
     defaultType: 'CLS - Talk (Open Tech Summit)',
     tags: OTS_TAGS,
@@ -115,7 +120,13 @@ const TARGETS: Record<string, TargetMapping> = {
     sourceKey: 'eventyay:fossasia/ots2026',
     track: '[CLS] - OTS',
     // Room names since the 2026-10-14 Pretalx rename (were "CLS Stage" / "CLS Stage - Builders Room").
-    rooms: { 'Main Stage': 'Community Led Stage', 'Builders Room': 'CLS - Builders Room' },
+    // eventyay renamed its rooms "OTS Main Stage" / "OTS Builders Room" in late October.
+    rooms: {
+      'Main Stage': 'Community Led Stage',
+      'Builders Room': 'CLS - Builders Room',
+      'OTS Main Stage': 'Community Led Stage',
+      'OTS Builders Room': 'CLS - Builders Room',
+    },
     types: OTS_TYPES,
     defaultType: 'CLS - Talk (Open Tech Summit)',
     tags: OTS_TAGS,
