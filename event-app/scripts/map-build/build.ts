@@ -408,7 +408,8 @@ export function buildBundle(report: Report): MapBundle | null {
   for (const areaId of Object.keys(AREAS)) if (!used.has(areaId)) report.error("data/areas.ts", areaId, "catalogue entry matches no layer on any floor");
   // Icons must exist.
   for (const [areaId, entry] of Object.entries(AREAS) as [string, AreaSpec][]) {
-    if (entry.icon && !fs.existsSync(path.join(ICONS_DIR, `${entry.icon}.png`))) report.error("data/areas.ts", areaId, `icon "${entry.icon}" has no PNG under public/maps/devcon-8/icons`);
+    const icons = [entry.icon, ...Object.values(entry.icons ?? {}), ...Object.values(entry.variants ?? {}).map((v) => v.icon)].flatMap((i) => (i ? [i] : []));
+    for (const icon of icons) if (!fs.existsSync(path.join(ICONS_DIR, `${icon}.png`))) report.error("data/areas.ts", areaId, `icon "${icon}" has no PNG under public/maps/devcon-8/icons`);
   }
   if (!levels.length) return null;
   const bounds: GroundBounds = levels.reduce(

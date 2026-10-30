@@ -41,8 +41,10 @@ export type Area = {
   lockupUrl: string | null;
   /** The plan's own name for a hub or supporter booth ("Hub 7", "Starter Supporter S12"), kept beside the tenant's name. */
   boothName: string | null;
-  /** Fill behind the icon in the card and lists, for logos drawn in white (supporters). */
+  /** Fill behind the icon in the card and lists, for logos drawn in white (supporters, and a place a supporter hosts). */
   iconBackdrop: string | null;
+  /** Find categories the place is listed under on top of its own (a supporter-hosted place is under Supporters too). */
+  alsoCategories: readonly Category[];
   /** List position within the category (areas.ts `rank`). */
   rank: number;
   /** The place's own site (areas.ts `website`), "Visit website" on the card. */
@@ -62,7 +64,9 @@ function resolveShape(shape: MapShape): Area | null {
   if (shape.kind !== "area" || !shape.areaId) return null;
   const spec: AreaSpec = AREAS[shape.areaId as AreaId];
   const instance = shape.instance ?? null;
-  const icon = (instance !== null ? spec.icons?.[instance] : undefined) ?? spec.icon ?? null;
+  const variant = (instance !== null ? spec.variants?.[instance] : undefined) ?? null;
+  const host = variant?.host ?? null;
+  const icon = variant?.icon ?? (instance !== null ? spec.icons?.[instance] : undefined) ?? spec.icon ?? null;
   const planName = spec.name.replace("#", instance === null ? "" : String(instance)).trim();
   const hub = (instance !== null && spec.hubs?.[instance] ? findCommunityHub(spec.hubs[instance]) : undefined) ?? null;
   const tenant = (instance !== null ? spec.tenants?.[instance] : undefined) ?? null;
@@ -72,13 +76,13 @@ function resolveShape(shape: MapShape): Area | null {
     levelName: levelName.get(shape.level) ?? shape.level,
     areaId: shape.areaId as AreaId,
     instance,
-    name: hub ? hub.name : tenant ? tenant.name : planName,
-    description: hub ? hub.description : tenant ? "" : spec.description,
+    name: hub ? hub.name : tenant ? tenant.name : (variant?.name ?? planName),
+    description: hub ? hub.description : tenant ? "" : (variant?.description ?? spec.description),
     category: categoryById(spec.category),
     legendCategory: categoryById(spec.legend ?? spec.category),
     icon,
     iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
-    cardIconUrl: hub ? communityHubLogo(hub) : tenant ? (tenant.cardLogo ?? tenant.logo) : icon ? iconUrl(icon) : null,
+    cardIconUrl: hub ? communityHubLogo(hub) : tenant ? (tenant.cardLogo ?? tenant.logo) : host ? (host.cardLogo ?? host.logo) : icon ? iconUrl(icon) : null,
     heightClass: spec.heightClass,
     iconSize: (instance !== null ? spec.iconSizes?.[instance] : undefined) ?? spec.iconSize ?? null,
     shape,
@@ -86,9 +90,10 @@ function resolveShape(shape: MapShape): Area | null {
     hub,
     lockupUrl: hub ? communityHubLockup(hub) : null,
     boothName: hub || tenant ? planName : null,
-    iconBackdrop: tenant ? shape.fill : null,
+    iconBackdrop: tenant || host ? shape.fill : null,
+    alsoCategories: host ? [categoryById("supporters")] : [],
     rank: spec.rank ?? 100,
-    website: spec.website ?? null,
+    website: variant?.website ?? spec.website ?? null,
     room: (instance !== null ? spec.rooms?.[instance] : undefined) ?? spec.room ?? null,
   };
 }

@@ -96,8 +96,12 @@ washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag st
 for the co-work areas, hubs, tea & coffee, storage and elevators; walls are 3 m), optional
 `minWidth` (metres; footprints the plan draws as thin strips are stretched along their short axis
 about their centre, the two tea & coffee bars), optional `iconSize` (sprite height in metres when the
-footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5), optional `icons` (per instance: the
-east elevator uses `elevator-left`), optional `hubs` (booth number →
+footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5) and `iconSizes` (the same per
+instance: Level 3's washroom 9 stands right behind hubs 8–10, so its icon is 4.5 instead of the derived 6.5, which covered them; Scott, 2026-10-30), optional `icons` (per instance: the
+east elevator uses `elevator-left`), optional `variants` (per instance: a footprint under a shared layer name that is a place of its own, with its own
+name, description and icon, and a `host` supporter whose white lockup takes the card and list chips on the footprint's fill, like a booth's, and lists
+the place under Supporters as well as its own category (`Area.alsoCategories`; Find shows a row in each, Search dedupes by key). Today: `tea-&-coffee-8`,
+the stand above the supporter booths, is "CoW Swap Tea & Coffee" with the `cow-swap-coffee-cup` icon and `supporters/cow-swap.svg`; Scott, 2026-10-30), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
 as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
@@ -122,7 +126,8 @@ That colour legend is the fallback for a floor without a spec list; every floor 
 `category` (the suites, fourteen ids), with the type's theme icon or a swatch in its fill while
 it has none (the CLS Hangout Area); a category spec with `swatch` keeps the colour square (Level 3's
 Community and Supporters, matched on the legend category so the yellow corners stay under Community).
-Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory, and
+Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory (Level 0 lists both desks: the Help Desk is
+ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30), and
 Level 3 stays short: the three stage kinds, Community, Supporters, Swag Station, Game Zone,
 Decompression Zone. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue
@@ -221,7 +226,9 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   (`MapSheet`); Scott, 2026-10-26/27), the top strip (controls legend while stacked or
   when the floor has no legend; on a touch device held upright a "Tip: Try landscape mode" banner with a
   turning phone glyph sits under the controls, gone in landscape and from lg up (Scott, 2026-10-27); otherwise the floor's legend chips, icons per place type on
-  Level 3's Community and Supporters as swatches), `AreaCard`
+  Level 3's Community and Supporters as swatches; from lg up the strip is `w-max` capped at the viewport, where the chips wrap: anchored at left 50% it
+  shrank to fit the half viewport to its right, and Safari, which lets a button flex item shrink below its content, squeezed Level 3's chips into each
+  other while Chrome held them at content width; Scott, 2026-10-30), `AreaCard`
   (stages keep the icon disc, everything else inline; desktop beside the footprint via
   `--poi-x/--poi-y` written by `FloorStack` per frame, group picks bottom-centre), live session
   from the footprint's `roomIds`, shortcuts (digits, F, /, Esc/A), the team-only wrench + tuning
@@ -262,7 +269,9 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   `stairs-`, `stairs-_2`…; the build finds the others by structure meanwhile), put Levels 1–2's
   `Subtract` slab inside their `Background` group, name Level 2's interior walls as Level 1's are, and
   group the loose labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
-  named `cls-hangout-area` in the committed copy only (name it in Figma). Pretalx's
+  named `cls-hangout-area` in the committed copy only (name it in Figma), and the `info-desk` colour box on Level 0 (a Help Desk-sized
+  box outside the registration entrance, between washroom 1 and the entrance arrow, 2026-10-30) exists in the committed `L0.svg` only: draw it in
+  Figma before the next export or the re-export drops it. Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
   sessions' "Show on Map" points at the hangout area, roughly where they happen.
 - Icons still missing: CLS Hangout Area (the Food Garden reuses the food-area icon, provisional;

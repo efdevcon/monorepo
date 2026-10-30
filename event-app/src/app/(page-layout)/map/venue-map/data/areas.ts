@@ -31,6 +31,13 @@ export type AreaSpec = {
   icons?: Readonly<Record<number, IconName>>;
   /** Per instance number: a sprite height of its own (the Level 3 washroom beside the hubs, whose full-size icon covered them). */
   iconSizes?: Readonly<Record<number, number>>;
+  /**
+   * Per instance number: a footprint under a shared layer name that is a place of its own (the CoW Swap tea &
+   * coffee stand on Level 3): its own name, description and icon; `host` names the supporter running it, whose
+   * logo takes the card and list chips on the footprint's fill like a booth's, and lists the place under
+   * Supporters as well as its own category.
+   */
+  variants?: Readonly<Record<number, Variant>>;
   /** Schedule room ids (Pretalx) whose sessions happen here: drives "Show on Map" and the live-session card. */
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
@@ -53,6 +60,9 @@ export type AreaSpec = {
  * compact marks that fit a small booth's top are too terse for a chip; Scott, 2026-10-27).
  */
 export type Tenant = { name: string; logo: string; cardLogo?: string };
+
+/** A place of its own under a shared layer name (`variants`). */
+export type Variant = { name: string; description: string; icon?: IconName; host?: Tenant; website?: string };
 
 const supporter = (name: string, file: string, cardFile?: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg`, ...(cardFile ? { cardLogo: `/maps/jwcc/supporters/${cardFile}.svg` } : {}) });
 
@@ -166,7 +176,16 @@ export const AREAS = {
     },
   },
   // Food & drink
-  "tea-coffee": { name: "Tea & Coffee", description: "Tea, coffee and snacks all day.", category: "food", heightClass: "zone", icon: "coffee", minWidth: 2.5 },
+  "tea-coffee": {
+    name: "Tea & Coffee",
+    description: "Tea, coffee and snacks all day.",
+    category: "food",
+    heightClass: "zone",
+    icon: "coffee",
+    minWidth: 2.5,
+    // The stand above the supporter booths is hosted by CoW Swap: its own cup, name and description, and CoW Swap's lockup on the card (Scott, 2026-10-30).
+    variants: { 8: { name: "CoW Swap Tea & Coffee", description: "Tea, coffee and snacks all day, served by CoW Swap. Find them at the top of the supporters area.", icon: "cow-swap-coffee-cup", host: supporter("CoW Swap", "cow-swap") } },
+  },
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
   // Washroom 9 (Level 3) stands right behind hubs 8–10; its icon is a size down so it stops covering them (Scott, 2026-10-30).

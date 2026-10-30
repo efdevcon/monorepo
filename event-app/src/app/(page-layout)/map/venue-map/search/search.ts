@@ -54,15 +54,25 @@ export function searchFind(groups: FindGroup[], query: string): SearchResult {
   let floorName = level ?? "";
   let floorCount = 0;
   const targets = termTargets(rest);
+  // A place listed under two categories (the CoW Swap stand: Food & drink and Supporters) is one hit.
+  const seen = new Set<string>();
+  const counted = new Set<string>();
   for (const group of groups) {
     const categoryHit = rest !== "" && (group.category.label.toLowerCase().includes(rest) || targets.categories.has(group.category.id));
     for (const floor of group.floors) {
       if (level && floor.level !== level) continue;
       if (level) {
         floorName = floor.name;
-        floorCount += floor.entries.length;
+        floorCount += floor.entries.filter((e) => !counted.has(e.key)).length;
+        for (const e of floor.entries) counted.add(e.key);
       }
-      for (const entry of floor.entries) if (rest === "" || categoryHit || entry.name.toLowerCase().includes(rest) || entry.areas.some((a) => targets.areas.has(a.areaId))) hits.push(entry);
+      for (const entry of floor.entries) {
+        if (seen.has(entry.key)) continue;
+        if (rest === "" || categoryHit || entry.name.toLowerCase().includes(rest) || entry.areas.some((a) => targets.areas.has(a.areaId))) {
+          seen.add(entry.key);
+          hits.push(entry);
+        }
+      }
     }
   }
   return { floor: level ? { level, name: floorName, count: floorCount } : null, hits: rest === "" ? hits : hits.sort((a, b) => byName(a, b) || sortByLevel(a, b)) };

@@ -20,15 +20,17 @@ export const byRank = (a: { name: string; rank: number }, b: { name: string; ran
 
 const levelName = new Map<LevelId, string>(LEVELS.map((l) => [l.id, l.name]));
 
-/** Every tappable footprint grouped by category then floor, same-name copies per floor collapsed. Built once; the plan is static. */
+/** Every tappable footprint grouped by category then floor, same-name copies per floor collapsed; a place with `alsoCategories` (the CoW Swap stand, under Supporters too) is a row in each. Built once; the plan is static. */
 export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[] {
   const buckets = new Map<string, Map<LevelId, Map<string, Area[]>>>();
   for (const area of areas) {
-    const perLevel = buckets.get(area.category.id) ?? new Map<LevelId, Map<string, Area[]>>();
-    buckets.set(area.category.id, perLevel);
-    const perName = perLevel.get(area.level) ?? new Map<string, Area[]>();
-    perLevel.set(area.level, perName);
-    perName.set(area.name, [...(perName.get(area.name) ?? []), area]);
+    for (const category of [area.category, ...area.alsoCategories]) {
+      const perLevel = buckets.get(category.id) ?? new Map<LevelId, Map<string, Area[]>>();
+      buckets.set(category.id, perLevel);
+      const perName = perLevel.get(area.level) ?? new Map<string, Area[]>();
+      perLevel.set(area.level, perName);
+      perName.set(area.name, [...(perName.get(area.name) ?? []), area]);
+    }
   }
   return CATEGORIES.flatMap((category) => {
     const perLevel = buckets.get(category.id);
