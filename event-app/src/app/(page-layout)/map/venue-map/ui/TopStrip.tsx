@@ -15,6 +15,13 @@ import { SINGLE_FLOOR } from "../state/mapStore";
  * centred under the header from lg up. Fades out (`hidden`) while the area
  * card or a panel is open; `dismissed` fades it on phones only. `below`
  * renders beneath the chip container (the landscape tip).
+ *
+ * From lg up the strip is `w-max`: anchored at left 50% it would otherwise
+ * shrink to fit the half viewport to its right, and Safari, which lets a
+ * button flex item shrink below its content, then squeezed Level 3's eight
+ * chips into each other (Chrome holds a button at its content width, so
+ * only Safari showed it; Scott, 2026-10-30). Capped at the viewport, where
+ * the chips wrap (Level 0's ten chips are wider than a 1024px window).
  */
 export function TopStrip({ hidden, dismissed = false, label, below, children }: { hidden: boolean; dismissed?: boolean; label?: string; below?: ReactNode; children: ReactNode }) {
   const online = useOnline();
@@ -23,14 +30,14 @@ export function TopStrip({ hidden, dismissed = false, label, below, children }: 
       aria-hidden={hidden}
       aria-label={label}
       className={cn(
-        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex flex-col items-center gap-2 phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:right-[max(16px,var(--safe-right))] lg:left-1/2 lg:right-auto lg:top-[80px] lg:-translate-x-1/2",
+        "pointer-events-none fixed inset-x-4 top-[calc(var(--safe-top)+12px)] z-10 flex flex-col items-center gap-2 phone-landscape:left-[max(16px,var(--safe-left))] phone-landscape:right-[max(16px,var(--safe-right))] lg:left-1/2 lg:right-auto lg:top-[80px] lg:w-max lg:max-w-[calc(100vw-32px)] lg:-translate-x-1/2",
         !online && "max-lg:right-[120px]",
         "transition-opacity duration-150 ease-out motion-reduce:transition-none",
         hidden ? "opacity-0" : "opacity-100",
         dismissed && "max-lg:opacity-0"
       )}
     >
-      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-lg border border-dc-hairline bg-white/85 px-3 py-2 backdrop-blur lg:flex-nowrap">{children}</div>
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-lg border border-dc-hairline bg-white/85 px-3 py-2 backdrop-blur">{children}</div>
       {below}
     </div>
   );
@@ -57,7 +64,7 @@ function Kbd({ children }: { children: ReactNode }) {
   return <kbd className="rounded-[4px] border border-dc-hairline bg-dc-panel px-1.5 py-0.5 font-sans text-[11px] font-semibold leading-none text-dc-muted">{children}</kbd>;
 }
 
-const chip = "inline-flex items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted";
+const chip = "inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[12px] leading-none text-dc-muted";
 
 /**
  * What the pointer does, shown while the floors are stacked (and on a
