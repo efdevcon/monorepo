@@ -4,7 +4,7 @@ import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
 import { ChevronRight, Clock3, Globe, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
-import { XIcon } from "@/components/ShareMenu";
+import { XIcon } from "@/components/icons/XIcon";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
 import { isAreaId, type AreaId } from "../data/areas";

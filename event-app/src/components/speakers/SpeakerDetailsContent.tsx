@@ -3,7 +3,8 @@
 import { Globe, Star } from "lucide-react";
 import cn from "classnames";
 import { Avatar } from "@/components/Avatar";
-import { ShareMenu, XIcon } from "@/components/ShareMenu";
+import { XIcon } from "@/components/icons/XIcon";
+import { ShareMenu } from "@/components/ShareMenu";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { groupSessionsByDay } from "@/components/schedule/utils";
