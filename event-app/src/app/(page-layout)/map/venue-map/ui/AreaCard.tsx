@@ -1,13 +1,42 @@
 "use client";
 
-import { useState, type MutableRefObject } from "react";
+import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
 import { ArrowUpRight, ChevronRight, Clock3, Presentation, User } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
+import { isAreaId, type AreaId } from "../data/areas";
 import { compositeOf, type Area } from "../data/resolve";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
+
+/** A place link in a description: `[Info Desk](area:info-desk)` (areas.ts). */
+const AREA_LINK = /\[([^\]]+)\]\(area:([a-z0-9-]+)\)/g;
+
+/**
+ * A description with its place links as buttons that show that place
+ * (the Ticket Help Desk's card points at the Info Desk; Scott, 2026-10-30).
+ */
+function Description({ text, onShowArea, tabbable }: { text: string; onShowArea: (areaId: AreaId) => void; tabbable: boolean }) {
+  const parts: ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(AREA_LINK)) {
+    const [whole, label, id] = match;
+    parts.push(text.slice(last, match.index));
+    parts.push(
+      isAreaId(id) ? (
+        <button key={match.index} type="button" tabIndex={tabbable ? 0 : -1} onClick={() => onShowArea(id)} className="cursor-pointer font-bold text-dc-purple underline underline-offset-2 hover:no-underline">
+          {label}
+        </button>
+      ) : (
+        label
+      )
+    );
+    last = match.index + whole.length;
+  }
+  parts.push(text.slice(last));
+  return <>{parts}</>;
+}
 
 /** Rooms whose card drops its own blurb while a session is live, so the session is the whole story (the Main Stage). */
 const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
@@ -16,7 +45,8 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
  * The card that opens when an area is tapped: theme icon (stages: in the
  * disc on the top edge; everything else inline left of the text), name, the
  * floor it is on, a short description, a "Visit website" link when the
- * catalogue has the place's site, and for footprints backed by a schedule
+ * catalogue has the place's site (a description's place links become buttons
+ * that show that place via `onShowArea`), and for footprints backed by a schedule
  * room the session running there now, tagged "Live now". Stays
  * mounted so it can slide out; the last area is kept while it fades.
  *
@@ -30,6 +60,7 @@ export function AreaCard({
   groupName,
   groupAreas,
   onClose,
+  onShowArea,
   anchorRef,
 }: {
   area: Area | null;
@@ -38,6 +69,8 @@ export function AreaCard({
   groupName: string | null;
   groupAreas: readonly string[] | null;
   onClose: () => void;
+  /** Shows another place from a description's link (the Info Desk from the Ticket Help Desk). */
+  onShowArea: (areaId: AreaId) => void;
   anchorRef: MutableRefObject<HTMLDivElement | null>;
 }) {
   const [shown, setShown] = useState<Area | null>(area);
@@ -97,7 +130,11 @@ export function AreaCard({
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
             {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>}
-            {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">{shownComposite ? shownComposite.description : shown?.description}</p>}
+            {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && (
+              <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">
+                <Description text={shownComposite ? shownComposite.description : shown!.description} onShowArea={onShowArea} tabbable={open} />
+              </p>
+            )}
             {shown?.website && !shownComposite && !sessionOnly && (
               <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} className="mt-2 inline-flex w-fit items-center text-[14px] font-bold leading-none text-dc-purple underline underline-offset-2 hover:no-underline">
                 Visit website

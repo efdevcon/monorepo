@@ -134,7 +134,7 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
   const l0 = buildFloorLegend("L0");
   assert.deepEqual(
     l0.map((e) => e.label),
-    ["Community Led Stage", "CLS Hangout Area", "Registration", "Badge Pickup", "Help Desk", "Info Desk", "Cloak Room", "Food Garden", "Poster Printing Station", "Poster Display"]
+    ["Community Led Stage", "CLS Hangout Area", "Registration", "Badge Pickup", "Ticket Help Desk", "Info Desk", "Cloak Room", "Food Garden", "Poster Printing Station", "Poster Display"]
   );
   assert.ok(l0.every((e) => e.iconUrl || e.swatch), "a chip has an icon or a swatch");
   assert.equal(l0.find((e) => e.label === "CLS Hangout Area")?.swatch, "#0088ee", "no icon yet: a swatch in the footprint's fill");

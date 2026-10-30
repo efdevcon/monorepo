@@ -126,8 +126,8 @@ That colour legend is the fallback for a floor without a spec list; every floor 
 `category` (the suites, fourteen ids), with the type's theme icon or a swatch in its fill while
 it has none (the CLS Hangout Area); a category spec with `swatch` keeps the colour square (Level 3's
 Community and Supporters, matched on the legend category so the yellow corners stay under Community).
-Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory (Level 0 lists both desks: the Help Desk is
-ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30), and
+Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory (Level 0 lists both desks: the Ticket Help Desk is
+ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30; its card links the Info Desk), and
 Level 3 stays short: the three stage kinds, Community, Supporters, Swag Station, Game Zone,
 Decompression Zone. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue

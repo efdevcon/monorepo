@@ -16,6 +16,7 @@ export type AreaSpec = {
    * and collapse into one Find row ("Washroom ×2").
    */
   name: string;
+  /** May link another place as `[label](area:<area id>)`: the card renders it as a button that shows that place (the Ticket Help Desk points at the Info Desk). */
   description: string;
   category: CategoryId;
   /** The legend chip the footprint belongs to when it is not its category's (the yellow discussion corners sit under Community, with the hubs). */
@@ -200,7 +201,7 @@ export const AREAS = {
   registration: { name: "Registration", description: "Check in and collect your wristband.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
   "badge-pickup": { name: "Badge Pickup #", description: "Create a Devcon badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
   // Two desks: the Help Desk is ticketing only, the Info Desk (by the registration entrance, added 2026-10-30) is the volunteers' general one (Scott).
-  "help-desk": { name: "Help Desk", description: "Ticketing help only: a ticket that won't scan, a missing or transferred ticket, the wrong ticket type, or any other problem with your ticket. For general questions about the event, head to the Info Desk.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  "help-desk": { name: "Ticket Help Desk", description: "Ticketing help only: a ticket that won't scan, a missing or transferred ticket, the wrong ticket type, or any other problem with your ticket. For general questions about the event, head to the [Info Desk](area:info-desk).", category: "checkin", heightClass: "kiosk", icon: "ticket-help-desk" },
   "info-desk": { name: "Info Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
   "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Check in your bag or ask about lost property.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
