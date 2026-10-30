@@ -102,9 +102,11 @@ instance: Level 3's washroom 9 stands right behind hubs 8–10, so its icon is 4
 east elevator uses `elevator-left`), optional `variants` (per instance: a footprint under a shared layer name that is a place of its own, with its own
 name, description, icon and height class, and a `host` supporter whose white lockup takes the card chip on the footprint's fill, like a booth's, and lists
 the place under Supporters as well as its own category (`Area.alsoCategories`; Find shows a row in each: the place's own icon under its own category,
-the host's lockup under Supporters; Search dedupes by key). Today: `tea-&-coffee-8`, the stand above the supporter booths, is "CoW Swap (Coffee Stand)"
+the host's lockup under Supporters, `FindEntry.secondary` marks the latter; Search dedupes by key, keeping the own row for a text query and the row
+it met first for a bare floor query; a category legend chip takes these places too, so Level 3's Supporters chip lights the stand). Today: `tea-&-coffee-8`, the stand above the supporter booths, is "CoW Swap (Coffee Stand)"
 with the `cow-swap-coffee-cup` icon, `supporters/cow-swap.svg` and the `stand` height; Scott, 2026-10-30). A `description` may link another place as
-`[label](area:<id>)`: the card renders it as a button that shows that place (the Ticket Help Desk points at the Info Desk), optional `hubs` (booth number →
+`[label](area:<id>)`: the card renders it as a button that shows that place on the card's floor, else on the lowest floor that has it (the Ticket
+Help Desk points at the Info Desk), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
 as the card's booth line), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with

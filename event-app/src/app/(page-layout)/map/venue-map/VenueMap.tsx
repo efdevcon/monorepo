@@ -11,7 +11,7 @@ import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import { useIsTeam } from "@/data/release/releaseGates";
 import { APP_CHROME_OFF_ATTR, isDesktopNow, useIsDesktop, useIsPhoneLandscape, useMediaQuery } from "@/hooks/useIsDesktop";
 import { FOCUS_ZOOM_DESKTOP, FOCUS_ZOOM_MOBILE } from "./camera/constants";
-import { LEVELS, type LevelId } from "./data/levels";
+import { LEVELS, levelIndex, type LevelId } from "./data/levels";
 import type { AreaId } from "./data/areas";
 import { AREA_LIST, areaOf, compositeOf, type AreaKey } from "./data/resolve";
 import { AREA_PARAM, parseAreaParam } from "./data/roomAreas";
@@ -102,12 +102,14 @@ export function VenueMap() {
   const showLevel = useCallback((level: LevelId) => dispatch({ type: "openFloor", level }), []);
   const toggleLevel = useCallback((level: LevelId) => dispatch({ type: "toggleFloor", level }), []);
   const pickEntry = (entry: Pick<FindEntry, "areas"> | LegendEntry) => showAreas(entry.areas.map((a) => a.key));
-  // A description's place link: that place's footprints on the open card's floor, or wherever they are.
+  // A description's place link: that place's footprints on the open card's floor, else on the lowest floor that has it (a pick spans one floor).
   const showAreaById = useCallback(
     (areaId: AreaId) => {
       const all = AREA_LIST.filter((a) => a.areaId === areaId);
+      if (!all.length) return;
       const here = selectedArea ? all.filter((a) => a.level === selectedArea.level) : [];
-      showAreas((here.length ? here : all).map((a) => a.key));
+      const floor = here.length ? here[0].level : all.reduce((low, a) => (levelIndex(a.level) < levelIndex(low) ? a.level : low), all[0].level);
+      showAreas(all.filter((a) => a.level === floor).map((a) => a.key));
     },
     [selectedArea, showAreas]
   );

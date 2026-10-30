@@ -30,6 +30,9 @@ test("search: name and category matches, duplicates collapsed with their count",
   const cowBooth = groups.find((g) => g.category.id === "supporters")!.floors.flatMap((f) => f.entries).find((e) => e.key === cow.key)!;
   assert.ok(cowBooth.iconBackdrop && cowBooth.iconUrl?.endsWith("/cow-swap.svg"), "under Supporters it carries the host's lockup on a chip");
   assert.equal(cow.areas[0].heightClass, "stand", "half a booth high");
+  const onFloor = searchFind(groups, "level 3").hits.filter((h) => h.key === cow.key);
+  assert.equal(onFloor.length, 1);
+  assert.ok(onFloor[0].secondary && onFloor[0].iconBackdrop, "a bare floor query keeps the stand in the Supporters run, with the lockup like its neighbours");
   assert.deepEqual(hits.map((h) => h.level), ["L3", "L1", "L2", "L3"], "same name sorts by floor");
   assert.equal(searchFind(groups, "coffee l1").hits.length, 1, "a floor in the query scopes it");
   const washrooms = searchFind(groups, "washrooms").hits;
@@ -130,7 +133,7 @@ test("floor legend: Level 3 keeps the Community and Supporters swatches and list
   assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
   assert.equal(community.areas.filter((a) => a.areaId === "community-hub").length, 14);
   const supporters = legend.find((e) => e.label === "Supporters")!;
-  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths");
+  assert.equal(supporters.areas.length, 28, "flagship, core and starter booths, plus the CoW Swap stand listed under Supporters");
   assert.ok(supporters.swatch && !supporters.iconUrl);
   assert.ok(legend.find((e) => e.label === "Game Zone")!.iconUrl?.endsWith("/game-zone.png"));
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
