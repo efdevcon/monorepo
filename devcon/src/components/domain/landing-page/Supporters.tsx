@@ -3,7 +3,6 @@ import Image, { StaticImageData } from 'next/image'
 import { useTranslations } from 'next-intl'
 import Gnosis from './images/supporters/gnosis.svg'
 import Arkiv from './images/supporters/arkiv.svg'
-import Fluid from './images/supporters/fluid.svg'
 import Kleros from './images/supporters/kleros.svg'
 import Base from './images/supporters/base.svg'
 import OpenZeppelin from './images/supporters/openzeppelin.svg'
@@ -69,7 +68,7 @@ type Row = {
   logos: LogoEntry[]
 }
 
-// Supporters: Fluid + Base (flagship, ~100px), then Arkiv, Gnosis, Kleros and
+// Supporters: Base (flagship, ~100px), then Arkiv, Gnosis, Kleros and
 // OpenZeppelin at 60px in two pairs (core — four across would overflow the column and
 // shrink below starter), then the rest at 40px (starter) — 3 + 3 + 3 + 2 from sm, pairs
 // below sm (sized off the core rows so it always stays smaller). Impact hubs follow the scale of the tier above
@@ -79,7 +78,6 @@ const TOP_ROW: Row = {
   cap: 100,
   gap: 'min(144px, 16cqw)',
   logos: [
-    { name: 'Fluid', href: 'https://fluid.io', Logo: Fluid, aspect: 248 / 83 },
     { name: 'Base', href: 'https://www.base.org', Logo: Base, aspect: 1280 / 323.84 },
   ],
 }
