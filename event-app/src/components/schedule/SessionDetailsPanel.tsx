@@ -33,7 +33,7 @@ export function SessionDetailsPanel({
     // viewport bottom as the sticky aside pins — same growth behavior as the
     // speakers panel. The fallback matches the resting 141px natural offset
     // (nav + page title) + that 16px clearance.
-    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col overflow-clip rounded-xl border border-dc-hairline bg-dc-panel">
+    <div className="relative flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col overflow-clip rounded-xl border border-dc-hairline bg-dc-panel">
       <div className="flex shrink-0 items-center justify-between gap-4 border-b border-dc-hairline bg-white p-4">
         <span className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
           Session
@@ -51,7 +51,8 @@ export function SessionDetailsPanel({
           <CloseButton onClick={onClose} aria-label="Close session details" />
         </div>
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto">
+      {/* Bottom padding: room for the Q&A's floating button (SessionQA), 76px tall. */}
+      <div className="min-h-0 flex-1 overflow-y-auto has-[[data-qa-cta]]:pb-[76px]">
         <SessionDetailsContent session={session}>
           {!isCommunityHubSession(session) && !roomHasNoQa(session.room?.id) && showQa && <SessionQA session={session} size="sm" />}
         </SessionDetailsContent>

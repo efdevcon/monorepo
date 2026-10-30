@@ -175,14 +175,15 @@ function QAFeed({
         // screen, above the tab bar, with only the button taking taps (the page
         // leaves room for it through data-qa-cta); from lg to the bottom of the Q&A
         // column, edge to edge over the column's 16px padding. In the side
-        // panel (sm) it pins to the top of the panel while the feed scrolls.
+        // panel (sm) it floats at the panel's bottom edge: absolute against
+        // SessionDetailsPanel's root, so it stays put while the content scrolls.
         <div
           data-qa-cta
           className={cn(
             "z-10",
             size === "md"
               ? "pointer-events-none fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:pointer-events-auto lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:border-t lg:border-dc-hairline lg:bg-white/75 lg:p-4 lg:backdrop-blur-[4px]"
-              : "sticky top-4"
+              : "pointer-events-none absolute inset-x-0 bottom-0 p-4"
           )}
         >
           {user ? (
@@ -195,13 +196,13 @@ function QAFeed({
               target={standalone ? undefined : "_blank"}
               rel="noopener noreferrer"
               onClick={() => trackEvent("session", "qa", sessionId)}
-              className={QA_CTA_CLASS}
+              className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}
             >
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
             </PrimaryAnchorButton>
           ) : (
-            <PrimaryLinkButton href="/my-devcon" className={QA_CTA_CLASS}>
+            <PrimaryLinkButton href="/my-devcon" className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}>
               Sign in to ask a question
             </PrimaryLinkButton>
           )}
@@ -241,9 +242,9 @@ function QAFeed({
   );
 }
 
-/** Full width; on phones it floats, with the feedback button's shadow. */
+/** Full width; floating, with the feedback button's shadow. */
 const QA_CTA_CLASS =
-  "pointer-events-auto w-full whitespace-nowrap shadow-[0_4px_12px_rgba(22,11,43,0.25)] lg:shadow-none";
+  "pointer-events-auto w-full whitespace-nowrap shadow-[0_4px_12px_rgba(22,11,43,0.25)]";
 
 /** The compact state recipe in the Q&A slot's quiet white card. */
 const quietCard = {
