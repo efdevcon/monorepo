@@ -61,11 +61,10 @@ export function CommunityHubsCard() {
         <div className="flex min-w-0 flex-col gap-4 p-5 lg:flex-1 lg:p-0">
           <div className="flex flex-col gap-3 lg:gap-1">
             <h3 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 lg:leading-[28.8px]">
-              Discover our Community Hubs
+              Discover the Community tab
             </h3>
             <p className="text-[14px] leading-5 text-dc-muted lg:text-[16px] lg:leading-6">
-              Community-run spaces inside Devcon, each with their own focus
-              area and programming.
+              Community-run spaces, stages and programming inside Devcon
             </p>
           </div>
           <div className="flex flex-col gap-3 lg:flex-row">
@@ -75,7 +74,7 @@ export function CommunityHubsCard() {
                 (tester feedback, 2026-10-14). */}
             <PrimaryLinkButton size="sm" href={`/schedule?${HUBS_PARAM}=1`}>
               <Tent className="size-4 shrink-0" />
-              View Community Hubs
+              View Community tab
             </PrimaryLinkButton>
           </div>
         </div>
