@@ -63,14 +63,14 @@ correctly.
 ## Unreleased features (team-only)
 
 `RELEASED` in `src/data/release/releaseGates.ts` holds one boolean per feature that ships hidden
-(today: the ENS perk card and the venue map). `useReleased(name)` is true once released, or for a
+(today: the ENS and faucet perk cards; the venue map was released on 2026-10-30). `useReleased(name)` is true once released, or for a
 signed-in `@ethereum.org` account that turned it on for its device, so the team keeps testing in
 production; a partner domain listed in `PARTNER_PREVIEW_DOMAINS` (`previewAccess.ts`, today
 `@ens.domains` for the ENS perk) gets the same switch for its own feature as a "Partner preview"
-section on My Devcon. Attendees get the map tab
-with a "coming soon" card (`MapPane.tsx`). UI gate only; flip the constant to release. `venueMap`
+section on My Devcon. UI gate only; flip the constant to release. `venueMap` (released 2026-10-30)
 shows the 3D map on the JWCC plans (`map/venue-map/`, `docs/venue-map.md`, `pnpm map:build` /
-`map:check` / `map:test`); the earlier prototype (`map/venue-map-3d/`) was deleted on 2026-10-27.
+`map:check` / `map:test`); turning it back off gives everyone the "coming soon" card (`MapPane.tsx`);
+the earlier prototype (`map/venue-map-3d/`) was deleted on 2026-10-27.
 
 ## AI schedule planner ("Plan with your AI")
 

@@ -8,9 +8,9 @@ the provisional SVGs under `public/maps/devcon-8/source/`) was deleted on 2026-1
 history up to `9c6f482a4`). Mentions of "the prototype" below are about that design lineage.
 
 Code: `src/app/(page-layout)/map/venue-map/` (entry `VenueMap.tsx`), build:
-`scripts/map-build/`. `src/components/MapPane.tsx` mounts it when the `venueMap` release gate
-is on (EF internal tools on My Devcon); attendees get the "coming soon" card until the gate is
-released.
+`scripts/map-build/`. `src/components/MapPane.tsx` mounts it under the `venueMap` release gate,
+released to everyone on 2026-10-30 (Scott); turned back off, attendees get the "coming soon" card and the
+team turns the map on per device in EF internal tools.
 
 ## 1. Inputs: the Figma export contract
 

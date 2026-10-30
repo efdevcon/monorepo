@@ -13,9 +13,10 @@ import { Link } from "@/routing";
  * behind the floating nav (nav is z-30), so the app chrome appears to overlay
  * the map.
  *
- * Until RELEASED.venueMap, everyone gets MapComingSoon instead (the tab and
- * every "on map" link stay, as Devconnect's app did with its map); the team
- * turns the real map on per device in EF internal tools.
+ * Released to everyone since 2026-10-30 (RELEASED.venueMap). Flipping the gate
+ * back off gives everyone MapComingSoon instead (the tab and every "on map"
+ * link stay, as Devconnect's app did with its map) and the team turns the
+ * real map on per device in EF internal tools.
  */
 export function MapPane() {
   const { hasInitialized } = useUser();
