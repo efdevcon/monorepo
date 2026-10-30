@@ -58,8 +58,16 @@ import {
   type PushSubscriptionRow,
 } from "./service";
 
-/** Fresh claims per run per event; the rest wait a minute (time budget). */
-export const MAX_REMINDERS_PER_RUN = 150;
+/**
+ * Fresh claims per run per event; the rest wait a minute (time budget).
+ * Reminders are claimed from ten minutes before the session, so ten runs
+ * share one window: 500 per run is 5,000 (user, session) pairs per
+ * ten-minute window, enough for a popular session at a few thousand
+ * attendees (150 left 1,500, which a well-bookmarked keynote could exceed,
+ * and the rest got nothing, silently). 500 sends are a few seconds of the
+ * run's budget (chunks of 50 in parallel).
+ */
+export const MAX_REMINDERS_PER_RUN = 500;
 const BUNDLE_TIMEOUT_MS = 8_000;
 /** Matches the API's publicCache(60) on the bundle. */
 const CATALOGUE_TTL_MS = 60_000;

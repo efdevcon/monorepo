@@ -11,7 +11,7 @@ Netlify scheduled function (every minute) → `POST /api/push/dispatch` (synchro
 | Limit | Where | Effect |
 |---|---|---|
 | Sync function budget, 10 s default (26 s on request) | Netlify | Every fan-out must finish inside one call, announcements and reminders together |
-| 150 fresh reminder pairs per run per event | `reminders.ts` `MAX_REMINDERS_PER_RUN` | 1,500 (user, session) pairs per 10-minute window, shared by all sessions starting in it; the rest get no push, silently |
+| 500 fresh reminder pairs per run per event (150 until 2026-10-30) | `reminders.ts` `MAX_REMINDERS_PER_RUN` | 5,000 (user, session) pairs per 10-minute window, shared by all sessions starting in it; the rest get no push, silently |
 | No `order by` in the claim | migration RPC | Which pairs win under the cap is arbitrary |
 | Unbounded subscriber select | `service.ts` `getSubscriptions` | Supabase returns at most 1,000 rows (project Max Rows), so an announcement reaches the first 1,000 subscriptions only |
 | Fixed retry delays, no request timeout | `service.ts` `sendWithRetry` | 429 is not paced by `Retry-After`; a hung socket eats the run budget |
@@ -27,7 +27,7 @@ Each `devcon8_push_subscriptions` row carries two flags (migration `202609231200
 Where the filters live:
 
 - Announcements: `getSubscriptions({ announcements: true })` in `dispatchDueAnnouncements`. The team test-send (`/api/push/test`) ignores the flags and goes to every `is_team` device.
-- Reminders: inside `devcon8_session_reminders_claim` (the subscription `exists` check requires `p.reminders`, backed by a partial index), so the 150-per-run cap is spent only on accounts with an opted-in device and no empty `sent` rows are written; `getSubscriptionsForUsers` then returns only the opted-in devices. The rehearsal route applies the same filter and says so when every device of the caller has reminders off.
+- Reminders: inside `devcon8_session_reminders_claim` (the subscription `exists` check requires `p.reminders`, backed by a partial index), so the per-run cap is spent only on accounts with an opted-in device and no empty `sent` rows are written; `getSubscriptionsForUsers` then returns only the opted-in devices. The rehearsal route applies the same filter and says so when every device of the caller has reminders off.
 
 ## What to watch during the test
 
