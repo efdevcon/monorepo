@@ -25,7 +25,7 @@ export function CommunityHubsCard() {
         id="home-community-hubs-title"
         className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2"
       >
-        Community Hubs
+        Community
       </h2>
       <div className="flex flex-col overflow-clip rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] lg:flex-row lg:items-center lg:gap-8 lg:pl-6">
         {/* Photo: 256px tall full-width band on mobile, 503×225 on the right
