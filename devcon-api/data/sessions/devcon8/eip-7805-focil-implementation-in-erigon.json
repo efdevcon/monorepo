@@ -1,8 +1,9 @@
 {
-  "id": "ssz-execution-blocks-ssz-query-language-in-erigon",
+  "id": "eip-7805-focil-implementation-in-erigon",
   "sourceId": "BRPWB3",
-  "title": "SSZ Execution Blocks + SSZ Query Language in Erigon",
+  "title": "EIP-7805 (FOCIL) Implementation in Erigon",
   "description": "EIP-7807 proposes an SSZ representation of execution blocks, bringing execution data closer to the consensus layer's SSZ model and enabling proofs of individual fields. This EPF project explores the foundations required in Erigon.\r\n\r\nThe talk covers mapping Erigon block data into the EIP-7807 ExecutionPayload layout, ProgressiveContainer and ProgressiveList Merkleization, and SSZ block-root computation. It examines canonical transaction and receipt bytes, fork-specific fields, and validation using deterministic fixtures and an independent reference implementation.\r\n\r\nI will discuss the implementation scope, integration challenges, and remaining work, including the planned generalized-index mappings, field proofs, and experimental root/proof inspection interface. The design computes an SSZ root alongside Erigon's existing block hash, providing a basis for further review and integration.",
+  "abstract": "This talk presents my EPF project on building Erigon's foundations for EIP-7807 SSZ execution blocks, covering execution-data mapping, progressive SSZ Merkleization, and block-root computation. Attendees will understand the design and validation approach, implementation challenges, and the path toward field proofs and verifiable execution-data access.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -20,9 +21,8 @@
     "sagar-rana"
   ],
   "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1USsS7eKJ6iOxtjyNGjN7Rb8acqLBgBLDGg--lTDvwIM",
   "slot_start": 1793770200000,
   "slot_end": 1793771100000,
-  "slot_roomId": "workshop-2",
-  "resources_presentation": "https://docs.google.com/presentation/d/1USsS7eKJ6iOxtjyNGjN7Rb8acqLBgBLDGg--lTDvwIM",
-  "abstract": "This talk presents my EPF project on building Erigon's foundations for EIP-7807 SSZ execution blocks, covering execution-data mapping, progressive SSZ Merkleization, and block-root computation. Attendees will understand the design and validation approach, implementation challenges, and the path toward field proofs and verifiable execution-data access."
+  "slot_roomId": "workshop-2"
 }
