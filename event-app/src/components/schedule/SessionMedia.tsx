@@ -95,8 +95,7 @@ export function SessionMedia({ session }: { session: Session }) {
           />
         ))}
       {translationUrl && (
-        // Centered under the thumbnail (Figma); same text-link recipe as the
-        // Q&A "Sign in to ask a question" link.
+        // Centered under the thumbnail (Figma), as a bold purple text link.
         <a
           href={translationUrl}
           target="_blank"
