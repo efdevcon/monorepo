@@ -6,6 +6,7 @@ import {
   GetSessions,
   GetSpeakers,
   GetSubmissions,
+  GetSubmissionsByCode,
   UpsertSubmissionAnswer,
   getPublishedScheduleVersion,
   pretalxWriteToken,
@@ -33,7 +34,9 @@ const csv = (v: string | undefined) =>
 const SLIDES_EVENTS = csv(process.env.SLIDES_EVENTS)
 // Optional: only create decks for these Pretalx codes (comma separated), so a
 // test run touches a handful of talks instead of the whole event.
-const SLIDES_ONLY_CODES = csv(process.env.SLIDES_ONLY_CODES)
+const SLIDES_ONLY_CODES = csv(process.env.SLIDES_ONLY_CODES).map((c) => c.toUpperCase())
+// `--fast` (with SLIDES_ONLY_CODES): slides only, see main().
+const FAST = process.argv.includes('--fast')
 const SLIDES_SKIP_PERMISSIONS = process.env.SLIDES_SKIP_PERMISSIONS === 'true'
 const SLIDES_DRY_RUN = SLIDES_SKIP_PERMISSIONS || process.env.SLIDES_PERMISSIONS_DRY_RUN === 'true'
 // Partner-run tracks (sync-eventyay): every deck on SLIDES_DELEGATE_TRACKS is
@@ -142,11 +145,23 @@ async function main() {
     line('Slides: off (SLIDES_EVENTS does not include this event)')
   }
 
-  await notifyClients()
+  // Fast mode (`--fast`): the decks of SLIDES_ONLY_CODES only. The event-wide
+  // data sync (Meerkat ping, rooms, every session and speaker: ~100 s of
+  // Pretalx paging on devcon8) is skipped and only those submissions are read.
+  // The next full sync refreshes the data as usual.
+  const fast = FAST
+  if (fast && (!slidesOn || SLIDES_ONLY_CODES.length === 0)) {
+    throw new Error('--fast only runs the slides passes: it needs slides on for this event (SLIDES_EVENTS) and SLIDES_ONLY_CODES')
+  }
+  if (fast) {
+    line(`Fast mode: slides only for ${SLIDES_ONLY_CODES.join(', ')} · event data, rooms, sessions, speakers and Meerkat skipped`)
+  } else {
+    await notifyClients()
 
-  await syncEventData()
-  await syncRooms()
-  await syncSessions()
+    await syncEventData()
+    await syncRooms()
+    await syncSessions()
+  }
 
   if (slidesOn) {
     const folderId = config.SLIDES_FOLDER_ID
@@ -163,7 +178,17 @@ async function main() {
       // Session files only exist for published talks and pick the link up from
       // the Pretalx answer on the next sync. The unfiltered list serves the
       // cleanup check for decks whose talk was declined or withdrawn since.
-      const everySubmission = await GetSubmissions({ state: 'any', inclContacts: true }, config)
+      const everySubmission = fast
+        ? await GetSubmissionsByCode(SLIDES_ONLY_CODES, { inclContacts: true }, config)
+        : await GetSubmissions({ state: 'any', inclContacts: true }, config)
+      if (fast) {
+        for (const code of SLIDES_ONLY_CODES) {
+          const found = everySubmission.find((s: any) => s.sourceId === code)
+          if (!found) problem(`[${code}] not found in Pretalx ${eventId}`)
+          else if (!DECK_STATES.includes(found.pretalxState) && !deckIdFromUrl(found.resources_presentation))
+            problem(`[${code}] is ${found.pretalxState}, decks are only made for ${DECK_STATES.join(' or ')} talks`)
+        }
+      }
       const submissions = everySubmission.filter((s: any) => DECK_STATES.includes(s.pretalxState))
       await createPresentations(submissions, folderId)
       await reconcilePermissions(submissions)
@@ -616,7 +641,10 @@ main()
   .then(() => {
     const secs = ((Date.now() - startedAt) / 1000).toFixed(1)
     console.log(
-      `\nDone in ${secs}s · rooms ${summary.rooms} · sessions ${summary.sessions} · speakers ${summary.speakers}` +
+      `\nDone in ${secs}s` +
+        (summary.rooms || summary.sessions || summary.speakers
+          ? ` · rooms ${summary.rooms} · sessions ${summary.sessions} · speakers ${summary.speakers}`
+          : '') +
         (SLIDES_EVENTS.includes(eventId)
           ? ` · decks created ${summary.decksCreated} · permission changes ${summary.permissionChanges} · Pretalx writes ${summary.pretalxWrites}` +
             (summary.noGoogleAccount ? ` · speakers without a Google account ${summary.noGoogleAccount}` : '') +

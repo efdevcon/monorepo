@@ -139,6 +139,25 @@ export async function GetSubmissions(params: Partial<RequestParams> = {}, config
     })
 }
 
+/**
+ * Only these submissions (any state), in GetSubmissions' shape with their
+ * speakers resolved: a handful of requests instead of paging through the
+ * whole event, for slides runs limited to a few codes. Codes Pretalx does not
+ * know are left out; the caller reports them.
+ */
+export async function GetSubmissionsByCode(codes: string[], params: Partial<RequestParams> = {}, config: PretalxInstanceConfig = PRETALX_CONFIG) {
+  const expand = 'questions=all&expand=answers.question,track,submission_type,tags'
+  const raw = (await Promise.all(codes.map((code) => get(`submissions/${encodeURIComponent(code)}?${expand}`, config).catch(() => null)))).filter(Boolean)
+  const speakerCode = (sp: any): string | undefined => (typeof sp === 'string' ? sp : sp?.code)
+  const speakerCodes = [...new Set<string>(raw.flatMap((s: any) => (s.speakers ?? []).map(speakerCode).filter(Boolean)))]
+  const speakers = await Promise.all(speakerCodes.map((code) => get(`speakers/${encodeURIComponent(code)}?${expand}`, config).catch(() => null)))
+  const speakerMap = new Map<string, any>(speakers.filter(Boolean).map((s: any) => [s.code, s]))
+  return raw.map((i: any) => {
+    if (Array.isArray(i.speakers)) i.speakers = i.speakers.map((sp: any) => speakerMap.get(speakerCode(sp) ?? '') ?? sp)
+    return mapSession(i, params, config)
+  })
+}
+
 // The talks-endpoint fallback is hit once per data pass; say so once per run, not per call.
 let fallbackNoticeShown = false
 
