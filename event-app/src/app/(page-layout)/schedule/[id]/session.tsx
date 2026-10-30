@@ -75,7 +75,7 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 
   return (
     // Room under the speakers for the Q&A's docked button (SessionQA): 69px tall.
-    <main className="expand font-heading text-dc-fg has-[[data-qa-cta]]:pb-[69px]">
+    <main className="expand font-heading text-dc-fg has-[[data-qa-cta]]:pb-[70px]">
       {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
           at z -10 and the content) so the surface fills the whole viewport —
           the content block alone ends at its own height, which left the

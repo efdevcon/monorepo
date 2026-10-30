@@ -38,13 +38,25 @@ export async function GET(request: NextRequest) {
   // cookies ride along on whatever response goes out below).
   const {
     data: { user },
+    error: authError,
   } = await client.auth.getUser();
   if (!user?.email) {
+    // Two different failures hide behind one 401: no cookie at all (the
+    // browser never mirrored its sign-in), or a cookie whose tokens the
+    // browser has since rotated past (the mirror missed a refresh). The log
+    // line tells them apart; the page gives the fix for each.
+    const hasCookie = request.cookies.getAll().some((c) => /^sb-.*-auth-token/.test(c.name));
+    console.warn(
+      `[/api/meerkat/go] not signed in: cookie=${hasCookie ? "present" : "absent"}` +
+        (authError ? ` reason=${authError.message}` : "")
+    );
     return apply(
       page(
         401,
         "Sign in first",
-        "You're not signed in here. Sign in on the Devcon app (Me tab), then tap Ask a question again."
+        hasCookie
+          ? "Your sign-in has expired here. Open the Devcon app again (that refreshes it), then tap Ask a question."
+          : "You're not signed in here. Sign in on the Devcon app (Me tab), then tap Ask a question again."
       )
     );
   }

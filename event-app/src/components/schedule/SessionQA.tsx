@@ -182,23 +182,21 @@ function QAFeed({
       <QAHeading size={size} count={questions?.length} live={!mock && live.isConnected} />
 
       {!notOpen && (
-        // The page (md) docks it: on phones it floats at the bottom of the
-        // screen, above the tab bar, with only the button taking taps (the page
-        // leaves room for it through data-qa-cta); from lg to the bottom of the Q&A
-        // column, edge to edge over the column's 16px padding, on a translucent
-        // band (QA_CTA_BAND). In the side panel (sm) it docks at the panel's
-        // bottom edge on the same band: absolute against SessionDetailsPanel's
-        // root, so it stays put while the content scrolls behind it.
+        // Docked on a translucent band everywhere (QA_CTA_BAND). The page
+        // (md): on phones fixed at the bottom of the screen, above the tab bar
+        // (the page leaves room for it through data-qa-cta); from lg at the
+        // bottom of the Q&A column, edge to edge over the column's 16px
+        // padding. In the side panel (sm) at the panel's bottom edge: absolute
+        // against SessionDetailsPanel's root, so it stays put while the
+        // content scrolls behind it.
         <div
           data-qa-cta
           className={cn(
             "z-10",
+            QA_CTA_BAND,
             size === "md"
-              ? cn(
-                  "pointer-events-none fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:pointer-events-auto lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:p-4",
-                  QA_CTA_BAND_LG
-                )
-              : cn("absolute inset-x-0 bottom-0 p-4", QA_CTA_BAND)
+              ? "fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:p-4"
+              : "absolute inset-x-0 bottom-0 p-4"
           )}
         >
           {user ? (
@@ -211,16 +209,13 @@ function QAFeed({
               target={standalone ? undefined : "_blank"}
               rel="noopener noreferrer"
               onClick={() => trackEvent("session", "qa", sessionId)}
-              className={cn(QA_CTA_CLASS, size === "md" ? "lg:shadow-none" : "shadow-none")}
+              className={QA_CTA_CLASS}
             >
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
             </PrimaryAnchorButton>
           ) : (
-            <PrimaryLinkButton
-              href={signInHref(returnTo)}
-              className={cn(QA_CTA_CLASS, size === "md" ? "lg:shadow-none" : "shadow-none")}
-            >
+            <PrimaryLinkButton href={signInHref(returnTo)} className={QA_CTA_CLASS}>
               Sign in to ask a question
             </PrimaryLinkButton>
           )}
@@ -260,17 +255,16 @@ function QAFeed({
   );
 }
 
-/** Full width; floating, with the feedback button's shadow (dropped where it sits on the band). */
-const QA_CTA_CLASS =
-  "pointer-events-auto w-full whitespace-nowrap shadow-[0_4px_12px_rgba(22,11,43,0.25)]";
+/** Full width; no shadow of its own, the band carries it. */
+const QA_CTA_CLASS = "w-full whitespace-nowrap";
 
 /**
- * The band a docked button sits on: a hairline and frosted white over the
- * content scrolling behind it, so the list never shows through the button
- * (the side panel showed the speakers through it, 2026-10-30).
+ * The band a docked button sits on, at every size: a hairline and frosted
+ * white over the content scrolling behind it, so the list never shows
+ * through the button (the side panel showed the speakers through it, and
+ * phones had the bare button over the feed, 2026-10-30).
  */
 const QA_CTA_BAND = "border-t border-dc-hairline bg-white/75 backdrop-blur-[4px]";
-const QA_CTA_BAND_LG = "lg:border-t lg:border-dc-hairline lg:bg-white/75 lg:backdrop-blur-[4px]";
 
 /** The compact state recipe in the Q&A slot's quiet white card. */
 const quietCard = {

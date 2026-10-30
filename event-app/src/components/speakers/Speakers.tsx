@@ -14,7 +14,6 @@ import {
   useIsDesktop,
   isDesktopNow,
   headerOffsetNow,
-  safeTopNow,
 } from "@/hooks/useIsDesktop";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useDetailRoute } from "@/routing/detailRoute";
@@ -356,9 +355,15 @@ export function Speakers() {
       }
 
       if (aside && asideTop !== null) {
-        // Resting size: 141px natural offset (nav + page title) + edge gap,
-        // plus the status-bar inset the sticky top gained (iPad PWA).
-        const defaultRest = viewportH - 141 - safeTopNow() - PANEL_EDGE_GAP;
+        // Resting size: the panel's height before the aside pins, i.e. the
+        // viewport minus the aside's natural top and the edge gap, measured
+        // from the aside's static parent (same document offset pinned or
+        // not) rather than assumed. Kept in step with Schedule.tsx: a stale
+        // 141px constant there ran the resting panel 48px past the viewport
+        // bottom once the rows above the list grew (2026-10-30).
+        const naturalTop =
+          (aside.parentElement?.getBoundingClientRect().top ?? asideTop) + window.scrollY;
+        const defaultRest = viewportH - naturalTop - PANEL_EDGE_GAP;
         // Sticky growth target: keep the edge gap to the viewport bottom…
         const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
         // …but never grow past the content column's bottom edge. Without this

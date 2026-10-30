@@ -65,7 +65,6 @@ import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
 import {
   APP_CHROME_OFF_ATTR,
   headerOffsetNow,
-  safeTopNow,
   useIsDesktop,
   useIsPhoneLandscape,
 } from "@/hooks/useIsDesktop";
@@ -1237,9 +1236,16 @@ function ScheduleInner({
       const asideTop = aside.getBoundingClientRect().top;
       const cardBottom =
         mainCardRef.current?.getBoundingClientRect().bottom ?? Infinity;
-      // Resting size: 141px natural offset (nav + page title) + edge gap,
-      // plus the status-bar inset the sticky top gained (iPad PWA).
-      const defaultRest = viewportH - 141 - safeTopNow() - PANEL_EDGE_GAP;
+      // Resting size: the panel's height before the aside pins, i.e. the
+      // viewport minus the aside's natural top and the edge gap. Measured
+      // from the aside's static parent (same document offset whether pinned
+      // or not) rather than assumed: the rows above the list (toolbar, day
+      // tabs, a banner, the status-bar inset) have grown since the 141px this
+      // once was, and with a stale constant the resting panel ran 48px past
+      // the viewport bottom (2026-10-30).
+      const naturalTop =
+        (aside.parentElement?.getBoundingClientRect().top ?? asideTop) + window.scrollY;
+      const defaultRest = viewportH - naturalTop - PANEL_EDGE_GAP;
       const gapTarget = viewportH - asideTop - PANEL_EDGE_GAP;
       const contentLimit = cardBottom - asideTop;
       aside.style.setProperty(
@@ -1273,9 +1279,10 @@ function ScheduleInner({
     />
   ) : filtersOpen ? (
     // Same growth var as the details panels: the filter column keeps
-    // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback
-    // matches the resting 141px natural offset + that 16px clearance.
-    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-157px-var(--safe-top)))] min-h-0 flex-col">
+    // PANEL_EDGE_GAP to the viewport bottom while pinned. The fallback only
+    // covers the first paint, before the measure effect sets the var: the
+    // resting offset today (header, toolbar, day tabs) + that 16px clearance.
+    <div className="flex max-h-[var(--schedule-panel-max-h,calc(100dvh-205px-var(--safe-top)))] min-h-0 flex-col">
       <FilterPanelContent
         options={filterOptions}
         filters={filters}
