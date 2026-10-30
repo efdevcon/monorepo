@@ -99,9 +99,12 @@ email match, else the tab asks (a select among the email-matched tickets, or an 
 as a screenshot, PDF or `.pkpass`, decoded on the device). Only the primary is shown; see `CLAUDE.md`
 for the rules.
 
-The browser's Supabase client (`src/data/auth/supabase.ts`) calls supabase.co directly and retries a
-request that failed on the network through `/supabase/*` on the app's own origin (a proxy rule in
-`netlify.toml`). Never by default: Supabase's per-address rate limits keep seeing each device.
+The browser's Supabase client calls supabase.co directly and retries a request that failed on the
+network through `/supabase/*` on the app's own origin (a proxy rule in `netlify.toml`; the client's
+`fetch` lives in `src/data/auth/supabaseFetch.ts`). Never by default: Supabase's per-address rate
+limits keep seeing each device. The same `fetch` hands a rate-limited token refresh (429) back to
+auth-js as a 503, which it retries instead of dropping the session; Matomo event
+`network/token-rate-limited` counts those.
 
 Offline UX: `useOnline` (`src/hooks/useOnline.ts`) is the single connectivity source. The header
 marker is an icon-only pill whose tooltip/aria-label reads "Offline, schedule from HH:MM" (last sync time), image retries hang off the same

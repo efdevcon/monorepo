@@ -245,7 +245,11 @@ function useUserState(): UseUserResult {
     try {
       if (!supabase) throw new Error("Supabase not initialized");
       setLoading("Signing out...");
-      const { error } = await supabase.auth.signOut();
+      // This device only. People plan on a laptop and use the phone at the
+      // venue; the library's default scope revokes every session of the
+      // account, so signing out of one would sign out the other within the
+      // hour. The SIGNED_OUT listener above clears this device's cookie.
+      const { error } = await supabase.auth.signOut({ scope: "local" });
       if (error) throw error;
       setUser(null);
       trackEvent("sign-in", "sign-out");

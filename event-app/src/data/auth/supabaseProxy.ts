@@ -9,7 +9,7 @@
  * address rather than the proxy's, and keeps the proxy's traffic to those who
  * need it.
  *
- * Shared by the app's Supabase client (src/data/auth/supabase.ts) and the
+ * Shared by the client's fetch (src/data/auth/supabaseFetch.ts) and the
  * Meerkat hand-off's self-heal script (src/app/api/meerkat/go/heal.ts), which
  * runs outside the app and cannot use the browser client.
  */

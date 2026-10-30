@@ -5,7 +5,7 @@
 PNPM_FLAGS = "--filter event-app..."
 # Reverse proxy to the Supabase project, for browsers that cannot reach
 # supabase.co directly. The app tries it only after a direct request failed on
-# the network (src/data/auth/supabase.ts, which mirrors this list of paths).
+# the network (src/data/auth/supabaseFetch.ts, which mirrors this list of paths).
 # Only what the browser needs: auth, and the signed uploads of the feedback
 # form. Anything wider would be a free relay to the project's storage and
 # REST API on this site's bandwidth. An edge rule rather than a Next rewrite,

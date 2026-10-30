@@ -19,8 +19,13 @@ import { SUPABASE_PROXY_PATH } from "@/data/auth/supabaseProxy";
  * reuse window that revokes the whole family and signs the person out). All
  * of it under auth-js's own Web Lock (`lock:<storageKey>`), so a tab running
  * the app cannot refresh at the same moment. Then one reload, `retried=1`.
- * Only when none of that works is the sign-in content revealed (the page
- * renders it hidden behind a waiting state, see route.ts).
+ * Only when that fails is content revealed, and which content depends on
+ * why (the page renders both hidden behind a waiting state, see route.ts):
+ * a session that is gone for good (none stored, or Supabase refused the
+ * refresh token) shows the sign-in content; anything that might pass a
+ * minute later (no network, a rate limit, a server error, storage that
+ * cannot be written) shows "try again", because telling someone the app
+ * still shows as signed in to sign in again would be wrong.
  *
  * Plain script, inlined (no CSP on this app) and exercised by
  * `scripts/test-data.ts` in a vm sandbox with stubbed storage and fetch.
@@ -52,18 +57,20 @@ export function healScriptBody(cfg: HealConfig): string {
   var MARGIN_MS = ${HEAL_EXPIRY_MARGIN_S * 1000};
   var REQUEST_MS = ${HEAL_REQUEST_MS};
   var done = false;
-  var timer = setTimeout(giveUp, ${HEAL_GIVE_UP_MS});
-  function giveUp() {
+  var timer = setTimeout(function () { giveUp("retry"); }, ${HEAL_GIVE_UP_MS});
+  // Outcomes: "ok" (cookie mirrored, reload), "signin" (the session is gone
+  // for good), "retry" (could not tell right now).
+  function giveUp(outcome) {
     clearTimeout(timer);
     if (done) return;
     done = true;
     // Looked up here, not at load: this script runs in <head>, before the body exists.
     var wait = document.getElementById("heal-wait");
-    var fail = document.getElementById("heal-fail");
+    var show = (outcome === "retry" && document.getElementById("heal-retry")) || document.getElementById("heal-fail");
     if (wait) wait.hidden = true;
-    if (fail) {
-      fail.hidden = false;
-      var title = fail.getAttribute("data-title");
+    if (show) {
+      show.hidden = false;
+      var title = show.getAttribute("data-title");
       if (title) document.title = title;
     }
   }
@@ -98,18 +105,23 @@ export function healScriptBody(cfg: HealConfig): string {
       function (e) { clearTimeout(deadline); throw e; }
     );
   }
+  // A refusal (4xx) means the tokens are no good; a rate limit or a server error may pass later.
+  function outcomeOf(status) {
+    return status === 429 || status >= 500 ? "retry" : "signin";
+  }
   function mirror(s) {
     return post("/api/auth/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ access_token: s.access_token, refresh_token: s.refresh_token })
-    }).then(function (r) { return r.ok; }, function () { return false; });
+    }).then(function (r) { return r.ok ? "ok" : outcomeOf(r.status); }, function () { return "retry"; });
   }
+  // Resolves to { session } or { outcome }.
   function refresh(s) {
     try {
       localStorage.setItem(KEY, JSON.stringify(s));
     } catch (e) {
-      return Promise.resolve(null);
+      return Promise.resolve({ outcome: "retry" });
     }
     var init = {
       method: "POST",
@@ -119,24 +131,28 @@ export function healScriptBody(cfg: HealConfig): string {
     var path = "/token?grant_type=refresh_token";
     return post(AUTH + path, init)
       .catch(function () { return post(PROXY_AUTH + path, Object.assign({}, init, { credentials: "omit" })); })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (next) {
-        if (!next || typeof next.access_token !== "string" || typeof next.refresh_token !== "string") return null;
-        if (typeof next.expires_at !== "number" && typeof next.expires_in === "number") {
-          next.expires_at = Math.round(Date.now() / 1000) + next.expires_in;
-        }
-        localStorage.setItem(KEY, JSON.stringify(next));
-        return next;
-      }, function () { return null; });
+      .then(function (r) {
+        if (!r.ok) return { outcome: outcomeOf(r.status) };
+        return r.json().then(function (next) {
+          if (!next || typeof next.access_token !== "string" || typeof next.refresh_token !== "string") return { outcome: "retry" };
+          if (typeof next.expires_at !== "number" && typeof next.expires_in === "number") {
+            next.expires_at = Math.round(Date.now() / 1000) + next.expires_in;
+          }
+          localStorage.setItem(KEY, JSON.stringify(next));
+          return { session: next };
+        });
+      })
+      .catch(function () { return { outcome: "retry" }; });
   }
   function refreshAndMirror(s) {
-    return refresh(s).then(function (next) { return next ? mirror(next) : false; });
+    return refresh(s).then(function (res) { return res.session ? mirror(res.session) : res.outcome; });
   }
   function heal() {
     var s = read();
-    if (!s) return Promise.resolve(false);
+    if (!s) return Promise.resolve("signin");
     if (expiring(s)) return refreshAndMirror(s);
-    return mirror(s).then(function (ok) { return ok || refreshAndMirror(s); });
+    // The server refused a token the device clock calls live (clock skew, a stale pair): refresh once.
+    return mirror(s).then(function (m) { return m === "signin" ? refreshAndMirror(s) : m; });
   }
   function locked(fn) {
     if (navigator.locks && typeof navigator.locks.request === "function") {
@@ -144,7 +160,7 @@ export function healScriptBody(cfg: HealConfig): string {
     }
     return fn();
   }
-  Promise.resolve().then(function () { return locked(heal); }).then(function (ok) { if (ok) reload(); else giveUp(); }, giveUp);
+  Promise.resolve().then(function () { return locked(heal); }).then(function (outcome) { if (outcome === "ok") reload(); else giveUp(outcome); }, function () { giveUp("retry"); });
 })();`;
 }
 

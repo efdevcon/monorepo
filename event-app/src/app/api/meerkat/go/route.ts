@@ -113,8 +113,10 @@ interface PageLinks {
  * the sign-in pages offer the sign-in itself, and a missing or expired cookie
  * heals without anyone noticing when the app is signed in (heal.ts): while
  * the script works, the page shows only "Opening Q&A"; the sign-in content
- * is rendered hidden and revealed if the heal gives up (or without script).
- * No CSP on this app, so the inline script is fine.
+ * and a "try again" variant (for a failure that may pass: no network, a
+ * rate limit) are rendered hidden, and the script reveals one if it gives
+ * up (the sign-in one without script). No CSP on this app, so the inline
+ * script is fine.
  */
 function page(status: number, title: string, message: string, links: PageLinks = {}): NextResponse {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -139,6 +141,11 @@ function page(status: number, title: string, message: string, links: PageLinks =
 </main>
 <main id="heal-fail" hidden data-title="${escapeHtml(fullTitle)}">
   ${content}
+</main>
+<main id="heal-retry" hidden data-title="${escapeHtml(`Try again in a moment - ${APP_CONFIG.APP_NAME}`)}">
+  <h1>Try again in a moment</h1>
+  <p>We couldn&#39;t check your sign-in just now. Go back to the app and tap Ask a question again in a minute.</p>
+  <div class="actions">${backLink}</div>
 </main>
 <noscript><style>#heal-wait{display:none}#heal-fail{display:block}</style></noscript>`
     : `<main>
