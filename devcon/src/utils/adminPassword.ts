@@ -13,6 +13,7 @@
 // secret takes effect immediately.
 export const TICKETS_ADMIN_PASSWORD_KEY = 'tickets_admin_password'
 export const BUILDER_REVIEW_PASSWORD_KEY = 'builder_review_password'
+export const AV_PASSWORD_KEY = 'av_password'
 
 /** The stored password for a tool, or null when nobody has logged in here. */
 export function readStoredPassword(storageKey: string): string | null {

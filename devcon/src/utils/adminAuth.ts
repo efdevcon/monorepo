@@ -18,6 +18,13 @@
 //                                refunding orders, and neither ticket password
 //                                opens this door.
 //
+// AV assets (/av → /api/av/*):
+//
+//   AV_PASSWORD                — the stage operators' tool: cards, decks and
+//                                intro videos fresh from Pretalx. Its own
+//                                password, handed to the AV crew; it opens
+//                                nothing else.
+//
 // Convention (not enforced, so an existing secret can be reused as-is): give
 // the values self-describing prefixes — `ADMIN_…` and `READONLY_…` — so whoever
 // receives one can tell at a glance what it grants.
@@ -44,6 +51,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 const ADMIN_SECRET = process.env.TICKETS_ADMIN_PASSWORD || ''
 const READONLY_SECRET = process.env.TICKETS_READONLY_PASSWORD || ''
 const BUILDER_REVIEW_SECRET = process.env.BUILDER_REVIEW_PASSWORD || ''
+const AV_SECRET = process.env.AV_PASSWORD || ''
 
 export type AdminRole = 'admin' | 'readonly'
 
@@ -116,6 +124,21 @@ export function checkBuilderReviewAuth(req: NextApiRequest, res: NextApiResponse
   const provided = req.headers['x-admin-key']
   const providedStr = Array.isArray(provided) ? provided[0] : provided
   if (!providedStr || !secretMatches(providedStr, BUILDER_REVIEW_SECRET)) {
+    res.status(401).json({ success: false, error: 'unauthorized' })
+    return false
+  }
+  return true
+}
+
+/** Gate for the AV assets tool: only AV_PASSWORD opens it, in the same `x-admin-key` header. */
+export function checkAvAuth(req: NextApiRequest, res: NextApiResponse): boolean {
+  if (!AV_SECRET) {
+    res.status(500).json({ success: false, error: 'AV_PASSWORD not configured' })
+    return false
+  }
+  const provided = req.headers['x-admin-key']
+  const providedStr = Array.isArray(provided) ? provided[0] : provided
+  if (!providedStr || !secretMatches(providedStr, AV_SECRET)) {
     res.status(401).json({ success: false, error: 'unauthorized' })
     return false
   }

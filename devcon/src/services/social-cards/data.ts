@@ -131,20 +131,39 @@ export async function getAccountSchedule(id: string): Promise<any | null> {
  * ballooned the satori SVG past libxml2's 10MB cap on multi-speaker cards.
  * data: avatars are generated blockies — skipped so the card template's own
  * makeBlockie fallback draws the identicon.
+ *
+ * Pretalx keeps uploads as sent (multi-MB phone photos that miss the timeout),
+ * so for a Pretalx avatar its own thumbnail is fetched alongside and used
+ * when the original does not arrive in time.
  */
 export async function avatarDataUrl(url: string | undefined, px: number): Promise<string | null> {
   if (!url || url.startsWith('data:')) return null
+  const thumbnail = pretalxAvatarThumbnail(url)
+  const original = fetchImage(url)
+  const fallback = thumbnail ? fetchImage(thumbnail) : Promise.resolve(null)
+  const image = (await original) ?? (await fallback)
+  if (!image) return null
   try {
-    const r = await fetch(url, { signal: AbortSignal.timeout(4000) })
-    if (!r.ok) return null
-    const png = await sharp(Buffer.from(await r.arrayBuffer()))
-      .resize(px, px, { fit: 'cover' })
-      .png()
-      .toBuffer()
+    const png = await sharp(image).resize(px, px, { fit: 'cover' }).png().toBuffer()
     return `data:image/png;base64,${png.toString('base64')}`
   } catch {
     return null
   }
+}
+
+async function fetchImage(url: string): Promise<Buffer | null> {
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(4000) })
+    return r.ok ? Buffer.from(await r.arrayBuffer()) : null
+  } catch {
+    return null
+  }
+}
+
+/** Pretalx's own resize of an avatar upload (shown on its speaker pages, not in its API), or null. */
+function pretalxAvatarThumbnail(url: string): string | null {
+  const m = url.match(/^(https:\/\/cfp\.devcon\.org\/media\/avatars\/[^/?#]+?)(\.[a-z0-9]+)$/i)
+  return m && !m[1].endsWith('_thumbnail_default') ? `${m[1]}_thumbnail_default${m[2]}` : null
 }
 
 /** Prefetch speaker avatars to data URLs; failures omit the avatar, never fail the render. */
