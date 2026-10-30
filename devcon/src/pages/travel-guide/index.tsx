@@ -128,8 +128,10 @@ type EsimMeta = {
   Logo: React.FC<React.SVGProps<SVGSVGElement>> | null
   logoImg: StaticImageData | null
   logoAlt: string
-  /** Target for the card's `setup_label` link, rendered after the body copy
-   *  (URLs live here so they're never machine-translated) */
+  /** Target for the card's `offer_label` link, rendered right after the body
+   *  copy (URLs live here so they're never machine-translated) */
+  offerUrl?: string
+  /** Target for the card's `setup_label` link, rendered after `body_more` */
   setupUrl?: string
   /** Same contract as HotelMeta.promo — see the note there. `code` is optional
    *  for offers that aren't code-based (the message then just omits `{code}`) */
@@ -139,10 +141,13 @@ type EsimMeta = {
 // Zipped positionally with the translated `connectivity.esims` array
 const ESIM_META: EsimMeta[] = [
   {
-    url: 'https://www.bitrefill.com/in/en/esims/bitrefill-esim-india/',
+    url: 'https://www.bitrefill.com/in/en/gift-cards/',
     Logo: BitrefillLogo,
     logoImg: null,
     logoAlt: 'Bitrefill',
+    // Bitrefill's attribution deep link for the free attendee eSIM
+    offerUrl:
+      'https://app.bitrefill.com/EX1Z?deep_link_value=event-esim%2Fdevcon-mumbai-2026&pid=QR_code&af_channel=in_person&c=devcon-mumbai-2026&af_web_dp=https%3A%2F%2Fwww.bitrefill.com%2Fevent-esim%2Fdevcon-mumbai-2026',
     setupUrl: 'https://www.bitrefill.com/in/en/gift-cards/',
     promo: { messageKey: 'connectivity.promos.bitrefill' },
   },
@@ -159,6 +164,7 @@ const ESIM_META: EsimMeta[] = [
     logoImg: null,
     logoAlt: 'Kokio',
     setupUrl: 'https://dungexn.notion.site/3ba0fed242918083b9fafdc7ad8de742',
+    promo: { messageKey: 'connectivity.promos.kokio', code: 'DEVCON20' },
   },
 ]
 
@@ -904,6 +910,9 @@ export default function TravelGuidePage() {
                   name: string
                   service: string
                   body: string
+                  offer_label?: string
+                  offer_suffix?: string
+                  body_more?: string
                   setup_label?: string
                   setup_suffix?: string
                   cta: string
@@ -914,8 +923,8 @@ export default function TravelGuidePage() {
                     return (
                       <Reveal key={esim.name} delay={i * 120}>
                         {/* Interactive like the hotel cards, but a div with a
-                            stretched CTA link — the Kokio card holds a second,
-                            inner link, and anchors can't nest */}
+                            stretched CTA link — the Bitrefill and Kokio cards
+                            hold inner links, and anchors can't nest */}
                         <div className="group relative flex flex-col gap-[24px] rounded-2xl outline outline-1 outline-[rgba(34,17,68,0.1)] bg-[rgba(255,255,255,0.8)] backdrop-blur-[2px] p-[20px] md:p-[24px] transition-[background-color,box-shadow,transform] duration-150 [transition-timing-function:ease-out] hover:bg-white hover:shadow-md hover:scale-[1.03] active:scale-[0.97]">
                           <div className="h-[24px] md:h-[32px] flex items-start">
                             {meta.Logo ? (
@@ -931,6 +940,21 @@ export default function TravelGuidePage() {
                             </p>
                             <p className="text-[16px] leading-[24px] text-[#221144]">
                               {esim.body}
+                              {esim.offer_label && meta.offerUrl && (
+                                <>
+                                  {' '}
+                                  <a
+                                    href={meta.offerUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative z-[1] font-bold text-[#7235ed] hover:underline"
+                                  >
+                                    {esim.offer_label}
+                                  </a>
+                                  {esim.offer_suffix}
+                                </>
+                              )}
+                              {esim.body_more && <> {esim.body_more}</>}
                               {esim.setup_label && meta.setupUrl && (
                                 <>
                                   {' '}

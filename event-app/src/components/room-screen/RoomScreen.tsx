@@ -3,22 +3,23 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import cn from "classnames";
 import QRCode from "qrcode";
-import { Clock, Users } from "lucide-react";
+import { Clock3 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
-import { useEvent, useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
+import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { formatTime, getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
-import { eventDayKey, eventFmt } from "@/data/eventTime";
+import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
+import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
-import { MEERKAT_URL, meerkatStageUrl } from "@/app/api/meerkat/handover";
+import { roomScreenRoomIds } from "@/data/venueRooms";
 import { roomIconUrl } from "./roomIcon";
 
 /**
  * One design unit: 1% of a 16:9 box fitted inside the viewport (1vw on a
  * 16:9 screen, height-limited on wider or shorter windows such as a laptop
- * with browser chrome). Every size in the kiosk is em off a root font of one
- * unit, so a 1080p TV, a 4K TV and a 1440x900 laptop show the same
+ * with browser chrome). The Figma frames are 1600×900, so one unit is 16px
+ * there and every size below is the Figma px ÷ 16 in em off a root font of
+ * one unit; a 1080p TV, a 4K TV and a laptop window show the same
  * composition and nothing is ever clipped. Leaf text sets its own em size;
  * containers only space with em so sizes never compound.
  */
@@ -27,45 +28,68 @@ const KIOSK_STYLE = {
   fontSize: "calc(1 * var(--u))",
 } as CSSProperties;
 
-/** Pastel track surface + the fixed dark foreground the track system uses. */
-const trackColor = (track: string | undefined) => {
-  const theme = getTrackTheme(track);
-  return { bg: theme.neutral ? "#f5f1fe" : theme.color, fg: "#1a0d33" };
+/** The brand's deep purple: header and notifications bar (brand-neutrals/800). */
+const BAR_BG = "#221144";
+/** The mandala art washed over the track colour (Figma: 12% opacity). */
+const MANDALA_URL = "/room-screens/mandala-bg.jpg";
+/** The frosted card: white at 88% over the wash, hairline outline, 6px blur. */
+const GLASS: CSSProperties = {
+  backgroundColor: "rgba(255,255,255,0.88)",
+  backdropFilter: "blur(0.375em)",
+  WebkitBackdropFilter: "blur(0.375em)",
 };
 
-/** "45 min" / "2 hours" / "1 day": coarse human duration. */
-function humanize(mins: number): string {
-  if (mins < 60) return `${mins} min`;
-  const h = Math.round(mins / 60);
-  if (h < 24) return `${h} hour${h > 1 ? "s" : ""}`;
+const FIXED_NOTICE =
+  "If the room is full please view on livestream or ask volunteers for any overflow rooms. Every session streams in the app with live translation.";
+const MAX_UPCOMING = 5;
+const MAX_AVATARS = 4;
+
+/** "26 mins" / "2 hours 26 mins" / "1 day": the countdown in the status line. */
+function humanizeWait(mins: number): string {
+  if (mins < 60) return `${mins} min${mins === 1 ? "" : "s"}`;
+  const h = Math.floor(mins / 60);
+  if (h < 24) {
+    const rest = mins % 60;
+    const hours = `${h} hour${h > 1 ? "s" : ""}`;
+    return rest ? `${hours} ${rest} min${rest === 1 ? "" : "s"}` : hours;
+  }
   const d = Math.round(h / 24);
   return `${d} day${d > 1 ? "s" : ""}`;
 }
 
-/** Type / expertise / track pills for the session on screen. */
-function SessionTags({ session }: { session: Session }) {
-  const color = trackColor(session.track);
-  const pill = "rounded-full px-[0.9em] py-[0.35em] text-[0.8em] font-bold uppercase leading-none tracking-[0.04em]";
+/** The track's pastel tag with its gem, in the card's large size or the rail's small one. */
+function TrackPill({ track, roomId, size }: { track: string | undefined; roomId?: string; size: "lg" | "sm" }) {
+  const theme = getTrackTheme(track, roomId);
+  const lg = size === "lg";
   return (
-    <div className="flex flex-wrap items-center gap-[0.5em]">
-      {session.type && <span className={cn(pill, "bg-[#dfd8fc] text-dc-fg2")}>{session.type}</span>}
-      {session.expertise && (
-        <span className={cn(pill, "border border-dc-hairline bg-white text-dc-fg2")}>{session.expertise}</span>
+    <span
+      className={cn(
+        "inline-flex shrink-0 items-center rounded-[0.25em] font-bold uppercase leading-[normal] tracking-[0.03em] text-dc-fg",
+        lg ? "gap-[0.5em] py-[0.25em] pl-[0.5em] pr-[0.75em] text-[1em]" : "gap-[0.25em] py-[0.25em] pl-[0.25em] pr-[0.5em] text-[0.75em]"
       )}
-      {session.track && (
-        <span className={pill} style={{ backgroundColor: color.bg, color: color.fg }}>
-          {trackFullLabel(session.track)}
-        </span>
+      style={{ backgroundColor: theme.color }}
+    >
+      {theme.gem && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={theme.gem} alt="" className={cn("shrink-0 object-contain", lg ? "size-[1.5em]" : "size-[1.1667em]")} />
       )}
-    </div>
+      {trackFullLabel(track, roomId)}
+    </span>
   );
 }
 
 function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
-  if (avatar) {
+  const [failed, setFailed] = useState(false);
+  if (avatar && !failed) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={avatar} alt="" className="size-full rounded-full object-cover" />
+      <img
+        src={avatar}
+        alt=""
+        crossOrigin="anonymous"
+        className="size-full rounded-full object-cover"
+        onError={() => setFailed(true)}
+      />
     );
   }
   const initials = name
@@ -75,123 +99,74 @@ function SpeakerAvatar({ name, avatar }: { name: string; avatar?: string }) {
     .join("")
     .toUpperCase();
   return (
-    <div className="flex size-full items-center justify-center rounded-full bg-[#dfd8fc] text-[0.9em] font-bold text-dc-purple">
+    <span className="flex size-full items-center justify-center rounded-full bg-dc-purple-soft text-[1.25em] font-bold text-dc-purple">
       {initials}
+    </span>
+  );
+}
+
+/** A session's speakers once each: a sheet can list the same person twice (seen 2026-10-29). */
+function uniqueSpeakers(session: Session): Session["speakers"] {
+  const seen = new Set<string>();
+  return session.speakers.filter((sp) => !seen.has(sp.id) && seen.add(sp.id));
+}
+
+/** Overlapping avatars then the names, comma-separated. */
+function Speakers({ session }: { session: Session }) {
+  const speakers = uniqueSpeakers(session);
+  if (speakers.length === 0) return null;
+  const shown = speakers.slice(0, MAX_AVATARS);
+  return (
+    <div className="flex min-w-0 items-center gap-[1em]">
+      <div className="flex shrink-0 items-center">
+        {shown.map((speaker, i) => (
+          <span
+            key={speaker.id}
+            className={cn("size-[4em] shrink-0 overflow-hidden rounded-full", i < shown.length - 1 && "-mr-[1em]")}
+            style={{ zIndex: shown.length - i }}
+          >
+            <SpeakerAvatar name={speaker.name} avatar={speaker.avatar || undefined} />
+          </span>
+        ))}
+      </div>
+      <p className="min-w-0 truncate text-[1.25em] leading-[normal] tracking-[-0.0125em] text-dc-fg">
+        {speakers.map((sp) => sp.name).join(", ")}
+      </p>
     </div>
   );
 }
 
-const MAX_SPEAKERS = 4;
-
-/** Speakers as wrapping chips, capped so a panel never pushes the description off screen. */
-function Speakers({ session }: { session: Session }) {
-  const shown = session.speakers.slice(0, MAX_SPEAKERS);
-  const rest = session.speakers.length - shown.length;
-  if (shown.length === 0) return null;
+/** One row of the Up next rail. */
+function UpcomingCard({ session }: { session: Session }) {
+  const speakers = uniqueSpeakers(session);
   return (
-    <ul className="flex flex-wrap items-center gap-x-[1.6em] gap-y-[0.7em]">
-      {shown.map((speaker) => (
-        <li key={speaker.id} className="flex items-center gap-[0.7em]">
-          <span className="size-[3.2em] shrink-0 overflow-hidden rounded-full ring-[0.15em] ring-white">
-            <SpeakerAvatar name={speaker.name} avatar={speaker.avatar || undefined} />
-          </span>
-          <span className="text-[1.4em] font-semibold leading-tight text-dc-fg2">{speaker.name}</span>
-        </li>
-      ))}
-      {rest > 0 && (
-        <li className="rounded-full bg-[#dfd8fc] px-[1em] py-[0.5em] text-[1.05em] font-semibold text-dc-fg2">
-          +{rest} more
-        </li>
-      )}
-    </ul>
-  );
-}
-
-/** Upcoming-session row in the side rail; the first one carries the countdown. */
-function UpcomingCard({ session, nowMs, first }: { session: Session; nowMs: number; first: boolean }) {
-  const color = trackColor(session.track);
-  const otherDay = eventDayKey(session.start * 1000) !== eventDayKey(nowMs);
-  return (
-    <li
-      className={cn(
-        "flex gap-[1em] rounded-2xl border p-[1.1em]",
-        first ? "border-dc-purple/30 bg-white" : "border-dc-hairline bg-white/60"
-      )}
-    >
-      <div className="flex shrink-0 flex-col items-start gap-[0.35em]">
-        <span className="text-[1.5em] font-bold leading-none tabular-nums text-dc-fg2">{formatTime(session.start)}</span>
-        {otherDay && (
-          <span className="text-[0.8em] font-semibold uppercase leading-none tracking-[0.04em] text-dc-muted">
-            {eventFmt("en-US", { weekday: "short" }).format(new Date(session.start * 1000))}
-          </span>
-        )}
-        {first && (
-          <span className="rounded-full bg-dc-purple px-[0.6em] py-[0.25em] text-[0.75em] font-bold leading-none text-white">
-            in {humanize(minutesUntil(session, nowMs))}
-          </span>
-        )}
-      </div>
-      <div className="flex min-w-0 flex-col gap-[0.45em]">
-        <p className="line-clamp-2 text-[1.15em] font-semibold leading-snug text-dc-fg2">{session.title}</p>
-        <p className="flex flex-wrap items-center gap-[0.4em] text-[0.8em] leading-none text-dc-muted">
-          {session.track && (
-            <span className="rounded-full px-[0.7em] py-[0.3em] font-medium" style={{ backgroundColor: color.bg, color: color.fg }}>
-              {trackFullLabel(session.track)}
-            </span>
-          )}
-          {session.speakers.length > 0 && (
-            <span className="truncate">
-              {session.speakers.slice(0, 2).map((sp) => sp.name).join(", ")}
-              {session.speakers.length > 2 ? ` +${session.speakers.length - 2}` : ""}
-            </span>
-          )}
+    <li className="flex items-center rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em]" style={GLASS}>
+      <div className="flex min-w-0 flex-1 items-start gap-[1.25em]">
+        <p className="shrink-0 text-[1.5em] font-bold leading-[normal] tracking-[-0.0104em] text-dc-fg tabular-nums">
+          {formatTime(session.start)}
         </p>
+        <div className="flex min-w-0 flex-1 flex-col justify-center gap-[0.75em]">
+          <p className="line-clamp-2 text-[1em] font-bold leading-[1.5] tracking-[-0.0156em] text-dc-fg">{session.title}</p>
+          <div className="flex min-w-0 items-start gap-[0.75em]">
+            <TrackPill track={session.track} roomId={session.room?.id} size="sm" />
+            {speakers.length > 0 && (
+              <p className="min-w-0 flex-1 truncate text-[1em] leading-[normal] tracking-[-0.0156em] text-dc-fg">
+                {speakers.map((sp) => sp.name).join(", ")}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </li>
   );
 }
 
-/**
- * QR tile in the Scan box: the code above a coloured label. The whole tile
- * links to the same URL so the screen is usable on a laptop too (a TV never
- * clicks); the app link is relative to stay hydration-safe, the QR itself
- * always encodes the absolute URL.
- */
-function QrTile({
-  qr,
-  href,
-  alt,
-  label,
-  color,
-}: {
-  qr: string;
-  href: string;
-  alt: string;
-  label: string;
-  color: string;
-}) {
-  return (
-    <a href={href} target="_blank" rel="noreferrer" className="flex w-[10em] flex-col items-center gap-[0.6em]">
-      <span className="flex aspect-square w-full items-center justify-center rounded-2xl border border-dc-hairline bg-white p-[0.6em]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={qr} alt={alt} className="size-full" />
-      </span>
-      <span
-        className="w-full rounded-full px-[0.8em] py-[0.5em] text-center text-[0.85em] font-semibold leading-tight text-white"
-        style={{ backgroundColor: color }}
-      >
-        {label}
-      </span>
-    </a>
-  );
-}
-
-/** Full-screen surface shared by the kiosk and its loading / error / end-of-day states. */
-function Surface({ children, className }: { children: React.ReactNode; className?: string }) {
+/** Full-screen surface shared by the kiosk and its loading / error states. */
+function Surface({ children, className, style }: { children: React.ReactNode; className?: string; style?: CSSProperties }) {
   return (
     <div
-      className={cn("fixed inset-0 z-[60] overflow-hidden font-heading leading-[1.35] text-dc-fg2", className)}
-      style={KIOSK_STYLE}
+      className={cn("fixed inset-0 z-[60] overflow-hidden font-heading text-dc-fg", className)}
+      style={{ ...KIOSK_STYLE, ...style }}
     >
       {children}
     </div>
@@ -200,7 +175,7 @@ function Surface({ children, className }: { children: React.ReactNode; className
 
 function Message({ children }: { children: React.ReactNode }) {
   return (
-    <Surface className="flex items-center justify-center bg-[#0e0a1f] text-white">
+    <Surface className="flex items-center justify-center text-white" style={{ backgroundColor: BAR_BG }}>
       <p className="text-[1.6em]">{children}</p>
     </Surface>
   );
@@ -208,46 +183,68 @@ function Message({ children }: { children: React.ReactNode }) {
 
 /**
  * Full-screen room kiosk for the TVs at each room door, and the same page on
- * a laptop for the AV desk. A branded header (room, seats, date, big clock),
- * then the session on screen in a panel topped with its track colour (status
- * and time range, title, speakers, description, live progress, QR codes for
- * the app, the livestream and Meerkat's presenter view) beside a rail of what
- * follows, and the notifications ticker along the bottom. Sized entirely in design units (see KIOSK_STYLE), so it fits
- * any 16:9 TV and any laptop window. Isolated under components/room-screen.
+ * a laptop for the AV desk (Figma "Design - Futures / Security / Protocol"
+ * and "Starts in future 1–3", 2026-10-29). The page washes in the track
+ * colour of the session on screen with the mandala art over it; a deep
+ * purple header carries the room, its map icon, the date and a big clock;
+ * the session sits in a frosted card (status, title, time, track and type
+ * tags, description, speakers, the app QR) beside the Up next rail of
+ * frosted rows that fades out at the bottom; the notifications bar along the
+ * bottom shows one fixed notice and the latest announcements. Sized in
+ * design units (see KIOSK_STYLE). Isolated under components/room-screen.
  */
 export function RoomScreen({ roomId }: { roomId: string }) {
   const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
-  // A place reads the whole catalogue, whatever programme a session is shown in.
+  // A place reads the whole catalogue, whatever programme a session is shown
+  // in, under every id the place goes by (the Music Stage's hub programme).
   const everySession = useSessionsOfAllProgrammes();
-  const sessions = useMemo(() => everySession.filter((s) => s.room?.id === roomId), [everySession, roomId]);
+  const sessions = useMemo(() => {
+    const ids = new Set(roomScreenRoomIds(roomId));
+    return everySession.filter((s) => s.room?.id !== undefined && ids.has(s.room.id));
+  }, [everySession, roomId]);
   const { isLoading: sessionsLoading } = useSessions();
-  const { event } = useEvent();
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);
-  const upcomingSessions = useMemo(
-    () => sorted.filter((s) => s.start * 1000 > nowMs).slice(0, 5),
-    [sorted, nowMs]
-  );
   const currentSession = useMemo(() => {
     const live = sorted.find((s) => getStatus(s, nowMs) === "live");
-    return live ?? upcomingSessions[0] ?? null;
-  }, [sorted, nowMs, upcomingSessions]);
+    return live ?? sorted.find((s) => s.start * 1000 > nowMs) ?? null;
+  }, [sorted, nowMs]);
   const sessionIsLive = currentSession ? getStatus(currentSession, nowMs) === "live" : false;
-  // The list beside the Scan box: what follows the session on screen.
+  // The rail: what follows the session on screen, today's sessions then
+  // tomorrow's under their own heading (Scott, 2026-10-29).
   const laterSessions = useMemo(
-    () => upcomingSessions.filter((s) => s.id !== currentSession?.id),
-    [upcomingSessions, currentSession]
+    () => sorted.filter((s) => s.start * 1000 > nowMs && s.id !== currentSession?.id).slice(0, MAX_UPCOMING),
+    [sorted, nowMs, currentSession]
   );
-  const nextSession = laterSessions[0] ?? null;
+  // Grouped by venue day: today's rows sit under "Up next", later days under
+  // "Tomorrow" or "In N days" (Scott, 2026-10-29).
+  const todayKey = eventDayKey(nowMs);
+  const dayGroups = useMemo(() => {
+    const groups: { key: string; label: string | null; sessions: Session[] }[] = [];
+    for (const s of laterSessions) {
+      const key = eventDayKey(s.start * 1000);
+      let group = groups.find((g) => g.key === key);
+      if (!group) {
+        const days = Math.round((dayKeyToUtcMidnightMs(key) - dayKeyToUtcMidnightMs(todayKey)) / 86_400_000);
+        group = { key, label: days <= 0 ? null : days === 1 ? "Tomorrow" : `In ${days} days`, sessions: [] };
+        groups.push(group);
+      }
+      group.sessions.push(s);
+    }
+    return groups;
+  }, [laterSessions, todayKey]);
+  const hasTodaySessions = dayGroups.some((g) => g.label === null);
 
+  // The app QR encodes the absolute session URL; the tile's link stays
+  // relative so the markup is hydration-safe.
   const [qr, setQr] = useState<{ sessionId: string; url: string } | null>(null);
   const qrSessionId = currentSession?.id ?? null;
   useEffect(() => {
     if (!qrSessionId) return;
     let cancelled = false;
     const origin = typeof window !== "undefined" ? window.location.origin : "";
-    QRCode.toDataURL(`${origin}/schedule/${qrSessionId}`, { margin: 1, width: 512 })
+    QRCode.toDataURL(`${origin}/schedule/${qrSessionId}`, { margin: 0, width: 512 })
       .then((url) => {
         if (!cancelled) setQr({ sessionId: qrSessionId, url });
       })
@@ -260,219 +257,154 @@ export function RoomScreen({ roomId }: { roomId: string }) {
   }, [qrSessionId]);
   const appQr = qr && qr.sessionId === qrSessionId ? qr.url : null;
 
-  // "See questions" QR to Meerkat's presenter view for this room's stage.
-  // Meerkat's stage is the slug of the Pretalx room name, which is our room id
-  // (the room name never matches, checked 2026-10-09): it follows whatever is
-  // live or next there, so one code serves the whole day. Shown only when Meerkat lists sessions
-  // for the stage: a room screen is online by definition, and a QR into a 404
-  // is worse than none. Keyed by stage so a stale code never lingers.
-  const stage = room?.id ?? null;
-  const [qaQr, setQaQr] = useState<{ stage: string; url: string } | null>(null);
-  useEffect(() => {
-    if (!stage) return;
-    let cancelled = false;
-    fetch(`${MEERKAT_URL}/api/v1/events?stage=${encodeURIComponent(stage)}`, {
-      headers: { Accept: "application/json" },
-    })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((body: { data?: unknown[] } | null) =>
-        body?.data?.length ? QRCode.toDataURL(meerkatStageUrl(stage), { margin: 1, width: 512 }) : null
-      )
-      .then((url) => {
-        if (!cancelled && url) setQaQr({ stage, url });
-      })
-      .catch(() => {
-        // Meerkat unreachable: no QR for this stage.
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [stage]);
-  const qaQrUrl = qaQr && qaQr.stage === stage ? qaQr.url : null;
-
-  const streamUrl = streamUrlForDay(room ?? undefined, nowMs, event?.startDate);
-  const [streamQr, setStreamQr] = useState<{ streamUrl: string; url: string } | null>(null);
-  useEffect(() => {
-    if (!streamUrl) return;
-    let cancelled = false;
-    QRCode.toDataURL(streamUrl, { margin: 1, width: 512 })
-      .then((url) => {
-        if (!cancelled) setStreamQr({ streamUrl, url });
-      })
-      .catch(() => {
-        // No stream QR.
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [streamUrl]);
-  const streamQrUrl = streamQr && streamQr.streamUrl === streamUrl ? streamQr.url : null;
-
   if (!APP_CONFIG.ROOMS_ENABLED) {
     return <div className="p-4 text-dc-muted">Room screens are not enabled</div>;
   }
   if (roomLoading || sessionsLoading) return <Message>Loading…</Message>;
   if (isError || !room) return <Message>{error?.message || "Room not found"}</Message>;
 
-  // End of day.
-  if (!currentSession) {
-    return (
-      <Surface className="flex items-center justify-center">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/login/backdrop.jpg" alt="" className="absolute inset-0 size-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to top, rgba(71,4,218,0.6), rgba(14,10,31,0.4))" }}
-        />
-        <div className="relative flex flex-col items-center gap-[0.6em] p-[2em] text-center text-white">
-          <p className="text-[3em] font-bold leading-none">{APP_CONFIG.APP_NAME}</p>
-          <p className="text-[2em]">No more sessions in {room.name} today.</p>
-          <p className="text-[1.25em]">Thank you for attending!</p>
-        </div>
-      </Surface>
-    );
-  }
-
-  const dateLabel = eventFmt("en-US", { weekday: "long", month: "short", day: "numeric" }).format(new Date(nowMs));
+  const theme = currentSession ? getTrackTheme(currentSession.track, currentSession.room?.id) : null;
+  const wash = theme && !theme.neutral ? theme.color : "#f2f1f4";
+  const dateLabel = eventFmt("en-US", { weekday: "short", month: "short", day: "numeric" }).format(new Date(nowMs));
   const roomIcon = roomIconUrl(room.id);
-  const color = trackColor(currentSession.track);
-  const progress = sessionIsLive
-    ? Math.min(1, Math.max(0, (nowMs / 1000 - currentSession.start) / (currentSession.end - currentSession.start)))
-    : 0;
 
   return (
-    <Surface className="grid grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)_auto] bg-[#f9f8fa]">
-      {/* HEADER: room identity on the Devcon art, date and a big clock */}
-      <header className="relative flex h-[8em] items-center justify-between overflow-hidden px-[2em] text-white">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/login/backdrop.jpg" alt="" className="absolute inset-0 size-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to right, rgba(22,11,43,0.85) 0%, rgba(71,4,218,0.55) 60%, rgba(22,11,43,0.7) 100%)" }}
-        />
-        <div className="relative flex min-w-0 items-center gap-[1.2em]">
+    <Surface className="grid grid-cols-[minmax(0,1fr)] grid-rows-[auto_minmax(0,1fr)_auto]" style={{ backgroundColor: wash }}>
+      {/* The mandala art, washed over the track colour behind everything */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={MANDALA_URL} alt="" className="pointer-events-none absolute inset-0 size-full object-cover opacity-[0.12]" />
+
+      {/* HEADER: room and its map icon, date and a big clock */}
+      <header
+        className="relative flex items-center justify-between px-[4em] py-[1.5em] text-white"
+        style={{ backgroundColor: BAR_BG }}
+      >
+        <div className="flex min-w-0 items-center gap-[1em]">
+          <h2 className="whitespace-nowrap text-[2.25em] font-bold leading-none tracking-[-0.0139em]">{room.name}</h2>
           {roomIcon && (
-            // The stage's theme crest (Masks, Fans, ...), same art as on the venue map.
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={roomIcon} alt="" className="h-[5.6em] w-auto shrink-0 drop-shadow-[0_0.15em_0.5em_rgba(0,0,0,0.35)]" />
+            <img src={roomIcon} alt="" className="h-[2.25em] w-auto shrink-0 object-contain" />
           )}
-          <div className="flex min-w-0 flex-col">
-            <h2 className="truncate text-[3em] font-bold leading-[1.25] tracking-[-0.01em]">{room.name}</h2>
-            {room.description && <p className="truncate text-[1.4em] leading-[1.3] opacity-85">{room.description}</p>}
-          </div>
         </div>
-        <div className="relative flex shrink-0 items-center gap-[2em]">
-          {room.capacity != null && (
-            <p className="flex items-center gap-[0.5em] text-[1.2em] leading-none opacity-90">
-              <Users className="size-[1.3em]" />
-              {room.capacity} seats
-            </p>
-          )}
-          <div className="flex flex-col items-end gap-[0.35em]">
-            <p className="text-[1.2em] leading-none opacity-90">{dateLabel}</p>
-            <p className="flex items-center gap-[0.4em] text-[2.6em] font-bold leading-none tabular-nums">
-              <Clock className="size-[0.8em] opacity-80" />
-              {formatTime(nowMs / 1000)}
-            </p>
-          </div>
+        <div className="flex shrink-0 items-baseline gap-[0.75em] text-right font-bold">
+          <p className="text-[1em] leading-[1.38] tracking-[-0.03125em]">{dateLabel}</p>
+          <p className="text-[2.25em] leading-none tracking-[-0.0139em] tabular-nums">{formatTime(nowMs / 1000)}</p>
         </div>
       </header>
 
       {/* BODY: the session on screen, and the rail of what follows */}
-      <main className="grid min-h-0 grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-[2em] p-[2em]">
-        <section
-          className="relative flex min-h-0 flex-col gap-[1em] overflow-hidden rounded-3xl border border-dc-hairline bg-white p-[2em]"
-          style={{ borderTopColor: color.bg, borderTopWidth: "0.5em" }}
+      <main className="relative grid min-h-0 grid-cols-[minmax(0,52.5fr)_minmax(0,35.5fr)] items-start gap-[4em] p-[4em]">
+        {currentSession ? (
+          <section
+            className="flex max-h-full min-h-0 flex-col gap-[2em] self-start overflow-hidden rounded-[1.25em] border border-dc-hairline p-[2em]"
+            style={GLASS}
+          >
+            <div className="flex min-h-0 flex-col gap-[2em]">
+              <div className="flex flex-col gap-[1.5em]">
+                <div className="flex flex-col gap-[1em]">
+                  {sessionIsLive ? (
+                    <p className="flex items-center gap-[0.75em] text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-[#d7282b]">
+                      <span className="size-[0.6em] shrink-0 rounded-full bg-[#d7282b]" />
+                      Live now
+                    </p>
+                  ) : (
+                    <p className="text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-purple">
+                      Starts in {humanizeWait(minutesUntil(currentSession, nowMs))}
+                    </p>
+                  )}
+                  <h1 className="line-clamp-2 pb-[0.15em] text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
+                    {currentSession.title}
+                  </h1>
+                </div>
+                <div className="flex flex-wrap items-center gap-[1em]">
+                  <p className="flex items-center gap-[0.5em] text-[1.25em] leading-[normal] tracking-[-0.0125em] text-dc-muted tabular-nums">
+                    <Clock3 className="size-[1.2em] shrink-0" strokeWidth={2} />
+                    {formatTimeRange(currentSession)}
+                  </p>
+                  <TrackPill track={currentSession.track} roomId={currentSession.room?.id} size="lg" />
+                  {currentSession.type && (
+                    <span className="inline-flex shrink-0 items-center rounded-[0.25em] bg-[#f2f1f4] px-[0.75em] py-[0.25em] text-[1em] font-bold uppercase leading-[normal] tracking-[0.03em] text-dc-fg">
+                      {currentSession.type}
+                    </span>
+                  )}
+                </div>
+                {currentSession.description && (
+                  <p className="line-clamp-3 text-[1.25em] leading-[normal] tracking-[-0.0125em] text-dc-fg">
+                    {currentSession.description}
+                  </p>
+                )}
+              </div>
+              <Speakers session={currentSession} />
+            </div>
+
+            <div className="h-px w-full shrink-0 bg-dc-hairline" />
+
+            <div className="flex shrink-0 items-center gap-[1em]">
+              <a
+                href={`/schedule/${currentSession.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex shrink-0 items-center rounded-[0.25em] border border-dc-hairline bg-white p-[0.25em]"
+              >
+                {appQr ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={appQr} alt="Session QR code" className="size-[6.5em]" />
+                ) : (
+                  <span className="size-[6.5em]" />
+                )}
+              </a>
+              <div className="flex min-w-0 flex-col justify-center gap-[0.25em] leading-[normal] tracking-[-0.0125em]">
+                <p className="text-[1.25em] font-bold text-dc-purple">Scan to open in the Devcon App</p>
+                <p className="text-[1em] text-dc-fg">Watch the livestream if the room is full or follow the live Q&amp;A.</p>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <section className="flex flex-col gap-[1em] rounded-[1.25em] border border-dc-hairline p-[2em]" style={GLASS}>
+            <p className="text-[2em] font-bold leading-[1.2] tracking-[-0.0156em] text-dc-fg">
+              No more sessions in {room.name} today.
+            </p>
+            <p className="text-[1.25em] leading-[normal] tracking-[-0.0125em] text-dc-muted">Thank you for attending!</p>
+          </section>
+        )}
+
+        <aside
+          className="flex h-full min-h-0 flex-col gap-[1em] self-stretch"
+          style={{
+            maskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
+            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
+          }}
         >
-          <div className="flex shrink-0 flex-wrap items-center gap-x-[1.2em] gap-y-[0.5em]">
-            {sessionIsLive ? (
-              <p className="flex items-center gap-[0.5em] text-[1.3em] font-bold leading-none text-[#e11d48]">
-                <span className="size-[0.6em] rounded-full bg-[#e11d48] motion-safe:animate-pulse" />
-                Happening now
-              </p>
-            ) : (
-              <p className="text-[1.3em] font-bold leading-none text-dc-purple">
-                Starts in {humanize(minutesUntil(currentSession, nowMs))}
-              </p>
-            )}
-            <p className="text-[1.3em] leading-none tabular-nums text-dc-muted">
-              {formatTime(currentSession.start)} – {formatTime(currentSession.end)}
-            </p>
-            <SessionTags session={currentSession} />
-          </div>
-
-          <h1 className="line-clamp-2 shrink-0 text-[3em] font-bold leading-[1.08] tracking-[-0.015em] text-dc-fg2">
-            {currentSession.title}
-          </h1>
-          <div className="shrink-0">
-            <Speakers session={currentSession} />
-          </div>
-          {currentSession.description && (
-            <p className="line-clamp-3 shrink-0 text-[1.15em] leading-[1.4] text-dc-fg2/80">{currentSession.description}</p>
+          {/* "Up next" heads today's sessions; a rail with only tomorrow's shows "Tomorrow" alone (Scott, 2026-10-29). */}
+          {(hasTodaySessions || laterSessions.length === 0) && (
+            <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
           )}
-
-          {sessionIsLive && (
-            <div className="h-[0.5em] w-full shrink-0 overflow-hidden rounded-full bg-[#eee9fb]" aria-hidden>
-              <div className="h-full rounded-full bg-dc-purple transition-[width] duration-1000" style={{ width: `${progress * 100}%` }} />
-            </div>
-          )}
-
-          {/* Scan row anchored to the bottom of the panel */}
-          <div className="mt-auto flex shrink-0 items-end justify-between gap-[2em] pt-[0.5em]">
-            <div className="flex flex-wrap items-start gap-[1.6em]">
-              {appQr && (
-                <QrTile qr={appQr} href={`/schedule/${currentSession.id}`} alt="Session QR code" label="Open in app" color="#7D52F4" />
-              )}
-              {streamQrUrl && streamUrl && (
-                <QrTile qr={streamQrUrl} href={streamUrl} alt="Livestream QR code" label="Watch livestream" color="#e11d48" />
-              )}
-              {qaQrUrl && stage && (
-                <QrTile qr={qaQrUrl} href={meerkatStageUrl(stage)} alt="Live Q&A QR code" label="See questions" color="#059669" />
-              )}
-            </div>
-            <p className="max-w-[18em] text-right text-[1em] leading-snug text-dc-muted">
-              Scan to open the session in the app, watch the livestream if the room is full, or follow the questions.
-            </p>
-          </div>
-        </section>
-
-        <aside className="flex min-h-0 flex-col gap-[1em]">
-          <h2 className="text-[1.4em] font-bold leading-none text-dc-fg2">Up next in this room</h2>
           {laterSessions.length > 0 ? (
-            <ul
-              className="flex min-h-0 flex-col gap-[0.8em] overflow-hidden"
-              style={{
-                maskImage: "linear-gradient(to bottom, black 88%, transparent)",
-                WebkitMaskImage: "linear-gradient(to bottom, black 88%, transparent)",
-              }}
-            >
-              {laterSessions.map((session, i) => (
-                <UpcomingCard key={session.id} session={session} nowMs={nowMs} first={i === 0} />
+            <div className="flex min-h-0 flex-col gap-[1em] overflow-hidden">
+              {dayGroups.map((group) => (
+                <div key={group.key} className="flex shrink-0 flex-col gap-[1em]">
+                  {group.label && (
+                    <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">{group.label}</h2>
+                  )}
+                  <ul className="flex shrink-0 flex-col gap-[0.5em]">
+                    {group.sessions.map((session) => (
+                      <UpcomingCard key={session.id} session={session} />
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           ) : (
-            <p className="rounded-2xl border border-dc-hairline bg-white/60 p-[1.1em] text-[1.1em] text-dc-muted">
+            <p className="rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] text-dc-muted" style={GLASS}>
               No more sessions in this room today.
             </p>
           )}
         </aside>
       </main>
 
-      {/* FOOTER: notifications ticker */}
-      <footer className="flex h-[3.2em] items-center gap-[1em] border-t border-dc-hairline bg-[#F8F4FF] px-[2em]">
-        <p className="shrink-0 rounded-full bg-[#dfd8fc] px-[0.9em] py-[0.35em] text-[0.8em] font-bold uppercase leading-none tracking-[0.04em]">
-          Notifications
-        </p>
-        <div className="flex-1 overflow-hidden">
-          <div className="inline-flex whitespace-nowrap text-[1.1em] motion-safe:animate-[marquee_40s_linear_infinite]">
-            <span className="mr-[4em]">
-              If the room is full please view on livestream or ask volunteers for any overflow rooms.
-            </span>
-            <span className="mr-[4em]">
-              If the room is full please view on livestream or ask volunteers for any overflow rooms.
-            </span>
-          </div>
-        </div>
+      {/* FOOTER: the fixed notice, centred */}
+      <footer className="relative flex items-center px-[4em] py-[1em] text-white" style={{ backgroundColor: BAR_BG }}>
+        <p className="min-w-0 flex-1 truncate text-center text-[1em] leading-none tracking-[-0.0156em]">{FIXED_NOTICE}</p>
       </footer>
     </Surface>
   );

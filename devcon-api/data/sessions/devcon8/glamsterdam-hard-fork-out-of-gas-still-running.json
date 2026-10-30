@@ -1,0 +1,27 @@
+{
+  "id": "glamsterdam-hard-fork-out-of-gas-still-running",
+  "sourceId": "VQSHXC",
+  "title": "Glamsterdam Hard Fork: Out of gas, still running",
+  "description": "Smart contracts often guess why a call failed by checking how much gas is left afterwards: if very little remains, they assume it ran out of gas. That works today because gas only ever goes down. Glamsterdam changes this. Creating new storage becomes more expensive, and that cost can be given back later, for example when a failed call's changes are undone. As a result, a contract can end up with more gas than expected and draw the wrong conclusion about what went wrong. Drawing on ChainSecurity's audit work, we walk through simple examples of how this can break existing contracts, and share a checklist developers and auditors can use before the upgrade.",
+  "abstract": "EIP-8037, part of Ethereum's Glamsterdam hard fork, changes the gas accounting mechanism. Attendees will learn how this breaks common out-of-gas detection patterns in smart contracts and what to check in their own code before the fork.",
+  "track": "Security",
+  "type": "Talk",
+  "expertise": "Some familiarity with the topic",
+  "audience": "General / Everyone",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "EVM",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "ioannis-sachinoglou"
+  ],
+  "eventId": "devcon8",
+  "slot_start": 1793791800000,
+  "slot_end": 1793793300000,
+  "slot_roomId": "jasmine-stage-4",
+  "resources_presentation": "https://docs.google.com/presentation/d/1hKJ8zfUQ88mdD4qS7KfTeFgBWrk2P8X42iQjeR-S9WE"
+}
