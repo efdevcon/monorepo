@@ -35,8 +35,8 @@ export const FLOOR_LEGENDS: Partial<Record<LevelId, readonly LegendSpec[]>> = {
     { areaId: "poster-printing-station" },
     { areaId: "poster-display" },
   ],
-  L1: [{ category: "suites", label: "Suites" }, { areaId: "speakers-lounge" }, { areaId: "interview-room" }],
-  L2: [{ areaId: "lightning-stage" }, { areaId: "workshop", label: "Workshops" }, { category: "suites", label: "Suites" }, { areaId: "baby-care-room" }],
+  L1: [{ category: "suites", label: "Meeting rooms" }, { areaId: "speakers-lounge" }, { areaId: "interview-room" }],
+  L2: [{ areaId: "lightning-stage" }, { areaId: "workshop", label: "Workshops" }, { category: "suites", label: "Meeting rooms" }, { areaId: "baby-care-room" }],
   L3: [
     { areaId: "lotus-stage", label: "Lotus Stages" },
     { areaId: "jasmine-stage" },

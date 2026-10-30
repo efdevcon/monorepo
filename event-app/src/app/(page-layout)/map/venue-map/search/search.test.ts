@@ -35,7 +35,8 @@ test("search: custom terms bring up their categories and areas", () => {
   const suites = searchFind(groups, "meeting room").hits;
   assert.ok(suites.length > 0 && suites.every((h) => h.category.id === "suites"), "meeting room → the suites only");
   assert.equal(searchFind(groups, "mee").hits.length, suites.length, "a prefix of three letters matches");
-  assert.ok(searchFind(groups, "me").hits.every((h) => h.category.id !== "suites" || h.name.toLowerCase().includes("me")), "two letters stay a name search");
+  assert.ok(searchFind(groups, "lu").hits.every((h) => h.category.id !== "food" || h.name.toLowerCase().includes("lu")), "two letters stay a name search");
+  assert.equal(searchFind(groups, "lun").hits.length, searchFind(groups, "lunch").hits.length, "a prefix of three letters matches");
   const food = searchFind(groups, "lunch").hits;
   assert.ok(food.length > 0 && food.every((h) => h.category.id === "food"), "lunch → food & drink");
   const ways = searchFind(groups, "where is the exit").hits;
@@ -134,7 +135,7 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
   assert.equal(l0.find((e) => e.label === "CLS Hangout Area")?.swatch, "#0088ee", "no icon yet: a swatch in the footprint's fill");
   assert.equal(l0.find((e) => e.label === "Badge Pickup")?.areas.length, 2, "both pickup desks under one chip");
   assert.ok(!l0.some((e) => e.label.startsWith("Washroom") || e.label.startsWith("Elevator")), "wayfinding and washrooms stay out");
-  assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Suites", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
+  assert.deepEqual(buildFloorLegend("L1").map((e) => [e.label, e.areas.length]), [["Meeting rooms", 6], ["Speakers Lounge", 1], ["Interview Room", 1]]);
   assert.ok(buildFloorLegend("L1")[0].iconUrl?.endsWith("/suites.png"), "a category chip takes the first member's icon");
-  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Suites", 8], ["Baby Care Room", 1]]);
+  assert.deepEqual(buildFloorLegend("L2").map((e) => [e.label, e.areas.length]), [["Lightning Stage", 1], ["Workshops", 2], ["Meeting rooms", 8], ["Baby Care Room", 1]]);
 });

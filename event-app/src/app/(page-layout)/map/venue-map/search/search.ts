@@ -2,7 +2,7 @@ import { byName, sortByLevel, type FindEntry, type FindGroup } from "../find/cat
 import { LEVEL_ALIASES, type LevelId } from "../data/levels";
 import { SEARCH_TERMS } from "../data/searchTerms";
 
-/** Shortest query that can match a term by its start ("mee" → meeting; "me" would pull the suites into every name search). */
+/** Shortest query that can match a term by its start ("lun" → lunch; "lu" would pull the food into every name search). */
 const TERM_PREFIX_MIN = 3;
 
 /** The categories and areas the query's custom terms (data/searchTerms.ts) stand for. */
