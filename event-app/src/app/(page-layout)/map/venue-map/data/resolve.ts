@@ -28,8 +28,10 @@ export type Area = {
   icon: IconName | null;
   /** The image standing on the footprint (sprite or decal). */
   iconUrl: string | null;
-  /** The image for the card and the Find / Search / legend chips: a supporter's full lockup where the booth carries a compact one (areas.ts `cardLogo`), else `iconUrl`. */
+  /** The image for the card and the Find / Search / legend chips: a supporter's full lockup where the booth carries a compact one (areas.ts `cardLogo`), a host's lockup for a hosted place, else `iconUrl`. */
   cardIconUrl: string | null;
+  /** The place's own theme icon, whoever hosts it: a hosted place's row under its own Find category (the coffee cup under Food & drink, the lockup under Supporters). */
+  placeIconUrl: string | null;
   heightClass: AreaSpec["heightClass"];
   /** Sprite height override in metres (areas.ts). */
   iconSize: number | null;
@@ -83,7 +85,8 @@ function resolveShape(shape: MapShape): Area | null {
     icon,
     iconUrl: hub ? communityHubLogo(hub) : tenant ? tenant.logo : icon ? iconUrl(icon) : null,
     cardIconUrl: hub ? communityHubLogo(hub) : tenant ? (tenant.cardLogo ?? tenant.logo) : host ? (host.cardLogo ?? host.logo) : icon ? iconUrl(icon) : null,
-    heightClass: spec.heightClass,
+    placeIconUrl: icon ? iconUrl(icon) : null,
+    heightClass: variant?.heightClass ?? spec.heightClass,
     iconSize: (instance !== null ? spec.iconSizes?.[instance] : undefined) ?? spec.iconSize ?? null,
     shape,
     roomIds: [...(roomsByKey.get(shape.key) ?? []), ...(hub ? [`community-hub-${hub.id}`] : [])],

@@ -355,7 +355,8 @@ export function buildLevel(loaded: LoadedLevel, frame: Frame, report: Report): {
     const polygons = filledPolygons(d, entry.minWidth ? entry.minWidth / frame.metresPerPx : 0);
     const after = bbox(polygons.flatMap((p) => [p.outer, ...p.holes]));
     if (entry.minWidth && (after[2] - after[0] - (before[2] - before[0]) > 1e-6 || after[3] - after[1] - (before[3] - before[1]) > 1e-6)) report.info(file, d.id, `widened to ${entry.minWidth} m`);
-    addShape(toShape(spec.id, id, "area", polygons, HEIGHTS[entry.heightClass], d.paint.fill, true, frame, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
+    const heightClass = (instance === null ? undefined : entry.variants?.[instance]?.heightClass) ?? entry.heightClass;
+    addShape(toShape(spec.id, id, "area", polygons, HEIGHTS[heightClass], d.paint.fill, true, frame, { areaId, ...(instance === null ? {} : { instance }) }), d.id);
   }
 
   // An area drawn inside another (the tea & coffee stand in the Co-work Area) stands on it: coplanar caps z-fight otherwise.

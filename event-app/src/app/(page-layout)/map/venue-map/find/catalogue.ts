@@ -20,7 +20,11 @@ export const byRank = (a: { name: string; rank: number }, b: { name: string; ran
 
 const levelName = new Map<LevelId, string>(LEVELS.map((l) => [l.id, l.name]));
 
-/** Every tappable footprint grouped by category then floor, same-name copies per floor collapsed; a place with `alsoCategories` (the CoW Swap stand, under Supporters too) is a row in each. Built once; the plan is static. */
+/**
+ * Every tappable footprint grouped by category then floor, same-name copies per floor collapsed; a place with
+ * `alsoCategories` (the CoW Swap stand, under Supporters too) is a row in each: its own icon under its own category,
+ * the host's lockup on a chip under the host's (Scott, 2026-10-30). Built once; the plan is static.
+ */
 export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[] {
   const buckets = new Map<string, Map<LevelId, Map<string, Area[]>>>();
   for (const area of areas) {
@@ -39,7 +43,10 @@ export function buildFindGroups(areas: readonly Area[] = AREA_LIST): FindGroup[]
       level: id,
       name: levelName.get(id) ?? id,
       entries: [
-        ...[...perLevel.get(id)!.entries()].map(([name, group]) => ({ key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: group[0].cardIconUrl, iconBackdrop: group[0].iconBackdrop, areas: group, category, rank: group[0].rank })),
+        ...[...perLevel.get(id)!.entries()].map(([name, group]) => {
+          const own = group[0].alsoCategories.length > 0 && category.id === group[0].category.id && group[0].placeIconUrl !== null;
+          return { key: group.length === 1 ? group[0].key : `${id}/${name}`, name, level: id, iconUrl: own ? group[0].placeIconUrl : group[0].cardIconUrl, iconBackdrop: own ? null : group[0].iconBackdrop, areas: group, category, rank: group[0].rank };
+        }),
         // Composite rows (the Main Stage): one row standing for several footprints.
         // A composite row carries its members' icon (the Main Stage shows the lotus; Scott, 2026-10-26).
         ...COMPOSITE_LIST.filter((c) => c.category === category.id && c.level === id && c.areas.every((a) => areas.includes(a))).map((c) => ({ key: `${id}/composite:${c.id}`, name: c.name, level: id, iconUrl: c.areas[0].cardIconUrl, iconBackdrop: c.areas[0].iconBackdrop, areas: c.areas, category, rank: c.rank ?? 100 })),

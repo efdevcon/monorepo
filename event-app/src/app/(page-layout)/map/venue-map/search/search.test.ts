@@ -21,9 +21,12 @@ test("search: name and category matches, duplicates collapsed with their count",
   const { hits } = searchFind(groups, "coffee");
   assert.equal(hits.length, 4, "the tea & coffee footprints are one row per floor (L1, L2, L3), plus the CoW Swap stand's own row");
   assert.equal(hits.find((h) => h.level === L3 && h.name === "Tea & Coffee")?.areas.length, 4, "four unnamed stands on Level 3");
-  const cow = hits.find((h) => h.name === "CoW Swap Tea & Coffee")!;
-  assert.ok(cow && cow.areas.length === 1 && cow.iconBackdrop && cow.iconUrl?.endsWith("/cow-swap.svg"), "the hosted stand is one row with the host's logo on a chip");
+  const cow = hits.find((h) => h.name === "CoW Swap (Coffee Stand)")!;
+  assert.ok(cow && cow.areas.length === 1 && !cow.iconBackdrop && cow.iconUrl?.endsWith("/cow-swap-coffee-cup.png"), "the hosted stand is one row, with its own cup under Food & drink");
   assert.equal(hits.filter((h) => h.key === cow.key).length, 1, "listed under Food & drink and Supporters, but one hit");
+  const cowBooth = groups.find((g) => g.category.id === "supporters")!.floors.flatMap((f) => f.entries).find((e) => e.key === cow.key)!;
+  assert.ok(cowBooth.iconBackdrop && cowBooth.iconUrl?.endsWith("/cow-swap.svg"), "under Supporters it carries the host's lockup on a chip");
+  assert.equal(cow.areas[0].heightClass, "stand", "half a booth high");
   assert.deepEqual(hits.map((h) => h.level), ["L3", "L1", "L2", "L3"], "same name sorts by floor");
   assert.equal(searchFind(groups, "coffee l1").hits.length, 1, "a floor in the query scopes it");
   const washrooms = searchFind(groups, "washrooms").hits;
@@ -64,7 +67,7 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   const listed = groups.flatMap((g) => g.floors.flatMap((f) => f.entries.filter((e) => !e.key.includes("composite:")).flatMap((e) => e.areas)));
   assert.equal(new Set(listed).size, AREA_LIST.length);
   assert.equal(listed.length, AREA_LIST.length + 1, "the CoW Swap stand is listed twice: Food & drink and Supporters");
-  assert.ok(groups.find((g) => g.category.id === "supporters")!.floors.some((f) => f.entries.some((e) => e.name === "CoW Swap Tea & Coffee")));
+  assert.ok(groups.find((g) => g.category.id === "supporters")!.floors.some((f) => f.entries.some((e) => e.name === "CoW Swap (Coffee Stand)")));
   const stageFloors = groups.find((g) => g.category.id === "stages")!.floors;
   assert.deepEqual(
     stageFloors.map((f) => f.level),

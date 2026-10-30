@@ -92,16 +92,19 @@ Outputs, committed, under `src/app/(page-layout)/map/venue-map/data/`:
 `AREAS` is the single source of truth per area id: display `name` (`#` = the instance number,
 "Hub #" → "Hub 7"; without it numbered copies share the name and collapse in Find, "Washroom ×2"),
 `description` (placeholders today), `category`, `heightClass` (`stage` 5.5 m, `room` 3 m for the
-washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag station, `zone` 0.3 m flat mat
+washrooms, the walls' height, `kiosk` 2.5 m for supporter booths and the swag station, `stand` 1.25 m (half a kiosk, the CoW Swap
+coffee stand among the booths, via its variant's `heightClass`), `zone` 0.3 m flat mat
 for the co-work areas, hubs, tea & coffee, storage and elevators; walls are 3 m), optional
 `minWidth` (metres; footprints the plan draws as thin strips are stretched along their short axis
 about their centre, the two tea & coffee bars), optional `iconSize` (sprite height in metres when the
 footprint-derived size is wrong: escalators and elevators 6.5, the 51 m Community Led Stage 10 so its icon reads on the floor, the corners 4.5) and `iconSizes` (the same per
 instance: Level 3's washroom 9 stands right behind hubs 8–10, so its icon is 4.5 instead of the derived 6.5, which covered them; Scott, 2026-10-30), optional `icons` (per instance: the
 east elevator uses `elevator-left`), optional `variants` (per instance: a footprint under a shared layer name that is a place of its own, with its own
-name, description and icon, and a `host` supporter whose white lockup takes the card and list chips on the footprint's fill, like a booth's, and lists
-the place under Supporters as well as its own category (`Area.alsoCategories`; Find shows a row in each, Search dedupes by key). Today: `tea-&-coffee-8`,
-the stand above the supporter booths, is "CoW Swap Tea & Coffee" with the `cow-swap-coffee-cup` icon and `supporters/cow-swap.svg`; Scott, 2026-10-30), optional `hubs` (booth number →
+name, description, icon and height class, and a `host` supporter whose white lockup takes the card chip on the footprint's fill, like a booth's, and lists
+the place under Supporters as well as its own category (`Area.alsoCategories`; Find shows a row in each: the place's own icon under its own category,
+the host's lockup under Supporters; Search dedupes by key). Today: `tea-&-coffee-8`, the stand above the supporter booths, is "CoW Swap (Coffee Stand)"
+with the `cow-swap-coffee-cup` icon, `supporters/cow-swap.svg` and the `stand` height; Scott, 2026-10-30). A `description` may link another place as
+`[label](area:<id>)`: the card renders it as a button that shows that place (the Ticket Help Desk points at the Info Desk), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
 as the card's booth line), optional `tenants` (booth number → `{ name, logo }` for the supporter
@@ -127,7 +130,7 @@ That colour legend is the fallback for a floor without a spec list; every floor 
 it has none (the CLS Hangout Area); a category spec with `swatch` keeps the colour square (Level 3's
 Community and Supporters, matched on the legend category so the yellow corners stay under Community).
 Washrooms, tea & coffee, elevators, escalators and stairs are left out as self-explanatory (Level 0 lists both desks: the Ticket Help Desk is
-ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30; its card links the Info Desk), and
+ticketing problems only, the Info Desk by the registration entrance is the volunteers' general one, added 2026-10-30), and
 Level 3 stays short: the three stage kinds, Community, Supporters, Swag Station, Game Zone,
 Decompression Zone. A floor with a spec list never falls back to the colour legend.
 `rank` orders a category's rows (Lotus halls, then Jasmine, then Music). Since 2026-10-26 the catalogue

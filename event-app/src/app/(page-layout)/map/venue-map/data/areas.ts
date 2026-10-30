@@ -5,9 +5,10 @@ import type { IconName } from "./icons.generated";
  * Extrusion classes (metres, deliberately taller than life so the blocks read
  * at the fitted zoom; the plan is ~245 m wide). `zone` is a flat mat: hubs,
  * tea & coffee, storage and the elevators sit on the floor like the co-work
- * areas (Scott, 2026-10-25); stages, washrooms, suites and supporter booths stand up.
+ * areas (Scott, 2026-10-25); stages, washrooms, suites and supporter booths stand up; `stand`
+ * is half a kiosk (the CoW Swap coffee stand among the booths, Scott, 2026-10-30).
  */
-export type HeightClass = "stage" | "room" | "kiosk" | "zone";
+export type HeightClass = "stage" | "room" | "kiosk" | "stand" | "zone";
 
 export type AreaSpec = {
   /**
@@ -62,8 +63,8 @@ export type AreaSpec = {
  */
 export type Tenant = { name: string; logo: string; cardLogo?: string };
 
-/** A place of its own under a shared layer name (`variants`). */
-export type Variant = { name: string; description: string; icon?: IconName; host?: Tenant; website?: string };
+/** A place of its own under a shared layer name (`variants`); `heightClass` overrides the layer's at build time. */
+export type Variant = { name: string; description: string; icon?: IconName; host?: Tenant; website?: string; heightClass?: HeightClass };
 
 const supporter = (name: string, file: string, cardFile?: string): Tenant => ({ name, logo: `/maps/jwcc/supporters/${file}.svg`, ...(cardFile ? { cardLogo: `/maps/jwcc/supporters/${cardFile}.svg` } : {}) });
 
@@ -184,8 +185,10 @@ export const AREAS = {
     heightClass: "zone",
     icon: "coffee",
     minWidth: 2.5,
+    // The CoW Swap cup a fifth larger than the footprint-derived 3.3 m (Scott, 2026-10-30).
+    iconSizes: { 8: 4 },
     // The stand above the supporter booths is hosted by CoW Swap: its own cup, name and description, and CoW Swap's lockup on the card (Scott, 2026-10-30).
-    variants: { 8: { name: "CoW Swap Tea & Coffee", description: "Tea, coffee and snacks all day, served by CoW Swap. Find them at the top of the supporters area.", icon: "cow-swap-coffee-cup", host: supporter("CoW Swap", "cow-swap") } },
+    variants: { 8: { name: "CoW Swap (Coffee Stand)", description: "Tea, coffee and snacks all day, served by CoW Swap.", icon: "cow-swap-coffee-cup", host: supporter("CoW Swap", "cow-swap"), heightClass: "stand" } },
   },
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
