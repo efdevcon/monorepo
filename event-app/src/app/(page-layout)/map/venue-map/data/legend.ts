@@ -30,6 +30,7 @@ export const FLOOR_LEGENDS: Partial<Record<LevelId, readonly LegendSpec[]>> = {
     { areaId: "registration" },
     { areaId: "badge-pickup" },
     { areaId: "help-desk" },
+    { areaId: "info-desk" },
     { areaId: "cloak-room-lost-and-found", label: "Cloak Room" },
     { areaId: "food-garden" },
     { areaId: "poster-printing-station" },

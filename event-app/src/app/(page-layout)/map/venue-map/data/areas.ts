@@ -177,7 +177,9 @@ export const AREAS = {
   "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
   registration: { name: "Registration", description: "Check in and collect your wristband.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
   "badge-pickup": { name: "Badge Pickup #", description: "Create a Devcon badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
-  "help-desk": { name: "Help Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  // Two desks: the Help Desk is ticketing only, the Info Desk (by the registration entrance, added 2026-10-30) is the volunteers' general one (Scott).
+  "help-desk": { name: "Help Desk", description: "Ticketing help only: a ticket that won't scan, a missing or transferred ticket, the wrong ticket type, or any other problem with your ticket. For general questions about the event, head to the Info Desk.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
+  "info-desk": { name: "Info Desk", description: "Devcon volunteers will be here ready to answer any questions you have about the event.", category: "checkin", heightClass: "kiosk", icon: "help-desk" },
   "cloak-room-lost-and-found": { name: "Cloak Room & Lost and Found", description: "Check in your bag or ask about lost property.", category: "checkin", heightClass: "kiosk", icon: "cloak-room" },
   // Fun & rest
   "decompression-zone": { name: "Decompression Zone", description: "Slow down and rest.", category: "cowork", heightClass: "zone", icon: "decompression" },
