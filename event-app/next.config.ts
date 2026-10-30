@@ -111,10 +111,24 @@ const nextConfig: NextConfig = {
   // My Devcon from /ticket to /my-devcon (2026-10-13, so the tab, the title
   // and the URL say the same thing); pushes, emails and sign-in links sent
   // before then still point at the old paths.
+  //
+  // The rest are the Devcon 7 app's pages that have no counterpart here
+  // (docs/app-domain-migration.md). A browser that still runs the old app's
+  // service worker opens its precached pages first, and the old home sends
+  // anyone not signed in to /login before this app's worker takes over and
+  // reloads the page at that address; old bookmarks reach these paths too.
+  // Temporary redirects, so the paths stay free to use again.
   async redirects() {
     return [
       { source: "/announcements", destination: "/notifications", permanent: true },
       { source: "/ticket", destination: "/my-devcon", permanent: true },
+      { source: "/login/:path*", destination: "/", permanent: false },
+      { source: "/account/:path*", destination: "/", permanent: false },
+      { source: "/onboarding", destination: "/", permanent: false },
+      { source: "/event", destination: "/", permanent: false },
+      { source: "/streams", destination: "/", permanent: false },
+      { source: "/rs", destination: "/room-screens", permanent: false },
+      { source: "/venue", destination: "/map", permanent: false },
     ];
   },
   env: {
