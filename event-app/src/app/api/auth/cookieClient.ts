@@ -5,13 +5,14 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 /**
- * Supabase client over the request's HTTP-only auth cookies (`@supabase/ssr`
- * shape, written by /api/auth/session and /api/auth/bridge), for Route
- * Handlers that need to know who is signed in without a Bearer token: a
- * top-level navigation such as the Meerkat hand-off carries only cookies.
- * Cookie writes (a token refresh, sign-out) are collected and attached to
- * the response by `apply`, so call it on every response once the client has
- * been used. `client` is null when Supabase isn't configured.
+ * Supabase client over the request's auth cookies (`@supabase/ssr` shape),
+ * for the Route Handlers that WRITE them: /api/auth/session (mirror a
+ * browser session, sign out) and /api/auth/bridge. Cookie writes are
+ * collected and attached to the response by `apply`, so call it on every
+ * response once the client has been used. Not for reading who is signed in:
+ * reading through this client refreshes an expired session and can sign the
+ * person out of the app; readers use `cookieUser` (src/data/auth/cookieUser.ts).
+ * `client` is null when Supabase isn't configured.
  */
 export function cookieClient(request: NextRequest) {
   const pending: { name: string; value: string; options: CookieOptions }[] = [];

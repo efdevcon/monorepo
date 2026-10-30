@@ -79,6 +79,7 @@ import {
 } from "../src/data/reminders/reminders";
 import { RETURN_PARAM, safeReturnPath, signInHref } from "../src/routing/returnTo";
 import { syncSessionCookie, whenSessionCookieSettled } from "../src/data/auth/sessionCookie";
+import { authCookieName, jwtExpiresAt, parseAuthCookie } from "../src/data/auth/authCookie";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
 
@@ -971,6 +972,29 @@ async function testSessionCookieSettled() {
   }
 }
 
+function testAuthCookieParser() {
+  console.log("\n--- server reads the session cookie without refreshing it ---");
+  const url = "https://abcdefghijklmnopqrst.supabase.co";
+  const key = authCookieName(url);
+  check("cookie name follows the project ref", key === "sb-abcdefghijklmnopqrst-auth-token");
+  const session = { access_token: "eyJ.access.sig", refresh_token: "refresh-1", expires_at: 1_800_000_000, user: { id: "u1" } };
+  const json = JSON.stringify(session);
+  const b64 = "base64-" + Buffer.from(json, "utf8").toString("base64url");
+  const picked = (v: ReturnType<typeof parseAuthCookie>) => v && [v.access_token, v.refresh_token].join("|");
+  check("plain JSON cookie", picked(parseAuthCookie([{ name: key, value: json }], url)) === "eyJ.access.sig|refresh-1");
+  check("base64url cookie (the package's default encoding)", picked(parseAuthCookie([{ name: key, value: b64 }], url)) === "eyJ.access.sig|refresh-1");
+  const cut = Math.floor(b64.length / 2);
+  check("chunked cookie (.0 + .1) is reassembled in order", picked(parseAuthCookie([{ name: `${key}.1`, value: b64.slice(cut) }, { name: `${key}.0`, value: b64.slice(0, cut) }], url)) === "eyJ.access.sig|refresh-1");
+  check("another project's cookie is ignored", parseAuthCookie([{ name: "sb-otherprojectrefxxxx-auth-token", value: json }], url) === null);
+  check("garbage is null, not a throw", parseAuthCookie([{ name: key, value: "base64-!!!" }], url) === null && parseAuthCookie([{ name: key, value: "{not json" }], url) === null);
+  check("a session without an access token is null", parseAuthCookie([{ name: key, value: JSON.stringify({ refresh_token: "r" }) }], url) === null);
+  check("no cookies at all is null", parseAuthCookie([], url) === null);
+  const b64url = (v: string) => Buffer.from(v, "utf8").toString("base64url");
+  const token = (exp: number) => `${b64url('{"alg":"HS256","typ":"JWT"}')}.${b64url(JSON.stringify({ sub: "x", exp }))}.signature`;
+  check("jwt expiry read from the payload, no verification needed", jwtExpiresAt(token(1_800_000_000)) === 1_800_000_000);
+  check("malformed token has no expiry", jwtExpiresAt("abc") === null && jwtExpiresAt("a.b.c") === null && jwtExpiresAt("") === null);
+}
+
 function testReturnAfterSignIn() {
   console.log("\n--- return to the page that asked for sign-in ---");
   check("sign-in href carries the session path", signInHref("/schedule/abc-123") === `/my-devcon?${RETURN_PARAM}=%2Fschedule%2Fabc-123`);
@@ -1153,6 +1177,7 @@ async function main() {
   testServiceWorkerUpdateFlow();
   testReturnAfterSignIn();
   await testSessionCookieSettled();
+  testAuthCookieParser();
   testTeamTestPush();
   await testRetryOnce();
   await testWhenControlled();

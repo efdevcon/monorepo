@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { createServerComponentClient } from "@/data/auth/supabaseServer";
+import { cookieUserFromHeaders } from "@/data/auth/supabaseServer";
 import { signBridgeToken } from "@/data/auth/bridgeToken";
 
 /**
@@ -35,8 +35,9 @@ export function wantsInstallBridge(userAgent: string): boolean {
 export async function PersonalizedManifestLink() {
   const userAgent = (await headers()).get("user-agent") ?? "";
   if (wantsInstallBridge(userAgent) && process.env.INSTALL_BRIDGE_SECRET) {
-    const supabase = await createServerComponentClient();
-    const email = (await supabase?.auth.getUser())?.data.user?.email;
+    // Validated, never refreshed (src/data/auth/authCookie.ts): an expired
+    // cookie simply renders the plain manifest for this request.
+    const email = (await cookieUserFromHeaders()).user?.email;
     // Token built inside try/catch, JSX outside it: React renders JSX
     // lazily, so a throw from inside a JSX expression would escape the
     // catch anyway (react-hooks/error-boundaries).
