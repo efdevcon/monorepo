@@ -2,7 +2,7 @@
   "id": "2d-filtermaps-in-reth",
   "sourceId": "KRA8XX",
   "title": "2D-Filtermaps in Reth",
-  "description": "eth_getLogs becomes increasingly expensive as chain history grows, and client-side indexing is one way execution clients can reduce the amount of history scanned for log queries. Geth already ships FilterMaps, a 2-D probabilistic log index, but reproducing it in another client requires matching much more than just the high-level data structure.\r\n\r\nThis presentation will cover the design of bringing that approach to Reth. Matching Geth's value-index space, storing filter-map rows efficiently in MDBX, building the index incrementally through a background service, handling reorgs and bounded history, and integrating it with the existing RPC path while falling back to bloom scans for unindexed ranges.",
+  "description": "eth_getLogs becomes increasingly expensive as chain history grows, and client-side indexing is one way execution clients can reduce the amount of history scanned for log queries. Geth already ships FilterMaps, a 2-D probabilistic log index, but reproducing it in another client requires matching much more than just the high-level data structure.\r\n\r\nThis presentation will cover the design of bringing that approach to Reth: matching Geth's global log index, RocksDB store, building the index incrementally from finalized blocks through a background service, keeping a bounded history window, and integrating it with the existing RPC path while falling back to bloom scans for unindexed ranges.",
   "abstract": "how just the Filtermaps part from EIP-7745 in Reth to optimize eth_getLogs query following Geth's implementation of the same.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
