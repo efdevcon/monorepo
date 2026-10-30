@@ -212,6 +212,7 @@ function SpeakerProfile({
       <div className="grid grid-cols-2 gap-3">
         <button
           onClick={() => void toggle(speaker.id)}
+          aria-pressed={interested}
           className={cn(
             pill,
             interested
@@ -225,7 +226,7 @@ function SpeakerProfile({
               interested ? "fill-dc-purple" : "fill-transparent"
             )}
           />
-          {interested ? "Interested" : "Add to Interests"}
+          Interested
         </button>
         {/* Share took Copy name's slot on every layout; the chrome's share
             circle went with it, one entry point per page (Scott, 2026-10-27). */}

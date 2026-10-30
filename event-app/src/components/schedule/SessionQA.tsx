@@ -18,7 +18,7 @@ import {
   useQuestions,
   type Question,
 } from "@meerkat-events/react";
-import { Link } from "@/routing";
+import { PrimaryAnchorButton, PrimaryLinkButton } from "@/components/Buttons";
 import type { Session } from "@/data/models";
 import { meerkatEventId, qaOpensEarly } from "@/data/meerkat";
 import { NeedsConnection } from "@/components/NeedsConnection";
@@ -167,33 +167,44 @@ function QAFeed({
   const standalone = useStandalone();
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className={cn("flex flex-col gap-3", size === "md" && "lg:grow")}>
       <QAHeading size={size} count={questions?.length} live={!mock && live.isConnected} />
 
       {!notOpen && (
-        <div className="text-[14px] leading-5">
+        // The page (md) docks it: on phones it floats at the bottom of the
+        // screen, above the tab bar, with only the button taking taps (the page
+        // leaves room for it through data-qa-cta); from lg to the bottom of the Q&A
+        // column, edge to edge over the column's 16px padding. In the side
+        // panel (sm) it floats at the panel's bottom edge: absolute against
+        // SessionDetailsPanel's root, so it stays put while the content scrolls.
+        <div
+          data-qa-cta
+          className={cn(
+            "z-10",
+            size === "md"
+              ? "pointer-events-none fixed inset-x-0 bottom-[max(var(--nav-clearance),var(--safe-bottom))] px-4 py-3 lg:pointer-events-auto lg:sticky lg:inset-x-auto lg:bottom-[-1rem] lg:order-last lg:-mx-4 lg:-mb-4 lg:mt-auto lg:border-t lg:border-dc-hairline lg:bg-white/75 lg:p-4 lg:backdrop-blur-[4px]"
+              : "pointer-events-none absolute inset-x-0 bottom-0 p-4"
+          )}
+        >
           {user ? (
             // A real navigation: the server checks the ticket and redirects
             // to Meerkat. New tab in a browser; in place in the installed
             // app, where a new tab wouldn't carry the app's cookies on iOS
             // (the OS shows the out-of-scope page in an in-app browser).
-            <a
+            <PrimaryAnchorButton
               href={`/api/meerkat/go?session=${encodeURIComponent(sessionId)}`}
               target={standalone ? undefined : "_blank"}
               rel="noopener noreferrer"
               onClick={() => trackEvent("session", "qa", sessionId)}
-              className="inline-flex items-center gap-1 font-bold text-dc-purple hover:underline"
+              className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}
             >
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
-            </a>
+            </PrimaryAnchorButton>
           ) : (
-            <Link
-              href="/my-devcon"
-              className="font-bold text-dc-purple hover:underline"
-            >
+            <PrimaryLinkButton href="/my-devcon" className={cn(QA_CTA_CLASS, size === "md" && "lg:shadow-none")}>
               Sign in to ask a question
-            </Link>
+            </PrimaryLinkButton>
           )}
         </div>
       )}
@@ -231,6 +242,10 @@ function QAFeed({
   );
 }
 
+/** Full width; floating, with the feedback button's shadow. */
+const QA_CTA_CLASS =
+  "pointer-events-auto w-full whitespace-nowrap shadow-[0_4px_12px_rgba(22,11,43,0.25)]";
+
 /** The compact state recipe in the Q&A slot's quiet white card. */
 const quietCard = {
   size: "compact",
@@ -245,8 +260,7 @@ const FOLDED_COUNT = 3;
  * sorted by votes) so a busy Q&A doesn't push the speakers far down the page.
  * Desktop shows them all: there the speakers sit above the Q&A.
  * The question being answered always shows, even when it ranks lower. The
- * link under the list opens the rest and folds it back, in the same centred
- * bold style as the description's "Show more".
+ * link under the list opens the rest and folds it back, centred and bold.
  */
 function QuestionList({ questions }: { questions: Question[] }) {
   // Real-world clock: questions are stamped when asked, not in event time.

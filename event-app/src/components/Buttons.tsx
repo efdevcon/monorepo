@@ -41,6 +41,8 @@ const ctaLinkSize = (size: CtaLinkSize) =>
       ? "h-11 gap-2 px-4 text-[14px] lg:h-12 lg:text-[16px]"
       : "gap-2 px-8 py-3.5 text-[16px]";
 
+const primaryLinkLook = "bg-dc-purple text-dc-purple-fg hover:bg-[#6730d5]";
+
 /** PrimaryButton's look on a link. */
 export function PrimaryLinkButton({
   className,
@@ -50,7 +52,24 @@ export function PrimaryLinkButton({
   return (
     <Link
       {...props}
-      className={cn(ctaLinkBase, ctaLinkSize(size), "bg-dc-purple text-dc-purple-fg hover:bg-[#6730d5]", className)}
+      className={cn(ctaLinkBase, ctaLinkSize(size), primaryLinkLook, className)}
+    />
+  );
+}
+
+/**
+ * PrimaryButton's look on a plain anchor, for a real navigation the router
+ * must not intercept (a server route that redirects).
+ */
+export function PrimaryAnchorButton({
+  className,
+  size = "md",
+  ...props
+}: React.ComponentProps<"a"> & { size?: CtaLinkSize }) {
+  return (
+    <a
+      {...props}
+      className={cn(ctaLinkBase, ctaLinkSize(size), primaryLinkLook, className)}
     />
   );
 }

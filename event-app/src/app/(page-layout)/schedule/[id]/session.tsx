@@ -74,7 +74,8 @@ export default function Session({ params, id: directId }: SessionClientProps) {
   }
 
   return (
-    <main className="expand font-heading text-dc-fg">
+    // Room under the speakers for the Q&A's docked button (SessionQA): 69px tall.
+    <main className="expand font-heading text-dc-fg has-[[data-qa-cta]]:pb-[69px]">
       {/* Mobile: panel-grey underlay over the app gradient (between .app-bg
           at z -10 and the content) so the surface fills the whole viewport —
           the content block alone ends at its own height, which left the
@@ -93,7 +94,8 @@ export default function Session({ params, id: directId }: SessionClientProps) {
  * viewport-fit two-column card — session summary on the left, "Speakers (N)"
  * then Live Q&A in a 427px right rail (speakers first, like the side panel:
  * they're short and fixed, the Q&A grows during the talk). Both columns scroll independently;
- * the rail fades out at its bottom edge until scrolled to the end.
+ * a column fades out at its bottom edge until scrolled to the end, except a
+ * rail with a Q&A, where the Q&A's button docks to that edge instead.
  */
 function ExpandedSession({
   session,
@@ -120,7 +122,11 @@ function ExpandedSession({
           <FadingScrollColumn className="min-w-0 flex-1">
             <SessionSummary session={session} heading="Session details" />
           </FadingScrollColumn>
-          <FadingScrollColumn className="flex w-[427px] shrink-0 flex-col gap-6 border-l border-dc-hairline p-4">
+          {/* No fade with a Q&A: its button docks to this column's bottom edge. */}
+          <FadingScrollColumn
+            fade={!children}
+            className="flex w-[427px] shrink-0 flex-col gap-6 border-l border-dc-hairline p-4"
+          >
             <SessionSpeakers speakers={session.speakers} size="md" />
             {children}
           </FadingScrollColumn>
@@ -140,9 +146,11 @@ const BOTTOM_FADE_MASK =
  */
 function FadingScrollColumn({
   className,
+  fade = true,
   children,
 }: {
   className?: string;
+  fade?: boolean;
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -152,7 +160,7 @@ function FadingScrollColumn({
       ref={ref}
       className={cn("overflow-y-auto", className)}
       style={
-        atEnd
+        atEnd || !fade
           ? undefined
           : { maskImage: BOTTOM_FADE_MASK, WebkitMaskImage: BOTTOM_FADE_MASK }
       }

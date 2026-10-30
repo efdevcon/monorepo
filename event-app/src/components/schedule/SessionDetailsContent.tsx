@@ -18,6 +18,7 @@ import { getTrackTheme, trackFullLabel, type TrackTheme } from "./trackTheme";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
 import { MarkdownText } from "@/components/MarkdownText";
 import { ShareMenu } from "@/components/ShareMenu";
+import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 /**
@@ -142,23 +143,48 @@ const pillBase =
   "flex min-h-9 flex-1 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[13px] leading-none text-dc-fg2 lg:min-h-8 lg:gap-1 lg:px-2 lg:text-[12px]";
 const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
+/** Space before an inline "Show more", about a word space at 14px. */
+const LINK_GAP = 4;
+
+/** Right edge of the text on the fold's last visible line (its 20px line box). */
+function lastLineEnd(el: HTMLElement, box: DOMRect) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  let end = box.left;
+  while (walker.nextNode()) {
+    range.selectNodeContents(walker.currentNode);
+    for (const rect of range.getClientRects()) {
+      const middle = (rect.top + rect.bottom) / 2;
+      if (middle > box.bottom - 20 && middle < box.bottom) {
+        end = Math.max(end, rect.right);
+      }
+    }
+  }
+  return end;
+}
+
 /**
- * The session blurb, folded to its first six lines (`line-clamp-6` below;
- * the fold depth lives in that class alone) with an ellipsis and a
- * centred bold "Show more" link under it (Scott, 2026-10-14: long abstracts
- * pushed the meta, tags and speakers off the panel). One way only: once
+ * The session blurb, folded (`line-clamp-*` below; the fold depth lives in
+ * those classes alone) to three lines on phones, with an ellipsis and a bold
+ * "Show more" link at the end of the last line, and six lines from lg, with
+ * the link centred under it (Scott, 2026-10-14: long abstracts pushed the
+ * meta, tags and speakers off the panel). One way only: once
  * opened it stays open, there is no "Show less"; the fold returns when the
  * details close (the caller unmounts or re-keys this). The link shows only
  * while the text really overflows the fold — measured, not guessed from the
  * character count, since the width differs between the side panel, the
  * phone layer and the expanded page — and the measure re-runs on resize, so
  * a blurb that fits after a rotation loses its link and one that stops
- * fitting gains it.
+ * fitting gains it. On phones, a last line with room to spare (a paragraph
+ * ended there) takes the link straight after its last word, with no ellipsis.
  */
 function Description({ text }: { text: string }) {
+  const isDesktop = useIsDesktop();
   const [expanded, setExpanded] = useState(false);
   const [overflows, setOverflows] = useState(false);
+  const [inlineAt, setInlineAt] = useState<number | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
+  const linkRef = useRef<HTMLButtonElement | null>(null);
   useLayoutEffect(() => {
     if (expanded) return;
     const el = ref.current;
@@ -168,16 +194,23 @@ function Description({ text }: { text: string }) {
       // answer rather than deciding "fits" on nothing.
       if (el.clientHeight === 0) return;
       setOverflows(el.scrollHeight > el.clientHeight + 1);
+      if (isDesktop) return;
+      const box = el.getBoundingClientRect();
+      const end = lastLineEnd(el, box) - box.left;
+      const fits = end + LINK_GAP + (linkRef.current?.offsetWidth ?? 0) <= box.width;
+      setInlineAt(fits ? end : null);
     };
     measure();
+    // Web fonts change where the text ends without changing the box's size.
+    void document.fonts?.ready.then(measure);
     if (typeof ResizeObserver === "undefined") return;
     const observer = new ResizeObserver(measure);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [expanded, text]);
+  }, [expanded, text, overflows, isDesktop]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="relative flex flex-col gap-2">
       {/* [overflow-wrap:anywhere]: descriptions carry long unbroken URLs,
           which otherwise widen the fixed detail layer past the viewport
           (iOS Safari then widens the whole layout viewport). Pretalx
@@ -187,12 +220,12 @@ function Description({ text }: { text: string }) {
         ref={ref}
         className={cn(
           "text-[14px] leading-5 text-dc-fg2 [overflow-wrap:anywhere] [&>*+*]:mt-2",
-          !expanded && "line-clamp-6"
+          !expanded && "line-clamp-3 lg:line-clamp-6"
         )}
       >
         <MarkdownText text={text} />
       </div>
-      {!expanded && overflows && (
+      {!expanded && overflows && isDesktop && (
         <button
           type="button"
           onClick={() => setExpanded(true)}
@@ -200,6 +233,35 @@ function Description({ text }: { text: string }) {
         >
           Show more
         </button>
+      )}
+      {!expanded && overflows && !isDesktop && (
+        // Sits over the end of the last folded line, fading out the text it
+        // covers (and the clamp's own ellipsis, hence the "…" here), or right
+        // after the last word, solid so it hides the clamp's ellipsis. The
+        // before: box extends the tap target past the 20px line.
+        <div
+          className={cn(
+            "absolute bottom-0 flex text-[14px] leading-5",
+            inlineAt === null
+              ? "right-0 bg-[linear-gradient(to_right,transparent,var(--color-dc-panel)_1rem)] pl-4"
+              : "bg-dc-panel"
+          )}
+          style={inlineAt === null ? undefined : { left: inlineAt, paddingLeft: LINK_GAP }}
+        >
+          {inlineAt === null && (
+            <span aria-hidden className="text-dc-fg2">
+              …&nbsp;
+            </span>
+          )}
+          <button
+            ref={linkRef}
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="relative cursor-pointer font-bold text-dc-purple before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] hover:underline"
+          >
+            Show more
+          </button>
+        </div>
       )}
     </div>
   );
@@ -355,10 +417,12 @@ export function SessionSummary({
               row hid the last pill past the screen edge). The map link is
               the location line above. Share sits between Interested and the
               calendar on every layout, the page's one share entry point
-              (Scott, 2026-10-27). */}
-          <div className="flex flex-wrap gap-3">
+              (Scott, 2026-10-27). Short labels and the 8px phone gap keep all
+              three on one row from 356px wide. */}
+          <div className="flex flex-wrap gap-2 lg:gap-3">
             <button
               onClick={() => void toggle(session.id)}
+              aria-pressed={interested}
               className={cn(
                 pillBase,
                 interested
@@ -372,7 +436,7 @@ export function SessionSummary({
                   interested ? "fill-dc-purple" : "fill-transparent"
                 )}
               />
-              {interested ? "Interested" : "Add to Interests"}
+              Interested
             </button>
             <ShareMenu kind="session" id={session.id} title={session.title} className={pillClass} />
             <button
@@ -380,10 +444,11 @@ export function SessionSummary({
                 trackEvent("session", "calendar", session.id);
                 downloadSessionIcs(session);
               }}
+              aria-label="Add to Calendar"
               className={pillClass}
             >
               <CalendarPlus className="size-4 text-dc-purple" />
-              Add to Calendar
+              Calendar
             </button>
           </div>
         </div>
