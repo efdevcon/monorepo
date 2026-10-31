@@ -8,6 +8,11 @@ export function admissionTickets(orders: Order[]): Ticket[] {
   return orders.flatMap((order) => order.tickets.filter(isAdmission));
 }
 
+/** The account holds an admission ticket (email-matched or attached): the test the Q&A hand-off makes server-side. */
+export function hasAdmissionTicket(orders: Order[]): boolean {
+  return admissionTickets(orders).length > 0;
+}
+
 /**
  * "My ticket" (spec: Account and attached ticket): the first attached
  * admission ticket; else the only admission ticket matched by email; else

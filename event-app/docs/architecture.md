@@ -21,7 +21,7 @@ done).
 
 **Detail pages are real paths that open in place.** `/schedule/<id>` and `/speakers/<id>` are the
 canonical URLs (shared links, crawlers, push notifications). The route files hold `generateMetadata`
-(per-item social tags, `src/data/share-metadata.ts`, images from devcon.org's social-card generator)
+(per-item social tags, `src/data/share-metadata.ts`, images from devcon.org's social-card generator; the session page's own card URL carries a hash of what the card shows and ends in a filename, `src/data/sessionCard.ts`, so a changed card gets past the worker's 30-day image cache and a saved image is named after the session)
 and render nothing on the client; the list tab's persistent pane renders the page from the local store
 (`schedule/[id]/session.tsx`, `speakers/[id]/speaker.tsx`): mobile as a full-screen layer over the list
 (`DetailLayer`), desktop in place of the list (the desktop side panel is local state and never changes

@@ -249,7 +249,10 @@ sole email match, else the tab asks.
   Pretix only records a scan against a list that includes that product.
 - **Meerkat ids are Pretalx codes**: the Q&A feed and hand-off identify a session by `sourceId` via `meerkatEventId()` (`src/data/meerkat.ts`); the slug is only a one-time retry after a 404 on the code (`SessionQA`), for sessions Meerkat created under it.
 - **Q&A eligibility** (`/api/meerkat/go`, a cookie-authenticated redirect) and the ENS perk (`/api/ticket-proof`)
-  resolve tickets with `getTicketsForUser`, so attached tickets count.
+  resolve tickets with `getTicketsForUser`, so attached tickets count. The session page's "Ask a question" turns
+  into "Add a ticket to ask a question" (plain `/my-devcon`) when the tickets the app has already loaded hold no
+  admission ticket; it reads them through `useLoadedTickets`, which never fetches: a request per session view
+  would be a Pretix lookup per view. Unknown tickets leave the decision to the hand-off.
 - **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live
   on their own `TEST-<code>` order, are flagged `test`, carry negative
   synthetic position ids so they can be chosen (the server skips Pretix for

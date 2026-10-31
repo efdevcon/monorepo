@@ -18,13 +18,16 @@ import { getTrackTheme, trackFullLabel, type TrackTheme } from "./trackTheme";
 import { communityHubTopics, isCommunityHubSession } from "@/data/communityHubs";
 import { MarkdownText } from "@/components/MarkdownText";
 import { ShareMenu } from "@/components/ShareMenu";
+import { sessionCardUrl } from "@/data/sessionCard";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 /**
  * Banner slot when there is no recording or stream: the session's social
  * card, the image a shared link shows (devcon.org renders it per session,
- * 1200x630; the worker caches it like any image, so it stays once seen).
+ * 1200x630; the worker caches it like any image, and the URL carries a hash
+ * of what the card shows, so it stays until the session changes and is
+ * fetched again after that: src/data/sessionCard.ts).
  * When there is none (hub sessions are not in the card renderer's
  * programme, an unknown id, offline before first view), the track artwork on
  * the track colour as before. While the card loads the box shows the track
@@ -46,7 +49,7 @@ function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme
     return () => clearTimeout(timer);
   }, []);
   const showArtwork = card === "none" || (card === "loading" && waited);
-  const cardUrl = `${APP_CONFIG.SOCIAL_CARD_ORIGIN}/api/social/schedule/${encodeURIComponent(session.id)}/`;
+  const cardUrl = sessionCardUrl(APP_CONFIG.SOCIAL_CARD_ORIGIN, session);
   return (
     <div
       className="relative aspect-[1200/630] w-full overflow-hidden rounded-xl"
