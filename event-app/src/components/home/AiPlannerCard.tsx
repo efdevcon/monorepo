@@ -166,11 +166,11 @@ export function AiPlannerPanel({
           </SecondaryButton>
         </div>
         {/* The import page also takes pasted codes, so it is reachable
-            without a link from an assistant. Straight under the buttons,
-            before their note, in the buttons' 14px; phones draw a hairline above it to
+            without a link from an assistant. Straight under the buttons
+            on phones, under their note on desktop, in the buttons' 14px; phones draw a hairline above it to
             set it apart from the stack (Scott, 2026-10-31). */}
         {importLink && (
-          <div className="border-t border-dc-hairline pt-4 lg:border-t-0 lg:pt-0">
+          <div className="border-t border-dc-hairline pt-4 lg:order-last lg:border-t-0 lg:pt-0">
             <Link href="/my-interests" className={cn(textActionClass, "mx-auto lg:mx-0")}>
               Import a plan instead
               <ArrowRight className="size-4 shrink-0" />
