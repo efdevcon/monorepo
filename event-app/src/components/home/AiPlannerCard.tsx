@@ -171,7 +171,7 @@ export function AiPlannerPanel({
             set it apart from the stack (Scott, 2026-10-31). */}
         {importLink && (
           <div className="border-t border-dc-hairline pt-4 lg:border-t-0 lg:pt-0">
-            <Link href="/my-interests" className={textActionClass}>
+            <Link href="/my-interests" className={cn(textActionClass, "mx-auto lg:mx-0")}>
               Import a plan
               <ArrowRight className="size-4 shrink-0" />
             </Link>
