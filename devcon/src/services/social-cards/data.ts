@@ -8,8 +8,10 @@ export function devconApiUrl(): string {
   return process.env.DEVCON_API_URL || 'https://api.devcon.org'
 }
 
-export async function getSession(id: string): Promise<any | null> {
-  const res = await fetch(`${devconApiUrl()}/sessions/${id}`)
+/** `cacheBuster` rides on the request as a query so the API's edge cache (a minute per session) is skipped. */
+export async function getSession(id: string, cacheBuster?: string): Promise<any | null> {
+  const query = cacheBuster ? `?v=${encodeURIComponent(cacheBuster)}` : ''
+  const res = await fetch(`${devconApiUrl()}/sessions/${id}${query}`)
   if (!res.ok) return null
   const { data } = await res.json()
   return data ?? null
