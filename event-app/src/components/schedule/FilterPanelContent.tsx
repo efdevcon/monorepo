@@ -392,14 +392,9 @@ export function FilterPanelContent({
             </div>
             {onToggleAllProgrammes && filters.room.length === 1 && (
               <div className="mt-3 flex items-center justify-between gap-3 border-t border-dc-hairline pt-3">
-                <div className="flex min-w-0 flex-col gap-0.5">
-                  <span className="text-[14px] font-semibold leading-5 text-dc-fg2">
-                    Show all programming
-                  </span>
-                  <span className="text-[12px] leading-4 text-dc-muted">
-                    Tracks and community sessions in {filters.room[0]}
-                  </span>
-                </div>
+                <span className="text-[14px] font-semibold leading-5 text-dc-fg2">
+                  Show all programming
+                </span>
                 <Switch
                   size="sm"
                   checked={allProgrammes}
