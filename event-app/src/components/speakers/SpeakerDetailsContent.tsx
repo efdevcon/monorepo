@@ -3,6 +3,7 @@
 import { Globe, Star } from "lucide-react";
 import cn from "classnames";
 import { Avatar } from "@/components/Avatar";
+import { FoldedText } from "@/components/FoldedText";
 import { XIcon } from "@/components/icons/XIcon";
 import { ShareMenu } from "@/components/ShareMenu";
 import { useInterestedSpeakers } from "@/data/interested/useInterestedSpeakers";
@@ -168,18 +169,19 @@ function SpeakerProfile({
         <div className={cn("flex flex-col", lg ? "gap-4" : "gap-2")}>
           {speaker.description && (
             // No section title: the header already names the person, so the
-            // bio reads as theirs without a "Profile" label above it.
-            <p
+            // bio reads as theirs without a "Profile" label above it. Folded
+            // to six lines with a Show more link, like the session blurb
+            // (Scott, 2026-10-31: long bios pushed the sessions off the
+            // panel).
+            <FoldedText
+              text={speaker.description}
+              clamp="line-clamp-6"
+              lineHeight={lg ? 24 : 20}
               className={cn(
-                // [overflow-wrap:anywhere]: bios carry long unbroken URLs,
-                // which otherwise widen the fixed detail layer past the
-                // viewport (iOS Safari then widens the whole layout viewport).
-                "text-dc-fg2 [overflow-wrap:anywhere]",
+                "text-dc-fg2",
                 lg ? "text-[16px] leading-6" : "text-[14px] leading-5"
               )}
-            >
-              {speaker.description}
-            </p>
+            />
           )}
           {/* Topic-tag recap — the list clips these, so the details view
               spells them out (PR #112 feedback). Same 3-tag cap as the
