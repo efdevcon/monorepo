@@ -1876,11 +1876,12 @@ function ScheduleInner({
                       key={section.dayKey}
                       className={cn(
                         "flex flex-col gap-6",
-                        // A hairline halfway up the 2rem gap between days,
+                        // A hairline between days with 2rem on either side
+                        // (the container's gap above it, this padding below),
                         // full-bleed on phones like the live band.
                         allDays &&
                           i > 0 &&
-                          "relative before:absolute before:-inset-x-4 before:-top-4 before:h-px before:bg-dc-hairline before:content-[''] lg:before:inset-x-0"
+                          "relative pt-8 before:absolute before:-inset-x-4 before:top-0 before:h-px before:bg-dc-hairline before:content-[''] lg:before:inset-x-0"
                       )}
                     >
                       {allDays && (
