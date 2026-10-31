@@ -1,7 +1,7 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-10-26T22:11:25.301Z",
+    "changedAt": "2026-10-31T20:06:19.901Z",
     "problems": [],
     "sessions": [
       {
@@ -19,19 +19,19 @@
       {
         "id": "S02",
         "day": "Tue 3 Nov",
-        "time": "10:00-11:00",
-        "title": "Opening hour: meet and greet and StackChan robot demo",
+        "time": "10:00-12:00",
+        "title": "Opening hours: meet and greet and StackChan robot demo",
         "format": "Welcome",
         "speakers": [
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Community",
-        "description": "Kick off the Agents Hub with a relaxed first hour. Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard. Over the week every session adds a piece to the map, from identity and payments to trust and disputes. The hub is a small community space with no stage, so come in, ask questions and find the people working on what you care about. Nicolá Arnedo Villanueva, who works in developer relations on agentic payments, hosts."
+        "description": "Kick off the Agents Hub with a relaxed first two hours. Meet the hub team and the other builders, see the StackChan robot demo, and look at the empty agent stack map on the whiteboard. Over the week every session adds a piece to the map, from identity and payments to trust and disputes. The hub is a small community space with no stage, so come in, ask questions and find the people working on what you care about. Nicolá Arnedo Villanueva, who works in developer relations on agentic payments, hosts."
       },
       {
         "id": "S03",
         "day": "Tue 3 Nov",
-        "time": "11:00-11:10",
+        "time": "12:00-12:10",
         "title": "x402 and ERC-8183: what works today and what is on the roadmap",
         "format": "Talk",
         "speakers": [
@@ -43,7 +43,7 @@
       {
         "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "11:10-11:20",
+        "time": "12:10-12:20",
         "title": "ERC-8004 in practice: registration works, reputation is the hard part",
         "format": "Talk",
         "speakers": [
@@ -55,7 +55,7 @@
       {
         "id": "S05",
         "day": "Tue 3 Nov",
-        "time": "11:20-11:30",
+        "time": "12:30-12:40",
         "title": "Agent payments with real users: three live examples",
         "format": "Talk",
         "speakers": [
@@ -67,7 +67,7 @@
       {
         "id": "S06",
         "day": "Tue 3 Nov",
-        "time": "11:30-12:00",
+        "time": "12:40-13:00",
         "title": "Will agent payments stick?",
         "format": "Roundtable",
         "speakers": [
@@ -81,7 +81,7 @@
       {
         "id": "S07",
         "day": "Tue 3 Nov",
-        "time": "12:00-12:40",
+        "time": "14:30-15:00",
         "title": "Follow the money: reading on-chain agent payment data",
         "format": "Workshop",
         "speakers": [
@@ -93,7 +93,7 @@
       {
         "id": "S08",
         "day": "Tue 3 Nov",
-        "time": "12:40-13:00",
+        "time": "16:00-16:20",
         "title": "Signed Is Not Authorized: a live, bounded user mandate inside an x402 payment",
         "format": "Talk",
         "speakers": [
@@ -130,14 +130,14 @@
       {
         "id": "S11",
         "day": "Tue 3 Nov",
-        "time": "14:30-15:00",
+        "time": "12:20-12:30",
         "title": "Evidence has a shelf life: queryable, expiring data for ERC-8004 agents",
         "format": "Talk",
         "speakers": [
           "Shantelle Awomoyi"
         ],
         "topic": "Tooling",
-        "description": "ERC-8004 stores hashes onchain but leaves the actual evidence offchain, with no rule on how long it stays available. Shantelle Awomoyi, Head of Ecosystem at Golem Factory, shows how Arkiv, a queryable data layer for Ethereum, lets agents keep validation payloads and coordination state as wallet-owned data. Each record is checked against its onchain hash and expires on a schedule you set. Learn how to keep agent evidence verifiable without keeping it forever."
+        "description": "ERC-8004 stores hashes onchain but leaves the actual evidence offchain, with no rule on how long it stays available. Shantelle Awomoyi, Head of Ecosystem at Golem Factory, shows in ten minutes how Arkiv, a queryable data layer for Ethereum, lets agents keep validation payloads as wallet-owned data. Each record is checked against its onchain hash and expires on a schedule you set. Learn how to keep agent evidence verifiable without keeping it forever."
       },
       {
         "id": "S12",
@@ -179,7 +179,7 @@
       {
         "id": "S15",
         "day": "Tue 3 Nov",
-        "time": "16:00-17:00",
+        "time": "16:20-17:00",
         "title": "Networking and agent competition",
         "format": "Networking",
         "speakers": [
@@ -438,7 +438,7 @@
       {
         "id": "S36",
         "day": "Thu 5 Nov",
-        "time": "11:00-12:00",
+        "time": "11:20-12:00",
         "title": "Reputation-system failure modes: sybils, review farming, whitewashing",
         "format": "Roundtable",
         "speakers": [
@@ -448,7 +448,7 @@
           "Andrei Mitrea"
         ],
         "topic": "Research",
-        "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. This roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming with wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. YQ (founder of AltLayer and 8004scan), Steven Mih (Action State Group), Andrá Aráyi and Andrei Mitrea (Solar Punk) compare defences: payment-gated feedback, identity cost and stake, weighted scoring and verifiable evidence on durable storage."
+        "description": "Open agent economies run on reputation, and reputation is the first thing attackers farm. Following YQ's opening talk, this roundtable maps three classic failure modes: sybil identities minted at machine speed, review farming with wash-traded feedback, and whitewashing, where a bad actor burns an identity and starts fresh. YQ (founder of AltLayer and 8004scan), Steven Mih (Action State Group), András Arányi and Andrei Mitrea (Solar Punk) compare defences: payment-gated feedback, identity cost and stake, weighted scoring and verifiable evidence on durable storage."
       },
       {
         "id": "S37",
@@ -603,23 +603,27 @@
         "id": "S49",
         "day": "Fri 6 Nov",
         "time": "13:00-14:00",
-        "title": "Lunch",
-        "format": "Break",
-        "speakers": [],
-        "topic": "Community"
+        "title": "How to Set-Up Your Private Agentic Company",
+        "format": "Workshop",
+        "speakers": [
+          "Konrad"
+        ],
+        "topic": "Tooling",
+        "description": "Set up a private second brain that you and your AI agents share, and use it to run a small agentic company. Konrad walks through Argo, an open-source engine that turns a folder of markdown notes into searchable memory in your own git repo, with keyword and semantic search and shared rules your agents follow. See how agents get reusable skills, how guardrails block risky actions such as reading secrets or force-pushing, and how to keep your data private and backed up. Konrad has taught this in person, on YouTube and in one-on-one classes. To follow along, bring a laptop with Node 22, Python 3.11 and Postgres 15 with pgvector."
       },
       {
         "id": "S50",
         "day": "Fri 6 Nov",
         "time": "14:00-15:00",
-        "title": "Giving agents authority you can revoke: the Moi layer in action",
+        "title": "Moi Authority layer in Action",
         "format": "Workshop",
         "speakers": [
           "Anantha Krishnan",
-          "Piyush Maheshwari"
+          "Piyush Maheshwari",
+          "Rahul Lenkala"
         ],
         "topic": "Governance",
-        "description": "What does it look like when an agent acts for you on authority you can take back? Anantha Krishnan, founder of Sarva Labs and the MOI protocol, and Piyush Maheshwari (Moi) show the Moi authority layer in action: an agent acts only on a live, bounded mandate from the person it works for, and only that person can change it. Follow how transactions run through agents on Ethereum and see a mandate being narrowed and revoked."
+        "description": "What does it look like when an agent acts for you on authority you can take back? Anantha Krishnan, founder of Sarva Labs and the MOI protocol, Piyush Maheshwari (Moi) and Rahul Lenkala, Engineering Lead at MOI Foundation, show the Moi authority layer in action: an agent acts only on a live, bounded mandate from the person it works for, and only that person can change it. Follow how transactions run through agents on Ethereum and see a mandate being narrowed and revoked."
       },
       {
         "id": "S51",
@@ -628,7 +632,8 @@
         "title": "Competition finals and hub wrap",
         "format": "Closing",
         "speakers": [
-          "Lena Hierzi"
+          "Lena Hierzi",
+          "Paul Lange"
         ],
         "topic": "Community",
         "description": "The finals of the hub competitions and a wrap-up of the week."
@@ -668,6 +673,18 @@
           "Ayush Bherwani"
         ],
         "description": "Self-custody, smart accounts, delegated permissions: which approach should an agent use, and who is responsible when it goes wrong? Lena Hierzi (Celo Core Co) moderates Mislav (Ethlabs) and Ayush Bherwani (MetaMask) in a frank comparison of when to use which, with questions from the room. Leave with a clearer rule of thumb for giving agents money without giving them your keys."
+      },
+      {
+        "id": "S55",
+        "day": "Thu 5 Nov",
+        "time": "11:00-11:20",
+        "title": "What 8004scan shows about agent reputation onchain",
+        "format": "Talk",
+        "speakers": [
+          "YQ"
+        ],
+        "topic": "Research",
+        "description": "Before the roundtable, YQ, founder of AltLayer and 8004scan, opens with a 20-minute talk on how agents are being registered and rated onchain with ERC-8004, and what that means for trusting an agent score. A grounding for the roundtable on reputation-system failure modes that follows."
       }
     ]
   },
@@ -1116,10 +1133,8 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-31T17:47:33.411Z",
-    "problems": [
-      "row 47 \"EIP Hub Wrap-Up\": ends (15:00) before it starts (15:30), skipped"
-    ],
+    "changedAt": "2026-10-31T20:06:19.901Z",
+    "problems": [],
     "sessions": [
       {
         "id": "S01",
@@ -1551,6 +1566,16 @@
         "title": "EIP Signal Quiz Game - Enterprise & Adoption",
         "format": "Other",
         "speakers": []
+      },
+      {
+        "id": "S44",
+        "day": "Fri 6 Nov",
+        "time": "14:30-15:00",
+        "title": "EIP Hub Wrap-Up",
+        "format": "Closing",
+        "speakers": [
+          "Pooja Ranjan"
+        ]
       }
     ]
   },
@@ -1562,36 +1587,16 @@
   },
   {
     "hub": "India Hub",
-    "changedAt": "2026-10-31T17:47:33.411Z",
+    "changedAt": "2026-10-31T20:06:19.901Z",
     "problems": [
+      "row 4: no session title, skipped",
+      "row 5: no session title, skipped",
       "row 36: no session title, skipped",
       "row 37: no session title, skipped",
       "row 38: no session title, skipped",
       "row 39: no session title, skipped"
     ],
     "sessions": [
-      {
-        "id": "S01",
-        "day": "Tue 3 Nov",
-        "time": "09:00-09:30",
-        "title": "Building India's Unstoppable Stack with India Hub",
-        "format": "Welcome",
-        "speakers": [
-          "Rishikesh Kale"
-        ],
-        "description": "Welcome, hub orientation, and setting the theme for 4 days of co-building."
-      },
-      {
-        "id": "S02",
-        "day": "Tue 3 Nov",
-        "time": "09:30-10:30",
-        "title": "Chai & Connect: Ecosystem Mixer",
-        "format": "Networking",
-        "speakers": [
-          "Rohit Shukla"
-        ],
-        "description": "Meet fellow builders, form teams, and get set up before the first workshop."
-      },
       {
         "id": "S03",
         "day": "Tue 3 Nov",
@@ -2999,19 +3004,576 @@
   },
   {
     "hub": "Open Hardware Zone",
-    "changedAt": "2026-10-27T12:16:52.728Z",
-    "problems": [
-      "row 4 \"PQ1: an open-source hardware wallet\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 5 \"Build a wedgie: a pocket hardware signer\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 6 \"Universal Ethereum Signer on open-source silicon\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 7 \"Ledger Device Management Kit\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 8 \"PCB Cupid: open-source dev boards\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 9 \"NeuroPixel: muscle-controlled gaming\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 10 \"FootSense: an open-source smart insole\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 11 \"Chalopede: walking vehicles for rural India\": no day (tab not named \"Day N\" and no day banner above it), skipped",
-      "row 12 \"Studio Fabverse maker activations\": no day (tab not named \"Day N\" and no day banner above it), skipped"
-    ],
-    "sessions": []
+    "changedAt": "2026-10-31T20:06:19.901Z",
+    "problems": [],
+    "sessions": [
+      {
+        "id": "S01",
+        "day": "Tue 3 Nov",
+        "time": "12:00-12:30",
+        "title": "Proof of Presence, in LEDs",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills",
+        "description": "Make your own light-up LED name tag at the Maker's Asylum table."
+      },
+      {
+        "id": "S02",
+        "day": "Tue 3 Nov",
+        "time": "14:00-14:30",
+        "title": "Mint Your Blinky (No Gas Required)",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills",
+        "description": "Learn to solder by building a blinking LED badge you can wear for the rest of Devcon."
+      },
+      {
+        "id": "S03",
+        "day": "Tue 3 Nov",
+        "time": "14:00-14:30",
+        "title": "Open-Source Dev Boards and Glyph Devices",
+        "format": "Showcase",
+        "speakers": [
+          "Srinivasan M"
+        ],
+        "topic": "Open Hardware",
+        "description": "Open-source development boards, sensors and modules, and the builds made with them: Glyph Voice, Soundbox, the Glyph Air Controller and the Glyph Tank. https://shop.pcbcupid.com/"
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "14:30-15:00",
+        "title": "Universal Ethereum Signer on Open-Source Silicon",
+        "format": "Workshop",
+        "speakers": [
+          "Miriam Neubauer"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
+      },
+      {
+        "id": "S05",
+        "day": "Tue 3 Nov",
+        "time": "14:30-15:00",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S06",
+        "day": "Tue 3 Nov",
+        "time": "15:30-16:30",
+        "title": "Physical AI: Simulate and Train Bimanual Robot Arms",
+        "format": "Workshop",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "Simulation-based Physical AI using the reBot Duo B601 robotic arms. Simulate bimanual arms, explore imitation learning and LeRobot workflows to train robot policies, and learn how simulation and synthetic data help robots perform real-world tasks."
+      },
+      {
+        "id": "S07",
+        "day": "Tue 3 Nov",
+        "time": "15:30-16:00",
+        "title": "PQ1: An Open-Source Hardware Wallet",
+        "format": "Showcase",
+        "speakers": [
+          "Markus Haas"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Freedom Factory shows PQ1, the open-source hardware wallet they are building. https://markushaas.com/"
+      },
+      {
+        "id": "S08",
+        "day": "Tue 3 Nov",
+        "time": "16:00-16:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "17:00-18:00",
+        "title": "Hands-on Making with Studio Fabverse",
+        "format": "Workshop",
+        "speakers": [
+          "Chinmay Nikharge"
+        ],
+        "topic": "Art & Making",
+        "description": "Hands-on making: constellation circuits, print-and-cut stickers, vinyl mandala coasters and custom laser-engraved souvenirs."
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "17:00-17:30",
+        "title": "Real-to-Sim and Sim-to-Real Bimanual Robot Control",
+        "format": "Showcase",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "A bimanual robot control system on NVIDIA Jetson and the GB10 platform: control a real two-arm robot, simulate its movements, and transfer actions between simulation and the physical robot."
+      },
+      {
+        "id": "S11",
+        "day": "Wed 4 Nov",
+        "time": "10:00-11:00",
+        "title": "Universal Ethereum Signer on Open-Source Silicon",
+        "format": "Workshop",
+        "speakers": [
+          "Miriam Neubauer"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
+      },
+      {
+        "id": "S12",
+        "day": "Wed 4 Nov",
+        "time": "10:30-11:00",
+        "title": "PQ1: An Open-Source Hardware Wallet",
+        "format": "Showcase",
+        "speakers": [
+          "Markus Haas"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Freedom Factory shows PQ1, the open-source hardware wallet they are building. https://markushaas.com/"
+      },
+      {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "11:30-12:30",
+        "title": "Vibe Coding with the Arcade Kit",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills",
+        "description": "Build and vibe-code your own game on the Maker's Asylum arcade kit."
+      },
+      {
+        "id": "S14",
+        "day": "Wed 4 Nov",
+        "time": "11:30-12:00",
+        "title": "Chalopede: Legged Vehicles for Rural India",
+        "format": "Showcase",
+        "speakers": [
+          "Vickram Crishna"
+        ],
+        "topic": "Open Hardware",
+        "description": "Vehicles that walk on leg-like movers instead of wheels, in the family of Theo Jansen's Strandbeests, designed with rural workshops to serve very local needs. https://navodaya.world"
+      },
+      {
+        "id": "S15",
+        "day": "Wed 4 Nov",
+        "time": "12:00-12:30",
+        "title": "Real-to-Sim and Sim-to-Real Bimanual Robot Control",
+        "format": "Showcase",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "A bimanual robot control system on NVIDIA Jetson and the GB10 platform: control a real two-arm robot, simulate its movements, and transfer actions between simulation and the physical robot."
+      },
+      {
+        "id": "S16",
+        "day": "Wed 4 Nov",
+        "time": "14:00-15:00",
+        "title": "Physical AI: Simulate and Train Bimanual Robot Arms",
+        "format": "Workshop",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "Simulation-based Physical AI using the reBot Duo B601 robotic arms. Simulate bimanual arms, explore imitation learning and LeRobot workflows to train robot policies, and learn how simulation and synthetic data help robots perform real-world tasks."
+      },
+      {
+        "id": "S17",
+        "day": "Wed 4 Nov",
+        "time": "14:00-14:30",
+        "title": "Studio Fabverse",
+        "format": "Showcase",
+        "speakers": [
+          "Chinmay Nikharge"
+        ],
+        "topic": "Art & Making"
+      },
+      {
+        "id": "S18",
+        "day": "Wed 4 Nov",
+        "time": "14:30-15:00",
+        "title": "Make It Loud and Other Hardware Stories",
+        "format": "Showcase",
+        "speakers": [
+          "Milind Nagda"
+        ],
+        "topic": "Accessibility",
+        "description": "Make It Loud, a Raspberry Pi and flex-sensor glove game designed for children who are mute, plus stories from building a pipelined x86 microprocessor in Verilog and floorplanning an ARM chip."
+      },
+      {
+        "id": "S19",
+        "day": "Wed 4 Nov",
+        "time": "15:30-16:30",
+        "title": "Hands-on Making with Studio Fabverse",
+        "format": "Workshop",
+        "speakers": [
+          "Chinmay Nikharge"
+        ],
+        "topic": "Art & Making",
+        "description": "Hands-on making: constellation circuits, print-and-cut stickers, vinyl mandala coasters and custom laser-engraved souvenirs."
+      },
+      {
+        "id": "S20",
+        "day": "Wed 4 Nov",
+        "time": "15:30-16:00",
+        "title": "Open-Source Dev Boards and Glyph Devices",
+        "format": "Showcase",
+        "speakers": [
+          "Srinivasan M"
+        ],
+        "topic": "Open Hardware",
+        "description": "Open-source development boards, sensors and modules, and the builds made with them: Glyph Voice, Soundbox, the Glyph Air Controller and the Glyph Tank. https://shop.pcbcupid.com/"
+      },
+      {
+        "id": "S21",
+        "day": "Wed 4 Nov",
+        "time": "16:00-16:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S22",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "Hardware Wallet Making",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Open hardware wallet table, run together with the visiting wallet builders, with Maker's Asylum assisting."
+      },
+      {
+        "id": "S23",
+        "day": "Wed 4 Nov",
+        "time": "17:00-17:30",
+        "title": "NeuroPixel: EMG-Controlled Accessible Gaming",
+        "format": "Showcase",
+        "speakers": [
+          "Nemi Botadara"
+        ],
+        "topic": "Accessibility",
+        "description": "An EMG-controlled gaming console and arcade: surface sensors on the jaw, neck or shoulders turn muscle signals into game controls, for players who cannot use hand-held controllers. https://www.makersasylum.com/project/neuropixel/"
+      },
+      {
+        "id": "S24",
+        "day": "Wed 4 Nov",
+        "time": "17:30-18:00",
+        "title": "FootSense: An Open-Source Smart Insole",
+        "format": "Showcase",
+        "speakers": [
+          "Arnav Gupta"
+        ],
+        "topic": "Open Hardware",
+        "description": "Flex and piezo sensors and an IMU on an ESP32 track gait, balance and foot pressure, with feedback on a web dashboard. OSHWA-certified and documented on GitHub."
+      },
+      {
+        "id": "S25",
+        "day": "Thu 5 Nov",
+        "time": "10:00-11:00",
+        "title": "Build a Wedgie: A Pocket Hardware Signer",
+        "format": "Workshop",
+        "speakers": [
+          "Austin Griffith"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Build a hardware signer from a Raspberry Pi Pico, a small screen and a secure chip, no soldering. Then make it an owner on a Safe and set up an Instant Wallet. Everyone leaves with a working signer. https://wedgie.dev"
+      },
+      {
+        "id": "S26",
+        "day": "Thu 5 Nov",
+        "time": "10:30-11:00",
+        "title": "Meld & BRAID: Edge-First Civic Deliberation",
+        "format": "Showcase",
+        "speakers": [
+          "Clara G"
+        ],
+        "topic": "Open Hardware",
+        "description": "A privacy-preserving civic-deliberation system: Meld is the hardware layer and BRAID the platform, so communities can deliberate and decide with their data staying local. Includes a short hardware and software demo."
+      },
+      {
+        "id": "S27",
+        "day": "Thu 5 Nov",
+        "time": "11:30-12:30",
+        "title": "Build a Wedgie: A Pocket Hardware Signer",
+        "format": "Workshop",
+        "speakers": [
+          "Austin Griffith"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Build a hardware signer from a Raspberry Pi Pico, a small screen and a secure chip, no soldering. Then make it an owner on a Safe and set up an Instant Wallet. Everyone leaves with a working signer. https://wedgie.dev"
+      },
+      {
+        "id": "S28",
+        "day": "Thu 5 Nov",
+        "time": "11:30-12:00",
+        "title": "Mathable and an All-Analog Turntable",
+        "format": "Showcase",
+        "speakers": [
+          "Gunjan Chowdhary"
+        ],
+        "topic": "Open Hardware",
+        "description": "Mathable, an open-source device for learning maths, and an art-and-tech project: a music turntable that is entirely analog."
+      },
+      {
+        "id": "S29",
+        "day": "Thu 5 Nov",
+        "time": "12:00-12:30",
+        "title": "Open-Source Dev Boards and Glyph Devices",
+        "format": "Showcase",
+        "speakers": [
+          "Srinivasan M"
+        ],
+        "topic": "Open Hardware",
+        "description": "Open-source development boards, sensors and modules, and the builds made with them: Glyph Voice, Soundbox, the Glyph Air Controller and the Glyph Tank. https://shop.pcbcupid.com/"
+      },
+      {
+        "id": "S30",
+        "day": "Thu 5 Nov",
+        "time": "14:00-14:30",
+        "title": "Universal Ethereum Signer on Open-Source Silicon",
+        "format": "Workshop",
+        "speakers": [
+          "Miriam Neubauer"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
+      },
+      {
+        "id": "S31",
+        "day": "Thu 5 Nov",
+        "time": "14:00-14:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S32",
+        "day": "Thu 5 Nov",
+        "time": "14:30-15:00",
+        "title": "Ledger Device Management Kit",
+        "format": "Workshop",
+        "speakers": [
+          "Mathieu Bertin"
+        ],
+        "topic": "Hardware wallets",
+        "description": "How to integrate Ledger devices into a dApp or a software wallet with the Device Management Kit."
+      },
+      {
+        "id": "S33",
+        "day": "Thu 5 Nov",
+        "time": "14:30-15:00",
+        "title": "FootSense: An Open-Source Smart Insole",
+        "format": "Showcase",
+        "speakers": [
+          "Arnav Gupta"
+        ],
+        "topic": "Open Hardware",
+        "description": "Flex and piezo sensors and an IMU on an ESP32 track gait, balance and foot pressure, with feedback on a web dashboard. OSHWA-certified and documented on GitHub."
+      },
+      {
+        "id": "S34",
+        "day": "Thu 5 Nov",
+        "time": "15:30-16:30",
+        "title": "Design Thinking",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills"
+      },
+      {
+        "id": "S35",
+        "day": "Thu 5 Nov",
+        "time": "15:30-16:00",
+        "title": "Real-to-Sim and Sim-to-Real Bimanual Robot Control",
+        "format": "Showcase",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "A bimanual robot control system on NVIDIA Jetson and the GB10 platform: control a real two-arm robot, simulate its movements, and transfer actions between simulation and the physical robot."
+      },
+      {
+        "id": "S36",
+        "day": "Thu 5 Nov",
+        "time": "16:00-16:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S37",
+        "day": "Thu 5 Nov",
+        "time": "17:00-18:00",
+        "title": "Physical AI: Simulate and Train Bimanual Robot Arms",
+        "format": "Workshop",
+        "speakers": [
+          "GetSetRobotics"
+        ],
+        "topic": "Robotics & Physical AI",
+        "description": "Simulation-based Physical AI using the reBot Duo B601 robotic arms. Simulate bimanual arms, explore imitation learning and LeRobot workflows to train robot policies, and learn how simulation and synthetic data help robots perform real-world tasks."
+      },
+      {
+        "id": "S38",
+        "day": "Thu 5 Nov",
+        "time": "17:00-17:30",
+        "title": "NeuroPixel: EMG-Controlled Accessible Gaming",
+        "format": "Showcase",
+        "speakers": [
+          "Aryaman Mehrotra"
+        ],
+        "topic": "Accessibility",
+        "description": "An EMG-controlled gaming console and arcade: surface sensors on the jaw, neck or shoulders turn muscle signals into game controls, for players who cannot use hand-held controllers. https://www.makersasylum.com/project/neuropixel/"
+      },
+      {
+        "id": "S39",
+        "day": "Thu 5 Nov",
+        "time": "17:30-18:00",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S40",
+        "day": "Fri 6 Nov",
+        "time": "10:00-10:30",
+        "title": "Proof of Presence, in LEDs",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills",
+        "description": "Make your own light-up LED name tag at the Maker's Asylum table."
+      },
+      {
+        "id": "S41",
+        "day": "Fri 6 Nov",
+        "time": "10:00-10:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S42",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:00",
+        "title": "Vibe Coding with the Arcade Kit",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Maker Skills",
+        "description": "Build and vibe-code your own game on the Maker's Asylum arcade kit."
+      },
+      {
+        "id": "S43",
+        "day": "Fri 6 Nov",
+        "time": "10:30-11:00",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S44",
+        "day": "Fri 6 Nov",
+        "time": "11:30-12:30",
+        "title": "Hardware Wallet / Hardware Installation",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Hardware wallets",
+        "description": "Open hardware wallet table and collective hardware installation build, with Maker's Asylum assisting."
+      },
+      {
+        "id": "S45",
+        "day": "Fri 6 Nov",
+        "time": "11:30-12:00",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S46",
+        "day": "Fri 6 Nov",
+        "time": "12:00-12:30",
+        "title": "Open Talks",
+        "format": "Showcase",
+        "speakers": [],
+        "topic": "Open Hardware",
+        "description": "Walk-up slot: bring your project and show it."
+      },
+      {
+        "id": "S47",
+        "day": "Fri 6 Nov",
+        "time": "14:00-15:00",
+        "title": "Mint Your Blinky (No Gas Required)",
+        "format": "Workshop",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Open Hardware",
+        "description": "Learn to solder by building a blinking LED badge you can wear for the rest of Devcon."
+      },
+      {
+        "id": "S48",
+        "day": "Fri 6 Nov",
+        "time": "14:00-14:30",
+        "title": "Maker's Asylum Innovation School",
+        "format": "Showcase",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Open Hardware",
+        "description": "Maker's Asylum's hybrid maker education program for teens."
+      },
+      {
+        "id": "S49",
+        "day": "Fri 6 Nov",
+        "time": "14:30-15:00",
+        "title": "Maker's Asylum Hardware & Design Village",
+        "format": "Showcase",
+        "speakers": [
+          "Maker's Asylum"
+        ],
+        "topic": "Open Hardware",
+        "description": "Maker's Asylum's Hardware & Design Village: a 67,000 sq ft campus in North Goa and India's first Fab Region Hub."
+      }
+    ]
   },
   {
     "hub": "Open Source Hub",
