@@ -666,7 +666,9 @@ function StoreContent({
                     <span className={css['opens-badge']}>Opens July</span>
                   )}
                 </div>
-                <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
+                <p className={css['section-subtitle']}>
+                  Final chance to get a General Admission ticket. Tickets are available until sold out.
+                </p>
               </div>
 
               {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
