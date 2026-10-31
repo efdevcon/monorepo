@@ -25,16 +25,15 @@ import {
 } from "@/data/ai/plan";
 
 /**
- * Home entry to "Plan with your AI": the panel below under the section
- * heading, with a link to the import page (which also takes pasted codes).
+ * Home entry to "Plan with your AI": the panel with a link to the import
+ * page (which also takes pasted codes) above it, right-aligned where the
+ * section heading's row kept it (the heading went on 2026-10-31 to see the
+ * page without it).
  */
 export function AiPlannerCard() {
   return (
-    <section aria-labelledby="home-ai-planner-title">
-      <div className="mb-4 flex items-center justify-between gap-8">
-        <h2 id="home-ai-planner-title" className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-          Plan with your AI
-        </h2>
+    <section aria-label="Plan with your AI">
+      <div className="mb-4 flex items-center justify-end gap-8">
         {/* Same shape as the Notifications section's "View all": the import
             page also takes pasted codes, so it is reachable without a link
             from an assistant. */}

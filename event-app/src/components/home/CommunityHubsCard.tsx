@@ -7,7 +7,8 @@ import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 
 /**
  * Home entry to the Community Hubs' programmes (Figma 5171:433 desktop,
- * 5174:1013 mobile): a section title like the page's others, then a card
+ * 5174:1013 mobile): a card without a section title above it (the
+ * "Community" heading went on 2026-10-31 to see the page without it)
  * with a photo collage of past hubs under a translucent tent mark. Mobile
  * stacks it (photo on top, text below, full-width CTAs); desktop lays it
  * out in a row with the photo on the right. The photo fades into the card
@@ -20,13 +21,7 @@ export function CommunityHubsCard() {
   const { attempt, markFailed } = useRetryOnReconnect();
 
   return (
-    <section aria-labelledby="home-community-hubs-title">
-      <h2
-        id="home-community-hubs-title"
-        className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2"
-      >
-        Community
-      </h2>
+    <section aria-label="Community">
       <div className="flex flex-col overflow-clip rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] lg:flex-row lg:items-center lg:gap-8 lg:pl-6">
         {/* Photo: 256px tall full-width band on mobile, 503×225 on the right
             on desktop. */}
