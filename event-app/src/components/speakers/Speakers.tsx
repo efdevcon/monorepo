@@ -98,6 +98,7 @@ export function Speakers() {
   const letterRefs = useRef(new Map<string, HTMLElement | null>());
   const mainCardRef = useRef<HTMLDivElement | null>(null);
   const stickyRowsRef = useRef<HTMLDivElement | null>(null);
+  const rowsAnchorRef = useRef<HTMLDivElement | null>(null);
   const railStickyRef = useRef<HTMLDivElement | null>(null);
   const asideRef = useRef<HTMLElement | null>(null);
   const [rowsStuck, setRowsStuck] = useState(false);
@@ -255,8 +256,19 @@ export function Speakers() {
       // below can't force a reflow between measurements. ---
       // The pinned header rows sit above the rail and the section headings,
       // so every "top of viewport" line below starts under them.
-      const rowsRect = stickyRowsRef.current?.getBoundingClientRect();
-      const rowsH = rowsRect?.height ?? 0;
+      // Height from the rows themselves, position from the zero-height
+      // anchor just above them (their static position). Never read a sticky
+      // element's own rect for position: on iOS it lags the compositor
+      // during a fast fling, and a quick scroll back up reported the rows
+      // ~2,400px below their pinned spot. The last such frame wrote that
+      // into the fixed rail's `top`, parking it under the viewport until the
+      // next scroll event: the blank strip (2026-11-01). The anchor's rect
+      // is pure layout minus scroll, and the rows pin at
+      // max(headerOffset, anchorTop) by definition.
+      const rowsH = stickyRowsRef.current?.getBoundingClientRect().height ?? 0;
+      const anchorTop = rowsAnchorRef.current?.getBoundingClientRect().top;
+      const rowsBottom =
+        anchorTop === undefined ? undefined : Math.max(headerOffset, anchorTop) + rowsH;
       const pinnedOffset = headerOffset + rowsH;
 
       const rail = railStickyRef.current;
@@ -294,7 +306,7 @@ export function Speakers() {
           : Infinity;
 
       // --- Write phase. ---
-      setRowsStuck(rowsRect !== undefined && rowsRect.top <= headerOffset + 1);
+      setRowsStuck(anchorTop !== undefined && anchorTop <= headerOffset + 1);
 
       if (rail) {
         // Compact = the natural cell stack (24px cells + 8px paddings):
@@ -305,12 +317,12 @@ export function Speakers() {
           // Mobile: the rail is `fixed` (see the wrapper's max-lg: classes),
           // so its geometry is derived from the viewport alone — never from
           // scroll position or the column's height. It starts at the filter
-          // rows' live bottom edge: pinned, that is header + rows height
-          // (constant as you scroll, so the rail looks identical at the top
-          // of the list, deep into it, and with two results); with the
-          // in-flow search panel open above the rows it follows them down,
-          // instead of poking out under the panel.
-          const railTop = Math.max(pinnedOffset, rowsRect?.bottom ?? 0);
+          // rows' bottom edge (from the anchor, see the read phase): pinned,
+          // that is header + rows height (constant as you scroll, so the
+          // rail looks identical at the top of the list, deep into it, and
+          // with two results); with the in-flow search panel open above the
+          // rows it follows them down, instead of poking out under the panel.
+          const railTop = Math.max(pinnedOffset, rowsBottom ?? 0);
           rail.style.top = `${railTop}px`;
           // Room is reserved for the floating bottom nav pill (24px offset +
           // ~52px pill + safe-area headroom); on viewports too short for the
@@ -526,6 +538,10 @@ export function Speakers() {
                 resultCount={search.trim() ? resultCount : null}
               />
             )}
+
+            {/* Zero-height anchor: the rows' static position, which the
+                measure effect reads instead of the sticky rows' own rect. */}
+            <div ref={rowsAnchorRef} aria-hidden className="h-0" />
 
             {/* Header rows, sticky under the app header: the desktop search +
                 topic toolbar (Figma "Top Bar") and the format tabs. Mobile
