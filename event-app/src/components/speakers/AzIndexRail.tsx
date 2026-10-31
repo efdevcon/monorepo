@@ -40,8 +40,11 @@ export const FEATURED_SECTION = "featured";
  * Speakers.jumpToSection), and a slide that teleported at every cell fired
  * ten or more a second, which blanked the page and then killed the WebKit
  * content process on a phone (Scott's device video, 2026-10-14; the PR #112
- * crash by another route). A cancelled press (system gesture, second finger)
- * jumps nowhere. A press has handled its own click, so the click that
+ * crash by another route). While the finger is down, phones also show the
+ * held section large beside the top of the rail: the thumb covers the cell
+ * it is on and the list does not move until release, so that readout is the
+ * only live sign of where the slide is (2026-11-01). A cancelled press
+ * (system gesture, second finger) jumps nowhere. A press has handled its own click, so the click that
  * follows one is ignored; every other click on a cell (Enter / Space, and
  * assistive technology, which synthesises a click with no pointer events)
  * jumps. Empty cells are aria-disabled rather than disabled: a disabled
@@ -203,6 +206,27 @@ export function AzIndexRail({
             "transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
         )}
       />
+      {/* The held section, large, left of the rail's top (phones only; a
+          mouse sees its pointer). Follows `preview`, so it appears on the
+          press and goes with the release. Its right edge sits on the cards'
+          right edge: Speakers.tsx measures that gap from the rail each frame
+          into --az-readout-gap (16px until it has); beside the thumb, clear
+          of the heading row (a left-side variant was tried and read worse,
+          2026-11-01). Vertically it fills the heading row a jump lands on:
+          the heading sits 16px below the rows and its first card 52px, so a
+          40px box 6px down leaves 6px to each. */}
+      {preview !== null && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute right-[calc(100%+var(--az-readout-gap,16px))] top-1.5 flex size-10 items-center justify-center rounded-xl bg-dc-purple text-[22px] font-bold leading-none text-white shadow-lg lg:hidden"
+        >
+          {preview === FEATURED_SECTION ? (
+            <MicVocal className="size-5" strokeWidth={2.5} />
+          ) : (
+            preview
+          )}
+        </span>
+      )}
       {rail.map((section) => {
         const enabled = available.has(section);
         // Visual state follows the finger (preview); aria-current stays the

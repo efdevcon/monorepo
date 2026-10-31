@@ -326,6 +326,14 @@ export function Speakers() {
             "--az-rail-stack-h",
             `${Math.max(200, Math.min(compact, viewportH - railTop - 96))}px`
           );
+          // The held-letter readout (AzIndexRail) lines its right edge up
+          // with the cards: measured from a section (the cards' column),
+          // never derived from paddings.
+          const column = [...letterRefs.current.values()].find((el) => el !== null);
+          if (column) {
+            const gap = rail.getBoundingClientRect().left - column.getBoundingClientRect().right;
+            rail.style.setProperty("--az-readout-gap", `${Math.max(0, Math.round(gap))}px`);
+          }
         } else {
           // Desktop: sticky in the lavender column, pinned just below the
           // filter rows (whose height varies by breakpoint), compact at rest
