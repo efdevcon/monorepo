@@ -29,7 +29,7 @@ import {
   type WaitingWorker,
 } from "../src/utils/serviceWorkerUpdate";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
-import { buyerOrdersToAssign, derivePrimary, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
+import { buyerOrdersToAssign, derivePrimary, hasAdmissionTicket, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
 import { positionCollected, positionMatchesEmail, pretixLookupOutcome, redactBuyerIdentity } from "../src/app/api/tickets/pretix";
@@ -82,6 +82,7 @@ import { syncSessionCookie, whenSessionCookieSettled } from "../src/data/auth/se
 import { authCookieName, jwtExpiresAt, parseAuthCookie } from "../src/data/auth/authCookie";
 import { HEAL_EXPIRY_MARGIN_S, healScriptBody } from "../src/app/api/meerkat/go/heal";
 import { createSupabaseFetch, isTokenRateLimit } from "../src/data/auth/supabaseFetch";
+import { sessionCardHash, sessionCardUrl } from "../src/data/sessionCard";
 import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
@@ -410,6 +411,9 @@ function testPrimary() {
   check("primary: swag is never primary", derivePrimary(swagOnly) === null);
   check("prompt: none-found when only swag", ticketPrompt(swagOnly) === "none");
   check("prompt: none-found with no orders", ticketPrompt([]) === "none");
+  check("has ticket: an email-matched ticket counts", hasAdmissionTicket(one) && hasAdmissionTicket(two));
+  check("has ticket: an attached ticket counts", hasAdmissionTicket([order("B", [ticket("s9", { attached: true })])]));
+  check("has ticket: swag alone or nothing does not", !hasAdmissionTicket(swagOnly) && !hasAdmissionTicket([]));
 
   const buyerOrder = order("A", [
     ticket("s1", { positionId: 11, positionNumber: 1, attendeeName: "Ada", addons: [{ id: 1, secret: "x", itemName: "Shirt - L", price: "0", attendeeName: null }] }),
@@ -1376,6 +1380,38 @@ function testServiceWorkerUpdateFlow() {
   }
 }
 
+function testSessionCard() {
+  console.log("\n--- Session card URL carries what the card shows ---");
+  const base = {
+    id: "opening-ceremony",
+    title: "Opening Ceremony",
+    type: "Talk",
+    track: "Core Protocol",
+    start: 1_700_000_000,
+    end: 1_700_003_600,
+    room: { id: "main", name: "Main Stage" },
+    speakers: [{ id: "alice", name: "Alice", avatar: "https://img.example/alice.webp" }],
+  };
+  const hash = sessionCardHash(base);
+  check("hash is a short URL-safe token", /^[a-z0-9]{1,8}$/.test(hash), hash);
+  check("hash is deterministic", sessionCardHash({ ...base, speakers: [{ ...base.speakers[0] }] }) === hash);
+  check(
+    "url: origin, id, hash, then a filename named after the session",
+    sessionCardUrl("https://devcon.org", base) === `https://devcon.org/api/social/schedule/opening-ceremony/${hash}/opening-ceremony.jpg`,
+    sessionCardUrl("https://devcon.org", base)
+  );
+  check("url encodes the id in both places", sessionCardUrl("https://devcon.org", { ...base, id: "a b" }).endsWith("/api/social/schedule/a%20b/" + sessionCardHash({ ...base, id: "a b" }) + "/a%20b.jpg"));
+  check("a new speaker changes the hash", sessionCardHash({ ...base, speakers: [...base.speakers, { id: "bob", name: "Bob" }] }) !== hash);
+  check("a renamed speaker changes the hash", sessionCardHash({ ...base, speakers: [{ ...base.speakers[0], name: "Alicia" }] }) !== hash);
+  check("a new avatar changes the hash", sessionCardHash({ ...base, speakers: [{ ...base.speakers[0], avatar: "https://img.example/alice-2.webp" }] }) !== hash);
+  check("a new title changes the hash", sessionCardHash({ ...base, title: "Closing Ceremony" }) !== hash);
+  check("a new room changes the hash", sessionCardHash({ ...base, room: { id: "b", name: "Stage B" } }) !== hash);
+  check("a new slot changes the hash", sessionCardHash({ ...base, start: base.start + 3600, end: base.end + 3600 }) !== hash);
+  check("a new type changes the hash", sessionCardHash({ ...base, type: "Workshop" }) !== hash);
+  check("no room and no speakers still hash", /^[a-z0-9]{1,8}$/.test(sessionCardHash({ ...base, room: undefined, speakers: [] })));
+  check("fields the card does not show leave the hash alone", sessionCardHash({ ...base, description: "longer text", tags: ["x"] } as typeof base) === hash);
+}
+
 async function main() {
   testNormalize();
   testTimelineFold();
@@ -1406,6 +1442,7 @@ async function main() {
   await testWhenControlled();
   await testMemoryStorage();
   testLegacySessionLink();
+  testSessionCard();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

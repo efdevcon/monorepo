@@ -7,7 +7,7 @@ import { supabase } from "@/data/auth/supabase";
 import { useUser } from "@/data/auth/useUser";
 import { isTransientFetchError, retryOnce } from "@/utils/retryOnce";
 import { derivePrimary, ticketPrompt } from "./primary";
-import type { TicketsPayload, TicketsResponse } from "./types";
+import type { Order, TicketsPayload, TicketsResponse } from "./types";
 
 /** Pause before the single automatic retry of a dropped first request. */
 const RETRY_DELAY_MS = 1_000;
@@ -193,4 +193,24 @@ export function useTickets() {
     detach,
     attaching,
   };
+}
+
+/**
+ * The signed-in user's tickets as the app has already loaded them, without
+ * asking for them: a reader of the shared SWR entry (CacheWarmer keeps
+ * `useTickets` mounted app-wide once signed in, and the ticket tab refreshes
+ * it), persisted to IndexedDB with the rest of the cache, so it answers
+ * offline too. For places that render often, like the session page's "Ask a
+ * question": a request per view there would be a Pretix lookup per view.
+ * Undefined while nothing has been loaded yet, or signed out.
+ */
+export function useLoadedTickets(): Order[] | undefined {
+  const { user } = useUser();
+  const { data } = useSWR<TicketsPayload>(user ? ["tickets", user.id] : null, null, {
+    revalidateOnMount: false,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+  return data?.tickets;
 }

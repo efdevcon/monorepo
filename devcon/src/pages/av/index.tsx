@@ -666,7 +666,7 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
   }, [])
 
   const assets = useMemo(() => {
-    if (!session) return { youtube: [] as Asset[], screens: [] as Asset[] }
+    if (!session) return { youtube: [] as Asset[], social: [] as Asset[], screens: [] as Asset[] }
     const code = encodeURIComponent(session.code)
     const q = editsQuery(edits)
     return {
@@ -678,6 +678,22 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
           ratio: 16 / 9,
           video: { width: 1920, height: 1080 },
         },
+      ],
+      // No intro animation at these sizes, so no video.
+      social: [
+        {
+          key: 'social',
+          label: '1200 × 630 (link preview)',
+          url: `/api/av/social-card/${code}/${q}`,
+          ratio: 1200 / 630,
+        },
+        {
+          key: 'social-time',
+          label: '1200 × 630 (with time and stage)',
+          url: `/api/av/social-time-card/${code}/${q}`,
+          ratio: 1200 / 630,
+        },
+        { key: 'story', label: '1080 × 1920 (Instagram Story)', url: `/api/av/story-card/${code}/${q}`, ratio: 9 / 16 },
       ],
       screens: session.screenSizes.map(size => {
         const [w, h] = size.split('x').map(Number)
@@ -925,6 +941,23 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
                 )}
               </Section>
 
+              <Section
+                title="Screen Cards"
+                note={
+                  assets.screens.length === 0
+                    ? `${session.room ?? 'This session'} has no stage screen, so no Screen Card.`
+                    : `At the native size of each screen in ${session.room}.`
+                }
+              >
+                {assets.screens.length > 0 && (
+                  <div className={GRID}>
+                    {assets.screens.map(a => (
+                      <AssetTile key={a.key} asset={a} nonce={nonce} onReady={onReady} />
+                    ))}
+                  </div>
+                )}
+              </Section>
+
               <Section title="Slides">
                 {session.slides.presenting === 'laptop' ? (
                   <p className="flex items-center gap-2 rounded-xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900">
@@ -964,20 +997,14 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
               </Section>
 
               <Section
-                title="Screen Cards"
-                note={
-                  assets.screens.length === 0
-                    ? `${session.room ?? 'This session'} has no stage screen, so no Screen Card.`
-                    : `At the native size of each screen in ${session.room}.`
-                }
+                title="Social Cards"
+                note="Link-preview cards for X, LinkedIn, Telegram and Farcaster posts (plain, or with the day, time and stage), and a portrait Instagram Story that keeps clear of Instagram's own bars."
               >
-                {assets.screens.length > 0 && (
-                  <div className={GRID}>
-                    {assets.screens.map(a => (
-                      <AssetTile key={a.key} asset={a} nonce={nonce} onReady={onReady} />
-                    ))}
-                  </div>
-                )}
+                <div className={`${GRID} items-start`}>
+                  {assets.social.map(a => (
+                    <AssetTile key={a.key} asset={a} nonce={nonce} onReady={onReady} />
+                  ))}
+                </div>
               </Section>
             </>
           )}

@@ -3,7 +3,7 @@ import APP_CONFIG from "@/CONFIG";
 import { cookieUser } from "@/data/auth/cookieUser";
 import { authCookieName } from "@/data/auth/authCookie";
 import { healScript } from "./heal";
-import { signInHref } from "@/routing/returnTo";
+import { SIGN_IN_PATH, signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
 import { createRateLimiter } from "../../tickets/rateLimit";
 import { listLinks } from "../../tickets/links";
@@ -86,7 +86,7 @@ export async function GET(request: NextRequest) {
     return page(502, "Couldn't verify your ticket", "The ticket service didn't answer. Please try again in a moment.", { back });
   }
   if (!ownsTicket) {
-    return page(403, "Ticket required", "A valid Devcon ticket is required to ask questions.", { back });
+    return page(403, "Ticket required", "A valid Devcon ticket is required to ask questions.", { back, ticket: SIGN_IN_PATH });
   }
 
   const response = NextResponse.redirect(meerkatSessionUrl(sessionId, generateHandoverToken(user.email)), 302);
@@ -102,6 +102,12 @@ interface PageLinks {
   back?: string;
   /** Sign-in page that returns to the session afterwards (401 only). */
   signIn?: string;
+  /**
+   * My Devcon, where a ticket is attached (403 only). The plain path, never
+   * with `?next=`: My Devcon sends a signed-in visitor back to `next` at
+   * once, before they could attach anything.
+   */
+  ticket?: string;
   /** Mirror the app's own session into the cookie, refreshing it first if it has expired, and reload once (401 only). */
   heal?: boolean;
 }
@@ -130,10 +136,13 @@ function page(status: number, title: string, message: string, links: PageLinks =
   const signInLink = links.signIn
     ? `<a class="btn" href="${escapeHtml(links.signIn)}">Sign in</a>`
     : "";
+  const ticketLink = links.ticket
+    ? `<a class="btn" href="${escapeHtml(links.ticket)}">Add a ticket</a>`
+    : "";
   const fullTitle = `${title} - ${APP_CONFIG.APP_NAME}`;
   const content = `<h1>${escapeHtml(title)}</h1>
   <p>${escapeHtml(message)}</p>
-  <div class="actions">${signInLink}${backLink}</div>`;
+  <div class="actions">${signInLink}${ticketLink}${backLink}</div>`;
   const body = heal
     ? `<main id="heal-wait">
   <h1>Opening Q&amp;A</h1>

@@ -26,7 +26,9 @@ import { QASkeleton } from "@/components/Skeletons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
-import { signInHref } from "@/routing/returnTo";
+import { useLoadedTickets } from "@/data/tickets/useTickets";
+import { hasAdmissionTicket } from "@/data/tickets/primary";
+import { SIGN_IN_PATH, signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
 import { useOnline } from "@/hooks/useOnline";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
@@ -156,6 +158,13 @@ function QAFeed({
   onNotFound?: () => void;
 }) {
   const { user } = useUser();
+  // Signed in, tickets known, none of them an admission ticket: the hand-off
+  // would only answer "Ticket required" and point at My Devcon, so point
+  // there directly. Reads the tickets the app already loaded, never fetching
+  // (this renders on every session view); while they are unknown (first
+  // load, a failed fetch) the hand-off decides, server-side, as before.
+  const tickets = useLoadedTickets();
+  const needsTicket = !!user && tickets !== undefined && !hasAdmissionTicket(tickets);
   const mock = useMockQuestions();
   // Realtime: one SSE stream per mounted feed (the side panel unmounts its
   // feed while the fullscreen page is open, so a session holds at most one).
@@ -199,7 +208,21 @@ function QAFeed({
               : "absolute inset-x-0 bottom-0 p-4"
           )}
         >
-          {user ? (
+          {!user ? (
+            <PrimaryLinkButton href={signInHref(returnTo)} className={QA_CTA_CLASS}>
+              Sign in to ask a question
+            </PrimaryLinkButton>
+          ) : needsTicket ? (
+            // Plain My Devcon, no `?next=`: with it, My Devcon sends a
+            // signed-in visitor straight back here (components/Ticket.tsx).
+            <PrimaryLinkButton
+              href={SIGN_IN_PATH}
+              onClick={() => trackEvent("session", "qa-ticket", sessionId)}
+              className={QA_CTA_CLASS}
+            >
+              Add a ticket to ask a question
+            </PrimaryLinkButton>
+          ) : (
             // A real navigation: the server checks the ticket and redirects
             // to Meerkat. New tab in a browser; in place in the installed
             // app, where a new tab wouldn't carry the app's cookies on iOS
@@ -214,10 +237,6 @@ function QAFeed({
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
             </PrimaryAnchorButton>
-          ) : (
-            <PrimaryLinkButton href={signInHref(returnTo)} className={QA_CTA_CLASS}>
-              Sign in to ask a question
-            </PrimaryLinkButton>
           )}
         </div>
       )}

@@ -73,13 +73,14 @@ function startStamp(start: string | null | undefined): string {
 }
 
 /**
- * `HH.mm <Title> [CODE] - YouTube 1920x1080.jpg` or `... - Screen 3192x1512.jpg`:
- * the nightly job's name plus what the file is and its resolution, so cards
- * downloaded side by side never share a name.
+ * `HH.mm <Title> [CODE] - YouTube 1920x1080.jpg`, `... - Screen 3192x1512.jpg`,
+ * `... - Social 1200x630.jpg` (`Social Time` with the slot) or `... - Story 1080x1920.jpg`: the nightly job's name
+ * plus what the file is and its resolution, so cards downloaded side by side never
+ * share a name.
  */
 export function cardFileName(
   session: { code: string; title: string; start?: string | null },
-  kind: 'YouTube' | 'Screen',
+  kind: 'YouTube' | 'Screen' | 'Social' | 'Social Time' | 'Story',
   width: number,
   height: number
 ): string {

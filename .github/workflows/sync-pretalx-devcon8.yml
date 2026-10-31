@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+        # The branch tip at job start, not the dispatch-time commit: a run queued by the
+        # concurrency group must see the previous run's commit, or its pull conflicts.
+        with:
+          ref: ${{ github.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: "22"

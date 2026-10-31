@@ -199,20 +199,30 @@ function renderScheduleCard(
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // Catch-all, same shape as /api/ticket:
-  //   /api/social/schedule/{code}/            — slug = [code]
-  //   /api/social/schedule/{code}/{buster}/   — slug = [code, buster]
-  // The buster exists only to hand social scrapers a URL they have never
-  // fetched (see the share page); the image is keyed by `code` alone, so a
-  // busted URL still hits the same Supabase cache entry.
+  //   /api/social/schedule/{code}/                      slug = [code]
+  //   /api/social/schedule/{code}/{buster}/             slug = [code, buster]
+  //   /api/social/schedule/{code}/{buster}/{name}.jpg   slug = [code, buster, name]
+  // The buster exists only to hand a client a URL it has never fetched: the
+  // share page gives social scrapers one, and the app derives one from what
+  // the card shows (event-app src/data/sessionCard.ts) so its service worker,
+  // which keeps images for 30 days by URL, fetches a card again once the
+  // session changed. The image is keyed by `code` alone, so a busted URL
+  // still hits the same Supabase cache entry. The trailing name only names
+  // the file a browser saves ("Save image as", drag-out); it is ignored here.
   const slug = req.query.id
   const segments = Array.isArray(slug) ? slug : slug ? [slug] : []
   const id = String(segments[0] || '')
-  if (segments.length > 2 || !id || !/^[a-zA-Z0-9_-]{1,200}$/.test(id)) {
+  if (segments.length > 3 || !id || !/^[a-zA-Z0-9_-]{1,200}$/.test(id)) {
     return res.status(400).send({ success: false, error: 'invalid session id' })
   }
-  // devcon8 CFP talks aren't in the API until confirmed + synced — fall
+  // A busted request says the caller knows the session changed. The API
+  // keeps a session for a minute at its edge, so read past that cache: the
+  // old card under the new URL would otherwise be pinned for an hour on the
+  // CDN and for 30 days in the app's service worker.
+  const buster = segments.length > 1 ? String(segments[1]) : undefined
+  // devcon8 CFP talks aren't in the API until confirmed + synced: fall
   // back to reading the submission straight from Pretalx.
-  const session = (await getSession(id)) ?? (await getSessionFromPretalx(id))
+  const session = (await getSession(id, buster)) ?? (await getSessionFromPretalx(id))
   if (!session) {
     // Unknown id, or the API is down: the last card rendered for this id if
     // there is one (crawlers and the app keep their image), else nothing.
