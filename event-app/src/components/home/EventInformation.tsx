@@ -26,6 +26,8 @@ const TELEGRAM_HREF = "https://t.me/+sitvvHw8D8EzN2Yx";
 const X_HREF = "https://x.com/efdevcon";
 const INSTAGRAM_HREF = "https://instagram.com/efdevcon";
 const EMERGENCY_NUMBER = "108";
+const INCIDENT_HANDLING_HREF =
+  "https://ef-events.notion.site/Incident-Emergency-Handling-for-Attendees-at-Devcon-VIII-India-3de638cdc4158051b8b2cfd88b9a2895";
 
 const inlineLink =
   "font-bold text-dc-purple underline underline-offset-2 hover:no-underline";
@@ -131,6 +133,17 @@ const GUIDES: ReadonlyArray<{
           <>
             Look for the <span className="font-bold text-dc-green">green Exit signs</span> and
             follow staff instructions
+          </>
+        ),
+      },
+      {
+        term: "Incidents:",
+        body: (
+          <>
+            Read our guide on{" "}
+            <OutLink href={INCIDENT_HANDLING_HREF}>
+              incident and emergency handling for attendees
+            </OutLink>
           </>
         ),
       },
