@@ -166,7 +166,7 @@ export function HighlightsCarousel() {
         )}
       >
         <SwipeToScroll>
-          <div className="flex gap-4 p-2 pr-6">
+          <div className="flex gap-3 p-2 pr-6 lg:gap-4">
             {highlights.map((h) => (
               <HighlightCard key={h.id} highlight={h} />
             ))}

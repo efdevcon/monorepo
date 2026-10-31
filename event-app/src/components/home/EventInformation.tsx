@@ -161,55 +161,59 @@ function Disclosure({ title, children }: { title: string; children: ReactNode })
 export function EventInformation() {
   return (
     <section aria-labelledby="home-event-info-title">
-      <h2
-        id="home-event-info-title"
-        className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2"
-      >
-        Event information
-      </h2>
-      <div className="flex flex-col gap-2 rounded-xl border border-dc-hairline bg-white p-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8 lg:p-6">
-        <div className="rounded-lg bg-dc-lavender p-4 lg:p-6">
-          <h3 className="text-[16px] font-bold leading-6 text-dc-fg2 lg:text-[18px]">
-            Essentials
-          </h3>
-          <ul className="mt-3 flex flex-col gap-4">
-            <Essential term="Wi-Fi:">Coming soon</Essential>
-            <Essential term="Venue address:">
-              <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
-            </Essential>
-            <Essential term="Entry & Exit:">Enter at Gate 20, exit at Gate 19</Essential>
-            <Essential term="Day 1:">Tues, 3 November 2026 from 08:30 – 18:30</Essential>
-            <Essential term="Need help?">
-              Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>
-            </Essential>
-            <Essential term="Found a bug?">
-              <button
-                type="button"
-                onClick={() => openFeedback()}
-                className={`${inlineLink} cursor-pointer`}
-              >
-                Send feedback
-              </button>{" "}
-              to the team
-            </Essential>
-          </ul>
-        </div>
-
-        <div className="flex flex-col">
-          {GUIDES.map(({ title, items }) => (
-            <Disclosure key={title} title={title}>
-              <ul className="flex list-disc flex-col gap-3 pl-5 text-[14px] leading-5 text-dc-fg2 marker:text-dc-muted">
-                {items.map(({ term, body }, i) => (
-                  <li key={term ?? i}>
-                    {term && <span className="font-bold">{term}</span>} {body}
-                  </li>
-                ))}
-              </ul>
+      {/* The title sits inside the card (Scott, 2026-10-31): 20px all round on
+          phones, 24px sides and 32px top and bottom on desktop. */}
+      <div className="rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] p-5 lg:px-6 lg:py-8">
+        <h2
+          id="home-event-info-title"
+          className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2"
+        >
+          Event information
+        </h2>
+        <div className="flex flex-col gap-2 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8">
+          <div className="rounded-lg bg-dc-lavender p-4 lg:p-6">
+            <h3 className="text-[16px] font-bold leading-6 text-dc-fg2 lg:text-[18px]">
+              Essentials
+            </h3>
+            <ul className="mt-3 flex flex-col gap-4">
+              <Essential term="Wi-Fi:">Coming soon</Essential>
+              <Essential term="Venue address:">
+                <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
+              </Essential>
+              <Essential term="Entry & Exit:">Enter at Gate 20, exit at Gate 19</Essential>
+              <Essential term="Day 1:">Tues, 3 November 2026 from 08:30 – 18:30</Essential>
+              <Essential term="Need help?">
+                Read our <OutLink href={SUPPORT_FAQ_HREF}>Support FAQ</OutLink>
+              </Essential>
+              <Essential term="Found a bug?">
+                <button
+                  type="button"
+                  onClick={() => openFeedback()}
+                  className={`${inlineLink} cursor-pointer`}
+                >
+                  Send feedback
+                </button>{" "}
+                to the team
+              </Essential>
+            </ul>
+          </div>
+  
+          <div className="flex flex-col">
+            {GUIDES.map(({ title, items }) => (
+              <Disclosure key={title} title={title}>
+                <ul className="flex list-disc flex-col gap-3 pl-5 text-[14px] leading-5 text-dc-fg2 marker:text-dc-muted">
+                  {items.map(({ term, body }, i) => (
+                    <li key={term ?? i}>
+                      {term && <span className="font-bold">{term}</span>} {body}
+                    </li>
+                  ))}
+                </ul>
+              </Disclosure>
+            ))}
+            <Disclosure title="Legal">
+              <LegalLinks />
             </Disclosure>
-          ))}
-          <Disclosure title="Legal">
-            <LegalLinks />
-          </Disclosure>
+          </div>
         </div>
       </div>
     </section>

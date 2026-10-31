@@ -115,7 +115,7 @@ profile, which the card shows as the speaker page's X and globe icon links (Scot
 at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a supporter may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
-2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
+2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both; growthepie, Fair Food Data and GrapheneOS carry a square `<name>-icon.svg` mark on the booth since 2026-10-31, new file names on purpose because the service worker holds images under their URL for 30 days, so the first two keep their original file as the `cardLogo` and GrapheneOS keeps `-full`; Railgun likewise has `railgun-icon.svg` on the booth and a new wordmark `railgun-full.svg` on the card since 2026-10-31); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then (S12 is Fair Food Data from 2026-10-27; Kohaku moves to another spot later in the week, its two marks stay in the folder for that; Scott, 2026-10-25 / 10-27), optional
 `icon` (sprite PNG), `roomIds`, `website` (the place's own site, https; the card shows "Visit website" under the description with
 the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27) and `room` /
@@ -168,7 +168,7 @@ and escalator-right (the -left variants are in the folder for other floors), lot
 music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
 `JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
 interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
-structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station. Hub booths show their
+structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station (the scarf; the file is `swag-station-scarf.png` since 2026-10-31 because the service worker holds images CacheFirst for 30 days under their URL, so the trousers kept showing on every device that had opened the map before the restyle). Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
 their lockup via `tenants` (supporters.ts); the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).
@@ -277,7 +277,7 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   `Subtract` slab inside their `Background` group, name Level 2's interior walls as Level 1's are, and
   group the loose labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
   named `cls-hangout-area` in the committed copy only (name it in Figma), the `flagship-supporter-1` box on Level 3 is deleted
-  from the committed `L3.svg` only (Fluid left, 2026-10-30: delete it in Figma too), and the `info-desk` colour box on Level 0 (a Help Desk-sized
+  from the committed `L3.svg` only (Fluid left, 2026-10-30: delete it in Figma too), the `flagship-supporter-2` box (Base) on Level 3 is moved 127.66 px left in the committed `L3.svg` only, so its centre lines up with the Content Corner's at x 916.64 px with its row unchanged (Scott, 2026-10-31: move it in Figma too), and the `info-desk` colour box on Level 0 (a Help Desk-sized
   box outside the registration entrance, between washroom 1 and the entrance arrow, 2026-10-30) exists in the committed `L0.svg` only: draw it in
   Figma before the next export or the re-export drops it. Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its

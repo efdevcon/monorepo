@@ -25,27 +25,14 @@ import {
 } from "@/data/ai/plan";
 
 /**
- * Home entry to "Plan with your AI": the panel below under the section
- * heading, with a link to the import page (which also takes pasted codes).
+ * Home entry to "Plan with your AI": the panel, with its "Import a plan"
+ * link inside (the section heading and the link's row above the card went
+ * on 2026-10-31).
  */
 export function AiPlannerCard() {
   return (
-    <section aria-labelledby="home-ai-planner-title">
-      <div className="mb-4 flex items-center justify-between gap-8">
-        <h2 id="home-ai-planner-title" className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-          Plan with your AI
-        </h2>
-        {/* Same shape as the Notifications section's "View all": the import
-            page also takes pasted codes, so it is reachable without a link
-            from an assistant. */}
-        <Link
-          href="/my-interests"
-          className="flex shrink-0 items-center gap-1.5 font-heading text-base font-bold text-dc-purple underline-offset-2 hover:underline"
-        >
-          Import a plan <ArrowRight className="size-4" />
-        </Link>
-      </div>
-      <AiPlannerPanel promptAside />
+    <section aria-label="Plan with your AI">
+      <AiPlannerPanel promptAside importLink />
     </section>
   );
 }
@@ -67,9 +54,12 @@ export function AiPlannerPanel({
   title = "Get a draft schedule from your assistant",
   body = "Your assistant reads the full programme, asks what you are into and suggests a plan to add to My Interests in one tap. Your starred sessions are included.",
   promptAside = false,
+  importLink = false,
 }: {
   title?: string;
   body?: string;
+  /** An "Import a plan" link to /my-interests at the foot of the text column (Home; the import page is that page). */
+  importLink?: boolean;
   /**
    * Desktop: the prompt open in a right-hand column, scrolling inside the
    * card (Home). Off, every width gets the "Preview the prompt"
@@ -140,7 +130,7 @@ export function AiPlannerPanel({
   return (
     <div
       className={cn(
-        "rounded-xl border border-dc-hairline bg-white p-5 lg:p-6",
+        "rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] px-5 pb-5 pt-6 lg:p-6",
         promptAside && "lg:grid lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-6 lg:py-8"
       )}
     >
@@ -175,6 +165,18 @@ export function AiPlannerPanel({
             <BrandMark src="/home/ai-planner/grok-mark.svg" />
           </SecondaryButton>
         </div>
+        {/* The import page also takes pasted codes, so it is reachable
+            without a link from an assistant. Straight under the buttons
+            on phones, under their note on desktop, in the buttons' 14px; phones draw a hairline above it to
+            set it apart from the stack (Scott, 2026-10-31). */}
+        {importLink && (
+          <div className="border-t border-dc-hairline pt-4 lg:order-last lg:border-t-0 lg:pt-0">
+            <Link href="/my-interests" className={cn(textActionClass, "mx-auto h-8 lg:mx-0")}>
+              Import a plan instead
+              <ArrowRight className="size-4 shrink-0" />
+            </Link>
+          </div>
+        )}
         <div className="flex flex-col gap-1">
           <p className="text-[13px] leading-5 text-dc-muted">
             Local or private AI copies the prompt, to paste into any assistant. The others open a new tab with it
@@ -211,7 +213,7 @@ export function AiPlannerPanel({
               built while open because it reads window.location (client-only). */}
           {/* Outer box owns the radius and clips, so the scrollbar's track
               stays inside the rounded corners. */}
-          <div hidden={!previewOpen} className="overflow-hidden rounded-[14px] border border-dc-hairline bg-white">
+          <div hidden={!previewOpen} className="overflow-hidden rounded-lg border border-dc-hairline bg-white lg:rounded-[14px]">
             <div
               id={previewId}
               role="region"

@@ -117,13 +117,21 @@ const nextConfig: NextConfig = {
   // service worker opens its precached pages first, and the old home sends
   // anyone not signed in to /login before this app's worker takes over and
   // reloads the page at that address; old bookmarks reach these paths too.
-  // Temporary redirects, so the paths stay free to use again.
+  // Temporary redirects, so the paths stay free to use again. The two
+  // folder rules match page paths only (no dot in the path): redirects run
+  // before the public folder, and `/login/:path*` was catching the real
+  // files under public/login (the sign-in key art, the intro backdrop and
+  // the Devcon 8 logo), which then 307'd to the home page under next dev /
+  // next start (Netlify's CDN served them first, so production never showed
+  // it; 2026-10-31).
   async redirects() {
     return [
       { source: "/announcements", destination: "/notifications", permanent: true },
       { source: "/ticket", destination: "/my-devcon", permanent: true },
-      { source: "/login/:path*", destination: "/", permanent: false },
-      { source: "/account/:path*", destination: "/", permanent: false },
+      { source: "/login", destination: "/", permanent: false },
+      { source: "/login/:path((?!.*\\.).*)", destination: "/", permanent: false },
+      { source: "/account", destination: "/", permanent: false },
+      { source: "/account/:path((?!.*\\.).*)", destination: "/", permanent: false },
       { source: "/onboarding", destination: "/", permanent: false },
       { source: "/event", destination: "/", permanent: false },
       { source: "/streams", destination: "/", permanent: false },
