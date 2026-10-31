@@ -165,6 +165,18 @@ export function AiPlannerPanel({
             <BrandMark src="/home/ai-planner/grok-mark.svg" />
           </SecondaryButton>
         </div>
+        {/* The import page also takes pasted codes, so it is reachable
+            without a link from an assistant. Straight under the buttons,
+            before their note, in the buttons' 14px; phones draw a hairline above it to
+            set it apart from the stack (Scott, 2026-10-31). */}
+        {importLink && (
+          <div className="border-t border-dc-hairline pt-4 lg:border-t-0 lg:pt-0">
+            <Link href="/my-interests" className={textActionClass}>
+              Import a plan
+              <ArrowRight className="size-4 shrink-0" />
+            </Link>
+          </div>
+        )}
         <div className="flex flex-col gap-1">
           <p className="text-[13px] leading-5 text-dc-muted">
             Local or private AI copies the prompt, to paste into any assistant. The others open a new tab with it
@@ -176,18 +188,6 @@ export function AiPlannerPanel({
             </p>
           )}
         </div>
-        {/* The import page also takes pasted codes, so it is reachable
-            without a link from an assistant. Under the buttons and their
-            note, in the buttons' 14px; phones draw a hairline above it to
-            set it apart from the stack (Scott, 2026-10-31). */}
-        {importLink && (
-          <div className="border-t border-dc-hairline pt-4 lg:border-t-0 lg:pt-0">
-            <Link href="/my-interests" className={textActionClass}>
-              Import a plan
-              <ArrowRight className="size-4 shrink-0" />
-            </Link>
-          </div>
-        )}
         {/* The disclosure under the buttons; with `promptAside`, desktop shows
             the prompt in the right-hand column instead (below). */}
         <div className={cn("flex flex-col gap-3", promptAside && "lg:hidden")}>
