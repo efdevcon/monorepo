@@ -556,7 +556,10 @@ export function ScheduleTimeline({
   // since they appear below the fold on day 1's tall grid and the person
   // had to go looking for them (Scott, 2026-10-31). Only ever down, by the
   // least that puts their bottom above the tab bar, never past their top
-  // under the pinned chrome. Instant like every vertical jump in the app.
+  // under the pinned chrome. Smooth, the one exception to the app's
+  // instant vertical jumps (Scott's call, 2026-10-31): a single short
+  // scroll of a few lanes, not the screens-long series that crashed iOS;
+  // reduced motion makes it instant.
   useLayoutEffect(() => {
     const rooms = revealRoomsRef.current;
     if (!rooms || rooms.some((r) => collapsed.has(r))) return;
@@ -576,7 +579,9 @@ export function ScheduleTimeline({
     // axis on phones (static on desktop).
     const pinned = headerOffsetNow() + (isDesktop ? 118 : 47 + m.headerH) + 8;
     const delta = Math.min(bottom - visibleBottom, top - pinned);
-    if (delta > 0) window.scrollBy({ top: delta, behavior: "auto" });
+    if (delta <= 0) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollBy({ top: delta, behavior: reduce ? "auto" : "smooth" });
   }, [collapsed, isDesktop, m.headerH]);
 
   // "Jump to now": center the now line in the visible grid area.
