@@ -16,6 +16,8 @@ export function FilterSheet({
   onClear,
   mode,
   communities,
+  interestedOnly,
+  onToggleInterested,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -25,6 +27,8 @@ export function FilterSheet({
   onClear: () => void;
   mode?: FilterPanelMode;
   communities?: CommunityRef[];
+  interestedOnly?: boolean;
+  onToggleInterested?: (on: boolean) => void;
 }) {
   return (
     <BottomSheet open={open} onOpenChange={onOpenChange} ariaLabel="Filters">
@@ -36,6 +40,8 @@ export function FilterSheet({
         onClose={() => onOpenChange(false)}
         mode={mode}
         communities={communities}
+        interestedOnly={interestedOnly}
+        onToggleInterested={onToggleInterested}
       />
     </BottomSheet>
   );

@@ -1292,6 +1292,8 @@ function ScheduleInner({
         defaultOpen
         mode={filterMode}
         communities={communityOptions}
+        interestedOnly={interestedOnly}
+        onToggleInterested={setInterestedOnly}
       />
     </div>
   ) : null;
@@ -1812,6 +1814,8 @@ function ScheduleInner({
           onClear={clearFilters}
           mode={filterMode}
           communities={communityOptions}
+          interestedOnly={interestedOnly}
+          onToggleInterested={setInterestedOnly}
         />
       )}
     </main>
