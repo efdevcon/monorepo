@@ -59,7 +59,7 @@ export function CommunityHubsCard() {
               Discover the Community tab
             </h3>
             <p className="text-[14px] leading-5 text-dc-muted lg:text-[16px] lg:leading-6">
-              Community-run spaces, stages and programming inside Devcon
+              Community-run spaces, stages and programming inside Devcon.
             </p>
           </div>
           <div className="flex flex-col gap-3 lg:flex-row">
