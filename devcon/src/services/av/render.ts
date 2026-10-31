@@ -6,13 +6,17 @@
  */
 import type { NextApiResponse } from 'next'
 import { poppinsFonts } from 'services/social-cards/assets'
-import { renderDc8SocialCard } from 'services/social-cards/dc8-social-card'
+import { renderDc8SocialCard, renderDc8StoryCard } from 'services/social-cards/dc8-social-card'
 import { getSessionFromPretalx, speakerImageDataUrls } from 'services/social-cards/data'
 import { getOfficialSpeakers, hardcodedSlot } from './pretalx'
 import { pngToJpeg } from 'services/og-cache'
 import { AV_EVENT_ID, cardFileName, contentDisposition, isSessionCode } from './av-assets'
 
-export type CardKind = 'YouTube' | 'Screen'
+/**
+ * Story is the portrait Instagram layout; the others are the one landscape card at their size,
+ * Social Time with the session's day, time and room above the title.
+ */
+export type CardKind = 'YouTube' | 'Screen' | 'Social' | 'Social Time' | 'Story'
 
 /**
  * JPEG for the downloads (the nightly job's format); lossless PNG as the
@@ -76,8 +80,12 @@ export async function sendFreshCard(
       res.status(404).json({ success: false, error: `no accepted or confirmed session ${code}` })
       return
     }
-    // A session with no Pretalx slot but a hardcoded one: its time goes in the file name.
-    if (!session.slot_start) session.slot_start = hardcodedSlot(code)?.start ?? null
+    // A session with no Pretalx slot but a hardcoded one: its time goes in the file name (and the Story).
+    if (!session.slot_start) {
+      const slot = hardcodedSlot(code)
+      session.slot_start = slot?.start ?? null
+      if (slot && !session.slot_room) session.slot_room = { name: slot.room }
+    }
     if (edits.title) session.title = edits.title
     if (edits.speakerCodes) {
       // Only speakers on the official list: the card never shows a name Pretalx does not have.
@@ -92,7 +100,11 @@ export async function sendFreshCard(
         return { id: sp.code, name: sp.name, avatar: sp.avatar }
       })
     }
-    const card = renderDc8SocialCard(session, await speakerImageDataUrls(session), poppinsFonts(), { width, height })
+    const images = await speakerImageDataUrls(session)
+    const card =
+      kind === 'Story'
+        ? renderDc8StoryCard(session, images, poppinsFonts(), { width, height })
+        : renderDc8SocialCard(session, images, poppinsFonts(), { width, height }, { showSlot: kind === 'Social Time' })
     const png = await card.arrayBuffer()
     const fileName = cardFileName(
       { code: session.sourceId ?? code, title: session.title, start: session.slot_start },
@@ -101,7 +113,10 @@ export async function sendFreshCard(
       height
     )
     res.setHeader('Content-Type', `image/${format}`)
-    res.setHeader('Content-Disposition', contentDisposition(format === 'png' ? fileName.replace(/\.jpg$/, '.png') : fileName))
+    res.setHeader(
+      'Content-Disposition',
+      contentDisposition(format === 'png' ? fileName.replace(/\.jpg$/, '.png') : fileName)
+    )
     // Quality 85, as the YouTube thumbnail source.
     res.status(200).send(format === 'png' ? Buffer.from(png) : await pngToJpeg(png, 85))
   } catch (error) {

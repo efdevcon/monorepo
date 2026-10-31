@@ -48,7 +48,9 @@ export function renderDc8SocialCard(
   session: any,
   speakerImages: Map<string, string>,
   fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer },
-  size: { width: number; height: number }
+  size: { width: number; height: number },
+  // The session's day, time and room above the title (the AV page's "with time and stage" variant).
+  options: { showSlot?: boolean } = {}
 ) {
   let scale = size.width / 1200
   if (size.height / scale < 630) scale = size.height / 675
@@ -68,13 +70,18 @@ export function renderDc8SocialCard(
 
   // The 745px column fits ~27 chars/line at the 50px spec size; longer titles
   // step down so the clamp stays inside the centered zone (390px tall @630).
+  const slotWhen = options.showSlot ? slotWhenLabel(session.slot_start) : ''
+  const slotRoom: string = options.showSlot ? session.slot_room?.name ?? '' : ''
+  const showSlot = Boolean(slotWhen || slotRoom)
+
   const title: string = session.title ?? ''
+  // The slot line takes ~70px of the centered zone: one title line less, so long titles still fit.
   const titleStyle =
     title.length > 140
-      ? { fontSize: s(34), lineClamp: 5 }
+      ? { fontSize: s(34), lineClamp: showSlot ? 4 : 5 }
       : title.length > 80
-      ? { fontSize: s(42), lineClamp: 4 }
-      : { fontSize: s(50), lineClamp: 3 }
+      ? { fontSize: s(42), lineClamp: showSlot ? 3 : 4 }
+      : { fontSize: s(50), lineClamp: showSlot ? 2 : 3 }
 
   const speakers: any[] = session.speakers ?? []
   const speakerNames = speakers.map((sp: any) => sp.name).join(', ')
@@ -172,6 +179,28 @@ export function renderDc8SocialCard(
             justifyContent: 'center',
           }}
         >
+          {showSlot && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'flex-start',
+                marginBottom: s(20),
+                padding: `${s(10)}px ${s(16)}px`,
+                borderRadius: s(12),
+                background: 'rgba(255, 255, 255, 0.72)',
+                border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
+                fontSize: s(24),
+                lineHeight: 1.25,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {slotWhen && <span style={{ fontWeight: 700, color: '#7235ed' }}>{slotWhen}</span>}
+              {slotRoom && (
+                <span style={{ marginLeft: slotWhen ? s(14) : 0, fontWeight: 500, color: '#1a0d33' }}>{slotRoom}</span>
+              )}
+            </div>
+          )}
           <div
             style={{
               display: 'block',
@@ -290,11 +319,283 @@ export function renderDc8SocialCard(
     {
       width: size.width,
       height: size.height,
-      fonts: [
-        { name: 'Poppins', data: fonts.regular, weight: 400, style: 'normal' },
-        { name: 'Poppins', data: fonts.medium, weight: 500, style: 'normal' },
-        { name: 'Poppins', data: fonts.bold, weight: 700, style: 'normal' },
-      ],
+      fonts: poppins(fonts),
     }
+  )
+}
+
+const poppins = (fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer }) => [
+  { name: 'Poppins', data: fonts.regular, weight: 400 as const, style: 'normal' as const },
+  { name: 'Poppins', data: fonts.medium, weight: 500 as const, style: 'normal' as const },
+  { name: 'Poppins', data: fonts.bold, weight: 700 as const, style: 'normal' as const },
+]
+
+/** "TUE 3 NOV · 14:30" in event time, or "" without a slot. */
+function slotWhenLabel(start: string | null | undefined): string {
+  if (!start) return ''
+  const d = new Date(start)
+  const part = (o: Intl.DateTimeFormatOptions) =>
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', ...o }).format(d)
+  return `${part({ weekday: 'short' })} ${part({ day: 'numeric' })} ${part({ month: 'short' })} · ${part({
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  })}`.toUpperCase()
+}
+
+/**
+ * Instagram Story (1080×1920, 9:16) of the same card: same colors, artwork
+ * and type, laid out for a phone held upright. Authored at 1080 wide and
+ * scaled. Instagram draws its own UI over a story (profile bar on top, reply
+ * bar at the bottom), so everything readable sits between STORY_TOP and
+ * STORY_BOTTOM; only the decorative badge reaches below.
+ *
+ * Top to bottom: logo + city/date header, then a block centered in what is
+ * left: the session's day, time and room when it has a slot, the title
+ * (large, stepping down with length), the speakers' photos and names, and
+ * the Format+Track pill.
+ */
+const STORY_TOP = 260
+const STORY_BOTTOM = 1580
+
+export function renderDc8StoryCard(
+  session: any,
+  speakerImages: Map<string, string>,
+  fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer },
+  size: { width: number; height: number } = { width: 1080, height: 1920 }
+) {
+  const scale = size.width / 1080
+  const s = (n: number) => n * scale
+  const M = 80 // side margin
+
+  const isCls = isDc8ClsTrack(session.track)
+  const badge = isCls ? undefined : getDc8TrackBadgePath(session.track)
+  const trackColor = isCls ? undefined : getDc8TrackColor(session.track)
+  const background = trackColor ?? 'linear-gradient(to top, #e5ebff 19.98%, #fbfafc 100%)'
+  const pillColor = trackColor ?? '#e6ebff'
+
+  const type = cleanDc8SessionType(session.type ?? '')
+  const chipLabel = (isCls ? dc8ClsChipLabel(type) : type).toUpperCase()
+  const trackLabel = isCls ? dc8ClsName(session.track) : session.track
+
+  const title: string = session.title ?? ''
+  const titleStyle =
+    title.length > 140
+      ? { fontSize: s(54), lineClamp: 7 }
+      : title.length > 80
+      ? { fontSize: s(64), lineClamp: 6 }
+      : title.length > 40
+      ? { fontSize: s(76), lineClamp: 5 }
+      : { fontSize: s(88), lineClamp: 4 }
+
+  const speakers: any[] = session.speakers ?? []
+  const speakerNames = speakers.map((sp: any) => sp.name).join(', ')
+  const avatars = speakers.map((sp: any) => speakerImages.get(sp.id)).filter(Boolean) as string[]
+  // One row across the safe width whatever the count: big for a solo talk, smaller for panels.
+  const AVATAR = avatars.length <= 2 ? 150 : avatars.length <= 4 ? 128 : 104
+  const when = slotWhenLabel(session.slot_start)
+  const room: string = session.slot_room?.name ?? ''
+  const border = `${Math.max(1, Math.round(s(2)))}px solid #ffffff`
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          display: 'flex',
+          width: size.width,
+          height: size.height,
+          position: 'relative',
+          fontFamily: 'Poppins',
+          background,
+          overflow: 'hidden',
+        }}
+      >
+        {/* Watermark, larger and bleeding off the right edge */}
+        <img
+          src={socialAssetDataUrl(DC8_LOGOMARK_WHITE)}
+          style={{ position: 'absolute', left: s(470), top: s(420), width: s(700), height: s(1192), opacity: 0.5 }}
+        />
+
+        {/* Track badge, or the Devcon glyph for CLS and trackless sessions, bleeding off the bottom-right */}
+        {badge ? (
+          <img
+            src={socialAssetDataUrl(badge)}
+            style={{ position: 'absolute', right: s(-110), bottom: s(-130), width: s(560), height: s(560) }}
+          />
+        ) : (
+          <img
+            src={socialAssetDataUrl(DC8_CLS_BADGE)}
+            style={{ position: 'absolute', right: s(-70), bottom: s(-260), width: s(440), height: s(749) }}
+          />
+        )}
+
+        {/* Header: logo left, city/date right, below Instagram's profile bar */}
+        <img
+          src={socialAssetDataUrl('dc8/logo.png')}
+          style={{
+            position: 'absolute',
+            left: s(M),
+            top: s(STORY_TOP),
+            width: s(250),
+            height: s(110),
+            objectFit: 'contain',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            right: s(M),
+            top: s(STORY_TOP + 6),
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            letterSpacing: s(-0.5),
+          }}
+        >
+          <span style={{ fontSize: s(40), fontWeight: 700, lineHeight: 1.15, color: '#7235ed' }}>MUMBAI, INDIA</span>
+          <div style={{ display: 'flex', marginTop: s(6), fontSize: s(42), lineHeight: 1.15, color: '#594d73' }}>
+            <span style={{ color: '#7235ed', marginRight: s(10) }}>3—6</span>
+            <span>Nov, 2026</span>
+          </div>
+        </div>
+
+        {/* Session block, centered between the header and Instagram's reply bar */}
+        <div
+          style={{
+            position: 'absolute',
+            left: s(M),
+            right: s(M),
+            top: s(STORY_TOP + 110 + 60),
+            height: s(STORY_BOTTOM - (STORY_TOP + 110 + 60)),
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+          }}
+        >
+          {(when || room) && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: `${s(20)}px ${s(28)}px`,
+                borderRadius: s(20),
+                background: 'rgba(255, 255, 255, 0.72)',
+                border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
+              }}
+            >
+              {when && (
+                <span style={{ fontSize: s(38), fontWeight: 700, lineHeight: 1.25, color: '#7235ed' }}>{when}</span>
+              )}
+              {room && (
+                <span style={{ fontSize: s(34), fontWeight: 500, lineHeight: 1.3, color: '#1a0d33' }}>{room}</span>
+              )}
+            </div>
+          )}
+
+          <div
+            style={{
+              display: 'block',
+              marginTop: when || room ? s(44) : 0,
+              lineClamp: titleStyle.lineClamp,
+              fontSize: titleStyle.fontSize,
+              fontWeight: 500,
+              lineHeight: 1.18,
+              letterSpacing: s(-1.5),
+              color: '#1a0d33',
+            }}
+          >
+            {title}
+          </div>
+
+          {avatars.length > 0 && (
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: s(64) }}>
+              {avatars.slice(0, 6).map((src, index) => (
+                <img
+                  key={index}
+                  src={src}
+                  width={s(AVATAR)}
+                  height={s(AVATAR)}
+                  style={{
+                    width: s(AVATAR),
+                    height: s(AVATAR),
+                    borderRadius: 999,
+                    objectFit: 'cover',
+                    border,
+                    marginLeft: index > 0 ? s(-AVATAR * 0.25) : 0,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          {speakerNames && (
+            <div
+              style={{
+                display: 'block',
+                lineClamp: 3,
+                marginTop: s(avatars.length ? 24 : 48),
+                fontSize: s(42),
+                lineHeight: 1.3,
+                letterSpacing: s(-0.25),
+                color: '#594d73',
+              }}
+            >
+              {speakerNames}
+            </div>
+          )}
+
+          {(chipLabel || trackLabel) && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginTop: s(56),
+                padding: `${s(10)}px ${s(18)}px ${s(10)}px ${s(10)}px`,
+                borderRadius: s(16),
+                background: pillColor,
+                border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
+                boxShadow: `0 ${s(1)}px ${s(2)}px rgba(22,11,43,0.1)`,
+              }}
+            >
+              {chipLabel && (
+                <span
+                  style={{
+                    display: 'flex',
+                    padding: `${s(8)}px ${s(12)}px`,
+                    borderRadius: s(6),
+                    background: '#7235ed',
+                    color: '#ffffff',
+                    fontSize: s(30),
+                    fontWeight: 700,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {chipLabel}
+                </span>
+              )}
+              {trackLabel && (
+                <span
+                  style={{
+                    marginLeft: chipLabel ? s(16) : 0,
+                    fontSize: s(30),
+                    fontWeight: 500,
+                    lineHeight: 1.3,
+                    letterSpacing: s(-0.25),
+                    color: '#1a0d33',
+                    whiteSpace: 'nowrap',
+                    maxWidth: s(560),
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {trackLabel}
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    ),
+    { width: size.width, height: size.height, fonts: poppins(fonts) }
   )
 }
