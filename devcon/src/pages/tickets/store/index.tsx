@@ -619,9 +619,6 @@ function StoreContent({
                   <h3 className={css['section-title']}>Applications</h3>
                   <span className={css['open-badge']}>OPEN</span>
                 </div>
-                <p className={css['section-subtitle']}>
-                  Applications are curated and limited per round, subject to availability and review.
-                </p>
               </div>
 
               <div className={css['applications-grid']}>
