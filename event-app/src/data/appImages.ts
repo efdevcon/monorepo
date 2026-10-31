@@ -1,7 +1,7 @@
 import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 import { ROOM_ICON_URLS } from "@/components/room-screen/roomIcon";
 import { COMMUNITY_HUBS, communityHubLockup, communityHubLogo } from "@/data/communityHubs";
-import { COMMUNITY_LED_LOGO } from "@/data/communityLed";
+import { COMMUNITY_LED_GROUPS, COMMUNITY_LED_LOGO } from "@/data/communityLed";
 
 /**
  * Static images shipped in `public/` and rendered by the app shell.
@@ -35,8 +35,10 @@ export const APP_IMAGES: string[] = [
   // timeline and the details banner (see trackTheme.ts hubTheme).
   ...COMMUNITY_HUBS.map(communityHubLogo),
   ...COMMUNITY_HUBS.flatMap((hub) => communityHubLockup(hub) ?? []),
-  // The community-led groups' shared mark (precached with the gems too).
+  // The community-led groups' shared mark (precached with the gems too) and
+  // the groups' own marks and lockups (communityLed.ts).
   COMMUNITY_LED_LOGO,
+  ...COMMUNITY_LED_GROUPS.flatMap((group) => [group.logo, group.lockup].filter((url) => url !== undefined)),
   // Stage theme crests on the room-screen picker (small, but under public/, so
   // never in the API-driven warm list; see roomIcon.ts).
   ...ROOM_ICON_URLS,
