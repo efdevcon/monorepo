@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { shortCommunityHubName } from "@/data/communityHubs";
 import cn from "classnames";
 import { Clock3, Star, User } from "lucide-react";
@@ -10,13 +10,16 @@ import { safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDes
 import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
+  collapsedRooms,
   DESKTOP_METRICS,
   formatTime,
   formatTimeRange,
+  lateRooms,
   MOBILE_METRICS,
   offsetPx,
   timeAtOffset,
   sessionBox,
+  type LateRoom,
   type TimelineMetrics,
   type TimelineZoom,
 } from "./utils";
@@ -233,6 +236,97 @@ function TimelineSession({
   );
 }
 
+/**
+ * One lane standing in for the rooms whose programme has not started by
+ * the right edge of the view (see `lateRooms`): the room cell counts them
+ * (the full names in its title), the lane says when the earliest starts,
+ * the time a link that pans the grid there, where the lanes unfold. The
+ * text sticks at the visible left edge like a session block's. The room
+ * cell and the lane keep the grid's chrome (glass cell, slot lines) so the
+ * fold reads as part of the grid, on the panel grey so it reads as empty.
+ */
+function CollapsedLane({
+  folded,
+  metrics: m,
+  compact,
+  safeLeft,
+  gridWidth,
+  onPanTo,
+}: {
+  folded: LateRoom[];
+  metrics: TimelineMetrics;
+  compact: boolean;
+  safeLeft: number;
+  gridWidth: number;
+  onPanTo: (timeMs: number) => void;
+}) {
+  const names = folded.map((r) => shortCommunityHubName(r.room));
+  const firstMs = Math.min(...folded.map((r) => r.firstStartMs));
+  const padX = compact ? 6 : 12;
+  return (
+    <div className="flex" style={{ height: m.laneH }}>
+      <div
+        style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
+        title={names.join(", ")}
+        className={cn(
+          "flex shrink-0 items-center border-b border-r border-dc-hairline bg-white/75 text-dc-fg2 backdrop-blur-[4px]",
+          "sticky left-0 z-10 justify-center text-center font-semibold leading-[1.2]",
+          compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
+        )}
+      >
+        <span className="line-clamp-2">
+          {names.length === 1 ? names[0] : `${names.length} rooms`}
+        </span>
+      </div>
+      <div
+        className="relative shrink-0 border-b border-dc-hairline bg-dc-panel"
+        style={{
+          width: gridWidth,
+          backgroundImage:
+            "repeating-linear-gradient(to right, rgba(34,17,68,0.1) 0 1px, transparent 1px " +
+            m.slotWidth +
+            "px)",
+        }}
+      >
+        <div
+          style={{
+            left: m.roomCol + padX,
+            maxWidth: `calc(100vw - ${m.roomCol + padX * 2 + 16}px)`,
+          }}
+          className={cn(
+            "sticky flex h-full w-fit min-w-0 flex-col justify-center gap-1",
+            compact ? "px-1.5" : "px-3"
+          )}
+        >
+          <span
+            className={cn(
+              "text-dc-fg2",
+              compact ? "text-[12px] leading-[14px]" : "text-[14px] leading-5"
+            )}
+          >
+            No programming until{" "}
+            <button
+              type="button"
+              onClick={() => onPanTo(firstMs)}
+              className="relative cursor-pointer font-bold text-dc-purple before:absolute before:-inset-x-1 before:-inset-y-2 before:content-[''] hover:underline"
+            >
+              {formatTime(firstMs / 1000)}
+            </button>
+          </span>
+          <span
+            className={cn(
+              "truncate text-dc-muted",
+              compact ? "text-[11px]" : "text-[12px]"
+            )}
+          >
+            {names.join(", ")}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Now pill: 10px text + 3px padding ≈ 16px tall; half its typical width. */
 const PILL_H = 16;
 const PILL_HALF_W = 22;
@@ -269,6 +363,7 @@ export function ScheduleTimeline({
   onScrollLeft,
   headerRaised = false,
   zoom = 1,
+  collapseEmptyLanes = false,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -299,6 +394,14 @@ export function ScheduleTimeline({
   headerRaised?: boolean;
   /** Horizontal zoom (see TimelineZoom): 2 doubles the width of a minute. */
   zoom?: TimelineZoom;
+  /**
+   * Fold the lanes of rooms whose programme starts hours after the day's
+   * first session into one "No programming until …" lane while the grid
+   * shows only the time before it (see `lateRooms`). Only over the whole
+   * programme: with a filter or a search on, an empty stretch means "no
+   * match", not "no programming".
+   */
+  collapseEmptyLanes?: boolean;
 }) {
   const isDesktop = useIsDesktop();
   const compact = !isDesktop;
@@ -319,9 +422,19 @@ export function ScheduleTimeline({
     };
   }, [isDesktop, safeLeft, zoom]);
 
-  const { rooms, slots, startMs, byRoom } = useMemo(
-    () => buildTimeline(sessions),
-    [sessions]
+  const timeline = useMemo(() => buildTimeline(sessions), [sessions]);
+  const { rooms, slots, startMs, byRoom } = timeline;
+  const late = useMemo(
+    () => (collapseEmptyLanes ? lateRooms(timeline) : []),
+    [collapseEmptyLanes, timeline]
+  );
+  // The folded rooms, as one string: the scroll handler recomputes it on
+  // every event but only a change re-renders the grid, so panning along
+  // the fold's threshold is the only time the lanes re-lay out.
+  const [collapsedKey, setCollapsedKey] = useState("");
+  const collapsed = useMemo(
+    () => new Set(collapsedKey ? collapsedKey.split("\n") : []),
+    [collapsedKey]
   );
   const rootRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -355,8 +468,53 @@ export function ScheduleTimeline({
     return hidden;
   }, [nowVisible, nowLeft, isDesktop, m.slotWidth, slots.length]);
 
+  // Last horizontal offset: the scroll handler's report, or the value just
+  // written by one of the effects here (see the zoom effect below).
+  const lastLeftRef = useRef(0);
+
   const syncHeader = (left: number) => {
     if (headerRef.current) headerRef.current.scrollLeft = left;
+  };
+
+  // Which late rooms fold at this horizontal offset: those whose first
+  // session starts past the right edge of the visible time area.
+  const updateCollapsed = (left: number) => {
+    const el = scrollRef.current;
+    if (!el || late.length === 0) {
+      setCollapsedKey("");
+      return;
+    }
+    const rightMs = timeAtOffset(left + el.clientWidth - m.roomCol, startMs, m.slotWidth);
+    const key = collapsedRooms(late, rightMs)
+      .map((r) => r.room)
+      .join("\n");
+    setCollapsedKey((prev) => (prev === key ? prev : key));
+  };
+  const updateCollapsedRef = useRef(updateCollapsed);
+  updateCollapsedRef.current = updateCollapsed;
+  // Re-decided when the late rooms, the scale or the visible width change
+  // (zoom, rotation, the desktop side panel narrowing the grid), from the
+  // offset the last scroll event or programmatic write reported.
+  const hasGrid = sessions.length > 0;
+  useLayoutEffect(() => {
+    updateCollapsedRef.current(lastLeftRef.current);
+    const el = scrollRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => updateCollapsedRef.current(lastLeftRef.current));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [late, m.slotWidth, m.roomCol, hasGrid]);
+
+  // The notice's time link: pan the grid so that time sits at the left
+  // edge of the time area, where the lanes it names unfold.
+  const panToTime = (timeMs: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollTo({
+      left: Math.max(0, offsetPx(timeMs, startMs, m.slotWidth)),
+      behavior: reduce ? "auto" : "smooth",
+    });
   };
 
   // "Jump to now": center the now line in the visible grid area.
@@ -395,9 +553,6 @@ export function ScheduleTimeline({
   // Layout effect so it lands before paint; declared after the restore below
   // would be wrong — it must win over a stale restored offset on mount.
   const handledTimeSeqRef = useRef(0);
-  // Last horizontal offset: the scroll handler's report, or the value just
-  // written by one of the effects here (see the zoom effect below).
-  const lastLeftRef = useRef(0);
   useLayoutEffect(() => {
     if (!scrollToTime || scrollToTime.seq <= handledTimeSeqRef.current) return;
     handledTimeSeqRef.current = scrollToTime.seq;
@@ -436,7 +591,6 @@ export function ScheduleTimeline({
   // Restore a remembered horizontal offset once the grid is in the DOM (it
   // isn't while `sessions` is empty). Layout effect: lands before paint.
   const restoredRef = useRef(false);
-  const hasGrid = sessions.length > 0;
   useLayoutEffect(() => {
     const el = scrollRef.current;
     if (restoredRef.current || initialScrollLeft == null || !el) return;
@@ -549,6 +703,7 @@ export function ScheduleTimeline({
           const left = e.currentTarget.scrollLeft;
           lastLeftRef.current = left;
           syncHeader(left);
+          updateCollapsed(left);
           onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}
         // Scrollbar hidden (DayTabs pattern): the time-axis header and the
@@ -566,7 +721,25 @@ export function ScheduleTimeline({
               className="pointer-events-none absolute inset-y-0 z-[5] w-[2px] -translate-x-1/2 bg-dc-red"
             />
           )}
-          {rooms.map((room) => (
+          {rooms.map((room, i) => {
+            if (collapsed.has(room)) {
+              // The folded rooms take one lane, in the first of their
+              // places; the rest are left out until the grid reaches them.
+              if (rooms.findIndex((r) => collapsed.has(r)) !== i) return null;
+              const folded = late.filter((r) => collapsed.has(r.room));
+              return (
+                <CollapsedLane
+                  key="collapsed"
+                  folded={folded}
+                  metrics={m}
+                  compact={compact}
+                  safeLeft={safeLeft}
+                  gridWidth={gridWidth}
+                  onPanTo={panToTime}
+                />
+              );
+            }
+            return (
             <div key={room} className="flex" style={{ height: m.laneH }}>
               <div
                 style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
@@ -606,7 +779,8 @@ export function ScheduleTimeline({
                 ))}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

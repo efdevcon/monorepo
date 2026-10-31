@@ -294,6 +294,45 @@ export function buildTimeline(sessions: Session[]): Timeline {
   return { rooms, slots, startMs, byRoom };
 }
 
+/**
+ * A room lane folds away while the grid shows only time before the room's
+ * first session, if that is at least this long after the day's first
+ * session: Devcon 8's day 1 runs the opening on the Main Stage alone for
+ * 2.5 hours while the other eight rooms sit empty (and the Music Stage
+ * opens at 16:00 on day 4), while the 30–90 minute late starts of the other
+ * days are not worth a fold. End-of-day gaps never fold (Scott, 2026-10-31).
+ */
+export const EMPTY_LANE_MS = 2 * 60 * 60_000;
+
+/** A room whose programme starts late in the grid. */
+export interface LateRoom {
+  room: string;
+  /** Start (ms) of the room's first session. */
+  firstStartMs: number;
+}
+
+/**
+ * The rooms whose first session starts `gapMs` or later after the grid's
+ * origin, earliest first.
+ */
+export function lateRooms(t: Timeline, gapMs = EMPTY_LANE_MS): LateRoom[] {
+  return t.rooms
+    .map((room) => ({ room, firstStartMs: ms(t.byRoom[room][0].start) }))
+    .filter((r) => r.firstStartMs - t.startMs >= gapMs)
+    .sort((a, b) => a.firstStartMs - b.firstStartMs);
+}
+
+/**
+ * The late rooms with nothing to show up to `rightMs`, the time at the right
+ * edge of the visible time area: their lanes fold into one notice that names
+ * the time the earliest of them starts. A room unfolds the moment its first
+ * block would enter the view, and stays unfolded however far past its last
+ * session the grid pans.
+ */
+export function collapsedRooms(late: LateRoom[], rightMs: number): LateRoom[] {
+  return late.filter((r) => r.firstStartMs > rightMs);
+}
+
 /** Horizontal offset (px) of a timestamp (ms) from the grid origin. */
 export const offsetPx = (timeMs: number, startMs: number, slotWidth: number) =>
   ((timeMs - startMs) / SLOT_MS) * slotWidth;

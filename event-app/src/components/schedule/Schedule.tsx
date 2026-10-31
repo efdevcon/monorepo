@@ -1732,6 +1732,8 @@ function ScheduleInner({
                   scrollToTime={timelineScrollToTime}
                   headerRaised={chromeHidden}
                   zoom={zoom}
+                  // Only over the whole programme (see the prop).
+                  collapseEmptyLanes={activeFilterCount === 0}
                   selectedSessionId={selectedSessionId}
                   // Clicking the already-selected block closes the panel.
                   onOpen={(id) =>
