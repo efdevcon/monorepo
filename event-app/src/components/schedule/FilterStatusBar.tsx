@@ -35,7 +35,7 @@ export function FilterStatusBar({
       aria-label="Clear filters"
       className="flex h-9 min-w-0 cursor-pointer items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1 transition-colors hover:bg-dc-purple-wash"
     >
-      <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
+      <p className="min-w-0 truncate text-[12px] leading-5 text-dc-purple">
         <span className="font-bold">Filters:</span>{" "}
         <span className="font-medium">{parts.join(", ")}</span>
       </p>
