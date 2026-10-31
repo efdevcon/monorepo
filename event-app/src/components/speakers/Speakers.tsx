@@ -30,7 +30,6 @@ import { TopicSheet } from "./TopicSheet";
 import { SpeakersFilterStatusBar } from "./SpeakersFilterStatusBar";
 import { SpeakersEmptyState } from "./SpeakersEmptyState";
 import { AzIndexRail, FEATURED_SECTION } from "./AzIndexRail";
-import { isIOS } from "@/utils/platform";
 import { SpeakerDetailsPanel } from "./SpeakerDetailsPanel";
 import { usePreviewState } from "@/hooks/usePreviewState";
 
@@ -207,22 +206,6 @@ export function Speakers() {
   const revealAllRef = useRef(revealAll);
   revealAllRef.current = revealAll;
 
-  /**
-   * iOS (seen in the installed app, 2026-11-01): after a fast scroll or an
-   * instant jump WebKit sometimes drops the fixed rail's layer and paints it
-   * again only once something in it changes, leaving an empty lavender strip
-   * with no letters. One synchronous display toggle makes it rebuild the
-   * layer (the same lever as IOSViewportHealer); the wrapper is fixed, so
-   * nothing in the page flow moves. A no-op off iOS, where the bug is not.
-   */
-  const repaintFixedRail = useCallback(() => {
-    const rail = railStickyRef.current;
-    if (!rail || !isIOS()) return;
-    rail.style.display = "none";
-    void rail.offsetHeight;
-    rail.style.display = "";
-  }, []);
-
   const jumpToSection = useCallback((section: string) => {
     revealAllRef.current();
     const el = letterRefs.current.get(section);
@@ -251,9 +234,7 @@ export function Speakers() {
     // app crashes if you click multiple letters quickly"). Teleporting paints
     // only the destination, and matches how native iOS A–Z index bars behave.
     window.scrollTo({ top, behavior: "auto" });
-    // After the teleport has been composited, not before it.
-    requestAnimationFrame(repaintFixedRail);
-  }, [repaintFixedRail]);
+  }, []);
 
   // Scroll-linked chrome, measured on one rAF-throttled listener:
   // - glass recipe on the format tabs once the filter rows pin,
@@ -410,16 +391,8 @@ export function Speakers() {
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(measure);
     };
-    // A scroll that has settled (no event for 150ms, momentum included) gets
-    // the rail repainted too: the blank strip also follows fast flicks.
-    let settle = 0;
-    const onScroll = () => {
-      schedule();
-      window.clearTimeout(settle);
-      settle = window.setTimeout(repaintFixedRail, 150);
-    };
     measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
     // The in-flow search panel grows/shrinks above the rows over ~200ms
     // without any scroll or resize event; track its box so the fixed rail
@@ -430,8 +403,7 @@ export function Speakers() {
     return () => {
       if (raf) cancelAnimationFrame(raf);
       window.clearTimeout(spyTimeoutRef.current);
-      window.clearTimeout(settle);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
       ro?.disconnect();
     };
@@ -439,7 +411,7 @@ export function Speakers() {
     // panel unmounts around a detail visit (mobile keeps listVisible true),
     // so the observer must rebind to the remounted node.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sidePanelOpen, sections, listVisible, detailId, repaintFixedRail]);
+  }, [sidePanelOpen, sections, listVisible, detailId]);
 
   const filtersActive =
     activeFilterCount > 0 || interestedOnly || search.trim().length > 0;
