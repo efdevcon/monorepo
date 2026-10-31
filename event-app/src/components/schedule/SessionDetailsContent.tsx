@@ -152,8 +152,7 @@ const pillClass = cn(pillBase, "border-dc-hairline bg-white");
 
 /**
  * The session blurb, folded to three lines on phones and six from lg (the
- * shared FoldedText: "Show more" inline on phones, centred from lg, one
- * way only). Pretalx abstracts are markdown (lists, links, bold), hence
+ * shared FoldedText: "Show more" centred under the text, one way only). Pretalx abstracts are markdown (lists, links, bold), hence
  * MarkdownText; the fold clamps across its paragraphs and lists.
  */
 function Description({ text }: { text: string }) {
@@ -161,7 +160,6 @@ function Description({ text }: { text: string }) {
     <FoldedText
       text={text}
       clamp="line-clamp-3 lg:line-clamp-6"
-      lineHeight={20}
       className="text-[14px] leading-5 text-dc-fg2"
       contentClassName="[&>*+*]:mt-2"
     >

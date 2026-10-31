@@ -176,7 +176,6 @@ function SpeakerProfile({
             <FoldedText
               text={speaker.description}
               clamp="line-clamp-6"
-              lineHeight={lg ? 24 : 20}
               className={cn(
                 "text-dc-fg2",
                 lg ? "text-[16px] leading-6" : "text-[14px] leading-5"
