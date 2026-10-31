@@ -77,9 +77,20 @@ export function FoldedText({
       if (el.clientHeight === 0) return;
       setOverflows(el.scrollHeight > el.clientHeight + 1);
       if (isDesktop) return;
+      // The link's own width is part of the answer: until it has rendered
+      // (the first pass, before `overflows` is known) the end-of-line
+      // variant stands in, and this re-runs once it is there. Placing it
+      // inline on a guessed width of 0 squeezed it into the space after the
+      // last word, where it wrapped to two lines and its solid background
+      // hid the ends of the lines above (seen on a phone, 2026-10-31).
+      const linkWidth = linkRef.current?.offsetWidth ?? 0;
+      if (linkWidth === 0) {
+        setInlineAt(null);
+        return;
+      }
       const box = el.getBoundingClientRect();
       const end = lastLineEnd(el, box, lineHeight) - box.left;
-      const fits = end + LINK_GAP + (linkRef.current?.offsetWidth ?? 0) <= box.width;
+      const fits = end + LINK_GAP + linkWidth <= box.width;
       setInlineAt(fits ? end : null);
     };
     measure();
@@ -134,7 +145,9 @@ export function FoldedText({
             ref={linkRef}
             type="button"
             onClick={() => setExpanded(true)}
-            className="relative cursor-pointer font-bold text-dc-purple before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] hover:underline"
+            // Never wraps: its one-line width is what the inline measure
+            // reads, and a wrapped link would climb over the line above.
+            className="relative cursor-pointer whitespace-nowrap font-bold text-dc-purple before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] hover:underline"
           >
             Show more
           </button>
