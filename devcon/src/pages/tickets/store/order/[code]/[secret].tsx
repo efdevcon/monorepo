@@ -662,12 +662,12 @@ export default function OrderConfirmationPage() {
                         </div>
                       </div>
                     )}
-                    {/* {pdfUrl && (
+                    {pdfUrl && (
                       <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className={css['save-btn']}>
                         <Download size={18} />
                         Download (PDF)
                       </a>
-                    )} */}
+                    )}
                   </div>
                 </div>
               </>
