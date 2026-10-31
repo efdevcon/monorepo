@@ -6,16 +6,15 @@
  * all week.
  *
  * Which session:
- * 1. The one a Meerkat moderator put live on that stage ("Go live" in Meerkat's
- *    manage panel; one per stage). That is the truth on the day: it follows
- *    delays and overruns. Trusted only around its own slot, so a flag left on
- *    after the session does not hold the stage's QR all day.
- * 2. Otherwise the schedule: the session on stage now; in a changeover the one
- *    that just ended (its Q&A often runs over); before a stage's first session
- *    or after a long break, the next one.
+ * 1. Whatever Meerkat's /api/v1/events/stage/<room>/live answers, the same call
+ *    the stage screen (app.meerkat.events/stage/<room>) follows, so the QR and the
+ *    screen always show the same session: the event a moderator put live there
+ *    ("Go live" in Meerkat's manage panel, one per stage), else Meerkat's next
+ *    event not yet started on that stage.
+ * 2. When Meerkat has nothing for the stage, is slow or is down: the schedule:
+ *    the session on stage now; in a changeover the one that just ended (its Q&A
+ *    often runs over); before a stage's first session or after a long break, the next one.
  * 3. Otherwise the app's schedule.
- * Meerkat's own fallback (the next session not yet started) is not used: with
- * nobody pressing Go live it skips the talk on stage.
  */
 
 import { EVENT_APP_ORIGIN } from 'config/eventApp'
@@ -28,9 +27,6 @@ const SESSIONS_URL = `https://api.devcon.org/sessions?event=${MEERKAT_EVENT}&siz
 const ENDED_GRACE_MS = 15 * 60 * 1000
 /** An upcoming session takes the QR this long before it starts, when nothing just ended. */
 const UPCOMING_LEAD_MS = 60 * 60 * 1000
-/** Meerkat's live flag counts from this long before its slot until this long after (late starts, long overruns). */
-const LIVE_EARLY_MS = 30 * 60 * 1000
-const LIVE_LATE_MS = 60 * 60 * 1000
 
 export interface StageSession {
   id: string
@@ -47,17 +43,14 @@ export interface MeerkatStageEvent {
   live: boolean
 }
 
-export type StagePick = { session: StageSession; why: 'meerkat live' | 'live' | 'just ended' | 'next' } | null
+export type StagePick = { session: StageSession; why: 'meerkat live' | 'meerkat next' | 'live' | 'just ended' | 'next' } | null
 
 /** Pure, so the rule can be checked with fixed clocks. */
 export function pickSession(sessions: StageSession[], roomId: string, now: number, meerkat: MeerkatStageEvent | null = null): StagePick {
   const here = sessions.filter(s => s.slot_roomId === roomId && s.slot_start && s.slot_end).sort((a, b) => a.slot_start - b.slot_start)
-  if (meerkat?.live) {
-    const marked = here.find(s => s.sourceId === meerkat.uid)
-    if (marked && now >= marked.slot_start - LIVE_EARLY_MS && now < marked.slot_end + LIVE_LATE_MS) {
-      return { session: marked, why: 'meerkat live' }
-    }
-  }
+  // Meerkat's answer wins whenever it names a session of this stage: it is what the stage screen shows.
+  const fromMeerkat = meerkat && here.find(s => s.sourceId === meerkat.uid)
+  if (fromMeerkat) return { session: fromMeerkat, why: meerkat.live ? 'meerkat live' : 'meerkat next' }
   const live = here.filter(s => s.slot_start <= now && now < s.slot_end)
   // Overlapping slots: the one that started last is the one on stage.
   if (live.length) return { session: live[live.length - 1], why: 'live' }
@@ -91,7 +84,7 @@ export async function fetchStageSessions(): Promise<StageSession[]> {
 }
 
 /**
- * Meerkat's live (or next) event for a stage, public endpoint. Null when Meerkat
+ * Meerkat's live (or next) event for a stage, public endpoint: the one the stage screen follows. Null when Meerkat
  * has nothing for the stage (404), is slow or is down: the schedule takes over.
  * Not cached: a moderator's Go live should reach the next scan.
  */

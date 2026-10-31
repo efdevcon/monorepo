@@ -4,7 +4,7 @@ import { appUrl, fetchMeerkatLive, fetchStageSessions, pickSession } from 'servi
 /**
  * Stage Q&A QR target: /api/meerkat/?mtm_placement=<room id> (as the /qr/meerkat/<room id>
  * redirect sends it; `?stage=<room id>` also works) → the event-app session on that
- * stage now: the one a Meerkat moderator put live there, else the schedule's.
+ * stage now: Meerkat's live (else next) event there, as on the stage screen; the schedule's when Meerkat has none.
  * See services/meerkat-redirect.ts for the rule.
  *
  * Never cached: the answer changes with the clock, and Netlify's CDN key ignores
