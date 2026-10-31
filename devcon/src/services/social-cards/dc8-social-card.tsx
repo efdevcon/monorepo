@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from '@vercel/og'
+import makeBlockie from 'ethereum-blockies-base64'
 import { socialAssetDataUrl } from './assets'
 import {
   cleanDc8SessionType,
@@ -49,7 +50,8 @@ export function renderDc8SocialCard(
   speakerImages: Map<string, string>,
   fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer },
   size: { width: number; height: number },
-  // The session's day, time and room above the title (the AV page's "with time and stage" variant).
+  // The session's day, time and room in the top-right corner instead of the city and dates
+  // (the AV page's "with time and stage" variant).
   options: { showSlot?: boolean } = {}
 ) {
   let scale = size.width / 1200
@@ -72,23 +74,21 @@ export function renderDc8SocialCard(
   // step down so the clamp stays inside the centered zone (390px tall @630).
   const slotWhen = options.showSlot ? slotWhenLabel(session.slot_start) : ''
   const slotRoom: string = options.showSlot ? session.slot_room?.name ?? '' : ''
-  const showSlot = Boolean(slotWhen || slotRoom)
 
   const title: string = session.title ?? ''
-  // The slot line takes ~70px of the centered zone: one title line less, so long titles still fit.
   const titleStyle =
     title.length > 140
-      ? { fontSize: s(34), lineClamp: showSlot ? 4 : 5 }
+      ? { fontSize: s(34), lineClamp: 5 }
       : title.length > 80
-      ? { fontSize: s(42), lineClamp: showSlot ? 3 : 4 }
-      : { fontSize: s(50), lineClamp: showSlot ? 2 : 3 }
+      ? { fontSize: s(42), lineClamp: 4 }
+      : { fontSize: s(50), lineClamp: 3 }
 
   const speakers: any[] = session.speakers ?? []
   const speakerNames = speakers.map((sp: any) => sp.name).join(', ')
-  // Same convention as the share page: avatars without an image collapse out
-  // of the stack. Size stays 80px whatever the count; the raised row has the
-  // whole card width to itself, so large groups do not need to shrink.
-  const avatars = speakers.map((sp: any) => speakerImages.get(sp.id)).filter(Boolean) as string[]
+  // A speaker without a photo gets the blockie the app shows them. Size stays
+  // 80px whatever the count; the raised row has the whole card width to
+  // itself, so large groups do not need to shrink.
+  const avatars = speakerAvatars(speakers, speakerImages)
   // The AV card (1920x1080, 675-tall base) is a video intro frame, not a
   // social preview: no label band to dodge, so the avatars sit on the footer
   // baseline next to the Format+Track pill and get more room (2026-10-13).
@@ -143,7 +143,7 @@ export function renderDc8SocialCard(
           />
         )}
 
-        {/* Header: logo left, city/date right */}
+        {/* Header: logo left, city/date (or the session's day, time and room) right */}
         <img
           src={socialAssetDataUrl('dc8/logo.png')}
           style={{ position: 'absolute', left: s(40), top: s(40), width: s(145), height: s(64), objectFit: 'contain' }}
@@ -159,11 +159,7 @@ export function renderDc8SocialCard(
             letterSpacing: s(-0.5),
           }}
         >
-          <span style={{ fontSize: s(25), fontWeight: 700, lineHeight: 1.15, color: '#7235ed' }}>MUMBAI, INDIA</span>
-          <div style={{ display: 'flex', marginTop: s(4), fontSize: s(26), lineHeight: 1.15, color: '#594d73' }}>
-            <span style={{ color: '#7235ed', marginRight: s(6) }}>3—6</span>
-            <span>Nov, 2026</span>
-          </div>
+          {headerCorner(s, { top: 25, bottom: 26, gap: 4, dash: 6, maxWidth: 400 }, slotWhen, slotRoom)}
         </div>
 
         {/* Title + speakers, centered between header and footer */}
@@ -179,28 +175,6 @@ export function renderDc8SocialCard(
             justifyContent: 'center',
           }}
         >
-          {showSlot && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                alignSelf: 'flex-start',
-                marginBottom: s(20),
-                padding: `${s(10)}px ${s(16)}px`,
-                borderRadius: s(12),
-                background: 'rgba(255, 255, 255, 0.72)',
-                border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
-                fontSize: s(24),
-                lineHeight: 1.25,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {slotWhen && <span style={{ fontWeight: 700, color: '#7235ed' }}>{slotWhen}</span>}
-              {slotRoom && (
-                <span style={{ marginLeft: slotWhen ? s(14) : 0, fontWeight: 500, color: '#1a0d33' }}>{slotRoom}</span>
-              )}
-            </div>
-          )}
           <div
             style={{
               display: 'block',
@@ -324,11 +298,92 @@ export function renderDc8SocialCard(
   )
 }
 
+/**
+ * Each speaker's photo, or for one without a photo the blockie the app shows
+ * them (devcon-api's CreateBlockie: same canonical algorithm, seeded with the
+ * name, else the speaker code).
+ */
+function speakerAvatars(speakers: any[], speakerImages: Map<string, string>): string[] {
+  return speakers.map((sp: any) => speakerImages.get(sp.id) ?? makeBlockie(sp.name || sp.id || 'unknown'))
+}
+
 const poppins = (fonts: { regular: ArrayBuffer; medium: ArrayBuffer; bold: ArrayBuffer }) => [
   { name: 'Poppins', data: fonts.regular, weight: 400 as const, style: 'normal' as const },
   { name: 'Poppins', data: fonts.medium, weight: 500 as const, style: 'normal' as const },
   { name: 'Poppins', data: fonts.bold, weight: 700 as const, style: 'normal' as const },
 ]
+
+/**
+ * The header's top-right lines: the session's day + time and room when given,
+ * else the event's "MUMBAI, INDIA / 3—6 Nov, 2026". Sizes in base units.
+ */
+function headerCorner(
+  s: (n: number) => number,
+  size: { top: number; bottom: number; gap: number; dash: number; maxWidth: number },
+  when: string,
+  room: string
+) {
+  const line = {
+    lineHeight: 1.15,
+    maxWidth: s(size.maxWidth),
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  } as const
+  // A real column wrapper: Satori lays out a fragment's children as a row.
+  if (!when && !room)
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+        <span style={{ fontSize: s(size.top), fontWeight: 700, lineHeight: 1.15, color: '#7235ed' }}>
+          MUMBAI, INDIA
+        </span>
+        <div
+          style={{
+            display: 'flex',
+            marginTop: s(size.gap),
+            fontSize: s(size.bottom),
+            lineHeight: 1.15,
+            color: '#594d73',
+          }}
+        >
+          <span style={{ color: '#7235ed', marginRight: s(size.dash) }}>3—6</span>
+          <span>Nov, 2026</span>
+        </div>
+      </div>
+    )
+  // On a light rounded box, like the Format+Track pill; pulled out by its padding so the text keeps the header's edges.
+  const padY = size.top * 0.4
+  const padX = size.top * 0.6
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        padding: `${s(padY)}px ${s(padX)}px`,
+        margin: `${s(-padY)}px ${s(-padX)}px 0 0`,
+        borderRadius: s(size.top * 0.5),
+        background: 'rgba(255, 255, 255, 0.72)',
+        border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
+      }}
+    >
+      {when && <span style={{ ...line, fontSize: s(size.top), fontWeight: 700, color: '#7235ed' }}>{when}</span>}
+      {room && (
+        <span
+          style={{
+            ...line,
+            marginTop: when ? s(size.gap) : 0,
+            fontSize: s(size.bottom),
+            fontWeight: 500,
+            color: '#594d73',
+          }}
+        >
+          {room}
+        </span>
+      )}
+    </div>
+  )
+}
 
 /** "TUE 3 NOV · 14:30" in event time, or "" without a slot. */
 function slotWhenLabel(start: string | null | undefined): string {
@@ -350,10 +405,10 @@ function slotWhenLabel(start: string | null | undefined): string {
  * bar at the bottom), so everything readable sits between STORY_TOP and
  * STORY_BOTTOM; only the decorative badge reaches below.
  *
- * Top to bottom: logo + city/date header, then a block centered in what is
- * left: the session's day, time and room when it has a slot, the title
- * (large, stepping down with length), the speakers' photos and names, and
- * the Format+Track pill.
+ * Top to bottom: the logo with the session's day, time and room (the city
+ * and dates when it has no slot), then a block centered in what is left:
+ * the title (large, stepping down with length), the speakers' names and
+ * photos, and the Format+Track pill.
  */
 const STORY_TOP = 260
 const STORY_BOTTOM = 1580
@@ -390,7 +445,7 @@ export function renderDc8StoryCard(
 
   const speakers: any[] = session.speakers ?? []
   const speakerNames = speakers.map((sp: any) => sp.name).join(', ')
-  const avatars = speakers.map((sp: any) => speakerImages.get(sp.id)).filter(Boolean) as string[]
+  const avatars = speakerAvatars(speakers, speakerImages)
   // One row across the safe width whatever the count: big for a solo talk, smaller for panels.
   const AVATAR = avatars.length <= 2 ? 150 : avatars.length <= 4 ? 128 : 104
   const when = slotWhenLabel(session.slot_start)
@@ -429,7 +484,7 @@ export function renderDc8StoryCard(
           />
         )}
 
-        {/* Header: logo left, city/date right, below Instagram's profile bar */}
+        {/* Header below Instagram's profile bar: logo left, the session's day, time and room (else city/date) right */}
         <img
           src={socialAssetDataUrl('dc8/logo.png')}
           style={{
@@ -452,11 +507,7 @@ export function renderDc8StoryCard(
             letterSpacing: s(-0.5),
           }}
         >
-          <span style={{ fontSize: s(40), fontWeight: 700, lineHeight: 1.15, color: '#7235ed' }}>MUMBAI, INDIA</span>
-          <div style={{ display: 'flex', marginTop: s(6), fontSize: s(42), lineHeight: 1.15, color: '#594d73' }}>
-            <span style={{ color: '#7235ed', marginRight: s(10) }}>3—6</span>
-            <span>Nov, 2026</span>
-          </div>
+          {headerCorner(s, { top: 40, bottom: 42, gap: 6, dash: 10, maxWidth: 580 }, when, room)}
         </div>
 
         {/* Session block, centered between the header and Instagram's reply bar */}
@@ -473,30 +524,9 @@ export function renderDc8StoryCard(
             alignItems: 'flex-start',
           }}
         >
-          {(when || room) && (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: `${s(20)}px ${s(28)}px`,
-                borderRadius: s(20),
-                background: 'rgba(255, 255, 255, 0.72)',
-                border: `${Math.max(1, Math.round(s(1)))}px solid rgba(34, 17, 68, 0.1)`,
-              }}
-            >
-              {when && (
-                <span style={{ fontSize: s(38), fontWeight: 700, lineHeight: 1.25, color: '#7235ed' }}>{when}</span>
-              )}
-              {room && (
-                <span style={{ fontSize: s(34), fontWeight: 500, lineHeight: 1.3, color: '#1a0d33' }}>{room}</span>
-              )}
-            </div>
-          )}
-
           <div
             style={{
               display: 'block',
-              marginTop: when || room ? s(44) : 0,
               lineClamp: titleStyle.lineClamp,
               fontSize: titleStyle.fontSize,
               fontWeight: 500,
@@ -508,8 +538,24 @@ export function renderDc8StoryCard(
             {title}
           </div>
 
+          {/* Names under the title, photos below them: the landscape card's order */}
+          {speakerNames && (
+            <div
+              style={{
+                display: 'block',
+                lineClamp: 3,
+                marginTop: s(40),
+                fontSize: s(42),
+                lineHeight: 1.3,
+                letterSpacing: s(-0.25),
+                color: '#594d73',
+              }}
+            >
+              {speakerNames}
+            </div>
+          )}
           {avatars.length > 0 && (
-            <div style={{ display: 'flex', alignItems: 'center', marginTop: s(64) }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: s(40) }}>
               {avatars.slice(0, 6).map((src, index) => (
                 <img
                   key={index}
@@ -526,21 +572,6 @@ export function renderDc8StoryCard(
                   }}
                 />
               ))}
-            </div>
-          )}
-          {speakerNames && (
-            <div
-              style={{
-                display: 'block',
-                lineClamp: 3,
-                marginTop: s(avatars.length ? 24 : 48),
-                fontSize: s(42),
-                lineHeight: 1.3,
-                letterSpacing: s(-0.25),
-                color: '#594d73',
-              }}
-            >
-              {speakerNames}
             </div>
           )}
 

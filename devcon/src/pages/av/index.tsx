@@ -941,23 +941,6 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
                 )}
               </Section>
 
-              <Section
-                title="Screen Cards"
-                note={
-                  assets.screens.length === 0
-                    ? `${session.room ?? 'This session'} has no stage screen, so no Screen Card.`
-                    : `At the native size of each screen in ${session.room}.`
-                }
-              >
-                {assets.screens.length > 0 && (
-                  <div className={GRID}>
-                    {assets.screens.map(a => (
-                      <AssetTile key={a.key} asset={a} nonce={nonce} onReady={onReady} />
-                    ))}
-                  </div>
-                )}
-              </Section>
-
               <Section title="Slides">
                 {session.slides.presenting === 'laptop' ? (
                   <p className="flex items-center gap-2 rounded-xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900">
@@ -985,6 +968,23 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
                 )}
                 {session.slides.untouched && session.slides.presenting !== 'laptop' && (
                   <p className="text-sm text-amber-800">The deck has never been edited.</p>
+                )}
+              </Section>
+
+              <Section
+                title="Screen Cards"
+                note={
+                  assets.screens.length === 0
+                    ? `${session.room ?? 'This session'} has no stage screen, so no Screen Card.`
+                    : `At the native size of each screen in ${session.room}.`
+                }
+              >
+                {assets.screens.length > 0 && (
+                  <div className={GRID}>
+                    {assets.screens.map(a => (
+                      <AssetTile key={a.key} asset={a} nonce={nonce} onReady={onReady} />
+                    ))}
+                  </div>
                 )}
               </Section>
 
