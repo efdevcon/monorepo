@@ -167,7 +167,7 @@ export function EventInformation() {
       >
         Event information
       </h2>
-      <div className="flex flex-col gap-2 rounded-xl border border-dc-hairline bg-white p-4 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8 lg:p-6">
+      <div className="flex flex-col gap-2 rounded-xl border border-dc-hairline bg-white px-4 py-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-8 lg:px-6">
         <div className="rounded-lg bg-dc-lavender p-4 lg:p-6">
           <h3 className="text-[16px] font-bold leading-6 text-dc-fg2 lg:text-[18px]">
             Essentials
