@@ -6,7 +6,7 @@ import cn from "classnames";
 import { ArrowRight, Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
-import { safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDesktop";
+import { headerOffsetNow, safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDesktop";
 import { useInterested } from "@/data/interested/useInterested";
 import {
   buildTimeline,
@@ -535,16 +535,49 @@ export function ScheduleTimeline({
   }, [late, m.slotWidth, m.roomCol, hasGrid]);
 
   // The notice's time link: pan the grid so that time sits at the left
-  // edge of the time area, where the lanes it names unfold.
+  // edge of the time area, where the lanes it names unfold; then, once they
+  // have, bring them into view (below). Lanes keep a ref per room for that.
+  const laneRefs = useRef(new Map<string, HTMLDivElement | null>());
+  const revealRoomsRef = useRef<string[] | null>(null);
   const panToTime = (timeMs: number) => {
     const el = scrollRef.current;
     if (!el) return;
+    revealRoomsRef.current = late
+      .filter((r) => r.firstStartMs <= timeMs)
+      .map((r) => r.room);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.scrollTo({
       left: Math.max(0, offsetPx(timeMs, startMs, m.slotWidth)),
       behavior: reduce ? "auto" : "smooth",
     });
   };
+  // The lanes the tapped notice named have unfolded (mid-pan, as the view's
+  // right edge reaches their first block): scroll the page so they show,
+  // since they appear below the fold on day 1's tall grid and the person
+  // had to go looking for them (Scott, 2026-10-31). Only ever down, by the
+  // least that puts their bottom above the tab bar, never past their top
+  // under the pinned chrome. Instant like every vertical jump in the app.
+  useLayoutEffect(() => {
+    const rooms = revealRoomsRef.current;
+    if (!rooms || rooms.some((r) => collapsed.has(r))) return;
+    revealRoomsRef.current = null;
+    const rects = rooms
+      .map((r) => laneRefs.current.get(r)?.getBoundingClientRect())
+      .filter((r): r is DOMRect => !!r && r.height > 0);
+    if (rects.length === 0) return;
+    const top = Math.min(...rects.map((r) => r.top));
+    const bottom = Math.max(...rects.map((r) => r.bottom));
+    const viewportH = window.visualViewport?.height ?? window.innerHeight;
+    const navClearance = isDesktop
+      ? 0
+      : parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-clearance")) || 0;
+    const visibleBottom = viewportH - navClearance - 16;
+    // Pinned chrome: header (+ desktop toolbar) + day tabs, plus the sticky
+    // axis on phones (static on desktop).
+    const pinned = headerOffsetNow() + (isDesktop ? 118 : 47 + m.headerH) + 8;
+    const delta = Math.min(bottom - visibleBottom, top - pinned);
+    if (delta > 0) window.scrollBy({ top: delta, behavior: "auto" });
+  }, [collapsed, isDesktop, m.headerH]);
 
   // "Jump to now": center the now line in the visible grid area.
   useEffect(() => {
@@ -778,7 +811,14 @@ export function ScheduleTimeline({
               );
             }
             return (
-            <div key={room} className="flex" style={{ height: m.laneH }}>
+            <div
+              key={room}
+              ref={(el) => {
+                laneRefs.current.set(room, el);
+              }}
+              className="flex"
+              style={{ height: m.laneH }}
+            >
               <div
                 style={{ width: m.roomCol, paddingLeft: safeLeft || undefined }}
                 title={room}
