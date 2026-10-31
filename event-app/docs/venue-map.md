@@ -168,7 +168,7 @@ and escalator-right (the -left variants are in the folder for other floors), lot
 music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
 `JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
 interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
-structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station. Hub booths show their
+structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station (the scarf; the file is `swag-station-scarf.png` since 2026-10-31 because the service worker holds images CacheFirst for 30 days under their URL, so the trousers kept showing on every device that had opened the map before the restyle). Hub booths show their
 hub's mark (`public/community-hubs/logos/<id>.svg`, India's PNG) via `hubs`, supporter booths
 their lockup via `tenants` (supporters.ts); the generic community-hub glyph is the fallback for a booth with no
 hub. Every catalogue entry now has an icon (Bitget's lockup landed at S4 on 2026-10-25).

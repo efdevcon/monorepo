@@ -193,7 +193,7 @@ export const AREAS = {
   "blue-discussion-corner": { name: "Blue Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner", iconSize: 4.5 },
   "pink-discussion-corner": { name: "Pink Discussion Corner", description: "Open discussions, drop in.", category: "cowork", legend: "hubs", heightClass: "zone", icon: "discussion-corner", iconSize: 4.5 },
   // Check-in & swag
-  "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station" },
+  "swag-station": { name: "Swag Station", description: "Collect your swag with your ticket.", category: "checkin", legend: "fun", heightClass: "kiosk", icon: "swag-station-scarf" },
   registration: { name: "Registration", description: "Check in and collect your wristband.", category: "checkin", heightClass: "kiosk", icon: "registration-wristband" },
   "badge-pickup": { name: "Badge Pickup #", description: "Create a Devcon badge.", category: "checkin", heightClass: "kiosk", icon: "badge-pickup" },
   // Two desks: the Help Desk is ticketing only, the Info Desk (by the registration entrance, added 2026-10-30) is the volunteers' general one (Scott).
