@@ -213,7 +213,7 @@ export function AiPlannerPanel({
               built while open because it reads window.location (client-only). */}
           {/* Outer box owns the radius and clips, so the scrollbar's track
               stays inside the rounded corners. */}
-          <div hidden={!previewOpen} className="overflow-hidden rounded-[14px] border border-dc-hairline bg-white">
+          <div hidden={!previewOpen} className="overflow-hidden rounded-lg border border-dc-hairline bg-white lg:rounded-[14px]">
             <div
               id={previewId}
               role="region"
