@@ -383,6 +383,7 @@ export function ScheduleTimeline({
   headerRaised = false,
   zoom = 1,
   collapseEmptyLanes = false,
+  onFilterRoom,
 }: {
   sessions: Session[];
   nowMs: number;
@@ -413,6 +414,12 @@ export function ScheduleTimeline({
   headerRaised?: boolean;
   /** Horizontal zoom (see TimelineZoom): 2 doubles the width of a minute. */
   zoom?: TimelineZoom;
+  /**
+   * Prototype (concept 1, 2026-10-31): a "Filter all" link under each room
+   * name, shown on hover (always, on a touch screen), that filters the
+   * schedule to that location across both programmes.
+   */
+  onFilterRoom?: (room: string) => void;
   /**
    * Fold the lanes of rooms whose programme starts hours after the day's
    * first session into one "No programming until …" lane while the grid
@@ -836,14 +843,27 @@ export function ScheduleTimeline({
                 className={cn(
                   chromeCell,
                   glassCell,
-                  "sticky left-0 z-10 justify-center border-r text-center font-semibold leading-[1.2]",
+                  "group/room sticky left-0 z-10 flex-col justify-center border-r text-center font-semibold leading-[1.2]",
                   // Wrap at spaces (or hyphenate where the browser can);
                   // never mid-word — "Decompressio/n Room" reads worse than
                   // a clipped tail, and the title attr carries the full name.
                   compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
                 )}
               >
-                <span className="line-clamp-2">{shortCommunityHubName(room)}</span>
+                <span className={onFilterRoom ? "line-clamp-1" : "line-clamp-2"}>{shortCommunityHubName(room)}</span>
+                {onFilterRoom && (
+                  // Revealed by hovering the room cell (or tabbing to it);
+                  // a touch screen has no hover, so there it is always on.
+                  // The hit area grows past the drawn text to the 44px floor.
+                  <button
+                    type="button"
+                    onClick={() => onFilterRoom(room)}
+                    aria-label={`Show all programming in ${room}`}
+                    className="relative mt-0.5 cursor-pointer text-[11px] font-medium leading-4 text-dc-purple opacity-0 transition-opacity duration-150 ease-out before:absolute before:-inset-x-3 before:-inset-y-2 before:content-[''] group-hover/room:opacity-100 focus-visible:opacity-100 hover:underline motion-reduce:transition-none [@media(hover:none)]:opacity-100"
+                  >
+                    Filter all
+                  </button>
+                )}
               </div>
               <div
                 className="relative shrink-0 border-b border-dc-hairline bg-white"

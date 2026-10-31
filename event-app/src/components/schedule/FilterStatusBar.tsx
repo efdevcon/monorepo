@@ -18,14 +18,18 @@ const FACET_LABELS: Record<FilterFacet, string> = {
  */
 export function FilterStatusBar({
   counts,
+  allProgrammes = false,
   onClear,
 }: {
   counts: Partial<Record<FilterFacet, number>>;
+  /** The one-location view spans both programmes (prototype, 2026-10-31). */
+  allProgrammes?: boolean;
   onClear: () => void;
 }) {
   const parts = (Object.keys(FACET_LABELS) as FilterFacet[])
     .filter((f) => (counts[f] ?? 0) > 0)
     .map((f) => `${FACET_LABELS[f]} (${counts[f]})`);
+  if (allProgrammes) parts.push("All programming");
 
   if (parts.length === 0) return null;
 

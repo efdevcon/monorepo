@@ -183,6 +183,8 @@ export function FilterPanelContent({
   communities = NO_COMMUNITIES,
   interestedOnly = false,
   onToggleInterested,
+  allProgrammes = false,
+  onToggleAllProgrammes,
 }: {
   options: Record<FilterFacet, string[]>;
   filters: Filters;
@@ -197,6 +199,14 @@ export function FilterPanelContent({
   /** The My Interests view (the header pill's state); its switch leads the panel when the host hands one in. */
   interestedOnly?: boolean;
   onToggleInterested?: (on: boolean) => void;
+  /**
+   * Prototype (concept 2, 2026-10-31): with exactly one location picked, a
+   * "Show all programming" switch under Locations widens the view to both
+   * programmes for that room. Hidden otherwise; the host decides whether to
+   * hand the handler in at all.
+   */
+  allProgrammes?: boolean;
+  onToggleAllProgrammes?: (on: boolean) => void;
 }) {
   const tracks = useMemo(() => options.track.filter((t) => !t.startsWith(CLS_PREFIX)), [options.track]);
 
@@ -380,6 +390,24 @@ export function FilterPanelContent({
                 />
               ))}
             </div>
+            {onToggleAllProgrammes && filters.room.length === 1 && (
+              <div className="mt-3 flex items-center justify-between gap-3 border-t border-dc-hairline pt-3">
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <span className="text-[14px] font-semibold leading-5 text-dc-fg2">
+                    Show all programming
+                  </span>
+                  <span className="text-[12px] leading-4 text-dc-muted">
+                    Tracks and community sessions in {filters.room[0]}
+                  </span>
+                </div>
+                <Switch
+                  size="sm"
+                  checked={allProgrammes}
+                  onChange={onToggleAllProgrammes}
+                  aria-label={`Show all programming in ${filters.room[0]}`}
+                />
+              </div>
+            )}
           </AccordionSection>
         )}
 

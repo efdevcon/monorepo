@@ -106,8 +106,19 @@ export function useScheduleState(
   initialInterestedOnly = false
 ) {
   const [interestedOnly, setInterestedOnly] = useState(initialInterestedOnly);
+  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState<Filters>(EMPTY);
+  // "Show all programming" (prototype, 2026-10-31): with exactly one
+  // location selected, the view spans both programmes for that room, so a
+  // stage's tracks sessions and its community-led slots read as one day.
+  // The request outlives nothing: it drops as soon as the location pick is
+  // no longer exactly one, so a later pick never lands in the wider list
+  // unasked. Adjusted during render ("state from props"), not in an effect.
+  const [allProgrammesWanted, setAllProgrammesWanted] = useState(false);
+  if (allProgrammesWanted && filters.room.length !== 1) setAllProgrammesWanted(false);
+  const allProgrammes = allProgrammesWanted && filters.room.length === 1;
   const sessions =
-    interestedOnly && everyProgrammeSessions
+    (interestedOnly || allProgrammes) && everyProgrammeSessions
       ? everyProgrammeSessions
       : programmeSessions;
   // Ticks every minute so "live"/"soon" status stays current (URL-mockable).
@@ -135,8 +146,6 @@ export function useScheduleState(
     dayBeforeSearchRef.current = null;
     setSelectedDayState(key);
   }, []);
-  const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState<Filters>(EMPTY);
 
   // Analytics: one event per search started (never the text) and per
   // My Interests toggle, from state transitions so every entry point counts.
@@ -255,6 +264,17 @@ export function useScheduleState(
     setFilters(EMPTY);
     setSearch("");
     setInterestedOnly(false);
+    setAllProgrammesWanted(false);
+  };
+
+  /**
+   * "Filter all" on a room (prototype concept 1): this location alone, every
+   * programme — the facet picks go, since a track or community pick would
+   * contradict "all"; the search and My Interests stay.
+   */
+  const filterRoomAll = (room: string) => {
+    setFilters({ ...EMPTY, room: [room] });
+    setAllProgrammesWanted(true);
   };
 
   const activeFilterCount =
@@ -528,6 +548,9 @@ export function useScheduleState(
     completedCount,
     interestedOnly,
     setInterestedOnly,
+    allProgrammes,
+    setAllProgrammes: setAllProgrammesWanted,
+    filterRoomAll,
     daySessions,
     resultCount,
     anyLive,
