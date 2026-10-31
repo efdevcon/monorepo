@@ -277,7 +277,7 @@ invariants, taps, floor placement, catalogue and search. `pnpm typecheck` and `p
   `Subtract` slab inside their `Background` group, name Level 2's interior walls as Level 1's are, and
   group the loose labels under "Text & Icon". The unnamed blue box beside the Community Led Stage on Level 0 is
   named `cls-hangout-area` in the committed copy only (name it in Figma), the `flagship-supporter-1` box on Level 3 is deleted
-  from the committed `L3.svg` only (Fluid left, 2026-10-30: delete it in Figma too), and the `info-desk` colour box on Level 0 (a Help Desk-sized
+  from the committed `L3.svg` only (Fluid left, 2026-10-30: delete it in Figma too), the `flagship-supporter-2` box (Base) on Level 3 is moved 127.66 px left in the committed `L3.svg` only, so its centre lines up with the Content Corner's at x 916.64 px with its row unchanged (Scott, 2026-10-31: move it in Figma too), and the `info-desk` colour box on Level 0 (a Help Desk-sized
   box outside the registration entrance, between washroom 1 and the entrance arrow, 2026-10-30) exists in the committed `L0.svg` only: draw it in
   Figma before the next export or the re-export drops it. Pretalx's
   `cls-builders-room` has no box on the plan yet (Scott adds one on 2026-10-28); until then its
