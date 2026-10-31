@@ -19,9 +19,9 @@ export interface CommunityLedGroup {
   badge: string;
   /** Pastel surface colour for badges, rails and filter chips. */
   color: string;
-  /** Mark (square logo) under /public, when the group has one of its own; else COMMUNITY_LED_LOGO. */
+  /** Mark (square logo) under /public, when the group has one of its own (see logoOf); else COMMUNITY_LED_LOGO. */
   logo?: string;
-  /** Lockup for the session details banner, when the group has one. */
+  /** Full logo for the session details banner, when the group has one (see lockupOf); else the mark with the track under it. */
   lockup?: string;
   description?: string;
 }
@@ -44,21 +44,68 @@ export function communityLedLogo(group: Pick<CommunityLedGroup, "logo">): string
   return group.logo ?? COMMUNITY_LED_LOGO;
 }
 
+/**
+ * The groups' own artwork under /public/community-led/logos, as the groups
+ * sent it (2026-10-31): `<id>.svg` the square mark for cards, the timeline and
+ * the filter chips, `<id>-lockup.svg` the full logo for the details banner.
+ * Warmed for offline through APP_IMAGES like the hubs' logos.
+ */
+const logoOf = (id: string) => `/community-led/logos/${id}.svg`;
+const lockupOf = (id: string) => `/community-led/logos/${id}-lockup.svg`;
+
 /** Pastels of their own, apart from the nine track colours and the hubs' (data:test enforces it). */
 export const COMMUNITY_LED_GROUPS: CommunityLedGroup[] = [
-  { id: "ots", track: "[CLS] - OTS", name: "Open Tech Summit", badge: "OTS", color: "#d9f2ff" },
+  // OTS sent one wordmark and no square mark, so it stands in both slots (Scott, 2026-10-31).
+  {
+    id: "ots",
+    track: "[CLS] - OTS",
+    name: "Open Tech Summit",
+    badge: "OTS",
+    color: "#d9f2ff",
+    logo: logoOf("ots"),
+    lockup: logoOf("ots"),
+  },
   { id: "epf", track: "[CLS] - EPF", name: "EPF", badge: "EPF", color: "#ffe3b3" },
   { id: "academic", track: "[CLS] - Academic", name: "Academic Track", badge: "Academic", color: "#e4dcff" },
-  { id: "ethindia", track: "[CLS] - ETHIndia", name: "ETHIndia", badge: "ETHIndia", color: "#ffd9c2" },
+  {
+    id: "ethindia",
+    track: "[CLS] - ETHIndia",
+    name: "ETHIndia",
+    badge: "ETHIndia",
+    color: "#ffd9c2",
+    logo: logoOf("ethindia"),
+    lockup: lockupOf("ethindia"),
+  },
   {
     id: "buidlguidl",
     track: "[CLS] - Builder Enablement & BuidlGuidl",
     name: "Builder Enablement & BuidlGuidl",
     badge: "BuidlGuidl",
     color: "#d6f5c9",
+    logo: logoOf("buidlguidl"),
+    lockup: lockupOf("buidlguidl"),
   },
-  { id: "defi-101", track: "[CLS] - Defi 101", name: "DeFi 101", badge: "DeFi 101", color: "#c9f0e6" },
-  { id: "career-fair", track: "[CLS] - Career Fair", name: "Career Fair", badge: "Career Fair", color: "#fde9b8" },
+  // The "Defi 101" track is the DSS security summit's programme (its sessions
+  // are the security panels), so it carries the DSS artwork.
+  {
+    id: "defi-101",
+    track: "[CLS] - Defi 101",
+    name: "DeFi 101",
+    badge: "DeFi 101",
+    color: "#c9f0e6",
+    logo: logoOf("defi-101"),
+    lockup: lockupOf("defi-101"),
+  },
+  // The Career Fair is run by dev3pack, whose artwork it carries.
+  {
+    id: "career-fair",
+    track: "[CLS] - Career Fair",
+    name: "Career Fair",
+    badge: "Career Fair",
+    color: "#fde9b8",
+    logo: logoOf("career-fair"),
+    lockup: lockupOf("career-fair"),
+  },
   // The hub talks on the main stages (track "[CLS] - Community Hubs"): one
   // group of their own, never attached to a hub by their title.
   { id: "community-hubs", track: "[CLS] - Community Hubs", name: "Community Hubs", badge: "Hubs", color: "#e0e8ff" },

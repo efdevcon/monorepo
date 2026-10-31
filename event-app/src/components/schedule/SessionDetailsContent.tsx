@@ -58,9 +58,10 @@ function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme
       {showArtwork && (
         <div className="flex h-full w-full flex-col items-center justify-center gap-2">
           {theme.banner ? (
-            // Hub's stacked lockup (mark over name): bigger than the mark, sized
-            // off the banner so it scales from the side panel to the expanded page
-            // (3/4 of its height, up a quarter from 3/5; Scott, 2026-10-27).
+            // A hub's stacked lockup (mark over name) or a community-led group's
+            // full logo: bigger than the mark, sized off the banner so it scales
+            // from the side panel to the expanded page (3/4 of its height, up a
+            // quarter from 3/5; Scott, 2026-10-27).
             // eslint-disable-next-line @next/next/no-img-element
             <img src={theme.banner} alt={theme.name} className="h-3/4 max-w-[87.5%] object-contain" />
           ) : (
@@ -74,18 +75,18 @@ function SessionBanner({ session, theme }: { session: Session; theme: TrackTheme
               />
             )
           )}
-          {/* Hub sessions: the hub's lockup is the banner, no caption under it. A hub
-              without a lockup (the Music Stage) shows its mark with its name under it,
-              in the foreground colour (Scott, 2026-10-27). */}
-          {theme.isHub
-            ? !theme.banner && (
-                <span className="px-4 text-center text-[16px] font-medium leading-6 text-dc-fg">{theme.name}</span>
-              )
-            : (
-                <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
-                  {session.track || theme.name}
-                </span>
-              )}
+          {/* A lockup is the banner, no caption under it: a hub's, or a
+              community-led group's own logo (2026-10-31). A hub without a
+              lockup (the Music Stage) shows its mark with its name under it,
+              in the foreground colour (Scott, 2026-10-27); anything else its
+              gem with the track under it. */}
+          {theme.banner ? null : theme.isHub ? (
+            <span className="px-4 text-center text-[16px] font-medium leading-6 text-dc-fg">{theme.name}</span>
+          ) : (
+            <span className="px-4 text-center text-[14px] font-medium leading-5 text-dc-fg2">
+              {session.track || theme.name}
+            </span>
+          )}
         </div>
       )}
       {card !== "none" && (
