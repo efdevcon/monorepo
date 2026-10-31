@@ -718,32 +718,26 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                 Thank you!
               </h2>
 
-              <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                {schema?.successMsg ?? 'Your application has been submitted.'}
-              </p>
-              {formSlug === STUDENT_APPLICATION_SLUG && (
-                <>
-                  <div className="text-sm text-[#1a0d33] leading-5 text-center bg-[#f9f8fa] rounded-lg px-4 py-4 w-full">
-                    <p className="font-bold mb-2">We review applications in four rounds:</p>
-                    <ul className="list-disc list-outside pl-5 space-y-1 inline-block text-left">
-                      <li>
-                        <span className="font-bold">Round 1</span> — Apply by June 12, responses sent by July 15
-                      </li>
-                      <li>
-                        <span className="font-bold">Round 2</span> — Apply by August 14, responses sent by September 7
-                      </li>
-                      <li>
-                        <span className="font-bold">Round 3</span> — Apply by September 30, responses sent by October 7
-                      </li>
-                      <li>
-                        <span className="font-bold">Final Round</span> — Apply by October 31, responses sent by November 2
-                      </li>
-                    </ul>
-                  </div>
-                  <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                    Keep an eye on your email for a decision from our approval team.
-                  </p>
-                </>
+              {formSlug === STUDENT_APPLICATION_SLUG ? (
+                <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                  Your application has been submitted! We&rsquo;ll review it as soon as possible, and you&rsquo;ll get the
+                  decision by email.
+                  <br />
+                  In the meantime, check out the{' '}
+                  <a
+                    href="https://app.devcon.org/schedule"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-[#7235ed] underline hover:text-[#6029d1]"
+                  >
+                    agenda
+                  </a>{' '}
+                  to get ready for Devcon.
+                </p>
+              ) : (
+                <p className="text-sm text-[#1a0d33] leading-5 text-center">
+                  {schema?.successMsg ?? 'Your application has been submitted.'}
+                </p>
               )}
 
               <Link

@@ -429,14 +429,6 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 <strong>{t('applications_section.body_strong_3')}</strong>
                 {t('applications_section.body_suffix')}
               </p>
-              <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
-                <strong>{t('applications_section.subcopy_strong_1')}</strong>
-                {t('applications_section.subcopy_middle_1')}
-                <strong>{t('applications_section.subcopy_strong_2')}</strong>
-                {t('applications_section.subcopy_middle_2')}
-                <strong>{t('applications_section.subcopy_strong_3')}</strong>
-                {t('applications_section.subcopy_suffix')}
-              </p>
               {launched && (
                 <NextLink
                   href={storeUrl}

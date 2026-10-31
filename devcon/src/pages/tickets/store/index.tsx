@@ -165,7 +165,7 @@ const APPLICATION_TICKETS: Array<
     title: 'Indian Student 🇮🇳',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum.',
+      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
     combined: '$25',
     href: '/form/student-application',
   },
@@ -174,7 +174,7 @@ const APPLICATION_TICKETS: Array<
     title: 'International Student 🌎',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum.',
+      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
     eth: '$49',
     fiat: '$99',
     href: '/form/student-application',
@@ -619,9 +619,6 @@ function StoreContent({
                   <h3 className={css['section-title']}>Applications</h3>
                   <span className={css['open-badge']}>OPEN</span>
                 </div>
-                <p className={css['section-subtitle']}>
-                  Applications are curated and limited per round, subject to availability and review.
-                </p>
               </div>
 
               <div className={css['applications-grid']}>
@@ -669,7 +666,9 @@ function StoreContent({
                     <span className={css['opens-badge']}>Opens July</span>
                   )}
                 </div>
-                <p className={css['section-subtitle']}>Secure tickets early to access the lowest prices.</p>
+                <p className={css['section-subtitle']}>
+                  Final chance to get a General Admission ticket. Tickets are available until sold out.
+                </p>
               </div>
 
               {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
