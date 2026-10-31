@@ -40,11 +40,13 @@ export const FEATURED_SECTION = "featured";
  * Speakers.jumpToSection), and a slide that teleported at every cell fired
  * ten or more a second, which blanked the page and then killed the WebKit
  * content process on a phone (Scott's device video, 2026-10-14; the PR #112
- * crash by another route). While the finger is down, phones also show the
- * held section large beside the top of the rail: the thumb covers the cell
- * it is on and the list does not move until release, so that readout is the
- * only live sign of where the slide is (2026-11-01). A cancelled press
- * (system gesture, second finger) jumps nowhere. A press has handled its own click, so the click that
+ * crash by another route). While the finger is down, the held section also
+ * shows large beside the top of the rail: the thumb covers the cell it is
+ * on and the list does not move until release, so that readout is the only
+ * live sign of where the slide is (2026-11-01). A mouse gets the same
+ * readout for the cell it hovers, without moving the pill, which keeps
+ * marking where the list really is. A cancelled press (system gesture,
+ * second finger) jumps nowhere. A press has handled its own click, so the click that
  * follows one is ignored; every other click on a cell (Enter / Space, and
  * assistive technology, which synthesises a click with no pointer events)
  * jumps. Empty cells are aria-disabled rather than disabled: a disabled
@@ -79,6 +81,10 @@ export function AzIndexRail({
   // ahead of the jump, which only happens on release (see above).
   const [preview, setPreview] = useState<string | null>(null);
   const shown = preview ?? activeSection;
+  // The section under a hovering mouse (nearest cell with speakers, as for
+  // a press): the large readout only, never the pill.
+  const [hover, setHover] = useState<string | null>(null);
+  const readout = preview ?? hover;
   // Whether the pill had a position in the previous commit: the transition
   // only applies between two real positions, otherwise the first placement
   // would visibly sweep down from translateY(0) every time the rail appears.
@@ -141,7 +147,10 @@ export function AzIndexRail({
   };
   const onPointerMove = (e: PointerEvent<HTMLElement>) => {
     const p = press.current;
-    if (!p || !e.currentTarget.hasPointerCapture(e.pointerId)) return;
+    if (!p || !e.currentTarget.hasPointerCapture(e.pointerId)) {
+      if (e.pointerType === "mouse") setHover(sectionAt(e.clientY));
+      return;
+    }
     const section = sectionAt(e.clientY);
     if (section && section !== p.last) {
       p.last = section;
@@ -183,6 +192,7 @@ export function AzIndexRail({
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
+      onPointerLeave={() => setHover(null)}
       // touch-action none: a vertical drag on the rail slides through the
       // letters, it never scrolls the page.
       style={{ touchAction: "none" }}
@@ -206,24 +216,25 @@ export function AzIndexRail({
             "transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
         )}
       />
-      {/* The held section, large, left of the rail's top (phones only; a
-          mouse sees its pointer). Follows `preview`, so it appears on the
-          press and goes with the release. Its right edge sits on the cards'
+      {/* The held or hovered section, large, left of the rail's top. Follows
+          `preview` (the press) and `hover` (a mouse over the rail), so it
+          appears with either and goes with the release or the mouse leaving.
+          Its right edge sits on the cards'
           right edge: Speakers.tsx measures that gap from the rail each frame
           into --az-readout-gap (16px until it has); beside the thumb, clear
           of the heading row (a left-side variant was tried and read worse,
           2026-11-01). Vertically it fills the heading row a jump lands on:
           the heading sits 16px below the rows and its first card 52px, so a
           40px box 6px down leaves 6px to each. */}
-      {preview !== null && (
+      {readout !== null && (
         <span
           aria-hidden
-          className="pointer-events-none absolute right-[calc(100%+var(--az-readout-gap,16px))] top-1.5 flex size-10 items-center justify-center rounded-xl bg-dc-purple text-[22px] font-bold leading-none text-white shadow-lg lg:hidden"
+          className="pointer-events-none absolute right-[calc(100%+var(--az-readout-gap,16px))] top-1.5 flex size-10 items-center justify-center rounded-xl bg-dc-purple text-[22px] font-bold leading-none text-white shadow-lg"
         >
-          {preview === FEATURED_SECTION ? (
+          {readout === FEATURED_SECTION ? (
             <MicVocal className="size-5" strokeWidth={2.5} />
           ) : (
-            preview
+            readout
           )}
         </span>
       )}
