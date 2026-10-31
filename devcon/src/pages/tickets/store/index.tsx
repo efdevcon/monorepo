@@ -165,7 +165,7 @@ const APPLICATION_TICKETS: Array<
     title: 'Indian Student 🇮🇳',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum.',
+      'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
     combined: '$25',
     href: '/form/student-application',
   },
@@ -174,7 +174,7 @@ const APPLICATION_TICKETS: Array<
     title: 'International Student 🌎',
     meta: 'ID required at check-in',
     description:
-      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum.',
+      'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
     eth: '$49',
     fiat: '$99',
     href: '/form/student-application',
