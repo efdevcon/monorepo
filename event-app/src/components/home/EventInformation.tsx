@@ -163,7 +163,7 @@ export function EventInformation() {
     <section aria-labelledby="home-event-info-title">
       {/* The title sits inside the card (Scott, 2026-10-31): 20px all round on
           phones, 24px sides and 32px top and bottom on desktop. */}
-      <div className="rounded-xl border border-dc-hairline bg-white p-5 lg:px-6 lg:py-8">
+      <div className="rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] p-5 lg:px-6 lg:py-8">
         <h2
           id="home-event-info-title"
           className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2"
