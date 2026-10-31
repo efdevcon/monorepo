@@ -614,7 +614,7 @@ export function Speakers() {
                     {(topics.length > 0 || type !== null) && (
                       <div className="lg:hidden">
                         <div className="flex h-9 min-w-0 items-center justify-between gap-2 rounded-[4px] border border-dc-purple bg-dc-lavender px-2 py-1">
-                          <p className="min-w-0 truncate text-[12px] leading-none text-dc-purple">
+                          <p className="min-w-0 truncate text-[12px] leading-5 text-dc-purple">
                             <span className="font-bold">Filters:</span>{" "}
                             <span className="font-medium">
                               {[

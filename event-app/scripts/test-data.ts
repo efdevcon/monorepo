@@ -60,7 +60,7 @@ import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
 import { deriveTopicOptions } from "../src/data/topics";
-import { compareRoomNames, sortRooms } from "../src/components/schedule/utils";
+import { buildTimeline, collapsedRooms, compareRoomNames, EMPTY_LANE_MS, lateRooms, sortRooms } from "../src/components/schedule/utils";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -564,6 +564,46 @@ function testReminderCatalogue() {
   const merged = mergeReminderCatalogues(main, hubs, hubs);
   check("reminder catalogue: hub sessions join the Pretalx ones once, with the hub as their room", merged.length === 3 && merged[2].id === "privacy-s01" && merged[2].roomName === "Privacy Hub");
   check("reminder catalogue: an unreachable hubs programme is just an empty list", eq(mergeReminderCatalogues(main, []), main));
+}
+
+function testTimelineFold() {
+  // Day 1 shape: the Main Stage from the start, two rooms 2.5 h later, one
+  // 4.5 h later, one 30 min later, one that ends early (a trailing gap).
+  const H = 60 * 60_000;
+  const t0 = Date.UTC(2026, 10, 3, 4, 0); // 09:30 Asia/Kolkata
+  const at = (id: string, roomId: string, startMs: number, mins: number): Session => ({
+    ...mkSession(id, "Security", roomId),
+    start: startMs / 1000,
+    end: startMs / 1000 + mins * 60,
+  });
+  const sessions = [
+    at("open", "main-stage-lotus", t0, 150),
+    at("ends-early", "workshop-1", t0 + 0.5 * H, 60),
+    at("j1", "jasmine-stage-4", t0 + 2.5 * H, 30),
+    at("w2", "workshop-2", t0 + 2.5 * H, 30),
+    at("w2-later", "workshop-2", t0 + 7 * H, 30),
+    at("l1", "lotus-stage-1", t0 + 4.5 * H, 30),
+  ];
+  const timeline = buildTimeline(sessions);
+  const late = lateRooms(timeline);
+  check(
+    "late rooms: those starting EMPTY_LANE_MS or later after the grid origin, earliest first",
+    eq(late.map((r) => r.room), ["jasmine-stage-4", "workshop-2", "lotus-stage-1"]) &&
+      late[0].firstStartMs === t0 + 2.5 * H &&
+      EMPTY_LANE_MS === 2 * H
+  );
+  check("a room that starts within the gap never folds", !late.some((r) => r.room === "workshop-1"));
+  check("a trailing gap never folds", !late.some((r) => r.room === "main-stage-lotus"));
+  check(
+    "at the day's start every late room folds",
+    eq(collapsedRooms(late, t0 + 1 * H).map((r) => r.room), ["jasmine-stage-4", "workshop-2", "lotus-stage-1"])
+  );
+  check(
+    "a room unfolds once its first block reaches the view's right edge",
+    eq(collapsedRooms(late, t0 + 2.5 * H).map((r) => r.room), ["lotus-stage-1"])
+  );
+  check("past its sessions a room stays unfolded", collapsedRooms(late, t0 + 8 * H).length === 0);
+  check("a wider gap threshold folds fewer rooms", eq(lateRooms(timeline, 4 * H).map((r) => r.room), ["lotus-stage-1"]));
 }
 
 function testMeerkatHandover() {
@@ -1374,6 +1414,7 @@ function testSessionCard() {
 
 async function main() {
   testNormalize();
+  testTimelineFold();
   testReminders();
   testMeerkatHandover();
   testReminderCatalogue();

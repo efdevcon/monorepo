@@ -68,6 +68,13 @@ export function minutesUntil(session: Session, nowMs: number): number {
   return Math.max(0, Math.round((ms(session.start) - nowMs) / 60000));
 }
 
+/**
+ * The day selector's "All" tab: every day at once, the list in day sections
+ * and the timeline as one grid per day (Scott, 2026-10-31). Never one of
+ * `getDays`' keys, which are dates.
+ */
+export const ALL_DAYS = "all";
+
 /** A day in the day selector. */
 export interface ScheduleDay {
   key: string;
@@ -94,6 +101,10 @@ export function getDays(sessions: Session[]): ScheduleDay[] {
 
 /** A contiguous block of sessions sharing a start time, for sticky headers. */
 export interface TimeGroup {
+  /** Unique among a list's groups: the day and the time ("2026-11-03 09:30"). */
+  key: string;
+  /** Venue-timezone day key the group's sessions start on. */
+  dayKey: string;
   timeLabel: string;
   sessions: Session[];
 }
@@ -131,9 +142,13 @@ export function groupByTime(sessions: Session[]): TimeGroup[] {
   const groups: TimeGroup[] = [];
   for (const s of sorted) {
     const timeLabel = formatTime(s.start);
+    const day = dayKey(s);
     const last = groups[groups.length - 1];
-    if (last && last.timeLabel === timeLabel) last.sessions.push(s);
-    else groups.push({ timeLabel, sessions: [s] });
+    if (last && last.timeLabel === timeLabel && last.dayKey === day) {
+      last.sessions.push(s);
+    } else {
+      groups.push({ key: `${day} ${timeLabel}`, dayKey: day, timeLabel, sessions: [s] });
+    }
   }
   return groups;
 }
@@ -292,6 +307,45 @@ export function buildTimeline(sessions: Session[]): Timeline {
   for (let t = startMs; t <= endMs; t += SLOT_MS) slots.push(t);
 
   return { rooms, slots, startMs, byRoom };
+}
+
+/**
+ * A room lane folds away while the grid shows only time before the room's
+ * first session, if that is at least this long after the day's first
+ * session: Devcon 8's day 1 runs the opening on the Main Stage alone for
+ * 2.5 hours while the other eight rooms sit empty (and the Music Stage
+ * opens at 16:00 on day 4), while the 30–90 minute late starts of the other
+ * days are not worth a fold. End-of-day gaps never fold (Scott, 2026-10-31).
+ */
+export const EMPTY_LANE_MS = 2 * 60 * 60_000;
+
+/** A room whose programme starts late in the grid. */
+export interface LateRoom {
+  room: string;
+  /** Start (ms) of the room's first session. */
+  firstStartMs: number;
+}
+
+/**
+ * The rooms whose first session starts `gapMs` or later after the grid's
+ * origin, earliest first.
+ */
+export function lateRooms(t: Timeline, gapMs = EMPTY_LANE_MS): LateRoom[] {
+  return t.rooms
+    .map((room) => ({ room, firstStartMs: ms(t.byRoom[room][0].start) }))
+    .filter((r) => r.firstStartMs - t.startMs >= gapMs)
+    .sort((a, b) => a.firstStartMs - b.firstStartMs);
+}
+
+/**
+ * The late rooms with nothing to show up to `rightMs`, the time at the right
+ * edge of the visible time area: their lanes fold into one notice that names
+ * the time the earliest of them starts. A room unfolds the moment its first
+ * block would enter the view, and stays unfolded however far past its last
+ * session the grid pans.
+ */
+export function collapsedRooms(late: LateRoom[], rightMs: number): LateRoom[] {
+  return late.filter((r) => r.firstStartMs > rightMs);
 }
 
 /** Horizontal offset (px) of a timestamp (ms) from the grid origin. */

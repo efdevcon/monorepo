@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { CloseButton, PrimaryButton, SecondaryButton } from "@/components/Buttons";
+import { Switch } from "@/components/Switch";
 import type { FilterFacet, Filters } from "./useScheduleState";
 import { getTrackTheme } from "./trackTheme";
 import { formatDayKeyLabel } from "./utils";
@@ -179,6 +180,8 @@ export function FilterPanelContent({
   defaultOpen = false,
   mode = "main",
   communities = NO_COMMUNITIES,
+  interestedOnly = false,
+  onToggleInterested,
 }: {
   options: Record<FilterFacet, string[]>;
   filters: Filters;
@@ -190,6 +193,9 @@ export function FilterPanelContent({
   mode?: FilterPanelMode;
   /** The communities (hubs and community-led groups) in the sessions in view ("hubs" / "both" modes). */
   communities?: CommunityRef[];
+  /** The My Interests view (the header pill's state); its switch leads the panel when the host hands one in. */
+  interestedOnly?: boolean;
+  onToggleInterested?: (on: boolean) => void;
 }) {
   const tracks = useMemo(() => options.track.filter((t) => !t.startsWith(CLS_PREFIX)), [options.track]);
 
@@ -215,6 +221,23 @@ export function FilterPanelContent({
 
       {/* Scrollable facet sections */}
       <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto p-4">
+        {/* My Interests leads the panel as a switch (Scott, 2026-10-31):
+            the same toggle as the header pill, so the view can be narrowed
+            to the starred sessions from here too. Not a facet: Clear all
+            and Reset filters turn it off like the pill's state. */}
+        {onToggleInterested && (
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[16px] font-bold leading-6 text-dc-fg2">
+              My Interests
+            </span>
+            <Switch
+              size="sm"
+              checked={interestedOnly}
+              onChange={onToggleInterested}
+              aria-label="Show only My Interests"
+            />
+          </div>
+        )}
         {mode !== "hubs" && tracks.length > 0 && (
           <AccordionSection
             title="Tracks"
