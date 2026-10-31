@@ -36,12 +36,16 @@ import { GetRooms, GetScheduleBlocks, GetSessions, GetSpeakers, ScheduleBlock } 
 import { getPretalxConfig } from '@/utils/config'
 import { AV_EVENT_FOLDER, avDayFolder, avRoomFolder, meerkatStageUrl, qaQrKey, qaQrUrl } from '@/utils/av-drive'
 import {
+  CHANGE_STATUS,
   CUES_SHEET,
   EVENT_TIMEZONES,
   ExistingRow,
   LINK_FIELDS,
   FilePlan,
   LAYOUTS,
+  LAYOUT_V3,
+  LAYOUT_V4,
+  LAYOUT_V5,
   RosLayout,
   RosSession,
   buildIndex,
@@ -101,7 +105,9 @@ const TOP_ROWS = 5
 /** 1-based sheet row of the first generated row (right below the headers); as a 0-based index it is the header row. */
 const firstRow = (layout: RosLayout) => layout.headerRow + 1
 const firstIndex = (layout: RosLayout) => layout.headerRow
-const HIGHLIGHT = { red: 1, green: 0.92, blue: 0.6 }
+// Cells changed by this run: lavender, because bright yellow is reserved for a row the crew marks CHANGE.
+const HIGHLIGHT = { red: 0.9, green: 0.85, blue: 0.98 }
+const CHANGE_ROW = { bg: { red: 1, green: 1, blue: 0 }, fg: { red: 0, green: 0, blue: 0 } }
 const PARKED_TEXT = { red: 0.6, green: 0.6, blue: 0.6 }
 // Breaks and blockers read as a bar across the running order (like the v2
 // session dividers), not as sessions: dark blue for breaks, dark grey for a room held.
@@ -112,7 +118,8 @@ const BLOCK_STYLE = {
 }
 const STATUS_COLOURS: Record<string, { bg: any; fg: any }> = {
   CONFIRMED: { bg: { red: 0.83, green: 0.93, blue: 0.85 }, fg: { red: 0.11, green: 0.45, blue: 0.2 } },
-  TBC: { bg: { red: 1, green: 0.95, blue: 0.78 }, fg: { red: 0.55, green: 0.4, blue: 0 } },
+  CHANGE: CHANGE_ROW,
+  TBC: { bg: { red: 0.82, green: 0.94, blue: 0.94 }, fg: { red: 0.05, green: 0.4, blue: 0.42 } },
   CANCELLED: { bg: { red: 0.97, green: 0.85, blue: 0.85 }, fg: { red: 0.6, green: 0.1, blue: 0.1 } },
   STANDBY: { bg: { red: 0.99, green: 0.9, blue: 0.78 }, fg: { red: 0.6, green: 0.3, blue: 0 } },
   DELAYED: { bg: { red: 0.99, green: 0.9, blue: 0.78 }, fg: { red: 0.6, green: 0.3, blue: 0 } },
@@ -184,6 +191,9 @@ const LAYOUT_IO: Record<string, LayoutIo> = {
     strictLists: true,
   },
 }
+
+LAYOUT_IO.v4 = LAYOUT_IO.v3
+LAYOUT_IO.v5 = LAYOUT_IO.v3
 
 interface RawSession {
   sourceId: string
@@ -656,7 +666,8 @@ async function prepareSheets(
   const meta: any = await withRetry(`read ${label}`, () =>
     sheets.spreadsheets.get({
       spreadsheetId,
-      fields: 'sheets(properties(sheetId,title,index,gridProperties(rowCount,columnCount)),conditionalFormats(ranges),data(columnMetadata(pixelSize)))',
+      fields:
+        'sheets(properties(sheetId,title,index,gridProperties(rowCount,columnCount)),conditionalFormats(ranges),data(columnMetadata(pixelSize)))',
     })
   )
   const tabs: any[] = meta.data.sheets || []
@@ -1045,7 +1056,14 @@ function formatRequests(
     requests.push({
       repeatCell: {
         range: { sheetId: ids.main, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 1, endColumnIndex: 2 },
-        cell: { userEnteredFormat: { textFormat: { fontSize: 16, bold: true }, wrapStrategy: 'OVERFLOW_CELL', verticalAlignment: 'MIDDLE', horizontalAlignment: 'LEFT' } },
+        cell: {
+          userEnteredFormat: {
+            textFormat: { fontSize: 16, bold: true },
+            wrapStrategy: 'OVERFLOW_CELL',
+            verticalAlignment: 'MIDDLE',
+            horizontalAlignment: 'LEFT',
+          },
+        },
         fields: 'userEnteredFormat(textFormat.fontSize,textFormat.bold,wrapStrategy,verticalAlignment,horizontalAlignment)',
       },
     })
@@ -1095,7 +1113,10 @@ function formatRequests(
   for (const c of [col.slides, col.rec, col.id]) {
     if (c === undefined) continue
     const shown = (v: string | number | undefined) => /^=HYPERLINK\("[^"]*","([^"]*)"\)$/i.exec(String(v ?? ''))?.[1] ?? String(v ?? '')
-    const texts = [...plan.rows.filter((row) => row.kind === 'session' || row.kind === 'manual').map((row) => shown(row.values[c])), ...(alwaysFit[c] ?? [])]
+    const texts = [
+      ...plan.rows.filter((row) => row.kind === 'session' || row.kind === 'manual').map((row) => shown(row.values[c])),
+      ...(alwaysFit[c] ?? []),
+    ]
     const longest = Math.max(0, ...texts.map((t) => t.length))
     const needed = Math.ceil(longest * 8 + 24)
     if (needed > (ids.columnWidths[c] ?? 100)) {
@@ -1182,16 +1203,25 @@ async function writeFile(
     const qaAt = labels.findIndex((v) => assets.qaQrRow.test(v))
     if (qaAt < 0) line(`! ${file.label}: no "${assets.qaQrName}" row on ${assets.tab}, links not written`)
     else {
-      if (file.qaQr) data.push({ range: `'${assets.tab}'!A${qaAt + 1}:B${qaAt + 1}`, values: [[assets.qaQrName, `=HYPERLINK("${file.qaQr}","App Q&A QR · ${file.roomName}")`]] })
+      if (file.qaQr)
+        data.push({
+          range: `'${assets.tab}'!A${qaAt + 1}:B${qaAt + 1}`,
+          values: [[assets.qaQrName, `=HYPERLINK("${file.qaQr}","App Q&A QR · ${file.roomName}")`]],
+        })
       let mkAt = labels.findIndex((v) => assets.meerkatRow.test(v))
       if (mkAt < 0 && ids.assets !== undefined) {
         // Right under the QR row, pushing the AV team's own rows down rather than overwriting one.
-        insertMeerkatRow = { insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true } }
+        insertMeerkatRow = {
+          insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true },
+        }
         mkAt = qaAt + 1
       }
       if (mkAt >= 0) {
         const url = meerkatStageUrl(file.roomId)
-        data.push({ range: `'${assets.tab}'!A${mkAt + 1}:B${mkAt + 1}`, values: [[assets.meerkatName, `=HYPERLINK("${url}","Meerkat · ${file.roomName}")`]] })
+        data.push({
+          range: `'${assets.tab}'!A${mkAt + 1}:B${mkAt + 1}`,
+          values: [[assets.meerkatName, `=HYPERLINK("${url}","Meerkat · ${file.roomName}")`]],
+        })
       }
     }
   }
@@ -1207,21 +1237,22 @@ async function writeFile(
   // Everything this run would send. When it matches what the last write sent and the
   // schedule has no change here, the sheet already looks like this: leave it alone.
   // A code change to values or formats changes the fingerprint, so it still lands.
-  const fingerprint = crypto
-    .createHash('sha1')
-    .update(JSON.stringify({ structure, data, format, blockTicks, insertMeerkatRow }))
-    .digest('hex')
+  const fingerprint = crypto.createHash('sha1').update(JSON.stringify({ structure, data, format, blockTicks, insertMeerkatRow })).digest('hex')
   if (!FORCE && !plan.changes.length && file.drive?.appProperties?.ros_hash === fingerprint) return { written: false, fingerprint }
 
   await withRetry(`prepare ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: structure } }))
   if (insertMeerkatRow)
-    await withRetry(`add Meerkat row to ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: [insertMeerkatRow] } }))
+    await withRetry(`add Meerkat row to ${file.label}`, () =>
+      sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: [insertMeerkatRow] } })
+    )
   await withRetry(`write rows of ${file.label}`, () =>
     sheets.spreadsheets.values.batchUpdate({ spreadsheetId, requestBody: { valueInputOption: 'USER_ENTERED', data } })
   )
   await withRetry(`format ${file.label}`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: format } }))
   if (blockTicks.length) {
-    await withRetry(`clear break ticks of ${file.label}`, () => sheets.spreadsheets.values.batchClear({ spreadsheetId, requestBody: { ranges: blockTicks } }))
+    await withRetry(`clear break ticks of ${file.label}`, () =>
+      sheets.spreadsheets.values.batchClear({ spreadsheetId, requestBody: { ranges: blockTicks } })
+    )
   }
   if (plan.changes.length) {
     await withRetry(`log changes of ${file.label}`, () =>
@@ -1366,8 +1397,102 @@ function conditionalRules(layout: RosLayout, ids: SheetIds, n: number): any[] {
       )
     )
   }
+  // Pushed last, so it wins: a row the crew marks CHANGE is bright yellow end to end, over
+  // every other colour (on stage now, breaks, banding, status). Sheets applies one rule per cell.
+  if (layout.statusOptions.includes(CHANGE_STATUS))
+    out.push(
+      rule(
+        [range(0, cols)],
+        { type: 'CUSTOM_FORMULA', values: [{ userEnteredValue: `=${L('status')}="${CHANGE_STATUS}"` }] },
+        { backgroundColor: CHANGE_ROW.bg, textFormat: { foregroundColor: CHANGE_ROW.fg } }
+      )
+    )
   return out
 }
+
+/**
+ * v3 -> v4 in place: one column inserted right after INTRO ANIMATION, on the main
+ * tab and on the hidden _style copy (row formats are pasted from it by column).
+ * Sheets moves every cell, note, validation, merge, crew formula and crew column
+ * to its right along with it, so nothing the crew wrote is rewritten or lost.
+ */
+async function upgradeToV4(sheets: any, spreadsheetId: string, label: string) {
+  const at = LAYOUT_V4.col.streamIntro!
+  const header = LAYOUT_V4.headers[at]
+  const meta: any = await withRetry(`read ${label} for the v4 upgrade`, () =>
+    sheets.spreadsheets.get({ spreadsheetId, fields: 'sheets(properties(sheetId,title),data(columnMetadata(pixelSize)))' })
+  )
+  const tabs: any[] = meta.data.sheets || []
+  const requests: any[] = []
+  for (const title of [SHEET, STYLE_SHEET]) {
+    const tab = tabs.find((t) => t.properties.title === title)
+    if (!tab) continue
+    const sheetId = tab.properties.sheetId
+    const width = tab.data?.[0]?.columnMetadata?.[LAYOUT_V3.col.intro!]?.pixelSize ?? 140
+    requests.push(
+      { insertDimension: { range: { sheetId, dimension: 'COLUMNS', startIndex: at, endIndex: at + 1 }, inheritFromBefore: true } },
+      {
+        updateDimensionProperties: {
+          range: { sheetId, dimension: 'COLUMNS', startIndex: at, endIndex: at + 1 },
+          properties: { pixelSize: width },
+          fields: 'pixelSize',
+        },
+      },
+      {
+        updateCells: {
+          range: { sheetId, startRowIndex: LAYOUT_V4.headerRow - 1, endRowIndex: LAYOUT_V4.headerRow, startColumnIndex: at, endColumnIndex: at + 1 },
+          rows: [{ values: [{ userEnteredValue: { stringValue: header } }] }],
+          fields: 'userEnteredValue',
+        },
+      }
+    )
+  }
+  await withRetry(`upgrade ${label} to v4`, () => sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests } }))
+  // The cached read predates the new column.
+  sheetData.delete(spreadsheetId)
+  line(`↑ ${label}: "${header}" column added after INTRO ANIMATION (layout v4)`)
+}
+
+/**
+ * v4 -> v5 in place: the END column moved after MC on the main and _style tabs. Sheets
+ * carries the header, formats, widths and every cell along, and rewrites references to
+ * the moved cells; the sync rewrites END and MC formulas for the new order right after.
+ */
+async function upgradeToV5(sheets: any, spreadsheetId: string, label: string) {
+  const from = LAYOUT_V4.col.end!
+  const to = LAYOUT_V4.col.mc! + 1 // index before the source is removed: right after MC
+  const meta: any = await withRetry(`read ${label} for the v5 upgrade`, () =>
+    sheets.spreadsheets.get({ spreadsheetId, fields: 'sheets(properties(sheetId,title),merges)' })
+  )
+  // Sheets refuses to move a column across a merge (the template's full-width REMOVED
+  // divider): unmerge those, move, merge the same ranges again, in one atomic batch.
+  const requests: any[] = []
+  const remerge: any[] = []
+  for (const t of meta.data.sheets || []) {
+    if (![SHEET, STYLE_SHEET].includes(t.properties.title)) continue
+    const sheetId = t.properties.sheetId
+    for (const m of t.merges || []) {
+      if (m.startColumnIndex >= to || m.endColumnIndex <= from) continue
+      requests.push({ unmergeCells: { range: m } })
+      remerge.push({ mergeCells: { range: m, mergeType: 'MERGE_ALL' } })
+    }
+    requests.push({
+      moveDimension: { source: { sheetId, dimension: 'COLUMNS', startIndex: from, endIndex: from + 1 }, destinationIndex: to },
+    })
+  }
+  await withRetry(`upgrade ${label} to v5`, () =>
+    sheets.spreadsheets.batchUpdate({ spreadsheetId, requestBody: { requests: [...requests, ...remerge] } })
+  )
+  sheetData.delete(spreadsheetId)
+  line(`↑ ${label}: END moved after MC (layout v5)`)
+}
+
+/** Upgrade a v3 or v4 sheet (or the template) to v5, one step at a time. */
+async function upgradeLayout(sheets: any, spreadsheetId: string, label: string, from: RosLayout) {
+  if (from === LAYOUT_V3) await upgradeToV4(sheets, spreadsheetId, label)
+  if (from === LAYOUT_V3 || from === LAYOUT_V4) await upgradeToV5(sheets, spreadsheetId, label)
+}
+const UPGRADABLE = [LAYOUT_V3, LAYOUT_V4]
 
 /** The merge addresses columns by position: recognise the template's header row or refuse to run. */
 async function detectTemplateLayout(sheets: any): Promise<RosLayout> {
@@ -1483,7 +1608,14 @@ async function main() {
   )
   const templateSheetId = template.data.sheets.find((s: any) => s.properties.title === SHEET)?.properties.sheetId
   if (templateSheetId === undefined) throw new Error(`template has no "${SHEET}" tab`)
-  const layout = await detectTemplateLayout(sheets)
+  let layout = await detectTemplateLayout(sheets)
+  if (UPGRADABLE.includes(layout)) {
+    if (DRY_RUN) line(`? template: would be upgraded from ${layout.name} to v5; older sheets are planned as they are`)
+    else {
+      await upgradeLayout(sheets, TEMPLATE_ID, 'template', layout)
+      layout = LAYOUT_V5
+    }
+  }
   line(`folder "${folder.data.name}" · template "${template.data.properties.title}" (layout ${layout.name})`)
   const formatOptions = [...layout.formatOptions]
   for (const s of sessions) if (s.type && !formatOptions.includes(s.type)) formatOptions.push(s.type)
@@ -1515,7 +1647,12 @@ async function main() {
     // Two sheets for one stage and day: keep the older one, which holds the crew's work.
     if (file.drive && file.drive.id !== f.id) {
       const [keep, extra] = (file.drive.createdTime || '') <= (f.createdTime || '') ? [file.drive, f] : [f, file.drive]
-      line(`! ${file.label}: two sheets, using the one created ${keep.createdTime?.slice(0, 10)}; the copy created ${extra.createdTime?.slice(0, 16)} is left alone (https://docs.google.com/spreadsheets/d/${extra.id})`)
+      line(
+        `! ${file.label}: two sheets, using the one created ${keep.createdTime?.slice(0, 10)}; the copy created ${extra.createdTime?.slice(
+          0,
+          16
+        )} is left alone (https://docs.google.com/spreadsheets/d/${extra.id})`
+      )
       file.drive = keep
       continue
     }
@@ -1555,8 +1692,14 @@ async function main() {
         continue
       }
       file.drive = item
-      const fileLayout = created ? layout : await readSheetLayout(sheets, item.id, file.label)
+      let fileLayout = created ? layout : await readSheetLayout(sheets, item.id, file.label)
       if (!fileLayout) throw new Error(`headers match no known layout; the sheet is skipped`)
+      if (UPGRADABLE.includes(fileLayout) && layout === LAYOUT_V5) {
+        await upgradeLayout(sheets, item.id, file.label, fileLayout)
+        fileLayout = await readSheetLayout(sheets, item.id, file.label)
+        if (fileLayout !== LAYOUT_V5)
+          throw new Error(`v5 upgrade did not take (headers now match ${fileLayout?.name ?? 'no layout'}); the sheet is skipped`)
+      }
       layouts.set(file.fileKey, fileLayout)
       sheetIds.set(file.fileKey, await prepareSheets(sheets, item.id, templateSheetId, file.label, created, fileLayout, LAYOUT_IO[fileLayout.name]))
       const read = await readExisting(sheets, item.id, fileLayout, file.fileKey, file.label)

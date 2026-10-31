@@ -471,8 +471,8 @@ script which **layout** it is: `v1` is the AV team's original template, `v2` the
 proposal built 2026-09-18 (ownership shown in header colours, ACTUAL START and Δ,
 REC from the Pretalx "do not record" flag, TRACK, checkboxes, a CUE TYPE link column
 and a cue tab linked by CUE REF), `v3` the AV team's revision of v2 (2026-10-20, see
-below). Each generated sheet is recognised by its own header row (row 5 for v1/v2,
-row 2 for v3), so sheets keep working with the layout they were created from; layouts can
+below), `v4` = v3 plus `STREAM INTRO ANIMATION`, `v5` = v4 with END moved after MC (both 2026-10-31). Each generated sheet is recognised by its own header row (row 5 for v1/v2,
+row 2 for v3..v5), so sheets keep working with the layout they were created from; layouts can
 live in one folder, which is how the side-by-side preview was made (`ROS_ROOMS=main-stage`
 with the v1 template, `ROS_ROOMS=stage-1` with the v2 template). Layout definitions are
 in `utils/run-of-show.ts`, the format and clearing details per layout in `LAYOUT_IO`. Files are recognised by Drive
@@ -488,21 +488,31 @@ FORMAT · SLIDES · DECK OK? · INTRO ANIMATION · REC · MODERATOR · MIC · NO
 the MORNING / AFTERNOON / END OF SHOW rows (the REMOVED section still appears when a
 session leaves). Rules that differ:
 
-- `DUR` is the Pretalx slot, Q&A included (the AV timer table: Talk 20 + 5, Lightning 5 + 2,
-  Mixed 25 + 0, Workshop 50 + 0; the buffer is the gap to the next slot).
+- v5 reads left to right: `START · DUR · Q&A · MC · END`, with END = START + DUR + Q&A + MC
+  (the next segment's start). `DUR` is the talk alone: the Pretalx slot minus the Q&A cell (the
+  AV timer table: Talk 20 + 5 + 5, Lightning 5 + 2 + 3, Mixed 25 + 0 + 5, Workshop 50 + 0 + 10).
+  `MC` is a formula: the gap from the end of talk + Q&A to the next live row's START (red when
+  negative). END is derived, so it is not compared with Pretalx; START and DUR carry the slot.
+  A crew Q&A override shortens DUR at the next sync. Until 2026-10-31 DUR held the whole slot
+  (Q&A counted twice); the switch logged no changes. v4 sheets are upgraded by moving the END
+  column (the full-width REMOVED divider is unmerged and merged again around the move).
 - `Q&A` and `SLIDES` are **fill-once**: the sync writes them only while empty (Q&A from the
   timer table, other formats 0), then they are the crew's ("Laptop", a longer Q&A). A deck
   link that later changes in Pretalx is logged on CHANGES and highlighted, never applied.
-- `MC` is a formula: minutes from END to the next live row's START (red when negative).
 - `SPEAKER CONTACT` is synced: Telegram from Pretalx (speakers fetched with contacts, so it
   is only filled from the Pretalx source), else X, Farcaster or website, one line per speaker.
 - The stage's Q&A QR (`devcon.org/qr/meerkat/<room id>`, redirected by devcon `/api/meerkat/`
   to the session a Meerkat moderator put live there, else the schedule's) is not a column:
   `av-assets.ts` saves it as `$$EVENT/<Room>/Q&A QR - <Room>.png` (one per stage, for offline
   use), and the sync links that file from the Digital Assets tab's "Q&A QR code" row.
-- `INTRO ANIMATION` is the crew's. The template's `Digital Assets` and
+- `STATUS` has `CHANGE` (2026-10-31): the whole row turns bright yellow, above every other
+  colour (top conditional rule). Nothing else uses yellow: per-run changed cells are lavender,
+  `TBC` is teal. A hand-set `CHANGE` survives a resync like `TBC`.
+- `INTRO ANIMATION` and `STREAM INTRO ANIMATION` (v4) are the crew's. A v3 sheet (and the
+  template) is upgraded in place on its next run: one column inserted after INTRO ANIMATION on
+  the main and `_style` tabs, so every crew cell to its right moves with it. The template's `Digital Assets` and
   `Livestreaming Information` tabs are the AV team's; the sync only renames the QR row to
-  "App Q&A QR code" and adds a "Meerkat stage" row under it (`app.meerkat.events/stage/<room id>`).
+  "App Q&A QR code" and adds a "Meerkat stage" row under it (`app.meerkat.events/stage/<room id>?hide-qr-code=true`).
 - `REC` reads `REC + STREAM` or `NO REC · NO STREAM` (2026-10-26; the old `REC` / `NO REC`
   read as equal, so the wording change logged nothing).
 - `SLIDES` label: `Slides`, `Slides (untouched)` while the deck was never edited (the
@@ -527,7 +537,7 @@ plus the key column `PRETALX ID` (R, appended to the template's 17). Columns L..
   SHOW" as `CANCELLED`, notes intact; the `CHANGES` tab says where it went;
 - rows the crew adds by hand without a `PRETALX ID` (doors open, breaks) are kept and
   slotted by their `START TIME`;
-- a hand-set `TBC`, `STANDBY` or `DELAYED` survives a resync; `MODERATOR` and
+- a hand-set `CHANGE`, `TBC`, `STANDBY` or `DELAYED` survives a resync; `MODERATOR` and
   `SLIDES / MEDIA` are carried unless the sync has a value (the Google Slides deck URL
   from §2d lands in `SLIDES / MEDIA`);
 - every difference is appended to `CHANGES` (run, code, session, field, from, to) and

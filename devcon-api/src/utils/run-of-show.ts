@@ -31,6 +31,7 @@ export type Field =
   | 'mc'
   | 'contact'
   | 'intro'
+  | 'streamIntro'
   | 'streaming'
   | 'cueRef'
   | 'cueType'
@@ -112,6 +113,9 @@ const V3_HEADERS = [
   'PRETALX ID',
 ]
 
+// v4 (2026-10-31): v3 plus STREAM INTRO ANIMATION right after INTRO ANIMATION.
+const V4_HEADERS = [...V3_HEADERS.slice(0, 14), 'STREAM INTRO ANIMATION', ...V3_HEADERS.slice(14)]
+
 const V2_HEADERS = [
   '#',
   'STATUS',
@@ -138,6 +142,9 @@ const V2_HEADERS = [
 
 export const STATUS_OPTIONS_V1 = ['CONFIRMED', 'TBC', 'CANCELLED', 'STANDBY', 'DELAYED']
 export const STATUS_OPTIONS_V2 = ['CONFIRMED', 'TBC', 'STANDBY', 'DELAYED', 'LIVE', 'DONE', 'CANCELLED']
+/** v3 and later: CHANGE paints the whole row bright yellow, over every other colour. */
+export const CHANGE_STATUS = 'CHANGE'
+export const STATUS_OPTIONS_V3 = ['CONFIRMED', CHANGE_STATUS, 'TBC', 'STANDBY', 'DELAYED', 'LIVE', 'DONE', 'CANCELLED']
 export const FORMAT_OPTIONS_V1 = [
   'Keynote',
   'Panel',
@@ -288,12 +295,54 @@ export const LAYOUT_V3: RosLayout = {
   formulas: ['num', 'end', 'mc'],
   checkboxes: ['deckOk'],
   emptyCheckbox: 'FALSE',
-  statusOptions: STATUS_OPTIONS_V2,
+  statusOptions: STATUS_OPTIONS_V3,
   formatOptions: FORMAT_OPTIONS_V2,
   micOptions: MIC_OPTIONS_V2,
 }
 
-export const LAYOUTS = [LAYOUT_V1, LAYOUT_V2, LAYOUT_V3]
+/**
+ * v4 (2026-10-31): v3 with a STREAM INTRO ANIMATION column for the crew right
+ * after INTRO ANIMATION. A v3 sheet is upgraded in place by inserting that one
+ * column, so everything to its right (and any crew column past PRETALX ID) moves
+ * with its data.
+ */
+export const LAYOUT_V4: RosLayout = {
+  ...LAYOUT_V3,
+  name: 'v4',
+  headers: V4_HEADERS,
+  col: {
+    ...LAYOUT_V3.col,
+    streamIntro: 14,
+    rec: 15,
+    moderator: 16,
+    mic: 17,
+    notes: 18,
+    id: 19,
+  },
+  carried: ['deckOk', 'intro', 'streamIntro', 'moderator', 'mic', 'notes'],
+}
+
+/**
+ * v5 (2026-10-31): v4 with END moved after MC, so a row reads left to right as
+ * START + DUR (talk) + Q&A + MC = END, the start of the next segment. MC is the
+ * gap after talk + Q&A; END is no longer compared with Pretalx (START and DUR
+ * carry the slot). A v4 sheet is upgraded in place by moving the END column.
+ */
+const V5_HEADERS = [...V4_HEADERS.slice(0, 4), 'Q&A (min)', 'MC (min)', 'END', ...V4_HEADERS.slice(7)]
+export const LAYOUT_V5: RosLayout = {
+  ...LAYOUT_V4,
+  name: 'v5',
+  headers: V5_HEADERS,
+  col: { ...LAYOUT_V4.col, qa: 4, mc: 5, end: 6 },
+  synced: LAYOUT_V4.synced.filter((f) => f !== 'end'),
+}
+
+export const LAYOUTS = [LAYOUT_V1, LAYOUT_V2, LAYOUT_V3, LAYOUT_V4, LAYOUT_V5]
+
+/** v5 and later: END closes the row after MC (START + DUR + Q&A + MC). */
+export function endAfterMc(layout: RosLayout): boolean {
+  return layout.col.mc !== undefined && layout.col.end! > layout.col.mc
+}
 
 /**
  * Q&A minutes inside the Pretalx slot, from the AV timer table (talk + Q&A =
@@ -363,7 +412,7 @@ export const EVENT_TIMEZONES: Record<string, string> = {
 }
 
 /** Statuses the AV team sets by hand that a resync must not flip back to CONFIRMED. */
-const KEEP_STATUSES = ['TBC', 'STANDBY', 'DELAYED', 'LIVE', 'DONE']
+const KEEP_STATUSES = [CHANGE_STATUS, 'TBC', 'STANDBY', 'DELAYED', 'LIVE', 'DONE']
 export const CUES_SHEET = 'AV & TECH CUES'
 
 export type PresentingMethod = 'deck' | 'laptop'
@@ -469,21 +518,34 @@ export const formulas = {
     const seg = colLetter(layout.col.segment!)
     return `=COUNTA(${seg}$${first}:${seg}${row})`
   },
+  /** DUR is the talk alone where the layout has a Q&A column: the segment ends after its Q&A (N() reads an empty cell as 0). */
   end(layout: RosLayout, row: number): string {
     const s = colLetter(layout.col.start!)
     const d = colLetter(layout.col.dur!)
-    return `=IF(${s}${row}<>"",${s}${row}+${d}${row}/1440,"")`
+    if (layout.col.qa === undefined) return `=IF(${s}${row}<>"",${s}${row}+${d}${row}/1440,"")`
+    const q = colLetter(layout.col.qa)
+    if (endAfterMc(layout)) {
+      const m = colLetter(layout.col.mc!)
+      return `=IF(${s}${row}<>"",${s}${row}+(${d}${row}+N(${q}${row})+N(${m}${row}))/1440,"")`
+    }
+    return `=IF(${s}${row}<>"",${s}${row}+(${d}${row}+N(${q}${row}))/1440,"")`
   },
-  /** MC / changeover minutes: from this row's END to the START of the next live row below. */
+  /**
+   * MC / changeover minutes up to the START of the next live row below: from this row's
+   * END (v3, v4), or from the end of its talk + Q&A (v5, where END comes after MC).
+   */
   mc(layout: RosLayout, row: number): string {
     const s = colLetter(layout.col.start!)
-    const e = colLetter(layout.col.end!)
     const st = colLetter(layout.col.status!)
     const next = row + 1
-    return (
-      `=IF(${e}${row}="","",IFERROR(ROUND((INDEX(FILTER($${s}${next}:$${s},$${s}${next}:$${s}<>"",$${st}${next}:$${st}<>"CANCELLED"),1)` +
-      `-${e}${row})*1440),""))`
-    )
+    const nextStart = `INDEX(FILTER($${s}${next}:$${s},$${s}${next}:$${s}<>"",$${st}${next}:$${st}<>"CANCELLED"),1)`
+    if (endAfterMc(layout)) {
+      const d = colLetter(layout.col.dur!)
+      const q = colLetter(layout.col.qa!)
+      return `=IF(${s}${row}="","",IFERROR(ROUND((${nextStart}-(${s}${row}+(${d}${row}+N(${q}${row}))/1440))*1440),""))`
+    }
+    const e = colLetter(layout.col.end!)
+    return `=IF(${e}${row}="","",IFERROR(ROUND((${nextStart}` + `-${e}${row})*1440),""))`
   },
   /** Minutes late (positive) or early (negative) once the actual start is typed. */
   delta(layout: RosLayout, row: number): string {
@@ -660,6 +722,12 @@ function syncedValue(field: Field, session: RosSession): string {
   }
 }
 
+/** Talk minutes: the Pretalx slot minus the Q&A typed or defaulted in the Q&A cell (never below 0). */
+export function talkMinutes(session: Pick<RosSession, 'durationMin'>, qa: string): string {
+  const q = parseInt(qa, 10)
+  return String(Math.max(0, session.durationMin - (Number.isFinite(q) && q > 0 ? q : 0)))
+}
+
 function applyFormulas(
   layout: RosLayout,
   values: (string | number)[],
@@ -731,7 +799,11 @@ export function planFile(input: PlanInput): FilePlan {
     const prev = previous?.values
     const values: (string | number)[] = new Array(count).fill('')
     values[col.status] = nextStatus(prev?.[col.status])
-    for (const f of layout.synced) values[col[f]] = syncedValue(f, session)
+    // Q&A minutes: the crew's number once typed, else the AV timer default. A break has none.
+    const qa = fillOnce.includes('qa') ? (session.kind ? '' : prev?.[col.qa] || String(qaMinutesFor(session.type))) : undefined
+    // With a Q&A column, DUR is the talk alone: the Pretalx slot holds talk + Q&A (AV timer table).
+    const synced = (f: Field) => (f === 'dur' && qa !== undefined ? talkMinutes(session, qa) : syncedValue(f, session))
+    for (const f of layout.synced) values[col[f]] = synced(f)
     // Fill-once SLIDES keeps whatever is in the cell (a crew "Laptop", or the
     // first link); otherwise the Pretalx deck wins and the old link is a fallback.
     // Our own labels are not crew text: they follow the deck and the speaker's answer.
@@ -747,7 +819,7 @@ export function planFile(input: PlanInput): FilePlan {
     // A break or blocker has no deck to tick (an empty checkbox reads back as FALSE).
     if (session.kind) for (const f of layout.checkboxes) values[col[f]] = ''
     // A break has no Q&A: the cell sits inside the break's bar on the sheet.
-    if (fillOnce.includes('qa')) values[col.qa] = session.kind ? '' : prev?.[col.qa] || String(qaMinutesFor(session.type))
+    if (qa !== undefined) values[col.qa] = qa
     if (!prev && !session.kind)
       for (const f of layout.checkboxes.length ? layout.checkboxes : (['onSite'] as Field[]))
         if (col[f] !== undefined) values[col[f]] = layout.emptyCheckbox
@@ -777,8 +849,10 @@ export function planFile(input: PlanInput): FilePlan {
         // A break's FORMAT follows its kind and sits inside its merged bar, which reads back empty.
         if (session.kind && f === 'format') continue
         const before = prev[col[f]]
-        const after = f === 'slides' ? slides : syncedValue(f, session)
+        const after = f === 'slides' ? slides : synced(f)
         if (before === after || LEGACY_VALUES[f]?.[before] === after) continue
+        // Sheets written before 2026-10-31 hold the whole slot in DUR; the slot itself still shows in START / END.
+        if (f === 'dur' && qa !== undefined && before === String(session.durationMin)) continue
         changes.push({ code: session.code, title: session.title, field: FIELD_LABELS[f] || f.toUpperCase(), from: before, to: after })
         if (!changed.includes(col[f])) changed.push(col[f])
       }

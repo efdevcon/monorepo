@@ -2,6 +2,10 @@ import {
   LAYOUT_V1,
   LAYOUT_V2,
   LAYOUT_V3,
+  LAYOUT_V4,
+  LAYOUT_V5,
+  CHANGE_STATUS,
+  talkMinutes,
   RosLayout,
   RosSession,
   ExistingRow,
@@ -398,7 +402,10 @@ test('v3 first run: defaults, synced contact, formulas, no dividers or footer', 
   expect(first.values[V3.slides]).toBe('=HYPERLINK("https://docs.google.com/presentation/d/x","Slides")')
   expect(first.values[V3.deckOk]).toBe('FALSE')
   expect(first.values[V3.num]).toBe('=COUNTA(H$3:H3)')
-  expect(first.values[V3.end]).toBe('=IF(C3<>"",C3+D3/1440,"")')
+  // DUR is the talk alone, END closes the segment after its Q&A
+  expect(first.values[V3.dur]).toBe('25')
+  expect(second.values[V3.dur]).toBe('5')
+  expect(first.values[V3.end]).toBe('=IF(C3<>"",C3+(D3+N(F3))/1440,"")')
   // MC: the gap to the next live row's START, in minutes
   expect(first.values[V3.mc]).toBe(formulas.mc(LAYOUT_V3, 3))
   expect(formulas.mc(LAYOUT_V3, 3)).toBe('=IF(E3="","",IFERROR(ROUND((INDEX(FILTER($C4:$C,$C4:$C<>"",$B4:$B<>"CANCELLED"),1)-E3)*1440),""))')
@@ -477,8 +484,26 @@ test('v3 has no STREAMING column: REC covers recording and streaming', () => {
 })
 
 test('v3: breaks and blockers are keyed rows without REC, deck tick or Q&A minutes', () => {
-  const lunch = session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '12:30', end: '13:30', durationMin: 60 })
-  const blocker = session({ code: 'BLOCKER-stage-a-1-1', kind: 'blocker', title: 'Private workshop', type: 'Blocker', speakers: '', start: '14:00', end: '15:00', durationMin: 60 })
+  const lunch = session({
+    code: 'BREAK-stage-a-1-1',
+    kind: 'break',
+    title: 'Lunch Break',
+    type: 'Break',
+    speakers: '',
+    start: '12:30',
+    end: '13:30',
+    durationMin: 60,
+  })
+  const blocker = session({
+    code: 'BLOCKER-stage-a-1-1',
+    kind: 'blocker',
+    title: 'Private workshop',
+    type: 'Blocker',
+    speakers: '',
+    start: '14:00',
+    end: '15:00',
+    durationMin: 60,
+  })
   const p = v3([lunch, blocker])
   const [a, b] = p.rows
   expect(p.rows.map((r) => r.kind)).toEqual(['session', 'session'])
@@ -509,7 +534,21 @@ test('v3: a break that moves keeps the crew notes and logs the new time', () => 
     dur: '60',
     notes: 'walk-in music',
   })
-  const p = v3([session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '13:00', end: '14:00', durationMin: 60 })], [row])
+  const p = v3(
+    [
+      session({
+        code: 'BREAK-stage-a-1-1',
+        kind: 'break',
+        title: 'Lunch Break',
+        type: 'Break',
+        speakers: '',
+        start: '13:00',
+        end: '14:00',
+        durationMin: 60,
+      }),
+    ],
+    [row]
+  )
   expect(p.rows[0].values[V3.notes]).toBe('walk-in music')
   // a sheet reads an empty checkbox back as FALSE; a break never carries one
   expect(p.rows[0].values[V3.deckOk]).toBe('')
@@ -567,8 +606,152 @@ test('the Pretalx answer is read as deck or own laptop, by keyword so a reworded
 })
 
 test('a break row read back from its merged bar (FORMAT and the rest empty) is not a change', () => {
-  const row = v3Row('BREAK-stage-a-1-1', { segment: 'Lunch Break', format: '', speakers: '', contact: '', rec: '', deckOk: '', qa: '', start: '12:30', end: '13:30', dur: '60' })
-  const p = v3([session({ code: 'BREAK-stage-a-1-1', kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '', start: '12:30', end: '13:30', durationMin: 60 })], [row])
+  const row = v3Row('BREAK-stage-a-1-1', {
+    segment: 'Lunch Break',
+    format: '',
+    speakers: '',
+    contact: '',
+    rec: '',
+    deckOk: '',
+    qa: '',
+    start: '12:30',
+    end: '13:30',
+    dur: '60',
+  })
+  const p = v3(
+    [
+      session({
+        code: 'BREAK-stage-a-1-1',
+        kind: 'break',
+        title: 'Lunch Break',
+        type: 'Break',
+        speakers: '',
+        start: '12:30',
+        end: '13:30',
+        durationMin: 60,
+      }),
+    ],
+    [row]
+  )
   expect(p.changes).toEqual([])
   expect(p.rows[0].values[V3.format]).toBe('Break')
+})
+
+// v4 (2026-10-31): v3 + STREAM INTRO ANIMATION, CHANGE status, DUR = talk time.
+const V4 = LAYOUT_V4.col as Required<RosLayout['col']>
+const s4 = (over: Partial<RosSession> = {}) => session({ contact: 'Ada Example: TG @ada', ...over })
+const v4 = (sessions: RosSession[], rows: ExistingRow[] = []) => plan(sessions, rows, A, LAYOUT_V4, { firstSheetRow: 3 })
+function v4Row(code: string, over: Partial<Record<keyof typeof V4, string>> = {}): ExistingRow {
+  const base = v3Row(code)
+  // the v3 row with one empty column inserted after INTRO ANIMATION, as the in-place upgrade does
+  const values = [...base.values.slice(0, V4.streamIntro), '', ...base.values.slice(V4.streamIntro)]
+  for (const [k, v] of Object.entries(over)) values[V4[k as keyof typeof V4]] = v
+  return { ...base, values, status: values[V4.status] }
+}
+
+test('v4 is v3 with STREAM INTRO ANIMATION right after INTRO ANIMATION', () => {
+  expect(LAYOUT_V4.headers).toHaveLength(LAYOUT_V3.headers.length + 1)
+  expect(LAYOUT_V4.headers[V4.intro]).toBe('INTRO ANIMATION')
+  expect(LAYOUT_V4.headers[V4.streamIntro]).toBe('STREAM INTRO ANIMATION')
+  expect(V4.streamIntro).toBe(V3.intro + 1)
+  // every column right of the new one moved by exactly one
+  for (const [f, i] of Object.entries(V3)) {
+    const expected = i > V3.intro ? i + 1 : i
+    expect([f, V4[f as keyof typeof V4]]).toEqual([f, expected])
+    expect(LAYOUT_V4.headers[expected]).toBe(LAYOUT_V3.headers[i])
+  }
+  expect(detectLayoutInRows([['v1'], LAYOUT_V4.headers])).toBe(LAYOUT_V4)
+  expect(detectLayoutInRows([['v1'], LAYOUT_V3.headers])).toBe(LAYOUT_V3)
+})
+
+test('v4 resync: the crew columns, the new one included, stay with their session', () => {
+  const row = v4Row('AAA111', { intro: 'intro.mp4', streamIntro: 'stream-intro.mp4', moderator: 'Mo', mic: 'Lapel', notes: 'n' })
+  const p = v4([s4({})], [row])
+  const r = p.rows[0]
+  expect(r.values[V4.intro]).toBe('intro.mp4')
+  expect(r.values[V4.streamIntro]).toBe('stream-intro.mp4')
+  expect(r.values[V4.moderator]).toBe('Mo')
+  expect(r.values[V4.mic]).toBe('Lapel')
+  expect(r.values[V4.notes]).toBe('n')
+  expect(r.values[V4.id]).toBe('AAA111')
+  expect(r.values[V4.end]).toBe('=IF(C3<>"",C3+(D3+N(F3))/1440,"")')
+})
+
+test('DUR is the talk: the Pretalx slot minus the Q&A, per the AV timer table', () => {
+  const slot = (type: string, durationMin: number) => v4([s4({ type, durationMin })]).rows[0].values
+  // Talks 20 + 5, Lightning 5 + 2, Mixed format 25 + 0, Workshops 50 + 0
+  expect([slot('Talk', 25)[V4.dur], slot('Talk', 25)[V4.qa]]).toEqual(['20', '5'])
+  expect([slot('Lightning Talk', 7)[V4.dur], slot('Lightning Talk', 7)[V4.qa]]).toEqual(['5', '2'])
+  expect([slot('Mixed Format', 25)[V4.dur], slot('Mixed Format', 25)[V4.qa]]).toEqual(['25', '0'])
+  expect([slot('Workshop', 50)[V4.dur], slot('Workshop', 50)[V4.qa]]).toEqual(['50', '0'])
+  expect(talkMinutes({ durationMin: 25 }, '')).toBe('25')
+  expect(talkMinutes({ durationMin: 25 }, 'ten')).toBe('25')
+  expect(talkMinutes({ durationMin: 5 }, '10')).toBe('0')
+})
+
+test('a crew Q&A override shortens the talk so the segment still ends with its slot', () => {
+  const p = v4([s4({ durationMin: 25, end: '10:25' })], [v4Row('AAA111', { qa: '10', dur: '20', end: '10:25' })])
+  expect(p.rows[0].values[V4.qa]).toBe('10')
+  expect(p.rows[0].values[V4.dur]).toBe('15')
+  expect(p.changes.map((c) => c.field)).toEqual(['DUR (mins)'])
+})
+
+test('a sheet still holding the whole slot in DUR is corrected without logging a change', () => {
+  const p = v4([s4({ durationMin: 25, end: '10:25' })], [v4Row('AAA111', { dur: '25', end: '10:25' })])
+  expect(p.rows[0].values[V4.dur]).toBe('20')
+  expect(p.changes).toEqual([])
+  expect(p.rows[0].changed).toEqual([])
+})
+
+test('a slot change in Pretalx is still reported on DUR', () => {
+  const p = v4([s4({ durationMin: 30, end: '10:30' })], [v4Row('AAA111', { dur: '20', end: '10:25' })])
+  expect(p.rows[0].values[V4.dur]).toBe('25')
+  expect(p.changes.map((c) => [c.field, c.from, c.to])).toEqual([
+    ['DUR (mins)', '20', '25'],
+    ['END TIME', '10:25', '10:30'],
+  ])
+})
+
+test('CHANGE is in the STATUS list and survives a resync', () => {
+  expect(LAYOUT_V4.statusOptions).toContain(CHANGE_STATUS)
+  expect(LAYOUT_V3.statusOptions).toContain(CHANGE_STATUS)
+  const p = v4([s4({})], [v4Row('AAA111', { status: CHANGE_STATUS })])
+  expect(p.rows[0].values[V4.status]).toBe(CHANGE_STATUS)
+})
+
+// v5 (2026-10-31): END after MC, START + DUR + Q&A + MC = END.
+const V5 = LAYOUT_V5.col as Required<RosLayout['col']>
+function v5Row(code: string, over: Partial<Record<keyof typeof V5, string>> = {}): ExistingRow {
+  const v4 = v4Row(code)
+  // the v4 row with END moved after MC, as the in-place upgrade does
+  const values = [...v4.values]
+  const [end] = values.splice(V4.end, 1)
+  values.splice(V5.end, 0, end)
+  for (const [k, v] of Object.entries(over)) values[V5[k as keyof typeof V5]] = v
+  return { ...v4, values, status: values[V5.status] }
+}
+const v5 = (sessions: RosSession[], rows: ExistingRow[] = []) => plan(sessions, rows, A, LAYOUT_V5, { firstSheetRow: 3 })
+
+test('v5 is v4 with END moved after MC', () => {
+  expect(LAYOUT_V5.headers.slice(0, 8)).toEqual(['#', 'STATUS', 'START', 'DUR (min)', 'Q&A (min)', 'MC (min)', 'END', 'SESSION'])
+  expect([...LAYOUT_V5.headers].sort()).toEqual([...LAYOUT_V4.headers].sort())
+  for (const [f, i] of Object.entries(V5)) expect([f, LAYOUT_V5.headers[i]]).toEqual([f, LAYOUT_V4.headers[V4[f as keyof typeof V4]]])
+  expect(detectLayoutInRows([['v1'], LAYOUT_V5.headers])).toBe(LAYOUT_V5)
+  expect(detectLayoutInRows([['v1'], LAYOUT_V4.headers])).toBe(LAYOUT_V4)
+})
+
+test('v5 formulas: MC is the gap after talk + Q&A, END = START + DUR + Q&A + MC', () => {
+  const r = v5([s4({ durationMin: 25 })]).rows[0].values
+  expect(r[V5.dur]).toBe('20')
+  expect(r[V5.qa]).toBe('5')
+  expect(r[V5.mc]).toBe('=IF(C3="","",IFERROR(ROUND((INDEX(FILTER($C4:$C,$C4:$C<>"",$B4:$B<>"CANCELLED"),1)-(C3+(D3+N(E3))/1440))*1440),""))')
+  expect(r[V5.end]).toBe('=IF(C3<>"",C3+(D3+N(E3)+N(F3))/1440,"")')
+})
+
+test('v5 resync: END is derived, not compared with Pretalx; crew columns stay put', () => {
+  const row = v5Row('AAA111', { dur: '20', end: '10:30', streamIntro: 'stream.mp4', notes: 'n', qa: '5' })
+  const p = v5([s4({ durationMin: 25, end: '10:25' })], [row])
+  expect(p.changes).toEqual([])
+  expect(p.rows[0].values[V5.streamIntro]).toBe('stream.mp4')
+  expect(p.rows[0].values[V5.notes]).toBe('n')
 })

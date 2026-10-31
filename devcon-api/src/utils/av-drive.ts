@@ -57,7 +57,8 @@ export function qaQrUrl(roomId: string): string {
 }
 /** Meerkat's presenter view for a stage: its stages are our room ids (event-app's room screen uses the same). */
 export function meerkatStageUrl(roomId: string): string {
-  return `https://app.meerkat.events/stage/${roomId}`
+  // Meerkat's stage screen without its own QR code overlay.
+  return `https://app.meerkat.events/stage/${roomId}?hide-qr-code=true`
 }
 /** av-assets manifest key of a stage's Q&A QR image (one per stage, the code never changes); the run of show links it from Digital Assets. */
 export function qaQrKey(roomId: string): string {
