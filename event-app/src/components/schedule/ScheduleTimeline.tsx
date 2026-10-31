@@ -241,9 +241,11 @@ function TimelineSession({
  * the right edge of the view (see `lateRooms`): the room cell counts them
  * (the full names in its title), the lane says when the earliest starts,
  * the time a link that pans the grid there, where the lanes unfold. The
- * text sticks at the visible left edge like a session block's. The room
- * cell and the lane keep the grid's chrome (glass cell, slot lines) so the
- * fold reads as part of the grid, on the panel grey so it reads as empty.
+ * notice is a card fitted to its text, not a block filling the lane, so it
+ * reads as a note and not as a session (Scott, 2026-10-31; the fill is
+ * provisional); it sticks at the visible left edge like a block's text. The
+ * room cell and the lane keep the grid's chrome (glass cell, slot lines) so
+ * the fold reads as part of the grid, on the panel grey so it reads as empty.
  */
 function CollapsedLane({
   folded,
@@ -293,9 +295,14 @@ function CollapsedLane({
             left: m.roomCol + padX,
             maxWidth: `calc(100vw - ${m.roomCol + padX * 2 + 16}px)`,
           }}
+          // Sticky with no `top`: a vertical offset would make it stick
+          // vertically too, pinned against the lane's edge in the lanes box.
+          className="sticky flex h-full w-fit min-w-0 items-center"
+        >
+        <div
           className={cn(
-            "sticky flex h-full w-fit min-w-0 flex-col justify-center gap-1",
-            compact ? "px-1.5" : "px-3"
+            "flex min-w-0 flex-col gap-0.5 rounded-lg border border-dc-hairline bg-white",
+            compact ? "px-2.5 py-1.5" : "px-3 py-2"
           )}
         >
           <span
@@ -321,6 +328,7 @@ function CollapsedLane({
           >
             {names.join(", ")}
           </span>
+        </div>
         </div>
       </div>
     </div>

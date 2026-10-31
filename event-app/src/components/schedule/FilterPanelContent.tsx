@@ -226,16 +226,12 @@ export function FilterPanelContent({
             to the starred sessions from here too. Not a facet: Clear all
             and Reset filters turn it off like the pill's state. */}
         {onToggleInterested && (
-          <div className="flex items-center justify-between gap-3 border-b border-dc-hairline pb-4">
-            <span className="flex min-w-0 flex-col">
-              <span className="text-[16px] font-bold leading-6 text-dc-fg2">
-                My Interests
-              </span>
-              <span className="text-[14px] leading-5 text-dc-muted">
-                Only the sessions you’ve starred
-              </span>
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-[16px] font-bold leading-6 text-dc-fg2">
+              My Interests
             </span>
             <Switch
+              size="sm"
               checked={interestedOnly}
               onChange={onToggleInterested}
               aria-label="Show only My Interests"

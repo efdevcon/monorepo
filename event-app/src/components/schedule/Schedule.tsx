@@ -562,7 +562,7 @@ function GroupHeader({
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
           <span className="truncate">
             {showDay && (
-              <span className="font-normal text-dc-muted">
+              <span className="font-normal">
                 {shortDayLabel(group.dayKey)} ·{" "}
               </span>
             )}
@@ -592,27 +592,44 @@ function GroupHeader({
 }
 
 /**
- * Day divider for the All view: a lavender band naming the day ("Tue,
- * November 3") with its session count, full-bleed on phones like the live
- * band, a rounded bar on the desktop panel. Not sticky: the time-group
- * headers pin under the day tabs, and a second pinned row above them would
- * push every header offset on the page.
+ * Day divider for the All view, naming the day ("Tue, November 3") with its
+ * session count. The list's is a lavender band, full-bleed on phones like
+ * the live band, a rounded bar on the desktop panel; the timeline's
+ * (`plain`) is the two texts alone, flush to the content's edges above the
+ * day's grid, the count in the foreground colour so it stands out (Scott,
+ * 2026-10-31). Not sticky: the time-group headers pin under the day tabs,
+ * and a second pinned row above them would push every header offset on
+ * the page.
  */
 function DayDivider({
   dayKey: key,
   count,
+  plain = false,
 }: {
   dayKey: string;
   /** Sessions shown under it (after filters); omitted when unknown. */
   count?: number;
+  /** No band: the texts alone (the timeline). */
+  plain?: boolean;
 }) {
   return (
-    <div className="-mx-4 flex items-center justify-between gap-3 border-y border-dc-hairline bg-dc-lavender px-4 py-3 lg:mx-0 lg:rounded-lg lg:border">
+    <div
+      className={cn(
+        "flex items-center justify-between gap-3",
+        !plain &&
+          "-mx-4 border-y border-dc-hairline bg-dc-lavender px-4 py-3 lg:mx-0 lg:rounded-lg lg:border"
+      )}
+    >
       <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
         {formatDayHeading(key)}
       </h3>
       {count != null && (
-        <span className="shrink-0 text-[14px] leading-5 text-dc-muted">
+        <span
+          className={cn(
+            "shrink-0 text-[14px] leading-5",
+            plain ? "text-dc-fg2" : "text-dc-muted"
+          )}
+        >
           {count} session{count === 1 ? "" : "s"}
         </span>
       )}
@@ -1813,7 +1830,7 @@ function ScheduleInner({
                   <div className="flex flex-col gap-6">
                     {timelineDays.map(({ day, sessions: grid }) => (
                       <div key={day.key} className="flex flex-col gap-3">
-                        {allDays && <DayDivider dayKey={day.key} count={grid.length} />}
+                        {allDays && <DayDivider dayKey={day.key} count={grid.length} plain />}
                         <ScheduleTimeline
                           sessions={grid}
                           nowMs={now}

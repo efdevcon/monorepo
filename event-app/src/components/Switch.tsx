@@ -3,7 +3,8 @@
 import cn from "classnames";
 
 /**
- * iOS-style on/off switch (51×31 track, 27px knob). Purely presentational:
+ * iOS-style on/off switch (51×31 track, 27px knob; `size="sm"`: 36×22
+ * with an 18px knob, for a row inside a panel). Purely presentational:
  * the caller owns the state and does the work in `onChange`. Track colour and
  * knob travel share one 150ms ease-out clock so the two never drift apart;
  * `busy` keeps the switch shown but inert while an async toggle settles.
@@ -15,6 +16,7 @@ export function Switch({
   onChange,
   disabled = false,
   busy = false,
+  size = "md",
   className,
   "aria-label": ariaLabel,
   "aria-describedby": ariaDescribedBy,
@@ -23,11 +25,13 @@ export function Switch({
   onChange: (next: boolean) => void;
   disabled?: boolean;
   busy?: boolean;
+  size?: "md" | "sm";
   className?: string;
   "aria-label": string;
   "aria-describedby"?: string;
 }) {
   const inert = disabled || busy;
+  const sm = size === "sm";
   return (
     <button
       type="button"
@@ -39,7 +43,9 @@ export function Switch({
       disabled={inert}
       onClick={() => onChange(!checked)}
       className={cn(
-        "relative h-[31px] w-[51px] shrink-0 rounded-full p-0 transition-colors duration-150 ease-out before:absolute before:-inset-1.5 before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-reduce:transition-none",
+        "relative shrink-0 rounded-full p-0 transition-colors duration-150 ease-out before:absolute before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-reduce:transition-none",
+        // before: pads each size to the 44px touch floor.
+        sm ? "h-[22px] w-9 before:-inset-x-1 before:-inset-y-[11px]" : "h-[31px] w-[51px] before:-inset-1.5",
         checked ? "bg-dc-purple" : "bg-dc-border",
         inert ? "cursor-default opacity-40" : "cursor-pointer",
         className
@@ -48,8 +54,9 @@ export function Switch({
       <span
         aria-hidden
         className={cn(
-          "absolute left-0.5 top-0.5 block size-[27px] rounded-full bg-white shadow-[0_3px_8px_rgba(0,0,0,0.15),0_1px_1px_rgba(0,0,0,0.16)] transition-transform duration-150 ease-out motion-reduce:transition-none",
-          checked ? "translate-x-5" : "translate-x-0"
+          "absolute left-0.5 top-0.5 block rounded-full bg-white shadow-[0_3px_8px_rgba(0,0,0,0.15),0_1px_1px_rgba(0,0,0,0.16)] transition-transform duration-150 ease-out motion-reduce:transition-none",
+          sm ? "size-[18px]" : "size-[27px]",
+          checked ? (sm ? "translate-x-3.5" : "translate-x-5") : "translate-x-0"
         )}
       />
     </button>
