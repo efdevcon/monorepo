@@ -304,7 +304,13 @@ function CollapsedLane({
         <button
           type="button"
           onClick={() => onPanTo(firstMs)}
-          className="flex min-w-0 cursor-pointer flex-col gap-0.5 rounded-lg border border-dc-purple bg-white p-4 text-left transition-colors duration-150 ease-out hover:bg-dc-lavender"
+          className={cn(
+            "flex min-w-0 cursor-pointer flex-col gap-0.5 rounded-lg border border-dc-purple bg-white text-left transition-colors duration-150 ease-out hover:bg-dc-lavender",
+            // Padding with the lane: 16px in the 1.5× taller 2× lane, where
+            // the card still floats clear of the lane's edges; at 1× that
+            // filled the lane, so it takes 8 / 12 instead.
+            m.zoom === 2 ? "p-4" : "px-3 py-2"
+          )}
         >
           <span
             className={cn(
@@ -454,9 +460,19 @@ export function ScheduleTimeline({
   const nowLeft = offsetPx(nowMs, startMs, m.slotWidth);
   const corner = dayLabel?.split(", ")[1] ?? dayLabel ?? "";
 
-  // Axis labels the now pill would sit on top of: hide them (layout kept) —
-  // the pill shows the exact time, so nothing is lost. Labels start at the
-  // slot's left padding and run ~labelW; the pill is centred on nowLeft.
+  // The now pill is centred on the line, but kept inside the time area:
+  // with "now" at the grid's origin (day 1 opens at the first slot) half of
+  // it sat under the sticky room column and read as a clipped label
+  // (Scott, 2026-10-31). `pillShift` is the pill's left edge relative to
+  // the line.
+  const pillShift = Math.max(
+    -PILL_HALF_W,
+    Math.min(-nowLeft, gridWidth - nowLeft - PILL_HALF_W * 2)
+  );
+
+  // Axis labels the now pill would sit on top of: hide them (text only; the
+  // cell and its border stay) — the pill shows the exact time, so nothing is
+  // lost. Labels start at the slot's left padding and run ~labelW.
   const hiddenLabels = useMemo(() => {
     const hidden = new Set<number>();
     if (!nowVisible) return hidden;
@@ -464,12 +480,14 @@ export function ScheduleTimeline({
     const pad = isDesktop ? 6 : 4;
     const slotIdx = Math.floor(nowLeft / m.slotWidth);
     const off = nowLeft - slotIdx * m.slotWidth;
-    if (off - PILL_HALF_W < pad + labelW) hidden.add(slotIdx);
-    if (off + PILL_HALF_W > m.slotWidth + pad && slotIdx + 1 < slots.length) {
+    const pillLeft = off + pillShift;
+    const pillRight = pillLeft + PILL_HALF_W * 2;
+    if (pillLeft < pad + labelW && pillRight > pad) hidden.add(slotIdx);
+    if (pillRight > m.slotWidth + pad && slotIdx + 1 < slots.length) {
       hidden.add(slotIdx + 1);
     }
     return hidden;
-  }, [nowVisible, nowLeft, isDesktop, m.slotWidth, slots.length]);
+  }, [nowVisible, nowLeft, pillShift, isDesktop, m.slotWidth, slots.length]);
 
   // Last horizontal offset: the scroll handler's report, or the value just
   // written by one of the effects here (see the zoom effect below).
@@ -670,11 +688,14 @@ export function ScheduleTimeline({
               className={cn(
                 chromeCell,
                 "bg-dc-panel font-medium leading-none",
-                compact ? "pl-1 text-[11px]" : "pl-1.5 text-[14px]",
-                hiddenLabels.has(i) && "invisible"
+                compact ? "pl-1 text-[11px]" : "pl-1.5 text-[14px]"
               )}
             >
-              {formatTime(slot / 1000)}
+              {/* The text alone hides: an invisible cell took its bottom
+                  border with it, a gap in the axis line under the pill. */}
+              <span className={cn(hiddenLabels.has(i) && "invisible")}>
+                {formatTime(slot / 1000)}
+              </span>
             </div>
           ))}
           {nowVisible && (
@@ -688,8 +709,8 @@ export function ScheduleTimeline({
                 style={{ top: m.headerH - 4 }}
               />
               <span
-                className="absolute -translate-x-1/2 rounded-full bg-dc-red px-1.5 py-[3px] text-[10px] font-semibold leading-none text-white"
-                style={{ top: (m.headerH - PILL_H) / 2 }}
+                className="absolute rounded-full bg-dc-red px-1.5 py-[3px] text-[10px] font-semibold leading-none text-white"
+                style={{ top: (m.headerH - PILL_H) / 2, left: pillShift }}
               >
                 {formatTime(nowMs / 1000)}
               </span>

@@ -1871,8 +1871,18 @@ function ScheduleInner({
                       ))}
                     </CompletedPanel>
                   )}
-                  {daySections.map((section) => (
-                    <div key={section.dayKey} className="flex flex-col gap-6">
+                  {daySections.map((section, i) => (
+                    <div
+                      key={section.dayKey}
+                      className={cn(
+                        "flex flex-col gap-6",
+                        // A hairline halfway up the 2rem gap between days,
+                        // full-bleed on phones like the live band.
+                        allDays &&
+                          i > 0 &&
+                          "relative before:absolute before:-inset-x-4 before:-top-4 before:h-px before:bg-dc-hairline before:content-[''] lg:before:inset-x-0"
+                      )}
+                    >
                       {allDays && (
                         <DayDivider dayKey={section.dayKey} count={section.count} />
                       )}
