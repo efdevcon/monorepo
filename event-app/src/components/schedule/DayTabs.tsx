@@ -4,7 +4,7 @@ import { useRef } from "react";
 import cn from "classnames";
 import { unreadPill } from "@/components/AppHeader";
 import { useStuckUnderHeader } from "@/hooks/useStuckUnderHeader";
-import type { ScheduleDay } from "./utils";
+import { ALL_DAYS, type ScheduleDay } from "./utils";
 
 /** Height of the schedule's sticky desktop toolbar (`stackedUnderToolbar`). */
 const DESKTOP_TOOLBAR_H = 65;
@@ -25,7 +25,9 @@ const shortLabel = (label: string) => label.split(", ")[1] ?? label;
  * header's glass recipe (white/75 + 4px backdrop blur) once pinned so cards
  * scroll past behind it. `raised` (mobile timeline, app header folded away)
  * pins the bar at the very top instead, its own padding covering the iOS
- * status-bar strip the header used to.
+ * status-bar strip the header used to. `allDays` closes the row with an
+ * "All" tab (`ALL_DAYS`) behind a hairline, every day at once; mid-search
+ * its badge is the total.
  */
 export function DayTabs({
   days,
@@ -36,10 +38,13 @@ export function DayTabs({
   raised = false,
   stackedUnderToolbar = false,
   landscapeControls,
+  allDays = false,
 }: {
   days: ScheduleDay[];
   selectedDay: string | null;
   onSelect: (key: string) => void;
+  /** Close the row with the "All" tab (Scott, 2026-10-31). */
+  allDays?: boolean;
   /**
    * Per-day match counts while a search is active (null/undefined: no
    * badges). The host passes only the days present in the map, so a badge
@@ -67,6 +72,12 @@ export function DayTabs({
 
   if (days.length === 0) return null;
 
+  let total = 0;
+  counts?.forEach((c) => (total += c));
+  const tabs = allDays
+    ? [...days, { key: ALL_DAYS, label: "All", sortKey: Infinity }]
+    : days;
+
   return (
     <div
       ref={ref}
@@ -92,14 +103,19 @@ export function DayTabs({
             the bar must scroll — a packed row would clip later days without
             the fade. */}
         <div className="flex min-w-0 flex-1 items-stretch justify-start gap-3 overflow-x-auto pl-4 pr-12 phone-landscape:pl-[max(16px,var(--safe-left))] lg:flex-initial lg:items-center lg:gap-3 lg:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {days.map((day) => {
+          {tabs.map((day) => {
             const active = day.key === selectedDay;
+            const all = day.key === ALL_DAYS;
             return (
               <button
                 key={day.key}
                 onClick={() => onSelect(day.key)}
                 className={cn(
                   "flex shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap border-b-2 px-2 py-4 text-[14px] leading-none transition-colors lg:min-h-9 lg:px-3 lg:py-1",
+                  // The All tab stands apart from the dates behind a
+                  // hairline, in the tabs' 12px gap.
+                  all &&
+                    "relative before:absolute before:-left-1.5 before:top-4 before:bottom-4 before:w-px before:bg-dc-hairline before:content-[''] lg:before:top-2 lg:before:bottom-2",
                   active
                     ? "border-dc-purple font-bold text-dc-purple"
                     : "border-transparent font-normal text-dc-fg2 hover:text-dc-purple"
@@ -111,7 +127,7 @@ export function DayTabs({
                     the red "filters applied" badge. */}
                 {counts && (
                   <span className={unreadPill}>
-                    {counts.get(day.key) ?? 0}
+                    {all ? total : (counts.get(day.key) ?? 0)}
                   </span>
                 )}
               </button>

@@ -27,6 +27,7 @@ import {
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
 import { useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
+import type { Session as SessionModel } from "@/data/models";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
 import { isCommunityLed } from "@/data/programme";
 import { useStoreState } from "@/data/store/use-event-store";
@@ -53,11 +54,14 @@ import { EmptyState } from "./EmptyState";
 import { SessionDetailsPanel } from "./SessionDetailsPanel";
 import { useScheduleState, type DecoratedGroup, type FilterFacet } from "./useScheduleState";
 import {
+  ALL_DAYS,
   dayKey,
   formatDayHeading,
+  formatDayKeyLabel,
   ms,
   TIMELINE_ZOOM_PREF_KEY,
   TIMELINE_ZOOMS,
+  type ScheduleDay,
   type TimelineZoom,
 } from "./utils";
 import { readPref, writePref } from "@/data/prefs";
@@ -190,6 +194,9 @@ function InterestsSpanNote({ stretch = false }: { stretch?: boolean }) {
     </div>
   );
 }
+
+/** "Nov 4" from a day key, for the All view's group headers. */
+const shortDayLabel = (key: string) => formatDayKeyLabel(key).split(", ")[1] ?? key;
 
 /** Desktop side-panel slot: 360px panel + 16px gap, animated 0 ↔ this. */
 const PANEL_SLOT_W = 376;
@@ -461,9 +468,13 @@ function CompletedPanel({
 function GroupHeader({
   group,
   inPanel,
+  showDay = false,
 }: {
   group: DecoratedGroup;
   inPanel: boolean;
+  /** Lead with the day ("Nov 4 · 10:00"): the All view, where a pinned
+   *  header far down the list would otherwise not say which day it is. */
+  showDay?: boolean;
 }) {
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
@@ -550,6 +561,11 @@ function GroupHeader({
       >
         <span className="flex min-w-0 items-center gap-1 text-[14px] leading-6 text-dc-fg lg:text-[16px] lg:text-dc-fg2">
           <span className="truncate">
+            {showDay && (
+              <span className="font-normal text-dc-muted">
+                {shortDayLabel(group.dayKey)} ·{" "}
+              </span>
+            )}
             <span className="font-semibold">{group.timeLabel} </span>
             <span className="font-normal">
               – {group.sessions.length} session
@@ -572,6 +588,35 @@ function GroupHeader({
         )}
       </header>
     </>
+  );
+}
+
+/**
+ * Day divider for the All view: a lavender band naming the day ("Tue,
+ * November 3") with its session count, full-bleed on phones like the live
+ * band, a rounded bar on the desktop panel. Not sticky: the time-group
+ * headers pin under the day tabs, and a second pinned row above them would
+ * push every header offset on the page.
+ */
+function DayDivider({
+  dayKey: key,
+  count,
+}: {
+  dayKey: string;
+  /** Sessions shown under it (after filters); omitted when unknown. */
+  count?: number;
+}) {
+  return (
+    <div className="-mx-4 flex items-center justify-between gap-3 border-y border-dc-hairline bg-dc-lavender px-4 py-3 lg:mx-0 lg:rounded-lg lg:border">
+      <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
+        {formatDayHeading(key)}
+      </h3>
+      {count != null && (
+        <span className="shrink-0 text-[14px] leading-5 text-dc-muted">
+          {count} session{count === 1 ? "" : "s"}
+        </span>
+      )}
+    </div>
   );
 }
 
@@ -971,6 +1016,7 @@ function ScheduleInner({
     if (facet !== "community" || filters.community.includes(value)) return;
     const ref = communityOptions.find((c) => c.key === value);
     if (!ref || ref.section !== "cls" || ref.days.length === 0) return;
+    if (selectedDay === ALL_DAYS) return;
     if (selectedDay !== null && ref.days.includes(selectedDay)) return;
     const day = ref.days[0];
     if (days.some((d) => d.key === day)) selectDay(day);
@@ -1051,7 +1097,7 @@ function ScheduleInner({
     landedRef.current = true;
     revealOnCloseRef.current = routeSession.id;
     const key = dayKey(routeSession);
-    if (key !== selectedDay) setSelectedDay(key);
+    if (key !== selectedDay && selectedDay !== ALL_DAYS) setSelectedDay(key);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeSession]);
   const placedRef = useRef(false);
@@ -1203,16 +1249,52 @@ function ScheduleInner({
     return () => observer.disconnect();
   }, [listVisible, isDesktop, hasViewRow]);
 
-  // Contiguous live groups render inside one full-bleed band (Figma frame 4).
-  const segments = useMemo(() => {
-    const segs: { live: boolean; groups: DecoratedGroup[] }[] = [];
+  // The All tab: every day at once, the list in day sections and the
+  // timeline as one grid per day (Scott, 2026-10-31).
+  const allDays = selectedDay === ALL_DAYS;
+
+  // The list in sections, one per day shown (one section otherwise), each
+  // holding its segments: contiguous live groups render inside one
+  // full-bleed band (Figma frame 4).
+  const daySections = useMemo(() => {
+    type Segment = { live: boolean; groups: DecoratedGroup[] };
+    const sections: { dayKey: string; count: number; segments: Segment[] }[] = [];
     for (const g of visibleGroups) {
-      const last = segs[segs.length - 1];
+      let section = sections[sections.length - 1];
+      if (!section || section.dayKey !== g.dayKey) {
+        section = { dayKey: g.dayKey, count: 0, segments: [] };
+        sections.push(section);
+      }
+      section.count += g.sessions.length;
+      const last = section.segments[section.segments.length - 1];
       if (last && last.live === g.isLive) last.groups.push(g);
-      else segs.push({ live: g.isLive, groups: [g] });
+      else section.segments.push({ live: g.isLive, groups: [g] });
     }
-    return segs;
+    return sections;
   }, [visibleGroups]);
+
+  // The completed groups by day, for the panel's day labels in the All view.
+  const completedByDay = useMemo(() => {
+    const out: { dayKey: string; groups: DecoratedGroup[] }[] = [];
+    for (const g of completedGroups) {
+      const last = out[out.length - 1];
+      if (last && last.dayKey === g.dayKey) last.groups.push(g);
+      else out.push({ dayKey: g.dayKey, groups: [g] });
+    }
+    return out;
+  }, [completedGroups]);
+
+  // The timeline's grids: the selected day's, or one per day with sessions
+  // in view under the All tab, stacked.
+  const timelineDays = useMemo<{ day: ScheduleDay; sessions: SessionModel[] }[]>(() => {
+    if (!allDays) {
+      const day = days.find((d) => d.key === selectedDay);
+      return day ? [{ day, sessions: daySessions }] : [];
+    }
+    return days
+      .map((day) => ({ day, sessions: daySessions.filter((s) => dayKey(s) === day.key) }))
+      .filter((d) => d.sessions.length > 0);
+  }, [allDays, days, selectedDay, daySessions]);
 
   const sidePanelOpen = isDesktop && (filtersOpen || !!selectedSession);
 
@@ -1306,6 +1388,7 @@ function ScheduleInner({
     0
   );
   const dayHeading = useMemo(() => {
+    if (selectedDay === ALL_DAYS) return "All days";
     const day = days.find((d) => d.key === selectedDay);
     return day ? formatDayHeading(day.key) : null;
   }, [days, selectedDay]);
@@ -1327,7 +1410,7 @@ function ScheduleInner({
           "scroll-mt-[calc(112px+var(--safe-top))] lg:scroll-mt-[calc(192px+var(--safe-top))]"
       )}
     >
-      <GroupHeader group={group} inPanel={!!opts.inPanel} />
+      <GroupHeader group={group} inPanel={!!opts.inPanel} showDay={allDays && !opts.inPanel} />
       {/* Groups past the progressive-reveal frontier, and completed groups
           while their panel is collapsed, hold their place with a placeholder
           of about one card-row height each; the section and its header stay
@@ -1564,6 +1647,8 @@ function ScheduleInner({
               counts={dayCounts}
               selectedDay={selectedDay}
               onSelect={selectDay}
+              // One day needs no All tab.
+              allDays={days.length > 1}
               raised={chromeHidden}
               // Desktop: pins under the sticky toolbar above (65px nav +
               // 65px toolbar).
@@ -1717,29 +1802,48 @@ function ScheduleInner({
                     className="fixed inset-0 -z-[5] bg-dc-panel lg:hidden"
                     aria-hidden
                   />
-                  <ScheduleTimeline
-                  sessions={daySessions}
-                  nowMs={now}
-                  dayLabel={
-                    days.find((d) => d.key === selectedDay)?.label ?? ""
-                  }
-                  jumpToNowSignal={timelineJumpSignal}
-                  scrollToStartSignal={timelineStartSignal}
-                  onScrollLeft={(left, leftMs) => {
-                    timelineScrollLeftRef.current = left;
-                    timelineLeftMsRef.current = leftMs;
-                  }}
-                  scrollToTime={timelineScrollToTime}
-                  headerRaised={chromeHidden}
-                  zoom={zoom}
-                  // Only over the whole programme (see the prop).
-                  collapseEmptyLanes={activeFilterCount === 0}
-                  selectedSessionId={selectedSessionId}
-                  // Clicking the already-selected block closes the panel.
-                  onOpen={(id) =>
-                    selectSession(id === selectedSessionId ? null : id)
-                  }
-                  />
+                  {/* One grid per day in view; under the All tab each
+                      sits under its day divider and pans on its own (its
+                      own scroll box: the pointer or the finger over a grid
+                      moves that grid alone). Every grid takes the jump
+                      and reset signals; only the one holding "now" acts on
+                      the jump. The view-toggle time goes to the grid of its
+                      day alone: on another day's grid it would clamp to an
+                      end. */}
+                  <div className="flex flex-col gap-6">
+                    {timelineDays.map(({ day, sessions: grid }) => (
+                      <div key={day.key} className="flex flex-col gap-3">
+                        {allDays && <DayDivider dayKey={day.key} count={grid.length} />}
+                        <ScheduleTimeline
+                          sessions={grid}
+                          nowMs={now}
+                          dayLabel={day.label}
+                          jumpToNowSignal={timelineJumpSignal}
+                          scrollToStartSignal={timelineStartSignal}
+                          onScrollLeft={(left, leftMs) => {
+                            timelineScrollLeftRef.current = left;
+                            timelineLeftMsRef.current = leftMs;
+                          }}
+                          scrollToTime={
+                            !allDays ||
+                            (timelineScrollToTime &&
+                              eventDayKey(timelineScrollToTime.ms) === day.key)
+                              ? timelineScrollToTime
+                              : null
+                          }
+                          headerRaised={chromeHidden}
+                          zoom={zoom}
+                          // Only over the whole programme (see the prop).
+                          collapseEmptyLanes={activeFilterCount === 0}
+                          selectedSessionId={selectedSessionId}
+                          // Clicking the already-selected block closes the panel.
+                          onOpen={(id) =>
+                            selectSession(id === selectedSessionId ? null : id)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </>
               ) : (
                 <div className="flex flex-col gap-6">
@@ -1748,27 +1852,44 @@ function ScheduleInner({
                       open={completedOpen}
                       onToggle={() => setCompletedOpen((v) => !v)}
                     >
-                      {completedGroups.map((g) =>
-                        renderGroup(g, { inPanel: true })
-                      )}
+                      {/* Under the All tab a small day label heads each
+                          day's completed groups (the speaker page's day
+                          headers' size). */}
+                      {completedByDay.map(({ dayKey: key, groups }) => (
+                        <div key={key} className="flex flex-col gap-6">
+                          {allDays && (
+                            <h3 className="-mb-3 text-[14px] font-medium leading-5 text-dc-muted">
+                              {formatDayKeyLabel(key)}
+                            </h3>
+                          )}
+                          {groups.map((g) => renderGroup(g, { inPanel: true }))}
+                        </div>
+                      ))}
                     </CompletedPanel>
                   )}
-                  {segments.map((segment, i) =>
-                    segment.live ? (
-                      <div
-                        key={`live-${i}`}
-                        // -my-3 pulls the band halfway into the 24px section
-                        // gaps: 12px of tint on either side of the live group.
-                        className="-mx-4 -my-3 flex flex-col gap-6 border-y border-dc-red bg-dc-live-bg px-4 py-3"
-                      >
-                        {segment.groups.map((g) => renderGroup(g))}
-                      </div>
-                    ) : (
-                      <div key={i} className="flex flex-col gap-6">
-                        {segment.groups.map((g) => renderGroup(g))}
-                      </div>
-                    )
-                  )}
+                  {daySections.map((section) => (
+                    <div key={section.dayKey} className="flex flex-col gap-6">
+                      {allDays && (
+                        <DayDivider dayKey={section.dayKey} count={section.count} />
+                      )}
+                      {section.segments.map((segment, i) =>
+                        segment.live ? (
+                          <div
+                            key={`live-${i}`}
+                            // -my-3 pulls the band halfway into the 24px section
+                            // gaps: 12px of tint on either side of the live group.
+                            className="-mx-4 -my-3 flex flex-col gap-6 border-y border-dc-red bg-dc-live-bg px-4 py-3"
+                          >
+                            {segment.groups.map((g) => renderGroup(g))}
+                          </div>
+                        ) : (
+                          <div key={i} className="flex flex-col gap-6">
+                            {segment.groups.map((g) => renderGroup(g))}
+                          </div>
+                        )
+                      )}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

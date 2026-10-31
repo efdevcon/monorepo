@@ -10,6 +10,7 @@ import { deriveTopicOptions } from "@/data/topics";
 import { communityOf, communityOptions, type CommunityRef } from "@/data/programme";
 import { isCommunityHubName, isCommunityHubSession } from "@/data/communityHubs";
 import {
+  ALL_DAYS,
   compareRoomNames,
   dayKey,
   getDays,
@@ -55,9 +56,9 @@ function sessionValue(session: Session, facet: ValueFacet): string | undefined {
 /** A time group decorated with live/past status for the redesigned list. */
 export interface DecoratedGroup extends TimeGroup {
   /**
-   * Unique render/ref key. Usually the timeLabel, but a slot whose sessions
-   * are part-finished, part-still-running splits into a completed group and
-   * an ongoing group sharing one timeLabel.
+   * Unique render/ref key. Usually the group's own (day + time), but a slot
+   * whose sessions are part-finished, part-still-running splits into a
+   * completed group and an ongoing group sharing one timeLabel.
    */
   key: string;
   /**
@@ -156,7 +157,9 @@ export function useScheduleState(
   // the dataset's range (before day 1 → day 1, after the event → last day) —
   // and resume auto-following today, since the user just re-synced with the
   // clock. Days are sorted ascending, so the first key >= today is the clamp.
+  // The All view already holds today: it stays, and the jump lands within it.
   const jumpToToday = () => {
+    if (selectedDay === ALL_DAYS) return;
     setUserPickedDay(false);
     dayBeforeSearchRef.current = null;
     if (days.length === 0) return;
@@ -303,10 +306,15 @@ export function useScheduleState(
     };
   }, [q, filters, interestedOnly, interestedIds]);
 
-  // Every session on the selected day, before filters + search.
+  // Every session on the selected day (every day under the All tab), before
+  // filters + search.
   const daySessionsAll = useMemo(
     () =>
-      selectedDay ? sessions.filter((s) => dayKey(s) === selectedDay) : [],
+      selectedDay === ALL_DAYS
+        ? sessions
+        : selectedDay
+          ? sessions.filter((s) => dayKey(s) === selectedDay)
+          : [],
     [sessions, selectedDay]
   );
 
@@ -320,13 +328,13 @@ export function useScheduleState(
   // the latest-starting group with a running session. A search that hides
   // that slot must not promote an earlier, still-running session (ongoing
   // in the unfiltered list) to "live now" — only results from this slot are.
-  const liveSlotLabel = useMemo(() => {
+  const liveSlotKey = useMemo(() => {
     const all = groupByTime(daySessionsAll);
     const hasLive = all.map((g) =>
       g.sessions.some((s) => getStatus(s, now) === "live")
     );
     const i = hasLive.lastIndexOf(true);
-    return i >= 0 ? all[i].timeLabel : null;
+    return i >= 0 ? all[i].key : null;
   }, [daySessionsAll, now]);
 
   // Is anything running right now, anywhere in the event? Unfiltered and
@@ -381,6 +389,8 @@ export function useScheduleState(
       }
       return;
     }
+    // The All view shows every match wherever it is.
+    if (selectedDay === ALL_DAYS) return;
     if (selectedDay !== null && dayCounts.has(selectedDay)) return;
     const first = visibleDays[0]?.key;
     if (!first) return;
@@ -400,7 +410,8 @@ export function useScheduleState(
     if (dayCounts) return;
     if (!nowDate || days.length === 0) return;
     const selectionValid =
-      selectedDay != null && days.some((d) => d.key === selectedDay);
+      selectedDay === ALL_DAYS ||
+      (selectedDay != null && days.some((d) => d.key === selectedDay));
     if (userPickedDay && selectionValid) return;
     const todayKey = eventDayKey(nowDate.getTime());
     const today = days.find((day) => day.key === todayKey)?.key ?? null;
@@ -417,7 +428,7 @@ export function useScheduleState(
     );
     const out: DecoratedGroup[] = [];
     groups.forEach((g, i) => {
-      const isCurrentSlot = g.timeLabel === liveSlotLabel;
+      const isCurrentSlot = g.key === liveSlotKey;
       if (hasLive[i] && !isCurrentSlot) {
         // Carry-over slot: its sessions all started together, so each is
         // either still running or already over. Completed ones split into
@@ -431,7 +442,6 @@ export function useScheduleState(
           out.push({
             ...g,
             sessions: done,
-            key: g.timeLabel,
             isLive: false,
             isOngoing: false,
             isPast: true,
@@ -440,7 +450,7 @@ export function useScheduleState(
         out.push({
           ...g,
           sessions: running,
-          key: `${g.timeLabel}-ongoing`,
+          key: `${g.key}-ongoing`,
           isLive: false,
           isOngoing: true,
           isPast: false,
@@ -448,7 +458,6 @@ export function useScheduleState(
       } else {
         out.push({
           ...g,
-          key: g.timeLabel,
           isLive: hasLive[i] && isCurrentSlot,
           isOngoing: false,
           isPast: g.sessions.every((s) => getStatus(s, now) === "past"),
@@ -456,7 +465,7 @@ export function useScheduleState(
       }
     });
     return out;
-  }, [groups, now, liveSlotLabel]);
+  }, [groups, now, liveSlotKey]);
 
   // Every fully-completed group collapses behind the "Completed sessions"
   // panel — including ones that finished after a longer session started (the

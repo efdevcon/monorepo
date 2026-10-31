@@ -68,6 +68,13 @@ export function minutesUntil(session: Session, nowMs: number): number {
   return Math.max(0, Math.round((ms(session.start) - nowMs) / 60000));
 }
 
+/**
+ * The day selector's "All" tab: every day at once, the list in day sections
+ * and the timeline as one grid per day (Scott, 2026-10-31). Never one of
+ * `getDays`' keys, which are dates.
+ */
+export const ALL_DAYS = "all";
+
 /** A day in the day selector. */
 export interface ScheduleDay {
   key: string;
@@ -94,6 +101,10 @@ export function getDays(sessions: Session[]): ScheduleDay[] {
 
 /** A contiguous block of sessions sharing a start time, for sticky headers. */
 export interface TimeGroup {
+  /** Unique among a list's groups: the day and the time ("2026-11-03 09:30"). */
+  key: string;
+  /** Venue-timezone day key the group's sessions start on. */
+  dayKey: string;
   timeLabel: string;
   sessions: Session[];
 }
@@ -131,9 +142,13 @@ export function groupByTime(sessions: Session[]): TimeGroup[] {
   const groups: TimeGroup[] = [];
   for (const s of sorted) {
     const timeLabel = formatTime(s.start);
+    const day = dayKey(s);
     const last = groups[groups.length - 1];
-    if (last && last.timeLabel === timeLabel) last.sessions.push(s);
-    else groups.push({ timeLabel, sessions: [s] });
+    if (last && last.timeLabel === timeLabel && last.dayKey === day) {
+      last.sessions.push(s);
+    } else {
+      groups.push({ key: `${day} ${timeLabel}`, dayKey: day, timeLabel, sessions: [s] });
+    }
   }
   return groups;
 }
