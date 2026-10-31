@@ -115,7 +115,7 @@ profile, which the card shows as the speaker page's X and globe icon links (Scot
 at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
 a chip in the booth's fill in the card and lists; a supporter may name a `cardLogo` for those chips when the booth's own
 `logo` is a compact mark that fits its top as a decal (seven starter booths carry `<name>-full.svg` for the chips since
-2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both); a shared booth names one supporter only, since who is
+2026-10-27, Scott: EAG, Walletbeat, EEZ, GrapheneOS, Nimbus and Ordocode; Nethermind shows its stacked mark in both; growthepie, Fair Food Data and GrapheneOS carry a square `<name>-icon.svg` mark on the booth since 2026-10-31, new file names on purpose because the service worker holds images under their URL for 30 days, so the first two keep their original file as the `cardLogo` and GrapheneOS keeps `-full`); a shared booth names one supporter only, since who is
 present changes mid-event and is updated then (S12 is Fair Food Data from 2026-10-27; Kohaku moves to another spot later in the week, its two marks stay in the folder for that; Scott, 2026-10-25 / 10-27), optional
 `icon` (sprite PNG), `roomIds`, `website` (the place's own site, https; the card shows "Visit website" under the description with
 the north-east arrow the Home guides use; the Open Hardware Zone links Maker's Asylum, Scott, 2026-10-27) and `room` /
