@@ -5,7 +5,7 @@ import { trackEvent } from "@/data/analytics/track";
 import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
-import { Calendar, CalendarPlus, Clock3, MapPin, Star, Tent, Users } from "lucide-react";
+import { Calendar, CalendarPlus, Captions, Clock3, MapPin, Star, Tent, Users } from "lucide-react";
 import type { Session, Speaker } from "@/data/models";
 import { Link } from "@/routing";
 import { useEvent } from "@/data/hooks";
@@ -20,6 +20,9 @@ import { MarkdownText } from "@/components/MarkdownText";
 import { ShareMenu } from "@/components/ShareMenu";
 import { FoldedText } from "@/components/FoldedText";
 import { sessionCardUrl } from "@/data/sessionCard";
+import { transcriptUrlForRoom } from "@/data/transcripts";
+import { latchAroundSession } from "@/data/liveWindow";
+import { openOutside } from "@/utils/openOutside";
 
 /** Client-side .ics download — presentation-only "Add to Calendar". */
 /**
@@ -187,12 +190,26 @@ export function SessionSummary({
   const interested = isInterested(session.id);
   const mapHref = mapHrefForRoom(session.room?.id);
 
+  // "On now": ten minutes before the start to ten after the end, and sticky
+  // for as long as this view shows the session (src/data/liveWindow.ts), so
+  // a stream or transcript opened during the talk is not pulled away under
+  // the viewer when that window closes. Drives the media slot and the
+  // transcript link alike.
+  const [latchedId, setLatchedId] = useState<string | null>(null);
+  const latched = latchAroundSession(latchedId, session, nowMs);
+  // Stored during render, the React pattern for state that follows a prop
+  // (an effect would paint one frame without it first).
+  if (latched !== latchedId) setLatchedId(latched);
+  const onNow = latched === session.id;
+  // LiveVoice listen link (src/data/transcripts.ts).
+  const transcript = onNow ? transcriptUrlForRoom(session.room?.id) : null;
+
   // The track banner yields to media: recordings always take the top slot,
   // and live/soon sessions may render the room livestream there instead.
   // Asks SessionMedia's own predicate — a live session whose room has no
   // stream configured must fall back to the banner, not an empty slot.
   // Hub sessions are not recorded or streamed; keep the track banner.
-  const hasMedia = !isCommunityHubSession(session) && sessionHasMedia(session, nowMs, event?.startDate);
+  const hasMedia = !isCommunityHubSession(session) && sessionHasMedia(session, onNow, event?.startDate);
 
   const location = [session.type, session.room?.name]
     .filter(Boolean)
@@ -206,7 +223,7 @@ export function SessionSummary({
   const blurb = session.abstract || session.description;
 
   const media = hasMedia ? (
-    <SessionMedia session={session} />
+    <SessionMedia session={session} onNow={onNow} />
   ) : (
     <SessionBanner key={session.id} session={session} theme={theme} />
   );
@@ -312,6 +329,28 @@ export function SessionSummary({
             </div>
           </div>
 
+          {/* Live transcript, on its own row so the three pills below keep
+              their one-row layout on phones; present only while the session
+              is on, so most of the time this renders nothing. In the
+              installed app it opens in the device's own browser (openOutside),
+              a page people keep open while they come back here. */}
+          {transcript && (
+            <div className="flex">
+              <a
+                href={transcript}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => {
+                  if (openOutside(transcript, "Live transcript")) event.preventDefault();
+                  trackEvent("session", "transcript", session.id);
+                }}
+                className={pillClass}
+              >
+                <Captions className="size-4 text-dc-purple" />
+                Live transcript
+              </a>
+            </div>
+          )}
           {/* Action pills share the row's width equally (flex-1) and wrap
               onto a new line if they can't (the old mobile scroll-and-fade
               row hid the last pill past the screen edge). The map link is

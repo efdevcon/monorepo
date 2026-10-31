@@ -2,20 +2,24 @@
 
 import { useEvent } from "@/data/hooks";
 import type { Session } from "@/data/models";
-import { useNowMs } from "@/hooks/useNow";
 import { useOnline } from "@/hooks/useOnline";
 import { NeedsConnection } from "@/components/NeedsConnection";
-import { getStatus, streamUrlForDay } from "@/components/schedule/utils";
+import { streamUrlForDay } from "@/components/schedule/utils";
+import { streamEmbedUrlForRoom } from "@/data/streams";
 
 /**
  * Recording / livestream for a session:
  * - recording available (YouTube, else StreamEth) -> embed it
- * - no recording, session live or starting within the hour -> embed the
- *   room's stream for that conference day
- * - while live or imminent and room has translationUrl -> render "Live translation
+ * - no recording, session on now (`onNow`: the caller's sticky reading of
+ *   the ten minutes before the start to ten after the end,
+ *   src/data/liveWindow.ts, the same as the transcript link's)
+ *   -> embed the room's stream: the conference-day URL from the room data
+ *   when there is one, else the event's per-stage stream (src/data/streams.ts)
+ * - in that same span, a room with translationUrl -> render "Live translation
  *   available" link (with or without an embed)
  * - otherwise render nothing (no dead placeholder boxes when neither embed nor
- *   translation link is available)
+ *   translation link is available); the details layout shows the session
+ *   card instead
  */
 
 // Single source of truth for "will SessionMedia render anything?" — the
@@ -23,7 +27,7 @@ import { getStatus, streamUrlForDay } from "@/components/schedule/utils";
 // the decision must live in one place or the two drift (empty top slot).
 export function getSessionMediaSources(
   session: Session,
-  nowMs: number,
+  onNow: boolean,
   eventStartDate?: string
 ) {
   const recordingSrc = session.sources_youtubeId
@@ -32,13 +36,13 @@ export function getSessionMediaSources(
       ? `https://streameth.org/embed/?session=${session.sources_streamethId}&vod=true`
       : null;
 
-  const status = session.room ? getStatus(session, nowMs) : null;
-  const isLiveish = status === "live" || status === "soon";
-  const translationUrl = isLiveish ? (session.room?.translationUrl ?? null) : null;
+  const translationUrl = onNow ? (session.room?.translationUrl ?? null) : null;
 
   let streamSrc: string | null = null;
-  if (!recordingSrc && session.room && isLiveish) {
-    streamSrc = streamUrlForDay(session.room, session.start * 1000, eventStartDate);
+  if (!recordingSrc && session.room && onNow) {
+    streamSrc =
+      streamUrlForDay(session.room, session.start * 1000, eventStartDate) ??
+      streamEmbedUrlForRoom(session.room.id);
   }
 
   return { src: recordingSrc ?? streamSrc, streamSrc, translationUrl };
@@ -46,21 +50,20 @@ export function getSessionMediaSources(
 
 export function sessionHasMedia(
   session: Session,
-  nowMs: number,
+  onNow: boolean,
   eventStartDate?: string
 ) {
-  const { src, translationUrl } = getSessionMediaSources(session, nowMs, eventStartDate);
+  const { src, translationUrl } = getSessionMediaSources(session, onNow, eventStartDate);
   return !!(src || translationUrl);
 }
 
-export function SessionMedia({ session }: { session: Session }) {
-  const nowMs = useNowMs(30_000);
+export function SessionMedia({ session, onNow }: { session: Session; onNow: boolean }) {
   const { event } = useEvent();
   const online = useOnline();
 
   const { src, streamSrc, translationUrl } = getSessionMediaSources(
     session,
-    nowMs,
+    onNow,
     event?.startDate
   );
   if (!src && !translationUrl) return null;

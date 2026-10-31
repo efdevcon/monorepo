@@ -83,6 +83,10 @@ import { authCookieName, jwtExpiresAt, parseAuthCookie } from "../src/data/auth/
 import { HEAL_EXPIRY_MARGIN_S, healScriptBody } from "../src/app/api/meerkat/go/heal";
 import { createSupabaseFetch, isTokenRateLimit } from "../src/data/auth/supabaseFetch";
 import { sessionCardHash, sessionCardUrl } from "../src/data/sessionCard";
+import { sessionTranscriptUrl, transcriptUrlForRoom } from "../src/data/transcripts";
+import { LIVE_WINDOW_MS, aroundSession, latchAroundSession } from "../src/data/liveWindow";
+import { streamEmbedUrlForRoom } from "../src/data/streams";
+import { toSafariHref } from "../src/utils/openOutside";
 import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
@@ -1412,6 +1416,63 @@ function testSessionCard() {
   check("fields the card does not show leave the hash alone", sessionCardHash({ ...base, description: "longer text", tags: ["x"] } as typeof base) === hash);
 }
 
+function testTranscripts() {
+  console.log("\n--- Live transcript link: six stages, around the session only ---");
+  const at = (start: number, end: number, roomId?: string) => ({ start, end, room: roomId ? { id: roomId } : undefined });
+  const s = at(1_700_000_000, 1_700_003_600, "lotus-stage-1");
+  const startMs = s.start * 1000;
+  const endMs = s.end * 1000;
+  const min = 60_000;
+  check("lotus 1 has its listen link", transcriptUrlForRoom("lotus-stage-1") === "https://livevoice.io/en/streaming?join_code=110441");
+  check(
+    "every mapped stage links to a livevoice listen channel",
+    ["lotus-stage-2", "lotus-stage-3", "jasmine-stage-4", "community-led-stage"].every((id) =>
+      /^https:\/\/livevoice\.io\/en\/streaming\?join_code=\d{6}$/.test(transcriptUrlForRoom(id) ?? "")
+    )
+  );
+  check("the combined main stage shares lotus 2's channel", transcriptUrlForRoom("main-stage-lotus") === transcriptUrlForRoom("lotus-stage-2"));
+  check(
+    "other rooms have none",
+    transcriptUrlForRoom("music-stage") === null && transcriptUrlForRoom("cls-builders-room") === null && transcriptUrlForRoom(undefined) === null
+  );
+  check("hidden 11 min before the start", sessionTranscriptUrl(s, startMs - 11 * min) === null);
+  check("shown 10 min before the start", sessionTranscriptUrl(s, startMs - 10 * min) !== null);
+  check("shown while live", sessionTranscriptUrl(s, startMs + 30 * min) !== null);
+  check("shown 10 min after the end", sessionTranscriptUrl(s, endMs + 10 * min) !== null);
+  check("hidden 11 min after the end", sessionTranscriptUrl(s, endMs + 11 * min) === null);
+  check("hidden while live in a room without a channel", sessionTranscriptUrl(at(s.start, s.end, "music-stage"), startMs + min) === null);
+  check("safari hand-off keeps path and query", toSafariHref("https://livevoice.io/en/streaming?join_code=110441") === "x-safari-https://livevoice.io/en/streaming?join_code=110441");
+  check("safari hand-off leaves a non-https url alone", toSafariHref("mailto:x@y.z") === "mailto:x@y.z");
+}
+
+function testLiveWindowAndStreams() {
+  console.log("\n--- Around-the-session window and per-stage streams ---");
+  const s = { start: 1_700_000_000, end: 1_700_003_600 };
+  const startMs = s.start * 1000;
+  const endMs = s.end * 1000;
+  check("window is ten minutes", LIVE_WINDOW_MS === 10 * 60_000);
+  check("closed before the window", !aroundSession(s, startMs - LIVE_WINDOW_MS - 1));
+  check("open at the window's start", aroundSession(s, startMs - LIVE_WINDOW_MS));
+  check("open while live", aroundSession(s, startMs + 60_000));
+  check("open at the window's end", aroundSession(s, endMs + LIVE_WINDOW_MS));
+  check("closed after the window", !aroundSession(s, endMs + LIVE_WINDOW_MS + 1));
+  const a = { id: "a", ...s };
+  const b = { id: "b", start: s.start + 7200, end: s.end + 7200 };
+  check("latch: nothing before the window", latchAroundSession(null, a, startMs - LIVE_WINDOW_MS - 1) === null);
+  check("latch: takes the session once open", latchAroundSession(null, a, startMs) === "a");
+  check("latch: keeps the session after its window while the page stays open", latchAroundSession("a", a, endMs + LIVE_WINDOW_MS + 1) === "a");
+  check("latch: another session outside its window does not inherit it", latchAroundSession("a", b, endMs + LIVE_WINDOW_MS + 1) === "a" && latchAroundSession("a", b, endMs + LIVE_WINDOW_MS + 1) !== b.id);
+  check("latch: another session inside its window takes over", latchAroundSession("a", b, b.start * 1000) === "b");
+  check("main stage embeds its live video", streamEmbedUrlForRoom("main-stage-lotus") === "https://www.youtube.com/embed/Xb0myl-5NNE");
+  check(
+    "every stage with a stream embeds a youtube video",
+    ["lotus-stage-1", "lotus-stage-2", "lotus-stage-3", "jasmine-stage-4", "workshop-1", "workshop-2", "lightning-stage", "community-led-stage"].every(
+      (id) => /^https:\/\/www\.youtube\.com\/embed\/[A-Za-z0-9_-]{11}$/.test(streamEmbedUrlForRoom(id) ?? "")
+    )
+  );
+  check("rooms without a stream have none", streamEmbedUrlForRoom("music-stage") === null && streamEmbedUrlForRoom("cls-builders-room") === null && streamEmbedUrlForRoom(undefined) === null);
+}
+
 async function main() {
   testNormalize();
   testTimelineFold();
@@ -1443,6 +1504,8 @@ async function main() {
   await testMemoryStorage();
   testLegacySessionLink();
   testSessionCard();
+  testTranscripts();
+  testLiveWindowAndStreams();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

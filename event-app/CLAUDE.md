@@ -253,6 +253,15 @@ sole email match, else the tab asks.
   into "Add a ticket to ask a question" (plain `/my-devcon`) when the tickets the app has already loaded hold no
   admission ticket; it reads them through `useLoadedTickets`, which never fetches: a request per session view
   would be a Pretix lookup per view. Unknown tickets leave the decision to the hand-off.
+- **Live transcripts and streams**, by room id: one public LiveVoice listen link per stage in
+  `src/data/transcripts.ts` (only the listen links live in the repo; the speak links stay with the AV crew) and one
+  YouTube live video per stage in `src/data/streams.ts`, the fallback when the room data has no per-day stream URL.
+  Both follow the same span, 10 minutes before the start to 10 minutes after the end on the mockable clock
+  (`src/data/liveWindow.ts`): the link appears above the action pills and the stream replaces the session card.
+  Once shown, both stay for as long as the view shows that session (`latchAroundSession`), so nothing is pulled
+  away under a viewer when the ten minutes after the end pass. In the installed app the transcript opens in the
+  device's own browser (`src/utils/openOutside.ts`: Safari through `x-safari-https://` on iOS, the share sheet on
+  Android, since Chrome routes intent URLs into its in-app tab); in a browser it is a plain new tab.
 - **Fixture** (`TICKET_TEST_INDIA_ORDER_CODE`, dev/preview): fake tickets live
   on their own `TEST-<code>` order, are flagged `test`, carry negative
   synthetic position ids so they can be chosen (the server skips Pretix for

@@ -56,7 +56,7 @@ const EVENTS = {
   planner: ["open-chatgpt", "open-claude", "open-grok", "copy", "copy-other-ai", "apply-opened", "applied"],
   perks: ["claim", "sheet-shown", "open-browser", "copy", "share"],
   schedule: ["day", "programme", "view", "interests-only", "filter", "search"],
-  session: ["qa", "qa-ticket", "calendar", "share-copy", "share-native"],
+  session: ["qa", "qa-ticket", "calendar", "share-copy", "share-native", "transcript"],
   speaker: ["share-copy", "share-native"],
   announcements: ["open", "highlight", "push-open"],
   offline: ["used"],
