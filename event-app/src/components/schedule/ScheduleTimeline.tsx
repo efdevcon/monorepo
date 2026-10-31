@@ -447,12 +447,16 @@ export function ScheduleTimeline({
   );
   // The folded rooms, as one string: the scroll handler recomputes it on
   // every event but only a change re-renders the grid, so panning along
-  // the fold's threshold is the only time the lanes re-lay out.
+  // the fold's threshold is the only time the lanes re-lay out. Read
+  // against the current late rooms: the key is state, re-decided in an
+  // effect, so the render after the late rooms change (My Interests
+  // switched on, the fold off) still holds the old names, and a lane
+  // folded over no late room formatted Math.min() of nothing (2026-10-31).
   const [collapsedKey, setCollapsedKey] = useState("");
-  const collapsed = useMemo(
-    () => new Set(collapsedKey ? collapsedKey.split("\n") : []),
-    [collapsedKey]
-  );
+  const collapsed = useMemo(() => {
+    const names = collapsedKey ? collapsedKey.split("\n") : [];
+    return new Set(names.filter((name) => late.some((r) => r.room === name)));
+  }, [collapsedKey, late]);
   const rootRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
