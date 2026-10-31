@@ -592,44 +592,28 @@ function GroupHeader({
 }
 
 /**
- * Day divider for the All view, naming the day ("Tue, November 3") with its
- * session count. The list's is a lavender band, full-bleed on phones like
- * the live band, a rounded bar on the desktop panel; the timeline's
- * (`plain`) is the two texts alone, flush to the content's edges above the
- * day's grid, the count in the foreground colour so it stands out (Scott,
- * 2026-10-31). Not sticky: the time-group headers pin under the day tabs,
- * and a second pinned row above them would push every header offset on
- * the page.
+ * Day divider for the All view: the day ("Tue, November 3") and its session
+ * count, the two texts alone flush to the content's edges above the day's
+ * list or grid, the count in the foreground colour so it stands out (a
+ * lavender band was tried and dropped; Scott, 2026-10-31). Not sticky: the
+ * time-group headers pin under the day tabs, and a second pinned row above
+ * them would push every header offset on the page.
  */
 function DayDivider({
   dayKey: key,
   count,
-  plain = false,
 }: {
   dayKey: string;
   /** Sessions shown under it (after filters); omitted when unknown. */
   count?: number;
-  /** No band: the texts alone (the timeline). */
-  plain?: boolean;
 }) {
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between gap-3",
-        !plain &&
-          "-mx-4 border-y border-dc-hairline bg-dc-lavender px-4 py-3 lg:mx-0 lg:rounded-lg lg:border"
-      )}
-    >
+    <div className="flex items-center justify-between gap-3">
       <h3 className="text-[16px] font-bold leading-6 text-dc-fg2">
         {formatDayHeading(key)}
       </h3>
       {count != null && (
-        <span
-          className={cn(
-            "shrink-0 text-[14px] leading-5",
-            plain ? "text-dc-fg2" : "text-dc-muted"
-          )}
-        >
+        <span className="shrink-0 text-[14px] leading-5 text-dc-fg2">
           {count} session{count === 1 ? "" : "s"}
         </span>
       )}
@@ -1827,10 +1811,11 @@ function ScheduleInner({
                       the jump. The view-toggle time goes to the grid of its
                       day alone: on another day's grid it would clamp to an
                       end. */}
-                  <div className="flex flex-col gap-6">
+                  {/* 2rem between days (Scott, 2026-10-31). */}
+                  <div className="flex flex-col gap-8">
                     {timelineDays.map(({ day, sessions: grid }) => (
                       <div key={day.key} className="flex flex-col gap-3">
-                        {allDays && <DayDivider dayKey={day.key} count={grid.length} plain />}
+                        {allDays && <DayDivider dayKey={day.key} count={grid.length} />}
                         <ScheduleTimeline
                           sessions={grid}
                           nowMs={now}
@@ -1863,7 +1848,9 @@ function ScheduleInner({
                   </div>
                 </>
               ) : (
-                <div className="flex flex-col gap-6">
+                // Under the All tab the day sections sit 2rem apart (Scott,
+                // 2026-10-31); a single day keeps the 24px group rhythm.
+                <div className={cn("flex flex-col", allDays ? "gap-8" : "gap-6")}>
                   {completedCount > 0 && (
                     <CompletedPanel
                       open={completedOpen}

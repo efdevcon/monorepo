@@ -299,11 +299,12 @@ function CollapsedLane({
           // vertically too, pinned against the lane's edge in the lanes box.
           className="sticky flex h-full w-fit min-w-0 items-center"
         >
-        <div
-          className={cn(
-            "flex min-w-0 flex-col gap-0.5 rounded-lg border border-dc-hairline bg-white",
-            compact ? "px-2.5 py-1.5" : "px-3 py-2"
-          )}
+        {/* The whole card pans to the time (Scott, 2026-10-31): purple
+            outline, lavender on hover. */}
+        <button
+          type="button"
+          onClick={() => onPanTo(firstMs)}
+          className="flex min-w-0 cursor-pointer flex-col gap-0.5 rounded-lg border border-dc-purple bg-white p-4 text-left transition-colors duration-150 ease-out hover:bg-dc-lavender"
         >
           <span
             className={cn(
@@ -312,23 +313,17 @@ function CollapsedLane({
             )}
           >
             No programming until{" "}
-            <button
-              type="button"
-              onClick={() => onPanTo(firstMs)}
-              className="relative cursor-pointer font-bold text-dc-purple before:absolute before:-inset-x-1 before:-inset-y-2 before:content-[''] hover:underline"
-            >
-              {formatTime(firstMs / 1000)}
-            </button>
+            <span className="font-bold text-dc-purple">{formatTime(firstMs / 1000)}</span>
           </span>
           <span
             className={cn(
-              "truncate text-dc-muted",
+              "max-w-full truncate text-dc-muted",
               compact ? "text-[11px]" : "text-[12px]"
             )}
           >
             {names.join(", ")}
           </span>
-        </div>
+        </button>
         </div>
       </div>
     </div>
@@ -719,7 +714,13 @@ export function ScheduleTimeline({
         // of the last lane on desktop.
         className="isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        <div style={{ width: m.roomCol + gridWidth }} className="relative">
+        {/* The last lane's cells drop their bottom hairline: the root's own
+            border (border-y on phones, the desktop card's) draws that edge,
+            and the two read as a double line (Scott, 2026-10-31). */}
+        <div
+          style={{ width: m.roomCol + gridWidth }}
+          className="relative [&>:last-child>*]:border-b-0"
+        >
           {/* Now line — below the sticky room cells (z-10) so it slides under
               them instead of painting over the room names. */}
           {nowVisible && (
