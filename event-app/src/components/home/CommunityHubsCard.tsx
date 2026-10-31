@@ -53,7 +53,7 @@ export function CommunityHubsCard() {
           </div>
         </div>
 
-        <div className="flex min-w-0 flex-col gap-4 p-5 lg:flex-1 lg:p-0">
+        <div className="flex min-w-0 flex-col gap-6 p-5 lg:flex-1 lg:p-0">
           <div className="flex flex-col gap-3 lg:gap-1">
             <h3 className="text-[20px] font-bold leading-[1.2] tracking-[-0.5px] text-dc-fg2 lg:leading-[28.8px]">
               Discover the Community tab
