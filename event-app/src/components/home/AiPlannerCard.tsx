@@ -130,7 +130,7 @@ export function AiPlannerPanel({
   return (
     <div
       className={cn(
-        "rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] p-5 lg:p-6",
+        "rounded-xl border border-dc-hairline bg-gradient-to-t from-[#fbfafc] from-20% to-[#fff5fa] px-5 pb-5 pt-6 lg:p-6",
         promptAside && "lg:grid lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-6 lg:py-8"
       )}
     >
