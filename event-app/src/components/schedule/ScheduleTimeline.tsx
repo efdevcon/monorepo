@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { shortCommunityHubName } from "@/data/communityHubs";
 import cn from "classnames";
-import { Clock3, Star, User } from "lucide-react";
+import { ArrowRight, Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
 import { safeLeftNow, useIsDesktop, useIsPhoneLandscape } from "@/hooks/useIsDesktop";
@@ -312,14 +312,22 @@ function CollapsedLane({
             m.zoom === 2 ? "p-4" : "px-3 py-2"
           )}
         >
+          {/* Bold throughout, the time in purple with a small arrow after
+              it: the card goes somewhere (Scott, 2026-10-31). */}
           <span
             className={cn(
-              "text-dc-fg2",
+              "flex items-center gap-1 font-bold text-dc-fg2",
               compact ? "text-[12px] leading-[14px]" : "text-[14px] leading-5"
             )}
           >
-            No programming until{" "}
-            <span className="font-bold text-dc-purple">{formatTime(firstMs / 1000)}</span>
+            <span>
+              No programming until{" "}
+              <span className="text-dc-purple">{formatTime(firstMs / 1000)}</span>
+            </span>
+            <ArrowRight
+              aria-hidden
+              className={cn("shrink-0 text-dc-purple", compact ? "size-3" : "size-3.5")}
+            />
           </span>
           <span
             className={cn(
