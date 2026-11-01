@@ -6,6 +6,7 @@ import { cacheDB } from "@/data/cache/cache-db";
 import { useNowMs } from "@/hooks/useNow";
 import { markSeen, UNREAD_WINDOW_MS, useSeenIds } from "./seenState";
 import type { Announcement, AnnouncementsResponse } from "./types";
+import { usePreviewFeatured } from "@/hooks/usePreviewState";
 
 async function fetchAnnouncements(preview: boolean): Promise<Announcement[]> {
   const res = await fetch(
@@ -100,9 +101,13 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
    * than one thing to put in front of everyone during the week, so the hero
    * swipes through all of them (Scott).
    */
+  const previewFeatured = usePreviewFeatured();
   const featured = useMemo(
-    () => allHighlights.filter((h) => h.featured),
-    [allHighlights]
+    () =>
+      previewFeatured
+        ? allHighlights.slice(0, previewFeatured)
+        : allHighlights.filter((h) => h.featured),
+    [allHighlights, previewFeatured]
   );
 
   /**
@@ -110,8 +115,8 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
    * a featured card renders twice on the same screen.
    */
   const highlights = useMemo(
-    () => allHighlights.filter((h) => !h.featured),
-    [allHighlights]
+    () => allHighlights.filter((h) => !featured.includes(h)),
+    [allHighlights, featured]
   );
 
   const unreadCount = useMemo(
