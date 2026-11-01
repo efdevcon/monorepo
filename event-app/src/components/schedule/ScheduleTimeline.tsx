@@ -299,13 +299,15 @@ function CollapsedLane({
           // vertically too, pinned against the lane's edge in the lanes box.
           className="sticky flex h-full w-fit min-w-0 items-center"
         >
-        {/* The whole card pans to the time (Scott, 2026-10-31): purple
-            outline, lavender on hover. */}
+        {/* The whole card pans to the time (Scott, 2026-10-31): hairline
+            outline like the session blocks, purple outline and lavender on
+            hover (a purple outline at rest read as more clickable than the
+            opening ceremony beside it; Scott, 2026-11-01). */}
         <button
           type="button"
           onClick={() => onPanTo(firstMs)}
           className={cn(
-            "flex min-w-0 cursor-pointer flex-col gap-0.5 rounded-lg border border-dc-purple bg-white text-left transition-colors duration-150 ease-out hover:bg-dc-lavender",
+            "flex min-w-0 cursor-pointer flex-col gap-0.5 rounded-lg border border-dc-hairline bg-white text-left transition-colors duration-150 ease-out hover:border-dc-purple hover:bg-dc-lavender",
             // Padding with the lane: 16px in the 1.5× taller 2× lane, where
             // the card still floats clear of the lane's edges; at 1× that
             // filled the lane, so it takes 8 / 12 instead.
