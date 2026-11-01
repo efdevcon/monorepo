@@ -10,6 +10,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type MutableRefObject,
   type RefObject,
 } from "react";
 import {
@@ -892,26 +893,34 @@ function ScheduleInner({
   useEffect(() => {
     if (!paneActive || detailId) return;
     const url = new URL(window.location.href);
-    const writes: [string, string | null][] = [
-      [ROOM_PARAM, roomParamValue],
-      [COMMUNITY_PARAM, communityParamValue],
-      [DAY_PARAM, dayParam],
+    // A link value the effects above have not applied yet (the programme is
+    // still loading) is left alone: writing the empty state over it would
+    // drop the link before it ever took effect.
+    const writes: [string, string | null, MutableRefObject<string | null>, string | null][] = [
+      [ROOM_PARAM, roomParamValue, appliedRoomRef, roomsInUrl],
+      [COMMUNITY_PARAM, communityParamValue, appliedCommunityRef, communityInUrl],
+      [DAY_PARAM, dayParam, appliedDayRef, dayInUrl],
     ];
     let changed = false;
-    for (const [name, value] of writes) {
+    for (const [name, value, applied, inUrl] of writes) {
+      if (inUrl !== null && applied.current !== inUrl) continue; // pending apply
       if ((url.searchParams.get(name) ?? null) === value) continue;
       if (value) url.searchParams.set(name, value);
       else url.searchParams.delete(name);
+      // The URL now says what the view shows: a later link with the same
+      // value is a no-op, a different one applies.
+      applied.current = value;
       changed = true;
     }
     if (!changed) return;
-    // The URL now says what the view shows: a later link with the same
-    // value is a no-op, a different one applies.
-    appliedRoomRef.current = roomParamValue;
-    appliedCommunityRef.current = communityParamValue;
-    appliedDayRef.current = dayParam;
-    window.history.replaceState(window.history.state, "", url.toString());
-  }, [paneActive, detailId, roomParamValue, communityParamValue, dayParam]);
+    // A null state, not window.history.state: Next's patched replaceState
+    // treats a state carrying its own `__NA` flag as one of its internal
+    // calls and skips syncing the router, so useSearchParams kept the link's
+    // value while the address bar changed, and every second tab tap
+    // re-applied the stale param (day 3 → 1 landed back on 3, 2026-11-01).
+    // With null Next copies its internals in and updates the params.
+    window.history.replaceState(null, "", url.toString());
+  }, [paneActive, detailId, roomParamValue, communityParamValue, dayParam, roomsInUrl, communityInUrl, dayInUrl]);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
