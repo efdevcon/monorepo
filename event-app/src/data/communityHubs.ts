@@ -38,9 +38,8 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     name: "Base Booth",
     description: "Base's workshop room (Room 202, Level 2): hands-on sessions on the B20 token standard, the Denim network upgrade and consumer finance built from Base's primitives.",
     color: "#CFDDFF",
-    // Base's blue square as the mark; no lockup, the details banner shows the
-    // mark with the name under it.
-    logoStacked: null,
+    // Base's blue square as the mark; the lockup (square + wordmark) is the
+    // venue map's supporter artwork in Base blue, for the pastel banner.
     // A workshop room with a programme of its own, not a hub: filters beside
     // the community-led sessions, like the Music Stage.
     listedWithCommunityLed: true,
