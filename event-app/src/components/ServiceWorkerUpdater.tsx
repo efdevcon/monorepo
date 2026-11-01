@@ -100,7 +100,7 @@ function UpdateToast({
     <div className={toastFrame} role="status">
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-gray-900">Updating</p>
-        <p className="text-xs text-gray-500 lg:whitespace-nowrap">The new version is taking over.</p>
+        <p className="text-xs text-gray-500 lg:whitespace-nowrap">New version being applied. The app is updating.</p>
       </div>
       <Loader2 className="size-5 shrink-0 animate-spin text-gray-400" aria-label="Updating" />
     </div>
