@@ -43,6 +43,6 @@ export const TWEEN_MS = 350;
 /** Floor switch, reset and focus: one clock for the floors and the camera (400 felt too fast). */
 export const LEVEL_SWITCH_MS = 800;
 
-/** Deep-link / Find zoom over the fitted floor: phones pull the footprint in, desktop less so. Raised 2026-11-01 (was 2.2 / 1.35): a schedule "Show on Map" landed too far out to tell the dimmed footprints from the lit one, worst on phones (Scott). */
-export const FOCUS_ZOOM_MOBILE = 3.5;
+/** Deep-link / Find zoom over the fitted floor: phones pull the footprint in, desktop less so. Raised 2026-11-01 (was 2.2 / 1.35, then 3.5 on phones): a schedule "Show on Map" landed too far out to tell the dimmed footprints from the lit one, worst on phones and for small footprints such as the hub booths (Scott). */
+export const FOCUS_ZOOM_MOBILE = 5;
 export const FOCUS_ZOOM_DESKTOP = 2;
