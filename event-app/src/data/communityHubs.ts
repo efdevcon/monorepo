@@ -46,7 +46,17 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
   },
   { id: "desci", name: "DeSci Hub", description: "Four days of decentralised science: scientists, builders and funders co-creating tools that treat research as a public good.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards and protocol upgrades: technical discussions, office hours and how standards get adopted.", color: "#D4EBF7" },
-  { id: "game-zone", name: "Game Zone", description: "Community-run games and play.", color: "#FFD6EC" },
+  {
+    id: "game-zone",
+    name: "Game Zone",
+    description: "Community-run games and play.",
+    color: "#FFD6EC",
+    // The venue map's Game Zone sprite stands in for a hub mark, as the Music
+    // Stage's does; no lockup, the details banner shows the sprite with
+    // "Game Zone" under it (Scott, 2026-11-01).
+    logo: "/maps/devcon-8/icons/game-zone.png",
+    logoStacked: null,
+  },
   {
     id: "india",
     name: "India Hub",
