@@ -1,9 +1,10 @@
 /**
  * Supabase Storage for the AV page's files: the render inputs read once from
- * Pretalx, every rendered card (PNG + JPEG), the intro animation masters and
- * the intro videos operators render in their browser. One public bucket, so a
- * link copied from the page opens anywhere, and the files are served by
- * Supabase's CDN: a devcon.org deploy does not touch them.
+ * Pretalx, every rendered card (PNG + JPEG) and the intro animation masters.
+ * One public bucket, so a link copied from the page opens anywhere, and the
+ * files are served by Supabase's CDN: a devcon.org deploy does not touch them.
+ * (The stream intros operators render go to the AV team's Drive instead:
+ * services/av/google-drive.ts.)
  *
  * Talks to the storage REST API with fetch and the service role key, like
  * services/og-cache.ts (no supabase-js client on this path). Server-only.
@@ -11,10 +12,8 @@
 
 export const AV_BUCKET = 'av-assets'
 
-/** Cache lifetimes sent on upload (seconds). Hashed names never change, so they can live long. */
+/** Cache lifetime sent on upload (seconds): every name here is a hash of its content, so it can live long. */
 export const CACHE_IMMUTABLE_S = 365 * 24 * 60 * 60
-/** Stable names that get overwritten (a re-rendered video): short, and the copied link carries ?v=. */
-export const CACHE_SHORT_S = 300
 
 function baseUrl(): string {
   const url = process.env.SUPABASE_URL
@@ -113,32 +112,4 @@ export async function avGetJson<T>(key: string, fresh = false): Promise<T | null
   } catch {
     return null
   }
-}
-
-/**
- * A one-time URL the operator's browser PUTs a file to (a 50 MB video never
- * passes through a function, whose request body is capped at 6 MB). The
- * token allows that one key, overwriting is allowed. Supabase's answer is a
- * relative `/object/upload/sign/...?token=` path; the browser needs it absolute.
- */
-export async function avSignedUpload(key: string): Promise<{ uploadUrl: string; publicUrl: string }> {
-  const attempt = async () =>
-    fetch(`${baseUrl()}/storage/v1/object/upload/sign/${AV_BUCKET}/${encodeKey(key)}`, {
-      method: 'POST',
-      headers: { ...(await authHeaders()), 'x-upsert': 'true', 'Content-Type': 'application/json' },
-      body: '{}',
-      signal: AbortSignal.timeout(10_000),
-    })
-  let r = await attempt()
-  if (!r.ok) {
-    const body = await r.text().catch(() => '')
-    if (isBucketMissing(r.status, body)) {
-      await ensureBucket()
-      r = await attempt()
-    }
-    if (!r.ok) throw new Error(`could not sign the upload (${r.status}): ${body || (await r.text().catch(() => ''))}`)
-  }
-  const data = (await r.json()) as { url?: string }
-  if (!data.url) throw new Error('could not sign the upload: no URL returned')
-  return { uploadUrl: `${baseUrl()}/storage/v1${data.url}`, publicUrl: avObjectUrl(key) }
 }

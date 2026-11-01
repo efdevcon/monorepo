@@ -46,10 +46,13 @@ export interface AvSessionDetail extends AvSessionSummary {
   videos?: Record<string, AvStoredVideo>
 }
 
-/** A stream intro's fixed link in storage, whether a file is there, and the stored card it was rendered from (when recorded). */
+/** A stream intro the page saved to the AV team's Drive: the newest version for one kind and size, and the card (render key) it was made from. */
 export interface AvStoredVideo {
-  url: string
   exists: boolean
+  fileId?: string
+  name?: string
+  version?: number
+  link?: string
   card?: string
   savedAt?: number
 }

@@ -89,13 +89,13 @@ export function cardFileName(
 }
 
 /**
- * Object name of a session's stream intro in the av-assets bucket: one per
- * session, kind and size, overwritten by each render, so the link an operator
- * copied keeps playing the latest version and the page finds it again on the
- * next open. `rpaptp-stream-intro-youtube-1920x1080.mp4`.
+ * A stored card's render key: the 12 hex characters before ".png" in its
+ * storage URL (services/av/render.ts names each render after everything that
+ * went in). Recorded on a Drive video as the card it was made from; Drive's
+ * appProperties take short strings, not the whole URL.
  */
-export function streamIntroObjectName(code: string, kind: 'YouTube' | 'Screen', width: number, height: number): string {
-  return `${code.toLowerCase()}-stream-intro-${kind.toLowerCase()}-${width}x${height}.mp4`
+export function cardRenderKey(pngUrl: string | undefined): string {
+  return pngUrl?.match(/-([a-f0-9]{12})\.png$/)?.[1] ?? ''
 }
 
 /** Content-Disposition naming the file, inline so the page can preview it too. */

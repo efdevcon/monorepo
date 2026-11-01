@@ -95,27 +95,29 @@ write by `src/services/av/storage.ts`):
 - `intro/intro-<w>x<h>.webm`: the intro animation masters (one-year cache; a
   changed master gets a new name), linked from `src/services/av/intro-videos.json`.
   No longer in `public/`, so a deploy neither purges nor moves them.
-- `videos/<CODE>/<code>-stream-intro-<kind>-<w>x<h>.mp4`: stream intros rendered in
-  the operator's browser, uploaded straight to Supabase through a signed URL from
-  `/api/av/upload-url` (a function body is capped at 6 MB). One object per session,
-  kind and size, overwritten by every render, so a copied link always plays the
-  latest; the page checks the fixed link when a card loads and shows the stored
-  video with Download, Copy link and "Make it again". Copied links carry `?v=` (the
-  object's Last-Modified) because the objects are served with a 5-minute cache.
-  The project's upload limit sits between 63 and 80 MB per object (probed
-  2026-11-01: 60 MB accepted, 80 MB refused); a 4032x1512 intro is about 50 MB,
-  so raise the limit in the Supabase dashboard (Storage settings) if that ever grows.
+Stream intros rendered in the operator's browser go to the AV team's Drive, not to
+Supabase (`src/services/av/google-drive.ts`, Drive REST over fetch with a jose-signed
+service-account token; env `GOOGLE_CLIENT_EMAIL`, `GOOGLE_PRIVATE_KEY`,
+`AV_DRIVE_FOLDER_ID_DEVCON8`, the same values as devcon-api's): the session's day
+folder, `Intro Animation` for 1920x1080 or `IRL Intro Animation` for a screen size,
+next to the renderer's own files, named `HH.mm <Title> [CODE] (WxH) v<N>.mp4` where
+N counts the page's renders of that session and size. `/api/av/video-upload`
+creates the file as a copy of the Public video seed in Speaker Assets/Photos (a
+fresh service-account upload would get the EF Internal label and vanish), records
+`appProperties` (source av-page, code, kind, size, version, the card's render key,
+savedAt) and opens a resumable upload session with the page's origin; the browser
+PUTs the bytes to that session (a function body is capped at 6 MB). Copy link gives
+the Drive link; the session route lists the newest version per size by those
+properties and the page shows it in Drive's embedded player when its card is the
+card on screen, else "Outdated" with a remake.
 
 On load the page warms the stage: it preloads the Remotion chunk, downloads the
 masters for the stage's screen sizes (progress under the stage name) and renders
 the next talk's cards into storage. Without `?inputs=` the card routes still
 answer the image itself (the old behaviour, used when storage is down).
 
-Next to each saved video sits `<same name>.json` (`/api/av/video-saved`): the
-stored PNG it was rendered from plus the save time. The page shows a saved video
-only when that PNG is the card on screen now; otherwise the panel says "Outdated"
-and only offers to remake it, so an edit in Pretalx or on the page never surfaces
-an old intro. Videos are not downloaded automatically after a render.
+Videos are not downloaded automatically after a render; the panel offers Download,
+Open in Drive and Copy link.
 
 The talk list marks sessions saved in Pretalx within the last 10 hours in yellow
 with an "Edited HH:MM" badge (the submission's `updated`, read from the cached

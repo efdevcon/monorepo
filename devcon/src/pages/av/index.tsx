@@ -23,7 +23,7 @@ import {
   LogOut,
   X,
 } from 'lucide-react'
-import { AV_TIMEZONE, screenSizesFor } from 'services/av/av-assets'
+import { AV_TIMEZONE, cardRenderKey, screenSizesFor } from 'services/av/av-assets'
 import introVideos from 'services/av/intro-videos.json'
 import type { AvSessionDetail, AvSessionSummary, AvSpeaker, AvStage, AvStoredVideo } from 'services/av/pretalx'
 import { useNow } from 'hooks/useNow'
@@ -156,6 +156,7 @@ function AssetTile({
   params,
   stored,
   code,
+  inputs,
   videos,
   nonce,
   retryAll,
@@ -166,7 +167,9 @@ function AssetTile({
   params: string
   stored: boolean
   code: string
-  /** The session's stream intros by `<Kind>-<w>x<h>`, as the session route found them in storage. */
+  /** The stored session data hash, passed on to the stream intro's Drive upload. */
+  inputs?: string | null
+  /** The session's stream intros by `<Kind>-<w>x<h>`, as the session route found them in Drive. */
   videos?: Record<string, AvStoredVideo>
   nonce: number
   /** Bumped by the page's "Retry failed": only a tile in error tries again. */
@@ -254,6 +257,7 @@ function AssetTile({
               card={state.loaded}
               source={`${asset.url}?${params}`}
               code={code}
+              inputs={inputs}
               stored={videos?.[`${asset.video.kind}-${asset.video.width}x${asset.video.height}`]}
               {...asset.video}
             />
@@ -273,66 +277,77 @@ const saveBlob = (url: string, fileName: string) => {
   a.click()
 }
 
+interface SavedVideo {
+  link: string
+  name: string
+  version: number
+}
+
 /**
- * Send a rendered stream intro to the av-assets bucket: a signed one-time
- * URL from our API, then the file goes from this browser straight to
- * Supabase (a function could not carry it). The object is the session's one
- * for that kind and size, overwritten. Resolves to the public link, stamped
- * with the upload time so the new version is never read from a stale cache.
+ * Send a rendered stream intro to the AV team's Drive: our API creates the
+ * file (a copy of the Public seed, in the session's day folder, named with
+ * the next version) and opens a resumable upload session; the bytes then go
+ * from this browser straight to Drive (a function could not carry them).
+ * Resolves to the Drive link, name and version of the new file.
  */
 async function uploadVideo(
   code: string,
   kind: 'YouTube' | 'Screen',
   width: number,
   height: number,
-  /** The stored PNG the video was rendered from: recorded next to the video, so the page can tell a current one from an outdated one. */
+  /** The stored session data hash (for the folder and the file name) and the stored PNG the video was made from (recorded on the file). */
+  inputs: string,
   card: string | undefined,
   blob: Blob,
   onProgress: (progress: number) => void
-): Promise<string> {
-  const res = await avFetch('/api/av/upload-url/', {
+): Promise<SavedVideo> {
+  const res = await avFetch('/api/av/video-upload/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ code, kind, width, height }),
-    signal: AbortSignal.timeout(20_000),
+    body: JSON.stringify({ code, kind, width, height, inputs, card, size: blob.size }),
+    signal: AbortSignal.timeout(30_000),
   })
   const body = await res.json().catch(() => null)
-  if (!res.ok || !body?.success) throw new Error(body?.error || `upload URL: HTTP ${res.status}`)
-  const { uploadUrl, publicUrl, headers } = body.data as {
+  if (!res.ok || !body?.success) throw new Error(body?.error || `Drive: HTTP ${res.status}`)
+  const { uploadUrl, fileId, link, name, version } = body.data as {
     uploadUrl: string
-    publicUrl: string
-    headers: Record<string, string>
+    fileId: string
+    link: string
+    name: string
+    version: number
   }
-  await new Promise<void>((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
-    xhr.open('PUT', uploadUrl)
-    for (const [name, value] of Object.entries(headers)) xhr.setRequestHeader(name, value)
-    xhr.upload.onprogress = e => {
-      if (e.lengthComputable) onProgress(e.loaded / e.total)
-    }
-    xhr.onload = () =>
-      xhr.status >= 200 && xhr.status < 300
-        ? resolve()
-        : reject(new Error(`the file store answered ${xhr.status}: ${xhr.responseText.slice(0, 140)}`))
-    xhr.onerror = () => reject(new Error('network error during the upload'))
-    xhr.ontimeout = () => reject(new Error('the upload timed out'))
-    xhr.timeout = 10 * 60_000
-    xhr.send(blob)
-  })
-  let savedAt = Date.now()
-  if (card) {
-    const rec = await avFetch('/api/av/video-saved/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code, kind, width, height, card }),
-      signal: AbortSignal.timeout(20_000),
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.open('PUT', uploadUrl)
+      xhr.setRequestHeader('Content-Type', 'video/mp4')
+      xhr.upload.onprogress = e => {
+        if (e.lengthComputable) onProgress(e.loaded / e.total)
+      }
+      xhr.onload = () =>
+        xhr.status >= 200 && xhr.status < 300
+          ? resolve()
+          : reject(new Error(`Drive answered ${xhr.status}: ${xhr.responseText.slice(0, 140)}`))
+      xhr.onerror = () => reject(new Error('network error during the upload to Drive'))
+      xhr.ontimeout = () => reject(new Error('the upload to Drive timed out'))
+      xhr.timeout = 10 * 60_000
+      xhr.send(blob)
     })
-    const recBody = await rec.json().catch(() => null)
-    if (!rec.ok || !recBody?.success) throw new Error(recBody?.error || `could not record the video (HTTP ${rec.status})`)
-    savedAt = recBody.data.savedAt
+  } catch (e) {
+    // The copy in Drive never got its bytes: trash it, so no placeholder holds this version number.
+    await avFetch('/api/av/video-upload/', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code, fileId }),
+      signal: AbortSignal.timeout(20_000),
+    }).catch(() => {})
+    throw e
   }
-  return `${publicUrl}?v=${savedAt}`
+  return { link, name, version }
 }
+
+const driveDownloadLink = (link: string) => link.replace(/^https:\/\/drive\.google\.com\/file\/d\/([^/]+)\/view$/, 'https://drive.google.com/uc?export=download&id=$1')
+const drivePreviewLink = (link: string) => link.replace(/\/view$/, '/preview')
 
 /** A deploy while the page was open: the chunk this click needs is gone from the CDN. */
 const isChunkLoadError = (e: unknown) =>
@@ -377,15 +392,15 @@ async function warmCards(code: string): Promise<void> {
 
 type VideoUpload =
   | { status: 'uploading'; progress: number }
-  | { status: 'done'; link: string }
+  | { status: 'done'; saved: SavedVideo }
   | { status: 'error'; message: string }
 
 type VideoState =
   | { phase: 'idle'; error?: { message: string; reload?: boolean } }
-  /** A stream intro rendered earlier from this very card is in the bucket: shown as is, with its link. */
-  | { phase: 'existing'; url: string; storedAt: number; downloading?: boolean; error?: string }
-  /** A stream intro is in the bucket but was made from another version of the card: not shown. */
-  | { phase: 'outdated'; savedAt: number }
+  /** A stream intro rendered earlier from this very card is in Drive: shown through Drive's player, with its link. */
+  | { phase: 'existing'; saved: SavedVideo; storedAt: number }
+  /** A stream intro is in Drive but was made from another version of the card: not shown. */
+  | { phase: 'outdated'; savedAt: number; version?: number }
   | { phase: 'working'; step: 'animation' | 'card' | 'render'; progress: number }
   | { phase: 'done'; url: string; blob: Blob; upload: VideoUpload }
 
@@ -412,6 +427,7 @@ function IntroVideoButton({
   kind,
   width,
   height,
+  inputs,
   stored,
 }: {
   card: Loaded
@@ -421,7 +437,9 @@ function IntroVideoButton({
   kind: 'YouTube' | 'Screen'
   width: number
   height: number
-  /** This stream intro in storage, as found when the session opened. */
+  /** The stored session data hash; Drive saving needs it (folder, file name). */
+  inputs?: string | null
+  /** This stream intro in Drive, as found when the session opened. */
   stored?: AvStoredVideo
 }) {
   const [state, setState] = useState<VideoState>({ phase: 'idle' })
@@ -429,16 +447,16 @@ function IntroVideoButton({
   const urlRef = useRef<string | null>(null)
 
   // A new card (regenerated, edited) makes a video rendered on this page
-  // stale. The bucket's copy is the latest one anyone rendered, and its
-  // record names the card it was made from (read by the session route): it
-  // is shown only when that is the card on screen now. Any other saved video
-  // is outdated and stays hidden until remade.
+  // stale. Drive holds the newest version anyone saved, recorded with the
+  // card it was made from (read by the session route): it is shown only when
+  // that is the card on screen now. Any other saved video is outdated and
+  // stays hidden until remade.
   useEffect(() => {
-    if (!stored?.exists) return setState({ phase: 'idle' })
-    if (stored.card && card.pngUrl && stored.card === card.pngUrl) {
-      const stamp = stored.savedAt || Date.now()
-      setState({ phase: 'existing', url: `${stored.url}?v=${stamp}`, storedAt: stamp })
-    } else setState({ phase: 'outdated', savedAt: stored.savedAt || Date.now() })
+    if (!stored?.exists || !stored.link || !stored.name) return setState({ phase: 'idle' })
+    const stamp = stored.savedAt || Date.now()
+    if (stored.card && card.pngUrl && stored.card === cardRenderKey(card.pngUrl))
+      setState({ phase: 'existing', saved: { link: stored.link, name: stored.name, version: stored.version ?? 0 }, storedAt: stamp })
+    else setState({ phase: 'outdated', savedAt: stamp, version: stored.version })
   }, [card.objectUrl, card.pngUrl, stored])
   useEffect(
     () => () => {
@@ -449,32 +467,14 @@ function IntroVideoButton({
 
   const upload = async (blob: Blob) => {
     const patch = (upload: VideoUpload) => setState(s => (s.phase === 'done' && s.blob === blob ? { ...s, upload } : s))
+    if (!inputs) return patch({ status: 'error', message: 'the file store did not answer when this session opened; Regenerate, then make the video again' })
     try {
-      const link = await uploadVideo(code, kind, width, height, card.pngUrl, blob, progress =>
+      const saved = await uploadVideo(code, kind, width, height, inputs, card.pngUrl, blob, progress =>
         patch({ status: 'uploading', progress })
       )
-      patch({ status: 'done', link })
+      patch({ status: 'done', saved })
     } catch (e) {
       patch({ status: 'error', message: e instanceof Error ? e.message : String(e) })
-    }
-  }
-
-  /** The bucket's copy, saved under the Drive file name (a cross-origin link cannot name its download). */
-  const downloadExisting = async (url: string) => {
-    setState(s => (s.phase === 'existing' ? { ...s, downloading: true, error: undefined } : s))
-    try {
-      const res = await fetch(url)
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const objectUrl = URL.createObjectURL(await res.blob())
-      saveBlob(objectUrl, fileName)
-      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000)
-      setState(s => (s.phase === 'existing' ? { ...s, downloading: false } : s))
-    } catch (e) {
-      setState(s =>
-        s.phase === 'existing'
-          ? { ...s, downloading: false, error: `could not fetch the video (${e instanceof Error ? e.message : String(e)})` }
-          : s
-      )
     }
   }
 
@@ -532,13 +532,13 @@ function IntroVideoButton({
   const upload_ = state.phase === 'done' ? state.upload : null
   const status: { label: string; tone: 'muted' | 'busy' | 'ok' | 'warn' } =
     state.phase === 'existing'
-      ? { label: `Saved ${whenFormat.format(new Date(state.storedAt))}`, tone: 'ok' }
+      ? { label: `In Drive: v${state.saved.version}, ${whenFormat.format(new Date(state.storedAt))}`, tone: 'ok' }
       : state.phase === 'done'
       ? upload_?.status === 'done'
-        ? { label: 'Just made, saved', tone: 'ok' }
+        ? { label: `Just made, in Drive as v${upload_.saved.version}`, tone: 'ok' }
         : upload_?.status === 'uploading'
-        ? { label: 'Just made, saving', tone: 'busy' }
-        : { label: 'Just made, not saved', tone: 'warn' }
+        ? { label: 'Just made, saving to Drive', tone: 'busy' }
+        : { label: 'Just made, not in Drive', tone: 'warn' }
       : state.phase === 'working'
       ? { label: `${STEP_LABEL[state.step]} ${Math.round(state.progress * 100)}%`, tone: 'busy' }
       : state.phase === 'outdated'
@@ -594,13 +594,14 @@ function IntroVideoButton({
       {state.phase === 'idle' && (
         <p className="text-xs text-[#5b5370]">
           The Devcon 8 intro animation opening onto this card, to play before the talk. Rendered in this browser, then
-          saved with a fixed link that always plays the latest version.
+          saved to the AV Drive next to the automatic intros, as a new version each time.
         </p>
       )}
       {state.phase === 'outdated' && (
         <p className="text-xs text-amber-900">
-          The saved stream intro ({whenFormat.format(new Date(state.savedAt))}) was made from an earlier version of this
-          card, so it is not shown. Remake it to replace it; the link stays the same.
+          The stream intro in Drive ({state.version ? `v${state.version}, ` : ''}
+          {whenFormat.format(new Date(state.savedAt))}) was made from an earlier version of this card, so it is not
+          shown. Remake it: the new file gets the next version number.
         </p>
       )}
 
@@ -620,7 +621,16 @@ function IntroVideoButton({
         </>
       )}
 
-      {state.phase === 'existing' && preview(state.url, false)}
+      {state.phase === 'existing' && (
+        // Drive's own player for a file in Drive (the operator is signed in to the AV Drive).
+        <iframe
+          src={drivePreviewLink(state.saved.link)}
+          title={state.saved.name}
+          allow="autoplay; fullscreen"
+          className="w-full rounded-lg bg-black"
+          style={{ aspectRatio: `${width} / ${height}` }}
+        />
+      )}
       {state.phase === 'done' && preview(state.url, true)}
 
       <div className="flex flex-wrap items-center gap-2">
@@ -643,16 +653,15 @@ function IntroVideoButton({
         )}
         {state.phase === 'existing' && (
           <>
-            <button
-              type="button"
-              className={BUTTON}
-              disabled={state.downloading}
-              onClick={() => void downloadExisting(state.url)}
-            >
-              {state.downloading ? <Loader2 className="size-4 animate-spin" /> : <Download className="size-4" />}
-              Download video
-            </button>
-            <CopyButton text={state.url} />
+            <a href={state.saved.link} target="_blank" rel="noreferrer" className={BUTTON}>
+              <ExternalLink className="size-4" />
+              Open in Drive
+            </a>
+            <CopyButton text={state.saved.link} />
+            <a href={driveDownloadLink(state.saved.link)} target="_blank" rel="noreferrer" className={BUTTON}>
+              <Download className="size-4" />
+              Download
+            </a>
             {again}
           </>
         )}
@@ -662,7 +671,15 @@ function IntroVideoButton({
               <Download className="size-4" />
               Download video
             </a>
-            {upload_.status === 'done' && <CopyButton text={upload_.link} />}
+            {upload_.status === 'done' && (
+              <>
+                <a href={upload_.saved.link} target="_blank" rel="noreferrer" className={BUTTON}>
+                  <ExternalLink className="size-4" />
+                  Open in Drive
+                </a>
+                <CopyButton text={upload_.saved.link} />
+              </>
+            )}
             {upload_.status === 'uploading' && (
               <span className={`${BUTTON} relative overflow-hidden`}>
                 <span
@@ -684,11 +701,16 @@ function IntroVideoButton({
         )}
       </div>
 
+      {state.phase === 'existing' && (
+        <p className="break-all text-xs text-[#5b5370]">{state.saved.name}</p>
+      )}
+      {state.phase === 'done' && upload_?.status === 'done' && (
+        <p className="break-all text-xs text-[#5b5370]">{upload_.saved.name}</p>
+      )}
       {state.phase === 'idle' && state.error && <p className="text-xs text-red-700">{state.error.message}</p>}
-      {state.phase === 'existing' && state.error && <p className="text-xs text-red-700">{state.error}</p>}
       {state.phase === 'done' && upload_?.status === 'error' && (
         <p className="text-xs text-red-700">
-          The video is downloaded on this computer; it could not be saved to the file store: {upload_.message}
+          The video is on this computer (Download video); it could not be saved to Drive: {upload_.message}
         </p>
       )}
     </div>
@@ -1269,6 +1291,7 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
         params={params}
         stored={stored}
         code={session.code}
+        inputs={session.inputs}
         videos={session.videos}
         nonce={nonce}
         retryAll={retryAll}
