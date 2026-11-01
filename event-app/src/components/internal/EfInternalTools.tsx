@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import cn from "classnames";
-import { FlaskConical, RotateCcw, Sparkles, TriangleAlert, Tv } from "lucide-react";
+import { ChartColumn, FlaskConical, RotateCcw, Sparkles, TriangleAlert, Tv } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { deletePref } from "@/data/prefs";
 import { openDevaBot } from "@/components/ai/devaBotState";
@@ -66,6 +66,8 @@ function buildLabel(): string {
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
  *   the public header on 2026-09-24; this is the team's way in. Beside it,
  *   the inference debugger (/admin/inference-test) for prompt and model work.
+ * - App analytics: the EF-only live Matomo page (/admin/analytics): who is
+ *   on the app now, visits per day, installs, devices, pages, events.
  * - Room screens: the kiosk view shown on the display outside each room
  *   (/room-screens). Out of the public nav since 2026-09-24; this is its
  *   entry point for the team.
@@ -200,6 +202,19 @@ export function EfInternalTools() {
         </p>
         <Link href="/room-screens" className={cn(toolPill, "mt-3")}>
           <Tv />
+          Open
+        </Link>
+      </div>
+
+      {/* App analytics (Matomo, live) */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">App analytics</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Live Matomo numbers for the app: who is on it right now, visits per day, installed
+          vs browser, devices, the most viewed pages and the most frequent events.
+        </p>
+        <Link href="/admin/analytics" className={cn(toolPill, "mt-3")}>
+          <ChartColumn />
           Open
         </Link>
       </div>

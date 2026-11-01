@@ -91,6 +91,7 @@ import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushDue, testPushTitle } from "../src/app/api/announcements/testPush";
 import { summarizeAnnouncements } from "../src/app/api/announcements/status";
+import { bulkQueries, parseWindow, shapeReport } from "../src/app/api/admin/analytics/report";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -1040,6 +1041,60 @@ function testAnnouncementsStatus() {
   check("no rows: nothing synced, no version", empty.syncedAt === null && empty.version === null && empty.count === 0 && empty.upcoming.length === 0);
 }
 
+function testAnalyticsReport() {
+  console.log("\n--- EF analytics page (Matomo bulk results -> report) ---");
+  check("window: 7 and 30 accepted", parseWindow("7") === 7 && parseWindow("30") === 30);
+  check("window: anything else is 7 days", parseWindow(null) === 7 && parseWindow("x") === 7 && parseWindow("100") === 7);
+  const qs = bulkQueries("38", 14);
+  check("bulk: 23 queries, the daily series first, on the window", qs.length === 23 && qs[0].method === "VisitsSummary.get" && qs[0].date === "last14" && qs.every((q) => q.idSite === "38"));
+  check("bulk: session and speaker pages are filtered page-URL reports", qs[16].method === "Actions.getPageUrls" && qs[16].filter_pattern === "^/schedule/." && qs[17].filter_pattern === "^/speakers/.");
+  const day = (v: number, u: number, a: number, b: string) => ({ nb_visits: v, nb_uniq_visitors: u, nb_actions: a, bounce_rate: b, avg_time_on_site: 100 });
+  const results: unknown[] = [];
+  results[0] = { "2026-11-02": day(5, 4, 20, "20%"), "2026-11-01": day(10, 8, 50, "30%"), "2026-10-31": [] }; // unordered, one empty day
+  results[1] = day(5, 4, 20, "20%"); // a single period comes back flat
+  results[2] = [{ visits: 3, actions: 40, visitors: 2 }];
+  results[3] = { nb_visits: 15, nb_uniq_visitors: 12, nb_actions: 70, bounce_rate: "27%", avg_time_on_site: 200 };
+  results[4] = { nb_visits_new: 6, nb_visits_returning: 9 };
+  results[5] = [{ label: "/schedule", nb_hits: 30, nb_visits: 12 }];
+  results[6] = [{ label: "schedule - day", nb_events: 40, nb_visits: 9 }, { label: "sign-in - code-requested", nb_events: 3, nb_visits: 3 }];
+  results[7] = [{ label: "Smartphone", nb_visits: 9 }];
+  results[8] = { result: "error", message: "nope" };
+  results[9] = [{ label: "Chrome", nb_visits: 7 }];
+  results[10] = [{ label: "installed", nb_visits: 4 }, { label: "browser", nb_visits: 11 }];
+  results[11] = [{ label: "yes", nb_visits: 5 }];
+  results[12] = [{ label: "0", nb_visits: 10 }];
+  results[13] = [{ label: "India", nb_visits: 12 }];
+  results[14] = [{ label: "Direct Entry", nb_visits: 14 }];
+  results[15] = { name: "app.devcon.org", timezone: "Europe/Zurich" };
+  results[16] = [{ label: "/schedule/opening-ceremony", nb_hits: 9, nb_visits: 5 }, { label: "/schedule/with-query/?day=2", nb_hits: 2, nb_visits: 1 }];
+  results[17] = [{ label: "/speakers/vitalik", nb_hits: 7, nb_visits: 4 }];
+  results[18] = [{ label: "qa - 89KLNQ", nb_events: 3, nb_visits: 2 }];
+  results[19] = [{ label: "sync - bundle-failed", nb_events: 12, nb_visits: 8 }, { label: "error - page", nb_events: 2, nb_visits: 2 }];
+  results[20] = [{ label: "page - /ticket", nb_events: 2, nb_visits: 2 }];
+  results[21] = [{ label: "bundle-failed - devcon8", nb_events: 12, nb_visits: 8 }];
+  results[22] = [{ label: "supabase-proxy - auth/v1", nb_events: 4, nb_visits: 3 }];
+  const r = shapeReport(results, 14);
+  check("health: failure events with the visits they hit", eq(r.health.failures[0], { category: "sync", action: "bundle-failed", events: 12, visits: 8 }));
+  check("health: crash pages by route path", eq(r.health.errorPages[0], { name: "/ticket", events: 2, visits: 2 }));
+  check("health: sync failures by dataset, proxy fallbacks by service", r.health.syncFailures[0].name === "devcon8" && r.health.proxyServices[0].name === "auth/v1");
+  check("top sessions: slug from the page path", eq(r.sessions[0], { id: "opening-ceremony", hits: 9, visits: 5 }));
+  check("top sessions: query and trailing slash stripped", r.sessions[1].id === "with-query");
+  check("top speakers: slug from the page path", eq(r.speakers[0], { id: "vitalik", hits: 7, visits: 4 }));
+  check("Q&A opens: Pretalx code from the event name", eq(r.qa[0], { code: "89KLNQ", events: 3, visits: 2 }));
+  check("days sorted ascending, an empty day reads as zeros", eq(r.days.map((d) => d.date), ["2026-10-31", "2026-11-01", "2026-11-02"]) && r.days[0].visits === 0 && r.days[1].visits === 10);
+  check("percent strings become numbers", r.days[1].bounceRate === 30 && r.totals.bounceRate === 27);
+  check("today is the flat day object", r.today?.visits === 5 && r.today?.uniqVisitors === 4);
+  check("live counters", r.live.visitors === 2 && r.live.actions === 40 && r.live.minutes === 30);
+  check("new vs returning", r.totals.newVisits === 6 && r.totals.returningVisits === 9);
+  check("events split category and action", eq(r.events[0], { category: "schedule", action: "day", events: 40, visits: 9 }));
+  check("pages keep hits and visits", eq(r.pages[0], { label: "/schedule", hits: 30, visits: 12 }));
+  check("a failed report is empty and reported", r.devices.os.length === 0 && r.warnings.some((w) => w.includes("nope")));
+  check("dimensions by slot", r.dimensions.displayMode[0].label === "installed" && r.dimensions.signedIn[0].label === "yes" && r.dimensions.stars[0].label === "0");
+  check("site name and timezone", r.site.name === "app.devcon.org" && r.site.timezone === "Europe/Zurich");
+  const empty = shapeReport([], 7);
+  check("no results: empty report, window kept", empty.days.length === 0 && empty.today === null && empty.windowDays === 7 && empty.site.timezone === "" && empty.warnings.length === 0 && empty.health.failures.length === 0);
+}
+
 async function testSessionCookieSettled() {
   console.log("\n--- the return after sign-in waits for the session cookie mirror ---");
   const realFetch = globalThis.fetch;
@@ -1550,6 +1605,7 @@ async function main() {
   testTranscripts();
   testLiveWindowAndStreams();
   testAnnouncementsStatus();
+  testAnalyticsReport();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

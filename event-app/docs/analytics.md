@@ -65,6 +65,10 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | feedback | sent / queued / failed | source | Report sent now, saved for later, or dropped |
 | network | supabase-proxy | service (`auth/v1`, `storage/v1`) | A Supabase request failed on the network and went through the app's own origin instead |
 
+## Reading the numbers
+
+The team reads site 38 inside the app: My Devcon, EF internal tools, "App analytics" (`/admin/analytics`, ethereum.org accounts). Right now and today, visits and unique visitors per day, the most viewed sessions, speakers and pages, Q&A opens, a Health section built from the failure events above (their names are routes, dataset ids and services, so nothing personal reaches the page), then installs, devices, countries, referrers and the full event list. Server side it is one bulk Reporting API call with the server-only `MATOMO_TOKEN` (`src/app/api/admin/analytics/`, shaping in `report.ts`).
+
 ## Rules
 
 - Never send emails, ticket secrets, order codes, bridge tokens or search text. Session and speaker ids are public slugs and fine.

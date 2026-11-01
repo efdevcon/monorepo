@@ -13,12 +13,13 @@ import { openFeedback, useFeedbackFabHidden } from "@/data/feedback/feedbackStat
  * map docks it top-left under the 3D map's own tools, like the old tool did.
  * Fades out while a page dialog covers that corner (`useHideFeedbackFab`:
  * the map's area card on phones). Not on the room screens, which are
- * unattended stage displays.
+ * unattended stage displays, nor on the EF analytics page, whose dense
+ * tables run under the corner it floats in.
  */
 export function FeedbackFab() {
   const pathname = usePathname();
   const hidden = useFeedbackFabHidden();
-  if (pathname.startsWith("/room-screens")) return null;
+  if (pathname.startsWith("/room-screens") || pathname.startsWith("/admin/analytics")) return null;
   const onMap = pathname.startsWith("/map");
   const stacked = onMap || pathname.startsWith("/schedule");
 

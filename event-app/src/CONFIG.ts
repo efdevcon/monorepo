@@ -48,6 +48,7 @@ const APP_CONFIG = {
   MAP_ENABLED: true, // /map (venue map)
   ANNOUNCEMENTS_ENABLED: true, // /notifications (Notion-authored inbox + session reminders) + home section
   INFERENCE_DEBUG_ENABLED: true, // /admin/inference-test (EF-only RAG debugger)
+  ANALYTICS_ENABLED: true, // /admin/analytics (EF-only live Matomo report)
 
   // Development settings
   RUNTIME_VALIDATION: process.env.NODE_ENV === "development",
