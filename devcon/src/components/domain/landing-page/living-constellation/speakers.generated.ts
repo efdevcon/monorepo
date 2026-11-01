@@ -178,11 +178,9 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
   FZ8PA3: {
     id: 'FZ8PA3',
     name: 'Hart Montgomery',
-    organization:
-      'Linux Foundation, and many of the foundations and projects in it (including LF Decentralized Trust, which hosts Besu, Lineth, Paladin, and more)',
-    track: 'Open & Verifiable Stack',
+    organization: 'LF Decentralized Trust',
     image: imgFZ8PA3,
-    source: 'pretalx',
+    source: 'manual',
   },
   G9LYGU: {
     id: 'G9LYGU',
