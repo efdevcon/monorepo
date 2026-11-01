@@ -159,8 +159,9 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
 /**
  * One hero card. `single` is the one-row case: full column width on phones, as
  * the section rendered before it became a carousel. In a row each card leaves
- * 24px of the column free so the next one peeks in; desktop cards are a fixed
- * 428px either way (the Figma hero width).
+ * 20px of the column free, which with the 12px gap and the 16px gutter shows
+ * 24px of the next card past the screen edge; desktop cards are a fixed 428px
+ * either way (the Figma hero width).
  */
 function FeaturedSlide({ highlight, single = false }: { highlight: Announcement; single?: boolean }) {
   const { title, message, url } = highlight;
@@ -241,7 +242,7 @@ function FeaturedSlide({ highlight, single = false }: { highlight: Announcement;
 
   const shell = cn(
     "group relative flex h-80 shrink-0 snap-start flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 lg:h-[280px] lg:w-[428px]",
-    single ? "w-full" : "w-[calc(100%-24px)]",
+    single ? "w-full" : "w-[calc(100%-20px)]",
     link &&
       "transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
   );
