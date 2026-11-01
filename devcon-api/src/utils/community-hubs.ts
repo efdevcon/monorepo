@@ -27,16 +27,24 @@ export interface CommunityHub {
   name: string
   /** The hub's pastel colour (badges, cards); served on the hub's room. Same values as the event app's registry. */
   color: string
+  /**
+   * Where the programme comes from. Default: the hub's dSheet (edit link in the
+   * COMMUNITY_HUB_SHEETS secret). `csv`: a file the community sent, kept in the
+   * repo at data/community-hubs/csv/<id>.csv and turned into the same cells by
+   * the export (utils/community-hubs-csv.ts); no sheet link exists for it.
+   */
+  source?: 'csv'
 }
 
 /**
- * The 14 Devcon 8 hubs (official names from the Community Hubs coordinator, 2026-10-07) and three
- * community-run spaces on the same sheet template (Open Hardware Zone, Game Zone, Music Stage),
- * alphabetical.
+ * The 14 Devcon 8 hubs (official names from the Community Hubs coordinator, 2026-10-07), three
+ * community-run spaces on the same sheet template (Open Hardware Zone, Game Zone, Music Stage) and
+ * the Base Booth, whose workshop programme arrives as a CSV (2026-11-01), alphabetical.
  */
 export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: 'agentic', name: 'Agentic Hub', color: '#C2FFDD' },
   { id: 'aggregation', name: 'Aggregation Hub', color: '#EDD6FF' },
+  { id: 'base-booth', name: 'Base Booth', color: '#CFDDFF', source: 'csv' },
   { id: 'desci', name: 'DeSci Hub', color: '#D4F7F4' },
   { id: 'eip', name: 'EIP Hub', color: '#D4EBF7' },
   { id: 'game-zone', name: 'Game Zone', color: '#FFD6EC' },
@@ -56,6 +64,8 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
 
 /** Repo path of the hourly live export (.github/workflows/fileverse-live-export.yml), which the API reads from GitHub. */
 export const LIVE_HUB_SHEETS_PATH = 'devcon-api/data/community-hubs/sheets.json'
+/** Repo directory of the programmes that come as a file (`source: 'csv'` hubs), one `<hub id>.csv` each. */
+export const COMMUNITY_HUB_CSV_DIR = 'devcon-api/data/community-hubs/csv'
 
 /** The live export: every hub sheet's cells as its editors see them, unpublished edits included. */
 export interface LiveHubSheets {
@@ -72,6 +82,8 @@ export interface LiveHubSheet {
   tabs: DSheetTab[]
   /** Set when the latest export could not read the sheet; `tabs` then still hold the previous export (empty if there never was one). */
   error?: string
+  /** `csv` when the cells were built from the repo's CSV for this hub, not read from a dSheet (so no sheet link is expected for it). */
+  source?: 'csv'
 }
 
 /**

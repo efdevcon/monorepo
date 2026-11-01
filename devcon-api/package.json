@@ -32,6 +32,7 @@
     "sync:nocodb": "ts-node ./src/scripts/sync-nocodb.ts",
     "community-hubs:live": "ts-node ./src/scripts/community-hubs-live.ts",
     "community-hubs:local": "./scripts/community-hubs-local.sh",
+    "community-hubs:csv": "ts-node ./src/scripts/community-hubs-live.ts --csv-only",
     "avatars:mirror": "ts-node ./src/scripts/mirror-avatars.ts",
     "run-of-show": "ts-node ./src/scripts/generate-run-of-show.ts",
     "run-of-show:test": "ts-node ./src/scripts/generate-run-of-show.ts test-devcon-8",

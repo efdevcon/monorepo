@@ -26,12 +26,25 @@ export interface CommunityHub {
 /**
  * Official hub names from the Community Hubs coordinator (2026-10-07), plus
  * three community-run spaces on the same sheets (Open Hardware Zone, Game
- * Zone, Music Stage), alphabetical. Hub blurbs are condensed from the forum
+ * Zone, Music Stage) and the Base Booth, whose programme devcon-api reads
+ * from a CSV in the repo (2026-11-01), alphabetical. Hub blurbs are condensed from the forum
  * announcement (forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191; Scott, 2026-10-27).
  */
 export const COMMUNITY_HUBS: CommunityHub[] = [
   { id: "agentic", name: "Agentic Hub", description: "The open agent stack: ERC-8004, x402, account abstraction and agent security, with live agent competitions.", color: "#C2FFDD" },
   { id: "aggregation", name: "Aggregation Hub", description: "Mapping Ethereum's technical and social fragmentation, 70+ live rollups included, and making the case for coordination without uniformity.", color: "#EDD6FF" },
+  {
+    id: "base-booth",
+    name: "Base Booth",
+    description: "Base's workshop room (Room 202, Level 2): hands-on sessions on the B20 token standard, the Denim network upgrade and consumer finance built from Base's primitives.",
+    color: "#CFDDFF",
+    // Base's blue square as the mark; no lockup, the details banner shows the
+    // mark with the name under it.
+    logoStacked: null,
+    // A workshop room with a programme of its own, not a hub: filters beside
+    // the community-led sessions, like the Music Stage.
+    listedWithCommunityLed: true,
+  },
   { id: "desci", name: "DeSci Hub", description: "Four days of decentralised science: scientists, builders and funders co-creating tools that treat research as a public good.", color: "#D4F7F4" },
   { id: "eip", name: "EIP Hub", description: "EIPs, ERC standards and protocol upgrades: technical discussions, office hours and how standards get adopted.", color: "#D4EBF7" },
   { id: "game-zone", name: "Game Zone", description: "Community-run games and play.", color: "#FFD6EC" },

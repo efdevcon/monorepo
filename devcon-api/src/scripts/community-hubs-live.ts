@@ -14,6 +14,11 @@
 // the same way into data/community-hubs/speaker-photos.json, with every photo
 // mirrored into our avatar bucket (SUPABASE_URL / SUPABASE_KEY; without them
 // the source links are kept as they are).
+// A hub whose programme arrives as a file (`source: 'csv'` in COMMUNITY_HUBS)
+// has no dump: its cells are built from data/community-hubs/csv/<hub id>.csv
+// on every run (utils/community-hubs-csv.ts). `pnpm community-hubs:csv`
+// (--csv-only, no dump dir) rebuilds those hubs alone and keeps every sheet
+// hub as committed, for a new file without a browser export.
 // Run with `pnpm community-hubs:live <dump dir>`.
 // Local runs read the Supabase keys from .env (CI passes them as env vars);
 // without them every mirrored photo would fall back to its source link.
@@ -23,6 +28,7 @@ import path from 'path'
 import { readTabsFromUpdates } from '@/clients/fileverse'
 import {
   COMMUNITY_HUBS,
+  COMMUNITY_HUB_CSV_DIR,
   COMMUNITY_HUB_SPEAKERS_SHEET_ID,
   HUB_SPEAKER_PHOTOS_PATH,
   LIVE_HUB_SHEETS_PATH,
@@ -37,6 +43,7 @@ import {
   type LiveHubSheet,
   type LiveHubSheets,
 } from '@/utils/community-hubs'
+import { csvToHubTab } from '@/utils/community-hubs-csv'
 import { defaultSlugify } from '@/utils/content'
 import { mirrorAvatar } from '@/services/avatar-mirror'
 
@@ -46,6 +53,7 @@ const OUT = path.join(__dirname, '..', '..', '..', LIVE_HUB_SHEETS_PATH)
 const EVENT_ID = 'devcon8'
 const READABLE_OUT = path.join(path.dirname(OUT), `${EVENT_ID}-sessions.json`)
 const SPEAKERS_OUT = path.join(__dirname, '..', '..', '..', HUB_SPEAKER_PHOTOS_PATH)
+const CSV_DIR = path.join(__dirname, '..', '..', '..', COMMUNITY_HUB_CSV_DIR)
 
 interface Dump {
   dsheetId?: string
@@ -54,10 +62,12 @@ interface Dump {
 }
 
 async function main() {
-  const dir = process.argv[2]
-  if (!dir) throw new Error('usage: community-hubs-live <dump dir>')
+  const args = process.argv.slice(2)
+  const csvOnly = args.includes('--csv-only')
+  const dir = args.find((a) => !a.startsWith('--'))
+  if (!dir && !csvOnly) throw new Error('usage: community-hubs-live <dump dir> | community-hubs-live --csv-only')
   const now = Date.now()
-  const speakersChanged = await writeSpeakerPhotos(dir, now)
+  const speakersChanged = dir ? await writeSpeakerPhotos(dir, now) : false
   let previous: LiveHubSheets = { exportedAt: 0, hubs: {} }
   try {
     previous = JSON.parse(fs.readFileSync(OUT, 'utf8'))
@@ -65,56 +75,69 @@ async function main() {
     // First export.
   }
 
-  const hubs: Record<string, LiveHubSheet> = {}
+  // A CSV-only run rebuilds the hubs whose programme is a file and keeps every sheet hub as committed.
+  const hubs: Record<string, LiveHubSheet> = csvOnly ? { ...previous.hubs } : {}
   let read = 0
   for (const hub of COMMUNITY_HUBS) {
-    const file = path.join(dir, `${hub.id}.json`)
-    if (!fs.existsSync(file)) continue
-    const dump: Dump = JSON.parse(fs.readFileSync(file, 'utf8'))
     const prev = previous.hubs[hub.id]
     let tabs: LiveHubSheet['tabs'] | null = null
-    let error = dump.error
-    if (!error) {
+    let error: string | undefined
+    if (hub.source === 'csv') {
       try {
-        if (!dump.dsheetId || !dump.updates?.length) throw new Error('no live data in the dump')
-        tabs = readTabsFromUpdates(
-          dump.dsheetId,
-          dump.updates.map((u) => new Uint8Array(Buffer.from(u, 'base64')))
-        )
-        if (!tabs.some((t) => t.cells.length)) throw new Error('the live document has no cells')
+        tabs = [csvToHubTab(hub.name, fs.readFileSync(path.join(CSV_DIR, `${hub.id}.csv`), 'utf8'))]
       } catch (e) {
         error = e instanceof Error ? e.message : String(e)
-        tabs = null
+      }
+    } else {
+      if (csvOnly) continue
+      const file = path.join(dir!, `${hub.id}.json`)
+      if (!fs.existsSync(file)) continue
+      const dump: Dump = JSON.parse(fs.readFileSync(file, 'utf8'))
+      error = dump.error
+      if (!error) {
+        try {
+          if (!dump.dsheetId || !dump.updates?.length) throw new Error('no live data in the dump')
+          tabs = readTabsFromUpdates(
+            dump.dsheetId,
+            dump.updates.map((u) => new Uint8Array(Buffer.from(u, 'base64')))
+          )
+          if (!tabs.some((t) => t.cells.length)) throw new Error('the live document has no cells')
+        } catch (e) {
+          error = e instanceof Error ? e.message : String(e)
+          tabs = null
+        }
       }
     }
+    const source = hub.source === 'csv' ? { source: 'csv' as const } : {}
     if (tabs) {
       read++
       const same = prev && !prev.error && JSON.stringify(prev.tabs) === JSON.stringify(tabs)
-      hubs[hub.id] = { changedAt: same ? prev.changedAt : now, tabs }
+      hubs[hub.id] = { changedAt: same ? prev.changedAt : now, tabs, ...source }
       const cells = tabs.reduce((n, t) => n + t.cells.length, 0)
-      console.log(`${hub.id}: ${cells} cells in ${tabs.length} tab(s)${same ? ', unchanged' : ', CHANGED'}`)
+      console.log(
+        `${hub.id}: ${cells} cells in ${tabs.length} tab(s)${same ? ', unchanged' : ', CHANGED'}${hub.source === 'csv' ? ' (from the repo CSV)' : ''}`
+      )
     } else {
-      hubs[hub.id] = { changedAt: prev?.changedAt ?? 0, tabs: prev?.tabs ?? [], error }
+      hubs[hub.id] = { changedAt: prev?.changedAt ?? 0, tabs: prev?.tabs ?? [], ...source, error }
       console.warn(`${hub.id}: FAILED (${error}), ${prev?.tabs.length ? 'keeping the previous export' : 'nothing to keep'}`)
     }
   }
-  if (read === 0) throw new Error('no hub sheet could be read, leaving the file as it is')
+  if (read === 0) throw new Error('no hub programme could be read, leaving the file as it is')
 
   const changed = JSON.stringify(hubs) !== JSON.stringify(previous.hubs)
-  if (!changed && !speakersChanged && now - previous.exportedAt < HEARTBEAT_MS) {
+  if (!changed && !speakersChanged && (csvOnly || now - previous.exportedAt < HEARTBEAT_MS)) {
     console.log('nothing changed, file left as it is')
     return
   }
   // One more release for any content change (cells or speaker photos); a
-  // heartbeat rewrite keeps the number.
+  // heartbeat rewrite keeps the number. A CSV-only run read no sheet, so it
+  // leaves exportedAt (the sheet export's own freshness) where it was.
   const release = (previous.release ?? 0) + (changed || speakersChanged ? 1 : 0)
-  const next: LiveHubSheets = { exportedAt: now, release, hubs }
+  const next: LiveHubSheets = { exportedAt: csvOnly ? previous.exportedAt || now : now, release, hubs }
   fs.mkdirSync(path.dirname(OUT), { recursive: true })
   fs.writeFileSync(OUT, JSON.stringify(next, null, 1) + '\n')
   writeReadable(hubs)
-  console.log(
-    changed || speakersChanged ? `wrote ${OUT} (release v${release})` : `wrote ${OUT} (heartbeat, no content changes, release v${release})`
-  )
+  console.log(changed || speakersChanged ? `wrote ${OUT} (release v${release})` : `wrote ${OUT} (heartbeat, no content changes, release v${release})`)
 }
 
 /**
@@ -213,7 +236,8 @@ export function writeReadable(hubs: Record<string, LiveHubSheet>) {
       ...(live.error ? { exportError: live.error } : {}),
       problems: parsed.problems,
       sessions: parsed.sessions.map((row) => ({
-        id: row.key,
+        // The sheet's ID; a keyless row (a CSV without an ID column) is known by its title's slug.
+        id: row.key || defaultSlugify(row.title),
         day: dayLabel(row.day),
         time: `${clock(row.start)}-${clock(row.end)}`,
         title: row.title,

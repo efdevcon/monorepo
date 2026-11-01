@@ -12,7 +12,9 @@
 # GitHub secret) and SUPABASE_URL / SUPABASE_KEY from devcon-api/.env.
 # A hub missing from COMMUNITY_HUB_SHEETS drops out of sheets.json, so the run
 # refuses to start when the local value lacks a hub the committed file has
-# (or the "speakers" sheet). Speaker photos are mirrored into the avatar
+# (or the "speakers" sheet). Hubs built from a CSV in the repo (`source: csv`
+# in sheets.json) have no link and are rebuilt by the run itself; to update
+# only those, `pnpm community-hubs:csv` needs no browser export. Speaker photos are mirrored into the avatar
 # bucket during the run, like in CI; that upload is the only side effect
 # before you commit.
 set -euo pipefail
@@ -41,7 +43,8 @@ COMMUNITY_HUB_SHEETS="$COMMUNITY_HUB_SHEETS" node -e '
   const fs = require("fs")
   const links = Object.keys(JSON.parse(process.env.COMMUNITY_HUB_SHEETS))
   const sheets = JSON.parse(fs.readFileSync(process.argv[1], "utf8"))
-  const expected = [...Object.keys(sheets.hubs ?? sheets), "speakers"]
+  // Hubs whose programme is a CSV in the repo need no link.
+  const expected = [...Object.entries(sheets.hubs ?? {}).filter(([, hub]) => !hub.source).map(([id]) => id), "speakers"]
   const missing = expected.filter((id) => !links.includes(id))
   if (missing.length) {
     console.error(`error: COMMUNITY_HUB_SHEETS in devcon-api/.env has no link for: ${missing.join(", ")}`)

@@ -1,6 +1,6 @@
 # Community Hubs schedule
 
-The 14 Devcon 8 Community Hubs run their own programme and are not in Pretalx. Three community-run spaces use the same template and pipeline as if they were hubs: Open Hardware Zone, Game Zone and Music Stage (2026-10-27; Music Stage moved out of Pretalx, its sheet pre-filled from the Pretalx slots of 21 Oct). Each hub fills in a shared spreadsheet template on dSheets (sheets.fileverse.io); devcon-api reads those sheets live (cached in memory) and serves them as their own schedule bundle, which the event app shows through its normal schedule view as a separate dataset. Nothing is written to `data/` and the hub sessions never mix with the Pretalx schedule.
+The 14 Devcon 8 Community Hubs run their own programme and are not in Pretalx. Three community-run spaces use the same template and pipeline as if they were hubs: Open Hardware Zone, Game Zone and Music Stage (2026-10-27; Music Stage moved out of Pretalx, its sheet pre-filled from the Pretalx slots of 21 Oct). The Base Booth (2026-11-01) is a fourth, whose programme is a CSV in the repo rather than a sheet (below). Each hub fills in a shared spreadsheet template on dSheets (sheets.fileverse.io); devcon-api reads those sheets live (cached in memory) and serves them as their own schedule bundle, which the event app shows through its normal schedule view as a separate dataset. Nothing is written to `data/` and the hub sessions never mix with the Pretalx schedule.
 
 ## The template
 
@@ -28,6 +28,10 @@ To pause the export (a frozen schedule, a broken sheet), set `EXPORT_PAUSED` to 
 The links live only in the Action's `COMMUNITY_HUB_SHEETS` secret (JSON object of hub id to edit link). Anyone holding a link can edit that sheet: the export never logs them and the file holds cells only. Failed reads leave a screenshot artifact (3 days).
 
 Writing to a dSheet programmatically is not practical (realtime socket with owner tokens), so the sync is read only.
+
+### A programme from a file instead of a sheet
+
+A community that sends its schedule as a spreadsheet export rather than filling the template (the Base Booth, 2026-11-01) is registered with `source: 'csv'` in `devcon-api/src/utils/community-hubs.ts` and has no entry in the secret. Its file lives at `devcon-api/data/community-hubs/csv/<hub id>.csv`, as sent. Columns are matched by header text: `Title`, `Date` or `Day`, `Start`/`From`, `End`/`To`, then optionally `Format`, `Speakers`, `Description`, `Tags`/`Topic` and `ID`; a `Location` column and a link column (`Luma link`, `URL`...) have no template equivalent and are appended to the description as "Where:" and "Register:" lines, which the app renders with the link clickable. Every export turns the file into the same cells as a sheet (`utils/community-hubs-csv.ts`), so `sheets.json` carries the hub like any other, marked `source: "csv"`, and the API, the status page and the app need nothing special. To update it: replace the file, run `pnpm community-hubs:csv` in devcon-api (rebuilds the CSV hubs only, no browser export; the full export rebuilds them too), review the diff and commit with `[skip deploy]`. Without an `ID` column the session id is the title's slug, so a retitled row loses its stars.
 
 ## The API
 
