@@ -51,8 +51,8 @@ export function FeaturedCard() {
  * The swipeable row: native horizontal scroll with mandatory snap points (one
  * per card), bleeding to the screen edge on phones so the next card peeks in
  * past the column's gutter, and a row of dots that doubles as paging when the
- * row actually overflows (on desktop two or three cards may all fit, and dots
- * under a row that can't move would only puzzle).
+ * row actually overflows, phones only (desktop fits two or three cards side
+ * by side, and a pager under a row that can't move would only puzzle).
  */
 function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
@@ -115,8 +115,12 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
           <FeaturedSlide key={h.id} highlight={h} />
         ))}
       </div>
+      {/* Phones only: the active card is a 20px purple bar, the others 6px
+          circles, iOS page-control style. Desktop fits the cards side by side
+          (two or three 428px cards in the 1312px box), so there is nothing to
+          page through and the row stays hidden (Scott, 2026-11-01). */}
       {overflows && (
-        <div className="mt-4 flex justify-center gap-2" role="tablist" aria-label="Featured cards">
+        <div className="mt-4 flex justify-center gap-1.5 lg:hidden" role="tablist" aria-label="Featured cards">
           {highlights.map((h, i) => (
             <button
               key={h.id}
@@ -125,14 +129,14 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
               aria-selected={i === active}
               aria-label={`${h.title} (${i + 1} of ${highlights.length})`}
               onClick={() => goTo(i)}
-              // 44px hit area around a 6px dot (the padding), the dot itself
-              // drawn by the inner span.
-              className="group flex size-6 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
+              // The 24px-tall hit area is the button; the inner span draws the
+              // 6px mark and grows into the bar when active.
+              className="group flex h-6 cursor-pointer items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
             >
               <span
                 className={cn(
-                  "block size-1.5 rounded-full transition-[background-color,transform] duration-150 ease-out motion-reduce:transition-none",
-                  i === active ? "scale-125 bg-dc-purple" : "bg-dc-purple/25 group-hover:bg-dc-purple/50"
+                  "block h-1.5 rounded-full transition-[width,background-color] duration-150 ease-out motion-reduce:transition-none",
+                  i === active ? "w-5 bg-dc-purple" : "w-1.5 bg-dc-purple/25 group-hover:bg-dc-purple/50"
                 )}
               />
             </button>
