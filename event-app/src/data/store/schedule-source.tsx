@@ -30,6 +30,14 @@ export const ROOM_PARAM = "room";
  * in schedule/utils.ts).
  */
 export const DAY_PARAM = "day";
+/**
+ * `/schedule?community=<key>[,<key>]` opens the Community programme with those
+ * hubs / community-led groups in the Communities filter, by the facet's own
+ * keys: `hub:<id>` (communityHubs.ts) or `cls:<id>` (communityLed.ts), e.g.
+ * `cls:ethindia`, `hub:india`. Implies `?hubs=1`. A community-led pick without
+ * `?day=` lands on the first day the group runs, as the panel's chips do.
+ */
+export const COMMUNITY_PARAM = "community";
 
 const ScheduleSourceContext = createContext<ScheduleSource>("main");
 
