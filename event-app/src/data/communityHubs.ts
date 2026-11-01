@@ -64,7 +64,14 @@ export const COMMUNITY_HUBS: CommunityHub[] = [
     description: "Musicians, painters, designers and digital artists showing how Ethereum relates to their work.",
     color: "#F7D4D4",
   },
-  { id: "open-hardware-zone", name: "Open Hardware Zone", description: "Open-source hardware showcases and hands-on maker workshops.", color: "#E2E8F0" },
+  {
+    id: "open-hardware-zone",
+    name: "Open Hardware Zone",
+    description: "Open-source hardware showcases and hands-on maker workshops.",
+    color: "#E2E8F0",
+    // The zone is run by Maker's Asylum, whose mark and lockup stand in for a
+    // hub logo at the default paths (Scott, 2026-11-01).
+  },
   { id: "open-source", name: "Open Source Hub", description: "Turning attendees into open-source contributors: leave with a merged PR, a funding roadmap or a maintainer partnership.", color: "#DDFDEC" },
   { id: "p2p-networking", name: "P2P Networking Hub", description: "A vendor-neutral space for builders of Ethereum's networking layer: workshops, protocol teardowns and open debugging on libp2p and devp2p.", color: "#A8FFD5" },
   { id: "prediction-markets", name: "Prediction Markets Hub", description: "Builders, researchers, traders and governance contributors on liquidity, market design, resolution and futarchy.", color: "#F5FFDB" },
@@ -125,7 +132,7 @@ export function communityHubForRoom(roomId: string | undefined): CommunityHub | 
  * placeholders would keep showing them for a month after the artwork changed
  * under the same file name. Bump when a logo file changes in place.
  */
-const LOGO_VERSION = "2026-10-15";
+const LOGO_VERSION = "2026-11-01";
 const versioned = (path: string) => `${path}?v=${LOGO_VERSION}`;
 
 /**

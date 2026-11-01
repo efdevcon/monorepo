@@ -45,6 +45,8 @@ export type AreaSpec = {
   roomIds?: readonly string[];
   /** Per instance number: the Community Hub (src/data/communityHubs.ts id) at that booth. Its mark becomes the sprite, its name and description the card's. */
   hubs?: Readonly<Record<number, string>>;
+  /** The Community Hub (src/data/communityHubs.ts id) whose programme a community-run space with a footprint of its own carries: its mark becomes the sprite and the card's image, its room joins `roomIds`; the place keeps its own name and description. */
+  hub?: string;
   /** Per instance number: who is at that booth (supporters.ts). The logo becomes the sprite, the name, blurb and links the card's; the plan's booth name stays as the booth line. */
   tenants?: Readonly<Record<number, SupporterId>>;
   /** Position in Find and Search lists within the category (lower first, then by name; unset = 100). */
@@ -213,8 +215,9 @@ export const AREAS = {
     category: "fun",
     legend: "hubs",
     heightClass: "zone",
-    icon: "open-hardware-zone",
-    website: "https://www.makersasylum.com/",
+    // The zone's programme runs on the hubs' sheets under this id; the hub's mark is Maker's Asylum's
+    // (community-hubs/logos), which stands on the footprint and heads the card. No website link (Scott, 2026-11-01).
+    hub: "open-hardware-zone",
   },
   // Other
   "speakers-lounge": { name: "Speakers Lounge", description: "Speakers only.", category: "other", heightClass: "room", icon: "speakers-lounge", room: "Viewing Gallery" },
@@ -274,9 +277,9 @@ export const ROOMS: Record<string, readonly { areaId: AreaId; instance?: number 
   "workshop-2": [{ areaId: "workshop", instance: 2 }],
   "community-led-stage": [{ areaId: "cls-stage" }],
   // The hubs' programme also runs three community-run spaces as "hubs" (src/data/communityHubs.ts); their rooms are community-hub-<id>.
+  // The Open Hardware Zone's comes from `hub` on its area instead (the build adds it).
   "community-hub-music-stage": [{ areaId: "music-stage" }],
   "community-hub-game-zone": [{ areaId: "game-zone" }],
-  "community-hub-open-hardware-zone": [{ areaId: "open-hardware-zone" }],
   // Until the CLS Builders Room gets its own box (planned 2026-10-28): its Open Tech Summit sessions point at the hangout area beside the stage, roughly where they happen (Scott, 2026-10-26).
   "cls-builders-room": [{ areaId: "cls-hangout-area" }],
   "music-stage": [{ areaId: "music-stage" }],

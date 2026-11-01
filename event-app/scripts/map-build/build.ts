@@ -430,12 +430,16 @@ export function buildBundle(report: Report): MapBundle | null {
 /**
  * `{ roomId: AreaKey[] }` for roomAreas.ts: every schedule room's footprints. The Pretalx rooms come
  * from ROOMS; a Community Hub's room (`community-hub-<hub id>`, the hubs' programme) is the booth the
- * catalogue seats the hub at (`hubs` on an area), so hub sessions link to the map too (Scott, 2026-10-27).
+ * catalogue seats the hub at (`hubs` on an area), or the space of its own that carries the hub's programme
+ * (`hub` on an area: the Open Hardware Zone), so hub sessions link to the map too (Scott, 2026-10-27).
  */
 export function buildRooms(bundle: MapBundle, report: Report): Record<string, string[]> {
   const keys = new Set(bundle.levels.flatMap((l) => l.shapes.filter((s) => s.kind === "area").map((s) => s.key)));
   const entries: [string, readonly { areaId: string; instance?: number }[]][] = Object.entries(ROOMS);
-  for (const [areaId, spec] of Object.entries(AREAS as Record<string, AreaSpec>)) for (const [instance, hubId] of Object.entries(spec.hubs ?? {})) entries.push([`${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`, [{ areaId, instance: Number(instance) }]]);
+  for (const [areaId, spec] of Object.entries(AREAS as Record<string, AreaSpec>)) {
+    for (const [instance, hubId] of Object.entries(spec.hubs ?? {})) entries.push([`${COMMUNITY_HUB_ROOM_PREFIX}${hubId}`, [{ areaId, instance: Number(instance) }]]);
+    if (spec.hub) entries.push([`${COMMUNITY_HUB_ROOM_PREFIX}${spec.hub}`, [{ areaId }]]);
+  }
   const out: Record<string, string[]> = {};
   for (const [roomId, refs] of entries) {
     const resolved: string[] = [];
