@@ -4,7 +4,7 @@ import { MathUtils, MOUSE, OrthographicCamera, PerspectiveCamera, Plane, Raycast
 export type MapCamera = OrthographicCamera | PerspectiveCamera;
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { GroundBounds } from "../data/planSchema";
-import { DESKTOP_SHIFT_PX, FIT_MARGIN, GROUP_FIT_MARGIN, MAX_ZOOM_FACTOR, MAX_ZOOM_FACTOR_MOBILE, MIN_ZOOM_FACTOR, ORTHO_RADIUS, PHONE_FIT_GUTTER_PX, PHONE_LABEL_ROOM_PX, PHONE_STACK_LIFT_PX, POLAR_ANGLE, START_AZIMUTH, TOUCH_PAN_SPEED } from "./constants";
+import { DESKTOP_SHIFT_PX, FIT_MARGIN, GROUP_FIT_HEIGHT_MOBILE, GROUP_FIT_MARGIN, GROUP_FIT_WIDTH_MOBILE, MAX_ZOOM_FACTOR, MAX_ZOOM_FACTOR_MOBILE, MIN_ZOOM_FACTOR, ORTHO_RADIUS, PHONE_FIT_GUTTER_PX, PHONE_LABEL_ROOM_PX, PHONE_STACK_LIFT_PX, POLAR_ANGLE, START_AZIMUTH, TOUCH_PAN_SPEED } from "./constants";
 import { fitZoom, projectedExtent } from "./fit";
 import { easeOutCubic, progress, type Easing } from "./tween";
 
@@ -251,8 +251,16 @@ export class CameraRigController {
     const cur = this.currentView();
     let zoom = this.isOrtho ? Math.min(c.maxZoom, this.fit.zoom * zoomFactor) : cur.zoom;
     if (this.isOrtho && groupBounds) {
-      const diagonal = Math.hypot(groupBounds.maxX - groupBounds.minX, groupBounds.maxZ - groupBounds.minZ);
-      const groupZoom = (Math.min(this.env.size.width, this.env.size.height) / Math.max(diagonal, 1e-3)) * GROUP_FIT_MARGIN;
+      const { size, desktop } = this.env;
+      let groupZoom: number;
+      if (desktop) {
+        const diagonal = Math.hypot(groupBounds.maxX - groupBounds.minX, groupBounds.maxZ - groupBounds.minZ);
+        groupZoom = (Math.min(size.width, size.height) / Math.max(diagonal, 1e-3)) * GROUP_FIT_MARGIN;
+      } else {
+        // Exact at the focus azimuth (the tween ends there), floor level only.
+        const extent = projectedExtent(groupBounds, 0, 0, START_AZIMUTH, POLAR_ANGLE);
+        groupZoom = Math.min((size.width * GROUP_FIT_WIDTH_MOBILE) / Math.max(extent.width, 1e-3), (size.height * GROUP_FIT_HEIGHT_MOBILE) / Math.max(extent.height, 1e-3));
+      }
       zoom = MathUtils.clamp(groupZoom, this.fit.zoom, zoom);
     }
     const radius = this.isOrtho ? this.fit.radius : Math.max(c.minDistance, this.fit.radius / zoomFactor);

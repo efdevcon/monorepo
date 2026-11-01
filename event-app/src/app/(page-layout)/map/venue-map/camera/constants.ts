@@ -27,8 +27,15 @@ export const PHONE_FIT_GUTTER_PX = 8;
 export const PHONE_LABEL_ROOM_PX = 42;
 /** Phones, stacked: the stack sits this many px above centre so the lowest label clears the floor slider (iPhone 15, Scott, 2026-10-26). */
 export const PHONE_STACK_LIFT_PX = 72;
-/** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
+/** Desktop: share of the shorter viewport side a found group's ground diagonal may fill (the card sits beside the group). */
 export const GROUP_FIT_MARGIN = 0.55;
+/**
+ * Phones fit a found group by its projected extent instead (the ground diagonal foreshortens to
+ * a fraction of itself in the isometric view, so the diagonal rule left groups tiny, Scott 2026-11-01):
+ * this share of the viewport width, and this share of the height, since the card covers the bottom.
+ */
+export const GROUP_FIT_WIDTH_MOBILE = 0.8;
+export const GROUP_FIT_HEIGHT_MOBILE = 0.45;
 /** Zoom clamps as multiples of the fit: 14× everywhere since 2026-10-27 (Scott; was 6×, then 10× on phones, where supporter lockups and small booths were hard to read and tap). */
 export const MIN_ZOOM_FACTOR = 0.85;
 export const MAX_ZOOM_FACTOR = 14;
