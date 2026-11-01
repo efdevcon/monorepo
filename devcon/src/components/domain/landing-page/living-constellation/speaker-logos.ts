@@ -10,6 +10,7 @@ import Certora from './images/logos/certora.svg'
 import Axiom from './images/logos/axiom.svg'
 import Circle from './images/logos/circle.svg'
 import Coinbase from './images/logos/coinbase.svg'
+import DarkBio from './images/logos/dark-bio.svg'
 import EdgeCity from './images/logos/edge-city.svg'
 import EthereumFoundation from './images/logos/ethereum-foundation.svg'
 import ethlabs from './images/logos/ethlabs.png'
@@ -65,6 +66,7 @@ export const SPEAKER_LOGOS = {
   certora: { Logo: Certora, aspect: 420 / 126 },
   circle: { Logo: Circle, aspect: 500 / 128 },
   coinbase: { Logo: Coinbase, aspect: 717 / 128 },
+  'dark-bio': { Logo: DarkBio, aspect: 266 / 82 },
   'edge-city': { Logo: EdgeCity, aspect: 254 / 128 },
   'ethereum-foundation': { Logo: EthereumFoundation, aspect: 402 / 128 },
   ethlabs: { image: ethlabs },

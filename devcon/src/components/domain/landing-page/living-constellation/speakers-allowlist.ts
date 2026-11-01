@@ -419,10 +419,10 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'swarm',
     bio: 'Viktor Tr\u00f3n founded Swarm and leads research at the Swarm Foundation, from the DISC storage model to storage incentives and the SWIP process. Viktor wrote the Book of Swarm.',
   }, // Viktor Trón
-  // No Dark Bio logo exists yet, so the card shows the company as text.
   {
     code: 'UMGQWZ',
     title: 'Founder',
+    logo: 'dark-bio',
     bio: 'P\u00e9ter Szil\u00e1gyi founded Dark Bio, which is building a private, self-sovereign platform for personal genomics. P\u00e9ter led the go-ethereum team at the Ethereum Foundation from 2015 to 2025.',
   }, // Péter Szilágyi · Dark Bio
   // Pretalx name is just "Nico" and there is no X answer.
