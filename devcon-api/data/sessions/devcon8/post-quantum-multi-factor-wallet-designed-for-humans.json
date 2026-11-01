@@ -1,0 +1,31 @@
+{
+  "id": "post-quantum-multi-factor-wallet-designed-for-humans",
+  "sourceId": "UNTZCG",
+  "title": "Post-Quantum Multi-Factor Wallet Designed for Humans",
+  "description": "Most wallet security still depends on a single seed phrase, while post-quantum proposals often focus on replacing signature algorithms without rethinking how people actually secure their assets.\r\n\r\nThis talk introduces Bunker Wallet, a working implementation on Ethereum Sepolia that combines rotating ECDSA keys with SPHINCS+C10 or ML-DSA-44 signatures using a Safe 2-of-2 architecture, while preserving a stable wallet address and familiar seed-based experience.\r\n\r\nWe'll examine the design tradeoffs, recovery and usability challenges, and why preparing wallets for quantum computers is also an opportunity to fix the single-factor security model we've relied on for too long.",
+  "abstract": "Quantum-resistant signatures alone won't make wallets secure. This talk explores how to combine post-quantum cryptography, rotating keys, and practical multi-factor security without sacrificing the simplicity people expect from a wallet.",
+  "track": "Applied Cryptography",
+  "type": "Lightning Talk",
+  "expertise": "No prior knowledge",
+  "audience": "",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [],
+  "tags": [
+    "Post-quantum",
+    "Cryptography",
+    "Identity",
+    "Wallets",
+    "Formal Verification",
+    "Developer Tooling"
+  ],
+  "language": "en",
+  "speakers": [
+    "nick-dodson"
+  ],
+  "eventId": "devcon8",
+  "resources_presentation": "https://docs.google.com/presentation/d/1TYx0oa2I4qtDq6W8srCS0z0bQl_gLDJD_eX4glZa9wc",
+  "slot_start": 1793770800000,
+  "slot_end": 1793771220000,
+  "slot_roomId": "lightning-stage"
+}
