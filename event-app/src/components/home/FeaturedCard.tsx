@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Sparkle } from "lucide-react";
 import cn from "classnames";
 import APP_CONFIG from "@/CONFIG";
@@ -7,14 +8,19 @@ import { Link } from "@/routing";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { resolveAnnouncementLink } from "@/data/announcements/linkUtils";
+import type { Announcement } from "@/data/announcements/types";
 
 /**
- * "Featured" section: the home-screen hero, driven by whichever highlight has
- * Featured ticked in Notion (see `useAnnouncements` for how one is chosen).
+ * "Featured" section: the home-screen hero, driven by the highlights with
+ * Featured ticked in Notion (see `useAnnouncements` for how they're chosen).
  *
  * This used to be a hardcoded card, which made the most prominent slot on the
  * home screen the one thing editors couldn't change without a deploy — exactly
- * the slot you want to retarget mid-event.
+ * the slot you want to retarget mid-event. Since 2026-11-01 it is a carousel:
+ * one ticked row renders as the single hero it always was; more than one swipe
+ * side by side with the next card peeking in from the edge and a dot per card
+ * underneath (Scott: several things need to stay in front of everyone through
+ * the week).
  *
  * Renders nothing when there's no highlight to show (announcements switched
  * off, an empty Notion DB, or a fresh install that hasn't synced yet), the same
@@ -24,15 +30,132 @@ export function FeaturedCard() {
   const { featured } = useAnnouncements({
     enabled: APP_CONFIG.ANNOUNCEMENTS_ENABLED,
   });
+
+  if (featured.length === 0) return null;
+
+  return (
+    <section>
+      <h2 className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
+        Featured
+      </h2>
+      {featured.length === 1 ? (
+        <FeaturedSlide highlight={featured[0]} single />
+      ) : (
+        <FeaturedCarousel highlights={featured} />
+      )}
+    </section>
+  );
+}
+
+/**
+ * The swipeable row: native horizontal scroll with mandatory snap points (one
+ * per card), bleeding to the screen edge on phones so the next card peeks in
+ * past the column's gutter, and a row of dots that doubles as paging when the
+ * row actually overflows (on desktop two or three cards may all fit, and dots
+ * under a row that can't move would only puzzle).
+ */
+function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(0);
+  const [overflows, setOverflows] = useState(false);
+
+  // Which card is nearest the snap edge, from the scroll offset against the
+  // first card's width plus the gap (every card is the same width).
+  const sync = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setOverflows(el.scrollWidth > el.clientWidth + 1);
+    const first = el.firstElementChild as HTMLElement | null;
+    const second = first?.nextElementSibling as HTMLElement | null;
+    const step = first && second ? second.offsetLeft - first.offsetLeft : first?.offsetWidth ?? 0;
+    if (step <= 0) return;
+    setActive(Math.max(0, Math.min(highlights.length - 1, Math.round(el.scrollLeft / step))));
+  }, [highlights.length]);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    sync();
+    el.addEventListener("scroll", sync, { passive: true });
+    const observer = new ResizeObserver(sync);
+    observer.observe(el);
+    return () => {
+      el.removeEventListener("scroll", sync);
+      observer.disconnect();
+    };
+  }, [sync]);
+
+  const goTo = (index: number) => {
+    const el = scrollerRef.current;
+    const card = el?.children.item(index) as HTMLElement | null;
+    if (!el || !card) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // offsetLeft is measured from the scroller's padding edge, which is where
+    // scroll-padding snaps the cards, so this lands exactly on the snap point.
+    el.scrollTo({ left: card.offsetLeft - el.clientLeft - parseFloat(getComputedStyle(el).paddingLeft), behavior: reduce ? "auto" : "smooth" });
+  };
+
+  return (
+    <div>
+      {/* -mx-4 / px-4 / scroll-px-4: the row spans the phone screen edge to
+          edge while the cards still snap flush with the page column, so the
+          next card shows past the gutter. Desktop keeps the column and only
+          borrows 8px each side (and vertically) so the hover scale isn't
+          clipped by the scroller — the Highlights carousel's trick. The
+          scrollbar is hidden: the dots and the peeking card say "more". */}
+      <div
+        ref={scrollerRef}
+        className={cn(
+          "-mx-4 -my-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 py-2 scroll-px-4",
+          "lg:-mx-2 lg:gap-4 lg:px-2 lg:scroll-px-2",
+          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        )}
+      >
+        {highlights.map((h) => (
+          <FeaturedSlide key={h.id} highlight={h} />
+        ))}
+      </div>
+      {overflows && (
+        <div className="mt-4 flex justify-center gap-2" role="tablist" aria-label="Featured cards">
+          {highlights.map((h, i) => (
+            <button
+              key={h.id}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              aria-label={`${h.title} (${i + 1} of ${highlights.length})`}
+              onClick={() => goTo(i)}
+              // 44px hit area around a 6px dot (the padding), the dot itself
+              // drawn by the inner span.
+              className="group flex size-6 cursor-pointer items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple"
+            >
+              <span
+                className={cn(
+                  "block size-1.5 rounded-full transition-[background-color,transform] duration-150 ease-out motion-reduce:transition-none",
+                  i === active ? "scale-125 bg-dc-purple" : "bg-dc-purple/25 group-hover:bg-dc-purple/50"
+                )}
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * One hero card. `single` is the one-row case: full column width on phones, as
+ * the section rendered before it became a carousel. In a row each card leaves
+ * 24px of the column free so the next one peeks in; desktop cards are a fixed
+ * 428px either way (the Figma hero width).
+ */
+function FeaturedSlide({ highlight, single = false }: { highlight: Announcement; single?: boolean }) {
+  const { title, message, url } = highlight;
   const { failed, attempt, markFailed } = useRetryOnReconnect();
-
-  if (!featured) return null;
-
-  const { title, message, url } = featured;
   // Treating a failed load as "no image" reuses the placeholder and the
   // light-on-photo / dark-on-panel text switch below, instead of showing a
   // broken image over unreadable text. Retries on reconnect.
-  const image = failed ? null : featured.image;
+  const image = failed ? null : highlight.image;
   const link = url ? resolveAnnouncementLink(url) : null;
   // Near-white on the glass circle over a photo (as the design has it); purple
   // on the solid white circle, where near-white would be invisible.
@@ -104,34 +227,25 @@ export function FeaturedCard() {
   );
 
   const shell = cn(
-    "group relative flex h-80 w-full flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 lg:h-[280px] lg:max-w-[428px]",
+    "group relative flex h-80 shrink-0 snap-start flex-col justify-end overflow-hidden rounded-xl border border-dc-hairline p-4 lg:h-[280px] lg:w-[428px]",
+    single ? "w-full" : "w-[calc(100%-24px)]",
     link &&
       "transition-[scale,box-shadow] duration-150 ease-out hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97]"
   );
 
+  // A highlight without a URL is still worth showing, just inert — the same
+  // rule the announcement cards follow.
+  if (!link) return <div className={shell}>{body}</div>;
+  if (link.external) {
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer" className={shell}>
+        {body}
+      </a>
+    );
+  }
   return (
-    <section>
-      <h2 className="mb-4 text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">
-        Featured
-      </h2>
-      {/* A highlight without a URL is still worth showing, just inert — the
-          same rule the announcement cards follow. */}
-      {!link ? (
-        <div className={shell}>{body}</div>
-      ) : link.external ? (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={shell}
-        >
-          {body}
-        </a>
-      ) : (
-        <Link href={link.href} className={shell}>
-          {body}
-        </Link>
-      )}
-    </section>
+    <Link href={link.href} className={shell}>
+      {body}
+    </Link>
   );
 }
