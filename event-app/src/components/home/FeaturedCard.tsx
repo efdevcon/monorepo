@@ -124,7 +124,7 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
           <FeaturedSlide key={h.id} highlight={h} />
         ))}
       </div>
-      {/* Phones only: the active card is a 20px purple bar, the others 6px
+      {/* Phones only: the active card is a 40px purple bar, the others 6px
           circles, iOS page-control style. Desktop fits the cards side by side
           (two or three 428px cards in the 1312px box), so there is nothing to
           page through and the row stays hidden (Scott, 2026-11-01). */}
@@ -145,7 +145,7 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
               <span
                 className={cn(
                   "block h-1.5 rounded-full transition-[width,background-color] duration-150 ease-out motion-reduce:transition-none",
-                  i === active ? "w-5 bg-dc-purple" : "w-1.5 bg-dc-purple/25 group-hover:bg-dc-purple/50"
+                  i === active ? "w-10 bg-dc-purple" : "w-1.5 bg-dc-purple/25 group-hover:bg-dc-purple/50"
                 )}
               />
             </button>
