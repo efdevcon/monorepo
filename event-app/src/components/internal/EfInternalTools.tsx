@@ -38,6 +38,21 @@ const toolPill =
   "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
 
 /**
+ * The bundle's identity, inlined at build time (next.config.ts `env`): short
+ * commit (or "dev"), build time and Netlify context. Stored timestamp, not
+ * "now", so plain viewer-local formatting is fine.
+ */
+function buildLabel(): string {
+  const build = process.env.APP_BUILD || "dev";
+  const at = process.env.APP_BUILD_TIME ? Date.parse(process.env.APP_BUILD_TIME) : NaN;
+  const when = Number.isFinite(at)
+    ? new Date(at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
+    : "unknown time";
+  const context = process.env.APP_BUILD_CONTEXT || "local";
+  return `Build ${build} · ${when} · ${context}`;
+}
+
+/**
  * Tools for the EF team on My Devcon (/my-devcon), rendered only for signed-in
  * @ethereum.org accounts; attendees never see the section. A partner account
  * (PARTNER_PREVIEW_DOMAINS in src/data/release/previewAccess.ts) gets the
@@ -46,6 +61,8 @@ const toolPill =
  * - Unreleased features: the app otherwise looks the same for the team as
  *   for attendees; a switch per feature not yet in RELEASED turns it on for
  *   this device (src/data/release/releaseGates.ts).
+ * - Build line under the title: short commit, build time and Netlify context
+ *   (buildLabel), so "which version is this device on?" is one glance.
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
  *   the public header on 2026-09-24; this is the team's way in. Beside it,
  *   the inference debugger (/admin/inference-test) for prompt and model work.
@@ -142,6 +159,7 @@ export function EfInternalTools() {
           @ethereum.org only
         </span>
       </div>
+      <p className="mt-1 text-[12px] leading-4 text-dc-muted">{buildLabel()}</p>
 
       {/* Unreleased features */}
       {unreleased.length > 0 && (

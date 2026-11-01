@@ -153,6 +153,10 @@ const nextConfig: NextConfig = {
     // Short commit of the build (Netlify's COMMIT_REF), shown in feedback
     // reports so "which version?" never needs asking.
     APP_BUILD: (process.env.COMMIT_REF || "").slice(0, 7) || "dev",
+    // When this bundle was built (under `pnpm dev`: when the server started)
+    // and which Netlify context built it, for the EF internal tools.
+    APP_BUILD_TIME: new Date().toISOString(),
+    APP_BUILD_CONTEXT: process.env.CONTEXT || (process.env.NETLIFY ? "unknown" : "local"),
   },
   experimental: {
     // Keep prefetched route payloads in the client router cache for the whole
