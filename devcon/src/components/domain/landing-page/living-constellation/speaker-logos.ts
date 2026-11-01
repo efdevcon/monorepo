@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image'
 import OneClaw from './images/logos/1claw.svg'
 import ZeroXParc from './images/logos/0xparc.svg'
+import ZeroXBow from './images/logos/0xbow.svg'
 import Ack3 from './images/logos/ack3.svg'
 import argotCollective from './images/logos/argot-collective.png'
 import Arkiv from './images/logos/arkiv.svg'
@@ -32,6 +33,7 @@ import Polygon from './images/logos/polygon.svg'
 import ProtocolGuild from './images/logos/protocol-guild.svg'
 import RivaLabs from './images/logos/riva-labs.svg'
 import Silviculture from './images/logos/silviculture.svg'
+import Swarm from './images/logos/swarm.svg'
 import TalTech from './images/logos/taltech.svg'
 import Tor from './images/logos/tor.svg'
 import Unicef from './images/logos/unicef.svg'
@@ -52,6 +54,7 @@ export type SpeakerLogo = { scale?: number } & (
 )
 
 export const SPEAKER_LOGOS = {
+  '0xbow': { Logo: ZeroXBow, aspect: 26.16 / 27.12 },
   '0xparc': { Logo: ZeroXParc, aspect: 673 / 128 },
   '1claw': { Logo: OneClaw, aspect: 610 / 128 },
   ack3: { Logo: Ack3, aspect: 507 / 128 },
@@ -85,6 +88,7 @@ export const SPEAKER_LOGOS = {
   'protocol-guild': { Logo: ProtocolGuild, aspect: 1106 / 128 },
   'riva-labs': { Logo: RivaLabs, aspect: 404 / 128, scale: 1.2 },
   silviculture: { Logo: Silviculture, aspect: 453 / 129 },
+  swarm: { Logo: Swarm, aspect: 96 / 25 },
   taltech: { Logo: TalTech, aspect: 228 / 128 },
   tor: { Logo: Tor, aspect: 211 / 128 },
   unicef: { Logo: Unicef, aspect: 539 / 128 },

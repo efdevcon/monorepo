@@ -410,4 +410,36 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'unicef',
     bio: 'Arun Maharajan is Blockchain Lead on the Solutions Team at the UNICEF Office of Innovation, working with the UN and Web3 ecosystems on pilots and projects for social, humanitarian and financial outcomes. Arun has a special interest in new mechanisms for financial inclusion and transparent governance.',
   }, // Arun Maharajan · UNICEF
+  // Pretalx name is lowercase "viktor Tron" and the org answer is "swarm".
+  {
+    code: 'UV3SHG',
+    name: 'Viktor Tr\u00f3n',
+    title: 'Founder',
+    company: 'Swarm',
+    logo: 'swarm',
+    bio: 'Viktor Tr\u00f3n founded Swarm and leads research at the Swarm Foundation, from the DISC storage model to storage incentives and the SWIP process. Viktor wrote the Book of Swarm.',
+  }, // Viktor Trón
+  // No Dark Bio logo exists yet, so the card shows the company as text.
+  {
+    code: 'UMGQWZ',
+    title: 'Founder',
+    bio: 'P\u00e9ter Szil\u00e1gyi founded Dark Bio, which is building a private, self-sovereign platform for personal genomics. P\u00e9ter led the go-ethereum team at the Ethereum Foundation from 2015 to 2025.',
+  }, // Péter Szilágyi · Dark Bio
+  // Pretalx name is just "Nico" and there is no X answer.
+  {
+    code: 'WKT8KH',
+    name: 'Nicolas Consigny',
+    title: 'Researcher',
+    xHandle: 'ncsgy',
+    logo: 'ethereum-foundation',
+    bio: 'Nicolas Consigny is a researcher at the Ethereum Foundation working on wallets, privacy protocols and post-quantum cryptography. Nicolas leads Kohaku, a privacy-focused wallet initiative, and works on hash-based signatures for post-quantum smart accounts.',
+  }, // Nicolas Consigny
+  // Pretalx name is just "Ameen".
+  {
+    code: 'BSBLVY',
+    name: 'Ameen Soleimani',
+    title: 'CTO',
+    logo: '0xbow',
+    bio: 'Ameen Soleimani is CTO at 0xbow, the team behind Privacy Pools, working to bring privacy to the world. Ameen is a self-described onchain coordination arms dealer and wearer of many hats.',
+  }, // Ameen Soleimani · 0xbow
 ]
