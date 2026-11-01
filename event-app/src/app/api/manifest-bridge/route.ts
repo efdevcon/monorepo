@@ -104,7 +104,6 @@ export async function GET(request: NextRequest) {
     // as leaving to an external page instead of staying in standalone mode.
     scope: "/",
     display: "standalone",
-    orientation: "portrait",
     background_color: "#ffffff",
     theme_color: "#ffffff",
     icons: [
