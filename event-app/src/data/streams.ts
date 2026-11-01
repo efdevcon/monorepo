@@ -18,7 +18,7 @@ const STREAM_VIDEO_IDS: Readonly<Record<string, string>> = {
   "jasmine-stage-4": "MbX3qIXf98g",
   "workshop-1": "6A_AdH8N1dE",
   "workshop-2": "4UVt_kQ2Y3g",
-  "lightning-stage": "9Kh0GtT8pGc",
+  "lightning-stage": "WLt3jQmxVy0",
   "community-led-stage": "Pnfy2q0i9r0",
 };
 
