@@ -109,7 +109,8 @@ with the `cow-swap-coffee-cup` icon, `supporters/cow-swap.svg` and the `stand` h
 Help Desk points at the Info Desk), optional `hubs` (booth number →
 Community Hub id from `src/data/communityHubs.ts`: the hub's mark becomes the sprite, its name and
 description the card's, its room joins `roomIds` for the live session, and the plan's "Hub 7" stays
-as the card's booth line), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with
+as the card's booth line), optional `hub` (a Community Hub id on a community-run space with a footprint of its own: the Open Hardware Zone carries
+Maker's Asylum's mark as its sprite and card image and the hub's room for its programme, but keeps the catalogue's name and description; Scott, 2026-11-01), optional `tenants` (booth number → a `data/supporters.ts` id: the registry of seated supporters, each with
 its name, blurb (two sentences at most, from the supporter's own site; OpenZeppelin's and Dedaub's wording from Scott), `website` and `x`
 profile, which the card shows as the speaker page's X and globe icon links (Scott, 2026-10-30; Circle and Dedaub are in the registry but seated
 at no booth yet), and its logo under `public/maps/jwcc/supporters/`: the website's white lockups as a test, drawn on
@@ -165,7 +166,7 @@ Icons reused from the prototype's theme set (Scott, 2026-10-25): coffee (Tea & C
 (Washroom), discussion-corner (both corners), cowork (Co-work Area, Quiet Co-work), swag-station,
 decompression, press (Content Corner), game-zone (a controller since 2026-10-26, was playground); new on 2026-10-25: elevator-right
 and escalator-right (the -left variants are in the folder for other floors), lotus, jasmine,
-music-stage, art-gallery, poster-display, open-hardware-zone and storage; new on 2026-10-26 (Scott's
+music-stage, art-gallery, poster-display and storage (open-hardware-zone too until 2026-11-01, when the zone took Maker's Asylum's hub mark via `hub` and the PNG went); new on 2026-10-26 (Scott's
 `JWC/icons` folder): badge-pickup, help-desk, cloak-room, poster-printing-station, speakers-lounge,
 interview-room, baby-care-room, suites (all fourteen), workshop (both) and stairs (every floor's stairwells are sprite-only places since 2026-10-26, Level 2's by name, the others by
 structure; the PNG is mirrored so the runs read right from the start view, Scott, 2026-10-26), plus a restyled swag-station (the scarf; the file is `swag-station-scarf.png` since 2026-10-31 because the service worker holds images CacheFirst for 30 days under their URL, so the trousers kept showing on every device that had opened the map before the restyle). Hub booths show their
