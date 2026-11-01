@@ -88,6 +88,16 @@ export function cardFileName(
   return `${stamp ? stamp + ' ' : ''}${shortTitle(session.title)} [${session.code}] - ${kind} ${width}x${height}.jpg`
 }
 
+/**
+ * Object name of a session's stream intro in the av-assets bucket: one per
+ * session, kind and size, overwritten by each render, so the link an operator
+ * copied keeps playing the latest version and the page finds it again on the
+ * next open. `rpaptp-stream-intro-youtube-1920x1080.mp4`.
+ */
+export function streamIntroObjectName(code: string, kind: 'YouTube' | 'Screen', width: number, height: number): string {
+  return `${code.toLowerCase()}-stream-intro-${kind.toLowerCase()}-${width}x${height}.mp4`
+}
+
 /** Content-Disposition naming the file, inline so the page can preview it too. */
 export function contentDisposition(fileName: string): string {
   const ascii = fileName.replace(/[^\x20-\x7e]/g, '_').replace(/"/g, "'")

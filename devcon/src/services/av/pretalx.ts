@@ -26,6 +26,8 @@ export interface AvSessionSummary {
   room: string | null
   start: string | null
   end: string | null
+  /** When the submission was last saved in Pretalx (ISO); null when unknown. A schedule move alone does not count. */
+  updated: string | null
 }
 
 export interface AvSessionDetail extends AvSessionSummary {
@@ -34,6 +36,14 @@ export interface AvSessionDetail extends AvSessionSummary {
   speakerList: AvSpeaker[]
   screenSizes: string[]
   slides: { url: string | null; label: string; presenting: Presenting | null; untouched: boolean }
+  /**
+   * Hash of the stored card render inputs (services/av/render.ts, set by the
+   * session route); null when they could not be stored, and the cards render
+   * the old way.
+   */
+  inputs?: string | null
+  /** Fixed links of the session's stream intros by `<Kind>-<w>x<h>` (set by the session route); the page checks which exist. */
+  videoUrls?: Record<string, string>
 }
 
 export interface AvSpeaker {
@@ -56,6 +66,7 @@ const OPENING_CEREMONY = {
 const HARDCODED_SLOTS: Record<string, typeof OPENING_CEREMONY> = {
   UQTFKT: OPENING_CEREMONY, // Opening - Welcome
   DALFGB: OPENING_CEREMONY, // Opening - Keynote
+  KMRKHW: OPENING_CEREMONY, // Opening - Keynote Audrey
   UCBU3V: OPENING_CEREMONY, // Opening - PQ
   QVCWKC: OPENING_CEREMONY, // Opening - Trust
   LZ3EJK: OPENING_CEREMONY, // Opening - Privacy
@@ -116,6 +127,8 @@ export async function getAvStages(): Promise<{ stages: AvStage[]; days: string[]
  * (its work-in-progress version, so unreleased moves show), by start time.
  */
 export async function listAvStageSessions(roomId: number): Promise<AvSessionSummary[]> {
+  // Edit times come from the confirmed list (cached 5 minutes); started now, awaited at the end.
+  const confirmedSubmissions = getConfirmedSubmissions()
   const wip = await pretalx('schedules/wip/')
   if (!wip?.id) throw new Error('no work-in-progress schedule')
   const out: AvSessionSummary[] = []
@@ -133,6 +146,7 @@ export async function listAvStageSessions(roomId: number): Promise<AvSessionSumm
         room: null,
         start: slot.start ?? null,
         end: slot.end ?? null,
+        updated: null,
       })
     }
     page = page.next ? await pretalx(page.next) : null
@@ -150,8 +164,12 @@ export async function listAvStageSessions(roomId: number): Promise<AvSessionSumm
       room: null,
       start: HARDCODED_SLOTS[code].start,
       end: HARDCODED_SLOTS[code].end,
+      updated: sub.updated ?? null,
     })
   })
+  // The slot listing's embedded submission has no `updated`; the confirmed list does.
+  const { updated } = await confirmedSubmissions
+  for (const s of out) if (!s.updated) s.updated = updated.get(s.code) ?? null
   // Stable: hardcoded parts follow the session they share a start time with, in the order above.
   return out.sort((a, b) => (a.start ?? '').localeCompare(b.start ?? ''))
 }
@@ -184,6 +202,7 @@ export async function getAvSession(code: string): Promise<AvSessionDetail | null
     track: text(raw.track?.name ?? raw.track),
     type: text(raw.submission_type?.name ?? raw.submission_type),
     ...slot,
+    updated: raw.updated ?? null,
     speakers: (raw.speakers ?? []).map((s: any) => s.name ?? '').filter(Boolean),
     speakerList: (raw.speakers ?? []).map((s: any) => ({ code: s.code, name: s.name ?? '' })),
     screenSizes: screenSizesFor(slot.room),
@@ -197,23 +216,32 @@ export async function getAvSession(code: string): Promise<AvSessionDetail | null
 }
 
 /**
- * The official speaker list: every speaker on a confirmed Devcon 8 session,
- * with the photo the card draws. The AV page's card editor picks from it, and
- * the card routes only accept speakers on it. Kept 5 minutes per server.
+ * The confirmed Devcon 8 submissions, read in one paginated pass and kept 5
+ * minutes per server: the official speaker list (every speaker on a confirmed
+ * session, with the photo the card draws; the AV page's card editor picks from
+ * it and the card routes only accept speakers on it) and each session's last
+ * Pretalx edit time (the stage list marks recent edits).
  */
 const OFFICIAL_TTL_MS = 5 * 60 * 1000
-let official: { at: number; speakers: Promise<Map<string, AvSpeaker & { avatar: string }>> } | null = null
+interface ConfirmedSubmissions {
+  speakers: Map<string, AvSpeaker & { avatar: string }>
+  /** Submission code -> `updated` (ISO). */
+  updated: Map<string, string>
+}
+let confirmed: { at: number; data: Promise<ConfirmedSubmissions> } | null = null
 
-export function getOfficialSpeakers(): Promise<Map<string, AvSpeaker & { avatar: string }>> {
-  if (official && Date.now() - official.at < OFFICIAL_TTL_MS) return official.speakers
-  const speakers = (async () => {
-    const out = new Map<string, AvSpeaker & { avatar: string }>()
+export function getConfirmedSubmissions(): Promise<ConfirmedSubmissions> {
+  if (confirmed && Date.now() - confirmed.at < OFFICIAL_TTL_MS) return confirmed.data
+  const data = (async () => {
+    const speakers = new Map<string, AvSpeaker & { avatar: string }>()
+    const updated = new Map<string, string>()
     let page: any = await pretalx('submissions/?state=confirmed&limit=100&expand=speakers')
     while (page) {
       for (const sub of page.results ?? []) {
+        if (sub?.code && sub.updated) updated.set(sub.code, sub.updated)
         for (const sp of sub.speakers ?? []) {
-          if (!sp?.code || out.has(sp.code)) continue
-          out.set(sp.code, {
+          if (!sp?.code || speakers.has(sp.code)) continue
+          speakers.set(sp.code, {
             code: sp.code,
             name: sp.name ?? '',
             // Old uploads still render on the retired hostname; the files live on the current one.
@@ -223,12 +251,16 @@ export function getOfficialSpeakers(): Promise<Map<string, AvSpeaker & { avatar:
       }
       page = page.next ? await pretalx(page.next) : null
     }
-    return out
+    return { speakers, updated }
   })()
-  official = { at: Date.now(), speakers }
+  confirmed = { at: Date.now(), data }
   // A failed fetch is not kept: the next call tries again.
-  speakers.catch(() => {
-    if (official?.speakers === speakers) official = null
+  data.catch(() => {
+    if (confirmed?.data === data) confirmed = null
   })
-  return speakers
+  return data
+}
+
+export async function getOfficialSpeakers(): Promise<Map<string, AvSpeaker & { avatar: string }>> {
+  return (await getConfirmedSubmissions()).speakers
 }

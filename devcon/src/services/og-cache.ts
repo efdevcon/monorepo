@@ -138,8 +138,8 @@ export async function writeOgCache(
   }
 }
 
-export async function pngToJpeg(png: ArrayBuffer, quality = 80): Promise<Buffer> {
-  return sharp(Buffer.from(png))
+export async function pngToJpeg(png: ArrayBuffer | Uint8Array, quality = 80): Promise<Buffer> {
+  return sharp(png instanceof Uint8Array ? png : Buffer.from(png))
     .jpeg({
       quality,
       progressive: true,

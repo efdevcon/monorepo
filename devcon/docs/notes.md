@@ -76,6 +76,54 @@ Open items before the DC8 card is final:
   frames); once a schedule is published, decide whether scheduled sessions
   should surface room/time again (`getDay` still maps DC7 dates).
 
+# AV assets page (/av/) — storage and warm-up (2026-11)
+
+The stage operators' page (`src/pages/av/index.tsx`, behind `AV_PASSWORD`) keeps
+everything it makes in the public Supabase bucket `av-assets` (created on first
+write by `src/services/av/storage.ts`):
+
+- `inputs/<CODE>/<hash>.json`: the session in the card's shape plus speaker photos
+  as data URLs, written by `/api/av/session/[code]` when a session opens. The card
+  routes take `?inputs=<hash>` and render from it, so Pretalx is read once per
+  open, not once per card (each render used to carry a Mumbai round trip plus
+  photo fetches and brushed the function timeout at 4032x1512).
+- `cards/<CODE>/<Kind>-<w>x<h>-<renderKey>.png|.jpg`: one render per set of
+  inputs + edits + size + `CARD_VERSION` (bump it in `render.ts` when the card
+  template changes). The routes answer JSON with the two CDN links; the page shows
+  the JPEG, downloads it under the Drive file name, offers Copy link, and feeds
+  the PNG to the intro video instead of rendering again.
+- `intro/intro-<w>x<h>.webm`: the intro animation masters (one-year cache; a
+  changed master gets a new name), linked from `src/services/av/intro-videos.json`.
+  No longer in `public/`, so a deploy neither purges nor moves them.
+- `videos/<CODE>/<code>-stream-intro-<kind>-<w>x<h>.mp4`: stream intros rendered in
+  the operator's browser, uploaded straight to Supabase through a signed URL from
+  `/api/av/upload-url` (a function body is capped at 6 MB). One object per session,
+  kind and size, overwritten by every render, so a copied link always plays the
+  latest; the page checks the fixed link when a card loads and shows the stored
+  video with Download, Copy link and "Make it again". Copied links carry `?v=` (the
+  object's Last-Modified) because the objects are served with a 5-minute cache.
+  The project's upload limit sits between 63 and 80 MB per object (probed
+  2026-11-01: 60 MB accepted, 80 MB refused); a 4032x1512 intro is about 50 MB,
+  so raise the limit in the Supabase dashboard (Storage settings) if that ever grows.
+
+On load the page warms the stage: it preloads the Remotion chunk, downloads the
+masters for the stage's screen sizes (progress under the stage name) and renders
+the next talk's cards into storage. Without `?inputs=` the card routes still
+answer the image itself (the old behaviour, used when storage is down).
+
+Next to each saved video sits `<same name>.json` (`/api/av/video-saved`): the
+stored PNG it was rendered from plus the save time. The page shows a saved video
+only when that PNG is the card on screen now; otherwise the panel says "Outdated"
+and only offers to remake it, so an edit in Pretalx or on the page never surfaces
+an old intro. Videos are not downloaded automatically after a render.
+
+The talk list marks sessions saved in Pretalx within the last 10 hours in yellow
+with an "Edited HH:MM" badge (the submission's `updated`, read from the cached
+confirmed-submission list; a schedule move alone does not change it), and the
+session header repeats it. The "open a session" box also takes an app link
+(`app.devcon.org/schedule/<slug>`, resolved through devcon-api by `/api/av/resolve`)
+or a devcon.org share link.
+
 # qr code redirects
 
 `devcon.org/qr/<slug>[/<placement>]` redirects are managed by the team in the
