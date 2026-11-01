@@ -128,15 +128,16 @@ const TOAST_OPTIONS = {
  * Renders nothing; mount once at the app root. No-ops in dev (SW disabled) and
  * on browsers / insecure contexts without service worker support. Outside
  * production `?previewUpdateToast=1` shows the toast on its own (the dev
- * server has no service worker to wait on); its button just reloads.
+ * server has no service worker to wait on); `=updating` and `=slow` show the
+ * other two faces; its buttons just reload.
  */
 export function ServiceWorkerUpdater() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (
-      process.env.NODE_ENV !== "production" &&
-      new URLSearchParams(window.location.search).get("previewUpdateToast")
-    ) {
+    const preview =
+      process.env.NODE_ENV !== "production" ? new URLSearchParams(window.location.search).get("previewUpdateToast") : null;
+    if (preview) {
+      const state: Exclude<UpdateState, "idle"> = preview === "updating" || preview === "slow" ? preview : "available";
       // Next tick: this effect runs before the Toaster's (a later sibling
       // in the root layout), and a toast published before it subscribes
       // never shows. The real prompt arrives async, so only the preview
@@ -146,7 +147,7 @@ export function ServiceWorkerUpdater() {
         const reload = () => window.location.reload();
         id = toast.custom(
           (toastId) => (
-            <UpdateToast state="available" onUpdate={reload} onReload={reload} onDismiss={() => toast.dismiss(toastId)} />
+            <UpdateToast state={state} onUpdate={reload} onReload={reload} onDismiss={() => toast.dismiss(toastId)} />
           ),
           TOAST_OPTIONS
         );
