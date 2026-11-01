@@ -62,6 +62,8 @@ export interface CommunityRef {
   section: "hub" | "cls";
   /** Venue-day keys ("YYYY-MM-DD", sorted) its sessions fall on: one session's day from `communityOf`, every day from `communityOptions`. */
   days: string[];
+  /** The filter panel lists it under each of its days rather than once under "Multiple days" (see CommunityLedGroup). */
+  listedPerDay?: boolean;
 }
 
 /** The community behind a session: the hub by room first (a hub row's track is blank), else the group by track. */
@@ -95,6 +97,7 @@ export function communityOf(session: Pick<Session, "track" | "room" | "start">):
     kind: "cls",
     section: "cls",
     days,
+    listedPerDay: group.listedPerDay,
   };
 }
 

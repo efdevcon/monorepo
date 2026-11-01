@@ -24,6 +24,12 @@ export interface CommunityLedGroup {
   /** Full logo for the session details banner, when the group has one (see lockupOf); else the mark with the track under it. */
   lockup?: string;
   description?: string;
+  /**
+   * In the filter panel's day sub-groups, list the group under each day it
+   * runs on instead of once under "Multiple days" (a group whose days are a
+   * programme of their own, not one run spread over the week).
+   */
+  listedPerDay?: boolean;
 }
 
 const CLS_MARKER = /^\s*\[CLS\]/;
@@ -75,6 +81,9 @@ export const COMMUNITY_LED_GROUPS: CommunityLedGroup[] = [
     color: "#ffd9c2",
     logo: logoOf("ethindia"),
     lockup: lockupOf("ethindia"),
+    // Its Wednesday programme and its Friday session read as two listings, not
+    // a multi-day run; the other multi-day groups stay together (Scott, 2026-11-01).
+    listedPerDay: true,
   },
   {
     id: "buidlguidl",
