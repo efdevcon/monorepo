@@ -31,10 +31,10 @@ const NO_COMMUNITIES: CommunityRef[] = [];
 /** A "[CLS]" track is a community, never a Tracks chip. */
 const CLS_PREFIX = "[CLS]";
 
-/** The two community sections, in panel order (a community's `section` picks). */
+/** The two community sections, in panel order (a community's `section` picks): community-led first (Scott, 2026-11-01). */
 const COMMUNITY_SECTIONS: ReadonlyArray<{ section: CommunityRef["section"]; title: string }> = [
-  { section: "hub", title: "Community Hubs" },
   { section: "cls", title: "Community-led Sessions" },
+  { section: "hub", title: "Community Hubs" },
 ];
 
 const MULTI_DAY_LABEL = "Multiple days";
