@@ -23,6 +23,7 @@ import type { Announcement } from "@/data/announcements/types";
 import {
   PRODUCT_TEAM_EMAILS_ENV,
   productTeamEmails,
+  testPushDue,
   testPushTitle,
   type TestAudience,
 } from "../announcements/testPush";
@@ -478,18 +479,48 @@ export interface TestDispatchResult {
  * purge: a test changes nothing attendees see. The real announcement row is
  * never written.
  */
+interface ArmedTestRow {
+  announcement_id: string;
+  audience: TestAudience;
+  devcon8_announcements: { send_at: string } | { send_at: string }[] | null;
+}
+
 export async function dispatchDueTestPushes(): Promise<TestDispatchResult> {
   const db = getSupabase();
   const nowIso = new Date().toISOString();
   const stalledBefore = new Date(Date.now() - STALL_MS).toISOString();
 
-  const { data: fresh, error: freshError } = await db
+  // Due = the row's Send At has been reached, the same rule as the real send
+  // (Visible is still ignored: a hidden draft can be rehearsed). Send At
+  // lives on the announcement, so armed tests are read with their parent
+  // first and each due one is then claimed on its own, conditionally, which
+  // keeps the claim atomic against a concurrent run or an untick.
+  const { data: armed, error: armedError } = await db
     .from("devcon8_announcement_tests")
-    .update({ status: "sending", updated_at: nowIso })
+    .select("announcement_id, audience, devcon8_announcements(send_at)")
     .eq("status", "scheduled")
-    .eq("flag", true)
-    .select("announcement_id, audience");
-  if (freshError) throw new Error(`test claim failed: ${freshError.message}`);
+    .eq("flag", true);
+  if (armedError) throw new Error(`test read failed: ${armedError.message}`);
+  const fresh: { announcement_id: string; audience: TestAudience }[] = [];
+  const nowMs = Date.now();
+  for (const row of (armed ?? []) as ArmedTestRow[]) {
+    // PostgREST embeds the parent as an object; an array shape is tolerated.
+    const parent = Array.isArray(row.devcon8_announcements)
+      ? row.devcon8_announcements[0]
+      : row.devcon8_announcements;
+    // A parent gone under the FK cascade cannot be read; let the claim settle it.
+    if (parent?.send_at && !testPushDue(parent.send_at, nowMs)) continue;
+    const { data: claimed, error: claimError } = await db
+      .from("devcon8_announcement_tests")
+      .update({ status: "sending", updated_at: nowIso })
+      .eq("announcement_id", row.announcement_id)
+      .eq("audience", row.audience)
+      .eq("status", "scheduled")
+      .eq("flag", true)
+      .select("announcement_id, audience");
+    if (claimError) throw new Error(`test claim failed: ${claimError.message}`);
+    fresh.push(...((claimed ?? []) as typeof fresh));
+  }
 
   const { data: stalled, error: stalledError } = await db
     .from("devcon8_announcement_tests")

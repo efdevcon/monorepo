@@ -36,17 +36,22 @@ of the title so nobody mistakes it for the real thing:
   the app with an ethereum.org address and turned notifications on.
 - **Test push (product team)**: only the product team's own devices.
 
-Tick one, click **Publish changes**, and the test arrives within a minute.
-A test ignores Send At and Visible, so a hidden draft dated for next week
-can be tested today, and it does not count as the row's one real send: the
-same row can still go out to everyone later with Push.
+Tick one, click **Publish changes**, and the test follows Send At like the
+real push: a row dated in the future tests at that time, a row whose Send At
+has passed tests within a minute. Visible is ignored, so a hidden draft can
+be tested, and a test does not count as the row's one real send: the same
+row can still go out to everyone later with Push.
 
 To run a test again: untick the box, publish, tick it, publish. Unticking
-before the minute is up cancels a test that has not left yet.
+before the test has left cancels it.
 
 ## Did it go out?
 
 - If your own device is subscribed, you receive it like everyone else.
+- In the app, My Devcon has an "Announcements" row under EF internal tools
+  (ethereum.org accounts): when the feed last synced from Notion, what is
+  dated to appear next with its Visible, Push and test state, and a button
+  to sync now.
 - A developer can see, for each row and each test, how many devices
   received it and how many failed, and can check that the sender runs
   every minute.

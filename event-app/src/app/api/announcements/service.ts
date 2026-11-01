@@ -17,7 +17,8 @@
  */
 import { createHash } from "node:crypto";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import type { Announcement } from "@/data/announcements/types";
+import type { Announcement, AnnouncementsStatus } from "@/data/announcements/types";
+import { summarizeAnnouncements, type StatusRow, type TestStateRow } from "./status";
 import {
   TEST_AUDIENCE_KEYS,
   nextTestStatus,
@@ -441,6 +442,43 @@ async function syncTestFlags(
  * unless `includeFuture` — the preview path uses that so editors can check a
  * scheduled announcement before its time.
  */
+/**
+ * The feed's sync state for the EF internal tools (summarizeAnnouncements):
+ * every row, hidden ones included, plus the ticked test boxes of the
+ * upcoming rows. Reads only; the "Sync from Notion" button in the tools
+ * calls /api/announcements/refresh for the write. The tests read is
+ * best-effort, like everywhere else that touches that table.
+ */
+export async function getAnnouncementsStatus(): Promise<AnnouncementsStatus> {
+  const db = getSupabase();
+  const { data, error } = await db
+    .from("devcon8_announcements")
+    .select("id, type, title, send_at, visible, push, status, updated_at")
+    .order("send_at", { ascending: false })
+    .limit(500);
+  if (error) throw new Error(`announcement status read failed: ${error.message}`);
+  const rows = (data ?? []) as StatusRow[];
+  const nowMs = Date.now();
+
+  const upcomingIds = rows
+    .filter((r) => r.type === "announcement" && Date.parse(r.send_at) > nowMs)
+    .map((r) => r.id);
+  let tests: TestStateRow[] = [];
+  if (upcomingIds.length > 0) {
+    const { data: testRows, error: testError } = await db
+      .from("devcon8_announcement_tests")
+      .select("announcement_id, audience, status, flag")
+      .in("announcement_id", upcomingIds)
+      .eq("flag", true);
+    if (testError) {
+      console.warn("[announcements] test state read skipped:", testError.message);
+    } else {
+      tests = (testRows ?? []) as TestStateRow[];
+    }
+  }
+  return summarizeAnnouncements(rows, nowMs, tests);
+}
+
 export async function getAnnouncements(
   options: { includeFuture?: boolean } = {}
 ): Promise<Announcement[]> {

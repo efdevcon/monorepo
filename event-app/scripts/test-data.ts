@@ -89,7 +89,8 @@ import { streamEmbedUrlForRoom } from "../src/data/streams";
 import { toSafariHref } from "../src/utils/openOutside";
 import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
-import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushTitle } from "../src/app/api/announcements/testPush";
+import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushDue, testPushTitle } from "../src/app/api/announcements/testPush";
+import { summarizeAnnouncements } from "../src/app/api/announcements/status";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -1010,6 +1011,33 @@ function testTeamTestPush() {
   check("env email list: trimmed, lower-cased, de-duplicated", eq(parseEmailList(" A@example.org, b@example.org,a@example.org "), ["a@example.org", "b@example.org"]));
   check("env email list: unset or empty reaches nobody", eq(parseEmailList(undefined), []) && eq(parseEmailList(" , "), []));
   check("product team list reads its env var", eq(productTeamEmails({ PUSH_PRODUCT_TEAM_EMAILS: "x@example.org" }), ["x@example.org"]));
+  // Tests wait for Send At like the real push (2026-11-01): a row dated
+  // tomorrow rehearses tomorrow, a past date goes within a minute.
+  const t0 = Date.parse("2026-11-03T04:30:00Z");
+  check("test due: Send At in the past", testPushDue("2026-11-03T04:29:00Z", t0));
+  check("test due: Send At exactly now", testPushDue("2026-11-03T04:30:00Z", t0));
+  check("test not due: Send At in the future", !testPushDue("2026-11-03T04:31:00Z", t0));
+  check("test not due: unreadable Send At", !testPushDue("not a date", t0));
+}
+
+function testAnnouncementsStatus() {
+  console.log("\n--- announcements status (EF internal tools) ---");
+  const now = Date.parse("2026-11-03T04:30:00Z");
+  const rows = [
+    { id: "a", type: "announcement", title: "Doors open", send_at: "2026-11-03T03:00:00Z", visible: true, push: true, status: "sent", updated_at: "2026-11-03T04:00:00Z" },
+    { id: "b", type: "announcement", title: "Lunch", send_at: "2026-11-03T07:00:00Z", visible: true, push: true, status: "scheduled", updated_at: "2026-11-03T04:10:00Z" },
+    { id: "c", type: "announcement", title: "Draft", send_at: "2026-11-03T05:00:00Z", visible: false, push: false, status: "draft", updated_at: "2026-11-03T04:10:00Z" },
+    { id: "h", type: "highlight", title: "Map", send_at: "2026-11-04T00:00:00Z", visible: true, push: false, status: "draft", updated_at: "2026-11-03T04:10:00Z" },
+  ] as const;
+  const status = summarizeAnnouncements([...rows], now);
+  check("synced at = the newest row write", status.syncedAt === "2026-11-03T04:10:00Z");
+  check("version = sync time + row count", status.version === `${Date.parse("2026-11-03T04:10:00Z")}-4`);
+  check("count covers hidden rows too", status.count === 4);
+  check("upcoming = future announcements only, soonest first", eq(status.upcoming.map((u) => u.id), ["c", "b"]));
+  check("upcoming carries the flags editors check", status.upcoming[1].visible && status.upcoming[1].push && status.upcoming[1].status === "scheduled" && !status.upcoming[0].visible);
+  check("upcoming uses camelCase send time", status.upcoming[0].sendAt === "2026-11-03T05:00:00Z");
+  const empty = summarizeAnnouncements([], now);
+  check("no rows: nothing synced, no version", empty.syncedAt === null && empty.version === null && empty.count === 0 && empty.upcoming.length === 0);
 }
 
 async function testSessionCookieSettled() {
@@ -1521,6 +1549,7 @@ async function main() {
   testSessionCard();
   testTranscripts();
   testLiveWindowAndStreams();
+  testAnnouncementsStatus();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

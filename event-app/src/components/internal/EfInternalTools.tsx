@@ -11,6 +11,7 @@ import { ReminderRehearsal } from "@/components/announcements/ReminderRehearsal"
 import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
 import { CommunityHubsDataTools, EventDataTools, MockClockTools } from "./DebugTools";
+import { AnnouncementsTools } from "./AnnouncementsTools";
 import { OfflineTools } from "./OfflineTools";
 import { Switch } from "@/components/Switch";
 import {
@@ -61,6 +62,10 @@ const toolPill =
  * - Mock clock & dataset (MockClockTools) and Event data sync (EventDataTools):
  *   the former floating bug button on Home, moved here 2026-10-02 so it needs
  *   no `?debug` flag and attendees never see it.
+ * - Announcements (AnnouncementsTools): when the feed last synced from Notion
+ *   and this device last fetched it, the rows dated to appear next with
+ *   their Visible / Push / test state, and a "Sync from Notion" button (the
+ *   editors' Publish link, 2026-11-01).
  * - Offline readiness (OfflineTools): connection, service worker, storage,
  *   image warming progress and coverage, and what each cache holds.
  * - Rehearse reminders (ReminderRehearsal): the session-reminder rehearsal at
@@ -251,6 +256,16 @@ export function EfInternalTools() {
         </p>
         <EventDataTools />
         <CommunityHubsDataTools />
+      </div>
+
+      {/* Announcements feed */}
+      <div className="mt-4 border-t border-dc-hairline pt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">Announcements</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          When the feed last synced from Notion, when this device last fetched it, and what is
+          dated to appear next. Sync pulls Notion now and clears the cached copy for everyone.
+        </p>
+        <AnnouncementsTools />
       </div>
 
       {/* Offline readiness */}

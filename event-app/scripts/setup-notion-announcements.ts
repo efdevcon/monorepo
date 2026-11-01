@@ -132,7 +132,7 @@ async function main(): Promise<void> {
   const description = [
     { text: { content: "Each row is one announcement (inbox message, appears at its Send At time) or highlight (image card on the home screen, ordered by Order) in the event app. " } },
     { text: { content: "Leave Push unchecked for inbox-only announcements; highlights are never pushed.\n" } },
-    { text: { content: "To rehearse a row before everyone gets it, tick Test push (team) (every team device) or Test push (product team) (the product team only) and publish: it arrives within a minute with a Test: prefix, ignores Visible and Send At, and does not count as the real send. Untick and tick again to repeat.\n" } },
+    { text: { content: "To rehearse a row before everyone gets it, tick Test push (team) (every team device) or Test push (product team) (the product team only) and publish: it goes out at Send At (within a minute if that has passed) with a Test: prefix, ignores Visible, and does not count as the real send. Untick and tick again to repeat.\n" } },
     { text: { content: "Edits go live automatically within ~1 hour. To skip the wait:\n" } },
     { text: { content: "\u{1F440} Preview in the app", link: { url: `${appOrigin}/announcements?preview` } } },
     { text: { content: "   ·   " } },

@@ -5,8 +5,9 @@
  * address (`is_team` on the subscription), "Test push (product team)" only
  * the accounts listed in the PUSH_PRODUCT_TEAM_EMAILS env var. A test keeps its own send state per
  * audience (table `devcon8_announcement_tests`), so it never consumes the
- * row's one real send, and it ignores Visible and Send At: a hidden draft
- * dated next week can be rehearsed today.
+ * row's one real send. It ignores Visible (a hidden draft can be rehearsed)
+ * but waits for Send At like the real push (`testPushDue`, 2026-11-01): a
+ * row dated next week rehearses next week, a past date goes within a minute.
  *
  * The state follows the checkbox EDGE, not its level. A box going from
  * unticked to ticked arms the test (`scheduled`); a box that stays ticked
@@ -54,6 +55,16 @@ export function productTeamEmails(
 }
 
 /** So a test is never mistaken for the real thing on a team phone. */
+/**
+ * Whether an armed test may leave: its row's Send At has been reached, the
+ * same rule as the real send. An unreadable date never is, so a broken row
+ * waits instead of going out.
+ */
+export function testPushDue(sendAt: string, nowMs: number): boolean {
+  const at = Date.parse(sendAt);
+  return Number.isFinite(at) && at <= nowMs;
+}
+
 export const TEST_TITLE_PREFIX = "Test: ";
 
 export function testPushTitle(title: string): string {
