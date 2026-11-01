@@ -1841,8 +1841,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1
       '@meerkat-events/react':
-        specifier: ^0.1.0
-        version: 0.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^0.2.0
+        version: 0.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@netlify/functions':
         specifier: ^5.3.0
         version: 5.3.0
@@ -5666,8 +5666,8 @@ packages:
   '@mediapipe/tasks-vision@0.10.17':
     resolution: {integrity: sha512-CZWV/q6TTe8ta61cZXjfnnHsfWIdFhms03M9T7Cnd5y2mdpylJM0rF1qRq+wsQVRMLz1OYPVEBU9ph2Bx8cxrg==}
 
-  '@meerkat-events/react@0.1.0':
-    resolution: {integrity: sha512-G3Tv6GWpc5VyxZfOuKxMXa3DHrBvsuolPhb7yXPCO32aCWoPOsI49BBMgCSH3lrPPP4aFuBxywaYoH4i5CHbZg==}
+  '@meerkat-events/react@0.2.0':
+    resolution: {integrity: sha512-GN8TSVClHd/8gz887D+pgsYHikvCo53GdUBMFEGzERlbxAWOeMNUjv0E7K25lkozIQlGPc12dT6COINv5Xx+5g==}
     peerDependencies:
       react: 19.2.3
       react-dom: 19.2.3
@@ -22631,8 +22631,8 @@ packages:
     peerDependencies:
       react: 19.2.3
 
-  swr@2.4.0:
-    resolution: {integrity: sha512-sUlC20T8EOt1pHmDiqueUWMmRRX03W7w5YxovWX7VR2KHEPCTMly85x05vpkP5i6Bu4h44ePSMD9Tc+G2MItFw==}
+  swr@2.5.1:
+    resolution: {integrity: sha512-BRw55e8r0B7SpDN20CAzoQAHl7y1yP7/Zt7oqUjMv0vSt2u2Xnkm88Ws+VypbV9BXHQVuSuyVq7zMjO16wSExw==}
     peerDependencies:
       react: 19.2.3
 
@@ -30724,11 +30724,11 @@ snapshots:
 
   '@mediapipe/tasks-vision@0.10.17': {}
 
-  '@meerkat-events/react@0.1.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@meerkat-events/react@0.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      swr: 2.4.0(react@19.2.3)
+      swr: 2.5.1(react@19.2.3)
 
   '@metamask/eth-json-rpc-provider@1.0.1':
     dependencies:
@@ -63015,7 +63015,7 @@ snapshots:
       react: 19.2.3
       use-sync-external-store: 1.5.0(react@19.2.3)
 
-  swr@2.4.0(react@19.2.3):
+  swr@2.5.1(react@19.2.3):
     dependencies:
       dequal: 2.0.3
       react: 19.2.3
