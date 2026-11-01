@@ -45,10 +45,10 @@ function HighlightCard({ highlight }: { highlight: Announcement }) {
           onError={markFailed}
           crossOrigin="anonymous"
           alt=""
-          className="aspect-[2/1] w-full object-cover"
+          className="aspect-video w-full object-cover"
         />
       ) : (
-        <div className="flex aspect-[2/1] w-full items-center justify-center bg-dc-lavender">
+        <div className="flex aspect-video w-full items-center justify-center bg-dc-lavender">
           <Sparkle className="h-6 w-6 text-dc-purple/40" />
         </div>
       )}

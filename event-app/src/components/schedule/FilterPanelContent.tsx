@@ -31,28 +31,29 @@ const NO_COMMUNITIES: CommunityRef[] = [];
 /** A "[CLS]" track is a community, never a Tracks chip. */
 const CLS_PREFIX = "[CLS]";
 
-/** The two community sections, in panel order (a community's `section` picks). */
+/** The two community sections, in panel order (a community's `section` picks): community-led first (Scott, 2026-11-01). */
 const COMMUNITY_SECTIONS: ReadonlyArray<{ section: CommunityRef["section"]; title: string }> = [
-  { section: "hub", title: "Community Hubs" },
   { section: "cls", title: "Community-led Sessions" },
+  { section: "hub", title: "Community Hubs" },
 ];
 
 const MULTI_DAY_LABEL = "Multiple days";
 
 /**
  * Community-led groups by the venue day they run on, days in order, then one
- * "Multiple days" group for those spanning more than one. Names keep the
- * alphabetical order they arrive in.
+ * "Multiple days" group for those spanning more than one. A group marked
+ * `listedPerDay` appears under each of its days instead (one chip per day,
+ * all toggling the same filter). Names keep the alphabetical order they
+ * arrive in.
  */
 function groupCommunitiesByDay(list: CommunityRef[]): Array<{ key: string; label: string; items: CommunityRef[] }> {
   const byDay = new Map<string, CommunityRef[]>();
   const multi: CommunityRef[] = [];
+  const addToDay = (day: string, c: CommunityRef) => byDay.set(day, [...(byDay.get(day) ?? []), c]);
   for (const c of list) {
-    if (c.days.length > 1) multi.push(c);
-    else {
-      const day = c.days[0] ?? "";
-      byDay.set(day, [...(byDay.get(day) ?? []), c]);
-    }
+    if (c.listedPerDay) c.days.forEach((day) => addToDay(day, c));
+    else if (c.days.length > 1) multi.push(c);
+    else addToDay(c.days[0] ?? "", c);
   }
   const groups = [...byDay.keys()]
     .sort()
