@@ -103,10 +103,11 @@ export async function avPutObject(
   return avObjectUrl(key)
 }
 
-/** A small JSON object, read back through the public URL; null when missing or unreadable. */
-export async function avGetJson<T>(key: string): Promise<T | null> {
+/** A small JSON object, read back through the public URL (`fresh` skips the CDN's copy); null when missing or unreadable. */
+export async function avGetJson<T>(key: string, fresh = false): Promise<T | null> {
   try {
-    const r = await fetch(avObjectUrl(key), { signal: AbortSignal.timeout(5000), cache: 'no-store' })
+    const url = fresh ? `${avObjectUrl(key)}?v=${Date.now()}` : avObjectUrl(key)
+    const r = await fetch(url, { signal: AbortSignal.timeout(5000), cache: 'no-store' })
     if (!r.ok) return null
     return (await r.json()) as T
   } catch {

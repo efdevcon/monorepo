@@ -1201,20 +1201,28 @@ async function writeFile(
     const read = await readSheetData(sheets, spreadsheetId, file.label).catch(() => null)
     const labels: string[] = (read?.assets || []).map((r: any[]) => String(r[0] ?? ''))
     const qaAt = labels.findIndex((v) => assets.qaQrRow.test(v))
-    if (qaAt < 0) line(`! ${file.label}: no "${assets.qaQrName}" row on ${assets.tab}, links not written`)
+    if (!read?.assets) line(`! ${file.label}: no ${assets.tab} tab, links not written`)
     else {
+      // Where the template has the QR row, or, on a tab the AV team built before the row existed
+      // (Lightning Stage, Workshop 1 and 2 on 2026-11-01), under their last row: never over one of theirs.
+      const appended = qaAt < 0
+      const at = appended ? labels.length : qaAt
+      if (appended) line(`+ ${file.label}: "${assets.qaQrName}" row added under the last row of ${assets.tab}`)
       if (file.qaQr)
         data.push({
-          range: `'${assets.tab}'!A${qaAt + 1}:B${qaAt + 1}`,
+          range: `'${assets.tab}'!A${at + 1}:B${at + 1}`,
           values: [[assets.qaQrName, `=HYPERLINK("${file.qaQr}","App Q&A QR · ${file.roomName}")`]],
         })
       let mkAt = labels.findIndex((v) => assets.meerkatRow.test(v))
-      if (mkAt < 0 && ids.assets !== undefined) {
+      if (mkAt < 0 && appended) {
+        // Both rows land on empty rows under the team's: nothing to push down.
+        mkAt = file.qaQr ? at + 1 : at
+      } else if (mkAt < 0 && ids.assets !== undefined) {
         // Right under the QR row, pushing the AV team's own rows down rather than overwriting one.
         insertMeerkatRow = {
-          insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: qaAt + 1, endIndex: qaAt + 2 }, inheritFromBefore: true },
+          insertDimension: { range: { sheetId: ids.assets, dimension: 'ROWS', startIndex: at + 1, endIndex: at + 2 }, inheritFromBefore: true },
         }
-        mkAt = qaAt + 1
+        mkAt = at + 1
       }
       if (mkAt >= 0) {
         const url = meerkatStageUrl(file.roomId)

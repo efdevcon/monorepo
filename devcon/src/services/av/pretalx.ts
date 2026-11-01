@@ -42,8 +42,16 @@ export interface AvSessionDetail extends AvSessionSummary {
    * the old way.
    */
   inputs?: string | null
-  /** Fixed links of the session's stream intros by `<Kind>-<w>x<h>` (set by the session route); the page checks which exist. */
-  videoUrls?: Record<string, string>
+  /** The session's stream intros by `<Kind>-<w>x<h>` (set by the session route). */
+  videos?: Record<string, AvStoredVideo>
+}
+
+/** A stream intro's fixed link in storage, whether a file is there, and the stored card it was rendered from (when recorded). */
+export interface AvStoredVideo {
+  url: string
+  exists: boolean
+  card?: string
+  savedAt?: number
 }
 
 export interface AvSpeaker {

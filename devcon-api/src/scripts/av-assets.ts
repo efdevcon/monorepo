@@ -341,16 +341,26 @@ async function main() {
   })
   // googleapis bundles its own google-auth-library types; same cast as the other scripts.
   const drive = google.drive({ version: 'v3', auth: auth as any })
-  const listChildren = async (parentId: string) =>
-    (
-      await drive.files.list({
+  // Every page: Drive answers in no particular order, and the Photos folder
+  // passed 200 files on 2026-10-28, after which the seed image fell off the
+  // single page read here and every upload aborted as "seed image not found".
+  const listChildren = async (parentId: string) => {
+    const files: { id?: string | null; name?: string | null; mimeType?: string | null }[] = []
+    let pageToken: string | undefined
+    do {
+      const page = await drive.files.list({
         q: `'${parentId}' in parents and trashed = false`,
-        fields: 'files(id,name,mimeType)',
+        fields: 'nextPageToken, files(id,name,mimeType)',
         supportsAllDrives: true,
         includeItemsFromAllDrives: true,
-        pageSize: 200,
+        pageSize: 1000,
+        pageToken,
       })
-    ).data.files ?? []
+      files.push(...(page.data.files ?? []))
+      pageToken = page.data.nextPageToken ?? undefined
+    } while (pageToken)
+    return files
+  }
   const findSeed = async (folderId: string, depth = 0): Promise<string | null> => {
     const children = await listChildren(folderId)
     const hit = children.find(f => f.name === SEED_NAME && !f.mimeType?.includes('google-apps'))

@@ -25,7 +25,7 @@ import {
 } from 'lucide-react'
 import { AV_TIMEZONE, screenSizesFor } from 'services/av/av-assets'
 import introVideos from 'services/av/intro-videos.json'
-import type { AvSessionDetail, AvSessionSummary, AvSpeaker, AvStage } from 'services/av/pretalx'
+import type { AvSessionDetail, AvSessionSummary, AvSpeaker, AvStage, AvStoredVideo } from 'services/av/pretalx'
 import { useNow } from 'hooks/useNow'
 import { AV_PASSWORD_KEY, clearStoredPassword, readStoredPassword, storePassword } from 'utils/adminPassword'
 
@@ -156,7 +156,7 @@ function AssetTile({
   params,
   stored,
   code,
-  videoUrls,
+  videos,
   nonce,
   retryAll,
   onReady,
@@ -166,8 +166,8 @@ function AssetTile({
   params: string
   stored: boolean
   code: string
-  /** Fixed links of the session's stream intros by `<Kind>-<w>x<h>`, whether they exist yet or not. */
-  videoUrls?: Record<string, string>
+  /** The session's stream intros by `<Kind>-<w>x<h>`, as the session route found them in storage. */
+  videos?: Record<string, AvStoredVideo>
   nonce: number
   /** Bumped by the page's "Retry failed": only a tile in error tries again. */
   retryAll: number
@@ -254,7 +254,7 @@ function AssetTile({
               card={state.loaded}
               source={`${asset.url}?${params}`}
               code={code}
-              existingUrl={videoUrls?.[`${asset.video.kind}-${asset.video.width}x${asset.video.height}`]}
+              stored={videos?.[`${asset.video.kind}-${asset.video.width}x${asset.video.height}`]}
               {...asset.video}
             />
           )}
@@ -412,7 +412,7 @@ function IntroVideoButton({
   kind,
   width,
   height,
-  existingUrl,
+  stored,
 }: {
   card: Loaded
   /** The card route with its params, for the PNG when the card is not in storage. */
@@ -421,8 +421,8 @@ function IntroVideoButton({
   kind: 'YouTube' | 'Screen'
   width: number
   height: number
-  /** This stream intro's fixed link in the bucket, whether it exists yet or not. */
-  existingUrl?: string
+  /** This stream intro in storage, as found when the session opened. */
+  stored?: AvStoredVideo
 }) {
   const [state, setState] = useState<VideoState>({ phase: 'idle' })
   const fileName = card.fileName.replace(/ - (YouTube|Screen) /, ' - Intro $1 ').replace(/\.jpg$/i, '.mp4')
@@ -430,37 +430,16 @@ function IntroVideoButton({
 
   // A new card (regenerated, edited) makes a video rendered on this page
   // stale. The bucket's copy is the latest one anyone rendered, and its
-  // record names the card it was made from: it is shown only when that is
-  // the card on screen now. Any other saved video is outdated and stays
-  // hidden until remade. The record is read past the CDN (?v=now).
+  // record names the card it was made from (read by the session route): it
+  // is shown only when that is the card on screen now. Any other saved video
+  // is outdated and stays hidden until remade.
   useEffect(() => {
-    setState({ phase: 'idle' })
-    if (!existingUrl) return
-    let cancelled = false
-    ;(async () => {
-      const record = (await fetch(`${existingUrl.replace(/\.mp4$/, '.json')}?v=${Date.now()}`, {
-        cache: 'no-store',
-        signal: AbortSignal.timeout(10_000),
-      })
-        .then(r => (r.ok ? r.json() : null))
-        .catch(() => null)) as { card?: string; savedAt?: number } | null
-      if (cancelled) return
-      if (record?.card && card.pngUrl && record.card === card.pngUrl) {
-        const stamp = record.savedAt || Date.now()
-        setState(s => (s.phase === 'idle' ? { phase: 'existing', url: `${existingUrl}?v=${stamp}`, storedAt: stamp } : s))
-        return
-      }
-      const head = await fetch(existingUrl, { method: 'HEAD', cache: 'no-store', signal: AbortSignal.timeout(10_000) }).catch(
-        () => null
-      )
-      if (cancelled || !head?.ok) return
-      const stamp = Date.parse(head.headers.get('last-modified') || '') || Date.now()
-      setState(s => (s.phase === 'idle' ? { phase: 'outdated', savedAt: stamp } : s))
-    })()
-    return () => {
-      cancelled = true
-    }
-  }, [card.objectUrl, card.pngUrl, existingUrl])
+    if (!stored?.exists) return setState({ phase: 'idle' })
+    if (stored.card && card.pngUrl && stored.card === card.pngUrl) {
+      const stamp = stored.savedAt || Date.now()
+      setState({ phase: 'existing', url: `${stored.url}?v=${stamp}`, storedAt: stamp })
+    } else setState({ phase: 'outdated', savedAt: stored.savedAt || Date.now() })
+  }, [card.objectUrl, card.pngUrl, stored])
   useEffect(
     () => () => {
       if (urlRef.current) URL.revokeObjectURL(urlRef.current)
@@ -1290,7 +1269,7 @@ function AvTool({ onLogout }: { onLogout: () => void }) {
         params={params}
         stored={stored}
         code={session.code}
-        videoUrls={session.videoUrls}
+        videos={session.videos}
         nonce={nonce}
         retryAll={retryAll}
         onReady={onReady}
