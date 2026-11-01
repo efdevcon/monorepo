@@ -15,6 +15,21 @@ export type ScheduleSource = "main" | "hubs";
 export const HUBS_PARAM = "hubs";
 /** `/schedule?interests=1` opens the schedule with My Interests on (the AI planner's apply page links it). */
 export const INTERESTS_PARAM = "interests";
+/**
+ * `/schedule?room=<id>[,<id>]` opens the schedule with those rooms in the
+ * Locations filter: Pretalx room ids (the slug of the Pretalx name, e.g.
+ * `lotus-stage-1`, `main-stage-lotus`), never display names, which the app
+ * renames (venueRooms.ts). Unknown ids are ignored. The filter panel keeps
+ * the param in step so a filtered view can be shared (2026-11-01).
+ */
+export const ROOM_PARAM = "room";
+/**
+ * `/schedule?day=<n>` opens the schedule on the n-th day of the programme
+ * (1-based), `?day=all` on the All tab; a `YYYY-MM-DD` venue-day key works
+ * too. The day tabs write the number back (resolveDayParam / dayParamValue
+ * in schedule/utils.ts).
+ */
+export const DAY_PARAM = "day";
 
 const ScheduleSourceContext = createContext<ScheduleSource>("main");
 

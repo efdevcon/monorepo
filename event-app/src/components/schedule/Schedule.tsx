@@ -31,7 +31,7 @@ import type { Session as SessionModel } from "@/data/models";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
 import { isCommunityLed } from "@/data/programme";
 import { useStoreState } from "@/data/store/use-event-store";
-import { HUBS_PARAM, INTERESTS_PARAM, ScheduleSourceProvider, storeFor, type ScheduleSource } from "@/data/store/schedule-source";
+import { DAY_PARAM, HUBS_PARAM, INTERESTS_PARAM, ROOM_PARAM, ScheduleSourceProvider, storeFor, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -63,6 +63,8 @@ import {
   TIMELINE_ZOOMS,
   type ScheduleDay,
   type TimelineZoom,
+  dayParamValue,
+  resolveDayParam,
 } from "./utils";
 import { readPref, writePref } from "@/data/prefs";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
@@ -732,7 +734,8 @@ function ScheduleInner({
   // `/schedule?interests=1` (the AI planner's apply page, deep links) opens
   // with My Interests on, also while the pane is already mounted; the toggle
   // keeps the param in step so the view can be shared (same pattern as ?hubs=1).
-  const interestsInUrl = !!useSearchParams().get(INTERESTS_PARAM);
+  const innerSearchParams = useSearchParams();
+  const interestsInUrl = !!innerSearchParams.get(INTERESTS_PARAM);
   const {
     now,
     days,
@@ -747,6 +750,7 @@ function ScheduleInner({
     setSearch,
     filters,
     toggleFilter,
+    setFacetFilter,
     retainFilters,
     clearFilters,
     activeFilterCount,
@@ -812,6 +816,75 @@ function ScheduleInner({
   // False while another tab pane is showing: header portals and window
   // measurements belong to the visible pane only (see TabPanes).
   const paneActive = usePaneActive();
+
+  // `/schedule?room=<id>[,<id>]` and `/schedule?day=<n>|all|YYYY-MM-DD` (links
+  // from announcements and the featured cards): applied once per value, once
+  // the programme has loaded enough to resolve them, also while the pane is
+  // already mounted; a value vanishing (detail pages drop the query) changes
+  // nothing. The Locations filter and the day tabs write their state back,
+  // while this pane shows and no detail page is open, so a view can be shared
+  // (same idea as ?interests=1, which rooms and days are two more of).
+  const roomsInUrl = innerSearchParams.get(ROOM_PARAM);
+  const dayInUrl = innerSearchParams.get(DAY_PARAM);
+  // Room ids (Pretalx slugs, what links carry) ↔ display names (what the facet filters on).
+  const roomNames = useMemo(() => {
+    const byId = new Map<string, string>();
+    const byName = new Map<string, string>();
+    for (const s of sessions) {
+      if (!s.room) continue;
+      byId.set(s.room.id, s.room.name);
+      byName.set(s.room.name, s.room.id);
+    }
+    return { byId, byName };
+  }, [sessions]);
+  const appliedRoomRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!roomsInUrl || appliedRoomRef.current === roomsInUrl) return;
+    const names = roomsInUrl
+      .split(",")
+      .map((id) => roomNames.byId.get(id.trim()))
+      .filter((n): n is string => !!n);
+    if (names.length === 0 && sessions.length === 0) return; // not loaded yet
+    appliedRoomRef.current = roomsInUrl;
+    if (names.length) setFacetFilter("room", names);
+  }, [roomsInUrl, roomNames, sessions.length, setFacetFilter]);
+  const roomParamValue = useMemo(() => {
+    const ids = filters.room.map((n) => roomNames.byName.get(n)).filter((id): id is string => !!id);
+    return ids.length ? ids.join(",") : null;
+  }, [filters.room, roomNames]);
+  const appliedDayRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!dayInUrl || appliedDayRef.current === dayInUrl || days.length === 0) return;
+    appliedDayRef.current = dayInUrl;
+    const key = resolveDayParam(dayInUrl, days);
+    if (key && key !== selectedDay) setSelectedDay(key);
+  }, [dayInUrl, days, selectedDay, setSelectedDay]);
+  // Only an explicit choice is written: the default landing on today is not
+  // a view worth pinning in a shared link, and it would stop following the
+  // clock on reopen.
+  const dayParam = userPickedDay ? dayParamValue(selectedDay, days) : null;
+  useEffect(() => {
+    if (!paneActive || detailId) return;
+    const url = new URL(window.location.href);
+    const writes: [string, string | null][] = [
+      [ROOM_PARAM, roomParamValue],
+      [DAY_PARAM, dayParam],
+    ];
+    let changed = false;
+    for (const [name, value] of writes) {
+      if ((url.searchParams.get(name) ?? null) === value) continue;
+      if (value) url.searchParams.set(name, value);
+      else url.searchParams.delete(name);
+      changed = true;
+    }
+    if (!changed) return;
+    // The URL now says what the view shows: a later link with the same
+    // value is a no-op, a different one applies.
+    appliedRoomRef.current = roomParamValue;
+    appliedDayRef.current = dayParam;
+    window.history.replaceState(window.history.state, "", url.toString());
+  }, [paneActive, detailId, roomParamValue, dayParam]);
+
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);

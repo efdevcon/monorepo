@@ -84,6 +84,30 @@ export interface ScheduleDay {
 }
 
 /** Distinct days present in the sessions, sorted ascending. */
+/**
+ * The day a `?day=` link asks for: "all" → the All tab, a 1-based number → that
+ * day of the programme, a `YYYY-MM-DD` key → that day if the programme has
+ * it; null for anything else (the link is ignored, the schedule lands as usual).
+ */
+export function resolveDayParam(value: string, days: ScheduleDay[]): string | null {
+  const v = value.trim().toLowerCase();
+  if (v === ALL_DAYS) return ALL_DAYS;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return days.some((d) => d.key === v) ? v : null;
+  if (/^\d+$/.test(v)) {
+    const n = parseInt(v, 10);
+    return n >= 1 && n <= days.length ? days[n - 1].key : null;
+  }
+  return null;
+}
+
+/** What the day tabs write back to `?day=`: "all", the 1-based day number, or null when the day isn't in the programme. */
+export function dayParamValue(selectedDay: string | null, days: ScheduleDay[]): string | null {
+  if (selectedDay === null) return null;
+  if (selectedDay === ALL_DAYS) return ALL_DAYS;
+  const i = days.findIndex((d) => d.key === selectedDay);
+  return i === -1 ? null : String(i + 1);
+}
+
 export function getDays(sessions: Session[]): ScheduleDay[] {
   const map = new Map<string, ScheduleDay>();
   for (const s of sessions) {

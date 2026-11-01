@@ -60,7 +60,7 @@ import { parseIosMajorVersion } from "../src/utils/platform";
 import { meerkatEventId } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
 import { deriveTopicOptions } from "../src/data/topics";
-import { buildTimeline, collapsedRooms, compareRoomNames, EMPTY_LANE_MS, lateRooms, sortRooms } from "../src/components/schedule/utils";
+import { ALL_DAYS, buildTimeline, collapsedRooms, compareRoomNames, dayParamValue, EMPTY_LANE_MS, lateRooms, resolveDayParam, sortRooms } from "../src/components/schedule/utils";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
 import { readFileSync } from "fs";
@@ -608,6 +608,20 @@ function testTimelineFold() {
   );
   check("past its sessions a room stays unfolded", collapsedRooms(late, t0 + 8 * H).length === 0);
   check("a wider gap threshold folds fewer rooms", eq(lateRooms(timeline, 4 * H).map((r) => r.room), ["lotus-stage-1"]));
+}
+
+function testDayParam() {
+  const days = [
+    { key: "2026-11-17", label: "Tue 17", sortKey: 1 },
+    { key: "2026-11-18", label: "Wed 18", sortKey: 2 },
+    { key: "2026-11-19", label: "Thu 19", sortKey: 3 },
+  ];
+  check("day param: a 1-based number picks that day", resolveDayParam("2", days) === "2026-11-18" && resolveDayParam("1", days) === "2026-11-17");
+  check("day param: all picks the All tab", resolveDayParam("all", days) === ALL_DAYS && resolveDayParam("ALL", days) === ALL_DAYS);
+  check("day param: a venue-day key is accepted when the programme has it", resolveDayParam("2026-11-19", days) === "2026-11-19" && resolveDayParam("2026-11-20", days) === null);
+  check("day param: out of range, zero or junk is ignored", resolveDayParam("4", days) === null && resolveDayParam("0", days) === null && resolveDayParam("tuesday", days) === null);
+  check("day param: nothing resolves before the programme loads", resolveDayParam("1", []) === null);
+  check("day param: the tabs write the number back, all as all, nothing for an unknown day", dayParamValue("2026-11-19", days) === "3" && dayParamValue(ALL_DAYS, days) === ALL_DAYS && dayParamValue("2026-12-01", days) === null && dayParamValue(null, days) === null);
 }
 
 function testMeerkatHandover() {
@@ -1478,6 +1492,7 @@ async function main() {
   testTimelineFold();
   testReminders();
   testMeerkatHandover();
+  testDayParam();
   testReminderCatalogue();
   testIosVersion();
   testPassBarcode();
