@@ -10,6 +10,7 @@ import {
   useMemo,
   useRef,
   useState,
+  type MutableRefObject,
   type RefObject,
 } from "react";
 import {
@@ -31,7 +32,7 @@ import type { Session as SessionModel } from "@/data/models";
 import { communityHubsDataset, getActiveDataset } from "@/data/dataset";
 import { isCommunityLed } from "@/data/programme";
 import { useStoreState } from "@/data/store/use-event-store";
-import { HUBS_PARAM, INTERESTS_PARAM, ScheduleSourceProvider, storeFor, type ScheduleSource } from "@/data/store/schedule-source";
+import { COMMUNITY_PARAM, DAY_PARAM, HUBS_PARAM, INTERESTS_PARAM, ROOM_PARAM, ScheduleSourceProvider, storeFor, type ScheduleSource } from "@/data/store/schedule-source";
 import { useInterested } from "@/data/interested/useInterested";
 import { SearchDrawerPanel } from "@/components/HeaderSearchDrawer";
 import { useHeaderSearch } from "@/hooks/useHeaderSearch";
@@ -63,6 +64,8 @@ import {
   TIMELINE_ZOOMS,
   type ScheduleDay,
   type TimelineZoom,
+  dayParamValue,
+  resolveDayParam,
 } from "./utils";
 import { readPref, writePref } from "@/data/prefs";
 import { eventDayKey, getEventTimeZoneLabel } from "@/data/eventTime";
@@ -664,7 +667,8 @@ export function Schedule() {
     void writePref(TIMELINE_ZOOM_PREF_KEY, z);
   }, []);
   const searchParams = useSearchParams();
-  const hubsInUrl = hasCommunity && !!searchParams.get(HUBS_PARAM);
+  // `?community=` (a hub or community-led pick, ScheduleInner applies it) implies the Community programme.
+  const hubsInUrl = hasCommunity && (!!searchParams.get(HUBS_PARAM) || !!searchParams.get(COMMUNITY_PARAM));
   const [source, setSource] = useState<ScheduleSource>(hubsInUrl ? "hubs" : "main");
   // A link into `/schedule?hubs=1` while the pane is mounted switches over;
   // the param disappearing (detail pages drop the query) does not switch back.
@@ -732,7 +736,8 @@ function ScheduleInner({
   // `/schedule?interests=1` (the AI planner's apply page, deep links) opens
   // with My Interests on, also while the pane is already mounted; the toggle
   // keeps the param in step so the view can be shared (same pattern as ?hubs=1).
-  const interestsInUrl = !!useSearchParams().get(INTERESTS_PARAM);
+  const innerSearchParams = useSearchParams();
+  const interestsInUrl = !!innerSearchParams.get(INTERESTS_PARAM);
   const {
     now,
     days,
@@ -747,6 +752,7 @@ function ScheduleInner({
     setSearch,
     filters,
     toggleFilter,
+    setFacetFilter,
     retainFilters,
     clearFilters,
     activeFilterCount,
@@ -812,6 +818,110 @@ function ScheduleInner({
   // False while another tab pane is showing: header portals and window
   // measurements belong to the visible pane only (see TabPanes).
   const paneActive = usePaneActive();
+
+  // `/schedule?room=<id>[,<id>]`, `?community=<key>[,<key>]` and
+  // `?day=<n>|all|YYYY-MM-DD` (links from announcements and the featured
+  // cards): applied once per value, once
+  // the programme has loaded enough to resolve them, also while the pane is
+  // already mounted; a value vanishing (detail pages drop the query) changes
+  // nothing. The Locations and Communities filters and the day tabs write their state back,
+  // while this pane shows and no detail page is open, so a view can be shared
+  // (same idea as ?interests=1, which rooms and days are two more of).
+  const roomsInUrl = innerSearchParams.get(ROOM_PARAM);
+  const dayInUrl = innerSearchParams.get(DAY_PARAM);
+  const communityInUrl = innerSearchParams.get(COMMUNITY_PARAM);
+  // Room ids (Pretalx slugs, what links carry) ↔ display names (what the facet filters on).
+  const roomNames = useMemo(() => {
+    const byId = new Map<string, string>();
+    const byName = new Map<string, string>();
+    for (const s of sessions) {
+      if (!s.room) continue;
+      byId.set(s.room.id, s.room.name);
+      byName.set(s.room.name, s.room.id);
+    }
+    return { byId, byName };
+  }, [sessions]);
+  const appliedRoomRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!roomsInUrl || appliedRoomRef.current === roomsInUrl) return;
+    const names = roomsInUrl
+      .split(",")
+      .map((id) => roomNames.byId.get(id.trim()))
+      .filter((n): n is string => !!n);
+    if (names.length === 0 && sessions.length === 0) return; // not loaded yet
+    appliedRoomRef.current = roomsInUrl;
+    if (names.length) setFacetFilter("room", names);
+  }, [roomsInUrl, roomNames, sessions.length, setFacetFilter]);
+  const roomParamValue = useMemo(() => {
+    const ids = filters.room.map((n) => roomNames.byName.get(n)).filter((id): id is string => !!id);
+    return ids.length ? ids.join(",") : null;
+  }, [filters.room, roomNames]);
+  // Communities by the facet's own keys (`hub:<id>` / `cls:<id>`). Only the
+  // keys the current panel offers apply (the rest would be dropped by
+  // retainFilters anyway); a community-led pick lands on the group's first
+  // day unless the link names a day itself (the panel chips' rule).
+  const appliedCommunityRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!communityInUrl || appliedCommunityRef.current === communityInUrl) return;
+    if (communityOptions.length === 0) return; // not loaded yet
+    appliedCommunityRef.current = communityInUrl;
+    const wanted = communityInUrl.split(",").map((k) => k.trim());
+    const refs = communityOptions.filter((c) => wanted.includes(c.key));
+    if (refs.length === 0) return;
+    setFacetFilter(
+      "community",
+      refs.map((c) => c.key)
+    );
+    if (dayInUrl) return;
+    const cls = refs.find((c) => c.section === "cls" && c.days.length > 0);
+    if (!cls || selectedDay === ALL_DAYS) return;
+    if (selectedDay !== null && cls.days.includes(selectedDay)) return;
+    if (days.some((d) => d.key === cls.days[0])) setSelectedDay(cls.days[0]);
+  }, [communityInUrl, communityOptions, dayInUrl, days, selectedDay, setSelectedDay, setFacetFilter]);
+  const communityParamValue = filters.community.length ? filters.community.join(",") : null;
+  const appliedDayRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!dayInUrl || appliedDayRef.current === dayInUrl || days.length === 0) return;
+    appliedDayRef.current = dayInUrl;
+    const key = resolveDayParam(dayInUrl, days);
+    if (key && key !== selectedDay) setSelectedDay(key);
+  }, [dayInUrl, days, selectedDay, setSelectedDay]);
+  // Only an explicit choice is written: the default landing on today is not
+  // a view worth pinning in a shared link, and it would stop following the
+  // clock on reopen.
+  const dayParam = userPickedDay ? dayParamValue(selectedDay, days) : null;
+  useEffect(() => {
+    if (!paneActive || detailId) return;
+    const url = new URL(window.location.href);
+    // A link value the effects above have not applied yet (the programme is
+    // still loading) is left alone: writing the empty state over it would
+    // drop the link before it ever took effect.
+    const writes: [string, string | null, MutableRefObject<string | null>, string | null][] = [
+      [ROOM_PARAM, roomParamValue, appliedRoomRef, roomsInUrl],
+      [COMMUNITY_PARAM, communityParamValue, appliedCommunityRef, communityInUrl],
+      [DAY_PARAM, dayParam, appliedDayRef, dayInUrl],
+    ];
+    let changed = false;
+    for (const [name, value, applied, inUrl] of writes) {
+      if (inUrl !== null && applied.current !== inUrl) continue; // pending apply
+      if ((url.searchParams.get(name) ?? null) === value) continue;
+      if (value) url.searchParams.set(name, value);
+      else url.searchParams.delete(name);
+      // The URL now says what the view shows: a later link with the same
+      // value is a no-op, a different one applies.
+      applied.current = value;
+      changed = true;
+    }
+    if (!changed) return;
+    // A null state, not window.history.state: Next's patched replaceState
+    // treats a state carrying its own `__NA` flag as one of its internal
+    // calls and skips syncing the router, so useSearchParams kept the link's
+    // value while the address bar changed, and every second tab tap
+    // re-applied the stale param (day 3 → 1 landed back on 3, 2026-11-01).
+    // With null Next copies its internals in and updates the params.
+    window.history.replaceState(null, "", url.toString());
+  }, [paneActive, detailId, roomParamValue, communityParamValue, dayParam, roomsInUrl, communityInUrl, dayInUrl]);
+
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);

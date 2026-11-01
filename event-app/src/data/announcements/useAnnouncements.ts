@@ -6,6 +6,7 @@ import { cacheDB } from "@/data/cache/cache-db";
 import { useNowMs } from "@/hooks/useNow";
 import { markSeen, UNREAD_WINDOW_MS, useSeenIds } from "./seenState";
 import type { Announcement, AnnouncementsResponse } from "./types";
+import { usePreviewFeatured } from "@/hooks/usePreviewState";
 
 async function fetchAnnouncements(preview: boolean): Promise<Announcement[]> {
   const res = await fetch(
@@ -86,8 +87,9 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
   );
 
   /**
-   * The home-screen hero: the highlight with Featured ticked in Notion, or
-   * null. Purely opt-in — no highlight ticked means no Featured section at all.
+   * The home-screen hero carousel: every highlight with Featured ticked in
+   * Notion, in Order. Purely opt-in — no highlight ticked means no Featured
+   * section at all.
    *
    * Deliberately not falling back to a positional pick (e.g. the last
    * highlight). A fallback would mean unticking the box silently promotes some
@@ -95,20 +97,25 @@ export function useAnnouncements(options: { enabled?: boolean } = {}) {
    * could change the hero as a side effect. Opting in is the predictable
    * version: what an editor ticks is what shows.
    *
-   * If two rows are ticked the first by Order wins — arbitrary but stable, since
-   * a per-row checkbox can't express "only one".
+   * A list since 2026-11-01 (was the first ticked row only): there is more
+   * than one thing to put in front of everyone during the week, so the hero
+   * swipes through all of them (Scott).
    */
+  const previewFeatured = usePreviewFeatured();
   const featured = useMemo(
-    () => allHighlights.find((h) => h.featured) ?? null,
-    [allHighlights]
+    () =>
+      previewFeatured
+        ? allHighlights.slice(0, previewFeatured)
+        : allHighlights.filter((h) => h.featured),
+    [allHighlights, previewFeatured]
   );
 
   /**
-   * The carousel, minus whatever is already the hero — otherwise the featured
-   * card renders twice on the same screen.
+   * The highlights carousel, minus whatever is already in the hero — otherwise
+   * a featured card renders twice on the same screen.
    */
   const highlights = useMemo(
-    () => allHighlights.filter((h) => h.id !== featured?.id),
+    () => allHighlights.filter((h) => !featured.includes(h)),
     [allHighlights, featured]
   );
 

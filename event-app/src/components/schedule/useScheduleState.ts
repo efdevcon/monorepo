@@ -230,6 +230,12 @@ export function useScheduleState(
     });
   };
 
+  /** Replaces one facet's selection outright (a `?room=` deep link). */
+  const setFacetFilter = useCallback(
+    (facet: FilterFacet, values: string[]) => setFilters((prev) => ({ ...prev, [facet]: values })),
+    []
+  );
+
   /** Drops every selection not in `allowed` (the panel's visible options). */
   const retainFilters = (allowed: Record<FilterFacet, string[]>) =>
     setFilters((prev) => {
@@ -508,6 +514,7 @@ export function useScheduleState(
     setSearch,
     filters,
     toggleFilter,
+    setFacetFilter,
     retainFilters,
     clearFilters,
     activeFilterCount,

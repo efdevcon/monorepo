@@ -53,6 +53,17 @@ export function usePreviewPlan(): PreviewPlan | null {
   return v === "done" || v === "failed" ? v : null;
 }
 
+/**
+ * Home's Featured carousel: `?previewFeatured=3` treats the first N highlights
+ * (by Order) as Featured, so the multi-card hero can be looked at with real
+ * cards without ticking rows in Notion. Outside production only.
+ */
+export function usePreviewFeatured(): number | null {
+  const v = usePreviewParam("previewFeatured");
+  const n = v ? parseInt(v, 10) : NaN;
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
 // The URL's query at call time; null on the server and in production, so
 // SSR and hydration always match the real state.
 const noSubscribe = () => () => {};

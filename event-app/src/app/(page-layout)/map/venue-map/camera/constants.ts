@@ -27,8 +27,15 @@ export const PHONE_FIT_GUTTER_PX = 8;
 export const PHONE_LABEL_ROOM_PX = 42;
 /** Phones, stacked: the stack sits this many px above centre so the lowest label clears the floor slider (iPhone 15, Scott, 2026-10-26). */
 export const PHONE_STACK_LIFT_PX = 72;
-/** Share of the shorter viewport side a found group's ground diagonal may fill (the card covers the bottom). */
+/** Desktop: share of the shorter viewport side a found group's ground diagonal may fill (the card sits beside the group). */
 export const GROUP_FIT_MARGIN = 0.55;
+/**
+ * Phones fit a found group by its projected extent instead (the ground diagonal foreshortens to
+ * a fraction of itself in the isometric view, so the diagonal rule left groups tiny, Scott 2026-11-01):
+ * this share of the viewport width, and this share of the height, since the card covers the bottom.
+ */
+export const GROUP_FIT_WIDTH_MOBILE = 0.8;
+export const GROUP_FIT_HEIGHT_MOBILE = 0.45;
 /** Zoom clamps as multiples of the fit: 14× everywhere since 2026-10-27 (Scott; was 6×, then 10× on phones, where supporter lockups and small booths were hard to read and tap). */
 export const MIN_ZOOM_FACTOR = 0.85;
 export const MAX_ZOOM_FACTOR = 14;
@@ -43,6 +50,6 @@ export const TWEEN_MS = 350;
 /** Floor switch, reset and focus: one clock for the floors and the camera (400 felt too fast). */
 export const LEVEL_SWITCH_MS = 800;
 
-/** Deep-link / Find zoom over the fitted floor: phones pull the footprint in, desktop only nudges (Scott, 2026-09-12). */
-export const FOCUS_ZOOM_MOBILE = 2.2;
-export const FOCUS_ZOOM_DESKTOP = 1.35;
+/** Deep-link / Find zoom over the fitted floor: phones pull the footprint in, desktop less so. Raised 2026-11-01 (was 2.2 / 1.35, then 3.5 on phones): a schedule "Show on Map" landed too far out to tell the dimmed footprints from the lit one, worst on phones and for small footprints such as the hub booths (Scott). */
+export const FOCUS_ZOOM_MOBILE = 5;
+export const FOCUS_ZOOM_DESKTOP = 2;

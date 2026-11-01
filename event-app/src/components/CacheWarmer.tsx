@@ -62,7 +62,7 @@ export function CacheWarmer() {
     // Gems first: nine small files that every schedule view renders, and the
     // schedule is where offline use concentrates.
     TRACK_GEM_IMAGES,
-    [featured?.image, ...highlights.map((highlight) => highlight.image)],
+    [...featured, ...highlights].map((highlight) => highlight.image),
     swagImages,
     APP_IMAGES,
     SUPPORTER_LOGOS,
