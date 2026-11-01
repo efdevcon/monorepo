@@ -58,6 +58,7 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
   const [overflows, setOverflows] = useState(false);
+  const [fades, setFades] = useState({ left: false, right: false });
 
   // Which card is nearest the snap edge, from the scroll offset against the
   // first card's width plus the gap (every card is the same width).
@@ -65,6 +66,7 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
     const el = scrollerRef.current;
     if (!el) return;
     setOverflows(el.scrollWidth > el.clientWidth + 1);
+    setFades({ left: el.scrollLeft > 5, right: el.scrollLeft < el.scrollWidth - el.clientWidth - 5 });
     const first = el.firstElementChild as HTMLElement | null;
     const second = first?.nextElementSibling as HTMLElement | null;
     const step = first && second ? second.offsetLeft - first.offsetLeft : first?.offsetWidth ?? 0;
@@ -102,13 +104,20 @@ function FeaturedCarousel({ highlights }: { highlights: Announcement[] }) {
           next card shows past the gutter. Desktop keeps the column and only
           borrows 8px each side (and vertically) so the hover scale isn't
           clipped by the scroller — the Highlights carousel's trick. The
-          scrollbar is hidden: the dots and the peeking card say "more". */}
+          scrollbar is hidden: the dots and the peeking card say "more".
+          Desktop has neither, so a fourth card that runs past the column
+          gets the Highlights carousel's edge fades instead (right while
+          there is more, left once scrolled), masked so they work over the
+          page's gradient background. */}
       <div
         ref={scrollerRef}
         className={cn(
           "-mx-4 -my-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 py-2 scroll-px-4",
           "lg:-mx-2 lg:gap-4 lg:px-2 lg:scroll-px-2",
-          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          fades.left && fades.right && "lg:[mask-image:linear-gradient(90deg,transparent,black_40px,black_calc(100%-40px),transparent)]",
+          fades.left && !fades.right && "lg:[mask-image:linear-gradient(90deg,transparent,black_40px)]",
+          !fades.left && fades.right && "lg:[mask-image:linear-gradient(90deg,black,black_calc(100%-40px),transparent)]"
         )}
       >
         {highlights.map((h) => (
