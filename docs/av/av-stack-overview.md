@@ -263,9 +263,9 @@ devcon-app stays DC7-only; its blocker #3 is moot.
   [`devcon-app/src/pages/room-screens/[id].tsx`](https://github.com/efdevcon/monorepo/blob/main/devcon-app/src/pages/room-screens/%5Bid%5D.tsx)
   (text-only, no QR).
 - **Meerkat's user-facing half** is in event-app: the session pages show the
-  questions (public API, SSE stream) and "Ask a question" links to
-  `GET /api/meerkat/go`, which gates on the Supabase auth cookies + a paid Pretix
-  ticket and 302s to Meerkat with a 5-min HS256 JWT (secret shared with Meerkat).
+  questions (public API, SSE stream) and "Ask a question" links straight to
+  Meerkat with a 1-hour HS256 JWT (secret shared with Meerkat), minted from the
+  tickets payload's signed Q&A pass and the Supabase session, no Pretix call.
   For stage screens and streams, Meerkat's presenter view (`/stage/<stage>`) follows
   the live session; options and prerequisites in
   [`docs/meerkat.md`](https://github.com/efdevcon/monorepo/blob/main/docs/meerkat.md).

@@ -78,6 +78,12 @@ export interface TicketsPayload {
   tickets: Order[];
   /** Attached tickets Pretix no longer verifies (refunded, reissued); their links were removed on this fetch. */
   removedAttachments?: number;
+  /**
+   * Signed "holds an admission ticket" for the Q&A link (api/meerkat/qaPass.ts),
+   * absent without one. The app trades it for a Meerkat token at
+   * /api/meerkat/token instead of a new ticket lookup.
+   */
+  qaPass?: string;
 }
 
 /** Shape returned by the `/api/tickets` route. */

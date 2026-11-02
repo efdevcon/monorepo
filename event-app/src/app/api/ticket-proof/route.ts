@@ -18,7 +18,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 /**
  * Mint a partner ticket proof for one of the signed-in user's tickets.
  *
- * Same two-check gate as the Meerkat handover (`/api/meerkat`) — valid Supabase
+ * Same two-check gate as the Meerkat Q&A pass (`/api/meerkat`) — valid Supabase
  * session, plus real ticket ownership confirmed against Pretix — with a third
  * check on top: the requested ticket must be one of *this* user's, because the
  * caller names which ticket it wants a proof for.

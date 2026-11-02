@@ -205,12 +205,20 @@ export function useTickets() {
  * Undefined while nothing has been loaded yet, or signed out.
  */
 export function useLoadedTickets(): Order[] | undefined {
+  return useLoadedTicketsPayload().payload?.tickets;
+}
+
+/**
+ * The whole loaded payload (tickets and the Q&A pass), read the same way as
+ * useLoadedTickets, plus the shared entry's last fetch error.
+ */
+export function useLoadedTicketsPayload(): { payload?: TicketsPayload; error?: unknown } {
   const { user } = useUser();
-  const { data } = useSWR<TicketsPayload>(user ? ["tickets", user.id] : null, null, {
+  const { data, error } = useSWR<TicketsPayload>(user ? ["tickets", user.id] : null, null, {
     revalidateOnMount: false,
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
-  return data?.tickets;
+  return { payload: data, error };
 }

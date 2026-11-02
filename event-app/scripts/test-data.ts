@@ -48,6 +48,9 @@ import { catalogueDataset, mirrorCatalogueUrl, requestOrigin, rewriteCatalogueLi
 import type { Session } from "../src/data/models/sessions";
 import { readPassBarcode } from "../src/data/tickets/passBarcode";
 import { isSessionId, meerkatQaUrl, meerkatSessionUrl, meerkatStageUrl } from "../src/app/api/meerkat/handover";
+import { QA_PASS_TTL_MS, qaPassFor, verifyQaPass } from "../src/app/api/meerkat/qaPass";
+import { CODE_EXPIRY_MS, generateHandoverToken } from "../src/app/api/meerkat/verification";
+import { RENEW_BEFORE_MS, WITHDRAW_BEFORE_MS, askState, needsToken, retryDelayMs, type HandoffSnapshot } from "../src/data/meerkat/handoffToken";
 import { roomIconUrl } from "../src/components/room-screen/roomIcon";
 import { roomScreenRoomIds } from "../src/data/venueRooms";
 import { communityOf, communityOptions, isCommunityLed, programmeOf, programmeSessions } from "../src/data/programme";
@@ -80,14 +83,12 @@ import {
 import { RETURN_PARAM, safeReturnPath, signInHref } from "../src/routing/returnTo";
 import { syncSessionCookie, whenSessionCookieSettled } from "../src/data/auth/sessionCookie";
 import { authCookieName, jwtExpiresAt, parseAuthCookie } from "../src/data/auth/authCookie";
-import { HEAL_EXPIRY_MARGIN_S, healScriptBody } from "../src/app/api/meerkat/go/heal";
 import { createSupabaseFetch, isTokenRateLimit } from "../src/data/auth/supabaseFetch";
 import { sessionCardHash, sessionCardUrl } from "../src/data/sessionCard";
 import { sessionTranscriptUrl, transcriptUrlForRoom } from "../src/data/transcripts";
 import { LIVE_WINDOW_MS, aroundSession, latchAroundSession } from "../src/data/liveWindow";
 import { streamEmbedUrlForRoom } from "../src/data/streams";
 import { toSafariHref } from "../src/utils/openOutside";
-import vm from "node:vm";
 import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushDue, testPushTitle } from "../src/app/api/announcements/testPush";
 import { summarizeAnnouncements } from "../src/app/api/announcements/status";
@@ -1143,114 +1144,6 @@ function testAuthCookieParser() {
   check("malformed token has no expiry", jwtExpiresAt("abc") === null && jwtExpiresAt("a.b.c") === null && jwtExpiresAt("") === null);
 }
 
-async function testHealScript() {
-  console.log("\n--- Meerkat hand-off page heals its cookie from the app's own session ---");
-  const cfg = { storageKey: "sb-abcdefghijklmnopqrst-auth-token", supabaseUrl: "https://abcdefghijklmnopqrst.supabase.co", anonKey: "anon-key" };
-  const href = "https://app.example/api/meerkat/go?session=ABC123";
-  const refreshUrl = `${cfg.supabaseUrl}/auth/v1/token?grant_type=refresh_token`;
-  const proxyUrl = "https://app.example/supabase/auth/v1/token?grant_type=refresh_token";
-  const nowS = () => Math.floor(Date.now() / 1000);
-  interface Call { url: string; init: { method?: string; headers?: Record<string, string>; body?: string; credentials?: string } }
-  type Answer = { status: number; body?: unknown } | "network";
-  interface Run { calls: Call[]; replaced: string | null; stored: () => unknown; waitHidden: boolean; failHidden: boolean; retryHidden: boolean; title: string; lockName: string | null; lockMode: string | null }
-  async function run(stored: unknown, answer: (call: Call, n: number) => Answer, opts: { locks?: boolean; writable?: boolean } = {}): Promise<Run> {
-    const store = new Map<string, string>();
-    if (stored !== null) store.set(cfg.storageKey, typeof stored === "string" ? stored : JSON.stringify(stored));
-    const calls: Call[] = [];
-    const out: Run = {
-      calls, replaced: null, waitHidden: false, failHidden: true, retryHidden: true, title: "Q&A - App", lockName: null, lockMode: null,
-      stored: () => { const v = store.get(cfg.storageKey); return v === undefined ? null : JSON.parse(v); },
-    };
-    const wait = { get hidden() { return out.waitHidden; }, set hidden(v: boolean) { out.waitHidden = v; } };
-    const fail = { get hidden() { return out.failHidden; }, set hidden(v: boolean) { out.failHidden = v; }, getAttribute: (n: string) => (n === "data-title" ? "Sign in first - App" : null) };
-    const retry = { get hidden() { return out.retryHidden; }, set hidden(v: boolean) { out.retryHidden = v; }, getAttribute: (n: string) => (n === "data-title" ? "Try again in a moment - App" : null) };
-    const timers: NodeJS.Timeout[] = [];
-    let parsing = true;
-    const sandbox = {
-      localStorage: {
-        getItem: (k: string) => store.get(k) ?? null,
-        setItem: (k: string, v: string) => { if (opts.writable === false) throw new Error("QuotaExceededError"); store.set(k, String(v)); },
-        removeItem: (k: string) => store.delete(k),
-      },
-      fetch: async (url: string, init: Call["init"]) => {
-        const call = { url, init }; calls.push(call);
-        const a = answer(call, calls.length);
-        if (a === "network") throw new TypeError("Failed to fetch");
-        return { ok: a.status < 300, status: a.status, json: async () => a.body };
-      },
-      location: { href, origin: "https://app.example", replace: (u: string) => { out.replaced = u; } },
-      // The script sits in <head>: while it runs, the body is not parsed yet and lookups return null.
-      document: { getElementById: (id: string) => (parsing ? null : id === "heal-wait" ? wait : id === "heal-fail" ? fail : id === "heal-retry" ? retry : null), get title() { return out.title; }, set title(v: string) { out.title = v; } },
-      navigator: opts.locks === false ? {} : { locks: { request: (name: string, o: { mode: string }, fn: () => unknown) => { out.lockName = name; out.lockMode = o.mode; return Promise.resolve().then(fn); } } },
-      URL, console, clearTimeout, AbortController,
-      setTimeout: (fn: () => void, ms: number) => { const t = setTimeout(fn, ms); t.unref(); timers.push(t); return t; },
-    };
-    vm.runInNewContext(healScriptBody(cfg), sandbox);
-    parsing = false;
-    await new Promise((r) => setTimeout(r, 50));
-    timers.forEach(clearTimeout);
-    return out;
-  }
-  const ok = { status: 200 };
-  const live = { access_token: "eyJ.live.sig", refresh_token: "r1", expires_at: nowS() + 3600, user: { id: "u1" } };
-  const stale = { ...live, access_token: "eyJ.stale.sig", expires_at: nowS() - 60 };
-  const renewed = { access_token: "eyJ.new.sig", refresh_token: "r2", token_type: "bearer", expires_in: 3600, user: { id: "u1" } };
-  const body = (c: Call) => JSON.parse(c.init.body ?? "{}") as Record<string, string>;
-  const urls = (r: Run) => r.calls.map((c) => c.url).join(",");
-  const retried = `${href}&retried=1`;
-  // What the page ends on: still waiting, the sign-in content, or the try-again content.
-  const shows = (r: Run) => (r.replaced ? "reload" : !r.waitHidden ? "waiting" : !r.failHidden && r.retryHidden ? "sign-in" : r.failHidden && !r.retryHidden ? "try-again" : "both?!");
-
-  let r = await run(null, () => ok);
-  check("no stored session: nothing fetched, sign-in content revealed", r.calls.length === 0 && shows(r) === "sign-in", shows(r));
-  r = await run("{not json", () => ok);
-  check("garbage in storage: sign-in content, no throw", r.calls.length === 0 && shows(r) === "sign-in", shows(r));
-
-  r = await run(live, () => ok);
-  check("live session: mirrored once, then the page reloads with retried=1", r.calls.length === 1 && r.calls[0].url === "/api/auth/session" && r.calls[0].init.method === "POST" && body(r.calls[0]).access_token === "eyJ.live.sig" && body(r.calls[0]).refresh_token === "r1" && r.replaced === retried, `${urls(r)} -> ${r.replaced}`);
-  check("live session: storage untouched, waiting state kept until the reload", eq(r.stored(), live) && !r.waitHidden && r.failHidden && r.retryHidden);
-  check("runs under auth-js's own cross-tab lock", r.lockName === `lock:${cfg.storageKey}` && r.lockMode === "exclusive", `${r.lockName} ${r.lockMode}`);
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok));
-  check("expired session: refreshed at Supabase with the anon key, then the new pair mirrored", r.calls.length === 2 && r.calls[0].url === refreshUrl && r.calls[0].init.headers?.apikey === cfg.anonKey && body(r.calls[0]).refresh_token === "r1" && r.calls[1].url === "/api/auth/session" && body(r.calls[1]).access_token === "eyJ.new.sig" && body(r.calls[1]).refresh_token === "r2" && r.replaced === retried, urls(r));
-  const written = (r.stored() ?? {}) as Partial<typeof renewed> & { expires_at?: number };
-  check("expired session: the new session is written back for the app, with expires_at", written.access_token === "eyJ.new.sig" && written.refresh_token === "r2" && written.user?.id === "u1" && typeof written.expires_at === "number" && Math.abs(written.expires_at - (nowS() + 3600)) <= 5, JSON.stringify(written.expires_at));
-
-  r = await run({ ...live, expires_at: nowS() + HEAL_EXPIRY_MARGIN_S - 5 }, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok));
-  check("a token about to expire is refreshed rather than mirrored", r.calls[0]?.url === refreshUrl && r.replaced === retried, urls(r));
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 400, body: { error: "invalid_grant" } } : ok));
-  check("refresh refused: nothing mirrored, storage left to the app, sign-in content with its title", r.calls.length === 1 && eq(r.stored(), stale) && shows(r) === "sign-in" && r.title === "Sign in first - App", shows(r));
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 429, body: { code: 429 } } : ok));
-  check("rate-limited refresh: try-again content, storage untouched, nothing mirrored", r.calls.length === 1 && eq(r.stored(), stale) && shows(r) === "try-again" && r.title === "Try again in a moment - App", shows(r));
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 503 } : ok));
-  check("Supabase 5xx on refresh: try-again content", r.calls.length === 1 && eq(r.stored(), stale) && shows(r) === "try-again", shows(r));
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? "network" : c.url === proxyUrl ? { status: 200, body: renewed } : ok));
-  check("Supabase unreachable: the same-origin proxy is tried, without credentials", r.calls[1]?.url === proxyUrl && r.calls[1].init.credentials === "omit" && r.calls[1].init.headers?.apikey === cfg.anonKey && r.replaced === retried, urls(r));
-
-  r = await run(stale, () => "network");
-  check("everything unreachable: try-again content, storage untouched", r.calls.length === 2 && eq(r.stored(), stale) && shows(r) === "try-again", shows(r));
-
-  r = await run(live, () => "network");
-  check("live session but the mirror route unreachable: try-again, no refresh attempted", r.calls.length === 1 && r.calls[0].url === "/api/auth/session" && shows(r) === "try-again", `${urls(r)} ${shows(r)}`);
-  r = await run(live, () => ({ status: 503 }));
-  check("live session but the mirror route down: try-again", r.calls.length === 1 && shows(r) === "try-again", shows(r));
-
-  r = await run(live, (c, n) => (c.url === "/api/auth/session" && n === 1 ? { status: 401 } : c.url === refreshUrl ? { status: 200, body: renewed } : ok));
-  check("server refuses a token the device clock calls live: refreshed once, then mirrored", r.calls.length === 3 && r.calls[1].url === refreshUrl && body(r.calls[2]).access_token === "eyJ.new.sig" && r.replaced === retried, urls(r));
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : { status: 401 }));
-  check("refreshed but the mirror still refuses: sign-in content, new session kept for the app", r.calls.length === 2 && (r.stored() as { refresh_token?: string }).refresh_token === "r2" && shows(r) === "sign-in", shows(r));
-
-  r = await run(stale, (c) => (c.url === refreshUrl ? { status: 200, body: renewed } : ok), { writable: false });
-  check("storage not writable: no refresh at all (the app would lose its token family), try-again", r.calls.length === 0 && shows(r) === "try-again", shows(r));
-
-  r = await run(live, () => ok, { locks: false });
-  check("without the Web Locks API the heal still runs", r.calls.length === 1 && r.replaced === retried);
-}
-
 async function testSupabaseFetch() {
   console.log("\n--- Supabase fetch: proxy fallback and rate-limited refreshes ---");
   const SUPA = "https://abcdefghijklmnopqrst.supabase.co";
@@ -1570,11 +1463,60 @@ function testLiveWindowAndStreams() {
   check("rooms without a stream have none", streamEmbedUrlForRoom("music-stage") === null && streamEmbedUrlForRoom("cls-builders-room") === null && streamEmbedUrlForRoom(undefined) === null);
 }
 
+/** The direct "Ask a question" link: Q&A pass, token lifetime, and the client's token rules. */
+function testMeerkatDirectLink() {
+  const saved = process.env.VERIFICATION_SECRET;
+  process.env.VERIFICATION_SECRET = "test-secret";
+  const user = { id: "u1", email: "Alice@Example.com" };
+  const withTicket = [{ tickets: [{ admission: true }] }] as unknown as Order[];
+  const merchOnly = [{ tickets: [{ admission: false }] }] as unknown as Order[];
+  const now = 1_800_000_000_000;
+  const pass = qaPassFor(user, withTicket, "devcon8", now);
+  const me = { uid: "u1", email: "alice@example.com", event: "devcon8" };
+  check("qa pass: issued with an admission ticket", typeof pass === "string");
+  check("qa pass: none for merchandise only or no tickets", qaPassFor(user, merchOnly, "devcon8", now) === undefined && qaPassFor(user, [], "devcon8", now) === undefined);
+  check("qa pass: verifies for its user, email (any case) and event", verifyQaPass(pass!, { ...me, email: "ALICE@example.com" }, now)?.exp === now + QA_PASS_TTL_MS);
+  check(
+    "qa pass: refused for another user, email or event",
+    verifyQaPass(pass!, { ...me, uid: "u2" }, now) === null &&
+      verifyQaPass(pass!, { ...me, email: "bob@example.com" }, now) === null &&
+      verifyQaPass(pass!, { ...me, event: "devcon7" }, now) === null
+  );
+  check("qa pass: refused once expired", verifyQaPass(pass!, me, now + QA_PASS_TTL_MS) === null);
+  const [body, sig] = pass!.split(".");
+  const forged = Buffer.from(JSON.stringify({ ...JSON.parse(Buffer.from(body, "base64url").toString()), uid: "u2" })).toString("base64url");
+  check("qa pass: tampered claims or signature refused", verifyQaPass(`${forged}.${sig}`, { ...me, uid: "u2" }, now) === null && verifyQaPass(`${body}.x${sig}`, me, now) === null && verifyQaPass("junk", me, now) === null);
+  process.env.VERIFICATION_SECRET = "other-secret";
+  check("qa pass: a pass from another key is refused", verifyQaPass(pass!, me, now) === null);
+  delete process.env.VERIFICATION_SECRET;
+  check("qa pass: no secret, no pass and nothing verifies", qaPassFor(user, withTicket, "devcon8", now) === undefined && verifyQaPass(pass!, me, now) === null);
+  process.env.VERIFICATION_SECRET = "test-secret";
+
+  const decode = (token: string) => JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString());
+  const long = generateHandoverToken("alice@example.com");
+  check("hand-off token: one hour by default", CODE_EXPIRY_MS === 60 * 60_000 && decode(long.token).exp === long.expiresAt && long.expiresAt - decode(long.token).iat === CODE_EXPIRY_MS);
+  const capped = generateHandoverToken("alice@example.com", Date.now() + 10 * 60_000);
+  check("hand-off token: never past the pass", decode(capped.token).exp === capped.expiresAt && capped.expiresAt - decode(capped.token).iat <= 10 * 60_000);
+  if (saved === undefined) delete process.env.VERIFICATION_SECRET;
+  else process.env.VERIFICATION_SECRET = saved;
+
+  const snap = (over: Partial<HandoffSnapshot>): HandoffSnapshot => ({ key: "u1:p", failures: 0, retryAt: 0, ...over });
+  const t = 1_000_000;
+  check("handoff: a fresh token is ready", eq(askState(snap({ token: "tk", expiresAt: t + 30 * 60_000 }), t), { kind: "ready", token: "tk" }));
+  check("handoff: withdrawn just before it lapses", askState(snap({ token: "tk", expiresAt: t + WITHDRAW_BEFORE_MS }), t).kind === "loading");
+  check("handoff: problems show as such", askState(snap({ problem: "no-pass" }), t).kind === "no-pass" && askState(snap({ problem: "signed-out" }), t).kind === "signed-out");
+  check("handoff: fetch when none, renew under ten minutes", needsToken(snap({}), t) && needsToken(snap({ token: "tk", expiresAt: t + RENEW_BEFORE_MS }), t) && !needsToken(snap({ token: "tk", expiresAt: t + RENEW_BEFORE_MS + 1 }), t));
+  check("handoff: no fetch without a key, while backing off, or waiting on a pass or session", !needsToken(snap({ key: "" }), t) && !needsToken(snap({ retryAt: t + 1 }), t) && !needsToken(snap({ problem: "no-pass" }), t) && !needsToken(snap({ problem: "signed-out" }), t));
+  check("handoff: a failed fetch retries after its back-off", needsToken(snap({ problem: "failed", retryAt: t }), t));
+  check("handoff: back-off of 2, then 5 minutes", retryDelayMs(1) === 2 * 60_000 && retryDelayMs(2) === 5 * 60_000 && retryDelayMs(7) === 5 * 60_000);
+}
+
 async function main() {
   testNormalize();
   testTimelineFold();
   testReminders();
   testMeerkatHandover();
+  testMeerkatDirectLink();
   testDayParam();
   testReminderCatalogue();
   testIosVersion();
@@ -1594,7 +1536,6 @@ async function main() {
   testReturnAfterSignIn();
   await testSessionCookieSettled();
   testAuthCookieParser();
-  await testHealScript();
   await testSupabaseFetch();
   testTeamTestPush();
   await testRetryOnce();

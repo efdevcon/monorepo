@@ -8,7 +8,7 @@ export function admissionTickets(orders: Order[]): Ticket[] {
   return orders.flatMap((order) => order.tickets.filter(isAdmission));
 }
 
-/** The account holds an admission ticket (email-matched or attached): the test the Q&A hand-off makes server-side. */
+/** The account holds an admission ticket (email-matched or attached): the test behind the Q&A pass (api/meerkat/qaPass.ts). */
 export function hasAdmissionTicket(orders: Order[]): boolean {
   return admissionTickets(orders).length > 0;
 }
