@@ -22,6 +22,11 @@ const ENV_CONFIG = {
       // ordering. Falls back to the first available admission item when null
       // or when the configured item isn't currently purchasable.
       gaItemId: 145 as number | null,
+      // Pretix item id for the free "Child (Under 3) with Adult" ticket sold
+      // straight from the store's Applications section (plain public item, no
+      // voucher). null = not provisioned on this instance; the card then hands
+      // off to the bare Pretix shop instead of pre-filling the cart.
+      childUnder3ItemId: null as number | null,
       testmode: true,
     },
     checkout: {
@@ -90,6 +95,7 @@ const ENV_CONFIG = {
         // 'indian-student': true,
         // 'international-student': true,
         // youth: true,
+        // 'child-under-3': true,
       } as Record<string, boolean>,
     },
     aadhaar: {
@@ -121,6 +127,8 @@ const ENV_CONFIG = {
       // available admission item (set the production GA item ID here once
       // known to make the selection deterministic).
       gaItemId: 1 as number | null,
+      // See development.pretix.childUnder3ItemId.
+      childUnder3ItemId: 110 as number | null,
       testmode: false,
     },
     checkout: {
@@ -185,6 +193,7 @@ const ENV_CONFIG = {
         // 'indian-student': true,
         // 'international-student': true,
         // youth: true,
+        // 'child-under-3': true,
       } as Record<string, boolean>,
     },
     aadhaar: {

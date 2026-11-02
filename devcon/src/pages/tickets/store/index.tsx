@@ -157,9 +157,18 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
 ]
 
 // Curated, application-based tickets shown in the Applications section.
-const APPLICATION_TICKETS: Array<
-  CardPricing & { type: string; title: string; meta: string; description: string; href: string }
-> = [
+// `href` cards link to an application form ("Apply now"); `pretixItemId`
+// cards sell a plain public Pretix item and hand the buyer straight to the
+// Pretix shop with it in their cart.
+type ApplicationTicket = CardPricing & {
+  type: string
+  title: string
+  meta: string
+  description: string
+  buttonLabel: string
+} & ({ href: string; pretixItemId?: undefined } | { href?: undefined; pretixItemId: number | null })
+
+const APPLICATION_TICKETS: ApplicationTicket[] = [
   {
     type: 'indian-student',
     title: 'Indian Student 🇮🇳',
@@ -167,6 +176,7 @@ const APPLICATION_TICKETS: Array<
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
     combined: '$25',
+    buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
   {
@@ -177,6 +187,7 @@ const APPLICATION_TICKETS: Array<
       'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
     eth: '$49',
     fiat: '$99',
+    buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
   {
@@ -187,6 +198,7 @@ const APPLICATION_TICKETS: Array<
       'For developers, designers and everyone building the open, privacy-preserving, decentralized technologies that keeps the internet free and self-sovereign.',
     eth: '$349',
     fiat: '$499',
+    buttonLabel: 'Apply now',
     href: '/form/builder-application',
   },
   {
@@ -195,7 +207,19 @@ const APPLICATION_TICKETS: Array<
     meta: 'Consent form submission & ID required at check-in',
     description: "Whether you're a younger attendee, or bringing your child.",
     combined: '$19',
+    buttonLabel: 'Apply now',
     href: '/form/youth-ticket',
+  },
+  {
+    // Copy mirrors the live Pretix product (item 110 on tickets.devcon.org).
+    // Store-only: the /tickets landing page deliberately doesn't list it.
+    type: 'child-under-3',
+    title: 'Child (Under 3) with Adult',
+    meta: 'Adults must hold their own Devcon ticket to enter',
+    description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
+    free: true,
+    buttonLabel: 'Get ticket',
+    pretixItemId: TICKETING.pretix.childUnder3ItemId,
   },
 ]
 
@@ -384,6 +408,22 @@ function StoreContent({
 
   // Hand the buyer off to the Pretix shop with the selected tickets already in
   // their cart (the purchase happens on Pretix, not our custom checkout page).
+  // Same handoff for a single plain Pretix item (the free Child (Under 3)
+  // card): cart pre-filled with one of it when the item is provisioned for
+  // this environment, otherwise just the Pretix shop.
+  const goToPretixItem = (itemId: number | null) => {
+    if (itemId === null) {
+      window.location.href = pretixEventUrl('/')
+      return
+    }
+    try {
+      addItemsToPretixCartAndRedirect([{ id: itemId, quantity: 1 }])
+    } catch (err) {
+      console.error('Pretix cart handoff failed, falling back to shop:', err)
+      window.location.href = pretixEventUrl('/')
+    }
+  }
+
   const goToPretixCheckout = () => {
     if (checkoutLoading) return
     const items = cart.filter(c => c.quantity > 0).map(c => ({ id: c.ticketId, quantity: c.quantity }))
@@ -630,7 +670,11 @@ function StoreContent({
                       <p className={css['application-card-description']}>{card.description}</p>
                     </div>
                     <div className={css['application-card-footer']}>
-                      <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
+                      {card.free ? (
+                        <span className={css['application-price']}>FREE</span>
+                      ) : (
+                        <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
+                      )}
                       {/* Sanctuary Tech Builders applications open at the
                           global launch; student applications are already
                           open (same split as the /tickets landing page). */}
@@ -638,9 +682,18 @@ function StoreContent({
                         <span className={css['opens-label']}>Opens July</span>
                       ) : discountSoldOut(card.type) ? (
                         <span className={css['sold-out-badge']}>Sold out</span>
+                      ) : card.pretixItemId !== undefined ? (
+                        <button
+                          type="button"
+                          className={css['apply-btn']}
+                          onClick={() => goToPretixItem(card.pretixItemId)}
+                        >
+                          {card.buttonLabel}
+                          <ArrowRight size={16} strokeWidth={2.5} />
+                        </button>
                       ) : (
                         <Link to={card.href} className={css['apply-btn']}>
-                          Apply now
+                          {card.buttonLabel}
                         </Link>
                       )}
                     </div>
