@@ -7,7 +7,7 @@ Attendees send feedback (and crash reports) from inside the app; each report bec
 - Home, in "Event information" under "Need help?": "Send feedback".
 - My Devcon: the "Feedback" card above the EF internal tools.
 - The crash page (`app/error.tsx`): "Report this", prefilled with the error, plus "Reset the app" (clears cached files and the service worker, keeps IndexedDB and the sign-in). The root-layout crash page (`global-error.tsx`) has no providers, so it parks the error in sessionStorage and reopens Home with `?feedback=crash`.
-- A floating button on every page except the room screens (`FeedbackFab`), bottom-left above the tab bar, in the old debug button's corner. On phones the schedule and the map own that corner, so it stacks one control higher there; on desktop the map docks it top-left under the 3D map's tools.
+- The deep link `https://app.devcon.org/feedback` (for the Support FAQ): a redirect in `next.config.ts` to `/?feedback=open`, which the sheet picks up on load and strips from the URL. The floating button that used to sit on every page was removed on 2026-11-02; the two in-app entries above are the only ones left.
 
 All of them call `openFeedback()` (`src/data/feedback/feedbackState.ts`); the sheet itself is mounted once in the root layout.
 

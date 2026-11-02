@@ -12,7 +12,6 @@ import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { EventInformation } from "./EventInformation";
 import { usePreviewState } from "@/hooks/usePreviewState";
-import { BetaBanner } from "@/components/BetaBanner";
 
 /**
  * The home page (Figma home redesign): rotating greeting, the install nudge
@@ -29,9 +28,6 @@ export function Home() {
   if (usePreviewState() === "crash") throw new Error("previewState=crash");
   return (
     <main className="expand pb-6 lg:pb-16">
-      {/* Full-bleed under the app header, in flow (the Schedule and Speakers
-          lists carry the same strip), so a landing visitor sees it first. */}
-      <BetaBanner className="flex" />
       <div className="px-4 pt-6 lg:mx-auto lg:w-full lg:max-w-[1312px] lg:px-8 xl:px-0">
         {/* Visual title lives in AppHeader; keep a semantic h1 for AT */}
         <h1 className="sr-only">Home</h1>

@@ -15,7 +15,8 @@ import { openFeedback } from "@/data/feedback/feedbackState";
  * over the list; desktop puts them side by side.
  */
 
-// TODO(event-info): Wi-Fi details are still to come.
+const WIFI_SSID = "DEVCON";
+const WIFI_PASSWORD = "efdevcon";
 const SUPPORT_FAQ_HREF =
   "https://ef-events.notion.site/Devcon-India-App-Support-FAQ-3ff638cdc4158059a5ccfbad9e243fb1";
 const VENUE_MAPS_HREF = "https://maps.app.goo.gl/BN2AaTKh2cEy82Sy7";
@@ -189,7 +190,10 @@ export function EventInformation() {
               Essentials
             </h3>
             <ul className="mt-3 flex flex-col gap-4">
-              <Essential term="Wi-Fi:">Coming soon</Essential>
+              <Essential term="Wi-Fi:">
+                Connect to <span className="font-bold">{WIFI_SSID}</span> with password{" "}
+                <span className="font-bold">{WIFI_PASSWORD}</span>
+              </Essential>
               <Essential term="Venue address:">
                 <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
               </Essential>
