@@ -2,7 +2,7 @@
 
 import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useSWRConfig } from "swr";
 import {
   ArrowUpRight,
@@ -30,7 +30,14 @@ import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMes
 import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
 import { useLoadedTicketsPayload } from "@/data/tickets/useTickets";
-import { retryHandoff, useHandoffToken } from "@/data/meerkat/handoffToken";
+import {
+  handoffTokenUsable,
+  recheckHandoff,
+  requestPassRefresh,
+  retryHandoff,
+  useHandoffToken,
+  usePassRefreshState,
+} from "@/data/meerkat/handoffToken";
 import { hasAdmissionTicket } from "@/data/tickets/primary";
 import { SIGN_IN_PATH, signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
@@ -167,9 +174,6 @@ function QAFeed({
   const tickets = payload?.tickets;
   const holdsTicket = !!user && tickets !== undefined && hasAdmissionTicket(tickets);
   const needsTicket = !!user && tickets !== undefined && !holdsTicket;
-  // The link's token, traded for the payload's Q&A pass; no ticket lookup here.
-  const handoff = useHandoffToken(holdsTicket ? user?.id : undefined, holdsTicket ? payload?.qaPass : undefined);
-  const passRefresh = usePassRefresh(user?.id, holdsTicket && (!payload?.qaPass || handoff.kind === "no-pass"), payload?.qaPass);
   const mock = useMockQuestions();
   // Realtime: one SSE stream per mounted feed (the side panel unmounts its
   // feed while the fullscreen page is open, so a session holds at most one).
@@ -188,6 +192,14 @@ function QAFeed({
     if (retrying) onNotFound?.();
   }, [retrying, onNotFound]);
   const notOpen = notFound && !onNotFound;
+  // The link's token, traded for the payload's Q&A pass (no ticket lookup
+  // here), only while there is a Q&A to link to.
+  const wantsLink = holdsTicket && !notOpen && !retrying;
+  const { ask: handoff, problem } = useHandoffToken(
+    wantsLink ? user?.id : undefined,
+    wantsLink ? payload?.qaPass : undefined
+  );
+  const passRefresh = usePassRefresh(user?.id, wantsLink && (!payload?.qaPass || problem === "no-pass"), payload?.qaPass);
   const preview = usePreviewQA();
 
   return (
@@ -226,11 +238,6 @@ function QAFeed({
             >
               Add a ticket to ask a question
             </PrimaryLinkButton>
-          ) : handoff.kind === "signed-out" ? (
-            // The app remembers the user but the session is gone.
-            <PrimaryLinkButton href={signInHref(returnTo)} className={QA_CTA_CLASS}>
-              Sign in to ask a question
-            </PrimaryLinkButton>
           ) : handoff.kind === "ready" ? (
             // Straight to Meerkat, signed in by the token. Always a new tab:
             // in the installed app the OS shows it in an in-app browser and
@@ -240,7 +247,15 @@ function QAFeed({
               href={meerkatSessionUrl(sessionId, handoff.token)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent("session", "qa", sessionId)}
+              onClick={(event) => {
+                // Timers can run late (sleep, throttling): never open a lapsed token.
+                if (!handoffTokenUsable()) {
+                  event.preventDefault();
+                  recheckHandoff();
+                  return;
+                }
+                trackEvent("session", "qa", sessionId);
+              }}
               className={cn(QA_CTA_CLASS, "matomo_ignore")}
             >
               Ask a question
@@ -429,10 +444,11 @@ const noopSubscribe = () => () => {};
 
 /**
  * The tickets payload lacks a usable Q&A pass although it shows an admission
- * ticket (cached before passes existed, or past its 24 hours): fetch the
- * tickets once, which issues a new pass, through the app-wide useTickets
- * (CacheWarmer). Once per user and pass, so a refusal never loops; "failed"
- * when it did not help, with a retry the attendee triggers.
+ * ticket (cached before passes existed, or nearly past its 24 hours): fetch
+ * the tickets once, which issues a new pass, through the app-wide useTickets
+ * (CacheWarmer). Once per user and pass across all feeds (requestPassRefresh),
+ * so a refusal never loops; "failed" when it did not help, with a retry the
+ * attendee triggers.
  */
 function usePassRefresh(
   userId: string | undefined,
@@ -441,22 +457,16 @@ function usePassRefresh(
 ): { state: "idle" | "pending" | "failed"; retry: () => void } {
   const { mutate } = useSWRConfig();
   const key = userId ? `${userId}:${pass ?? ""}` : null;
-  const fired = useRef<string | null>(null);
-  const [doneKey, setDoneKey] = useState<string | null>(null);
-  const run = (forKey: string, forUser: string) => {
-    fired.current = forKey;
-    void Promise.resolve(mutate(["tickets", forUser])).finally(() => setDoneKey(forKey));
-  };
+  const state = usePassRefreshState(key);
+  const refetch = () => mutate(["tickets", userId]);
   useEffect(() => {
-    if (wanted && key && userId && fired.current !== key) run(key, userId);
+    if (wanted && key) requestPassRefresh(key, refetch);
   });
   const retry = () => {
-    if (!key || !userId) return;
-    setDoneKey(null);
-    run(key, userId);
+    if (key) requestPassRefresh(key, refetch, true);
   };
   if (!wanted || !key) return { state: "idle", retry };
-  return { state: doneKey === key ? "failed" : "pending", retry };
+  return { state: state === "done" ? "failed" : "pending", retry };
 }
 
 function useMockQaParam(): boolean {

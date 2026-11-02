@@ -18,8 +18,12 @@ import { generateHandoverToken } from "../verification";
  */
 const perUser = createRateLimiter(30, 10 * 60_000);
 
-/** A pass this close to expiry gets a 403, so the app fetches a fresh one rather than a token that lapses at once. */
-const MIN_PASS_LEFT_MS = 5 * 60_000;
+/**
+ * A pass this close to expiry gets a 403, so the app fetches a fresh one. More
+ * than the client's renewal window (RENEW_BEFORE_MS, 10 min): a token capped
+ * at the pass must never be due for renewal the moment it arrives.
+ */
+const MIN_PASS_LEFT_MS = 15 * 60_000;
 
 const noStore = { "Cache-Control": "no-store" };
 const fail = (status: number, error: string) =>
