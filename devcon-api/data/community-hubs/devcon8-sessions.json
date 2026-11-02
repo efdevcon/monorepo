@@ -1,8 +1,10 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-11-01T11:31:25.875Z",
-    "problems": [],
+    "changedAt": "2026-11-02T02:27:30.438Z",
+    "problems": [
+      "row 25 \"Break\": ends (11:20) before it starts (11:20), skipped"
+    ],
     "sessions": [
       {
         "id": "S01",
@@ -240,19 +242,19 @@
       {
         "id": "S20",
         "day": "Wed 4 Nov",
-        "time": "11:00-11:10",
+        "time": "11:00-11:20",
         "title": "Pricing and treasury for a machine",
         "format": "Talk",
         "speakers": [
           "Nicolás Arnedo Villanueva"
         ],
         "topic": "Research",
-        "description": "An agent that sells a service must decide what to charge, in which currency, and how much risk to hold. Nicolás Arnedo Villanueva, who writes about agentic payments, gives a ten-minute introduction to pricing and treasury for a machine: setting prices in stablecoins, keeping a budget and reserves, and what changes when no human reviews each sale. Sets up the roundtable that follows."
+        "description": "An agent that sells a service must decide what to charge, in which currency, and how much risk to hold. Nicolás Arnedo Villanueva, who writes about agentic payments, gives a twenty-minute introduction to pricing and treasury for a machine: setting prices in stablecoins, keeping a budget and reserves, and what changes when no human reviews each sale. Sets up the roundtable that follows."
       },
       {
         "id": "S21",
         "day": "Wed 4 Nov",
-        "time": "11:10-11:20",
+        "time": "11:20-11:30",
         "title": "Price feeds and stablecoin pegs",
         "format": "Talk",
         "speakers": [
@@ -262,18 +264,6 @@
         "description": "An agent that pays or prices in stablecoins needs a price it can trust, and a stablecoin is only worth one dollar if its peg holds. Aditya Arora explains where agents can get reliable prices, how price feeds track stablecoin pegs, and what an agent should do when the feed and the market disagree. Ten minutes for builders who automate payments or treasury."
       },
       {
-        "id": "S22",
-        "day": "Wed 4 Nov",
-        "time": "11:20-11:30",
-        "title": "Paying in an ecosystem stablecoin over x402",
-        "format": "Talk",
-        "speakers": [
-          "Daniel Ortega"
-        ],
-        "topic": "Research",
-        "description": "Not every agent will pay in USDC. Daniel Ortega shows what it takes to accept and pay with an ecosystem stablecoin over x402, using USDG on Arbitrum as the example. Ten minutes on how the token settles, what a builder needs to change in an x402 setup, and where the trade-offs sit compared with the largest stablecoins."
-      },
-      {
         "id": "S23",
         "day": "Wed 4 Nov",
         "time": "11:30-12:00",
@@ -281,11 +271,10 @@
         "format": "Roundtable",
         "speakers": [
           "Nicolás Arnedo Villanueva",
-          "Aditya Arora",
-          "Daniel Ortega"
+          "Aditya Arora"
         ],
         "topic": "Research",
-        "description": "When the payer is software, who absorbs a freeze or a depeg? Nicolás Arnedo Villanueva moderates Aditya Arora and Daniel Ortega on issuer risk, freezes and the choice of currency for pricing an agent service. Should an agent price in dollars, a local currency or whatever it holds? Bring your own case: the audience joins the discussion, and the group fills in the payments part of the whiteboard map."
+        "description": "When the payer is software, who absorbs a freeze or a depeg? Nicolás Arnedo Villanueva moderates Aditya Arora on issuer risk, freezes and the choice of currency for pricing an agent service. Should an agent price in dollars, a local currency or whatever it holds? Bring your own case: the audience joins the discussion, and the group fills in the payments part of the whiteboard map."
       },
       {
         "id": "S24",
@@ -521,11 +510,10 @@
         "format": "Roundtable",
         "speakers": [
           "Fortunato Cinquepalmi",
-          "Nicolás Arnedo Villanueva",
           "Facundo Trotz"
         ],
         "topic": "Governance",
-        "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can show who authorized the deal. This session from the Agents ×Legal hub puts one case through the whole chain: the person or company behind the agent, its delegated mandate, the policy checks, the promised delivery and the remedy. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Nicolás Arnedo Villanueva and Facundo Trotz lead."
+        "description": "An agent buys a service. The payment succeeds. The work is disputed, and nobody can show who authorized the deal. This session from the Agents ×Legal hub puts one case through the whole chain: the person or company behind the agent, its delegated mandate, the policy checks, the promised delivery and the remedy. The room changes the facts: a revoked mandate, an eligible recipient but an unauthorized purpose, or a paid service that fails its specification. Fortunato Cinquepalmi and Facundo Trotz lead."
       },
       {
         "id": "S43",
@@ -681,27 +669,27 @@
         "id": "S55",
         "day": "Thu 5 Nov",
         "time": "11:00-11:20",
-        "title": "What 8004scan shows about agent reputation onchain",
+        "title": "8004: Bring Agents On Chain",
         "format": "Talk",
         "speakers": [
           "YQ"
         ],
-        "topic": "Research",
-        "description": "Before the roundtable, YQ, founder of AltLayer and 8004scan, opens with a 20-minute talk on how agents are being registered and rated onchain with ERC-8004, and what that means for trusting an agent score. A grounding for the roundtable on reputation-system failure modes that follows."
+        "topic": "Intro",
+        "description": "8004 is an Ethereum standard that puts AI agent identity, feedback and validation records on-chain. On 31 October, 8004scan indexed 1.56 million agents and 817,000 feedback records on 27 mainnets, nearly three times the early-October count. Such totals mean little until we know what they count. In July, 2.24% of registered agents passed a health check. Ethereum mainnet holds 2% of agents, and Ethereum with its L2s holds 75%. On Avalanche, one wallet wrote every feedback record we sampled. This session uses 8004scan data to separate registration from use and volume from independent review. It proposes five fields every agent metric should state, covers checking an agent through the public API, and examines Alpharc, where reputation comes from time-stamped calls and trades verified on-chain. As agents begin to act for people, the numbers used to judge them need to be checkable."
       }
     ]
   },
   {
     "hub": "Aggregation Hub",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-02T02:27:30.438Z",
     "problems": [],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
-        "time": "11:00-13:00",
+        "time": "10:00-13:00",
         "title": "Meet the Hub",
-        "format": "Networking",
+        "format": "Welcome",
         "speakers": [],
         "description": "Welcome and introductions. Help us start the Map and Graveyard boards."
       },
@@ -710,8 +698,12 @@
         "day": "Tue 3 Nov",
         "time": "14:00-14:30",
         "title": "After the Talk",
-        "format": "Talk",
-        "speakers": [],
+        "format": "AMA",
+        "speakers": [
+          "Gopi",
+          "Vojta"
+        ],
+        "topic": "Open Q&A",
         "description": "Continue the conversation from the 13:15 main-stage session, “Can Ethereum Feel Like One Chain Without Becoming One?”"
       },
       {
@@ -719,8 +711,143 @@
         "day": "Tue 3 Nov",
         "time": "15:00-16:00",
         "title": "The Map",
+        "format": "Other",
         "speakers": [],
+        "topic": "Self-guided",
         "description": "Add your team, a dependency you rely on, or an open question to the map. No presentation."
+      },
+      {
+        "id": "S04",
+        "day": "Tue 3 Nov",
+        "time": "16:00-18:00",
+        "title": "Story Swap",
+        "format": "Other",
+        "speakers": [],
+        "description": "90-second stories about a real fragmentation problem you’ve run into. With the speaker’s consent, stories may be recorded and shared on X."
+      },
+      {
+        "id": "S06",
+        "day": "Wed 4 Nov",
+        "time": "10:00-11:30",
+        "title": "Open Hub",
+        "format": "Networking",
+        "speakers": []
+      },
+      {
+        "id": "S07",
+        "day": "Wed 4 Nov",
+        "time": "11:30-12:30",
+        "title": "Trade-offs",
+        "format": "Workshop",
+        "speakers": [],
+        "topic": "Whiteboard discussion",
+        "description": "Comparing approaches to making chains feel connected, and the new trust assumptions each one brings."
+      },
+      {
+        "id": "S08",
+        "day": "Wed 4 Nov",
+        "time": "12:30-15:00",
+        "title": "Open Hub",
+        "format": "Other",
+        "speakers": [],
+        "description": "networking & coworking"
+      },
+      {
+        "id": "S09",
+        "day": "Wed 4 Nov",
+        "time": "15:00-17:00",
+        "title": "The Wallet View",
+        "format": "Networking",
+        "speakers": [],
+        "description": "Three questions on user access, interfaces and dependencies."
+      },
+      {
+        "id": "S10",
+        "day": "Wed 4 Nov",
+        "time": "17:00-18:00",
+        "title": "Story Swap",
+        "format": "Other",
+        "speakers": [],
+        "description": "90-second stories about a real fragmentation problem you’ve run into. With the speaker’s consent, stories may be recorded and shared on X."
+      },
+      {
+        "id": "S11",
+        "day": "Thu 5 Nov",
+        "time": "10:00-12:00",
+        "title": "Open Hub",
+        "format": "Other",
+        "speakers": [],
+        "description": "networking & coworking"
+      },
+      {
+        "id": "S12",
+        "day": "Thu 5 Nov",
+        "time": "12:00-12:30",
+        "title": "India Hub × Aggregation Hub",
+        "format": "Roundtable",
+        "speakers": [],
+        "description": "(cross-hub session with the India Hub)A joint session on how local builders and communities experience a multi-chain Ethereum."
+      },
+      {
+        "id": "S13",
+        "day": "Thu 5 Nov",
+        "time": "12:30-15:00",
+        "title": "Story Swap",
+        "format": "Other",
+        "speakers": [],
+        "description": "90-second stories about a real fragmentation problem you’ve run into. With the speaker’s consent, stories may be recorded and shared on X."
+      },
+      {
+        "id": "S14",
+        "day": "Thu 5 Nov",
+        "time": "15:00-16:00",
+        "title": "Exit Paths",
+        "format": "Roundtable",
+        "speakers": [
+          "Gopi",
+          "Vojta"
+        ],
+        "topic": "Open Q&A",
+        "description": "A follow-up to the 14:30 main-stage talk on shutting down a chain."
+      },
+      {
+        "id": "S15",
+        "day": "Thu 5 Nov",
+        "time": "16:00-18:00",
+        "title": "Open Hub",
+        "format": "Networking",
+        "speakers": [],
+        "description": "networking & coworking"
+      },
+      {
+        "id": "S17",
+        "day": "Fri 6 Nov",
+        "time": "11:00-12:00",
+        "title": "One Ethereum?",
+        "format": "Workshop",
+        "speakers": [],
+        "description": "Shared values versus distinct communities."
+      },
+      {
+        "id": "S18",
+        "day": "Fri 6 Nov",
+        "time": "12:00-14:00",
+        "title": "Story Swap",
+        "format": "Other",
+        "speakers": [],
+        "description": "90-second stories about a real fragmentation problem you’ve run into. With the speaker’s consent, stories may be recorded and shared on X."
+      },
+      {
+        "id": "S19",
+        "day": "Fri 6 Nov",
+        "time": "14:00-15:00",
+        "title": "What Stays Different? (closing discussion)",
+        "format": "Roundtable",
+        "speakers": [
+          "Gopi",
+          "Vojta"
+        ],
+        "topic": "Open Q&A"
       }
     ]
   },
@@ -1207,7 +1334,7 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-10-31T20:06:19.901Z",
+    "changedAt": "2026-11-02T02:27:30.438Z",
     "problems": [],
     "sessions": [
       {
@@ -1328,16 +1455,6 @@
         "id": "S12",
         "day": "Wed 4 Nov",
         "time": "09:30-10:20",
-        "title": "EIPOffice Hour (IRL)",
-        "format": "Other",
-        "speakers": [
-          "Jochem"
-        ]
-      },
-      {
-        "id": "S13",
-        "day": "Wed 4 Nov",
-        "time": "10:20-11:00",
         "title": "The Price Is Right: Setting Gas Prices for Glamsterdam",
         "format": "Talk",
         "speakers": [
@@ -1346,13 +1463,25 @@
         "description": "This talk explores the methodology behind Glamsterdam’s gas repricing work, using EIP-8038 and EIP-2780 to explain how synthetic block testing, cross-client measurements, resource decomposition, and conservative assumptions translate throughput targets into gas costs and shape the final pricing model."
       },
       {
+        "id": "S13",
+        "day": "Wed 4 Nov",
+        "time": "10:20-11:10",
+        "title": "White Paper Reading: EIP-8037",
+        "format": "Fishbowl",
+        "speakers": [
+          "Rongxin",
+          "QZ",
+          "Maria Silva"
+        ]
+      },
+      {
         "id": "S14",
         "day": "Wed 4 Nov",
-        "time": "11:00-11:40",
-        "title": "Frame txs & private payments: EIP-8141 in practice",
-        "format": "Talk",
+        "time": "11:10-11:40",
+        "title": "EIPHoffice Hour (IRL)",
+        "format": "Other",
         "speakers": [
-          "Gavin Birch"
+          "Jochem Brouwer"
         ]
       },
       {
@@ -1440,7 +1569,7 @@
       {
         "id": "S24",
         "day": "Thu 5 Nov",
-        "time": "10:00-10:40",
+        "time": "10:00-10:30",
         "title": "The Token Is Standardised. The Institution Isn't: Where Should Ethereum Standards Stop?",
         "format": "Talk",
         "speakers": [
@@ -1610,7 +1739,7 @@
         "title": "More like Ethereum, less like SaaS: Infra guarantees for onchain business",
         "format": "Talk",
         "speakers": [
-          "Gavin Birch"
+          "Ben"
         ],
         "description": "As businesses move payments, treasury, and financial operations onchain, more and more they depend on infrastructure they don't control. This talk explores how Ethereum properties such as credible exit, permissionless access, replaceable intermediaries, and constrained governance can become practical business-continuity guarantees, and why privacy systems expose where those guarantees still break down."
       },
@@ -1655,7 +1784,7 @@
   },
   {
     "hub": "Game Zone",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-02T02:27:30.438Z",
     "problems": [],
     "sessions": [
       {
@@ -1682,11 +1811,11 @@
         "id": "S03",
         "day": "Tue 3 Nov",
         "time": "13:00-16:00",
-        "title": "Community Chess Tournament (Knockout)",
+        "title": "Chess Tournament by ETHIndia",
         "format": "Demo",
         "speakers": [],
         "topic": "Game",
-        "description": "Join a knockout chess tournament alongside fellow Devcon attendees."
+        "description": "Open to all Devcon attendees: compete in ETHIndia’s knockout chess tournament, and the winner plays GM Vidit Gujrathi on Wednesday 4 November at 1pm."
       },
       {
         "id": "S04",
@@ -6258,7 +6387,7 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-10-31T17:47:33.411Z",
+    "changedAt": "2026-11-02T02:27:30.438Z",
     "problems": [
       "row 6: no session title, skipped",
       "row 12: no session title, skipped",
@@ -6479,7 +6608,18 @@
       {
         "id": "S28",
         "day": "Fri 6 Nov",
-        "time": "11:00-15:20",
+        "time": "11:00-11:30",
+        "title": "Where should the Ethereum community live?",
+        "format": "Talk",
+        "speakers": [
+          "Elaine Wang"
+        ],
+        "description": "Learnings from real world network state in Palau, Prospera, the Network School, and the Philippines, with Cofounder and CEO of Metropolis"
+      },
+      {
+        "id": "S29",
+        "day": "Fri 6 Nov",
+        "time": "11:30-15:20",
         "title": "Invisible Garden Projects Showcase",
         "format": "Demo",
         "speakers": [],
