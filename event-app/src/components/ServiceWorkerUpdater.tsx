@@ -119,9 +119,10 @@ function readMarker(): UpdateMarker | null {
     const raw = sessionStorage.getItem(MARKER_KEY);
     if (!raw) return null;
     const marker = JSON.parse(raw) as Partial<UpdateMarker> | null;
-    return typeof marker?.at === "number" && typeof marker.reloads === "number"
-      ? { at: marker.at, reloads: marker.reloads }
-      : null;
+    if (typeof marker?.at !== "number" || typeof marker.reloads !== "number") return null;
+    return typeof marker.quiet === "string"
+      ? { at: marker.at, reloads: marker.reloads, quiet: marker.quiet }
+      : { at: marker.at, reloads: marker.reloads };
   } catch {
     return null;
   }
@@ -406,6 +407,13 @@ export function ServiceWorkerUpdater() {
         .catch(() => {});
     }
     const isKiosk = () => kioskRef.current;
+    // A quiet switch that needed the fallback reload resumes quietly too:
+    // without this the resumed request would show the toast's "Updating" face.
+    const carried = readMarker();
+    if (carried?.quiet === "kiosk" || carried?.quiet === "launch" || carried?.quiet === "hidden" || carried?.quiet === "return") {
+      quiet = carried.quiet;
+      setDebug({ quiet: true });
+    }
 
     function dismissToast() {
       if (toastId !== undefined) toast.dismiss(toastId);
@@ -467,7 +475,7 @@ export function ServiceWorkerUpdater() {
       if (trigger === "hidden" || trigger === "return") saveScroll();
       foreign = false;
       dismissToast();
-      flow.requestUpdate();
+      flow.requestUpdate(trigger);
     }
 
     function pendingQuiet() {
@@ -638,6 +646,9 @@ export function ServiceWorkerUpdater() {
       // Only a test harness that blocks workers resolves this with nothing.
       if (!reg) return;
       registration = reg;
+      // Nothing waiting now: whatever was waiting has been applied or dropped,
+      // so the fallback toast's clock must not carry over to the next build.
+      if (!reg.waiting) clearAvailable();
       setDebug({ controlled: !!navigator.serviceWorker.controller, waiting: !!reg.waiting, nextCheckAt: Date.now() + CHECK_INTERVAL_MS });
       debugActions = {
         checkNow: check,

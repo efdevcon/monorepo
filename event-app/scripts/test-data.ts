@@ -24,6 +24,8 @@ import {
   MAX_FALLBACK_RELOADS,
   TAKEOVER_TIMEOUT_MS,
   createUpdateFlow,
+  MAX_SLOW_RELOADS,
+  SLOW_RETRY_MS,
   type UpdateMarker,
   type UpdateState,
   type WaitingWorker,
@@ -1351,9 +1353,17 @@ function testServiceWorkerUpdateFlow() {
     h.fire(); // reload 1, carried over in the marker
     h.flow.start();
     h.fire(); // reload 2
-    h.flow.start();
-    h.fire(); // bound reached
+    h.flow.start(); // past the fast bound: slow at once
     check("after the reload bound the flow is slow", h.flow.state === "slow");
+    check("slow arms the watchdog", h.armedMs() === SLOW_RETRY_MS);
+    const askedBefore = w.messages.length;
+    h.fire(); // watchdog: ask again and reload, counted
+    check("the watchdog asks the worker again and reloads", w.messages.length === askedBefore + 1 && h.calls.filter((c) => c === "reload").length === 3 && h.st.marker?.reloads === 3);
+    h.flow.start(); // back from that reload, still slow territory
+    check("a resumed request past the bound is slow again with the watchdog armed", h.flow.state === "slow" && h.armedMs() === SLOW_RETRY_MS);
+    h.st.marker = { at: NOW, reloads: MAX_SLOW_RELOADS };
+    h.flow.start();
+    check("past the slow cap the flow waits for a click, no watchdog", h.flow.state === "slow" && h.armedMs() === null);
     h.flow.reset();
     check("reset with a worker still waiting goes back to available, marker cleared", h.flow.state === "available" && h.st.marker === null && h.states.at(-1) === "available");
     const asked = w.messages.length;
@@ -1363,6 +1373,23 @@ function testServiceWorkerUpdateFlow() {
     h2.flow.updateAvailable();
     h2.flow.reset();
     check("reset with nothing waiting goes idle", h2.flow.state === "idle");
+  }
+
+  // A quiet request keeps its trigger across the fallback reload.
+  {
+    const w = worker();
+    const h = harness({ waiting: w });
+    h.flow.updateAvailable();
+    h.flow.requestUpdate("launch");
+    check("a quiet request writes its trigger into the marker", h.st.marker?.quiet === "launch");
+    h.fire();
+    const h2 = harness({ waiting: w, marker: h.st.marker });
+    h2.flow.start();
+    check("the trigger survives the reload", h2.st.marker?.quiet === "launch" && h2.flow.state === "updating");
+    const h3 = harness({ waiting: worker() });
+    h3.flow.updateAvailable();
+    h3.flow.requestUpdate();
+    check("a click has no trigger", h3.st.marker?.quiet === undefined);
   }
 
   // The click.
@@ -1419,8 +1446,9 @@ function testServiceWorkerUpdateFlow() {
     const w = worker();
     const h = harness({ waiting: w, marker: { at: NOW - 1000, reloads: MAX_FALLBACK_RELOADS } });
     h.flow.start();
+    check("past the fast bound the flow says it is slow, no immediate reload, watchdog armed", !h.calls.includes("reload") && h.flow.state === "slow" && h.armedMs() === SLOW_RETRY_MS);
     h.fire();
-    check("after the last reload the flow waits and says so instead of reloading again", !h.calls.includes("reload") && h.flow.state === "slow");
+    check("the watchdog reloads again after 30 s", h.calls.at(-1) === "reload" && h.st.marker?.reloads === MAX_FALLBACK_RELOADS + 1);
     h.flow.controllerChanged();
     check("the takeover still reloads from the slow state", h.calls.at(-1) === "reload" && h.st.marker === null);
   }
