@@ -190,8 +190,10 @@ export function EventInformation() {
               Essentials
             </h3>
             <ul className="mt-3 flex flex-col gap-4">
-              <Essential term="Wi-Fi SSID:">{WIFI_SSID}</Essential>
-              <Essential term="Password:">{WIFI_PASSWORD}</Essential>
+              <Essential term="Wi-Fi:">
+                Connect to <span className="font-bold">{WIFI_SSID}</span> with password{" "}
+                <span className="font-bold">{WIFI_PASSWORD}</span>
+              </Essential>
               <Essential term="Venue address:">
                 <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
               </Essential>
