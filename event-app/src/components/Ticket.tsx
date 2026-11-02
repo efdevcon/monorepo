@@ -152,7 +152,7 @@ export function Ticket() {
                     wrapper carries the breakpoint gate so the shared button
                     keeps its own display class. */}
                 <div className="hidden shrink-0 lg:block">
-                  <SecondaryButton type="button" size="sm" tone="danger" onClick={signOut} disabled={busy}>
+                  <SecondaryButton type="button" tone="danger" onClick={signOut} disabled={busy}>
                     Sign out
                     <LogOut className="size-4" />
                   </SecondaryButton>
