@@ -202,13 +202,25 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     href: '/form/builder-application',
   },
   {
+    // Copy mirrors the live Pretix product (item 7 on tickets.devcon.org).
     type: 'youth',
-    title: 'Youth Ticket (3-17) 🌱',
-    meta: 'Consent form submission & ID required at check-in',
-    description: "Whether you're a younger attendee, or bringing your child.",
+    title: 'Solo Youth Ticket (16-17) 🌱',
+    meta: 'Consent form submission & ID/proof required at check-in',
+    description: 'For attendees 16-17 attending alone. Anyone under 16 must be accompanied by a parent/guardian.',
     combined: '$19',
     buttonLabel: 'Apply now',
     href: '/form/youth-ticket',
+  },
+  {
+    // Copy mirrors the live Pretix product (item 109 on tickets.devcon.org).
+    // Store-only, like the Under 3 card below.
+    type: 'child-with-adult',
+    title: 'Child (3-17) with Adult',
+    meta: 'Adults must hold their own Devcon ticket to enter',
+    description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
+    combined: '$19',
+    buttonLabel: 'Get ticket',
+    pretixItemId: TICKETING.pretix.childWithAdultItemId,
   },
   {
     // Copy mirrors the live Pretix product (item 110 on tickets.devcon.org).
@@ -408,9 +420,9 @@ function StoreContent({
 
   // Hand the buyer off to the Pretix shop with the selected tickets already in
   // their cart (the purchase happens on Pretix, not our custom checkout page).
-  // Same handoff for a single plain Pretix item (the free Child (Under 3)
-  // card): cart pre-filled with one of it when the item is provisioned for
-  // this environment, otherwise just the Pretix shop.
+  // Same handoff for a single plain Pretix item (the Child (3-17) / Child
+  // (Under 3) cards): cart pre-filled with one of it when the item is
+  // provisioned for this environment, otherwise just the Pretix shop.
   const goToPretixItem = (itemId: number | null) => {
     if (itemId === null) {
       window.location.href = pretixEventUrl('/')

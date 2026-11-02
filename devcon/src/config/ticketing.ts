@@ -27,6 +27,9 @@ const ENV_CONFIG = {
       // voucher). null = not provisioned on this instance; the card then hands
       // off to the bare Pretix shop instead of pre-filling the cart.
       childUnder3ItemId: null as number | null,
+      // Pretix item id for the paid "Child (3-17) with Adult" ticket, sold the
+      // same way as the Under 3 one (plain public item, Applications section).
+      childWithAdultItemId: null as number | null,
       testmode: true,
     },
     checkout: {
@@ -95,6 +98,7 @@ const ENV_CONFIG = {
         // 'indian-student': true,
         // 'international-student': true,
         // youth: true,
+        // 'child-with-adult': true,
         // 'child-under-3': true,
       } as Record<string, boolean>,
     },
@@ -129,6 +133,8 @@ const ENV_CONFIG = {
       gaItemId: 1 as number | null,
       // See development.pretix.childUnder3ItemId.
       childUnder3ItemId: 110 as number | null,
+      // See development.pretix.childWithAdultItemId.
+      childWithAdultItemId: 109 as number | null,
       testmode: false,
     },
     checkout: {
@@ -193,6 +199,7 @@ const ENV_CONFIG = {
         // 'indian-student': true,
         // 'international-student': true,
         // youth: true,
+        // 'child-with-adult': true,
         // 'child-under-3': true,
       } as Record<string, boolean>,
     },

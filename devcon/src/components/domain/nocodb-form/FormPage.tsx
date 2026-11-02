@@ -3,6 +3,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import Page from 'components/common/layouts/page'
 import { FormRenderer, type FormColumn } from './FormRenderer'
 import { rhfFieldName, remapToOriginalNames } from './rhf-key'
+import { useBeforeSubmitHooks } from './before-submit'
 import { FormSubheading } from './FormSubheading'
 import { OtpGate } from './OtpGate'
 import { CriteriaEligibilityButton } from './CriteriaEligibilityButton'
@@ -453,6 +454,22 @@ function FormInner({
     }, 0)
   }
 
+  // Fields with async work still pending (a drawn signature not yet uploaded)
+  // finish it here, before react-hook-form snapshots the values. A field that
+  // fails shows its own error and the submit stops short.
+  const beforeSubmit = useBeforeSubmitHooks()
+  const BeforeSubmitProvider = beforeSubmit.Provider
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      await beforeSubmit.run()
+    } catch {
+      scrollToFirstError()
+      return
+    }
+    await methods.handleSubmit(onSubmit, scrollToFirstError)(e)
+  }
+
   // When user is verified via OTP, hide email fields entirely (shown in "Signed in as" banner).
   // For the student-application form, also hide the enrollment_proof attachment from the
   // generic renderer — the bespoke EnrollmentProofUpload below handles it conditionally
@@ -531,84 +548,86 @@ function FormInner({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit, scrollToFirstError)} className="flex flex-col gap-6 w-full">
-        {schema.subheading && <FormSubheading text={schema.subheading} />}
+      <BeforeSubmitProvider value={beforeSubmit.value}>
+        <form onSubmit={handleFormSubmit} className="flex flex-col gap-6 w-full">
+          {schema.subheading && <FormSubheading text={schema.subheading} />}
 
-        {formSlug === RTD_EVENT_FORM_SLUG && approvedUpdate && (
-          <div className="rounded-xl border border-[#f0c000]/40 bg-[#fff8e1] px-4 py-3 text-sm leading-5 text-[#5c4a00]">
-            This event has already been approved. If you change it, we will have to review it again before it can be
-            accepted on our website.
-          </div>
-        )}
-
-        <FormRenderer
-          columns={schema.columns}
-          hiddenFields={hiddenFields}
-          viewId={viewId}
-          conditionalRules={schema.conditionalRules}
-        />
-
-        {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
-
-        {requireOtp && formSlug === STUDENT_APPLICATION_SLUG && (
-          <div className="mx-auto">
-            <CriteriaEligibilityButton />
-          </div>
-        )}
-
-        {formSlug === YOUTH_TICKET_SLUG && (
-          <div className="flex items-start gap-3 px-4 py-3 bg-[#f3f0ff] border border-[#decffb] rounded-lg text-sm leading-5 text-[#1a0d33]">
-            <FileText className="w-4 h-4 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
-            <p>
-              Before you submit, please review the{' '}
-              <Link
-                href="/parental-consent-form"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-[#7235ed] hover:underline"
-              >
-                Devcon 8 Parental Consent and Release Terms
-              </Link>
-              .
-            </p>
-          </div>
-        )}
-
-        {error && (
-          <p ref={errorRef} className="text-red-500 text-sm text-center scroll-mt-24">
-            {error}
-          </p>
-        )}
-
-        <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
-          {onSignOut && (
-            <button type="button" onClick={onSignOut} className="text-base font-bold text-[#b42124] hover:underline">
-              Cancel &amp; Sign Out
-            </button>
+          {formSlug === RTD_EVENT_FORM_SLUG && approvedUpdate && (
+            <div className="rounded-xl border border-[#f0c000]/40 bg-[#fff8e1] px-4 py-3 text-sm leading-5 text-[#5c4a00]">
+              This event has already been approved. If you change it, we will have to review it again before it can be
+              accepted on our website.
+            </div>
           )}
-          <button
-            type="submit"
-            disabled={submitting}
-            className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
-          >
-            {submitting ? (isUpdate ? 'Updating...' : 'Submitting...') : isUpdate ? 'Update' : 'Submit'}
-          </button>
-        </div>
 
-        <p className="text-xs text-[#594d73] text-center leading-[18px] pt-2 border-t border-[rgba(34,17,68,0.08)]">
-          By submitting this form, you acknowledge the Ethereum Foundation&apos;s{' '}
-          <a
-            href="https://ethereum.org/en/privacy-policy/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-[#7235ed] hover:underline"
-          >
-            Privacy Policy
-          </a>
-          . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third
-          parties.
-        </p>
-      </form>
+          <FormRenderer
+            columns={schema.columns}
+            hiddenFields={hiddenFields}
+            viewId={viewId}
+            conditionalRules={schema.conditionalRules}
+          />
+
+          {bucket === 'blocked' && <EnrollmentProofUpload viewId={viewId} />}
+
+          {requireOtp && formSlug === STUDENT_APPLICATION_SLUG && (
+            <div className="mx-auto">
+              <CriteriaEligibilityButton />
+            </div>
+          )}
+
+          {formSlug === YOUTH_TICKET_SLUG && (
+            <div className="flex items-start gap-3 px-4 py-3 bg-[#f3f0ff] border border-[#decffb] rounded-lg text-sm leading-5 text-[#1a0d33]">
+              <FileText className="w-4 h-4 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
+              <p>
+                Before you submit, please review the{' '}
+                <Link
+                  href="/parental-consent-form"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-[#7235ed] hover:underline"
+                >
+                  Devcon 8 Parental Consent and Release Terms
+                </Link>
+                .
+              </p>
+            </div>
+          )}
+
+          {error && (
+            <p ref={errorRef} className="text-red-500 text-sm text-center scroll-mt-24">
+              {error}
+            </p>
+          )}
+
+          <div className={`flex items-center w-full ${onSignOut ? 'justify-between' : 'justify-center'}`}>
+            {onSignOut && (
+              <button type="button" onClick={onSignOut} className="text-base font-bold text-[#b42124] hover:underline">
+                Cancel &amp; Sign Out
+              </button>
+            )}
+            <button
+              type="submit"
+              disabled={submitting}
+              className="px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] disabled:opacity-50 transition-colors"
+            >
+              {submitting ? (isUpdate ? 'Updating...' : 'Submitting...') : isUpdate ? 'Update' : 'Submit'}
+            </button>
+          </div>
+
+          <p className="text-xs text-[#594d73] text-center leading-[18px] pt-2 border-t border-[rgba(34,17,68,0.08)]">
+            By submitting this form, you acknowledge the Ethereum Foundation&apos;s{' '}
+            <a
+              href="https://ethereum.org/en/privacy-policy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#7235ed] hover:underline"
+            >
+              Privacy Policy
+            </a>
+            . We&apos;ll only use your information for Devcon-related communications and won&apos;t share it with third
+            parties.
+          </p>
+        </form>
+      </BeforeSubmitProvider>
     </FormProvider>
   )
 }
@@ -720,8 +739,8 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
 
               {formSlug === STUDENT_APPLICATION_SLUG ? (
                 <p className="text-sm text-[#1a0d33] leading-5 text-center">
-                  Your application has been submitted! We&rsquo;ll review it as soon as possible, and you&rsquo;ll get the
-                  decision by email.
+                  Your application has been submitted! We&rsquo;ll review it as soon as possible, and you&rsquo;ll get
+                  the decision by email.
                   <br />
                   In the meantime, check out the{' '}
                   <a
