@@ -4,6 +4,7 @@ import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
 import { ChevronRight, Clock3, Globe, Presentation, Share2, User } from "lucide-react";
 import { toast } from "sonner";
+import { trackEvent } from "@/data/analytics/track";
 import { CloseButton } from "@/components/Buttons";
 import { XIcon } from "@/components/icons/XIcon";
 import { DetailLink } from "@/routing/DetailLink";
@@ -21,6 +22,7 @@ function shareLinkFor(keys: readonly AreaKey[]): string {
 }
 
 async function copyShareLink(keys: readonly AreaKey[]) {
+  trackEvent("map", "share-copy", keys.join(","));
   try {
     await navigator.clipboard.writeText(shareLinkFor(keys));
     toast.success("Area location ready to share!");
