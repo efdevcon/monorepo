@@ -17,8 +17,6 @@ import { applyInterestChanges } from "@/data/interested/applyPlan";
 import { useUser } from "@/data/auth/useUser";
 import { INTERESTS_PARAM } from "@/data/store/schedule-source";
 import { usePreviewPlan } from "@/hooks/usePreviewState";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
-import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import type { Session } from "@/data/models/sessions";
 import {
   isEmptyPlan,
@@ -88,9 +86,6 @@ export function PlanImport() {
   // what a visitor without a link came for), the planner card follows.
   const empty = isEmptyPlan(request) && !done;
   const loading = sessions.length === 0;
-  // On phones the floating feedback button sits where the action bar is pinned.
-  const desktop = useIsDesktop();
-  useHideFeedbackFab(!done && !isEmptyPlan(request) && !loading && !desktop);
 
   const apply = async () => {
     setBusy(true);

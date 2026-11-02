@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useId, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import type { FeedbackError, FeedbackSource } from "./types";
 
 /**
  * App-wide "open the feedback sheet" request, same pattern as the DevaBot
  * panel: the sheet is mounted once in the root layout, and any place (Home,
- * My Devcon, the crash page, the floating button) opens it without a
+ * My Devcon, the crash page, the `/feedback` link) opens it without a
  * callback through the tree. `openedAt` makes a repeat request a new object.
  */
 export interface FeedbackRequest {
@@ -43,41 +43,6 @@ export function useFeedbackRequest(): FeedbackRequest | null {
     },
     () => current,
     () => null
-  );
-}
-
-/**
- * Pages whose own dialogs land in the floating button's corner (the map's
- * area card on phones) register themselves as covering it while they are
- * open; the button fades out meanwhile, like the map's bottom controls do.
- * A set of callers, not a flag, so two covering dialogs can overlap in time.
- */
-const covering = new Set<string>();
-const coverListeners = new Set<() => void>();
-
-export function useHideFeedbackFab(hidden: boolean): void {
-  const id = useId();
-  useEffect(() => {
-    if (!hidden) return;
-    covering.add(id);
-    coverListeners.forEach((cb) => cb());
-    return () => {
-      covering.delete(id);
-      coverListeners.forEach((cb) => cb());
-    };
-  }, [hidden, id]);
-}
-
-export function useFeedbackFabHidden(): boolean {
-  return useSyncExternalStore(
-    (cb) => {
-      coverListeners.add(cb);
-      return () => {
-        coverListeners.delete(cb);
-      };
-    },
-    () => covering.size > 0,
-    () => false
   );
 }
 
