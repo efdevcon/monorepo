@@ -104,7 +104,11 @@ export function useQuietUpdating(): boolean {
   return d.quiet && d.state === "updating";
 }
 
-let debugActions = { checkNow: () => {}, applyNow: () => {} };
+let debugActions: { checkNow: () => void; applyNow: () => void; refresh: () => Promise<void> } = {
+  checkNow: () => {},
+  applyNow: () => {},
+  refresh: async () => window.location.reload(),
+};
 /** EF internal tools: ask the browser for a new worker right now. */
 export function updateCheckNow() {
   debugActions.checkNow();
@@ -112,6 +116,13 @@ export function updateCheckNow() {
 /** EF internal tools: apply a waiting build right now (counts as an accepted update). */
 export function updateApplyNow() {
   debugActions.applyNow();
+}
+/**
+ * The My Devcon footer's "Refresh app": check for a new build, apply it when
+ * one is waiting (the flow reloads), otherwise plainly reload the page.
+ */
+export function refreshApp(): Promise<void> {
+  return debugActions.refresh();
 }
 
 function readMarker(): UpdateMarker | null {
@@ -658,16 +669,33 @@ export function ServiceWorkerUpdater() {
       // so the fallback toast's clock must not carry over to the next build.
       if (!reg.waiting) clearAvailable();
       setDebug({ controlled: !!navigator.serviceWorker.controller, waiting: !!reg.waiting, nextCheckAt: dueAt });
+      const applyNow = () => {
+        if (!registration?.waiting && flow.state !== "available" && !foreign) return false;
+        trackEvent("sw", "update-accepted");
+        quiet = null;
+        setDebug({ quiet: false });
+        foreign = false;
+        dismissToast();
+        flow.requestUpdate();
+        return true;
+      };
       debugActions = {
         checkNow: check,
         applyNow: () => {
-          if (!registration?.waiting && flow.state !== "available" && !foreign) return;
-          trackEvent("sw", "update-accepted");
-          quiet = null;
-          setDebug({ quiet: false });
-          foreign = false;
-          dismissToast();
-          flow.requestUpdate();
+          applyNow();
+        },
+        refresh: async () => {
+          // Give the browser a moment to find and install a new worker, then
+          // apply it; with nothing new, a plain reload still gets fresh data.
+          check();
+          const deadline = Date.now() + 3000;
+          while (Date.now() < deadline && !registration?.waiting && !registration?.installing) {
+            await new Promise((resolve) => window.setTimeout(resolve, 150));
+          }
+          while (Date.now() < deadline + 4000 && registration?.installing && !registration?.waiting) {
+            await new Promise((resolve) => window.setTimeout(resolve, 150));
+          }
+          if (!applyNow()) window.location.reload();
         },
       };
 
@@ -747,7 +775,7 @@ export function ServiceWorkerUpdater() {
     }, TICK_MS);
 
     return () => {
-      debugActions = { checkNow: () => {}, applyNow: () => {} };
+      debugActions = { checkNow: () => {}, applyNow: () => {}, refresh: async () => window.location.reload() };
       navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       window.clearInterval(intervalId);

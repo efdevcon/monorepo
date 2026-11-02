@@ -23,6 +23,7 @@ import {
   type ReleaseGate,
 } from "@/data/release/releaseGates";
 import { isTeamEmail } from "@/data/release/previewAccess";
+import { buildLabel } from "@/data/build";
 
 /** Per-device "already shown / dismissed" flags of the notification nudges. */
 const NUDGE_PREF_KEYS = [
@@ -37,21 +38,6 @@ const NUDGE_PREF_KEYS = [
  */
 const toolPill =
   "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
-
-/**
- * The bundle's identity, inlined at build time (next.config.ts `env`): short
- * commit (or "dev"), build time and Netlify context. Stored timestamp, not
- * "now", so plain viewer-local formatting is fine.
- */
-function buildLabel(): string {
-  const build = process.env.APP_BUILD || "dev";
-  const at = process.env.APP_BUILD_TIME ? Date.parse(process.env.APP_BUILD_TIME) : NaN;
-  const when = Number.isFinite(at)
-    ? new Date(at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
-    : "unknown time";
-  const context = process.env.APP_BUILD_CONTEXT || "local";
-  return `Build ${build} · ${when} · ${context}`;
-}
 
 /**
  * Tools for the EF team on My Devcon (/my-devcon), rendered only for signed-in
