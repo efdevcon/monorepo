@@ -376,20 +376,6 @@ export interface PartnerConfig {
   internalTester?: (email: string) => boolean;
 }
 
-/**
- * The `event` signed into every proof: "devcon-8" for the production Devcon 8
- * event (tickets.devcon.org, Pretix slug "8"), which is the name partners pin,
- * and the Pretix slug for any other event, so a test event's proofs can never
- * pass for Devcon 8. Bound into the identifier and the signature: changing it
- * gives every ticket a new identifier at every partner (their spent-sets no
- * longer match) and partners must accept the new value. Switched from "8" on
- * 2026-11-02.
- */
-export function proofEventFor(store: { url: string; eventSlug: string }): string {
-  const production = store.url.replace(/\/+$/, "") === "https://tickets.devcon.org" && store.eventSlug === "8";
-  return production ? "devcon-8" : store.eventSlug;
-}
-
 export const PARTNERS: Record<string, PartnerConfig> = {
   ens: {
     label: "ENS",
