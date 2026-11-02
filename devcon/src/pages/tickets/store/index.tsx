@@ -202,10 +202,11 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     href: '/form/builder-application',
   },
   {
+    // Copy mirrors the live Pretix product (item 7 on tickets.devcon.org).
     type: 'youth',
-    title: 'Youth Ticket (3-17) 🌱',
-    meta: 'Consent form submission & ID required at check-in',
-    description: "Whether you're a younger attendee, or bringing your child.",
+    title: 'Solo Youth Ticket (16-17) 🌱',
+    meta: 'Consent form submission & ID/proof required at check-in',
+    description: 'For attendees 16-17 attending alone. Anyone under 16 must be accompanied by a parent/guardian.',
     combined: '$19',
     buttonLabel: 'Apply now',
     href: '/form/youth-ticket',
