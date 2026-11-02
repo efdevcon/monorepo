@@ -64,8 +64,10 @@ const EVENTS = {
   // update-deferred: a quiet switch held back, name = reason (silentUpdate.ts).
   sw: ["update-shown", "update-accepted", "update-slow", "update-reload", "update-auto", "update-deferred"],
   sync: ["bundle-failed"],
-  // page: the route error boundary; not-found: the 404 page, name = pathname.
-  error: ["page", "not-found"],
+  // page: the route error boundary; not-found: the 404 page; stale-chunk: a
+  // chunk of an older build was gone after a deploy and the page reloaded
+  // (utils/chunkError.ts). name = pathname.
+  error: ["page", "not-found", "stale-chunk"],
   feedback: ["open", "sent", "queued", "failed"],
   network: ["supabase-proxy", "token-rate-limited"],
 } as const;

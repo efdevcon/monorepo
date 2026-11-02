@@ -1,12 +1,13 @@
 "use client";
 
 import { trackEvent } from "@/data/analytics/track";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RefreshCw, TriangleAlert } from "lucide-react";
 import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 import { StateMessage } from "@/components/StateMessage";
 import { describeError, openFeedback } from "@/data/feedback/feedbackState";
 import { resetApp } from "@/data/feedback/resetApp";
+import { canReloadForChunkError, isChunkLoadError, reloadForChunkError } from "@/utils/chunkError";
 
 /**
  * Route error boundary: the app's centred state recipe on the app gradient.
@@ -15,6 +16,10 @@ import { resetApp } from "@/data/feedback/resetApp";
  * layout, which survives this boundary) with the device details. "Reset the
  * app" is the escape hatch for a poisoned cache. Preview outside production:
  * `/?previewState=crash`.
+ *
+ * A chunk-load failure is build skew, not a crash (utils/chunkError.ts): the
+ * page reloads once onto the current deploy behind a short "Updating" state,
+ * and only a repeat within a minute shows the crash screen.
  */
 export default function Error({
   error,
@@ -23,10 +28,26 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  // Decided once, at mount: the same error never flips between the two states.
+  const [stale] = useState(() => isChunkLoadError(error) && canReloadForChunkError());
   useEffect(() => {
+    if (stale) {
+      trackEvent("error", "stale-chunk", window.location.pathname);
+      reloadForChunkError();
+      return;
+    }
     console.error("Unhandled error:", error);
     trackEvent("error", "page", window.location.pathname);
-  }, [error]);
+  }, [error, stale]);
+
+  if (stale) {
+    return (
+      <main className="flex min-h-dvh items-center justify-center py-16">
+        <div className="app-bg" aria-hidden />
+        <StateMessage icon={RefreshCw} title="Updating the app" body="A newer version is live. Reloading…" headingLevel="h1" />
+      </main>
+    );
+  }
 
   return (
     <main className="flex min-h-dvh items-center justify-center py-16">

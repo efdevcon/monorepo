@@ -94,6 +94,7 @@ import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, tes
 import { summarizeAnnouncements } from "../src/app/api/announcements/status";
 import { bulkQueries, parseWindow, shapeReport } from "../src/app/api/admin/analytics/report";
 import { KIOSK_ROUTE, parseKioskPath, shellForPath } from "../src/routing/viewParams";
+import { isChunkLoadError } from "../src/utils/chunkError";
 import {
   CHANGEOVER_HOLD_MS,
   HIDDEN_DELAY_MS,
@@ -1108,6 +1109,16 @@ function testAnalyticsReport() {
   check("no results: empty report, window kept", empty.days.length === 0 && empty.today === null && empty.windowDays === 7 && empty.site.timezone === "" && empty.warnings.length === 0 && empty.health.failures.length === 0);
 }
 
+function testChunkLoadError() {
+  console.log("\n--- stale build: chunk load errors are recognised ---");
+  const chunk = Object.assign(new Error("Loading chunk 1322 failed.\n(error: https://app.devcon.org/_next/static/chunks/1322.8b28a02a0d85c1d4.js)"), { name: "ChunkLoadError" });
+  check("webpack's ChunkLoadError by name", isChunkLoadError(chunk));
+  check("by message when the name was lost", isChunkLoadError(new Error("Loading chunk 42 failed")));
+  check("a CSS chunk too", isChunkLoadError(new Error("Loading CSS chunk 7 failed. (/_next/static/css/x.css)")));
+  check("a dynamic import that cannot fetch its module", isChunkLoadError(new TypeError("Failed to fetch dynamically imported module: https://app.devcon.org/_next/static/chunks/x.js")));
+  check("other errors are not", !isChunkLoadError(new Error("Cannot read properties of undefined (reading 'waiting')")) && !isChunkLoadError(null) && !isChunkLoadError("Loading chunk"));
+}
+
 function testSilentUpdates() {
   console.log("\n--- silent app updates (kiosk, launch, hidden tab) ---");
   check("kiosk path: /room-screens/<id>, trailing slash allowed", parseKioskPath("/room-screens/lotus-stage-1") === "lotus-stage-1" && parseKioskPath("/room-screens/lotus-stage-1/") === "lotus-stage-1");
@@ -1627,6 +1638,7 @@ async function main() {
   testAnnouncementsStatus();
   testAnalyticsReport();
   testSilentUpdates();
+  testChunkLoadError();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }

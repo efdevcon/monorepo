@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import APP_CONFIG from "@/CONFIG";
 import { trackEvent } from "@/data/analytics/track";
+import { canReloadForChunkError, isChunkLoadError, reloadForChunkError } from "@/utils/chunkError";
 
 /** How long a broken room screen shows its message before reloading itself. */
 const RETRY_MS = 30_000;
@@ -22,6 +23,12 @@ export default function RoomScreensError({
   reset: () => void;
 }) {
   useEffect(() => {
+    // Build skew (a chunk of an older build is gone): straight onto the new build.
+    if (isChunkLoadError(error) && canReloadForChunkError()) {
+      trackEvent("error", "stale-chunk", window.location.pathname);
+      reloadForChunkError();
+      return;
+    }
     console.error("Room screen error:", error);
     trackEvent("error", "page", window.location.pathname);
     if (!APP_CONFIG.KIOSK_AUTO_UPDATE) return;
