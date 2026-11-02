@@ -21,7 +21,6 @@ import {
   ListFilter,
   MoveDown,
   MoveUp,
-  Repeat,
   Tent,
 } from "lucide-react";
 import cn from "classnames";
@@ -228,35 +227,6 @@ function LiveNowButton({ onClick }: { onClick: () => void }) {
     >
       <ClockArrowDown className="size-4 shrink-0" />
       Live now
-    </button>
-  );
-}
-
-/**
- * Prototype switch (2026-10-31) between the two "all programming in one
- * room" concepts: 1 — a "Filter all" link under each timeline room name;
- * 2 — a "Show all programming" switch under Locations in the filter panel
- * once one location is picked. In the URL as `?concept=1|2` so a reload or
- * a shared link keeps the mode. Bottom-right, above the Live now pill on
- * phones; desktop has nothing in that corner.
- */
-type Concept = 1 | 2;
-const CONCEPT_PARAM = "concept";
-const CONCEPT_LABELS: Record<Concept, string> = {
-  1: "Concept 1 · Room hover",
-  2: "Concept 2 · Filter toggle",
-};
-
-function ConceptSwitch({ concept, onChange }: { concept: Concept; onChange: (c: Concept) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onChange(concept === 1 ? 2 : 1)}
-      title="Switch prototype concept"
-      className="fixed right-4 bottom-[calc(var(--nav-clearance)+68px)] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-purple bg-white py-[7px] pl-[10px] pr-3 text-[12px] font-medium leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out phone-landscape:right-[max(16px,var(--safe-right))] hover:bg-dc-lavender lg:right-4 lg:bottom-4"
-    >
-      <Repeat className="size-3.5 shrink-0" />
-      {CONCEPT_LABELS[concept]}
     </button>
   );
 }
@@ -605,13 +575,6 @@ export function Schedule() {
   // above the keyed inner view, so a programme switch (which remounts it)
   // does not land again: testers read that as the app forcing them to "now".
   const landedRef = useRef(false);
-  const [concept, setConcept] = useState<Concept>(searchParams.get(CONCEPT_PARAM) === "2" ? 2 : 1);
-  const changeConcept = useCallback((next: Concept) => {
-    setConcept(next);
-    const url = new URL(window.location.href);
-    url.searchParams.set(CONCEPT_PARAM, String(next));
-    window.history.replaceState(window.history.state, "", url.toString());
-  }, []);
   const changeSource = useCallback((next: ScheduleSource) => {
     trackEvent("schedule", "programme", next);
     setSource(next);
@@ -632,8 +595,6 @@ export function Schedule() {
         zoom={zoom}
         setZoom={setZoom}
         landedRef={landedRef}
-        concept={concept}
-        onConceptChange={changeConcept}
       />
     </ScheduleSourceProvider>
   );
@@ -648,8 +609,6 @@ function ScheduleInner({
   zoom,
   setZoom,
   landedRef,
-  concept,
-  onConceptChange,
 }: {
   source: ScheduleSource;
   hasCommunity: boolean;
@@ -659,8 +618,6 @@ function ScheduleInner({
   zoom: TimelineZoom;
   setZoom: (z: TimelineZoom) => void;
   landedRef: RefObject<boolean>;
-  concept: Concept;
-  onConceptChange: (c: Concept) => void;
 }) {
   const { sessions, isLoading, isError } = useSessions();
   // "My Interests" spans both programmes (see useScheduleState).
@@ -700,8 +657,6 @@ function ScheduleInner({
     interestedOnly,
     setInterestedOnly,
     allProgrammes,
-    setAllProgrammes,
-    filterRoomAll,
     filterOptions,
     daySessions,
     resultCount,
@@ -732,13 +687,8 @@ function ScheduleInner({
   // Communities (hubs and community-led groups, from `communityOptions`);
   // My Interests spanning both programmes shows Tracks and Communities.
   // Locations shows in every mode (the hubs' own "rooms" excepted).
-  // "All programming" in one room spans both programmes too (prototype).
   const filterMode: FilterPanelMode =
-    hasCommunity && (interestedOnly || allProgrammes) ? "both" : source === "hubs" ? "hubs" : "main";
-  // Which concept's control is live; neither without a Community programme
-  // to widen into.
-  const onFilterRoom = hasCommunity && concept === 1 ? filterRoomAll : undefined;
-  const onToggleAllProgrammes = hasCommunity && concept === 2 ? setAllProgrammes : undefined;
+    hasCommunity && interestedOnly ? "both" : source === "hubs" ? "hubs" : "main";
 
   // My Interests reshapes the panel (its Communities section comes and goes;
   // on the Community programme Tracks too), but selections outlive the
@@ -1431,8 +1381,6 @@ function ScheduleInner({
         communities={communityOptions}
         interestedOnly={interestedOnly}
         onToggleInterested={setInterestedOnly}
-        allProgrammes={allProgrammes}
-        onToggleAllProgrammes={onToggleAllProgrammes}
       />
     </div>
   ) : null;
@@ -1534,9 +1482,6 @@ function ScheduleInner({
           on and a matchless day showing, it is the way back to today. */}
       {!detailId && paneActive && anyLive && (
         <LiveNowButton onClick={jumpToNow} />
-      )}
-      {!detailId && paneActive && hasCommunity && (
-        <ConceptSwitch concept={concept} onChange={onConceptChange} />
       )}
       {/* Floating mobile controls, bottom-left opposite Live now: the
           list/timeline toggle once the in-flow one has scrolled away (kept
@@ -1890,7 +1835,6 @@ function ScheduleInner({
                           zoom={zoom}
                           // Only over the whole programme (see the prop).
                           collapseEmptyLanes={activeFilterCount === 0}
-                          onFilterRoom={onFilterRoom}
                           selectedSessionId={selectedSessionId}
                           // Clicking the already-selected block closes the panel.
                           onOpen={(id) =>
@@ -2008,8 +1952,6 @@ function ScheduleInner({
           communities={communityOptions}
           interestedOnly={interestedOnly}
           onToggleInterested={setInterestedOnly}
-          allProgrammes={allProgrammes}
-          onToggleAllProgrammes={onToggleAllProgrammes}
         />
       )}
     </main>

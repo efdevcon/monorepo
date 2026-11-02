@@ -108,19 +108,25 @@ export function useScheduleState(
   const [interestedOnly, setInterestedOnly] = useState(initialInterestedOnly);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState<Filters>(EMPTY);
-  // "Show all programming" (prototype, 2026-10-31): with exactly one
-  // location selected, the view spans both programmes for that room, so a
-  // stage's tracks sessions and its community-led slots read as one day.
-  // The request outlives nothing: it drops as soon as the location pick is
-  // no longer exactly one, so a later pick never lands in the wider list
-  // unasked. Adjusted during render ("state from props"), not in an effect.
-  const [allProgrammesWanted, setAllProgrammesWanted] = useState(false);
-  if (allProgrammesWanted && filters.room.length !== 1) setAllProgrammesWanted(false);
-  const allProgrammes = allProgrammesWanted && filters.room.length === 1;
   const sessions =
-    (interestedOnly || allProgrammes) && everyProgrammeSessions
+    interestedOnly && everyProgrammeSessions
       ? everyProgrammeSessions
       : programmeSessions;
+  // A single location pick spans both programmes. A stage is a place, and
+  // whoever is standing in it wants whatever is on there, whichever team
+  // runs it: the Lightning Stage is the Academic track's all Thursday, the
+  // Workshops are EPF's and BuidlGuidl's for a day each, and on those days
+  // the Devcon programme alone shows the room empty. Only the filtered list
+  // widens: the days, the filter options and the timeline's lanes stay the
+  // programme's own, so the panel does not reshape on a pick. Two or more
+  // locations stay within the programme, as does no pick at all.
+  const programmeIds = useMemo(
+    () => new Set(programmeSessions.map((s) => s.id)),
+    [programmeSessions]
+  );
+  const oneRoom = filters.room.length === 1;
+  const filterBase =
+    oneRoom && everyProgrammeSessions ? everyProgrammeSessions : sessions;
   // Ticks every minute so "live"/"soon" status stays current (URL-mockable).
   // `nowDate` is null until the mock (if any) has resolved — day defaulting
   // waits for it so a cached session list can't race ahead with real time.
@@ -264,17 +270,6 @@ export function useScheduleState(
     setFilters(EMPTY);
     setSearch("");
     setInterestedOnly(false);
-    setAllProgrammesWanted(false);
-  };
-
-  /**
-   * "Filter all" on a room (prototype concept 1): this location alone, every
-   * programme — the facet picks go, since a track or community pick would
-   * contradict "all"; the search and My Interests stay.
-   */
-  const filterRoomAll = (room: string) => {
-    setFilters({ ...EMPTY, room: [room] });
-    setAllProgrammesWanted(true);
   };
 
   const activeFilterCount =
@@ -333,21 +328,32 @@ export function useScheduleState(
   }, [q, filters, interestedOnly, interestedIds]);
 
   // Every session on the selected day (every day under the All tab), before
-  // filters + search.
+  // filters + search. Over both programmes with one location picked.
   const daySessionsAll = useMemo(
     () =>
       selectedDay === ALL_DAYS
-        ? sessions
+        ? filterBase
         : selectedDay
-          ? sessions.filter((s) => dayKey(s) === selectedDay)
+          ? filterBase.filter((s) => dayKey(s) === selectedDay)
           : [],
-    [sessions, selectedDay]
+    [filterBase, selectedDay]
   );
 
   // Day's sessions after filters + search, grouped by start time.
   const groups: TimeGroup[] = useMemo(
     () => groupByTime(daySessionsAll.filter(matchesSession)),
     [daySessionsAll, matchesSession]
+  );
+
+  // Whether the one-location view is showing the other programme's sessions
+  // today: the status chip then says so ("All programming"). Quiet on the
+  // days a stage is the programme's own, and on single-programme stages.
+  const allProgrammes = useMemo(
+    () =>
+      oneRoom &&
+      filterBase !== sessions &&
+      groups.some((g) => g.sessions.some((s) => !programmeIds.has(s.id))),
+    [oneRoom, filterBase, sessions, groups, programmeIds]
   );
 
   // The "live now" slot is decided by the whole day, not the filtered list:
@@ -379,13 +385,13 @@ export function useScheduleState(
   const dayCounts = useMemo<ReadonlyMap<string, number> | null>(() => {
     if (!hasQuery) return null;
     const counts = new Map<string, number>();
-    for (const s of sessions) {
+    for (const s of filterBase) {
       if (!matchesSession(s)) continue;
       const k = dayKey(s);
       counts.set(k, (counts.get(k) ?? 0) + 1);
     }
     return counts.size > 0 ? counts : null;
-  }, [hasQuery, sessions, matchesSession]);
+  }, [hasQuery, filterBase, matchesSession]);
 
   /** Matches across every day mid-search (the input's "N results"); null otherwise. */
   const totalMatches = useMemo(() => {
@@ -549,8 +555,6 @@ export function useScheduleState(
     interestedOnly,
     setInterestedOnly,
     allProgrammes,
-    setAllProgrammes: setAllProgrammesWanted,
-    filterRoomAll,
     daySessions,
     resultCount,
     anyLive,

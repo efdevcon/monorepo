@@ -22,7 +22,7 @@ export function FilterStatusBar({
   onClear,
 }: {
   counts: Partial<Record<FilterFacet, number>>;
-  /** The one-location view spans both programmes (prototype, 2026-10-31). */
+  /** The one-location view is showing the other programme's sessions too (useScheduleState). */
   allProgrammes?: boolean;
   onClear: () => void;
 }) {
