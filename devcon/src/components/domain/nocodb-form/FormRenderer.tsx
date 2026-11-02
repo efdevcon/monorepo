@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react'
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -26,6 +26,8 @@ import { isGithubTitle, isWalletTitle, stripWalletPrefix } from 'config/form-fie
 import { useBuilderConnect } from 'context/BuilderConnectContext'
 import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
+import { SignaturePad, SignaturePadHandle } from './SignaturePad'
+import { useBeforeSubmit } from './before-submit'
 
 export interface FormColumn {
   // NocoDB column id (e.g. "ca5053xfrug7k1d"). Optional for back-compat —
@@ -168,6 +170,38 @@ function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
+// Attachment columns whose name mentions a signature (the youth form's
+// "Parent/Guardian signature" / "Minor signature") get a draw-to-sign pad on
+// top of the file picker. Checked on both name slots, like the Country marker.
+function isSignatureField(col: FormColumn): boolean {
+  const needle = 'signature'
+  return col.title.toLowerCase().includes(needle) || (col.column_name || '').toLowerCase().includes(needle)
+}
+
+// Stable identity for an uploaded attachment across react-hook-form's value
+// cloning (setValue deep-clones, so object identity can't be relied on).
+function attachmentKey(a: NocoAttachment): string {
+  return a.path || a.signedPath || a.url || a.title
+}
+
+// NocoDB sometimes returns attachments as a JSON-encoded string on read; normalize.
+function parseAttachments(raw: unknown): NocoAttachment[] {
+  if (Array.isArray(raw)) return raw
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw)
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  }
+  return []
+}
+
+// How long after the last pen-up a drawn signature waits before uploading, so
+// a multi-stroke signature goes up once rather than per stroke.
+const SIGNATURE_UPLOAD_DEBOUNCE_MS = 700
+
 function attachmentProxyUrl(a: NocoAttachment): string | null {
   // Prefer absolute signed URLs, then NocoDB's `dltemp/...` signed path. Raw
   // `download/...` paths are not lent through the proxy (no token sharing).
@@ -234,6 +268,7 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
   const {
     register,
     setValue,
+    getValues,
     watch,
     formState: { errors },
   } = useFormContext()
@@ -243,6 +278,7 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
   // RHF parses `[...]` and `.` as path syntax — register under a safe alias
   // and let FormPage remap to the original column name on submit.
   const rhfKey = rhfFieldName(col.column_name)
+  const signature = isSignatureField(col)
 
   useEffect(() => {
     register(rhfKey, {
@@ -253,40 +289,17 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
     })
   }, [register, rhfKey, col.required, col.title])
 
-  // NocoDB sometimes returns attachments as a JSON-encoded string on read; normalize.
-  const rawAttachments = watch(rhfKey)
-  const attachments: NocoAttachment[] = Array.isArray(rawAttachments)
-    ? rawAttachments
-    : typeof rawAttachments === 'string'
-    ? (() => {
-        try {
-          return JSON.parse(rawAttachments)
-        } catch {
-          return []
-        }
-      })()
-    : []
+  const attachments = parseAttachments(watch(rhfKey))
   const hasFiles = attachments.length > 0
   const fieldError = errors[rhfKey]
   const errorMessage = uploadError || (fieldError?.message as string | undefined)
 
   const handlePick = () => inputRef.current?.click()
 
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
-    e.target.value = ''
-    if (files.length === 0) return
-
-    setUploadError('')
-    for (const file of files) {
-      if (file.size > ATTACHMENT_MAX_BYTES) {
-        setUploadError(`"${file.name}" is too large (max 10MB)`)
-        return
-      }
-    }
-
-    setUploading(true)
-    try {
+  // Upload `files` one by one through our proxy; resolves with NocoDB's
+  // attachment records, throws on the first failure.
+  const uploadFiles = useCallback(
+    async (files: File[]): Promise<NocoAttachment[]> => {
       const headers: Record<string, string> = {}
       if (supabase) {
         const {
@@ -310,8 +323,28 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
         if (!res.ok || !result.success) throw new Error(result.error || 'Upload failed')
         if (Array.isArray(result.attachments)) uploaded.push(...result.attachments)
       }
+      return uploaded
+    },
+    [viewId, col.column_name]
+  )
 
-      setValue(rhfKey, [...attachments, ...uploaded], { shouldValidate: true })
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    e.target.value = ''
+    if (files.length === 0) return
+
+    setUploadError('')
+    for (const file of files) {
+      if (file.size > ATTACHMENT_MAX_BYTES) {
+        setUploadError(`"${file.name}" is too large (max 10MB)`)
+        return
+      }
+    }
+
+    setUploading(true)
+    try {
+      const uploaded = await uploadFiles(files)
+      setValue(rhfKey, [...parseAttachments(getValues(rhfKey)), ...uploaded], { shouldValidate: true })
     } catch (err) {
       setUploadError((err as Error).message)
     } finally {
@@ -319,7 +352,84 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
     }
   }
 
+  // ── Drawn signature ──
+  // The pad hands over a fresh PNG after every stroke; uploads are debounced
+  // and chained so the field always ends up holding exactly one pad-made
+  // attachment (replacing the previous one). `undefined` = nothing pending,
+  // `null` = pad cleared, File = drawing to upload.
+  const padRef = useRef<SignaturePadHandle>(null)
+  const pendingSignatureRef = useRef<File | null | undefined>(undefined)
+  const signatureTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const signatureInFlightRef = useRef<Promise<void> | null>(null)
+  const padAttachmentKeyRef = useRef<string | null>(null)
+  const [savingSignature, setSavingSignature] = useState(false)
+
+  const flushSignature = useCallback(async () => {
+    if (signatureTimerRef.current) {
+      clearTimeout(signatureTimerRef.current)
+      signatureTimerRef.current = null
+    }
+    const previous = signatureInFlightRef.current ?? Promise.resolve()
+    const run = previous
+      .catch(() => {})
+      .then(async () => {
+        const file = pendingSignatureRef.current
+        if (file === undefined) return
+        pendingSignatureRef.current = undefined
+        const withoutPad = parseAttachments(getValues(rhfKey)).filter(
+          a => attachmentKey(a) !== padAttachmentKeyRef.current
+        )
+        if (file === null) {
+          padAttachmentKeyRef.current = null
+          setValue(rhfKey, withoutPad, { shouldValidate: true })
+          return
+        }
+        setSavingSignature(true)
+        setUploadError('')
+        try {
+          const uploaded = await uploadFiles([file])
+          padAttachmentKeyRef.current = uploaded[0] ? attachmentKey(uploaded[0]) : null
+          setValue(rhfKey, [...withoutPad, ...uploaded], { shouldValidate: true })
+        } catch (err) {
+          setUploadError(`Could not save your signature: ${(err as Error).message}`)
+          throw err
+        } finally {
+          setSavingSignature(false)
+        }
+      })
+    signatureInFlightRef.current = run
+    try {
+      await run
+    } finally {
+      if (signatureInFlightRef.current === run) signatureInFlightRef.current = null
+    }
+  }, [getValues, setValue, rhfKey, uploadFiles])
+
+  // Whatever is drawn must be uploaded before the form values are snapshotted.
+  useBeforeSubmit(flushSignature)
+
+  useEffect(
+    () => () => {
+      if (signatureTimerRef.current) clearTimeout(signatureTimerRef.current)
+    },
+    []
+  )
+
+  const handleSignatureChange = (file: File | null) => {
+    pendingSignatureRef.current = file
+    if (signatureTimerRef.current) clearTimeout(signatureTimerRef.current)
+    signatureTimerRef.current = setTimeout(() => {
+      signatureTimerRef.current = null
+      flushSignature().catch(() => {})
+    }, SIGNATURE_UPLOAD_DEBOUNCE_MS)
+  }
+
   const handleRemove = (idx: number) => {
+    const removed = attachments[idx]
+    if (removed && attachmentKey(removed) === padAttachmentKeyRef.current) {
+      padAttachmentKeyRef.current = null
+      padRef.current?.clear({ silent: true })
+    }
     const next = attachments.filter((_, i) => i !== idx)
     setValue(rhfKey, next, { shouldValidate: true })
   }
@@ -330,6 +440,22 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
         <FieldLabel title={col.title} required={col.required} />
         {col.description && <FieldDescription text={col.description} />}
       </div>
+
+      {signature && !isReadOnly && (
+        <>
+          <SignaturePad
+            ref={padRef}
+            onChange={handleSignatureChange}
+            disabled={uploading}
+            ariaLabel={`${col.title} drawing area`}
+          />
+          <div className="flex items-center gap-3 text-xs text-[#594d73]">
+            <span className="h-px flex-1 bg-[#dddae2]" aria-hidden="true" />
+            <span>or upload a file</span>
+            <span className="h-px flex-1 bg-[#dddae2]" aria-hidden="true" />
+          </div>
+        </>
+      )}
 
       <button
         type="button"
@@ -349,6 +475,8 @@ function AttachmentField({ col, viewId, isReadOnly }: { col: FormColumn; viewId:
         onChange={handleChange}
         className="hidden"
       />
+
+      {savingSignature && <p className="text-xs text-[#594d73]">Saving your signature…</p>}
 
       {hasFiles && (
         <ul className="flex flex-col gap-2">
