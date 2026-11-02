@@ -18,9 +18,13 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
  * Prototype (2026-11-02): where the card's share control sits. 1 — an icon
  * in the links row, like a supporter's X and website icons; 2 — a small
  * "Share" text + icon after the floor line under the name; 3 — the same
- * text + icon beside the name, centred on the title. One stays.
+ * text + icon beside the name, centred on the title; 4 — the floor line
+ * again but share first, on phones only (nothing from lg up). One stays.
  */
-export type ShareConcept = 1 | 2 | 3;
+export type ShareConcept = 1 | 2 | 3 | 4;
+
+/** The floor line's "Share" text + icon (concepts 2 and 4). */
+const floorLineShare = "-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80";
 
 /** The link the card copies: `/map?area=…` on this origin, which opens the floor and the card as a tap would. */
 function shareLinkFor(keys: readonly AreaKey[]): string {
@@ -179,12 +183,22 @@ export function AreaCard({
             </div>
             {shown && (
               <span className="mt-1.5 flex flex-wrap items-center gap-x-1 gap-y-1 text-[12px] leading-none text-dc-muted">
+                {shareable && shareConcept === 4 && (
+                  // `contents` so the button and the dot are the line's own flex items; gone from lg up (phones only).
+                  <span className="contents lg:hidden">
+                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
+                      <Share2 className="size-3 shrink-0" aria-hidden />
+                      Share
+                    </button>
+                    <span aria-hidden>·</span>
+                  </span>
+                )}
                 <span>{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>
                 {shareable && shareConcept === 2 && (
                   <>
                     <span aria-hidden>·</span>
                     {/* Padded out to a taller hit area than the 12px line; the negative margins keep the line's height. */}
-                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80">
+                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
                       <Share2 className="size-3 shrink-0" aria-hidden />
                       Share
                     </button>
