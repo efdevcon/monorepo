@@ -312,7 +312,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
       {!crash && (
         <div className="mt-4">
           <span id={categoryLabelId} className={labelClass}>
-            Select one
+            Select type
           </span>
           {/* Phones: the three chips share the row; desktop keeps them at their natural width. */}
           <div role="radiogroup" aria-labelledby={categoryLabelId} className="mt-2 flex flex-wrap gap-2">
@@ -350,7 +350,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
         />
       </label>
 
-      <label className="mt-3 block">
+      <label className="mt-4 block">
         <span className={labelClass}>Email (optional)</span>
         <input
           type="text"
@@ -364,7 +364,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
         <span className="mt-1 block text-[12px] leading-4 text-dc-muted">Only used to follow up with you.</span>
       </label>
 
-      <div className="mt-3">
+      <div className="mt-4">
         <span className={labelClass}>Screenshot or screen recording (optional)</span>
         <div
           className={cn(
