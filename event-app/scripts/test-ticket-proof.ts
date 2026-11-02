@@ -20,6 +20,7 @@ import {
   PARTNERS,
   passesCheckInGate,
   proofFromSearchParams,
+  proofEventFor,
   proofToSearchParams,
   resolveMint,
   signTicketProof,
@@ -294,6 +295,21 @@ async function main() {
       const r = resolveMint({ label: "Faucet" }, { ...gaTicket, hasCheckedIn: false }, tester);
       return r.ok && r.tier === "standard" && !r.testing;
     })()
+  );
+
+  // ---- Event value signed into proofs -----------------------------------
+  check(
+    "production Devcon 8 proofs carry devcon-8",
+    proofEventFor({ url: "https://tickets.devcon.org", eventSlug: "8" }) === "devcon-8" &&
+      proofEventFor({ url: "https://tickets.devcon.org/", eventSlug: "8" }) === "devcon-8"
+  );
+  check(
+    "another Pretix host keeps its slug, so test proofs never pass for Devcon 8",
+    proofEventFor({ url: "https://ticketh.xyz", eventSlug: "8" }) === "8"
+  );
+  check(
+    "another event on the production host keeps its slug",
+    proofEventFor({ url: "https://tickets.devcon.org", eventSlug: "test-devcon-8" }) === "test-devcon-8"
   );
 
   // ---- Testnet faucets: any ticket type, after check-in ----------------

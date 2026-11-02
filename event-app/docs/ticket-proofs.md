@@ -11,6 +11,11 @@ Exactly two facts, plus an expiry:
   same value, so the partner can enforce one perk per ticket.
 - **tier**: `india` or `standard`.
 
+Plus `event`: `devcon-8` for the production Devcon 8 event (tickets.devcon.org,
+Pretix slug `8`; signed as `8` until 2026-11-02), the Pretix slug for any other
+event (`proofEventFor` in `proof.ts`), so a test event's proofs never pass for
+Devcon 8.
+
 It carries no email, name, order code, barcode, price or product name.
 
 ## Flow

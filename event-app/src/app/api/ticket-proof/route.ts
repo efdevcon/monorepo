@@ -6,6 +6,7 @@ import { getRequestOrigin } from "../_lib/origin";
 import {
   getPartner,
   isProvableTicket,
+  proofEventFor,
   proofToSearchParams,
   resolveMint,
   signTicketProof,
@@ -159,7 +160,7 @@ export async function POST(request: NextRequest) {
       ticketSecret: match.secret,
       tier,
       partner: partnerName,
-      event: store.eventSlug,
+      event: proofEventFor(store),
     });
 
     // Absolute URL so the link survives being copied out of the app and pasted
