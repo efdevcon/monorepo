@@ -19,11 +19,12 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
  * in the links row, like a supporter's X and website icons; 2 — a small
  * "Share" text + icon after the floor line under the name; 3 — the same
  * text + icon beside the name, centred on the title; 4 — on phones the floor
- * line again but share first, from lg up the control beside the name as in 3. One stays.
+ * line again but share first, from lg up the control beside the name as in 3;
+ * 5 — the same text + icon on a line of its own under the floor line. One stays.
  */
-export type ShareConcept = 1 | 2 | 3 | 4;
+export type ShareConcept = 1 | 2 | 3 | 4 | 5;
 
-/** The floor line's "Share" text + icon (concepts 2 and 4). */
+/** The floor line's "Share" text + icon (concepts 2, 4 and 5). */
 const floorLineShare = "-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80";
 
 /** The link the card copies: `/map?area=…` on this origin, which opens the floor and the card as a tap would. */
@@ -204,6 +205,14 @@ export function AreaCard({
                     </button>
                   </>
                 )}
+              </span>
+            )}
+            {shareable && shareConcept === 5 && (
+              <span className="mt-1.5 flex text-[12px] leading-none">
+                <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
+                  <Share2 className="size-3 shrink-0" aria-hidden />
+                  Share
+                </button>
               </span>
             )}
             {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && (
