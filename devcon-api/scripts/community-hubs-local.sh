@@ -55,7 +55,7 @@ COMMUNITY_HUB_SHEETS="$COMMUNITY_HUB_SHEETS" node -e '
 ' "$DATA_DIR/sheets.json"
 
 # Playwright in a throwaway directory, as in CI: nothing installed in the repo.
-WORK_DIR="$(mktemp -d -t community-hubs-local)"
+WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/community-hubs-local.XXXXXX")"
 trap 'rm -rf "$WORK_DIR"' EXIT
 (
   cd "$WORK_DIR"
@@ -84,7 +84,7 @@ node -e '
 ' "$WORK_DIR/live"
 
 if ls "$WORK_DIR"/live/*.png >/dev/null 2>&1; then
-  FAILED_DIR="$(mktemp -d -t community-hubs-failed)"
+  FAILED_DIR="$(mktemp -d "${TMPDIR:-/tmp}/community-hubs-failed.XXXXXX")"
   cp "$WORK_DIR"/live/*.png "$FAILED_DIR/"
   echo "Screenshots of failed reads: $FAILED_DIR"
 fi
