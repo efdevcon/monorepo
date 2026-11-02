@@ -17,8 +17,8 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
 /**
  * Prototype (2026-11-02): where the card's share control sits. 1 — an icon
  * in the links row, like a supporter's X and website icons; 2 — a small
- * "Share" text + icon after the floor line under the name; 3 — an icon
- * right after the last word of the name. One stays.
+ * "Share" text + icon after the floor line under the name; 3 — the same
+ * text + icon beside the name, centred on the title. One stays.
  */
 export type ShareConcept = 1 | 2 | 3;
 
@@ -165,15 +165,16 @@ export function AreaCard({
           )}
           <div className="flex min-w-0 flex-1 flex-col">
             <div className="flex items-center justify-between gap-2">
-              <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">
-                {shownComposite ? shownComposite.name : shown?.name}
+              <div className="flex min-w-0 items-center gap-2">
+                <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
                 {shareable && shareConcept === 3 && (
-                  // Inline so it follows the name's last word when the name wraps; the box is a line's height so the row stays put.
-                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="ml-1.5 inline-flex size-5 cursor-pointer items-center justify-center align-[-0.3em] text-dc-purple transition-opacity hover:opacity-80">
-                    <Share2 className="size-4" />
+                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height.
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80">
+                    <Share2 className="size-3.5 shrink-0" aria-hidden />
+                    Share
                   </button>
                 )}
-              </p>
+              </div>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
             {shown && (
