@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, RefreshCw, X } from "lucide-react";
@@ -16,6 +16,7 @@ import {
   KIOSK_RETRY_MS,
   hiddenUpdateBlocker,
   kioskUpdateBlocker,
+  returnUpdateBlocker,
   toastDue,
   type UpdateTrigger,
 } from "@/utils/silentUpdate";
@@ -30,6 +31,88 @@ const AVAILABLE_KEY = "sw-update-available-since";
 const SCROLL_KEY = "sw-update-scroll";
 /** The build's own id, time and urgent flag, written by next.config.ts; fetched from the current deploy. */
 const VERSION_URL = "/version.json";
+/** localStorage: the last quiet switch this device made (survives the reload it causes). */
+const LAST_AUTO_KEY = "sw-update-last-auto";
+
+/**
+ * What the EF internal tools show about the updater (internal/UpdateTools.tsx):
+ * a readout, never a second source of truth. Real-clock timestamps.
+ */
+export interface UpdateDebug {
+  /** Service workers exist here (not under `pnpm dev`, not on an insecure origin). */
+  supported: boolean;
+  kiosk: boolean;
+  /** A worker controls this page. */
+  controlled: boolean;
+  /** A newer build is installed and waiting. */
+  waiting: boolean;
+  state: UpdateState;
+  /** The running switch was started quietly (kiosk, launch, hidden, return), not by a click. */
+  quiet: boolean;
+  lastCheckAt: number | null;
+  nextCheckAt: number | null;
+  hiddenSince: number | null;
+  lastDefer: { reason: string; at: number } | null;
+  /** The last quiet switch, from this load or carried over its reload. */
+  lastRequest: { trigger: string; at: number } | null;
+}
+
+function readLastAuto(): UpdateDebug["lastRequest"] {
+  try {
+    const raw = localStorage.getItem(LAST_AUTO_KEY);
+    const v = raw ? (JSON.parse(raw) as { trigger?: unknown; at?: unknown }) : null;
+    return v && typeof v.trigger === "string" && typeof v.at === "number" ? { trigger: v.trigger, at: v.at } : null;
+  } catch {
+    return null;
+  }
+}
+
+let debug: UpdateDebug = {
+  supported: true,
+  kiosk: false,
+  controlled: false,
+  waiting: false,
+  state: "idle",
+  quiet: false,
+  lastCheckAt: null,
+  nextCheckAt: null,
+  hiddenSince: null,
+  lastDefer: null,
+  lastRequest: null,
+};
+const debugListeners = new Set<() => void>();
+function setDebug(patch: Partial<UpdateDebug>) {
+  debug = { ...debug, ...patch };
+  debugListeners.forEach((listener) => listener());
+}
+const subscribeDebug = (listener: () => void) => {
+  debugListeners.add(listener);
+  return () => {
+    debugListeners.delete(listener);
+  };
+};
+const SERVER_DEBUG: UpdateDebug = { ...debug };
+
+/** The updater's live state for the EF internal tools. */
+export function useUpdateDebug(): UpdateDebug {
+  return useSyncExternalStore(subscribeDebug, () => debug, () => SERVER_DEBUG);
+}
+
+/** A quiet switch is running on this page right now (UpdatingIndicator in the header). */
+export function useQuietUpdating(): boolean {
+  const d = useUpdateDebug();
+  return d.quiet && d.state === "updating";
+}
+
+let debugActions = { checkNow: () => {}, applyNow: () => {} };
+/** EF internal tools: ask the browser for a new worker right now. */
+export function updateCheckNow() {
+  debugActions.checkNow();
+}
+/** EF internal tools: apply a waiting build right now (counts as an accepted update). */
+export function updateApplyNow() {
+  debugActions.applyNow();
+}
 
 function readMarker(): UpdateMarker | null {
   try {
@@ -224,9 +307,11 @@ const CHECK_INTERVAL_MS = 60_000;
  *   before anything on screen matters.
  * - Hidden tab: a minute after the tab goes hidden, unless a stream or
  *   translation player is mounted, a sheet or dialog is open or someone was
- *   typing; the scroll position rides along and is restored. A hidden page
- *   that a phone froze fires its timer on return, which reads as visible and
- *   defers, so phones mostly update at launch.
+ *   typing; the scroll position rides along and is restored.
+ * - Return: a phone freezes a hidden page, so that timer never fires there.
+ *   Coming back after at least a minute away applies the waiting build at
+ *   once under the same guards: the page re-appears and refreshes once, with
+ *   the scroll restored.
  * - Another page switched the worker (`controllerchange` this page did not
  *   ask for): this page runs the old build under the new worker and a lazy
  *   load could fail, so it reloads at its next hidden moment, or shows the
@@ -248,6 +333,7 @@ export function ServiceWorkerUpdater() {
   const kioskRef = useRef(false);
   useEffect(() => {
     kioskRef.current = kiosk;
+    setDebug({ kiosk });
   }, [kiosk]);
 
   useEffect(() => {
@@ -275,8 +361,17 @@ export function ServiceWorkerUpdater() {
         if (id !== undefined) toast.dismiss(id);
       };
     }
-    if (!("serviceWorker" in navigator)) return;
+    if (!("serviceWorker" in navigator)) {
+      setDebug({ supported: false });
+      return;
+    }
     restoreScroll();
+    setDebug({
+      supported: true,
+      controlled: !!navigator.serviceWorker.controller,
+      lastRequest: readLastAuto(),
+      hiddenSince: document.visibilityState === "hidden" ? Date.now() : null,
+    });
 
     let registration: ServiceWorkerRegistration | undefined;
     let toastId: string | number | undefined;
@@ -322,6 +417,7 @@ export function ServiceWorkerUpdater() {
       const onUpdate = () => {
         trackEvent("sw", "update-accepted");
         quiet = null;
+        setDebug({ quiet: false });
         foreign = false;
         flow.requestUpdate();
       };
@@ -350,11 +446,25 @@ export function ServiceWorkerUpdater() {
       window.location.reload();
     }
 
+    /** The browser's own update check (the minute tick, a tab coming back, the tools' button). */
+    function check() {
+      registration?.update().catch(() => {});
+      const now = Date.now();
+      setDebug({ lastCheckAt: now, nextCheckAt: now + CHECK_INTERVAL_MS, waiting: !!registration?.waiting });
+    }
+
     /** A quiet switch: ask the waiting worker (or, after a foreign switch, just reload). */
     function request(trigger: UpdateTrigger) {
       quiet = trigger;
       trackEvent("sw", "update-auto", trigger);
-      if (trigger === "hidden") saveScroll();
+      const at = Date.now();
+      try {
+        localStorage.setItem(LAST_AUTO_KEY, JSON.stringify({ trigger, at }));
+      } catch {
+        // Storage blocked: the readout forgets it over the reload.
+      }
+      setDebug({ lastRequest: { trigger, at }, quiet: true });
+      if (trigger === "hidden" || trigger === "return") saveScroll();
       foreign = false;
       dismissToast();
       flow.requestUpdate();
@@ -390,6 +500,7 @@ export function ServiceWorkerUpdater() {
       if (blocker) {
         // The next time the tab hides, it tries again.
         trackEvent("sw", "update-deferred", blocker);
+        setDebug({ lastDefer: { reason: blocker, at: Date.now() } });
         return;
       }
       request("hidden");
@@ -424,6 +535,7 @@ export function ServiceWorkerUpdater() {
         });
         if (blocker) {
           trackEvent("sw", "update-deferred", blocker);
+          setDebug({ lastDefer: { reason: blocker, at: Date.now() } });
           kioskTimer = window.setTimeout(tryKiosk, KIOSK_RETRY_MS);
           return;
         }
@@ -476,6 +588,7 @@ export function ServiceWorkerUpdater() {
       clearTimeout: (id) => window.clearTimeout(id as number),
       now: Date.now,
       onState: (state) => {
+        setDebug({ state, waiting: !!registration?.waiting, ...(state === "updating" ? {} : { quiet: false }) });
         if (state === "idle") {
           dismissToast();
           return;
@@ -493,6 +606,7 @@ export function ServiceWorkerUpdater() {
     });
 
     const onControllerChange = () => {
+      setDebug({ controlled: true, waiting: false });
       const firstInstall = !hadController;
       hadController = true;
       if (firstInstall) return; // the page is already on this build
@@ -521,7 +635,22 @@ export function ServiceWorkerUpdater() {
     navigator.serviceWorker.addEventListener("controllerchange", onControllerChange);
 
     navigator.serviceWorker.ready.then((reg) => {
+      // Only a test harness that blocks workers resolves this with nothing.
+      if (!reg) return;
       registration = reg;
+      setDebug({ controlled: !!navigator.serviceWorker.controller, waiting: !!reg.waiting, nextCheckAt: Date.now() + CHECK_INTERVAL_MS });
+      debugActions = {
+        checkNow: check,
+        applyNow: () => {
+          if (!registration?.waiting && flow.state !== "available" && !foreign) return;
+          trackEvent("sw", "update-accepted");
+          quiet = null;
+          setDebug({ quiet: false });
+          foreign = false;
+          dismissToast();
+          flow.requestUpdate();
+        },
+      };
 
       // A request carried over a reload resumes here, without a click.
       flow.start();
@@ -538,6 +667,7 @@ export function ServiceWorkerUpdater() {
         const installing = reg.installing;
         if (!installing) return;
         installing.addEventListener("statechange", () => {
+          setDebug({ waiting: !!reg.waiting });
           // "installed" while a controller already exists => an update, not the
           // first install (which has no controller to replace).
           if (installing.state === "installed" && navigator.serviceWorker.controller) {
@@ -551,12 +681,34 @@ export function ServiceWorkerUpdater() {
     // quiet-switch clock when a build is waiting.
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") {
+        const away = hiddenSince === null ? 0 : Date.now() - hiddenSince;
         hiddenSince = null;
         stopHiddenTimer();
-        registration?.update().catch(() => {});
+        setDebug({ hiddenSince: null });
+        check();
+        // The hidden timer never ran on a frozen page (iOS): a return after a
+        // real absence is the quiet moment instead.
+        if (away > 0 && pendingQuiet()) {
+          const blocker = returnUpdateBlocker({
+            online: navigator.onLine,
+            changeoverNear: false,
+            hidden: false,
+            hiddenForMs: away,
+            mediaPlaying: mediaPlaying(),
+            dialogOpen: dialogOpen(),
+            typing: typing(),
+          });
+          if (!blocker) {
+            request("return");
+          } else if (blocker !== "too-soon") {
+            trackEvent("sw", "update-deferred", blocker);
+            setDebug({ lastDefer: { reason: blocker, at: Date.now() } });
+          }
+        }
         return;
       }
       hiddenSince = Date.now();
+      setDebug({ hiddenSince });
       if (pendingQuiet()) startHiddenTimer();
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
@@ -566,7 +718,7 @@ export function ServiceWorkerUpdater() {
     // on a stale build indefinitely. The same tick re-arms a stuck kiosk and
     // brings the fallback toast when its day is up.
     const intervalId = window.setInterval(() => {
-      registration?.update().catch(() => {});
+      check();
       if (isKiosk()) {
         if (flow.state === "slow") flow.reset();
         return;
@@ -577,6 +729,7 @@ export function ServiceWorkerUpdater() {
     }, CHECK_INTERVAL_MS);
 
     return () => {
+      debugActions = { checkNow: () => {}, applyNow: () => {} };
       navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       window.clearInterval(intervalId);

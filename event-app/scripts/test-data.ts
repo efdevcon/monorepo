@@ -102,6 +102,7 @@ import {
   hiddenUpdateBlocker,
   kioskUpdateBlocker,
   nightlyReloadDue,
+  returnUpdateBlocker,
   toastDue,
 } from "../src/utils/silentUpdate";
 
@@ -1126,6 +1127,10 @@ function testSilentUpdates() {
   check("hidden: an open sheet blocks", hiddenUpdateBlocker({ ...base, dialogOpen: true }) === "dialog");
   check("hidden: typed text blocks", hiddenUpdateBlocker({ ...base, typing: true }) === "typing");
   check("hidden: offline is fine, the shells are precached", hiddenUpdateBlocker({ ...base, online: false }) === null);
+  // iOS freezes hidden pages, so the return after a real absence is the quiet moment there.
+  check("return: safe after a minute away", returnUpdateBlocker({ ...base, hidden: false }) === null);
+  check("return: a short absence does not count", returnUpdateBlocker({ ...base, hidden: false, hiddenForMs: HIDDEN_DELAY_MS - 1 }) === "too-soon");
+  check("return: the same page guards apply", returnUpdateBlocker({ ...base, hidden: false, mediaPlaying: true }) === "media" && returnUpdateBlocker({ ...base, hidden: false, dialogOpen: true }) === "dialog" && returnUpdateBlocker({ ...base, hidden: false, typing: true }) === "typing");
 
   const t0 = Date.parse("2026-11-04T10:00:00Z");
   check("toast: not before 24 h", !toastDue(t0 - TOAST_AFTER_MS + 1, t0, false) && !toastDue(null, t0, false));

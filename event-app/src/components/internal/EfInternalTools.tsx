@@ -12,6 +12,7 @@ import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
 import { CommunityHubsDataTools, EventDataTools, MockClockTools } from "./DebugTools";
 import { AnnouncementsTools } from "./AnnouncementsTools";
+import { UpdateTools } from "./UpdateTools";
 import { OfflineTools } from "./OfflineTools";
 import { Switch } from "@/components/Switch";
 import {
@@ -63,6 +64,8 @@ function buildLabel(): string {
  *   this device (src/data/release/releaseGates.ts).
  * - Build line under the title: short commit, build time and Netlify context
  *   (buildLabel), so "which version is this device on?" is one glance.
+ * - App updates (UpdateTools): the quiet updater's live state, a check
+ *   countdown, the rule for this device, Check now and Apply now.
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
  *   the public header on 2026-09-24; this is the team's way in. Beside it,
  *   the inference debugger (/admin/inference-test) for prompt and model work.
@@ -162,6 +165,16 @@ export function EfInternalTools() {
         </span>
       </div>
       <p className="mt-1 text-[12px] leading-4 text-dc-muted">{buildLabel()}</p>
+
+      {/* App updates: the quiet updater's state, since the switch itself is invisible by design. */}
+      <div className="mt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">App updates</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Whether a new build is waiting and when this device will take it. New builds are found by a check
+          once a minute and when the app comes back to the front.
+        </p>
+        <UpdateTools />
+      </div>
 
       {/* Unreleased features */}
       {unreleased.length > 0 && (

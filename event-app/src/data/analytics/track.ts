@@ -64,7 +64,8 @@ const EVENTS = {
   // update-deferred: a quiet switch held back, name = reason (silentUpdate.ts).
   sw: ["update-shown", "update-accepted", "update-slow", "update-reload", "update-auto", "update-deferred"],
   sync: ["bundle-failed"],
-  error: ["page"],
+  // page: the route error boundary; not-found: the 404 page, name = pathname.
+  error: ["page", "not-found"],
   feedback: ["open", "sent", "queued", "failed"],
   network: ["supabase-proxy", "token-rate-limited"],
 } as const;

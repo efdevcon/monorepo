@@ -12,6 +12,9 @@
  *   first paint matters (no decision needed, see the updater).
  * - Hidden tab: after a minute hidden, unless a stream or translation player
  *   is mounted, a sheet or dialog is open, or someone was typing.
+ * - Return: iOS freezes hidden pages, so that timer never fires there; coming
+ *   back after at least a minute away is the quiet moment instead, under the
+ *   same page guards (the page re-appears and refreshes once).
  *
  * The update toast stays as the fallback: a build still waiting a day later,
  * or one the new deploy marks urgent (public/version.json, next.config.ts).
@@ -28,7 +31,7 @@ export const KIOSK_RETRY_MS = 30_000;
 /** Venue hour (0-23) of the kiosk's nightly reload. */
 export const NIGHTLY_RELOAD_HOUR = 4;
 
-export type UpdateTrigger = "kiosk" | "launch" | "hidden";
+export type UpdateTrigger = "kiosk" | "launch" | "hidden" | "return";
 export type DeferReason = "offline" | "changeover" | "visible" | "too-soon" | "media" | "dialog" | "typing";
 
 export interface UpdateContext {
@@ -58,6 +61,18 @@ export function kioskUpdateBlocker(ctx: UpdateContext): DeferReason | null {
  */
 export function hiddenUpdateBlocker(ctx: UpdateContext): DeferReason | null {
   if (!ctx.hidden) return "visible";
+  if (ctx.hiddenForMs < HIDDEN_DELAY_MS) return "too-soon";
+  if (ctx.mediaPlaying) return "media";
+  if (ctx.dialogOpen) return "dialog";
+  if (ctx.typing) return "typing";
+  return null;
+}
+
+/**
+ * Why a tab coming back to the front must not switch right now, or null to go
+ * ahead: only a real absence counts, and the page guards still apply.
+ */
+export function returnUpdateBlocker(ctx: UpdateContext): DeferReason | null {
   if (ctx.hiddenForMs < HIDDEN_DELAY_MS) return "too-soon";
   if (ctx.mediaPlaying) return "media";
   if (ctx.dialogOpen) return "dialog";
