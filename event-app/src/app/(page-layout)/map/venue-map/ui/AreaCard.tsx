@@ -2,14 +2,39 @@
 
 import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
-import { ChevronRight, Clock3, Globe, Presentation, User } from "lucide-react";
+import { ChevronRight, Clock3, Globe, Presentation, Share2, User } from "lucide-react";
+import { toast } from "sonner";
 import { CloseButton } from "@/components/Buttons";
 import { XIcon } from "@/components/icons/XIcon";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
+import APP_CONFIG from "@/CONFIG";
 import { isAreaId, type AreaId } from "../data/areas";
-import { compositeOf, type Area } from "../data/resolve";
+import { compositeOf, type Area, type AreaKey } from "../data/resolve";
+import { mapHrefForAreas } from "../data/roomAreas";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
+
+/**
+ * Prototype (2026-11-02): where the card's share control sits. 1 — an icon
+ * in the links row, like a supporter's X and website icons; 2 — a small
+ * "Share" text + icon after the floor line under the name. One stays.
+ */
+export type ShareConcept = 1 | 2;
+
+/** The link the card copies: `/map?area=…` on this origin, which opens the floor and the card as a tap would. */
+function shareLinkFor(keys: readonly AreaKey[]): string {
+  const origin = typeof window !== "undefined" ? window.location.origin : APP_CONFIG.APP_ORIGIN;
+  return new URL(mapHrefForAreas(keys), origin).toString();
+}
+
+async function copyShareLink(keys: readonly AreaKey[]) {
+  try {
+    await navigator.clipboard.writeText(shareLinkFor(keys));
+    toast.success("Link copied");
+  } catch {
+    toast.error("Couldn't copy the link");
+  }
+}
 
 /** A place link in a description: `[Info Desk](area:info-desk)` (areas.ts). */
 const AREA_LINK = /\[([^\]]+)\]\(area:([a-z0-9-]+)\)/g;
@@ -50,7 +75,9 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
  * disc on the top edge; everything else inline left of the text), name, the
  * floor it is on, a short description, X and website icon links (as on the speaker page) when the
  * catalogue has them (supporters always; a description's place links become buttons
- * that show that place via `onShowArea`), and for footprints backed by a schedule
+ * that show that place via `onShowArea`), a share control that copies a `/map?area=…`
+ * link to the place (not on the utility places, `Area.shareable`; placed per
+ * `shareConcept` while the two layouts are compared), and for footprints backed by a schedule
  * room the session running there now, tagged "Live now". Stays
  * mounted so it can slide out; the last area is kept while it fades.
  *
@@ -66,6 +93,7 @@ export function AreaCard({
   onClose,
   onShowArea,
   anchorRef,
+  shareConcept,
 }: {
   area: Area | null;
   group: boolean;
@@ -76,6 +104,7 @@ export function AreaCard({
   /** Shows another place from a description's link (the Info Desk from the Ticket Help Desk). */
   onShowArea: (areaId: AreaId) => void;
   anchorRef: MutableRefObject<HTMLDivElement | null>;
+  shareConcept: ShareConcept;
 }) {
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
@@ -93,6 +122,11 @@ export function AreaCard({
   const inlineIcon = stage ? null : shown?.cardIconUrl;
   const live = useLiveSessionForArea(shown);
   const sessionOnly = live !== null && shown !== null && shown.roomIds.some((r) => SESSION_ONLY_ROOMS.has(r));
+  // What the link shows: the whole highlighted group (the Main Stage's three halls) or the one footprint.
+  const shareKeys: readonly AreaKey[] = groupAreas ?? (shown ? [shown.key] : []);
+  const shareable = shown !== null && shown.shareable;
+  const shareLabel = `Copy link to ${shownComposite ? shownComposite.name : shown?.name}`;
+  const links = shown !== null && (shown.website || shown.x) && !shownComposite && !sessionOnly;
 
   return (
     <div
@@ -133,23 +167,42 @@ export function AreaCard({
               <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
-            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>}
+            {shown && (
+              <span className="mt-1.5 flex flex-wrap items-center gap-x-1 gap-y-1 text-[12px] leading-none text-dc-muted">
+                <span>{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>
+                {shareable && shareConcept === 2 && (
+                  <>
+                    <span aria-hidden>·</span>
+                    {/* Padded out to a taller hit area than the 12px line; the negative margins keep the line's height. */}
+                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80">
+                      <Share2 className="size-3 shrink-0" aria-hidden />
+                      Share
+                    </button>
+                  </>
+                )}
+              </span>
+            )}
             {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && (
               <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">
                 <Description text={shownComposite ? shownComposite.description : shown!.description} onShowArea={onShowArea} tabbable={open} />
               </p>
             )}
-            {shown && (shown.website || shown.x) && !shownComposite && !sessionOnly && (
+            {shown && (links || (shareable && shareConcept === 1)) && (
               <div className="mt-2 flex items-center gap-3">
-                {shown.x && (
+                {links && shown.x && (
                   <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name} on X`} className={socialLink}>
                     <XIcon className="size-5" />
                   </a>
                 )}
-                {shown.website && (
+                {links && shown.website && (
                   <a href={shown.website} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name}’s website`} className={socialLink}>
                     <Globe className="size-5" />
                   </a>
+                )}
+                {shareable && shareConcept === 1 && (
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn(socialLink, "cursor-pointer")}>
+                    <Share2 className="size-5" />
+                  </button>
                 )}
               </div>
             )}

@@ -11,10 +11,13 @@ const ROOM_AREAS: Record<string, string[]> = roomsJson;
 /** Query param the map reads to open a floor and show footprints: `?area=<level>/<id>[,<level>/<id>…]`. */
 export const AREA_PARAM = "area";
 
+/** `/map?area=…` showing these footprints (the card's share link; one floor's keys). */
+export const mapHrefForAreas = (keys: readonly string[]): string => `/map?${AREA_PARAM}=${encodeURIComponent(keys.join(","))}`;
+
 /** `/map?area=…` for a room the map knows, plain `/map` otherwise. */
 export function mapHrefForRoom(roomId: string | null | undefined): string {
   const keys = roomId ? ROOM_AREAS[roomId] : undefined;
-  return keys?.length ? `/map?${AREA_PARAM}=${encodeURIComponent(keys.join(","))}` : "/map";
+  return keys?.length ? mapHrefForAreas(keys) : "/map";
 }
 
 /** Splits an `area` param into footprint keys on one floor (keys on other floors, or malformed, are dropped). */
