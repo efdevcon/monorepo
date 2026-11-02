@@ -112,7 +112,10 @@ requirements. All remote images are served from our own Supabase Storage
    were the one category that stayed broken after reconnecting. Small chrome
    (logos, empty-state art, the manifest) goes in `additionalPrecacheEntries`
    (next.config.ts) so it survives the first offline paint; anything large goes in
-   `APP_IMAGES` (`src/data/appImages.ts`) and is warmed at runtime instead.
+   `APP_IMAGES` (`src/data/appImages.ts`) and is warmed at runtime instead. The
+   venue map's area icons and booth logos are `MAP_IMAGES` in the same file,
+   built from the map's own data so a new icon or supporter is warmed without
+   editing a list.
    **Never precache large art** — `login/backdrop.jpg` alone is 1.4MB and the SW
    install is paid by every device. And every precache entry MUST exist: one 404
    fails the install everywhere, which has bitten this repo before.

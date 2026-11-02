@@ -6,7 +6,7 @@ import { useWarmImages } from "@/data/hooks/use-warm-images";
 import { useAnnouncements } from "@/data/announcements/useAnnouncements";
 import { useTickets } from "@/data/tickets/useTickets";
 import { supportersData } from "@/data/supporters";
-import { APP_IMAGES, TRACK_GEM_IMAGES } from "@/data/appImages";
+import { APP_IMAGES, MAP_IMAGES, TRACK_GEM_IMAGES } from "@/data/appImages";
 
 /** Supporter logos ship as a static file, so they're known without a fetch. */
 const SUPPORTER_LOGOS = Object.values(supportersData).flatMap((supporter) => [
@@ -22,7 +22,8 @@ const SUPPORTER_LOGOS = Object.values(supportersData).flatMap((supporter) => [
  * visit — no matter which page the user happened to open.
  *
  * Then warms the images those datasets render — speaker avatars, session images,
- * supporter logos, highlight and featured images — because caching the data
+ * supporter logos, highlight and featured images, the venue map's icons and
+ * booth logos — because caching the data
  * without its images was the half of "works offline" that didn't hold: the
  * speakers page came up complete but as a grid of blank circles.
  *
@@ -66,6 +67,10 @@ export function CacheWarmer() {
     swagImages,
     APP_IMAGES,
     SUPPORTER_LOGOS,
+    // The venue map's area icons and booth logos: the map is what people reach
+    // for on venue wifi, and an icon never seen online stayed blank offline.
+    // Ahead of the avatars, which are many and each matter least.
+    MAP_IMAGES,
     sessions.map((session) => session.image),
     speakers.map((speaker) => speaker.avatar),
   ]);

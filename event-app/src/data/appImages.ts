@@ -2,6 +2,8 @@ import { DC8_TRACKS } from "@/components/schedule/trackTheme";
 import { ROOM_ICON_URLS } from "@/components/room-screen/roomIcon";
 import { COMMUNITY_HUBS, communityHubLockup, communityHubLogo } from "@/data/communityHubs";
 import { COMMUNITY_LED_GROUPS, COMMUNITY_LED_LOGO } from "@/data/communityLed";
+import { ICON_NAMES, iconUrl } from "@/app/(page-layout)/map/venue-map/data/icons.generated";
+import { SUPPORTERS, supporterLogoUrl, type Supporter } from "@/app/(page-layout)/map/venue-map/data/supporters";
 
 /**
  * Static images shipped in `public/` and rendered by the app shell.
@@ -61,4 +63,25 @@ export const APP_IMAGES: string[] = [
   "/schedule/devcon8-logomark.svg",
   "/schedule/empty-search.gif",
   "/partners/ens.png",
+];
+
+/**
+ * The venue map's artwork under public/maps: the area icons that stand on the
+ * floors and head the Find list and area cards (icons.generated.ts, one per
+ * file in public/maps/devcon-8/icons), and the supporters' booth logos, drawn
+ * on the booth and shown on cards and chips (supporters.ts, `logo` and
+ * `cardLogo`). The floors themselves are geometry compiled at build time, so
+ * with these the map is complete offline; without them an icon or logo never
+ * seen online stayed blank. Built from the map's own data, so a new icon or
+ * supporter is warmed without touching this list, and with the exact URLs the
+ * map requests (no version param), so the cache keys match.
+ */
+const MAP_SUPPORTERS: Supporter[] = Object.values(SUPPORTERS);
+export const MAP_IMAGES: string[] = [
+  ...new Set([
+    ...ICON_NAMES.map((name) => iconUrl(name)),
+    ...MAP_SUPPORTERS.flatMap((supporter) =>
+      [supporter.logo, supporter.cardLogo].flatMap((file) => (file ? [supporterLogoUrl(file)] : []))
+    ),
+  ]),
 ];

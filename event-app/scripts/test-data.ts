@@ -68,7 +68,9 @@ import { deriveTopicOptions } from "../src/data/topics";
 import { ALL_DAYS, buildTimeline, collapsedRooms, compareRoomNames, dayParamValue, EMPTY_LANE_MS, lateRooms, resolveDayParam, sortRooms } from "../src/components/schedule/utils";
 import { COMMUNITY_HUB_DATASETS, DATASETS, communityHubsDataset } from "../src/data/dataset";
 import { BundleSchema } from "../src/data/store/types";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
+import { APP_IMAGES, MAP_IMAGES, TRACK_GEM_IMAGES } from "../src/data/appImages";
+import { ICON_NAMES, iconUrl } from "../src/app/(page-layout)/map/venue-map/data/icons.generated";
 import { isUnsupportedPhotoFormat } from "../src/data/tickets/qrFromFile";
 import { strToU8, zipSync } from "fflate";
 import { mergeRemote, settlePending } from "../src/data/interested/merge";
@@ -1667,8 +1669,26 @@ async function main() {
   testAnalyticsReport();
   testSilentUpdates();
   testChunkLoadError();
+  testAppImages();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }
 
 main();
+
+/**
+ * The runtime warm lists (src/data/appImages.ts). A same-origin entry that
+ * points at a missing file fails quietly on every device at every launch, so
+ * every local path must exist under public/ (version params aside), and the
+ * map list must cover every generated icon.
+ */
+function testAppImages() {
+  const lists: Record<string, string[]> = { TRACK_GEM_IMAGES, APP_IMAGES, MAP_IMAGES };
+  for (const [name, urls] of Object.entries(lists)) {
+    const local = urls.filter((url) => url.startsWith("/"));
+    const missing = local.filter((url) => !existsSync(`public${url.split("?")[0]}`));
+    check(`${name}: every local file exists (${local.length} paths)`, missing.length === 0, missing.slice(0, 5).join(", "));
+  }
+  check("MAP_IMAGES covers every generated map icon", ICON_NAMES.every((name) => MAP_IMAGES.includes(iconUrl(name))));
+  check("MAP_IMAGES has no duplicate urls", new Set(MAP_IMAGES).size === MAP_IMAGES.length);
+}
