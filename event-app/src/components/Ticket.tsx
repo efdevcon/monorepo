@@ -18,6 +18,7 @@ import { TicketSkeleton } from "./Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
+import { SecondaryButton } from "./Buttons";
 import { FeedbackCard } from "./feedback/FeedbackCard";
 import { openFeedback } from "@/data/feedback/feedbackState";
 
@@ -147,15 +148,15 @@ export function Ticket() {
                   Hello!{" "}
                   <span className="break-all text-dc-purple">{user.email}</span>
                 </p>
-                {/* Desktop: labeled pill (mobile uses the header pill). */}
-                <button
-                  onClick={signOut}
-                  disabled={busy}
-                  className="hidden h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-error bg-white/80 px-6 text-[14px] font-bold leading-none text-dc-error transition-[scale,background-color] duration-150 ease-out hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none lg:flex"
-                >
-                  Sign out
-                  <LogOut className="size-4" />
-                </button>
+                {/* Desktop: labeled pill (mobile uses the header pill). The
+                    wrapper carries the breakpoint gate so the shared button
+                    keeps its own display class. */}
+                <div className="hidden shrink-0 lg:block">
+                  <SecondaryButton type="button" size="sm" tone="danger" onClick={signOut} disabled={busy}>
+                    Sign out
+                    <LogOut className="size-4" />
+                  </SecondaryButton>
+                </div>
               </div>
 
               <div className="lg:bg-white lg:p-6">
