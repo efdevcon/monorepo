@@ -17,7 +17,7 @@ import {
   downloadSessionIcs,
 } from "@/components/schedule/SessionDetailsContent";
 import { SessionQA } from "@/components/schedule/SessionQA";
-import { roomHasNoQa } from "@/data/meerkat";
+import { roomHasNoQa, sessionHasNoQa } from "@/data/meerkat";
 import { isCommunityHubSession } from "@/data/communityHubs";
 import type { Session as SessionModel } from "@/data/models";
 
@@ -64,8 +64,9 @@ export default function Session({ params, id: directId }: SessionClientProps) {
 
   // Shared with the desktop side panel (SessionQA owns the offline line).
   // A Community Hub session has no Q&A room: point at the hub's sheet instead.
-  // Neither do performance rooms (roomHasNoQa: the Music Stage).
-  const qa = isCommunityHubSession(session) || roomHasNoQa(session.room?.id) ? null : (
+  // Neither do performance rooms (roomHasNoQa: the Music Stage) or the
+  // Opening Ceremony (sessionHasNoQa).
+  const qa = isCommunityHubSession(session) || roomHasNoQa(session.room?.id) || sessionHasNoQa(session) ? null : (
     <SessionQA session={session} size="md" />
   );
 

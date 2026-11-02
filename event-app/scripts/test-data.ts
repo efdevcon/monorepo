@@ -62,7 +62,7 @@ import { COMMUNITY_HUBS } from "../src/data/communityHubs";
 import { DC8_TRACKS, getTrackTheme, trackBadgeLabel, trackFullLabel } from "../src/components/schedule/trackTheme";
 import { isPretalxCode, sessionLinkFor } from "../src/data/legacySessionLink";
 import { parseIosMajorVersion } from "../src/utils/platform";
-import { meerkatEventId } from "../src/data/meerkat";
+import { meerkatEventId, sessionHasNoQa } from "../src/data/meerkat";
 import { communityHubTopics, findCommunityHub } from "../src/data/communityHubs";
 import { deriveTopicOptions } from "../src/data/topics";
 import { ALL_DAYS, buildTimeline, collapsedRooms, compareRoomNames, dayParamValue, EMPTY_LANE_MS, lateRooms, resolveDayParam, sortRooms } from "../src/components/schedule/utils";
@@ -652,6 +652,8 @@ function testMeerkatHandover() {
   check("meerkat: token travels as the token query param", url.searchParams.get("token") === "a.b.c");
   check("meerkat: venue QR points at the session's Q&A page without a token", meerkatQaUrl("opening-ceremony") === "https://app.meerkat.events/e/opening-ceremony/qa");
   check("meerkat: room screens point at the stage presenter view, stage spelled like the room", meerkatStageUrl("Main Stage") === "https://app.meerkat.events/stage/Main%20Stage");
+  check("q&a: none for the Opening Ceremony, by Pretalx code", sessionHasNoQa({ id: "opening-ceremony-welcome-to-devcon-8-india", sourceId: "RPAPTP" }));
+  check("q&a: other sessions keep theirs", !sessionHasNoQa({ id: "opening-ceremony-keynote", sourceId: "YS8PJG" }));
   check("meerkat id: Pretalx code first, slug for bundles without it", meerkatEventId({ id: "opening-ceremony", sourceId: "X3JSYF" }) === "X3JSYF" && meerkatEventId({ id: "opening-ceremony" }) === "opening-ceremony");
   check(
     "community hub topics: the hub's own name is not a topic, blanks are dropped, unknown hub ids resolve to nothing",

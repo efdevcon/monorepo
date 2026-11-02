@@ -6,7 +6,7 @@ import { CloseButton } from "@/components/Buttons";
 import { openDetail } from "@/routing/detailRoute";
 import { SessionDetailsContent } from "./SessionDetailsContent";
 import { SessionQA } from "./SessionQA";
-import { roomHasNoQa } from "@/data/meerkat";
+import { roomHasNoQa, sessionHasNoQa } from "@/data/meerkat";
 import { isCommunityHubSession } from "@/data/communityHubs";
 
 /**
@@ -54,7 +54,7 @@ export function SessionDetailsPanel({
       {/* Bottom padding: room for the Q&A's floating button (SessionQA), 76px tall. */}
       <div className="min-h-0 flex-1 overflow-y-auto has-[[data-qa-cta]]:pb-[76px]">
         <SessionDetailsContent session={session}>
-          {!isCommunityHubSession(session) && !roomHasNoQa(session.room?.id) && showQa && <SessionQA session={session} size="sm" />}
+          {!isCommunityHubSession(session) && !roomHasNoQa(session.room?.id) && !sessionHasNoQa(session) && showQa && <SessionQA session={session} size="sm" />}
         </SessionDetailsContent>
       </div>
     </div>

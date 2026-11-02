@@ -46,3 +46,11 @@ const NO_QA_ROOMS = new Set<string>(["music-stage"]);
 export function roomHasNoQa(roomId: string | undefined): boolean {
   return !!roomId && NO_QA_ROOMS.has(roomId);
 }
+
+/** Single sessions without a Q&A block, by Pretalx code. Devcon 8: the Opening Ceremony on the Lotus main stage. */
+const NO_QA_SESSIONS = new Set<string>(["RPAPTP"]);
+
+/** True when this one session has no Q&A (NO_QA_SESSIONS). */
+export function sessionHasNoQa(session: Pick<Session, "id" | "sourceId">): boolean {
+  return NO_QA_SESSIONS.has(session.sourceId || session.id);
+}
