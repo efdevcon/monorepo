@@ -307,6 +307,17 @@ export async function activateShare(id: number, env: string): Promise<void> {
   if (off.length) await noco(`${shares}/records`, { method: 'PATCH', body: JSON.stringify(off) })
 }
 
+/** Takes whatever is on the device off it. Statuses and codes are untouched: the
+ *  screen shows "Waiting" until the next push, and "show again" brings a share back. */
+export async function clearActiveShares(env: string): Promise<number> {
+  const { shares } = cfg()
+  const active = await queryShares(`(Env,eq,${esc(env)})~and(Active,eq,true)`)
+  if (active.length) {
+    await noco(`${shares}/records`, { method: 'PATCH', body: JSON.stringify(active.map(s => ({ Id: s.id, Active: false }))) })
+  }
+  return active.length
+}
+
 export async function getShareByToken(token: string, env: string): Promise<Share | null> {
   if (!TOKEN_RE.test(token)) return null
   const rows = await queryShares(`(Token,eq,${token})~and(Env,eq,${esc(env)})`, '&limit=1')

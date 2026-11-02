@@ -1,12 +1,13 @@
 /**
  * Control page for in-person ticket sales: paste a voucher redeem link and/or
  * tick saved links to put a QR on the QR sharing page (/tickets/qr/), watch
- * scans and redemptions, show again or close codes. Admin password only.
+ * scans and redemptions, show again or close codes, clear the device. Admin
+ * password only; it also shows the device's read-only password, masked.
  */
 import { useCallback, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { RefreshCw, XCircle, LogOut, Trash2, ExternalLink, RotateCcw } from 'lucide-react'
+import { RefreshCw, XCircle, LogOut, Trash2, ExternalLink, RotateCcw, Eraser, Eye, EyeOff, KeyRound } from 'lucide-react'
 import { TICKETING_ENV } from 'config/ticketing'
 import { useAdminKey } from 'components/domain/tickets/qr-share/useAdminKey'
 import AdminLogin from 'components/domain/tickets/qr-share/AdminLogin'
@@ -44,6 +45,9 @@ function Dashboard({ adminKey, onLogout }: { adminKey: string; onLogout: () => v
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const [banner, setBanner] = useState('')
+  // The device's read-only password: undefined while loading, null when not configured.
+  const [viewerKey, setViewerKey] = useState<string | null | undefined>(undefined)
+  const [showKey, setShowKey] = useState(false)
 
   const load = useCallback(async () => {
     try {
@@ -64,6 +68,12 @@ function Dashboard({ adminKey, onLogout }: { adminKey: string; onLogout: () => v
     const t = setInterval(load, LIST_POLL_MS)
     return () => clearInterval(t)
   }, [load])
+
+  useEffect(() => {
+    qrApi<{ key: string | null }>(adminKey, 'viewer-key')
+      .then(r => setViewerKey(r.key))
+      .catch(() => setViewerKey(null))
+  }, [adminKey])
 
   async function run(action: () => Promise<unknown>) {
     setBusy(true)
@@ -112,6 +122,14 @@ function Dashboard({ adminKey, onLogout }: { adminKey: string; onLogout: () => v
       setShares(prev => prev.filter(x => x.id !== s.id))
     })
   }
+  // Clear blanks the device and nothing else: statuses and codes stay, "Show
+  // again" puts a share back. Close is the one that kills a code.
+  const onDevice = shares.some(s => s.active)
+  const clear = () =>
+    run(async () => {
+      await qrApi(adminKey, 'clear', { method: 'POST' })
+      setShares(prev => prev.map(s => ({ ...s, active: false })))
+    })
   const reset = () => {
     const what = shares.length === 1 ? 'the only share' : `all ${shares.length} shares`
     if (!window.confirm(`Delete ${what}? Every code stops working and the device shows "Waiting". The saved links stay.`)) return
@@ -151,9 +169,32 @@ function Dashboard({ adminKey, onLogout }: { adminKey: string; onLogout: () => v
         <aside className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm">
           <div className="flex items-center justify-between px-4 py-2 text-sm text-[#594d73]">
             <span>On the device now</span>
-            <Link href="/tickets/qr/" target="_blank" className="flex items-center gap-1 underline">
-              Open <ExternalLink size={12} />
-            </Link>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={clear}
+                disabled={busy || !onDevice}
+                title="Take the QR off the device; its code stays valid"
+                className={rowBtn}
+              >
+                <Eraser size={14} /> Clear
+              </button>
+              <Link href="/tickets/qr/" target="_blank" className="flex items-center gap-1 underline">
+                Open <ExternalLink size={12} />
+              </Link>
+            </div>
+          </div>
+          {/* What to type on the device's login screen, hidden until asked for. */}
+          <div className="flex items-center gap-2 border-t border-solid border-[#eee] px-4 py-2 text-xs text-[#594d73]">
+            <KeyRound size={12} />
+            <span>Viewer password</span>
+            <span className="font-mono text-sm text-[#1a0d33]">
+              {viewerKey === undefined ? '…' : viewerKey === null ? 'not set' : showKey ? viewerKey : '••••••••'}
+            </span>
+            {viewerKey && (
+              <button onClick={() => setShowKey(v => !v)} title={showKey ? 'Hide' : 'Show'} className="rounded p-1 hover:bg-[#f4f1ff]">
+                {showKey ? <EyeOff size={14} /> : <Eye size={14} />}
+              </button>
+            )}
           </div>
           <iframe src="/tickets/qr/?embed=1" title="QR sharing page" className="h-[560px] w-full border-0 border-t border-solid border-[#eee]" />
         </aside>

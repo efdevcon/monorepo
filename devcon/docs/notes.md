@@ -184,7 +184,10 @@ share replaced before anyone scanned it is closed automatically; "redeemed" mean
 voucher is used up in Pretix (count against max usages), refreshed at most every 30 s and
 applied to every share of the same voucher; prices follow the Pretix ETH plugin (item price
 = ETH price, `fiat_price_usd` metadata = card price scaled by the voucher; `fiat_disabled` =
-ETH only).
+ETH only). "Clear" (above the device preview) blanks the device without closing anything:
+statuses and codes stay, "show again" brings a share back. The admin page also shows the
+device's read-only password, masked until the eye is clicked (`/api/qr-share/viewer-key`,
+admin key only).
 
 Security: all writes need the admin password (`x-admin-key` header, see `utils/adminAuth`);
 the device endpoint (read-only password) returns no redeem URL or voucher code; the public
