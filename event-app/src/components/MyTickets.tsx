@@ -52,6 +52,7 @@ export function MyTickets() {
     isRefreshing,
     error,
     refresh,
+    recheck,
   } = useTickets();
   const preview = usePreviewState();
   const isLoading = ticketsLoading || preview === "loading";
@@ -131,6 +132,7 @@ export function MyTickets() {
           qrCodes={qrCodes}
           primary={primary}
           onRefresh={refresh}
+          onRecheck={recheck}
           isRefreshing={isRefreshing}
           refreshDisabled={isLoading || isRefreshing || !online}
           onReplace={() => setReplacing(true)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useSWR from "swr";
 import QRCode from "qrcode";
 import { supabase } from "@/data/auth/supabase";
@@ -176,6 +176,17 @@ export function useTickets() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
+  // One quiet re-fetch for the QR popup's scan polling (TicketSections):
+  // online only, and never stacked on a fetch that is still running.
+  const validating = useRef(false);
+  useEffect(() => {
+    validating.current = isValidating;
+  }, [isValidating]);
+  const recheck = useCallback(() => {
+    if (!navigator.onLine || validating.current) return;
+    void mutate();
+  }, [mutate]);
+
   return {
     tickets,
     primary,
@@ -188,6 +199,8 @@ export function useTickets() {
     isRefreshing: isValidating && data !== undefined,
     error: error as Error | undefined,
     refresh: () => mutate(),
+    /** Re-fetch unless offline or already fetching (scan polling). */
+    recheck,
     attach,
     choose,
     detach,

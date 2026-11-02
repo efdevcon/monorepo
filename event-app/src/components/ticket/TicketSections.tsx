@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import cn from "classnames";
 import { RefreshCw } from "lucide-react";
 import type { Order, Ticket } from "@/data/tickets/types";
@@ -13,6 +13,17 @@ import { useUser } from "@/data/auth/useUser";
 import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalTarget } from "./QrModals";
+
+/**
+ * While a QR popup is open on something not scanned yet (the ticket at the
+ * entrance, swag at the Swag Station), the app re-asks Pretix this often, so
+ * the popup turns to "Checked in" / "Collected" (and the perks appear) right
+ * after the scan...
+ */
+const SCAN_POLL_MS = 6_000;
+/** ...for at most this long per opening: a scan happens at the desk, not in
+ *  the queue. Closing the popup re-asks once more. */
+const SCAN_POLL_MAX_MS = 2 * 60_000;
 
 /** Section headings match the home page's (FeaturedCard.tsx etc.). */
 const SECTION_TITLE =
@@ -75,6 +86,7 @@ export function TicketSections({
   tickets,
   qrCodes,
   onRefresh,
+  onRecheck,
   isRefreshing = false,
   refreshDisabled = false,
   primary = null,
@@ -85,6 +97,8 @@ export function TicketSections({
   tickets: Order[];
   qrCodes: Record<string, string>;
   onRefresh?: () => void;
+  /** Quiet re-fetch for the QR popup's scan polling (useTickets().recheck). */
+  onRecheck?: () => void;
   isRefreshing?: boolean;
   refreshDisabled?: boolean;
   /** "My ticket" (data/tickets/primary.ts): the only ticket shown; the rest stay in the Pretix email. */
@@ -103,6 +117,46 @@ export function TicketSections({
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
   const { user } = useUser();
+
+  // The popup is opened with a snapshot; read its scanned state from the
+  // current tickets instead (by QR, which is deterministic per secret), so a
+  // scan picked up by the polling below shows while it is still open.
+  const scannedByQr = useMemo(() => {
+    const scanned = new Map<string, boolean>();
+    for (const order of tickets) {
+      for (const ticket of order.tickets) {
+        const qr = qrCodes[ticket.secret];
+        if (qr) scanned.set(qr, ticket.hasCheckedIn === true);
+        for (const addon of ticket.addons ?? []) {
+          const addonQr = qrCodes[addon.secret];
+          if (addonQr) scanned.set(addonQr, addon.collected === true);
+        }
+      }
+    }
+    return scanned;
+  }, [tickets, qrCodes]);
+  const liveModal: QrModalTarget | null = !modal
+    ? null
+    : modal.kind === "ticket"
+      ? { ...modal, checkedIn: scannedByQr.get(modal.qr) ?? modal.checkedIn }
+      : { ...modal, collected: scannedByQr.get(modal.qr) ?? modal.collected };
+  const modalScanned =
+    liveModal?.kind === "ticket" ? liveModal.checkedIn === true : liveModal?.collected === true;
+
+  useEffect(() => {
+    if (!modal || modalScanned || !onRecheck) return;
+    const openedAt = Date.now();
+    const id = window.setInterval(() => {
+      if (Date.now() - openedAt > SCAN_POLL_MAX_MS) return window.clearInterval(id);
+      if (document.visibilityState === "visible") onRecheck();
+    }, SCAN_POLL_MS);
+    return () => window.clearInterval(id);
+  }, [modal, modalScanned, onRecheck]);
+
+  const closeModal = () => {
+    if (modal && !modalScanned) onRecheck?.();
+    setModal(null);
+  };
 
   // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
   // select rows and the Pretix order page.
@@ -386,7 +440,7 @@ export function TicketSections({
         </section>
       )}
 
-      <QrModal target={modal} onClose={() => setModal(null)} />
+      <QrModal target={liveModal} onClose={closeModal} />
     </div>
   );
 }

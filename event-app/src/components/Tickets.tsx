@@ -74,7 +74,7 @@ function KeyArtBanner({ title, body, cta }: { title: string; body: string; cta: 
  *  from the Figma home redesign. */
 export function Tickets() {
   const { user } = useUser();
-  const { tickets, primary, prompt, qrCodes, isLoading: ticketsLoading, isRefreshing, error, refresh } =
+  const { tickets, primary, prompt, qrCodes, isLoading: ticketsLoading, isRefreshing, error, refresh, recheck } =
     useTickets();
   const preview = usePreviewState();
   const isLoading = ticketsLoading || preview === "loading";
@@ -174,6 +174,7 @@ export function Tickets() {
             qrCodes={qrCodes}
             primary={primary}
             onRefresh={refresh}
+            onRecheck={recheck}
             isRefreshing={isRefreshing}
             refreshDisabled={isLoading || isRefreshing}
           />
