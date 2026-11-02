@@ -67,7 +67,7 @@ Set on load and whenever the value changes; a visit keeps the last value.
 
 ## Reading the numbers
 
-The team reads site 38 inside the app: My Devcon, EF internal tools, "App analytics" (`/admin/analytics`, ethereum.org accounts). Right now and today, visits and unique visitors per day, the most viewed sessions, speakers and pages, Q&A opens, a Health section built from the failure events above (their names are routes, dataset ids and services, so nothing personal reaches the page), then installs, devices, countries, referrers and the full event list. Server side it is one bulk Reporting API call with the server-only `MATOMO_TOKEN` (`src/app/api/admin/analytics/`, shaping in `report.ts`).
+The team reads site 38 inside the app: My Devcon, EF internal tools, "App analytics" (`/admin/analytics`, ethereum.org accounts). One hero card (people on the app now, today's figures, the window's rates, visits per day), then Content (most viewed sessions, speakers and pages, Q&A opens, stars bands), Audience (installed, signed in, devices, countries, referrers, as shares of all visits), Health (the failure events above; their names are routes, dataset ids and services, so nothing personal reaches the page) and the full page and event tables. Server side it is one bulk Reporting API call with the server-only `MATOMO_TOKEN` (`src/app/api/admin/analytics/`, shaping in `report.ts`).
 
 ## Rules
 
