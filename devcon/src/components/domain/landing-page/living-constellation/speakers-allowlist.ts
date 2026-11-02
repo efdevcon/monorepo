@@ -123,17 +123,6 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'polygon',
     bio: 'Sandeep Nailwal founded Polygon and leads the Polygon Foundation as CEO, building toward seamless onchain payments. Sandeep also founded Blockchain for Impact, which supports medical research and Web3 builders.',
   }, // Sandeep Nailwal · Polygon Labs
-  // Was Pretalx FZ8PA3 (org answer "Linux Foundation, and many of the
-  // foundations and projects in it (including LF Decentralized Trust, ...)");
-  // that record disappeared from Pretalx on 2026-11-01, so the portrait pulled
-  // earlier is kept as a manual entry until Pretalx has Hart again.
-  {
-    manual: { id: 'FZ8PA3', name: 'Hart Montgomery', company: 'LF Decentralized Trust', portrait: 'hart-montgomery.webp' },
-    title: 'CTO',
-    track: 'Open & Verifiable Stack',
-    logo: 'lfdt',
-    bio: "Hart Montgomery is CTO of Linux Foundation Decentralized Trust and executive director of the Post-Quantum Cryptography Alliance. Hart holds a PhD in cryptography from Stanford and helped lead Fujitsu's work on Hyperledger.",
-  }, // Hart Montgomery
   {
     code: '8FL8QW',
     title: 'Co-Founder',

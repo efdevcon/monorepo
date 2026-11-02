@@ -16,7 +16,6 @@ import imgBSBLVY from './assets/portraits/ameen.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
 import imgC3VHKH from './assets/portraits/dmytro-matviiv.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
-import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
 import imgG9TNL3 from './assets/portraits/lightclient.webp'
 import imgGAHFAR from './assets/portraits/mooly-sagiv.webp'
@@ -186,13 +185,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     track: 'Open & Verifiable Stack',
     image: imgDURU3V,
     source: 'pretalx',
-  },
-  FZ8PA3: {
-    id: 'FZ8PA3',
-    name: 'Hart Montgomery',
-    organization: 'LF Decentralized Trust',
-    image: imgFZ8PA3,
-    source: 'manual',
   },
   G9LYGU: {
     id: 'G9LYGU',

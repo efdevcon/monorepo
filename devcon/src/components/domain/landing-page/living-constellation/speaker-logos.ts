@@ -19,7 +19,6 @@ import Giga from './images/logos/giga.svg'
 import Giveth from './images/logos/giveth.svg'
 import gnosis from './images/logos/gnosis.png'
 import HackenProof from './images/logos/hackenproof.svg'
-import Lfdt from './images/logos/lfdt.svg'
 import Lava from './images/logos/lava.svg'
 import libp2p from './images/logos/libp2p.png'
 import MetaMask from './images/logos/metamask.svg'
@@ -75,7 +74,6 @@ export const SPEAKER_LOGOS = {
   giveth: { Logo: Giveth, aspect: 623 / 128 },
   gnosis: { image: gnosis },
   hackenproof: { Logo: HackenProof, aspect: 470 / 128, scale: 1.2 },
-  lfdt: { Logo: Lfdt, aspect: 597 / 128 },
   lava: { Logo: Lava, aspect: 490 / 101 },
   libp2p: { image: libp2p },
   metamask: { Logo: MetaMask, aspect: 133 / 128 },
