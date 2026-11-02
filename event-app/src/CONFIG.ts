@@ -44,11 +44,17 @@ const APP_CONFIG = {
   // Feature flags - enable/disable routes
   SCHEDULE_ENABLED: true, // /schedule, /schedule/[id]
   SPEAKERS_ENABLED: true, // /speakers, /speakers/[id]
-  ROOMS_ENABLED: true, // /room-screens/[id]
+  ROOMS_ENABLED: true, // /room-screens (picker, precached shell), /room-screens/[id] (kiosk)
   MAP_ENABLED: true, // /map (venue map)
   ANNOUNCEMENTS_ENABLED: true, // /notifications (Notion-authored inbox + session reminders) + home section
   INFERENCE_DEBUG_ENABLED: true, // /admin/inference-test (EF-only RAG debugger)
   ANALYTICS_ENABLED: true, // /admin/analytics (EF-only live Matomo report)
+
+  // App updates (ServiceWorkerUpdater.tsx, decisions in utils/silentUpdate.ts).
+  // The worker never skips waiting on its own; these decide when the app asks.
+  KIOSK_AUTO_UPDATE: true, // room-screen TVs switch by themselves (online, clear of a changeover), self-heal, reload nightly
+  SILENT_UPDATE_LAUNCH: true, // a build waiting at launch is applied before the first paint matters
+  SILENT_UPDATE_HIDDEN: true, // a build is applied after a minute hidden, unless a player, a sheet or typing is on the page
 
   // Development settings
   RUNTIME_VALIDATION: process.env.NODE_ENV === "development",

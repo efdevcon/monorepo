@@ -60,7 +60,9 @@ const EVENTS = {
   speaker: ["share-copy", "share-native"],
   announcements: ["open", "highlight", "push-open"],
   offline: ["used"],
-  sw: ["update-shown", "update-accepted", "update-slow", "update-reload"],
+  // update-auto: a quiet switch, name = trigger (kiosk, launch, hidden);
+  // update-deferred: a quiet switch held back, name = reason (silentUpdate.ts).
+  sw: ["update-shown", "update-accepted", "update-slow", "update-reload", "update-auto", "update-deferred"],
   sync: ["bundle-failed"],
   error: ["page"],
   feedback: ["open", "sent", "queued", "failed"],

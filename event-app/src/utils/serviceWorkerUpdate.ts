@@ -73,6 +73,11 @@ export interface UpdateFlow {
   workerInstalled(worker: WaitingWorker): void;
   /** `controllerchange`: a worker took control of the page. */
   controllerChanged(): void;
+  /**
+   * Forget the request (the kiosk re-arms after `slow`, since nobody is there
+   * to click): available again if a worker waits, else idle.
+   */
+  reset(): void;
   dispose(): void;
 }
 
@@ -158,6 +163,12 @@ export function createUpdateFlow(deps: UpdateFlowDeps): UpdateFlow {
       disarm();
       deps.writeMarker(null);
       deps.reload();
+    },
+    reset() {
+      disarm();
+      requested = false;
+      deps.writeMarker(null);
+      setState(deps.waiting() ? "available" : "idle");
     },
     dispose: disarm,
   };

@@ -10,9 +10,8 @@ import {
   StaleWhileRevalidate,
 } from "serwist";
 import {
-  DETAIL_ROUTES,
   IGNORED_URL_PARAMS,
-  parseDetailPath,
+  shellForPath,
   stripIgnoredParams,
 } from "./routing/viewParams";
 import { INSTALL_PARAM, installMarker, parseInstallVersion } from "./data/install/installVersion";
@@ -150,24 +149,26 @@ const serwist: Serwist = new Serwist({
         }
       },
     },
-    // Detail pages (`/schedule/<id>`, `/speakers/<id>`): network first (the
-    // server renders per-item social metadata), and when that fails (offline,
-    // captive portal) the precached shell of the list tab. The app hydrates
-    // from `location`, so the shell renders the detail for the id in the URL
-    // from the local store. Never falls through to the /offline page: a
-    // never-visited id must work offline too. Must precede the document rule.
+    // Detail pages (`/schedule/<id>`, `/speakers/<id>`) and the room kiosks
+    // (`/room-screens/<id>`): network first (the server renders per-item
+    // social metadata), and when that fails (offline, captive portal) the
+    // precached shell of the list tab, or of the room-screens picker. The app
+    // hydrates from `location`, so the shell renders the detail or the kiosk
+    // for the id in the URL from the local store. Never falls through to the
+    // /offline page: a never-visited id must work offline too, and a TV that
+    // reloads without network must come back on its room. Must precede the
+    // document rule.
     {
       matcher: ({ request, url, sameOrigin }) =>
         sameOrigin &&
         request.mode === "navigate" &&
-        parseDetailPath(url.pathname) !== null,
+        shellForPath(url.pathname) !== null,
       handler: async ({ request, event, url }): Promise<Response> => {
         try {
           return await detailDocuments.handle({ request, event });
         } catch {
-          const kind = parseDetailPath(url.pathname)!.kind;
           const shell: Response | undefined = await serwist.matchPrecache(
-            DETAIL_ROUTES[kind]
+            shellForPath(url.pathname)!
           );
           return shell ?? Response.error();
         }

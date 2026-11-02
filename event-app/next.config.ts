@@ -1,4 +1,6 @@
 import { spawnSync } from "node:child_process";
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
 import type { NextConfig } from "next";
 import withSerwistInit from "@serwist/next";
 
@@ -9,6 +11,26 @@ const isStaticExport = process.env.STATIC_EXPORT === "true";
 const revision =
   spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" })
     .stdout?.trim() || crypto.randomUUID();
+
+const appBuild = (process.env.COMMIT_REF || "").slice(0, 7) || "dev";
+const appBuildTime = new Date().toISOString();
+/**
+ * Set to true for a deploy that must reach every open app at once (a hotfix):
+ * the running, older build reads public/version.json from the new deploy and
+ * shows the update toast immediately instead of waiting for a quiet moment
+ * (ServiceWorkerUpdater.tsx). Back to false on the deploy after.
+ */
+const URGENT_UPDATE = false;
+// Written at build time, read at runtime by whatever build is on the device.
+// Gitignored: it describes the build it ships with.
+try {
+  writeFileSync(
+    join(process.cwd(), "public", "version.json"),
+    JSON.stringify({ build: appBuild, time: appBuildTime, urgent: URGENT_UPDATE })
+  );
+} catch {
+  // Read-only checkout: the page treats a missing file as "not urgent".
+}
 
 const withSerwist = withSerwistInit({
   swSrc: "src/sw.ts",
@@ -152,10 +174,10 @@ const nextConfig: NextConfig = {
       "",
     // Short commit of the build (Netlify's COMMIT_REF), shown in feedback
     // reports so "which version?" never needs asking.
-    APP_BUILD: (process.env.COMMIT_REF || "").slice(0, 7) || "dev",
+    APP_BUILD: appBuild,
     // When this bundle was built (under `pnpm dev`: when the server started)
     // and which Netlify context built it, for the EF internal tools.
-    APP_BUILD_TIME: new Date().toISOString(),
+    APP_BUILD_TIME: appBuildTime,
     APP_BUILD_CONTEXT: process.env.CONTEXT || (process.env.NETLIFY ? "unknown" : "local"),
   },
   experimental: {

@@ -9,7 +9,9 @@ import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
 import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
-import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
+import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt, getEventTimeZone } from "@/data/eventTime";
+import { changeoverNear, nightlyReloadDue } from "@/utils/silentUpdate";
+import { setKioskChangeoverNear } from "./kioskState";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
 import { roomScreenRoomIds } from "@/data/venueRooms";
 import { roomIconUrl } from "./roomIcon";
@@ -43,6 +45,8 @@ const FIXED_NOTICE =
   "If the room is full please view on livestream or ask volunteers for any overflow rooms. Every session streams in the app with live translation.";
 const MAX_UPCOMING = 5;
 const MAX_AVATARS = 4;
+/** localStorage: the venue day of the last nightly reload (silentUpdate.nightlyReloadDue). */
+const NIGHTLY_KEY = "kiosk.nightlyReload";
 
 /** "26 mins" / "2 hours 26 mins" / "1 day": the countdown in the status line. */
 function humanizeWait(mins: number): string {
@@ -206,6 +210,35 @@ export function RoomScreen({ roomId }: { roomId: string }) {
   const { isLoading: sessionsLoading } = useSessions();
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);
+
+  // Quiet app updates (ServiceWorkerUpdater): hold the switch while a session
+  // in this room starts or ends within two minutes.
+  const holdUpdates = changeoverNear(sorted, nowMs);
+  useEffect(() => {
+    setKioskChangeoverNear(holdUpdates);
+    return () => setKioskChangeoverNear(false);
+  }, [holdUpdates]);
+
+  // Nightly reload at 04:00 venue time while online: clears a week of memory
+  // growth in a browser nobody restarts and picks up anything the update
+  // checks missed. Once per venue day, on the app clock (so the mock applies).
+  useEffect(() => {
+    if (!APP_CONFIG.KIOSK_AUTO_UPDATE) return;
+    let last: string | null = null;
+    try {
+      last = localStorage.getItem(NIGHTLY_KEY);
+    } catch {
+      // Storage blocked: the reload still happens, once per hour at worst.
+    }
+    const due = nightlyReloadDue(nowMs, getEventTimeZone(), last);
+    if (!due || !navigator.onLine) return;
+    try {
+      localStorage.setItem(NIGHTLY_KEY, due);
+    } catch {
+      // see above
+    }
+    window.location.reload();
+  }, [nowMs]);
   const currentSession = useMemo(() => {
     const live = sorted.find((s) => getStatus(s, nowMs) === "live");
     return live ?? sorted.find((s) => s.start * 1000 > nowMs) ?? null;

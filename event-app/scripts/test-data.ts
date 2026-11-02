@@ -92,6 +92,17 @@ import type { Session as AuthSession } from "@supabase/supabase-js";
 import { nextTestStatus, notionTestFlags, parseEmailList, productTeamEmails, testPushDue, testPushTitle } from "../src/app/api/announcements/testPush";
 import { summarizeAnnouncements } from "../src/app/api/announcements/status";
 import { bulkQueries, parseWindow, shapeReport } from "../src/app/api/admin/analytics/report";
+import { KIOSK_ROUTE, parseKioskPath, shellForPath } from "../src/routing/viewParams";
+import {
+  CHANGEOVER_HOLD_MS,
+  HIDDEN_DELAY_MS,
+  TOAST_AFTER_MS,
+  changeoverNear,
+  hiddenUpdateBlocker,
+  kioskUpdateBlocker,
+  nightlyReloadDue,
+  toastDue,
+} from "../src/utils/silentUpdate";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -1095,6 +1106,45 @@ function testAnalyticsReport() {
   check("no results: empty report, window kept", empty.days.length === 0 && empty.today === null && empty.windowDays === 7 && empty.site.timezone === "" && empty.warnings.length === 0 && empty.health.failures.length === 0);
 }
 
+function testSilentUpdates() {
+  console.log("\n--- silent app updates (kiosk, launch, hidden tab) ---");
+  check("kiosk path: /room-screens/<id>, trailing slash allowed", parseKioskPath("/room-screens/lotus-stage-1") === "lotus-stage-1" && parseKioskPath("/room-screens/lotus-stage-1/") === "lotus-stage-1");
+  check("kiosk path: the picker and files are not kiosks", parseKioskPath("/room-screens") === null && parseKioskPath("/room-screens/mandala-bg.jpg") === null && parseKioskPath("/schedule/x") === null);
+  check("kiosk path: ids are decoded", parseKioskPath("/room-screens/lotus%20stage") === "lotus stage");
+  check("shell for a kiosk path is the picker shell", shellForPath("/room-screens/lotus-stage-1") === KIOSK_ROUTE && KIOSK_ROUTE === "/room-screens");
+  check("shell for detail paths unchanged, none for others", shellForPath("/schedule/abc") === "/schedule" && shellForPath("/speakers/abc") === "/speakers" && shellForPath("/map") === null);
+
+  const base = { online: true, changeoverNear: false, hidden: true, hiddenForMs: HIDDEN_DELAY_MS, mediaPlaying: false, dialogOpen: false, typing: false };
+  check("kiosk: nothing in the way", kioskUpdateBlocker({ ...base }) === null);
+  check("kiosk: offline waits", kioskUpdateBlocker({ ...base, online: false }) === "offline");
+  check("kiosk: a changeover within two minutes waits", kioskUpdateBlocker({ ...base, changeoverNear: true }) === "changeover");
+  check("hidden: safe after the delay", hiddenUpdateBlocker({ ...base }) === null);
+  check("hidden: a visible tab never switches", hiddenUpdateBlocker({ ...base, hidden: false }) === "visible");
+  check("hidden: too soon after hiding", hiddenUpdateBlocker({ ...base, hiddenForMs: HIDDEN_DELAY_MS - 1 }) === "too-soon");
+  check("hidden: a stream player blocks", hiddenUpdateBlocker({ ...base, mediaPlaying: true }) === "media");
+  check("hidden: an open sheet blocks", hiddenUpdateBlocker({ ...base, dialogOpen: true }) === "dialog");
+  check("hidden: typed text blocks", hiddenUpdateBlocker({ ...base, typing: true }) === "typing");
+  check("hidden: offline is fine, the shells are precached", hiddenUpdateBlocker({ ...base, online: false }) === null);
+
+  const t0 = Date.parse("2026-11-04T10:00:00Z");
+  check("toast: not before 24 h", !toastDue(t0 - TOAST_AFTER_MS + 1, t0, false) && !toastDue(null, t0, false));
+  check("toast: after 24 h", toastDue(t0 - TOAST_AFTER_MS, t0, false));
+  check("toast: urgent at once", toastDue(t0, t0, true) && toastDue(null, t0, true));
+
+  const s = (startIso: string, endIso: string) => ({ start: Date.parse(startIso) / 1000, end: Date.parse(endIso) / 1000 });
+  const day = [s("2026-11-04T04:30:00Z", "2026-11-04T05:00:00Z"), s("2026-11-04T05:10:00Z", "2026-11-04T05:40:00Z")];
+  check("changeover: quiet in the middle of a session", !changeoverNear(day, Date.parse("2026-11-04T04:45:00Z")));
+  check("changeover: near a start", changeoverNear(day, Date.parse("2026-11-04T05:08:30Z")) && changeoverNear(day, Date.parse("2026-11-04T05:11:59Z")));
+  check("changeover: near an end", changeoverNear(day, Date.parse("2026-11-04T05:01:00Z")));
+  check("changeover: the hold is two minutes each side", CHANGEOVER_HOLD_MS === 120_000 && !changeoverNear(day, Date.parse("2026-11-04T05:12:01Z")));
+  check("changeover: no sessions, never", !changeoverNear([], t0));
+
+  const tz = "Asia/Kolkata";
+  const at = (iso: string) => Date.parse(iso);
+  check("nightly: due at 04:xx venue time, once", nightlyReloadDue(at("2026-11-03T22:30:00Z"), tz, null) === "2026-11-04" && nightlyReloadDue(at("2026-11-03T22:30:00Z"), tz, "2026-11-04") === null);
+  check("nightly: not at other hours", nightlyReloadDue(at("2026-11-04T03:30:00Z"), tz, null) === null && nightlyReloadDue(at("2026-11-03T21:59:00Z"), tz, null) === null);
+}
+
 async function testSessionCookieSettled() {
   console.log("\n--- the return after sign-in waits for the session cookie mirror ---");
   const realFetch = globalThis.fetch;
@@ -1383,6 +1433,29 @@ function testServiceWorkerUpdateFlow() {
     };
   };
 
+  // Kiosk re-arm: reset() forgets the request so the next available re-fires.
+  {
+    const w = worker();
+    const h = harness({ waiting: w });
+    h.flow.updateAvailable();
+    h.flow.requestUpdate();
+    h.fire(); // reload 1, carried over in the marker
+    h.flow.start();
+    h.fire(); // reload 2
+    h.flow.start();
+    h.fire(); // bound reached
+    check("after the reload bound the flow is slow", h.flow.state === "slow");
+    h.flow.reset();
+    check("reset with a worker still waiting goes back to available, marker cleared", h.flow.state === "available" && h.st.marker === null && h.states.at(-1) === "available");
+    const asked = w.messages.length;
+    h.flow.requestUpdate();
+    check("a new request after reset asks the worker again", w.messages.length === asked + 1 && h.flow.state === "updating");
+    const h2 = harness({ waiting: null });
+    h2.flow.updateAvailable();
+    h2.flow.reset();
+    check("reset with nothing waiting goes idle", h2.flow.state === "idle");
+  }
+
   // The click.
   {
     const w = worker();
@@ -1606,6 +1679,7 @@ async function main() {
   testLiveWindowAndStreams();
   testAnnouncementsStatus();
   testAnalyticsReport();
+  testSilentUpdates();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }
