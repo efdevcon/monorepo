@@ -13,6 +13,7 @@ import { useInboxUnreadCount } from "@/data/announcements/useInboxUnread";
 import { NAV_ITEMS, isNavActive } from "@/components/Nav";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { OfflineIndicator } from "./OfflineIndicator";
+import { UpdatingIndicator } from "./UpdatingIndicator";
 
 /**
  * Pages render their own header controls (the list pages' Search / My
@@ -177,6 +178,7 @@ export function AppHeader() {
             toolbar && "min-w-0 flex-1"
           )}
         >
+          {!toolbar && <UpdatingIndicator />}
           {!toolbar && <OfflineIndicator />}
           <div
             id={HEADER_ACTIONS_ID}
@@ -185,6 +187,7 @@ export function AppHeader() {
               toolbar && "min-w-0 flex-1"
             )}
           />
+          {toolbar && <UpdatingIndicator iconOnly />}
           {toolbar && <OfflineIndicator iconOnly />}
         </div>
       </div>
@@ -236,7 +239,8 @@ export function AppHeader() {
         </nav>
         {/* Same offline marker as the mobile bar: laptops on venue wifi drop
             out too, and the schedule they show may be from an earlier sync. */}
-        <div className="flex shrink-0 items-center justify-end">
+        <div className="flex shrink-0 items-center justify-end gap-3">
+          <UpdatingIndicator />
           <OfflineIndicator />
         </div>
         </div>

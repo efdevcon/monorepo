@@ -12,6 +12,7 @@ import { resetInstallHeroDismissal } from "@/components/InstallHeroCard";
 import { PREF_KEY as PUSH_SHEET_PREF_KEY } from "@/components/onboarding/PushOnboardingSheet";
 import { CommunityHubsDataTools, EventDataTools, MockClockTools } from "./DebugTools";
 import { AnnouncementsTools } from "./AnnouncementsTools";
+import { UpdateTools } from "./UpdateTools";
 import { OfflineTools } from "./OfflineTools";
 import { Switch } from "@/components/Switch";
 import {
@@ -22,6 +23,7 @@ import {
   type ReleaseGate,
 } from "@/data/release/releaseGates";
 import { isTeamEmail } from "@/data/release/previewAccess";
+import { buildLabel } from "@/data/build";
 
 /** Per-device "already shown / dismissed" flags of the notification nudges. */
 const NUDGE_PREF_KEYS = [
@@ -38,21 +40,6 @@ const toolPill =
   "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
 
 /**
- * The bundle's identity, inlined at build time (next.config.ts `env`): short
- * commit (or "dev"), build time and Netlify context. Stored timestamp, not
- * "now", so plain viewer-local formatting is fine.
- */
-function buildLabel(): string {
-  const build = process.env.APP_BUILD || "dev";
-  const at = process.env.APP_BUILD_TIME ? Date.parse(process.env.APP_BUILD_TIME) : NaN;
-  const when = Number.isFinite(at)
-    ? new Date(at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
-    : "unknown time";
-  const context = process.env.APP_BUILD_CONTEXT || "local";
-  return `Build ${build} · ${when} · ${context}`;
-}
-
-/**
  * Tools for the EF team on My Devcon (/my-devcon), rendered only for signed-in
  * @ethereum.org accounts; attendees never see the section. A partner account
  * (PARTNER_PREVIEW_DOMAINS in src/data/release/previewAccess.ts) gets the
@@ -63,6 +50,8 @@ function buildLabel(): string {
  *   this device (src/data/release/releaseGates.ts).
  * - Build line under the title: short commit, build time and Netlify context
  *   (buildLabel), so "which version is this device on?" is one glance.
+ * - App updates (UpdateTools): the quiet updater's live state, a check
+ *   countdown, the rule for this device, Check now and Apply now.
  * - Ask Deva: opens the AI assistant panel (DevaBot). Its "AI" entry left
  *   the public header on 2026-09-24; this is the team's way in. Beside it,
  *   the inference debugger (/admin/inference-test) for prompt and model work.
@@ -162,6 +151,16 @@ export function EfInternalTools() {
         </span>
       </div>
       <p className="mt-1 text-[12px] leading-4 text-dc-muted">{buildLabel()}</p>
+
+      {/* App updates: the quiet updater's state, since the switch itself is invisible by design. */}
+      <div className="mt-4">
+        <p className="text-[14px] font-bold leading-5 text-dc-fg2">App updates</p>
+        <p className="mt-1 text-[14px] leading-5 text-dc-fg2">
+          Whether a new build is waiting and when this device will take it. New builds are found by a check
+          once a minute and when the app comes back to the front.
+        </p>
+        <UpdateTools />
+      </div>
 
       {/* Unreleased features */}
       {unreleased.length > 0 && (

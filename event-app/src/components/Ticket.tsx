@@ -18,6 +18,7 @@ import { TicketSkeleton } from "./Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
+import { BuildFooter } from "./BuildFooter";
 import { SecondaryButton } from "./Buttons";
 import { FeedbackCard } from "./feedback/FeedbackCard";
 import { openFeedback } from "@/data/feedback/feedbackState";
@@ -172,6 +173,8 @@ export function Ticket() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* For everyone, signed in or not: the build this device runs, and a refresh. */}
+      <BuildFooter />
       </div>
     </main>
   );

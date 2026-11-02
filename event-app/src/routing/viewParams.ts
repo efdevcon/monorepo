@@ -80,6 +80,34 @@ export function isDetailPath(pathname: string): boolean {
 }
 
 /**
+ * The room screens: `/room-screens` is the picker and a precached shell,
+ * `/room-screens/<id>` one room's kiosk (the URL on the TVs). Offline the
+ * worker answers a kiosk navigation with the picker shell, which renders the
+ * kiosk for the id in the URL from the local store (room-screens-route.tsx),
+ * exactly as the detail paths work. Ids are slugs: no dots (the static files
+ * under /room-screens/ carry one), no slashes.
+ */
+export const KIOSK_ROUTE = "/room-screens";
+const KIOSK_PATH = /^\/room-screens\/([^/.]+)\/?$/;
+
+export function parseKioskPath(pathname: string): string | null {
+  const match = KIOSK_PATH.exec(pathname);
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return match[1];
+  }
+}
+
+/** The precached shell that renders `pathname` offline, or null when none does. */
+export function shellForPath(pathname: string): string | null {
+  const detail = parseDetailPath(pathname);
+  if (detail) return DETAIL_ROUTES[detail.kind];
+  return parseKioskPath(pathname) !== null ? KIOSK_ROUTE : null;
+}
+
+/**
  * The tab pane that renders `pathname`: the tab itself, or the list tab a
  * detail page belongs to. Null for routes outside the tab bar (announcements,
  * room screens, admin), which render through the layout's children.

@@ -29,8 +29,16 @@
 export const SKIP_WAITING_MESSAGE = { type: "SKIP_WAITING" } as const;
 /** How long the new worker gets to take control before the page reloads to help it along. */
 export const TAKEOVER_TIMEOUT_MS = 4000;
-/** Reloads per update request before the flow stops reloading and just waits. */
+/** Reloads per update request before the flow slows down to the watchdog below. */
 export const MAX_FALLBACK_RELOADS = 2;
+/**
+ * Past that bound the switch is being held (another tab's requests, usually):
+ * the flow says so, asks the worker again and reloads every SLOW_RETRY_MS,
+ * since a navigation ends this page's requests and lets the switch through,
+ * until MAX_SLOW_RELOADS reloads in all; then it waits for a click.
+ */
+export const SLOW_RETRY_MS = 30_000;
+export const MAX_SLOW_RELOADS = 6;
 /** A carried-over request older than this is dropped: it is from another attempt. */
 export const MARKER_TTL_MS = 10 * 60 * 1000;
 
@@ -40,6 +48,8 @@ export type UpdateState = "idle" | "available" | "updating" | "slow";
 export interface UpdateMarker {
   at: number;
   reloads: number;
+  /** The quiet trigger behind the request (kiosk, launch, hidden, return); absent for a click. */
+  quiet?: string;
 }
 
 export interface WaitingWorker {
@@ -67,12 +77,17 @@ export interface UpdateFlow {
   start(): void;
   /** A worker is waiting (found at start-up). */
   updateAvailable(): void;
-  /** The user clicked Update. */
-  requestUpdate(): void;
+  /** The user clicked Update, or a quiet trigger (named) asked for the switch. */
+  requestUpdate(quiet?: string): void;
   /** A worker finished installing while a controller exists. */
   workerInstalled(worker: WaitingWorker): void;
   /** `controllerchange`: a worker took control of the page. */
   controllerChanged(): void;
+  /**
+   * Forget the request (the kiosk re-arms after `slow`, since nobody is there
+   * to click): available again if a worker waits, else idle.
+   */
+  reset(): void;
   dispose(): void;
 }
 
@@ -90,27 +105,45 @@ export function createUpdateFlow(deps: UpdateFlowDeps): UpdateFlow {
     deps.clearTimeout(timer);
     timer = null;
   };
+  const ask = (worker: WaitingWorker) => worker.postMessage(SKIP_WAITING_MESSAGE);
+
+  /** The switch is being held: say so, and keep nudging it with a reload every SLOW_RETRY_MS, up to the cap. */
+  const enterSlow = (marker: UpdateMarker) => {
+    setState("slow");
+    if (marker.reloads < MAX_SLOW_RELOADS) timer = deps.setTimeout(onSlowRetry, SLOW_RETRY_MS);
+  };
   const onTimeout = () => {
     timer = null;
     const marker = deps.readMarker() ?? { at: deps.now(), reloads: 0 };
     if (marker.reloads < MAX_FALLBACK_RELOADS) {
-      deps.writeMarker({ at: marker.at, reloads: marker.reloads + 1 });
+      deps.writeMarker({ ...marker, reloads: marker.reloads + 1 });
       deps.reload();
       return;
     }
-    setState("slow");
+    enterSlow(marker);
   };
-  const ask = (worker: WaitingWorker) => worker.postMessage(SKIP_WAITING_MESSAGE);
+  const onSlowRetry = () => {
+    timer = null;
+    const marker = deps.readMarker() ?? { at: deps.now(), reloads: MAX_FALLBACK_RELOADS };
+    const worker = deps.waiting();
+    if (worker) ask(worker);
+    deps.writeMarker({ ...marker, reloads: marker.reloads + 1 });
+    deps.reload();
+  };
 
-  /** Shared by the click and a carried-over request. */
+  /** Shared by the click, a quiet trigger and a carried-over request. */
   const begin = (marker: UpdateMarker) => {
     requested = true;
     deps.pauseWarming();
     deps.writeMarker(marker);
-    setState("updating");
     const worker = deps.waiting();
     if (worker) ask(worker);
     disarm();
+    if (marker.reloads >= MAX_FALLBACK_RELOADS) {
+      enterSlow(marker);
+      return;
+    }
+    setState("updating");
     timer = deps.setTimeout(onTimeout, TAKEOVER_TIMEOUT_MS);
   };
 
@@ -138,7 +171,7 @@ export function createUpdateFlow(deps: UpdateFlowDeps): UpdateFlow {
     updateAvailable() {
       if (!requested) setState("available");
     },
-    requestUpdate() {
+    requestUpdate(quiet) {
       if (requested) return;
       if (!deps.waiting() && !deps.installing()) {
         // The switch already happened (another tab asked for it): the reload
@@ -147,7 +180,7 @@ export function createUpdateFlow(deps: UpdateFlowDeps): UpdateFlow {
         deps.reload();
         return;
       }
-      begin({ at: deps.now(), reloads: 0 });
+      begin(quiet ? { at: deps.now(), reloads: 0, quiet } : { at: deps.now(), reloads: 0 });
     },
     workerInstalled(worker) {
       if (requested) ask(worker);
@@ -158,6 +191,12 @@ export function createUpdateFlow(deps: UpdateFlowDeps): UpdateFlow {
       disarm();
       deps.writeMarker(null);
       deps.reload();
+    },
+    reset() {
+      disarm();
+      requested = false;
+      deps.writeMarker(null);
+      setState(deps.waiting() ? "available" : "idle");
     },
     dispose: disarm,
   };

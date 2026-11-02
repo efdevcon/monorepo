@@ -121,13 +121,21 @@ form.
 
 # new versions
 
-Updates are **opt-in, never forced** (`skipWaiting: false`, `clientsClaim: true`). When a new
-worker installs while one is already controlling the page, `ServiceWorkerUpdater.tsx` shows a
-persistent "Update available" toast with an Update button; only on click does it `postMessage`
-SKIP_WAITING to the worker waiting at that moment, which activates and triggers a single reload.
-The app also calls `registration.update()` on `visibilitychange` and every minute, so an open tab
-keeps checking for new versions. We don't do skipwaiting as that may lead to inconsistencies in
-some edge cases: _either everything updates, or nothing does, as a heuristic._
+The worker never skips waiting on its own (`skipWaiting: false`, `clientsClaim: true`): a new
+build installs and waits, and a page on the old build must never keep running under the new
+worker (its chunks are gone once the new worker activates), so every switch is followed by an
+immediate reload. Since 2026-11-02 the app asks for the switch at quiet moments instead of
+prompting (`ServiceWorkerUpdater.tsx`, decisions in `src/utils/silentUpdate.ts`): the room-screen
+TVs (`/room-screens/<id>`) switch by themselves as soon as they are online and no session in the
+room starts or ends within two minutes, never reload offline, re-arm after the reload bound and
+reload nightly at 04:00 venue time; everyone else switches at launch when a build is already
+waiting, 15 s after the tab hides, or on return after at least 15 s away (iOS freezes hidden
+pages, so the hidden timer never fires there), unless a stream player, a sheet or typed text is
+on the page (the scroll position is restored). The "Update available" toast remains as the fallback,
+after 24 hours waiting or when the new deploy's `public/version.json` says urgent; its Update
+button `postMessage`s SKIP_WAITING to the worker waiting at that moment. The app also calls
+`registration.update()` on `visibilitychange` and every minute, so an open tab keeps checking for
+new versions.
 
 Chrome only lets the new worker take over once the old one has no fetch event in flight, and a
 page that keeps it busy (the image warmer right after a load, hover prefetches, another tab) can
@@ -176,7 +184,7 @@ flowchart TD
         SHELL[Precache app-shell routes<br/>git-hash revisioned, view params ignored]
         RT[Runtime cache:<br/>RSC/docs NetworkFirst (params normalised, 10 s deadline)<br/>chunks SWR · images/fonts CacheFirst<br/>/api/* untouched]
         REDIR[/schedule/<id> → /schedule?session=<id>]
-        UPD[New SW installs] --> TOAST[Update toast] -->|user clicks Update| SKIP[pause warmer → SKIP_WAITING → activate → reload<br/>no takeover in time: reload and resume]
+        UPD[New SW installs] --> TOAST[quiet moment: kiosk, launch, hidden tab; else toast after 24 h] -->|switch| SKIP[pause warmer → SKIP_WAITING → activate → reload<br/>no takeover in time: reload and resume]
     end
     Data -. devcon-api never cached by the SW .- RT
 ```

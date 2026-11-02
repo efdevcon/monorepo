@@ -1,5 +1,5 @@
-import RoomScreens from "./room-screens";
+import RoomScreensRoute from "./room-screens-route";
 
 export default function RoomScreensPage() {
-  return <RoomScreens />;
+  return <RoomScreensRoute />;
 }

@@ -2,6 +2,7 @@ import type { TicketsPayload } from "@/data/tickets/types";
 import type { AuthedUser } from "./auth";
 import { countOtherHolders, listLinks, removeLinks } from "./links";
 import { getTicketsForUser, type PretixStore } from "./pretix";
+import { qaPassFor } from "../meerkat/qaPass";
 
 /**
  * Everything the account may see: attached tickets first, then email-matched
@@ -48,5 +49,10 @@ export async function ticketsPayload(
   } catch (err) {
     console.warn("[/api/tickets] could not count other holders:", err);
   }
-  return { tickets: orders, removedAttachments: deadLinks.length || undefined };
+  return {
+    tickets: orders,
+    removedAttachments: deadLinks.length || undefined,
+    // Renewed (or dropped) with every payload: the Q&A link's ticket check.
+    qaPass: qaPassFor(user, orders, store.eventSlug),
+  };
 }
