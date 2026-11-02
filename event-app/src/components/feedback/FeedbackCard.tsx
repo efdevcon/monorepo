@@ -17,7 +17,8 @@ export function FeedbackCard() {
         </h2>
         <p className="mt-1 text-[14px] leading-5 text-dc-muted lg:text-[16px] lg:leading-6">
           Something not working, or got an idea you want to share for the app? Let us know!
-          It&rsquo;s fast and your basic device details are sent automatically.
+          It&rsquo;s fast and your basic device details are sent automatically to help us diagnose
+          the issue.
         </p>
       </div>
       <SecondaryButton
