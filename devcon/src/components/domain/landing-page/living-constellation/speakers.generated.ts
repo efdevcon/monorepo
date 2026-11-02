@@ -12,10 +12,10 @@ import img93XWX7 from './assets/portraits/yi-sun.webp'
 import imgATXLD3 from './assets/portraits/christopher-fabian.webp'
 import imgB9V8HC from './assets/portraits/victoria-kozlova.webp'
 import imgBRYZ3G from './assets/portraits/telamon-ardavanis.webp'
+import imgBSBLVY from './assets/portraits/ameen.webp'
 import imgBW7UUN from './assets/portraits/francesco-andreoli.webp'
 import imgC3VHKH from './assets/portraits/dmytro-matviiv.webp'
 import imgDURU3V from './assets/portraits/santiagodevrel.webp'
-import imgFZ8PA3 from './assets/portraits/hart-montgomery.webp'
 import imgG9LYGU from './assets/portraits/justin-drake.webp'
 import imgG9TNL3 from './assets/portraits/lightclient.webp'
 import imgGAHFAR from './assets/portraits/mooly-sagiv.webp'
@@ -46,9 +46,12 @@ import imgT9HFLF from './assets/portraits/kaan-uzdogan.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
 import imgTUKEUK from './assets/portraits/gubsheep.webp'
 import imgUKPQQY from './assets/portraits/manu-sheel-gupta.webp'
+import imgUMGQWZ from './assets/portraits/peter-szilagyi.webp'
 import imgUNL78E from './assets/portraits/shayan-eskandari.webp'
+import imgUV3SHG from './assets/portraits/viktor-tron.webp'
 import imgV88N3U from './assets/portraits/asha-shankar.webp'
 import imgW8UUCW from './assets/portraits/roger-dingledine.webp'
+import imgWKT8KH from './assets/portraits/nico.webp'
 import imgWLADZ7 from './assets/portraits/cheeky-gorilla.webp'
 import imgWYUF7P from './assets/portraits/tomasz-stanczak.webp'
 import imgZDA7LS from './assets/portraits/fatemeh-fannizadeh.webp'
@@ -99,7 +102,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Griff Green',
     organization: 'TheDAO Security Fund & Giveth',
     xHandle: 'griffgreen',
-    track: 'Community Hubs',
+    track: 'Security',
     image: img7BLNXR,
     source: 'pretalx',
   },
@@ -117,7 +120,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Yi Sun',
     organization: 'Axiom',
     xHandle: 'theyisun',
-    track: 'Core Protocol',
     image: img93XWX7,
     source: 'pretalx',
   },
@@ -125,7 +127,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'ATXLD3',
     name: 'Christopher Fabian',
     organization: 'UNICEF/Giga',
-    track: 'Futures Worth Building',
+    track: 'Rights, Freedoms, and Governance',
     image: imgATXLD3,
     source: 'pretalx',
   },
@@ -146,6 +148,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'TelamonArdavani',
     track: 'Futures Worth Building',
     image: imgBRYZ3G,
+    source: 'pretalx',
+  },
+  BSBLVY: {
+    id: 'BSBLVY',
+    name: 'Ameen',
+    organization: '0xbow',
+    xHandle: 'ameensol',
+    track: 'Privacy & Consent',
+    image: imgBSBLVY,
     source: 'pretalx',
   },
   BW7UUN: {
@@ -173,15 +184,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'santiagodevrel',
     track: 'Open & Verifiable Stack',
     image: imgDURU3V,
-    source: 'pretalx',
-  },
-  FZ8PA3: {
-    id: 'FZ8PA3',
-    name: 'Hart Montgomery',
-    organization:
-      'Linux Foundation, and many of the foundations and projects in it (including LF Decentralized Trust, which hosts Besu, Lineth, Paladin, and more)',
-    track: 'Open & Verifiable Stack',
-    image: imgFZ8PA3,
     source: 'pretalx',
   },
   G9LYGU: {
@@ -214,7 +216,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     id: 'GVKNCK',
     name: 'Meinhard Benn',
     organization: 'Freedom Browser',
-    track: 'Permissionless Networks',
+    track: 'Users, Builders, and Agents',
     image: imgGVKNCK,
     source: 'pretalx',
   },
@@ -309,7 +311,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
   MMELPR: {
     id: 'MMELPR',
     name: 'Matteo Vicari',
-    organization: 'Riva Labs',
+    organization: 'Project Eleven',
     xHandle: 'mattevicari',
     track: 'Core Protocol',
     image: imgMMELPR,
@@ -355,7 +357,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'Tomoki Adachi',
     organization: 'Nyx Foundation',
     xHandle: 't_adachi6006',
-    track: 'Privacy & Consent',
     image: imgPXYHQU,
     source: 'pretalx',
   },
@@ -443,8 +444,17 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     organization:
       'Libp2p, IPFS, Protocol Labs, Eth Swarm, SEETA, Meshworks, Diagnosity, Nyx Foundation, Invisible.Garden',
     xHandle: 'manusheel',
-    track: 'Community Hubs',
+    track: 'Permissionless Networks',
     image: imgUKPQQY,
+    source: 'pretalx',
+  },
+  UMGQWZ: {
+    id: 'UMGQWZ',
+    name: 'Péter Szilágyi',
+    organization: 'Dark Bio',
+    xHandle: 'peter_szilagyi',
+    track: 'Open & Verifiable Stack',
+    image: imgUMGQWZ,
     source: 'pretalx',
   },
   UNL78E: {
@@ -454,6 +464,15 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'sbetamc',
     track: 'Rights, Freedoms, and Governance',
     image: imgUNL78E,
+    source: 'pretalx',
+  },
+  UV3SHG: {
+    id: 'UV3SHG',
+    name: 'viktor Tron',
+    organization: 'swarm',
+    xHandle: 'zeligf',
+    track: 'Open & Verifiable Stack',
+    image: imgUV3SHG,
     source: 'pretalx',
   },
   V88N3U: {
@@ -471,6 +490,14 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'TorProject',
     track: 'Permissionless Networks',
     image: imgW8UUCW,
+    source: 'pretalx',
+  },
+  WKT8KH: {
+    id: 'WKT8KH',
+    name: 'Nico',
+    organization: 'Ethereum Foundation',
+    track: 'Privacy & Consent',
+    image: imgWKT8KH,
     source: 'pretalx',
   },
   WLADZ7: {

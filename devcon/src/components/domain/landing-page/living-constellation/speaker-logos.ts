@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image'
 import OneClaw from './images/logos/1claw.svg'
 import ZeroXParc from './images/logos/0xparc.svg'
+import ZeroXBow from './images/logos/0xbow.svg'
 import Ack3 from './images/logos/ack3.svg'
 import argotCollective from './images/logos/argot-collective.png'
 import Arkiv from './images/logos/arkiv.svg'
@@ -9,6 +10,7 @@ import Certora from './images/logos/certora.svg'
 import Axiom from './images/logos/axiom.svg'
 import Circle from './images/logos/circle.svg'
 import Coinbase from './images/logos/coinbase.svg'
+import DarkBio from './images/logos/dark-bio.svg'
 import EdgeCity from './images/logos/edge-city.svg'
 import EthereumFoundation from './images/logos/ethereum-foundation.svg'
 import ethlabs from './images/logos/ethlabs.png'
@@ -17,7 +19,6 @@ import Giga from './images/logos/giga.svg'
 import Giveth from './images/logos/giveth.svg'
 import gnosis from './images/logos/gnosis.png'
 import HackenProof from './images/logos/hackenproof.svg'
-import Lfdt from './images/logos/lfdt.svg'
 import Lava from './images/logos/lava.svg'
 import libp2p from './images/logos/libp2p.png'
 import MetaMask from './images/logos/metamask.svg'
@@ -32,6 +33,7 @@ import Polygon from './images/logos/polygon.svg'
 import ProtocolGuild from './images/logos/protocol-guild.svg'
 import RivaLabs from './images/logos/riva-labs.svg'
 import Silviculture from './images/logos/silviculture.svg'
+import Swarm from './images/logos/swarm.svg'
 import TalTech from './images/logos/taltech.svg'
 import Tor from './images/logos/tor.svg'
 import Unicef from './images/logos/unicef.svg'
@@ -52,6 +54,7 @@ export type SpeakerLogo = { scale?: number } & (
 )
 
 export const SPEAKER_LOGOS = {
+  '0xbow': { Logo: ZeroXBow, aspect: 26.16 / 27.12 },
   '0xparc': { Logo: ZeroXParc, aspect: 673 / 128 },
   '1claw': { Logo: OneClaw, aspect: 610 / 128 },
   ack3: { Logo: Ack3, aspect: 507 / 128 },
@@ -62,6 +65,7 @@ export const SPEAKER_LOGOS = {
   certora: { Logo: Certora, aspect: 420 / 126 },
   circle: { Logo: Circle, aspect: 500 / 128 },
   coinbase: { Logo: Coinbase, aspect: 717 / 128 },
+  'dark-bio': { Logo: DarkBio, aspect: 266 / 82 },
   'edge-city': { Logo: EdgeCity, aspect: 254 / 128 },
   'ethereum-foundation': { Logo: EthereumFoundation, aspect: 402 / 128 },
   ethlabs: { image: ethlabs },
@@ -70,7 +74,6 @@ export const SPEAKER_LOGOS = {
   giveth: { Logo: Giveth, aspect: 623 / 128 },
   gnosis: { image: gnosis },
   hackenproof: { Logo: HackenProof, aspect: 470 / 128, scale: 1.2 },
-  lfdt: { Logo: Lfdt, aspect: 597 / 128 },
   lava: { Logo: Lava, aspect: 490 / 101 },
   libp2p: { image: libp2p },
   metamask: { Logo: MetaMask, aspect: 133 / 128 },
@@ -85,6 +88,7 @@ export const SPEAKER_LOGOS = {
   'protocol-guild': { Logo: ProtocolGuild, aspect: 1106 / 128 },
   'riva-labs': { Logo: RivaLabs, aspect: 404 / 128, scale: 1.2 },
   silviculture: { Logo: Silviculture, aspect: 453 / 129 },
+  swarm: { Logo: Swarm, aspect: 96 / 25 },
   taltech: { Logo: TalTech, aspect: 228 / 128 },
   tor: { Logo: Tor, aspect: 211 / 128 },
   unicef: { Logo: Unicef, aspect: 539 / 128 },
