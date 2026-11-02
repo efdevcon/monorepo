@@ -289,10 +289,10 @@ export const LAYOUT_V3: RosLayout = {
   },
   synced: ['start', 'dur', 'end', 'segment', 'speakers', 'contact', 'format', 'rec'],
   carried: ['deckOk', 'intro', 'moderator', 'mic', 'notes'],
-  fillOnce: ['qa', 'slides'],
+  fillOnce: ['qa', 'mc', 'slides'],
   blockDividers: false,
   footer: false,
-  formulas: ['num', 'end', 'mc'],
+  formulas: ['num', 'end'],
   checkboxes: ['deckOk'],
   emptyCheckbox: 'FALSE',
   statusOptions: STATUS_OPTIONS_V3,
@@ -324,9 +324,11 @@ export const LAYOUT_V4: RosLayout = {
 
 /**
  * v5 (2026-10-31): v4 with END moved after MC, so a row reads left to right as
- * START + DUR (talk) + Q&A + MC = END, the start of the next segment. MC is the
- * gap after talk + Q&A; END is no longer compared with Pretalx (START and DUR
- * carry the slot). A v4 sheet is upgraded in place by moving the END column.
+ * START + DUR (talk) + Q&A + MC = END, the start of the next segment in a
+ * regular running order. MC is the speaker change from the AV timer table
+ * (fill-once, like Q&A; a formula to the next row's START until 2026-11-02);
+ * END is no longer compared with Pretalx (START and DUR carry the slot). A v4
+ * sheet is upgraded in place by moving the END column.
  */
 const V5_HEADERS = [...V4_HEADERS.slice(0, 4), 'Q&A (min)', 'MC (min)', 'END', ...V4_HEADERS.slice(7)]
 export const LAYOUT_V5: RosLayout = {
@@ -345,13 +347,27 @@ export function endAfterMc(layout: RosLayout): boolean {
 }
 
 /**
- * Q&A minutes inside the Pretalx slot, from the AV timer table (talk + Q&A =
- * slot, the buffer is the gap to the next slot). Other formats default to 0
- * until the AV team gives numbers; the crew can type their own.
+ * The AV timer table, per session type: talk + Q&A fill the Pretalx slot and
+ * the buffer (speaker change, the MC column) runs up to the next slot.
+ *   Talks 20 + 5 + 5 · Mixed format 25 + 0 + 5 · Workshops 50 + 0 + 10 · Lightning 5 + 2 + 3
+ * Q&A defaults exist for the two formats that have one (other formats stay 0
+ * until the AV team gives numbers); the crew can type their own in both columns.
  */
 const QA_MINUTES: Record<string, number> = { talk: 5, 'lightning talk': 2 }
 export function qaMinutesFor(type: string): number {
   return QA_MINUTES[(type || '').trim().toLowerCase()] ?? 0
+}
+/**
+ * MC minutes (speaker change) from the timer table, by keyword so the
+ * community-led variants of a format get the same buffer: lightning 3,
+ * workshops 10, everything else 5. Never the distance to the next row
+ * (that was the rule until 2026-11-02 and it swallowed every hole in the schedule).
+ */
+export function mcMinutesFor(type: string): number {
+  const t = (type || '').toLowerCase()
+  if (/lightning/.test(t)) return 3
+  if (/workshop/.test(t)) return 10
+  return 5
 }
 
 export function normalizeHeader(value: unknown): string {
@@ -436,8 +452,11 @@ export interface RosSession {
   track?: string
   /** false when the speaker opted out of recording */
   record?: boolean
-  /** A Pretalx break or blocker instead of a talk: keyed by a generated code, no REC, deck or Q&A */
-  kind?: 'break' | 'blocker'
+  /**
+   * Not a talk: a Pretalx break or blocker, or a gap we found in the schedule
+   * (see gapSessions). Keyed by a generated code; no REC, deck or Q&A.
+   */
+  kind?: 'break' | 'blocker' | 'gap'
   day: string
   roomId: string
   roomName: string
@@ -530,23 +549,6 @@ export const formulas = {
     }
     return `=IF(${s}${row}<>"",${s}${row}+(${d}${row}+N(${q}${row}))/1440,"")`
   },
-  /**
-   * MC / changeover minutes up to the START of the next live row below: from this row's
-   * END (v3, v4), or from the end of its talk + Q&A (v5, where END comes after MC).
-   */
-  mc(layout: RosLayout, row: number): string {
-    const s = colLetter(layout.col.start!)
-    const st = colLetter(layout.col.status!)
-    const next = row + 1
-    const nextStart = `INDEX(FILTER($${s}${next}:$${s},$${s}${next}:$${s}<>"",$${st}${next}:$${st}<>"CANCELLED"),1)`
-    if (endAfterMc(layout)) {
-      const d = colLetter(layout.col.dur!)
-      const q = colLetter(layout.col.qa!)
-      return `=IF(${s}${row}="","",IFERROR(ROUND((${nextStart}-(${s}${row}+(${d}${row}+N(${q}${row}))/1440))*1440),""))`
-    }
-    const e = colLetter(layout.col.end!)
-    return `=IF(${e}${row}="","",IFERROR(ROUND((${nextStart}` + `-${e}${row})*1440),""))`
-  },
   /** Minutes late (positive) or early (negative) once the actual start is typed. */
   delta(layout: RosLayout, row: number): string {
     const s = colLetter(layout.col.start!)
@@ -630,6 +632,69 @@ export function padRow(values: (string | number | null | undefined)[], count: nu
   const out: string[] = []
   for (let i = 0; i < count; i++) out.push(values[i] == null ? '' : String(values[i]).trim())
   return out
+}
+
+/**
+ * A hole in a stage's day: nothing scheduled for GAP_MIN_MINUTES or more after a
+ * slot and its speaker change (talk + Q&A + MC, where the row's END lands), up to
+ * the next slot (talks, breaks and blockers alike). It gets a row of its own,
+ * keyed like a break, so the crew sees the hole instead of a jump between END
+ * and the next START. The schedule team puts deliberate pauses in Pretalx as
+ * breaks, which are bars already.
+ */
+export const GAP_MIN_MINUTES = 20
+export const GAP_TITLE = 'Gap · nothing scheduled'
+/** PRETALX ID of a gap row (GAP-<room>-<day>-<n>, numbered in time order within the stage's day). */
+export const GAP_CODE = /^GAP-/
+
+const clock = (minutes: number) => `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`
+
+export function gapSessions(scheduled: RosSession[], dayNumber: (day: string) => number | string, minMinutes = GAP_MIN_MINUTES): RosSession[] {
+  const byDay = new Map<string, RosSession[]>()
+  for (const s of scheduled) {
+    const key = `${s.day}/${s.roomId}`
+    byDay.set(key, [...(byDay.get(key) ?? []), s])
+  }
+  const out: RosSession[] = []
+  for (const group of byDay.values()) {
+    const timed = group
+      .map((s) => ({ s, start: parseClock(s.start), end: parseClock(s.end) }))
+      .filter((t): t is { s: RosSession; start: number; end: number } => t.start !== null && t.end !== null)
+      // a break or blocker ends when it ends; a talk's row runs on for its speaker change
+      .map((t) => ({ ...t, end: t.end + (t.s.kind ? 0 : mcMinutesFor(t.s.type)) }))
+      .sort((a, b) => a.start - b.start || a.end - b.end)
+    // The latest end so far: a slot nested inside a longer one opens no hole after itself.
+    let covered: number | null = null
+    let n = 0
+    for (const { s, start, end } of timed) {
+      if (covered !== null && start - covered >= minMinutes) {
+        n++
+        out.push({
+          code: `GAP-${s.roomId}-${dayNumber(s.day) || s.day}-${n}`,
+          kind: 'gap',
+          title: GAP_TITLE,
+          type: 'Gap',
+          speakers: '',
+          start: clock(covered),
+          end: clock(start),
+          durationMin: start - covered,
+          day: s.day,
+          roomId: s.roomId,
+          roomName: s.roomName,
+        })
+      }
+      covered = covered === null ? end : Math.max(covered, end)
+    }
+  }
+  return out
+}
+
+/** Whether the crew typed anything in the carried columns (an unticked box reads back as FALSE). */
+function hasCrewText(layout: RosLayout, values: string[]): boolean {
+  return layout.carried.some((f) => {
+    const v = values[layout.col[f]!]
+    return v !== '' && v !== 'FALSE'
+  })
 }
 
 /**
@@ -741,7 +806,6 @@ function applyFormulas(
     const col = layout.col[f]!
     if (f === 'num') values[col] = formulas.num(layout, firstSheetRow, sheetRow)
     if (f === 'end') values[col] = formulas.end(layout, sheetRow)
-    if (f === 'mc') values[col] = formulas.mc(layout, sheetRow)
     if (f === 'delta') values[col] = formulas.delta(layout, sheetRow)
     if (f === 'cueType') values[col] = formulas.cueType(layout, sheetRow, cuesGid)
   }
@@ -781,14 +845,7 @@ export function planFile(input: PlanInput): FilePlan {
     if (entry.manual) {
       const values: (string | number)[] = [...entry.manual.values]
       const timed = parseClock(values[col.start] as string) !== null && /^\d+$/.test(String(values[col.dur]))
-      applyFormulas(
-        layout,
-        values,
-        firstSheetRow,
-        sheetRow,
-        cuesGid,
-        timed ? undefined : layout.formulas.filter((f) => f !== 'end' && f !== 'delta' && f !== 'mc')
-      )
+      applyFormulas(layout, values, firstSheetRow, sheetRow, cuesGid, timed ? undefined : layout.formulas.filter((f) => f !== 'end' && f !== 'delta'))
       values[col.slides] = slidesCell(entry.manual.values[col.slides])
       rows.push({ kind: 'manual', values, changed: [] })
       continue
@@ -801,6 +858,10 @@ export function planFile(input: PlanInput): FilePlan {
     values[col.status] = nextStatus(prev?.[col.status])
     // Q&A minutes: the crew's number once typed, else the AV timer default. A break has none.
     const qa = fillOnce.includes('qa') ? (session.kind ? '' : prev?.[col.qa] || String(qaMinutesFor(session.type))) : undefined
+    // MC minutes: the crew's number once typed, else the speaker change of the AV timer table. A
+    // break has none. The MC formula written before 2026-11-02 reads back as its text and gives way.
+    const prevMc = prev?.[col.mc] ?? ''
+    const mc = fillOnce.includes('mc') ? (session.kind ? '' : /^\d+$/.test(prevMc) ? prevMc : String(mcMinutesFor(session.type))) : undefined
     // With a Q&A column, DUR is the talk alone: the Pretalx slot holds talk + Q&A (AV timer table).
     const synced = (f: Field) => (f === 'dur' && qa !== undefined ? talkMinutes(session, qa) : syncedValue(f, session))
     for (const f of layout.synced) values[col[f]] = synced(f)
@@ -820,12 +881,11 @@ export function planFile(input: PlanInput): FilePlan {
     if (session.kind) for (const f of layout.checkboxes) values[col[f]] = ''
     // A break has no Q&A: the cell sits inside the break's bar on the sheet.
     if (qa !== undefined) values[col.qa] = qa
+    if (mc !== undefined) values[col.mc] = mc
     if (!prev && !session.kind)
       for (const f of layout.checkboxes.length ? layout.checkboxes : (['onSite'] as Field[]))
         if (col[f] !== undefined) values[col[f]] = layout.emptyCheckbox
     applyFormulas(layout, values, firstSheetRow, sheetRow, cuesGid)
-    // A break shows no MC gap: the bar is the gap.
-    if (session.kind && col.mc !== undefined) values[col.mc] = ''
     values[col.id] = session.code
 
     const changed: number[] = []
@@ -873,7 +933,8 @@ export function planFile(input: PlanInput): FilePlan {
 
   // Rows that used to be on this sheet but are no longer scheduled here: keep
   // them, with their AV notes, parked as CANCELLED so nothing is lost silently.
-  const parked = existingRows.filter((r) => !r.manual && !scheduledHere.has(r.code))
+  // A gap that closed was ours, not the schedule's: it just goes, unless the crew wrote on it.
+  const parked = existingRows.filter((r) => !r.manual && !scheduledHere.has(r.code) && !(GAP_CODE.test(r.code) && !hasCrewText(layout, r.values)))
   if (parked.length) {
     rows.push({ kind: 'removed-header', values: [REMOVED_HEADER], changed: [] })
     for (const row of parked) {

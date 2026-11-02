@@ -491,8 +491,11 @@ session leaves). Rules that differ:
 - v5 reads left to right: `START · DUR · Q&A · MC · END`, with END = START + DUR + Q&A + MC
   (the next segment's start). `DUR` is the talk alone: the Pretalx slot minus the Q&A cell (the
   AV timer table: Talk 20 + 5 + 5, Lightning 5 + 2 + 3, Mixed 25 + 0 + 5, Workshop 50 + 0 + 10).
-  `MC` is a formula: the gap from the end of talk + Q&A to the next live row's START (red when
-  negative). END is derived, so it is not compared with Pretalx; START and DUR carry the slot.
+  `MC` is the speaker change of that table (Talk and Mixed 5, Workshop 10, Lightning 3, any other
+  format 5, matched by keyword so the community-led variants follow), prefilled once like Q&A so
+  the crew can type their own; until 2026-11-02 it was a formula to the next live row's START,
+  which showed every hole in the schedule as MC time (`mcMinutesFor`). END is derived, so it is
+  not compared with Pretalx; START and DUR carry the slot.
   A crew Q&A override shortens DUR at the next sync. Until 2026-10-31 DUR held the whole slot
   (Q&A counted twice); the switch logged no changes. v4 sheets are upgraded by moving the END
   column (the full-width REMOVED divider is unmerged and merged again around the move).
@@ -524,6 +527,13 @@ session leaves). Rules that differ:
   work-in-progress schedule, `GetScheduleBlocks`). They render as one bar (SESSION..MIC merged,
   dark blue for breaks, dark grey for blockers) with no REC, deck tick, Q&A or MC; FORMAT is
   not compared for them because the merged cells read back empty.
+- A hole of 20 minutes or more after a slot's speaker change (where its END lands) that no break
+  or blocker covers gets a row of its own too (`GAP-<room>-<day>-<n>`, "Gap · nothing
+  scheduled", a light grey-blue bar; `gapSessions` in `utils/run-of-show.ts`, threshold
+  `GAP_MIN_MINUTES`), so the crew sees the hole instead of a jump between END and the next START
+  (2026-11-02, after Lotus 3 Day 1 opened with a 35 minute hole). A gap that closes later just
+  disappears, unless the crew wrote on its row, in which case it is parked under REMOVED like any
+  other row.
 - SLIDES, REC and PRETALX ID widen when their text does not fit (REC always fits
   `NO REC · NO STREAM`); a column the crew made wider is left alone.
 

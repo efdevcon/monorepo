@@ -27,6 +27,10 @@ import {
   linkCell,
   blockFor,
   qaMinutesFor,
+  mcMinutesFor,
+  gapSessions,
+  GAP_MIN_MINUTES,
+  GAP_TITLE,
   presentingFromAnswer,
 } from './run-of-show'
 
@@ -384,6 +388,15 @@ test('Q&A minutes default by format, from the AV timer table', () => {
   expect(qaMinutesFor('Workshop')).toBe(0)
   expect(qaMinutesFor('CLS - Lightning Talk (Open Tech Summit)')).toBe(0)
   expect(qaMinutesFor('')).toBe(0)
+  // MC is the buffer / speaker change of the same table: lightning 3, workshops 10, everything else 5
+  expect(mcMinutesFor('Talk')).toBe(5)
+  expect(mcMinutesFor('Mixed Format')).toBe(5)
+  expect(mcMinutesFor('Workshop')).toBe(10)
+  expect(mcMinutesFor('CLS - Miniworkshop (Open Tech Summit)')).toBe(10)
+  expect(mcMinutesFor('Lightning Talk')).toBe(3)
+  expect(mcMinutesFor('CLS - Lightning (Academic track)')).toBe(3)
+  expect(mcMinutesFor('Opening')).toBe(5)
+  expect(mcMinutesFor('')).toBe(5)
 })
 
 test('v3 first run: defaults, synced contact, formulas, no dividers or footer', () => {
@@ -406,9 +419,10 @@ test('v3 first run: defaults, synced contact, formulas, no dividers or footer', 
   expect(first.values[V3.dur]).toBe('25')
   expect(second.values[V3.dur]).toBe('5')
   expect(first.values[V3.end]).toBe('=IF(C3<>"",C3+(D3+N(F3))/1440,"")')
-  // MC: the gap to the next live row's START, in minutes
-  expect(first.values[V3.mc]).toBe(formulas.mc(LAYOUT_V3, 3))
-  expect(formulas.mc(LAYOUT_V3, 3)).toBe('=IF(E3="","",IFERROR(ROUND((INDEX(FILTER($C4:$C,$C4:$C<>"",$B4:$B<>"CANCELLED"),1)-E3)*1440),""))')
+  // MC: the speaker change from the AV timer table, never the distance to the next row
+  expect(first.values[V3.mc]).toBe('5')
+  expect(second.values[V3.mc]).toBe('3')
+  expect(LAYOUT_V3.formulas).toEqual(['num', 'end'])
   expect(second.values[V3.id]).toBe('BBB222')
 })
 
@@ -740,12 +754,24 @@ test('v5 is v4 with END moved after MC', () => {
   expect(detectLayoutInRows([['v1'], LAYOUT_V4.headers])).toBe(LAYOUT_V4)
 })
 
-test('v5 formulas: MC is the gap after talk + Q&A, END = START + DUR + Q&A + MC', () => {
+test('v5: MC is the speaker change from the timer table, END = START + DUR + Q&A + MC', () => {
   const r = v5([s4({ durationMin: 25 })]).rows[0].values
   expect(r[V5.dur]).toBe('20')
   expect(r[V5.qa]).toBe('5')
-  expect(r[V5.mc]).toBe('=IF(C3="","",IFERROR(ROUND((INDEX(FILTER($C4:$C,$C4:$C<>"",$B4:$B<>"CANCELLED"),1)-(C3+(D3+N(E3))/1440))*1440),""))')
+  expect(r[V5.mc]).toBe('5')
   expect(r[V5.end]).toBe('=IF(C3<>"",C3+(D3+N(E3)+N(F3))/1440,"")')
+})
+
+test('MC is filled once: a crew number stays, an old MC formula or an empty cell gets the table value', () => {
+  const crew = v5([s4({ durationMin: 25 })], [v5Row('AAA111', { mc: '10' })])
+  expect(crew.rows[0].values[V5.mc]).toBe('10')
+  expect(crew.changes.map((c) => c.field)).not.toContain('MC')
+  const oldFormula = '=IF(C3="","",IFERROR(ROUND((INDEX(FILTER($C4:$C,$C4:$C<>"",$B4:$B<>"CANCELLED"),1)-(C3+(D3+N(E3))/1440))*1440),""))'
+  expect(v5([s4({ durationMin: 25 })], [v5Row('AAA111', { mc: oldFormula })]).rows[0].values[V5.mc]).toBe('5')
+  expect(v5([s4({ durationMin: 25 })], [v5Row('AAA111', { mc: '' })]).rows[0].values[V5.mc]).toBe('5')
+  // a break has no MC, whatever the sheet held
+  const lunch = at('BREAK-stage-a-1-1', '12:30', '13:30', { kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '' })
+  expect(v5([lunch], [v5Row('BREAK-stage-a-1-1', { mc: '7' })]).rows[0].values[V5.mc]).toBe('')
 })
 
 test('v5 resync: END is derived, not compared with Pretalx; crew columns stay put', () => {
@@ -754,4 +780,118 @@ test('v5 resync: END is derived, not compared with Pretalx; crew columns stay pu
   expect(p.changes).toEqual([])
   expect(p.rows[0].values[V5.streamIntro]).toBe('stream.mp4')
   expect(p.rows[0].values[V5.notes]).toBe('n')
+})
+
+// Gaps (2026-11-02): a hole between slots gets a row of its own, so the MC column never swallows it.
+const dayOne = () => 1
+const at = (code: string, start: string, end: string, over: Partial<RosSession> = {}) =>
+  session({ code, start, end, durationMin: parseClock(end)! - parseClock(start)!, ...over })
+
+test('gaps: a hole of GAP_MIN_MINUTES or more between slots on a stage becomes a gap row keyed by stage, day and order', () => {
+  expect(GAP_MIN_MINUTES).toBe(20)
+  const gaps = gapSessions([at('BBB222', '15:00', '15:25'), at('AAA111', '14:00', '14:25')], dayOne)
+  expect(gaps).toEqual([
+    {
+      code: 'GAP-stage-a-1-1',
+      kind: 'gap',
+      title: GAP_TITLE,
+      type: 'Gap',
+      speakers: '',
+      start: '14:30',
+      end: '15:00',
+      durationMin: 30,
+      day: '2030-01-01',
+      roomId: 'stage-a',
+      roomName: 'Stage A',
+    },
+  ])
+  // two holes on the same stage and day are numbered in time order; the day number comes from the caller
+  const two = gapSessions(
+    [
+      at('AAA111', '10:00', '10:30'),
+      at('BBB222', '11:00', '11:30'),
+      at('CCC333', '12:00', '12:30', { day: '2030-01-02' }),
+      at('DDD444', '13:00', '13:30', { day: '2030-01-02' }),
+    ],
+    (day) => (day === '2030-01-02' ? 2 : 1)
+  )
+  expect(two.map((g) => [g.code, g.start, g.durationMin])).toEqual([
+    ['GAP-stage-a-1-1', '10:35', 25],
+    ['GAP-stage-a-2-1', '12:35', 25],
+  ])
+})
+
+test('gaps: changeovers under the threshold, breaks covering the hole, overlaps and other stages make no gap row', () => {
+  const next = (start: string, end: string) => at('BBB222', start, end)
+  // the hole is measured from the end of the slot plus its speaker change (a Talk: 14:25 + 5)
+  expect(gapSessions([at('AAA111', '14:00', '14:25'), next('14:49', '15:14')], dayOne)).toEqual([])
+  expect(gapSessions([at('AAA111', '14:00', '14:25'), next('14:50', '15:15')], dayOne)).toHaveLength(1)
+  // a Pretalx break or blocker in the hole is already a bar
+  const lunch = at('BREAK-stage-a-1-1', '12:30', '13:30', { kind: 'break', title: 'Lunch Break', type: 'Break', speakers: '' })
+  expect(gapSessions([at('AAA111', '12:00', '12:30'), lunch, next('13:30', '14:00')], dayOne)).toEqual([])
+  // a slot nested inside a longer one does not open a hole after it
+  expect(gapSessions([at('AAA111', '10:00', '11:00'), at('CCC333', '10:15', '10:30'), next('11:05', '11:30')], dayOne)).toEqual([])
+  // other stages and other days are their own running order
+  expect(
+    gapSessions(
+      [
+        at('AAA111', '14:00', '14:25'),
+        next('15:00', '15:25').roomId === 'stage-a'
+          ? at('BBB222', '15:00', '15:25', { roomId: 'stage-b', roomName: 'Stage B' })
+          : next('15:00', '15:25'),
+      ],
+      dayOne
+    )
+  ).toEqual([])
+  expect(gapSessions([at('AAA111', '14:00', '14:25'), at('BBB222', '15:00', '15:25', { day: '2030-01-02' })], dayOne)).toEqual([])
+})
+
+test('v5: a gap row is a bar like a break and starts where the talk before it ends (START + DUR + Q&A + MC)', () => {
+  const talk = at('AAA111', '14:00', '14:25', { contact: 'Ada Example: TG @ada' })
+  const after = at('BBB222', '15:00', '15:25', { contact: 'Ada Example: TG @ada' })
+  const [gap] = gapSessions([talk, after], dayOne)
+  const p = v5([talk, gap, after])
+  expect(p.rows.map((r) => r.code)).toEqual(['AAA111', 'GAP-stage-a-1-1', 'BBB222'])
+  const g = p.rows[1]
+  expect(g.values[V5.segment]).toBe(GAP_TITLE)
+  expect(g.values[V5.start]).toBe('14:30')
+  expect(g.values[V5.dur]).toBe('30')
+  expect(g.values[V5.end]).toBe(formulas.end(LAYOUT_V5, 4))
+  for (const f of ['qa', 'mc', 'rec', 'deckOk', 'slides', 'speakers', 'contact'] as const) expect([f, g.values[V5[f]]]).toEqual([f, ''])
+  expect(g.values[V5.format]).toBe('Gap')
+  expect(g.values[V5.status]).toBe('CONFIRMED')
+  // the talk keeps its table MC; its END formula lands on the gap's START
+  expect(p.rows[0].values[V5.mc]).toBe('5')
+  expect(p.rows[0].values[V5.end]).toBe(formulas.end(LAYOUT_V5, 3))
+})
+
+test('v5: a gap that closed vanishes silently unless the crew wrote on it', () => {
+  const gapRow = (over: Partial<Record<keyof typeof V5, string>> = {}) =>
+    v5Row('GAP-stage-a-1-1', {
+      segment: GAP_TITLE,
+      format: 'Gap',
+      speakers: '',
+      contact: '',
+      rec: '',
+      qa: '',
+      mc: '',
+      deckOk: 'FALSE',
+      intro: '',
+      streamIntro: '',
+      moderator: '',
+      mic: '',
+      notes: '',
+      start: '14:30',
+      dur: '30',
+      ...over,
+    })
+  const talk = at('AAA111', '14:00', '14:25', { contact: 'Ada Example: TG @ada' })
+  const untouched = v5([talk], [v5Row('AAA111'), gapRow()])
+  expect(untouched.rows.map((r) => r.code)).toEqual(['AAA111'])
+  expect(untouched.changes.map((c) => c.code)).not.toContain('GAP-stage-a-1-1')
+  expect(untouched.stats.removed).toBe(0)
+  const annotated = v5([talk], [v5Row('AAA111'), gapRow({ notes: 'play the loop video' })])
+  expect(annotated.rows.map((r) => r.kind)).toEqual(['session', 'removed-header', 'removed'])
+  expect(annotated.rows[2].values[V5.notes]).toBe('play the loop video')
+  expect(annotated.rows[2].values[V5.status]).toBe('CANCELLED')
 })

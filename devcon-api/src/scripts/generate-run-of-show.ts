@@ -6,7 +6,8 @@
 // are ever rewritten. The crew's columns travel with the session, keyed by its
 // Pretalx code, when it moves within a sheet, to another stage or to another day.
 // Pretalx breaks (published schedule) and blockers (work-in-progress schedule,
-// never published) get rows of their own, keyed by kind, stage, day and order.
+// never published) get rows of their own, keyed by kind, stage, day and order,
+// and so does a gap of 20 minutes or more that nothing in Pretalx covers.
 // Sessions that leave a sheet are parked at the bottom as CANCELLED with their
 // notes; every difference is appended to a CHANGES tab and highlighted in the
 // sheet until the next run. Rows are rewritten in place below the header, so the
@@ -52,6 +53,7 @@ import {
   colLetter,
   describeHeaderMismatch,
   detectLayoutInRows,
+  gapSessions,
   hyperlinkTarget,
   parseExistingRows,
   planFile,
@@ -109,12 +111,14 @@ const firstIndex = (layout: RosLayout) => layout.headerRow
 const HIGHLIGHT = { red: 0.9, green: 0.85, blue: 0.98 }
 const CHANGE_ROW = { bg: { red: 1, green: 1, blue: 0 }, fg: { red: 0, green: 0, blue: 0 } }
 const PARKED_TEXT = { red: 0.6, green: 0.6, blue: 0.6 }
-// Breaks and blockers read as a bar across the running order (like the v2
-// session dividers), not as sessions: dark blue for breaks, dark grey for a room held.
+// Breaks, blockers and gaps read as a bar across the running order (like the v2
+// session dividers), not as sessions: dark blue for breaks, dark grey for a room
+// held, light grey-blue with dark text for a gap nothing is scheduled in.
 const WHITE = { red: 1, green: 1, blue: 1 }
 const BLOCK_STYLE = {
   break: { bg: { red: 0.12, green: 0.22, blue: 0.42 }, fg: WHITE },
   blocker: { bg: { red: 0.33, green: 0.35, blue: 0.38 }, fg: WHITE },
+  gap: { bg: { red: 0.85, green: 0.88, blue: 0.92 }, fg: { red: 0.25, green: 0.29, blue: 0.36 } },
 }
 const STATUS_COLOURS: Record<string, { bg: any; fg: any }> = {
   CONFIRMED: { bg: { red: 0.83, green: 0.93, blue: 0.85 }, fg: { red: 0.11, green: 0.45, blue: 0.2 } },
@@ -394,8 +398,8 @@ function toRosSessions({ sessions: raw, rooms, speakerName, speakerContact }: So
   return out.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : a.title.localeCompare(b.title)))
 }
 
-/** PRETALX ID of a break or blocker row (see toBlockSessions). */
-const BLOCK_CODE = /^(BREAK|BLOCKER)-/
+/** PRETALX ID of a break, blocker or gap row (see toBlockSessions and gapSessions). */
+const BLOCK_CODE = /^(BREAK|BLOCKER|GAP)-/
 
 /**
  * Breaks and blockers as rows. They have no Pretalx code, so the key is kind,
@@ -847,7 +851,16 @@ async function readExisting(
   const linkCols = Object.keys(LINK_FIELDS)
     .map((f) => layout.col[f as keyof typeof layout.col])
     .filter((c): c is number => c !== undefined)
+  // MC held a formula until 2026-11-02: read it back as its text, so the planner tells it from a number the crew typed.
+  const mcCol = layout.col.mc
   raw.forEach((row, i) => {
+    if (mcCol !== undefined) {
+      const cell = cells[i]?.[mcCol]
+      if (typeof cell === 'string' && cell.startsWith('=')) {
+        while (row.length <= mcCol) row.push('')
+        row[mcCol] = cell
+      }
+    }
     for (const c of linkCols) {
       const cell = cells[i]?.[c]
       if (typeof cell === 'string' && /^=HYPERLINK\(/i.test(cell)) {
@@ -1307,11 +1320,12 @@ function conditionalRules(layout: RosLayout, ids: SheetIds, n: number): any[] {
         { backgroundColor: { red: 0.97, green: 0.97, blue: 0.955 } }
       )
     )
-    // Breaks and blockers: one bar across the row, above the banding (the row
-    // format alone loses to it on even rows), below "on stage now".
+    // Breaks, blockers and gaps: one bar across the row, above the banding (the
+    // row format alone loses to it on even rows), below "on stage now".
     for (const [prefix, look] of [
       ['BREAK-', BLOCK_STYLE.break],
       ['BLOCKER-', BLOCK_STYLE.blocker],
+      ['GAP-', BLOCK_STYLE.gap],
     ] as const) {
       out.push(
         rule(
@@ -1548,7 +1562,9 @@ async function main() {
   // Breaks and blockers join a stage's day that has talks; alone they never open a sheet.
   const withTalks = new Set(talks.map((s) => `${s.day}/${s.roomId}`))
   const blocks = toBlockSessions(sources.blocks, rooms, dayNumber).filter((b) => withTalks.has(`${b.day}/${b.roomId}`))
-  const scheduled = [...talks, ...blocks]
+  // A hole between slots that no break or blocker covers gets a row too, so MC never swallows it.
+  const gaps = gapSessions([...talks, ...blocks], dayNumber)
+  const scheduled = [...talks, ...blocks, ...gaps]
   const wanted = (roomId: string, day: string) => (!ROOMS.length || ROOMS.includes(roomId)) && (!DAYS.length || DAYS.includes(dayNumber(day)))
   const sessions = scheduled.filter((s) => wanted(s.roomId, s.day))
   summary.sessions = sessions.length
@@ -1570,7 +1586,7 @@ async function main() {
   }
   const limits = [ROOMS.length ? `rooms ${ROOMS.join(', ')}` : '', DAYS.length ? `day ${DAYS.join(', ')}` : ''].filter(Boolean)
   line(
-    `${sessions.length} scheduled row(s) (${blocks.length} breaks and blockers in total) in ${rooms.length} room(s)${
+    `${sessions.length} scheduled row(s) (${blocks.length} breaks and blockers, ${gaps.length} gap(s) in total) in ${rooms.length} room(s)${
       limits.length ? ` · limited to ${limits.join(' · ')}` : ''
     }${sources.version ? ` · schedule v${sources.version}` : ''}`
   )
