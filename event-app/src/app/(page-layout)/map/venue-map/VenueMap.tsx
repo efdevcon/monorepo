@@ -39,7 +39,7 @@ const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div
  * bottom); under the header on the right from lg up.
  */
 const SHARE_CONCEPT_PARAM = "shareConcept";
-const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title", 4: "Concept 4 · Share first (phone)" };
+const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title", 4: "Concept 4 · Share first / Title" };
 const parseShareConcept = (value: string | null): ShareConcept => (value === "2" ? 2 : value === "3" ? 3 : value === "4" ? 4 : 1);
 
 function ShareConceptSwitch({ concept, onChange }: { concept: ShareConcept; onChange: (c: ShareConcept) => void }) {

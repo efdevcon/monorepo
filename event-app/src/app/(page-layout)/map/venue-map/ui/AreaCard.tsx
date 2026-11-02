@@ -18,8 +18,8 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
  * Prototype (2026-11-02): where the card's share control sits. 1 — an icon
  * in the links row, like a supporter's X and website icons; 2 — a small
  * "Share" text + icon after the floor line under the name; 3 — the same
- * text + icon beside the name, centred on the title; 4 — the floor line
- * again but share first, on phones only (nothing from lg up). One stays.
+ * text + icon beside the name, centred on the title; 4 — on phones the floor
+ * line again but share first, from lg up the control beside the name as in 3. One stays.
  */
 export type ShareConcept = 1 | 2 | 3 | 4;
 
@@ -171,9 +171,9 @@ export function AreaCard({
             <div className="flex items-center justify-between gap-2">
               <div className="flex min-w-0 items-center gap-2">
                 <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
-                {shareable && shareConcept === 3 && (
-                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height.
-                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80">
+                {shareable && (shareConcept === 3 || shareConcept === 4) && (
+                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height. Concept 4: desktop only.
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn("-mx-1 -my-2 shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80", shareConcept === 4 ? "hidden lg:inline-flex" : "inline-flex")}>
                     <Share2 className="size-3.5 shrink-0" aria-hidden />
                     Share
                   </button>
@@ -184,7 +184,7 @@ export function AreaCard({
             {shown && (
               <span className="mt-1.5 flex flex-wrap items-center gap-x-1 gap-y-1 text-[12px] leading-none text-dc-muted">
                 {shareable && shareConcept === 4 && (
-                  // `contents` so the button and the dot are the line's own flex items; gone from lg up (phones only).
+                  // `contents` so the button and the dot are the line's own flex items; gone from lg up, where the control sits beside the name instead.
                   <span className="contents lg:hidden">
                     <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
                       <Share2 className="size-3 shrink-0" aria-hidden />
