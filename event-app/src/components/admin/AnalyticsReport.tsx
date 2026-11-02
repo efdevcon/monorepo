@@ -233,6 +233,24 @@ function Ranked({ items, limit, empty }: { items: RankedItem[]; limit: number; e
   );
 }
 
+/** One row of a share list: label, count, percent, a thin bar for the percent. */
+function ShareRow({ label, count, pct, pctLabel }: { label: string; count: number; pct: number; pctLabel?: string }) {
+  return (
+    <li className={rowText}>
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="min-w-0 truncate text-dc-fg2">{label}</span>
+        <span className="flex shrink-0 gap-3 tabular-nums">
+          <span className="text-dc-fg2">{fmtInt(count)}</span>
+          <span className="w-9 text-right text-dc-muted">{pctLabel ?? `${pct}%`}</span>
+        </span>
+      </div>
+      <div className="mt-1 h-1 rounded-full bg-dc-lavender">
+        <div className="h-1 rounded-full bg-dc-purple" style={{ width: `${Math.min(100, Math.max(0, pct))}%` }} />
+      </div>
+    </li>
+  );
+}
+
 /**
  * A share breakdown with a bar per row. `total` is the window's visits,
  * never the rows' sum: Matomo caps the device, OS and browser reports at
@@ -247,24 +265,39 @@ function Breakdown({ title, rows, total, limit = 6 }: { title: string; rows: Row
         <p className={cn(muted, "mt-2")}>No data.</p>
       ) : (
         <ul className="mt-2 flex flex-col gap-2">
-          {shown.map((r) => {
-            const pct = total > 0 ? Math.round((r.visits / total) * 100) : 0;
-            return (
-              <li key={r.label} className={rowText}>
-                <div className="flex items-baseline justify-between gap-3">
-                  <span className="min-w-0 truncate text-dc-fg2">{r.label}</span>
-                  <span className="flex shrink-0 gap-3 tabular-nums">
-                    <span className="text-dc-fg2">{fmtInt(r.visits)}</span>
-                    <span className="w-9 text-right text-dc-muted">{pct}%</span>
-                  </span>
-                </div>
-                <div className="mt-1 h-1 rounded-full bg-dc-lavender">
-                  <div className="h-1 rounded-full bg-dc-purple" style={{ width: `${Math.min(100, pct)}%` }} />
-                </div>
-              </li>
-            );
-          })}
+          {shown.map((r) => (
+            <ShareRow key={r.label} label={r.label} count={r.visits} pct={total > 0 ? Math.round((r.visits / total) * 100) : 0} />
+          ))}
         </ul>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Steps of one flow as the visits that reached each, each as a share of
+ * the first (the base shows no percent). Visits, not event counts: one
+ * person tapping Install five times is one visit that tapped.
+ */
+function Funnel({ title, steps, empty }: { title: string; steps: { label: string; visits: number }[]; empty: string }) {
+  const base = steps[0]?.visits ?? 0;
+  return (
+    <div className="min-w-0">
+      <h3 className={h3}>{title}</h3>
+      {base === 0 ? (
+        <p className={cn(muted, "mt-2")}>{empty}</p>
+      ) : (
+        <ol className="mt-2 flex flex-col gap-2">
+          {steps.map((s, i) => (
+            <ShareRow
+              key={s.label}
+              label={s.label}
+              count={s.visits}
+              pct={Math.round((s.visits / base) * 100)}
+              pctLabel={i === 0 ? "" : undefined}
+            />
+          ))}
+        </ol>
       )}
     </div>
   );
@@ -445,6 +478,20 @@ export function AnalyticsReport() {
       detail: `${fmtInt(row.events)} in ${fmtInt(row.visits)} visits`,
     }));
 
+  // Funnel steps from the event list (visits that fired the event). Matomo
+  // lists only events that happened, so a missing row is zero.
+  const eventVisits = (category: string, action: string) =>
+    r?.events.find((e) => e.category === category && e.action === action)?.visits ?? 0;
+  const installFunnel = [
+    { label: "Install tapped", visits: eventVisits("install", "tap") },
+    { label: "Prompt accepted", visits: eventVisits("install", "prompt-accepted") },
+    { label: "Installed", visits: eventVisits("install", "installed") },
+  ];
+  const signInFunnel = [
+    { label: "Code requested", visits: eventVisits("sign-in", "code-requested") },
+    { label: "Signed in", visits: eventVisits("sign-in", "verified") },
+  ];
+
   const yesterday = r && r.days.length >= 2 ? r.days[r.days.length - 2] : null;
   const visitsSplit = r ? r.totals.newVisits + r.totals.returningVisits : 0;
   const avgUniq = r && r.days.length > 0 ? r.days.reduce((a, d) => a + d.uniqVisitors, 0) / r.days.length : 0;
@@ -565,10 +612,15 @@ export function AnalyticsReport() {
             </div>
           </Section>
 
-          <Section title="Audience" note={`Share of the ${fmtInt(r.totals.visits)} visits in ${r.windowDays} days.`}>
-            <div className="mt-3 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Section
+            title="Audience"
+            note={`Shares of the ${fmtInt(r.totals.visits)} visits in ${r.windowDays} days; the two flows count visits that reached each step.`}
+          >
+            <div className="mt-3 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
               <Breakdown title="Installed app or browser" rows={r.dimensions.displayMode} total={r.totals.visits} />
+              <Funnel title="Install flow" steps={installFunnel} empty="No install taps in this window." />
               <Breakdown title="Signed in" rows={r.dimensions.signedIn} total={r.totals.visits} />
+              <Funnel title="Sign-in flow" steps={signInFunnel} empty="No sign-in codes requested in this window." />
               <Breakdown title="Device" rows={r.devices.types} total={r.totals.visits} limit={4} />
               <Breakdown title="Operating system" rows={r.devices.os} total={r.totals.visits} limit={5} />
               <Breakdown title="Browser" rows={r.devices.browsers} total={r.totals.visits} limit={5} />
