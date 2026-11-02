@@ -109,7 +109,13 @@ export const SignaturePad = forwardRef<SignaturePadHandle, SignaturePadProps>(fu
     observer.observe(canvas)
     return () => {
       observer.disconnect()
-      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current)
+        // Reset the handle too: a cancelled frame never runs the callback that
+        // clears it, and strict mode re-runs this effect — with a stale handle
+        // every later scheduleRedraw() would bail out and the pad stays blank.
+        frameRef.current = null
+      }
     }
   }, [scheduleRedraw])
 
