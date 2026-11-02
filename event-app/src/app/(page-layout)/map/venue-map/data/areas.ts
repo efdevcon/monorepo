@@ -57,11 +57,7 @@ export type AreaSpec = {
   room?: string;
   /** Per instance number: the same for numbered layers (Workshop 1 → 205A/B). */
   rooms?: Readonly<Record<number, string>>;
-  /**
-   * `false` keeps the share control off the card: the utility places (stairs, escalators, elevators, washrooms,
-   * tea & coffee, storage) are too incidental for a link (Scott, 2026-11-02). A hosted variant (the CoW Swap
-   * coffee stand) is shareable regardless.
-   */
+  /** `false` keeps the share control off the card: the utility places (stairs, escalators, elevators, washrooms, storage) are too incidental for a link (Scott, 2026-11-02). */
   share?: false;
 };
 
@@ -186,7 +182,6 @@ export const AREAS = {
     heightClass: "zone",
     icon: "coffee",
     minWidth: 2.5,
-    share: false,
     // The CoW Swap cup a fifth larger than the footprint-derived 3.3 m (Scott, 2026-10-30).
     iconSizes: { 8: 4 },
     // The stand above the supporter booths is hosted by CoW Swap: its own cup, name and description, and CoW Swap's lockup on the card (Scott, 2026-10-30).

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from "react";
 import cn from "classnames";
 import { useSearchParams } from "next/navigation";
-import { Repeat, Search, TextSearch } from "lucide-react";
+import { Search, TextSearch } from "lucide-react";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { useIsTeam } from "@/data/release/releaseGates";
@@ -18,7 +18,7 @@ import { buildFloorLegend, FIND_GROUPS, primaryOf, type FindEntry, type LegendEn
 import { FindContent } from "./find/FindContent";
 import { SearchContent } from "./search/SearchContent";
 import { initialState, reduce, SINGLE_FLOOR } from "./state/mapStore";
-import { AreaCard, type ShareConcept } from "./ui/AreaCard";
+import { AreaCard } from "./ui/AreaCard";
 import { ControlPill } from "./ui/ControlPill";
 import { DebugCorner, DebugPanel, DebugToggle } from "./ui/Debug";
 import { FloorSlider } from "./ui/FloorSlider";
@@ -29,34 +29,6 @@ import { useMapShortcuts } from "./ui/useMapShortcuts";
 
 // three touches WebGL, so the scene only ever renders in the browser.
 const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div className="p-8 text-dc-muted">Loading map…</div> });
-
-/**
- * Prototype switch (2026-11-02) between the two share-control layouts on the
- * area card (AreaCard.tsx `ShareConcept`). In the URL as `?shareConcept=<n>` (the chip cycles through SHARE_CONCEPTS)
- * so a reload keeps the mode (the copied link never carries it: it is built
- * from the area keys alone). Mid-height on the right edge of phones, where
- * nothing else sits (the strip is at the top, the card and the pills at the
- * bottom); under the header on the right from lg up.
- */
-const SHARE_CONCEPT_PARAM = "shareConcept";
-const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title", 4: "Concept 4 · Share first / Title", 5: "Concept 5 · Own line", 7: "Concept 7 · Title, supporters icon" };
-const SHARE_CONCEPTS = Object.keys(SHARE_CONCEPT_LABELS).map(Number) as ShareConcept[];
-const parseShareConcept = (value: string | null): ShareConcept => SHARE_CONCEPTS.find((c) => String(c) === value) ?? 1;
-const nextShareConcept = (c: ShareConcept): ShareConcept => SHARE_CONCEPTS[(SHARE_CONCEPTS.indexOf(c) + 1) % SHARE_CONCEPTS.length];
-
-function ShareConceptSwitch({ concept, onChange }: { concept: ShareConcept; onChange: (c: ShareConcept) => void }) {
-  return (
-    <button
-      type="button"
-      onClick={() => onChange(nextShareConcept(concept))}
-      title="Switch prototype concept"
-      className="fixed right-4 top-[40%] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-purple bg-white py-[7px] pl-[10px] pr-3 text-[12px] font-medium leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out phone-landscape:right-[max(16px,var(--safe-right))] hover:bg-dc-lavender lg:right-6 lg:top-[80px]"
-    >
-      <Repeat className="size-3.5 shrink-0" />
-      {SHARE_CONCEPT_LABELS[concept]}
-    </button>
-  );
-}
 
 /**
  * The venue map (JWCC plans): the floors extruded from the top-down SVGs
@@ -109,17 +81,8 @@ export function VenueMap() {
     dispatch({ type: "showAreas", keys: areas.map((a) => a.key), primary: primaryOf(areas), zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, name: composite?.name });
   }, []);
 
-  const searchParams = useSearchParams();
-  const [shareConcept, setShareConcept] = useState<ShareConcept>(parseShareConcept(searchParams.get(SHARE_CONCEPT_PARAM)));
-  const changeShareConcept = useCallback((next: ShareConcept) => {
-    setShareConcept(next);
-    const url = new URL(window.location.href);
-    url.searchParams.set(SHARE_CONCEPT_PARAM, String(next));
-    window.history.replaceState(window.history.state, "", url.toString());
-  }, []);
-
   // Deep link from the schedule ("Show on Map") and the card's own share link: `?area=<level>/<id>[,…]`, re-run on every visit of the pane.
-  const areaParam = searchParams.get(AREA_PARAM);
+  const areaParam = useSearchParams().get(AREA_PARAM);
   const visit = areaParam && active ? areaParam : null;
   useEffect(() => {
     if (!visit) return;
@@ -216,8 +179,7 @@ export function VenueMap() {
           </MapSheet>
         </>
       )}
-      <AreaCard area={selectedArea} group={group !== null} groupName={groupName} groupAreas={group} onClose={closeCard} onShowArea={showAreaById} anchorRef={cardAnchorRef} shareConcept={shareConcept} />
-      {active && <ShareConceptSwitch concept={shareConcept} onChange={changeShareConcept} />}
+      <AreaCard area={selectedArea} group={group !== null} groupName={groupName} groupAreas={group} onClose={closeCard} onShowArea={showAreaById} anchorRef={cardAnchorRef} />
       {team && (
         <DebugCorner panel={debug && <DebugPanel tuning={tuning} floor={floor} onTune={(t) => dispatch({ type: "tune", tuning: t })} onFloor={(level) => (level ? showLevel(level) : dispatch({ type: "showStack" }))} />}>
           <DebugToggle pressed={debug} onToggle={() => dispatch({ type: "toggleDebug" })} />

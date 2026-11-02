@@ -14,21 +14,6 @@ import { compositeOf, type Area, type AreaKey } from "../data/resolve";
 import { mapHrefForAreas } from "../data/roomAreas";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
 
-/**
- * Prototype (2026-11-02): where the card's share control sits. 1 — an icon
- * in the links row, like a supporter's X and website icons; 2 — a small
- * "Share" text + icon after the floor line under the name; 3 — the same
- * text + icon beside the name, centred on the title; 4 — on phones the floor
- * line again but share first, from lg up the control beside the name as in 3;
- * 5 — the same text + icon on a line of its own under the floor line; 7 (Scott's
- * numbering) — beside the name as in 3, except a supporter, whose links row gets
- * the icon as in 1 instead. One stays.
- */
-export type ShareConcept = 1 | 2 | 3 | 4 | 5 | 7;
-
-/** The floor line's "Share" text + icon (concepts 2, 4 and 5). */
-const floorLineShare = "-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80";
-
 /** The link the card copies: `/map?area=…` on this origin, which opens the floor and the card as a tap would. */
 function shareLinkFor(keys: readonly AreaKey[]): string {
   const origin = typeof window !== "undefined" ? window.location.origin : APP_CONFIG.APP_ORIGIN;
@@ -84,8 +69,9 @@ const SESSION_ONLY_ROOMS = new Set(["main-stage-lotus"]);
  * floor it is on, a short description, X and website icon links (as on the speaker page) when the
  * catalogue has them (supporters always; a description's place links become buttons
  * that show that place via `onShowArea`), a share control that copies a `/map?area=…`
- * link to the place (not on the utility places, `Area.shareable`; placed per
- * `shareConcept` while the two layouts are compared), and for footprints backed by a schedule
+ * link to the place (not on the utility places, `Area.shareable`): "Share" beside the
+ * name, or for a supporter a share icon in that links row (chosen from seven
+ * layouts, Scott, 2026-11-02), and for footprints backed by a schedule
  * room the session running there now, tagged "Live now". Stays
  * mounted so it can slide out; the last area is kept while it fades.
  *
@@ -101,7 +87,6 @@ export function AreaCard({
   onClose,
   onShowArea,
   anchorRef,
-  shareConcept,
 }: {
   area: Area | null;
   group: boolean;
@@ -112,7 +97,6 @@ export function AreaCard({
   /** Shows another place from a description's link (the Info Desk from the Ticket Help Desk). */
   onShowArea: (areaId: AreaId) => void;
   anchorRef: MutableRefObject<HTMLDivElement | null>;
-  shareConcept: ShareConcept;
 }) {
   const [shown, setShown] = useState<Area | null>(area);
   if (area && area !== shown) setShown(area);
@@ -135,10 +119,10 @@ export function AreaCard({
   const shareable = shown !== null && shown.shareable;
   const shareLabel = `Copy link to ${shownComposite ? shownComposite.name : shown?.name}`;
   const links = shown !== null && (shown.website || shown.x) && !shownComposite && !sessionOnly;
-  // Concept 7: a supporter (at a booth, or hosting a place) takes the icon in its links row; everyone else the control beside the name.
+  // A supporter (at a booth, or hosting a place) takes the share icon in its links row; everyone else the control beside the name.
   const supporter = shown !== null && (shown.category.id === "supporters" || shown.alsoCategories.some((c) => c.id === "supporters"));
-  const titleShare = shareConcept === 3 || shareConcept === 4 || (shareConcept === 7 && !supporter);
-  const rowShare = shareConcept === 1 || (shareConcept === 7 && supporter);
+  const titleShare = shareable && !supporter;
+  const rowShare = shareable && supporter;
 
   return (
     <div
@@ -178,9 +162,9 @@ export function AreaCard({
             <div className="flex items-center justify-between gap-2">
               <div className="flex min-w-0 items-center gap-2">
                 <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
-                {shareable && titleShare && (
-                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height. Concept 4: desktop only.
-                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn("-mx-1 -my-2 shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80", shareConcept === 4 ? "hidden lg:inline-flex" : "inline-flex")}>
+                {titleShare && (
+                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height.
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80">
                     <Share2 className="size-3.5 shrink-0" aria-hidden />
                     Share
                   </button>
@@ -188,45 +172,13 @@ export function AreaCard({
               </div>
               {live && <span className="shrink-0 rounded-[2px] border border-dc-red px-1.5 py-[3px] text-[11px] font-bold uppercase leading-none tracking-[0.5px] text-dc-red">Live now</span>}
             </div>
-            {shown && (
-              <span className="mt-1.5 flex flex-wrap items-center gap-x-1 gap-y-1 text-[12px] leading-none text-dc-muted">
-                {shareable && shareConcept === 4 && (
-                  // `contents` so the button and the dot are the line's own flex items; gone from lg up, where the control sits beside the name instead.
-                  <span className="contents lg:hidden">
-                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
-                      <Share2 className="size-3 shrink-0" aria-hidden />
-                      Share
-                    </button>
-                    <span aria-hidden>·</span>
-                  </span>
-                )}
-                <span>{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>
-                {shareable && shareConcept === 2 && (
-                  <>
-                    <span aria-hidden>·</span>
-                    {/* Padded out to a taller hit area than the 12px line; the negative margins keep the line's height. */}
-                    <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
-                      <Share2 className="size-3 shrink-0" aria-hidden />
-                      Share
-                    </button>
-                  </>
-                )}
-              </span>
-            )}
-            {shareable && shareConcept === 5 && (
-              <span className="mt-1.5 flex text-[12px] leading-none">
-                <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={floorLineShare}>
-                  <Share2 className="size-3 shrink-0" aria-hidden />
-                  Share
-                </button>
-              </span>
-            )}
+            {shown && <span className="mt-1.5 text-[12px] leading-none text-dc-muted">{shownComposite ? `${shownComposite.areas.map((a) => a.name).join(", ")} · ${shown.levelName}` : shown.boothName ? `${shown.boothName} · ${shown.levelName}` : shown.room ? `${shown.levelName} · ${shown.room}` : shown.levelName}</span>}
             {(shownComposite ? shownComposite.description : shown?.description) && !sessionOnly && (
               <p className="mt-1.5 text-[14px] leading-snug text-dc-muted">
                 <Description text={shownComposite ? shownComposite.description : shown!.description} onShowArea={onShowArea} tabbable={open} />
               </p>
             )}
-            {shown && (links || (shareable && rowShare)) && (
+            {shown && (links || rowShare) && (
               <div className="mt-2 flex items-center gap-3">
                 {links && shown.x && (
                   <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name} on X`} className={socialLink}>
@@ -238,7 +190,7 @@ export function AreaCard({
                     <Globe className="size-5" />
                   </a>
                 )}
-                {shareable && rowShare && (
+                {rowShare && (
                   <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn(socialLink, "cursor-pointer")}>
                     <Share2 className="size-5" />
                   </button>
