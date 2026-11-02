@@ -17,13 +17,16 @@ import {
   deriveIdentifier,
   isProvableTicket,
   getSignerAddress,
+  PARTNERS,
   passesCheckInGate,
   proofFromSearchParams,
   proofToSearchParams,
+  resolveMint,
   signTicketProof,
   verifyTicketProof,
   type TicketProof,
 } from "../src/app/api/ticket-proof/proof";
+import { ensPerkAccess } from "../src/data/tickets/ensPerk";
 
 let failed = 0;
 const check = (label: string, ok: boolean, note = "") => {
@@ -257,6 +260,50 @@ async function main() {
   check("gate on: an unscanned ticket is refused", !passesCheckInGate({ requireCheckIn: true }, { hasCheckedIn: false }));
   check("gate on: a ticket without check-in data is refused", !passesCheckInGate({ requireCheckIn: true }, {}));
   check("gate on: a checked-in ticket can mint", passesCheckInGate({ requireCheckIn: true }, { hasCheckedIn: true }));
+
+  // ---- ENS perk: India tickets after check-in, internal testers --------
+  const ens = PARTNERS.ens;
+  check("ENS mints for India tickets only", JSON.stringify(ens.tiers) === JSON.stringify(["india"]));
+  check("ENS requires a check-in", ens.requireCheckIn === true);
+  const ensRule = { ...ens, internalTester: (email: string) => email.endsWith("@ens.domains") };
+  const indiaTicket = { itemId: 2, itemName: `India Resident ${IN}` };
+  const gaTicket = { itemId: 1, itemName: "General Admission" };
+  const attendee = "someone@example.com";
+  const tester = "someone@ens.domains";
+  check(
+    "ENS refuses a GA ticket, checked in or not",
+    !resolveMint(ensRule, { ...gaTicket, hasCheckedIn: true }, attendee).ok
+  );
+  check(
+    "ENS refuses an India ticket before check-in",
+    !resolveMint(ensRule, { ...indiaTicket, hasCheckedIn: false }, attendee).ok
+  );
+  const indiaMint = resolveMint(ensRule, { ...indiaTicket, hasCheckedIn: true }, attendee);
+  check(
+    "ENS mints india for a checked-in India ticket",
+    indiaMint.ok && indiaMint.tier === "india" && !indiaMint.testing
+  );
+  const testerMint = resolveMint(ensRule, { ...gaTicket, hasCheckedIn: false }, tester);
+  check(
+    "an internal tester mints india on a GA ticket with no check-in",
+    testerMint.ok && testerMint.tier === "india" && testerMint.testing
+  );
+  check(
+    "a partner without tiers or testers keeps minting standard",
+    (() => {
+      const r = resolveMint({ label: "Faucet" }, { ...gaTicket, hasCheckedIn: false }, tester);
+      return r.ok && r.tier === "standard" && !r.testing;
+    })()
+  );
+
+  // The card follows the same rule (switch passed explicitly).
+  check("card: hidden on a GA ticket", ensPerkAccess({ ...gaTicket, hasCheckedIn: true }, attendee, true) === "hidden");
+  check("card: hidden on an India ticket before check-in", ensPerkAccess({ ...indiaTicket, hasCheckedIn: false }, attendee, true) === "hidden");
+  check("card: shown on a checked-in India ticket", ensPerkAccess({ ...indiaTicket, hasCheckedIn: true }, attendee, true) === "eligible");
+  check("card: EF account tests on a GA ticket", ensPerkAccess(gaTicket, "someone@ethereum.org", true) === "testing");
+  check("card: ENS account tests on a GA ticket", ensPerkAccess(gaTicket, "SomeOne@ENS.domains", true) === "testing");
+  check("card: switch off, an EF account is an attendee again", ensPerkAccess(gaTicket, "someone@ethereum.org", false) === "hidden");
+  check("card: a look-alike domain is not a tester", ensPerkAccess(gaTicket, "someone@notethereum.org.evil.com", true) === "hidden");
 
   console.log(failed === 0 ? "\nall good" : `\n${failed} failing`);
   process.exit(failed === 0 ? 0 : 1);

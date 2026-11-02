@@ -109,9 +109,11 @@ const COPY: Record<AttachVariant, { title: string; body: string }> = {
 
 /**
  * Upload-only prompt: no ticket under this email, or replacing the one shown.
- * Stacked on phones; from lg the copy sits left of a fixed-width upload column
- * so the CTA never stretches across the desktop panel. `className` lets the
- * empty state drop the card chrome where it already sits in a white panel.
+ * Stacked when narrow; once the card itself is wide (a container query, not
+ * the viewport: the replace card sits in the 400px ticket column on desktop)
+ * the copy sits left of a fixed-width upload column so the CTA never
+ * stretches across the desktop panel. `className` lets the empty state drop
+ * the card chrome where it already sits in a white panel.
  */
 export function AttachTicketCard({
   variant,
@@ -132,13 +134,13 @@ export function AttachTicketCard({
   const upload = useQrUpload(onAttach);
 
   return (
-    <section className={cn(CARD, className)}>
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
-        <div className="flex flex-col gap-3 lg:max-w-[560px] lg:gap-1">
+    <section className={cn(CARD, "@container", className)}>
+      <div className="flex flex-col gap-3 @3xl:flex-row @3xl:items-center @3xl:justify-between @3xl:gap-12">
+        <div className="flex flex-col gap-3 @3xl:max-w-[560px] @3xl:gap-1">
           <h2 className={TITLE}>{COPY[variant].title}</h2>
           <p className={BODY}>{COPY[variant].body}</p>
         </div>
-        <div className="flex flex-col gap-3 lg:w-[320px] lg:shrink-0 lg:gap-2">
+        <div className="flex flex-col gap-3 @3xl:w-[320px] @3xl:shrink-0 @3xl:gap-2">
           {upload.input}
           <PrimaryButton
             type="button"
@@ -154,7 +156,7 @@ export function AttachTicketCard({
         </div>
       </div>
       {variant === "none" && (
-        <div className="flex flex-col gap-2 border-t border-dc-hairline pt-4 text-[14px] leading-5 text-dc-muted lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+        <div className="flex flex-col gap-2 border-t border-dc-hairline pt-4 text-[14px] leading-5 text-dc-muted @3xl:flex-row @3xl:items-center @3xl:justify-between @3xl:gap-6">
           {/* The most common "no ticket" is simply the wrong sign-in address. */}
           <p>
             Wrong email?{" "}

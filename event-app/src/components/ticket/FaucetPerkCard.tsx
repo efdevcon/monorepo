@@ -13,9 +13,10 @@ function faucet(key: string, network: string): ProofPartner {
   return {
     key,
     label: `Claim ${network} ETH`,
+    title: `Your ${network} Faucet proof is ready`,
     describe: () =>
       `Your ticket unlocks a ${network} testnet ETH drop for your wallet.`,
-    handoffHint: "You'll enter the wallet address that should receive the drop.",
+    handoff: `Open this in your browser to claim on ${network} Faucet. You'll enter the wallet address that should receive the drop.`,
   };
 }
 

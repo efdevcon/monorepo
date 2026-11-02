@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { encodeAbiParameters, keccak256, verifyMessage, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
+import { ensPerkTesting } from "@/data/tickets/ensPerk";
 
 /**
  * Ticket proofs: privacy-preserving, partner-scoped attestations of "this is a
@@ -365,6 +366,14 @@ export interface PartnerConfig {
    * Off by default so the flow stays testable before the event.
    */
   requireCheckIn?: boolean;
+  /** Tiers this partner mints for; any other tier is refused. Absent: every tier. */
+  tiers?: readonly TicketTier[];
+  /**
+   * Internal testing: accounts that mint as `india` on any admission ticket,
+   * with the check-in gate bypassed. Checked against the session's email,
+   * which the route derives server-side.
+   */
+  internalTester?: (email: string) => boolean;
 }
 
 export const PARTNERS: Record<string, PartnerConfig> = {
@@ -373,9 +382,12 @@ export const PARTNERS: Record<string, PartnerConfig> = {
     // Defaults to the bundled reference implementation so the flow is
     // demoable end-to-end; set to the partner's real claim page in prod.
     claimUrl: process.env.TICKET_PROOF_ENS_CLAIM_URL || "/demo/ens-perks",
-    // Off while the flow is tested before the event; flip to true before the
-    // ENS perk is unhidden (free .eth names have real value).
-    requireCheckIn: false,
+    // A free .eth name for India tickets only, once checked in at the venue
+    // (data/tickets/ensPerk.ts, the same rule the perk card shows).
+    requireCheckIn: true,
+    tiers: ["india"],
+    // EF and ENS accounts while ENS_PERK_INTERNAL_TESTING is on (CONFIG.ts).
+    internalTester: (email) => ensPerkTesting(email),
   },
   // The PoW faucet (github.com/pk910/PoWFaucet) is the partner side itself: it
   // verifies against the pinned signer, swaps the proof for its own login and
@@ -405,6 +417,31 @@ export function passesCheckInGate(
   ticket: { hasCheckedIn?: boolean }
 ): boolean {
   return !partner.requireCheckIn || ticket.hasCheckedIn === true;
+}
+
+/**
+ * What the route may mint for this ticket and account: the tier, or why not.
+ * Assumes `isProvableTicket` already passed. An internal tester mints `india`
+ * with no check-in; everyone else gets the ticket's own tier, refused when the
+ * partner does not serve it or (for a check-in partner) before the scan.
+ */
+export function resolveMint(
+  partner: Pick<PartnerConfig, "label" | "requireCheckIn" | "tiers" | "internalTester">,
+  ticket: { itemId?: number; itemName?: string; hasCheckedIn?: boolean },
+  email: string
+): { ok: true; tier: TicketTier; testing: boolean } | { ok: false; error: string } {
+  if (partner.internalTester?.(email)) return { ok: true, tier: "india", testing: true };
+  const tier = classifyTier(ticket);
+  if (partner.tiers && !partner.tiers.includes(tier)) {
+    return { ok: false, error: `The ${partner.label} perk is not available for this ticket type.` };
+  }
+  if (!passesCheckInGate(partner, ticket)) {
+    return {
+      ok: false,
+      error: `The ${partner.label} perk unlocks once your ticket has been checked in at Devcon. Come back after you've picked up your badge.`,
+    };
+  }
+  return { ok: true, tier, testing: false };
 }
 
 /** Serialise a proof into query params for the partner's claim URL. */

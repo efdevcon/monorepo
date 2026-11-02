@@ -2,25 +2,26 @@
 
 import type { Ticket } from "@/data/tickets/types";
 import { TicketProofButton } from "@/components/TicketProofButton";
-import { INDIA_FLAG, displayItemName } from "./ticketTheme";
+import { displayItemName } from "./ticketTheme";
 
 /**
  * "Perks" entry for the ENS attendee perk. Card chrome only — the mint +
  * hand-off flow stays in TicketProofButton (one proof per event ticket, so
- * the section renders one card per admission ticket).
+ * the section renders one card per admission ticket). Who gets one is
+ * `ensPerkAccess` (data/tickets/ensPerk.ts): India tickets once checked in, or
+ * any ticket of an EF or ENS account during internal testing.
  */
 export function EnsPerkCard({
   ticket,
+  testing = false,
   showTicketLabel = false,
 }: {
   ticket: Ticket;
+  /** Shown only because of internal testing: say so on the card. */
+  testing?: boolean;
   /** Distinguish cards when the user holds several admission tickets. */
   showTicketLabel?: boolean;
 }) {
-  // The free .eth name hint must track the tier the proof route will mint:
-  // classifyTier keys off the flag emoji, not the card style (which also
-  // honors the golden/india item-id pins), so test the flag directly.
-  const freeName = INDIA_FLAG.test(ticket.itemName);
   const holder = ticket.attendeeName || ticket.attendeeEmail;
 
   return (
@@ -35,9 +36,16 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          Devcon attendees get exclusive perks from ENS.
+          Free .eth for India&apos;s Devcon builders.
         </p>
-        <TicketProofButton ticketSecret={ticket.secret} freeName={freeName} />
+        {testing && (
+          <p className="mt-2 rounded-lg bg-dc-offline-bg px-3 py-2 text-[12px] leading-4 text-dc-offline">
+            <span className="font-bold">Internal testing.</span> EF and ENS accounts see this
+            perk on any ticket: yours is treated as an India ticket and the check-in
+            requirement is bypassed.
+          </p>
+        )}
+        <TicketProofButton ticketSecret={ticket.secret} />
       </div>
     </div>
   );

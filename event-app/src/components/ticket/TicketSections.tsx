@@ -9,6 +9,8 @@ import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
 import { FaucetPerkCard } from "./FaucetPerkCard";
 import { useReleased } from "@/data/release/releaseGates";
+import { useUser } from "@/data/auth/useUser";
+import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalTarget } from "./QrModals";
 
@@ -96,9 +98,11 @@ export function TicketSections({
 }) {
   const [modal, setModal] = useState<QrModalTarget | null>(null);
   // Hidden until released (RELEASED.ensPerk / faucetPerk); the team can preview
-  // them in EF internal tools. With neither, the Perks section goes, header included.
+  // them in EF internal tools. With no perk card to show, the Perks section
+  // goes, header included.
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
+  const { user } = useUser();
 
   // "Order ABCDE · Ticket #1" under each QR: the identifier shared with the
   // select rows and the Pretix order page.
@@ -175,6 +179,15 @@ export function TicketSections({
       )
     : swagItems;
   const leadPositionId = lead?.positionId;
+
+  // The ENS perk only on the tickets that qualify (data/tickets/ensPerk.ts):
+  // India tickets once checked in, any ticket while an EF or ENS account tests.
+  const ensPerks = showEnsPerk
+    ? shownTickets.flatMap((ticket) => {
+        const access = ensPerkAccess(ticket, user?.email);
+        return access === "hidden" ? [] : [{ ticket, testing: access === "testing" }];
+      })
+    : [];
 
   // With several tickets, both tickets and swag become full-width horizontal
   // carousels stacked vertically; with one, the ticket sits beside the swag
@@ -345,15 +358,16 @@ export function TicketSections({
 
       {/* One card per partner per ticket shown (see TicketProofButton): with a
           primary that is one card each, never the buyer's colleagues' perks. */}
-      {shownTickets.length > 0 && (showEnsPerk || showFaucetPerk) && (
+      {shownTickets.length > 0 && (ensPerks.length > 0 || showFaucetPerk) && (
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
-            {showEnsPerk && shownTickets.map((ticket) => (
+            {ensPerks.map(({ ticket, testing }) => (
               <EnsPerkCard
                 key={ticket.secret}
                 ticket={ticket}
-                showTicketLabel={shownTickets.length > 1}
+                testing={testing}
+                showTicketLabel={ensPerks.length > 1}
               />
             ))}
             {showFaucetPerk && shownTickets.map((ticket) => (

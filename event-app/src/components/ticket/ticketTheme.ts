@@ -83,8 +83,8 @@ export function ticketBottomBackground(theme: TicketTheme): string {
 }
 
 // The ticketing team flags India-priced products with the emoji. Mirrors the
-// server-side tier heuristic in api/ticket-proof (classifyTier), which is why
-// EnsPerkCard's free-.eth-name hint tests this flag rather than the card style.
+// server-side tier heuristic in api/ticket-proof (classifyTier); the ENS perk
+// rule (data/tickets/ensPerk.ts) tests the flag too, never the card style.
 export const INDIA_FLAG = /\u{1F1EE}\u{1F1F3}/u;
 const INDIA_PRODUCTS = /india resident|indian student|daily india pass/i;
 const GOLDEN_PRODUCTS = /early bird|volunteer|speaker|supporter/i;

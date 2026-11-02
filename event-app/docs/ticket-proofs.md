@@ -120,7 +120,14 @@ Server-only, see `.env.example` for the full notes.
 Adding one is an entry there, a perk card under My Devcon and a claim url on the
 partner's side:
 
-- `ens`: the perks described under the reference implementation below.
+- `ens`: a free .eth name for a year, India tickets only (`tiers: ["india"]`),
+  minted once the ticket is checked in. The card on My Devcon follows the same
+  rule (`src/data/tickets/ensPerk.ts`): a general admission ticket never shows
+  it, an India ticket shows it after check-in. Internal testing: while
+  `ENS_PERK_INTERNAL_TESTING` (`CONFIG.ts`) is on, EF and ENS accounts get it on
+  any admission ticket, minted as `india` with the check-in bypassed, and the
+  card says so. Those are real India proofs, so turn the switch off once
+  testing is done.
 - `powfaucet-sepolia`, `powfaucet-hoodi`: the PoW testnet faucets
   (github.com/pk910/PoWFaucet, module `ticket-proof`), one key per network since
   each network is its own faucet with its own url. A faucet verifies against the
@@ -177,9 +184,8 @@ pnpm proof:demo-link standard --expired
 
 Per partner, `requireCheckIn` in `PARTNERS` (`proof.ts`) refuses to mint until
 the ticket has been checked in at the venue (`hasCheckedIn`, read live from
-Pretix), so a resold or unused ticket cannot collect a perk with real value. For
-ENS it is a constant in `PARTNERS`, off while the flow is tested and to be
-flipped on before the perk is unhidden. The gate applies at mint time only, the
+Pretix), so a resold or unused ticket cannot collect a perk with real value. It
+is on for ENS (internal testers bypass it, see Partners). The gate applies at mint time only, the
 payload is unchanged, so partners need no change: a valid proof implies the
 check-in had happened when it was signed. Binding check-in *into* the proof
 would be a payload change and needs a `PROOF_DOMAIN` bump.

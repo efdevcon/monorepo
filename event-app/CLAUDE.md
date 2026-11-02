@@ -178,7 +178,9 @@ plus `TicketProofButton` (partner key, label and sheet copy are props; ENS is th
 default), rendered by one perk card per partner under My Devcon
 (`ticket/EnsPerkCard.tsx`, `ticket/FaucetPerkCard.tsx`), attached to event-ticket rows only (never swag). A
 working partner-side reference lives at `/demo/ens-perks` (`src/app/demo/`), which
-is POC-only and should be dropped before production. Full spec, invariants and
+is POC-only and should be dropped before production. The ENS perk is India
+tickets only, after check-in, one rule for card and route (`src/data/tickets/ensPerk.ts`);
+`ENS_PERK_INTERNAL_TESTING` in `CONFIG.ts` gives EF and ENS accounts it on any ticket. Full spec, invariants and
 the PWA hand-off reasoning: `docs/ticket-proofs.md`. Tests: `pnpm proof:test`;
 demo links: `pnpm proof:demo-link`.
 

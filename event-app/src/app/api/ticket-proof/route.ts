@@ -4,11 +4,10 @@ import { listLinks } from "../tickets/links";
 import { getStoreFromEnv, getTicketsForUser } from "../tickets/pretix";
 import { getRequestOrigin } from "../_lib/origin";
 import {
-  classifyTier,
   getPartner,
   isProvableTicket,
-  passesCheckInGate,
   proofToSearchParams,
+  resolveMint,
   signTicketProof,
 } from "./proof";
 
@@ -141,21 +140,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Per-partner check-in gate (PartnerConfig.requireCheckIn): perks with
-    // real value only mint once the ticket has been scanned in, so a resold or
-    // unused ticket cannot collect one. Orders are read live from Pretix, so a
-    // check-in counts as soon as it is scanned.
-    if (!passesCheckInGate(partner, match)) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: `The ${partner.label} perk unlocks once your ticket has been checked in at Devcon. Come back after you've picked up your badge.`,
-        },
-        { status: 403 }
-      );
+    // Per-partner tier and check-in gates (PartnerConfig.tiers /
+    // requireCheckIn): the ENS perk is India tickets only, minted once the
+    // ticket has been scanned in, so a resold or unused ticket cannot collect
+    // it. Orders are read live from Pretix, so a check-in counts as soon as it
+    // is scanned. Internal testers (PartnerConfig.internalTester, by the
+    // session's email) mint as India with no check-in.
+    const mint = resolveMint(partner, match, user.email);
+    if (!mint.ok) {
+      return NextResponse.json({ success: false, error: mint.error }, { status: 403 });
+    }
+    if (mint.testing) {
+      console.info(`[/api/ticket-proof] internal testing: ${partnerName} proof minted as india, check-in bypassed`);
     }
 
-    const tier = classifyTier(match);
+    const tier = mint.tier;
     const proof = await signTicketProof({
       ticketSecret: match.secret,
       tier,
