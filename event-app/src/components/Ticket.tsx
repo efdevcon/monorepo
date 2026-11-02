@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { LogOut } from "lucide-react";
+import { CircleQuestionMark, LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { whenSessionCookieSettled } from "@/data/auth/sessionCookie";
 import { useRouter } from "@/routing";
@@ -18,7 +18,9 @@ import { TicketSkeleton } from "./Skeletons";
 import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
+import { SecondaryButton } from "./Buttons";
 import { FeedbackCard } from "./feedback/FeedbackCard";
+import { openFeedback } from "@/data/feedback/feedbackState";
 
 /**
  * Ticket screen (Figma "My Devcon", Dev Handoff 5088-116/-1059): signed out,
@@ -94,6 +96,22 @@ export function Ticket() {
             className="lg:pt-8"
           >
             <TicketSignIn />
+            {/* Quiet helper under the card: a signed-out visitor who is stuck
+                still needs a way to reach the team (the feedback sheet is in
+                the root layout, no sign-in required). */}
+            <p className="mt-4 flex items-center justify-center gap-2 font-heading text-[14px] leading-5 text-dc-muted">
+              <CircleQuestionMark className="size-4 shrink-0" aria-hidden />
+              <span>
+                Having issues?{" "}
+                <button
+                  type="button"
+                  onClick={() => openFeedback()}
+                  className="cursor-pointer font-bold text-dc-purple underline underline-offset-2 hover:no-underline"
+                >
+                  Send us feedback
+                </button>
+              </span>
+            </p>
           </motion.div>
         ) : (
           <motion.div
@@ -130,15 +148,15 @@ export function Ticket() {
                   Hello!{" "}
                   <span className="break-all text-dc-purple">{user.email}</span>
                 </p>
-                {/* Desktop: labeled pill (mobile uses the header pill). */}
-                <button
-                  onClick={signOut}
-                  disabled={busy}
-                  className="hidden h-10 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border border-dc-error bg-white/80 px-6 text-[14px] font-bold leading-none text-dc-error transition-[scale,background-color] duration-150 ease-out hover:bg-dc-live-bg disabled:cursor-default disabled:opacity-50 motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none lg:flex"
-                >
-                  Sign out
-                  <LogOut className="size-4" />
-                </button>
+                {/* Desktop: labeled pill (mobile uses the header pill). The
+                    wrapper carries the breakpoint gate so the shared button
+                    keeps its own display class. */}
+                <div className="hidden shrink-0 lg:block">
+                  <SecondaryButton type="button" tone="danger" onClick={signOut} disabled={busy}>
+                    Sign out
+                    <LogOut className="size-4" />
+                  </SecondaryButton>
+                </div>
               </div>
 
               <div className="lg:bg-white lg:p-6">

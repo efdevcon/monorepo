@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import { Search, TextSearch } from "lucide-react";
 import { usePaneActive, useTabReselect } from "@/components/paneContext";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
-import { useHideFeedbackFab } from "@/data/feedback/feedbackState";
 import { useIsTeam } from "@/data/release/releaseGates";
 import { APP_CHROME_OFF_ATTR, isDesktopNow, useIsDesktop, useIsPhoneLandscape, useMediaQuery } from "@/hooks/useIsDesktop";
 import { FOCUS_ZOOM_DESKTOP, FOCUS_ZOOM_MOBILE } from "./camera/constants";
@@ -54,8 +53,6 @@ export function VenueMap() {
   const stacked = floor === null;
   const selectedArea = selected ? areaOf(selected) : null;
   const groupSet = useMemo(() => (group ? new Set<AreaKey>(group) : null), [group]);
-  // Phones: the card lands on the floating feedback button's corner; hide the button while the card is open.
-  useHideFeedbackFab(selected !== null && !desktop && active);
   // A phone in landscape drops the bottom tab bar while the map shows, as the schedule does (<html data-app-chrome-off>, Nav.tsx):
   // the short viewport goes to the floor; the bar is back on rotating upright or leaving the tab (Scott, 2026-10-26).
   const phoneLandscape = useIsPhoneLandscape();

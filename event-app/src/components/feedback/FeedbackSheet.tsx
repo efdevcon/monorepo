@@ -29,9 +29,9 @@ import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 /**
  * The feedback form, mounted once in the root layout (outside the route
  * segment, so the crash page can still open it) and opened through
- * `openFeedback` from Home, My Devcon, the crash page and the floating
- * button. Phones get the bottom sheet, desktop a centred modal, both with
- * the same content.
+ * `openFeedback` from Home, My Devcon, the crash page and the `/feedback`
+ * link. Phones get the bottom sheet, desktop a centred modal, both with the
+ * same content.
  *
  * Works offline: the report (files included) waits in Dexie and FeedbackSync
  * sends it when the connection returns.
@@ -42,8 +42,10 @@ export function FeedbackSheet() {
   const isDesktop = useIsDesktop();
   const titleId = useId();
 
-  // `/?feedback=crash`: the root-layout crash page sent us here with the
-  // error in sessionStorage (it has no sheet of its own).
+  // `/?feedback=open` (the `/feedback` redirect, linked from the Support
+  // FAQ) opens the sheet on load; `/?feedback=crash` is the root-layout
+  // crash page sending us here with the error in sessionStorage (it has no
+  // sheet of its own).
   useEffect(() => {
     if (!searchParams.get(FEEDBACK_PARAM)) return;
     const error = takeRememberedCrash();
@@ -140,9 +142,9 @@ function DesktopModal({
 }
 
 const CATEGORIES: { value: FeedbackCategory; label: string }[] = [
-  { value: "bug", label: "Something's broken" },
-  { value: "idea", label: "An idea" },
-  { value: "question", label: "A question" },
+  { value: "bug", label: "Bug" },
+  { value: "idea", label: "Idea" },
+  { value: "question", label: "Question" },
 ];
 
 const fieldClass =
@@ -155,6 +157,7 @@ function formatSize(bytes: number): string {
 }
 
 function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId: string }) {
+  const categoryLabelId = useId();
   const crash = request.source === "crash";
   const { user } = useUser();
   const { ids } = useInterested();
@@ -307,7 +310,12 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
       )}
 
       {!crash && (
-        <div role="radiogroup" aria-label="What is this about?" className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4">
+          <span id={categoryLabelId} className={labelClass}>
+            Select type
+          </span>
+          {/* Phones: the three chips share the row; desktop keeps them at their natural width. */}
+          <div role="radiogroup" aria-labelledby={categoryLabelId} className="mt-2 flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
             <button
               key={c.value}
@@ -316,7 +324,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
               aria-checked={category === c.value}
               onClick={() => setCategory(c.value)}
               className={cn(
-                "cursor-pointer rounded-full border px-3 py-1.5 text-[14px] font-semibold leading-5 transition-colors",
+                "flex-1 cursor-pointer rounded-full border px-3 py-1.5 text-center text-[14px] font-semibold leading-5 transition-colors lg:flex-none",
                 category === c.value
                   ? "border-dc-purple bg-dc-lavender text-dc-purple"
                   : "border-dc-hairline bg-white text-dc-fg2 hover:bg-dc-lavender"
@@ -325,6 +333,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
               {c.label}
             </button>
           ))}
+          </div>
         </div>
       )}
 
@@ -337,11 +346,11 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           rows={4}
           maxLength={FEEDBACK_LIMITS.message}
           placeholder={crash ? "Which page, which tap, what you expected…" : "What happened, or what would help you?"}
-          className={cn(fieldClass, "mt-1.5")}
+          className={cn(fieldClass, "mt-2")}
         />
       </label>
 
-      <label className="mt-3 block">
+      <label className="mt-4 block">
         <span className={labelClass}>Email (optional)</span>
         <input
           type="text"
@@ -350,16 +359,16 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className={cn(fieldClass, "mt-1.5")}
+          className={cn(fieldClass, "mt-2")}
         />
         <span className="mt-1 block text-[12px] leading-4 text-dc-muted">Only used to follow up with you.</span>
       </label>
 
-      <div className="mt-3">
+      <div className="mt-4">
         <span className={labelClass}>Screenshot or screen recording (optional)</span>
         <div
           className={cn(
-            "mt-1.5 rounded-lg border border-dashed p-3 transition-colors",
+            "mt-2 rounded-lg border border-dashed p-3 transition-colors",
             dragging ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline"
           )}
         >
@@ -387,10 +396,11 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           <SecondaryButton
             type="button"
             size="sm"
+            className="w-full lg:w-auto"
             onClick={() => fileInput.current?.click()}
             disabled={files.length >= FEEDBACK_LIMITS.files}
           >
-            <Paperclip className="size-4" />
+            <Paperclip className="size-4 text-dc-purple" />
             Add file
           </SecondaryButton>
           {/* Pointer-only hint: phones have neither drag nor Cmd+V for files. */}

@@ -111,19 +111,25 @@ export function PrimaryButton({
   );
 }
 
-/** White bordered CTA (e.g. "Close"). Tints lavender on hover. */
+/**
+ * White bordered CTA (e.g. "Close"). Tints lavender on hover. `danger`: the
+ * same pill in the error red (Sign out), tinting the live-red wash on hover.
+ */
 export function SecondaryButton({
   className,
   size = "md",
+  tone = "neutral",
   ...props
-}: React.ComponentProps<"button"> & { size?: CtaLinkSize }) {
+}: React.ComponentProps<"button"> & { size?: CtaLinkSize; tone?: "neutral" | "danger" }) {
   return (
     <button
       {...props}
       className={cn(
         ctaBase,
         ctaLinkSize(size),
-        "border border-dc-hairline bg-white/80 text-dc-fg2 enabled:hover:bg-dc-lavender",
+        tone === "danger"
+          ? "border border-dc-error bg-white/80 text-dc-error enabled:hover:bg-dc-live-bg"
+          : "border border-dc-hairline bg-white/80 text-dc-fg2 enabled:hover:bg-dc-lavender",
         className
       )}
     />
