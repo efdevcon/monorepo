@@ -20,9 +20,11 @@ import { useLiveSessionForArea } from "./useLiveSessionForArea";
  * "Share" text + icon after the floor line under the name; 3 — the same
  * text + icon beside the name, centred on the title; 4 — on phones the floor
  * line again but share first, from lg up the control beside the name as in 3;
- * 5 — the same text + icon on a line of its own under the floor line. One stays.
+ * 5 — the same text + icon on a line of its own under the floor line; 7 (Scott's
+ * numbering) — beside the name as in 3, except a supporter, whose links row gets
+ * the icon as in 1 instead. One stays.
  */
-export type ShareConcept = 1 | 2 | 3 | 4 | 5;
+export type ShareConcept = 1 | 2 | 3 | 4 | 5 | 7;
 
 /** The floor line's "Share" text + icon (concepts 2, 4 and 5). */
 const floorLineShare = "-mx-1 -my-2 inline-flex cursor-pointer items-center gap-1 px-1 py-2 font-bold text-dc-purple transition-opacity hover:opacity-80";
@@ -133,6 +135,10 @@ export function AreaCard({
   const shareable = shown !== null && shown.shareable;
   const shareLabel = `Copy link to ${shownComposite ? shownComposite.name : shown?.name}`;
   const links = shown !== null && (shown.website || shown.x) && !shownComposite && !sessionOnly;
+  // Concept 7: a supporter (at a booth, or hosting a place) takes the icon in its links row; everyone else the control beside the name.
+  const supporter = shown !== null && (shown.category.id === "supporters" || shown.alsoCategories.some((c) => c.id === "supporters"));
+  const titleShare = shareConcept === 3 || shareConcept === 4 || (shareConcept === 7 && !supporter);
+  const rowShare = shareConcept === 1 || (shareConcept === 7 && supporter);
 
   return (
     <div
@@ -172,7 +178,7 @@ export function AreaCard({
             <div className="flex items-center justify-between gap-2">
               <div className="flex min-w-0 items-center gap-2">
                 <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
-                {shareable && (shareConcept === 3 || shareConcept === 4) && (
+                {shareable && titleShare && (
                   // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height. Concept 4: desktop only.
                   <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn("-mx-1 -my-2 shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80", shareConcept === 4 ? "hidden lg:inline-flex" : "inline-flex")}>
                     <Share2 className="size-3.5 shrink-0" aria-hidden />
@@ -220,7 +226,7 @@ export function AreaCard({
                 <Description text={shownComposite ? shownComposite.description : shown!.description} onShowArea={onShowArea} tabbable={open} />
               </p>
             )}
-            {shown && (links || (shareable && shareConcept === 1)) && (
+            {shown && (links || (shareable && rowShare)) && (
               <div className="mt-2 flex items-center gap-3">
                 {links && shown.x && (
                   <a href={shown.x} target="_blank" rel="noopener noreferrer" tabIndex={open ? 0 : -1} aria-label={`${shown.name} on X`} className={socialLink}>
@@ -232,7 +238,7 @@ export function AreaCard({
                     <Globe className="size-5" />
                   </a>
                 )}
-                {shareable && shareConcept === 1 && (
+                {shareable && rowShare && (
                   <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn(socialLink, "cursor-pointer")}>
                     <Share2 className="size-5" />
                   </button>

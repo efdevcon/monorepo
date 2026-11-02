@@ -32,21 +32,23 @@ const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div
 
 /**
  * Prototype switch (2026-11-02) between the two share-control layouts on the
- * area card (AreaCard.tsx `ShareConcept`). In the URL as `?shareConcept=1|2|3|4|5` (the chip cycles)
+ * area card (AreaCard.tsx `ShareConcept`). In the URL as `?shareConcept=<n>` (the chip cycles through SHARE_CONCEPTS)
  * so a reload keeps the mode (the copied link never carries it: it is built
  * from the area keys alone). Mid-height on the right edge of phones, where
  * nothing else sits (the strip is at the top, the card and the pills at the
  * bottom); under the header on the right from lg up.
  */
 const SHARE_CONCEPT_PARAM = "shareConcept";
-const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title", 4: "Concept 4 · Share first / Title", 5: "Concept 5 · Own line" };
-const parseShareConcept = (value: string | null): ShareConcept => (value === "2" ? 2 : value === "3" ? 3 : value === "4" ? 4 : value === "5" ? 5 : 1);
+const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title", 4: "Concept 4 · Share first / Title", 5: "Concept 5 · Own line", 7: "Concept 7 · Title, supporters icon" };
+const SHARE_CONCEPTS = Object.keys(SHARE_CONCEPT_LABELS).map(Number) as ShareConcept[];
+const parseShareConcept = (value: string | null): ShareConcept => SHARE_CONCEPTS.find((c) => String(c) === value) ?? 1;
+const nextShareConcept = (c: ShareConcept): ShareConcept => SHARE_CONCEPTS[(SHARE_CONCEPTS.indexOf(c) + 1) % SHARE_CONCEPTS.length];
 
 function ShareConceptSwitch({ concept, onChange }: { concept: ShareConcept; onChange: (c: ShareConcept) => void }) {
   return (
     <button
       type="button"
-      onClick={() => onChange(concept === 5 ? 1 : ((concept + 1) as ShareConcept))}
+      onClick={() => onChange(nextShareConcept(concept))}
       title="Switch prototype concept"
       className="fixed right-4 top-[40%] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-purple bg-white py-[7px] pl-[10px] pr-3 text-[12px] font-medium leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out phone-landscape:right-[max(16px,var(--safe-right))] hover:bg-dc-lavender lg:right-6 lg:top-[80px]"
     >
