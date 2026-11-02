@@ -64,7 +64,7 @@ correctly.
 ## Unreleased features (team-only)
 
 `RELEASED` in `src/data/release/releaseGates.ts` holds one boolean per feature that ships hidden
-(today: the ENS and faucet perk cards; the venue map was released on 2026-10-30). `useReleased(name)` is true once released, or for a
+(today: the ENS perk card; the venue map was released on 2026-10-30, the faucet perk on 2026-11-02, checked-in tickets only). `useReleased(name)` is true once released, or for a
 signed-in `@ethereum.org` account that turned it on for its device, so the team keeps testing in
 production; a partner domain listed in `PARTNER_PREVIEW_DOMAINS` (`previewAccess.ts`, today
 `@ens.domains` for the ENS perk) gets the same switch for its own feature as a "Partner preview"

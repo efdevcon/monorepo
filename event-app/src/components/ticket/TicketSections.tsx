@@ -188,6 +188,11 @@ export function TicketSections({
         return access === "hidden" ? [] : [{ ticket, testing: access === "testing" }];
       })
     : [];
+  // The testnet faucet: any ticket type, once checked in at the venue (the
+  // proof route refuses earlier, PARTNERS requireCheckIn in api/ticket-proof).
+  const faucetTickets = showFaucetPerk
+    ? shownTickets.filter((ticket) => ticket.hasCheckedIn === true)
+    : [];
 
   // With several tickets, both tickets and swag become full-width horizontal
   // carousels stacked vertically; with one, the ticket sits beside the swag
@@ -358,7 +363,7 @@ export function TicketSections({
 
       {/* One card per partner per ticket shown (see TicketProofButton): with a
           primary that is one card each, never the buyer's colleagues' perks. */}
-      {shownTickets.length > 0 && (ensPerks.length > 0 || showFaucetPerk) && (
+      {(ensPerks.length > 0 || faucetTickets.length > 0) && (
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
@@ -370,11 +375,11 @@ export function TicketSections({
                 showTicketLabel={ensPerks.length > 1}
               />
             ))}
-            {showFaucetPerk && shownTickets.map((ticket) => (
+            {faucetTickets.map((ticket) => (
               <FaucetPerkCard
                 key={`faucet-${ticket.secret}`}
                 ticket={ticket}
-                showTicketLabel={shownTickets.length > 1}
+                showTicketLabel={faucetTickets.length > 1}
               />
             ))}
           </div>

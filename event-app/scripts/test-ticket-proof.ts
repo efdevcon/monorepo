@@ -296,6 +296,18 @@ async function main() {
     })()
   );
 
+  // ---- Testnet faucets: any ticket type, after check-in ----------------
+  for (const key of ["powfaucet-sepolia", "powfaucet-hoodi"]) {
+    const faucet = PARTNERS[key];
+    check(`${key} requires a check-in`, faucet.requireCheckIn === true);
+    check(`${key} refuses a ticket before check-in`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }, attendee).ok);
+    const gaMint = resolveMint(faucet, { ...gaTicket, hasCheckedIn: true }, attendee);
+    check(`${key} mints for a checked-in GA ticket`, gaMint.ok && gaMint.tier === "standard");
+    const inMint = resolveMint(faucet, { ...indiaTicket, hasCheckedIn: true }, attendee);
+    check(`${key} mints for a checked-in India ticket`, inMint.ok && inMint.tier === "india");
+    check(`${key} has no internal-testing bypass`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }, "someone@ethereum.org").ok);
+  }
+
   // The card follows the same rule (switch passed explicitly).
   check("card: hidden on a GA ticket", ensPerkAccess({ ...gaTicket, hasCheckedIn: true }, attendee, true) === "hidden");
   check("card: hidden on an India ticket before check-in", ensPerkAccess({ ...indiaTicket, hasCheckedIn: false }, attendee, true) === "hidden");

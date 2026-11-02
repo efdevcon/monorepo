@@ -130,7 +130,9 @@ partner's side:
   testing is done.
 - `powfaucet-sepolia`, `powfaucet-hoodi`: the PoW testnet faucets
   (github.com/pk910/PoWFaucet, module `ticket-proof`), one key per network since
-  each network is its own faucet with its own url. A faucet verifies against the
+  each network is its own faucet with its own url. Any ticket type, minted once
+  the ticket is checked in (`requireCheckIn`), and the card shows only then
+  (released 2026-11-02). A faucet verifies against the
   pinned signer, swaps the proof for a login of its own and keeps a spent-set per
   instance, so one ticket gets one set of perks per network. The card under My
   Devcon shows one button per network.
@@ -185,7 +187,7 @@ pnpm proof:demo-link standard --expired
 Per partner, `requireCheckIn` in `PARTNERS` (`proof.ts`) refuses to mint until
 the ticket has been checked in at the venue (`hasCheckedIn`, read live from
 Pretix), so a resold or unused ticket cannot collect a perk with real value. It
-is on for ENS (internal testers bypass it, see Partners). The gate applies at mint time only, the
+is on for ENS (internal testers bypass it, see Partners) and the faucets. The gate applies at mint time only, the
 payload is unchanged, so partners need no change: a valid proof implies the
 check-in had happened when it was signed. Binding check-in *into* the proof
 would be a payload change and needs a `PROOF_DOMAIN` bump.

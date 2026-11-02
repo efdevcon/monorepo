@@ -393,17 +393,21 @@ export const PARTNERS: Record<string, PartnerConfig> = {
   // verifies against the pinned signer, swaps the proof for its own login and
   // keeps a spent-set per instance, so no reference page is bundled here. One
   // key per network, because each network is its own faucet with its own url.
+  // Any ticket type, once checked in at the venue (the card on My Devcon
+  // shows only then too).
   "powfaucet-sepolia": {
     label: "Sepolia Faucet",
     claimUrl:
       process.env.TICKET_PROOF_POWFAUCET_SEPOLIA_CLAIM_URL ||
       "https://devcon-sepolia-faucet.pk910.de/",
+    requireCheckIn: true,
   },
   "powfaucet-hoodi": {
     label: "Hoodi Faucet",
     claimUrl:
       process.env.TICKET_PROOF_POWFAUCET_HOODI_CLAIM_URL ||
       "https://devcon-hoodi-faucet.pk910.de/",
+    requireCheckIn: true,
   },
 };
 
