@@ -656,6 +656,7 @@ function ScheduleInner({
     completedCount,
     interestedOnly,
     setInterestedOnly,
+    allProgrammes,
     filterOptions,
     daySessions,
     resultCount,
@@ -1750,6 +1751,7 @@ function ScheduleInner({
                   {/* Outermost so the chip sits under the toolbar's Filter button. */}
                   <FilterStatusBar
                     counts={facetFilterCounts}
+                    allProgrammes={allProgrammes}
                     onClear={clearFilters}
                   />
                 </div>
@@ -1759,6 +1761,7 @@ function ScheduleInner({
               <div className="mb-4 lg:hidden">
                 <FilterStatusBar
                   counts={facetFilterCounts}
+                  allProgrammes={allProgrammes}
                   onClear={clearFilters}
                 />
               </div>
