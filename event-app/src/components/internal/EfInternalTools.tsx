@@ -34,7 +34,7 @@ const NUDGE_PREF_KEYS = [
  * pill, 16px purple icon, 13px label), as a plain class so the room-screens
  * entry can be a Link. Sits under its row's copy, left-aligned.
  */
-export const toolPill =
+const toolPill =
   "flex h-8 w-fit cursor-pointer items-center gap-2 rounded-full border border-dc-hairline bg-white pl-[10px] pr-3 text-[13px] leading-none text-dc-fg transition-colors duration-150 ease-out hover:bg-dc-purple-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple [&>svg]:size-4 [&>svg]:text-dc-purple";
 
 /**

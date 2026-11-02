@@ -13,9 +13,9 @@ import {
 import { useAnalyticsReport } from "@/data/admin/useAnalyticsReport";
 import { useSessionsOfAllProgrammes } from "@/data/hooks/use-sessions";
 import { useSpeakers } from "@/data/hooks/use-speakers";
+import { SecondaryButton } from "@/components/Buttons";
 import { Segmented } from "@/components/Segmented";
 import { Bone, Status } from "@/components/Skeletons";
-import { toolPill } from "@/components/internal/EfInternalTools";
 import { DetailLink } from "@/routing/DetailLink";
 import type { DetailKind } from "@/routing/viewParams";
 
@@ -45,11 +45,17 @@ import type { DetailKind } from "@/routing/viewParams";
  */
 
 const card = "rounded-xl border border-dc-hairline bg-white p-4 lg:p-5";
-const h2 = "text-[16px] font-bold leading-6 text-dc-fg2";
+// Three steps: 20px section titles, 14px block titles, 12px labels. The
+// figures are 16px bold, so a section title has to sit above them.
+const h2 = "text-[20px] font-bold leading-7 text-dc-fg2";
 const h3 = "text-[14px] font-bold leading-5 text-dc-fg2";
 const muted = "text-[12px] leading-4 text-dc-muted";
 const rowText = "text-[13px] leading-[18px]";
 const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dc-purple";
+/** A share list never runs wider than this: one word and a 4px bar across 400px read as sparse. */
+const shareList = "min-w-0 max-w-[360px]";
+/** How many event rows show before "Show all": the list can run to 100. */
+const EVENTS_FOLD = 20;
 
 const WINDOW_ITEMS: readonly { value: WindowDays; label: string }[] = WINDOWS.map((w) => ({ value: w, label: `${w} days` }));
 
@@ -75,11 +81,11 @@ function fmtDay(key: string, withWeekday = true): string {
 function Section({ title, note, children }: { title: string; note?: string; children: ReactNode }) {
   const id = useId();
   return (
-    <section className="mt-8" aria-labelledby={id}>
+    <section className="mt-12" aria-labelledby={id}>
       <h2 id={id} className={h2}>
         {title}
       </h2>
-      {note && <p className={cn(muted, "mt-0.5")}>{note}</p>}
+      {note && <p className={cn(muted, "mt-1")}>{note}</p>}
       {children}
     </section>
   );
@@ -96,10 +102,16 @@ function Figure({ label, value, hint }: { label: string; value: string; hint?: s
   );
 }
 
+/** A bar's slot: slots share the row evenly up to 56px wide, then spread out (7 days in a wide card). */
+const slot = "min-w-0 max-w-14 flex-1";
+
 /**
  * Visits per day as bars. The highest day and today are labelled; every
  * other bar reads on hover, focus or tap, so the values reach the keyboard
- * and a finger as well as a mouse. Today (so far) is the lighter bar.
+ * and a finger as well as a mouse. Today (so far) is the lighter bar. The
+ * bar is two thirds of its slot, so a 7-day window is thin marks with air,
+ * not seven blocks. On desktop the chart grows to its card's height (the
+ * card shares a grid row with the taller hero card); phones get a fixed one.
  */
 function DailyBars({ days }: { days: DayPoint[] }) {
   const [active, setActive] = useState<number | null>(null);
@@ -109,18 +121,21 @@ function DailyBars({ days }: { days: DayPoint[] }) {
   // Every day is labelled at 14 days; longer windows label every nth day.
   const every = Math.max(1, Math.ceil(n / 10));
   return (
-    <div className="min-w-0">
-      <ol className="relative flex h-40 items-end gap-1 pt-5 lg:h-36" aria-label="Visits per day">
+    <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+      <ol
+        className="relative flex h-40 items-end justify-between gap-1 pt-5 lg:h-auto lg:min-h-36 lg:flex-1"
+        aria-label="Visits per day"
+      >
         {days.map((d, i) => {
           const pct = Math.max(1.5, (d.visits / max) * 100);
           const last = i === n - 1;
           const open = active === i;
           const labelled = open || (active === null && (i === maxIndex || last));
           return (
-            <li key={d.date} className="relative h-full min-w-0 flex-1">
+            <li key={d.date} className={cn(slot, "relative h-full")}>
               <button
                 type="button"
-                className={cn("flex h-full w-full cursor-default flex-col justify-end rounded-sm", focusRing)}
+                className={cn("flex h-full w-full cursor-default flex-col items-center justify-end rounded-sm", focusRing)}
                 aria-label={`${fmtDay(d.date)}${last ? ", so far" : ""}: ${fmtInt(d.visits)} visits, ${fmtInt(d.uniqVisitors)} unique`}
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive((a) => (a === i ? null : a))}
@@ -130,8 +145,8 @@ function DailyBars({ days }: { days: DayPoint[] }) {
               >
                 <span
                   className={cn(
-                    "block w-full rounded-t-[3px] transition-colors duration-150 ease-out",
-                    open ? "bg-dc-purple-600" : last ? "bg-dc-purple-soft" : "bg-dc-purple"
+                    "block w-2/3 rounded-t-[3px] transition-colors duration-150 ease-out",
+                    open ? "bg-dc-purple-600" : last ? "bg-dc-purple/50" : "bg-dc-purple"
                   )}
                   style={{ height: `${pct}%` }}
                 />
@@ -166,9 +181,9 @@ function DailyBars({ days }: { days: DayPoint[] }) {
           );
         })}
       </ol>
-      <div className="mt-1 flex gap-1" aria-hidden>
+      <div className="mt-1 flex justify-between gap-1" aria-hidden>
         {days.map((d, i) => (
-          <div key={d.date} className="min-w-0 flex-1 truncate text-center text-[11px] leading-4 text-dc-muted">
+          <div key={d.date} className={cn(slot, "truncate text-center text-[11px] leading-4 text-dc-muted")}>
             {i % every === 0 ? fmtDay(d.date, false) : ""}
           </div>
         ))}
@@ -188,13 +203,19 @@ interface RankedItem {
   detail: string;
 }
 
-/** A top list: rank, title, value. Rows that are app pages are links at finger size. */
+/**
+ * A top list: rank, title, value. Every row is finger-sized (44px) so a
+ * column of pages beside a column of sessions keeps one rhythm; rows that
+ * are app pages are links with a hover wash. The list carries the negative
+ * margin, so the wash and the dividers share one width and the text stays
+ * on the heading's edge.
+ */
 function Ranked({ items, limit, empty }: { items: RankedItem[]; limit: number; empty: string }) {
   const shown = items.slice(0, limit);
   if (shown.length === 0) return <p className={cn(muted, "mt-2")}>{empty}</p>;
-  const row = "flex items-center gap-2";
+  const row = "flex min-h-11 items-center gap-2 px-2 py-1.5";
   return (
-    <ol className="mt-2 flex flex-col">
+    <ol className="-mx-2 mt-2 flex flex-col">
       {shown.map((item, i) => {
         const inner = (
           <>
@@ -213,16 +234,12 @@ function Ranked({ items, limit, empty }: { items: RankedItem[]; limit: number; e
                 kind={item.link.kind}
                 id={item.link.id}
                 title={item.sub ? `${item.title}, ${item.sub}` : item.title}
-                className={cn(
-                  row,
-                  focusRing,
-                  "-mx-2 min-h-11 rounded-md px-2 py-1.5 transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-                )}
+                className={cn(row, focusRing, "rounded-md transition-colors duration-150 ease-out hover:bg-dc-purple-wash")}
               >
                 {inner}
               </DetailLink>
             ) : (
-              <div className={cn(row, "py-1.5")} title={item.title}>
+              <div className={row} title={item.title}>
                 {inner}
               </div>
             )}
@@ -259,7 +276,7 @@ function ShareRow({ label, count, pct, pctLabel }: { label: string; count: numbe
 function Breakdown({ title, rows, total, limit = 6 }: { title: string; rows: Row[]; total: number; limit?: number }) {
   const shown = rows.slice(0, limit);
   return (
-    <div className="min-w-0">
+    <div className={shareList}>
       <h3 className={h3}>{title}</h3>
       {shown.length === 0 ? (
         <p className={cn(muted, "mt-2")}>No data.</p>
@@ -282,7 +299,7 @@ function Breakdown({ title, rows, total, limit = 6 }: { title: string; rows: Row
 function Funnel({ title, steps, empty }: { title: string; steps: { label: string; visits: number }[]; empty: string }) {
   const base = steps[0]?.visits ?? 0;
   return (
-    <div className="min-w-0">
+    <div className={shareList}>
       <h3 className={h3}>{title}</h3>
       {base === 0 ? (
         <p className={cn(muted, "mt-2")}>{empty}</p>
@@ -407,6 +424,7 @@ function ReportSkeleton() {
 export function AnalyticsReport() {
   const [days, setDays] = useState<WindowDays>(DEFAULT_WINDOW);
   const { report: r, error, loading, updatedAt, refresh } = useAnalyticsReport(days);
+  const [allEvents, setAllEvents] = useState(false);
 
   // The device's own catalogue, for titles and names behind Matomo's slugs.
   const sessions = useSessionsOfAllProgrammes();
@@ -503,7 +521,9 @@ export function AnalyticsReport() {
     // `expand`: span the layout grid's full width (globals.css .section),
     // unlike the 1312px column the catalogue pages keep; a dashboard wants
     // the whole desktop.
-    <div className="expand px-4 py-4 font-heading lg:px-6 lg:pb-10">
+    // Capped at the catalogue pages' 1312px column and centred: lists and
+    // share rows stretched across a 1440px desktop read as sparse.
+    <div className="expand mx-auto w-full max-w-[1312px] px-4 py-4 font-heading lg:px-6 lg:pb-10">
       <div className="flex flex-wrap items-end justify-between gap-3 lg:pt-2">
         <div>
           <h1 className="text-[24px] font-extrabold leading-[28.8px] tracking-[-0.5px] text-dc-fg2">App analytics</h1>
@@ -514,15 +534,11 @@ export function AnalyticsReport() {
         </div>
         <div className="flex items-center gap-2">
           <Segmented value={days} onChange={setDays} items={WINDOW_ITEMS} label="Window" />
-          <button
-            type="button"
-            onClick={() => void refresh()}
-            className={cn(toolPill, "disabled:cursor-default disabled:opacity-60")}
-            disabled={loading}
-          >
-            <RefreshCw className={cn(loading && "animate-spin")} />
+          {/* The app's 40px secondary CTA, the segmented control's height. */}
+          <SecondaryButton size="sm" onClick={() => void refresh()} disabled={loading}>
+            <RefreshCw className={cn("size-4 text-dc-purple", loading && "animate-spin")} />
             Refresh
-          </button>
+          </SecondaryButton>
         </div>
       </div>
 
@@ -539,13 +555,13 @@ export function AnalyticsReport() {
           <section className="mt-4 grid gap-3 lg:grid-cols-12" aria-label="Right now and per day">
             <div className={cn(card, "flex flex-col gap-5 lg:col-span-5")}>
               <div>
-                <h2 className={muted}>On the app right now</h2>
+                <h2 className="text-[13px] leading-[18px] text-dc-fg2">On the app right now</h2>
                 <p className="mt-1 text-[44px] font-extrabold leading-none tracking-[-1px] text-dc-fg2">
                   {fmtInt(r.live.visitors)}
                 </p>
                 <p className={cn(muted, "mt-2 flex items-center gap-1.5")}>
                   <span aria-hidden className="size-2 shrink-0 rounded-full bg-dc-green motion-safe:animate-pulse" />
-                  Live, {fmtInt(r.live.actions)} actions in the last {r.live.minutes} minutes
+                  Live. {fmtInt(r.live.actions)} actions in the last {r.live.minutes} minutes.
                 </p>
               </div>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
@@ -562,18 +578,19 @@ export function AnalyticsReport() {
                 <Figure
                   label="Actions today"
                   value={fmtInt(r.today?.actions ?? 0)}
-                  hint={yesterday ? `Yesterday ${fmtInt(yesterday.actions)}` : "Page views and events"}
+                  hint={yesterday ? `Yesterday ${fmtInt(yesterday.actions)}` : undefined}
                 />
+                {/* Hints only where they compare to something; a hint for symmetry is noise. */}
                 <Figure
-                  label="New visits"
+                  label={`New visits, ${r.windowDays} days`}
                   value={fmtPct(r.totals.newVisits, visitsSplit)}
-                  hint={`${fmtInt(r.totals.newVisits)} of ${fmtInt(visitsSplit)} in ${r.windowDays} days`}
+                  hint={`${fmtInt(r.totals.newVisits)} of ${fmtInt(visitsSplit)}`}
                 />
-                <Figure label="Bounce rate" value={`${Math.round(r.totals.bounceRate)}%`} hint={`${r.windowDays} days`} />
-                <Figure label="Time in the app" value={fmtDuration(r.totals.avgTimeOnSite)} hint="Per visit" />
+                <Figure label={`Bounce rate, ${r.windowDays} days`} value={`${Math.round(r.totals.bounceRate)}%`} />
+                <Figure label="Time in the app, per visit" value={fmtDuration(r.totals.avgTimeOnSite)} />
               </dl>
             </div>
-            <div className={cn(card, "lg:col-span-7")}>
+            <div className={cn(card, "flex flex-col lg:col-span-7")}>
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h2 className={h3}>Visits per day</h2>
                 <p className={cn(muted, "flex flex-wrap gap-x-3")}>
@@ -680,11 +697,23 @@ export function AnalyticsReport() {
                 <h3 className={h3}>Events</h3>
                 <DataTable
                   columns={[{ label: "Event" }, { label: "Count", numeric: true }, { label: "Visits", numeric: true }]}
-                  rows={r.events.map((e) => ({
+                  rows={(allEvents ? r.events : r.events.slice(0, EVENTS_FOLD)).map((e) => ({
                     key: `${e.category}-${e.action}`,
                     cells: [<EventName key="name" category={e.category} action={e.action} />, fmtInt(e.events), fmtInt(e.visits)],
                   }))}
                 />
+                {!allEvents && r.events.length > EVENTS_FOLD && (
+                  <button
+                    type="button"
+                    onClick={() => setAllEvents(true)}
+                    className={cn(
+                      "mt-2 cursor-pointer rounded-sm text-[13px] font-bold leading-[18px] text-dc-purple hover:underline",
+                      focusRing
+                    )}
+                  >
+                    Show all {fmtInt(r.events.length)} events
+                  </button>
+                )}
               </div>
             </div>
           </Section>
