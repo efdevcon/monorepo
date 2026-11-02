@@ -38,7 +38,7 @@ function shareLinkFor(keys: readonly AreaKey[]): string {
 async function copyShareLink(keys: readonly AreaKey[]) {
   try {
     await navigator.clipboard.writeText(shareLinkFor(keys));
-    toast.success("Area location ready to share");
+    toast.success("Area location ready to share!");
   } catch {
     toast.error("Couldn't copy the link");
   }
