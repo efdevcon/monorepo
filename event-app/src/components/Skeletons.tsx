@@ -10,11 +10,12 @@ import cn from "classnames";
 const bone = "rounded bg-dc-fg2/[0.07]";
 const pulse = "motion-safe:animate-pulse";
 
-function Bone({ className }: { className?: string }) {
-  return <div aria-hidden className={cn(bone, className)} />;
+export function Bone({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return <div aria-hidden className={cn(bone, className)} style={style} />;
 }
 
-function Status({ label, className, children }: { label: string; className?: string; children: React.ReactNode }) {
+/** The pulse wrapper, for skeletons built outside this file (the analytics report). */
+export function Status({ label, className, children }: { label: string; className?: string; children: React.ReactNode }) {
   return (
     <div role="status" className={cn(pulse, className)}>
       <span className="sr-only">{label}</span>

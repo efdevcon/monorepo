@@ -130,7 +130,10 @@ export function bulkQueries(siteId: string, days: WindowDays): Query[] {
     q("VisitsSummary.get", range), // 3 window totals
     q("VisitFrequency.get", range), // 4 new vs returning
     q("Actions.getPageUrls", { ...range, flat: "1", filter_limit: "15", filter_sort_column: "nb_hits" }), // 5
-    q("Events.getCategory", { ...range, flat: "1", secondaryDimension: "eventAction", filter_limit: "60", filter_sort_column: "nb_events" }), // 6
+    // 100 rows, not the 60 of the first cut: the page's install and sign-in
+    // funnels read their steps from this list, and a rare step (prompt
+    // accepted, verified) sorted past the cut would read as zero.
+    q("Events.getCategory", { ...range, flat: "1", secondaryDimension: "eventAction", filter_limit: "100", filter_sort_column: "nb_events" }), // 6
     q("DevicesDetection.getType", { ...range, filter_limit: "6" }), // 7
     q("DevicesDetection.getOsFamilies", { ...range, filter_limit: "6" }), // 8
     q("DevicesDetection.getBrowsers", { ...range, filter_limit: "6" }), // 9
