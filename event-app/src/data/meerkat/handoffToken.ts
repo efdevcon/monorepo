@@ -11,10 +11,12 @@ import { supabase } from "@/data/auth/supabase";
  *
  * One token per user and pass, shared by every mounted feed and renewed by
  * one timer: when under RENEW_BEFORE_MS remain, only while the page is
- * visible (rechecked on visibilitychange and pageshow). It is withdrawn
- * WITHDRAW_BEFORE_MS before it lapses, so a link is never rendered with a
- * token Meerkat would refuse. Failures back off; a 403 (no valid pass) and a
- * 401 (no live session) wait for a new pass or a new session instead.
+ * visible (rechecked on visibilitychange, pageshow and every remount). It is
+ * withdrawn WITHDRAW_BEFORE_MS before it lapses, and the click re-checks it,
+ * so a link never carries a token Meerkat would refuse. Failures (incl. no
+ * session or a 401) back off and retry, sooner when Supabase signs in or
+ * refreshes; a 403 (no valid pass) waits for a new pass, fetched once per
+ * user and pass (requestPassRefresh).
  */
 
 /** Renew the token once this little of its life remains. */
@@ -22,7 +24,7 @@ export const RENEW_BEFORE_MS = 10 * 60_000;
 /** Stop rendering the token this long before it lapses. */
 export const WITHDRAW_BEFORE_MS = 30_000;
 
-export type HandoffProblem = "failed" | "no-pass" | "signed-out";
+export type HandoffProblem = "failed" | "no-pass";
 
 export interface HandoffSnapshot {
   /** `${userId}:${pass}`, "" when there is nothing to fetch for. */
@@ -53,7 +55,7 @@ export function askState(snapshot: HandoffSnapshot, nowMs?: number): AskState {
 
 /** Whether a new token should be fetched now: none or nearly spent, not waiting on a pass or session, past the back-off. */
 export function needsToken(snapshot: HandoffSnapshot, nowMs: number): boolean {
-  if (!snapshot.key || snapshot.problem === "no-pass" || snapshot.problem === "signed-out") return false;
+  if (!snapshot.key || snapshot.problem === "no-pass") return false;
   if (nowMs < snapshot.retryAt) return false;
   return !snapshot.token || !snapshot.expiresAt || snapshot.expiresAt - nowMs <= RENEW_BEFORE_MS;
 }
@@ -106,17 +108,16 @@ async function fetchToken() {
   inFlight = true;
   try {
     const session = supabase ? (await supabase.auth.getSession()).data.session : null;
-    if (!session) {
-      if (snapshot.key === key) set({ problem: "signed-out" });
-      return;
-    }
+    // No session here, or one the server refused (401, possibly a Supabase
+    // hiccup): a failure like any other, retried after the back-off or as
+    // soon as Supabase signs in or refreshes. Never a sign-in dead end.
+    if (!session) throw new Error("no session");
     const res = await fetch("/api/meerkat/token", {
       method: "POST",
       headers: { Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ pass }),
     });
     if (snapshot.key !== key) return; // user or pass changed meanwhile
-    if (res.status === 401) return set({ problem: "signed-out" });
     if (res.status === 403) return set({ problem: "no-pass" });
     const json: { success?: boolean; data?: { token?: string; ttlMs?: number } } = await res.json();
     const token = json.data?.token;
@@ -152,8 +153,8 @@ function installGlobals() {
   supabase?.auth.onAuthStateChange((event) => {
     if (event === "SIGNED_OUT") {
       target(undefined, undefined);
-    } else if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && snapshot.problem === "signed-out") {
-      set({ problem: undefined });
+    } else if ((event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && snapshot.problem === "failed") {
+      set({ problem: undefined, retryAt: 0 });
       // Outside the auth callback: auth-js holds its lock while it runs.
       setTimeout(tick, 0);
     }
@@ -163,6 +164,42 @@ function installGlobals() {
 function subscribe(listener: () => void) {
   listeners.add(listener);
   return () => listeners.delete(listener);
+}
+
+/** Whether the store holds a token Meerkat will still take (for the click-time check). */
+export function handoffTokenUsable(nowMs: number = Date.now()): boolean {
+  return askState(snapshot, nowMs).kind === "ready";
+}
+
+/** Re-check now: withdraw a lapsed token and fetch a new one (after a click on a stale link). */
+export function recheckHandoff() {
+  tick();
+}
+
+/**
+ * One tickets refetch per user and pass (the payload lacks a usable pass),
+ * however many feeds ask: each refetch is a Pretix lookup. `force` is the
+ * attendee's own retry.
+ */
+const passRefreshes = new Map<string, "pending" | "done">();
+export function requestPassRefresh(key: string, refetch: () => unknown, force = false) {
+  const state = passRefreshes.get(key);
+  if (state === "pending" || (state === "done" && !force)) return;
+  passRefreshes.set(key, "pending");
+  listeners.forEach((listener) => listener());
+  void Promise.resolve(refetch()).finally(() => {
+    passRefreshes.set(key, "done");
+    listeners.forEach((listener) => listener());
+  });
+}
+
+/** Where that refetch stands for this user and pass. */
+export function usePassRefreshState(key: string | null): "idle" | "pending" | "done" {
+  return useSyncExternalStore(
+    subscribe,
+    () => (key ? passRefreshes.get(key) ?? "idle" : "idle"),
+    () => "idle"
+  );
 }
 
 /** After "Couldn't get your Q&A link": try again now. */
@@ -177,10 +214,16 @@ export function retryHandoff() {
  * button should show it. Nothing is fetched while either is missing; the
  * server render and the first client render are always "loading".
  */
-export function useHandoffToken(userId: string | undefined, qaPass: string | undefined): AskState {
+export function useHandoffToken(
+  userId: string | undefined,
+  qaPass: string | undefined
+): { ask: AskState; problem?: HandoffProblem } {
   useEffect(() => {
     installGlobals();
     subscribers += 1;
+    // A remount may find the timer stopped (last feed unmounted) or a token
+    // that lapsed meanwhile: re-check at once.
+    tick();
     return () => {
       subscribers -= 1;
       if (subscribers === 0) clearTimeout(timer);
@@ -191,6 +234,7 @@ export function useHandoffToken(userId: string | undefined, qaPass: string | und
   }, [userId, qaPass]);
   const current = useSyncExternalStore(subscribe, () => snapshot, () => EMPTY);
   // tick() withdraws the token from the store before it lapses, so the
-  // render reads the store as is.
-  return askState(current.key && current.key === `${userId}:${qaPass}` ? current : EMPTY);
+  // render reads the store as is; the click re-checks with the clock.
+  const mine = current.key && current.key === `${userId}:${qaPass}` ? current : EMPTY;
+  return { ask: askState(mine), problem: mine.problem };
 }

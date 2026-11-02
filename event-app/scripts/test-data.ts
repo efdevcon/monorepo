@@ -1577,9 +1577,10 @@ function testMeerkatDirectLink() {
   const t = 1_000_000;
   check("handoff: a fresh token is ready", eq(askState(snap({ token: "tk", expiresAt: t + 30 * 60_000 }), t), { kind: "ready", token: "tk" }));
   check("handoff: withdrawn just before it lapses", askState(snap({ token: "tk", expiresAt: t + WITHDRAW_BEFORE_MS }), t).kind === "loading");
-  check("handoff: problems show as such", askState(snap({ problem: "no-pass" }), t).kind === "no-pass" && askState(snap({ problem: "signed-out" }), t).kind === "signed-out");
+  check("handoff: problems show as such", askState(snap({ problem: "no-pass" }), t).kind === "no-pass" && askState(snap({ problem: "failed" }), t).kind === "failed");
   check("handoff: fetch when none, renew under ten minutes", needsToken(snap({}), t) && needsToken(snap({ token: "tk", expiresAt: t + RENEW_BEFORE_MS }), t) && !needsToken(snap({ token: "tk", expiresAt: t + RENEW_BEFORE_MS + 1 }), t));
-  check("handoff: no fetch without a key, while backing off, or waiting on a pass or session", !needsToken(snap({ key: "" }), t) && !needsToken(snap({ retryAt: t + 1 }), t) && !needsToken(snap({ problem: "no-pass" }), t) && !needsToken(snap({ problem: "signed-out" }), t));
+  check("handoff: no fetch without a key, while backing off, or waiting on a pass", !needsToken(snap({ key: "" }), t) && !needsToken(snap({ retryAt: t + 1 }), t) && !needsToken(snap({ problem: "no-pass" }), t));
+  check("handoff: without a clock the render trusts the store", askState(snap({ token: "tk", expiresAt: t }), undefined).kind === "ready");
   check("handoff: a failed fetch retries after its back-off", needsToken(snap({ problem: "failed", retryAt: t }), t));
   check("handoff: back-off of 2, then 5 minutes", retryDelayMs(1) === 2 * 60_000 && retryDelayMs(2) === 5 * 60_000 && retryDelayMs(7) === 5 * 60_000);
 }
