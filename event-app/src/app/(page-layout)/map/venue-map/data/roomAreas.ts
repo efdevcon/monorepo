@@ -14,6 +14,12 @@ export const AREA_PARAM = "area";
 /** `/map?area=…` showing these footprints (the card's share link; one floor's keys). */
 export const mapHrefForAreas = (keys: readonly string[]): string => `/map?${AREA_PARAM}=${encodeURIComponent(keys.join(","))}`;
 
+/**
+ * The swag QR modal's "Claim at Swag Station" link. The station's footprint key is the plan's
+ * (`L3/swag-station` in plan.generated.json); an unknown key opens a bare map, so keep it in step with the plan.
+ */
+export const SWAG_STATION_MAP_HREF = mapHrefForAreas(["L3/swag-station"]);
+
 /** `/map?area=…` for a room the map knows, plain `/map` otherwise. */
 export function mapHrefForRoom(roomId: string | null | undefined): string {
   const keys = roomId ? ROOM_AREAS[roomId] : undefined;

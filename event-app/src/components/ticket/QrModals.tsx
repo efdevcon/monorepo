@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { SWAG_STATION_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
+import { useRouter } from "@/routing";
 import type { TicketStyle } from "@/data/tickets/types";
 import type { TicketReference } from "./EventTicketCard";
 import { CloseButton } from "@/components/Buttons";
@@ -43,6 +45,7 @@ export function QrModal({
   target: QrModalTarget | null;
   onClose: () => void;
 }) {
+  const router = useRouter();
   useEffect(() => {
     if (!target) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -144,13 +147,19 @@ export function QrModal({
                 )}
               </div>
               {target.kind === "swag" && !target.collected && (
-                // Figma annotation: "Will link to Swag Station location on
-                // in-app map (future iteration)" — closes the modal until the
-                // station has a map POI. Sized per the design's Button-Small
-                // (Buttons.tsx primitives are the large 48px CTA), with the
-                // same motion-safe transition conventions.
+                // Opens the map on the Swag Station's footprint (the Figma
+                // annotation's "future iteration", 2026-11-02). Closes the
+                // modal first: the ticket pane stays mounted behind the map
+                // tab, so it would otherwise still be open on the way back.
+                // A button over the routing hook, not a Link: under the
+                // native wrapper Link swaps in its own onClick. Sized per the
+                // design's Button-Small (Buttons.tsx primitives are the large
+                // 48px CTA), with the same motion-safe transition conventions.
                 <button
-                  onClick={onClose}
+                  onClick={() => {
+                    onClose();
+                    router.push(SWAG_STATION_MAP_HREF);
+                  }}
                   className="flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full bg-dc-purple pl-4 pr-3 text-[14px] font-bold leading-none text-dc-purple-fg transition-[scale,background-color] duration-150 ease-out hover:bg-[#6730d5] motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.97] motion-reduce:transition-none"
                 >
                   Claim at Swag Station
