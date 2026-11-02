@@ -218,7 +218,7 @@ export const AREAS = {
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press", iconSize: 4.5 },
   "open-hardware-zone": {
     name: "Open Hardware Zone",
-    description: "Open hardware, hands on, with Maker's Asylum: the Goa makerspace and community of makers, builders and problem-solvers behind #MakeBreakCreate.",
+    description: "Open hardware, hands on, with Maker's Asylum.",
     category: "fun",
     legend: "hubs",
     heightClass: "zone",
