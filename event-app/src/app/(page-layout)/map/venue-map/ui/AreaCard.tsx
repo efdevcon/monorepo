@@ -3,32 +3,20 @@
 import { useState, type MutableRefObject, type ReactNode } from "react";
 import cn from "classnames";
 import { ChevronRight, Clock3, Globe, Presentation, Share2, User } from "lucide-react";
-import { toast } from "sonner";
 import { trackEvent } from "@/data/analytics/track";
 import { CloseButton } from "@/components/Buttons";
 import { XIcon } from "@/components/icons/XIcon";
 import { DetailLink } from "@/routing/DetailLink";
 import { formatTimeRange } from "@/components/schedule/utils";
-import APP_CONFIG from "@/CONFIG";
 import { isAreaId, type AreaId } from "../data/areas";
 import { compositeOf, type Area, type AreaKey } from "../data/resolve";
+import { copyShareLink, shareUrl } from "@/utils/shareLink";
 import { mapHrefForAreas } from "../data/roomAreas";
 import { useLiveSessionForArea } from "./useLiveSessionForArea";
 
-/** The link the card copies: `/map?area=…` on this origin, which opens the floor and the card as a tap would. */
-function shareLinkFor(keys: readonly AreaKey[]): string {
-  const origin = typeof window !== "undefined" ? window.location.origin : APP_CONFIG.APP_ORIGIN;
-  return new URL(mapHrefForAreas(keys), origin).toString();
-}
-
-async function copyShareLink(keys: readonly AreaKey[]) {
-  trackEvent("map", "share-copy", keys.join(","));
-  try {
-    await navigator.clipboard.writeText(shareLinkFor(keys));
-    toast.success("Area location ready to share!");
-  } catch {
-    toast.error("Couldn't copy the link");
-  }
+/** Copies `/map?area=…` for these footprints, which opens the floor and the card as a tap would. */
+async function copyAreaLink(keys: readonly AreaKey[]) {
+  if (await copyShareLink(shareUrl(mapHrefForAreas(keys)), "Area location ready to share!")) trackEvent("map", "share-copy", keys.join(","));
 }
 
 /** A place link in a description: `[Info Desk](area:info-desk)` (areas.ts). */
@@ -165,8 +153,8 @@ export function AreaCard({
               <div className="flex min-w-0 items-center gap-2">
                 <p className="min-w-0 text-[16px] font-bold leading-tight text-dc-fg">{shownComposite ? shownComposite.name : shown?.name}</p>
                 {titleShare && (
-                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); padded out to a taller hit area without changing the row's height.
-                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className="-mx-1 -my-2 inline-flex shrink-0 cursor-pointer items-center gap-1 px-1 py-2 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80">
+                  // A flex sibling, centred on the title's line box (a wrapped title centres it on both lines); a 44px-tall hit area, the negative margins keeping the row at the title's height.
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyAreaLink(shareKeys)} className="-mx-1 -my-4 inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-1 px-1 text-[12px] font-bold leading-none text-dc-purple transition-opacity hover:opacity-80">
                     <Share2 className="size-3.5 shrink-0" aria-hidden />
                     Share
                   </button>
@@ -193,7 +181,7 @@ export function AreaCard({
                   </a>
                 )}
                 {rowShare && (
-                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyShareLink(shareKeys)} className={cn(socialLink, "cursor-pointer")}>
+                  <button type="button" tabIndex={open ? 0 : -1} aria-label={shareLabel} onClick={() => void copyAreaLink(shareKeys)} className={cn(socialLink, "cursor-pointer")}>
                     <Share2 className="size-5" />
                   </button>
                 )}

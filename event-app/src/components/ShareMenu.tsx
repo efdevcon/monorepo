@@ -5,17 +5,9 @@ import { createPortal } from "react-dom";
 import { Link2, Share2 } from "lucide-react";
 import cn from "classnames";
 import { toast } from "sonner";
-import APP_CONFIG from "@/CONFIG";
 import { trackEvent } from "@/data/analytics/track";
 import { detailHref, type DetailKind } from "@/routing/viewParams";
-
-/** Absolute share URL of the detail page (`/schedule/<id>`, `/speakers/<id>`). */
-export function shareUrl(kind: DetailKind, id: string): string {
-  const path = detailHref(kind, id);
-  const origin =
-    typeof window !== "undefined" ? window.location.origin : APP_CONFIG.APP_ORIGIN;
-  return new URL(path, origin).toString();
-}
+import { copyShareLink, shareUrl } from "@/utils/shareLink";
 
 /**
  * The text that goes with the link into the platform share sheet. First
@@ -159,18 +151,12 @@ export function ShareMenu({
     };
   }, [open, close]);
 
-  const url = shareUrl(kind, id);
+  const url = shareUrl(detailHref(kind, id));
   const text = sharePostText(kind, title);
 
   const copyLink = async () => {
     close(true);
-    trackEvent(kind, "share-copy", id);
-    try {
-      await navigator.clipboard.writeText(url);
-      toast.success("Link copied");
-    } catch {
-      toast.error("Couldn't copy the link");
-    }
+    if (await copyShareLink(url, "Link copied")) trackEvent(kind, "share-copy", id);
   };
 
   const nativeShare = async () => {
