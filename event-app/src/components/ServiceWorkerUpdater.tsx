@@ -286,8 +286,13 @@ const TOAST_OPTIONS = {
   className: "lg:left-1/2 lg:w-max lg:max-w-md lg:-translate-x-1/2",
 };
 
-/** How often an open page checks for a new worker (and the fallback toast's due time). */
+/**
+ * How often an open page checks for a new worker: a conditional request for
+ * /sw.js that the CDN answers with a 304 when nothing changed. The same tick
+ * re-arms a stuck kiosk and brings the fallback toast when due.
+ */
 const CHECK_INTERVAL_MS = 60_000;
+const TICK_MS = 5_000;
 
 /**
  * Applies new app versions at quiet moments and keeps the update toast as the
@@ -306,11 +311,11 @@ const CHECK_INTERVAL_MS = 60_000;
  *   No toast, ever. A TV also never reloads while offline.
  * - Launch: a worker already waiting when the app boots is applied at once,
  *   before anything on screen matters.
- * - Hidden tab: a minute after the tab goes hidden, unless a stream or
+ * - Hidden tab: 15 s after the tab goes hidden, unless a stream or
  *   translation player is mounted, a sheet or dialog is open or someone was
  *   typing; the scroll position rides along and is restored.
  * - Return: a phone freezes a hidden page, so that timer never fires there.
- *   Coming back after at least a minute away applies the waiting build at
+ *   Coming back after at least 15 s away applies the waiting build at
  *   once under the same guards: the page re-appears and refreshes once, with
  *   the scroll restored.
  * - Another page switched the worker (`controllerchange` this page did not
@@ -454,11 +459,14 @@ export function ServiceWorkerUpdater() {
       window.location.reload();
     }
 
-    /** The browser's own update check (the minute tick, a tab coming back, the tools' button). */
+    let dueAt = Date.now() + CHECK_INTERVAL_MS;
+
+    /** The browser's own update check (the periodic tick, a tab coming back, the tools' button). */
     function check() {
       registration?.update().catch(() => {});
       const now = Date.now();
-      setDebug({ lastCheckAt: now, nextCheckAt: now + CHECK_INTERVAL_MS, waiting: !!registration?.waiting });
+      dueAt = now + CHECK_INTERVAL_MS;
+      setDebug({ lastCheckAt: now, nextCheckAt: dueAt, waiting: !!registration?.waiting });
     }
 
     /** A quiet switch: ask the waiting worker (or, after a foreign switch, just reload). */
@@ -649,7 +657,7 @@ export function ServiceWorkerUpdater() {
       // Nothing waiting now: whatever was waiting has been applied or dropped,
       // so the fallback toast's clock must not carry over to the next build.
       if (!reg.waiting) clearAvailable();
-      setDebug({ controlled: !!navigator.serviceWorker.controller, waiting: !!reg.waiting, nextCheckAt: Date.now() + CHECK_INTERVAL_MS });
+      setDebug({ controlled: !!navigator.serviceWorker.controller, waiting: !!reg.waiting, nextCheckAt: dueAt });
       debugActions = {
         checkNow: check,
         applyNow: () => {
@@ -724,12 +732,11 @@ export function ServiceWorkerUpdater() {
     };
     document.addEventListener("visibilitychange", onVisibilityChange);
 
-    // Also poll on an interval: a tab that's left open and focused the whole
-    // time (never backgrounded) would otherwise never re-check and could sit
-    // on a stale build indefinitely. The same tick re-arms a stuck kiosk and
-    // brings the fallback toast when its day is up.
+    // Also poll: a tab that's left open and focused the whole time (never
+    // backgrounded) would otherwise never re-check and could sit on a stale
+    // build indefinitely. A short tick, so the other duties below run promptly.
     const intervalId = window.setInterval(() => {
-      check();
+      if (Date.now() >= dueAt) check();
       if (isKiosk()) {
         if (flow.state === "slow") flow.reset();
         return;
@@ -737,7 +744,7 @@ export function ServiceWorkerUpdater() {
       if (toastId === undefined && (flow.state === "available" || foreign) && toastDue(availableSince(), Date.now(), urgent)) {
         showToast("available");
       }
-    }, CHECK_INTERVAL_MS);
+    }, TICK_MS);
 
     return () => {
       debugActions = { checkNow: () => {}, applyNow: () => {} };

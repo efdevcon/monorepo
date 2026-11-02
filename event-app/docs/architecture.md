@@ -129,9 +129,9 @@ prompting (`ServiceWorkerUpdater.tsx`, decisions in `src/utils/silentUpdate.ts`)
 TVs (`/room-screens/<id>`) switch by themselves as soon as they are online and no session in the
 room starts or ends within two minutes, never reload offline, re-arm after the reload bound and
 reload nightly at 04:00 venue time; everyone else switches at launch when a build is already
-waiting, a minute after the tab hides, or on return after at least a minute away (iOS freezes
-hidden pages, so the hidden timer never fires there), unless a stream player, a sheet or typed
-text is on the page (the scroll position is restored). The "Update available" toast remains as the fallback,
+waiting, 15 s after the tab hides, or on return after at least 15 s away (iOS freezes hidden
+pages, so the hidden timer never fires there), unless a stream player, a sheet or typed text is
+on the page (the scroll position is restored). The "Update available" toast remains as the fallback,
 after 24 hours waiting or when the new deploy's `public/version.json` says urgent; its Update
 button `postMessage`s SKIP_WAITING to the worker waiting at that moment. The app also calls
 `registration.update()` on `visibilitychange` and every minute, so an open tab keeps checking for

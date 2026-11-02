@@ -10,18 +10,19 @@
  *   its room starts or ends within two minutes.
  * - Launch: a worker already waiting when the app boots is applied before the
  *   first paint matters (no decision needed, see the updater).
- * - Hidden tab: after a minute hidden, unless a stream or translation player
+ * - Hidden tab: after HIDDEN_DELAY_MS hidden (15 s: a real absence rather
+ *   than a glance at a notification), unless a stream or translation player
  *   is mounted, a sheet or dialog is open, or someone was typing.
  * - Return: iOS freezes hidden pages, so that timer never fires there; coming
- *   back after at least a minute away is the quiet moment instead, under the
+ *   back after at least that long away is the quiet moment instead, under the
  *   same page guards (the page re-appears and refreshes once).
  *
  * The update toast stays as the fallback: a build still waiting a day later,
  * or one the new deploy marks urgent (public/version.json, next.config.ts).
  */
 
-/** How long a tab must have been hidden before a quiet switch. */
-export const HIDDEN_DELAY_MS = 60_000;
+/** How long a tab must have been hidden (or away) before a quiet switch. */
+export const HIDDEN_DELAY_MS = 15_000;
 /** A build waiting this long gets the toast after all. */
 export const TOAST_AFTER_MS = 24 * 60 * 60 * 1000;
 /** No kiosk switch this close to a session start or end in its room. */
