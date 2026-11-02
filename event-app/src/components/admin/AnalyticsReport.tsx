@@ -175,10 +175,14 @@ function Ranked({ items, limit, empty }: { items: RankedItem[]; limit: number; e
   );
 }
 
-/** A labelled list with share bars; `total` defaults to the rows' sum. */
-function Breakdown({ title, rows, total, limit = 6 }: { title: string; rows: Row[]; total?: number; limit?: number }) {
+/**
+ * A labelled list with share bars. `total` is the window's visits, never the
+ * rows' sum: Matomo caps the device, OS and browser reports at six rows, so
+ * a sum over them made "Chrome 71%" the share of the top six, not of visits.
+ */
+function Breakdown({ title, rows, total, limit = 6 }: { title: string; rows: Row[]; total: number; limit?: number }) {
   const shown = rows.slice(0, limit);
-  const sum = total ?? rows.reduce((acc, r) => acc + r.visits, 0);
+  const sum = total;
   return (
     <div>
       <p className={h2}>{title}</p>
@@ -433,20 +437,20 @@ export function AnalyticsReport() {
 
           <section className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="How the app is used">
             <div className={cn(card, "flex flex-col gap-4")}>
-              <Breakdown title="Installed app vs browser" rows={r.dimensions.displayMode} />
-              <Breakdown title="Signed in" rows={r.dimensions.signedIn} />
+              <Breakdown title="Installed app vs browser" rows={r.dimensions.displayMode} total={r.totals.visits} />
+              <Breakdown title="Signed in" rows={r.dimensions.signedIn} total={r.totals.visits} />
             </div>
             <div className={cn(card, "flex flex-col gap-4")}>
-              <Breakdown title="Device" rows={r.devices.types} limit={4} />
-              <Breakdown title="Operating system" rows={r.devices.os} limit={5} />
+              <Breakdown title="Device" rows={r.devices.types} total={r.totals.visits} limit={4} />
+              <Breakdown title="Operating system" rows={r.devices.os} total={r.totals.visits} limit={5} />
             </div>
             <div className={cn(card, "flex flex-col gap-4")}>
-              <Breakdown title="Browser" rows={r.devices.browsers} limit={5} />
-              <Breakdown title="Starred sessions per visit" rows={sortBands(r.dimensions.stars)} limit={5} />
+              <Breakdown title="Browser" rows={r.devices.browsers} total={r.totals.visits} limit={5} />
+              <Breakdown title="Starred sessions per visit" rows={sortBands(r.dimensions.stars)} total={r.totals.visits} limit={5} />
             </div>
             <div className={cn(card, "flex flex-col gap-4")}>
               <Breakdown title="Country" rows={r.countries} total={r.totals.visits} limit={6} />
-              <Breakdown title="How visits arrived" rows={r.referrers} limit={5} />
+              <Breakdown title="How visits arrived" rows={r.referrers} total={r.totals.visits} limit={5} />
             </div>
           </section>
 
