@@ -212,6 +212,17 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     href: '/form/youth-ticket',
   },
   {
+    // Copy mirrors the live Pretix product (item 109 on tickets.devcon.org).
+    // Store-only, like the Under 3 card below.
+    type: 'child-with-adult',
+    title: 'Child (3-17) with Adult',
+    meta: 'Adults must hold their own Devcon ticket to enter',
+    description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
+    combined: '$19',
+    buttonLabel: 'Get ticket',
+    pretixItemId: TICKETING.pretix.childWithAdultItemId,
+  },
+  {
     // Copy mirrors the live Pretix product (item 110 on tickets.devcon.org).
     // Store-only: the /tickets landing page deliberately doesn't list it.
     type: 'child-under-3',
@@ -409,9 +420,9 @@ function StoreContent({
 
   // Hand the buyer off to the Pretix shop with the selected tickets already in
   // their cart (the purchase happens on Pretix, not our custom checkout page).
-  // Same handoff for a single plain Pretix item (the free Child (Under 3)
-  // card): cart pre-filled with one of it when the item is provisioned for
-  // this environment, otherwise just the Pretix shop.
+  // Same handoff for a single plain Pretix item (the Child (3-17) / Child
+  // (Under 3) cards): cart pre-filled with one of it when the item is
+  // provisioned for this environment, otherwise just the Pretix shop.
   const goToPretixItem = (itemId: number | null) => {
     if (itemId === null) {
       window.location.href = pretixEventUrl('/')
