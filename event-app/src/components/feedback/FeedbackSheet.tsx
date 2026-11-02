@@ -315,7 +315,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
             Select one
           </span>
           {/* Phones: the three chips share the row; desktop keeps them at their natural width. */}
-          <div role="radiogroup" aria-labelledby={categoryLabelId} className="mt-1.5 flex flex-wrap gap-2">
+          <div role="radiogroup" aria-labelledby={categoryLabelId} className="mt-2 flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
             <button
               key={c.value}
@@ -346,7 +346,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           rows={4}
           maxLength={FEEDBACK_LIMITS.message}
           placeholder={crash ? "Which page, which tap, what you expected…" : "What happened, or what would help you?"}
-          className={cn(fieldClass, "mt-1.5")}
+          className={cn(fieldClass, "mt-2")}
         />
       </label>
 
@@ -359,7 +359,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className={cn(fieldClass, "mt-1.5")}
+          className={cn(fieldClass, "mt-2")}
         />
         <span className="mt-1 block text-[12px] leading-4 text-dc-muted">Only used to follow up with you.</span>
       </label>
@@ -368,7 +368,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
         <span className={labelClass}>Screenshot or screen recording (optional)</span>
         <div
           className={cn(
-            "mt-1.5 rounded-lg border border-dashed p-3 transition-colors",
+            "mt-2 rounded-lg border border-dashed p-3 transition-colors",
             dragging ? "border-dc-purple bg-dc-lavender" : "border-dc-hairline"
           )}
         >
