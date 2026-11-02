@@ -152,20 +152,10 @@ const GUIDES: ReadonlyArray<{
   },
 ];
 
-/** `stacked` puts the term on its own line with the body beneath (Wi-Fi). */
-function Essential({
-  term,
-  stacked,
-  children,
-}: {
-  term: string;
-  stacked?: boolean;
-  children: ReactNode;
-}) {
+function Essential({ term, children }: { term: string; children: ReactNode }) {
   return (
     <li className="text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
-      <span className={stacked ? "block font-bold" : "font-bold"}>{term}</span>
-      {stacked ? children : <> {children}</>}
+      <span className="font-bold">{term}</span> {children}
     </li>
   );
 }
@@ -200,10 +190,8 @@ export function EventInformation() {
               Essentials
             </h3>
             <ul className="mt-3 flex flex-col gap-4">
-              <Essential term="Wi-Fi" stacked>
-                <span className="block">SSID: {WIFI_SSID}</span>
-                <span className="block">Password: {WIFI_PASSWORD}</span>
-              </Essential>
+              <Essential term="Wi-Fi SSID:">{WIFI_SSID}</Essential>
+              <Essential term="Password:">{WIFI_PASSWORD}</Essential>
               <Essential term="Venue address:">
                 <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
               </Essential>
