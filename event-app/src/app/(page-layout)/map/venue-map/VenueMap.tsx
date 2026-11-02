@@ -32,20 +32,21 @@ const Scene = dynamic(() => import("./Scene"), { ssr: false, loading: () => <div
 
 /**
  * Prototype switch (2026-11-02) between the two share-control layouts on the
- * area card (AreaCard.tsx `ShareConcept`). In the URL as `?shareConcept=1|2`
+ * area card (AreaCard.tsx `ShareConcept`). In the URL as `?shareConcept=1|2|3` (the chip cycles)
  * so a reload keeps the mode (the copied link never carries it: it is built
  * from the area keys alone). Mid-height on the right edge of phones, where
  * nothing else sits (the strip is at the top, the card and the pills at the
  * bottom); under the header on the right from lg up.
  */
 const SHARE_CONCEPT_PARAM = "shareConcept";
-const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon", 2: "Concept 2 · Text" };
+const SHARE_CONCEPT_LABELS: Record<ShareConcept, string> = { 1: "Concept 1 · Icon row", 2: "Concept 2 · Floor line", 3: "Concept 3 · Title" };
+const parseShareConcept = (value: string | null): ShareConcept => (value === "2" ? 2 : value === "3" ? 3 : 1);
 
 function ShareConceptSwitch({ concept, onChange }: { concept: ShareConcept; onChange: (c: ShareConcept) => void }) {
   return (
     <button
       type="button"
-      onClick={() => onChange(concept === 1 ? 2 : 1)}
+      onClick={() => onChange(concept === 3 ? 1 : ((concept + 1) as ShareConcept))}
       title="Switch prototype concept"
       className="fixed right-4 top-[40%] z-20 flex cursor-pointer items-center gap-2 rounded-full border border-dc-purple bg-white py-[7px] pl-[10px] pr-3 text-[12px] font-medium leading-none text-dc-purple shadow-[0_1px_3px_rgba(22,11,43,0.1),0_1px_2px_rgba(22,11,43,0.1)] transition-colors duration-150 ease-out phone-landscape:right-[max(16px,var(--safe-right))] hover:bg-dc-lavender lg:right-6 lg:top-[80px]"
     >
@@ -107,7 +108,7 @@ export function VenueMap() {
   }, []);
 
   const searchParams = useSearchParams();
-  const [shareConcept, setShareConcept] = useState<ShareConcept>(searchParams.get(SHARE_CONCEPT_PARAM) === "2" ? 2 : 1);
+  const [shareConcept, setShareConcept] = useState<ShareConcept>(parseShareConcept(searchParams.get(SHARE_CONCEPT_PARAM)));
   const changeShareConcept = useCallback((next: ShareConcept) => {
     setShareConcept(next);
     const url = new URL(window.location.href);
