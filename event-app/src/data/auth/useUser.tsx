@@ -121,12 +121,12 @@ function useUserState(): UseUserResult {
           return;
         }
         // Mirror the session into the server's cookie (install sign-in
-        // bridge, Meerkat hand-off; see sessionCookie.ts); refreshes rotate
-        // the tokens, so the mirror follows them. On every start as well:
-        // a device signed in before the mirror existed, or whose mirror once
-        // failed, otherwise keeps a cookie the server can no longer refresh
-        // and "Ask a question" says "sign in first" while the app shows the
-        // user signed in. One small request per app open.
+        // bridge; see sessionCookie.ts); refreshes rotate the tokens, so the
+        // mirror follows them. On every start as well: a device signed in
+        // before the mirror existed, or whose mirror once failed, otherwise
+        // keeps a cookie the server can no longer use, and the installed
+        // app's manifest would be the signed-out one. One small request per
+        // app open.
         if (
           event === "SIGNED_IN" ||
           event === "TOKEN_REFRESHED" ||

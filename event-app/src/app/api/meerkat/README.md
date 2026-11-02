@@ -37,7 +37,7 @@ The Devcon event app authenticates users and verifies ticket ownership. When a u
          │                        │     shared secret      │
          │                        │                        │
          │                        │  7. Check exp claim    │
-         │                        │     (5 min window)     │
+         │                        │     (1 hour window)    │
          │                        │                        │
          │                        │  8. Extract email      │
          │                        │     from payload       │
@@ -53,7 +53,7 @@ The Devcon event app authenticates users and verifies ticket ownership. When a u
          │                        │                        │
 ```
 
-Implementation: the "Ask a question" link in `src/components/schedule/SessionQA.tsx` points at `GET /api/meerkat/go?session=<id>` (`go/route.ts`), opened in a new tab in browsers and in place in the installed app, where a new tab would not carry the app's cookies on iOS. The route reads the Supabase auth cookies the app mirrors through `/api/auth/session`, checks for a paid ticket (email match or QR-attached link), mints the token and answers `302` to `https://app.meerkat.events/e/<id>/qa?token=<jwt>`. Failures (not signed in, no ticket, ticketing down) render a small HTML page in that tab. Reading questions needs no token (Meerkat's public REST API via `@meerkat-events/react`); a 404 there means the session has no Q&A yet and the link is hidden.
+Implementation: the app gets the token ahead of time and renders the "Ask a question" link in `src/components/schedule/SessionQA.tsx` as `https://app.meerkat.events/e/<id>/qa?token=<jwt>` directly, opened in a new tab. Every tickets payload carries a signed Q&A pass when the account holds an admission ticket (email match or QR-attached link; `qaPass.ts`, 24 hours); the app trades it at `POST /api/meerkat/token` (Supabase session as Bearer, no Pretix call) for a token valid an hour but never past the pass, keeps it in memory (`src/data/meerkat/handoffToken.ts`), renews it while the page is visible, and withdraws it 30 seconds before it lapses. Reading questions needs no token (Meerkat's public REST API via `@meerkat-events/react`); a 404 there means the session has no Q&A yet and the link is hidden.
 
 ## JWT Specification
 
@@ -76,7 +76,7 @@ Standard JWT format: `header.payload.signature`
 {
   "email": "user@example.com",
   "iat": 1710249600000,
-  "exp": 1710249900000
+  "exp": 1710253200000
 }
 ```
 
@@ -86,7 +86,7 @@ Standard JWT format: `header.payload.signature`
 | `iat`   | number | Issued-at timestamp (milliseconds since epoch)   |
 | `exp`   | number | Expiry timestamp (milliseconds since epoch)      |
 
-**Note:** `iat` and `exp` are in **milliseconds** (not seconds as in the JWT spec). Expiry window is 5 minutes from issuance.
+**Note:** `iat` and `exp` are in **milliseconds** (not seconds as in the JWT spec). Expiry window is 1 hour from issuance (never past the Q&A pass behind it).
 
 ### Signature
 
@@ -159,7 +159,7 @@ The signing secret must be shared securely between the Devcon event app and Meer
 
 ## Security Considerations
 
-- Tokens are **single-use by intent** — short 5-minute expiry window means they cannot be meaningfully reused
+- Tokens are **single-use by intent**; the 1-hour expiry bounds reuse. The token sits in the page's link while it is valid, so a copied link works until then: please strip `?token=` from the address (`history.replaceState`) once it is verified
 - Use **constant-time comparison** for signature verification to prevent timing attacks
 - The shared secret should be a cryptographically random string (minimum 32 bytes recommended)
 - Tokens are passed in query params — they may appear in server logs and browser history, but the short expiry mitigates this

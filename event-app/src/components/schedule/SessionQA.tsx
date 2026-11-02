@@ -2,9 +2,11 @@
 
 import { trackEvent } from "@/data/analytics/track";
 import cn from "classnames";
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { useSWRConfig } from "swr";
 import {
   ArrowUpRight,
+  Loader2,
   Check,
   ChevronUp,
   MessageCircleOff,
@@ -18,22 +20,23 @@ import {
   useQuestions,
   type Question,
 } from "@meerkat-events/react";
-import { PrimaryAnchorButton, PrimaryLinkButton } from "@/components/Buttons";
+import { PrimaryAnchorButton, PrimaryButton, PrimaryLinkButton } from "@/components/Buttons";
 import type { Session } from "@/data/models";
 import { meerkatEventId, qaOpensEarly } from "@/data/meerkat";
+import { meerkatSessionUrl } from "@/app/api/meerkat/handover";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { QASkeleton } from "@/components/Skeletons";
 import { FAILED_BODY, StateMessage, TryAgainButton } from "@/components/StateMessage";
 import { usePreviewQA } from "@/hooks/usePreviewState";
 import { useUser } from "@/data/auth/useUser";
-import { useLoadedTickets } from "@/data/tickets/useTickets";
+import { useLoadedTicketsPayload } from "@/data/tickets/useTickets";
+import { retryHandoff, useHandoffToken } from "@/data/meerkat/handoffToken";
 import { hasAdmissionTicket } from "@/data/tickets/primary";
 import { SIGN_IN_PATH, signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
 import { useOnline } from "@/hooks/useOnline";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
 import { eventDayKey } from "@/data/eventTime";
-import { isStandalone } from "@/utils/platform";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { relativeTime } from "@/utils/relativeTime";
 
@@ -43,9 +46,8 @@ type Size = "sm" | "md";
  * Live Q&A (Meerkat) for one session, shared by the mobile page and the
  * expanded desktop view (`md`: 16px heading) and the desktop side panel
  * (`sm`: the panel's 14px caption). Reading is public through Meerkat's REST
- * API; asking is a plain link to `/api/meerkat/go`, which checks the sign-in
- * (auth cookies) and a paid ticket server-side and redirects to Meerkat with
- * a short-lived token. Live-only: offline it renders one quiet line and
+ * API; asking is a plain link to Meerkat carrying the hand-off token, fetched
+ * ahead with the tickets payload's Q&A pass (data/meerkat/handoffToken.ts). Live-only: offline it renders one quiet line and
  * recovers on reconnect.
  */
 export function SessionQA({
@@ -158,13 +160,16 @@ function QAFeed({
   onNotFound?: () => void;
 }) {
   const { user } = useUser();
-  // Signed in, tickets known, none of them an admission ticket: the hand-off
-  // would only answer "Ticket required" and point at My Devcon, so point
-  // there directly. Reads the tickets the app already loaded, never fetching
-  // (this renders on every session view); while they are unknown (first
-  // load, a failed fetch) the hand-off decides, server-side, as before.
-  const tickets = useLoadedTickets();
-  const needsTicket = !!user && tickets !== undefined && !hasAdmissionTicket(tickets);
+  // Signed in, tickets known, none of them an admission ticket: point at My
+  // Devcon to add one. Reads the tickets the app already loaded, never
+  // fetching (this renders on every session view).
+  const { payload, error: ticketsError } = useLoadedTicketsPayload();
+  const tickets = payload?.tickets;
+  const holdsTicket = !!user && tickets !== undefined && hasAdmissionTicket(tickets);
+  const needsTicket = !!user && tickets !== undefined && !holdsTicket;
+  // The link's token, traded for the payload's Q&A pass; no ticket lookup here.
+  const handoff = useHandoffToken(holdsTicket ? user?.id : undefined, holdsTicket ? payload?.qaPass : undefined);
+  const passRefresh = usePassRefresh(user?.id, holdsTicket && (!payload?.qaPass || handoff.kind === "no-pass"), payload?.qaPass);
   const mock = useMockQuestions();
   // Realtime: one SSE stream per mounted feed (the side panel unmounts its
   // feed while the fullscreen page is open, so a session holds at most one).
@@ -184,7 +189,6 @@ function QAFeed({
   }, [retrying, onNotFound]);
   const notOpen = notFound && !onNotFound;
   const preview = usePreviewQA();
-  const standalone = useStandalone();
 
   return (
     <div className={cn("flex flex-col gap-3", size === "md" && "lg:grow")}>
@@ -222,21 +226,40 @@ function QAFeed({
             >
               Add a ticket to ask a question
             </PrimaryLinkButton>
-          ) : (
-            // A real navigation: the server checks the ticket and redirects
-            // to Meerkat. New tab in a browser; in place in the installed
-            // app, where a new tab wouldn't carry the app's cookies on iOS
-            // (the OS shows the out-of-scope page in an in-app browser).
+          ) : handoff.kind === "signed-out" ? (
+            // The app remembers the user but the session is gone.
+            <PrimaryLinkButton href={signInHref(returnTo)} className={QA_CTA_CLASS}>
+              Sign in to ask a question
+            </PrimaryLinkButton>
+          ) : handoff.kind === "ready" ? (
+            // Straight to Meerkat, signed in by the token. Always a new tab:
+            // in the installed app the OS shows it in an in-app browser and
+            // the app stays where it was. matomo_ignore keeps the token out of
+            // Matomo's outlink tracking.
             <PrimaryAnchorButton
-              href={`/api/meerkat/go?session=${encodeURIComponent(sessionId)}`}
-              target={standalone ? undefined : "_blank"}
+              href={meerkatSessionUrl(sessionId, handoff.token)}
+              target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent("session", "qa", sessionId)}
-              className={QA_CTA_CLASS}
+              className={cn(QA_CTA_CLASS, "matomo_ignore")}
             >
               Ask a question
               <ArrowUpRight className="size-4" aria-hidden />
             </PrimaryAnchorButton>
+          ) : handoff.kind === "failed" || passRefresh.state === "failed" || (!tickets && !!ticketsError) ? (
+            <PrimaryButton
+              type="button"
+              onClick={() => (handoff.kind === "failed" ? retryHandoff() : passRefresh.retry())}
+              className={QA_CTA_CLASS}
+            >
+              Couldn&apos;t get your Q&amp;A link. Try again
+            </PrimaryButton>
+          ) : (
+            // Tickets or the first token still loading: a moment after the page shows.
+            <PrimaryButton type="button" disabled aria-busy className={QA_CTA_CLASS}>
+              Ask a question
+              <Loader2 className="size-4 animate-spin" aria-hidden />
+            </PrimaryButton>
           )}
         </div>
       )}
@@ -404,9 +427,36 @@ function QuestionCard({
  */
 const noopSubscribe = () => () => {};
 
-/** Installed app (or native shell) rather than a browser tab; false until hydration. */
-function useStandalone(): boolean {
-  return useSyncExternalStore(noopSubscribe, isStandalone, () => false);
+/**
+ * The tickets payload lacks a usable Q&A pass although it shows an admission
+ * ticket (cached before passes existed, or past its 24 hours): fetch the
+ * tickets once, which issues a new pass, through the app-wide useTickets
+ * (CacheWarmer). Once per user and pass, so a refusal never loops; "failed"
+ * when it did not help, with a retry the attendee triggers.
+ */
+function usePassRefresh(
+  userId: string | undefined,
+  wanted: boolean,
+  pass: string | undefined
+): { state: "idle" | "pending" | "failed"; retry: () => void } {
+  const { mutate } = useSWRConfig();
+  const key = userId ? `${userId}:${pass ?? ""}` : null;
+  const fired = useRef<string | null>(null);
+  const [doneKey, setDoneKey] = useState<string | null>(null);
+  const run = (forKey: string, forUser: string) => {
+    fired.current = forKey;
+    void Promise.resolve(mutate(["tickets", forUser])).finally(() => setDoneKey(forKey));
+  };
+  useEffect(() => {
+    if (wanted && key && userId && fired.current !== key) run(key, userId);
+  });
+  const retry = () => {
+    if (!key || !userId) return;
+    setDoneKey(null);
+    run(key, userId);
+  };
+  if (!wanted || !key) return { state: "idle", retry };
+  return { state: doneKey === key ? "failed" : "pending", retry };
 }
 
 function useMockQaParam(): boolean {

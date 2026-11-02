@@ -6,20 +6,20 @@ Devcon 7 test data (Meerkat set up the `opening-ceremony` session on their side)
 
 - Read side: `event-app/src/components/schedule/SessionQA.tsx`, one component for the
   mobile session page, the expanded desktop view and the desktop side panel.
-- Ask side: `event-app/src/app/api/meerkat/go/route.ts`, a cookie-authenticated redirect.
-  JWT details for the Meerkat team: `event-app/src/app/api/meerkat/README.md`.
+- Ask side: a direct link to Meerkat carrying the hand-off token, which the app gets from
+  `event-app/src/app/api/meerkat/token/route.ts` in exchange for the tickets payload's Q&A
+  pass. JWT details for the Meerkat team: `event-app/src/app/api/meerkat/README.md`.
 - Schedule sync (devcon-api): `devcon-api/src/scripts/sync-pretalx.ts` pings Meerkat's
   per-event sync endpoint on every run; Meerkat pulls the schedule from Pretalx itself
   (see the end).
 
 ```mermaid
 flowchart LR
-    U[User taps<br/>Ask a question] --> GO[event-app<br/>GET /api/meerkat/go?session=id]
-    GO --> C{Auth cookies valid<br/>+ paid Pretix ticket?}
-    C -->|no| X[Small HTML page<br/>401 / 403 / 502]
-    C -->|yes| J[Issue HS256 JWT<br/>email, 5-min exp]
-    J --> R[302 to Meerkat<br/>/e/id/qa?token=jwt]
-    R --> M[Meerkat verifies<br/>shared secret, starts session]
+    T[/api/tickets<br/>app open, sign-in, refresh] --> P[Q&A pass<br/>signed, 24 h]
+    P --> TK[POST /api/meerkat/token<br/>Bearer session + pass, no Pretix]
+    TK --> J[HS256 JWT<br/>email, 1-h exp]
+    J --> L[Ask a question link<br/>/e/id/qa?token=jwt]
+    L --> M[Meerkat verifies<br/>shared secret, starts session]
     Q[SessionQA component] -.reads questions, no auth.-> M
     SYNC[devcon-api<br/>sync-pretalx.ts] -.sync ping, test-devcon-8 + devcon8.-> M
 ```
@@ -55,26 +55,31 @@ How the component behaves:
 
 ## Asking a question
 
-"Ask a question" is a plain link to `GET /api/meerkat/go?session=<id>`, opened in a new
-tab in browsers and in place in the installed app (a new tab from a home-screen app
-doesn't carry the app's cookies on iOS, and the OS shows the out-of-scope page in an
-in-app browser anyway). The route:
+"Ask a question" is a plain link to
+`https://app.meerkat.events/e/<sessionId>/qa?token=<jwt>`, rendered into the page and
+opened in a new tab (in the installed app the OS shows it in an in-app browser, and the
+app stays where it was). The tap makes no request to our server:
 
-1. Reads the Supabase auth cookies the app mirrors through `/api/auth/session`,
-   refreshing them when expired.
-2. Checks for a paid Pretix ticket for the event, matched by email or attached by QR
-   proof (the same rule as the ticket tab). Rate limited per user only; attendees at the
-   venue share NAT addresses, and anonymous requests never reach Pretix.
-3. Mints the HS256 JWT (`{ email, iat, exp }`, 5-minute expiry, timestamps in
-   milliseconds) with the verified session email and answers a 302 to
-   `https://app.meerkat.events/e/<sessionId>/qa?token=<jwt>` with `Cache-Control:
-   no-store`.
+1. Every tickets payload (`/api/tickets` on app open, sign-in and refresh; attach and
+   detach) carries a `qaPass` when it holds an admission ticket, matched by email or
+   attached by QR proof (the same rule as the ticket tab): a signed
+   `{ uid, email, event, exp }`, valid 24 hours (`event-app/src/app/api/meerkat/qaPass.ts`,
+   keyed from `VERIFICATION_SECRET` under its own label).
+2. On a session page with open Q&A the app trades the pass at `POST /api/meerkat/token`
+   (Supabase session as Bearer, the pass in the body). The route checks the session, that
+   the pass is ours, unexpired and issued to that same user for this event, and mints the
+   HS256 JWT (`{ email, iat, exp }`, 1-hour expiry but never past the pass, timestamps in
+   milliseconds) with the verified session email. It never calls Pretix.
+3. `event-app/src/data/meerkat/handoffToken.ts` keeps the token in memory only (never SWR
+   or storage, which persist to IndexedDB), renews it once under 10 minutes remain while
+   the page is visible, and withdraws it 30 s before it lapses. Until a token is there the
+   button shows a spinner; a payload without a usable pass is refetched once; failures
+   offer a retry.
 
-Failures (not signed in, no ticket, ticket service down, malformed id) render a small
-HTML page in that tab, since the request is a navigation, not a fetch. The redirect
-replaced an earlier `POST /api/meerkat` that returned the token to the client: doing the
-work behind a redirect keeps the click synchronous (Safari blocks `window.open` after an
-awaited fetch) and keeps the token out of client code and the DOM.
+The link carries `matomo_ignore`, so Matomo's outlink tracking never reports the token. A
+copied link works until the token lapses (at most an hour); worth asking Meerkat to strip
+`?token=` from the address once verified. This replaced `GET /api/meerkat/go`, which ran
+the Pretix lookup on every tap and redirected; no cookie is involved any more.
 
 ## Session ids
 
@@ -147,11 +152,10 @@ stream side a pure browser-source setup.
 ## Secrets and go-live checklist
 
 - `VERIFICATION_SECRET` (event-app, Netlify): signs the hand-off JWT and must equal the
-  value Meerkat verifies with. **Not set in production yet.** The code falls back to a
-  placeholder that lives in this public repo, so anyone can mint a token for any email
-  until it is rotated. Before launch: generate a random secret, set it on the event-app
-  site, share it with the Meerkat team through 1Password, and switch both sides together.
-  Worth removing the fallback so the route fails closed when the variable is missing.
+  value Meerkat verifies with; also keys the Q&A pass. Set in production. Without it (local
+  dev) no pass is issued and the token route answers 500.
+- Confirm with the Meerkat team that they check only `exp` (tokens now live an hour, not
+  five minutes) and ask them to strip `?token=` from the address after verifying.
 - `WEBHOOK_MEERKAT_SECRET` (devcon-api, passed by the three sync workflows): bearer token
   sent with the schedule sync ping. The current endpoint is public; the token is kept so
   Meerkat can turn auth back on without a code change.
