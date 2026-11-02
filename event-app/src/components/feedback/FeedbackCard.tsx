@@ -23,7 +23,7 @@ export function FeedbackCard() {
       <SecondaryButton
         type="button"
         size="sm"
-        className="mt-5 lg:mt-0 lg:shrink-0"
+        className="mt-5 w-full lg:mt-0 lg:w-auto lg:shrink-0"
         onClick={() => openFeedback()}
       >
         Send feedback
