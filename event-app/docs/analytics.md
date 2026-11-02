@@ -54,6 +54,7 @@ Set on load and whenever the value changes; a visit keeps the last value.
 | session | calendar | session id | "Add to Calendar" |
 | session | share-copy / share-native | session id | Share menu: link copied, platform share sheet opened |
 | speaker | share-copy / share-native | speaker id | Share menu on the speaker page, same two options |
+| map | share-copy | footprint keys (`L3/swag-station`, comma-joined for a group) | The area card's Share control: link copied |
 | announcements | open | title | Announcement card with a link tapped |
 | announcements | highlight | title | Highlight card tapped |
 | announcements | push-open | pathname | Page opened from a push notification (worker marks the URL with `#from=push`, stripped on the page) |

@@ -57,6 +57,8 @@ export type AreaSpec = {
   room?: string;
   /** Per instance number: the same for numbered layers (Workshop 1 → 205A/B). */
   rooms?: Readonly<Record<number, string>>;
+  /** `false` keeps the share control off the card: the utility places (stairs, escalators, elevators, washrooms, storage) are too incidental for a link (Scott, 2026-11-02). */
+  share?: false;
 };
 
 /** A place of its own under a shared layer name (`variants`); `host` is the supporter running it (supporters.ts), `heightClass` overrides the layer's at build time. */
@@ -188,7 +190,7 @@ export const AREAS = {
   "food-garden": { name: "Food Garden", description: "Lunch served 12:00 – 14:30 every day. Tea, coffee and snacks available throughout the day.", category: "food", heightClass: "zone", icon: "food-area", iconSize: 16 },
   // Washrooms
   // Washroom 9 (Level 3) stands right behind hubs 8–10; its icon is a size down so it stops covering them (Scott, 2026-10-30).
-  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets", iconSizes: { 9: 4.5 } },
+  washroom: { name: "Washroom", description: "", category: "toilets", heightClass: "room", icon: "toilets", iconSizes: { 9: 4.5 }, share: false },
   // Cowork & discussion
   "co-work-area": { name: "Co-work Area", description: "Desks, power and wifi.", category: "cowork", heightClass: "zone", icon: "cowork" },
   "quiet-co-work": { name: "Quiet Co-work", description: "Heads-down desks, keep it quiet.", category: "cowork", heightClass: "zone", icon: "cowork" },
@@ -211,7 +213,7 @@ export const AREAS = {
   "content-corner": { name: "Content Corner", description: "Interviews and recordings.", category: "fun", heightClass: "zone", icon: "press", iconSize: 4.5 },
   "open-hardware-zone": {
     name: "Open Hardware Zone",
-    description: "Open hardware, hands on, with Maker's Asylum: the Goa makerspace and community of makers, builders and problem-solvers behind #MakeBreakCreate.",
+    description: "Open hardware, hands on, with Maker's Asylum.",
     category: "fun",
     legend: "hubs",
     heightClass: "zone",
@@ -224,12 +226,12 @@ export const AREAS = {
   "interview-room": { name: "Interview Room", description: "Press interviews.", category: "other", heightClass: "room", icon: "interview-room", room: "Business Lounge 1" },
   "baby-care-room": { name: "Baby Care Room", description: "A quiet room for parents and babies.", category: "other", heightClass: "room", icon: "baby-care-room", room: "Business Lounge 2" },
   // Elevators: odd instances stand on the west side, even on the east, facing the other way.
-  elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 2: "elevator-left", 4: "elevator-left", 6: "elevator-left", 8: "elevator-left" }, iconSize: 6.5 },
+  elevator: { name: "Elevators", description: "", category: "other", heightClass: "zone", icon: "elevator-right", icons: { 2: "elevator-left", 4: "elevator-left", 6: "elevator-left", 8: "elevator-left" }, iconSize: 6.5, share: false },
   // Outline symbol groups (named, or found by their drawing): the plan's escalator drawings are replaced by the sprite (hidden footprint, see build).
-  escalator: { name: "Escalator", description: "", category: "other", heightClass: "zone", icon: "escalator-right", iconSize: 6.5 },
+  escalator: { name: "Escalator", description: "", category: "other", heightClass: "zone", icon: "escalator-right", iconSize: 6.5, share: false },
   // Stairs: the plan's symbol group is replaced by the sprite like the escalators (icon since 2026-10-26).
-  stairs: { name: "Stairs", description: "", category: "other", heightClass: "zone", icon: "stairs", iconSize: 5 },
-  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone", icon: "storage" },
+  stairs: { name: "Stairs", description: "", category: "other", heightClass: "zone", icon: "stairs", iconSize: 5, share: false },
+  "storage-room": { name: "Storage", description: "Staff only.", category: "other", heightClass: "zone", icon: "storage", share: false },
 } as const satisfies Record<string, AreaSpec>;
 
 export type AreaId = keyof typeof AREAS;

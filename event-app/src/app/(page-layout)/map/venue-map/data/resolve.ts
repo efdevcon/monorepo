@@ -56,6 +56,8 @@ export type Area = {
   x: string | null;
   /** The venue's room name or number (areas.ts `room` / `rooms`), after the floor on the card. */
   room: string | null;
+  /** The card offers a link to this place (areas.ts `share`). */
+  shareable: boolean;
 };
 
 export const plan: MapBundle = mapBundleSchema.parse(planJson);
@@ -107,6 +109,7 @@ function resolveShape(shape: MapShape): Area | null {
     website: tenant?.website ?? variant?.website ?? host?.website ?? spec.website ?? null,
     x: tenant?.x ?? host?.x ?? null,
     room: (instance !== null ? spec.rooms?.[instance] : undefined) ?? spec.room ?? null,
+    shareable: spec.share !== false,
   };
 }
 

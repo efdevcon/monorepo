@@ -81,7 +81,7 @@ export function VenueMap() {
     dispatch({ type: "showAreas", keys: areas.map((a) => a.key), primary: primaryOf(areas), zoom: isDesktopNow() ? FOCUS_ZOOM_DESKTOP : FOCUS_ZOOM_MOBILE, name: composite?.name });
   }, []);
 
-  // Deep link from the schedule ("Show on Map"): `?area=<level>/<id>[,…]`, re-run on every visit of the pane.
+  // Deep link from the schedule ("Show on Map") and the card's own share link: `?area=<level>/<id>[,…]`, re-run on every visit of the pane.
   const areaParam = useSearchParams().get(AREA_PARAM);
   const visit = areaParam && active ? areaParam : null;
   useEffect(() => {

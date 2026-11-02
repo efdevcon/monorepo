@@ -58,6 +58,7 @@ const EVENTS = {
   schedule: ["day", "programme", "view", "interests-only", "filter", "search"],
   session: ["qa", "qa-ticket", "calendar", "share-copy", "share-native", "transcript"],
   speaker: ["share-copy", "share-native"],
+  map: ["share-copy"],
   announcements: ["open", "highlight", "push-open"],
   offline: ["used"],
   // update-auto: a quiet switch, name = trigger (kiosk, launch, hidden);
