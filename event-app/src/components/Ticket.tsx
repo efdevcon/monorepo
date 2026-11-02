@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { LogOut } from "lucide-react";
+import { CircleQuestionMark, LogOut } from "lucide-react";
 import { useUser } from "@/data/auth/useUser";
 import { whenSessionCookieSettled } from "@/data/auth/sessionCookie";
 import { useRouter } from "@/routing";
@@ -19,6 +19,7 @@ import { usePreviewState } from "@/hooks/usePreviewState";
 import { TicketSignIn } from "./TicketSignIn";
 import { EfInternalTools } from "./internal/EfInternalTools";
 import { FeedbackCard } from "./feedback/FeedbackCard";
+import { openFeedback } from "@/data/feedback/feedbackState";
 
 /**
  * Ticket screen (Figma "My Devcon", Dev Handoff 5088-116/-1059): signed out,
@@ -94,6 +95,22 @@ export function Ticket() {
             className="lg:pt-8"
           >
             <TicketSignIn />
+            {/* Quiet helper under the card: a signed-out visitor who is stuck
+                still needs a way to reach the team (the feedback sheet is in
+                the root layout, no sign-in required). */}
+            <p className="mt-4 flex items-center justify-center gap-2 font-heading text-[14px] leading-5 text-dc-muted">
+              <CircleQuestionMark className="size-4 shrink-0" aria-hidden />
+              <span>
+                Having issues?{" "}
+                <button
+                  type="button"
+                  onClick={() => openFeedback()}
+                  className="cursor-pointer font-bold text-dc-purple underline underline-offset-2 hover:no-underline"
+                >
+                  Send us feedback
+                </button>
+              </span>
+            </p>
           </motion.div>
         ) : (
           <motion.div
