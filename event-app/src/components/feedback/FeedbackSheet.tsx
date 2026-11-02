@@ -142,9 +142,9 @@ function DesktopModal({
 }
 
 const CATEGORIES: { value: FeedbackCategory; label: string }[] = [
-  { value: "bug", label: "Something's broken" },
-  { value: "idea", label: "An idea" },
-  { value: "question", label: "A question" },
+  { value: "bug", label: "Bug" },
+  { value: "idea", label: "Idea" },
+  { value: "question", label: "Question" },
 ];
 
 const fieldClass =
@@ -157,6 +157,7 @@ function formatSize(bytes: number): string {
 }
 
 function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId: string }) {
+  const categoryLabelId = useId();
   const crash = request.source === "crash";
   const { user } = useUser();
   const { ids } = useInterested();
@@ -309,7 +310,12 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
       )}
 
       {!crash && (
-        <div role="radiogroup" aria-label="What is this about?" className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4">
+          <span id={categoryLabelId} className={labelClass}>
+            Select one
+          </span>
+          {/* Phones: the three chips share the row; desktop keeps them at their natural width. */}
+          <div role="radiogroup" aria-labelledby={categoryLabelId} className="mt-1.5 flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
             <button
               key={c.value}
@@ -318,7 +324,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
               aria-checked={category === c.value}
               onClick={() => setCategory(c.value)}
               className={cn(
-                "cursor-pointer rounded-full border px-3 py-1.5 text-[14px] font-semibold leading-5 transition-colors",
+                "flex-1 cursor-pointer rounded-full border px-3 py-1.5 text-center text-[14px] font-semibold leading-5 transition-colors lg:flex-none",
                 category === c.value
                   ? "border-dc-purple bg-dc-lavender text-dc-purple"
                   : "border-dc-hairline bg-white text-dc-fg2 hover:bg-dc-lavender"
@@ -327,6 +333,7 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
               {c.label}
             </button>
           ))}
+          </div>
         </div>
       )}
 
@@ -389,10 +396,11 @@ function FeedbackForm({ request, titleId }: { request: FeedbackRequest; titleId:
           <SecondaryButton
             type="button"
             size="sm"
+            className="w-full lg:w-auto"
             onClick={() => fileInput.current?.click()}
             disabled={files.length >= FEEDBACK_LIMITS.files}
           >
-            <Paperclip className="size-4" />
+            <Paperclip className="size-4 text-dc-purple" />
             Add file
           </SecondaryButton>
           {/* Pointer-only hint: phones have neither drag nor Cmd+V for files. */}
