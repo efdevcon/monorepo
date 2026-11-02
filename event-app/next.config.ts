@@ -137,6 +137,9 @@ const nextConfig: NextConfig = {
       { source: "/streams", destination: "/", permanent: false },
       { source: "/rs", destination: "/room-screens", permanent: false },
       { source: "/venue", destination: "/map", permanent: false },
+      // Deep link for the Support FAQ: opens the feedback sheet on Home
+      // (FeedbackSheet reads ?feedback=open).
+      { source: "/feedback", destination: "/?feedback=open", permanent: false },
     ];
   },
   env: {

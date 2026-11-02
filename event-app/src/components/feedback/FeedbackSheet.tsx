@@ -29,9 +29,9 @@ import { PrimaryButton, SecondaryButton } from "@/components/Buttons";
 /**
  * The feedback form, mounted once in the root layout (outside the route
  * segment, so the crash page can still open it) and opened through
- * `openFeedback` from Home, My Devcon, the crash page and the floating
- * button. Phones get the bottom sheet, desktop a centred modal, both with
- * the same content.
+ * `openFeedback` from Home, My Devcon, the crash page and the `/feedback`
+ * link. Phones get the bottom sheet, desktop a centred modal, both with the
+ * same content.
  *
  * Works offline: the report (files included) waits in Dexie and FeedbackSync
  * sends it when the connection returns.
@@ -42,8 +42,10 @@ export function FeedbackSheet() {
   const isDesktop = useIsDesktop();
   const titleId = useId();
 
-  // `/?feedback=crash`: the root-layout crash page sent us here with the
-  // error in sessionStorage (it has no sheet of its own).
+  // `/?feedback=open` (the `/feedback` redirect, linked from the Support
+  // FAQ) opens the sheet on load; `/?feedback=crash` is the root-layout
+  // crash page sending us here with the error in sessionStorage (it has no
+  // sheet of its own).
   useEffect(() => {
     if (!searchParams.get(FEEDBACK_PARAM)) return;
     const error = takeRememberedCrash();
