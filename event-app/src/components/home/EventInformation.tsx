@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { LegalLinks } from "./LegalLinks";
 import { openFeedback } from "@/data/feedback/feedbackState";
 
@@ -152,10 +153,58 @@ const GUIDES: ReadonlyArray<{
   },
 ];
 
+const essentialText = "text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6";
+
 function Essential({ term, children }: { term: string; children: ReactNode }) {
   return (
-    <li className="text-[14px] leading-5 text-dc-fg2 lg:text-[16px] lg:leading-6">
+    <li className={essentialText}>
       <span className="font-bold">{term}</span> {children}
+    </li>
+  );
+}
+
+async function copyWifiPassword() {
+  try {
+    await navigator.clipboard.writeText(WIFI_PASSWORD);
+    toast.success("Wi-Fi password copied");
+  } catch {
+    toast.error("Couldn't copy the password");
+  }
+}
+
+/**
+ * The Wi-Fi line: SSID and password as two labelled pairs on one row (wrapping
+ * on narrow phones). The password itself and the Copy action beside it both
+ * copy it (Scott, 2026-11-02).
+ */
+function WifiEssential() {
+  return (
+    <li className={`flex flex-wrap items-center gap-x-4 gap-y-1 ${essentialText}`}>
+      <span>
+        <span className="font-bold">Wi-Fi SSID:</span> {WIFI_SSID}
+      </span>
+      <span className="inline-flex items-center gap-2">
+        <span>
+          <span className="font-bold">Password:</span>{" "}
+          <button
+            type="button"
+            onClick={copyWifiPassword}
+            aria-label="Copy Wi-Fi password"
+            className="cursor-pointer"
+          >
+            {WIFI_PASSWORD}
+          </button>
+        </span>
+        <button
+          type="button"
+          onClick={copyWifiPassword}
+          aria-label="Copy Wi-Fi password"
+          className="inline-flex cursor-pointer items-center gap-1 font-bold text-dc-purple"
+        >
+          <Copy className="size-3.5 shrink-0" aria-hidden="true" />
+          Copy
+        </button>
+      </span>
     </li>
   );
 }
@@ -190,10 +239,7 @@ export function EventInformation() {
               Essentials
             </h3>
             <ul className="mt-3 flex flex-col gap-4">
-              <Essential term="Wi-Fi:">
-                Connect to <span className="font-bold">{WIFI_SSID}</span> with password{" "}
-                <span className="font-bold">{WIFI_PASSWORD}</span>
-              </Essential>
+              <WifiEssential />
               <Essential term="Venue address:">
                 <OutLink href={VENUE_MAPS_HREF}>Jio World Centre, BKC, Mumbai</OutLink>
               </Essential>
