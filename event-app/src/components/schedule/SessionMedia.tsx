@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useEvent } from "@/data/hooks";
-import { DESKTOP_MEDIA_QUERY } from "@/hooks/useIsDesktop";
+import { useIsDesktopSync } from "@/hooks/useIsDesktop";
 import type { Session } from "@/data/models";
 import { useOnline } from "@/hooks/useOnline";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { streamUrlForDay } from "@/components/schedule/utils";
 import { streamEmbedUrlForRoom } from "@/data/streams";
-import { playingHandoff, registerYouTubePlayer } from "./youtubeHandoff";
+import { useStreamSlot } from "@/components/stream/dock";
 
 /**
  * Recording / livestream for a session:
@@ -24,10 +24,11 @@ import { playingHandoff, registerYouTubePlayer } from "./youtubeHandoff";
  *   translation link is available); the details layout shows the session
  *   card instead
  *
- * `active` (desktop side panel only): false renders the slot without the
- * player, so a panel hidden behind the expanded page holds no second
- * stream. The YouTube players hand playback over to each other through
- * youtubeHandoff.ts, so Expand and Back keep the same video going.
+ * Desktop renders no iframe of its own: the media box is a slot for the
+ * app's one player (components/stream/StreamDock.tsx), which sits over it
+ * while it is on screen and floats to the corner when it is not, so the
+ * side panel, the expanded page and other tabs share one uninterrupted
+ * stream. Phones embed the iframe here as before.
  */
 
 // Single source of truth for "will SessionMedia render anything?" — the
@@ -65,23 +66,25 @@ export function sessionHasMedia(
   return !!(src || translationUrl);
 }
 
-export function SessionMedia({
-  session,
-  onNow,
-  active = true,
-}: {
-  session: Session;
-  onNow: boolean;
-  active?: boolean;
-}) {
+export function SessionMedia({ session, onNow }: { session: Session; onNow: boolean }) {
   const { event } = useEvent();
   const online = useOnline();
+  const desktop = useIsDesktopSync();
+  const slotRef = useRef<HTMLDivElement>(null);
 
   const { src, streamSrc, translationUrl } = getSessionMediaSources(
     session,
     onNow,
     event?.startDate
   );
+  const dockable = desktop && online && !!src;
+  useStreamSlot(
+    slotRef,
+    dockable
+      ? { src: src as string, sessionId: session.id, title: session.title, live: !!streamSrc }
+      : null
+  );
+
   if (!src && !translationUrl) return null;
 
   return (
@@ -93,13 +96,21 @@ export function SessionMedia({
       {/* Embeds are live-only: offline, say so instead of a black box. */}
       {src &&
         (online ? (
-          <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
-            {active && (
-              // Keyed by src: swapping `src` on a live iframe navigates it,
-              // which adds a history entry, so closing a detail after
-              // viewing several sessions needed one back() per video.
-              // Remounting instead keeps history clean.
-              <EmbedFrame key={src} src={src} live={!!streamSrc} title={session.title} />
+          <div ref={slotRef} className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+            {!desktop && (
+              <iframe
+                // Keyed by src: swapping `src` on a live iframe navigates it,
+                // which adds a history entry, so closing a detail after
+                // viewing several sessions needed one back() per video.
+                // Remounting instead keeps history clean.
+                key={src}
+                src={src}
+                title={session.title}
+                className="h-full w-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
             )}
           </div>
         ) : (
@@ -122,59 +133,3 @@ export function SessionMedia({
   );
 }
 
-const YOUTUBE_EMBED = "https://www.youtube.com/embed/";
-
-/**
- * The embed iframe. A YouTube embed on desktop joins the hand-off
- * (youtubeHandoff.ts): its URL gains the IFrame API params, and when another
- * player of the same video is playing it starts with autoplay (and the
- * position, for a recording; a live stream rejoins at the edge). The URL is
- * fixed at mount: the hand-off is read once, and a later re-render must not
- * navigate the iframe. StreamEth embeds and phones mount the plain URL.
- */
-function EmbedFrame({
-  src,
-  live,
-  title,
-}: {
-  src: string;
-  live: boolean;
-  title: string;
-}) {
-  const ref = useRef<HTMLIFrameElement>(null);
-  // Decided once, synchronously: the reactive desktop hook is false on a
-  // component's first render, and this URL cannot change after it.
-  const [{ embedSrc, handoff }] = useState(() => {
-    const handoff =
-      src.startsWith(YOUTUBE_EMBED) &&
-      typeof window !== "undefined" &&
-      window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
-    if (!handoff) return { embedSrc: src, handoff };
-    const url = new URL(src);
-    url.searchParams.set("enablejsapi", "1");
-    url.searchParams.set("origin", window.location.origin);
-    const playing = playingHandoff(src);
-    if (playing) {
-      url.searchParams.set("autoplay", "1");
-      if (!live) url.searchParams.set("start", String(Math.floor(playing.time)));
-    }
-    return { embedSrc: url.toString(), handoff };
-  });
-
-  useEffect(() => {
-    if (!handoff || !ref.current) return;
-    return registerYouTubePlayer(ref.current, src);
-  }, [handoff, src]);
-
-  return (
-    <iframe
-      ref={ref}
-      src={embedSrc}
-      title={title}
-      className="h-full w-full border-0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      loading="lazy"
-    />
-  );
-}

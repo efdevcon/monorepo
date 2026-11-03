@@ -10,6 +10,7 @@ import { IntroSplash } from "@/components/IntroSplash";
 import { TabPanes } from "@/components/TabPanes";
 import { PushOnboardingSheet } from "@/components/onboarding/PushOnboardingSheet";
 import { PushProvider } from "@/data/push/PushProvider";
+import { StreamDock } from "@/components/stream/StreamDock";
 
 /**
  * `useSearchParams` needs a Suspense boundary on statically rendered routes.
@@ -58,6 +59,10 @@ function PageLayoutInner({ children }: { children: React.ReactNode }) {
         {children}
       </div>
       <Nav />
+      {/* The one desktop video player, over whichever session view is on
+          screen or floating in the corner (components/stream/dock.ts).
+          Outside `.section` and every pane, with no transformed ancestor. */}
+      {!isKiosk && <StreamDock />}
       {!isKiosk && (
         <DevaBot
           toggled={devaBotOpen}

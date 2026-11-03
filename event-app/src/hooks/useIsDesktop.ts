@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 /**
  * Single source for the JS-side desktop breakpoint. Must mirror Tailwind's
@@ -31,6 +31,27 @@ export function useIsDesktop(): boolean {
 /** One-shot check for event handlers (no reactivity needed). */
 export function isDesktopNow(): boolean {
   return window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
+}
+
+let desktopMq: MediaQueryList | null = null;
+function subscribeDesktop(onChange: () => void) {
+  desktopMq ??= window.matchMedia(DESKTOP_MEDIA_QUERY);
+  desktopMq.addEventListener("change", onChange);
+  return () => desktopMq?.removeEventListener("change", onChange);
+}
+function desktopSnapshot() {
+  desktopMq ??= window.matchMedia(DESKTOP_MEDIA_QUERY);
+  return desktopMq.matches;
+}
+
+/**
+ * `useIsDesktop` that is right on a component's very first client render
+ * (the effect-driven hook is `false` until after mount). For decisions
+ * fixed at mount, such as which element to render an iframe into: a wrong
+ * first answer there mounts, loads and discards an embed. Server: false.
+ */
+export function useIsDesktopSync(): boolean {
+  return useSyncExternalStore(subscribeDesktop, desktopSnapshot, () => false);
 }
 
 export const LANDSCAPE_MEDIA_QUERY = "(orientation: landscape)";

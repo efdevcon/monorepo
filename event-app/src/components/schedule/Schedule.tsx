@@ -1363,9 +1363,6 @@ function ScheduleInner({
       // Desktop only: on phones this aside is mounted but hidden, and the
       // fullscreen page already runs the session's feed (one SSE stream each).
       showQa={isDesktop && listVisible}
-      // One player per session: none in this panel while the expanded page
-      // shows it (the page's player carries on, youtubeHandoff.ts).
-      showMedia={isDesktop && !detailId}
     />
   ) : filtersOpen ? (
     // Same growth var as the details panels: the filter column keeps

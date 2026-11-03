@@ -177,12 +177,9 @@ function Description({ text }: { text: string }) {
 export function SessionSummary({
   session,
   heading,
-  showMedia = true,
 }: {
   session: Session;
   heading?: string;
-  /** False keeps the media slot but mounts no player (SessionMedia `active`). */
-  showMedia?: boolean;
 }) {
   const nowMs = useNowMs(60_000);
   const { event } = useEvent();
@@ -224,7 +221,7 @@ export function SessionSummary({
   const blurb = session.abstract || session.description;
 
   const media = hasMedia ? (
-    <SessionMedia session={session} onNow={onNow} active={showMedia} />
+    <SessionMedia session={session} onNow={onNow} />
   ) : (
     <SessionBanner key={session.id} session={session} theme={theme} />
   );
@@ -437,17 +434,15 @@ export function SessionDetailsContent({
   session,
   children,
   variant = "panel",
-  showMedia = true,
 }: {
   session: Session;
   children?: React.ReactNode;
   variant?: "panel" | "page";
-  showMedia?: boolean;
 }) {
   return (
     <div className="flex flex-col bg-dc-panel">
       <div className="border-b border-dc-hairline">
-        <SessionSummary session={session} showMedia={showMedia} />
+        <SessionSummary session={session} />
       </div>
       <div className="flex flex-col gap-6 p-4">
         {variant === "page" ? (

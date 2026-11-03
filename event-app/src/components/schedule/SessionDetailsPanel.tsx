@@ -18,20 +18,15 @@ import { isCommunityHubSession } from "@/data/communityHubs";
  * panel is mounted but hidden there) and while the list is off screen (the
  * fullscreen page replaces it, or another tab is active), so only one Q&A
  * feed per session holds the Meerkat hooks and its SSE stream at a time.
- * `showMedia` likewise: false while the expanded page shows the session, so
- * its player takes over (youtubeHandoff.ts) instead of playing on top of a
- * stream still running in this hidden panel.
  */
 export function SessionDetailsPanel({
   session,
   onClose,
   showQa = true,
-  showMedia = true,
 }: {
   session: Session;
   onClose: () => void;
   showQa?: boolean;
-  showMedia?: boolean;
 }) {
   return (
     // The var (set by Schedule's scroll handler) keeps a 16px gap to the
@@ -58,7 +53,7 @@ export function SessionDetailsPanel({
       </div>
       {/* Bottom padding: room for the Q&A's floating button (SessionQA), 76px tall. */}
       <div className="min-h-0 flex-1 overflow-y-auto has-[[data-qa-cta]]:pb-[76px]">
-        <SessionDetailsContent session={session} showMedia={showMedia}>
+        <SessionDetailsContent session={session}>
           {!isCommunityHubSession(session) && !roomHasNoQa(session.room?.id) && !sessionHasNoQa(session) && showQa && <SessionQA session={session} size="sm" />}
         </SessionDetailsContent>
       </div>
