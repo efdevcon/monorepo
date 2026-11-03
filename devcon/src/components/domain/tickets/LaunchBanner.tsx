@@ -49,13 +49,13 @@ function CountdownSeparator() {
  * featured wave's schedule:
  *
  *   before launch (status 'countdown', Figma node 4663:11215):
- *     "GLOBAL TICKET LAUNCH 14 JULY" eyebrow + "$499 ETH / Includes 18% GST"
+ *     "GLOBAL TICKET LAUNCH 14 JULY" eyebrow + "$999 / Includes 18% GST"
  *     on the left, big countdown cells in the middle, purple "Remind me"
  *     button (add-to-calendar popover) on the right.
  *
  *   during launch (status 'live', Figma node 4663:21475):
  *     "General Admission tickets on sale!" headline, price bullets,
- *     "$499 ETH / Includes 18% GST" price block + purple "Get tickets" CTA.
+ *     "$999 / Includes 18% GST" price block + purple "Get tickets" CTA.
  *
  * Preview the live state at /tickets?mockNow=launch (see hooks/useNow).
  */

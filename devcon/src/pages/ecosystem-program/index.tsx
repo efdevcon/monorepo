@@ -29,15 +29,13 @@ const SUPPORT_TAG_COLORS = ['#ffe0cc', '#f0d7f4', '#d6d5f6', '#cddff4', '#cdf4d7
 const STUDENT_APPLICATION_ROWS: TicketRow[] = [
   {
     name: 'Indian Students',
-    ethPrice: '$25',
-    fiatPrice: '$25',
+    price: '$25',
     action: 'Apply',
     actionHref: '/form/student-application',
   },
   {
     name: 'International Students',
-    ethPrice: '$49',
-    fiatPrice: '$99',
+    price: '$99',
     action: 'Apply',
     actionHref: '/form/student-application',
   },
@@ -74,15 +72,13 @@ export default function EcosystemProgramPage() {
     launched
       ? {
           name: 'Sanctuary Tech Builders',
-          ethPrice: '$349',
-          fiatPrice: '$499',
+          price: '$499',
           action: 'Apply',
           actionHref: '/form/builder-application',
         }
       : {
           name: 'Sanctuary Tech Builders',
-          ethPrice: '$349',
-          fiatPrice: '$499',
+          price: '$499',
           date: 'Opens July',
         },
   ]

@@ -199,8 +199,6 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
     const row: TicketRow = {
       name: w.name,
       price: w.price,
-      ethPrice: w.ethPrice,
-      fiatPrice: w.fiatPrice,
       dimmed: w.dimmed,
     }
     const hasTimes = !!(w.openTimes && w.openTimes.length > 0)
