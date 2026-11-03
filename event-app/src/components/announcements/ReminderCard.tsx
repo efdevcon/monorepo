@@ -1,7 +1,7 @@
 "use client";
 
 import cn from "classnames";
-import { MapPin, PlayCircle } from "lucide-react";
+import { ArrowRight, MapPin, PlayCircle } from "lucide-react";
 import { Link } from "@/routing";
 import { DetailLink } from "@/routing/DetailLink";
 import { useNowMs } from "@/hooks/useNow";
@@ -35,9 +35,9 @@ const ctaClass =
  *   on map" (`/map` when the room isn't mapped yet) while the session is
  *   ahead or live, "Watch recording" (the session page, where SessionMedia
  *   embeds it) once it has ended AND a recording id has landed — the map is
- *   no longer useful then. A finished session without a recording (the AV
- *   team writes ids to devcon-api after the fact, and some sessions are
- *   never recorded) gets no CTA: the embedded card still opens the session.
+ *   no longer useful then. A finished session without a recording yet (the
+ *   AV team writes ids to devcon-api after the fact, and some sessions are
+ *   never recorded) gets a plain "View session" link to the same page.
  * - "home" (home preview grid): same content with the compact speaker-panel
  *   session card and the CTA bottom-right, equal-height across the 3-up grid.
  * The outer card is never a link: the embedded card and the CTA are the
@@ -88,15 +88,20 @@ export function ReminderCard({
         </Link>
       );
     }
-    if (!hasRecording) return null;
     return (
       <DetailLink kind="session" id={sessionId} className={cls}>
-        <PlayCircle className={icon} /> Watch recording
+        {hasRecording ? (
+          <>
+            <PlayCircle className={icon} /> Watch recording
+          </>
+        ) : (
+          <>
+            <ArrowRight className={icon} /> View session
+          </>
+        )}
       </DetailLink>
     );
   };
-
-  const action = cta(variant === "home");
 
   const fallback = (
     <p className="font-heading text-sm leading-5 text-dc-fg2">
@@ -117,7 +122,7 @@ export function ReminderCard({
             {session ? <SpeakerSessionMiniCard session={session} /> : fallback}
           </div>
         </div>
-        {action && <div className="flex justify-end">{action}</div>}
+        <div className="flex justify-end">{cta(true)}</div>
       </div>
     );
   }
@@ -131,7 +136,7 @@ export function ReminderCard({
       <div className="mt-3">
         {session ? <SessionCard session={session} /> : fallback}
       </div>
-      {action && <div className="mt-4">{action}</div>}
+      <div className="mt-4">{cta(false)}</div>
     </div>
   );
 }
