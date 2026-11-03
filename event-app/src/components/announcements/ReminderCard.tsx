@@ -96,7 +96,7 @@ export function ReminderCard({
           </>
         ) : (
           <>
-            <ArrowRight className={icon} /> View session
+            View session <ArrowRight className={icon} />
           </>
         )}
       </DetailLink>
