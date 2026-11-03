@@ -2,7 +2,9 @@
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import cn from "classnames";
-import { RefreshCw } from "lucide-react";
+import { Gift, RefreshCw } from "lucide-react";
+import { SWAG_STATION_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
+import { useRouter } from "@/routing";
 import type { Order, Ticket } from "@/data/tickets/types";
 import { ticketOrdinals } from "@/data/tickets/primary";
 import { EventTicketCard } from "./EventTicketCard";
@@ -117,6 +119,7 @@ export function TicketSections({
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
   const { user } = useUser();
+  const router = useRouter();
 
   // The popup is opened with a snapshot; read its scanned state from the
   // current tickets instead (by QR, which is deterministic per secret), so a
@@ -314,7 +317,11 @@ export function TicketSections({
     <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
   );
 
-  const swagSection = shownSwag.length > 0 && (
+  // The Swag section always shows: with nothing on the order it explains
+  // what would appear here instead of leaving the shelf's column empty
+  // beside the ticket (Scott, 2026-11-03). Same recipe as the schedule's
+  // and speakers' empty states (lavender disc, 20px heading, muted line).
+  const swagSection = (
     <section
       className={cn(
         "flex w-full flex-col gap-4",
@@ -322,31 +329,59 @@ export function TicketSections({
       )}
     >
       <TicketSectionHeader title="Swag" />
-      {/* The shelf absolutely fills the wrapper so the swag images can never
-          inflate the row: beside a single ticket the ticket column sets the
-          height, in the stacked multi-ticket layout the wrapper is fixed at
-          the design's 319px. */}
-      <div
-        className={cn(
-          "relative",
-          multiTicket ? "lg:h-[319px]" : "lg:min-h-0 lg:flex-1"
-        )}
-      >
-        <div className={cn(scrollerBase, "lg:absolute lg:-inset-3 lg:p-3")}>
-          {shownSwag.map((item) => (
-            <SwagCard
-              key={item.secret}
-              title={item.title}
-              imageUrl={item.imageUrl}
-              qr={qrCodes[item.secret]}
-              collected={item.collected}
-              onQrClick={setModal}
-              shelfOnDesktop
-            />
-          ))}
-          {endSpacer}
+      {shownSwag.length === 0 ? (
+        <div
+          className={cn(
+            "flex flex-col items-center justify-center gap-4 rounded-[12px] border border-dc-hairline bg-dc-panel px-6 py-8 text-center",
+            !multiTicket && "lg:min-h-0 lg:flex-1"
+          )}
+        >
+          <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
+            <Gift className="size-7 text-dc-purple" />
+          </span>
+          <div className="flex flex-col gap-1">
+            <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
+              No swag yet
+            </p>
+            <p className="text-[16px] leading-6 text-dc-muted">
+              Swag on your order shows up here, with a QR code to collect it at the Swag Station.{" "}
+              <button
+                type="button"
+                onClick={() => router.push(SWAG_STATION_MAP_HREF)}
+                className="cursor-pointer font-bold text-dc-purple"
+              >
+                Find it on the map
+              </button>
+            </p>
+          </div>
         </div>
-      </div>
+      ) : (
+        /* The shelf absolutely fills the wrapper so the swag images can never
+           inflate the row: beside a single ticket the ticket column sets the
+           height, in the stacked multi-ticket layout the wrapper is fixed at
+           the design's 319px. */
+        <div
+          className={cn(
+            "relative",
+            multiTicket ? "lg:h-[319px]" : "lg:min-h-0 lg:flex-1"
+          )}
+        >
+          <div className={cn(scrollerBase, "lg:absolute lg:-inset-3 lg:p-3")}>
+            {shownSwag.map((item) => (
+              <SwagCard
+                key={item.secret}
+                title={item.title}
+                imageUrl={item.imageUrl}
+                qr={qrCodes[item.secret]}
+                collected={item.collected}
+                onQrClick={setModal}
+                shelfOnDesktop
+              />
+            ))}
+            {endSpacer}
+          </div>
+        </div>
+      )}
     </section>
   );
 
