@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useSyncExternalStore } from "react";
+import { headerOffsetNow } from "@/hooks/useIsDesktop";
 
 /**
  * One desktop video player for the whole app (StreamDock.tsx).
@@ -117,14 +118,18 @@ export interface DockTarget {
 /**
  * The newest registered slot with any visible area: inside a display:none
  * pane the rect is empty, inside a closed (width 0) or scrolled panel the
- * clip swallows it. Read every frame by the dock.
+ * clip swallows it. Read every frame by the dock. The sticky app header
+ * is not an overflow ancestor of anything, so the viewport is cut at its
+ * bottom edge too: the dock paints above the header (a short window
+ * scrolls the expanded page under it) and would otherwise cover it.
  */
 export function visibleSlot(): DockTarget | null {
+  const viewportTop = headerOffsetNow();
   for (let i = slots.length - 1; i >= 0; i--) {
     const slot = slots[i];
     const rect = slot.el.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) continue;
-    let top = Math.max(rect.top, 0);
+    let top = Math.max(rect.top, viewportTop);
     let left = Math.max(rect.left, 0);
     let right = Math.min(rect.right, window.innerWidth);
     let bottom = Math.min(rect.bottom, window.innerHeight);
@@ -205,6 +210,17 @@ function loadApi(): Promise<YTNamespace> {
     document.head.appendChild(script);
   });
   return apiPromise;
+}
+
+const YOUTUBE_EMBED = "https://www.youtube.com/embed/";
+
+/**
+ * Only YouTube embeds dock: the play state comes from the Player API, and
+ * a StreamEth frame has none, so it would never float and the API would be
+ * aimed at a frame that does not speak it. Those keep their own iframe.
+ */
+export function isDockable(src: string | null): src is string {
+  return !!src && src.startsWith(YOUTUBE_EMBED);
 }
 
 /** The embed URL with the params the Player API needs to talk to it. */

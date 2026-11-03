@@ -8,7 +8,7 @@ import { useOnline } from "@/hooks/useOnline";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { streamUrlForDay } from "@/components/schedule/utils";
 import { streamEmbedUrlForRoom } from "@/data/streams";
-import { useStreamSlot } from "@/components/stream/dock";
+import { isDockable, useStreamSlot } from "@/components/stream/dock";
 
 /**
  * Recording / livestream for a session:
@@ -28,7 +28,7 @@ import { useStreamSlot } from "@/components/stream/dock";
  * app's one player (components/stream/StreamDock.tsx), which sits over it
  * while it is on screen and floats to the corner when it is not, so the
  * side panel, the expanded page and other tabs share one uninterrupted
- * stream. Phones embed the iframe here as before.
+ * stream. Phones, and StreamEth embeds anywhere, mount the iframe here.
  */
 
 // Single source of truth for "will SessionMedia render anything?" — the
@@ -77,12 +77,12 @@ export function SessionMedia({ session, onNow }: { session: Session; onNow: bool
     onNow,
     event?.startDate
   );
-  const dockable = desktop && online && !!src;
+  // YouTube embeds on desktop go through the dock; StreamEth recordings
+  // (no play-state API) embed here like on phones.
+  const dockable = desktop && online && isDockable(src);
   useStreamSlot(
     slotRef,
-    dockable
-      ? { src: src as string, sessionId: session.id, title: session.title, live: !!streamSrc }
-      : null
+    dockable ? { src, sessionId: session.id, title: session.title, live: !!streamSrc } : null
   );
 
   if (!src && !translationUrl) return null;
@@ -97,7 +97,7 @@ export function SessionMedia({ session, onNow }: { session: Session; onNow: bool
       {src &&
         (online ? (
           <div ref={slotRef} className="aspect-video w-full overflow-hidden rounded-xl bg-black">
-            {!desktop && (
+            {!dockable && (
               <iframe
                 // Keyed by src: swapping `src` on a live iframe navigates it,
                 // which adds a history entry, so closing a detail after

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import cn from "classnames";
 import { GripVertical } from "lucide-react";
 import { CloseButton } from "@/components/Buttons";
@@ -136,6 +137,11 @@ function DockPlayer({ stream }: { stream: DockStream }) {
   // The strip fades in once the flight into the float has landed.
   const [flying, setFlying] = useState(false);
   const [src] = useState(() => playerApiSrc(stream.src));
+  // The placement effect keys on `src` alone: a restart on a session change
+  // (the next talk in the same room, same stream) would lose a flight in
+  // progress with its transform still applied.
+  const streamRef = useRef(stream);
+  streamRef.current = stream;
 
   useEffect(() => {
     if (!frameRef.current) return;
@@ -163,11 +169,14 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       root.style.height = `${box.height}px`;
     };
 
+    // State set from a frame callback is default-lane work, which React
+    // would commit in a task after this frame paints; the strip must mount
+    // or leave in the same frame as the box takes its new size.
     const endFlight = () => {
       flight = null;
       root.style.transform = "";
       root.style.transformOrigin = "";
-      setFlying(false);
+      flushSync(() => setFlying(false));
     };
     cancelFlightRef.current = endFlight;
 
@@ -175,7 +184,7 @@ function DockPlayer({ stream }: { stream: DockStream }) {
     const takeOff = () => {
       if (reduceMotion) return;
       flight = { from: video.getBoundingClientRect(), startedAt: performance.now() };
-      setFlying(true);
+      flushSync(() => setFlying(true));
     };
 
     /** Apply this frame's transform: the video box lerped from `from` to its final place. */
@@ -198,13 +207,17 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       if (lastMode === next) return;
       const first = lastMode === null;
       lastMode = next;
-      setMode(next);
+      // The first placement runs inside the layout effect, where React
+      // cannot flush (and the initial mode is already the state's default).
+      if (first) setMode(next);
+      else flushSync(() => setMode(next));
       if (!first) takeOff();
     };
 
     const place = () => {
       const target = visibleSlot();
       if (target) {
+        const stream = streamRef.current;
         if (target.stream.src !== stream.src) {
           // Another session's stream is on screen: the dock remounts for it.
           setCurrentStream(target.stream);
@@ -255,13 +268,15 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       cancelAnimationFrame(raf);
       cancelFlightRef.current = () => {};
     };
-  }, [stream.src, stream.sessionId]);
+  }, [stream.src]);
 
-  // Drag by the strip. Pointer capture starts only once the press has
-  // travelled past the slop: capturing on the press itself retargets the
-  // click to the strip and the title's click never fires. While dragging
-  // the box follows the pointer directly (the frame loop stands aside) and
-  // the drop point is remembered for the next float.
+  // Drag by the strip. The listeners go on the window, so a press that
+  // leaves the strip still gets its up (or a move with no button held,
+  // which ends it too); nothing is left bound. Pointer capture starts only
+  // once the press has travelled past the slop: capturing on the press
+  // itself retargets the click to the strip and the title's click never
+  // fires. While dragging the box follows the pointer directly (the frame
+  // loop stands aside) and the drop point is remembered for the next float.
   const movedRef = useRef(false);
   const onStripPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const root = rootRef.current;
@@ -273,7 +288,19 @@ function DockPlayer({ stream }: { stream: DockStream }) {
     const origin = { left: parseFloat(root.style.left) || 0, top: parseFloat(root.style.top) || 0 };
     movedRef.current = false;
 
+    const onUp = () => {
+      draggingRef.current = false;
+      if (strip.hasPointerCapture(pointerId)) strip.releasePointerCapture(pointerId);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
     const onMove = (ev: PointerEvent) => {
+      if (ev.pointerId !== pointerId) return;
+      if (ev.buttons === 0) {
+        onUp();
+        return;
+      }
       const dx = ev.clientX - startX;
       const dy = ev.clientY - startY;
       if (!movedRef.current) {
@@ -287,16 +314,9 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       root.style.left = `${floatPos.left}px`;
       root.style.top = `${floatPos.top}px`;
     };
-    const onUp = () => {
-      draggingRef.current = false;
-      if (strip.hasPointerCapture(pointerId)) strip.releasePointerCapture(pointerId);
-      strip.removeEventListener("pointermove", onMove);
-      strip.removeEventListener("pointerup", onUp);
-      strip.removeEventListener("pointercancel", onUp);
-    };
-    strip.addEventListener("pointermove", onMove);
-    strip.addEventListener("pointerup", onUp);
-    strip.addEventListener("pointercancel", onUp);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
   };
 
   const floating = mode === "floating";
