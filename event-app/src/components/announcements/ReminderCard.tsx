@@ -34,7 +34,10 @@ const ctaClass =
  *   track and the star — it opens the session itself), then one CTA: "Show
  *   on map" (`/map` when the room isn't mapped yet) while the session is
  *   ahead or live, "Watch recording" (the session page, where SessionMedia
- *   embeds it) once it has ended — the map is no longer useful then.
+ *   embeds it) once it has ended AND a recording id has landed — the map is
+ *   no longer useful then. A finished session without a recording (the AV
+ *   team writes ids to devcon-api after the fact, and some sessions are
+ *   never recorded) gets no CTA: the embedded card still opens the session.
  * - "home" (home preview grid): same content with the compact speaker-panel
  *   session card and the CTA bottom-right, equal-height across the 3-up grid.
  * The outer card is never a link: the embedded card and the CTA are the
@@ -69,20 +72,31 @@ export function ReminderCard({
   const message = `Interested session starts in ${REMINDER_LEAD_MINUTES} minutes`;
   // Session.end is unix seconds. Unknown session → not provably finished.
   const finished = session ? nowMs >= session.end * 1000 : false;
+  // Same ids SessionMedia embeds from (sources_* arrive via the AV pipeline's
+  // PUT /sessions/sources/:id, so they appear on the next catalogue sync).
+  const hasRecording = !!(
+    session?.sources_youtubeId || session?.sources_streamethId
+  );
 
   const cta = (mini: boolean) => {
     const cls = cn(ctaClass, mini ? "text-xs" : "text-sm");
     const icon = mini ? "size-3.5" : "size-4";
-    return finished ? (
+    if (!finished) {
+      return (
+        <Link href={mapHref} className={cls}>
+          <MapPin className={icon} /> Show on map
+        </Link>
+      );
+    }
+    if (!hasRecording) return null;
+    return (
       <DetailLink kind="session" id={sessionId} className={cls}>
         <PlayCircle className={icon} /> Watch recording
       </DetailLink>
-    ) : (
-      <Link href={mapHref} className={cls}>
-        <MapPin className={icon} /> Show on map
-      </Link>
     );
   };
+
+  const action = cta(variant === "home");
 
   const fallback = (
     <p className="font-heading text-sm leading-5 text-dc-fg2">
@@ -103,7 +117,7 @@ export function ReminderCard({
             {session ? <SpeakerSessionMiniCard session={session} /> : fallback}
           </div>
         </div>
-        <div className="flex justify-end">{cta(true)}</div>
+        {action && <div className="flex justify-end">{action}</div>}
       </div>
     );
   }
@@ -117,7 +131,7 @@ export function ReminderCard({
       <div className="mt-3">
         {session ? <SessionCard session={session} /> : fallback}
       </div>
-      <div className="mt-4">{cta(false)}</div>
+      {action && <div className="mt-4">{action}</div>}
     </div>
   );
 }
