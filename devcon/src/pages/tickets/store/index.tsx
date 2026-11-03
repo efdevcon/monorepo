@@ -39,10 +39,44 @@ type CardPricing = {
   free?: boolean
 }
 
+// Quantity stepper shared by the Daily Pass and Daily India Pass cards:
+// minus / number input / plus, clamped to [1, max] by the caller's setter.
+const QuantityStepper = ({ value, max, onChange }: { value: number; max: number; onChange: (qty: number) => void }) => (
+  <div className={css['quantity']}>
+    <button
+      type="button"
+      className={css['quantity-btn']}
+      onClick={() => onChange(value - 1)}
+      disabled={value <= 1}
+      aria-label="Decrease quantity"
+    >
+      <Minus size={16} />
+    </button>
+    <Input
+      type="number"
+      className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
+      value={value}
+      min={1}
+      max={max}
+      onChange={e => onChange(parseInt(e.target.value, 10) || 1)}
+      aria-label="Quantity"
+    />
+    <button
+      type="button"
+      className={css['quantity-btn']}
+      onClick={() => onChange(value + 1)}
+      disabled={value >= max}
+      aria-label="Increase quantity"
+    >
+      <Plus size={16} />
+    </button>
+  </div>
+)
+
 // Cards in the Community section. The Daily India Pass sells a plain public
 // Pretix item (`pretixItemId`) and hands the buyer straight to the Pretix shop
-// with one in their cart; the self-claim discounts open the verify modal.
-// Order: Daily India Pass, Ethereum Public Goods, then Core Devs.
+// with the stepper quantity in their cart; the self-claim discounts open the
+// verify modal. Order: Daily India Pass, Ethereum Public Goods, then Core Devs.
 type CommunityPlaceholder = CardPricing & {
   // Discount `type` from /api/discounts/validate; also the key into the config
   // `soldOut` override and Pretix item map.
@@ -51,9 +85,12 @@ type CommunityPlaceholder = CardPricing & {
   meta: string
   description: React.ReactNode
   buttonLabel: string
-  // Plain Pretix item sold directly (one per order). null = not provisioned
-  // on this instance; the card then hands off to the bare Pretix shop.
+  // Plain Pretix item sold directly with a quantity stepper. null = not
+  // provisioned on this instance; the card then hands off to the bare Pretix
+  // shop.
   pretixItemId?: number | null
+  // Per-order cap for the stepper (required alongside `pretixItemId`).
+  maxPerOrder?: number
 }
 
 const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
@@ -61,12 +98,13 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     // Copy mirrors the live Pretix product (item 53 on tickets.devcon.org).
     type: 'daily-india-pass',
     title: 'Daily India Pass 🇮🇳',
-    meta: 'Single-day access, one pass per order',
+    meta: `Single-day access, up to ${TICKETING.pretix.dailyIndiaPassMaxPerOrder} passes per order`,
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
     price: '$39',
-    buttonLabel: 'Get ticket',
+    buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
+    maxPerOrder: TICKETING.pretix.dailyIndiaPassMaxPerOrder,
   },
   {
     type: 'pg-projects',
@@ -214,12 +252,17 @@ function StoreContent() {
   const [dailyPassQty, setDailyPassQty] = useState(1)
   const setDailyPassQtyClamped = (qty: number) => setDailyPassQty(Math.min(Math.max(1, qty), dailyPassMax))
   const dailyPassSoldOut = discountSoldOut('daily-pass')
+  // Daily India Pass quantity (Community section), same clamping.
+  const dailyIndiaPassMax = TICKETING.pretix.dailyIndiaPassMaxPerOrder
+  const [dailyIndiaPassQty, setDailyIndiaPassQty] = useState(1)
+  const setDailyIndiaPassQtyClamped = (qty: number) =>
+    setDailyIndiaPassQty(Math.min(Math.max(1, qty), dailyIndiaPassMax))
 
   // Hand the buyer off to the Pretix shop with `quantity` of a plain Pretix
   // item already in their cart when the item is provisioned for this
-  // environment, otherwise just the Pretix shop. Used by the Daily India Pass
-  // and Child (3-17) / Child (Under 3) cards (one each) and the Daily Pass
-  // card (stepper quantity).
+  // environment, otherwise just the Pretix shop. Used by the Child (3-17) /
+  // Child (Under 3) cards (one each) and the Daily Pass / Daily India Pass
+  // cards (stepper quantity).
   const goToPretixItem = (itemId: number | null, quantity = 1) => {
     if (itemId === null) {
       window.location.href = pretixEventUrl('/')
@@ -351,14 +394,21 @@ function StoreContent() {
                         ) : cardSoldOut ? (
                           <span className={css['sold-out-badge']}>Sold out</span>
                         ) : card.pretixItemId !== undefined ? (
-                          <button
-                            type="button"
-                            className={css['apply-btn']}
-                            onClick={() => goToPretixItem(card.pretixItemId ?? null)}
-                          >
-                            {card.buttonLabel}
-                            <ArrowRight size={16} strokeWidth={2.5} />
-                          </button>
+                          <div className={css['ga-actions']}>
+                            <QuantityStepper
+                              value={dailyIndiaPassQty}
+                              max={card.maxPerOrder ?? 1}
+                              onChange={setDailyIndiaPassQtyClamped}
+                            />
+                            <button
+                              type="button"
+                              className={css['checkout-pill']}
+                              onClick={() => goToPretixItem(card.pretixItemId ?? null, dailyIndiaPassQty)}
+                            >
+                              {card.buttonLabel}
+                              <ArrowRight size={16} strokeWidth={2.5} />
+                            </button>
+                          </div>
                         ) : (
                           <button
                             type="button"
@@ -470,35 +520,7 @@ function StoreContent() {
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (
                       <div className={css['ga-actions']}>
-                        <div className={css['quantity']}>
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => setDailyPassQtyClamped(dailyPassQty - 1)}
-                            disabled={dailyPassQty <= 1}
-                            aria-label="Decrease quantity"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <Input
-                            type="number"
-                            className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
-                            value={dailyPassQty}
-                            min={1}
-                            max={dailyPassMax}
-                            onChange={e => setDailyPassQtyClamped(parseInt(e.target.value, 10) || 1)}
-                            aria-label="Quantity"
-                          />
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => setDailyPassQtyClamped(dailyPassQty + 1)}
-                            disabled={dailyPassQty >= dailyPassMax}
-                            aria-label="Increase quantity"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
+                        <QuantityStepper value={dailyPassQty} max={dailyPassMax} onChange={setDailyPassQtyClamped} />
                         <button
                           type="button"
                           className={css['checkout-pill']}

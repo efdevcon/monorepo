@@ -34,14 +34,17 @@ const ENV_CONFIG = {
       // ticket sold from the store's General Admission section (plain public
       // item, no voucher; the buyer picks a quantity and is handed to Pretix).
       dailyPassItemId: 151 as number | null,
-      // Per-order cap for the Daily Pass, mirrored from the Pretix item's
-      // max_per_order so the store's quantity stepper can't exceed it.
-      dailyPassMaxPerOrder: 2,
+      // Per-order cap for the Daily Pass stepper. Keep in step with the
+      // Pretix item's max_per_order — Pretix rejects the cart-add past its
+      // own cap.
+      dailyPassMaxPerOrder: 3,
       // Pretix item id for the "Daily India Pass", sold from the top of the
-      // store's Community section — one pass per order, straight to Pretix.
+      // store's Community section with its own stepper, straight to Pretix.
       // NOTE: the dev item (161) is voucher-only on dcdev2, so the handoff
       // lands on Pretix's voucher prompt there; the prod item is public.
       dailyIndiaPassItemId: 161 as number | null,
+      // See dailyPassMaxPerOrder.
+      dailyIndiaPassMaxPerOrder: 3,
       testmode: true,
     },
     checkout: {
@@ -151,9 +154,10 @@ const ENV_CONFIG = {
       childWithAdultItemId: 109 as number | null,
       // See development.pretix.dailyPassItemId.
       dailyPassItemId: 41 as number | null,
-      dailyPassMaxPerOrder: 2,
+      dailyPassMaxPerOrder: 3,
       // See development.pretix.dailyIndiaPassItemId.
       dailyIndiaPassItemId: 53 as number | null,
+      dailyIndiaPassMaxPerOrder: 3,
       testmode: false,
     },
     checkout: {
