@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
@@ -6,39 +6,19 @@ import themes from '../../themes.module.scss'
 // AnonAadhaar disabled — keeping code for now
 // import { AnonAadhaarProvider } from '@anon-aadhaar/react'
 // import { VerificationModal } from 'components/domain/tickets/VerificationModal'
-import { SelfVerificationModal } from 'components/domain/tickets/SelfVerificationModal'
 import { RedeemVoucherModal } from 'components/domain/tickets/RedeemVoucherModal'
-import { Input } from '@/components/ui/input'
-import {
-  ArrowLeft,
-  ArrowRight,
-  CalendarDays,
-  MapPin,
-  Minus,
-  Plus,
-  Ticket,
-  Coffee,
-  Ribbon,
-  TicketPercent,
-  Loader2,
-} from 'lucide-react'
+import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Ticket, Coffee, Ribbon } from 'lucide-react'
 import css from './store.module.scss'
-
-// Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
-const fmtPrice = (p: string) => p.replace(/\.00$/, '')
 
 // Single price figure on a store card — one price regardless of payment
 // method (the ETH / fiat split and its chips are gone).
 const CardPrice = ({ price }: { price: string }) => (
   <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
 )
-import { TicketInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
-import SelfLogo from 'assets/images/dc-8/self-logo.svg'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
-import { GA_CLOSED_LABEL } from 'config/waves'
-import { useIsLaunched, useGaSaleState, useSpecialOffer } from 'hooks/useWaveStates'
+import { useIsLaunched } from 'hooks/useWaveStates'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -51,13 +31,6 @@ const EVENT_DATE = new Date('2026-11-03T00:00:00Z')
 // "Connect wallet" discount modal.
 const queryClient = new QueryClient()
 
-interface CartItem {
-  ticketId: number
-  name: string
-  price: string
-  quantity: number
-}
-
 // Pricing shape shared by store cards: `price` renders as a single bold
 // figure; `free` renders plain bold "FREE".
 type CardPricing = {
@@ -68,7 +41,7 @@ type CardPricing = {
 // Static self-claim discounts shown in the Community section that have no
 // backend verification flow yet. Their buttons are active no-ops until the
 // corresponding flow ships. Order matches the store Figma: Ethereum Public
-// Goods, Past POAP Holders, then Core Devs.
+// Goods, then Core Devs.
 type CommunityPlaceholder = CardPricing & {
   // Discount `type` from /api/discounts/validate; also the key into the config
   // `soldOut` override and Pretix item map.
@@ -86,14 +59,6 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     meta: 'Active fundraisers',
     description: 'This discount is reserved for those who are fundraising for Public Goods projects.',
     price: '$349',
-    buttonLabel: 'Verify',
-  },
-  {
-    type: 'past-attendees',
-    title: 'Past POAP Holders',
-    meta: 'Devcon/nect POAPs',
-    description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
-    price: '$449',
     buttonLabel: 'Verify',
   },
   {
@@ -210,55 +175,16 @@ function useCountdown() {
   return diff
 }
 
-type StoreContentProps = {
-  selfVerificationOpen: boolean
-  setSelfVerificationOpen: React.Dispatch<React.SetStateAction<boolean>>
-  useSelfStaging: boolean
-  setUseSelfStaging: (value: boolean) => void
-  initialTickets: TicketInfo[]
-}
-
-function StoreContent({
-  selfVerificationOpen,
-  setSelfVerificationOpen,
-  useSelfStaging,
-  setUseSelfStaging,
-  initialTickets,
-}: StoreContentProps) {
+function StoreContent() {
   const countdown = useCountdown()
   // Global ticket launch gate (config/waves.ts GLOBAL_LAUNCH_TIME). Before
-  // the launch, GA checkout and the Community self-claim flows show an
-  // "Opens July" label instead of their buttons — same before/during split
-  // as the /tickets landing page. Student applications stay open; the
-  // Sanctuary Tech Builders application opens at launch. Preview the
-  // launched view with ?mockNow=launch.
-  // `mounted` gates the GA badge/CTA: both the launch gate and the sale state
-  // resolve client-side (useNow is null until mount), so any pre-mount pick
-  // would flash a stale label for a frame on every load.
-  const { launched, mounted } = useIsLaunched()
-  // General Admission sale state (config/waves GA_SALE_STATE, overridable via
-  // ?mockNow=coming-soon|closed). GA is only purchasable when 'open'; the
-  // paused states close the buy controls: 'coming-soon' → "Opens July",
-  // 'closed' → GA_CLOSED_LABEL.
-  const gaSaleState = useGaSaleState()
-  const gaClosed = gaSaleState === 'closed'
-  const gaOpen = gaSaleState === 'open'
-  // Special voucher promo (config/waves.ts): while the regular GA sale is
-  // paused, the GA card sells via the voucher deep-link at 11% off instead of
-  // showing the dead-end "Reopens …" badge. Expires with the offer.
-  const offer = useSpecialOffer()
+  // the launch, the Community self-claim flows show an "Opens July" label
+  // instead of their buttons — same before/during split as the /tickets
+  // landing page. Student applications stay open; the Sanctuary Tech
+  // Builders application opens at launch. Preview the launched view with
+  // ?mockNow=launch.
+  const { launched } = useIsLaunched()
 
-  const [tickets, setTickets] = useState<TicketInfo[]>(initialTickets)
-  // False until the client catalog fetch resolves. The page no longer has
-  // getStaticProps, so `tickets` starts empty; without this flag the GA card
-  // would briefly render "Sold out" (no admission ticket yet) before the fetch
-  // lands. Seeded true if SSR ever provides initial tickets.
-  const [ticketsLoaded, setTicketsLoaded] = useState(initialTickets.length > 0)
-  const [error, setError] = useState<string | null>(null)
-  const [cart, setCart] = useState<CartItem[]>([])
-  const [checkoutLoading, setCheckoutLoading] = useState(false)
-  const [earlyAccess, setEarlyAccess] = useState<string | null>(null)
-  const [earlyAccessEmail, setEarlyAccessEmail] = useState<string | null>(null)
   const [redeemOpen, setRedeemOpen] = useState(false)
   // Deep link for voucher holders: /tickets/store/#redeem scrolls to the
   // voucher banner (its id) and opens the redeem modal straight away.
@@ -267,111 +193,9 @@ function StoreContent({
   }, [launched])
   const [verifyDiscountOpen, setVerifyDiscountOpen] = useState(false)
 
-  // "Parked": the x402 catalog is off (sales run through Pretix's hosted shop),
-  // so `/api/x402/tickets/` returns no tickets. In that mode we source the GA
-  // item + a fresh quota check straight from Pretix (`/api/tickets/ga-availability/`)
-  // so the store still shows the cart selector and a genuine sold-out. null = loading.
-  const parked = !TICKETING.pretix.x402ApiEnabled
-  const [gaInfo, setGaInfo] = useState<{ available: boolean; ticket: TicketInfo | null } | null>(null)
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const code = params.get('early-access')
-    if (code) {
-      setEarlyAccess(code)
-    }
-    const emailParam = params.get('email')
-    if (emailParam) {
-      setEarlyAccessEmail(emailParam)
-    }
-  }, [])
-
-  useEffect(() => {
-    async function fetchTickets() {
-      try {
-        const res = await fetch('/api/x402/tickets/')
-        const data = await res.json()
-        if (data.success) {
-          // `tickets` and `paymentInfo` are absent when the x402 catalog API
-          // is disabled (TICKETING.pretix.x402ApiEnabled=false) — the
-          // endpoint returns only `pluginSettings` then. Default to empty /
-          // null so this page renders the empty-state instead of crashing.
-          const rawTickets = data.data.tickets || []
-          const tix = TICKETING.overrides.soldOut
-            ? rawTickets.map((t: TicketInfo) => ({ ...t, available: false, availableCount: 0 }))
-            : rawTickets
-          setTickets(tix)
-        } else {
-          setError(data.error || 'Failed to load tickets')
-        }
-      } catch {
-        setError('Failed to load tickets')
-      } finally {
-        setTicketsLoaded(true)
-      }
-    }
-    fetchTickets()
-  }, [])
-
-  // Parked state: pull GA item + real availability from Pretix directly (not the
-  // disabled x402 catalog) so the cart selector and sold-out reflect reality.
-  useEffect(() => {
-    if (!parked) return
-    let cancelled = false
-    fetch('/api/tickets/ga-availability/')
-      .then(r => r.json())
-      .then(d => {
-        if (!cancelled) setGaInfo({ available: d?.available !== false, ticket: d?.ticket ?? null })
-      })
-      .catch(() => {
-        if (!cancelled) setGaInfo({ available: true, ticket: null }) // fail open
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [parked])
-
-  // Minimum quantity a buyer can select for a ticket once it's in the cart —
-  // the store seeds the cart with one ticket and never lets it drop below this.
-  const MIN_QTY = 1
-
-  // Clamp a desired quantity to [MIN_QTY, maxPerOrder]. `maxPerOrder` is the
-  // ticket's Pretix per-order cap; no upper bound when the item has no cap.
-  const clampQuantity = (ticket: TicketInfo, qty: number) =>
-    Math.max(MIN_QTY, ticket.maxPerOrder != null ? Math.min(qty, ticket.maxPerOrder) : qty)
-
-  const updateCartQuantity = (ticket: TicketInfo, delta: number) => {
-    setCart(prev => {
-      const existing = prev.find(c => c.ticketId === ticket.id)
-      if (existing) {
-        const newQty = clampQuantity(ticket, existing.quantity + delta)
-        return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
-      }
-      return [
-        ...prev,
-        { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: clampQuantity(ticket, delta) },
-      ]
-    })
-  }
-
-  const setCartQuantity = (ticket: TicketInfo, qty: number) => {
-    const newQty = clampQuantity(ticket, qty)
-    setCart(prev => {
-      const existing = prev.find(c => c.ticketId === ticket.id)
-      if (existing) {
-        return prev.map(c => (c.ticketId === ticket.id ? { ...c, quantity: newQty } : c))
-      }
-      return [...prev, { ticketId: ticket.id, name: ticket.name, price: ticket.price, quantity: newQty }]
-    })
-  }
-
-  const getQuantity = (ticketId: number) => cart.find(c => c.ticketId === ticketId)?.quantity || 0
-
-  // Hand the buyer off to the Pretix shop with the selected tickets already in
-  // their cart (the purchase happens on Pretix, not our custom checkout page).
-  // Same handoff for a single plain Pretix item (the Child (3-17) / Child
-  // (Under 3) cards): cart pre-filled with one of it when the item is
-  // provisioned for this environment, otherwise just the Pretix shop.
+  // Hand the buyer off to the Pretix shop with a single plain Pretix item (the
+  // Child (3-17) / Child (Under 3) cards) already in their cart when the item
+  // is provisioned for this environment, otherwise just the Pretix shop.
   const goToPretixItem = (itemId: number | null) => {
     if (itemId === null) {
       window.location.href = pretixEventUrl('/')
@@ -384,60 +208,6 @@ function StoreContent({
       window.location.href = pretixEventUrl('/')
     }
   }
-
-  const goToPretixCheckout = () => {
-    if (checkoutLoading) return
-    const items = cart.filter(c => c.quantity > 0).map(c => ({ id: c.ticketId, quantity: c.quantity }))
-    if (items.length === 0) return
-    setCheckoutLoading(true)
-    try {
-      addItemsToPretixCartAndRedirect(items)
-    } catch (err) {
-      // CORS block / network failure (e.g. the event's allowed widget domains
-      // don't include this origin). Fall back to the plain Pretix shop so the
-      // buyer can still purchase — just without the pre-filled cart.
-      console.error('Pretix cart handoff failed, falling back to shop:', err)
-      window.location.href = pretixEventUrl('/')
-    }
-  }
-
-  const forceSoldOut = TICKETING.overrides.soldOut
-  const requireEarlyAccess = TICKETING.self.requireEarlyAccess
-  const admissionTickets = tickets.filter(t => t.isAdmission && (forceSoldOut || t.available) && !t.requireVoucher)
-
-  // General Admission card — driven by the admission item pinned in ticketing
-  // config (`gaItemId`), falling back to the first available admission item
-  // when unset or not currently purchasable. Figma reference price applies
-  // when no admission ticket exists at all.
-  const catalogGaTicket = admissionTickets.find(t => t.id === TICKETING.pretix.gaItemId) ?? admissionTickets[0]
-  // In parked mode the x402 catalog is empty, so drive GA from the Pretix-direct
-  // info; otherwise use the x402 catalog ticket as before.
-  const gaTicket = parked ? gaInfo?.ticket ?? undefined : catalogGaTicket
-  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '999'
-  const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
-
-  // GA card state, unified across parked (Pretix-direct) and non-parked (x402
-  // catalog) modes. A manual force-sold-out (the `overrides.soldOut` config
-  // switch or a per-type discount sold-out) wins in BOTH modes and short-circuits
-  // the availability fetch; otherwise parked mode uses the REAL Pretix quota.
-  const gaForcedSoldOut = forceSoldOut || discountSoldOut('general-admission')
-  const gaLoading = gaForcedSoldOut ? false : parked ? gaInfo === null : !ticketsLoaded
-  const gaSoldOut =
-    gaForcedSoldOut || (parked ? gaInfo !== null && (!gaInfo.available || !gaTicket) : !gaTicket)
-
-  // Seed the cart with one GA ticket on first load so the buyer starts with a
-  // valid selection (quantity can't drop below MIN_QTY). Runs once, after the
-  // GA ticket resolves from SSR props or the client catalog fetch.
-  const seededRef = useRef(false)
-  useEffect(() => {
-    if (seededRef.current || !gaTicket || forceSoldOut) return
-    seededRef.current = true
-    setCart(prev =>
-      prev.length > 0
-        ? prev
-        : [{ ticketId: gaTicket.id, name: gaTicket.name, price: gaTicket.price, quantity: MIN_QTY }]
-    )
-  }, [gaTicket, forceSoldOut])
 
   return (
     <>
@@ -536,34 +306,6 @@ function StoreContent({
               </div>
 
               <div className={css['applications-grid']}>
-                <div className={css['application-card']}>
-                  <div className={css['application-card-body']}>
-                    <h3 className={css['application-card-title']}>India Resident 🇮🇳</h3>
-                    <p className={css['application-card-meta']}>ID required at check-in</p>
-                    <p className={css['application-card-description']}>
-                      Indian residents can apply using Self.xyz. Use your Aadhaar Card &amp; Zero-Knowledge Proofs to{' '}
-                      <strong>privately</strong> prove your Indian residency. No ID data leaves your device.
-                    </p>
-                  </div>
-                  <div className={css['application-card-footer']}>
-                    <CardPrice price="$149" />
-                    {!launched ? (
-                      <span className={css['opens-label']}>Opens July</span>
-                    ) : discountSoldOut('india-resident') ? (
-                      <span className={css['sold-out-badge']}>Sold out</span>
-                    ) : (
-                      <button
-                        type="button"
-                        className={css['verify-self-btn']}
-                        onClick={() => setSelfVerificationOpen(true)}
-                      >
-                        <SelfLogo className={css['self-logo']} aria-hidden="true" />
-                        Verify via Self
-                      </button>
-                    )}
-                  </div>
-                </div>
-
                 {COMMUNITY_PLACEHOLDERS.map(card => {
                   const cardSoldOut = discountSoldOut(card.type)
                   return (
@@ -662,128 +404,9 @@ function StoreContent({
 
               <p className={css['gst-note']}>Prices include 18% GST</p>
             </section>
-
-            {/* ─── Sale Waves ─── */}
-            <section className={css['section']} id="general-admission">
-              <div className={css['section-header']}>
-                <div className={css['section-title-row']}>
-                  <h3 className={css['section-title']}>Sale Waves</h3>
-                  {!mounted ? null : gaClosed && offer.active ? (
-                    <span className={css['open-badge']}>11% OFF</span>
-                  ) : gaClosed ? (
-                    <span className={css['opens-badge']}>{GA_CLOSED_LABEL}</span>
-                  ) : gaOpen && launched ? (
-                    <span className={css['open-badge']}>OPEN</span>
-                  ) : (
-                    <span className={css['opens-badge']}>Opens July</span>
-                  )}
-                </div>
-                <p className={css['section-subtitle']}>
-                  Final chance to get a General Admission ticket. Tickets are available until sold out.
-                </p>
-              </div>
-
-              {error && <p style={{ color: '#c00', marginBottom: '1rem' }}>{error}</p>}
-
-              <div className={css['card']}>
-                <div className={css['card-stacked']}>
-                  <div className={css['card-details']}>
-                    <h3 className={css['discount-card-title']}>General Admission 🎟️</h3>
-                    <p className={css['discount-card-meta']}>Anon-friendly</p>
-                    <p className={css['discount-card-desc']}>
-                      The original, anon-friendly Devcon ticket. Includes full conference access, swag bag, and catering
-                      all week.
-                    </p>
-                  </div>
-                  <div className={css['card-footer']}>
-                    <CardPrice price={`$${gaPrice}`} />
-                    {gaClosed && offer.active ? (
-                      // Ethereum-turns-11 promo: the voucher deep-link is the
-                      // purchase path while the regular sale is paused.
-                      <a href={offer.url} className={css['checkout-pill']}>
-                        <TicketPercent size={16} strokeWidth={2} />
-                        Redeem 11% off
-                      </a>
-                    ) : gaClosed ? (
-                      <span className={css['sold-out-badge']}>{GA_CLOSED_LABEL}</span>
-                    ) : !mounted || gaLoading ? (
-                      // Loader (not a label) pre-mount too: the launch gate
-                      // resolves client-side, so a label picked before mount
-                      // flashes stale text on every load.
-                      <Loader2 className={css['ga-loading']} size={24} aria-label="Loading availability" />
-                    ) : !gaOpen || !launched ? (
-                      <span className={css['opens-label']}>Opens July</span>
-                    ) : gaSoldOut || !gaTicket ? (
-                      <span className={css['sold-out-badge']}>Sold out</span>
-                    ) : (
-                      <div className={css['ga-actions']}>
-                        <div className={css['quantity']}>
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(gaTicket, -1)}
-                            disabled={gaQty <= 1}
-                            aria-label="Decrease quantity"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <Input
-                            type="number"
-                            className="w-11 h-9 border-x border-y-0 rounded-none text-center p-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [-moz-appearance:textfield]"
-                            value={gaQty}
-                            min={1}
-                            max={gaTicket.maxPerOrder ?? undefined}
-                            onChange={e => setCartQuantity(gaTicket, parseInt(e.target.value, 10) || 0)}
-                            aria-label="Quantity"
-                          />
-                          <button
-                            type="button"
-                            className={css['quantity-btn']}
-                            onClick={() => updateCartQuantity(gaTicket, 1)}
-                            disabled={gaTicket.maxPerOrder != null && gaQty >= gaTicket.maxPerOrder}
-                            aria-label="Increase quantity"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                        <button
-                          type="button"
-                          className={css['checkout-pill']}
-                          onClick={goToPretixCheckout}
-                          disabled={checkoutLoading}
-                        >
-                          {checkoutLoading ? 'Loading…' : 'Checkout'}
-                          <ArrowRight size={16} strokeWidth={2.5} />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Same redeem entry point as the Community banner, repeated here for GA buyers. */}
-              {launched && (
-                <div className={css['voucher-banner']}>
-                  <button type="button" className={css['voucher-banner-link']} onClick={() => setRedeemOpen(true)}>
-                    <span className={css['voucher-banner-prompt']}>Got a voucher?</span> Redeem it here
-                  </button>
-                </div>
-              )}
-
-              <p className={css['gst-note']}>Prices include 18% GST</p>
-            </section>
           </div>
         </div>
       </div>
-
-      <SelfVerificationModal
-        isOpen={selfVerificationOpen}
-        onClose={() => setSelfVerificationOpen(false)}
-        useStaging={useSelfStaging}
-        setUseStaging={setUseSelfStaging}
-        earlyAccess={requireEarlyAccess ? earlyAccess ?? undefined : undefined}
-        email={earlyAccessEmail ?? undefined}
-      />
 
       <RedeemVoucherModal isOpen={redeemOpen} onClose={() => setRedeemOpen(false)} />
 
@@ -792,21 +415,12 @@ function StoreContent({
   )
 }
 
-export default function TicketsStorePage({ initialTickets = [] }: { initialTickets?: TicketInfo[] }) {
-  const [selfVerificationOpen, setSelfVerificationOpen] = useState(false)
-  const [useSelfStaging, setUseSelfStaging] = useState(TICKETING.self.staging)
-
+export default function TicketsStorePage() {
   return (
     <Page theme={themes['tickets']} hideFooter darkHeader>
       <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
         <QueryClientProvider client={queryClient}>
-          <StoreContent
-            selfVerificationOpen={selfVerificationOpen}
-            setSelfVerificationOpen={setSelfVerificationOpen}
-            useSelfStaging={useSelfStaging}
-            setUseSelfStaging={setUseSelfStaging}
-            initialTickets={initialTickets}
-          />
+          <StoreContent />
         </QueryClientProvider>
       </WagmiProvider>
     </Page>
@@ -814,10 +428,9 @@ export default function TicketsStorePage({ initialTickets = [] }: { initialTicke
 }
 
 // NOTE: this page intentionally has NO getStaticProps/getServerSideProps. The
-// store imports the web3 stack (appkit-config -> wagmi -> viem) plus the Self
-// SDK; running a data method forces that whole module graph to execute in the
-// Netlify runtime function, which opens thousands of viem `_esm` files per
-// request and exhausts the Lambda's file-descriptor limit (EMFILE). Keeping the
-// page statically served means that graph only runs client-side. Tickets are
-// fetched client-side via `/api/x402/tickets/` in StoreContent. (Same fix
+// store imports the web3 stack (appkit-config -> wagmi -> viem); running a
+// data method forces that whole module graph to execute in the Netlify runtime
+// function, which opens thousands of viem `_esm` files per request and
+// exhausts the Lambda's file-descriptor limit (EMFILE). Keeping the page
+// statically served means that graph only runs client-side. (Same fix
 // previously applied to the order/checkout pages.)
