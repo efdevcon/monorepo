@@ -4,6 +4,7 @@
     "overview": "OVERVIEW",
     "discounts": "DISCOUNTS",
     "applications": "APPLICATIONS",
+    "general_admission": "GENERAL ADMISSION",
     "faq": "FAQ"
   },
   "sale_banner": {
@@ -23,7 +24,7 @@
   "overview": {
     "eyebrow": "OVERVIEW",
     "heading": "Get your Devcon ticket",
-    "subheading": "There are two ways to join us at Devcon India:",
+    "subheading": "There are three ways to join us at Devcon India:",
     "tag_open": "OPEN",
     "tag_coming": "COMING SOON",
     "learn_more": "Learn more",
@@ -37,17 +38,22 @@
         "title": "Applications",
         "subtitle": "REVIEW-BASED DISCOUNTS",
         "status": "open"
+      },
+      {
+        "title": "General Admission",
+        "subtitle": "DAILY PASSES",
+        "status": "open"
       }
     ]
   },
   "community_section": {
     "eyebrow": "SELF-CLAIMING DISCOUNTS",
     "heading": "Community",
-    "body_prefix": "For ",
-    "body_strong_1": "Ethereum Public Goods fundraisers",
-    "body_middle": " and ",
-    "body_strong_2": "core developers",
-    "body_suffix": ". Verify to self-claim the discount.",
+    "body_prefix": "A ",
+    "body_strong_1": "Daily India Pass",
+    "body_middle": " for one day of Devcon, plus self-claim discounts for ",
+    "body_strong_2": "Ethereum Public Goods fundraisers and core developers",
+    "body_suffix": ".",
     "subcopy_prefix": "No application required. Tickets are ",
     "subcopy_strong_1": "non-transferable",
     "subcopy_and": " and ",
@@ -58,6 +64,12 @@
     "pre_launch_status": "Opens July",
     "tap_label": "TAP TO LEARN MORE",
     "rows": [
+      {
+        "name": "Daily India Pass",
+        "price": "$39",
+        "action": "Get ticket",
+        "actionHref": "/en/tickets/store/#community"
+      },
       {
         "name": "Ethereum Public Goods",
         "price": "$349",
@@ -132,6 +144,25 @@
     ],
     "cta": "Learn more"
   },
+  "general_admission": {
+    "eyebrow": "DAILY PASSES",
+    "heading": "General Admission",
+    "body_strong": "Open to anyone.",
+    "body": " A Daily Pass grants access to a single day of Devcon, with lunch & swag included. Valid for entry from 4 November, and available until sold out.",
+    "subcopy_strong": "Up to 2 passes per order",
+    "subcopy": " — grab yours before they're gone.",
+    "cta": "Get tickets",
+    "card_title": "General Admission",
+    "card_subtitle": "incl. 18% GST",
+    "rows": [
+      {
+        "name": "Daily Pass",
+        "price": "$129",
+        "action": "Get tickets",
+        "actionHref": "/en/tickets/store/#general-admission"
+      }
+    ]
+  },
   "comparison": {
     "eyebrow": "DEVCON TICKETS",
     "heading": "Which ticket is right for you?",
@@ -149,17 +180,49 @@
     },
     "columns": [
       {
+        "id": "general_admission",
+        "status": "open",
+        "title": "General Admission",
+        "tab_label": "General",
+        "subtitle": "DAILY PASSES",
+        "price": "$129",
+        "price_note": "Per day",
+        "best_for": "Anyone — there's no eligibility criteria and we're anon-friendly.",
+        "included": [
+          {
+            "text": "Single-day conference access",
+            "icon": "check"
+          },
+          {
+            "text": "Lunch on the day",
+            "icon": "check"
+          },
+          {
+            "text": "Event swag",
+            "icon": "check"
+          }
+        ],
+        "how_it_works": [
+          "Valid for any one day from 4 November",
+          "Up to 2 passes per order",
+          "Available until sold out"
+        ],
+        "cta_label": "Get tickets",
+        "cta_href": "/tickets/store/#general-admission",
+        "cta_variant": "primary"
+      },
+      {
         "id": "community",
         "status": "coming",
         "title": "Community",
         "tab_label": "Community",
         "subtitle": "SELF-CLAIMING DISCOUNTS",
-        "price": "$349",
+        "price": "$39+",
         "price_note": "Based on eligibility",
-        "best_for": "People actively contributing to the Ethereum ecosystem — Public Goods fundraisers and core developers.",
+        "best_for": "Single-day India passes, plus discounts for people actively contributing to the Ethereum ecosystem — Public Goods fundraisers and core developers.",
         "included": [
           {
-            "text": "4-day conference access",
+            "text": "4-day access (1 day on the Daily India Pass)",
             "icon": "check"
           },
           {
@@ -172,7 +235,7 @@
           }
         ],
         "how_it_works": [
-          "Verify your eligibility based on criteria",
+          "Grab a Daily India Pass, or verify your eligibility",
           "Self-claim your discount code",
           "Purchase at a reduced price"
         ],
