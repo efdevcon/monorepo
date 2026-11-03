@@ -2,18 +2,17 @@
   "title": "टिकट",
   "nav": {
     "overview": "सारांश",
-    "general_admission": "जनरल एडमिशन",
     "discounts": "छूट",
     "applications": "आवेदन",
     "faq": "सामान्य प्रश्न"
   },
   "sale_banner": {
     "launch_eyebrow": "जनरल एडमिशन",
-    "heading": "जनरल एडमिशन टिकट बिक्री पर हैं!",
-    "subheading": "सीमित मात्रा • $499 ETH के माध्यम से • $999 फिएट के माध्यम से",
-    "price": "$499 ETH के माध्यम से",
-    "price_countdown": "$499 ETH के माध्यम से",
-    "price_note": "18% GST शामिल है",
+    "heading": "जनरल एडमिशन टिकट बिक्री पर!",
+    "subheading": "सीमित मात्रा",
+    "price": "$999",
+    "price_countdown": "$999",
+    "price_note": "18% जीएसटी शामिल है",
     "cta": "टिकट प्राप्त करें",
     "special_heading": "एथेरियम 11 साल का हुआ!",
     "special_subheading": "जनरल एडमिशन टिकट पर 11% की छूट के साथ जश्न मनाएं • ऑफर समाप्त {date}",
@@ -24,16 +23,11 @@
   "overview": {
     "eyebrow": "सारांश",
     "heading": "अपना डेवलकॉन टिकट प्राप्त करें",
-    "subheading": "डेवलकॉन इंडिया में हमारे साथ जुड़ने के तीन तरीके हैं:",
+    "subheading": "डेवलकॉन इंडिया में हमारे साथ जुड़ने के दो तरीके हैं:",
     "tag_open": "खुला",
     "tag_coming": "जल्द आ रहा है",
     "learn_more": "और जानें",
     "cards": [
-      {
-        "title": "जनरल एडमिशन",
-        "subtitle": "बिक्री चरण",
-        "status": "open"
-      },
       {
         "title": "समुदाय",
         "subtitle": "स्व-प्राप्त छूट",
@@ -46,58 +40,33 @@
       }
     ]
   },
-  "general_admission": {
-    "eyebrow": "बिक्री चरण",
-    "heading": "जनरल एडमिशन",
-    "body_strong": "किसी के लिए भी खुला।",
-    "body": " यह डेवलकॉन के लिए जनरल एडमिशन टिकट प्राप्त करने का अंतिम मौका है। अब कोई आगे की बिक्री नहीं होगी, और टिकट बिकने तक उपलब्ध हैं।",
-    "subcopy_strong": "अपना टिकट अभी सुरक्षित करें",
-    "subcopy": " इससे पहले कि वे समाप्त हो जाएं।",
-    "cta": "टिकट प्राप्त करें",
-    "card_title": "जनरल एडमिशन",
-    "card_subtitle": "18% GST सहित",
-    "tap_label": "अधिक जानने के लिए टैप करें"
-  },
   "community_section": {
     "eyebrow": "स्व-प्राप्त छूट",
     "heading": "समुदाय",
     "body_prefix": "के लिए ",
-    "body_strong_1": "भारतीय निवासी",
+    "body_strong_1": "एथेरियम पब्लिक गुड्स फंडरेज़र",
     "body_middle": " और ",
-    "body_strong_2": "सक्रिय इकोसिस्टम योगदानकर्ता",
-    "body_suffix": " — डेवलपर्स, प्रोटोकॉल सदस्य, पिछले प्रतिभागी। छूट स्व-प्राप्त करने के लिए सत्यापन करें।",
-    "subcopy_prefix": "कोई आवेदन आवश्यक नहीं। टिकट ",
-    "subcopy_strong_1": "स्थानांतरण योग्य नहीं",
+    "body_strong_2": "कोर डेवलपर्स",
+    "body_suffix": ". छूट स्व-प्राप्त करने के लिए सत्यापित करें।",
+    "subcopy_prefix": "आवेदन की आवश्यकता नहीं है। टिकट ",
+    "subcopy_strong_1": "हस्तांतरणीय नहीं",
     "subcopy_and": " और ",
     "subcopy_strong_2": "सीमित",
     "subcopy_suffix": " हैं।",
     "card_title": "समुदाय",
-    "card_subtitle": "18% GST सहित",
+    "card_subtitle": "18% जीएसटी सहित",
     "pre_launch_status": "जुलाई में खुलता है",
     "tap_label": "अधिक जानने के लिए टैप करें",
     "rows": [
       {
-        "name": "India Resident",
-        "ethPrice": "$149",
-        "fiatPrice": "$149",
+        "name": "एथेरियम पब्लिक गुड्स",
+        "price": "$349",
         "action": "शुरू करें",
         "actionHref": "/en/tickets/store/#community"
       },
       {
-        "name": "Ethereum Public Goods",
-        "ethPrice": "$349",
-        "action": "शुरू करें",
-        "actionHref": "/en/tickets/store/#community"
-      },
-      {
-        "name": "Past POAP Holders",
-        "ethPrice": "$449",
-        "action": "शुरू करें",
-        "actionHref": "/en/tickets/store/#community"
-      },
-      {
-        "name": "Core Devs",
-        "ethPrice": "FREE",
+        "name": "कोर डेव्स",
+        "price": "मुफ़्त",
         "action": "शुरू करें",
         "actionHref": "/en/tickets/store/#community"
       }
@@ -126,41 +95,37 @@
     "body_amp": " और ",
     "body_strong_2": "अंतरराष्ट्रीय छात्र",
     "body_middle": " और ",
-    "body_strong_3": "Sanctuary Tech Builders",
-    "body_suffix": " दुनिया भर से। आवेदन जितनी जल्दी हो सके समीक्षा किए जाते हैं, और टिकट बिकने तक उपलब्ध हैं।",
+    "body_strong_3": "सैंक्चुअरी टेक बिल्डर्स",
+    "body_suffix": " दुनिया भर से। आवेदन यथाशीघ्र समीक्षा किए जाते हैं, और टिकट बिकने तक उपलब्ध हैं।",
     "card_title": "आवेदन",
-    "card_subtitle": "18% GST सहित",
+    "card_subtitle": "18% जीएसटी सहित",
     "pre_launch_status": "जुलाई में खुलता है",
     "tap_label": "अधिक जानने के लिए टैप करें",
     "apply": "आवेदन करें",
     "rows": [
       {
-        "name": "Indian Students",
-        "ethPrice": "$25",
-        "fiatPrice": "$25",
+        "name": "भारतीय छात्र",
+        "price": "$25",
         "status": "open",
         "action": "आवेदन करें",
         "actionHref": "/form/student-application"
       },
       {
-        "name": "International Students",
-        "ethPrice": "$49",
-        "fiatPrice": "$99",
+        "name": "अंतरराष्ट्रीय छात्र",
+        "price": "$99",
         "status": "open",
         "action": "आवेदन करें",
         "actionHref": "/form/student-application"
       },
       {
-        "name": "Sanctuary Tech Builders",
-        "ethPrice": "$349",
-        "fiatPrice": "$499",
+        "name": "सैंक्चुअरी टेक बिल्डर्स",
+        "price": "$499",
         "action": "आवेदन करें",
         "actionHref": "/form/builder-application"
       },
       {
-        "name": "Youth Ticket (3-17)",
-        "ethPrice": "$19",
-        "fiatPrice": "$19",
+        "name": "युवा टिकट (3-17)",
+        "price": "$19",
         "action": "आवेदन करें",
         "actionHref": "/form/youth-ticket"
       }
@@ -170,11 +135,11 @@
   "comparison": {
     "eyebrow": "डेवलकॉन टिकट",
     "heading": "आपके लिए कौन सा टिकट सही है?",
-    "subheading": "टिकट प्रकारों की तुलना करें और डेवलकॉन के लिए अपना सर्वोत्तम मार्ग खोजें",
+    "subheading": "अपने लिए सबसे अच्छा रास्ता खोजने के लिए टिकट प्रकारों की तुलना करें",
     "labels": {
       "price": "मूल्य",
-      "price_note": "18% GST शामिल है",
-      "best_for": "सबसे उपयुक्त",
+      "price_note": "18% जीएसटी शामिल है",
+      "best_for": "के लिए सर्वश्रेष्ठ",
       "included": "शामिल",
       "how_it_works": "यह कैसे काम करता है",
       "join_devcon": "डेवलकॉन में शामिल हों",
@@ -184,53 +149,21 @@
     },
     "columns": [
       {
-        "id": "general_admission",
-        "status": "open",
-        "title": "जनरल एडमिशन",
-        "tab_label": "जनरल",
-        "subtitle": "बिक्री चरण",
-        "price": "$499+",
-        "price_note": "$499 ETH के माध्यम से • $999 फिएट के माध्यम से",
-        "best_for": "कोई भी — कोई पात्रता मानदंड नहीं है और हम गुमनाम-अनुकूल हैं।",
-        "included": [
-          {
-            "text": "4-दिन सम्मेलन प्रवेश",
-            "icon": "check"
-          },
-          {
-            "text": "पूरे सप्ताह खानपान",
-            "icon": "check"
-          },
-          {
-            "text": "इवेंट स्वैग",
-            "icon": "check"
-          }
-        ],
-        "how_it_works": [
-          "अंतिम बिक्री चरण, अभी खुला",
-          "निश्चित मात्रा, बिकने तक उपलब्ध",
-          "आगे कोई चरण नियोजित नहीं"
-        ],
-        "cta_label": "टिकट प्राप्त करें",
-        "cta_href": "/tickets/store",
-        "cta_variant": "primary"
-      },
-      {
         "id": "community",
         "status": "coming",
         "title": "समुदाय",
         "tab_label": "समुदाय",
         "subtitle": "स्व-प्राप्त छूट",
-        "price": "$149+",
+        "price": "$349",
         "price_note": "पात्रता के आधार पर",
-        "best_for": "भारतीय निवासी और वे लोग जो एथेरियम या OSS इकोसिस्टम में सक्रिय रूप से योगदान या भाग ले रहे हैं।",
+        "best_for": "एथेरियम इकोसिस्टम में सक्रिय रूप से योगदान देने वाले लोग — पब्लिक गुड्स फंडरेज़र और कोर डेवलपर्स।",
         "included": [
           {
             "text": "4-दिन सम्मेलन प्रवेश",
             "icon": "check"
           },
           {
-            "text": "पूरे सप्ताह खानपान",
+            "text": "पूरे सप्ताह कैटरिंग",
             "icon": "check"
           },
           {
@@ -239,7 +172,7 @@
           }
         ],
         "how_it_works": [
-          "मानदंड के आधार पर अपनी पात्रता सत्यापित करें",
+          "मानदंडों के आधार पर अपनी पात्रता सत्यापित करें",
           "अपना छूट कोड स्व-प्राप्त करें",
           "कम कीमत पर खरीदें"
         ],
@@ -255,14 +188,14 @@
         "subtitle": "समीक्षा-आधारित छूट",
         "price": "$25+",
         "price_note": "आवेदन प्रकार के आधार पर",
-        "best_for": "भारतीय और अंतरराष्ट्रीय छात्र और Sanctuary Tech Builders दुनिया भर से।",
+        "best_for": "भारतीय और अंतरराष्ट्रीय छात्र और सैंक्चुअरी टेक बिल्डर्स, दुनिया भर से।",
         "included": [
           {
             "text": "4-दिन सम्मेलन प्रवेश",
             "icon": "check"
           },
           {
-            "text": "पूरे सप्ताह खानपान",
+            "text": "पूरे सप्ताह कैटरिंग",
             "icon": "check"
           },
           {
@@ -273,7 +206,7 @@
         "how_it_works": [
           "अपना आवेदन जमा करें",
           "ईमेल द्वारा निर्णय की प्रतीक्षा करें",
-          "यदि स्वीकृत, खरीदने के लिए वाउचर प्राप्त करें"
+          "यदि स्वीकृत हो, तो खरीदने के लिए वाउचर प्राप्त करें"
         ],
         "cta_label": "और जानें",
         "cta_href": "/tickets/#applications",
@@ -285,6 +218,6 @@
   "faq_section": {
     "heading": "अक्सर पूछे जाने वाले प्रश्न",
     "image_label": "टिकट",
-    "view_all": "सभी FAQ देखें"
+    "view_all": "सभी सामान्य प्रश्न देखें"
   }
 }
