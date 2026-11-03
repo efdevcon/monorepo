@@ -3,7 +3,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useFeaturedWave, useTicketsCtaLabel } from 'hooks/useWaveStates'
+import { useTicketsCtaLabel } from 'hooks/useWaveStates'
 import { ctaPrimary } from 'components/common/cta'
 import {
   sectionX,
@@ -31,15 +31,6 @@ export const JoinTheEvent = () => {
   const t = useTranslations('home.join_event')
   const cards = t.raw('cards') as Array<{ title: string; body: string; image_alt: string }>
   const { label: ctaLabel } = useTicketsCtaLabel()
-  const { featured } = useFeaturedWave()
-  // CTA eyebrow: during the live sale it reads "General Admission available now!";
-  // before launch it names the upcoming wave, else the generic join prompt.
-  const ctaEyebrow =
-    featured?.status === 'live'
-      ? t('tickets_launch_eyebrow_live')
-      : featured
-      ? `${featured.wave.name} tickets`
-      : t('tickets_launch_eyebrow')
 
   return (
     <div
@@ -104,9 +95,8 @@ export const JoinTheEvent = () => {
           ))}
         </RevealGroup>
 
-        {/* Ticket sale CTA — wave-driven eyebrow + label */}
+        {/* Ticket sale CTA — wave-driven label */}
         <Reveal className="flex flex-col items-center gap-[16px]">
-          <p className={`${eyebrow} text-center`}>{ctaEyebrow}</p>
           <NextLink href="/tickets" className={`w-full md:w-auto ${ctaPrimary}`}>
             {ctaLabel}
             <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
