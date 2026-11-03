@@ -21,7 +21,7 @@ import { useInboxUnreadCount } from "@/data/announcements/useInboxUnread";
 // The strip's नमस्त entry was a truncated duplicate of नमस्ते (same
 // pronunciation, missing matra) — dropped after review.
 const GREETINGS = [
-  { text: "नमस्कार", pron: "(na-muh-skaa)" },
+  { text: "नमस्कार", pron: "(nuh-mus-kar)" },
   { text: "नमस्ते", pron: "(na-ma-stay)" },
   { text: "Hello", pron: "(heh-low)" },
 ];
