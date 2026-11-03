@@ -313,8 +313,10 @@ function parseCsv(file: string): Map<string, string> {
   console.log(`  target: ${bySource.size} sessions already synced\n`)
 
   const wipId = (await api('GET', 'schedules/?page_size=50')).results.find((x: any) => x.version === 'wip')?.id
+  // Every released schedule keeps its own copy of a session's slot (over a hundred
+  // by the event), so read every page: the WIP copy is rarely on the first one.
   const wipSlots = async (code: string) =>
-    ((await api('GET', `slots/?submission=${code}&page_size=50`)).results ?? []).filter((x: any) => x.schedule === wipId).sort((a: any, b: any) => a.id - b.id)
+    (await all(`slots/?submission=${code}`)).filter((x: any) => x.schedule === wipId).sort((a: any, b: any) => a.id - b.id)
   const emails = EMAILS_FILE ? parseCsv(EMAILS_FILE) : new Map<string, string>()
   const [mailbox, mailDomain] = PLACEHOLDER_MAILBOX.split('@')
   const placeholderEmail = (code: string) => `${mailbox}+${map.sourceKey.split('/').pop()}-${code}@${mailDomain}`.toLowerCase()
