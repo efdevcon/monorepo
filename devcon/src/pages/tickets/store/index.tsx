@@ -101,7 +101,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     meta: `Single-day access, up to ${TICKETING.pretix.dailyIndiaPassMaxPerOrder} passes per order`,
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
-    price: '$39',
+    price: '$35',
     buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
     maxPerOrder: TICKETING.pretix.dailyIndiaPassMaxPerOrder,
