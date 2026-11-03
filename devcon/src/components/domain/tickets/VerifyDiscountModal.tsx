@@ -6,7 +6,6 @@ import { SiweMessage } from 'siwe'
 import { getAddress } from 'viem'
 import { appKit } from 'context/appkit-config'
 import { pretixEventUrl, discountSoldOut } from 'config/ticketing'
-import { EthGlyphTile } from 'components/domain/tickets/TicketTable'
 import css from './VerifyDiscountModal.module.scss'
 
 type VerifyDiscountModalProps = {
@@ -58,17 +57,9 @@ const DISCOUNTS: {
 ]
 
 // Price display per the Figma popup states (nodes 4707:16809/16982/17623):
-// plain bold FREE with no chip, or the store-card green ETH chip for dollar
-// prices — label sits left, price right.
-const DiscountPrice = ({ value }: { value: string }) =>
-  value === 'FREE' ? (
-    <strong className={css['priceFree']}>FREE</strong>
-  ) : (
-    <span className={css['pricePill']}>
-      <EthGlyphTile size={16} />
-      {value}
-    </span>
-  )
+// plain bold FREE or dollar price — label sits left, price right. (The green
+// ETH chip is gone along with ETH pricing.)
+const DiscountPrice = ({ value }: { value: string }) => <strong className={css['priceFree']}>{value}</strong>
 
 type Step = 'prompt' | 'checking' | 'results' | 'error'
 

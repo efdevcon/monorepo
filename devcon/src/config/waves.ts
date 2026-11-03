@@ -10,16 +10,9 @@ export interface TicketWave {
   id: string
   // Display name shown in the General Admission table.
   name: string
-  // Legacy single-price fallback used when ethPrice is not set. Kept for
-  // backwards compat with the countdown banner and older row rendering
-  // paths that only know about one price field.
+  // Price shown on the wave's row in the /tickets table, the comparison
+  // column and the countdown banner (e.g. "$999").
   price: string
-  // ETH-side price for the wave's row (green chip on the /tickets landing).
-  // Falls back to `price` when unset.
-  ethPrice?: string
-  // Fiat-side price for the wave's row. When unset, the fiat cell in the
-  // /tickets table renders empty (i.e. ETH-only for that wave).
-  fiatPrice?: string
   // When this wave opens. Multiple times = multiple opening windows on the
   // same wave (e.g. 02:00 UTC + 16:00 UTC to span timezones). Omit if the
   // exact time isn't set yet — falls back to `openLabel`.
@@ -44,7 +37,7 @@ export interface TicketWave {
   // each wave; re-wire `useWaveStates` to `useTicketAvailabilityMap` to restore
   // automatic sold-out detection.
   quotaId?: number
-  // Renders the row de-emphasized (muted purple name + ETH price, no
+  // Renders the row de-emphasized (muted purple name + price, no
   // strikethrough) — used for the Final Waves future/TBA tier per Figma.
   dimmed?: boolean
 }
@@ -134,32 +127,18 @@ export const SPECIAL_OFFER = {
 }
 
 export const TICKET_WAVES: TicketWave[] = [
+  // The ETH Early Bird wave (May 2026, $349, ETH-only) used to sit here as a
+  // struck-through "Sale ended" audit row. Removed along with every other ETH
+  // price mention on the site: the dual ETH/fiat pricing no longer exists and
+  // was confusing buyers looking for an ETH price that isn't on sale.
   {
-    id: 'eth-early-bird',
-    name: 'ETH Early Bird',
-    price: '$349',
-    // Two windows on the same day to span global timezones:
-    //   02:00 UTC → 07:30 IST / 22:00 PT (previous day) — Asia-friendly window
-    //   16:00 UTC → 21:30 IST / 09:00 PT — Americas-friendly window
-    openTimes: [new Date(Date.UTC(2026, 4, 20, 16, 0, 0))],
-    description: 'Includes 18% GST • Limited quantity • Purchase using ETH (L1)',
-    bannerBullets: ['Limited quantity', 'Purchase using ETH (L1)'],
-    action: 'Get tickets',
-    actionHref: '/tickets/store',
-    quotaId: 8,
-  },
-  {
-    // General Admission — the standard sale wave. Distinct from
-    // ETH Early Bird (the crypto early-bird phase above). Dual-priced: $499 ETH /
-    // $999 fiat matches the Figma design. Opens after ETH Early Bird
-    // closes; the action stays visible as "Get tickets" so buyers can
-    // land on the storefront and see availability even before this
-    // wave technically opens (the store page handles the actual gating).
+    // General Admission — the standard sale wave, one price regardless of
+    // payment method. The action stays visible as "Get tickets" so buyers can
+    // land on the storefront and see availability even before this wave
+    // technically opens (the store page handles the actual gating).
     id: 'wave-ga',
     name: 'General Admission',
-    price: '$499',
-    ethPrice: '$499',
-    fiatPrice: '$999',
+    price: '$999',
     // Global ticket launch — 14 July 2026, 16:00 UTC. Drives the entire
     // before/during split on /tickets: the top banner flips from the
     // "GLOBAL TICKET LAUNCH 14 JULY" countdown to the "General Admission
@@ -168,8 +147,8 @@ export const TICKET_WAVES: TicketWave[] = [
     // launched view at /tickets?mockNow=launch (or any mockNow past this
     // time). Adjust the hour here if the announced opening time changes.
     openTimes: [GLOBAL_LAUNCH_TIME],
-    description: 'Limited quantity • $499 via ETH • $999 via Fiat',
-    bannerBullets: ['Limited quantity', '$499 via ETH • $999 via Fiat'],
+    description: 'Limited quantity',
+    bannerBullets: ['Limited quantity'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
     // No `quotaId` yet — the operator can set it once the corresponding

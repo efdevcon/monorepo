@@ -26,57 +26,11 @@ import css from './store.module.scss'
 
 // Strip trailing .00 from round prices (e.g. "99.00" → "99", "99.50" → "99.50")
 const fmtPrice = (p: string) => p.replace(/\.00$/, '')
-import { EthGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
 
-/*
- * Price displays per the store Figma (node 4650:6814):
- *   – ETH-payable price → green chip (harit/100) with the ETH tile
- *   – fiat price        → dark $ tile + muted bold price, no chip bg
- *   – same price via either method → both tiles side by side + one price
- */
-const EthPriceChip = ({ price }: { price: string }) => (
-  <span className="inline-flex items-center gap-1.5 rounded bg-[#d5f4dd] px-1.5 py-1">
-    <EthGlyphTile size={20} />
-    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
-  </span>
-)
-
-const FiatPriceTag = ({ price }: { price: string }) => (
-  <span className="inline-flex items-center gap-1.5">
-    <FiatGlyphTile size={20} />
-    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#594d73]">{price}</span>
-  </span>
-)
-
-const CombinedPriceTag = ({ price }: { price: string }) => (
-  <span className="inline-flex items-center gap-2">
-    <span className="inline-flex items-center gap-1">
-      <EthGlyphTile size={20} />
-      <FiatGlyphTile size={20} />
-    </span>
-    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
-  </span>
-)
-
-// Renders the right chip combination for a card's pricing shape. The green
-// chip only appears when BOTH payment methods exist (it highlights the
-// cheaper ETH option); ETH-only tickets render the bare tile + price.
-const CardPrice = ({ eth, fiat, combined }: { eth?: string; fiat?: string; combined?: string }) => (
-  <span className="inline-flex items-center gap-4">
-    {combined ? (
-      <CombinedPriceTag price={combined} />
-    ) : eth && !fiat ? (
-      <span className="inline-flex items-center gap-2">
-        <EthGlyphTile size={20} />
-        <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{eth}</span>
-      </span>
-    ) : (
-      <>
-        {eth && <EthPriceChip price={eth} />}
-        {fiat && <FiatPriceTag price={fiat} />}
-      </>
-    )}
-  </span>
+// Single price figure on a store card — one price regardless of payment
+// method (the ETH / fiat split and its chips are gone).
+const CardPrice = ({ price }: { price: string }) => (
+  <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
 )
 import { TicketInfo } from 'types/pretix'
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
@@ -104,13 +58,10 @@ interface CartItem {
   quantity: number
 }
 
-// Pricing shape shared by store cards: `combined` = one price payable via
-// either ETH or fiat (both tiles, single figure); otherwise `eth`/`fiat`
-// render as separate chip + tag; `free` renders plain bold "FREE".
+// Pricing shape shared by store cards: `price` renders as a single bold
+// figure; `free` renders plain bold "FREE".
 type CardPricing = {
-  eth?: string
-  fiat?: string
-  combined?: string
+  price?: string
   free?: boolean
 }
 
@@ -134,7 +85,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     title: 'Ethereum Public Goods',
     meta: 'Active fundraisers',
     description: 'This discount is reserved for those who are fundraising for Public Goods projects.',
-    eth: '$349',
+    price: '$349',
     buttonLabel: 'Verify',
   },
   {
@@ -142,7 +93,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     title: 'Past POAP Holders',
     meta: 'Devcon/nect POAPs',
     description: 'This ticket is reserved for those who collected a POAP at any past Devcon/nect event.',
-    eth: '$449',
+    price: '$449',
     buttonLabel: 'Verify',
   },
   {
@@ -175,7 +126,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
-    combined: '$25',
+    price: '$25',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
@@ -185,8 +136,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
-    eth: '$49',
-    fiat: '$99',
+    price: '$99',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
@@ -196,8 +146,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'Contribution-based',
     description:
       'For developers, designers and everyone building the open, privacy-preserving, decentralized technologies that keeps the internet free and self-sovereign.',
-    eth: '$349',
-    fiat: '$499',
+    price: '$499',
     buttonLabel: 'Apply now',
     href: '/form/builder-application',
   },
@@ -207,7 +156,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     title: 'Solo Youth Ticket (16-17) 🌱',
     meta: 'Consent form submission & ID/proof required at check-in',
     description: 'For attendees 16-17 attending alone. Anyone under 16 must be accompanied by a parent/guardian.',
-    combined: '$19',
+    price: '$19',
     buttonLabel: 'Apply now',
     href: '/form/youth-ticket',
   },
@@ -218,7 +167,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     title: 'Child (3-17) with Adult',
     meta: 'Adults must hold their own Devcon ticket to enter',
     description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
-    combined: '$19',
+    price: '$19',
     buttonLabel: 'Get ticket',
     pretixItemId: TICKETING.pretix.childWithAdultItemId,
   },
@@ -464,9 +413,7 @@ function StoreContent({
   // In parked mode the x402 catalog is empty, so drive GA from the Pretix-direct
   // info; otherwise use the x402 catalog ticket as before.
   const gaTicket = parked ? gaInfo?.ticket ?? undefined : catalogGaTicket
-  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '499'
-  const gaOriginal =
-    gaTicket?.originalPrice && gaTicket.originalPrice !== gaTicket.price ? fmtPrice(gaTicket.originalPrice) : '999'
+  const gaPrice = gaTicket ? fmtPrice(gaTicket.price) : '999'
   const gaQty = gaTicket ? getQuantity(gaTicket.id) : 0
 
   // GA card state, unified across parked (Pretix-direct) and non-parked (x402
@@ -599,7 +546,7 @@ function StoreContent({
                     </p>
                   </div>
                   <div className={css['application-card-footer']}>
-                    <CardPrice combined="$149" />
+                    <CardPrice price="$149" />
                     {!launched ? (
                       <span className={css['opens-label']}>Opens July</span>
                     ) : discountSoldOut('india-resident') ? (
@@ -630,7 +577,7 @@ function StoreContent({
                         {card.free ? (
                           <span className={css['application-price']}>FREE</span>
                         ) : (
-                          <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
+                          <CardPrice price={card.price ?? ''} />
                         )}
                         {!launched ? (
                           <span className={css['opens-label']}>Opens July</span>
@@ -685,7 +632,7 @@ function StoreContent({
                       {card.free ? (
                         <span className={css['application-price']}>FREE</span>
                       ) : (
-                        <CardPrice eth={card.eth} fiat={card.fiat} combined={card.combined} />
+                        <CardPrice price={card.price ?? ''} />
                       )}
                       {/* Sanctuary Tech Builders applications open at the
                           global launch; student applications are already
@@ -749,10 +696,7 @@ function StoreContent({
                     </p>
                   </div>
                   <div className={css['card-footer']}>
-                    {/* Per Figma: ETH-payable price in the green chip, fiat
-                        price alongside — two payment options, not a discount
-                        strikethrough. */}
-                    <CardPrice eth={`$${gaPrice}`} fiat={gaOriginal !== gaPrice ? `$${gaOriginal}` : undefined} />
+                    <CardPrice price={`$${gaPrice}`} />
                     {gaClosed && offer.active ? (
                       // Ethereum-turns-11 promo: the voucher deep-link is the
                       // purchase path while the regular sale is paused.

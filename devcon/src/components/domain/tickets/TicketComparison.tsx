@@ -262,7 +262,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
 
   // Inject live wave state into the General Admission column so the price /
   // status / CTA always reflect the currently-featured wave instead of the
-  // static eth-early-bird snapshot baked into translations.
+  // static snapshot baked into translations.
   const columns: Column[] = rawColumns.map(col => {
     // Community self-claiming discounts open at the global ticket launch:
     // "OPENS JUL 14" before (same treatment as General Admission), OPEN
@@ -284,8 +284,6 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
     // paused wave is now the featured one.
     const paused = waveStates.find(s => s.paused)
     if (paused) {
-      const ethPrice = paused.wave.ethPrice ?? paused.wave.price
-      const fiatPrice = paused.wave.fiatPrice
       // Special voucher promo: GA is purchasable via the voucher while the
       // regular sale is paused — show the store CTA like the live state (the
       // status tag reads "11% OFF" via GeneralAdmissionStatusTag; the store's
@@ -298,9 +296,9 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
         ...col,
         status: 'coming',
         coming_label: paused.pausedLabel?.toUpperCase(),
-        price: `${ethPrice}+`,
+        price: paused.wave.price,
         price_original: undefined,
-        price_note: fiatPrice ? `${ethPrice} via ETH • ${fiatPrice} via Fiat` : paused.wave.name,
+        price_note: paused.wave.description ?? paused.wave.name,
         price_description: undefined,
         ...offerProps,
       }
@@ -317,18 +315,15 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
       }
     }
     const isLive = featured.status === 'live'
-    // Per Figma the GA price cell reads "$499+" with a sublabel breaking
-    // down the ETH vs Fiat cost ("$499 via ETH • $999 via Fiat"), derived
-    // from the featured wave so the comparison always tracks the current
-    // sale wave. The "+" signals later waves open at a higher price.
-    const ethPrice = featured.wave.ethPrice ?? featured.wave.price
-    const fiatPrice = featured.wave.fiatPrice
+    // The GA price cell shows the featured wave's single price with the wave
+    // description ("Limited quantity") as its sublabel, so the comparison
+    // always tracks the current sale wave.
     return {
       ...col,
       status: isLive ? 'open' : 'coming',
-      price: `${ethPrice}+`,
+      price: featured.wave.price,
       price_original: undefined,
-      price_note: fiatPrice ? `${ethPrice} via ETH • ${fiatPrice} via Fiat` : featured.wave.name,
+      price_note: featured.wave.description ?? featured.wave.name,
       price_description: undefined,
       cta_label: isLive ? 'Get tickets' : 'View tickets',
       cta_href: storeUrl,

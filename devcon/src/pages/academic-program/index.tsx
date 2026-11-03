@@ -86,30 +86,26 @@ export default function AcademicProgramPage() {
   const APPLICATION_ROWS: TicketRow[] = [
     {
       name: t('other_support.rows.0.name'),
-      ethPrice: '$25',
-      fiatPrice: '$25',
+      price: '$25',
       action: 'Apply',
       actionHref: '/form/student-application',
     },
     {
       name: t('other_support.rows.1.name'),
-      ethPrice: '$49',
-      fiatPrice: '$99',
+      price: '$99',
       action: 'Apply',
       actionHref: '/form/student-application',
     },
     launched
       ? {
           name: t('other_support.rows.2.name'),
-          ethPrice: '$349',
-          fiatPrice: '$499',
+          price: '$499',
           action: 'Apply',
           actionHref: '/form/builder-application',
         }
       : {
           name: t('other_support.rows.2.name'),
-          ethPrice: '$349',
-          fiatPrice: '$499',
+          price: '$499',
           date: t('other_support.builders_date'),
         },
   ]
