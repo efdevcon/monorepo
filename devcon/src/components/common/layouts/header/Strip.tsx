@@ -8,7 +8,7 @@ import { EVENT_APP_ORIGIN } from 'config/eventApp'
 // 5240:69535 mobile): the schedule is live in the Devcon app. Static copy, no
 // wave state, and shown on every page — /tickets included — so the ticketing
 // strip's route guard is gone with it. The whole bar is one link to the app;
-// "Devcon Web App" in the message is purple-200 (#c4aaf7). Keep id="strip":
+// "Devcon App" in the message is purple-200 (#c4aaf7). Keep id="strip":
 // the header, hero and mobile foldout measure it for their offsets. px
 // literals throughout: the root font-size drops to 14px ≤1024 (index.scss),
 // which shrinks rem utilities. min-h 32 + 8px padding keeps the bar at Figma's
