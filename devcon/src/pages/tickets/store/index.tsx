@@ -98,7 +98,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     // Copy mirrors the live Pretix product (item 53 on tickets.devcon.org).
     type: 'daily-india-pass',
     title: 'Daily India Pass 🇮🇳',
-    meta: `Single-day access, up to ${TICKETING.pretix.dailyIndiaPassMaxPerOrder} passes per order`,
+    meta: `Single-day access, up to ${TICKETING.pretix.dailyIndiaPassMaxPerOrder} passes per order • ID required at check-in`,
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
     price: '$35',
