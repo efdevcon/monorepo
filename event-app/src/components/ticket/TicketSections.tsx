@@ -3,8 +3,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import cn from "classnames";
 import { Gift, RefreshCw } from "lucide-react";
-import { SWAG_STATION_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
-import { useRouter } from "@/routing";
 import type { Order, Ticket } from "@/data/tickets/types";
 import { ticketOrdinals } from "@/data/tickets/primary";
 import { EventTicketCard } from "./EventTicketCard";
@@ -119,7 +117,6 @@ export function TicketSections({
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
   const { user } = useUser();
-  const router = useRouter();
 
   // The popup is opened with a snapshot; read its scanned state from the
   // current tickets instead (by QR, which is deterministic per secret), so a
@@ -317,10 +314,10 @@ export function TicketSections({
     <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
   );
 
-  // The Swag section always shows: with nothing on the order it explains
-  // what would appear here instead of leaving the shelf's column empty
-  // beside the ticket (Scott, 2026-11-03). Same recipe as the schedule's
-  // and speakers' empty states (lavender disc, 20px heading, muted line).
+  // The Swag section always shows: with nothing on the order it says why
+  // instead of leaving the shelf's column empty beside the ticket (Scott,
+  // 2026-11-03). Same recipe as the schedule's and speakers' empty states
+  // (lavender disc, 20px heading, muted line).
   const swagSection = (
     <section
       className={cn(
@@ -341,17 +338,13 @@ export function TicketSections({
           </span>
           <div className="flex flex-col gap-1">
             <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
-              No swag yet
+              No swag with this ticket
             </p>
+            {/* Swag is only added during ticket checkout (Scott, 2026-11-03):
+                no store link, nothing to collect. */}
             <p className="text-[16px] leading-6 text-dc-muted">
-              Swag on your order shows up here, with a QR code to collect it at the Swag Station.{" "}
-              <button
-                type="button"
-                onClick={() => router.push(SWAG_STATION_MAP_HREF)}
-                className="cursor-pointer font-bold text-dc-purple"
-              >
-                Find it on the map
-              </button>
+              Swag is added during ticket checkout and can&rsquo;t be bought separately. Items on
+              your order show up here with a QR code to collect at the Swag Station.
             </p>
           </div>
         </div>
