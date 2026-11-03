@@ -147,7 +147,7 @@ export const TICKET_WAVES: TicketWave[] = [
     // launched view at /tickets?mockNow=launch (or any mockNow past this
     // time). Adjust the hour here if the announced opening time changes.
     openTimes: [GLOBAL_LAUNCH_TIME],
-    description: 'Limited quantity',
+    description: 'Final chance to buy',
     bannerBullets: ['Limited quantity'],
     action: 'Get tickets',
     actionHref: '/tickets/store',
