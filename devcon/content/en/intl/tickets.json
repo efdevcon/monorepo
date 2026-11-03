@@ -2,7 +2,6 @@
   "title": "Tickets",
   "nav": {
     "overview": "OVERVIEW",
-    "general_admission": "GENERAL ADMISSION",
     "discounts": "DISCOUNTS",
     "applications": "APPLICATIONS",
     "faq": "FAQ"
@@ -24,16 +23,11 @@
   "overview": {
     "eyebrow": "OVERVIEW",
     "heading": "Get your Devcon ticket",
-    "subheading": "There are three ways to join us at Devcon India:",
+    "subheading": "There are two ways to join us at Devcon India:",
     "tag_open": "OPEN",
     "tag_coming": "COMING SOON",
     "learn_more": "Learn more",
     "cards": [
-      {
-        "title": "General Admission",
-        "subtitle": "SALE WAVES",
-        "status": "open"
-      },
       {
         "title": "Community",
         "subtitle": "SELF-CLAIMING DISCOUNTS",
@@ -46,26 +40,14 @@
       }
     ]
   },
-  "general_admission": {
-    "eyebrow": "SALE WAVES",
-    "heading": "General Admission",
-    "body_strong": "Open to anyone.",
-    "body": " This is the final chance to get a General Admission ticket for Devcon. There are no further sale waves, and tickets are available until sold out.",
-    "subcopy_strong": "Secure your ticket now",
-    "subcopy": " before they're gone.",
-    "cta": "Get tickets",
-    "card_title": "General Admission",
-    "card_subtitle": "incl. 18% GST",
-    "tap_label": "TAP TO LEARN MORE"
-  },
   "community_section": {
     "eyebrow": "SELF-CLAIMING DISCOUNTS",
     "heading": "Community",
     "body_prefix": "For ",
-    "body_strong_1": "Indian residents",
+    "body_strong_1": "Ethereum Public Goods fundraisers",
     "body_middle": " and ",
-    "body_strong_2": "active ecosystem contributors",
-    "body_suffix": " — developers, protocol members, past participants. Verify to self-claim the discount.",
+    "body_strong_2": "core developers",
+    "body_suffix": ". Verify to self-claim the discount.",
     "subcopy_prefix": "No application required. Tickets are ",
     "subcopy_strong_1": "non-transferable",
     "subcopy_and": " and ",
@@ -77,20 +59,8 @@
     "tap_label": "TAP TO LEARN MORE",
     "rows": [
       {
-        "name": "India Resident",
-        "price": "$149",
-        "action": "Get started",
-        "actionHref": "/en/tickets/store/#community"
-      },
-      {
         "name": "Ethereum Public Goods",
         "price": "$349",
-        "action": "Get started",
-        "actionHref": "/en/tickets/store/#community"
-      },
-      {
-        "name": "Past POAP Holders",
-        "price": "$449",
         "action": "Get started",
         "actionHref": "/en/tickets/store/#community"
       },
@@ -179,46 +149,14 @@
     },
     "columns": [
       {
-        "id": "general_admission",
-        "status": "open",
-        "title": "General Admission",
-        "tab_label": "General",
-        "subtitle": "SALE WAVES",
-        "price": "$999",
-        "price_note": "Final chance to buy",
-        "best_for": "Anyone — there's no eligibility criteria and we're anon-friendly.",
-        "included": [
-          {
-            "text": "4-day conference access",
-            "icon": "check"
-          },
-          {
-            "text": "Catering all week",
-            "icon": "check"
-          },
-          {
-            "text": "Event swag",
-            "icon": "check"
-          }
-        ],
-        "how_it_works": [
-          "Final sale wave, open now",
-          "Fixed quantity, available until sold out",
-          "No further waves planned"
-        ],
-        "cta_label": "Get tickets",
-        "cta_href": "/tickets/store",
-        "cta_variant": "primary"
-      },
-      {
         "id": "community",
         "status": "coming",
         "title": "Community",
         "tab_label": "Community",
         "subtitle": "SELF-CLAIMING DISCOUNTS",
-        "price": "$149+",
+        "price": "$349",
         "price_note": "Based on eligibility",
-        "best_for": "Indian residents and people actively contributing to or participating in Ethereum or OSS ecosystems.",
+        "best_for": "People actively contributing to the Ethereum ecosystem — Public Goods fundraisers and core developers.",
         "included": [
           {
             "text": "4-day conference access",

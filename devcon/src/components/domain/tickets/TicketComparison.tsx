@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'components/common/link'
 import { useTranslations } from 'next-intl'
 import { CircleCheckBig, Asterisk, ArrowRight } from 'lucide-react'
-import { useFeaturedWave, useWaveStates, useIsLaunched, useTicketsStoreUrl, useSpecialOffer } from 'hooks/useWaveStates'
+import { useIsLaunched } from 'hooks/useWaveStates'
 import { ctaPrimary, ctaSecondary } from 'components/common/cta'
 import { sectionHeading, bodyCopy, eyebrow as eyebrowStyle } from 'components/common/styles'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
@@ -36,7 +36,7 @@ interface Column {
   // labels.tag_coming ("COMING SOON") when unset.
   coming_label?: string
   // When true the JOIN DEVCON row renders no CTA for this column — used for
-  // GA / Community before the global launch, when there's nothing to buy yet.
+  // Community before the global launch, when there's nothing to buy yet.
   hide_cta?: boolean
 }
 
@@ -64,47 +64,6 @@ const UPCOMING_MONTH_FORMATTER = new Intl.DateTimeFormat('en', {
   month: 'long',
   timeZone: 'UTC',
 })
-
-// Tag for the General Admission column that mirrors the overview card's
-// GeneralAdmissionTag: green "OPEN" when live, gray "OPENS [date]" while
-// counting down, gray pill with the static `openLabel` for an upcoming TBD
-// wave, gray "CLOSED" otherwise. Same dimensions as StatusTag so the column
-// header height stays consistent.
-const GeneralAdmissionStatusTag = () => {
-  const { featured, mounted } = useFeaturedWave()
-  const waveStates = useWaveStates()
-  const offer = useSpecialOffer()
-
-  // Renders through the same StatusTag as the other columns so all tags
-  // share identical typography — only the label varies.
-  if (!mounted) {
-    return <StatusTag status="coming" openLabel="" comingLabel={' '} />
-  }
-  // Special voucher promo: GA is purchasable via the voucher, so the tag goes
-  // green instead of the contradictory gray "REOPENS …" label.
-  if (offer.active) {
-    return <StatusTag status="open" openLabel="11% OFF" comingLabel="" />
-  }
-  if (featured?.status === 'live') {
-    return <StatusTag status="open" openLabel="OPEN" comingLabel="" />
-  }
-
-  let label = 'CLOSED'
-  const paused = waveStates.find(s => s.paused)
-  if (featured?.status === 'countdown' && featured.upcoming) {
-    label = `OPENS ${UPCOMING_MONTH_FORMATTER.format(featured.upcoming).toUpperCase()}`
-  } else if (paused?.pausedLabel) {
-    // GA sale paused (coming-soon / closed) — show its label ("REOPENS AUG" / "SOLD OUT").
-    label = paused.pausedLabel.toUpperCase()
-  } else {
-    // Fall back to the first upcoming wave with a static `openLabel`, so a
-    // wave configured as "Opens June" (TBD without exact openTimes yet)
-    // reads as upcoming rather than CLOSED.
-    const upcomingTbd = waveStates.find(s => s.status === 'tbd' && s.wave.openLabel)
-    if (upcomingTbd?.wave.openLabel) label = upcomingTbd.wave.openLabel.toUpperCase()
-  }
-  return <StatusTag status="coming" openLabel="" comingLabel={label} />
-}
 
 const CtaButton = ({
   label,
@@ -153,15 +112,11 @@ const MobileCard = ({
   <div className="flex flex-col gap-[16px] bg-white rounded-[16px] px-[20px] py-[24px] w-full max-w-[520px] shadow-[0_1px_1px_rgba(22,11,43,0.1),0_2px_2px_rgba(22,11,43,0.08),0_4px_8px_rgba(22,11,43,0.12)]">
     <div className="flex flex-col gap-[16px]">
       <div className="flex items-center justify-between">
-        {column.id === 'general_admission' ? (
-          <GeneralAdmissionStatusTag />
-        ) : (
-          <StatusTag
-            status={column.status}
-            openLabel={labels.tag_open}
-            comingLabel={column.coming_label ?? labels.tag_coming}
-          />
-        )}
+        <StatusTag
+          status={column.status}
+          openLabel={labels.tag_open}
+          comingLabel={column.coming_label ?? labels.tag_coming}
+        />
         <p className="text-[12px] text-[#594d73] leading-none">{labels.price_note}</p>
       </div>
 
@@ -254,20 +209,15 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
     swipe_hint?: string
   }
   const rawColumns = t.raw('columns') as Column[]
-  const { featured, mounted } = useFeaturedWave()
-  const waveStates = useWaveStates()
   const { launched } = useIsLaunched()
-  const storeUrl = useTicketsStoreUrl()
-  const offer = useSpecialOffer()
 
-  // Inject live wave state into the General Admission column so the price /
-  // status / CTA always reflect the currently-featured wave instead of the
-  // static snapshot baked into translations.
+  // Inject the launch state into the Community column so its status / CTA
+  // follow the global ticket launch instead of the static snapshot baked
+  // into translations.
   const columns: Column[] = rawColumns.map(col => {
     // Community self-claiming discounts open at the global ticket launch:
-    // "OPENS JUL 14" before (same treatment as General Admission), OPEN
-    // during (matches the during-launch Figma where all three columns
-    // read OPEN).
+    // "OPENS JULY" before, OPEN during (matches the during-launch Figma
+    // where every column reads OPEN).
     if (col.id === 'community') {
       return launched
         ? { ...col, status: 'open' }
@@ -277,58 +227,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
             hide_cta: true,
           }
     }
-    if (col.id !== 'general_admission' || !mounted) return col
-    // GA sale paused (coming-soon / closed): keep the wave's price visible, hide
-    // the CTA, and let GeneralAdmissionStatusTag render the paused label
-    // ("REOPENS AUG" / "SOLD OUT"). Checked before the featured branch since the
-    // paused wave is now the featured one.
-    const paused = waveStates.find(s => s.paused)
-    if (paused) {
-      // Special voucher promo: GA is purchasable via the voucher while the
-      // regular sale is paused — show the store CTA like the live state (the
-      // status tag reads "11% OFF" via GeneralAdmissionStatusTag; the store's
-      // GA card carries the actual redeem deep-link). Otherwise hide the CTA
-      // and show the paused label.
-      const offerProps = offer.active
-        ? { hide_cta: false, cta_label: 'Get tickets', cta_href: storeUrl }
-        : { hide_cta: true }
-      return {
-        ...col,
-        status: 'coming',
-        coming_label: paused.pausedLabel?.toUpperCase(),
-        price: paused.wave.price,
-        price_original: undefined,
-        price_note: paused.wave.description ?? paused.wave.name,
-        price_description: undefined,
-        ...offerProps,
-      }
-    }
-    if (!featured) {
-      // No featured wave and not paused — sale has ended across the board.
-      return {
-        ...col,
-        status: 'coming',
-        price_original: undefined,
-        price_note: 'First round sale ended',
-        cta_label: 'View tickets',
-        cta_href: storeUrl,
-      }
-    }
-    const isLive = featured.status === 'live'
-    // The GA price cell shows the featured wave's single price with the wave
-    // description ("Limited quantity") as its sublabel, so the comparison
-    // always tracks the current sale wave.
-    return {
-      ...col,
-      status: isLive ? 'open' : 'coming',
-      price: featured.wave.price,
-      price_original: undefined,
-      price_note: featured.wave.description ?? featured.wave.name,
-      price_description: undefined,
-      cta_label: isLive ? 'Get tickets' : 'View tickets',
-      cta_href: storeUrl,
-      hide_cta: !launched,
-    }
+    return col
   })
 
   const [activeTab, setActiveTab] = useState(0)
@@ -376,15 +275,11 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
               key={col.id}
               className="flex-1 min-w-0 flex flex-col gap-3 px-4 py-4 border-l border-solid border-[rgba(34,17,68,0.1)]"
             >
-              {col.id === 'general_admission' ? (
-                <GeneralAdmissionStatusTag />
-              ) : (
-                <StatusTag
-                  status={col.status}
-                  openLabel={labels.tag_open}
-                  comingLabel={col.coming_label ?? labels.tag_coming}
-                />
-              )}
+              <StatusTag
+                status={col.status}
+                openLabel={labels.tag_open}
+                comingLabel={col.coming_label ?? labels.tag_coming}
+              />
               <div className="flex flex-col gap-2">
                 <h3 className={columnTitle}>{col.title}</h3>
                 <p className={columnSubtitle}>{col.subtitle}</p>
