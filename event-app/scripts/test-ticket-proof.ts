@@ -306,6 +306,16 @@ async function main() {
     !resolveMint(ensRule, { ...plainReserveTicket, hasCheckedIn: true }, attendee).ok
   );
   check("Community Reserve stays standard everywhere else", classifyTier(reserveTicket) === "standard");
+  // "Free Community Reserve" (the free community allocation) and Volunteer
+  // get it too, on the same terms.
+  const freeReserveTicket = { itemId: 100, itemName: "Free Community Reserve" };
+  const volunteerTicket = { itemId: 49, itemName: "Volunteer" };
+  for (const [label, ticket] of [["Free Community Reserve", freeReserveTicket], ["Volunteer", volunteerTicket]] as const) {
+    const mint = resolveMint(ensRule, { ...ticket, hasCheckedIn: true }, attendee);
+    check(`ENS mints india for a checked-in ${label} ticket`, mint.ok && mint.tier === "india" && !mint.testing);
+    check(`ENS refuses a ${label} ticket before check-in`, !resolveMint(ensRule, { ...ticket, hasCheckedIn: false }, attendee).ok);
+    check(`${label} stays standard everywhere else`, classifyTier(ticket) === "standard");
+  }
   check(
     "a partner without tiers or testers keeps minting standard",
     (() => {
@@ -335,6 +345,9 @@ async function main() {
   check("card: shown on a checked-in Community Reserve ticket", ensPerkAccess({ ...reserveTicket, hasCheckedIn: true }, attendee, true) === "eligible");
   check("card: hidden on a Community Reserve ticket before check-in", ensPerkAccess({ ...reserveTicket, hasCheckedIn: false }, attendee, true) === "hidden");
   check("card: hidden on a plain Reserve ticket", ensPerkAccess({ ...plainReserveTicket, hasCheckedIn: true }, attendee, true) === "hidden");
+  check("card: shown on a checked-in Volunteer ticket", ensPerkAccess({ ...volunteerTicket, hasCheckedIn: true }, attendee, true) === "eligible");
+  check("card: hidden on a Volunteer ticket before check-in", ensPerkAccess({ ...volunteerTicket, hasCheckedIn: false }, attendee, true) === "hidden");
+  check("card: shown on a checked-in Free Community Reserve ticket", ensPerkAccess({ ...freeReserveTicket, hasCheckedIn: true }, attendee, true) === "eligible");
   check("card: EF account tests on a GA ticket", ensPerkAccess(gaTicket, "someone@ethereum.org", true) === "testing");
   check("card: ENS account tests on a GA ticket", ensPerkAccess(gaTicket, "SomeOne@ENS.domains", true) === "testing");
   check("card: switch off, an EF account is an attendee again", ensPerkAccess(gaTicket, "someone@ethereum.org", false) === "hidden");

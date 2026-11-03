@@ -35,7 +35,7 @@ export type ProofPartner = {
   handoff: string;
 };
 
-/** The ENS partner: a free .eth name, India and Community Reserve tickets (data/tickets/ensPerk.ts). */
+/** The ENS partner: a free .eth name, India tickets and a few extra products (data/tickets/ensPerk.ts). */
 const ENS_PARTNER: ProofPartner = {
   key: "ens",
   label: "Claim your free .eth name",

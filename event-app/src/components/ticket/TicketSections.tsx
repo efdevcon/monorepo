@@ -235,7 +235,7 @@ export function TicketSections({
   const leadPositionId = lead?.positionId;
 
   // The ENS perk only on the tickets that qualify (data/tickets/ensPerk.ts):
-  // India and Community Reserve tickets once checked in, any ticket while an
+  // India tickets and a few extra products once checked in, any ticket while an
   // EF or ENS account tests.
   const ensPerks = showEnsPerk
     ? shownTickets.flatMap((ticket) => {

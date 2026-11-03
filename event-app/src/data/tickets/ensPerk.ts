@@ -7,9 +7,10 @@ import { INDIA_FLAG } from "@/components/ticket/ticketTheme";
  * on My Devcon and the proof route, so the card never offers what the route
  * refuses.
  *
- * The perk is for India tickets and Community Reserve tickets, and only once
- * the ticket has been checked in at the venue (a resold or unused ticket cannot
- * collect it). A general admission ticket never shows it.
+ * The perk is for India tickets and the extra products below (local-leaning
+ * groups ENS asked for), and only once the ticket has been checked in at the
+ * venue (a resold or unused ticket cannot collect it). A general admission
+ * ticket never shows it.
  *
  * INTERNAL TESTING: while `ENS_PERK_INTERNAL_TESTING` is on, EF and ENS
  * accounts get it on any admission ticket, treated as an India ticket with the
@@ -35,10 +36,13 @@ export function ensPerkTesting(
 
 /**
  * Products that get the ENS perk besides the India tickets, matched on the
- * Pretix product name. Only "Community Reserve": the product named plain
- * "Reserve" does not qualify.
+ * Pretix product name (word-bounded, any case):
+ * - "Community Reserve", which also matches "Free Community Reserve"; the
+ *   product named plain "Reserve" does not qualify.
+ * - "Volunteer".
+ * Adding a group is one more alternative here.
  */
-const ENS_EXTRA_PRODUCTS = /\bcommunity reserve\b/i;
+const ENS_EXTRA_PRODUCTS = /\b(?:community reserve|volunteer)\b/i;
 
 /**
  * A ticket that gets the ENS perk although it is not an India ticket. The
@@ -51,7 +55,7 @@ export function isEnsExtraTicket(itemName: string | undefined): boolean {
 
 /**
  * The ENS perk card for one admission ticket: `hidden`, `eligible` (an India
- * or Community Reserve ticket that has been checked in) or `testing` (internal
+ * ticket or one of the extra products, checked in) or `testing` (internal
  * testing, shown on any ticket with a note saying so).
  */
 export type EnsPerkAccess = "hidden" | "eligible" | "testing";

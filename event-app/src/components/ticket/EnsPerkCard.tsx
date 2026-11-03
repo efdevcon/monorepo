@@ -8,8 +8,8 @@ import { displayItemName } from "./ticketTheme";
  * "Perks" entry for the ENS attendee perk. Card chrome only — the mint +
  * hand-off flow stays in TicketProofButton (one proof per event ticket, so
  * the section renders one card per admission ticket). Who gets one is
- * `ensPerkAccess` (data/tickets/ensPerk.ts): India and Community Reserve
- * tickets once checked in, or
+ * `ensPerkAccess` (data/tickets/ensPerk.ts): India tickets and a few extra
+ * products once checked in, or
  * any ticket of an EF or ENS account during internal testing.
  */
 export function EnsPerkCard({

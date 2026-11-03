@@ -389,9 +389,9 @@ export const PARTNERS: Record<string, PartnerConfig> = {
     // Defaults to the bundled reference implementation so the flow is
     // demoable end-to-end; set to the partner's real claim page in prod.
     claimUrl: process.env.TICKET_PROOF_ENS_CLAIM_URL || "/demo/ens-perks",
-    // A free .eth name for India and Community Reserve tickets, once checked
-    // in at the venue (data/tickets/ensPerk.ts, the same rule the perk card
-    // shows).
+    // A free .eth name for India tickets and the extra products listed in
+    // data/tickets/ensPerk.ts, once checked in at the venue (the same rule the
+    // perk card shows).
     requireCheckIn: true,
     tiers: ["india"],
     mintsAsIndia: (ticket) => isEnsExtraTicket(ticket.itemName),
