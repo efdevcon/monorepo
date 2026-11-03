@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useLayoutEffect, useSyncExternalStore } from "react";
 
 /**
  * One desktop video player for the whole app (StreamDock.tsx).
@@ -86,13 +86,18 @@ export function claimSlot(el: HTMLElement, stream: DockStream): () => void {
   };
 }
 
-/** Mount-time registration for a slot element; `stream` null registers nothing. */
+/**
+ * Mount-time registration for a slot element; `stream` null registers
+ * nothing. A layout effect, so the slot exists before the first paint of
+ * the view that holds it: the expanded page's slot must be known the moment
+ * the panel's goes hidden, or the dock sees a frame with no slot at all.
+ */
 export function useStreamSlot(
   ref: React.RefObject<HTMLElement | null>,
   stream: DockStream | null
 ): void {
   const key = stream ? `${stream.src}\n${stream.sessionId}\n${stream.title}\n${stream.live}` : null;
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current || !stream) return;
     return claimSlot(ref.current, stream);
     // `key` captures every field of `stream`, which callers build inline.
@@ -101,6 +106,7 @@ export function useStreamSlot(
 }
 
 export interface DockTarget {
+  el: HTMLElement;
   stream: DockStream;
   /** The slot's border box (viewport coordinates). */
   rect: DOMRect;
@@ -132,6 +138,7 @@ export function visibleSlot(): DockTarget | null {
     }
     if (right - left <= 0 || bottom - top <= 0) continue;
     return {
+      el: slot.el,
       stream: slot.stream,
       rect,
       inset: {
