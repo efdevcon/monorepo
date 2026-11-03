@@ -30,6 +30,21 @@ const ENV_CONFIG = {
       // Pretix item id for the paid "Child (3-17) with Adult" ticket, sold the
       // same way as the Under 3 one (plain public item, Applications section).
       childWithAdultItemId: null as number | null,
+      // Pretix item id for the "Daily Pass" — the single-day General Admission
+      // ticket sold from the store's General Admission section (plain public
+      // item, no voucher; the buyer picks a quantity and is handed to Pretix).
+      dailyPassItemId: 151 as number | null,
+      // Per-order cap for the Daily Pass stepper. Keep in step with the
+      // Pretix item's max_per_order — Pretix rejects the cart-add past its
+      // own cap.
+      dailyPassMaxPerOrder: 3,
+      // Pretix item id for the "Daily India Pass", sold from the top of the
+      // store's Community section with its own stepper, straight to Pretix.
+      // NOTE: the dev item (161) is voucher-only on dcdev2, so the handoff
+      // lands on Pretix's voucher prompt there; the prod item is public.
+      dailyIndiaPassItemId: 161 as number | null,
+      // See dailyPassMaxPerOrder.
+      dailyIndiaPassMaxPerOrder: 3,
       testmode: true,
     },
     checkout: {
@@ -100,6 +115,8 @@ const ENV_CONFIG = {
         // youth: true,
         // 'child-with-adult': true,
         // 'child-under-3': true,
+        // 'daily-pass': true,
+        // 'daily-india-pass': true,
       } as Record<string, boolean>,
     },
     aadhaar: {
@@ -135,6 +152,12 @@ const ENV_CONFIG = {
       childUnder3ItemId: 110 as number | null,
       // See development.pretix.childWithAdultItemId.
       childWithAdultItemId: 109 as number | null,
+      // See development.pretix.dailyPassItemId.
+      dailyPassItemId: 41 as number | null,
+      dailyPassMaxPerOrder: 3,
+      // See development.pretix.dailyIndiaPassItemId.
+      dailyIndiaPassItemId: 53 as number | null,
+      dailyIndiaPassMaxPerOrder: 3,
       testmode: false,
     },
     checkout: {
@@ -201,6 +224,8 @@ const ENV_CONFIG = {
         // youth: true,
         // 'child-with-adult': true,
         // 'child-under-3': true,
+        // 'daily-pass': true,
+        // 'daily-india-pass': true,
       } as Record<string, boolean>,
     },
     aadhaar: {

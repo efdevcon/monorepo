@@ -68,6 +68,7 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
     { title: t('nav.overview'), to: '#overview' },
     { title: t('nav.discounts'), to: '#discounts' },
     { title: t('nav.applications'), to: '#applications' },
+    { title: t('nav.general_admission'), to: '#general-admission' },
     { title: t('nav.faq'), to: '#faq' },
   ]
 
@@ -77,6 +78,9 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
 
   const communityRowsRaw = t.raw('community_section.rows') as TicketRow[]
   const applicationRowsRaw = t.raw('applications_section.rows') as TicketRow[]
+  // General Admission daily passes: static rows, always on sale (the store's
+  // card carries the quantity picker and Pretix handoff).
+  const generalRows = t.raw('general_admission.rows') as TicketRow[]
 
   // Maps a row name → expandable details JSX. Kept as an empty object so
   // future detail panels can be re-enabled per-row without changing the
@@ -139,9 +143,10 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
             <div className="flex flex-col md:flex-row gap-4 w-full">
               {overviewCards.map((card, i) => {
                 // The translated cards array has a fixed order across locales
-                // (Community, Applications) — identify by index since titles
-                // are translated. Community opens at the global ticket launch,
-                // so its static "coming" status flips to open once launched.
+                // (Community, Applications, General Admission) — identify by
+                // index since titles are translated. Community opens at the
+                // global ticket launch, so its static "coming" status flips to
+                // open once launched; the other two carry a static status.
                 const isCommunity = i === 0
                 const cardStatus = isCommunity && launched ? 'open' : card.status
                 // Community's pre-launch tag names the launch date ("OPENS
@@ -256,6 +261,44 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
               title={t('applications_section.card_title')}
               subtitle={t('applications_section.card_subtitle')}
               rows={applicationRows}
+            />
+          </section>
+
+          <hr className={css['divider']} />
+
+          {/* ── General Admission (daily passes) ─────────────────── */}
+          <section
+            id="general-admission"
+            className="scroll-mt-36 grid grid-cols-1 min-[1440px]:grid-cols-2 gap-8 min-[1440px]:gap-16 items-start"
+          >
+            <div className="flex flex-col gap-4">
+              <p className="text-sm font-semibold text-[#7235ed] tracking-[2px] uppercase leading-none">
+                {t('general_admission.eyebrow')}
+              </p>
+              <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-[-0.5px] leading-[1.2] text-[#160b2b]">
+                {t('general_admission.heading')}
+              </h2>
+              <p className="text-base md:text-[18px] text-[#1a0d33] leading-[1.5] tracking-[-0.25px]">
+                <strong>{t('general_admission.body_strong')}</strong>
+                {t('general_admission.body')}
+              </p>
+              <p className="text-sm md:text-base text-[#221144] leading-5 md:leading-6">
+                <strong>{t('general_admission.subcopy_strong')}</strong>
+                {t('general_admission.subcopy')}
+              </p>
+              <NextLink
+                href={`${storeUrl}#general-admission`}
+                className="mt-2 inline-flex items-center justify-center gap-2 w-full md:w-auto md:self-start min-h-9 px-8 py-4 bg-[#7235ed] hover:bg-[#6028cc] transition-colors rounded-full text-base font-bold text-[#f9f8fa] leading-none"
+              >
+                {t('general_admission.cta')}
+                <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
+              </NextLink>
+            </div>
+
+            <TicketTable
+              title={t('general_admission.card_title')}
+              subtitle={t('general_admission.card_subtitle')}
+              rows={generalRows}
             />
           </section>
 
