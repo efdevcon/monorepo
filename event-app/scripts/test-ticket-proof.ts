@@ -288,6 +288,24 @@ async function main() {
     "an internal tester mints india on a GA ticket with no check-in",
     testerMint.ok && testerMint.tier === "india" && testerMint.testing
   );
+  // Community Reserve tickets get the ENS perk too, minted as india for ENS
+  // only; the plain "Reserve" product does not.
+  const reserveTicket = { itemId: 12, itemName: "Community Reserve" };
+  const plainReserveTicket = { itemId: 52, itemName: "Reserve" };
+  const reserveMint = resolveMint(ensRule, { ...reserveTicket, hasCheckedIn: true }, attendee);
+  check(
+    "ENS mints india for a checked-in Community Reserve ticket",
+    reserveMint.ok && reserveMint.tier === "india" && !reserveMint.testing
+  );
+  check(
+    "ENS refuses a Community Reserve ticket before check-in",
+    !resolveMint(ensRule, { ...reserveTicket, hasCheckedIn: false }, attendee).ok
+  );
+  check(
+    "ENS still refuses a plain Reserve ticket",
+    !resolveMint(ensRule, { ...plainReserveTicket, hasCheckedIn: true }, attendee).ok
+  );
+  check("Community Reserve stays standard everywhere else", classifyTier(reserveTicket) === "standard");
   check(
     "a partner without tiers or testers keeps minting standard",
     (() => {
@@ -306,12 +324,17 @@ async function main() {
     const inMint = resolveMint(faucet, { ...indiaTicket, hasCheckedIn: true }, attendee);
     check(`${key} mints for a checked-in India ticket`, inMint.ok && inMint.tier === "india");
     check(`${key} has no internal-testing bypass`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }, "someone@ethereum.org").ok);
+    const reserveFaucetMint = resolveMint(faucet, { ...reserveTicket, hasCheckedIn: true }, attendee);
+    check(`${key} mints standard for a Community Reserve ticket`, reserveFaucetMint.ok && reserveFaucetMint.tier === "standard");
   }
 
   // The card follows the same rule (switch passed explicitly).
   check("card: hidden on a GA ticket", ensPerkAccess({ ...gaTicket, hasCheckedIn: true }, attendee, true) === "hidden");
   check("card: hidden on an India ticket before check-in", ensPerkAccess({ ...indiaTicket, hasCheckedIn: false }, attendee, true) === "hidden");
   check("card: shown on a checked-in India ticket", ensPerkAccess({ ...indiaTicket, hasCheckedIn: true }, attendee, true) === "eligible");
+  check("card: shown on a checked-in Community Reserve ticket", ensPerkAccess({ ...reserveTicket, hasCheckedIn: true }, attendee, true) === "eligible");
+  check("card: hidden on a Community Reserve ticket before check-in", ensPerkAccess({ ...reserveTicket, hasCheckedIn: false }, attendee, true) === "hidden");
+  check("card: hidden on a plain Reserve ticket", ensPerkAccess({ ...plainReserveTicket, hasCheckedIn: true }, attendee, true) === "hidden");
   check("card: EF account tests on a GA ticket", ensPerkAccess(gaTicket, "someone@ethereum.org", true) === "testing");
   check("card: ENS account tests on a GA ticket", ensPerkAccess(gaTicket, "SomeOne@ENS.domains", true) === "testing");
   check("card: switch off, an EF account is an attendee again", ensPerkAccess(gaTicket, "someone@ethereum.org", false) === "hidden");

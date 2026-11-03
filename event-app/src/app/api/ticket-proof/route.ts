@@ -141,10 +141,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Per-partner tier and check-in gates (PartnerConfig.tiers /
-    // requireCheckIn): the ENS perk is India tickets only, minted once the
-    // ticket has been scanned in, so a resold or unused ticket cannot collect
-    // it. Orders are read live from Pretix, so a check-in counts as soon as it
-    // is scanned. Internal testers (PartnerConfig.internalTester, by the
+    // requireCheckIn): the ENS perk is India and Community Reserve tickets
+    // (PartnerConfig.mintsAsIndia), minted once the ticket has been scanned
+    // in, so a resold or unused ticket cannot collect it. Orders are read live
+    // from Pretix, so a check-in counts as soon as it is scanned. Internal testers (PartnerConfig.internalTester, by the
     // session's email) mint as India with no check-in.
     const mint = resolveMint(partner, match, user.email);
     if (!mint.ok) {

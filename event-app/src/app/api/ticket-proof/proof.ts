@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { encodeAbiParameters, keccak256, verifyMessage, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { ensPerkTesting } from "@/data/tickets/ensPerk";
+import { ensPerkTesting, isEnsExtraTicket } from "@/data/tickets/ensPerk";
 
 /**
  * Ticket proofs: privacy-preserving, partner-scoped attestations of "this is a
@@ -374,6 +374,13 @@ export interface PartnerConfig {
    * which the route derives server-side.
    */
   internalTester?: (email: string) => boolean;
+  /**
+   * Tickets this partner serves as `india` although they are not India
+   * tickets. The tier is what the partner keys its perk on, so these mint as
+   * `india` for this partner only; every other partner still gets the
+   * ticket's own tier. The check-in gate applies as usual.
+   */
+  mintsAsIndia?: (ticket: { itemName?: string }) => boolean;
 }
 
 export const PARTNERS: Record<string, PartnerConfig> = {
@@ -382,10 +389,12 @@ export const PARTNERS: Record<string, PartnerConfig> = {
     // Defaults to the bundled reference implementation so the flow is
     // demoable end-to-end; set to the partner's real claim page in prod.
     claimUrl: process.env.TICKET_PROOF_ENS_CLAIM_URL || "/demo/ens-perks",
-    // A free .eth name for India tickets only, once checked in at the venue
-    // (data/tickets/ensPerk.ts, the same rule the perk card shows).
+    // A free .eth name for India and Community Reserve tickets, once checked
+    // in at the venue (data/tickets/ensPerk.ts, the same rule the perk card
+    // shows).
     requireCheckIn: true,
     tiers: ["india"],
+    mintsAsIndia: (ticket) => isEnsExtraTicket(ticket.itemName),
     // EF and ENS accounts while ENS_PERK_INTERNAL_TESTING is on (CONFIG.ts).
     internalTester: (email) => ensPerkTesting(email),
   },
@@ -430,12 +439,12 @@ export function passesCheckInGate(
  * partner does not serve it or (for a check-in partner) before the scan.
  */
 export function resolveMint(
-  partner: Pick<PartnerConfig, "label" | "requireCheckIn" | "tiers" | "internalTester">,
+  partner: Pick<PartnerConfig, "label" | "requireCheckIn" | "tiers" | "internalTester" | "mintsAsIndia">,
   ticket: { itemId?: number; itemName?: string; hasCheckedIn?: boolean },
   email: string
 ): { ok: true; tier: TicketTier; testing: boolean } | { ok: false; error: string } {
   if (partner.internalTester?.(email)) return { ok: true, tier: "india", testing: true };
-  const tier = classifyTier(ticket);
+  const tier: TicketTier = partner.mintsAsIndia?.(ticket) ? "india" : classifyTier(ticket);
   if (partner.tiers && !partner.tiers.includes(tier)) {
     return { ok: false, error: `The ${partner.label} perk is not available for this ticket type.` };
   }

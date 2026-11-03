@@ -120,10 +120,12 @@ Server-only, see `.env.example` for the full notes.
 Adding one is an entry there, a perk card under My Devcon and a claim url on the
 partner's side:
 
-- `ens`: a free .eth name for a year, India tickets only (`tiers: ["india"]`),
-  minted once the ticket is checked in. The card on My Devcon follows the same
-  rule (`src/data/tickets/ensPerk.ts`): a general admission ticket never shows
-  it, an India ticket shows it after check-in. Internal testing: while
+- `ens`: a free .eth name for a year, India tickets only (`tiers: ["india"]`)
+  plus Community Reserve tickets, which mint as `india` for ENS only
+  (`mintsAsIndia`; every other partner still sees them as `standard`). Minted
+  once the ticket is checked in. The card on My Devcon follows the same rule
+  (`src/data/tickets/ensPerk.ts`): a general admission ticket never shows it,
+  an India or Community Reserve ticket shows it after check-in. Internal testing: while
   `ENS_PERK_INTERNAL_TESTING` (`CONFIG.ts`) is on, EF and ENS accounts get it on
   any admission ticket, minted as `india` with the check-in bypassed, and the
   card says so. Those are real India proofs, so turn the switch off once

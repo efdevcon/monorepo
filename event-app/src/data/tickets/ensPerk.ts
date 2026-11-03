@@ -7,9 +7,9 @@ import { INDIA_FLAG } from "@/components/ticket/ticketTheme";
  * on My Devcon and the proof route, so the card never offers what the route
  * refuses.
  *
- * The perk is for India tickets only, and only once the ticket has been
- * checked in at the venue (a resold or unused ticket cannot collect it). A
- * general admission ticket never shows it.
+ * The perk is for India tickets and Community Reserve tickets, and only once
+ * the ticket has been checked in at the venue (a resold or unused ticket cannot
+ * collect it). A general admission ticket never shows it.
  *
  * INTERNAL TESTING: while `ENS_PERK_INTERNAL_TESTING` is on, EF and ENS
  * accounts get it on any admission ticket, treated as an India ticket with the
@@ -34,9 +34,25 @@ export function ensPerkTesting(
 }
 
 /**
+ * Products that get the ENS perk besides the India tickets, matched on the
+ * Pretix product name. Only "Community Reserve": the product named plain
+ * "Reserve" does not qualify.
+ */
+const ENS_EXTRA_PRODUCTS = /\bcommunity reserve\b/i;
+
+/**
+ * A ticket that gets the ENS perk although it is not an India ticket. The
+ * proof route mints these as `india` for ENS only (`mintsAsIndia` in
+ * api/ticket-proof/proof.ts), since the tier is what the ENS claim page reads.
+ */
+export function isEnsExtraTicket(itemName: string | undefined): boolean {
+  return ENS_EXTRA_PRODUCTS.test(itemName ?? "");
+}
+
+/**
  * The ENS perk card for one admission ticket: `hidden`, `eligible` (an India
- * ticket that has been checked in) or `testing` (internal testing, shown on
- * any ticket with a note saying so).
+ * or Community Reserve ticket that has been checked in) or `testing` (internal
+ * testing, shown on any ticket with a note saying so).
  */
 export type EnsPerkAccess = "hidden" | "eligible" | "testing";
 
@@ -47,6 +63,7 @@ export function ensPerkAccess(
 ): EnsPerkAccess {
   if (ensPerkTesting(email, switchOn)) return "testing";
   // The flag, as classifyTier reads it (api/ticket-proof/proof.ts), never the card style.
-  if (!INDIA_FLAG.test(ticket.itemName ?? "")) return "hidden";
+  const name = ticket.itemName ?? "";
+  if (!INDIA_FLAG.test(name) && !isEnsExtraTicket(name)) return "hidden";
   return ticket.hasCheckedIn === true ? "eligible" : "hidden";
 }
