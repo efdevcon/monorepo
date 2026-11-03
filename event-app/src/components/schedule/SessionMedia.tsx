@@ -1,11 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import { useEvent } from "@/data/hooks";
+import { useIsDesktopSync } from "@/hooks/useIsDesktop";
 import type { Session } from "@/data/models";
 import { useOnline } from "@/hooks/useOnline";
 import { NeedsConnection } from "@/components/NeedsConnection";
 import { streamUrlForDay } from "@/components/schedule/utils";
 import { streamEmbedUrlForRoom } from "@/data/streams";
+import { isDockable, useStreamSlot } from "@/components/stream/dock";
 
 /**
  * Recording / livestream for a session:
@@ -20,6 +23,12 @@ import { streamEmbedUrlForRoom } from "@/data/streams";
  * - otherwise render nothing (no dead placeholder boxes when neither embed nor
  *   translation link is available); the details layout shows the session
  *   card instead
+ *
+ * Desktop renders no iframe of its own: the media box is a slot for the
+ * app's one player (components/stream/StreamDock.tsx), which sits over it
+ * while it is on screen and floats to the corner when it is not, so the
+ * side panel, the expanded page and other tabs share one uninterrupted
+ * stream. Phones, and StreamEth embeds anywhere, mount the iframe here.
  */
 
 // Single source of truth for "will SessionMedia render anything?" — the
@@ -60,12 +69,22 @@ export function sessionHasMedia(
 export function SessionMedia({ session, onNow }: { session: Session; onNow: boolean }) {
   const { event } = useEvent();
   const online = useOnline();
+  const desktop = useIsDesktopSync();
+  const slotRef = useRef<HTMLDivElement>(null);
 
   const { src, streamSrc, translationUrl } = getSessionMediaSources(
     session,
     onNow,
     event?.startDate
   );
+  // YouTube embeds on desktop go through the dock; StreamEth recordings
+  // (no play-state API) embed here like on phones.
+  const dockable = desktop && online && isDockable(src);
+  useStreamSlot(
+    slotRef,
+    dockable ? { src, sessionId: session.id, title: session.title, live: !!streamSrc } : null
+  );
+
   if (!src && !translationUrl) return null;
 
   return (
@@ -77,20 +96,28 @@ export function SessionMedia({ session, onNow }: { session: Session; onNow: bool
       {/* Embeds are live-only: offline, say so instead of a black box. */}
       {src &&
         (online ? (
-          <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
-            <iframe
-              // Keyed by src: swapping `src` on a live iframe navigates it,
-              // which adds a history entry, so closing a detail after
-              // viewing several sessions needed one back() per video.
-              // Remounting instead keeps history clean.
-              key={src}
-              src={src}
-              title={session.title}
-              className="h-full w-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
+          <div
+            ref={slotRef}
+            // No fill under the docked player: it follows a scroll one
+            // compositor frame behind, and a black slot peeked out at the
+            // edge. The inline iframe keeps the black letterbox.
+            className={`aspect-video w-full overflow-hidden rounded-xl ${dockable ? "" : "bg-black"}`}
+          >
+            {!dockable && (
+              <iframe
+                // Keyed by src: swapping `src` on a live iframe navigates it,
+                // which adds a history entry, so closing a detail after
+                // viewing several sessions needed one back() per video.
+                // Remounting instead keeps history clean.
+                key={src}
+                src={src}
+                title={session.title}
+                className="h-full w-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            )}
           </div>
         ) : (
           <NeedsConnection
@@ -111,3 +138,4 @@ export function SessionMedia({ session, onNow }: { session: Session; onNow: bool
     </div>
   );
 }
+
