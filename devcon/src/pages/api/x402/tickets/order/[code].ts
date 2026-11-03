@@ -45,6 +45,20 @@ interface OrderDetailsResponse {
     url: string
     payment_url: string | null
     payment_info: PaymentInfo | null
+    /** One-click UPI start on Pretix (plugin route `plugin/upi/start/`).
+     *  Set for pending orders whose main products all carry a rupee price
+     *  in the `upi_price_inr` item meta property, mirroring the plugin's
+     *  allow-list; the plugin re-checks everything when the buyer clicks. */
+    upi_payment_url: string | null
+    /** What Stripe charged a UPI buyer in their own currency (Adaptive
+     *  Pricing), e.g. `{ amount: '2654.00', currency: 'INR' }`. `null` for
+     *  every other payment method, while the payment is still open, and
+     *  once the payment has been refunded. */
+    paid_presentment: { amount: string; currency: string } | null
+    /** Rupee equivalent of the completed refunds on UPI payments, scaled
+     *  from what Stripe charged (Stripe refunds at the original rate).
+     *  `null` when no UPI money went back. */
+    refunded_presentment: { amount: string; currency: string } | null
     /** Pretix's `require_approval` order flag. When `true` AND `status === 'n'`,
      *  the order is awaiting admin approval (no payment expected yet). */
     require_approval: boolean
@@ -137,9 +151,11 @@ export default async function handler(
     const itemNameMap = new Map<number, string>()
     const itemCategoryMap = new Map<number, number | null>()
     const variationNameMap = new Map<string, string>() // "itemId-variationId" -> name
+    const itemMetaMap = new Map<number, Record<string, string>>()
     for (const item of items) {
       itemNameMap.set(item.id, getLocalizedString(item.name))
       itemCategoryMap.set(item.id, item.category)
+      itemMetaMap.set(item.id, item.meta_data || {})
       for (const v of item.variations || []) {
         variationNameMap.set(`${item.id}-${v.id}`, getLocalizedString(v.value))
       }
@@ -177,6 +193,32 @@ export default async function handler(
       ? `${order.url}pay/change/`
       : null
 
+    // One-click UPI on the plugin's `plugin/upi/start/` route. Offered when
+    // every main product carries a rupee price in the `upi_price_inr` item
+    // meta property (the same allow-list the plugin applies in Pretix's own
+    // checkout). `order.url` already resolves the event base on the shared
+    // or a custom domain, so the route is derived from it.
+    const hasRupeePrice = (v: string | undefined) => parseFloat((v || '').trim()) > 0
+    const mainItemIds = positions.filter(p => !p.isAddon).map(p => p.item)
+    const upiFlagged = mainItemIds.length > 0 && mainItemIds.every(id => hasRupeePrice(itemMetaMap.get(id)?.upi_price_inr))
+    const upiPaymentUrl =
+      paymentUrl && upiFlagged
+        ? `${order.url.replace(/order\/[^/]+\/[^/]+\/?$/, '')}plugin/upi/start/${order.code}/${order.secret}/`
+        : null
+
+    // What Stripe charged a UPI buyer in their own currency; the plugin
+    // exposes it through the payment's REST `details`. Only a payment that
+    // is still confirmed counts as "paid"; a refunded one is reported
+    // through `refunded_presentment` below instead.
+    const upiPayments = (order.payments || []).filter(p => p.provider === 'stripe_checkout_upi')
+    const presentmentOf = (p: (typeof upiPayments)[number] | undefined) => {
+      const d = p?.details as { presentment_amount?: string | null; presentment_currency?: string | null } | undefined
+      return d?.presentment_amount && d?.presentment_currency
+        ? { amount: d.presentment_amount, currency: d.presentment_currency }
+        : null
+    }
+    const paidPresentment = presentmentOf(upiPayments.find(p => p.state === 'confirmed'))
+
     // Extract payment info from our crypto payment provider (if any).
     // The plugin registers as `walletconnect` (WalletConnectPayment.identifier);
     // older codepaths used `x402_crypto`, kept here for backwards compatibility
@@ -210,6 +252,8 @@ export default async function handler(
         refunds?: {
           state: string
           amount: string
+          /** `local_id` of the payment this refund belongs to, if any. */
+          payment?: number | null
           execution_date?: string
           // Pretix REST API exposes `details` (computed by the provider's
           // `api_refund_details(refund)` override) — for our plugin this
@@ -224,6 +268,21 @@ export default async function handler(
     ) || []
     const doneRefunds = refunds.filter(r => r.state === 'done')
     const refundedTotal = doneRefunds.reduce((acc, r) => acc + (parseFloat(r.amount) || 0), 0)
+
+    // Rupees returned on UPI refunds: Stripe refunds at the charge's rate,
+    // so each refund is scaled against what its payment charged.
+    let refundedLocal = 0
+    let refundedCurrency: string | null = null
+    for (const r of doneRefunds) {
+      const payment = upiPayments.find(p => p.local_id === r.payment)
+      const pres = presentmentOf(payment)
+      const paidAmount = parseFloat(payment?.amount || '0')
+      if (!pres || !paidAmount) continue
+      refundedLocal += (parseFloat(pres.amount) * (parseFloat(r.amount) || 0)) / paidAmount
+      refundedCurrency = pres.currency
+    }
+    const refundedPresentment =
+      refundedCurrency && refundedLocal > 0 ? { amount: refundedLocal.toFixed(2), currency: refundedCurrency } : null
 
     // ── Pull the on-chain refund tx hash from the most-recent done refund ──
     //
@@ -316,6 +375,9 @@ export default async function handler(
         url: order.url,
         payment_url: paymentUrl,
         payment_info: paymentInfo,
+        upi_payment_url: upiPaymentUrl,
+        paid_presentment: paidPresentment,
+        refunded_presentment: refundedPresentment,
         require_approval: !!order.require_approval,
         refunded_amount: refundedTotal.toFixed(2),
         refund_tx_hash: refundTxHash,

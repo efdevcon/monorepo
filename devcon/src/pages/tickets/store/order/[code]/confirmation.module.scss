@@ -541,6 +541,18 @@ $order-border: #dddae2;
   }
 }
 
+// Second choice next to "Pay with UPI": same shape, outlined.
+.pending-payment-btn-secondary {
+  @extend .pending-payment-btn;
+  color: #7d52f4;
+  background: #fff;
+  border: 1px solid #7d52f4;
+
+  &:hover {
+    background: #f3eefe;
+  }
+}
+
 .save-section {
   display: flex;
   flex-direction: column;

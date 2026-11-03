@@ -235,7 +235,14 @@ export interface PretixOrder {
   comment: string
   invoice_address: any
   positions: any[]
-  payments: { local_id: number; provider: string; payment_url: string | null; state: string; details?: Record<string, unknown> }[]
+  payments: {
+    local_id: number
+    provider: string
+    amount: string
+    payment_url: string | null
+    state: string
+    details?: Record<string, unknown>
+  }[]
   downloads: any[]
   checkin_attention: boolean
   require_approval: boolean

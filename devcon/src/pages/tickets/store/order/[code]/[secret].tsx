@@ -42,6 +42,9 @@ interface OrderData {
   url: string
   payment_url: string | null
   payment_info: PaymentInfo | null
+  upi_payment_url: string | null
+  paid_presentment: { amount: string; currency: string } | null
+  refunded_presentment: { amount: string; currency: string } | null
   require_approval: boolean
   refunded_amount: string
   refund_tx_hash: string | null
@@ -144,6 +147,7 @@ export default function OrderConfirmationPage() {
   // payment_info — both treated as crypto.
   const isCrypto = order.payment_provider === 'walletconnect' || !!pi?.tx_hash
   const isStripe = order.payment_provider === 'stripe'
+  const isUpi = order.payment_provider === 'stripe_checkout_upi'
   // Friendly label for the Payment summary row. Pending orders without
   // a chosen provider land on "Awaiting payment method" so the buyer
   // isn't told they paid by card when they haven't paid at all yet.
@@ -152,6 +156,7 @@ export default function OrderConfirmationPage() {
   const paymentLabel = (() => {
     if (isCrypto) return 'Crypto'
     if (isStripe) return 'Card (Stripe)'
+    if (isUpi) return 'UPI (Stripe)'
     if (order.payment_provider === 'banktransfer') return 'Bank transfer'
     // Pretix's `free` provider: a 100%-off voucher covered the whole order, so
     // it confirms a zero-amount payment inline. Without this the row rendered
@@ -311,6 +316,18 @@ export default function OrderConfirmationPage() {
       })()
     : null
   const totalUsd = `$${parseFloat(order.total).toFixed(2)}`
+  // UPI buyers see what Stripe actually charged (or returned) in rupees next
+  // to the USD figures.
+  const formatLocal = (p: { amount: string; currency: string } | null) => {
+    if (!p) return null
+    try {
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: p.currency }).format(parseFloat(p.amount))
+    } catch {
+      return `${p.amount} ${p.currency}`
+    }
+  }
+  const paidLocal = formatLocal(order.paid_presentment)
+  const refundedLocal = formatLocal(order.refunded_presentment)
 
   // Build download links from Pretix order URL + first ticket position
   const firstTicketPosition = ticketPositions[0]
@@ -529,6 +546,10 @@ export default function OrderConfirmationPage() {
                   <span className={css['summary-value-semi']}>
                     {cryptoAmount} {tokenSymbol} ({totalUsd})
                   </span>
+                ) : paidLocal ? (
+                  <span className={css['summary-value-semi']}>
+                    {totalUsd} (paid {paidLocal})
+                  </span>
                 ) : (
                   <span className={css['summary-value-semi']}>{totalUsd}</span>
                 )}
@@ -545,9 +566,19 @@ export default function OrderConfirmationPage() {
                 <hr className={css['order-divider']} />
                 <div className={css['pending-payment-section']}>
                   <p className={css['pending-payment-text']}>Your payment has not been completed yet.</p>
+                  {/* One-click UPI: the plugin switches the order to UPI and
+                      sends the buyer straight to Stripe's page (rupees via
+                      Adaptive Pricing). Offered only for products flagged
+                      for UPI; the generic button below keeps every other
+                      method reachable through Pretix's chooser. */}
+                  {order.upi_payment_url && (
+                    <a href={order.upi_payment_url} className={css['pending-payment-btn']}>
+                      Pay with UPI
+                    </a>
+                  )}
                   <a
                     href="#"
-                    className={css['pending-payment-btn']}
+                    className={order.upi_payment_url ? css['pending-payment-btn-secondary'] : css['pending-payment-btn']}
                     onClick={e => {
                       e.preventDefault()
                       const returnUrl = `${window.location.origin}${router.asPath}`
@@ -557,7 +588,7 @@ export default function OrderConfirmationPage() {
                       )}`
                     }}
                   >
-                    Complete Payment
+                    {order.upi_payment_url ? 'Pay by card or another method' : 'Complete Payment'}
                   </a>
                 </div>
               </>
@@ -596,11 +627,15 @@ export default function OrderConfirmationPage() {
                     {isPartiallyRefunded ? (
                       <>
                         {' '}
-                        ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the wallet
-                        you paid from.{' '}
+                        ${(totalNum - refundedNum).toFixed(2)} is still outstanding and will be returned to the{' '}
+                        {isCrypto ? 'wallet' : 'payment method'} you paid from.{' '}
                       </>
                     ) : (
-                      <> The amount you paid will be returned to the wallet you paid from. </>
+                      <>
+                        {' '}
+                        The amount you paid will be returned to the {isCrypto ? 'wallet' : 'payment method'} you paid
+                        from.{' '}
+                      </>
                     )}
                     If you don&apos;t see it within a few business days, please contact the event organizer.
                   </p>
@@ -617,7 +652,10 @@ export default function OrderConfirmationPage() {
                     <span className={css['summary-label']}>
                       {isFullyRefunded ? 'Fully refunded' : 'Partially refunded'}
                     </span>
-                    <span className={css['summary-value-semi']}>${refundedNum.toFixed(2)}</span>
+                    <span className={css['summary-value-semi']}>
+                      ${refundedNum.toFixed(2)}
+                      {refundedLocal ? ` (${refundedLocal})` : ''}
+                    </span>
                   </div>
                   {order.refund_tx_hash && (
                     <div className={css['summary-row']}>
