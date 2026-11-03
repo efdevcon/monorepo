@@ -96,7 +96,13 @@ export function SessionMedia({ session, onNow }: { session: Session; onNow: bool
       {/* Embeds are live-only: offline, say so instead of a black box. */}
       {src &&
         (online ? (
-          <div ref={slotRef} className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+          <div
+            ref={slotRef}
+            // No fill under the docked player: it follows a scroll one
+            // compositor frame behind, and a black slot peeked out at the
+            // edge. The inline iframe keeps the black letterbox.
+            className={`aspect-video w-full overflow-hidden rounded-xl ${dockable ? "" : "bg-black"}`}
+          >
             {!dockable && (
               <iframe
                 // Keyed by src: swapping `src` on a live iframe navigates it,
