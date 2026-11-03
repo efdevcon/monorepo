@@ -1,22 +1,20 @@
 [
   {
     "hub": "Agentic Hub",
-    "changedAt": "2026-11-02T02:27:30.438Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [
-      "row 25 \"Break\": ends (11:20) before it starts (11:20), skipped"
+      "row 25 \"Canceled\": ends (11:20) before it starts (11:20), skipped"
     ],
     "sessions": [
       {
         "id": "S01",
         "day": "Tue 3 Nov",
         "time": "09:00-10:00",
-        "title": "Agents-from-zero onboarding (English and Hindi)",
-        "format": "Workshop",
-        "speakers": [
-          "Naina Sachdev"
-        ],
+        "title": "Opening hours: meet and greet and StackChan robot demo",
+        "format": "Welcome",
+        "speakers": [],
         "topic": "Intro",
-        "description": "New to AI agents? Start here. This beginner workshop runs in English and Hindi and takes you from \"what is an agent\" to building and running a simple one yourself. Naina Sachdev, India Chapter Lead at Dev3pack and an AI engineer who builds multi-agent systems, guides you step by step, with no prior agent experience needed. Bring a laptop. You leave with a working agent and the vocabulary to follow the rest of the week, from payments to identity and trust."
+        "description": "The Devcon opening ceremony overlaps with this slot, so we have to cancel the Agents-from-zero onboarding session. Please join us the next day instead: the same Agents-from-zero onboarding runs on Wednesday 4th November at 9:00 AM IST at the Agentic Hub (Jio World Convention Centre). Same content, same hosts from Dev3pack, and the Hindi and English walkthrough is included."
       },
       {
         "id": "S02",
@@ -443,14 +441,13 @@
         "id": "S37",
         "day": "Thu 5 Nov",
         "time": "12:00-12:20",
-        "title": "How agents find and pay for services",
+        "title": "One Human, Many Agents: Identity at the Paywall",
         "format": "Talk",
         "speakers": [
-          "Viral Sangani",
-          "Vedant Anand"
+          "Viral Sangani"
         ],
         "topic": "Tooling",
-        "description": "How does an agent find a service it can trust, and pay for it? Viral Sangani (Cesto, usebuy.ai) shows pay-per-call buying in practice, including discovery, quotes and receipts. Vedant Anand (Bags, x402 maintainer) explains how x402 settles for tokens beyond USDC. Twenty minutes that connect finding a service with paying for it, and set up the live demo later in the day."
+        "description": "One person can run many agents, and a seller cannot tell them from a bot farm. Viral Sangani (Cesto, usebuy.ai) shows how proof of personhood from Self can gate what an agent is allowed to spend on usebuy.ai. It follows the reputation roundtable, where sybils and fake reviews were the problem, and leads into the identity talks that follow. Leave with a pattern for tying an agent’s spending limits to one verified human."
       },
       {
         "id": "S38",
@@ -483,10 +480,11 @@
         "title": "Agents: who are we dealing with, and what did we buy?",
         "format": "Demo",
         "speakers": [
-          "Lena Hierzi"
+          "Lena Hierzi",
+          "Viral Sangani"
         ],
         "topic": "Community",
-        "description": "An agent finds a service, pays for it and returns an answer. What would make you trust the result? Lena Hierzi (Celo Core Co) reads the agent's ERC-8004 identity and reputation record, discovers a service from the usebuy.ai side, and follows an x402 purchase on Celo. Then she inspects the receipt and discusses what feedback a paid interaction can support. Part one of a live, three-part workflow from identity to resolution."
+        "description": "An agent finds a service, pays for it and returns an answer. What would make you trust the result? Lena Hierzi (Celo Core Co) and Viral Sangani (Cesto, Co-Founder) reads the agent's ERC-8004 identity and reputation record, discovers a service from the usebuy.ai side, and follows an x402 purchase on Celo. Then she inspects the receipt and discusses what feedback a paid interaction can support. Part one of a live, three-part workflow from identity to resolution."
       },
       {
         "id": "S41",
@@ -681,7 +679,7 @@
   },
   {
     "hub": "Aggregation Hub",
-    "changedAt": "2026-11-02T02:27:30.438Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -719,7 +717,7 @@
       {
         "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "16:00-18:00",
+        "time": "16:00-18:30",
         "title": "Story Swap",
         "format": "Other",
         "speakers": [],
@@ -758,7 +756,9 @@
         "time": "15:00-17:00",
         "title": "The Wallet View",
         "format": "Networking",
-        "speakers": [],
+        "speakers": [
+          "Jason Chaskin"
+        ],
         "description": "Three questions on user access, interfaces and dependencies."
       },
       {
@@ -800,12 +800,13 @@
       {
         "id": "S14",
         "day": "Thu 5 Nov",
-        "time": "15:00-16:00",
+        "time": "15:10-15:50",
         "title": "Exit Paths",
         "format": "Roundtable",
         "speakers": [
           "Gopi",
-          "Vojta"
+          "Vojta",
+          "Ofir"
         ],
         "topic": "Open Q&A",
         "description": "A follow-up to the 14:30 main-stage talk on shutting down a chain."
@@ -893,7 +894,7 @@
   },
   {
     "hub": "DeSci Hub",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -966,7 +967,7 @@
       {
         "id": "S10",
         "day": "Tue 3 Nov",
-        "time": "14:20-14:50",
+        "time": "16:00-16:30",
         "title": "Open-source RNA vaccine trials, biosecurity, and developing medicines to save 1 million lives each year + QnA",
         "format": "Talk",
         "speakers": [
@@ -977,7 +978,7 @@
       {
         "id": "S09",
         "day": "Tue 3 Nov",
-        "time": "15:00-15:30",
+        "time": "14:20-14:50",
         "title": "From AI-Designed Binders to Robotic Labs: Closing the Drug Discovery Loop + QnA",
         "format": "Talk",
         "speakers": [
@@ -988,7 +989,7 @@
       {
         "id": "S07",
         "day": "Tue 3 Nov",
-        "time": "15:40-16:40",
+        "time": "15:00-16:00",
         "title": "Open Sourced Autoresearch: accelarating the scientific benchmarks via Human-agent collaboration",
         "format": "Workshop",
         "speakers": [
@@ -999,7 +1000,7 @@
       {
         "id": "S11",
         "day": "Tue 3 Nov",
-        "time": "16:50-17:10",
+        "time": "17:00-17:20",
         "title": "Closing Notes",
         "format": "Closing",
         "speakers": [
@@ -1334,7 +1335,7 @@
   },
   {
     "hub": "EIP Hub",
-    "changedAt": "2026-11-02T02:27:30.438Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -1394,7 +1395,7 @@
         "title": "EIP Signal Quiz Game - Understanding EIPs",
         "format": "Other",
         "speakers": [
-          "Dhanush"
+          "Dhanush Naik"
         ]
       },
       {
@@ -1589,15 +1590,15 @@
         "description": "Discussion on Clear-Signing as a solution on the main security challenge of Ethereum ecosystem today called 'Blind Signing', with the live demo on real Trezor and Ledger devices."
       },
       {
-        "id": "S26",
+        "id": "S28",
         "day": "Thu 5 Nov",
         "time": "11:00-11:30",
-        "title": "Verify, authorise, execute: ERC-8126, ERC-8196 and the road to ERC-8004 Final",
+        "title": "Building Trustless Systems, Together",
         "format": "Talk",
         "speakers": [
-          "Leigh Cronian"
+          "Simona Serban"
         ],
-        "description": "Three standards address the same problem from different angles: ERC-8004 registers and validates agents, ERC-8126 verifies them and produces a 0-100 risk score, and ERC-8196 limits what a verified agent can do to an owner's policy. This talk composes all three in a working implementation, deployed and Sourcify-verified on Sepolia, and sets out what remains to take ERC-8004 to Final.\n​"
+        "description": "Exploring the tension between human trust and code-based trustlessness in Ethereum, this talk draws on experiences building the ETHCluj community to examine how open collaboration, accountability, and shared ownership can thrive in a rapidly evolving world shaped by AI, privacy, and security challenges."
       },
       {
         "id": "S27",
@@ -1611,15 +1612,15 @@
         "description": "Since Pectra, 67 million EOAs carry smart account code, and most dapps still treat them like 2021 wallets: approve, then act, then pay gas. This talk shows how a dapp should actually use EIP-7702 through ERC-5792 and ERC-7715, where integrations are going wrong, and why the same EOA can now be run by a passkey with no seed phrase."
       },
       {
-        "id": "S28",
+        "id": "S26",
         "day": "Thu 5 Nov",
         "time": "12:10-13:00",
-        "title": "Building Trustless Systems, Together",
+        "title": "Verify, authorise, execute: ERC-8126, ERC-8196 and the road to ERC-8004 Final",
         "format": "Talk",
         "speakers": [
-          "Simona Serban"
+          "Leigh Cronian"
         ],
-        "description": "Exploring the tension between human trust and code-based trustlessness in Ethereum, this talk draws on experiences building the ETHCluj community to examine how open collaboration, accountability, and shared ownership can thrive in a rapidly evolving world shaped by AI, privacy, and security challenges."
+        "description": "Three standards address the same problem from different angles: ERC-8004 registers and validates agents, ERC-8126 verifies them and produces a 0-100 risk score, and ERC-8196 limits what a verified agent can do to an owner's policy. This talk composes all three in a working implementation, deployed and Sourcify-verified on Sepolia, and sets out what remains to take ERC-8004 to Final.\n​"
       },
       {
         "id": "S29",
@@ -1758,7 +1759,7 @@
         "title": "Self-Sovereign Tokens: Rethinking Onchain Representation",
         "format": "Talk",
         "speakers": [
-          "German"
+          "German Abal"
         ],
         "description": "Apeiron Protocol proposes a token architecture where users or entities govern Signs through their own Console, with protected state isolated in ConsoleStorage and modular execution delegated to optional Cartridges. The talk explores explicit incoming acceptance, EXTCODEHASH-based remote compliance, and the separation of representation, instance identity, and metadata."
       },
@@ -1784,7 +1785,7 @@
   },
   {
     "hub": "Game Zone",
-    "changedAt": "2026-11-02T02:27:30.438Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -1815,7 +1816,7 @@
         "format": "Demo",
         "speakers": [],
         "topic": "Game",
-        "description": "Open to all Devcon attendees: compete in ETHIndia’s knockout chess tournament, and the winner plays GM Vidit Gujrathi on Wednesday 4 November at 1pm."
+        "description": "Open to all Devcon attendees: compete in ETHIndia’s knockout chess tournament, and the winner plays GM Vidit Gujrathi on Wednesday 4 November at 1pm. Partnership by @verantaxyz. Powered by @shoonyastore. Organised by ETHIndia."
       },
       {
         "id": "S04",
@@ -2336,7 +2337,7 @@
   },
   {
     "hub": "Legal & Governance Hub",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -2397,7 +2398,7 @@
         "id": "S06",
         "day": "Tue 3 Nov",
         "time": "16:00-17:00",
-        "title": "Nobody Votes. Can Better Deliberation Fix It?",
+        "title": "Nobody Votes. Can Better Tooling Fix It?",
         "format": "Roundtable",
         "speakers": [
           "Yuting Jiang",
@@ -2405,7 +2406,7 @@
           "Jimin Lee"
         ],
         "topic": "Tooling",
-        "description": "Most token holders skip the vote because it costs more time & attention than it returns. Civic tech has been working on the same problem in cities and citizen assemblies, using deliberation tools that find where people agree before anything goes to a vote. This session looks at how those tools work, what they have changed in public decision-making, and what DAOs can borrow from them."
+        "description": "Most token holders skip the vote because it costs more time & attention than it returns. Civic tech has been working on the same problem in cities and citizen assemblies, using tools that find where people agree before anything goes to a vote. This session looks at how those tools work, what they have changed in public decision-making, and what DAOs can borrow from them."
       },
       {
         "id": "S07",
@@ -2422,22 +2423,11 @@
       {
         "id": "S08",
         "day": "Wed 4 Nov",
-        "time": "09:00-10:30",
+        "time": "09:00-11:00",
         "title": "Doors Open: Coffee & Networking",
         "format": "Welcome",
         "speakers": [],
         "description": "☕️"
-      },
-      {
-        "id": "S09",
-        "day": "Wed 4 Nov",
-        "time": "10:30-11:00",
-        "title": "From Tribe to Agent",
-        "format": "Talk",
-        "speakers": [
-          "Husam Abboud"
-        ],
-        "description": "People have always built institutions to coordinate, hold assets and make decisions together. What changes when those decisions are made by software? This opening talk traces the path from human communities to DAOs and agentic organisations, asking which foundations still matter: identity, shared rules, recognised authority and someone who answers when things go wrong."
       },
       {
         "id": "S010",
@@ -2530,7 +2520,8 @@
         "format": "Roundtable",
         "speakers": [
           "Shivom Sharma",
-          "Lena Hierzi"
+          "Lena Hierzi",
+          "Fatemeh Fannizadeh"
         ],
         "description": "An agent creates a product, earns revenue and reinvests the proceeds. Who should own the business, and who can claim what it produces? This roundtable separates ownership, control and economic rights, examining the competing claims of developers, operators, funders and users. We’ll ask how those rights could be documented, changed and enforced as the agent becomes more autonomous."
       },
@@ -2740,7 +2731,7 @@
   },
   {
     "hub": "Music Stage",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -3053,7 +3044,7 @@
           "Naman"
         ],
         "topic": "Electronic Live",
-        "description": "DJ set w/ zk-proofs streamed through a custom music L2 · Electronic Live · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "DJ set w/ zk-proofs streamed through a custom music L2 · Electronic Live · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S22",
@@ -3065,7 +3056,7 @@
           "mannuu"
         ],
         "topic": "Open Format",
-        "description": "blockravers · burned the Man with this set · Open Format · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "blockravers · burned the Man with this set · Open Format · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S25",
@@ -3077,7 +3068,7 @@
           "huzzhouse"
         ],
         "topic": "House & Disco",
-        "description": "house sundowners & techno afters · House & Disco, Techno & Trance · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "house sundowners & techno afters · House & Disco, Techno & Trance · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S15",
@@ -3089,7 +3080,7 @@
           "Simulacra"
         ],
         "topic": "Bollywood & Desi",
-        "description": "a punjabi wedding sonic journey · brooklyn · Bollywood & Desi, Techno & Trance, Electronic Live · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "a punjabi wedding sonic journey · brooklyn · Bollywood & Desi, Techno & Trance, Electronic Live · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S06",
@@ -3101,7 +3092,7 @@
           "itscharann"
         ],
         "topic": "House & Disco",
-        "description": "house music · 10 years behind the decks · House & Disco · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "house music · 10 years behind the decks · House & Disco · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S05",
@@ -3113,7 +3104,7 @@
           "Ekant"
         ],
         "topic": "Bollywood & Desi",
-        "description": "open-format · house / commercial / bollywood / hip-hop · Bollywood & Desi, House & Disco, Hip-Hop & Rap · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "open-format · house / commercial / bollywood / hip-hop · Bollywood & Desi, House & Disco, Hip-Hop & Rap · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S31",
@@ -3125,7 +3116,7 @@
           "DJ Chalk"
         ],
         "topic": "House & Disco",
-        "description": "House & Disco · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "House & Disco · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S19",
@@ -3137,7 +3128,19 @@
           "Vedz"
         ],
         "topic": "Electronic Live",
-        "description": "melodic electronic originals · Electronic Live · 8 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz)"
+        "description": "melodic electronic originals · Electronic Live · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
+      },
+      {
+        "id": "S43",
+        "day": "Thu 5 Nov",
+        "time": "16:00-17:45",
+        "title": "Dex (dextroalien)",
+        "format": "DJ Set",
+        "speakers": [
+          "Dex"
+        ],
+        "topic": "Techno & Trance",
+        "description": "Latin hardcore techno · 10+ years in the Buenos Aires underground · 9 DJs share the floor, tag-team 4:00–5:45 (Naman, mannuu, huzzhouse, Simulacra, itscharann, Ekant, DJ Chalk, Vedz, Dex)"
       },
       {
         "id": "S23",
@@ -3250,7 +3253,7 @@
   },
   {
     "hub": "Onchain Art Hub",
-    "changedAt": "2026-11-01T11:31:25.875Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [
       "row 4: no session title, skipped"
     ],
@@ -3412,6 +3415,17 @@
         "description": "Art, Luck and Magic Internet Money is a talk on how modern creatives build a body of work, find audiences, and expand their surface area for luck, through art history, onchain culture, and AI. Stay for the workshop that follows, where you’ll map your own side doors and leave with a 30-day strategy and a seven-day content plan.  awkquarian: https://x.com/rakshitaphilip"
       },
       {
+        "id": "S112",
+        "day": "Thu 5 Nov",
+        "time": "17:30-18:30",
+        "title": "Datamorpho x Onchain Art Hub",
+        "format": "Workshop",
+        "speakers": [
+          "German Abal"
+        ],
+        "description": "Datamorpho lets artists create art with more than one state (or JPEG) that reveals new states in the future, inside the same file that is delivered from the first time. No file changes, no address changes, no IPFS change, no metadata change. It is a reliable data transformation framework that combines decentralization and cryptography in an easy way to bring stronger guarantees to collectors on custody and security on data transformation. Datamorpho is MIT Licence, Open Source and free to use (and contribute to)."
+      },
+      {
         "id": "S107",
         "day": "Fri 6 Nov",
         "time": "11:00-13:00",
@@ -3445,7 +3459,7 @@
   },
   {
     "hub": "Open Hardware Zone",
-    "changedAt": "2026-10-31T20:06:19.901Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -3487,11 +3501,11 @@
       {
         "id": "S04",
         "day": "Tue 3 Nov",
-        "time": "14:30-15:00",
+        "time": "14:30-15:30",
         "title": "Universal Ethereum Signer on Open-Source Silicon",
         "format": "Workshop",
         "speakers": [
-          "Miriam Neubauer"
+          "Nicolas Bacca"
         ],
         "topic": "Hardware wallets",
         "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
@@ -3571,7 +3585,7 @@
         "title": "Universal Ethereum Signer on Open-Source Silicon",
         "format": "Workshop",
         "speakers": [
-          "Miriam Neubauer"
+          "Nicolas Bacca"
         ],
         "topic": "Hardware wallets",
         "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
@@ -3792,11 +3806,11 @@
       {
         "id": "S30",
         "day": "Thu 5 Nov",
-        "time": "14:00-14:30",
+        "time": "14:00-15:00",
         "title": "Universal Ethereum Signer on Open-Source Silicon",
         "format": "Workshop",
         "speakers": [
-          "Miriam Neubauer"
+          "Nicolas Bacca"
         ],
         "topic": "Hardware wallets",
         "description": "Crossbar's Ethereum signer app running on an open-source chip, open hardware and an open operating system. https://github.com/crossbar-inc"
@@ -4916,7 +4930,7 @@
   },
   {
     "hub": "Privacy Hub",
-    "changedAt": "2026-10-31T17:47:33.411Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [
       "row 30 \"Privacy x AI: Achieving Privacy in the Age of AI agents\": ends (15:20) before it starts (15:30), skipped"
     ],
@@ -4930,7 +4944,8 @@
         "speakers": [
           "Uddalak",
           "Akashneelesh",
-          "Agnish"
+          "Agnish",
+          "Aasha"
         ]
       },
       {
@@ -5181,7 +5196,8 @@
         "speakers": [
           "Zac",
           "Leona",
-          "Dominik"
+          "Dominik",
+          "Gnana"
         ],
         "description": "A fireside chat exploring the diverging trends in privacy centric L2s on Ethereum."
       },
@@ -5278,7 +5294,7 @@
         "title": "Private Finance on Public Networks",
         "format": "Talk",
         "speakers": [
-          "Kartikeya Garg"
+          "Kartikey Garg"
         ]
       },
       {
@@ -5908,7 +5924,7 @@
   },
   {
     "hub": "Security Hub",
-    "changedAt": "2026-10-31T17:47:33.411Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [],
     "sessions": [
       {
@@ -5990,9 +6006,20 @@
         ]
       },
       {
+        "id": "S105",
+        "day": "Tue 3 Nov",
+        "time": "17:10-17:40",
+        "title": "Why Reducing the Issuance Is Important for Ethereum Security",
+        "format": "Talk",
+        "speakers": [
+          "Sam Jernigan",
+          "Jerome de Tychey"
+        ]
+      },
+      {
         "id": "S12",
         "day": "Tue 3 Nov",
-        "time": "17:10-18:00",
+        "time": "17:40-18:00",
         "title": "Closing the day",
         "format": "Closing",
         "speakers": []
@@ -6048,7 +6075,7 @@
         "day": "Wed 4 Nov",
         "time": "11:10-11:30",
         "title": "Security coordination across the libp2p and Ethereum infrastructure ecosystem.",
-        "format": "Workshop",
+        "format": "Talk",
         "speakers": [
           "Manu Gupta",
           "ibp2p"
@@ -6369,10 +6396,10 @@
         "id": "S103",
         "day": "Fri 6 Nov",
         "time": "14:10-14:30",
-        "title": "Walletbeat",
+        "title": "Why Everything Matters for Wallet Security",
         "format": "Workshop",
         "speakers": [
-          "Walletbeat team"
+          "Walletbeat"
         ]
       },
       {
@@ -6387,11 +6414,9 @@
   },
   {
     "hub": "Zuzone Hub",
-    "changedAt": "2026-11-02T02:27:30.438Z",
+    "changedAt": "2026-11-03T02:19:19.027Z",
     "problems": [
       "row 6: no session title, skipped",
-      "row 12: no session title, skipped",
-      "row 13: no session title, skipped",
       "row 22: no session title, skipped",
       "row 27: no session title, skipped",
       "row 28: no session title, skipped",
@@ -6409,7 +6434,7 @@
       {
         "id": "S02",
         "day": "Tue 3 Nov",
-        "time": "14:00-14:30",
+        "time": "14:00-14:50",
         "title": "Shaka’s Zu music and welcome!",
         "format": "Welcome",
         "speakers": []
@@ -6467,6 +6492,28 @@
         "format": "Talk",
         "speakers": [
           "Ben"
+        ]
+      },
+      {
+        "id": "S09",
+        "day": "Tue 3 Nov",
+        "time": "16:30-16:50",
+        "title": "4seas pop up",
+        "format": "Fireside Chat",
+        "speakers": [
+          "Daniel \"Koss\" Knobelsdorf",
+          "Shaka"
+        ]
+      },
+      {
+        "id": "S10",
+        "day": "Tue 3 Nov",
+        "time": "16:50-17:00",
+        "title": "Valley of the commons",
+        "format": "Fireside Chat",
+        "speakers": [
+          "Veronica",
+          "Daniel \"Koss\" Knobelsdorf"
         ]
       },
       {
@@ -6533,16 +6580,16 @@
       {
         "id": "S15",
         "day": "Wed 4 Nov",
-        "time": "13:00-14:00",
-        "title": "Lunch",
-        "format": "Break",
+        "time": "14:00-14:30",
+        "title": "Cross-Hub Connect: Zuzone Hub x DeSci Hub",
+        "format": "Other",
         "speakers": []
       },
       {
         "id": "S16",
         "day": "Wed 4 Nov",
-        "time": "14:00-18:00",
-        "title": "NS Community Hang Out",
+        "time": "14:30-17:00",
+        "title": "Network School Community Hangout - Tashkent Tea, Kazakh chocolate & cheese",
         "format": "Networking",
         "speakers": []
       },
@@ -6614,6 +6661,7 @@
         "speakers": [
           "Elaine Wang"
         ],
+        "topic": "Community",
         "description": "Learnings from real world network state in Palau, Prospera, the Network School, and the Philippines, with Cofounder and CEO of Metropolis"
       },
       {
