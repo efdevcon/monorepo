@@ -57,6 +57,30 @@ function floatRect() {
   );
 }
 
+/** The side panel's easing, cubic-bezier(0.32, 0.72, 0, 1), solved for x. */
+function panelEase(x: number): number {
+  if (x <= 0) return 0;
+  if (x >= 1) return 1;
+  const bez = (t: number, a: number, b: number) =>
+    3 * (1 - t) * (1 - t) * t * a + 3 * (1 - t) * t * t * b + t * t * t;
+  let lo = 0;
+  let hi = 1;
+  for (let i = 0; i < 20; i++) {
+    const mid = (lo + hi) / 2;
+    if (bez(mid, 0.32, 0) < x) lo = mid;
+    else hi = mid;
+  }
+  const t = (lo + hi) / 2;
+  return bez(t, 0.72, 1);
+}
+
+interface Box {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
 /**
  * The one desktop video player (see dock.ts). Mounted once in the
  * page layout, outside every pane, with no transformed ancestor (a fixed
@@ -67,6 +91,13 @@ function floatRect() {
  * visible and the video is playing: bottom-right, or wherever its strip
  * was last dragged. A stream that was not playing when its slot went away
  * is dropped rather than floated.
+ *
+ * A move between places (slot → slot, dock ↔ float) is a FLIP flight: the
+ * box takes its final size and position at once and a transform carries
+ * the video from where it was, easing out over 300ms. Animating the box
+ * itself would resize the iframe every frame, and YouTube's player then
+ * holds the video centred at its old size until its throttled resize
+ * runs, a visible snap at the end.
  */
 export function StreamDock() {
   const desktop = useIsDesktopSync();
@@ -95,13 +126,14 @@ export function StreamDock() {
 
 function DockPlayer({ stream }: { stream: DockStream }) {
   const rootRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLIFrameElement>(null);
   const playingRef = useRef(false);
   const draggingRef = useRef(false);
+  /** Cancels a flight in progress (a drag takes over the box). */
+  const cancelFlightRef = useRef<() => void>(() => {});
   const [mode, setMode] = useState<Mode>("docked");
-  // A CSS transition only during a flight (dock ↔ float, or slot → slot):
-  // while tracking a slot the box must follow it at once (scrolling, the
-  // panel's own slide), and a drag must stick to the pointer.
+  // The strip fades in once the flight into the float has landed.
   const [flying, setFlying] = useState(false);
   const [src] = useState(() => playerApiSrc(stream.src));
 
@@ -114,24 +146,52 @@ function DockPlayer({ stream }: { stream: DockStream }) {
 
   useLayoutEffect(() => {
     const root = rootRef.current;
-    if (!root) return;
+    const video = videoRef.current;
+    if (!root || !video) return;
     let raf = 0;
     let lastMode: Mode | null = null;
     let lastSlot: HTMLElement | null = null;
     let lostAt: number | null = null;
-    let flightTimer: ReturnType<typeof setTimeout> | undefined;
+    /** The flight in progress: where the video was, and when it set off. */
+    let flight: { from: DOMRect; startedAt: number } | null = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const setBox = (top: number, left: number, width: number, height: number) => {
-      root.style.top = `${top}px`;
-      root.style.left = `${left}px`;
-      root.style.width = `${width}px`;
-      root.style.height = `${height}px`;
+    const setBox = (box: Box) => {
+      root.style.top = `${box.top}px`;
+      root.style.left = `${box.left}px`;
+      root.style.width = `${box.width}px`;
+      root.style.height = `${box.height}px`;
     };
 
-    const fly = () => {
+    const endFlight = () => {
+      flight = null;
+      root.style.transform = "";
+      root.style.transformOrigin = "";
+      setFlying(false);
+    };
+    cancelFlightRef.current = endFlight;
+
+    /** Start a flight from where the video is painted right now. */
+    const takeOff = () => {
+      if (reduceMotion) return;
+      flight = { from: video.getBoundingClientRect(), startedAt: performance.now() };
       setFlying(true);
-      clearTimeout(flightTimer);
-      flightTimer = setTimeout(() => setFlying(false), FLIGHT_MS);
+    };
+
+    /** Apply this frame's transform: the video box lerped from `from` to its final place. */
+    const flyFrame = (box: Box, strip: number) => {
+      if (!flight) return;
+      const p = panelEase((performance.now() - flight.startedAt) / FLIGHT_MS);
+      if (p >= 1) {
+        endFlight();
+        return;
+      }
+      const to = { top: box.top + strip, left: box.left, width: box.width };
+      const scale = 1 + (flight.from.width / to.width - 1) * (1 - p);
+      const tx = (flight.from.left - to.left) * (1 - p);
+      const ty = (flight.from.top - to.top) * (1 - p);
+      root.style.transformOrigin = `0 ${strip}px`;
+      root.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
     };
 
     const switchMode = (next: Mode) => {
@@ -139,7 +199,7 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       const first = lastMode === null;
       lastMode = next;
       setMode(next);
-      if (!first) fly();
+      if (!first) takeOff();
     };
 
     const place = () => {
@@ -154,14 +214,16 @@ function DockPlayer({ stream }: { stream: DockStream }) {
         lostAt = null;
         const { rect, inset } = target;
         // Panel → expanded page (or back): glide between the two slots.
-        if (lastMode === "docked" && lastSlot && lastSlot !== target.el) fly();
+        if (lastMode === "docked" && lastSlot && lastSlot !== target.el) takeOff();
         lastSlot = target.el;
-        setBox(rect.top, rect.left, rect.width, rect.height);
+        switchMode("docked");
+        setBox(rect);
+        flyFrame(rect, 0);
+        // No clip in flight: the box is in the air, not in its scroller yet.
         root.style.clipPath =
-          inset.top || inset.right || inset.bottom || inset.left
+          !flight && (inset.top || inset.right || inset.bottom || inset.left)
             ? `inset(${inset.top}px ${inset.right}px ${inset.bottom}px ${inset.left}px)`
             : "";
-        switchMode("docked");
         return;
       }
       if (lastMode === "docked") {
@@ -175,10 +237,12 @@ function DockPlayer({ stream }: { stream: DockStream }) {
         return;
       }
       lastSlot = null;
-      const { left, top } = floatRect();
-      setBox(top, left, FLOAT_W, FLOAT_H);
-      root.style.clipPath = "";
       switchMode("floating");
+      const { left, top } = floatRect();
+      const box = { top, left, width: FLOAT_W, height: FLOAT_H };
+      setBox(box);
+      root.style.clipPath = "";
+      flyFrame(box, STRIP_H);
     };
 
     const tick = () => {
@@ -189,38 +253,43 @@ function DockPlayer({ stream }: { stream: DockStream }) {
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
-      clearTimeout(flightTimer);
+      cancelFlightRef.current = () => {};
     };
   }, [stream.src, stream.sessionId]);
 
-  // Drag by the strip. The pointer is captured, the box follows it directly
-  // (the frame loop stands aside), and the drop point is remembered for the
-  // next float. A press that barely moves is left to the title's click.
+  // Drag by the strip. Pointer capture starts only once the press has
+  // travelled past the slop: capturing on the press itself retargets the
+  // click to the strip and the title's click never fires. While dragging
+  // the box follows the pointer directly (the frame loop stands aside) and
+  // the drop point is remembered for the next float.
   const movedRef = useRef(false);
   const onStripPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     const root = rootRef.current;
     if (!root || e.button !== 0) return;
     const strip = e.currentTarget;
+    const pointerId = e.pointerId;
     const startX = e.clientX;
     const startY = e.clientY;
     const origin = { left: parseFloat(root.style.left) || 0, top: parseFloat(root.style.top) || 0 };
     movedRef.current = false;
-    strip.setPointerCapture(e.pointerId);
 
     const onMove = (ev: PointerEvent) => {
       const dx = ev.clientX - startX;
       const dy = ev.clientY - startY;
-      if (!movedRef.current && Math.hypot(dx, dy) < DRAG_SLOP_PX) return;
-      movedRef.current = true;
-      draggingRef.current = true;
-      setFlying(false);
+      if (!movedRef.current) {
+        if (Math.hypot(dx, dy) < DRAG_SLOP_PX) return;
+        movedRef.current = true;
+        draggingRef.current = true;
+        cancelFlightRef.current();
+        strip.setPointerCapture(pointerId);
+      }
       floatPos = clampFloat(origin.left + dx, origin.top + dy);
       root.style.left = `${floatPos.left}px`;
       root.style.top = `${floatPos.top}px`;
     };
     const onUp = () => {
       draggingRef.current = false;
-      strip.releasePointerCapture(e.pointerId);
+      if (strip.hasPointerCapture(pointerId)) strip.releasePointerCapture(pointerId);
       strip.removeEventListener("pointermove", onMove);
       strip.removeEventListener("pointerup", onUp);
       strip.removeEventListener("pointercancel", onUp);
@@ -241,8 +310,7 @@ function DockPlayer({ stream }: { stream: DockStream }) {
         floating
           ? "border border-dc-hairline bg-white shadow-[0_8px_24px_rgba(22,11,43,0.16)]"
           : "bg-black",
-        flying &&
-          "transition-[top,left,width,height] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+        flying && "will-change-transform"
       )}
     >
       {/* Title strip, mini player only: drag handle; the title returns to
@@ -250,7 +318,10 @@ function DockPlayer({ stream }: { stream: DockStream }) {
       {floating && (
         <div
           onPointerDown={onStripPointerDown}
-          className="flex shrink-0 cursor-grab touch-none select-none items-center gap-1 border-b border-dc-hairline bg-white pl-1.5 pr-1 active:cursor-grabbing"
+          className={cn(
+            "flex shrink-0 cursor-grab touch-none select-none items-center gap-1 border-b border-dc-hairline bg-white pl-1.5 pr-1 transition-opacity duration-150 ease-out active:cursor-grabbing motion-reduce:transition-none",
+            flying ? "opacity-0" : "opacity-100"
+          )}
           style={{ height: STRIP_H }}
         >
           <GripVertical className="size-4 shrink-0 text-dc-muted" aria-hidden />
@@ -270,7 +341,7 @@ function DockPlayer({ stream }: { stream: DockStream }) {
           />
         </div>
       )}
-      <div className="min-h-0 flex-1 bg-black">
+      <div ref={videoRef} className="min-h-0 flex-1 bg-black">
         <iframe
           ref={frameRef}
           src={src}
