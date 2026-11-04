@@ -43,6 +43,7 @@ import { SIGN_IN_PATH, signInHref } from "@/routing/returnTo";
 import { detailHref } from "@/routing/viewParams";
 import { useOnline } from "@/hooks/useOnline";
 import { useNowMs, useRealWorldNowMs } from "@/hooks/useNow";
+import { LIVE_WINDOW_MS } from "@/data/liveWindow";
 import { eventDayKey } from "@/data/eventTime";
 import { useIsDesktop } from "@/hooks/useIsDesktop";
 import { relativeTime } from "@/utils/relativeTime";
@@ -55,13 +56,15 @@ type Size = "sm" | "md";
  * (`sm`: the panel's 14px caption). Reading is public through Meerkat's REST
  * API; asking is a plain link to Meerkat carrying the hand-off token, fetched
  * ahead with the tickets payload's Q&A pass (data/meerkat/handoffToken.ts). Live-only: offline it renders one quiet line and
- * recovers on reconnect.
+ * recovers on reconnect. Asking closes with the session: the button goes once
+ * the live window is over (LIVE_WINDOW_MS after the end, the same ten minutes
+ * the stream and the transcript follow), the questions stay readable.
  */
 export function SessionQA({
   session,
   size = "md",
 }: {
-  session: Pick<Session, "id" | "sourceId" | "start">;
+  session: Pick<Session, "id" | "sourceId" | "start" | "end">;
   size?: Size;
 }) {
   const online = useOnline();
@@ -77,6 +80,9 @@ export function SessionQA({
   const slug = session.id !== primary ? session.id : null;
   const active = slug && slugFor === session.id ? slug : primary;
   const onNotFound = slug && active === primary ? () => setSlugFor(session.id) : undefined;
+  // Past session: ten minutes after the end (data/liveWindow.ts), the feed
+  // stays for reading but nothing can be asked any more (Scott, 2026-11-04).
+  const over = nowMs > session.end * 1000 + LIVE_WINDOW_MS;
 
   // `session.start` is in seconds on the client (materialised sessions).
   if (!qaOpensEarly(primary) && eventDayKey(nowMs) < eventDayKey(session.start * 1000)) {
@@ -107,6 +113,7 @@ export function SessionQA({
         sessionId={active}
         returnTo={detailHref("session", session.id)}
         size={size}
+        askable={!over}
         onNotFound={onNotFound}
       />
     </MeerkatProvider>
@@ -156,6 +163,7 @@ function QAFeed({
   sessionId,
   returnTo,
   size,
+  askable,
   onNotFound,
 }: {
   /** Meerkat's event id: the Pretalx code, or the slug on the retry. */
@@ -163,6 +171,8 @@ function QAFeed({
   /** This session's own page (`/schedule/<id>`), where sign-in brings the user back to (routing/returnTo.ts). */
   returnTo: string;
   size: Size;
+  /** False once the session's live window is over: no "Ask a question" band, the feed alone. */
+  askable: boolean;
   /** Present while another id is still worth trying: called on a 404 instead of showing "not open". */
   onNotFound?: () => void;
 }) {
@@ -194,7 +204,7 @@ function QAFeed({
   const notOpen = notFound && !onNotFound;
   // The link's token, traded for the payload's Q&A pass (no ticket lookup
   // here), only while there is a Q&A to link to.
-  const wantsLink = holdsTicket && !notOpen && !retrying;
+  const wantsLink = askable && holdsTicket && !notOpen && !retrying;
   const { ask: handoff, problem } = useHandoffToken(
     wantsLink ? user?.id : undefined,
     wantsLink ? payload?.qaPass : undefined
@@ -206,7 +216,7 @@ function QAFeed({
     <div className={cn("flex flex-col gap-3", size === "md" && "lg:grow")}>
       <QAHeading size={size} count={questions?.length} live={!mock && live.isConnected} />
 
-      {!notOpen && (
+      {askable && !notOpen && (
         // Docked on a translucent band everywhere (QA_CTA_BAND). The page
         // (md): on phones fixed at the bottom of the screen, above the tab bar
         // (the page leaves room for it through data-qa-cta); from lg at the

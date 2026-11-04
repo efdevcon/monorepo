@@ -57,6 +57,8 @@ test("search: custom terms bring up their categories and areas", () => {
   assert.ok(searchFind(groups, "toilet").hits.every((h) => h.category.id === "toilets"), "toilet → washrooms");
   assert.ok(searchFind(groups, "lift").hits.every((h) => h.areas.every((a) => a.areaId === "elevator")), "lift → elevators");
   assert.ok(searchFind(groups, "main stage").hits.some((h) => h.key.includes("composite:")), "main stage keeps the Main Stage row");
+  const podcast = searchFind(groups, "podcast room").hits;
+  assert.ok(podcast.length > 0 && podcast.every((h) => h.areas.every((a) => a.areaId === "content-corner")), "podcast room → the Content Corner only");
 });
 
 test("search terms: every target exists in the catalogue (a typo would match nothing)", () => {

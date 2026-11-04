@@ -1,21 +1,37 @@
 import { byName, sortByLevel, type FindEntry, type FindGroup } from "../find/catalogue";
 import { LEVEL_ALIASES, type LevelId } from "../data/levels";
-import { SEARCH_TERMS } from "../data/searchTerms";
+import { SEARCH_TERMS, type SearchTerms } from "../data/searchTerms";
 
 /** Shortest query that can match a term by its start ("lun" → lunch; "lu" would pull the food into every name search). */
 const TERM_PREFIX_MIN = 3;
 
-/** The categories and areas the query's custom terms (data/searchTerms.ts) stand for. */
+/** Every row a term appears in, longest terms first (see termTargets). */
+const TERM_ROWS: ReadonlyArray<[term: string, rows: SearchTerms[]]> = (() => {
+  const byTerm = new Map<string, SearchTerms[]>();
+  for (const row of SEARCH_TERMS) for (const term of row.terms) byTerm.set(term, [...(byTerm.get(term) ?? []), row]);
+  return [...byTerm].sort(([a], [b]) => b.length - a.length);
+})();
+
+/**
+ * The categories and areas the query's custom terms (data/searchTerms.ts)
+ * stand for. A phrase matched whole in the query consumes its words, longest
+ * first, so "podcast room" brings up the Content Corner without "room"
+ * pulling in every meeting room beside it (2026-11-04).
+ */
 export function termTargets(rest: string): { categories: Set<string>; areas: Set<string> } {
   const categories = new Set<string>();
   const areas = new Set<string>();
   if (rest === "") return { categories, areas };
-  const words = ` ${rest} `;
-  for (const { terms, categories: c = [], areas: a = [] } of SEARCH_TERMS) {
-    const hit = terms.some((term) => term === rest || (rest.length >= TERM_PREFIX_MIN && term.startsWith(rest)) || words.includes(` ${term} `));
-    if (!hit) continue;
-    for (const id of c) categories.add(id);
-    for (const id of a) areas.add(id);
+  let words = ` ${rest} `;
+  for (const [term, rows] of TERM_ROWS) {
+    const spaced = ` ${term} `;
+    const whole = words.includes(spaced);
+    if (!whole && term !== rest && !(rest.length >= TERM_PREFIX_MIN && term.startsWith(rest))) continue;
+    if (whole) words = words.replace(spaced, "  ");
+    for (const { categories: c = [], areas: a = [] } of rows) {
+      for (const id of c) categories.add(id);
+      for (const id of a) areas.add(id);
+    }
   }
   return { categories, areas };
 }

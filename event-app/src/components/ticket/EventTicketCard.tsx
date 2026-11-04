@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { DC8Glyph } from "./DC8Glyph";
@@ -81,7 +82,9 @@ export function EventTicketCard({
         className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
-        <div className="flex flex-col gap-5">
+        {/* Above the glyph (it is painted after this block): a long product
+            name such as General Admission runs into the art otherwise. */}
+        <div className="relative z-[1] flex flex-col gap-5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             key={logoAttempt}
@@ -111,13 +114,22 @@ export function EventTicketCard({
             )}
           </div>
         </div>
-        <p className="mt-auto text-[10px] font-bold leading-none text-dc-muted">
+        <p className="relative z-[1] mt-auto text-[10px] font-bold leading-none text-dc-muted">
           DEVCON.ORG
         </p>
         <DC8Glyph
           style={style}
           className="pointer-events-none absolute right-[-70px] top-[calc(50%+0.5px)] h-[309px] w-[181px] -translate-y-1/2"
         />
+        {ticket.hasCheckedIn === true && (
+          // Scanned at the entrance: the swag card's "Collected" pill (sonner
+          // success palette), in the card's top right corner over the glyph
+          // (Scott, 2026-11-04).
+          <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2 shadow-sm">
+            <Check className="size-3.5" />
+            Checked in
+          </span>
+        )}
       </div>
 
       {/* Bottom half — QR + venue block */}

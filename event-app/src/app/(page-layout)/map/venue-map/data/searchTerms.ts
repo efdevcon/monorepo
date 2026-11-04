@@ -5,8 +5,10 @@ import type { CategoryId } from "./categories";
  * What people type that the place names do not say: each entry's terms
  * bring up the listed categories and areas in Search, on top of the name
  * and category-label matches (Scott, 2026-10-26). A term matches when the
- * query is it, starts it (three letters or more) or contains it whole.
- * Keep the terms lower-case; a multi-word term matches the spaced form.
+ * query is it, starts it (three letters or more) or contains it whole; a
+ * phrase matched whole claims its words, so "podcast room" never also means
+ * "room" (search.ts termTargets). Keep the terms lower-case; a multi-word
+ * term matches the spaced form.
  */
 export type SearchTerms = { terms: readonly string[]; categories?: readonly CategoryId[]; areas?: readonly AreaId[] };
 
@@ -45,9 +47,10 @@ export const SEARCH_TERMS: readonly SearchTerms[] = [
   { terms: ["art", "gallery", "exhibition"], areas: ["art-gallery"] },
   { terms: ["poster", "posters"], areas: ["poster-display", "poster-printing-station"] },
   { terms: ["print", "printing", "printer"], areas: ["poster-printing-station"] },
-  { terms: ["press", "media", "recording", "interview booth"], areas: ["content-corner"] },
+  // "Podcast room" is what attendees call the Content Corner (Scott, 2026-11-04).
+  { terms: ["press", "media", "recording", "interview booth", "podcast", "podcast room"], areas: ["content-corner"] },
   { terms: ["hardware", "maker", "makers", "soldering"], areas: ["open-hardware-zone"] },
   // Rooms
   { terms: ["green room", "backstage", "speaker room"], areas: ["speakers-lounge"] },
-  { terms: ["podcast", "filming"], areas: ["interview-room"] },
+  { terms: ["filming"], areas: ["interview-room"] },
 ];
