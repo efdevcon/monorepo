@@ -350,6 +350,8 @@ function CollapsedLane({
 /** Now pill: 10px text + 3px padding ≈ 16px tall; half its typical width. */
 const PILL_H = 16;
 const PILL_HALF_W = 22;
+/** Mouse travel (px) that turns a press on the lanes into a drag rather than a click. */
+const DRAG_SLOP = 4;
 
 /**
  * Room-by-time timeline (Figma "1 - Timeline view"). Desktop: 10 min = 180px
@@ -507,6 +509,50 @@ export function ScheduleTimeline({
   // Last horizontal offset: the scroll handler's report, or the value just
   // written by one of the effects here (see the zoom effect below).
   const lastLeftRef = useRef(0);
+
+  // Desktop: click and drag pans the lanes (Scott, 2026-11-04). Mouse
+  // pointers only, so a trackpad's wheel scrolling and a finger's native
+  // panning are untouched. A press that moves less than DRAG_SLOP is a
+  // click; past it the box captures the pointer, pans by the mouse's travel
+  // and swallows the click that follows the release (capture phase, before
+  // DetailLink and the stars see it). The pressed state is a DOM attribute,
+  // not React state: the grid is heavy and nothing else needs to re-render.
+  const dragRef = useRef<{ x: number; left: number; moved: boolean } | null>(null);
+  const swallowClickRef = useRef(false);
+  const onLanesPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    swallowClickRef.current = false;
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    // No text selection or native link drag while the mouse is down.
+    e.preventDefault();
+    dragRef.current = { x: e.clientX, left: e.currentTarget.scrollLeft, moved: false };
+  };
+  const onLanesPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || e.pointerType !== "mouse") return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < DRAG_SLOP) return;
+      drag.moved = true;
+      e.currentTarget.setPointerCapture(e.pointerId);
+      e.currentTarget.setAttribute("data-dragging", "");
+    }
+    e.currentTarget.scrollLeft = drag.left - dx;
+  };
+  const onLanesPointerEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    dragRef.current = null;
+    if (!drag.moved) return;
+    swallowClickRef.current = true;
+    e.currentTarget.removeAttribute("data-dragging");
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+  const onLanesClickCapture = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!swallowClickRef.current) return;
+    swallowClickRef.current = false;
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
   const syncHeader = (left: number) => {
     if (headerRef.current) headerRef.current.scrollLeft = left;
@@ -783,10 +829,17 @@ export function ScheduleTimeline({
           updateCollapsed(left);
           onScrollLeft?.(left, timeAtOffset(left, startMs, m.slotWidth));
         }}
+        onPointerDown={onLanesPointerDown}
+        onPointerMove={onLanesPointerMove}
+        onPointerUp={onLanesPointerEnd}
+        onPointerCancel={onLanesPointerEnd}
+        onClickCapture={onLanesClickCapture}
         // Scrollbar hidden (DayTabs pattern): the time-axis header and the
         // room column already say "this pans", and the thin bar sat on top
-        // of the last lane on desktop.
-        className="isolate overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        // of the last lane on desktop. Grab cursor on desktop, grabbing over
+        // everything while a drag is on (the blocks keep their pointer
+        // cursor at rest).
+        className="isolate overflow-x-auto [scrollbar-width:none] lg:cursor-grab data-[dragging]:cursor-grabbing data-[dragging]:select-none data-[dragging]:[&_*]:cursor-grabbing [&::-webkit-scrollbar]:hidden"
       >
         {/* The last lane's cells drop their bottom hairline: the root's own
             border (border-y on phones, the desktop card's) draws that edge,
