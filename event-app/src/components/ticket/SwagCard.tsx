@@ -50,8 +50,10 @@ export function SwagCard({
         // without shifting the image/strip by 1px. Hover tints it the same
         // purple the home-page cards use; focus-visible upgrades it so
         // keyboard focus stays legible.
-        "flex cursor-pointer flex-col overflow-clip rounded-[12px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
-        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0"
+        // A row on mobile (image left, strip right); the desktop shelf card
+        // stacks the image over the strip as before.
+        "flex cursor-pointer flex-row overflow-clip rounded-[8px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
+        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0 lg:flex-col lg:rounded-[12px]"
       )}
     >
       {/* No aria-label (it would hide the product name from screen readers);
@@ -59,14 +61,12 @@ export function SwagCard({
       <span className="sr-only">Enlarge QR code.</span>
       <div
         className={cn(
-          // 16:9 on mobile (the Figma 361×203 ratio, kept proportional at any
-          // width); the desktop shelf stretches the image to fill instead.
-          // The image is absolutely positioned because aspect-ratio is only a
-          // PREFERRED size — an in-flow portrait photo would still stretch
-          // the box to its min-content height. (`aspect-video` also doesn't
-          // compile here; spell the ratio out.)
-          "relative aspect-[16/9] w-full",
-          shelfOnDesktop && "lg:aspect-auto lg:min-h-0 lg:flex-1"
+          // Mobile row: a fixed-width box that stretches to the strip's
+          // height; the desktop shelf stretches the image to fill the column
+          // instead. The image is absolutely positioned so an in-flow
+          // portrait photo can never inflate the box.
+          "relative w-[88px] shrink-0 self-stretch",
+          shelfOnDesktop && "lg:min-h-0 lg:w-full lg:flex-1"
         )}
       >
         {showImage ? (
@@ -93,20 +93,40 @@ export function SwagCard({
           </span>
         )}
       </div>
+      {/* Strip (Scott, 2026-11-04): name, "Swag" label, then a "View QR"
+          line with a small QR icon, stacked and top-aligned. On mobile it
+          is the right-hand column and sets the row's height; on the desktop
+          shelf the image takes the stretch instead, the name is a size up
+          and View QR moves to the right of the strip. */}
       <div
-        className="flex w-full items-center gap-6 px-4 py-5"
+        className={cn(
+          "flex min-w-0 flex-1 flex-col items-start gap-1.5 px-3 py-3",
+          shelfOnDesktop &&
+            "lg:w-full lg:flex-none lg:flex-row lg:items-center lg:gap-6 lg:p-4"
+        )}
         style={{ background: STRIP_BG }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <p className="text-[18px] font-medium leading-[1.25] tracking-[-0.25px] text-dc-fg2 [word-break:break-word]">
+        <div className={cn("flex min-w-0 flex-col gap-1", shelfOnDesktop && "lg:flex-1")}>
+          <p
+            className={cn(
+              "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
+              shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
+            )}
+          >
             {name}
           </p>
-          <p className="text-[12px] font-medium leading-none text-[#9256d2]">
+          <p className="text-[11px] font-medium leading-none text-[#9256d2]">
             {collected ? "Swag · Collected" : "Swag"}
           </p>
         </div>
-        <span className="flex size-8 shrink-0 items-center justify-center">
-          <QrCode className="size-6 text-dc-purple" />
+        <span
+          className={cn(
+            "mt-1 inline-flex items-center gap-1 text-[12px] font-semibold leading-4 text-dc-purple",
+            shelfOnDesktop && "lg:mt-0 lg:shrink-0"
+          )}
+        >
+          <QrCode className="size-3.5" aria-hidden="true" />
+          View QR
         </span>
       </div>
     </button>

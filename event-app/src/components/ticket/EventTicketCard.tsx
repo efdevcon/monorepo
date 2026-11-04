@@ -1,5 +1,6 @@
 "use client";
 
+import cn from "classnames";
 import { Check } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
@@ -45,6 +46,7 @@ export function EventTicketCard({
   // Event branding is fixed copy, like the venue block below (the Pretix
   // event name env var is lowercase "devcon" in prod).
   const modalTitle = `Devcon 8 India - ${typeName}`;
+  const stub = ticket.hasCheckedIn === true;
 
   return (
     // Each half wears a real border pulled outside the layout box with
@@ -79,7 +81,10 @@ export function EventTicketCard({
         // `grow` + mt-auto on DEVCON.ORG: when carousel cards stretch to the
         // tallest sibling, the top half absorbs the extra height and keeps
         // DEVCON.ORG pinned above the tear line (no-op for a lone card).
-        className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
+        className={cn(
+          "relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]",
+          stub ? "-mb-px rounded-[12px]" : "ticket-notch-top rounded-t-[12px]"
+        )}
         style={{ background: ticketTopBackground(theme) }}
       >
         {/* Above the glyph (it is painted after this block): a long product
@@ -132,49 +137,51 @@ export function EventTicketCard({
         )}
       </div>
 
-      {/* Bottom half — QR + venue block */}
-      <div
-        className="ticket-notch-bottom relative -mx-px -mb-px w-full rounded-b-[12px] border border-t-0 border-dc-hairline p-4"
-        style={{ background: ticketBottomBackground(theme) }}
-      >
-        <div className="flex items-start gap-6">
-          <span
-            className="shrink-0 rounded-[8px] p-[2px]"
-            style={{ background: theme.accent }}
-          >
-            <span className="block rounded-[6px] bg-white p-[2px]">
-              {qr ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={qr}
-                  alt=""
-                  className="size-[98px] rounded-[4px]"
-                />
-              ) : (
-                <span className="block size-[98px] rounded-[4px]" />
-              )}
+      {/* Bottom half — QR + venue block; torn off once checked in */}
+      {!stub && (
+        <div
+          className="ticket-notch-bottom relative -mx-px -mb-px w-full rounded-b-[12px] border border-t-0 border-dc-hairline p-4"
+          style={{ background: ticketBottomBackground(theme) }}
+        >
+          <div className="flex items-start gap-6">
+            <span
+              className="shrink-0 rounded-[8px] p-[2px]"
+              style={{ background: theme.accent }}
+            >
+              <span className="block rounded-[6px] bg-white p-[2px]">
+                {qr ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={qr}
+                    alt=""
+                    className="size-[98px] rounded-[4px]"
+                  />
+                ) : (
+                  <span className="block size-[98px] rounded-[4px]" />
+                )}
+              </span>
             </span>
-          </span>
-          <div className="flex min-w-0 flex-1 flex-col items-end justify-between gap-3 self-stretch py-1 text-right text-dc-muted">
-            <div className="flex flex-col items-end gap-0.5">
-              <p className="text-[12px] font-bold leading-[1.15]">
-                MUMBAI, INDIA
-              </p>
-              <p className="text-[12.5px] leading-[1.15]">Nov 3–6, 2026</p>
-            </div>
-            <div className="flex w-full flex-col gap-0.5 text-[9px] leading-[1.25]">
-              <p className="font-semibold">Jio World Centre</p>
-              <p>
-                G Block, Bandra Kurla Complex (BKC)
-                <br />
-                Bandra East, Mumbai
-                <br />
-                Maharashtra 400098, India
-              </p>
+            <div className="flex min-w-0 flex-1 flex-col items-end justify-between gap-3 self-stretch py-1 text-right text-dc-muted">
+              <div className="flex flex-col items-end gap-0.5">
+                <p className="text-[12px] font-bold leading-[1.15]">
+                  MUMBAI, INDIA
+                </p>
+                <p className="text-[12.5px] leading-[1.15]">Nov 3–6, 2026</p>
+              </div>
+              <div className="flex w-full flex-col gap-0.5 text-[9px] leading-[1.25]">
+                <p className="font-semibold">Jio World Centre</p>
+                <p>
+                  G Block, Bandra Kurla Complex (BKC)
+                  <br />
+                  Bandra East, Mumbai
+                  <br />
+                  Maharashtra 400098, India
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </button>
   );
 }
