@@ -95,11 +95,14 @@ export function SwagCard({
       </div>
       {/* Strip sized for the two-column mobile grid (Scott, 2026-11-04):
           14px name, 11px label, tighter padding; the desktop shelf card
-          keeps the larger 18px name. */}
+          keeps the larger 18px name. `flex-1` so the gradient fills the
+          card when the grid row stretches it past its content (a one-line
+          name beside a two-line one); on the desktop shelf the image takes
+          the stretch instead. */}
       <div
         className={cn(
-          "flex w-full items-center gap-3 px-3 py-3",
-          shelfOnDesktop && "lg:gap-6 lg:px-4 lg:py-5"
+          "flex w-full flex-1 items-center gap-3 px-3 py-3",
+          shelfOnDesktop && "lg:flex-none lg:gap-6 lg:px-4 lg:py-5"
         )}
         style={{ background: STRIP_BG }}
       >
