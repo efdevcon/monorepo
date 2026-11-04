@@ -16,19 +16,24 @@ export interface TearTrack {
   ease: Easing | Easing[];
 }
 
+type TearTracks = Partial<Record<"rotate" | "skewY" | "x" | "y" | "opacity", TearTrack>>;
+
 export interface TearConcept {
   name: string;
-  /** Point of the piece that stays attached, as a transform-origin. The
-   *  notch mask cuts a 12px quarter circle out of the piece's top-left corner,
-   *  so the hinge is the notch's edge at (12px, 0): the first point of
-   *  material on the perforation, under the stub's own notch edge. */
+  /** Point of the piece its transforms act about, as a transform-origin.
+   *  For the hanging concepts it is the point that stays attached: the
+   *  notch mask cuts a 12px quarter circle out of the piece's top-left
+   *  corner, so the hinge is the notch's edge at (12px, 0), the first point
+   *  of material on the perforation, under the stub's own notch edge. */
   hinge: string;
   /** Total length, seconds. */
   duration: number;
   /** When the piece lets go and the gap below the stub starts closing. */
   fallAt: number;
   gapClose: { duration: number; ease: Easing };
-  tracks: Partial<Record<"rotate" | "skewY" | "x" | "y" | "opacity", TearTrack>>;
+  tracks: TearTracks;
+  /** The stub's own reaction, if the concept has one (same clock). */
+  stub?: { hinge: string; tracks: TearTracks };
 }
 
 /** A 361×138 piece hung from a corner settles with its centre of mass under
@@ -92,20 +97,61 @@ const concept2: TearConcept = {
   },
 };
 
-export const TEAR_CONCEPTS = [concept1, concept2] as const;
-export type TearConceptId = 1 | 2;
-export const DEFAULT_TEAR_CONCEPT: TearConceptId = 2;
+/** Concept 3 — split. No hinge: the piece pulls straight down off the
+ *  perforation with a small wobble and settles a card-gap below; the stub
+ *  recoils up and resettles as it lets go. After a beat the piece slides
+ *  out to the right, turning as it goes, while the gap closes. */
+const concept3: TearConcept = {
+  name: "Split",
+  hinge: "50% 50%",
+  duration: 1.9,
+  fallAt: 1.2,
+  gapClose: { duration: 0.5, ease: [0.2, 0, 0, 1] },
+  tracks: {
+    y: {
+      values: [0, 16, 11, 13, 12, 12, 40],
+      at: [0, 0.4, 0.6, 0.75, 0.9, 1.2, 1.9],
+      ease: ["easeOut", "easeInOut", "easeInOut", "easeInOut", "linear", "easeIn"],
+    },
+    rotate: {
+      values: [0, -1.6, 1.1, -0.5, 0, 0, 14],
+      at: [0, 0.4, 0.6, 0.75, 0.9, 1.2, 1.9],
+      ease: ["easeOut", "easeInOut", "easeInOut", "easeInOut", "linear", [0.5, 0, 0.85, 0.5]],
+    },
+    x: { values: [0, 0, 460], at: [0, 1.2, 1.9], ease: ["linear", [0.5, 0, 0.85, 0.5]] },
+    opacity: { values: [1, 1, 0], at: [0, 1.55, 1.9], ease: ["linear", "easeIn"] },
+  },
+  stub: {
+    hinge: "50% 100%",
+    tracks: {
+      y: {
+        values: [0, 0, -5, 2, -1, 0],
+        at: [0, 0.15, 0.35, 0.55, 0.7, 0.9],
+        ease: ["linear", "easeOut", "easeInOut", "easeInOut", "easeInOut"],
+      },
+      rotate: {
+        values: [0, 0, 0.5, -0.25, 0],
+        at: [0, 0.15, 0.4, 0.6, 0.85],
+        ease: ["linear", "easeOut", "easeInOut", "easeInOut"],
+      },
+    },
+  },
+};
+
+export const TEAR_CONCEPTS = [concept1, concept2, concept3] as const;
+export type TearConceptId = 1 | 2 | 3;
+export const DEFAULT_TEAR_CONCEPT: TearConceptId = 3;
 export const tearConcept = (id: TearConceptId): TearConcept => TEAR_CONCEPTS[id - 1];
 
-/** Framer `animate` + `transition` for the piece from a concept's tracks. */
-export function tearAnimation(concept: TearConcept) {
+/** Framer `animate` + `transition` from a track set on the concept's clock. */
+export function tearAnimation(tracks: TearTracks, duration: number) {
   const animate: Record<string, number[]> = {};
   const transition: Record<string, { duration: number; times: number[]; ease: Easing | Easing[] }> = {};
-  for (const [prop, track] of Object.entries(concept.tracks)) {
+  for (const [prop, track] of Object.entries(tracks)) {
     animate[prop] = track.values;
     transition[prop] = {
-      duration: concept.duration,
-      times: track.at.map((s) => s / concept.duration),
+      duration,
+      times: track.at.map((s) => s / duration),
       ease: track.ease,
     };
   }

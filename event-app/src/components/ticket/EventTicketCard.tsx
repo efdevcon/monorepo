@@ -65,7 +65,8 @@ export function EventTicketCard({
   const bottomRef = useRef<HTMLDivElement>(null);
   const [bottomHeight, setBottomHeight] = useState(0);
   const concept = tearConcept(tearConceptId);
-  const { animate: tearAnimate, transition: tearTransition } = tearAnimation(concept);
+  const { animate: tearAnimate, transition: tearTransition } = tearAnimation(concept.tracks, concept.duration);
+  const stubMotion = concept.stub && tearAnimation(concept.stub.tracks, concept.duration);
   useEffect(() => {
     if (!checkedIn || !paneActive || tearHold || tear !== "intact") return;
     // A beat with the whole ticket in view first, then the tear (reduced
@@ -121,12 +122,15 @@ export function EventTicketCard({
           the button; this hint states the action. */}
       <span className="sr-only">Enlarge QR code.</span>
       {/* Top half — product + holder + glyph art, dashed tear line below */}
-      <div
+      <motion.div
         // `grow` + mt-auto on DEVCON.ORG: when carousel cards stretch to the
         // tallest sibling, the top half absorbs the extra height and keeps
         // DEVCON.ORG pinned above the tear line (no-op for a lone card).
+        // A motion element for the concepts where the stub reacts to the tear.
         className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
-        style={{ background: ticketTopBackground(theme) }}
+        style={{ background: ticketTopBackground(theme), transformOrigin: concept.stub?.hinge }}
+        animate={tear === "tearing" && stubMotion ? stubMotion.animate : undefined}
+        transition={stubMotion?.transition}
       >
         {/* Above the glyph (it is painted after this block): a long product
             name such as General Admission runs into the art otherwise. */}
@@ -176,7 +180,7 @@ export function EventTicketCard({
             Checked in
           </span>
         )}
-      </div>
+      </motion.div>
 
       {/* Bottom half — QR + venue block. The height box keeps it in flow
           (so the stub above and the page below sit where they always did),
