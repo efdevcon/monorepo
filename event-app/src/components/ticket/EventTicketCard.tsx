@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { usePaneActive } from "@/components/paneContext";
+import { DEFAULT_TEAR_CONCEPT, tearAnimation, tearConcept, type TearConceptId } from "./ticketTear";
 import { DC8Glyph } from "./DC8Glyph";
 import type { QrModalTarget } from "./QrModals";
 import {
@@ -29,36 +30,12 @@ export interface TicketReference {
   ordinal: number;
 }
 
-// ---------------------------------------------------------------------------
-// The tear-off (concept, Scott 2026-11-04). Once the ticket is checked in the
-// bottom half tears away along the perforation and the stub stays, still
-// opening the QR popup on tap. One timeline, all in seconds: the tear starts
-// at the right notch and the right side drops (gravity, ease-in) until the
-// piece hangs from the left notch; it swings there like a pendulum coming to
-// rest (REST_ANGLE: a 361×138 piece hung from a corner settles with its
-// centre of mass under the pivot, atan(138/361) off the vertical ≈ 69°);
-// then the last fibres give, it falls and fades, and the page below closes
-// the gap as it goes. Held while the QR popup is open (that is where the
-// scan flips it) and until the pane is on screen; plays once per mount.
-// ---------------------------------------------------------------------------
-const REST_ANGLE = 69;
+// The tear-off (concept, Scott 2026-11-04): once checked in the bottom half
+// tears away and the stub stays, still opening the QR popup on tap. The
+// timelines live in ticketTear.ts. Held while the QR popup is open (that is
+// where the scan flips it) and until the pane is on screen; plays once per
+// mount.
 const TEAR_DELAY_MS = 600;
-/** When the piece lets go, in seconds from the start of the tear. */
-const FALL_AT = 1.95;
-const TEAR_DURATION = 2.5;
-const t = (sec: number) => sec / TEAR_DURATION;
-const TEAR_ROTATE = {
-  rotate: [0, 74, 63, 72.5, 66, 70.5, 68, REST_ANGLE, REST_ANGLE, 84],
-  times: [0, 0.5, 0.72, 0.95, 1.18, 1.4, 1.62, 1.85, FALL_AT, TEAR_DURATION].map(t),
-  // Drop with gravity, then ease-in-out half swings, hold, tumble as it falls.
-  ease: [[0.55, 0, 1, 0.45], "easeInOut", "easeInOut", "easeInOut", "easeInOut", "easeInOut", "easeInOut", "linear", "easeIn"] as const,
-};
-const TEAR_FALL = {
-  y: [0, 0, 440],
-  yTimes: [0, t(FALL_AT), 1],
-  opacity: [1, 1, 0],
-  opacityTimes: [0, t(FALL_AT + 0.3), 1],
-};
 
 type TearPhase = "intact" | "tearing" | "torn";
 
@@ -68,6 +45,7 @@ export function EventTicketCard({
   reference,
   onQrClick,
   tearHold = false,
+  tearConceptId = DEFAULT_TEAR_CONCEPT,
 }: {
   ticket: Ticket;
   qr?: string;
@@ -75,6 +53,8 @@ export function EventTicketCard({
   onQrClick: (target: QrModalTarget) => void;
   /** Keep the bottom half on while true (a QR popup is open). */
   tearHold?: boolean;
+  /** Which tear timeline plays (ticketTear.ts); the dev switch sets it. */
+  tearConceptId?: TearConceptId;
 }) {
   const { attempt: logoAttempt, markFailed: markLogoFailed } =
     useRetryOnReconnect();
@@ -84,6 +64,8 @@ export function EventTicketCard({
   const [tear, setTear] = useState<TearPhase>("intact");
   const bottomRef = useRef<HTMLDivElement>(null);
   const [bottomHeight, setBottomHeight] = useState(0);
+  const concept = tearConcept(tearConceptId);
+  const { animate: tearAnimate, transition: tearTransition } = tearAnimation(concept);
   useEffect(() => {
     if (!checkedIn || !paneActive || tearHold || tear !== "intact") return;
     // A beat with the whole ticket in view first, then the tear (reduced
@@ -128,7 +110,6 @@ export function EventTicketCard({
           : undefined
       }
       disabled={!qr}
-      data-tear={tear}
       className={cn(
         "flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale,filter] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default enabled:hover:[filter:drop-shadow(0_4px_6px_rgba(22,11,43,0.07))_drop-shadow(0_2px_4px_rgba(22,11,43,0.05))] motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
         // The falling piece passes over whatever sits under the card.
@@ -199,14 +180,14 @@ export function EventTicketCard({
 
       {/* Bottom half — QR + venue block. The height box keeps it in flow
           (so the stub above and the page below sit where they always did),
-          then closes as the piece falls (see TEAR_* above); the piece is
+          then closes as the piece falls (ticketTear.ts); the piece is
           absolute while it animates and gone once torn. */}
       {tear !== "torn" && (
         <motion.div
           className="relative w-full shrink-0"
           style={tear === "tearing" ? { height: bottomHeight } : undefined}
           animate={tear === "tearing" ? { height: 0 } : undefined}
-          transition={{ delay: FALL_AT, duration: 0.5, ease: [0.2, 0, 0, 1] }}
+          transition={{ delay: concept.fallAt, ...concept.gapClose }}
         >
           <motion.div
             ref={bottomRef}
@@ -218,18 +199,10 @@ export function EventTicketCard({
             )}
             style={{
               background: ticketBottomBackground(theme),
-              transformOrigin: "0px 0px",
+              transformOrigin: concept.hinge,
             }}
-            animate={
-              tear === "tearing"
-                ? { rotate: TEAR_ROTATE.rotate, y: TEAR_FALL.y, opacity: TEAR_FALL.opacity }
-                : undefined
-            }
-            transition={{
-              rotate: { duration: TEAR_DURATION, times: TEAR_ROTATE.times, ease: [...TEAR_ROTATE.ease] },
-              y: { duration: TEAR_DURATION, times: TEAR_FALL.yTimes, ease: ["linear", [0.5, 0, 1, 1]] },
-              opacity: { duration: TEAR_DURATION, times: TEAR_FALL.opacityTimes, ease: ["linear", "easeIn"] },
-            }}
+            animate={tear === "tearing" ? tearAnimate : undefined}
+            transition={tearTransition}
             onAnimationComplete={() => tear === "tearing" && setTear("torn")}
           >
             <div className="flex items-start gap-6">
