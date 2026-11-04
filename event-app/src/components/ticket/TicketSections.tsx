@@ -9,6 +9,7 @@ import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
 import { FaucetPerkCard } from "./FaucetPerkCard";
 import { useReleased } from "@/data/release/releaseGates";
+import { usePreviewCheckedIn } from "@/hooks/usePreviewState";
 import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
@@ -116,6 +117,7 @@ export function TicketSections({
   // goes, header included.
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
+  const previewCheckedIn = usePreviewCheckedIn();
 
   // The popup is opened with a snapshot; read its scanned state from the
   // current tickets instead (by QR, which is deterministic per secret), so a
@@ -220,7 +222,9 @@ export function TicketSections({
   const lead = primary
     ? (admissionTickets.find((t) => t.secret === primary.secret) ?? null)
     : null;
-  const shownTickets = lead ? [lead] : admissionTickets;
+  const shownTickets = (lead ? [lead] : admissionTickets).map((ticket) =>
+    previewCheckedIn ? { ...ticket, hasCheckedIn: true } : ticket
+  );
   const leadOrderCode = lead
     ? tickets.find((order) => order.tickets.some((t) => t.secret === lead.secret))?.orderCode
     : undefined;
@@ -410,6 +414,7 @@ export function TicketSections({
                     qr={qrCodes[ticket.secret]}
                     reference={referenceOf(ticket)}
                     onQrClick={setModal}
+                    tearHold={modal !== null}
                   />
                 </div>
               ))}
@@ -436,6 +441,7 @@ export function TicketSections({
                 qr={qrCodes[ticket.secret]}
                 reference={referenceOf(ticket)}
                 onQrClick={setModal}
+                tearHold={modal !== null}
               />
             ))}
           </section>

@@ -64,6 +64,15 @@ export function usePreviewFeatured(): number | null {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
+/**
+ * The ticket card's tear-off: `?previewCheckedIn=1` treats every shown ticket
+ * as scanned at the entrance (pill, perks and the tear, which replays on each
+ * reload), so it can be looked at without a scan. Outside production only.
+ */
+export function usePreviewCheckedIn(): boolean {
+  return usePreviewParam("previewCheckedIn") === "1";
+}
+
 // The URL's query at call time; null on the server and in production, so
 // SSR and hydration always match the real state.
 const noSubscribe = () => () => {};
