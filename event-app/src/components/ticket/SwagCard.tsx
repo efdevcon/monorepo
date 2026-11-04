@@ -102,11 +102,11 @@ export function SwagCard({
         className={cn(
           "flex min-w-0 flex-1 flex-col items-start gap-1.5 px-3 py-3",
           shelfOnDesktop &&
-            "lg:w-full lg:flex-none lg:flex-row lg:items-center lg:gap-6 lg:px-4 lg:py-5"
+            "lg:w-full lg:flex-none lg:flex-row lg:items-center lg:gap-6 lg:p-4"
         )}
         style={{ background: STRIP_BG }}
       >
-        <div className={cn("flex min-w-0 flex-col gap-1.5", shelfOnDesktop && "lg:flex-1")}>
+        <div className={cn("flex min-w-0 flex-col gap-1", shelfOnDesktop && "lg:flex-1")}>
           <p
             className={cn(
               "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
