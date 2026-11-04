@@ -7,6 +7,7 @@ import { ctaPrimary, ctaSecondary } from 'components/common/cta'
 import { sectionHeading, bodyCopy, eyebrow as eyebrowStyle } from 'components/common/styles'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 import { UpiGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
+import { useUpiPrices, upiPriceFor, type UpiProduct } from 'hooks/useUpiPrices'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -23,9 +24,11 @@ interface Column {
   subtitle: string
   price: string
   price_original?: string
-  // Rupee (UPI) price for columns that include an India product (e.g.
-  // "₹3,315+"). When set the price cell shows the UPI / $ split: green
-  // UPI chip with the rupee price, dark $ tile with the USD price.
+  // UPI product whose live rupee price (from Pretix) heads the column's
+  // "from" price, e.g. the Daily India Pass → "₹3,315+". Resolved into
+  // `price_inr` at render; when set the price cell shows the UPI / $ split:
+  // green UPI chip with the rupee price, dark $ tile with the USD price.
+  upiProduct?: UpiProduct
   price_inr?: string
   price_note: string
   // Optional second line under price_note (e.g. "Limited quantity • Purchasable
@@ -234,11 +237,16 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
   }
   const rawColumns = t.raw('columns') as Column[]
   const { launched } = useIsLaunched()
+  const upiPrices = useUpiPrices()
 
   // Inject the launch state into the Community column so its status / CTA
   // follow the global ticket launch instead of the static snapshot baked
   // into translations.
-  const columns: Column[] = rawColumns.map(col => {
+  const columns: Column[] = rawColumns.map(rawCol => {
+    // Live rupee "from" price for columns that lead with a UPI product; the
+    // "+" matches the USD figure ("$35+") and signals pricier tiers above.
+    const inr = upiPriceFor(upiPrices, rawCol.upiProduct)
+    const col: Column = inr ? { ...rawCol, price_inr: `${inr}+` } : rawCol
     // Community self-claiming discounts open at the global ticket launch:
     // "OPENS JULY" before, OPEN during (matches the during-launch Figma
     // where every column reads OPEN).

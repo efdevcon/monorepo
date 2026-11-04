@@ -48,6 +48,7 @@ import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
 import { useIsLaunched } from 'hooks/useWaveStates'
+import { useUpiPrices, upiPriceFor, type UpiProduct } from 'hooks/useUpiPrices'
 import { addItemsToPretixCartAndRedirect } from 'services/pretixCart'
 import { VerifyDiscountModal } from 'components/domain/tickets/VerifyDiscountModal'
 import { WagmiProvider, type Config } from 'wagmi'
@@ -64,8 +65,9 @@ const queryClient = new QueryClient()
 // figure; `free` renders plain bold "FREE".
 type CardPricing = {
   price?: string
-  // Rupee price paid by UPI (e.g. "₹3,315"), India products only.
-  priceInr?: string
+  // UPI product whose live rupee price (from Pretix) shows beside `price`,
+  // India products only.
+  upiProduct?: UpiProduct
   free?: boolean
 }
 
@@ -132,7 +134,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
     price: '$35',
-    priceInr: '₹3,315',
+    upiProduct: 'daily-india-pass',
     buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
     maxPerOrder: TICKETING.pretix.dailyIndiaPassMaxPerOrder,
@@ -176,7 +178,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
     price: '$25',
-    priceInr: '₹2,370',
+    upiProduct: 'indian-student',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
@@ -269,6 +271,8 @@ function StoreContent() {
   // Builders application opens at launch. Preview the launched view with
   // ?mockNow=launch.
   const { launched } = useIsLaunched()
+  // Live rupee prices (Pretix `upi_price_inr`) for the India product cards.
+  const upiPrices = useUpiPrices()
 
   const [redeemOpen, setRedeemOpen] = useState(false)
   // Deep link for voucher holders: /tickets/store/#redeem scrolls to the
@@ -425,7 +429,7 @@ function StoreContent() {
                         {card.free ? (
                           <span className={css['application-price']}>FREE</span>
                         ) : (
-                          <CardPrice price={card.price ?? ''} priceInr={card.priceInr} />
+                          <CardPrice price={card.price ?? ''} priceInr={upiPriceFor(upiPrices, card.upiProduct) ?? undefined} />
                         )}
                         {!launched ? (
                           <span className={css['opens-label']}>Opens July</span>
@@ -496,7 +500,7 @@ function StoreContent() {
                       {card.free ? (
                         <span className={css['application-price']}>FREE</span>
                       ) : (
-                        <CardPrice price={card.price ?? ''} priceInr={card.priceInr} />
+                        <CardPrice price={card.price ?? ''} priceInr={upiPriceFor(upiPrices, card.upiProduct) ?? undefined} />
                       )}
                       {/* Sanctuary Tech Builders applications open at the
                           global launch; student applications are already

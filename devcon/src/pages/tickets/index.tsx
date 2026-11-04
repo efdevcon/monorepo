@@ -8,6 +8,7 @@ import { BottomFAQ, useStandardFaqItems } from 'components/common/BottomFAQ'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 import { TicketComparison } from 'components/domain/tickets/TicketComparison'
 import { useIsLaunched, useTicketsStoreUrl } from 'hooks/useWaveStates'
+import { useUpiPrices, upiPriceFor, type UpiProduct } from 'hooks/useUpiPrices'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
 import { getFaqData } from 'services/faq'
 import { getMessages } from 'utils/intl'
@@ -76,8 +77,12 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   const tagOpen = t('overview.tag_open')
   const tagComing = t('overview.tag_coming')
 
-  const communityRowsRaw = t.raw('community_section.rows') as TicketRow[]
-  const applicationRowsRaw = t.raw('applications_section.rows') as TicketRow[]
+  // Rows may name a UPI product (`upiProduct` slug); its rupee price comes
+  // from Pretix at runtime and lands in the row's RUPEES cell once loaded.
+  type ContentRow = TicketRow & { upiProduct?: UpiProduct }
+  const communityRowsRaw = t.raw('community_section.rows') as ContentRow[]
+  const applicationRowsRaw = t.raw('applications_section.rows') as ContentRow[]
+  const upiPrices = useUpiPrices()
   // General Admission daily passes: static rows, always on sale (the store's
   // card carries the quantity picker and Pretix handoff).
   const generalRows = t.raw('general_admission.rows') as TicketRow[]
@@ -88,9 +93,10 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
   // Applications section per the latest design — students see criteria
   // on the application form page itself (/form/student-application).
   const detailsByName: Record<string, React.ReactNode> = {}
-  function withDetails(row: TicketRow): TicketRow {
+  function withDetails({ upiProduct, ...row }: ContentRow): TicketRow {
     const details = detailsByName[row.name]
-    return details ? { ...row, details } : row
+    const priceInr = upiPriceFor(upiPrices, upiProduct) ?? undefined
+    return { ...row, priceInr, ...(details ? { details } : {}) }
   }
 
   // Community self-claiming discounts open at the global ticket launch.
