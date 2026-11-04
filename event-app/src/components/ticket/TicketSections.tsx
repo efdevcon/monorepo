@@ -12,7 +12,8 @@ import { useReleased } from "@/data/release/releaseGates";
 import { useUser } from "@/data/auth/useUser";
 import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
-import { QrModal, type QrModalTarget } from "./QrModals";
+import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
+import { displayItemName } from "./ticketTheme";
 
 /**
  * While a QR popup is open on something not scanned yet (the ticket at the
@@ -286,6 +287,22 @@ export function TicketSections({
           </button>
         ));
 
+  // With several swag items the QR popup steps through them (arrows either
+  // side of the QR, wrapping round), the same targets the cards open.
+  const swagTargets = shownSwag.flatMap((item) => {
+    const qr = qrCodes[item.secret];
+    return qr ? [{ kind: "swag" as const, qr, title: displayItemName(item.title), collected: item.collected }] : [];
+  });
+  const swagIndex = modal?.kind === "swag" ? swagTargets.findIndex((t) => t.qr === modal.qr) : -1;
+  const swagNav: QrModalNav | undefined =
+    swagIndex >= 0 && swagTargets.length > 1
+      ? {
+          index: swagIndex,
+          count: swagTargets.length,
+          onStep: (delta) => setModal(swagTargets[(swagIndex + delta + swagTargets.length) % swagTargets.length]),
+        }
+      : undefined;
+
   const ticketHeader = (
     <TicketSectionHeader
       title={multiTicket ? "Event Tickets" : "Event Ticket"}
@@ -469,7 +486,7 @@ export function TicketSections({
         </section>
       )}
 
-      <QrModal target={liveModal} onClose={closeModal} />
+      <QrModal target={liveModal} onClose={closeModal} nav={swagNav} />
     </div>
   );
 }

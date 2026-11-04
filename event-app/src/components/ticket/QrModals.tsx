@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { SWAG_STATION_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import { useRouter } from "@/routing";
 import type { TicketStyle } from "@/data/tickets/types";
@@ -31,7 +31,18 @@ export type QrModalTarget =
       collected?: boolean;
     };
 
+/** Position in the swag run the modal steps through, and how to move. */
+export interface QrModalNav {
+  index: number;
+  count: number;
+  onStep: (delta: -1 | 1) => void;
+}
+
 const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
+
+/** The step arrows: CloseButton's circular recipe (Buttons.tsx), a size up. */
+const STEP_BUTTON =
+  "flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-dc-panel transition-colors duration-150 ease-out hover:bg-dc-purple-soft";
 
 /**
  * Enlarged-QR modal (Figma Modal/View-QR, 5088-473 ticket / 5088-665 swag).
@@ -41,19 +52,24 @@ const MODAL_BG = "linear-gradient(to top, #fbfafc 19.982%, #fff5fa 100%)";
 export function QrModal({
   target,
   onClose,
+  nav,
 }: {
   target: QrModalTarget | null;
   onClose: () => void;
+  /** Several swag items: arrows either side of the QR step through them, wrapping round (Scott, 2026-11-04). */
+  nav?: QrModalNav;
 }) {
   const router = useRouter();
   useEffect(() => {
     if (!target) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
+      else if (nav && event.key === "ArrowLeft") nav.onStep(-1);
+      else if (nav && event.key === "ArrowRight") nav.onStep(1);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [target, onClose]);
+  }, [target, onClose, nav]);
 
   return (
     <AnimatePresence>
@@ -78,25 +94,43 @@ export function QrModal({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            {/* 204px QR frame: 2px themed border, 10px white padding, 180px QR */}
-            <div
-              className="rounded-[8px] p-[2px]"
-              style={{
-                background:
-                  target.kind === "ticket"
-                    ? TICKET_THEMES[target.style].accent
-                    : "var(--color-dc-purple)",
-              }}
-            >
-              <div className="rounded-[6px] bg-white p-[10px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={target.qr}
-                  alt={`${target.title} QR code`}
-                  className="size-[180px] rounded-[4px]"
-                />
+            <div className="flex items-center gap-4">
+              {nav && (
+                <button type="button" onClick={() => nav.onStep(-1)} aria-label="Previous swag item" className={STEP_BUTTON}>
+                  <ChevronLeft className="size-5 text-dc-fg2" />
+                </button>
+              )}
+              {/* 204px QR frame: 2px themed border, 10px white padding, 180px QR */}
+              <div
+                className="rounded-[8px] p-[2px]"
+                style={{
+                  background:
+                    target.kind === "ticket"
+                      ? TICKET_THEMES[target.style].accent
+                      : "var(--color-dc-purple)",
+                }}
+              >
+                <div className="rounded-[6px] bg-white p-[10px]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={target.qr}
+                    alt={`${target.title} QR code`}
+                    className="size-[180px] rounded-[4px]"
+                  />
+                </div>
               </div>
+              {nav && (
+                <button type="button" onClick={() => nav.onStep(1)} aria-label="Next swag item" className={STEP_BUTTON}>
+                  <ChevronRight className="size-5 text-dc-fg2" />
+                </button>
+              )}
             </div>
+
+            {nav && (
+              <p className="mt-2 text-[12px] font-semibold leading-4 text-dc-muted" aria-live="polite">
+                {nav.index + 1} of {nav.count}
+              </p>
+            )}
 
             {target.kind === "ticket" && target.reference && (
               <p className="mt-2 text-[12px] font-semibold leading-4 text-dc-muted">
