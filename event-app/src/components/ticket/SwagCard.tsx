@@ -93,34 +93,32 @@ export function SwagCard({
           </span>
         )}
       </div>
-      {/* Strip sized for the two-column mobile grid (Scott, 2026-11-04):
-          14px name, 11px label, tighter padding; the desktop shelf card
-          keeps the larger 18px name. `flex-1` so the gradient fills the
-          card when the grid row stretches it past its content (a one-line
-          name beside a two-line one); on the desktop shelf the image takes
-          the stretch instead. */}
+      {/* Strip (Scott, 2026-11-04): name, "Swag" label, then a "View QR"
+          line with a small QR icon, all stacked and top-aligned. `flex-1`
+          so the gradient fills the card when the grid row stretches it past
+          its content; on the desktop shelf the image takes the stretch
+          instead and the name is a size up. */}
       <div
         className={cn(
-          "flex w-full flex-1 items-center gap-3 px-3 py-3",
-          shelfOnDesktop && "lg:flex-none lg:gap-6 lg:px-4 lg:py-5"
+          "flex w-full flex-1 flex-col items-start gap-1.5 px-3 py-3",
+          shelfOnDesktop && "lg:flex-none lg:px-4 lg:py-5"
         )}
         style={{ background: STRIP_BG }}
       >
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <p
-            className={cn(
-              "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
-              shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
-            )}
-          >
-            {name}
-          </p>
-          <p className="text-[11px] font-medium leading-none text-[#9256d2]">
-            {collected ? "Swag · Collected" : "Swag"}
-          </p>
-        </div>
-        <span className="flex size-6 shrink-0 items-center justify-center lg:size-8">
-          <QrCode className="size-5 text-dc-purple lg:size-6" />
+        <p
+          className={cn(
+            "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
+            shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
+          )}
+        >
+          {name}
+        </p>
+        <p className="text-[11px] font-medium leading-none text-[#9256d2]">
+          {collected ? "Swag · Collected" : "Swag"}
+        </p>
+        <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold leading-4 text-dc-purple">
+          <QrCode className="size-3.5" aria-hidden="true" />
+          View QR
         </span>
       </div>
     </button>
