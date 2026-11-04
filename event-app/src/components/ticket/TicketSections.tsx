@@ -373,9 +373,9 @@ export function TicketSections({
             multiTicket ? "lg:h-[319px]" : "lg:min-h-0 lg:flex-1"
           )}
         >
-          {/* Two columns on mobile (Scott, 2026-11-04); the desktop shelf is
+          {/* Three columns on mobile (Scott, 2026-11-04); the desktop shelf is
               unchanged. The end spacer is hidden below lg so it takes no cell. */}
-          <div className={cn(scrollerBase, "grid grid-cols-2 lg:absolute lg:-inset-3 lg:flex lg:p-3")}>
+          <div className={cn(scrollerBase, "grid grid-cols-3 gap-3 lg:absolute lg:-inset-3 lg:flex lg:gap-4 lg:p-3")}>
             {shownSwag.map((item) => (
               <SwagCard
                 key={item.secret}
