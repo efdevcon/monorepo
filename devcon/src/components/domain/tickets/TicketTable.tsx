@@ -7,8 +7,8 @@ export interface TicketRow {
   name: string
   detail?: string
   status?: 'open' | 'coming'
-  // USD price shown in the USD column (e.g. "$999"). `FREE` renders in a
-  // green chip so no-cost tiers stand out. Absent → cell blank.
+  // USD price shown in the USD column (e.g. "$999" or "FREE"). Absent →
+  // cell blank.
   price?: string
   // Rupee price the same buyer pays by UPI (e.g. "₹3,315"), shown in the
   // RUPEES column with the green band (India products only). Absent → cell
@@ -190,15 +190,14 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // chip. Line-through when the row is muted so closed sale rows read
           // as an audit entry rather than a live price.
           const strikeClass = row.muted ? 'line-through' : ''
-          const isFree = price === 'FREE'
 
           // RUPEES cell (desktop): the UPI price for the India products.
           const inrContent = priceInr ? (
             <span className={`text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>{priceInr}</span>
           ) : null
 
-          // USD cell (desktop): plain price text; "FREE" sits on the green
-          // band like the rupee prices do.
+          // USD cell (desktop): plain price text ("FREE" included — the green
+          // band now means "payable in rupees", so it stays off FREE).
           const priceContent = price ? (
             <span className={`text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>{price}</span>
           ) : null
@@ -212,11 +211,11 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
             </span>
           ) : null
 
-          // Mobile USD pill: dark `$` tile + price. "FREE" keeps its green
-          // chip (no tile) per the Figma mobile spec.
+          // Mobile USD pill: dark `$` tile + price. "FREE" is plain text, no
+          // tile and no green chip (green means "payable in rupees" now).
           const pricePill = price ? (
-            isFree ? (
-              <span className={`inline-flex items-center bg-[#d5f4dd] rounded px-2 py-1 text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
+            price === 'FREE' ? (
+              <span className={`inline-flex items-center text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
                 {price}
               </span>
             ) : (
@@ -261,10 +260,8 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           // the column header widths. The RUPEES cell gets the green
           // `#d5f4dd` full-height background only when the row has a rupee
           // price — empty cells stay plain so the band breaks by design. The
-          // USD cell gets the same band only for "FREE" rows (e.g. Core
-          // Devs); dollar prices stay on the plain row background.
+          // USD cell (FREE included) stays on the plain row background.
           const inrCellBg = priceInr ? 'bg-[#d5f4dd]' : ''
-          const priceCellBg = isFree ? 'bg-[#d5f4dd]' : ''
           const mainRow = (
             <>
               {/* Desktop row */}
@@ -273,9 +270,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
                 <div className={`w-[104px] shrink-0 self-stretch ${inrCellBg} flex items-center justify-center`}>
                   {inrContent}
                 </div>
-                <div className={`w-[88px] shrink-0 self-stretch ${priceCellBg} flex items-center justify-center`}>
-                  {priceContent}
-                </div>
+                <div className="w-[88px] shrink-0 self-stretch flex items-center justify-center">{priceContent}</div>
                 <div className="w-[140px] shrink-0 flex flex-col items-end justify-center gap-0.5 py-2">
                   {actionSlot}
                   {row.actionNote}

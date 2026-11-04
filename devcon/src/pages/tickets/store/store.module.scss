@@ -998,6 +998,18 @@
   gap: 0.5rem;
 }
 
+/* Daily India Pass: prices on top, stepper + Checkout on the row beneath
+   (stepper left, button right). */
+.application-card-footer-stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+
+  .ga-actions {
+    justify-content: space-between;
+  }
+}
+
 .application-price {
   font-size: 1.125rem;
   font-weight: 700;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import cn from 'classnames'
 import Page from 'components/common/layouts/page'
 import { Link } from 'components/common/link'
 import themes from '../../themes.module.scss'
@@ -407,6 +408,10 @@ function StoreContent() {
               <div className={css['applications-grid']}>
                 {COMMUNITY_PLACEHOLDERS.map(card => {
                   const cardSoldOut = discountSoldOut(card.type)
+                  // The Daily India Pass footer stacks: both prices on one
+                  // row, then the quantity stepper (left) and Checkout
+                  // (right) on the row beneath.
+                  const stackedFooter = card.pretixItemId !== undefined
                   return (
                     <div key={card.title} className={css['application-card']}>
                       <div className={css['application-card-body']}>
@@ -414,7 +419,9 @@ function StoreContent() {
                         <p className={css['application-card-meta']}>{card.meta}</p>
                         <p className={css['application-card-description']}>{card.description}</p>
                       </div>
-                      <div className={css['application-card-footer']}>
+                      <div
+                        className={cn(css['application-card-footer'], stackedFooter && css['application-card-footer-stacked'])}
+                      >
                         {card.free ? (
                           <span className={css['application-price']}>FREE</span>
                         ) : (
