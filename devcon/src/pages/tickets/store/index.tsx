@@ -108,7 +108,7 @@ const QuantityStepper = ({ value, max, onChange }: { value: number; max: number;
 // Cards in the Community section. The Daily India Pass sells a plain public
 // Pretix item (`pretixItemId`) and hands the buyer straight to the Pretix shop
 // with the stepper quantity in their cart; the self-claim discounts open the
-// verify modal. Order: Daily India Pass, Ethereum Public Goods, then Core Devs.
+// verify modal. Order: Daily India Pass, then Core Devs.
 type CommunityPlaceholder = CardPricing & {
   // Discount `type` from /api/discounts/validate; also the key into the config
   // `soldOut` override and Pretix item map.
@@ -138,14 +138,6 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
     maxPerOrder: TICKETING.pretix.dailyIndiaPassMaxPerOrder,
-  },
-  {
-    type: 'pg-projects',
-    title: 'Ethereum Public Goods',
-    meta: 'Active fundraisers',
-    description: 'This discount is reserved for those who are fundraising for Public Goods projects.',
-    price: '$349',
-    buttonLabel: 'Verify',
   },
   {
     type: 'core-devs',
@@ -191,16 +183,6 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     price: '$99',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
-  },
-  {
-    type: 'builder',
-    title: 'Sanctuary Tech Builders',
-    meta: 'Contribution-based',
-    description:
-      'For developers, designers and everyone building the open, privacy-preserving, decentralized technologies that keeps the internet free and self-sovereign.',
-    price: '$499',
-    buttonLabel: 'Apply now',
-    href: '/form/builder-application',
   },
   {
     // Copy mirrors the live Pretix product (item 7 on tickets.devcon.org).
@@ -267,9 +249,8 @@ function StoreContent() {
   // Global ticket launch gate (config/waves.ts GLOBAL_LAUNCH_TIME). Before
   // the launch, the Community self-claim flows show an "Opens July" label
   // instead of their buttons — same before/during split as the /tickets
-  // landing page. Student applications stay open; the Sanctuary Tech
-  // Builders application opens at launch. Preview the launched view with
-  // ?mockNow=launch.
+  // landing page. Student applications stay open regardless. Preview the
+  // launched view with ?mockNow=launch.
   const { launched } = useIsLaunched()
   // Live rupee prices (Pretix `upi_price_inr`) for the India product cards.
   const upiPrices = useUpiPrices()
@@ -502,12 +483,7 @@ function StoreContent() {
                       ) : (
                         <CardPrice price={card.price ?? ''} priceInr={upiPriceFor(upiPrices, card.upiProduct) ?? undefined} />
                       )}
-                      {/* Sanctuary Tech Builders applications open at the
-                          global launch; student applications are already
-                          open (same split as the /tickets landing page). */}
-                      {!launched && card.type === 'builder' ? (
-                        <span className={css['opens-label']}>Opens July</span>
-                      ) : discountSoldOut(card.type) ? (
+                      {discountSoldOut(card.type) ? (
                         <span className={css['sold-out-badge']}>Sold out</span>
                       ) : card.pretixItemId !== undefined ? (
                         <button
