@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
 import { DC8Glyph } from "./DC8Glyph";
@@ -118,6 +119,15 @@ export function EventTicketCard({
           style={style}
           className="pointer-events-none absolute right-[-70px] top-[calc(50%+0.5px)] h-[309px] w-[181px] -translate-y-1/2"
         />
+        {ticket.hasCheckedIn === true && (
+          // Scanned at the entrance: the swag card's "Collected" pill (sonner
+          // success palette), in the card's top right corner over the glyph
+          // (Scott, 2026-11-04).
+          <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2 shadow-sm">
+            <Check className="size-3.5" />
+            Checked in
+          </span>
+        )}
       </div>
 
       {/* Bottom half — QR + venue block */}
