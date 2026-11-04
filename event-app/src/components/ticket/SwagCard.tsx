@@ -65,7 +65,7 @@ export function SwagCard({
           // height; the desktop shelf stretches the image to fill the column
           // instead. The image is absolutely positioned so an in-flow
           // portrait photo can never inflate the box.
-          "relative w-[120px] shrink-0 self-stretch",
+          "relative w-[88px] shrink-0 self-stretch",
           shelfOnDesktop && "lg:min-h-0 lg:w-full lg:flex-1"
         )}
       >
