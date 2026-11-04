@@ -50,8 +50,10 @@ export function SwagCard({
         // without shifting the image/strip by 1px. Hover tints it the same
         // purple the home-page cards use; focus-visible upgrades it so
         // keyboard focus stays legible.
-        "flex cursor-pointer flex-col overflow-clip rounded-[12px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
-        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0"
+        // A row on mobile (image left, strip right); the desktop shelf card
+        // stacks the image over the strip as before.
+        "flex cursor-pointer flex-row overflow-clip rounded-[12px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
+        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0 lg:flex-col"
       )}
     >
       {/* No aria-label (it would hide the product name from screen readers);
@@ -59,14 +61,12 @@ export function SwagCard({
       <span className="sr-only">Enlarge QR code.</span>
       <div
         className={cn(
-          // 16:9 on mobile (the Figma 361×203 ratio, kept proportional at any
-          // width); the desktop shelf stretches the image to fill instead.
-          // The image is absolutely positioned because aspect-ratio is only a
-          // PREFERRED size — an in-flow portrait photo would still stretch
-          // the box to its min-content height. (`aspect-video` also doesn't
-          // compile here; spell the ratio out.)
-          "relative aspect-[16/9] w-full",
-          shelfOnDesktop && "lg:aspect-auto lg:min-h-0 lg:flex-1"
+          // Mobile row: a fixed-width box that stretches to the strip's
+          // height; the desktop shelf stretches the image to fill the column
+          // instead. The image is absolutely positioned so an in-flow
+          // portrait photo can never inflate the box.
+          "relative w-[120px] shrink-0 self-stretch",
+          shelfOnDesktop && "lg:min-h-0 lg:w-full lg:flex-1"
         )}
       >
         {showImage ? (
@@ -100,8 +100,8 @@ export function SwagCard({
           instead and the name is a size up. */}
       <div
         className={cn(
-          "flex w-full flex-1 flex-col items-start gap-1.5 px-3 py-3",
-          shelfOnDesktop && "lg:flex-none lg:px-4 lg:py-5"
+          "flex min-w-0 flex-1 flex-col items-start gap-1.5 px-3 py-3",
+          shelfOnDesktop && "lg:w-full lg:flex-none lg:px-4 lg:py-5"
         )}
         style={{ background: STRIP_BG }}
       >
