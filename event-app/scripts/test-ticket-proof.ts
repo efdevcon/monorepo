@@ -261,66 +261,41 @@ async function main() {
   check("gate on: a ticket without check-in data is refused", !passesCheckInGate({ requireCheckIn: true }, {}));
   check("gate on: a checked-in ticket can mint", passesCheckInGate({ requireCheckIn: true }, { hasCheckedIn: true }));
 
-  // ---- ENS perk: India tickets after check-in, internal testers --------
+  // ---- ENS perk: any event ticket after check-in, no bypass -----------
+  // The ENS claim page keys the free name on the india tier, so every
+  // checked-in ticket mints as india for ENS; other partners see the real tier.
   const ens = PARTNERS.ens;
-  check("ENS mints for India tickets only", JSON.stringify(ens.tiers) === JSON.stringify(["india"]));
+  check("ENS proofs carry the india tier", JSON.stringify(ens.tiers) === JSON.stringify(["india"]));
   check("ENS requires a check-in", ens.requireCheckIn === true);
-  const ensRule = { ...ens, internalTester: (email: string) => email.endsWith("@ens.domains") };
   const indiaTicket = { itemId: 2, itemName: `India Resident ${IN}` };
   const gaTicket = { itemId: 1, itemName: "General Admission" };
-  const attendee = "someone@example.com";
-  const tester = "someone@ens.domains";
-  check(
-    "ENS refuses a GA ticket, checked in or not",
-    !resolveMint(ensRule, { ...gaTicket, hasCheckedIn: true }, attendee).ok
-  );
-  check(
-    "ENS refuses an India ticket before check-in",
-    !resolveMint(ensRule, { ...indiaTicket, hasCheckedIn: false }, attendee).ok
-  );
-  const indiaMint = resolveMint(ensRule, { ...indiaTicket, hasCheckedIn: true }, attendee);
-  check(
-    "ENS mints india for a checked-in India ticket",
-    indiaMint.ok && indiaMint.tier === "india" && !indiaMint.testing
-  );
-  const testerMint = resolveMint(ensRule, { ...gaTicket, hasCheckedIn: false }, tester);
-  check(
-    "an internal tester mints india on a GA ticket with no check-in",
-    testerMint.ok && testerMint.tier === "india" && testerMint.testing
-  );
-  // Community Reserve tickets get the ENS perk too, minted as india for ENS
-  // only; the plain "Reserve" product does not.
   const reserveTicket = { itemId: 12, itemName: "Community Reserve" };
   const plainReserveTicket = { itemId: 52, itemName: "Reserve" };
-  const reserveMint = resolveMint(ensRule, { ...reserveTicket, hasCheckedIn: true }, attendee);
-  check(
-    "ENS mints india for a checked-in Community Reserve ticket",
-    reserveMint.ok && reserveMint.tier === "india" && !reserveMint.testing
-  );
-  check(
-    "ENS refuses a Community Reserve ticket before check-in",
-    !resolveMint(ensRule, { ...reserveTicket, hasCheckedIn: false }, attendee).ok
-  );
-  check(
-    "ENS still refuses a plain Reserve ticket",
-    !resolveMint(ensRule, { ...plainReserveTicket, hasCheckedIn: true }, attendee).ok
-  );
-  check("Community Reserve stays standard everywhere else", classifyTier(reserveTicket) === "standard");
-  // "Free Community Reserve" (the free community allocation) and Volunteer
-  // get it too, on the same terms.
   const freeReserveTicket = { itemId: 100, itemName: "Free Community Reserve" };
   const volunteerTicket = { itemId: 49, itemName: "Volunteer" };
-  for (const [label, ticket] of [["Free Community Reserve", freeReserveTicket], ["Volunteer", volunteerTicket]] as const) {
-    const mint = resolveMint(ensRule, { ...ticket, hasCheckedIn: true }, attendee);
-    check(`ENS mints india for a checked-in ${label} ticket`, mint.ok && mint.tier === "india" && !mint.testing);
-    check(`ENS refuses a ${label} ticket before check-in`, !resolveMint(ensRule, { ...ticket, hasCheckedIn: false }, attendee).ok);
-    check(`${label} stays standard everywhere else`, classifyTier(ticket) === "standard");
+  const anyTickets = [
+    ["General Admission", gaTicket],
+    ["India", indiaTicket],
+    ["Community Reserve", reserveTicket],
+    ["plain Reserve", plainReserveTicket],
+    ["Free Community Reserve", freeReserveTicket],
+    ["Volunteer", volunteerTicket],
+  ] as const;
+  for (const [label, ticket] of anyTickets) {
+    const mint = resolveMint(ens, { ...ticket, hasCheckedIn: true });
+    check(`ENS mints india for a checked-in ${label} ticket`, mint.ok && mint.tier === "india");
+    check(`ENS refuses a ${label} ticket before check-in`, !resolveMint(ens, { ...ticket, hasCheckedIn: false }).ok);
   }
+  check("GA stays standard everywhere else", classifyTier(gaTicket) === "standard");
+  check("Community Reserve stays standard everywhere else", classifyTier(reserveTicket) === "standard");
+  // The perk is open to everyone, so EF and ENS accounts wait for the scan
+  // too: the account is not an input to the rule at all.
+  check("the mint rule takes no account (no tester bypass)", resolveMint.length === 2);
   check(
-    "a partner without tiers or testers keeps minting standard",
+    "a partner without tiers keeps minting standard",
     (() => {
-      const r = resolveMint({ label: "Faucet" }, { ...gaTicket, hasCheckedIn: false }, tester);
-      return r.ok && r.tier === "standard" && !r.testing;
+      const r = resolveMint({ label: "Faucet" }, { ...gaTicket, hasCheckedIn: false });
+      return r.ok && r.tier === "standard";
     })()
   );
 
@@ -328,30 +303,22 @@ async function main() {
   for (const key of ["powfaucet-sepolia", "powfaucet-hoodi"]) {
     const faucet = PARTNERS[key];
     check(`${key} requires a check-in`, faucet.requireCheckIn === true);
-    check(`${key} refuses a ticket before check-in`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }, attendee).ok);
-    const gaMint = resolveMint(faucet, { ...gaTicket, hasCheckedIn: true }, attendee);
+    check(`${key} refuses a ticket before check-in`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }).ok);
+    const gaMint = resolveMint(faucet, { ...gaTicket, hasCheckedIn: true });
     check(`${key} mints for a checked-in GA ticket`, gaMint.ok && gaMint.tier === "standard");
-    const inMint = resolveMint(faucet, { ...indiaTicket, hasCheckedIn: true }, attendee);
+    const inMint = resolveMint(faucet, { ...indiaTicket, hasCheckedIn: true });
     check(`${key} mints for a checked-in India ticket`, inMint.ok && inMint.tier === "india");
-    check(`${key} has no internal-testing bypass`, !resolveMint(faucet, { ...gaTicket, hasCheckedIn: false }, "someone@ethereum.org").ok);
-    const reserveFaucetMint = resolveMint(faucet, { ...reserveTicket, hasCheckedIn: true }, attendee);
+    const reserveFaucetMint = resolveMint(faucet, { ...reserveTicket, hasCheckedIn: true });
     check(`${key} mints standard for a Community Reserve ticket`, reserveFaucetMint.ok && reserveFaucetMint.tier === "standard");
   }
 
-  // The card follows the same rule (switch passed explicitly).
-  check("card: hidden on a GA ticket", ensPerkAccess({ ...gaTicket, hasCheckedIn: true }, attendee, true) === "hidden");
-  check("card: hidden on an India ticket before check-in", ensPerkAccess({ ...indiaTicket, hasCheckedIn: false }, attendee, true) === "hidden");
-  check("card: shown on a checked-in India ticket", ensPerkAccess({ ...indiaTicket, hasCheckedIn: true }, attendee, true) === "eligible");
-  check("card: shown on a checked-in Community Reserve ticket", ensPerkAccess({ ...reserveTicket, hasCheckedIn: true }, attendee, true) === "eligible");
-  check("card: hidden on a Community Reserve ticket before check-in", ensPerkAccess({ ...reserveTicket, hasCheckedIn: false }, attendee, true) === "hidden");
-  check("card: hidden on a plain Reserve ticket", ensPerkAccess({ ...plainReserveTicket, hasCheckedIn: true }, attendee, true) === "hidden");
-  check("card: shown on a checked-in Volunteer ticket", ensPerkAccess({ ...volunteerTicket, hasCheckedIn: true }, attendee, true) === "eligible");
-  check("card: hidden on a Volunteer ticket before check-in", ensPerkAccess({ ...volunteerTicket, hasCheckedIn: false }, attendee, true) === "hidden");
-  check("card: shown on a checked-in Free Community Reserve ticket", ensPerkAccess({ ...freeReserveTicket, hasCheckedIn: true }, attendee, true) === "eligible");
-  check("card: EF account tests on a GA ticket", ensPerkAccess(gaTicket, "someone@ethereum.org", true) === "testing");
-  check("card: ENS account tests on a GA ticket", ensPerkAccess(gaTicket, "SomeOne@ENS.domains", true) === "testing");
-  check("card: switch off, an EF account is an attendee again", ensPerkAccess(gaTicket, "someone@ethereum.org", false) === "hidden");
-  check("card: a look-alike domain is not a tester", ensPerkAccess(gaTicket, "someone@notethereum.org.evil.com", true) === "hidden");
+  // The card follows the same rule.
+  for (const [label, ticket] of anyTickets) {
+    check(`card: shown on a checked-in ${label} ticket`, ensPerkAccess({ ...ticket, hasCheckedIn: true }) === "eligible");
+    check(`card: hidden on a ${label} ticket before check-in`, ensPerkAccess({ ...ticket, hasCheckedIn: false }) === "hidden");
+  }
+  check("card: hidden on a ticket without check-in data", ensPerkAccess({ ...gaTicket, hasCheckedIn: undefined }) === "hidden");
+  check("card: the rule takes no account (no tester bypass)", ensPerkAccess.length === 1);
 
   console.log(failed === 0 ? "\nall good" : `\n${failed} failing`);
   process.exit(failed === 0 ? 0 : 1);

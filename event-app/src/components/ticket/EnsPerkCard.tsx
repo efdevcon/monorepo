@@ -2,28 +2,26 @@
 
 import type { Ticket } from "@/data/tickets/types";
 import { TicketProofButton } from "@/components/TicketProofButton";
+import { ENS_BOOTH_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
+import { useRouter } from "@/routing";
 import { displayItemName } from "./ticketTheme";
 
 /**
  * "Perks" entry for the ENS attendee perk. Card chrome only — the mint +
  * hand-off flow stays in TicketProofButton (one proof per event ticket, so
  * the section renders one card per admission ticket). Who gets one is
- * `ensPerkAccess` (data/tickets/ensPerk.ts): India tickets and a few extra
- * products once checked in, or
- * any ticket of an EF or ENS account during internal testing.
+ * `ensPerkAccess` (data/tickets/ensPerk.ts): any ticket once checked in.
  */
 export function EnsPerkCard({
   ticket,
-  testing = false,
   showTicketLabel = false,
 }: {
   ticket: Ticket;
-  /** Shown only because of internal testing: say so on the card. */
-  testing?: boolean;
   /** Distinguish cards when the user holds several admission tickets. */
   showTicketLabel?: boolean;
 }) {
   const holder = ticket.attendeeName || ticket.attendeeEmail;
+  const router = useRouter();
 
   return (
     <div className="flex items-start gap-4 rounded-[12px] bg-white p-4 outline outline-dc-hairline lg:w-[400px]">
@@ -37,15 +35,18 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          Free .eth for India&apos;s Devcon builders.
+          Free .eth name for every Devcon attendee, until sold out. Come to the{" "}
+          {/* A button over the routing hook, not a Link: under the native
+              wrapper Link swaps in its own onClick (as the swag station link). */}
+          <button
+            type="button"
+            onClick={() => router.push(ENS_BOOTH_MAP_HREF)}
+            className="cursor-pointer font-bold text-dc-purple underline-offset-2 hover:underline"
+          >
+            ENS booth
+          </button>{" "}
+          to learn more.
         </p>
-        {testing && (
-          <p className="mt-2 rounded-lg bg-dc-offline-bg px-3 py-2 text-[12px] leading-4 text-dc-offline">
-            <span className="font-bold">Internal testing.</span> EF and ENS accounts see this
-            perk on any ticket: yours is treated as an India ticket and the check-in
-            requirement is bypassed.
-          </p>
-        )}
         <TicketProofButton ticketSecret={ticket.secret} />
       </div>
     </div>

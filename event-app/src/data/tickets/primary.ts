@@ -96,6 +96,8 @@ export interface TicketChoice {
   orderCode: string;
   /** Other accounts that attached this ticket (its holder, most likely). */
   sharedWith?: number;
+  /** Already scanned in at the venue: the one its holder picked up a badge with. */
+  checkedIn: boolean;
   /** Fixture ticket (dev/preview only). */
   test?: boolean;
 }
@@ -124,6 +126,7 @@ export function ticketChoices(orders: Order[]): TicketChoice[] {
         addons: (ticket.addons ?? []).map((addon) => addon.itemName),
         orderCode: order.orderCode,
         sharedWith: ticket.sharedWith,
+        checkedIn: ticket.hasCheckedIn === true,
         test: ticket.test,
     }));
 }

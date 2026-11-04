@@ -35,13 +35,13 @@ export type ProofPartner = {
   handoff: string;
 };
 
-/** The ENS partner: a free .eth name, India tickets and a few extra products (data/tickets/ensPerk.ts). */
+/** The ENS partner: a free .eth name on any checked-in ticket (data/tickets/ensPerk.ts). */
 const ENS_PARTNER: ProofPartner = {
   key: "ens",
   label: "Claim your free .eth name",
-  title: "Free .eth for India's Devcon builders",
+  title: "Free .eth for Devcon attendees",
   describe: () =>
-    "Claim a free .eth name for one year with a self.xyz verified identity.",
+    "Claim a free .eth name for one year with a self.xyz verified identity. Available until sold out.",
   handoff:
     "Open this link in your browser to claim. You'll need to connect a wallet to claim, which works best outside the app.",
 };

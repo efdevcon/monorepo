@@ -2,7 +2,7 @@
 
 import { useRef, useState, type ReactNode } from "react";
 import cn from "classnames";
-import { Loader2, Upload, Users } from "lucide-react";
+import { Check, Loader2, Upload, Users } from "lucide-react";
 import { toast } from "sonner";
 import { PrimaryButton } from "@/components/Buttons";
 import { NeedsConnection } from "@/components/NeedsConnection";
@@ -262,7 +262,18 @@ export function ChooseTicketCard({
             {/* Wrap, never truncate: on a phone the details line is the only
                 way to tell two same-type tickets apart. */}
             <div className="min-w-0 [overflow-wrap:anywhere]">
-              <p className="text-[14px] font-bold leading-5 text-dc-fg2">{reference(choice)}</p>
+              <p className="text-[14px] font-bold leading-5 text-dc-fg2">
+                {reference(choice)}
+                {/* The ticket already scanned at the entrance is most likely the
+                    one whose badge you are wearing. Same pill as the QR popup's
+                    "Checked in" (sonner success palette). */}
+                {choice.checkedIn && (
+                  <span className="ml-2 inline-flex -translate-y-px items-center gap-1 whitespace-nowrap rounded-full bg-dc-green-soft px-2 py-0.5 align-middle text-[12px] font-semibold leading-4 text-dc-fg2">
+                    <Check className="size-3" aria-hidden />
+                    Checked in
+                  </span>
+                )}
+              </p>
               <p className="text-[12px] leading-4 text-dc-fg2">
                 {displayItemName(choice.itemName)}
                 {choice.test && <span className="text-dc-muted"> (test ticket)</span>}
