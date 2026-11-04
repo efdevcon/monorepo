@@ -15,11 +15,9 @@ type VerifyDiscountModalProps = {
 
 // The community discounts surfaced in this modal. `type` matches the allowlist
 // keys returned by /api/discounts/validate. `methods` is which identity can
-// satisfy the discount (drives claim routing). Order follows the backend
-// priority (core-devs > pg > past) so the GitHub "highest value wins" lock is
-// deterministic and matches what /api/discounts/claim issues. (OSS Contributors
-// moved to the Builder application form, so it's intentionally not listed here.)
-type DiscountType = 'core-devs' | 'past-attendees'
+// satisfy the discount (drives claim routing). Only Core Devs remains on sale;
+// the Public Goods and Past POAP discounts were withdrawn in Nov 2026.
+type DiscountType = 'core-devs'
 type Method = 'wallet' | 'github'
 
 const DISCOUNTS: {
@@ -37,14 +35,6 @@ const DISCOUNTS: {
     methods: ['wallet', 'github'],
     validMsg: 'Core contributor verified!',
     invalidMsg: 'No Merge Pass, Protocol Guild, or core-dev match found.',
-  },
-  {
-    type: 'past-attendees',
-    label: 'Past POAP Holders',
-    discount: '$449',
-    methods: ['wallet'],
-    validMsg: 'Valid POAP found!',
-    invalidMsg: 'No valid Devcon/nect POAPs found.',
   },
 ]
 
@@ -601,7 +591,6 @@ export function VerifyDiscountModal({ isOpen, onClose }: VerifyDiscountModalProp
                 <Github size={18} aria-hidden="true" />
                 {githubAuthing ? 'Opening GitHub…' : 'Sign in with GitHub'}
               </button>
-              <p className={css['footnote']}>Only one discount can be applied</p>
             </div>
           </div>
         )}
