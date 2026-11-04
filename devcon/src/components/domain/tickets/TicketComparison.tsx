@@ -6,6 +6,7 @@ import { useIsLaunched } from 'hooks/useWaveStates'
 import { ctaPrimary, ctaSecondary } from 'components/common/cta'
 import { sectionHeading, bodyCopy, eyebrow as eyebrowStyle } from 'components/common/styles'
 import { GLOBAL_LAUNCH_TIME } from 'config/waves'
+import { UpiGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
 
 type IconKind = 'check' | 'asterisk'
 
@@ -22,6 +23,10 @@ interface Column {
   subtitle: string
   price: string
   price_original?: string
+  // Rupee (UPI) price for columns that include an India product (e.g.
+  // "₹3,315+"). When set the price cell shows the UPI / $ split: green
+  // UPI chip with the rupee price, dark $ tile with the USD price.
+  price_inr?: string
   price_note: string
   // Optional second line under price_note (e.g. "Limited quantity • Purchasable
   // using ETH (L1)" from a wave's description field).
@@ -94,6 +99,30 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <p className="text-[12px] font-semibold text-[#594d73] tracking-[0.5px] uppercase leading-[16px]">{children}</p>
 )
 
+// Price figure(s) for a comparison column: the UPI / $ split when the
+// column carries a rupee price, else the single USD figure with its
+// optional struck original price.
+const ColumnPrice = ({ column }: { column: Column }) =>
+  column.price_inr ? (
+    <div className="flex flex-wrap gap-x-4 gap-y-2 items-center">
+      <span className="inline-flex items-center gap-1.5 rounded bg-[#d5f4dd] px-1.5 py-1">
+        <UpiGlyphTile size={20} />
+        <span className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price_inr}</span>
+      </span>
+      <span className="inline-flex items-center gap-1.5">
+        <FiatGlyphTile size={20} />
+        <span className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price}</span>
+      </span>
+    </div>
+  ) : (
+    <div className="flex gap-2 items-end">
+      <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price}</p>
+      {column.price_original && (
+        <p className="text-[14px] font-bold text-[#594d73] line-through leading-[20px]">{column.price_original}</p>
+      )}
+    </div>
+  )
+
 const MobileCard = ({
   column,
   labels,
@@ -126,12 +155,7 @@ const MobileCard = ({
       </div>
 
       <div className="flex flex-col gap-[8px]">
-        <div className="flex gap-[8px] items-center">
-          <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{column.price}</p>
-          {column.price_original && (
-            <p className="text-[14px] font-bold text-[#594d73] line-through leading-[20px]">{column.price_original}</p>
-          )}
-        </div>
+        <ColumnPrice column={column} />
         <p className="text-[12px] text-[#594d73] leading-none">{column.price_note}</p>
         {column.price_description && (
           <p className="text-[12px] text-[#594d73] leading-[16px]">{column.price_description}</p>
@@ -301,12 +325,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
               key={col.id}
               className={`flex-1 min-w-0 flex flex-col gap-2 px-4 py-4 ${cellBorder}`}
             >
-              <div className="flex gap-2 items-end">
-                <p className="text-[20px] font-bold text-[#160b2b] leading-none tracking-[-0.5px]">{col.price}</p>
-                {col.price_original && (
-                  <p className="text-[14px] font-bold text-[#594d73] line-through leading-[20px]">{col.price_original}</p>
-                )}
-              </div>
+              <ColumnPrice column={col} />
               <p className="text-[12px] text-[#594d73] leading-none">{col.price_note}</p>
               {col.price_description && (
                 <p className="text-[12px] text-[#594d73] leading-[16px]">{col.price_description}</p>
