@@ -82,7 +82,9 @@ export function EventTicketCard({
         className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
         style={{ background: ticketTopBackground(theme) }}
       >
-        <div className="flex flex-col gap-5">
+        {/* Above the glyph (it is painted after this block): a long product
+            name such as General Admission runs into the art otherwise. */}
+        <div className="relative z-[1] flex flex-col gap-5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             key={logoAttempt}
@@ -112,7 +114,7 @@ export function EventTicketCard({
             )}
           </div>
         </div>
-        <p className="mt-auto text-[10px] font-bold leading-none text-dc-muted">
+        <p className="relative z-[1] mt-auto text-[10px] font-bold leading-none text-dc-muted">
           DEVCON.ORG
         </p>
         <DC8Glyph
