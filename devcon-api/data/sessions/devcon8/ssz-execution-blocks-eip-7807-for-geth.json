@@ -3,6 +3,7 @@
   "sourceId": "CYMQDQ",
   "title": "SSZ Execution Blocks (EIP-7807) for Geth",
   "description": "Geth has three disconnected SSZ mechanisms and no shared implementation: fastssz in one file, zrnt behind the light client, and two hand-rolled merkleizers in beacon/types with TODOs from 2023 asking for an SSZ encoder. None of them can compute a progressive root. EIP-7688 is scheduled for Glamsterdam and converts the types Geth's light client roots through zrnt, dormant since February 2025.\r\n\r\nMy EPF project is core/ssz: encoding, strict decoding, classic and progressive merkleization per EIP-7495 and EIP-7916, and Merkle proof generation, with the EIP-7807 block on top.\r\n\r\nThe talk walks through the design: hand-written per-type methods rather than reflection, batched hashing through gohashtree, a zero-hash table derived at startup, and a decoder that latches errors instead of returning them per field. Each choice is compared against how Erigon and Nimbus made it. Everything is checked against the official ssz_generic vectors, and the work is landing upstream as small PRs.",
+  "abstract": "Geth has no SSZ implementation of its own, and the progressive types arriving with Glamsterdam need one. This talk covers building core/ssz for Geth: encoding, strict decoding, classic and progressive merkleization, and proof generation, and how each design decision was made and tested.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -23,5 +24,12 @@
   "slot_start": 1793771400000,
   "slot_end": 1793772300000,
   "slot_roomId": "workshop-2",
-  "abstract": "Geth has no SSZ implementation of its own, and the progressive types arriving with Glamsterdam need one. This talk covers building core/ssz for Geth: encoding, strict decoding, classic and progressive merkleization, and proof generation, and how each design decision was made and tested."
+  "sources_ipfsHash": "",
+  "sources_youtubeId": "1Dqlo7hD-1Y",
+  "sources_swarmHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "",
+  "transcript_vtt": "",
+  "transcript_text": "",
+  "duration": 0
 }
