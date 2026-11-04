@@ -19,7 +19,7 @@ type VerifyDiscountModalProps = {
 // priority (core-devs > pg > past) so the GitHub "highest value wins" lock is
 // deterministic and matches what /api/discounts/claim issues. (OSS Contributors
 // moved to the Builder application form, so it's intentionally not listed here.)
-type DiscountType = 'core-devs' | 'pg-projects' | 'past-attendees'
+type DiscountType = 'core-devs' | 'past-attendees'
 type Method = 'wallet' | 'github'
 
 const DISCOUNTS: {
@@ -37,14 +37,6 @@ const DISCOUNTS: {
     methods: ['wallet', 'github'],
     validMsg: 'Core contributor verified!',
     invalidMsg: 'No Merge Pass, Protocol Guild, or core-dev match found.',
-  },
-  {
-    type: 'pg-projects',
-    label: 'Ethereum Public Goods',
-    discount: '$349',
-    methods: ['wallet'],
-    validMsg: 'Valid contribution verified!',
-    invalidMsg: 'No valid Public Goods contributions found.',
   },
   {
     type: 'past-attendees',
