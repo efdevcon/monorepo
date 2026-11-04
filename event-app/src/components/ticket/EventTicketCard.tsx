@@ -1,13 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import cn from "classnames";
-import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { Ticket } from "@/data/tickets/types";
 import { useRetryOnReconnect } from "@/hooks/useRetryOnReconnect";
-import { usePaneActive } from "@/components/paneContext";
-import { DEFAULT_TEAR_CONCEPT, tearAnimation, tearConcept, type TearConceptId } from "./ticketTear";
 import { DC8Glyph } from "./DC8Glyph";
 import type { QrModalTarget } from "./QrModals";
 import {
@@ -30,57 +26,19 @@ export interface TicketReference {
   ordinal: number;
 }
 
-// The tear-off (concept, Scott 2026-11-04): once checked in the bottom half
-// tears away and the stub stays, still opening the QR popup on tap. The
-// timelines live in ticketTear.ts. Held while the QR popup is open (that is
-// where the scan flips it) and until the pane is on screen; plays once per
-// mount.
-const TEAR_DELAY_MS = 600;
-
-type TearPhase = "intact" | "tearing" | "torn";
-
 export function EventTicketCard({
   ticket,
   qr,
   reference,
   onQrClick,
-  tearHold = false,
-  tearConceptId = DEFAULT_TEAR_CONCEPT,
 }: {
   ticket: Ticket;
   qr?: string;
   reference?: TicketReference;
   onQrClick: (target: QrModalTarget) => void;
-  /** Keep the bottom half on while true (a QR popup is open). */
-  tearHold?: boolean;
-  /** Which tear timeline plays (ticketTear.ts); the dev switch sets it. */
-  tearConceptId?: TearConceptId;
 }) {
   const { attempt: logoAttempt, markFailed: markLogoFailed } =
     useRetryOnReconnect();
-  const checkedIn = ticket.hasCheckedIn === true;
-  const paneActive = usePaneActive();
-  const reducedMotion = useReducedMotion();
-  const [tear, setTear] = useState<TearPhase>("intact");
-  const bottomRef = useRef<HTMLDivElement>(null);
-  const [bottomHeight, setBottomHeight] = useState(0);
-  const concept = tearConcept(tearConceptId);
-  const { animate: tearAnimate, transition: tearTransition } = tearAnimation(concept.tracks, concept.duration);
-  const stubMotion = concept.stub && tearAnimation(concept.stub.tracks, concept.duration);
-  useEffect(() => {
-    if (!checkedIn || !paneActive || tearHold || tear !== "intact") return;
-    // A beat with the whole ticket in view first, then the tear (reduced
-    // motion: straight to the stub).
-    const id = window.setTimeout(
-      () => {
-        if (reducedMotion) return setTear("torn");
-        setBottomHeight(bottomRef.current?.offsetHeight ?? 0);
-        setTear("tearing");
-      },
-      reducedMotion ? 0 : TEAR_DELAY_MS
-    );
-    return () => window.clearTimeout(id);
-  }, [checkedIn, paneActive, tearHold, tear, reducedMotion]);
   const style = resolveTicketStyle(ticket);
   const theme = TICKET_THEMES[style];
   const typeName = displayItemName(ticket.itemName);
@@ -88,6 +46,7 @@ export function EventTicketCard({
   // Event branding is fixed copy, like the venue block below (the Pretix
   // event name env var is lowercase "devcon" in prod).
   const modalTitle = `Devcon 8 India - ${typeName}`;
+  const stub = ticket.hasCheckedIn === true;
 
   return (
     // Each half wears a real border pulled outside the layout box with
@@ -111,26 +70,22 @@ export function EventTicketCard({
           : undefined
       }
       disabled={!qr}
-      className={cn(
-        "flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale,filter] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default enabled:hover:[filter:drop-shadow(0_4px_6px_rgba(22,11,43,0.07))_drop-shadow(0_2px_4px_rgba(22,11,43,0.05))] motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
-        // The falling piece passes over whatever sits under the card.
-        tear === "tearing" && "relative z-[1]"
-      )}
+      className="flex w-full cursor-pointer flex-col rounded-[12px] text-left transition-[scale,filter] duration-150 ease-out [filter:drop-shadow(0_1px_3px_rgba(22,11,43,0.1))_drop-shadow(0_1px_2px_rgba(22,11,43,0.1))] focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default enabled:hover:[filter:drop-shadow(0_4px_6px_rgba(22,11,43,0.07))_drop-shadow(0_2px_4px_rgba(22,11,43,0.05))] motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none"
     >
       {/* No aria-label: it would replace the accessible name and hide the
           holder/venue/dates from screen readers. The card's own text names
           the button; this hint states the action. */}
       <span className="sr-only">Enlarge QR code.</span>
       {/* Top half — product + holder + glyph art, dashed tear line below */}
-      <motion.div
+      <div
         // `grow` + mt-auto on DEVCON.ORG: when carousel cards stretch to the
         // tallest sibling, the top half absorbs the extra height and keeps
         // DEVCON.ORG pinned above the tear line (no-op for a lone card).
-        // A motion element for the concepts where the stub reacts to the tear.
-        className="ticket-notch-top relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip rounded-t-[12px] border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]"
-        style={{ background: ticketTopBackground(theme), transformOrigin: concept.stub?.hinge }}
-        animate={tear === "tearing" && stubMotion ? stubMotion.animate : undefined}
-        transition={stubMotion?.transition}
+        className={cn(
+          "relative -mx-px -mt-px flex w-full grow flex-col gap-10 overflow-clip border border-dc-hairline p-4 [border-bottom:1px_dashed_rgba(34,17,68,0.2)]",
+          stub ? "-mb-px rounded-[12px]" : "ticket-notch-top rounded-t-[12px]"
+        )}
+        style={{ background: ticketTopBackground(theme) }}
       >
         {/* Above the glyph (it is painted after this block): a long product
             name such as General Admission runs into the art otherwise. */}
@@ -180,74 +135,52 @@ export function EventTicketCard({
             Checked in
           </span>
         )}
-      </motion.div>
+      </div>
 
-      {/* Bottom half — QR + venue block. The height box keeps it in flow
-          (so the stub above and the page below sit where they always did),
-          then closes as the piece falls (ticketTear.ts); the piece is
-          absolute while it animates and gone once torn. */}
-      {tear !== "torn" && (
-        <motion.div
-          className="relative w-full shrink-0"
-          style={tear === "tearing" ? { height: bottomHeight } : undefined}
-          animate={tear === "tearing" ? { height: 0 } : undefined}
-          transition={{ delay: concept.fallAt, ...concept.gapClose }}
+      {/* Bottom half — QR + venue block; torn off once checked in */}
+      {!stub && (
+        <div
+          className="ticket-notch-bottom relative -mx-px -mb-px w-full rounded-b-[12px] border border-t-0 border-dc-hairline p-4"
+          style={{ background: ticketBottomBackground(theme) }}
         >
-          <motion.div
-            ref={bottomRef}
-            className={cn(
-              "ticket-notch-bottom rounded-b-[12px] border border-t-0 border-dc-hairline p-4",
-              tear === "tearing"
-                ? "absolute -inset-x-px top-0"
-                : "relative -mx-px -mb-px w-full"
-            )}
-            style={{
-              background: ticketBottomBackground(theme),
-              transformOrigin: concept.hinge,
-            }}
-            animate={tear === "tearing" ? tearAnimate : undefined}
-            transition={tearTransition}
-            onAnimationComplete={() => tear === "tearing" && setTear("torn")}
-          >
-            <div className="flex items-start gap-6">
-              <span
-                className="shrink-0 rounded-[8px] p-[2px]"
-                style={{ background: theme.accent }}
-              >
-                <span className="block rounded-[6px] bg-white p-[2px]">
-                  {qr ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={qr}
-                      alt=""
-                      className="size-[98px] rounded-[4px]"
-                    />
-                  ) : (
-                    <span className="block size-[98px] rounded-[4px]" />
-                  )}
-                </span>
+          <div className="flex items-start gap-6">
+            <span
+              className="shrink-0 rounded-[8px] p-[2px]"
+              style={{ background: theme.accent }}
+            >
+              <span className="block rounded-[6px] bg-white p-[2px]">
+                {qr ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={qr}
+                    alt=""
+                    className="size-[98px] rounded-[4px]"
+                  />
+                ) : (
+                  <span className="block size-[98px] rounded-[4px]" />
+                )}
               </span>
-              <div className="flex min-w-0 flex-1 flex-col items-end justify-between gap-3 self-stretch py-1 text-right text-dc-muted">
-                <div className="flex flex-col items-end gap-0.5">
-                  <p className="text-[12px] font-bold leading-[1.15]">
-                    MUMBAI, INDIA
-                  </p>
-                  <p className="text-[12.5px] leading-[1.15]">Nov 3–6, 2026</p>
-                </div>
-                <div className="flex w-full flex-col gap-0.5 text-[9px] leading-[1.25]">
-                  <p className="font-semibold">Jio World Centre</p>
-                  <p>
-                    G Block, Bandra Kurla Complex (BKC)
-                    <br />
-                    Bandra East, Mumbai
-                    <br />
-                    Maharashtra 400098, India
-                  </p>
-                </div>
+            </span>
+            <div className="flex min-w-0 flex-1 flex-col items-end justify-between gap-3 self-stretch py-1 text-right text-dc-muted">
+              <div className="flex flex-col items-end gap-0.5">
+                <p className="text-[12px] font-bold leading-[1.15]">
+                  MUMBAI, INDIA
+                </p>
+                <p className="text-[12.5px] leading-[1.15]">Nov 3–6, 2026</p>
+              </div>
+              <div className="flex w-full flex-col gap-0.5 text-[9px] leading-[1.25]">
+                <p className="font-semibold">Jio World Centre</p>
+                <p>
+                  G Block, Bandra Kurla Complex (BKC)
+                  <br />
+                  Bandra East, Mumbai
+                  <br />
+                  Maharashtra 400098, India
+                </p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </button>
   );

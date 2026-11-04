@@ -14,8 +14,6 @@ import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
 import { displayItemName } from "./ticketTheme";
-import { DEFAULT_TEAR_CONCEPT, TEAR_CONCEPTS, type TearConceptId } from "./ticketTear";
-import { Segmented } from "@/components/Segmented";
 
 /**
  * While a QR popup is open on something not scanned yet (the ticket at the
@@ -120,31 +118,6 @@ export function TicketSections({
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
   const previewCheckedIn = usePreviewCheckedIn();
-  // Dev switch (with `?previewCheckedIn=1`): which tear-off concept plays,
-  // and Replay remounts the card so it tears again without a reload.
-  const [tearConceptId, setTearConceptId] = useState<TearConceptId>(DEFAULT_TEAR_CONCEPT);
-  const [tearRun, setTearRun] = useState(0);
-  const tearSwitch = previewCheckedIn ? (
-    <div className="flex flex-wrap items-center gap-3">
-      <Segmented
-        label="Tear-off concept"
-        value={tearConceptId}
-        onChange={(id) => {
-          setTearConceptId(id);
-          setTearRun((n) => n + 1);
-        }}
-        items={TEAR_CONCEPTS.map((c, i) => ({ value: (i + 1) as TearConceptId, label: `${i + 1} · ${c.name}` }))}
-      />
-      <button
-        type="button"
-        onClick={() => setTearRun((n) => n + 1)}
-        className="flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-dc-hairline bg-white px-3 text-[12px] font-semibold leading-none text-dc-fg2 transition-colors duration-150 ease-out hover:bg-dc-purple-wash"
-      >
-        <RefreshCw className="size-4 text-dc-purple" />
-        Replay tear
-      </button>
-    </div>
-  ) : null;
 
   // The popup is opened with a snapshot; read its scanned state from the
   // current tickets instead (by QR, which is deterministic per secret), so a
@@ -437,19 +410,15 @@ export function TicketSections({
                   className="w-full lg:flex lg:w-[400px] lg:shrink-0"
                 >
                   <EventTicketCard
-                    key={tearRun}
-                    tearConceptId={tearConceptId}
                     ticket={ticket}
                     qr={qrCodes[ticket.secret]}
                     reference={referenceOf(ticket)}
                     onQrClick={setModal}
-                    tearHold={modal !== null}
                   />
                 </div>
               ))}
               {endSpacer}
             </div>
-            {tearSwitch}
           </section>
           {swagSection}
         </>
@@ -466,16 +435,13 @@ export function TicketSections({
             {ticketHeader}
             {shownTickets.map((ticket) => (
               <EventTicketCard
-                key={`${ticket.secret}-${tearRun}`}
-                tearConceptId={tearConceptId}
+                key={ticket.secret}
                 ticket={ticket}
                 qr={qrCodes[ticket.secret]}
                 reference={referenceOf(ticket)}
                 onQrClick={setModal}
-                tearHold={modal !== null}
               />
             ))}
-            {tearSwitch}
           </section>
           <div className="-mt-2 flex flex-col gap-4 empty:hidden lg:col-start-1 lg:row-start-2 lg:mt-0">
             {lead?.sharedWith ? (
