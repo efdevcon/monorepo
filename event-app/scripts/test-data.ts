@@ -488,6 +488,8 @@ function testPrimary() {
   check("choices: holder, add-ons and order carried", choices[0].holder === "Ada" && eq(choices[0].addons, ["Shirt - L"]) && choices[0].orderCode === "A");
   check("choices: email fallback for the holder", choices[1].holder === "a@b.c");
   check("choices: id-less ticket cannot be chosen", choices[2].positionId === undefined);
+  const scanned = ticketChoices([order("H", [ticket("h1", { positionId: 51, positionNumber: 1, hasCheckedIn: true }), ticket("h2", { positionId: 52, positionNumber: 2, hasCheckedIn: false }), ticket("h3", { positionId: 53, positionNumber: 3 })])]);
+  check("choices: check-in carried (only a scanned ticket reads as checked in)", eq(scanned.map((c) => c.checkedIn), [true, false, false]));
   const fixtureOrder = order("TEST-A", [ticket("fx", { positionId: -1, positionNumber: 1, test: true })]);
   check("choices: fixture ticket is choosable and marked test", ticketChoices([fixtureOrder])[0].positionId === -1 && ticketChoices([fixtureOrder])[0].test === true);
   check("primary: a chosen fixture ticket leads like a real one", derivePrimary([order("TEST-A", [ticket("fx", { positionId: -1, attached: true, test: true })]), buyerOrder])?.secret === "fx");

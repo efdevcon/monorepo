@@ -557,7 +557,7 @@ function StoreContent() {
                     </p>
                   </div>
                   <div className={css['card-footer']}>
-                    <CardPrice price="$129" />
+                    <CardPrice price="$259" />
                     {dailyPassSoldOut ? (
                       <span className={css['sold-out-badge']}>Sold out</span>
                     ) : (

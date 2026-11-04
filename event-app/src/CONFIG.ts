@@ -56,12 +56,6 @@ const APP_CONFIG = {
   SILENT_UPDATE_LAUNCH: true, // a build waiting at launch is applied before the first paint matters
   SILENT_UPDATE_HIDDEN: true, // a build is applied after a minute hidden, unless a player, a sheet or typing is on the page
 
-  // Perks (data/tickets/ensPerk.ts). INTERNAL TESTING: while on, EF and ENS
-  // accounts get the ENS perk on any ticket, treated as an India ticket with the
-  // check-in bypassed (the card says so). Their proofs are real India proofs, so
-  // turn it off once testing is done.
-  ENS_PERK_INTERNAL_TESTING: true,
-
   // Development settings
   RUNTIME_VALIDATION: process.env.NODE_ENV === "development",
 };

@@ -9,7 +9,6 @@ import { EventTicketCard } from "./EventTicketCard";
 import { EnsPerkCard } from "./EnsPerkCard";
 import { FaucetPerkCard } from "./FaucetPerkCard";
 import { useReleased } from "@/data/release/releaseGates";
-import { useUser } from "@/data/auth/useUser";
 import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
@@ -117,7 +116,6 @@ export function TicketSections({
   // goes, header included.
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
-  const { user } = useUser();
 
   // The popup is opened with a snapshot; read its scanned state from the
   // current tickets instead (by QR, which is deterministic per secret), so a
@@ -235,14 +233,9 @@ export function TicketSections({
     : swagItems;
   const leadPositionId = lead?.positionId;
 
-  // The ENS perk only on the tickets that qualify (data/tickets/ensPerk.ts):
-  // India tickets and a few extra products once checked in, any ticket while an
-  // EF or ENS account tests.
+  // The ENS perk on every ticket once checked in (data/tickets/ensPerk.ts).
   const ensPerks = showEnsPerk
-    ? shownTickets.flatMap((ticket) => {
-        const access = ensPerkAccess(ticket, user?.email);
-        return access === "hidden" ? [] : [{ ticket, testing: access === "testing" }];
-      })
+    ? shownTickets.filter((ticket) => ensPerkAccess(ticket) === "eligible")
     : [];
   // The testnet faucet: any ticket type, once checked in at the venue (the
   // proof route refuses earlier, PARTNERS requireCheckIn in api/ticket-proof).
@@ -467,11 +460,10 @@ export function TicketSections({
         <section className="flex w-full flex-col gap-4">
           <TicketSectionHeader title="Perks" />
           <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap">
-            {ensPerks.map(({ ticket, testing }) => (
+            {ensPerks.map((ticket) => (
               <EnsPerkCard
                 key={ticket.secret}
                 ticket={ticket}
-                testing={testing}
                 showTicketLabel={ensPerks.length > 1}
               />
             ))}

@@ -15,7 +15,7 @@ import { isTeamEmail, previewableGates } from "./previewAccess";
  * only: anything a feature calls server-side keeps its own checks.
  */
 export const RELEASED = {
-  /** ENS perk card on My Devcon. Released to everyone on 2026-11-03: India tickets once checked in (data/tickets/ensPerk.ts). */
+  /** ENS perk card on My Devcon. Released to everyone on 2026-11-03: any ticket once checked in (data/tickets/ensPerk.ts). */
   ensPerk: true,
   /** Testnet faucet perk card on My Devcon. Released to everyone on 2026-11-02, shown on checked-in tickets only. */
   faucetPerk: true,

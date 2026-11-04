@@ -20,6 +20,9 @@ export const mapHrefForAreas = (keys: readonly string[]): string => `/map?${AREA
  */
 export const SWAG_STATION_MAP_HREF = mapHrefForAreas(["L3/swag-station"]);
 
+/** The ENS perk card's booth link: Starter Supporter 1, whose tenant is `ens` in areas.ts (keep the two in step). */
+export const ENS_BOOTH_MAP_HREF = mapHrefForAreas(["L3/starter-1"]);
+
 /** `/map?area=…` for a room the map knows, plain `/map` otherwise. */
 export function mapHrefForRoom(roomId: string | null | undefined): string {
   const keys = roomId ? ROOM_AREAS[roomId] : undefined;
