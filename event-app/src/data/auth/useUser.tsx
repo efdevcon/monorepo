@@ -13,6 +13,7 @@ import useSWR from "swr";
 import type { User } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { supabase } from "./supabase";
+import { createVerifyOnce } from "./verifyOnce";
 import {
   clearSessionCookie,
   installManifestNeedsReload,
@@ -63,6 +64,11 @@ function useUserState(): UseUserResult {
   const [loading, setLoading] = useState<string | false>("Initializing...");
   const [error, setError] = useState<string | null>(null);
   const [hasInitialized, setHasInitialized] = useState(false);
+  // One Supabase request per code (verifyOnce.ts), forgotten on sign-out
+  // below. Created once: runVerifyOtp, further down, only uses state setters.
+  const [verifyOtp] = useState(() =>
+    createVerifyOnce((email: string, token: string) => runVerifyOtp(email, token))
+  );
 
   const { data: lastUser, mutate: setLastUser } = useSWR<User | null>(
     LAST_USER_KEY,
@@ -113,6 +119,7 @@ function useUserState(): UseUserResult {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (event === "SIGNED_OUT") {
+          verifyOtp.reset();
           void setLastUser(null, { revalidate: false });
           void clearSessionCookie();
           setUser(null);
@@ -148,7 +155,7 @@ function useUserState(): UseUserResult {
     });
 
     return () => authListener.subscription.unsubscribe();
-  }, [setLastUser]);
+  }, [setLastUser, verifyOtp]);
 
   const sendOtp = async (email: string): Promise<boolean> => {
     try {
@@ -183,7 +190,7 @@ function useUserState(): UseUserResult {
     }
   };
 
-  const verifyOtp = async (email: string, token: string): Promise<boolean> => {
+  const runVerifyOtp = async (email: string, token: string): Promise<boolean> => {
     try {
       if (!email) throw new Error("Email is required");
       if (!token) throw new Error("Code is required");
@@ -233,7 +240,9 @@ function useUserState(): UseUserResult {
           ? "Can't reach the server — check your connection and try again."
           : looksRateLimit
             ? "Too many attempts. Wait a minute, then try again."
-            : "Verification failed: the code is invalid or has expired."
+            : // Each new code replaces the previous one, and the emails
+              // often stack in one thread, so the usual miss is an older code.
+              "That code didn't work. Use the code from your latest email, or tap Resend code."
       );
       return false;
     } finally {
