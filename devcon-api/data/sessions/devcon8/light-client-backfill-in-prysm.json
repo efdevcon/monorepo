@@ -3,6 +3,7 @@
   "sourceId": "BYCGFQ",
   "title": "Light Client Backfill in Prysm",
   "description": "Most beacon nodes today checkpoint-sync, meaning they never process historical states and cannot serve old-period light client data. As adoption grows, supply of historical LC updates decays — threatening bridges and mobile wallets that need to sync from old trusted roots.\r\n\r\nI will be presenting how a backfill protocol is designed and implemented in Prysm as part of EPF Cohort 7.  The protocol downloads per-period anchor proofs, exhaustively verifies block coverage to prevent omission attacks, locally re-runs is_better_update to determine canonical best updates, and reconstructs bootstraps — all anchored to already-trusted data via Merkle proofs. Each backfilled period turns the node into a supplier, reversing the supply decay.",
+  "abstract": "Checkpoint-synced beacon nodes lack historical light client data, and supply decays as the network grows. This talk covers designing and implementing a fork-less backfill protocol in Prysm that lets any node trustlessly reconstruct old-period LC updates and bootstraps by downloading per-period proofs and locally re-running the spec's `is_better_update` ranking.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -23,5 +24,12 @@
   "slot_start": 1793766600000,
   "slot_end": 1793767500000,
   "slot_roomId": "workshop-2",
-  "abstract": "Checkpoint-synced beacon nodes lack historical light client data, and supply decays as the network grows. This talk covers designing and implementing a fork-less backfill protocol in Prysm that lets any node trustlessly reconstruct old-period LC updates and bootstraps by downloading per-period proofs and locally re-running the spec's `is_better_update` ranking."
+  "sources_ipfsHash": "",
+  "sources_youtubeId": "wpPs0ibKwAQ",
+  "sources_swarmHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "",
+  "transcript_vtt": "",
+  "transcript_text": "",
+  "duration": 0
 }
