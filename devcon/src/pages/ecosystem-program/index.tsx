@@ -20,7 +20,6 @@ import css from './ecosystem-program.module.scss'
 import cn from 'classnames'
 import { useTranslations } from 'next-intl'
 import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
-import { useIsLaunched } from 'hooks/useWaveStates'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5, Photo6]
 
@@ -63,25 +62,7 @@ function ApplicationsClosedCard() {
 
 export default function EcosystemProgramPage() {
   const t = useTranslations('ecosystem_program')
-  // Sanctuary Tech Builders applications open at the global ticket launch
-  // (config/waves.ts GLOBAL_LAUNCH_TIME) — before that the row shows the
-  // launch month, after it flips live with the Apply link.
-  const { launched } = useIsLaunched()
-  const applicationRowsResolved: TicketRow[] = [
-    ...STUDENT_APPLICATION_ROWS,
-    launched
-      ? {
-          name: 'Sanctuary Tech Builders',
-          price: '$499',
-          action: 'Apply',
-          actionHref: '/form/builder-application',
-        }
-      : {
-          name: 'Sanctuary Tech Builders',
-          price: '$499',
-          date: 'Opens July',
-        },
-  ]
+  const applicationRowsResolved: TicketRow[] = STUDENT_APPLICATION_ROWS
 
   const navLinks = [
     { title: t('nav.about'), to: '#about' },

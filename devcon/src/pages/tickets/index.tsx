@@ -110,16 +110,8 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
     if (launched) return r
     return { ...r, action: undefined, actionHref: undefined, date: t('community_section.pre_launch_status') }
   })
-  // Sanctuary Tech Builders applications also open at the global launch
-  // (student applications are already open). Identified by its form href
-  // since row names are translated.
-  const applicationRows: TicketRow[] = applicationRowsRaw.map(row => {
-    const r = withDetails(row)
-    if (!launched && r.actionHref?.includes('builder-application')) {
-      return { ...r, action: undefined, actionHref: undefined, date: t('applications_section.pre_launch_status') }
-    }
-    return r
-  })
+  // Student applications are open regardless of the launch gate.
+  const applicationRows: TicketRow[] = applicationRowsRaw.map(withDetails)
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -248,8 +240,6 @@ export default function TicketsPage({ faqItems }: TicketsPageProps = {}) {
                 <strong>{t('applications_section.body_strong_1')}</strong>
                 {t('applications_section.body_amp')}
                 <strong>{t('applications_section.body_strong_2')}</strong>
-                {t('applications_section.body_middle')}
-                <strong>{t('applications_section.body_strong_3')}</strong>
                 {t('applications_section.body_suffix')}
               </p>
               {launched && (
