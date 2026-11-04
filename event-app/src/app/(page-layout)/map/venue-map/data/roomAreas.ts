@@ -1,4 +1,4 @@
-import { isLevelId } from "./levels";
+import { isLevelId, LEVELS } from "./levels";
 import roomsJson from "./rooms.generated.json";
 
 /**
@@ -24,6 +24,28 @@ export const SWAG_STATION_MAP_HREF = mapHrefForAreas(["L3/swag-station"]);
 export function mapHrefForRoom(roomId: string | null | undefined): string {
   const keys = roomId ? ROOM_AREAS[roomId] : undefined;
   return keys?.length ? mapHrefForAreas(keys) : "/map";
+}
+
+/**
+ * The floor label ("L3") of a room the map knows, for the session details'
+ * location line; null for rooms off the map. Reads the first footprint's
+ * level: a room spanning floors is not a thing in this venue.
+ */
+export function floorLabelForRoom(roomId: string | null | undefined): string | null {
+  const key = roomId ? ROOM_AREAS[roomId]?.[0] : undefined;
+  if (!key) return null;
+  const level = key.slice(0, key.indexOf("/"));
+  return LEVELS.find((l) => l.id === level)?.label ?? null;
+}
+
+/**
+ * "Lotus Stage 2 (L3)": a room label with its floor appended, so people know
+ * where to head before opening the map (Scott, 2026-11-04). Rooms the map
+ * does not know come back unchanged.
+ */
+export function withFloor(label: string, roomId: string | null | undefined): string {
+  const floor = floorLabelForRoom(roomId);
+  return floor ? `${label} (${floor})` : label;
 }
 
 /** Splits an `area` param into footprint keys on one floor (keys on other floors, or malformed, are dropped). */

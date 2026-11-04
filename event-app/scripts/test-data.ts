@@ -576,8 +576,8 @@ function testReminderCatalogue() {
     },
   });
   check("reminder catalogue: rows keep id, start and room name; unscheduled and id-less rows drop", eq(main, [
-    { id: "X3JSYF", title: "Opening", startMs: 1_762_160_400_000, roomName: "Main Stage" },
-    { id: "iso", title: "ISO start", startMs: Date.parse("2026-11-03T10:00:00.000Z"), roomName: undefined },
+    { id: "X3JSYF", title: "Opening", startMs: 1_762_160_400_000, roomId: "stage-1", roomName: "Main Stage" },
+    { id: "iso", title: "ISO start", startMs: Date.parse("2026-11-03T10:00:00.000Z"), roomId: "nowhere", roomName: undefined },
   ]));
   const hubs = parseReminderCatalogue({
     data: {

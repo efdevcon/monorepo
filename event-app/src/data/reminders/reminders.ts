@@ -118,6 +118,7 @@ export interface ReminderSession {
   id: string;
   title: string;
   startMs: number;
+  roomId?: string;
   roomName?: string;
 }
 
@@ -157,6 +158,7 @@ export function parseReminderCatalogue(json: ReminderBundle): ReminderSession[] 
       id: s.id,
       title: s.title || "Your session",
       startMs,
+      roomId: s.slot_roomId,
       roomName: s.slot_roomId ? roomName.get(s.slot_roomId) : undefined,
     });
   }

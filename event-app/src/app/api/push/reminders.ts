@@ -47,6 +47,7 @@ import {
   type ReminderSession,
 } from "@/data/reminders/reminders";
 import { detailHref } from "@/routing/viewParams";
+import { withFloor } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import {
   buildPayload,
   deliver,
@@ -165,11 +166,12 @@ export function buildReminderPayload(
 ): string {
   return buildPayload({
     title: "Starting soon",
+    // "…, on Lotus Stage 2 (L3)": the floor rides along, as on the cards.
     message: reminderBody(
       session.title,
       session.startMs,
       timeZone,
-      session.roomName,
+      session.roomName && withFloor(session.roomName, session.roomId),
       nowMs
     ),
     url: detailHref("session", session.id),

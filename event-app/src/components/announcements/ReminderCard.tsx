@@ -5,7 +5,7 @@ import { ArrowRight, MapPin, PlayCircle } from "lucide-react";
 import { Link } from "@/routing";
 import { DetailLink } from "@/routing/DetailLink";
 import { useNowMs } from "@/hooks/useNow";
-import { mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
+import { mapHrefForRoom, withFloor } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import { useSession } from "@/data/hooks";
 import { SessionCard } from "@/components/schedule/SessionCard";
 import { SpeakerSessionMiniCard } from "@/components/speakers/SpeakerSessionMiniCard";
@@ -106,7 +106,7 @@ export function ReminderCard({
   const fallback = (
     <p className="font-heading text-sm leading-5 text-dc-fg2">
       {title} · {formatTime(startMs / 1000)}
-      {roomName ? ` · ${shortCommunityHubName(roomName)}` : ""}
+      {roomName ? ` · ${withFloor(shortCommunityHubName(roomName), roomId)}` : ""}
     </p>
   );
 
