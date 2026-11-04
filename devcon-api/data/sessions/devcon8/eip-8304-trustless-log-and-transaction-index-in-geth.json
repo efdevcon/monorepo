@@ -3,6 +3,7 @@
   "sourceId": "CXFQUJ",
   "title": "EIP-8304: Trustless log and transaction index in Geth",
   "description": "Every log query today runs on trust, dashboards, indexers and commercial RPCs assume the serving node is honest, nothing in a response is provable. Light clients cannot verify completeness, selective omission goes unnoticed. EIP-8304 builds an index into the protocol, a system contract called each block commits transactions and logs as sorted, variable-length entries into chained SSZ-merkleized tables, staggered merges keep per-block work and storage incremental.\r\n\r\nThe index unlocks trustless log queries with inclusion, exclusion and completeness proofs for light clients",
+  "abstract": "Every Ethereum log query today runs on trust, the node or indexer serves you results you cannot verify. EIP-8304 makes logs and transactions provable by committing a merkleized index to the chain, and this talk walks through the design, the first full implementation in Geth, the real cost of building the index every block, and what it unlocks for trustless indexing and light clients.",
   "track": "[CLS] - EPF",
   "type": "CLS - EPF Talk",
   "expertise": "Some familiarity with the topic",
@@ -23,5 +24,12 @@
   "slot_start": 1793773800000,
   "slot_end": 1793774700000,
   "slot_roomId": "workshop-2",
-  "abstract": "Every Ethereum log query today runs on trust, the node or indexer serves you results you cannot verify. EIP-8304 makes logs and transactions provable by committing a merkleized index to the chain, and this talk walks through the design, the first full implementation in Geth, the real cost of building the index every block, and what it unlocks for trustless indexing and light clients."
+  "sources_ipfsHash": "",
+  "sources_youtubeId": "kqzFlnftbsA",
+  "sources_swarmHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "",
+  "transcript_vtt": "",
+  "transcript_text": "",
+  "duration": 0
 }
