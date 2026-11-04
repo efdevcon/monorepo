@@ -11,11 +11,38 @@ import { ArrowLeft, ArrowRight, CalendarDays, MapPin, Minus, Plus, Ticket, Coffe
 import { Input } from '@/components/ui/input'
 import css from './store.module.scss'
 
-// Single price figure on a store card — one price regardless of payment
-// method (the ETH / fiat split and its chips are gone).
-const CardPrice = ({ price }: { price: string }) => (
-  <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+import { UpiGlyphTile, FiatGlyphTile } from 'components/domain/tickets/TicketTable'
+
+/*
+ * Price displays on a store card (same shape as the old ETH / fiat split):
+ *   – single price            → one bold figure, no tile
+ *   – India products (UPI)    → green chip (harit/100) with the UPI badge
+ *                               and the rupee price, plus the dark `$` tile
+ *                               with the USD price alongside
+ */
+const UpiPriceChip = ({ price }: { price: string }) => (
+  <span className="inline-flex items-center gap-1.5 rounded bg-[#d5f4dd] px-1.5 py-1">
+    <UpiGlyphTile size={20} />
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+  </span>
 )
+
+const UsdPriceTag = ({ price }: { price: string }) => (
+  <span className="inline-flex items-center gap-1.5">
+    <FiatGlyphTile size={20} />
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+  </span>
+)
+
+const CardPrice = ({ price, priceInr }: { price: string; priceInr?: string }) =>
+  priceInr ? (
+    <span className="inline-flex flex-wrap items-center gap-x-4 gap-y-2">
+      <UpiPriceChip price={priceInr} />
+      <UsdPriceTag price={price} />
+    </span>
+  ) : (
+    <span className="text-[18px] font-bold leading-none tracking-[-0.5px] text-[#221144]">{price}</span>
+  )
 import StoreSidebarLogo from 'assets/images/dc-8/dc8-logo.png'
 import StoreCountdownBanner from 'assets/images/pages/countdown-banner.png'
 import { TICKETING, pretixEventUrl, discountSoldOut } from 'config/ticketing'
@@ -36,6 +63,8 @@ const queryClient = new QueryClient()
 // figure; `free` renders plain bold "FREE".
 type CardPricing = {
   price?: string
+  // Rupee price paid by UPI (e.g. "₹3,315"), India products only.
+  priceInr?: string
   free?: boolean
 }
 
@@ -102,6 +131,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
     price: '$35',
+    priceInr: '₹3,315',
     buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
     maxPerOrder: TICKETING.pretix.dailyIndiaPassMaxPerOrder,
@@ -145,6 +175,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
     price: '$25',
+    priceInr: '₹2,370',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
@@ -387,7 +418,7 @@ function StoreContent() {
                         {card.free ? (
                           <span className={css['application-price']}>FREE</span>
                         ) : (
-                          <CardPrice price={card.price ?? ''} />
+                          <CardPrice price={card.price ?? ''} priceInr={card.priceInr} />
                         )}
                         {!launched ? (
                           <span className={css['opens-label']}>Opens July</span>
@@ -458,7 +489,7 @@ function StoreContent() {
                       {card.free ? (
                         <span className={css['application-price']}>FREE</span>
                       ) : (
-                        <CardPrice price={card.price ?? ''} />
+                        <CardPrice price={card.price ?? ''} priceInr={card.priceInr} />
                       )}
                       {/* Sanctuary Tech Builders applications open at the
                           global launch; student applications are already

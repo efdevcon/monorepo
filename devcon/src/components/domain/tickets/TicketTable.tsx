@@ -7,9 +7,13 @@ export interface TicketRow {
   name: string
   detail?: string
   status?: 'open' | 'coming'
-  // Price shown in the PRICE column (e.g. "$999"). `FREE` renders in a green
-  // chip so no-cost tiers stand out. Absent → cell blank.
+  // USD price shown in the USD column (e.g. "$999"). `FREE` renders in a
+  // green chip so no-cost tiers stand out. Absent → cell blank.
   price?: string
+  // Rupee price the same buyer pays by UPI (e.g. "₹3,315"), shown in the
+  // RUPEES column with the green band (India products only). Absent → cell
+  // blank.
+  priceInr?: string
   date?: string
   action?: string
   actionHref?: string
@@ -19,8 +23,8 @@ export interface TicketRow {
   actionCountdown?: string
   // Small annotation rendered directly beneath the action/status slot inside
   // the STATUS column (e.g. "11% off until Aug 11" under "Get tickets").
-  // Unlike `richContent` it lives inside the main row, so the PRICE column
-  // background stretches to cover it.
+  // Unlike `richContent` it lives inside the main row, so the RUPEES / USD
+  // column backgrounds stretch to cover it.
   actionNote?: React.ReactNode
   // Expandable content rendered below the row when the user clicks it.
   // Setting this makes the entire row clickable to toggle expansion; the
@@ -45,18 +49,66 @@ interface TicketTableProps {
 }
 
 /**
+ * Official UPI mark (NPCI: grey "UPI" letters + orange/green chevrons,
+ * tagline dropped) on a small white rounded badge — the RUPEES column
+ * indicator. The vector is the official logo (Wikimedia Commons
+ * `UPI-Logo-vector.svg`, trimmed to the mark); rendered inline so we don't
+ * ship a separate image asset from this component. `size` is the badge
+ * height; the width follows the mark's 3.7:1 ratio plus padding.
+ */
+export function UpiGlyphTile({ size = 14 }: { size?: number }) {
+  const width = Math.round(size * 2.6)
+  return (
+    <svg width={width} height={size} viewBox="0 0 52 20" xmlns="http://www.w3.org/2000/svg" aria-label="UPI" role="img">
+      <rect width="52" height="20" rx="4" fill="#ffffff" />
+      {/* Mark viewBox 0 0 360.568 97.297 → scaled to 44.5×12 and centred. */}
+      <g transform="translate(3.75 4) scale(0.12333)">
+        <g transform="matrix(1 0 0 -1 -40.4316 173.3501)">
+          <path fill="#66686c" transform="translate(316.4629 76.4951)" d="M 0,0 H -19.283 L 7.535,96.855 h 19.284 z" />
+          <path
+            fill="#66686c"
+            transform="translate(306.4521 170.2881)"
+            d="m 0,0 c -1.337,1.843 -3.399,2.773 -6.2,2.773 h -106.036 l -5.252,-18.97 h 19.294 v 0.011 h 77.169 l -5.614,-20.272 h -77.171 l 0.007,0.042 h -19.286 l -16.007,-57.787 h 19.296 l 10.742,38.786 h 86.746 c 2.709,0 5.259,0.924 7.657,2.772 2.393,1.85 3.968,4.131 4.723,6.855 L 0.809,-6.996 C 1.593,-4.181 1.322,-1.845 0,0"
+          />
+          <path
+            fill="#66686c"
+            transform="translate(156.1196 82.541)"
+            d="m 0,0 c -1.065,-3.835 -4.557,-6.488 -8.538,-6.488 h -99.491 c -2.711,0 -4.726,0.924 -6.051,2.77 -1.324,1.848 -1.608,4.134 -0.851,6.857 l 24.276,87.387 h 19.301 l -21.683,-78.05 h 77.206 l 21.683,78.05 h 19.297 z"
+          />
+          <path fill="#27803b" transform="translate(376.5859 173.1689)" d="m 0,0 24.414,-48.553 -51.322,-48.54 z" />
+          <path fill="#e9661c" transform="translate(359.4717 173.1689)" d="m 0,0 24.396,-48.553 -51.343,-48.54 z" />
+        </g>
+      </g>
+    </svg>
+  )
+}
+
+/** Dark rounded tile containing a white `$` glyph — the USD column indicator. */
+export function FiatGlyphTile({ size = 14 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="14" height="14" rx="2" fill="#594d73" />
+      <g transform="translate(1 1)" fill="white">
+        <path d="M5.625 11V1C5.625 0.793 5.793 0.625 6 0.625C6.207 0.625 6.375 0.793 6.375 1V11C6.375 11.207 6.207 11.375 6 11.375C5.793 11.375 5.625 11.207 5.625 11Z" />
+        <path d="M8.625 7.75C8.625 7.385 8.48 7.036 8.222 6.778C7.964 6.52 7.615 6.375 7.25 6.375H4.75C4.186 6.375 3.646 6.151 3.248 5.752C2.849 5.354 2.625 4.814 2.625 4.25C2.625 3.686 2.849 3.146 3.248 2.748C3.646 2.349 4.186 2.125 4.75 2.125H8.5C8.707 2.125 8.875 2.293 8.875 2.5C8.875 2.707 8.707 2.875 8.5 2.875H4.75C4.385 2.875 4.036 3.02 3.778 3.278C3.52 3.536 3.375 3.885 3.375 4.25C3.375 4.615 3.52 4.964 3.778 5.222C4.036 5.48 4.385 5.625 4.75 5.625H7.25C7.814 5.625 8.354 5.849 8.752 6.248C9.151 6.646 9.375 7.186 9.375 7.75C9.375 8.314 9.151 8.854 8.752 9.252C8.354 9.651 7.814 9.875 7.25 9.875H3C2.793 9.875 2.625 9.707 2.625 9.5C2.625 9.293 2.793 9.125 3 9.125H7.25C7.615 9.125 7.964 8.98 8.222 8.722C8.48 8.464 8.625 8.115 8.625 7.75Z" />
+      </g>
+    </svg>
+  )
+}
+
+/**
  * TicketTable — the "Ticket-Type-Container" card from the Devcon Figma
  * design (nodes 5160:9160 / 5136:4473 / 5141:8075).
  *
  * Layout: dark gradient header, gray column-header row, then a stack of
- * data rows with 3 columns:
+ * data rows with 4 columns:
  *
- *   PRODUCT (flex, left)  |  PRICE ($X)  |  STATUS (CTA)
+ *   PRODUCT (flex, left)  |  RUPEES (₹X via UPI, green band)  |  USD ($X)  |  STATUS (CTA)
  *
  * Responsive behavior:
- *   - desktop (≥sm): true 3-column table row per item
- *   - mobile (<sm): PRODUCT stacks above; PRICE + STATUS wrap onto a
- *     single line below (per Figma mobile spec)
+ *   - desktop (≥sm): true 4-column table row per item
+ *   - mobile (<sm): PRODUCT stacks above; RUPEES/USD pills + STATUS wrap
+ *     onto a single line below (per Figma mobile spec)
  *
  * Rows may also be expandable (click to toggle `details` panel below) —
  * inherited from the previous implementation.
@@ -78,11 +130,18 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           matches the Figma mobile spec.
 
           `gap-3` here matches the same `gap-3` on every data row so
-          the PRICE / STATUS labels sit directly above their
+          the RUPEES / USD / STATUS labels sit directly above their
           respective cells rather than to the left. */}
       <div className="hidden md:flex items-center bg-[#f2f1f4] px-6 h-10 gap-3">
         <p className="flex-1 min-w-0 text-xs font-semibold text-[#594d73] tracking-[0.25px] uppercase">Product</p>
-        <p className="w-[88px] shrink-0 text-center text-xs font-semibold text-[#594d73] tracking-[0.25px] uppercase">Price</p>
+        <div className="w-[104px] shrink-0 flex items-center justify-center gap-1.5">
+          <UpiGlyphTile />
+          <p className="text-xs font-semibold text-[#594d73] tracking-[0.25px] uppercase">Rupees</p>
+        </div>
+        <div className="w-[88px] shrink-0 flex items-center justify-center gap-1.5">
+          <FiatGlyphTile />
+          <p className="text-xs font-semibold text-[#594d73] tracking-[0.25px] uppercase">USD</p>
+        </div>
         <p className="w-[140px] shrink-0 text-right text-xs font-semibold text-[#594d73] tracking-[0.25px] uppercase">Status</p>
       </div>
 
@@ -93,6 +152,7 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
           const isExpanded = isExpandable && expandedIndex === i
 
           const price = row.price
+          const priceInr = row.priceInr
 
           // Per-row product-name treatment per Figma:
           //   normal → Poppins Medium 16, `#160b2b` (foreground)
@@ -125,27 +185,43 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
             </div>
           )
 
-          // Desktop cell content is just text — the green "FREE" band comes
-          // from `bg-[#d5f4dd]` on the wrapping cell div, not from any inline
+          // Desktop cell content is just text — the green band comes from
+          // `bg-[#d5f4dd]` on the wrapping cell div, not from any inline
           // chip. Line-through when the row is muted so closed sale rows read
           // as an audit entry rather than a live price.
           const strikeClass = row.muted ? 'line-through' : ''
           const isFree = price === 'FREE'
 
+          // RUPEES cell (desktop): the UPI price for the India products.
+          const inrContent = priceInr ? (
+            <span className={`text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>{priceInr}</span>
+          ) : null
+
+          // USD cell (desktop): plain price text; "FREE" sits on the green
+          // band like the rupee prices do.
           const priceContent = price ? (
             <span className={`text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>{price}</span>
           ) : null
 
-          // Mobile: no column concept, so the price renders inline. "FREE"
-          // keeps its green chip per the Figma mobile spec; dollar prices are
-          // plain bold text.
+          // Mobile: no column concept, so the green + UPI badge travel with
+          // the rupee price as an inline pill.
+          const inrPill = priceInr ? (
+            <span className={`inline-flex items-center gap-1.5 bg-[#d5f4dd] rounded px-2 py-1 text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
+              <UpiGlyphTile size={16} />
+              {priceInr}
+            </span>
+          ) : null
+
+          // Mobile USD pill: dark `$` tile + price. "FREE" keeps its green
+          // chip (no tile) per the Figma mobile spec.
           const pricePill = price ? (
             isFree ? (
               <span className={`inline-flex items-center bg-[#d5f4dd] rounded px-2 py-1 text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
                 {price}
               </span>
             ) : (
-              <span className={`inline-flex items-center text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
+              <span className={`inline-flex items-center gap-1.5 text-base font-bold ${priceColorClass} leading-none ${strikeClass}`}>
+                <FiatGlyphTile size={16} />
                 {price}
               </span>
             )
@@ -181,16 +257,22 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
             <p className="text-base font-medium text-[#594d73] leading-6 whitespace-nowrap">{row.date}</p>
           ) : null
 
-          // Desktop layout (md+, ≥768px): strict 3-column row matching
-          // the column header widths. The price cell gets the green
-          // `#d5f4dd` full-height background only for "FREE" rows (e.g.
-          // Core Devs); dollar prices stay on the plain row background.
+          // Desktop layout (md+, ≥768px): strict 4-column row matching
+          // the column header widths. The RUPEES cell gets the green
+          // `#d5f4dd` full-height background only when the row has a rupee
+          // price — empty cells stay plain so the band breaks by design. The
+          // USD cell gets the same band only for "FREE" rows (e.g. Core
+          // Devs); dollar prices stay on the plain row background.
+          const inrCellBg = priceInr ? 'bg-[#d5f4dd]' : ''
           const priceCellBg = isFree ? 'bg-[#d5f4dd]' : ''
           const mainRow = (
             <>
               {/* Desktop row */}
               <div className="hidden md:flex items-center px-6 min-h-[64px] gap-3">
                 {productBlock}
+                <div className={`w-[104px] shrink-0 self-stretch ${inrCellBg} flex items-center justify-center`}>
+                  {inrContent}
+                </div>
                 <div className={`w-[88px] shrink-0 self-stretch ${priceCellBg} flex items-center justify-center`}>
                   {priceContent}
                 </div>
@@ -203,7 +285,10 @@ export function TicketTable({ title, subtitle, rows, tapLabel }: TicketTableProp
               <div className="md:hidden flex flex-col gap-3 p-4">
                 {productBlock}
                 <div className="flex items-center justify-between gap-3 flex-wrap">
-                  <div className="flex items-center gap-3 flex-wrap min-w-0">{pricePill}</div>
+                  <div className="flex items-center gap-3 flex-wrap min-w-0">
+                    {inrPill}
+                    {pricePill}
+                  </div>
                   {actionSlot && (
                     <div className="ml-auto shrink-0 flex flex-col items-end gap-0.5">
                       {actionSlot}
