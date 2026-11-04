@@ -322,7 +322,7 @@ export function TicketSections({
   // not a white overlay — so it works on the home page's tinted background
   // as well as the ticket page's white panel (DayTabs pattern).
   const scrollerBase =
-    "flex flex-col gap-4 lg:flex-row lg:overflow-x-auto lg:[mask-image:linear-gradient(to_right,#000_calc(100%-36px),transparent)] lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden";
+    "gap-4 lg:flex-row lg:overflow-x-auto lg:[mask-image:linear-gradient(to_right,#000_calc(100%-36px),transparent)] lg:[scrollbar-width:none] lg:[&::-webkit-scrollbar]:hidden";
   const endSpacer = (
     // Spacer so the last card can scroll clear of the 36px fade.
     <div aria-hidden className="hidden w-9 shrink-0 lg:block" />
@@ -373,7 +373,9 @@ export function TicketSections({
             multiTicket ? "lg:h-[319px]" : "lg:min-h-0 lg:flex-1"
           )}
         >
-          <div className={cn(scrollerBase, "lg:absolute lg:-inset-3 lg:p-3")}>
+          {/* Two columns on mobile (Scott, 2026-11-04); the desktop shelf is
+              unchanged. The end spacer is hidden below lg so it takes no cell. */}
+          <div className={cn(scrollerBase, "grid grid-cols-2 lg:absolute lg:-inset-3 lg:flex lg:p-3")}>
             {shownSwag.map((item) => (
               <SwagCard
                 key={item.secret}
@@ -403,7 +405,7 @@ export function TicketSections({
                 swag shelf's 12px) because these cards also cast a hover
                 shadow beyond the 1.03 scale. Each wrapper is a flex box so
                 the stretched cards equalize to the tallest. */}
-            <div className={cn(scrollerBase, "lg:-m-5 lg:p-5")}>
+            <div className={cn(scrollerBase, "flex flex-col lg:-m-5 lg:p-5")}>
               {shownTickets.map((ticket) => (
                 <div
                   key={ticket.secret}

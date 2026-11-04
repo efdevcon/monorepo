@@ -93,20 +93,31 @@ export function SwagCard({
           </span>
         )}
       </div>
+      {/* Strip sized for the two-column mobile grid (Scott, 2026-11-04):
+          14px name, 11px label, tighter padding; the desktop shelf card
+          keeps the larger 18px name. */}
       <div
-        className="flex w-full items-center gap-6 px-4 py-5"
+        className={cn(
+          "flex w-full items-center gap-3 px-3 py-3",
+          shelfOnDesktop && "lg:gap-6 lg:px-4 lg:py-5"
+        )}
         style={{ background: STRIP_BG }}
       >
         <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <p className="text-[18px] font-medium leading-[1.25] tracking-[-0.25px] text-dc-fg2 [word-break:break-word]">
+          <p
+            className={cn(
+              "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
+              shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
+            )}
+          >
             {name}
           </p>
-          <p className="text-[12px] font-medium leading-none text-[#9256d2]">
+          <p className="text-[11px] font-medium leading-none text-[#9256d2]">
             {collected ? "Swag · Collected" : "Swag"}
           </p>
         </div>
-        <span className="flex size-8 shrink-0 items-center justify-center">
-          <QrCode className="size-6 text-dc-purple" />
+        <span className="flex size-6 shrink-0 items-center justify-center lg:size-8">
+          <QrCode className="size-5 text-dc-purple lg:size-6" />
         </span>
       </div>
     </button>
