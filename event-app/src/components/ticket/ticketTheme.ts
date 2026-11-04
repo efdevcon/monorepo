@@ -106,7 +106,7 @@ export function resolveTicketStyle(
 const PRICE_QUALIFIERS = /\s*\((?:free|discounted)\)/gi;
 // Product-specific display renames (requested copy; keys are cleaned names).
 const NAME_OVERRIDES: ReadonlyArray<[RegExp, string]> = [
-  [/^premium oversized ethereum shirt/i, "Oversized Ethereum Shirt"],
+  [/^premium oversized ethereum shirt/i, "Ethereum Shirt"],
 ];
 
 /** Item name as shown on the card/modal: emoji flag and "(Free)" /
