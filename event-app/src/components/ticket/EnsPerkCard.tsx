@@ -35,7 +35,7 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          Free .eth name for every Devcon attendee, until sold out. Come to the{" "}
+          Free .eth name for every Devcon attendee, while they last. Come to the{" "}
           {/* A button over the routing hook, not a Link: under the native
               wrapper Link swaps in its own onClick (as the swag station link). */}
           <button

@@ -41,7 +41,7 @@ const ENS_PARTNER: ProofPartner = {
   label: "Claim your free .eth name",
   title: "Free .eth for Devcon attendees",
   describe: () =>
-    "Claim a free .eth name for one year with a self.xyz verified identity. Available until sold out.",
+    "Claim a free .eth name for one year with a self.xyz verified identity, while they last.",
   handoff:
     "Open this link in your browser to claim. You'll need to connect a wallet to claim, which works best outside the app.",
 };
