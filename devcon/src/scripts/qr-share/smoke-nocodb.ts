@@ -27,6 +27,7 @@ async function main() {
     price: null,
     priceEth: null,
     priceFiat: null,
+    priceInr: null,
     env,
     maxUsages: 0,
     redemptions: 0,

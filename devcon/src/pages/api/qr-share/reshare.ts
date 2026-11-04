@@ -28,6 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       price: old.price,
       priceEth: old.priceEth,
       priceFiat: old.priceFiat,
+      priceInr: old.priceInr,
       env: ENV,
       maxUsages: old.maxUsages,
       redemptions: old.redemptions,

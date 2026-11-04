@@ -33,6 +33,7 @@ type Props =
       title: string
       priceEth: string | null
       priceFiat: string | null
+      priceInr: string | null
       description: string | null
       targetUrl: string
       redeemed: boolean
@@ -85,6 +86,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params, qu
         title: share.title,
         priceEth: share.priceEth,
         priceFiat: share.priceFiat,
+        priceInr: share.priceInr,
         description: share.description,
         targetUrl: share.targetUrl && isWebUrl(share.targetUrl) ? share.targetUrl : '',
         redeemed: share.redeemed,
@@ -148,7 +150,7 @@ export default function SharePage(initial: Props) {
           <>
             <h2 className="text-3xl font-bold">Redeem your voucher</h2>
             <p className="text-lg">{props.title}</p>
-            <PriceTags eth={props.priceEth} fiat={props.priceFiat} size={22} />
+            <PriceTags eth={props.priceEth} fiat={props.priceFiat} inr={props.priceInr} size={22} />
             {props.redeemed && (
               <p className="rounded-lg bg-amber-100 p-3 text-amber-900">
                 This voucher looks redeemed already. The ticket shop will tell you for sure.

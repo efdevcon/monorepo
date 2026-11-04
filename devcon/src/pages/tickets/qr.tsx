@@ -112,7 +112,7 @@ function SharingScreen({ adminKey, onLogout }: { adminKey: string; onLogout: () 
                 </span>
               )}
             </h1>
-            <PriceTags eth={share.priceEth} fiat={share.priceFiat} size={26} />
+            <PriceTags eth={share.priceEth} fiat={share.priceFiat} inr={share.priceInr} size={26} />
             {origin && <QrImage value={`${origin}/s/${share.token}/`} />}
             {/* The caption doubles as a link to the buyer page: handy for testing
                 without a second device, same URL the QR encodes. */}

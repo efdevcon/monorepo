@@ -37,6 +37,8 @@ export interface Share {
   priceEth: string | null
   /** Price when paying by card; null when ETH-only or not applicable. Equal to priceEth when one price serves both. */
   priceFiat: string | null
+  /** Rupee price when paying by UPI, formatted; null when the item has no `upi_price_inr`. */
+  priceInr: string | null
   env: string
   active: boolean
   status: ShareStatus
@@ -219,6 +221,7 @@ function mapShare(r: Row): Share {
     price: str(r.Price),
     priceEth: str(r.PriceEth),
     priceFiat: str(r.PriceFiat),
+    priceInr: str(r.PriceInr),
     env: str(r.Env) ?? '',
     active: bool(r.Active),
     status: r.Status === 'scanned' || r.Status === 'closed' ? r.Status : 'open',
@@ -266,6 +269,7 @@ export async function createShare(input: NewShare): Promise<Share> {
     Price: input.price ?? '',
     PriceEth: input.priceEth ?? '',
     PriceFiat: input.priceFiat ?? '',
+    PriceInr: input.priceInr ?? '',
     Env: input.env,
     Active: false,
     Status: 'open',

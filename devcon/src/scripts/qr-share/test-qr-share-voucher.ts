@@ -22,13 +22,25 @@ assert.equal(usedUp(5, 0), false)
 // discount) scales the card price by the same ratio. No metadata = same price
 // both ways; `fiat_disabled` = ETH only.
 const v = (priceMode: 'none' | 'set' | 'subtract' | 'percent', value: string) => ({ priceMode, value })
-assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('set', '444.11'), 'USD'), { eth: '$444.11', fiat: '$444.11', mode: 'both' })
-assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('none', '0'), 'USD'), { eth: '$499.00', fiat: '$999.00', mode: 'both' })
-assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('percent', '11'), 'USD'), { eth: '$444.11', fiat: '$889.11', mode: 'both' })
-assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('subtract', '99'), 'USD'), { eth: '$400.00', fiat: '$900.00', mode: 'both' })
-assert.deepEqual(pricesFor('349.00', {}, v('none', '0'), 'USD'), { eth: '$349.00', fiat: '$349.00', mode: 'same' })
-assert.deepEqual(pricesFor('349.00', { fiat_disabled: 'true' }, v('none', '0'), 'USD'), { eth: '$349.00', fiat: null, mode: 'eth' })
-assert.deepEqual(pricesFor('0.00', { fiat_price_usd: '999' }, v('set', '0'), 'USD'), { eth: '$0.00', fiat: '$0.00', mode: 'both' })
-assert.deepEqual(pricesFor('10.00', {}, v('none', '0'), 'EUR'), { eth: '10.00 EUR', fiat: '10.00 EUR', mode: 'same' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('set', '444.11'), 'USD'), { eth: '$444.11', fiat: '$444.11', inr: null, mode: 'both' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('none', '0'), 'USD'), { eth: '$499.00', fiat: '$999.00', inr: null, mode: 'both' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('percent', '11'), 'USD'), { eth: '$444.11', fiat: '$889.11', inr: null, mode: 'both' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999' }, v('subtract', '99'), 'USD'), { eth: '$400.00', fiat: '$900.00', inr: null, mode: 'both' })
+assert.deepEqual(pricesFor('349.00', {}, v('none', '0'), 'USD'), { eth: '$349.00', fiat: '$349.00', inr: null, mode: 'same' })
+assert.deepEqual(pricesFor('349.00', { fiat_disabled: 'true' }, v('none', '0'), 'USD'), { eth: '$349.00', fiat: null, inr: null, mode: 'eth' })
+assert.deepEqual(pricesFor('0.00', { fiat_price_usd: '999' }, v('set', '0'), 'USD'), { eth: '$0.00', fiat: '$0.00', inr: null, mode: 'both' })
+assert.deepEqual(pricesFor('10.00', {}, v('none', '0'), 'EUR'), { eth: '10.00 EUR', fiat: '10.00 EUR', inr: null, mode: 'same' })
 
-console.log('ok redeemUrlFor + usedUp + pricesFor')
+// Rupee price (UPI rail): the item's `upi_price_inr` pairs with the card list
+// price and scales with what the buyer pays by card, so vouchers take the same
+// share off the rupees; an ETH-only item has no UPI.
+assert.deepEqual(pricesFor('25.00', { upi_price_inr: '2370' }, v('none', '0'), 'USD'), { eth: '$25.00', fiat: '$25.00', inr: '₹2,370', mode: 'same' })
+assert.deepEqual(pricesFor('25.00', { upi_price_inr: '2370' }, v('percent', '10'), 'USD'), { eth: '$22.50', fiat: '$22.50', inr: '₹2,133', mode: 'same' })
+assert.deepEqual(pricesFor('25.00', { upi_price_inr: '2370' }, v('set', '20'), 'USD'), { eth: '$20.00', fiat: '$20.00', inr: '₹1,896', mode: 'same' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999', upi_price_inr: '90000' }, v('none', '0'), 'USD'), { eth: '$499.00', fiat: '$999.00', inr: '₹90,000', mode: 'both' })
+assert.deepEqual(pricesFor('499.00', { fiat_price_usd: '999', upi_price_inr: '90000' }, v('set', '444.11'), 'USD'), { eth: '$444.11', fiat: '$444.11', inr: '₹40,009.91', mode: 'both' })
+assert.deepEqual(pricesFor('35.00', { upi_price_inr: '3315' }, v('percent', '50'), 'USD'), { eth: '$17.50', fiat: '$17.50', inr: '₹1,657.50', mode: 'same' })
+assert.deepEqual(pricesFor('349.00', { fiat_disabled: 'true', upi_price_inr: '30000' }, v('none', '0'), 'USD'), { eth: '$349.00', fiat: null, inr: null, mode: 'eth' })
+assert.deepEqual(pricesFor('25.00', { upi_price_inr: 'abc' }, v('none', '0'), 'USD'), { eth: '$25.00', fiat: '$25.00', inr: null, mode: 'same' })
+
+console.log('ok redeemUrlFor + usedUp + pricesFor (incl. rupees)')

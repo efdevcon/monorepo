@@ -246,7 +246,7 @@ function Dashboard({ adminKey, onLogout }: { adminKey: string; onLogout: () => v
                   </td>
                   <td className="font-mono">{s.voucherCode ?? ''}</td>
                   <td className="whitespace-nowrap">
-                    <PriceTags eth={s.priceEth} fiat={s.priceFiat} size={14} />
+                    <PriceTags eth={s.priceEth} fiat={s.priceFiat} inr={s.priceInr} size={14} />
                   </td>
                   <td>
                     {s.status}

@@ -44,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       price: null,
       priceEth: null,
       priceFiat: null,
+      priceInr: null,
       env: ENV,
       maxUsages: 0,
       redemptions: 0,

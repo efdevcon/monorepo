@@ -25,6 +25,7 @@ const base: Share = {
   price: null,
   priceEth: null,
   priceFiat: null,
+  priceInr: null,
   env: 'development',
   active: true,
   status: 'open',

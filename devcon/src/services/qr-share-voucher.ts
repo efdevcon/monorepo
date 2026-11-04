@@ -16,6 +16,8 @@ export interface VoucherDescription {
   priceEth: string | null
   /** Price when paying by card, null when the item is ETH-only. */
   priceFiat: string | null
+  /** Rupee price when paying by UPI (the item's `upi_price_inr` scaled by the voucher); null when the item has none. */
+  priceInr: string | null
   targetUrl: string
   /** Used up: redemptions reached the maximum. */
   redeemed: boolean
@@ -39,11 +41,17 @@ export interface PriceInfo {
   eth: string
   /** Null when the item is ETH-only (`fiat_disabled`). Equal to `eth` when the item has no card price of its own. */
   fiat: string | null
+  /** Rupees when paying by UPI: `upi_price_inr` scaled like the card price. Null without a rupee price or when ETH-only. */
+  inr: string | null
   mode: 'both' | 'same' | 'eth'
 }
 
 const money = (amount: number, currency: string) =>
   currency === 'USD' ? `$${amount.toFixed(2)}` : `${amount.toFixed(2)} ${currency}`
+
+/** Rupees as the Pretix catalog shows them: Indian grouping, no ".00". */
+const rupees = (amount: number) =>
+  '\u20B9' + amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/\.00$/, '')
 
 /** Cents, half up, like the plugin's quantize. */
 const cents = (n: number) => Math.round((n + Number.EPSILON) * 100) / 100
@@ -71,9 +79,15 @@ export function pricesFor(
   const listed = Number(listedPrice) || 0
   const ethAmount = Number(applyVoucherDiscount(listedPrice, voucher as VoucherInfo)) || 0
   const eth = money(ethAmount, currency)
-  if (/^(true|yes|1)$/i.test((meta?.fiat_disabled ?? '').trim())) return { eth, fiat: null, mode: 'eth' }
+  if (/^(true|yes|1)$/i.test((meta?.fiat_disabled ?? '').trim())) return { eth, fiat: null, inr: null, mode: 'eth' }
   const fiatList = parseFiat(meta?.fiat_price_usd)
-  if (fiatList === null) return { eth, fiat: eth, mode: 'same' }
+  // The UPI rail pairs the rupee price with the card list price and scales it
+  // by what the buyer actually pays by card (plugin rule), so a voucher takes
+  // the same share off the rupees.
+  const inrList = parseFiat(meta?.upi_price_inr)
+  const inrFor = (cardAmount: number, cardList: number) =>
+    inrList !== null && cardList > 0 ? rupees(cents(Math.max(0, inrList * (cardAmount / cardList)))) : null
+  if (fiatList === null) return { eth, fiat: eth, inr: inrFor(ethAmount, listed), mode: 'same' }
   const value = Number(voucher.value) || 0
   let fiatAmount: number
   switch (voucher.priceMode) {
@@ -86,12 +100,14 @@ export function pricesFor(
     default:
       fiatAmount = listed > 0 ? fiatList * (ethAmount / listed) : fiatList
   }
-  return { eth, fiat: money(cents(Math.max(0, fiatAmount)), currency), mode: 'both' }
+  fiatAmount = cents(Math.max(0, fiatAmount))
+  return { eth, fiat: money(fiatAmount, currency), inr: inrFor(fiatAmount, fiatList), mode: 'both' }
 }
 
 export function priceSummary(p: PriceInfo): string {
   if (p.mode === 'eth') return `${p.eth} ETH only`
-  return p.fiat && p.fiat !== p.eth ? `${p.eth} ETH · ${p.fiat} card` : p.eth
+  const base = p.fiat && p.fiat !== p.eth ? `${p.eth} ETH · ${p.fiat} card` : p.eth
+  return p.inr ? `${base} · ${p.inr} UPI` : base
 }
 
 export function redeemUrlFor(code: string): string {
@@ -134,6 +150,7 @@ export async function describeVoucher(
       price: prices ? priceSummary(prices) : null,
       priceEth: prices?.eth ?? null,
       priceFiat: prices?.fiat ?? null,
+      priceInr: prices?.inr ?? null,
       targetUrl: redeemUrlFor(info.code),
       redeemed: usedUp(info.redeemed, info.maxUsages),
       maxUsages: info.maxUsages,
