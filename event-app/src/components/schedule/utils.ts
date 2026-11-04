@@ -1,6 +1,8 @@
 import type { Room, Session } from "@/data/models";
 import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt } from "@/data/eventTime";
 import { timelineRoomRank } from "@/data/venueRooms";
+import { shortCommunityHubName } from "@/data/communityHubs";
+import { withFloor } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 
 /** Session timing is stored as unix seconds. */
 export const ms = (unixSeconds: number) => unixSeconds * 1000;
@@ -237,6 +239,16 @@ export const MOBILE_METRICS: TimelineMetrics = {
   headerH: 32,
   blockInset: 4,
 };
+
+/**
+ * A card's location meta, "Type - Room (floor)" in the design (e.g. "Talk -
+ * Lotus Stage 2 (L3)"); hub rooms lose their "Hub", rooms off the map their
+ * floor. Shared by the schedule and speaker cards.
+ */
+export const locationLabel = (session: Session): string =>
+  [session.type, session.room?.name && withFloor(shortCommunityHubName(session.room.name), session.room.id)]
+    .filter(Boolean)
+    .join(" - ");
 
 /** Label shown when a session has no assigned room. */
 export const NO_ROOM_LABEL = "TBA";

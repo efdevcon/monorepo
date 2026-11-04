@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/data/analytics/track";
-import { floorLabelForRoom, mapHrefForRoom } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
+import { mapHrefForRoom, withFloor } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import APP_CONFIG from "@/CONFIG";
 import cn from "classnames";
 import { Calendar, CalendarPlus, Captions, Clock3, MapPin, Star, Tent, Users } from "lucide-react";
@@ -209,14 +209,11 @@ export function SessionSummary({
   // Hub sessions are not recorded or streamed; keep the track banner.
   const hasMedia = !isCommunityHubSession(session) && sessionHasMedia(session, onNow, event?.startDate);
 
-  // "Talk - Lotus Stage 2 (L3)": the floor rides along so people know where
-  // to head before opening the map (Scott, 2026-11-04). Rooms the map does
-  // not know get no floor.
-  const floor = floorLabelForRoom(session.room?.id);
-  const location = [session.type, session.room?.name]
+  // "Talk - Lotus Stage 2 (L3)": the full room name here (cards shorten hubs),
+  // with its floor like every other room label (`withFloor`).
+  const location = [session.type, session.room?.name && withFloor(session.room.name, session.room.id)]
     .filter(Boolean)
-    .join(" - ")
-    .concat(floor ? ` (${floor})` : "");
+    .join(" - ");
   const featured = session.featured === true;
   // Pretalx asks speakers for a short abstract and an optional long
   // description; the page showed the description, which reads as the long

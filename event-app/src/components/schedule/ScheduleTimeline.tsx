@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { shortCommunityHubName } from "@/data/communityHubs";
+import { withFloor } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
 import cn from "classnames";
 import { ArrowRight, Clock3, Star, User } from "lucide-react";
 import type { Session } from "@/data/models";
@@ -80,7 +81,7 @@ function TimelineSession({
       kind="session"
       id={session.id}
       onOpen={onOpen}
-      title={`${session.title} — ${session.room?.name ?? ""}`}
+      title={`${session.title} — ${session.room ? withFloor(session.room.name, session.room.id) : ""}`}
       style={{
         left: left + m.blockInset,
         top: m.blockInset,
@@ -843,7 +844,11 @@ export function ScheduleTimeline({
                   compact ? "px-1 text-[11px] [hyphens:auto]" : "px-2 text-[12px]"
                 )}
               >
-                <span className="line-clamp-2">{shortCommunityHubName(room)}</span>
+                {/* Lanes are keyed by room name; the floor comes off the
+                    lane's first session, every session in it shares the room. */}
+                <span className="line-clamp-2">
+                  {withFloor(shortCommunityHubName(room), byRoom[room][0]?.room?.id)}
+                </span>
               </div>
               <div
                 className="relative shrink-0 border-b border-dc-hairline bg-white"

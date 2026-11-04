@@ -5,16 +5,11 @@ import cn from "classnames";
 import type { Session } from "@/data/models";
 import { DetailLink } from "@/routing/DetailLink";
 import { useInterested } from "@/data/interested/useInterested";
-import { formatTimeRange } from "@/components/schedule/utils";
+import { formatTimeRange, locationLabel } from "@/components/schedule/utils";
 import {
   getTrackTheme,
   trackBadgeLabel,
 } from "@/components/schedule/trackTheme";
-import { shortCommunityHubName } from "@/data/communityHubs";
-
-/** Location meta reads "Type - Room" in the design (e.g. "Talk - Main Stage"); hub rooms lose their "Hub". */
-const locationLabel = (session: Session) =>
-  [session.type, session.room?.name && shortCommunityHubName(session.room.name)].filter(Boolean).join(" - ");
 
 /**
  * Compact session card in the speaker details (Figma "Event Details

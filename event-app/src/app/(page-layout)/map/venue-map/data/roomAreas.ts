@@ -38,6 +38,16 @@ export function floorLabelForRoom(roomId: string | null | undefined): string | n
   return LEVELS.find((l) => l.id === level)?.label ?? null;
 }
 
+/**
+ * "Lotus Stage 2 (L3)": a room label with its floor appended, so people know
+ * where to head before opening the map (Scott, 2026-11-04). Rooms the map
+ * does not know come back unchanged.
+ */
+export function withFloor(label: string, roomId: string | null | undefined): string {
+  const floor = floorLabelForRoom(roomId);
+  return floor ? `${label} (${floor})` : label;
+}
+
 /** Splits an `area` param into footprint keys on one floor (keys on other floors, or malformed, are dropped). */
 export function parseAreaParam(value: string): { level: string; keys: string[] } | null {
   const keys = value.split(",").filter((k) => /^[^/]+\/[^/]+$/.test(k));
