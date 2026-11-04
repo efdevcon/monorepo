@@ -27,6 +27,13 @@ const TEXT_LINK =
 
 type Stage = "idle" | "decoding" | "verifying";
 
+/** A ticket row in the select: stacked on a phone, one line from lg. */
+const CHOICE_ROW =
+  "flex flex-col gap-2 rounded-lg border border-dc-hairline bg-dc-panel px-3 py-3 lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:py-2";
+/** The row's "This one is mine" pill: the same pill as the upload row's button, without being one. */
+const CHOICE_PILL =
+  "flex h-8 shrink-0 items-center gap-1.5 self-end rounded-full border border-dc-hairline bg-white px-3 text-[12px] font-semibold leading-none text-dc-fg2 transition-colors duration-150 ease-out lg:self-auto";
+
 /**
  * The upload path shared by the prompts: a plain file input covers the photo
  * library, files (the ticket PDF, the wallet pass) and, on iOS, the camera,
@@ -252,18 +259,14 @@ export function ChooseTicketCard({
         stay in your Pretix email. Your interests, Q&amp;A and swag follow this ticket.
       </p>
       <ul className="flex flex-col gap-2">
-        {choices.map((choice) => (
-          <li
-            key={choice.secret}
-            // Phone: text on top, button below it right-aligned, so neither
-            // squeezes the other. Desktop: one row.
-            className="flex flex-col gap-2 rounded-lg border border-dc-hairline bg-dc-panel px-3 py-3 lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:py-2"
-          >
-            {/* Wrap, never truncate: on a phone the details line is the only
-                way to tell two same-type tickets apart. */}
-            <div className="min-w-0 [overflow-wrap:anywhere]">
-              <p className="text-[14px] font-bold leading-5 text-dc-fg2">{reference(choice)}</p>
-              <p className="text-[12px] leading-4 text-dc-fg2">
+        {choices.map((choice) => {
+          /* Wrap, never truncate: on a phone the details line is the only
+             way to tell two same-type tickets apart. Spans, not paragraphs:
+             the row is a button. */
+          const details = (
+            <span className="block min-w-0 [overflow-wrap:anywhere]">
+              <span className="block text-[14px] font-bold leading-5 text-dc-fg2">{reference(choice)}</span>
+              <span className="block text-[12px] leading-4 text-dc-fg2">
                 {displayItemName(choice.itemName)}
                 {choice.test && <span className="text-dc-muted"> (test ticket)</span>}
                 {choice.holder.toLowerCase() !== account && <> · {choice.holder}</>}
@@ -277,33 +280,53 @@ export function ChooseTicketCard({
                     by someone else
                   </span>
                 ) : null}
-              </p>
+              </span>
               {swag(choice) && (
-                <p className="text-[12px] leading-4 text-dc-muted">{swag(choice)}</p>
+                <span className="block text-[12px] leading-4 text-dc-muted">{swag(choice)}</span>
               )}
-            </div>
-            {choice.positionId !== undefined ? (
-              <button
-                type="button"
-                onClick={() => void choose(choice.positionId as number)}
-                disabled={busy || !online}
-                className={cn(
-                  "flex h-8 shrink-0 cursor-pointer items-center gap-1.5 self-end rounded-full border border-dc-hairline bg-white px-3 text-[12px] font-semibold leading-none text-dc-fg2 transition-colors duration-150 ease-out hover:bg-dc-purple-wash disabled:cursor-default disabled:opacity-50 lg:self-auto"
-                )}
-              >
-                {/* No resting icon: a check made every row look already chosen. */}
-                {choosing === choice.positionId && (
-                  <Loader2 className="size-4 animate-spin text-dc-purple" />
-                )}
-                {choosing === choice.positionId ? "Adding…" : "This one is mine"}
-              </button>
-            ) : (
-              // No position id: a payload cached by an older build, which a
-              // refresh fixes (fixture tickets carry synthetic ids).
-              <span className="shrink-0 self-end text-[12px] leading-none text-dc-muted lg:self-auto">Refresh to choose</span>
-            )}
-          </li>
-        ))}
+            </span>
+          );
+          return (
+            <li key={choice.secret}>
+              {choice.positionId !== undefined ? (
+                // The whole row chooses, not just the pill (Scott, 2026-11-04):
+                // one button, the pill a plain span inside it that tints with
+                // the row. Phone: text on top, pill below it right-aligned, so
+                // neither squeezes the other. Desktop: one row.
+                <button
+                  type="button"
+                  onClick={() => void choose(choice.positionId as number)}
+                  disabled={busy || !online}
+                  className={cn(
+                    CHOICE_ROW,
+                    "group w-full cursor-pointer text-left transition-colors duration-150 ease-out enabled:hover:border-dc-purple enabled:hover:bg-dc-lavender focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default"
+                  )}
+                >
+                  {details}
+                  <span
+                    className={cn(
+                      CHOICE_PILL,
+                      "group-enabled:group-hover:bg-dc-purple-wash group-disabled:opacity-50"
+                    )}
+                  >
+                    {/* No resting icon: a check made every row look already chosen. */}
+                    {choosing === choice.positionId && (
+                      <Loader2 className="size-4 animate-spin text-dc-purple" />
+                    )}
+                    {choosing === choice.positionId ? "Adding…" : "This one is mine"}
+                  </span>
+                </button>
+              ) : (
+                // No position id: a payload cached by an older build, which a
+                // refresh fixes (fixture tickets carry synthetic ids).
+                <div className={CHOICE_ROW}>
+                  {details}
+                  <span className="shrink-0 self-end text-[12px] leading-none text-dc-muted lg:self-auto">Refresh to choose</span>
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
       {upload.input}
       {/* The way out when rows look alike: same stacked-then-row shape as the
