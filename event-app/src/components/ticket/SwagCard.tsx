@@ -52,8 +52,8 @@ export function SwagCard({
         // keyboard focus stays legible.
         // A row on mobile (image left, strip right); the desktop shelf card
         // stacks the image over the strip as before.
-        "flex cursor-pointer flex-row overflow-clip rounded-[12px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
-        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0 lg:flex-col"
+        "flex cursor-pointer flex-row overflow-clip rounded-[8px] text-left outline outline-dc-hairline transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
+        shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0 lg:flex-col lg:rounded-[12px]"
       )}
     >
       {/* No aria-label (it would hide the product name from screen readers);
@@ -94,29 +94,37 @@ export function SwagCard({
         )}
       </div>
       {/* Strip (Scott, 2026-11-04): name, "Swag" label, then a "View QR"
-          line with a small QR icon, all stacked and top-aligned. `flex-1`
-          so the gradient fills the card when the grid row stretches it past
-          its content; on the desktop shelf the image takes the stretch
-          instead and the name is a size up. */}
+          line with a small QR icon, stacked and top-aligned. On mobile it
+          is the right-hand column and sets the row's height; on the desktop
+          shelf the image takes the stretch instead, the name is a size up
+          and View QR moves to the right of the strip. */}
       <div
         className={cn(
           "flex min-w-0 flex-1 flex-col items-start gap-1.5 px-3 py-3",
-          shelfOnDesktop && "lg:w-full lg:flex-none lg:px-4 lg:py-5"
+          shelfOnDesktop &&
+            "lg:w-full lg:flex-none lg:flex-row lg:items-center lg:gap-6 lg:px-4 lg:py-5"
         )}
         style={{ background: STRIP_BG }}
       >
-        <p
+        <div className={cn("flex min-w-0 flex-col gap-1.5", shelfOnDesktop && "lg:flex-1")}>
+          <p
+            className={cn(
+              "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
+              shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
+            )}
+          >
+            {name}
+          </p>
+          <p className="text-[11px] font-medium leading-none text-[#9256d2]">
+            {collected ? "Swag · Collected" : "Swag"}
+          </p>
+        </div>
+        <span
           className={cn(
-            "text-[14px] font-medium leading-[1.25] tracking-[-0.1px] text-dc-fg2 [word-break:break-word]",
-            shelfOnDesktop && "lg:text-[18px] lg:tracking-[-0.25px]"
+            "mt-1 inline-flex items-center gap-1 text-[12px] font-semibold leading-4 text-dc-purple",
+            shelfOnDesktop && "lg:mt-0 lg:shrink-0"
           )}
         >
-          {name}
-        </p>
-        <p className="text-[11px] font-medium leading-none text-[#9256d2]">
-          {collected ? "Swag · Collected" : "Swag"}
-        </p>
-        <span className="mt-1 inline-flex items-center gap-1 text-[12px] font-semibold leading-4 text-dc-purple">
           <QrCode className="size-3.5" aria-hidden="true" />
           View QR
         </span>
