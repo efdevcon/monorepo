@@ -4,6 +4,20 @@ beforeAll(() => {
   store.initStore()
 })
 
+test('getSessions video filter keeps only sessions with a YouTube id', () => {
+  const all = store.getSessions({ take: 100000 })
+  const recorded = store.getSessions({ video: true, take: 100000 })
+  expect(recorded.total).toBeGreaterThan(0)
+  expect(recorded.total).toBeLessThan(all.total)
+  expect(recorded.items.every((s: any) => s.sources_youtubeId)).toBe(true)
+})
+
+test('getSessions featured filter keeps only featured sessions', () => {
+  const featured = store.getSessions({ featured: true, take: 100000 })
+  expect(featured.total).toBeGreaterThan(0)
+  expect(featured.items.every((s: any) => s.featured === true)).toBe(true)
+})
+
 test('replaceEventSessions preserves enrichment the raw payload lacks', () => {
   const session = store.getAllSessions().find((s: any) => s.eventId === 'devconnect-arg')
   expect(session).toBeDefined()

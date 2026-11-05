@@ -66,6 +66,8 @@ export async function GetSessions(req: Request, res: Response) {
     type: req.query.type as string | string[] | undefined,
     tags: req.query.tags as string | string[] | undefined,
     room: req.query.room as string | undefined,
+    featured: req.query.featured === 'true',
+    video: req.query.video === 'true',
     sort: req.query.sort as string | undefined,
     order: (req.query.order as string) || API_DEFAULTS.ORDER,
     skip,

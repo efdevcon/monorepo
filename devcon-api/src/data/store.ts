@@ -134,6 +134,10 @@ interface SessionFilters {
   type?: string | string[]
   tags?: string | string[]
   room?: string
+  /** Only sessions marked featured (the programme team's note in Pretalx). */
+  featured?: boolean
+  /** Only sessions with a published recording (a YouTube id); the archive asks for this. */
+  video?: boolean
   sort?: string
   order?: string
   skip?: number
@@ -187,6 +191,16 @@ export function getSessions(filters: SessionFilters) {
   // Room filter
   if (filters.room) {
     result = result.filter((s) => s.slot_roomId === filters.room)
+  }
+
+  // Featured filter
+  if (filters.featured) {
+    result = result.filter((s) => s.featured === true)
+  }
+
+  // Recorded filter
+  if (filters.video) {
+    result = result.filter((s) => !!s.sources_youtubeId)
   }
 
   const total = result.length
