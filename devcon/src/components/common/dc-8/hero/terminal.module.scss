@@ -3,7 +3,8 @@
 // .screen — a radial mask larger than the screen whose centre wanders, so the
 //   edges dissolve (corners most, edge midpoints barely) and the fade is never
 //   the same rectangle twice. The glow (drop-shadow on the parent) follows the
-//   masked alpha, so it softens with the edge.
+//   masked alpha, so it softens with the edge. On hover the mask grows past
+//   the screen (200ms) so the edges are square again.
 // .flicker — CRT flicker on the image itself: held values that jump
 //   (step-end), mostly near full with short dips. The parent carries the
 //   resting 0.72 and the 200ms hover fade to solid; on hover the flicker is
@@ -18,6 +19,15 @@
   -webkit-mask-position: 50% 50%;
   mask-position: 50% 50%;
   animation: crt-drift 11s ease-in-out infinite alternate;
+  transition: mask-size 200ms ease-out, -webkit-mask-size 200ms ease-out;
+}
+
+// Hover (the Link is Tailwind's .group): grow the mask until its solid centre
+// covers the whole screen, so the edge fade clears with the opacity. The drift
+// keeps running underneath but has nothing left to reveal.
+:global(.group:hover) .screen {
+  -webkit-mask-size: 400% 400%;
+  mask-size: 400% 400%;
 }
 
 .flicker {
