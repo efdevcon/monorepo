@@ -113,7 +113,7 @@ test("catalogue: every area is listed once, numbered names carry their number", 
   assert.equal(f2?.iconBackdrop, "#ff66aa", "a white logo gets the booth colour behind it");
   assert.ok(!AREA_LIST.some((a) => a.areaId === "flagship-supporter" && a.instance === 1), "booth F1 was removed from the plan (2026-10-30)");
   const s4 = AREA_LIST.find((a) => a.areaId === "starter" && a.instance === 4);
-  assert.equal(s4?.name, "Bitget", "every supporter booth has a tenant since 2026-10-25");
+  assert.equal(s4?.name, "Dedaub", "every supporter booth has a tenant since 2026-10-25 (S4 re-seated 2026-11-05)");
   assert.equal(s4?.boothName, "Starter Supporter S4", "the plan name stays as the booth line");
   assert.ok(AREA_LIST.filter((a) => a.category.id === "supporters" && a.boothName).every((a) => !a.name.includes(" / ")), "shared booths name one supporter only");
   assert.equal(AREA_LIST.find((a) => a.areaId === "washroom")?.name, "Washroom");

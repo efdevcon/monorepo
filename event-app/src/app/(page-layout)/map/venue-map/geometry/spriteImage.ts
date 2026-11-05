@@ -10,6 +10,8 @@ import { CanvasTexture, SRGBColorSpace, type Texture } from "three";
  * part of the quad. Cached per URL; the SVG marks ship with width/height, so
  * the browser rasterises them at the canvas size (sharp at any zoom the map
  * reaches). Same-origin files only (public/), served through the image cache.
+ * A floor decal spanning tens of metres (ETHGlobal on Level 0) asks for a
+ * larger canvas, so `size` is a parameter (cached per URL and size).
  */
 export type SpriteImage = { texture: Texture; aspect: number; alphaAt: (u: number, v: number) => number };
 
@@ -35,16 +37,17 @@ async function sized(url: string): Promise<string> {
   return URL.createObjectURL(new Blob([fixed], { type: "image/svg+xml" }));
 }
 
-function load(url: string): Promise<SpriteImage> {
-  let p = cache.get(url);
+function load(url: string, size: number): Promise<SpriteImage> {
+  const cacheKey = `${size}:${url}`;
+  let p = cache.get(cacheKey);
   if (!p) {
     p = sized(url).then((src) => new Promise<SpriteImage>((resolve, reject) => {
       const img = new Image();
       img.decoding = "async";
       img.onload = () => {
         const aspect = img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1;
-        const w = aspect >= 1 ? SIZE : Math.max(1, Math.round(SIZE * aspect));
-        const h = aspect >= 1 ? Math.max(1, Math.round(SIZE / aspect)) : SIZE;
+        const w = aspect >= 1 ? size : Math.max(1, Math.round(size * aspect));
+        const h = aspect >= 1 ? Math.max(1, Math.round(size / aspect)) : size;
         const canvas = document.createElement("canvas");
         canvas.width = w;
         canvas.height = h;
@@ -59,23 +62,23 @@ function load(url: string): Promise<SpriteImage> {
       img.onerror = () => reject(new Error(`sprite image failed: ${url}`));
       img.src = src;
     }));
-    cache.set(url, p);
+    cache.set(cacheKey, p);
   }
   return p;
 }
 
-/** The rasterised sprite image, or null until it has loaded (a failed load stays null). */
-export function useSpriteImage(url: string): SpriteImage | null {
+/** The rasterised sprite image, or null until it has loaded (a failed load stays null). `size` is the canvas's longer side in px (256 by default). */
+export function useSpriteImage(url: string, size: number = SIZE): SpriteImage | null {
   const [image, setImage] = useState<SpriteImage | null>(null);
   useEffect(() => {
     let live = true;
-    load(url).then(
+    load(url, size).then(
       (img) => live && setImage(img),
       () => live && setImage(null)
     );
     return () => {
       live = false;
     };
-  }, [url]);
+  }, [url, size]);
   return image;
 }
