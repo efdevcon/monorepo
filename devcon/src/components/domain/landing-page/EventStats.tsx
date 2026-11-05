@@ -18,8 +18,10 @@ const STATS = [
 export const EventStats = () => {
   const t = useTranslations('home.stats')
   const labels = t.raw('items') as string[]
+  // Desktop: 120px clear above and below. ThankYou's lg:pb-16 (64px) sits
+  // above, so 56px tops it up; the 120px below is all ours.
   return (
-    <div className={`relative ${sectionX} pb-[48px] sm:pb-[64px]`}>
+    <div className={`relative ${sectionX} pb-[48px] sm:pb-[64px] lg:pt-[56px] lg:pb-[120px]`}>
       <div className={`${sectionInner} flex flex-col gap-[32px] sm:gap-[40px]`}>
         <Reveal className="flex flex-col gap-[16px]">
           <p className={eyebrow}>{t('eyebrow')}</p>
