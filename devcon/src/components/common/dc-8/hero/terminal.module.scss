@@ -1,0 +1,71 @@
+// CRT screen treatment for DevconIxTerminal.
+//
+// .screen — a radial mask larger than the screen whose centre wanders, so the
+//   edges dissolve (corners most, edge midpoints barely) and the fade is never
+//   the same rectangle twice. The glow (drop-shadow on the parent) follows the
+//   masked alpha, so it softens with the edge.
+// .flicker — CRT flicker on the image itself: held values that jump
+//   (step-end), mostly near full with short dips. The parent carries the
+//   resting 0.72 and the 200ms hover fade to solid; on hover the flicker is
+//   switched off from the component (animation: none).
+.screen {
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.9) 65%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.9) 65%, transparent 100%);
+  -webkit-mask-size: 160% 160%;
+  mask-size: 160% 160%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 50% 50%;
+  mask-position: 50% 50%;
+  animation: crt-drift 11s ease-in-out infinite alternate;
+}
+
+.flicker {
+  animation: crt-flicker 3.7s step-end infinite;
+}
+
+@keyframes crt-drift {
+  0% {
+    -webkit-mask-position: 42% 44%;
+    mask-position: 42% 44%;
+  }
+  35% {
+    -webkit-mask-position: 58% 48%;
+    mask-position: 58% 48%;
+  }
+  70% {
+    -webkit-mask-position: 46% 58%;
+    mask-position: 46% 58%;
+  }
+  100% {
+    -webkit-mask-position: 56% 42%;
+    mask-position: 56% 42%;
+  }
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  7% { opacity: 0.9; }
+  8% { opacity: 1; }
+  19% { opacity: 0.86; }
+  20% { opacity: 0.97; }
+  21% { opacity: 0.82; }
+  22% { opacity: 1; }
+  43% { opacity: 0.93; }
+  44% { opacity: 1; }
+  61% { opacity: 0.78; }
+  62% { opacity: 0.96; }
+  63% { opacity: 0.86; }
+  64% { opacity: 1; }
+  80% { opacity: 0.9; }
+  81% { opacity: 1; }
+  90% { opacity: 0.84; }
+  90.5% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen,
+  .flicker {
+    animation: none;
+  }
+}

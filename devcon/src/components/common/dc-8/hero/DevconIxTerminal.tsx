@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { Link } from 'components/common/link'
 // CRT screen only (no monitor shell), 4:3 with rounded corners + alpha.
 import Terminal from './images/dcix-screen.png'
+import css from './terminal.module.scss'
 
 // Caption glow on hover: the strip's text glow over the resting drop shadow.
 const CAPTION_SHADOW = '[text-shadow:0_1px_6px_rgba(0,26,19,0.63)]'
@@ -69,19 +70,24 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
       className={`group flex flex-col items-center gap-[16px] lg:gap-[24px] text-[#a6ffe9] hover:text-[#a6ffe9] ${className}`}
     >
       {/* The hover scale lives on the screen only; the caption below stays
-          still. The screen rests at 70% opacity and goes solid on hover (200ms
-          ease-out; the scale keeps its 150ms). */}
+          still. The screen rests around 70% opacity (0.72 here × the CRT
+          flicker on the image, terminal.module.scss) and goes solid on hover:
+          200ms ease-out on this wrapper, flicker off (the scale keeps its
+          150ms). The drifting edge mask sits between the two so the glow on
+          this wrapper follows the softened edge. */}
       <div
-        className={`w-full shrink-0 opacity-70 group-hover:opacity-100 transition-[transform,opacity] duration-150 [transition-duration:150ms,200ms] ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] ${SCREEN_GLOW}`}
+        className={`w-full shrink-0 opacity-[0.72] group-hover:opacity-100 transition-[transform,opacity] duration-150 [transition-duration:150ms,200ms] ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] ${SCREEN_GLOW}`}
       >
-        <Image
-          src={Terminal}
-          alt={alt}
-          priority
-          sizes="(max-width: 767px) 300px, (max-width: 1023px) 320px, 428px"
-          draggable={false}
-          className="w-full h-auto select-none"
-        />
+        <div className={css['screen']}>
+          <Image
+            src={Terminal}
+            alt={alt}
+            priority
+            sizes="(max-width: 767px) 300px, (max-width: 1023px) 320px, 428px"
+            draggable={false}
+            className={`w-full h-auto select-none group-hover:[animation:none] ${css['flicker']}`}
+          />
+        </div>
       </div>
       {/* Shell prompt: "> " + command + block cursor. The cursor blinks at
           rest and holds solid on hover, like a focused terminal. */}
