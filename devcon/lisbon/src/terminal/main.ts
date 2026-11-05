@@ -1023,9 +1023,16 @@ function onSkipKey() {
   else if (mode !== 'off') void replay()
 }
 
+/** The email prompt and the shell: the modes where a line of text is typed. */
+const lineMode = () => mode === 'email' || mode === 'shell'
+
 function echoInput() {
   const shown = mode === 'yn' ? input.slice(-1) : input
   screen.setInput([...promptSegs, [shown, Style.Bright]])
+  // In the line modes the hidden input mirrors the line (see the `input`
+  // listener); everywhere else it is just a key sink and stays empty.
+  const mirror = lineMode() ? input : ''
+  if (kbd.value !== mirror) kbd.value = mirror
 }
 
 function ask(segs: Row, m: Mode) {
@@ -1035,6 +1042,11 @@ function ask(segs: Row, m: Mode) {
   screen.cursor = true
   screen.startInput()
   echoInput()
+  // A line to type: put the keyboard in the hidden input, so the OS's own text
+  // tools work on it, unless focus is somewhere that matters (the screen-reader
+  // form, the chin buttons). Touch gets the same on the tap that raises the keyboard.
+  const active = document.activeElement
+  if (lineMode() && (!active || active === document.body || tube.contains(active))) kbd.focus({ preventScroll: true })
 }
 
 // [Y/n] questions: what Enter alone means, and how to ask again after a bad answer.
@@ -2140,6 +2152,7 @@ function onKey(e: KeyboardEvent) {
       // Clear the command line and go back to choosing.
       screen.setInput([])
       input = ''
+      kbd.value = ''
       mode = 'menu'
       screen.cursor = false
       menuInput = false
@@ -2152,11 +2165,17 @@ function onKey(e: KeyboardEvent) {
     }
     return
   }
+  // While the hidden input holds the line, printable keys and Backspace are
+  // left to it and read back from its `input` event: the browser (and the OS
+  // behind it: macOS text replacement, IMEs) must see the characters land in a
+  // real text field, or expansions never fire.
+  const kbdTyping = lineMode() && document.activeElement === kbd
   if (e.key === 'Enter') {
     e.preventDefault()
     sound.key()
     void submit()
   } else if (e.key === 'Backspace') {
+    if (kbdTyping) return
     e.preventDefault()
     if (input) {
       input = input.slice(0, -1)
@@ -2169,6 +2188,7 @@ function onKey(e: KeyboardEvent) {
     input = recall[recallAt] ?? ''
     echoInput()
   } else if (e.key.length === 1) {
+    if (kbdTyping) return
     e.preventDefault()
     onChar(e.key)
   }
@@ -2183,6 +2203,17 @@ keysSheet.addEventListener('click', (e) => {
   if (e.target === keysSheet && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) keysSheet.close()
 })
 kbd.addEventListener('input', () => {
+  if (lineMode()) {
+    // The field is the line: whatever the browser or OS put there (typed,
+    // pasted, expanded from a text-replacement shortcut) becomes the input.
+    const line = kbd.value.replace(/[\r\n]/g, '').slice(0, MAX_INPUT)
+    if (line !== input) {
+      input = line
+      sound.key()
+    }
+    echoInput()
+    return
+  }
   for (const ch of kbd.value) onChar(ch)
   kbd.value = ''
 })
