@@ -185,7 +185,8 @@ camera/        constants, fit (projectedExtent), tween, gestures (tap state mach
 floors/        placement.ts (rest poses + transition plan, tested; STACK_GAP_SCALE: the gap above Level 0 is 1.5× the
                tuning gap and the two above it 1.1×, since Level 0's far half rose on screen into the narrow Level 1
                and the two slabs read as one on phones; the fit uses stackSpan; Scott, 2026-10-27), FloorStack, FloorHitPlane, FloorLabel
-geometry/      buildFloor.ts (merged statics + per-area extrusions, module cache), materials, FloorMeshes, AreaIcons
+geometry/      buildFloor.ts (merged statics + per-area extrusions, module cache), materials, FloorMeshes, AreaIcons,
+               FloorDecals (flat images from data/decals.ts: not places, no hit, no card)
 interaction/   hoverStore (useSyncExternalStore), pointer.ts (single raycast owner), usePointer
 find/          catalogue.ts (Find groups, legend, group primary; tested), FindContent, EntryRow
 search/        search.ts (floor-aware query parsing + custom terms from data/searchTerms.ts; tested), SearchContent
@@ -227,6 +228,11 @@ ui/            ControlPill, MapPanel, MapSheet, AreaCard, useLiveSessionForArea,
   shorter side (×0.9, clamped 2.4–6.5 m) unless the catalogue sets `iconSize`, and a wide lockup
   is capped at 1.15× the footprint's longer side; an SVG without width/height is fetched and given
   its viewBox size first (Safari draws it 0×0 otherwise). They bob while selected (upwards from the rest pose only, so the logo never dips into its booth; 2026-10-25). Supporter lockups lie flat on their booth's top instead since 2026-10-27 (`BoothDecal` in `AreaIcons.tsx`, `supporterLogos: "decal"`, the default): along the booth's longer side at 82% of it, capped by the shorter side, lettering upright from the start view; a decal is off the hit layer, the cap beneath takes the tap. The tuning panel's "Supporter logos" switch brings the floating sprites back to compare; a mixed rule (decals on the large booths, sprites on the small starter booths, whose lockups go tiny as decals) may follow review (Scott, 2026-10-27). Hidden areas (escalators) have no mesh, only the sprite takes the pointer.
+- **Floor decals** (`data/decals.ts`, `geometry/FloorDecals.tsx`, 2026-11-05): an image painted flat on a slab
+  that is not a place: plan-metre position and width, upright from the start view, rasterised on a 1024 px canvas
+  (`useSpriteImage(url, size)`), dimmed with the icons while a place is selected, off the hit layer and absent
+  from Find / Search. One so far: ETHGlobal's lockup (`public/maps/jwcc/decals/ethglobal.svg`) in the walled hall
+  east of the CLS stage on Level 0, where its sub-event runs; a marker only, no card (Scott, 2026-11-05).
 - **Chrome** is the prototype's design, re-implemented: 44 px Find/Search pills bottom-left, the
   floor slider bottom-right (multi-floor only), a phone in landscape dropping the bottom tab bar while
   the pane is active (`<html data-app-chrome-off>`, as the schedule does; the pills and the strip clear

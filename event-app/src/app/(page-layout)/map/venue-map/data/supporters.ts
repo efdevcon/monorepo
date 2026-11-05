@@ -54,7 +54,8 @@ export const SUPPORTERS = {
   grapheneos: { name: "GrapheneOS", logo: "grapheneos-icon", cardLogo: "grapheneos-full", description: "A privacy- and security-hardened mobile OS, Android-compatible, developed as an open-source non-profit project.", website: "https://grapheneos.org", x: "https://x.com/GrapheneOS" },
   // Hosts a place rather than a booth (the coffee stand, areas.ts `variants`).
   "cow-swap": { name: "CoW Swap", logo: "cow-swap", description: "Intent-based trading on CoW Protocol: batch auctions with MEV protection, solved by a competing network of solvers.", website: "https://cow.fi", x: "https://x.com/CoWSwap" },
-  // Not seated at a booth yet (website supporters; Scott, 2026-10-30).
+  // Starter booths re-seated 2026-11-05 (Scott): Circle S3, Dedaub S4, Peer S5, Kohaku S6, Money League S12,
+  // TheDAO Security Fund S14, ZisK S16, GainForest S21; the previous tenants keep their entries below in case they return.
   circle: { name: "Circle", logo: "circle", description: "Issuer of the USDC and EURC stablecoins, with developer platforms for payments, cross-chain transfers and onchain finance.", website: "https://www.circle.com/", x: "https://x.com/circle" },
   dedaub: {
     name: "Dedaub",
@@ -63,6 +64,14 @@ export const SUPPORTERS = {
     website: "https://www.dedaub.com/",
     x: "https://x.com/dedaub",
   },
+  peer: { name: "Peer", logo: "peer", description: "A peer-to-peer marketplace and payment protocol: buy and sell USDC directly with other people through payment apps such as Venmo, PayPal and Revolut.", website: "https://peer.xyz", x: "https://x.com/peerxyz" },
+  // Kohaku's own site is its GitHub repository (the devcon.org supporters list links the same); no X profile there.
+  kohaku: { name: "Kohaku", logo: "kohaku", cardLogo: "kohaku-full", description: "Privacy-first JavaScript tooling for the Ethereum ecosystem: shielded-pool protocol libraries, a provider abstraction and a post-quantum account.", website: "https://github.com/ethereum/kohaku" },
+  "money-league": { name: "Money League", logo: "money-league-icon", cardLogo: "money-league", description: "A modular, open-source platform to design, build and battle-test central banking systems: monetary policy as open source.", website: "https://league.money", x: "https://x.com/0xMoneyLeague" },
+  "dao-security-fund": { name: "TheDAO Security Fund", logo: "dao-security-fund-icon", cardLogo: "dao-security-fund", description: "An endowment for Ethereum security: over 75,000 ETH of unclaimed TheDAO funds, activated in January 2026, with the staking rewards funding security work.", website: "https://thedao.fund", x: "https://x.com/thedaofund" },
+  zisk: { name: "ZisK", logo: "zisk", description: "An open-source zero-knowledge proving toolstack built around a zkVM, for verifiable execution of programs written in high-level languages such as Rust.", website: "https://zisk.technology", x: "https://x.com/ziskvm" },
+  // GainForest's site links no X profile.
+  gainforest: { name: "GainForest", logo: "gainforest", description: "A Swiss non-profit that researches and builds AI and data tools with Indigenous and local communities.", website: "https://www.gainforest.earth" },
 } as const satisfies Record<string, Supporter>;
 
 export type SupporterId = keyof typeof SUPPORTERS;

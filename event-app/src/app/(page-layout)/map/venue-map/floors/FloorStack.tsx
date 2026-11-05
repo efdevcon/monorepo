@@ -9,6 +9,7 @@ import { easeOutQuint, progress } from "../camera/tween";
 import { LEVELS, type LevelId } from "../data/levels";
 import { areaOf, plan, type AreaKey } from "../data/resolve";
 import { AreaIcons } from "../geometry/AreaIcons";
+import { FloorDecals } from "../geometry/FloorDecals";
 import { FloorMeshes } from "../geometry/FloorMeshes";
 import { hoverStore } from "../interaction/hoverStore";
 import { FloorHitPlane } from "./FloorHitPlane";
@@ -168,6 +169,7 @@ export function FloorStack({ floor, gap, showIcons, supporterLogos, reducedMotio
           {stacked && <FloorHitPlane level={l.id} />}
           {stacked && <FloorLabel level={l.id} onOpen={() => onOpenFloor(l.id)} />}
           {showIcons && <AreaIcons level={l.id} interactive={floor === l.id} selected={selected} group={group} reducedMotion={reducedMotion} supporterLogos={supporterLogos} />}
+          {showIcons && <FloorDecals level={l.id} dim={selected !== null} />}
         </group>
       ))}
     </>
