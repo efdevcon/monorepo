@@ -53,15 +53,16 @@ const Foldout = (props: any) => {
 
                 <div className={css['cta-row']}>
                   {/* Post-event: the Devcon App button points at the Devcon IX
-                      announcement instead. */}
-                  <Link
-                    to={DEVCON_IX_ANNOUNCEMENT_URL}
+                      announcement instead. A plain <a>: the announcement is a
+                      static page outside the Next router (config/devconIx.ts). */}
+                  <a
+                    href={DEVCON_IX_ANNOUNCEMENT_URL}
                     className={css['cta-secondary']}
                     onClick={() => props.setFoldoutOpen(false)}
                   >
                     {tStrip('dcix_short')}
                     <ArrowUpRight size={16} />
-                  </Link>
+                  </a>
 
                   <div className={css['social-icons']}>
                     {[

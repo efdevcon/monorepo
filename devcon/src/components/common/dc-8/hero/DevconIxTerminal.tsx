@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { Link } from 'components/common/link'
 // CRT screen only (no monitor shell), 4:3 with rounded corners + alpha.
 import Terminal from './images/dcix-screen.png'
 import css from './terminal.module.scss'
@@ -22,7 +20,8 @@ type Props = { href: string; alt: string; caption: string; className?: string }
 
 /**
  * Hero terminal (Figma 6068:574): one link (terminal + a shell prompt caption,
- * "> boot devcon9_") to the Devcon IX announcement. The terminal takes the
+ * "> boot devcon9_") to the Devcon IX announcement, a plain <a>: the page is a
+ * static build outside the Next router (config/devconIx.ts). The terminal takes the
  * shared 1.03 hover / 0.97 press scale whenever the link is hovered; the
  * caption gains a glow (the screen wears the same glow at rest) and its
  * cursor stops blinking. Pressing Enter while
@@ -31,7 +30,6 @@ type Props = { href: string; alt: string; caption: string; className?: string }
  * blink go (motion-safe).
  */
 export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) => {
-  const router = useRouter()
   const linkRef = useRef<HTMLAnchorElement | null>(null)
 
   // Enter follows the link while the terminal is in view. Only while in view
@@ -50,22 +48,19 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
       const active = document.activeElement
       if (active && active !== document.body && active.matches(INTERACTIVE)) return
       e.preventDefault()
-      // Not el.click(): the shared Link swallows synthetic clicks. Route the
-      // same way a real click would — external URLs open in a new tab there.
-      if (/^https?:/.test(href)) window.open(href, '_blank', 'noopener,noreferrer')
-      else router.push(href)
+      el.click()
     }
     window.addEventListener('keydown', onKeyDown)
     return () => {
       observer.disconnect()
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [href, router])
+  }, [])
 
   return (
-    <Link
+    <a
       ref={linkRef}
-      to={href}
+      href={href}
       aria-keyshortcuts="Enter"
       className={`group flex flex-col items-center gap-[16px] lg:gap-[24px] text-[#a6ffe9] hover:text-[#a6ffe9] ${className}`}
     >
@@ -100,6 +95,6 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
           _
         </span>
       </p>
-    </Link>
+    </a>
   )
 }
