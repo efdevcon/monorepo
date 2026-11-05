@@ -26,15 +26,17 @@ export const EventStats = () => {
           <h2 className={sectionHeading}>{t('heading')}</h2>
         </Reveal>
         <RevealGroup className="grid grid-cols-2 lg:grid-cols-4 gap-[12px] sm:gap-[16px]">
+          {/* h-full on the Reveal (the grid item) and the card so a two-line
+              label on phones doesn't leave its row-mate shorter. */}
           {STATS.map((stat, i) => (
-            <Reveal key={i} delay={i * 80}>
+            <Reveal key={i} delay={i * 80} className="h-full">
               <div
-                className={`${glassCard} flex flex-col gap-[4px] p-[20px] sm:p-[24px] shadow-[0_2px_8px_rgba(34,17,68,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]`}
+                className={`${glassCard} h-full flex flex-col gap-[4px] p-[20px] sm:p-[24px] shadow-[0_2px_8px_rgba(34,17,68,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]`}
               >
                 <p className="text-[32px] sm:text-[40px] font-extrabold tracking-[-0.5px] leading-[1.1] text-[#160b2b]">
                   <CountingNumber number={stat.number} suffix={stat.suffix} />
                 </p>
-                <p className="text-[14px] sm:text-[16px] leading-[24px] text-[#1a0d33]">{labels[i]}</p>
+                <p className="text-[14px] sm:text-[16px] leading-[1.2] text-[#1a0d33]">{labels[i]}</p>
               </div>
             </Reveal>
           ))}
