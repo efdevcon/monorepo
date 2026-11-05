@@ -13,7 +13,7 @@ import { DevconIxTerminal } from './DevconIxTerminal'
 
 // Post-event hero (Figma Current-work 6068:341). The ticket/app CTAs, the
 // "Going to Devcon?" phone and its eyebrow are gone; the right column is the
-// Devcon IX terminal (428×355) with a VT323 "Boot the announcement" caption,
+// Devcon IX CRT screen (428 wide, 4:3) with a VT323 "Boot the announcement" caption,
 // both one link to the announcement. The DC8 logo + "Mumbai, India" that
 // Figma puts above the social card are gone too (the video carries the
 // branding) — an sr-only h1 keeps the page heading. Figma only draws 1440:

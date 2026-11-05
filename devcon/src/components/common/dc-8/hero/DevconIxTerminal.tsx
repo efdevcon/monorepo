@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Link } from 'components/common/link'
-import Terminal from './images/dcix-terminal.png'
+// CRT screen only (no monitor shell), 4:3 with rounded corners + alpha.
+import Terminal from './images/dcix-screen.png'
 
 // Caption glow on hover: the strip's text glow over the resting drop shadow.
 const CAPTION_SHADOW = '[text-shadow:0_1px_6px_rgba(0,26,19,0.63)]'
