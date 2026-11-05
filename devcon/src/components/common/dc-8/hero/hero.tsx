@@ -20,6 +20,11 @@ import { DevconIxTerminal } from './DevconIxTerminal'
 // Figma only draws 1440: below md everything stacks centred (logo+text,
 // terminal, social card) with the terminal capped at 300px; md gets the
 // two-column grid at a 320px terminal, lg the full 428px.
+//
+// Backdrop: a 12s muted loop cut from the recap (public/dc8/hero-loop.*,
+// 1920×1080, WebM + H.264) over the key art, which stays as the poster /
+// fallback and is all that shows under prefers-reduced-motion. Only the
+// bottom fade remains (128px) so the footage runs edge to edge.
 const textShadow = '[filter:drop-shadow(0_2px_6px_#214)]'
 
 export const Hero = () => {
@@ -38,19 +43,29 @@ export const Hero = () => {
         className="object-cover object-center"
         style={{ paddingTop: stripHeight }}
       />
+      {/* `muted` is set imperatively too: React has historically dropped the
+          attribute from server markup, and iOS refuses to autoplay without it. */}
+      <video
+        ref={el => {
+          if (el) el.muted = true
+        }}
+        className="absolute inset-0 h-full w-full object-cover object-center motion-reduce:hidden"
+        style={{ paddingTop: stripHeight }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden
+      >
+        <source src="/dc8/hero-loop.webm" type="video/webm" />
+        <source src="/dc8/hero-loop.mp4" type="video/mp4" />
+      </video>
 
-      {/* Edge gradients for smooth blending */}
+      {/* Bottom fade into the page background */}
       <div
-        className="absolute bottom-0 left-0 w-full h-[303px] md:h-[150px] mix-blend-hard-light pointer-events-none"
+        className="absolute bottom-0 left-0 w-full h-[128px] mix-blend-hard-light pointer-events-none"
         style={{ background: 'linear-gradient(to top, rgba(34,17,68,1) 4.5%, rgba(34,17,68,0) 100%)' }}
-      />
-      <div
-        className="absolute top-0 left-0 h-full w-[60px] md:w-[160px] mix-blend-hard-light pointer-events-none"
-        style={{ background: 'linear-gradient(to right, rgba(34,17,68,1) 0%, rgba(34,17,68,0) 100%)' }}
-      />
-      <div
-        className="absolute top-0 right-0 h-full w-[60px] md:w-[160px] mix-blend-hard-light pointer-events-none"
-        style={{ background: 'linear-gradient(to left, rgba(34,17,68,1) 0%, rgba(34,17,68,0) 100%)' }}
       />
 
       {/* Hero content at bottom (Figma 6068:354: 1312 wide, 56px up, columns
