@@ -9,6 +9,9 @@ import Terminal from './images/dcix-screen.png'
 const CAPTION_SHADOW = '[text-shadow:0_1px_6px_rgba(0,26,19,0.63)]'
 const CAPTION_SHADOW_HOVER =
   'group-hover:[text-shadow:0_0_10px_rgba(166,255,233,0.7),0_0_2px_rgba(166,255,233,0.9),0_1px_6px_rgba(0,26,19,0.63)]'
+// The screen carries the caption's hover glow at rest (drop-shadow, so it
+// follows the PNG's rounded alpha edge rather than the box).
+const SCREEN_GLOW = '[filter:drop-shadow(0_0_10px_rgba(166,255,233,0.7))_drop-shadow(0_0_2px_rgba(166,255,233,0.9))]'
 
 // Enter on the hero should not hijack a form field or an element that
 // already acts on Enter.
@@ -20,7 +23,8 @@ type Props = { href: string; alt: string; caption: string; className?: string }
  * Hero terminal (Figma 6068:574): one link (terminal + a shell prompt caption,
  * "> boot devcon9_") to the Devcon IX announcement. The terminal takes the
  * shared 1.03 hover / 0.97 press scale whenever the link is hovered; the
- * caption gains a glow and its cursor stops blinking. Pressing Enter while
+ * caption gains a glow (the screen wears the same glow at rest) and its
+ * cursor stops blinking. Pressing Enter while
  * the terminal is on screen follows the link — the screen says "Press ENTER
  * to start", so make it true. Under prefers-reduced-motion the scale and the
  * blink go (motion-safe).
@@ -65,7 +69,9 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
       className={`group flex flex-col items-center gap-[16px] lg:gap-[24px] text-[#a6ffe9] hover:text-[#a6ffe9] ${className}`}
     >
       {/* The hover scale lives on the screen only; the caption below stays still. */}
-      <div className="w-full shrink-0 transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97]">
+      <div
+        className={`w-full shrink-0 transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] ${SCREEN_GLOW}`}
+      >
         <Image
           src={Terminal}
           alt={alt}
