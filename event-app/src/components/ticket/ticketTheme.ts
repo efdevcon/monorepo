@@ -103,7 +103,8 @@ export function resolveTicketStyle(
 }
 
 // Pricing qualifiers baked into Pretix product names — never shown to users.
-const PRICE_QUALIFIERS = /\s*\((?:free|discounted)\)/gi;
+// "(Addition)": extra swag bought in the app (data/tickets/swagAdditions.ts).
+const PRICE_QUALIFIERS = /\s*\((?:free|discounted|addition)\)/gi;
 // Product-specific display renames (requested copy; keys are cleaned names).
 const NAME_OVERRIDES: ReadonlyArray<[RegExp, string]> = [
   [/^premium oversized ethereum shirt/i, "Ethereum Shirt"],

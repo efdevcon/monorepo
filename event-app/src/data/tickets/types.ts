@@ -41,6 +41,11 @@ export interface Ticket {
   admission?: boolean;
   addons: TicketAddon[];
   hasCheckedIn?: boolean;
+  /**
+   * Can buy extra swag in the app: checked in, and its product offered swag
+   * at checkout (set by the server, api/swag-additions/attach.ts).
+   */
+  swagAdditions?: boolean;
   /** Pretix item `picture` URL (standalone swag positions render as swag cards). */
   imageUrl?: string;
   /** Server-pinned card style (env item-id override); client falls back to name matching. */

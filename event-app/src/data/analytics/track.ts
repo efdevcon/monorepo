@@ -55,6 +55,9 @@ const EVENTS = {
   ],
   planner: ["open-chatgpt", "open-claude", "open-grok", "copy", "copy-other-ai", "apply-opened", "applied"],
   perks: ["claim", "sheet-shown", "open-browser", "copy", "share"],
+  // Swag additions (extra swag at the ticket's price), name = product name:
+  // addition-buy: voucher asked for; addition-checkout: Pretix checkout opened.
+  swag: ["addition-buy", "addition-checkout"],
   schedule: ["day", "programme", "view", "interests-only", "filter", "search"],
   session: ["qa", "qa-ticket", "calendar", "share-copy", "share-native", "transcript"],
   speaker: ["share-copy", "share-native"],

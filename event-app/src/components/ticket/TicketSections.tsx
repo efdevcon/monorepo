@@ -12,6 +12,10 @@ import { useReleased } from "@/data/release/releaseGates";
 import { usePreviewCheckedIn } from "@/hooks/usePreviewState";
 import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
+import { SwagBuyButton, formatSwagPrice } from "./SwagBuyButton";
+import { useSwagAdditions } from "@/data/tickets/useSwagAdditions";
+import { swagAdditionEligible } from "@/data/tickets/swagAdditions";
+import { shelfSwag } from "@/data/tickets/swagShelf";
 import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
 import { displayItemName } from "./ticketTheme";
 
@@ -117,6 +121,7 @@ export function TicketSections({
   // goes, header included.
   const showEnsPerk = useReleased("ensPerk");
   const showFaucetPerk = useReleased("faucetPerk");
+  const showSwagAdditions = useReleased("swagAdditions");
   const previewCheckedIn = usePreviewCheckedIn();
 
   // The popup is opened with a snapshot; read its scanned state from the
@@ -181,8 +186,11 @@ export function TicketSections({
     orderCode: string;
     /** Scanned at the swag station (a Pretix check-in on the position). */
     collected: boolean;
+    /** Its order holds no admission ticket: swag bought on its own (swag additions). */
+    swagOnlyOrder: boolean;
   }> = [];
   for (const order of tickets) {
+    const swagOnlyOrder = order.tickets.every((t) => t.admission === false);
     for (const ticket of order.tickets) {
       // `admission === false` is a Pretix item explicitly marked as
       // merchandise; undefined (older cached data, or an item the server could
@@ -196,6 +204,7 @@ export function TicketSections({
           standalone: true,
           orderCode: order.orderCode,
           collected: ticket.hasCheckedIn === true,
+          swagOnlyOrder,
         });
       } else {
         admissionTickets.push(ticket);
@@ -209,6 +218,7 @@ export function TicketSections({
           standalone: false,
           orderCode: order.orderCode,
           collected: addon.collected === true,
+          swagOnlyOrder,
         });
       }
     }
@@ -228,13 +238,7 @@ export function TicketSections({
   const leadOrderCode = lead
     ? tickets.find((order) => order.tickets.some((t) => t.secret === lead.secret))?.orderCode
     : undefined;
-  const shownSwag = lead
-    ? swagItems.filter(
-        (item) =>
-          item.ownerSecret === lead.secret ||
-          (item.standalone && item.orderCode === leadOrderCode)
-      )
-    : swagItems;
+  const shownSwag = shelfSwag(swagItems, lead, leadOrderCode);
   const leadPositionId = lead?.positionId;
 
   // The ENS perk on every ticket once checked in (data/tickets/ensPerk.ts).
@@ -246,6 +250,16 @@ export function TicketSections({
   const faucetTickets = showFaucetPerk
     ? shownTickets.filter((ticket) => ticket.hasCheckedIn === true)
     : [];
+  // Extra swag at the ticket's price, once checked in (data/tickets/swagAdditions.ts).
+  // The server flags them (swagAdditions): checked in, and the ticket's product offered swag.
+  const additionTickets = showSwagAdditions
+    ? shownTickets.filter((ticket) => ticket.swagAdditions === true && swagAdditionEligible(ticket))
+    : [];
+  const { offersBySecret } = useSwagAdditions(additionTickets.map((ticket) => ticket.secret));
+  // Swag to buy, shown on the swag shelf after what the ticket already holds.
+  const buyable = additionTickets.flatMap((ticket) =>
+    (offersBySecret[ticket.secret] ?? []).map((offer) => ({ ticket, offer }))
+  );
 
   // With several tickets, both tickets and swag become full-width horizontal
   // carousels stacked vertically; with one, the ticket sits beside the swag
@@ -340,7 +354,7 @@ export function TicketSections({
       )}
     >
       <TicketSectionHeader title="Swag" />
-      {shownSwag.length === 0 ? (
+      {shownSwag.length === 0 && buyable.length === 0 ? (
         <div
           className={cn(
             "flex flex-col items-center justify-center gap-4 rounded-[12px] border border-dc-hairline bg-dc-panel px-6 py-8 text-center",
@@ -354,11 +368,11 @@ export function TicketSections({
             <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
               No swag with this ticket
             </p>
-            {/* Swag is only added during ticket checkout (Scott, 2026-11-03):
-                no store link, nothing to collect. */}
+            {/* Swag comes with the ticket checkout; once checked in, extra
+                swag to buy shows on the shelf instead of this. */}
             <p className="text-[16px] leading-6 text-dc-muted">
-              Swag is added during ticket checkout and can&rsquo;t be bought separately. Items on
-              your order show up here with a QR code to collect at the Swag Station.
+              Swag is added during ticket checkout. Items on your order show up here with a QR code to
+              collect at the Swag Station.
             </p>
           </div>
         </div>
@@ -387,6 +401,33 @@ export function TicketSections({
                 shelfOnDesktop
               />
             ))}
+            {/* Swag to buy (data/tickets/swagAdditions.ts), after what the
+                ticket holds, under a smaller title on phones (on the desktop
+                shelf they simply follow, full height): the same cards with the
+                price and a Buy button instead of the QR. */}
+            {buyable.length > 0 && (
+              <div className={cn("flex flex-col gap-3 lg:h-full lg:shrink-0", shownSwag.length > 0 && "mt-2 lg:mt-0")}>
+                <p className="text-[16px] font-bold leading-6 text-dc-fg2 lg:hidden">Get more swag</p>
+                <div className="flex flex-col gap-3 lg:min-h-0 lg:flex-1 lg:flex-row">
+                  {buyable.map(({ ticket, offer }) => (
+                    <SwagCard
+                      key={`buy-${ticket.secret}-${offer.itemId}`}
+                      title={offer.name}
+                      imageUrl={offer.imageUrl}
+                      price={formatSwagPrice(offer)}
+                      note={[
+                        offer.remaining > 0 ? `up to ${offer.remaining}` : "Bought",
+                        additionTickets.length > 1 ? displayItemName(ticket.itemName) : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                      action={<SwagBuyButton offer={offer} ticketSecret={ticket.secret} />}
+                      shelfOnDesktop
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
             {endSpacer}
           </div>
         </div>

@@ -25,7 +25,8 @@
     "qr:test": "tsx scripts/test-qr-decode.ts",
     "map:build": "node --import tsx scripts/map-build/index.ts",
     "map:check": "node --import tsx scripts/map-build/index.ts --check",
-    "map:test": "node --import tsx --test scripts/map-build/*.test.ts 'src/app/(page-layout)/map/venue-map/**/*.test.ts'"
+    "map:test": "node --import tsx --test scripts/map-build/*.test.ts 'src/app/(page-layout)/map/venue-map/**/*.test.ts'",
+    "swag:test": "tsx scripts/test-swag-additions.ts"
   },
   "dependencies": {
     "@capacitor/android": "^8.0.1",

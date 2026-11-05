@@ -1,5 +1,6 @@
 import type { Order, Ticket, TicketAddon, TicketStyle } from "@/data/tickets/types";
 import { mirrorPicture } from "./pictures";
+import { fetchAllPages } from "./pages";
 import { applyFixture, isFixturePositionId, parseFixture, resolveFixtureSwag } from "./testFixture";
 
 export interface PretixStore {
@@ -11,12 +12,18 @@ export interface PretixStore {
   apiKey: string;
 }
 
-interface PretixItem {
+export interface PretixItem {
   id: number;
   name: string | { en: string; [key: string]: string };
   description?: string | { en: string; [key: string]: string };
+  /** Category id (Pretix sends a number). */
   category?: string;
   active?: boolean;
+  /** Decimal string, e.g. "15.00". */
+  default_price?: string;
+  /** Add-on categories offered with this product at checkout. */
+  addons?: Array<{ addon_category: number }>;
+  max_per_order?: number | null;
   /** True for entry tickets, false for merchandise. */
   admission?: boolean;
   /** Product photo URL (shown on swag cards). */
@@ -202,17 +209,27 @@ export function positionCollected(position: { checkins?: PretixCheckin[] }): boo
   return (position.checkins ?? []).some((checkin) => (checkin.type ?? "entry") === "entry");
 }
 
-/** Item catalog (product names, variations, photos). Changes rarely, so cached an hour. */
+/**
+ * Item catalog (product names, variations, photos), every page: Pretix pages
+ * at 50 and the Devcon 8 catalog passed that, and an item missing here has no
+ * `admission` flag, which the client reads as a ticket. Changes rarely, so
+ * cached an hour.
+ */
 export async function loadCatalog(store: PretixStore): Promise<Map<number, PretixItem>> {
-  const res = await fetch(`${baseFor(store)}/items/`, {
+  const items = await fetchAllPages<PretixItem>(`${baseFor(store)}/items/?page_size=100`, {
     headers: headersFor(store),
     next: { revalidate: 3600 },
   });
-  if (!res.ok) throw new Error(`Failed to fetch items: ${res.status}`);
-  const data = await res.json();
-  return new Map<number, PretixItem>(
-    (data.results ?? []).map((item: PretixItem) => [item.id, item])
+  return new Map<number, PretixItem>(items.map((item) => [item.id, item]));
+}
+
+/** Category names by id ("Swag Additions", "Discounted Swag", ...). Cached an hour. */
+export async function loadCategories(store: PretixStore): Promise<Map<number, string>> {
+  const categories = await fetchAllPages<{ id: number; name: string | { en: string; [key: string]: string } }>(
+    `${baseFor(store)}/categories/?page_size=100`,
+    { headers: headersFor(store), next: { revalidate: 3600 } }
   );
+  return new Map(categories.map((c) => [c.id, localized(c.name) ?? ""]));
 }
 
 type PictureUrl = (picture: string | null | undefined) => string | undefined;
@@ -239,6 +256,47 @@ async function resolvePictures(
     [...sources].map(async (src) => pictures.set(src, await mirrorPicture(src)))
   );
   return (picture) => (picture ? (pictures.get(picture) ?? picture) : undefined);
+}
+
+/** A swag position as a ticket add-on: name (with variation), photo, collected. */
+function toAddon(addon: PretixPosition, itemsMap: Map<number, PretixItem>, pictureUrl: PictureUrl): TicketAddon {
+  const itemDetails = itemsMap.get(addon.item);
+  const variationValue = getVariationValue({ variation: addon.variation ?? undefined }, itemDetails);
+  let itemName = localized(itemDetails?.name) || `Item ${addon.item}`;
+  if (variationValue) itemName = `${itemName} - ${variationValue}`;
+  return {
+    id: addon.item,
+    secret: addon.secret,
+    itemName,
+    description: localized(itemDetails?.description),
+    price: addon.price,
+    attendeeName: addon.attendee_name ?? null,
+    category: itemDetails?.category,
+    active: itemDetails?.active,
+    imageUrl: pictureUrl(itemDetails?.picture),
+    collected: positionCollected(addon) || undefined,
+  };
+}
+
+/**
+ * The paid, uncanceled positions bought with a voucher code, as add-ons (swag
+ * additions: api/swag-additions/attach.ts).
+ */
+export async function addonsBoughtWithVoucher(
+  code: string,
+  store: PretixStore,
+  itemsMap: Map<number, PretixItem>
+): Promise<TicketAddon[]> {
+  const params = new URLSearchParams({ voucher__code: code, order__status: "p" });
+  const positions = (
+    await fetchAllPages<PretixPosition>(`${baseFor(store)}/orderpositions/?${params}`, {
+      headers: headersFor(store),
+      cache: "no-store",
+    })
+  ).filter((p) => !p.canceled);
+  if (positions.length === 0) return [];
+  const pictureUrl = await resolvePictures([], itemsMap, positions.map((p) => itemsMap.get(p.item)?.picture).filter((x): x is string => !!x));
+  return positions.map((p) => toAddon(p, itemsMap, pictureUrl));
 }
 
 /**
@@ -270,28 +328,7 @@ function normalizeOrder(
 
       const addons = positions
         .filter((p) => p.addon_to === position.id && !p.canceled)
-        .map((addon): TicketAddon => {
-          const itemDetails = itemsMap.get(addon.item);
-          const variationValue = getVariationValue(
-            { variation: addon.variation ?? undefined },
-            itemDetails
-          );
-          let itemName = localized(itemDetails?.name) || `Item ${addon.item}`;
-          if (variationValue) itemName = `${itemName} - ${variationValue}`;
-
-          return {
-            id: addon.item,
-            secret: addon.secret,
-            itemName,
-            description: localized(itemDetails?.description),
-            price: addon.price,
-            attendeeName: addon.attendee_name ?? null,
-            category: itemDetails?.category,
-            active: itemDetails?.active,
-            imageUrl: pictureUrl(itemDetails?.picture),
-            collected: positionCollected(addon) || undefined,
-          };
-        });
+        .map((addon) => toAddon(addon, itemsMap, pictureUrl));
 
       const checkins = Array.isArray(position.checkins) ? position.checkins : [];
 

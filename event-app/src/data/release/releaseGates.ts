@@ -21,6 +21,8 @@ export const RELEASED = {
   faucetPerk: true,
   /** Venue map tab (src/app/(page-layout)/map/venue-map). Released to everyone on 2026-10-30 (Scott); the "coming soon" placeholder stays in MapPane for a rollback. */
   venueMap: true,
+  /** Swag additions on My Devcon (data/tickets/swagAdditions.ts): extra swag at the ticket's price, for checked-in tickets. Released 2026-11-04. */
+  swagAdditions: true,
 } as const;
 
 export type ReleaseGate = keyof typeof RELEASED;
@@ -30,6 +32,7 @@ export const RELEASE_GATE_LABELS: Record<ReleaseGate, { name: string; descriptio
   ensPerk: { name: "ENS perk", description: "The ENS perk card on My Devcon." },
   faucetPerk: { name: "Testnet faucet", description: "The testnet faucet perk card on My Devcon." },
   venueMap: { name: "Venue map", description: "The Map tab (the 3D map on the JWCC plans) instead of its “coming soon” placeholder." },
+  swagAdditions: { name: "Swag additions", description: "“Get more swag” in the Swag section of My Devcon, for checked-in tickets." },
 };
 
 /** True when the signed-in account is on the EF team (@ethereum.org). */

@@ -3,6 +3,7 @@ import type { AuthedUser } from "./auth";
 import { countOtherHolders, listLinks, removeLinks } from "./links";
 import { getTicketsForUser, type PretixStore } from "./pretix";
 import { qaPassFor } from "../meerkat/qaPass";
+import { withSwagAdditions } from "../swag-additions/attach";
 
 /**
  * Everything the account may see: attached tickets first, then email-matched
@@ -21,10 +22,16 @@ export async function ticketsPayload(
   } catch (err) {
     console.warn("[/api/tickets] ticket links unavailable, email-matched only:", err);
   }
-  const { orders, deadLinks } = await getTicketsForUser(
-    { email: user.email, links },
-    store
-  );
+  const found = await getTicketsForUser({ email: user.email, links }, store);
+  const { deadLinks } = found;
+  // Extra swag bought in the app joins the ticket that bought it, whatever
+  // email checked out. Best effort: without it the tickets still load.
+  let orders = found.orders;
+  try {
+    orders = await withSwagAdditions(orders, store);
+  } catch (err) {
+    console.warn("[/api/tickets] swag additions unavailable:", err);
+  }
   if (deadLinks.length > 0) {
     try {
       await removeLinks(user.id, store.eventSlug, deadLinks);
