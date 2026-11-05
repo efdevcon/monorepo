@@ -19,14 +19,15 @@ import Vibe09 from './images/new/vibe-09.jpg'
 import Vibe10 from './images/new/vibe-10.jpg'
 import Vibe11 from './images/new/vibe-11.jpg'
 
-// Devcon 8 event photos (3:2, 1200px wide — a tile is 75svh wide, so 2× DPR
-// is covered up to ~800px-tall viewports).
+// Devcon 8 event photos (3:2, 1200px wide — a tile is 85vw wide on phones and
+// 75svh wide from md, so 2× DPR is covered up to ~800px-tall viewports).
 const IMAGES = [Vibe01, Vibe02, Vibe03, Vibe04, Vibe05, Vibe06, Vibe07, Vibe08, Vibe09, Vibe10, Vibe11]
 
 /**
- * Photo marquee — Figma node 4917:713, post-event: no section label, tiles
- * half the viewport tall (3:2) since the photos are now the content rather
- * than a teaser, and draggable (DragMarquee: mouse drag / touch swipe, still
+ * Photo marquee — Figma node 4917:713, post-event: no section label, 3:2
+ * tiles sized by width on phones (85vw, so most of a photo is in view) and
+ * by height from md (half the viewport) since the photos are now the content
+ * rather than a teaser, and draggable (DragMarquee: mouse drag / touch swipe, still
  * looping and drifting on its own otherwise). A "View all photos" CTA under
  * the marquee points at the full album (config/devconIx).
  */
@@ -38,12 +39,15 @@ export const VibeCarousel = () => {
       <DragMarquee loopSeconds={80}>
         <div className="flex gap-4 pr-4">
           {IMAGES.map((src, i) => (
-            <div key={i} className="relative h-[50svh] aspect-[3/2] rounded-2xl overflow-hidden shrink-0">
+            <div
+              key={i}
+              className="relative w-[85vw] md:w-auto md:h-[50svh] aspect-[3/2] rounded-2xl overflow-hidden shrink-0"
+            >
               <Image
                 src={src}
                 alt={t('image_alt')}
                 fill
-                sizes="75vh"
+                sizes="(max-width: 767px) 85vw, 75vh"
                 draggable={false}
                 className="object-cover pointer-events-none"
               />
