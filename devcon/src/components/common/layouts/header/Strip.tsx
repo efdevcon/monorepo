@@ -20,7 +20,7 @@ export const Strip = () => {
           to={DEVCON_IX_ANNOUNCEMENT_URL}
           className="group flex items-center justify-between gap-[16px] min-h-[32px] font-terminal text-[#a6ffe9] hover:text-[#a6ffe9]"
         >
-          <p className="min-w-0 text-[16px] leading-[1.4] md:text-[18px] md:whitespace-nowrap md:overflow-hidden md:text-ellipsis [text-shadow:0_0_4px_rgba(166,255,233,0.4)]">
+          <p className="min-w-0 text-[16px] leading-[1.1] md:text-[18px] md:whitespace-nowrap md:overflow-hidden md:text-ellipsis [text-shadow:0_0_4px_rgba(166,255,233,0.4)]">
             {t('dcix_message')}
           </p>
           {/* Same prompt as the hero terminal: "> boot devcon9_" from tablet
