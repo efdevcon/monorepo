@@ -1,64 +1,49 @@
 import React from 'react'
 import Image from 'next/image'
-import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import { Link } from 'components/common/link'
 import { ctaSecondary } from 'components/common/cta'
-import { sectionX, sectionInner, sectionLabel } from 'components/common/styles'
+import { sectionX } from 'components/common/styles'
 import { DEVCON_8_PHOTOS_URL } from 'config/devconIx'
-import VibeOpening from './images/new/vibe-opening.jpg'
-import VibeJd from './images/new/vibe-jd.jpg'
-import VibeCrowd from './images/new/vibe-crowd.jpg'
-import VibeAt from './images/new/vibe-at.jpg'
-import VibeYoga from './images/new/vibe-yoga.jpg'
-import VibeAya from './images/new/vibe-aya.jpg'
-import VibeCowork from './images/new/vibe-cowork.jpg'
-import VibePres from './images/new/vibe-pres.jpg'
-import VibeNym from './images/new/vibe-nym.jpg'
-import VibeRog from './images/new/vibe-rog.jpg'
-import VibeSupporters from './images/new/vibe-supporters.jpg'
+import Vibe01 from './images/new/vibe-01.jpg'
+import Vibe02 from './images/new/vibe-02.jpg'
+import Vibe03 from './images/new/vibe-03.jpg'
+import Vibe04 from './images/new/vibe-04.jpg'
+import Vibe05 from './images/new/vibe-05.jpg'
+import Vibe06 from './images/new/vibe-06.jpg'
+import Vibe07 from './images/new/vibe-07.jpg'
+import Vibe08 from './images/new/vibe-08.jpg'
+import Vibe09 from './images/new/vibe-09.jpg'
+import Vibe10 from './images/new/vibe-10.jpg'
+import Vibe11 from './images/new/vibe-11.jpg'
 
-const IMAGES = [
-  VibeOpening,
-  VibeJd,
-  VibeYoga,
-  VibeAt,
-  VibeCrowd,
-  VibeAya,
-  VibeCowork,
-  VibePres,
-  VibeNym,
-  VibeRog,
-  VibeSupporters,
-]
+// Devcon 8 event photos (3:2, 1200px wide — the marquee tile renders at
+// most 596px, so 2× DPR is covered).
+const IMAGES = [Vibe01, Vibe02, Vibe03, Vibe04, Vibe05, Vibe06, Vibe07, Vibe08, Vibe09, Vibe10, Vibe11]
 
 /**
- * Auto-scrolling photo marquee — Figma node 4917:713. Full-bleed tiles with a
- * static "Relive the Devcon vibe" label; pauses on hover and under
+ * Auto-scrolling photo marquee — Figma node 4917:713, post-event: no section
+ * label and tiles at twice the pre-event size (476×320 / 596×400) since the
+ * photos are now the content rather than a teaser. Pauses on hover and under
  * prefers-reduced-motion (guard lives in the shared InfiniteScroll styles).
- * Post-event: a "View all photos" CTA under the marquee points at the full
- * album (external drive, placeholder URL in config/devconIx).
+ * A "View all photos" CTA under the marquee points at the full album
+ * (config/devconIx).
  */
 export const VibeCarousel = () => {
   const t = useTranslations('home.vibe')
 
   return (
     <div className="pt-[32px] pb-[48px] flex flex-col gap-[20px]">
-      <div className={sectionX}>
-        <div className={`${sectionInner} flex items-center justify-end gap-2 text-[#594d73]`}>
-          <p className={`${sectionLabel} leading-6`}>{t('label')}</p>
-          <ArrowDown className="w-4 h-4" strokeWidth={2} />
-        </div>
-      </div>
-      <InfiniteScroll nDuplications={2} speed="80s" pauseOnHover marqueeClassName="!h-[160px] md:!h-[200px]">
+      <InfiniteScroll nDuplications={2} speed="80s" pauseOnHover marqueeClassName="!h-[320px] md:!h-[400px]">
         <div className="flex gap-4 pr-4 h-full">
           {IMAGES.map((src, i) => (
             <div
               key={i}
-              className="relative w-[238px] h-[160px] md:w-[298px] md:h-[200px] rounded-2xl overflow-hidden shrink-0"
+              className="relative w-[476px] h-[320px] md:w-[596px] md:h-[400px] rounded-2xl overflow-hidden shrink-0"
             >
-              <Image src={src} alt={t('image_alt')} fill sizes="298px" className="object-cover" />
+              <Image src={src} alt={t('image_alt')} fill sizes="596px" className="object-cover" />
             </div>
           ))}
         </div>

@@ -4,6 +4,5 @@
 // announcement once it is published.
 export const DEVCON_IX_ANNOUNCEMENT_URL = 'https://deploy-preview-2--dc-ix-proto.netlify.app/'
 
-// Post-event photo gallery (external drive). PLACEHOLDER until the album is
-// shared.
-export const DEVCON_8_PHOTOS_URL = 'https://drive.google.com/'
+// Post-event photo gallery.
+export const DEVCON_8_PHOTOS_URL = 'https://devcon.photos'
