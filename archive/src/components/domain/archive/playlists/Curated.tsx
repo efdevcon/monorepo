@@ -28,9 +28,11 @@ export const PlaylistCard = (props: {
 
   if (props.canSlide) className += ` ${css["slide"]}`;
 
-  const linkUrl = props.eventList
-    ? `/watch?event=${props.playlist.id}`
-    : `/watch?tags=${props.playlist.title}`;
+  const linkUrl =
+    props.playlist.linkUrl ??
+    (props.eventList
+      ? `/watch?event=${props.playlist.id}`
+      : `/watch?tags=${props.playlist.title}`);
 
   return (
     <BasicCard

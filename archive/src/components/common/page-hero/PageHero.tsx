@@ -11,6 +11,17 @@ import { Link } from "@/components/common/link";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { editionOf } from "@/utils/editions";
+
+/**
+ * Hero backdrop: one photo per hand-picked session, PNG for the older
+ * editions, JPEG from Devcon 8 on (services/devcon.ts DEVCON8_PICKS names
+ * the sessions; a scene without a photo shows the gradient).
+ */
+function heroImage(session: { eventId: string; id: string }) {
+  const ext = session.eventId === "devcon8" ? "jpg" : "png";
+  return `/images/featured/${session.eventId}/${session.id}.${ext}`;
+}
 
 type NavigationLink = {
   to: string;
@@ -135,7 +146,9 @@ export const PageHeroClient = ({ featuredItems }: any) => {
               return (
                 <div className={css["page-hero-scene"]}>
                   <div className={css["body"]}>
-                    <div className="label bold">Staff Pick</div>
+                    <div className="label bold">
+                      {item.featured ? "Featured" : "Staff Pick"}
+                    </div>
                     <p className="font-xl bold">{item.title}</p>
                     <p className={`${css["description"]} font-lg`}>
                       {item.description}
@@ -154,7 +167,9 @@ export const PageHeroClient = ({ featuredItems }: any) => {
                       </p>
                     )}
                     <p className="bold">
-                      Devcon {item.eventId.replace("devcon-", "")}
+                      Devcon{" "}
+                      {editionOf(item.eventId) ??
+                        item.eventId.replace("devcon-", "")}
                     </p>
                   </div>
                 </div>
@@ -364,7 +379,7 @@ export const PageHero = (props: PageHeroProps) => {
         return (
           <div key={i} className={className}>
             <Image
-              src={`/images/featured/${scene.session.eventId}/${scene.session.id}.png`}
+              src={heroImage(scene.session)}
               alt={scene.session.title}
               fill
               priority={i === 0}

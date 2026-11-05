@@ -7,6 +7,7 @@ import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import css from "./editions.module.scss";
 import dayjs from "dayjs";
 import { Event } from "@/types";
+import { isDevconEdition } from "@/utils/editions";
 
 interface Props {
   events: Event[];
@@ -51,7 +52,7 @@ const Clock = (props: any) => {
 export const Editions = (props: Props) => {
   const [selectedEditionIndex, setSelectedEditionIndex] = useState(0);
   if (!props.events) return null;
-  const events = props.events.filter((e) => e.id.startsWith("devcon-"));
+  const events = props.events.filter(isDevconEdition);
   if (events.length === 0) return null;
   const selectedEdition = events[selectedEditionIndex];
 
@@ -189,7 +190,7 @@ export const Editions = (props: Props) => {
                 {/* Only show watch now button after the event has started */}
                 {dayjs().unix() > dayjs(selectedEdition.startDate).unix() && (
                   <Button
-                    href={`/watch?event=devcon-${selectedEdition.edition}`}
+                    href={`/watch?event=${selectedEdition.id}`}
                     className={`${css["button"]} red ghost sm`}
                   >
                     Watch <OnDemandVideoIcon />

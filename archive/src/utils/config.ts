@@ -19,6 +19,19 @@ export const TRACKS = [
   "Usability",
 ];
 
+/** Devcon 8 tracks, spelled as the API carries them (badges in public/images/tracks/devcon8). */
+export const DEVCON8_TRACKS = [
+  "Core Protocol",
+  "Privacy & Consent",
+  "Security",
+  "Futures Worth Building",
+  "Rights, Freedoms, and Governance",
+  "Permissionless Networks",
+  "Users, Builders, and Agents",
+  "Applied Cryptography",
+  "Open & Verifiable Stack",
+];
+
 export function getTrackColor(track?: string) {
   if (track === "Core Protocol") return "bg-[#F6F2FF]";
   if (track === "Cypherpunk & Privacy") return "bg-[#FFF4FF]";
@@ -31,6 +44,13 @@ export function getTrackColor(track?: string) {
   if (track === "Security") return "bg-[#E4EEFF]";
   if (track === "Layer 2s") return "bg-[#F0F1FF]";
   if (track === "Entertainment") return "bg-[#FFF0F2]";
+  // Devcon 8 (the website's social-card canvas colors)
+  if (track === "Privacy & Consent") return "bg-[#E6E3E8]";
+  if (track === "Futures Worth Building") return "bg-[#FFF9D1]";
+  if (track === "Rights, Freedoms, and Governance") return "bg-[#E9E5F6]";
+  if (track === "Permissionless Networks") return "bg-[#E6EBFF]";
+  if (track === "Users, Builders, and Agents") return "bg-[#FFE5E6]";
+  if (track === "Open & Verifiable Stack") return "bg-[#DBFFF8]";
 
   return "bg-[#FFEDDF]";
 }

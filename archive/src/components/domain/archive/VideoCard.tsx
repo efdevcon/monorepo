@@ -1,11 +1,28 @@
+"use client";
+
 import React from "react";
 import css from "./video-card.module.scss";
 import { BasicCard } from "@/components/common/card";
 import { ArchiveVideo, Playlist } from "@/types";
+import { editionOf } from "@/utils/editions";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
+
+/**
+ * YouTube's 4:3 "hqdefault" carries letterbox bars that peek out of the 16:9
+ * card as a grey strip; "hq720" is the 16:9 render. The fallback covers the
+ * rare video without one.
+ */
+const thumbnail = (youtubeId: string, size: "hq720" | "hqdefault") =>
+  `https://img.youtube.com/vi/${youtubeId}/${size}.jpg`;
+
+const editionLabel = (video: ArchiveVideo) => {
+  if (video.eventId === "devconnect-arg") return "Devconnect";
+  const edition = editionOf(video.eventId) ?? video.edition;
+  return edition != null ? `Devcon ${edition}` : "Devcon";
+};
 
 interface Props {
   video: ArchiveVideo;
@@ -51,14 +68,19 @@ export const VideoCard = (props: Props) => {
           <img
             src={
               props.video.sources_youtubeId
-                ? `https://img.youtube.com/vi/${props.video.sources_youtubeId}/hqdefault.jpg`
+                ? thumbnail(props.video.sources_youtubeId, "hq720")
                 : "/images/video-soon.png"
             }
+            onError={(e) => {
+              const id = props.video.sources_youtubeId;
+              const fallback = id && thumbnail(id, "hqdefault");
+              if (fallback && e.currentTarget.src !== fallback) e.currentTarget.src = fallback;
+            }}
             alt={`${props.video.title} preview`}
           />
 
           <div className={`${css["labels"]}`}>
-            <div className={`label sm black`}>{props.video.eventId === 'devconnect-arg' ? 'Devconnect' : props.video.edition != null ? `Devcon ${props.video.edition}` : 'Devcon'}</div>
+            <div className={`label sm black`}>{editionLabel(props.video)}</div>
             <div className={`label sm black`}>{props.video.type}</div>
             {props.video.duration && (
               <div className={`${css["duration"]} label sm black`}>

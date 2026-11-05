@@ -59,4 +59,6 @@ export interface Playlist {
   profiles: UserProfile[];
   videos: ArchiveVideo[];
   nrOfSessions?: number;
+  /** Where the card goes; derived from id or title when absent. */
+  linkUrl?: string;
 }

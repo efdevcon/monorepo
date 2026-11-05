@@ -14,6 +14,7 @@ import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { PageHero } from "@/components/common/page-hero/PageHero";
+import { editionOf } from "@/utils/editions";
 dayjs.extend(duration);
 
 const List = ({ video, playlist, videos }: any) => {
@@ -249,7 +250,10 @@ export const Video = (props: any) => {
                       <span>Expertise:</span> {video.expertise}
                     </p>
                     <p className={css["descriptor"]}>
-                      <span>Event:</span> Devcon {video.edition}
+                      <span>Event:</span>{" "}
+                      {video.eventId === "devconnect-arg"
+                        ? "Devconnect ARG"
+                        : `Devcon ${editionOf(video.eventId) ?? video.edition ?? ""}`}
                     </p>
                     <p className={css["descriptor"]}>
                       <span>Date:</span>{" "}

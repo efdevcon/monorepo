@@ -10,17 +10,18 @@ export default async function Home() {
     <>
       <Interests />
 
-      <FeaturedList title="Devcon 7 Opening" type="devcon-7-opening" />
+      {/* Devcon 8 rows build themselves from the schedule as recordings are
+          published: the opening block on the Main Stage, then the sessions
+          marked featured in Pretalx (no hand-picked lists yet). */}
+      <FeaturedList title="Devcon 8 Opening" type="devcon-8-opening" />
 
-      <FeaturedList title="Devcon 7 Keynotes" type="devcon-7" />
+      <FeaturedList title="Devcon 8 Keynotes" type="devcon-8" />
 
       <Editions events={events} />
 
-      <FeaturedList title="Staff Picks" type="devcon-7-picks" />
+      <FeaturedList title="Devcon 7 Keynotes" type="devcon-7" />
 
       <FeaturedList title="Most Watched" type="most-popular" />
-
-      <FeaturedList title="Devcon 6 Highlights" type="devcon-6" />
     </>
   );
 }
