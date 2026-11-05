@@ -68,9 +68,11 @@ export const DevconIxTerminal = ({ href, alt, caption, className = '' }: Props) 
       aria-keyshortcuts="Enter"
       className={`group flex flex-col items-center gap-[16px] lg:gap-[24px] text-[#a6ffe9] hover:text-[#a6ffe9] ${className}`}
     >
-      {/* The hover scale lives on the screen only; the caption below stays still. */}
+      {/* The hover scale lives on the screen only; the caption below stays
+          still. The screen rests at 70% opacity and goes solid on hover (200ms
+          ease-out; the scale keeps its 150ms). */}
       <div
-        className={`w-full shrink-0 transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] ${SCREEN_GLOW}`}
+        className={`w-full shrink-0 opacity-70 group-hover:opacity-100 transition-[transform,opacity] duration-150 [transition-duration:150ms,200ms] ease-out motion-safe:group-hover:scale-[1.03] motion-safe:group-active:scale-[0.97] ${SCREEN_GLOW}`}
       >
         <Image
           src={Terminal}
