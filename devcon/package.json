@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "node scripts/patch-anon-aadhaar.js",
     "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build --webpack",
+    "build": "pnpm build:lisbon && tinacms build && next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "scripts:db-cleanup": "ts-node src/scripts/db-cleanup",
@@ -47,11 +47,14 @@
     "test:notion-links": "tsx src/scripts/test-notion-links.ts",
     "test:links-api": "tsx src/scripts/test-links-api.ts",
     "nocodb:export-deleted": "tsx src/scripts/nocodb/export-deleted-records.ts",
-    "speakers:pull": "tsx src/scripts/pull-constellation-speakers.ts"
+    "speakers:pull": "tsx src/scripts/pull-constellation-speakers.ts",
+    "build:lisbon": "tsc --noEmit -p lisbon && cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite build --configLoader bundle --config lisbon/vite.config.ts",
+    "dev:lisbon": "cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite --configLoader bundle --config lisbon/vite.config.ts"
   },
   "dependencies": {
     "@anon-aadhaar/core": "^2.4.3",
     "@anon-aadhaar/react": "^2.4.3",
+    "@fontsource/vt323": "^5.3.0",
     "@gsap/react": "^2.1.2",
     "@netlify/functions": "^5.3.0",
     "@next/bundle-analyzer": "^14.2.7",
@@ -163,6 +166,7 @@
     "@types/uuid": "^11.0.0",
     "autoprefixer": "^10.4.16",
     "cross-fetch": "^3.1.5",
+    "esbuild": "^0.28.2",
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
     "glslify-deps": "^1.3.2",
@@ -174,6 +178,7 @@
     "tailwindcss": "^3.4.0",
     "ts-node": "^10.9.1",
     "tsx": "^4.22.0",
-    "typescript": "5"
+    "typescript": "5",
+    "vite": "^8.3.3"
   }
 }

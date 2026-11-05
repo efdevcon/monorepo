@@ -49,6 +49,23 @@ export async function middleware(req: NextRequest) {
     return
   }
 
+  // The Devcon IX announcement page: lisbon/ builds into public/lisbon/, static
+  // files outside the locale router. Next serves public files but does not
+  // resolve a directory to its index.html, so /lisbon/ is rewritten there in
+  // one hop (no /en/lisbon/). It has to happen here: with i18n on, Next matches
+  // next.config.js rewrites against the locale-prefixed path, so a config
+  // rewrite for /lisbon/ never fires. The page's assets have extensions and
+  // pass through below. nextUrl.pathname has the locale stripped, so
+  // /en/lisbon/ lands here too: one URL only, send those to /lisbon/.
+  if (normalizedPathname === '/lisbon') {
+    if (req.nextUrl.locale !== 'default') {
+      const canonical = new URL('/lisbon/', req.url)
+      canonical.search = req.nextUrl.search
+      return NextResponse.redirect(canonical, 308)
+    }
+    return NextResponse.rewrite(new URL('/lisbon/index.html', req.url))
+  }
+
   if (
     req.nextUrl.pathname.startsWith('/_next') ||
     req.nextUrl.pathname.startsWith('/ticket/') ||

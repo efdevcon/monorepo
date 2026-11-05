@@ -1,0 +1,1794 @@
+/* The screen's light around the monitor; registered so it can fade (see body::after). */
+@property --glow {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(0 0 0 / 0);
+}
+
+:root {
+  --glow: rgb(0 0 0 / 0);
+  transition: --glow 1s ease-out;
+  --case-hi: #34332f;
+  --case: #262522;
+  --case-lo: #1a1917;
+  --gasket: #0a0a09;
+  --label: #b0ab9d;
+  --label-dim: #9f9b8e;
+  /* The phosphor colour (set from main.ts with the glow). */
+  --phosphor: rgb(66 255 115);
+  --led-off: #2a2015;
+  --led-standby: #ff9a1f;
+  --led-on: #4dff7a;
+  --chin-h: clamp(56px, 9vh, 76px);
+  --bezel: clamp(10px, 3.6vmin, 44px);
+  --tube-r: clamp(18px, 4.2vmin, 46px);
+  /* The largest the screen gets (both skins): big displays get more backdrop, not a bigger TV. */
+  --tube-max: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--case-lo);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font: 600 11px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--label);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- Case ---------- */
+
+.monitor {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background:
+    /* moulded-plastic grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(140% 90% at 50% 0%, var(--case-hi), var(--case) 45%, var(--case-lo));
+}
+
+/* On larger screens the monitor is a 4:3 object floating on a dark gradient,
+   sized to the viewport with an even gap all round. Seen from slightly above,
+   so the case's top surface shows above the front; the sizing subtracts it,
+   so the tube stays 4:3. */
+@media (min-width: 641px) and (min-height: 541px) {
+  :root {
+    --gap: 24px;
+    --top-h: clamp(6px, 1.3vmin, 14px);
+    --tube-w: min(
+      var(--tube-max),
+      100vw - var(--gap) * 2 - var(--bezel) * 2,
+      (100dvh - var(--gap) * 2 - var(--top-h) - var(--chin-h) - var(--bezel) * 1.6) * 4 / 3
+    );
+  }
+  /* A radial gradient centred a little above the monitor, dark grey to
+     near-black at the edges, with a faint static grain so it never bands.
+     On html, with body transparent: the backdrop's layers sit at negative
+     z-index, between the root's background and the monitor. */
+  body {
+    background: transparent;
+  }
+  html {
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 85% 80% at 50% 42%, #2a2a2a, #1a1a1a 45%, #0f0f0f 75%, #0a0a0a);
+  }
+
+  /* The screen's light: a soft halo round the case in the phosphor colour
+     (--glow, set from main.ts), flickering faintly with it. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse calc(var(--tube-w) * 0.78) calc(var(--tube-w) * 0.64) at 50% calc(50% + var(--top-h) / 2),
+      color-mix(in srgb, var(--glow) 12%, transparent),
+      color-mix(in srgb, var(--glow) 4%, transparent) 55%,
+      transparent 78%
+    );
+    animation: glow-flicker 2.7s steps(9) infinite;
+  }
+
+  /* The Lisbon moment: from Lisbon's OK, the centre of the gradient warms very
+     slightly; gone at once on reboot or power-off. */
+  .warm {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(ellipse 70% 65% at 50% 42%, rgb(255 180 110 / 0.07), rgb(255 180 110 / 0) 75%);
+  }
+  body[data-found] .warm {
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+  }
+
+  /* A pixel-art background (backgrounds/): a low-res canvas scaled up, behind
+     everything; the gradient's halo and warm-up step aside for it. */
+  .bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    image-rendering: pixelated;
+    pointer-events: none;
+  }
+  html[data-bg-scene] body::after,
+  html[data-bg-scene] .warm {
+    display: none;
+  }
+  /* The Y2K scene (backgrounds/y2k.ts) is smooth, not pixel art. */
+  .bg-canvas--smooth {
+    image-rendering: auto;
+  }
+  /* On its light field the graphite case catches a cool reflection along its
+     top edge, and its shadow turns lighter and softer (the halo is on the canvas). */
+  html[data-bg='y2k'][data-skin='graphite'] .monitor {
+    box-shadow:
+      inset 0 1px 0 rgb(220 236 255 / 0.32),
+      inset 0 4px 8px -4px rgb(200 225 255 / 0.16),
+      inset 0 -3px 0 rgb(0 0 0 / 0.42),
+      inset 12px 0 16px -12px rgb(0 0 0 / 0.5),
+      inset -12px 0 16px -12px rgb(0 0 0 / 0.55),
+      0 0 0 1px rgb(220 236 255 / 0.14),
+      0 30px 70px rgb(36 54 80 / 0.3),
+      0 10px 22px rgb(36 54 80 / 0.22);
+  }
+  html[data-bg='y2k'][data-skin='graphite'] .monitor::before {
+    box-shadow:
+      0 -1px 0 rgb(220 236 255 / 0.4),
+      inset 0 1px 0 rgb(220 236 255 / 0.22);
+  }
+
+  /* The sticker wall (backgrounds/stickerWall.ts): a pastel sky after the DC7
+     Deva artwork, cyan at the top through lavender to pink, under a fine
+     coloured grain (SVG noise, overlay-blended so it keeps the colours). Light,
+     so the green halo and the Lisbon warm-up stay off, as for the other scenes. */
+  .bg-wall {
+    image-rendering: auto;
+    overflow: hidden;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='2.2 0 0 0 -.6 0 2.2 0 0 -.6 0 0 2.2 0 -.6 0 0 0 0 .55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 70% 45% at 50% 100%, rgb(250 214 226 / 0.7), rgb(250 214 226 / 0) 70%),
+      linear-gradient(#a9deec, #b5dbef 14%, #c6d6f0 26%, #cecdee 38%, #d8caed 46%, #f0cdec 56%, #f3caeb 72%, #f6cfe2);
+    background-blend-mode: overlay, normal, normal;
+  }
+  /* At night (background 6): a dark diagonal gradient, new each time (--wall,
+     set from stickerWall.ts), a faint cool grain, and the screen's halo back
+     on the dark. */
+  .bg-wall--night {
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .75 0 0 0 0 .82 0 0 0 0 1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E"),
+      var(--wall, linear-gradient(135deg, #1f3170, #050a1f));
+    background-blend-mode: normal;
+  }
+  html[data-bg='stickers-night'] body::after,
+  html[data-bg='stickers-night'] .warm {
+    display: block;
+  }
+  /* The studio (background 7): the stickers on a near-white wall falling to a
+     lighter floor, a faint grain, a soft vignette. */
+  .bg-wall--studio {
+    background-blend-mode: normal;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .3 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 90% 85% at 50% 45%, transparent 55%, rgb(70 70 72 / 0.12)),
+      linear-gradient(90deg, rgb(255 255 255 / 0.05), rgb(0 0 0 / 0.03)),
+      linear-gradient(#e4e2e1 0 62%, #e8e5e4 72%, #efeceb 86%, #f6f4f3);
+  }
+  /* A stamped sticker (a click on the wall): pressed on from a little above. */
+  .sticker.is-stamped {
+    animation: sticker-stamp 0.22s cubic-bezier(0.3, 0.7, 0.4, 1);
+  }
+  @keyframes sticker-stamp {
+    from {
+      transform: scale(1.18);
+      opacity: 0.4;
+      filter: drop-shadow(8px 10px 12px rgb(0 0 0 / 0.45));
+    }
+  }
+  .bg-wall__layer {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s ease-out;
+  }
+  /* A vinyl sticker: its shadow on the wall (not turned with it), a 1 px grey
+     cut edge, a faint sheen across the top-left. */
+  .sticker {
+    position: absolute;
+    filter: drop-shadow(3px 3px 8px rgb(0 0 0 / 0.4));
+  }
+  .sticker__body,
+  .sticker__face {
+    position: absolute;
+    inset: 0;
+  }
+  .sticker__face img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 0.6px rgb(60 60 60));
+  }
+  .sticker__face::after,
+  .sticker__scuff,
+  .sticker__under {
+    content: '';
+    position: absolute;
+    inset: 0;
+    -webkit-mask: var(--src) 0 0 / 100% 100% no-repeat;
+    mask: var(--src) 0 0 / 100% 100% no-repeat;
+  }
+  .sticker__face::after {
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.2),
+      rgb(255 255 255 / 0.07) 22%,
+      rgb(255 255 255 / 0) 34%,
+      rgb(255 255 255 / 0.05) 40%,
+      rgb(255 255 255 / 0) 48%
+    );
+  }
+  .sticker__face.is-faded {
+    opacity: 0.85;
+    filter: saturate(0.7) contrast(0.92);
+  }
+  /* A scuff: a lighter smear of fine scratches over one corner. */
+  .sticker__scuff {
+    background:
+      repeating-linear-gradient(118deg, rgb(255 255 255 / 0.16) 0 1px, transparent 1px 3px),
+      rgb(255 255 255 / 0.1);
+    -webkit-mask:
+      var(--src) 0 0 / 100% 100% no-repeat,
+      radial-gradient(ellipse 55% 70% at var(--at), #000, transparent 70%);
+    -webkit-mask-composite: source-in;
+    mask:
+      var(--src) 0 0 / 100% 100% no-repeat,
+      radial-gradient(ellipse 55% 70% at var(--at), #000, transparent 70%);
+    mask-composite: intersect;
+  }
+  /* A peeled corner, folded back over the face: its shadow is all round
+     (the flap is mirrored, so an offset would point the wrong way). */
+  .sticker__flap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 0;
+    filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.55)) drop-shadow(0 0 5px rgb(0 0 0 / 0.35));
+  }
+  /* Deva on the chin (graphite only): small, midway between the controls and
+     the logo (left set from stickerWall.ts), tilted, with a tight shadow on the plastic. */
+  .sticker--deva {
+    top: 50%;
+    height: calc(var(--chin-h) * 0.58);
+    aspect-ratio: 600 / 380;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    filter: drop-shadow(1px 1.5px 1.5px rgb(0 0 0 / 0.55));
+    pointer-events: none;
+  }
+  html:not([data-skin='graphite'], [data-skin='pastel'], [data-skin='white']) .sticker--deva {
+    display: none;
+  }
+
+  .monitor {
+    inset: calc(var(--gap) + var(--top-h)) var(--gap) var(--gap);
+    width: calc(var(--tube-w) + var(--bezel) * 2);
+    height: calc(var(--tube-w) * 3 / 4 + var(--chin-h) + var(--bezel) * 1.6);
+    margin: auto;
+    border-radius: 20px;
+    /* The parting line where the front bezel meets the rear shell. */
+    outline: 1px solid rgb(0 0 0 / 0.42);
+    outline-offset: -7px;
+    box-shadow:
+      /* lit top edge, the moulding rounding away at the bottom */
+      inset 0 1px 0 rgb(255 255 255 / 0.11),
+      inset 0 3px 5px -3px rgb(255 255 255 / 0.05),
+      inset 0 -3px 0 rgb(0 0 0 / 0.42),
+      /* the sides turning away from the light */
+      inset 12px 0 16px -12px rgb(0 0 0 / 0.55),
+      inset -12px 0 16px -12px rgb(0 0 0 / 0.6),
+      /* a faint lighter rim, so the graphite separates from the dark ground */
+      0 0 0 1px rgb(255 255 255 / 0.06),
+      0 -1px 0 1px rgb(255 255 255 / 0.04),
+      /* floating slightly: a soft dark shadow below, no surface */
+      0 34px 80px rgb(0 0 0 / 0.7),
+      0 12px 24px rgb(0 0 0 / 0.5);
+  }
+
+  /* Top surface: a little narrower at the back, with a band of vent slots. */
+  .monitor::before {
+    content: '';
+    box-shadow: 0 -1px 0 rgb(255 255 255 / 0.06);
+    position: absolute;
+    left: 2.5%;
+    right: 2.5%;
+    bottom: 100%;
+    height: var(--top-h);
+    border-radius: 16px 16px 0 0 / 8px 8px 0 0;
+    clip-path: polygon(2% 0, 98% 0, 100% 100%, 0 100%);
+    background:
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.6) 0 3px, rgb(255 255 255 / 0.03) 3px 4px, transparent 4px 9px)
+        center 55% / 44% 42% no-repeat,
+      linear-gradient(180deg, #2b2a26, #3b3a35 70%, #45433d);
+    pointer-events: none;
+  }
+
+
+  /* Two screw heads at the chin's outer corners. */
+  .chin::before,
+  .chin::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background:
+      linear-gradient(45deg, transparent 42%, rgb(0 0 0 / 0.75) 42% 58%, transparent 58%),
+      radial-gradient(circle at 40% 35%, #4a4842, #2a2925 55%, #141412);
+    box-shadow:
+      0 0 0 1px rgb(0 0 0 / 0.55),
+      0 1px 0 1px rgb(255 255 255 / 0.05);
+  }
+  .chin::before {
+    left: 12px;
+  }
+  .chin::after {
+    right: 12px;
+  }
+}
+
+.bezel {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: var(--bezel) var(--bezel) calc(var(--bezel) * 0.6);
+}
+
+/* The recess the tube sits in: a stepped bevel (a flat first step, then the
+   fall into the tube), shadow under the upper lip, light on the lower lip. */
+.bezel::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--bezel) * 0.4) calc(var(--bezel) * 0.4) calc(var(--bezel) * 0.22);
+  border-radius: calc(var(--tube-r) * 1.25);
+  background: linear-gradient(180deg, #0f0f0e, #1b1a18 35%, #2d2c28);
+  box-shadow:
+    inset 0 0 0 calc(var(--bezel) * 0.12) rgb(255 255 255 / 0.025),
+    inset 0 calc(var(--bezel) * 0.2) calc(var(--bezel) * 0.24) rgb(0 0 0 / 0.72),
+    inset 0 -1px 0 rgb(255 255 255 / 0.09),
+    0 1px 0 rgb(255 255 255 / 0.08),
+    0 -1px 1px rgb(0 0 0 / 0.55);
+}
+
+.tube {
+  position: relative;
+  height: 100%;
+  border-radius: var(--tube-r);
+  background: var(--gasket);
+  overflow: hidden;
+  /* A thin black rubber gasket against the glass. */
+  box-shadow:
+    0 0 0 2px #050505,
+    0 0 0 3px #1a1917,
+    0 0 0 4px rgb(255 255 255 / 0.04);
+  cursor: text;
+}
+
+body[data-state='off'] .tube {
+  cursor: pointer;
+}
+
+#crt,
+.tube > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Thick curved glass: edge falloff, a soft room reflection, a specular streak. */
+.glass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 85% at 24% 6%, rgb(255 255 255 / 0.085), transparent 38%),
+    radial-gradient(60% 30% at 30% 12%, rgb(255 255 255 / 0.05), transparent 70%),
+    linear-gradient(105deg, transparent 58%, rgb(255 255 255 / 0.025) 64%, transparent 70%),
+    radial-gradient(90% 60% at 80% 105%, rgb(255 255 255 / 0.03), transparent 60%);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.9);
+}
+
+/* Fallback when WebGL is unavailable: the flat text canvas, tinted and lined. */
+.tube.no-gl > canvas {
+  filter: sepia(1) hue-rotate(65deg) saturate(5) brightness(1.1) blur(0.4px);
+}
+.tube.no-gl .glass {
+  background-image: repeating-linear-gradient(0deg, rgb(0 0 0 / 0.35) 0 1px, transparent 1px 3px);
+  /* The shader shades the edge itself; without it, approximate with a rectangle. */
+  box-shadow:
+    inset 0 0 0 1px rgb(0 0 0 / 0.9),
+    inset 0 0 calc(var(--tube-r) * 1.4) calc(var(--tube-r) * 0.35) rgb(0 0 0 / 0.75),
+    inset 0 calc(var(--tube-r) * 0.25) calc(var(--tube-r) * 0.6) rgb(0 0 0 / 0.5);
+}
+
+/* After `rm -rf /`: smoke curling up in front of the dead tube. */
+.smoke {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+.smoke i {
+  position: absolute;
+  bottom: -40%;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(190 188 178 / 0.32), rgb(190 188 178 / 0.12) 55%, transparent);
+  filter: blur(12px);
+  opacity: 0;
+}
+.tube.smoking .smoke i {
+  animation: smoke 6.5s ease-out var(--d, 0s) forwards;
+}
+.smoke i:nth-child(1) { left: 22%; --dx: -18%; --d: 0s; }
+.smoke i:nth-child(2) { left: 40%; --dx: 12%; --d: 0.5s; }
+.smoke i:nth-child(3) { left: 30%; --dx: 30%; --d: 1.1s; }
+.smoke i:nth-child(4) { left: 48%; --dx: -25%; --d: 1.7s; }
+.smoke i:nth-child(5) { left: 18%; --dx: 20%; --d: 2.4s; }
+.smoke i:nth-child(6) { left: 44%; --dx: -8%; --d: 3s; }
+
+@keyframes smoke {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), -230%) scale(1.9);
+    opacity: 0;
+  }
+}
+
+.standby {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  margin: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  font: 400 clamp(18px, 2.6vmin, 26px) / 1 'VT323', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.16);
+  pointer-events: none;
+  transition: opacity 300ms ease-out;
+}
+
+body:not([data-state='off']) .standby {
+  opacity: 0;
+}
+
+/* ---------- Chin ---------- */
+
+.chin {
+  position: relative;
+  flex: none;
+  height: var(--chin-h);
+  display: grid;
+  /* Controls on the left, the logo on the right (same inset). */
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 16px;
+  padding: 0 var(--bezel) env(safe-area-inset-bottom);
+}
+
+/* A slightly recessed strip the controls sit in. */
+.controls {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px 5px 5px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #191816, #201f1c);
+  box-shadow:
+    inset 0 2px 3px rgb(0 0 0 / 0.6),
+    inset 0 -1px 0 rgb(255 255 255 / 0.05),
+    0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+.power {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #3a3934, #1c1b19 70%);
+  /* The button, its dark well, and a light ring round the well. */
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    inset 0 -2px 3px rgb(0 0 0 / 0.5),
+    0 2px 3px rgb(0 0 0 / 0.5),
+    0 0 0 3px #0e0e0d,
+    0 0 0 4px rgb(255 255 255 / 0.09);
+  cursor: pointer;
+  transition: transform 90ms ease-out, box-shadow 90ms ease-out;
+}
+
+.power:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow:
+    inset 0 2px 4px rgb(0 0 0 / 0.6),
+    0 0 0 3px #0e0e0d,
+    0 0 0 4px rgb(255 255 255 / 0.09);
+}
+
+.power:focus-visible,
+.key:focus-visible {
+  outline: 2px solid var(--label);
+  outline-offset: 4px;
+}
+
+/* The chin's icons are Lucide SVGs (index.html) drawn in currentColor: each
+   fills its glyph box, which the skins size and place. */
+.power__glyph svg,
+.skip__glyph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The power symbol, 18px. */
+.power__glyph {
+  position: absolute;
+  inset: 9px;
+  color: var(--label-dim);
+}
+
+body[data-state='off'] .power__glyph {
+  color: var(--label);
+}
+
+.led {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--led-off);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 0.6);
+}
+
+/* The lens: a specular glint, set in a small dark housing with a lit rim. */
+.led::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.6) 0 0.8px, transparent 1.6px);
+  box-shadow:
+    0 0 0 2px #0c0c0b,
+    0 0 0 3px rgb(255 255 255 / 0.07);
+}
+
+body[data-state='off'] .led {
+  background: var(--led-standby);
+  box-shadow:
+    0 0 6px 1px rgb(255 154 31 / 0.55),
+    inset 0 -1px 1px rgb(0 0 0 / 0.3);
+  animation: standby 2.4s ease-in-out infinite;
+}
+
+body:not([data-state='off']) .led {
+  background: var(--led-on);
+  box-shadow:
+    0 0 8px 1px rgb(77 255 122 / 0.6),
+    inset 0 -1px 1px rgb(0 0 0 / 0.25);
+}
+
+body[data-state='booting'] .led {
+  animation: activity 180ms steps(2) infinite;
+}
+
+@keyframes standby {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes activity {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.key {
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  background: linear-gradient(#33322d, #262521 60%, #201f1c);
+  /* Raised: a lit top, then the key's side and its shadow on the strip. */
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 0 0 1px #111110,
+    0 3px 0 #0f0f0e,
+    0 4px 4px rgb(0 0 0 / 0.45);
+  color: var(--label);
+  font: inherit;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.key:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 1px 2px rgb(0 0 0 / 0.5),
+    0 0 0 1px #111110,
+    0 1px 0 #0f0f0e;
+}
+
+/* The skip/replay key: an icon only. Skip-forward while the intro can be
+   skipped, a circular arrow once it can be replayed. */
+.key--icon {
+  position: relative;
+  width: 34px;
+  padding: 0;
+}
+/* At least a 36px tap target on touch, without a bigger key. */
+.key--icon::after {
+  content: '';
+  position: absolute;
+  inset: -6px -2px;
+}
+.key--icon:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+.skip__glyph {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  color: var(--label);
+}
+.key--icon[data-role='replay'] .icon-skip,
+.key--icon:not([data-role='replay']) .icon-replay {
+  display: none;
+}
+
+.key[aria-pressed='false'] {
+  color: var(--label-dim);
+  text-decoration: line-through;
+}
+
+/* The Devcon logo, silkscreened on the plastic: the official SVG as a mask in
+   the label colour, with a 1px highlight below and a 1px shadow above. */
+.brand {
+  /* Takes what the controls leave and shrinks the logo before they could meet. */
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.07)) drop-shadow(0 -1px 0 rgb(0 0 0 / 0.7));
+}
+
+.brand__mark {
+  display: block;
+  width: min(111px, 100%); /* 26px tall */
+  aspect-ratio: 162 / 38;
+  background: var(--label);
+  -webkit-mask: url('/brand/devcon-logo.svg') center / contain no-repeat;
+  mask: url('/brand/devcon-logo.svg') center / contain no-repeat;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --bezel: 10px;
+    --tube-r: 20px;
+    /* Just the controls row, plus the home-indicator area. */
+    --chin-h: calc(56px + env(safe-area-inset-bottom));
+  }
+  .controls {
+    gap: 10px;
+  }
+  .brand__mark {
+    width: min(68px, 100%); /* 16px tall */
+  }
+}
+
+/* ---------- Graphite wear ---------- */
+
+/* Used, not dirty: hairline scratches on the bezel and the top, a fingerprint and
+   a little shine where hands go, dust in the recess's corners, the moulding a
+   touch uneven. All static and very low contrast, behind the labels. */
+html[data-skin='graphite'] .monitor {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='white' vector-effect='non-scaling-stroke' stroke-linecap='round'%3E%3Cpath stroke-opacity='.06' stroke-width='.7' vector-effect='non-scaling-stroke' d='M118 21q64-5 134-1'/%3E%3Cpath stroke-opacity='.045' stroke-width='.6' vector-effect='non-scaling-stroke' d='M612 31l92 5M640 27l30 2'/%3E%3Cpath stroke-opacity='.05' stroke-width='.6' vector-effect='non-scaling-stroke' d='M792 16l44-3'/%3E%3Cpath stroke-opacity='.045' stroke-width='.6' vector-effect='non-scaling-stroke' d='M15 296l5 74M19 640l-2 38'/%3E%3Cpath stroke-opacity='.05' stroke-width='.6' vector-effect='non-scaling-stroke' d='M983 418l-4 92'/%3E%3Cpath stroke-opacity='.05' stroke-width='.7' vector-effect='non-scaling-stroke' d='M548 934q52 7 114 3M470 968l64 3'/%3E%3Cpath stroke-opacity='.035' stroke-width='1' vector-effect='non-scaling-stroke' d='M300 975q40-4 80-2'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.011' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .09 0 0 0 -.035'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(140% 90% at 50% 0%, var(--case-hi), var(--case) 45%, var(--case-lo));
+}
+@media (min-width: 641px) and (min-height: 541px) {
+  html[data-skin='graphite'] .monitor::before {
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='white' stroke-linecap='round'%3E%3Cpath stroke-opacity='.07' stroke-width='.6' vector-effect='non-scaling-stroke' d='M180 30l70 42M205 20l40 28'/%3E%3Cpath stroke-opacity='.05' stroke-width='.6' vector-effect='non-scaling-stroke' d='M705 62l110-30'/%3E%3Cpath stroke-opacity='.045' stroke-width='.7' vector-effect='non-scaling-stroke' d='M420 80q60-14 118-12'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat,
+      repeating-linear-gradient(90deg, rgb(0 0 0 / 0.6) 0 3px, rgb(255 255 255 / 0.03) 3px 4px, transparent 4px 9px)
+        center 55% / 44% 42% no-repeat,
+      linear-gradient(180deg, #2b2a26, #3b3a35 70%, #45433d);
+  }
+}
+html[data-skin='graphite'] .bezel::before {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.2' cy='0.2' r='.75'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cmask id='m'%3E%3Crect width='72' height='72' fill='url(%23g)'/%3E%3C/mask%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .74 0 0 0 0 .66 0 0 0 9 -5.6'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='72' height='72' filter='url(%23n)' mask='url(%23m)' opacity='.1'/%3E%3C/svg%3E") left top / 72px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.8' cy='0.2' r='.75'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cmask id='m'%3E%3Crect width='72' height='72' fill='url(%23g)'/%3E%3C/mask%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .74 0 0 0 0 .66 0 0 0 9 -5.6'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='72' height='72' filter='url(%23n)' mask='url(%23m)' opacity='.1'/%3E%3C/svg%3E") right top / 72px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.2' cy='0.8' r='.75'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cmask id='m'%3E%3Crect width='72' height='72' fill='url(%23g)'/%3E%3C/mask%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .74 0 0 0 0 .66 0 0 0 9 -5.6'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='72' height='72' filter='url(%23n)' mask='url(%23m)' opacity='.1'/%3E%3C/svg%3E") left bottom / 72px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0.8' cy='0.8' r='.75'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3Cmask id='m'%3E%3Crect width='72' height='72' fill='url(%23g)'/%3E%3C/mask%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='1' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .74 0 0 0 0 .66 0 0 0 9 -5.6'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='72' height='72' filter='url(%23n)' mask='url(%23m)' opacity='.1'/%3E%3C/svg%3E") right bottom / 72px no-repeat,
+    linear-gradient(180deg, #0f0f0e, #1b1a18 35%, #2d2c28);
+}
+/* The strip polished a little where fingers rest, a print just past its end. */
+html[data-skin='graphite'] .controls {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80px 14px at 40px 35%, rgb(255 255 255 / 0.03), transparent),
+    linear-gradient(180deg, #191816, #201f1c);
+}
+html[data-skin='graphite'] .controls::after {
+  content: '';
+  position: absolute;
+  left: calc(100% + 6px);
+  top: -9px;
+  width: 24px;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 38'%3E%3Cfilter id='s'%3E%3CfeGaussianBlur stdDeviation='.45'/%3E%3C/filter%3E%3Cg filter='url(%23s)' fill='none' stroke='white' stroke-opacity='.045' stroke-width='.9' stroke-dasharray='4 2.2 7 1.5'%3E%3Cellipse cx='15' cy='19' rx='3' ry='4.5'/%3E%3Cellipse cx='15' cy='19' rx='5.5' ry='7.5'/%3E%3Cellipse cx='15' cy='19.5' rx='8' ry='10.5'/%3E%3Cellipse cx='15' cy='20' rx='10.5' ry='13.5'/%3E%3Cellipse cx='15' cy='20.5' rx='13' ry='16.5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  transform: rotate(-16deg);
+  pointer-events: none;
+}
+/* Key and button tops a shade glossier in the middle. */
+html[data-skin='graphite'] .key {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 40%, rgb(255 255 255 / 0.035), transparent),
+    linear-gradient(#33322d, #262521 60%, #201f1c);
+}
+html[data-skin='graphite'] .power {
+  background:
+    radial-gradient(circle at 46% 38%, rgb(255 255 255 / 0.04), transparent 45%),
+    radial-gradient(circle at 50% 35%, #3a3934, #1c1b19 70%);
+}
+
+/* ---------- Skin 4: pastel ----------
+   The graphite CRT's shape in the sticker wall's sky, inverted onto the case:
+   a diagonal gradient (cyan, lavender, pink, a touch of peach) under the same
+   overlay grain, with fine hairline scratches (dark and light) and a darker
+   lavender recess round the tube. Light keys with navy labels. Made for the
+   sticker wall at night (background 6), but works on any. */
+html[data-skin='pastel'] {
+  --case-hi: #c3e4f1;
+  --case: #d6cdf0;
+  --case-lo: #f0c6e4;
+  --label: #2f2a57;
+  --label-dim: #5b5589;
+}
+html[data-skin='pastel'] .monitor {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cg fill='none' stroke-linecap='round' vector-effect='non-scaling-stroke'%3E%3Cg stroke='%23302a5a'%3E%3Cpath stroke-opacity='.16' stroke-width='.7' vector-effect='non-scaling-stroke' d='M118 21q64-5 134-1M548 934q52 7 114 3'/%3E%3Cpath stroke-opacity='.12' stroke-width='.6' vector-effect='non-scaling-stroke' d='M612 31l92 5M15 296l5 74M983 418l-4 92M470 968l64 3'/%3E%3Cpath stroke-opacity='.1' stroke-width='.6' vector-effect='non-scaling-stroke' d='M792 16l44-3M19 640l-2 38M880 950l40-6'/%3E%3C/g%3E%3Cg stroke='white'%3E%3Cpath stroke-opacity='.5' stroke-width='.7' vector-effect='non-scaling-stroke' d='M122 24q60-4 128 0M640 27l30 2M300 975q40-4 80-2'/%3E%3Cpath stroke-opacity='.4' stroke-width='.6' vector-effect='non-scaling-stroke' d='M980 520l-3 40M60 960l50 4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='2.2 0 0 0 -.6 0 2.2 0 0 -.6 0 0 2.2 0 -.6 0 0 0 0 .55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    radial-gradient(70% 60% at 85% 100%, rgb(255 205 170 / 0.55), transparent 70%),
+    linear-gradient(150deg, #a9deec, #c6d6f0 28%, #cecdee 45%, #e6c9ee 62%, #f3caeb 80%, #f6cfe2);
+  background-blend-mode: normal, overlay, normal, normal;
+  outline-color: rgb(60 50 110 / 0.28);
+}
+@media (min-width: 641px) and (min-height: 541px) {
+  html[data-skin='pastel'] .monitor {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.7),
+      inset 0 3px 5px -3px rgb(255 255 255 / 0.4),
+      inset 0 -3px 0 rgb(70 50 120 / 0.28),
+      inset 12px 0 16px -12px rgb(70 60 140 / 0.3),
+      inset -12px 0 16px -12px rgb(120 60 130 / 0.32),
+      0 0 0 1px rgb(255 255 255 / 0.12),
+      0 34px 80px rgb(0 0 0 / 0.6),
+      0 12px 24px rgb(0 0 0 / 0.4);
+  }
+  html[data-skin='pastel'] .monitor::before {
+    box-shadow: 0 -1px 0 rgb(255 255 255 / 0.5);
+    background:
+      repeating-linear-gradient(90deg, rgb(50 40 100 / 0.35) 0 3px, rgb(255 255 255 / 0.25) 3px 4px, transparent 4px 9px)
+        center 55% / 44% 42% no-repeat,
+      linear-gradient(180deg, #9fcbe0, #b8d6ef 70%, #c9dcf3);
+  }
+  html[data-skin='pastel'] .chin::before,
+  html[data-skin='pastel'] .chin::after {
+    background:
+      linear-gradient(45deg, transparent 42%, rgb(40 30 80 / 0.6) 42% 58%, transparent 58%),
+      radial-gradient(circle at 40% 35%, #ffffff, #d9d4ee 55%, #a9a2cc);
+    box-shadow:
+      0 0 0 1px rgb(60 50 110 / 0.3),
+      0 1px 0 1px rgb(255 255 255 / 0.5);
+  }
+}
+html[data-skin='pastel'] .bezel::before {
+  background: linear-gradient(180deg, #3a2f78, #5b4ca3 35%, #9a8ad0);
+  box-shadow:
+    inset 0 0 0 calc(var(--bezel) * 0.12) rgb(255 255 255 / 0.05),
+    inset 0 calc(var(--bezel) * 0.2) calc(var(--bezel) * 0.24) rgb(10 5 30 / 0.7),
+    inset 0 -1px 0 rgb(255 255 255 / 0.25),
+    0 1px 0 rgb(255 255 255 / 0.55),
+    0 -1px 1px rgb(60 40 110 / 0.45);
+}
+html[data-skin='pastel'] .controls {
+  background: linear-gradient(180deg, rgb(70 60 130 / 0.18), rgb(70 60 130 / 0.08));
+  box-shadow:
+    inset 0 1px 2px rgb(50 40 100 / 0.3),
+    0 1px 0 rgb(255 255 255 / 0.55);
+}
+html[data-skin='pastel'] .key {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 40%, rgb(255 255 255 / 0.6), transparent),
+    linear-gradient(#fbfaff, #e6e2f6 60%, #d4cfea);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 0 0 1px #a49dc8,
+    0 3px 0 #ada6d0,
+    0 4px 4px rgb(50 40 100 / 0.3);
+}
+html[data-skin='pastel'] .power {
+  background:
+    radial-gradient(circle at 46% 38%, rgb(255 255 255 / 0.8), transparent 45%),
+    radial-gradient(circle at 50% 35%, #fbfaff, #cfc9e8 70%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -2px 3px rgb(80 60 140 / 0.3),
+    0 2px 3px rgb(50 40 100 / 0.35),
+    0 0 0 3px #b4add6,
+    0 0 0 4px rgb(255 255 255 / 0.6);
+}
+
+/* ---------- Skin 3: white ----------
+   The graphite CRT's shape in white plastic: a soft white-to-light-grey
+   gradient with a faint grain and a few grey hairline scratches, a light grey
+   recess round the tube, white keys and power button with dark grey labels.
+   CSS only. Made for the studio (background 7), but works on any. */
+html[data-skin='white'] {
+  --case-hi: #ffffff;
+  --case: #f0efed;
+  --case-lo: #dcdad6;
+  --label: #33373d;
+  --label-dim: #6a6f77;
+}
+html[data-skin='white'] .monitor {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23656a72' stroke-linecap='round'%3E%3Cpath stroke-opacity='.14' stroke-width='.7' vector-effect='non-scaling-stroke' d='M118 21q64-5 134-1M548 934q52 7 114 3'/%3E%3Cpath stroke-opacity='.1' stroke-width='.6' vector-effect='non-scaling-stroke' d='M612 31l92 5M15 296l5 74M983 418l-4 92M470 968l64 3'/%3E%3Cpath stroke-opacity='.08' stroke-width='.6' vector-effect='non-scaling-stroke' d='M792 16l44-3M19 640l-2 38M880 950l40-6'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .32 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(140% 90% at 50% 0%, var(--case-hi), var(--case) 45%, var(--case-lo));
+  outline-color: rgb(90 95 105 / 0.22);
+}
+@media (min-width: 641px) and (min-height: 541px) {
+  html[data-skin='white'] .monitor {
+    box-shadow:
+      inset 0 1px 0 #fff,
+      inset 0 3px 5px -3px rgb(255 255 255 / 0.8),
+      inset 0 -3px 0 rgb(110 115 125 / 0.22),
+      inset 12px 0 16px -12px rgb(110 115 125 / 0.22),
+      inset -12px 0 16px -12px rgb(110 115 125 / 0.26),
+      0 0 0 1px rgb(150 155 165 / 0.35),
+      0 30px 60px rgb(40 44 52 / 0.3),
+      0 10px 20px rgb(40 44 52 / 0.22);
+  }
+  html[data-skin='white'] .monitor::before {
+    box-shadow: 0 -1px 0 rgb(255 255 255 / 0.9);
+    background:
+      repeating-linear-gradient(90deg, rgb(70 75 85 / 0.3) 0 3px, rgb(255 255 255 / 0.4) 3px 4px, transparent 4px 9px)
+        center 55% / 44% 42% no-repeat,
+      linear-gradient(180deg, #d7d6d3, #e7e6e3 70%, #f0efec);
+  }
+  html[data-skin='white'] .chin::before,
+  html[data-skin='white'] .chin::after {
+    background:
+      linear-gradient(45deg, transparent 42%, rgb(60 64 72 / 0.55) 42% 58%, transparent 58%),
+      radial-gradient(circle at 40% 35%, #ffffff, #e2e2e0 55%, #b9bab8);
+    box-shadow:
+      0 0 0 1px rgb(110 115 125 / 0.35),
+      0 1px 0 1px rgb(255 255 255 / 0.7);
+  }
+}
+html[data-skin='white'] .bezel::before {
+  background: linear-gradient(180deg, #c3c6cb, #d8dadd 40%, #e9eaec);
+  box-shadow:
+    inset 0 0 0 calc(var(--bezel) * 0.12) rgb(255 255 255 / 0.3),
+    inset 0 calc(var(--bezel) * 0.2) calc(var(--bezel) * 0.24) rgb(80 86 96 / 0.4),
+    inset 0 -1px 0 rgb(255 255 255 / 0.8),
+    0 1px 0 rgb(255 255 255 / 0.9),
+    0 -1px 1px rgb(120 126 136 / 0.4);
+}
+html[data-skin='white'] .controls {
+  background: linear-gradient(180deg, rgb(110 115 125 / 0.14), rgb(110 115 125 / 0.06));
+  box-shadow:
+    inset 0 1px 2px rgb(90 96 106 / 0.3),
+    0 1px 0 rgb(255 255 255 / 0.8);
+}
+html[data-skin='white'] .key {
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 40%, rgb(255 255 255 / 0.7), transparent),
+    linear-gradient(#ffffff, #f0f0ee 60%, #e2e2df);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 0 0 1px #b4b7bc,
+    0 3px 0 #c4c6c9,
+    0 4px 4px rgb(40 44 52 / 0.22);
+}
+html[data-skin='white'] .power {
+  background:
+    radial-gradient(circle at 46% 38%, rgb(255 255 255 / 0.9), transparent 45%),
+    radial-gradient(circle at 50% 35%, #ffffff, #dcdcda 70%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -2px 3px rgb(90 96 106 / 0.25),
+    0 2px 3px rgb(40 44 52 / 0.3),
+    0 0 0 3px #c9cbce,
+    0 0 0 4px rgb(255 255 255 / 0.8);
+}
+
+/* The easter eggs' toast, naming the scene or the skin: small and dim. */
+.bg-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 5px;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgb(0 0 0 / 0.35);
+  color: rgb(255 255 255 / 0.5);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease-out;
+}
+.bg-toast.is-on {
+  opacity: 1;
+}
+
+/* The shortcut sheet (?): a panel in the terminal's type and phosphor. */
+.keys {
+  width: min(560px, 100% - 32px);
+  max-height: calc(100% - 32px);
+  padding: 18px 22px 16px;
+  border: 1px solid color-mix(in srgb, var(--phosphor) 55%, transparent);
+  border-radius: 4px;
+  background: rgb(4 7 5 / 0.95);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--phosphor) 22%, transparent);
+  font: 400 20px/1.2 'VT323', monospace;
+  color: var(--phosphor);
+}
+.keys::backdrop {
+  background: rgb(0 0 0 / 0.55);
+}
+.keys h2 {
+  margin: 0 0 12px;
+  font: inherit;
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.keys section {
+  margin-bottom: 12px;
+}
+.keys h3 {
+  margin: 0 0 4px;
+  font: inherit;
+  opacity: 0.6;
+}
+.keys dl {
+  display: grid;
+  /* One key column width for every section, so the descriptions line up. */
+  grid-template-columns: 7.5em 1fr;
+  gap: 2px 18px;
+  margin: 0;
+}
+.keys dd {
+  margin: 0;
+}
+.keys kbd {
+  display: inline-block;
+  min-width: 1.4em;
+  padding: 0 4px;
+  border: 1px solid color-mix(in srgb, var(--phosphor) 60%, transparent);
+  font: inherit;
+  text-align: center;
+}
+.keys form {
+  margin: 4px 0 0;
+  text-align: right;
+}
+.keys button {
+  padding: 2px 10px;
+  border: 0;
+  border-radius: 0;
+  background: var(--phosphor);
+  font: inherit;
+  color: #000;
+  cursor: pointer;
+}
+.keys button kbd {
+  border-color: rgb(0 0 0 / 0.5);
+}
+.keys :focus-visible {
+  outline: 2px solid var(--phosphor);
+  outline-offset: 2px;
+}
+
+/* ---------- Input + a11y ---------- */
+
+.kbd {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  /* 16px stops iOS zooming on focus. */
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Keyboard focus in the waitlist form (or on its confirmation): the form shows
+   as a small panel on the screen, just above the chin, in the terminal's type.
+   The rest of the mirror stays hidden. */
+main.show-form {
+  left: 50%;
+  bottom: calc(100% + 12px);
+  width: min(420px, 100% - var(--bezel) * 2 - 24px);
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--phosphor) 55%, transparent);
+  border-radius: 4px;
+  background: rgb(4 7 5 / 0.95);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--phosphor) 18%, transparent);
+  font: 400 20px/1.2 'VT323', monospace;
+  color: var(--phosphor);
+}
+main.show-form > :not(#sr-form, #sr-status) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+main.show-form label {
+  display: block;
+  margin-bottom: 6px;
+}
+main.show-form input {
+  width: 100%;
+  padding: 3px 6px;
+  border: 1px solid color-mix(in srgb, var(--phosphor) 60%, transparent);
+  border-radius: 0;
+  background: #000;
+  font: inherit;
+  color: inherit;
+  caret-color: currentColor;
+  user-select: text;
+  -webkit-user-select: text;
+}
+main.show-form p {
+  margin: 8px 0;
+}
+main.show-form #sr-status {
+  margin: 0;
+}
+main.show-form a {
+  color: inherit;
+}
+main.show-form button {
+  padding: 2px 10px;
+  border: 0;
+  border-radius: 0;
+  background: var(--phosphor);
+  font: inherit;
+  color: #000;
+  cursor: pointer;
+}
+main.show-form :focus-visible {
+  outline: 2px solid var(--phosphor);
+  outline-offset: 2px;
+}
+
+@keyframes glow-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 0.93;
+  }
+  58% {
+    opacity: 0.97;
+  }
+  71% {
+    opacity: 0.9;
+  }
+}
+
+/* When the monitor fills the screen, any margin takes the backdrop's base colour
+   (and there's no room for the scenes or the background toast). */
+@media (max-width: 640px), (max-height: 540px) {
+  .warm,
+  .bg-canvas,
+  .sticker--deva,
+  .bg-toast:not(.is-always) {
+    display: none;
+  }
+  html,
+  body {
+    background: #0a0a0a;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .led,
+  body::after {
+    animation: none !important;
+  }
+  .warm {
+    transition: none !important;
+  }
+  :root {
+    transition: none !important;
+  }
+  .smoke {
+    display: none;
+  }
+}
+
+/* ---------- Skin 2: retro TV ----------
+   A worn 70s TV floating on the backdrop like the graphite monitor (filling
+   the screen on phones), with the same screen size: a big rounded screen in a
+   thick bezel on the left, a control panel on the right: a dark window, a black
+   power knob in a metal ring with the LED beside it, black keys in recessed
+   frames, the Devcon logo printed on the plastic. Drawn in CSS (no image
+   assets): yellowed, stained and scratched plastic, grime in the corners. */
+
+html[data-skin='retro'] {
+  /* Light labels on the black keys. */
+  --label: #ebe3cf;
+  --label-dim: #c2b8a2;
+  --focus: #2b2318;
+  /* Warm, yellowed cream: lighter where the light falls, browner where dirt sits. */
+  --plastic-hi: #c9b48a;
+  --plastic: #a3855a;
+  --plastic-lo: #7d6242;
+  /* Dirt: small smudges, and sparse dark specks. */
+  --specks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .16 0 0 0 0 .1 0 0 0 0 .04 9 0 0 0 -6.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3C/svg%3E");
+  --stains: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1100'%3E%3Cfilter id='s' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .02' numOctaves='5' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .07 .9 0 0 0 -.47'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .22 0 0 0 0 .15 0 0 0 0 .05 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* The gap round the TV, panel width, bezel thickness and the case's margin
+     round the bezel. */
+  --gap: 24px;
+  --panel-w: clamp(150px, 17vw, 250px);
+  --ring: clamp(18px, 4.4vmin, 54px);
+  --pad: clamp(14px, 3vmin, 40px);
+  /* The graphite monitor's screen size, or smaller if the panel wouldn't fit beside it. */
+  --tube-w: min(
+    var(--tube-max),
+    100vw - var(--gap) * 2 - var(--bezel) * 2,
+    (100dvh - var(--gap) * 2 - var(--top-h, 0px) - var(--chin-h) - var(--bezel) * 1.6) * 4 / 3,
+    100vw - var(--gap) * 2 - var(--panel-w) - var(--ring) * 2 - var(--pad) * 2,
+    (100dvh - var(--gap) * 2 - var(--ring) * 2 - var(--pad) * 2) * 4 / 3
+  );
+  --tube-r: calc(var(--tube-w) * 0.075);
+}
+
+/* The graphite case's top surface and chin screws aren't part of this TV. */
+html[data-skin='retro'] .monitor::before,
+html[data-skin='retro'] .chin::after {
+  display: none;
+}
+
+/* The case: sized round the screen and the panel, centred on the backdrop. */
+html[data-skin='retro'] .monitor {
+  inset: var(--gap);
+  width: calc(var(--tube-w) + var(--ring) * 2 + var(--pad) * 2 + var(--panel-w));
+  height: calc(var(--tube-w) * 3 / 4 + var(--ring) * 2 + var(--pad) * 2);
+  margin: auto;
+  flex-direction: row;
+  border-radius: 26px;
+  outline: none;
+  box-shadow:
+    /* the moulded edge, worn: lit on top, grimy where it turns away */
+    inset 0 2px 0 rgb(255 240 200 / 0.4),
+    inset 0 -6px 10px rgb(70 45 15 / 0.45),
+    inset 14px 0 20px -12px rgb(70 45 15 / 0.45),
+    inset -14px 0 20px -12px rgb(70 45 15 / 0.5),
+    0 0 0 1px rgb(40 28 10 / 0.65),
+    /* floating: a soft dark shadow below */
+    0 34px 80px rgb(0 0 0 / 0.7),
+    0 12px 24px rgb(0 0 0 / 0.5);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700'%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cg stroke='%23402a0e'%3E%3Cpath d='M80 610q60-30 130-22' stroke-opacity='.22' stroke-width='1.2'/%3E%3Cpath d='M640 90q40 12 70 40' stroke-opacity='.18'/%3E%3Cpath d='M470 660l38-6' stroke-opacity='.25'/%3E%3Cpath d='M820 420q-10 40 4 70' stroke-opacity='.14' stroke-width='2'/%3E%3Cpath d='M150 60l22 9' stroke-opacity='.22'/%3E%3Cpath d='M300 520q30 4 52-6' stroke-opacity='.12' stroke-width='3'/%3E%3Cpath d='M720 600l60-24' stroke-opacity='.16'/%3E%3Cpath d='M40 300q14 30 8 64' stroke-opacity='.15' stroke-width='1.5'/%3E%3Cpath d='M560 330l3 2M590 210l2 3M240 420l3 1M860 150l2 2' stroke-opacity='.35' stroke-width='2.5'/%3E%3C/g%3E%3Cg stroke='%23fff3d6'%3E%3Cpath d='M82 612q60-30 130-22' stroke-opacity='.18'/%3E%3Cpath d='M380 110q50-8 90 4' stroke-opacity='.14'/%3E%3Cpath d='M690 470l40 16' stroke-opacity='.14'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 0 0 / 900px 700px,
+    var(--specks),
+    var(--stains) 0 0 / 1600px 1100px no-repeat,
+    var(--grain),
+    /* grime gathered along the edges and the bottom, darkest in the corners */
+    linear-gradient(transparent 70%, rgb(70 45 18 / 0.28)),
+    radial-gradient(130% 120% at 40% 30%, transparent 45%, rgb(70 45 18 / 0.42)),
+    radial-gradient(120% 100% at 25% 15%, var(--plastic-hi), var(--plastic) 50%, var(--plastic-lo));
+}
+
+/* The bezel: a thick rounded frame round the tube, dustier and lighter than
+   the case, with dirt in its inner corners. */
+html[data-skin='retro'] .bezel {
+  flex: none;
+  width: calc(var(--tube-w) + var(--ring) * 2);
+  height: calc(var(--tube-w) * 3 / 4 + var(--ring) * 2);
+  margin: auto;
+  padding: var(--ring);
+}
+html[data-skin='retro'] .bezel::before {
+  inset: 0;
+  border-radius: calc(var(--tube-r) + var(--ring) * 0.9);
+  background:
+    var(--specks) 40px 70px,
+    var(--stains) -300px -200px / 1600px 1100px no-repeat,
+    var(--grain),
+    radial-gradient(120% 120% at 30% 15%, rgb(255 246 222 / 0.35), transparent 55%),
+    linear-gradient(170deg, #d6c39b, #b49870 50%, #8c7150);
+  box-shadow:
+    /* a raised, rounded lip: lit along its top, rolling into shade below */
+    inset 0 calc(var(--ring) * 0.12) calc(var(--ring) * 0.1) calc(var(--ring) * -0.04) rgb(255 248 228 / 0.6),
+    inset 0 calc(var(--ring) * -0.14) calc(var(--ring) * 0.16) calc(var(--ring) * -0.04) rgb(70 45 15 / 0.42),
+    inset calc(var(--ring) * 0.1) 0 calc(var(--ring) * 0.14) calc(var(--ring) * -0.06) rgb(255 248 228 / 0.25),
+    inset calc(var(--ring) * -0.1) 0 calc(var(--ring) * 0.14) calc(var(--ring) * -0.06) rgb(70 45 15 / 0.3),
+    /* standing off the case: a contact shadow round it, a lit edge on top */
+    0 calc(var(--ring) * 0.08) calc(var(--ring) * 0.12) rgb(40 25 8 / 0.5),
+    0 -1px 0 rgb(255 248 228 / 0.45),
+    /* the seam with the case, and a shadow cast on it */
+    0 0 0 1px rgb(50 34 12 / 0.55),
+    0 calc(var(--ring) * 0.15) calc(var(--ring) * 0.5) rgb(50 34 12 / 0.4);
+}
+/* The screen sits recessed in the bezel: a dark rim, then a sloping brown
+   bevel rising to the lip, shaded on top and lit below like a channel. */
+html[data-skin='retro'] .tube {
+  box-shadow:
+    0 0 0 2px #0b0906,
+    0 0 0 calc(var(--ring) * 0.12) #2e2112,
+    0 0 0 calc(var(--ring) * 0.22) #57422a,
+    0 0 0 calc(var(--ring) * 0.3) #846b4a,
+    0 calc(var(--ring) * 0.06) 0 calc(var(--ring) * 0.3) rgb(255 244 214 / 0.3),
+    0 calc(var(--ring) * -0.08) calc(var(--ring) * 0.1) calc(var(--ring) * 0.3) rgb(30 18 6 / 0.55),
+    0 0 calc(var(--ring) * 0.3) calc(var(--ring) * 0.36) rgb(60 38 14 / 0.3);
+}
+/* A faint reflection of the room on the glass. */
+html[data-skin='retro'] .glass {
+  background:
+    linear-gradient(100deg, transparent 2%, rgb(255 255 255 / 0.045) 4% 11%, transparent 15%),
+    radial-gradient(130% 85% at 24% 6%, rgb(255 255 255 / 0.07), transparent 38%),
+    radial-gradient(90% 60% at 80% 105%, rgb(255 255 255 / 0.03), transparent 60%);
+}
+
+/* The control panel, behind a groove. */
+html[data-skin='retro'] .chin {
+  position: static;
+  width: var(--panel-w);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 3vh, 26px);
+  padding: var(--pad) clamp(14px, 1.6vw, 24px);
+  background: linear-gradient(90deg, rgb(60 40 12 / 0.12), transparent 30%);
+  box-shadow:
+    inset 2px 0 0 rgb(50 34 12 / 0.45),
+    inset 3px 0 0 rgb(255 240 200 / 0.3);
+}
+
+/* The dark window at the top, in a raised tan frame. */
+html[data-skin='retro'] .chin::before {
+  content: '';
+  position: static;
+  display: block;
+  flex: none;
+  width: min(66%, max(0px, (100dvh - var(--gap) * 2 - var(--panel-w) * 2.2) * 0.8));
+  height: auto;
+  margin-top: 6px;
+  aspect-ratio: 0.86;
+  border-radius: 3px;
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / 0.08), transparent 35%),
+    radial-gradient(90% 90% at 50% 40%, #1c1916, #090807);
+  box-shadow:
+    inset 0 3px 8px rgb(0 0 0 / 0.85),
+    0 0 0 2px #2a2016,
+    0 0 0 calc(var(--panel-w) * 0.045) #c7ad84,
+    0 2px 0 calc(var(--panel-w) * 0.045) rgb(90 60 25 / 0.45),
+    0 -1px 0 calc(var(--panel-w) * 0.045) rgb(255 246 222 / 0.45),
+    0 0 0 calc(var(--panel-w) * 0.045 + 1px) rgb(50 34 12 / 0.5);
+}
+
+/* Under a groove: the power knob and LED, then the keys stacked. */
+html[data-skin='retro'] .controls {
+  justify-self: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-items: center;
+  gap: 26px 18px;
+  width: 100%;
+  padding: clamp(14px, 3vh, 26px) 0 0;
+  border-top: 1px solid rgb(50 34 12 / 0.45);
+  border-radius: 0;
+  background: none;
+  box-shadow: inset 0 1px 0 rgb(255 240 200 / 0.3);
+}
+html[data-skin='retro'] #skip,
+html[data-skin='retro'] #sound {
+  grid-column: 1 / -1;
+}
+
+/* Power: a black knob in a metal ring, sunk in the plastic. */
+/* Power: a big glossy black knob in a chrome ring, sunk in the plastic. */
+html[data-skin='retro'] .power {
+  width: 50px;
+  height: 50px;
+  background:
+    radial-gradient(50% 30% at 45% 22%, rgb(255 255 255 / 0.22), transparent 70%),
+    radial-gradient(circle at 45% 35%, #3e3a37, #191715 60%, #080707);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    inset 0 -4px 6px rgb(0 0 0 / 0.65),
+    0 3px 4px rgb(0 0 0 / 0.55),
+    0 0 0 3px #4d473f,
+    0 0 0 5px #b6ae9c,
+    0 0 0 7px #6c6556,
+    0 0 0 8px #1e1810,
+    0 1px 0 9px rgb(255 246 222 / 0.35),
+    0 0 4px 10px rgb(60 38 14 / 0.4);
+}
+html[data-skin='retro'] .power:active {
+  box-shadow:
+    inset 0 3px 7px rgb(0 0 0 / 0.75),
+    0 0 0 3px #4d473f,
+    0 0 0 5px #b6ae9c,
+    0 0 0 7px #6c6556,
+    0 0 0 8px #1e1810,
+    0 0 4px 10px rgb(60 38 14 / 0.4);
+}
+html[data-skin='retro'] .power__glyph {
+  inset: 15px;
+}
+/* The LED: a glowing green lens. */
+html[data-skin='retro'] .led {
+  width: 10px;
+  height: 10px;
+}
+html[data-skin='retro'] body:not([data-state='off']) .led {
+  box-shadow:
+    0 0 12px 3px rgb(77 255 122 / 0.55),
+    inset 0 -2px 2px rgb(0 0 0 / 0.3);
+}
+
+/* Black keys in recessed tan frames. */
+html[data-skin='retro'] .key {
+  width: min(112px, 100% - 16px);
+  height: 54px;
+  padding: 0;
+  border-radius: 6px;
+  background:
+    linear-gradient(rgb(255 255 255 / 0.1), transparent 30%),
+    var(--grain),
+    linear-gradient(#36322e, #23201d 55%, #141210);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.16),
+    inset 0 -3px 4px rgb(0 0 0 / 0.55),
+    0 4px 0 #090807,
+    0 0 0 2px #0e0c0a,
+    0 0 0 7px #bea47b,
+    0 -1px 0 7px rgb(255 246 222 / 0.45),
+    0 2px 0 7px rgb(80 52 20 / 0.5),
+    0 0 0 8px rgb(50 34 12 / 0.55);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+html[data-skin='retro'] .key:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset 0 2px 5px rgb(0 0 0 / 0.65),
+    0 1px 0 #090807,
+    0 0 0 2px #0e0c0a,
+    0 0 0 7px #bea47b,
+    0 0 0 8px rgb(50 34 12 / 0.55);
+}
+html[data-skin='retro'] .key--icon::after {
+  inset: 0;
+}
+html[data-skin='retro'] .skip__glyph {
+  scale: 1.5;
+}
+html[data-skin='retro'] .power:focus-visible,
+html[data-skin='retro'] .key:focus-visible {
+  outline-color: var(--focus);
+  outline-offset: 12px;
+}
+
+/* The Devcon logo, printed on the plastic in dark ink, a little worn. */
+html[data-skin='retro'] .brand {
+  margin-top: auto;
+  align-self: flex-end;
+  filter: drop-shadow(0 1px 0 rgb(255 246 222 / 0.35));
+  opacity: 0.92;
+}
+html[data-skin='retro'] .brand__mark {
+  width: calc(var(--panel-w) * 0.78);
+  background: #1f1810;
+}
+
+/* Keyboard focus in the form: the panel sits at the bottom of the screen. */
+html[data-skin='retro'] main.show-form {
+  position: fixed;
+  left: calc((100vw - var(--panel-w)) / 2);
+  bottom: calc((100dvh - var(--tube-w) * 3 / 4) / 2 + 18px);
+  width: min(420px, var(--tube-w) - 48px);
+}
+
+/* Portrait (tablets and phones): the screen on top, the panel as a strip below it. */
+@media (max-width: 640px), (orientation: portrait) {
+  html[data-skin='retro'] {
+    /* Bezel and margin together as thick as graphite's bezel: the same screen width. */
+    --ring: calc(var(--bezel) * 0.65);
+    --pad: calc(var(--bezel) * 0.35);
+    --strip-h: 74px;
+    --tube-w: min(
+      var(--tube-max),
+      100vw - var(--gap) * 2 - var(--bezel) * 2,
+      100vw - var(--gap) * 2 - var(--ring) * 2 - var(--pad) * 2,
+      (100dvh - var(--gap) * 2 - var(--strip-h) - var(--ring) * 2 - var(--pad) * 2) * 4 / 3
+    );
+  }
+  html[data-skin='retro'] .monitor {
+    width: calc(var(--tube-w) + var(--ring) * 2 + var(--pad) * 2);
+    height: calc(var(--tube-w) * 3 / 4 + var(--ring) * 2 + var(--pad) * 2 + var(--strip-h));
+    flex-direction: column;
+  }
+  html[data-skin='retro'] .chin {
+    /* The form panel's anchor again: it sits above the strip. */
+    position: relative;
+    width: auto;
+    height: var(--strip-h);
+    flex-direction: row;
+    gap: 18px;
+    padding: 14px 18px calc(14px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgb(60 40 12 / 0.12), transparent 40%);
+    box-shadow:
+      inset 0 2px 0 rgb(50 34 12 / 0.45),
+      inset 0 3px 0 rgb(255 240 200 / 0.3);
+  }
+  html[data-skin='retro'] .chin::before {
+    width: 40px;
+    aspect-ratio: 1.2;
+    box-shadow:
+      inset 0 2px 4px rgb(0 0 0 / 0.8),
+      0 0 0 3px #b19e74,
+      0 0 0 4px rgb(50 34 12 / 0.55);
+  }
+  html[data-skin='retro'] .controls {
+    display: flex;
+    width: auto;
+    gap: 20px;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+  html[data-skin='retro'] .power {
+    width: 38px;
+    height: 38px;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      inset 0 -3px 5px rgb(0 0 0 / 0.6),
+      0 0 0 2px #6f6553,
+      0 0 0 3px #a2967c,
+      0 0 0 4px #2a2218,
+      0 0 0 7px #ab9670,
+      0 0 0 8px rgb(50 34 12 / 0.45);
+  }
+  html[data-skin='retro'] .power__glyph {
+    inset: 11px;
+  }
+  html[data-skin='retro'] .key {
+    width: 54px;
+    height: 40px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      inset 0 -2px 3px rgb(0 0 0 / 0.5),
+      0 2px 0 #0c0b0a,
+      0 0 0 2px #15130f,
+      0 0 0 5px #a38e67,
+      0 0 0 6px rgb(50 34 12 / 0.5);
+  }
+  html[data-skin='retro'] .power:focus-visible,
+  html[data-skin='retro'] .key:focus-visible {
+    outline-offset: 9px;
+  }
+  html[data-skin='retro'] .brand {
+    margin: 0 0 0 auto;
+    align-self: center;
+    min-width: 0;
+  }
+  html[data-skin='retro'] .brand__mark {
+    width: 70px;
+  }
+  html[data-skin='retro'] main.show-form {
+    position: absolute;
+    left: 50%;
+    /* Inside the screen: above the strip, the case's margin and the bezel. */
+    bottom: calc(100% + var(--pad) + var(--ring) + 12px);
+    width: min(420px, var(--tube-w) - 24px);
+  }
+}
+
+/* Phones: the screen takes all the height there is, like the graphite skin. */
+@media (max-width: 640px) {
+  html[data-skin='retro'] {
+    /* Graphite's 10px bezel, all of it the cream frame: the same screen width. */
+    --ring: 10px;
+    --pad: 0px;
+    --tube-r: 22px;
+  }
+  html[data-skin='retro'] .monitor {
+    inset: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  html[data-skin='retro'] .chin {
+    height: auto;
+  }
+  html[data-skin='retro'] main.show-form {
+    bottom: calc(100% + var(--ring) + 12px);
+    width: min(420px, 100vw - 2 * (var(--pad) + var(--ring)) - 16px);
+  }
+  html[data-skin='retro'] .bezel {
+    flex: 1;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    margin: var(--pad) var(--pad) 0;
+  }
+}
+
+/* ---------- Retro on landscape screens of at least 900×600: the photo ----------
+   public/skins/retro/frame.jpg (1609×928), with its controls redrawn at 78%
+   (round 1488, 523, over clean plastic from the panel) and cut out where the
+   glass is (keeping its inner edge and reflection), over the live screen.
+   Everything is placed by the frame's own pixels, scaled with its width (--fw):
+     glass   60, 59 · 1241×805 · corners ≈ 120
+     power   1420, 375 · 105 across        LED  1538, 421 · 15 across
+     skip    1427, 499 · 125×76            Sound  1424, 592 · 128×79
+   Until the photo has loaded (html[data-frame]), the CSS case above shows. */
+.frame {
+  display: none;
+}
+@media (min-width: 900px) and (min-height: 600px) and (orientation: landscape) {
+  html[data-skin='retro'][data-frame] {
+    /* The frame as large as fits, its glass no wider than the graphite screen's cap. */
+    --fw: min(
+      100vw - var(--gap) * 2,
+      (100dvh - var(--gap) * 2) * 1609 / 928,
+      var(--tube-max) * 1609 / 1241
+    );
+    --px: calc(var(--fw) / 1609);
+  }
+  html[data-skin='retro'][data-frame] .monitor {
+    display: block;
+    width: var(--fw);
+    height: calc(var(--px) * 928);
+    border-radius: calc(var(--px) * 6);
+    background: none;
+    box-shadow:
+      0 34px 80px rgb(0 0 0 / 0.7),
+      0 12px 24px rgb(0 0 0 / 0.5);
+  }
+  html[data-skin='retro'][data-frame] .frame--retro {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  html[data-skin='retro'][data-frame] .frame--retro img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+  /* The live screen in the opening, under the photo's glass edge. */
+  html[data-skin='retro'][data-frame] .bezel {
+    position: absolute;
+    left: calc(var(--px) * 60);
+    top: calc(var(--px) * 59);
+    width: calc(var(--px) * 1241);
+    height: calc(var(--px) * 805);
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  html[data-skin='retro'][data-frame] .bezel::before {
+    display: none;
+  }
+  html[data-skin='retro'][data-frame] .tube {
+    border-radius: calc(var(--px) * 120);
+    box-shadow: none;
+  }
+  /* The photo's controls: the real buttons as clear hit areas over them. */
+  html[data-skin='retro'][data-frame] .chin {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: auto;
+    height: auto;
+    display: block;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    pointer-events: none;
+  }
+  html[data-skin='retro'][data-frame] .chin::before,
+  html[data-skin='retro'][data-frame] .brand {
+    display: none;
+  }
+  html[data-skin='retro'][data-frame] .controls {
+    display: contents;
+  }
+  html[data-skin='retro'][data-frame] .power,
+  html[data-skin='retro'][data-frame] .key {
+    position: absolute;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    color: transparent;
+    text-decoration: none;
+    pointer-events: auto;
+    transform: none;
+  }
+  html[data-skin='retro'][data-frame] .power {
+    left: calc(var(--px) * 1420);
+    top: calc(var(--px) * 375);
+    width: calc(var(--px) * 105);
+    height: calc(var(--px) * 105);
+    border-radius: 50%;
+  }
+  html[data-skin='retro'][data-frame] .power__glyph {
+    display: none;
+  }
+  html[data-skin='retro'][data-frame] #skip {
+    left: calc(var(--px) * 1427);
+    top: calc(var(--px) * 499);
+    width: calc(var(--px) * 125);
+    height: calc(var(--px) * 76);
+    border-radius: calc(var(--px) * 9);
+    /* The key's face, inside its frame: where the state overlays go. */
+    padding: calc(var(--px) * 7) calc(var(--px) * 4) calc(var(--px) * 2.5);
+  }
+  html[data-skin='retro'][data-frame] #sound {
+    left: calc(var(--px) * 1424);
+    top: calc(var(--px) * 592);
+    width: calc(var(--px) * 128);
+    height: calc(var(--px) * 79);
+    border-radius: calc(var(--px) * 9);
+    padding: calc(var(--px) * 5.5) calc(var(--px) * 6);
+  }
+  /* Pressed: a little shade, as if the key went down. */
+  html[data-skin='retro'][data-frame] .power:active,
+  html[data-skin='retro'][data-frame] .key:active {
+    box-shadow: inset 0 calc(var(--px) * 6) calc(var(--px) * 14) rgb(0 0 0 / 0.55);
+    transform: none;
+  }
+  html[data-skin='retro'][data-frame] .power:focus-visible,
+  html[data-skin='retro'][data-frame] .key:focus-visible {
+    /* A dark band against the key, then a bright ring: clear on the dark keys
+       and on the tan plastic alike. */
+    outline: 3px solid #ffd54a;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgb(20 12 4 / 0.85);
+  }
+  /* The photo's key shows the replay arrow; while the intro can be skipped
+     (or nothing can be), its face is redrawn with the right state. */
+  html[data-skin='retro'][data-frame] .key--icon::after {
+    display: none;
+  }
+  html[data-skin='retro'][data-frame] .skip__glyph {
+    display: none;
+  }
+  html[data-skin='retro'][data-frame] #skip[data-role='skip'] {
+    background: linear-gradient(#2f2b27, #1d1a17) content-box;
+  }
+  html[data-skin='retro'][data-frame] #skip[data-role='skip'] .skip__glyph {
+    display: block;
+    color: #ebe3cf;
+    scale: calc(var(--fw) / 1000px);
+  }
+  html[data-skin='retro'][data-frame] .key--icon:disabled {
+    opacity: 1;
+    background: rgb(0 0 0 / 0.45) content-box;
+  }
+  /* Sound off: the photo's label struck through and dimmed. */
+  html[data-skin='retro'][data-frame] .key[aria-pressed='false'] {
+    background:
+      linear-gradient(transparent calc(50% - 1.5px), rgb(235 227 207 / 0.85) 0 calc(50% + 1.5px), transparent 0) content-box,
+      rgb(0 0 0 / 0.45) content-box;
+  }
+  /* The LED: drawn over the photo's own, so it shows the state (green on,
+     amber standby, blinking while busy). */
+  html[data-skin='retro'][data-frame] .led {
+    position: absolute;
+    left: calc(var(--px) * 1538);
+    top: calc(var(--px) * 421);
+    width: calc(var(--px) * 15);
+    height: calc(var(--px) * 15);
+  }
+  html[data-skin='retro'][data-frame] .led::after {
+    box-shadow: 0 0 0 calc(var(--px) * 3) #1a1712;
+  }
+  /* Keyboard focus in the form: the panel sits at the bottom of the screen. */
+  html[data-skin='retro'][data-frame] main.show-form {
+    position: absolute;
+    left: calc(var(--px) * (60 + 1241 / 2));
+    bottom: calc(var(--px) * (928 - 864) + 30px);
+    width: min(420px, var(--px) * 1241 - 80px);
+  }
+}

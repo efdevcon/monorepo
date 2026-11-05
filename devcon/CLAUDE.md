@@ -38,6 +38,7 @@ This is the `devcon` package in a pnpm workspace. Shared code lives in `../../li
 - `src/hooks/` — Custom hooks
 - `src/assets/css/` — SCSS modules and global styles
 - `tina/` — TinaCMS config; `content/` — CMS markdown content
+- `lisbon/` — the Devcon IX announcement page (Vite, no framework, its own tsconfig): `pnpm build:lisbon` emits it to `public/lisbon/`, served at `/lisbon/` by a middleware rewrite, outside the locale router. See `lisbon/README.md`
 
 ### Styling
 

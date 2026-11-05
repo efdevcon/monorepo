@@ -60,3 +60,10 @@
 # Printed QR codes (/qr/<slug>[/<placement>]) are not redirect rules any more:
 # src/middleware.ts rewrites them to /api/qr/, which reads the targets from the
 # team-managed NocoDB table (src/services/qr-redirects.ts).
+
+# The Devcon IX announcement page (lisbon/, built into public/lisbon/): Vite
+# hashes its asset names, so a changed file gets a new name. Cache for good.
+[[headers]]
+  for = "/lisbon/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
