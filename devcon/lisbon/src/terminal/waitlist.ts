@@ -1,17 +1,16 @@
 // Waitlist signup, shared by the terminal and the screen-reader form.
-// POSTs JSON to VITE_WAITLIST_ENDPOINT. Until that is set (the backend is not
-// decided yet) nothing is sent: every signup comes back as a failure, so the
-// terminal shows its "could not join" message instead of a false success.
+// POSTs JSON to devcon.org's /api/lisbon-waitlist/ (src/pages/api/lisbon-waitlist.ts
+// in the devcon package, which writes the address to NocoDB); VITE_WAITLIST_ENDPOINT
+// overrides the URL. Only a 2xx counts as joined.
 
 export type WaitlistResult = { ok: true } | { ok: false; reason: string }
 
-const ENDPOINT: string | undefined = import.meta.env.VITE_WAITLIST_ENDPOINT
+const ENDPOINT: string = import.meta.env.VITE_WAITLIST_ENDPOINT || '/api/lisbon-waitlist/'
 const TIMEOUT_MS = 10_000
 const JOINED_KEY = 'devcon-ix-joined'
 
 /** Never throws: network errors, non-2xx and timeouts all come back as ok:false. */
 export async function submitWaitlist(email: string, source: string): Promise<WaitlistResult> {
-  if (!ENDPOINT) return { ok: false, reason: 'no endpoint' }
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS)
   try {

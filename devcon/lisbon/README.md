@@ -45,7 +45,7 @@ In detail:
 | Lettering | The Devcon diamond rasterised into character cells from the official mark's geometry; DEVCON IX and LISBON in figlet's **ANSI Shadow** (the alphabet is checked in). | `src/terminal/logo.ts` |
 | Font | **VT323**, self-hosted via Fontsource. | `@fontsource/vt323` |
 | Facts and metadata | One `EVENT` / `LINKS` / `META` constant drives the script, the title, Open Graph and Twitter tags, the canonical URL and the `<noscript>` copy. | `src/terminal/event.ts` |
-| Waitlist | `fetch` to `VITE_WAITLIST_ENDPOINT`; without it, every signup fails (see below). 10 s timeout, 2xx only counts as success. | `src/terminal/waitlist.ts` |
+| Waitlist | `fetch` to devcon.org's `/api/lisbon-waitlist/`, which writes the address to NocoDB (see below). 10 s timeout, 2xx only counts as success. | `src/terminal/waitlist.ts`, `src/pages/api/lisbon-waitlist.ts` (devcon) |
 
 ## Features at a glance
 
@@ -71,21 +71,21 @@ Read from the devcon package's `.env` files (`.env`, `.env.local`, …) or the N
 
 | Variable | What |
 | --- | --- |
-| `VITE_WAITLIST_ENDPOINT` | Optional. If set, waitlist signups are POSTed here as JSON `{ email, source, ts }` (`source` is `terminal` or `sr-form`; `ts` an ISO timestamp); any 2xx counts as success. If unset, nothing is sent and every signup shows the failure message. |
+| `VITE_WAITLIST_ENDPOINT` | Optional override of where signups are POSTed as JSON `{ email, source, ts }` (`source` is `terminal` or `sr-form`; `ts` an ISO timestamp); any 2xx counts as success. Default: `/api/lisbon-waitlist/` on the same origin. |
 | `VITE_SITE_URL` | Absolute site origin, no trailing slash, used for `og:url`, `og:image` and `<link rel="canonical">` (all under `/lisbon/`). Defaults to `https://devcon.org`. |
 
 ### Waitlist
 
 Both the terminal (menu item 1, or `waitlist` in the shell) and the screen-reader form call `submitWaitlist()` in `src/terminal/waitlist.ts`. It only reports success when the request returns 2xx; network errors, other statuses and a 10 s timeout show a failure message instead. On success the browser remembers it (`localStorage` `devcon-ix-joined=1`): item 1 then reads "You're on the list (joined)" and offers `Use a different address? [y/N]` (`waitlist --again` skips the question).
 
-**The backend is not decided yet.** With no `VITE_WAITLIST_ENDPOINT` the function returns a failure without sending anything, so the page never claims a signup it did not make. The original repo posted to Netlify Forms; that path was removed here because the devcon site runs on the Next.js Netlify runtime, where Forms needs a POST to a static HTML file and form detection enabled on the site. Either bring that back on those terms, or point `VITE_WAITLIST_ENDPOINT` at an API route.
+**Where signups go.** `/api/lisbon-waitlist/` (`src/pages/api/lisbon-waitlist.ts` in the devcon package) validates the address and adds it to the **DC-IX Waitlist** table of the Ticketing NocoDB base (one `Email` column; an address already there is a success without a second row). It uses devcon's `NOCODB_BASE_URL` and `NOCODB_API_TOKEN`; `NOCODB_WAITLIST_TABLE_ID` overrides the table. Under `pnpm dev:lisbon` alone there is no API, so signups fail there (by design: you see the failure path); run the devcon site to test a real signup. The original repo posted to Netlify Forms; that path is gone (the devcon site runs on the Next.js Netlify runtime, where Forms needs a static-file POST target).
 
 Event facts and links live in `EVENT` / `LINKS` / `META` in `src/terminal/event.ts`. Title, description and sharing copy are built from them; `vite.config.ts` fills the `{{EVENT.*}}`, `{{META.*}}`, `{{SITE.url}}` and `{{SITE.base}}` placeholders in the HTML at build time.
 
 ## Before launch
 
 - [ ] Privacy copy and notice signed off (waitlist, storage provider, unsubscribe)
-- [ ] Waitlist backend chosen and `VITE_WAITLIST_ENDPOINT` set
+- [ ] Someone watching the DC-IX Waitlist table in NocoDB (notifications or an export into the real list)
 - [ ] Event dates and venue confirmed (`EVENT` in `src/terminal/event.ts`)
 - [ ] The `history -v` hooks fact-checked
 
