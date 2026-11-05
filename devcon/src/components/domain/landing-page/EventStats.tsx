@@ -31,7 +31,7 @@ export const EventStats = () => {
               <div
                 className={`${glassCard} flex flex-col gap-[4px] p-[20px] sm:p-[24px] shadow-[0_2px_8px_rgba(34,17,68,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]`}
               >
-                <p className="text-[32px] sm:text-[40px] font-extrabold tracking-[-0.5px] leading-[1.1] text-[#7235ed]">
+                <p className="text-[32px] sm:text-[40px] font-extrabold tracking-[-0.5px] leading-[1.1] text-[#160b2b]">
                   <CountingNumber number={stat.number} suffix={stat.suffix} />
                 </p>
                 <p className="text-[14px] sm:text-[16px] leading-[24px] text-[#1a0d33]">{labels[i]}</p>
