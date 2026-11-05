@@ -86,7 +86,7 @@ export const Hero = () => {
             />
 
             {/* Social links (Figma 6068:552: full width of the left column) */}
-            <div className="w-full md:col-start-1 md:row-start-1 backdrop-blur-[3px] bg-[rgba(26,13,51,0.8)] border border-solid border-[rgba(255,255,255,0.1)] rounded-[8px] px-[16px] py-[8px] flex items-center justify-between gap-[16px] [&_path]:!fill-white">
+            <div className="w-full md:col-start-1 md:row-start-1 backdrop-blur-[3px] bg-[rgba(14,19,16,0.8)] border border-solid border-[rgba(255,255,255,0.1)] rounded-[8px] px-[16px] py-[8px] flex items-center justify-between gap-[16px] [&_path]:!fill-white">
               <p className="text-[14px] text-white leading-[20px] whitespace-nowrap">{t('follow_for_updates')}</p>
               <div className="flex gap-[16px] items-center">
                 <Link to="https://x.com/efdevcon" className="text-white hover:text-white/80 transition-colors">
