@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import BannerImage from './images/devcon-8-india-bg.png'
+// Post-event backdrop; devcon-8-india-bg.png stays for the session-share
+// and speaker-applications pages.
+import BannerImage from './images/dc9-backup-hero.jpg'
 import DevconLogo from './images/devcon-8-india-logo.svg'
 import IconX from 'assets/icons/twitter.svg'
 import IconInstagram from 'assets/icons/instagram.svg'
