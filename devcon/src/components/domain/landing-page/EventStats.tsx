@@ -4,14 +4,15 @@ import { CountingNumber } from 'components/common/counting-number/CountingNumber
 import { sectionX, sectionInner, sectionHeading, eyebrow, glassCard } from 'components/common/styles'
 import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 
-// Devcon 8 India in numbers. PLACEHOLDER figures (rough Devcon 7 + growth
-// guesses) until the post-event report lands — labels live in
-// home.stats.items, index-matched to this array.
+// Devcon 8 India in numbers — labels live in home.stats.items, index-matched
+// to this array. Sessions + speakers come from Pretalx (devcon8, confirmed
+// submissions and the speakers on them, pulled 2026-11-05: 373 / 401), rounded
+// down to the nearest 50 so the "+" holds.
 const STATS = [
-  { number: 15000, suffix: '+' },
+  { number: 6000, suffix: '+' },
   { number: 120, suffix: '+' },
-  { number: 500, suffix: '+' },
-  { number: 700, suffix: '+' },
+  { number: 350, suffix: '+' },
+  { number: 400, suffix: '+' },
 ]
 
 export const EventStats = () => {
@@ -38,7 +39,6 @@ export const EventStats = () => {
             </Reveal>
           ))}
         </RevealGroup>
-        <p className="text-[14px] leading-[20px] text-[#594d73]">{t('note')}</p>
       </div>
     </div>
   )
