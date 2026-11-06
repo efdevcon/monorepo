@@ -139,6 +139,7 @@ export function shadowWord(word: string): string[] {
 // 5×7 pixel letters, one font row per character row: tall and condensed,
 // for screens too narrow for the ANSI Shadow mark (36 columns).
 const PIXEL: Record<string, string[]> = {
+  A: ['.###.', '#...#', '#...#', '#####', '#...#', '#...#', '#...#'],
   B: ['####.', '#...#', '#...#', '####.', '#...#', '#...#', '####.'],
   C: ['.####', '#....', '#....', '#....', '#....', '#....', '.####'],
   D: ['####.', '#...#', '#...#', '#...#', '#...#', '#...#', '####.'],

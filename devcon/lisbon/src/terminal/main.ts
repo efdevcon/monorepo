@@ -5,6 +5,7 @@ import { CRT, type CRTState, warp } from './crt'
 import { Sound } from './audio'
 import { diamond, LISBON_COMPACT, LISBON_WIDE, pixelWord, shadowWord, TITLE_NARROW, TITLE_WIDE, WORDMARK_NARROW, WORDMARK_WIDE } from './logo'
 import { EVENT, LINKS } from './event'
+import { type Env, type Game, GAMES, Grid, LISTED } from './games'
 import { hasJoined, submitWaitlist } from './waitlist'
 import {
   backgroundNames,
@@ -296,7 +297,11 @@ async function type(text: string, style = Style.Bright, echo = true) {
 // The machine's name: anonymous through the boot so nothing gives the city
 // away, then the city once the title card has revealed it.
 let host = 'devcon'
-const promptRow = (): Array<[string, Style?]> => [[`guest@${host}`, Style.Bright], [':~$ ']]
+// The working directory: home, or the games directory (`cd games`).
+type Dir = '~' | '~/games' | '/usr/games'
+let cwd: Dir = '~' as Dir
+const inGames = () => cwd !== '~'
+const promptRow = (): Array<[string, Style?]> => [[`guest@${host}`, Style.Bright], [`:${cwd}$ `]]
 
 /** "label ....... [  OK  ]" with the status flush right, sysvinit style. */
 async function status(label: string, ms: number, result = 'OK', style = Style.Bright, seeks = 4) {
@@ -984,7 +989,7 @@ async function reinstall() {
 // ---------------------------------------------------------------------------
 // Interaction
 
-type Mode = 'off' | 'start' | 'boot' | 'hold' | 'menu' | 'more' | 'yn' | 'email' | 'shell' | 'busy'
+type Mode = 'off' | 'start' | 'boot' | 'hold' | 'menu' | 'more' | 'yn' | 'email' | 'shell' | 'busy' | 'game'
 let mode: Mode = 'off'
 let input = ''
 let promptSegs: Row = []
@@ -1606,7 +1611,7 @@ const COMMANDS = [
   'help', 'privacy', 'menu', 'open', 'devcon.org', 'web', 'www', 'archive', 'talks', 'coc', 'conduct',
   'contact', 'support', 'sponsor', 'supporters', 'waitlist', 'join', 'about', 'info', 'neofetch',
   'history', 'mail', 'color', 'colour', 'sound', 'clear', 'cls', 'reboot', 'restart', 'exit', 'logout',
-  'shutdown', 'poweroff', 'ls', 'cat', './devcon', 'devcon', 'whoami', 'pwd', 'date', 'uname', 'echo',
+  'shutdown', 'poweroff', 'cd', 'ls', 'cat', './devcon', 'devcon', 'whoami', 'pwd', 'date', 'uname', 'echo',
   'ping', 'sudo', 'rm', 'vi', 'vim', 'emacs', 'nano', 'man',
 ]
 // Not listed: `bg`, found only through `cat .backgrounds`.
@@ -1659,6 +1664,7 @@ const HELP = [
 
 interface Session {
   from: string // the host to return to
+  cwd: Dir // and the directory there
   edition?: Edition // a past edition's machine; none for this one
 }
 const sessions: Session[] = []
@@ -1666,7 +1672,7 @@ const MAX_HOPS = 9
 
 /** Back to the machine the first hop left from (the menu, a reboot). */
 function dropSessions() {
-  if (sessions.length) host = sessions[0].from
+  if (sessions.length) (host = sessions[0].from), (cwd = sessions[0].cwd)
   sessions.length = 0
 }
 
@@ -1716,8 +1722,9 @@ async function ssh(args: string[]) {
     out()
     out('  Type `talks` to watch, `exit` to come back.', Style.Dim)
   }
-  sessions.push({ from: host, edition: dest === 'home' ? undefined : dest })
+  sessions.push({ from: host, cwd, edition: dest === 'home' ? undefined : dest })
   host = to
+  cwd = '~'
   // Stay at the prompt between commands (not back to the menu).
   menuHome = false
   menuInput = false
@@ -1728,6 +1735,7 @@ function disconnect() {
   out('logout')
   out(`Connection to ${host} closed.`)
   host = s.from
+  cwd = s.cwd
 }
 
 /** Commands that differ on a past edition's machine; false falls through to the local ones. */
@@ -1761,6 +1769,154 @@ function remoteCommand(cmd: string, args: string[], e: Edition) {
   return false
 }
 
+// ---------------------------------------------------------------------------
+// Games (an easter egg; see games/). A game takes over the screen like a
+// full-screen program, and q or Esc hands back the screen as it was.
+
+interface Playing {
+  name: string
+  game: Game
+  saved: typeof screen.lines
+  cols: number
+  rows: number
+  last: number
+}
+let playing: Playing | null = null
+const QUIT = coarse ? '[ quit ]' : 'q quits'
+
+/**
+ * The game a command names, if any: `pong` anywhere (the games are on the
+ * PATH, like /usr/games), `./pong` inside games, `games/pong` from home, and
+ * `~/games/pong` or `/usr/games/pong` from anywhere.
+ */
+function gameCommand(cmd: string) {
+  if (cmd in GAMES) return cmd
+  const m = /^(\.\/|games\/|\.\/games\/|~\/games\/|\/usr\/games\/)([a-z]+)$/.exec(cmd)
+  if (!m || !LISTED.includes(m[2])) return null
+  const here = m[1] === './' ? inGames() : m[1] === 'games/' || m[1] === './games/' ? !inGames() : true
+  return here ? m[2] : null
+}
+
+/** `cd`: home, games (or /usr/games), and back. */
+function cd(arg: string) {
+  const to = arg.replace(/(.)\/+$/, '$1')
+  if (!to || to === '~' || to === '/home/guest' || (to === '..' && inGames())) cwd = '~'
+  else if (to === '.' || (to === '..' && !inGames())) return
+  else if (to === '~/games' || to === '/home/guest/games' || (!inGames() && (to === 'games' || to === './games'))) cwd = '~/games'
+  else if (to === '/usr/games') cwd = '/usr/games'
+  else out(`sh: cd: ${arg}: No such file or directory`)
+}
+
+function gameEnv(name: string): Env {
+  const key = `devcon-tty-best-${name}`
+  let best: number | null = null
+  return {
+    cols: screen.cols,
+    rows: screen.rows - 1,
+    coarse,
+    reduced,
+    blip: (f, d) => sound.blip(f, d),
+    best(score) {
+      if (best === null) {
+        best = 0
+        try {
+          best = Number(localStorage.getItem(key)) || 0
+        } catch {}
+      }
+      if (score !== undefined && score > best) {
+        best = score
+        try {
+          localStorage.setItem(key, String(score))
+        } catch {}
+      }
+      return best
+    },
+    cities: HISTORY.map((e) => e.id),
+    pictures: gamePictures(),
+  }
+}
+
+/** Starting pictures for `life`, sized to the screen. */
+function gamePictures() {
+  const mark = (W() >= WORDMARK_WIDE[0].length + 2 ? WORDMARK_WIDE : WORDMARK_NARROW).map((l) => l.replace(/[^█]/g, ' '))
+  const city = W() >= Math.max(...LISBON_WIDE.rows.map((l) => l.length)) ? LISBON_WIDE : LISBON_COMPACT
+  return [
+    { name: 'devcon', rows: mark },
+    { name: 'ether', facets: true, rows: diamond(Math.max(6, Math.min(screen.rows - 4, 18)), screen.cellH / screen.cellW) },
+    { name: 'lisbon', rows: city.rows.slice(0, city.water) },
+    { name: 'lisboa', rows: pixelWord('LISBOA') },
+  ]
+}
+
+function startGame(name: string) {
+  playing = { name, game: GAMES[name].make(gameEnv(name)), saved: screen.lines.slice(), cols: screen.cols, rows: screen.rows, last: performance.now() }
+  mode = 'game'
+  screen.cursor = false
+  kbd.blur()
+  // Drags steer paddles on touch screens, so they mustn't scroll the page.
+  tube.style.touchAction = 'none'
+  tube.style.cursor = playing.game.cursor ?? ''
+  requestAnimationFrame(gameFrame)
+}
+
+function gameFrame(now: number) {
+  const p = playing
+  if (!p) return
+  // Power off, a replay or the menu took over: just let go.
+  if (mode !== 'game') return stopGame()
+  if (screen.cols !== p.cols || screen.rows !== p.rows) {
+    p.game = GAMES[p.name].make(gameEnv(p.name))
+    p.cols = screen.cols
+    p.rows = screen.rows
+  }
+  p.game.tick(Math.min(0.05, (now - p.last) / 1000))
+  p.last = now
+  if (p.game.done) return endGame()
+  const grid = new Grid(screen.cols, screen.rows - 1)
+  p.game.draw(grid)
+  const left = ` ${GAMES[p.name].title}   `
+  const quit = p.game.stubborn ? '' : QUIT + ' '
+  const room = Math.max(0, screen.cols - left.length - quit.length)
+  screen.blit([[[left, Style.Bright], [p.game.status().slice(0, Math.max(0, room - 1)).padEnd(room), Style.Dim], [quit, Style.Dim]], ...grid.rowsOut()])
+  requestAnimationFrame(gameFrame)
+}
+
+function stopGame() {
+  playing = null
+  tube.style.touchAction = ''
+  tube.style.cursor = ''
+}
+
+/** Quit (or the game ended itself): the screen as it was, and the prompt. */
+function endGame() {
+  const p = playing
+  if (!p) return
+  stopGame()
+  screen.lines = p.saved
+  screen.touch()
+  mode = 'busy'
+  askShell()
+}
+
+function gameKey(e: KeyboardEvent, down: boolean) {
+  const p = playing
+  if (!p) return
+  if (e.key === 'Tab') return
+  e.preventDefault()
+  if (down && e.repeat) return
+  const quit = e.key === 'Escape' || e.key === 'q' || e.key === 'Q' || (e.ctrlKey && e.key === 'c')
+  if (down && quit && !p.game.stubborn) return endGame()
+  if (!e.ctrlKey) p.game.key?.(e.key, down)
+}
+
+function gamePointer(e: PointerEvent, kind: 'down' | 'move' | 'up') {
+  const p = playing
+  if (mode !== 'game' || !p) return
+  const { row, col, fy } = cellAtPoint(e.clientX, e.clientY)
+  if (kind === 'down' && row === 0 && !p.game.stubborn && col >= screen.cols - QUIT.length - 2) return endGame()
+  p.game.pointer?.(col + 0.5, (row - 1 + fy) * 2, kind)
+}
+
 async function shell(line: string) {
   if (isNuke(line)) return nuke()
   const [cmd = '', ...args] = line.split(/\s+/).filter(Boolean)
@@ -1775,6 +1931,9 @@ async function shell(line: string) {
   }
   const remote = sessions.at(-1)?.edition
   if (remote && remoteCommand(cmd, args, remote)) return askShell()
+  // Games run from the shell proper, not the command line under the menu.
+  const game = menuHome ? null : gameCommand(cmd)
+  if (game) return startGame(game)
   switch (cmd) {
     case '':
       break
@@ -1911,14 +2070,21 @@ async function shell(line: string) {
       await wait(295)
       requestPower(false)
       return
+    case 'cd':
+      cd(arg)
+      break
     case 'ls':
-      if (arg === '.ssh' || arg === '.ssh/') out('known_hosts')
-      else out(args.includes('-a') ? '.  ..  .backgrounds  .plan  .ssh  Makefile  README  devcon  devcon.c' : 'Makefile  README  devcon  devcon.c')
+      if (inGames() && !args.some((a) => !a.startsWith('-'))) out((args.includes('-a') ? '.  ..  ' : '') + LISTED.join('  '))
+      else if (/^(~\/|\.\/)?(games|\/usr\/games)\/?$/.test(arg)) out(LISTED.join('  '))
+      else if (arg === '.ssh' || arg === '.ssh/') out('known_hosts')
+      else out(args.includes('-a') ? '.  ..  .backgrounds  .plan  .ssh  Makefile  README  devcon  devcon.c  games' : 'Makefile  README  devcon  devcon.c  games')
       break
     case 'cat':
       if (arg === 'devcon.c') await lines(SOURCE, 0, 0)
       else if (arg === 'README') out(`${EVENT.name}. ${EVENT.city}. ${EVENT.dateRange}. Type \`waitlist\`.`)
       else if (arg === '.ssh/known_hosts') knownHosts().forEach((l) => out(l, Style.Dim))
+      else if (/^(~\/|\.\/)?(games|\/usr\/games)\/?$/.test(arg)) out(`cat: ${arg}: Is a directory`)
+      else if (inGames() && LISTED.includes(arg.replace(/^\.\//, ''))) out(`cat: ${arg}: binary file (try ./${arg.replace(/^\.\//, '')})`)
       else if (arg === '.backgrounds') out('Try A and D on the menu (← and → work too).', Style.Dim)
       else if (arg === '.plan') out(`Be in ${EVENT.city} in ${startPart({ month: 'long' })} ${START.getUTCFullYear()}.`)
       else if (arg === 'Makefile') out('devcon: devcon.c\n\tcc -O2 -o devcon devcon.c -lp2p')
@@ -1932,7 +2098,7 @@ async function shell(line: string) {
       out('guest')
       break
     case 'pwd':
-      out('/home/guest')
+      out(cwd === '/usr/games' ? cwd : cwd.replace('~', '/home/guest'))
       break
     case 'date':
       out(new Date().toString().slice(0, 24))
@@ -1997,6 +2163,7 @@ function onChar(ch: string) {
 
 function onKey(e: KeyboardEvent) {
   if (e.metaKey || e.altKey) return
+  if (mode === 'game') return gameKey(e, true)
   // The shortcut sheet: ? toggles it wherever nothing is being typed; while it's
   // open the terminal ignores keys (the dialog closes itself on Esc).
   if (keysSheet.open) {
@@ -2176,6 +2343,7 @@ function onKey(e: KeyboardEvent) {
 }
 
 addEventListener('keydown', onKey)
+addEventListener('keyup', (e) => mode === 'game' && gameKey(e, false))
 const keysSheet = document.getElementById('keys') as HTMLDialogElement
 // A click on the backdrop (outside the sheet) closes it.
 keysSheet.addEventListener('click', (e) => {
@@ -2247,9 +2415,16 @@ if (import.meta.env.DEV) Object.assign(window, { __menuItemAt: menuItemAt, __cel
  */
 let pressType = ''
 tube.addEventListener('pointerdown', (e) => {
+  if (mode === 'game') {
+    tube.setPointerCapture(e.pointerId)
+    return gamePointer(e, 'down')
+  }
   pressType = e.pointerType
   if (e.pointerType === 'mouse') press(e.clientX, e.clientY)
 })
+tube.addEventListener('pointermove', (e) => gamePointer(e, 'move'))
+tube.addEventListener('pointerup', (e) => gamePointer(e, 'up'))
+tube.addEventListener('pointercancel', (e) => gamePointer(e, 'up'))
 tube.addEventListener('click', (e) => {
   if (pressType !== 'mouse') press(e.clientX, e.clientY)
 })
@@ -2286,7 +2461,7 @@ tube.addEventListener('click', () => {
 
 // Desktop: hovering a menu row highlights it (the keyboard highlight follows).
 tube.addEventListener('pointermove', (e) => {
-  if (e.pointerType !== 'mouse') return
+  if (e.pointerType !== 'mouse' || mode === 'game') return
   if (mode === 'start') {
     const on = onStartBox(e.clientX, e.clientY)
     tube.style.cursor = on ? 'pointer' : ''
@@ -2632,6 +2807,7 @@ async function bootSequence(withSound: boolean) {
   mode = 'boot'
   sessions.length = 0
   host = 'devcon'
+  cwd = '~'
   setTitle(`${EVENT.name} · booting...`)
   setGlow(true)
   skipping = false

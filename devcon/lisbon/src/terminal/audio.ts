@@ -165,6 +165,22 @@ export class Sound {
     o.stop(this.t + 0.5)
   }
 
+  /** A short square-wave blip, for the games. */
+  blip(freq: number, dur = 0.05) {
+    if (!this.ctx || this.quiet) return
+    const o = this.ctx.createOscillator()
+    o.type = 'square'
+    o.frequency.value = freq
+    const g = this.ctx.createGain()
+    g.gain.setValueAtTime(0.0001, this.t)
+    g.gain.linearRampToValueAtTime(0.05, this.t + 0.004)
+    g.gain.setValueAtTime(0.05, this.t + dur)
+    g.gain.linearRampToValueAtTime(0.0001, this.t + dur + 0.01)
+    o.connect(g).connect(this.master)
+    o.start()
+    o.stop(this.t + dur + 0.02)
+  }
+
   /** The single short POST beep: all good. */
   beep() {
     if (!this.ctx || this.quiet) return

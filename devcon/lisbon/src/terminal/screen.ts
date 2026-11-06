@@ -267,6 +267,13 @@ export class Screen {
     this.touch()
   }
 
+  /** Replace the whole screen with ready-made rows (a game frame); no wrapping. */
+  blit(rows: Array<Array<[string, Style?]>>) {
+    this.lines = rows.map((r) => r.map(([t, s]) => ({ t, s: s ?? Style.Normal })))
+    this.inputAt = null
+    this.touch()
+  }
+
   /**
    * Redraw if needed. Instead of clearing, the previous frame is darkened, so
    * text that disappears decays over a few frames like phosphor persistence.
