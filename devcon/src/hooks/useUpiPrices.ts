@@ -7,7 +7,7 @@ export type UpiPriceMap = Record<string, string>
 /** Products whose rupee price the ticket surfaces show, resolved to the
  *  environment's Pretix item id. Content rows name a product by this slug
  *  (`upiProduct`), never by item id, so the ids stay in config. */
-export type UpiProduct = 'daily-india-pass' | 'indian-student'
+export type UpiProduct = 'daily-india-pass' | 'indian-student' | 'child-with-adult'
 
 export function upiProductItemId(product: UpiProduct): number | null {
   switch (product) {
@@ -15,6 +15,8 @@ export function upiProductItemId(product: UpiProduct): number | null {
       return TICKETING.pretix.dailyIndiaPassItemId
     case 'indian-student':
       return discountItem('indian-student') ?? null
+    case 'child-with-adult':
+      return TICKETING.pretix.childWithAdultItemId
   }
 }
 
