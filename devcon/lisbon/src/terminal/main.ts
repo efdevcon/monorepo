@@ -2161,8 +2161,23 @@ function onChar(ch: string) {
   echoInput()
 }
 
+/**
+ * A character typed with AltGr (Windows, Linux) or Option (Mac) rather than a
+ * shortcut: @ is AltGr+2 on Portuguese keyboards, AltGr+Q on German, Option+2 on
+ * a Portuguese Mac, and most layouts outside the US reach some of `@ [ ] { } ~`
+ * and accented letters that way. Windows browsers report AltGr as Ctrl+Alt, Linux
+ * ones as AltGraph alone, Macs as Alt. A plain Alt+letter/digit (a Windows menu
+ * accelerator) stays a shortcut.
+ */
+function composedChar(e: KeyboardEvent) {
+  if (e.key.length !== 1) return false
+  if (e.getModifierState('AltGraph')) return true
+  return e.altKey && (e.ctrlKey || !/[a-z0-9]/i.test(e.key))
+}
+
 function onKey(e: KeyboardEvent) {
-  if (e.metaKey || e.altKey) return
+  const text = composedChar(e)
+  if (e.metaKey || (e.altKey && !text)) return
   if (mode === 'game') return gameKey(e, true)
   // The shortcut sheet: ? toggles it wherever nothing is being typed; while it's
   // open the terminal ignores keys (the dialog closes itself on Esc).
@@ -2236,7 +2251,7 @@ function onKey(e: KeyboardEvent) {
     skip()
     return
   }
-  if (e.ctrlKey) {
+  if (e.ctrlKey && !text) {
     if (e.key === 'c' && (mode === 'shell' || mode === 'email')) {
       screen.write('^C')
       screen.newline()
