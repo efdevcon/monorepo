@@ -80,13 +80,13 @@ export default function AcademicProgramPage() {
   const APPLICATION_ROWS: TicketRow[] = [
     {
       name: t('other_support.rows.0.name'),
-      price: '$25',
+      price: '$6.50',
       action: 'Apply',
       actionHref: '/form/student-application',
     },
     {
       name: t('other_support.rows.1.name'),
-      price: '$99',
+      price: '$25',
       action: 'Apply',
       actionHref: '/form/student-application',
     },
