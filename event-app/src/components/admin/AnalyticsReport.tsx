@@ -2,10 +2,11 @@
 
 import { useId, useMemo, useState, type ReactNode } from "react";
 import cn from "classnames";
-import { RefreshCw } from "lucide-react";
+import { ChevronDown, RefreshCw } from "lucide-react";
 import {
   DEFAULT_WINDOW,
   WINDOWS,
+  type DaySessions,
   type DayPoint,
   type Row,
   type WindowDays,
@@ -28,7 +29,9 @@ import type { DetailKind } from "@/routing/viewParams";
  * plain section under a real heading, in the order the team asks: Content
  * (sessions, speakers, pages, Q&A, stars), Audience (installed, signed in,
  * devices, countries, referrers), Health (the failure events), then the full
- * page and event tables. No bars under ranked lists, share bars only where
+ * page and event tables. The sessions list has a day picker (the window as a
+ * whole, or any one day with session views), so the team can see what drew
+ * people on each day of the event rather than one list blurred over the week. No bars under ranked lists, share bars only where
  * the share is the point (Audience), one footnote for the caveats. Phones
  * get the same blocks stacked. The page spans the layout's full width
  * (`expand`), not the catalogue pages' 1312px column.
@@ -189,6 +192,54 @@ function DailyBars({ days }: { days: DayPoint[] }) {
         ))}
       </div>
     </div>
+  );
+}
+
+/** The value of the sessions day picker that means the whole window. */
+const ALL_DAYS = "all";
+
+/**
+ * The day picker beside "Most viewed sessions": the whole window, or one of
+ * the days that had session views (newest first; a day without any is left
+ * out, so a 30-day window is not a list of empty days). A native select,
+ * since the event week alone is five days and the window up to 30; the
+ * chevron is drawn over it so it matches the page's controls.
+ */
+function DayPicker({
+  days,
+  windowDays,
+  today,
+  value,
+  onChange,
+}: {
+  days: DaySessions[];
+  windowDays: number;
+  /** Today's site-local date, labelled "so far" like the chart's last bar. */
+  today: string | undefined;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <span className="relative inline-flex shrink-0">
+      <select
+        aria-label="Day"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={cn(
+          "h-8 cursor-pointer appearance-none rounded-md border border-dc-hairline bg-white pl-2.5 pr-7 text-[12px] leading-4 text-dc-fg2 transition-colors duration-150 ease-out hover:border-dc-purple",
+          focusRing
+        )}
+      >
+        <option value={ALL_DAYS}>All {windowDays} days</option>
+        {[...days].reverse().map((d) => (
+          <option key={d.date} value={d.date}>
+            {fmtDay(d.date)}
+            {d.date === today ? ", so far" : ""}
+          </option>
+        ))}
+      </select>
+      <ChevronDown aria-hidden className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-dc-purple" />
+    </span>
   );
 }
 
@@ -425,6 +476,13 @@ export function AnalyticsReport() {
   const [days, setDays] = useState<WindowDays>(DEFAULT_WINDOW);
   const { report: r, error, loading, updatedAt, refresh } = useAnalyticsReport(days);
   const [allEvents, setAllEvents] = useState(false);
+  // The sessions list's day: the whole window, or one site-local date. A
+  // date picked under a wider window may be gone after a change, so the
+  // list falls back to the window rather than to an empty day.
+  const [sessionDay, setSessionDay] = useState<string>(ALL_DAYS);
+  const sessionDays = r?.sessionsByDay ?? [];
+  const activeDay = sessionDays.some((d) => d.date === sessionDay) ? sessionDay : ALL_DAYS;
+  const sessionRows = activeDay === ALL_DAYS ? (r?.sessions ?? []) : (sessionDays.find((d) => d.date === activeDay)?.sessions ?? []);
 
   // The device's own catalogue, for titles and names behind Matomo's slugs.
   const sessions = useSessionsOfAllProgrammes();
@@ -441,7 +499,7 @@ export function AnalyticsReport() {
   // the catalogue is on the device only known ones are listed: no junk rows,
   // no links to pages that do not exist. Before it loads, the raw slug shows.
   const catalogueReady = sessions.length > 0 && speakers.length > 0;
-  const topSessions: RankedItem[] = (r?.sessions ?? []).flatMap((row) => {
+  const topSessions: RankedItem[] = sessionRows.flatMap((row) => {
     const s = sessionById.get(row.id);
     if (catalogueReady && !s) return [];
     return [
@@ -608,8 +666,15 @@ export function AnalyticsReport() {
           <Section title="Content" note="What people open. Sessions and speakers link to their pages.">
             <div className="mt-3 grid gap-x-8 gap-y-6 lg:grid-cols-3">
               <div className="min-w-0">
-                <h3 className={h3}>Most viewed sessions</h3>
-                <Ranked items={topSessions} limit={8} empty="No session pages viewed in this window." />
+                <div className="flex min-h-8 items-center justify-between gap-3">
+                  <h3 className={h3}>Most viewed sessions</h3>
+                  <DayPicker days={sessionDays} windowDays={r.windowDays} today={r.today?.date} value={activeDay} onChange={setSessionDay} />
+                </div>
+                <Ranked
+                  items={topSessions}
+                  limit={8}
+                  empty={activeDay === ALL_DAYS ? "No session pages viewed in this window." : `No session pages viewed on ${fmtDay(activeDay)}.`}
+                />
               </div>
               <div className="min-w-0">
                 <h3 className={h3}>Most viewed speakers</h3>

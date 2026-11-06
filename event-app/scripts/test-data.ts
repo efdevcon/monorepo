@@ -1068,8 +1068,9 @@ function testAnalyticsReport() {
   check("window: 7 and 30 accepted", parseWindow("7") === 7 && parseWindow("30") === 30);
   check("window: anything else is 7 days", parseWindow(null) === 7 && parseWindow("x") === 7 && parseWindow("100") === 7);
   const qs = bulkQueries("38", 14);
-  check("bulk: 23 queries, the daily series first, on the window", qs.length === 23 && qs[0].method === "VisitsSummary.get" && qs[0].date === "last14" && qs.every((q) => q.idSite === "38"));
+  check("bulk: 24 queries, the daily series first, on the window", qs.length === 24 && qs[0].method === "VisitsSummary.get" && qs[0].date === "last14" && qs.every((q) => q.idSite === "38"));
   check("bulk: session and speaker pages are filtered page-URL reports", qs[16].method === "Actions.getPageUrls" && qs[16].filter_pattern === "^/schedule/." && qs[17].filter_pattern === "^/speakers/.");
+  check("bulk: session pages per day is the same report over the window's days", qs[23].method === "Actions.getPageUrls" && qs[23].period === "day" && qs[23].date === "last14" && qs[23].filter_pattern === "^/schedule/.");
   const day = (v: number, u: number, a: number, b: string) => ({ nb_visits: v, nb_uniq_visitors: u, nb_actions: a, bounce_rate: b, avg_time_on_site: 100 });
   const results: unknown[] = [];
   results[0] = { "2026-11-02": day(5, 4, 20, "20%"), "2026-11-01": day(10, 8, 50, "30%"), "2026-10-31": [] }; // unordered, one empty day
@@ -1095,6 +1096,11 @@ function testAnalyticsReport() {
   results[20] = [{ label: "page - /ticket", nb_events: 2, nb_visits: 2 }];
   results[21] = [{ label: "bundle-failed - devcon8", nb_events: 12, nb_visits: 8 }];
   results[22] = [{ label: "supabase-proxy - auth/v1", nb_events: 4, nb_visits: 3 }];
+  results[23] = {
+    "2026-11-02": [{ label: "/schedule/closing-ceremony/", nb_hits: 4, nb_visits: 3 }],
+    "2026-11-01": [{ label: "/schedule/opening-ceremony", nb_hits: 9, nb_visits: 5 }, { label: "/not-a-session", nb_hits: 1, nb_visits: 1 }],
+    "2026-10-31": [],
+  }; // unordered, one empty day
   const r = shapeReport(results, 14);
   check("health: failure events with the visits they hit", eq(r.health.failures[0], { category: "sync", action: "bundle-failed", events: 12, visits: 8 }));
   check("health: crash pages by route path", eq(r.health.errorPages[0], { name: "/ticket", events: 2, visits: 2 }));
@@ -1102,6 +1108,7 @@ function testAnalyticsReport() {
   check("top sessions: slug from the page path", eq(r.sessions[0], { id: "opening-ceremony", hits: 9, visits: 5 }));
   check("top sessions: query and trailing slash stripped", r.sessions[1].id === "with-query");
   check("top speakers: slug from the page path", eq(r.speakers[0], { id: "vitalik", hits: 7, visits: 4 }));
+  check("sessions per day: oldest first, empty days dropped, slugs from the paths", eq(r.sessionsByDay, [{ date: "2026-11-01", sessions: [{ id: "opening-ceremony", hits: 9, visits: 5 }] }, { date: "2026-11-02", sessions: [{ id: "closing-ceremony", hits: 4, visits: 3 }] }]));
   check("Q&A opens: Pretalx code from the event name", eq(r.qa[0], { code: "89KLNQ", events: 3, visits: 2 }));
   check("days sorted ascending, an empty day reads as zeros", eq(r.days.map((d) => d.date), ["2026-10-31", "2026-11-01", "2026-11-02"]) && r.days[0].visits === 0 && r.days[1].visits === 10);
   check("percent strings become numbers", r.days[1].bounceRate === 30 && r.totals.bounceRate === 27);
@@ -1114,7 +1121,7 @@ function testAnalyticsReport() {
   check("dimensions by slot", r.dimensions.displayMode[0].label === "installed" && r.dimensions.signedIn[0].label === "yes" && r.dimensions.stars[0].label === "0");
   check("site name and timezone", r.site.name === "app.devcon.org" && r.site.timezone === "Europe/Zurich");
   const empty = shapeReport([], 7);
-  check("no results: empty report, window kept", empty.days.length === 0 && empty.today === null && empty.windowDays === 7 && empty.site.timezone === "" && empty.warnings.length === 0 && empty.health.failures.length === 0);
+  check("no results: empty report, window kept", empty.days.length === 0 && empty.today === null && empty.windowDays === 7 && empty.site.timezone === "" && empty.warnings.length === 0 && empty.health.failures.length === 0 && empty.sessionsByDay.length === 0);
 }
 
 function testChunkLoadError() {
