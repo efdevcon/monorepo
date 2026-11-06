@@ -27,6 +27,7 @@ export const ThankYou = () => {
           <div className="flex flex-col items-center gap-[16px] max-w-[720px]">
             <h2 className={`${sectionHeading} sm:whitespace-pre-line`}>{t('heading')}</h2>
             <p className={leadCopy}>{t('lead')}</p>
+            <p className={leadCopy}>{t('closing')}</p>
             <p className={`${bodyCopy} text-[#221144]`}>{t('body')}</p>
           </div>
         </div>
