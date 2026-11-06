@@ -202,6 +202,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'Adults must hold their own Devcon ticket to enter',
     description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
     price: '$19',
+    upiProduct: 'child-with-adult',
     buttonLabel: 'Get ticket',
     pretixItemId: TICKETING.pretix.childWithAdultItemId,
   },
