@@ -38,7 +38,7 @@ export const EventStats = () => {
                 <p className="text-[32px] sm:text-[40px] font-extrabold tracking-[-0.5px] leading-[1.1] text-[#160b2b]">
                   <CountingNumber number={stat.number} suffix={stat.suffix} />
                 </p>
-                <p className="text-[14px] sm:text-[16px] leading-[1.2] text-[#7235ed]">{labels[i]}</p>
+                <p className="text-[14px] sm:text-[16px] leading-[1.2] text-[#594d73]">{labels[i]}</p>
               </div>
             </Reveal>
           ))}
