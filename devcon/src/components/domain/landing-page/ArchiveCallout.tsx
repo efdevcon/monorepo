@@ -6,7 +6,7 @@ import { ctaPrimary } from 'components/common/cta'
 import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
 import { Reveal } from 'components/common/reveal/Reveal'
 
-const ARCHIVE_URL = 'https://archive.devcon.org'
+const ARCHIVE_URL = 'https://archive.devcon.org/watch/?event=devcon8&sort=eventId&order=desc'
 
 // Post-event pointer to the Devcon Archive, where the Devcon 8 recordings
 // land next to every past edition. Transparent: sits on the page-level
