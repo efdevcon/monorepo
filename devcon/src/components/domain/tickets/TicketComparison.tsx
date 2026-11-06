@@ -25,7 +25,7 @@ interface Column {
   price: string
   price_original?: string
   // UPI product whose live rupee price (from Pretix) heads the column's
-  // "from" price, e.g. the Daily India Pass → "₹3,315+". Resolved into
+  // "from" price, e.g. the Daily India Pass → "₹940+". Resolved into
   // `price_inr` at render; when set the price cell shows the UPI / $ split:
   // green UPI chip with the rupee price, dark $ tile with the USD price.
   upiProduct?: UpiProduct
@@ -244,7 +244,7 @@ export function TicketComparison({ eyebrow }: { eyebrow?: string }) {
   // into translations.
   const columns: Column[] = rawColumns.map(rawCol => {
     // Live rupee "from" price for columns that lead with a UPI product; the
-    // "+" matches the USD figure ("$35+") and signals pricier tiers above.
+    // "+" matches the USD figure ("$10+") and signals pricier tiers above.
     const inr = upiPriceFor(upiPrices, rawCol.upiProduct)
     const col: Column = inr ? { ...rawCol, price_inr: `${inr}+` } : rawCol
     // Community self-claiming discounts open at the global ticket launch:
