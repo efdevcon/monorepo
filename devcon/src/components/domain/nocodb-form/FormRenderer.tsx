@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
   ChevronDown,
   X,
@@ -22,7 +23,16 @@ import { WalletConnectField } from './WalletConnectField'
 import { renderInlineMarkdown } from './inline-markdown'
 import { supabase } from 'services/supabase-browser'
 import { AGE_RECIPIENTS, isEncryptedTitle, stripEncryptedPrefix } from 'config/encrypted-forms'
-import { isGithubTitle, isWalletTitle, stripWalletPrefix } from 'config/form-field-markers'
+import {
+  isGithubTitle,
+  isWalletTitle,
+  stripWalletPrefix,
+  parseScaleTitle,
+  isVoiceTitle,
+  stripVoicePrefix,
+} from 'config/form-field-markers'
+import { VoiceRecorder } from './VoiceRecorder'
+import { FormSubheading } from './FormSubheading'
 import { useBuilderConnect } from 'context/BuilderConnectContext'
 import { packEnvelope } from 'utils/age-envelope'
 import { rhfFieldName } from './rhf-key'
@@ -42,6 +52,10 @@ export interface FormColumn {
   options?: string[]
   // Rating-only: icon count + fill color (see FormField in nocodb-meta.ts).
   rating?: { max: number; color?: string }
+  // Select fields: NocoDB's "show as list" toggle → radio buttons / checkboxes.
+  isList?: boolean
+  // Markdown section header rendered above the field (see splitSectionBlock in nocodb-meta.ts).
+  section?: string
 }
 
 export interface ConditionalRule {
@@ -109,6 +123,8 @@ const CHAR_LIMITS: Record<string, number> = {
   Email: 255,
   LongText: 1000,
 }
+// "[voice]" long-text fields: a couple of spoken minutes runs well past 1000 characters.
+const VOICE_CHAR_LIMIT = 5000
 
 // Explicit opt-in marker: a form field whose label starts with "Country:"
 // (e.g. "Country:What is your origin country?") is rendered as a searchable
@@ -731,17 +747,7 @@ function MultiSelectField({ col, isReadOnly }: { col: FormColumn; isReadOnly: bo
     })
   }, [register, rhfKey, col.required, col.title])
 
-  // RHF may hand us the raw NocoDB comma-separated string on first load (before
-  // FormPage's normalisation runs) — accept either shape.
-  const raw = watch(rhfKey)
-  const selected: string[] = Array.isArray(raw)
-    ? raw
-    : typeof raw === 'string' && raw.length > 0
-    ? raw
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean)
-    : []
+  const selected = toSelectedList(watch(rhfKey))
 
   const options = col.options ?? []
   const fieldError = errors[rhfKey]
@@ -914,6 +920,204 @@ function CheckboxField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boole
           <FieldError message={error.message as string} />
         </div>
       )}
+    </div>
+  )
+}
+
+// RHF may hand us the raw NocoDB comma-separated string on first load (before
+// FormPage's normalisation runs) — accept either shape.
+function toSelectedList(raw: unknown): string[] {
+  if (Array.isArray(raw)) return raw as string[]
+  if (typeof raw === 'string' && raw.length > 0) {
+    return raw
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean)
+  }
+  return []
+}
+
+// SingleSelect shown as a radio list (NocoDB form option "show as list").
+function RadioListField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean }) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const current = (watch(rhfKey) as string | undefined) || ''
+  const error = errors[rhfKey]
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => (col.required ? (typeof v === 'string' && v.length > 0) || `${col.title} is required` : true),
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+      <RadioGroup
+        value={current}
+        onValueChange={val => setValue(rhfKey, val, { shouldValidate: true })}
+        disabled={isReadOnly}
+        className="gap-2"
+      >
+        {(col.options ?? []).map((opt, i) => {
+          const id = `${rhfKey}-opt-${i}`
+          return (
+            <label key={opt} htmlFor={id} className="flex items-start gap-3 cursor-pointer">
+              <RadioGroupItem id={id} value={opt} className="mt-1 shrink-0" />
+              <span className="text-base text-[#160b2b] leading-6">{opt}</span>
+            </label>
+          )
+        })}
+      </RadioGroup>
+      {error && <FieldError message={error.message as string} />}
+    </div>
+  )
+}
+
+// MultiSelect shown as a checkbox list (NocoDB form option "show as list").
+function CheckboxListField({ col, isReadOnly }: { col: FormColumn; isReadOnly: boolean }) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const selected = toSelectedList(watch(rhfKey))
+  const error = errors[rhfKey]
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => {
+        if (!col.required) return true
+        return (Array.isArray(v) && v.length > 0) || `${col.title} is required`
+      },
+    })
+  }, [register, rhfKey, col.required, col.title])
+
+  const toggle = (opt: string) => {
+    const next = selected.includes(opt) ? selected.filter(s => s !== opt) : [...selected, opt]
+    setValue(rhfKey, next, { shouldValidate: true })
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={col.title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+      <div className="flex flex-col gap-2">
+        {(col.options ?? []).map((opt, i) => {
+          const id = `${rhfKey}-opt-${i}`
+          return (
+            <label key={opt} htmlFor={id} className="flex items-start gap-3 cursor-pointer">
+              <Checkbox
+                id={id}
+                checked={selected.includes(opt)}
+                disabled={isReadOnly}
+                onCheckedChange={() => toggle(opt)}
+                className="mt-1 shrink-0"
+              />
+              <span className="text-base text-[#160b2b] leading-6">{opt}</span>
+            </label>
+          )
+        })}
+      </div>
+      {error && <FieldError message={error.message as string} />}
+    </div>
+  )
+}
+
+// Rating field flagged `[scale: Low | High]`: numbered buttons 1..max with the
+// end labels underneath, the survey "linear scale" widget. Stored as the
+// Rating number, so NocoDB still shows and aggregates it as a rating.
+function ScaleField({
+  col,
+  isReadOnly,
+  title,
+  labels,
+}: {
+  col: FormColumn
+  isReadOnly: boolean
+  title: string
+  labels?: [string, string]
+}) {
+  const {
+    register,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+  const rhfKey = rhfFieldName(col.column_name)
+  const error = errors[rhfKey]
+  const max = col.rating?.max ?? 5
+  const current = Number(watch(rhfKey)) || 0
+
+  useEffect(() => {
+    register(rhfKey, {
+      validate: v => (col.required ? Number(v) > 0 || `${title} is required` : true),
+    })
+  }, [register, rhfKey, col.required, title])
+
+  const [low, high] = labels ?? ['', '']
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
+        <FieldLabel title={title} required={col.required} />
+        {col.description && <FieldDescription text={col.description} />}
+      </div>
+      <div className="flex flex-col gap-2 w-fit max-w-full">
+        <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={title}>
+          {Array.from({ length: max }, (_, i) => {
+            const value = i + 1
+            const selected = value === current
+            return (
+              <button
+                key={value}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                disabled={isReadOnly}
+                // Click the current value again to clear it back to 0.
+                onClick={() => setValue(rhfKey, selected ? 0 : value, { shouldValidate: true })}
+                className={`h-11 min-w-11 px-3 rounded-lg border border-solid text-base font-semibold transition-colors disabled:cursor-not-allowed ${
+                  selected
+                    ? 'bg-[#7235ed] border-[#7235ed] text-white'
+                    : 'bg-white border-[#dddae2] text-[#160b2b] hover:border-[#7235ed]'
+                }`}
+              >
+                {value}
+              </button>
+            )
+          })}
+        </div>
+        {(low || high) && (
+          <div className="flex justify-between gap-6 text-sm text-[#594d73] leading-5">
+            <span>{low}</span>
+            <span className="text-right">{high}</span>
+          </div>
+        )}
+      </div>
+      {error && <FieldError message={error.message as string} />}
+    </div>
+  )
+}
+
+// Section header above the first field of a survey section: a rule and extra
+// space before a `##` section, a lighter gap before a `###` sub-section.
+function SectionHeader({ text, major }: { text: string; major: boolean }) {
+  return (
+    <div className={major ? 'pt-6 border-t border-solid border-[#dddae2]' : 'pt-2'}>
+      <FormSubheading text={text} variant="section" />
     </div>
   )
 }
@@ -1117,6 +1321,7 @@ export function FormRenderer({
   const {
     register,
     setValue,
+    getValues,
     watch,
     unregister,
     formState: { errors },
@@ -1180,330 +1385,381 @@ export function FormRenderer({
         const rhfKey = rhfFieldName(col.column_name)
         const error = errors[rhfKey]
 
-        if (col.uidt === 'Attachment') {
-          if (isEncryptedTitle(col.title)) {
-            return <EncryptedAttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
+        const field = (() => {
+          if (col.uidt === 'Attachment') {
+            if (isEncryptedTitle(col.title)) {
+              return (
+                <EncryptedAttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
+              )
+            }
+            return <AttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
           }
-          return <AttachmentField key={col.column_name} col={col} viewId={viewId} isReadOnly={isReadOnly} />
-        }
 
-        // Country fields → searchable dropdown
-        if (isCountryField(col)) {
-          const currentValue = watch(rhfKey) || ''
-          const displayTitle = stripCountryPrefix(col.title)
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={displayTitle} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
+          // Country fields → searchable dropdown
+          if (isCountryField(col)) {
+            const currentValue = watch(rhfKey) || ''
+            const displayTitle = stripCountryPrefix(col.title)
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={displayTitle} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <SearchableSelect
+                  value={currentValue}
+                  onChange={val => setValue(rhfKey, val, { shouldValidate: true })}
+                  options={COUNTRIES}
+                  placeholder="Select a country"
+                  disabled={isReadOnly}
+                />
+                {col.required && (
+                  <input type="hidden" {...register(rhfKey, { required: `${displayTitle} is required` })} />
+                )}
+                {error && <FieldError message={error.message as string} />}
               </div>
-              <SearchableSelect
-                value={currentValue}
-                onChange={val => setValue(rhfKey, val, { shouldValidate: true })}
-                options={COUNTRIES}
-                placeholder="Select a country"
-                disabled={isReadOnly}
-              />
-              {col.required && (
-                <input type="hidden" {...register(rhfKey, { required: `${displayTitle} is required` })} />
-              )}
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
+            )
+          }
 
-        // GitHub + wallet render together as one "Connections" block (the GitHub
-        // field owns the heading/helper; the wallet field collapses into it).
-        if (isGithubTitle(col.title)) {
-          const walletCol = columns.find(c => isWalletTitle(c.title))
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title="Connections" required={Boolean(col.required || walletCol?.required)} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <GithubConnectField columnName={col.column_name} label="" required={col.required} hideHeader />
-                {walletCol && (
-                  <WalletConnectField
-                    columnName={walletCol.column_name}
-                    label=""
-                    required={walletCol.required}
-                    hideHeader
-                  />
+          // GitHub + wallet render together as one "Connections" block (the GitHub
+          // field owns the heading/helper; the wallet field collapses into it).
+          if (isGithubTitle(col.title)) {
+            const walletCol = columns.find(c => isWalletTitle(c.title))
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title="Connections" required={Boolean(col.required || walletCol?.required)} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <GithubConnectField columnName={col.column_name} label="" required={col.required} hideHeader />
+                  {walletCol && (
+                    <WalletConnectField
+                      columnName={walletCol.column_name}
+                      label=""
+                      required={walletCol.required}
+                      hideHeader
+                    />
+                  )}
+                </div>
+                {qualifyingDiscount && (
+                  <div className="flex flex-col gap-1 rounded-xl border border-[#b7e6c9] bg-[#e6f7ed] p-4">
+                    <p className="flex items-start gap-2 text-base font-bold text-[#137a3e]">
+                      <Check className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>
+                        You qualify for{' '}
+                        {qualifyingDiscount.discount >= 100
+                          ? `a FREE ${qualifyingDiscount.name} ticket!`
+                          : `${qualifyingDiscount.discount}% off via ${qualifyingDiscount.name}!`}
+                      </span>
+                    </p>
+                    <p className="pl-7 text-sm text-[#3b3450] leading-5">
+                      You don&apos;t need to apply — claim your ticket now at the{' '}
+                      <a href="/en/tickets/store/#community" className="font-bold text-[#137a3e] underline">
+                        ticket store
+                      </a>
+                      . Verify using the same GitHub / wallet and the discount will be detected automatically.
+                    </p>
+                  </div>
                 )}
               </div>
-              {qualifyingDiscount && (
-                <div className="flex flex-col gap-1 rounded-xl border border-[#b7e6c9] bg-[#e6f7ed] p-4">
-                  <p className="flex items-start gap-2 text-base font-bold text-[#137a3e]">
-                    <Check className="w-5 h-5 shrink-0 mt-0.5" aria-hidden="true" />
-                    <span>
-                      You qualify for{' '}
-                      {qualifyingDiscount.discount >= 100
-                        ? `a FREE ${qualifyingDiscount.name} ticket!`
-                        : `${qualifyingDiscount.discount}% off via ${qualifyingDiscount.name}!`}
-                    </span>
-                  </p>
-                  <p className="pl-7 text-sm text-[#3b3450] leading-5">
-                    You don&apos;t need to apply — claim your ticket now at the{' '}
-                    <a href="/en/tickets/store/#community" className="font-bold text-[#137a3e] underline">
-                      ticket store
-                    </a>
-                    . Verify using the same GitHub / wallet and the discount will be detected automatically.
-                  </p>
+            )
+          }
+
+          if (isWalletTitle(col.title)) {
+            // Already rendered inside the combined Connections block above when a
+            // GitHub field exists; otherwise render the wallet field on its own.
+            if (columns.some(c => isGithubTitle(c.title))) return null
+            return (
+              <WalletConnectField
+                key={col.column_name}
+                columnName={col.column_name}
+                label={stripWalletPrefix(col.title)}
+                required={col.required}
+                description={col.description}
+              />
+            )
+          }
+
+          if (col.uidt === 'SingleLineText') {
+            const max = CHAR_LIMITS.SingleLineText
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
                 </div>
-              )}
-            </div>
-          )
-        }
-
-        if (isWalletTitle(col.title)) {
-          // Already rendered inside the combined Connections block above when a
-          // GitHub field exists; otherwise render the wallet field on its own.
-          if (columns.some(c => isGithubTitle(c.title))) return null
-          return (
-            <WalletConnectField
-              key={col.column_name}
-              columnName={col.column_name}
-              label={stripWalletPrefix(col.title)}
-              required={col.required}
-              description={col.description}
-            />
-          )
-        }
-
-        if (col.uidt === 'SingleLineText') {
-          const max = CHAR_LIMITS.SingleLineText
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Input
-                id={col.column_name}
-                maxLength={max}
-                disabled={isReadOnly}
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                  maxLength: { value: max, message: `Maximum ${max} characters` },
-                })}
-              />
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'Number') {
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Input
-                id={col.column_name}
-                type="number"
-                inputMode="numeric"
-                step={1}
-                disabled={isReadOnly}
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                  // Coerce the string the input yields into a number (or
-                  // undefined when blank) so the value written to NocoDB is
-                  // numeric, not a string.
-                  setValueAs: v => (v === '' || v == null ? undefined : Number(v)),
-                  validate: v => v === undefined || !Number.isNaN(Number(v)) || `${col.title} must be a number`,
-                })}
-              />
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'Rating') {
-          return <RatingField key={col.column_name} col={col} isReadOnly={isReadOnly} />
-        }
-
-        if (col.uidt === 'Email') {
-          const max = CHAR_LIMITS.Email
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Input
-                id={col.column_name}
-                type="email"
-                maxLength={max}
-                disabled={isReadOnly}
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                  maxLength: { value: max, message: `Maximum ${max} characters` },
-                  pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
-                })}
-              />
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'URL') {
-          const max = CHAR_LIMITS.SingleLineText
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Input
-                id={col.column_name}
-                type="url"
-                inputMode="url"
-                placeholder="https://"
-                maxLength={max}
-                disabled={isReadOnly}
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                  maxLength: { value: max, message: `Maximum ${max} characters` },
-                  pattern: {
-                    // Permissive URL check: any scheme + non-space rest, or a
-                    // bare domain ("example.com/path"). Matches what most users
-                    // type without forcing them to prepend https://.
-                    value: /^(?:[a-z][a-z0-9+.-]*:\/\/\S+|[\w-]+(?:\.[\w-]+)+(?:\/\S*)?)$/i,
-                    message: 'Enter a valid URL',
-                  },
-                })}
-              />
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'LongText') {
-          const max = CHAR_LIMITS.LongText
-          const val: string = watch(rhfKey) || ''
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Textarea
-                id={col.column_name}
-                rows={5}
-                maxLength={max}
-                disabled={isReadOnly}
-                className="px-4 py-3 text-base border-[#dddae2] rounded-lg min-h-[120px] resize-y"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                  maxLength: { value: max, message: `Maximum ${max} characters` },
-                })}
-              />
-              <p className={`text-xs text-right ${val.length >= max ? 'text-red-500' : 'text-[#594d73]'}`}>
-                {val.length}/{max}
-              </p>
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'Date') {
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Input
-                id={col.column_name}
-                type="date"
-                disabled={isReadOnly}
-                // Open the native date picker on any click/focus, not just on
-                // the small calendar icon. `showPicker()` is supported in
-                // Chrome 99+, Firefox 101+, Safari 16+ — wrap in a try so we
-                // degrade gracefully on older browsers.
-                onClick={e => {
-                  try {
-                    ;(e.currentTarget as HTMLInputElement).showPicker?.()
-                  } catch {}
-                }}
-                onFocus={e => {
-                  try {
-                    ;(e.currentTarget as HTMLInputElement).showPicker?.()
-                  } catch {}
-                }}
-                className="h-10 px-4 text-base border-[#dddae2] rounded-lg cursor-pointer"
-                {...register(rhfKey, {
-                  required: col.required ? `${col.title} is required` : false,
-                })}
-              />
-              {error && <FieldError message={error.message as string} />}
-            </div>
-          )
-        }
-
-        if (col.uidt === 'Checkbox') {
-          return <CheckboxField key={col.column_name} col={col} isReadOnly={isReadOnly} />
-        }
-
-        if (col.uidt === 'MultiSelect' && col.options) {
-          return <MultiSelectField key={col.column_name} col={col} isReadOnly={isReadOnly} />
-        }
-
-        if (col.uidt === 'SingleSelect' && col.options) {
-          const currentValue = watch(rhfKey)
-          return (
-            <div key={col.column_name} className="flex flex-col gap-3">
-              <div className="flex flex-col gap-2">
-                <FieldLabel title={col.title} required={col.required} />
-                {col.description && <FieldDescription text={col.description} />}
-              </div>
-              <Select
-                value={currentValue || ''}
-                onValueChange={val => setValue(rhfKey, val, { shouldValidate: true })}
-                disabled={isReadOnly}
-              >
-                <SelectTrigger id={col.column_name} className="h-10 px-4 text-base border-[#dddae2] rounded-lg">
-                  <SelectValue placeholder={`Select ${col.title.toLowerCase()}`} />
-                </SelectTrigger>
-                <SelectContent>
-                  {col.options.map(opt => (
-                    <SelectItem key={opt} value={opt}>
-                      {opt}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {col.required && (
-                <input
-                  type="hidden"
+                <Input
+                  id={col.column_name}
+                  maxLength={max}
+                  disabled={isReadOnly}
+                  className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
                   {...register(rhfKey, {
-                    required: `${col.title} is required`,
+                    required: col.required ? `${col.title} is required` : false,
+                    maxLength: { value: max, message: `Maximum ${max} characters` },
                   })}
                 />
-              )}
-              {error && <FieldError message={error.message as string} />}
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'Number') {
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <Input
+                  id={col.column_name}
+                  type="number"
+                  inputMode="numeric"
+                  step={1}
+                  disabled={isReadOnly}
+                  className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                  {...register(rhfKey, {
+                    required: col.required ? `${col.title} is required` : false,
+                    // Coerce the string the input yields into a number (or
+                    // undefined when blank) so the value written to NocoDB is
+                    // numeric, not a string.
+                    setValueAs: v => (v === '' || v == null ? undefined : Number(v)),
+                    validate: v => v === undefined || !Number.isNaN(Number(v)) || `${col.title} must be a number`,
+                  })}
+                />
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'Rating') {
+            const scale = parseScaleTitle(col.title)
+            if (scale) {
+              return (
+                <ScaleField
+                  key={col.column_name}
+                  col={col}
+                  isReadOnly={isReadOnly}
+                  title={scale.title}
+                  labels={scale.labels}
+                />
+              )
+            }
+            return <RatingField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+          }
+
+          if (col.uidt === 'Email') {
+            const max = CHAR_LIMITS.Email
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <Input
+                  id={col.column_name}
+                  type="email"
+                  maxLength={max}
+                  disabled={isReadOnly}
+                  className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                  {...register(rhfKey, {
+                    required: col.required ? `${col.title} is required` : false,
+                    maxLength: { value: max, message: `Maximum ${max} characters` },
+                    pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
+                  })}
+                />
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'URL') {
+            const max = CHAR_LIMITS.SingleLineText
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <Input
+                  id={col.column_name}
+                  type="url"
+                  inputMode="url"
+                  placeholder="https://"
+                  maxLength={max}
+                  disabled={isReadOnly}
+                  className="h-10 px-4 text-base border-[#dddae2] rounded-lg"
+                  {...register(rhfKey, {
+                    required: col.required ? `${col.title} is required` : false,
+                    maxLength: { value: max, message: `Maximum ${max} characters` },
+                    pattern: {
+                      // Permissive URL check: any scheme + non-space rest, or a
+                      // bare domain ("example.com/path"). Matches what most users
+                      // type without forcing them to prepend https://.
+                      value: /^(?:[a-z][a-z0-9+.-]*:\/\/\S+|[\w-]+(?:\.[\w-]+)+(?:\/\S*)?)$/i,
+                      message: 'Enter a valid URL',
+                    },
+                  })}
+                />
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'LongText') {
+            const voice = isVoiceTitle(col.title)
+            const label = voice ? stripVoicePrefix(col.title) : col.title
+            const max = voice ? VOICE_CHAR_LIMIT : CHAR_LIMITS.LongText
+            const val: string = watch(rhfKey) || ''
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={label} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                {voice && !isReadOnly && (
+                  <VoiceRecorder
+                    viewId={viewId}
+                    onText={text => {
+                      // Each take is appended to the text box, so a long answer can be
+                      // spoken in parts; the cursor lands after it, ready to edit.
+                      const current = String(getValues(rhfKey) || '').trimEnd()
+                      const next = (current ? `${current} ${text}` : text).slice(0, max)
+                      setValue(rhfKey, next, { shouldValidate: true, shouldDirty: true })
+                      const box = document.getElementById(col.column_name)
+                      if (box instanceof HTMLTextAreaElement) {
+                        box.focus()
+                        box.setSelectionRange(next.length, next.length)
+                      }
+                    }}
+                  />
+                )}
+                <Textarea
+                  id={col.column_name}
+                  rows={5}
+                  maxLength={max}
+                  disabled={isReadOnly}
+                  className="px-4 py-3 text-base border-[#dddae2] rounded-lg min-h-[120px] resize-y"
+                  {...register(rhfKey, {
+                    required: col.required ? `${label} is required` : false,
+                    maxLength: { value: max, message: `Maximum ${max} characters` },
+                  })}
+                />
+                <p className={`text-xs text-right ${val.length >= max ? 'text-red-500' : 'text-[#594d73]'}`}>
+                  {val.length}/{max}
+                </p>
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'Date') {
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <Input
+                  id={col.column_name}
+                  type="date"
+                  disabled={isReadOnly}
+                  // Open the native date picker on any click/focus, not just on
+                  // the small calendar icon. `showPicker()` is supported in
+                  // Chrome 99+, Firefox 101+, Safari 16+ — wrap in a try so we
+                  // degrade gracefully on older browsers.
+                  onClick={e => {
+                    try {
+                      ;(e.currentTarget as HTMLInputElement).showPicker?.()
+                    } catch {}
+                  }}
+                  onFocus={e => {
+                    try {
+                      ;(e.currentTarget as HTMLInputElement).showPicker?.()
+                    } catch {}
+                  }}
+                  className="h-10 px-4 text-base border-[#dddae2] rounded-lg cursor-pointer"
+                  {...register(rhfKey, {
+                    required: col.required ? `${col.title} is required` : false,
+                  })}
+                />
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          if (col.uidt === 'Checkbox') {
+            return <CheckboxField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+          }
+
+          if (col.uidt === 'MultiSelect' && col.options) {
+            if (col.isList) {
+              return <CheckboxListField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+            }
+            return <MultiSelectField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+          }
+
+          if (col.uidt === 'SingleSelect' && col.options) {
+            if (col.isList) {
+              return <RadioListField key={col.column_name} col={col} isReadOnly={isReadOnly} />
+            }
+            const currentValue = watch(rhfKey)
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={col.title} required={col.required} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <Select
+                  value={currentValue || ''}
+                  onValueChange={val => setValue(rhfKey, val, { shouldValidate: true })}
+                  disabled={isReadOnly}
+                >
+                  <SelectTrigger id={col.column_name} className="h-10 px-4 text-base border-[#dddae2] rounded-lg">
+                    <SelectValue placeholder={`Select ${col.title.toLowerCase()}`} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {col.options.map(opt => (
+                      <SelectItem key={opt} value={opt}>
+                        {opt}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {col.required && (
+                  <input
+                    type="hidden"
+                    {...register(rhfKey, {
+                      required: `${col.title} is required`,
+                    })}
+                  />
+                )}
+                {error && <FieldError message={error.message as string} />}
+              </div>
+            )
+          }
+
+          return (
+            <div key={col.column_name} className="flex flex-col gap-2">
+              <FieldLabel title={col.title} required={col.required} />
+              {col.description && <FieldDescription text={col.description} />}
+              <div className="flex items-start gap-2 px-3 py-2 border border-red-300 bg-red-50 rounded-lg text-sm text-red-600">
+                <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
+                <span>
+                  Field type <code className="font-mono">{col.uidt}</code> is not currently supported.
+                </span>
+              </div>
             </div>
           )
-        }
+        })()
 
+        // A section header travels with its first field, so a conditionally
+        // hidden section disappears as a whole.
+        if (!col.section) return field
         return (
-          <div key={col.column_name} className="flex flex-col gap-2">
-            <FieldLabel title={col.title} required={col.required} />
-            {col.description && <FieldDescription text={col.description} />}
-            <div className="flex items-start gap-2 px-3 py-2 border border-red-300 bg-red-50 rounded-lg text-sm text-red-600">
-              <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
-              <span>
-                Field type <code className="font-mono">{col.uidt}</code> is not currently supported.
-              </span>
-            </div>
-          </div>
+          <React.Fragment key={col.column_name}>
+            <SectionHeader text={col.section} major={/^#{1,2}\s/.test(col.section)} />
+            {field}
+          </React.Fragment>
         )
       })}
     </div>

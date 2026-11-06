@@ -117,7 +117,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
         // EIP-55 checksum: siwe throws on lowercase (WC wallets return
         // lowercase; see VerifyDiscountModal / issue #114).
         address: getAddress(address as string),
-        statement: 'Connect your wallet to your Devcon builder application.',
+        statement: 'Confirm you own this wallet for your Devcon form.',
         uri: window.location.origin,
         version: '1',
         chainId: 1,
@@ -198,7 +198,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
             <span className="text-[#9a6b00] leading-5">
               Wallet connected{address ? ` (${address.slice(0, 6)}…${address.slice(-4)})` : ''}.{' '}
               <span className="font-bold">One more step:</span> confirm ownership with a quick, free signature to add
-              it to your application.
+              it to this form.
             </span>
           </div>
           <button
