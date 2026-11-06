@@ -169,7 +169,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of discounted tickets will be distributed this year to students from all over India who are looking to explore Ethereum. Tickets are available until sold out.',
-    price: '$25',
+    price: '$6.50',
     upiProduct: 'indian-student',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
@@ -180,7 +180,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of tickets will be distributed this year to students from around the world who wish to learn more about Ethereum. Tickets are available until sold out.',
-    price: '$99',
+    price: '$25',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },

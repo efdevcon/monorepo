@@ -136,7 +136,7 @@ test("floor legend: Level 3 keeps the Community and Supporters swatches and list
   assert.ok(community.areas.some((a) => a.areaId === "open-hardware-zone"));
   assert.equal(community.areas.filter((a) => a.areaId === "community-hub").length, 14);
   const supporters = legend.find((e) => e.label === "Supporters")!;
-  assert.equal(supporters.areas.length, 27, "flagship, core and starter booths (F1 gone since 2026-10-30), plus the CoW Swap stand listed under Supporters");
+  assert.equal(supporters.areas.length, 26, "flagship, core and starter booths (F1 gone since 2026-10-30, S1 since 2026-11-06), plus the CoW Swap stand listed under Supporters");
   assert.ok(supporters.swatch && !supporters.iconUrl);
   assert.ok(legend.find((e) => e.label === "Game Zone")!.iconUrl?.endsWith("/game-zone.png"));
   assert.ok(!legend.some((e) => e.label === "Check-in"), "so Level 3 has no Check-in chip");
@@ -159,7 +159,7 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
 
 test("supporters: every seated supporter has a blurb, a site and a logo file; X is https when set", () => {
   const booths = AREA_LIST.filter((a) => (a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters")) && a.iconBackdrop !== null);
-  assert.ok(booths.length >= 27, "the seated booths and the hosted coffee stand (F1 is vacant)");
+  assert.ok(booths.length >= 26, "the seated booths and the hosted coffee stand (F1 and S1 are gone from the plan)");
   for (const a of booths) {
     assert.ok(a.description.length > 20 && a.description.length <= 280, `${a.name}: blurb length`);
     assert.match(a.website ?? "", /^https:\/\//, `${a.name}: site`);

@@ -28,13 +28,13 @@ const SUPPORT_TAG_COLORS = ['#ffe0cc', '#f0d7f4', '#d6d5f6', '#cddff4', '#cdf4d7
 const STUDENT_APPLICATION_ROWS: TicketRow[] = [
   {
     name: 'Indian Students',
-    price: '$25',
+    price: '$6.50',
     action: 'Apply',
     actionHref: '/form/student-application',
   },
   {
     name: 'International Students',
-    price: '$99',
+    price: '$25',
     action: 'Apply',
     actionHref: '/form/student-application',
   },

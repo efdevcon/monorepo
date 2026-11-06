@@ -571,9 +571,9 @@ export function Schedule() {
     setSeenHubsInUrl(hubsInUrl);
     if (hubsInUrl) setSource("hubs");
   }
-  // Whether the once-per-app-open landing on "now" has happened. Lives here,
+  // Whether the inner view has been placed once this app open. Lives here,
   // above the keyed inner view, so a programme switch (which remounts it)
-  // does not land again: testers read that as the app forcing them to "now".
+  // knows the document is still scrolled to the previous list.
   const landedRef = useRef(false);
   const changeSource = useCallback((next: ScheduleSource) => {
     trackEvent("schedule", "programme", next);
@@ -930,18 +930,10 @@ function ScheduleInner({
   };
 
   // Time groups render progressively (see useProgressiveReveal): the first
-  // render includes the landing group ("live now", else the next one) so the
-  // initial jump measures a real element; the rest fill in over the next
-  // frames. Jumps complete the list first so they land exactly.
-  const landingIndex = useMemo(() => {
-    const i = visibleGroups.findIndex((g) => g.isLive);
-    if (i >= 0) return i;
-    const j = visibleGroups.findIndex((g) => g.isOngoing);
-    if (j >= 0) return j;
-    return Math.max(0, visibleGroups.findIndex((g) => !g.isPast));
-  }, [visibleGroups]);
+  // render is the top of the list, the rest fill in over the next frames.
+  // Jumps complete the list first so they land exactly.
   const { visible: revealedGroups, revealAll: revealAllGroups } =
-    useProgressiveReveal(visibleGroups.length, 3, landingIndex + 1);
+    useProgressiveReveal(visibleGroups.length, 3);
 
   const jumpToNow = () => {
     // Cross days first: land on the day containing "now" (both view modes only
@@ -1081,13 +1073,13 @@ function ScheduleInner({
     scrollListTop();
   }, [view]);
 
-  // Landing: the first time the selected day's content is actually in the
-  // DOM (sessions loaded, day resolved), jump straight to "live now",
-  // instantly, before paint, so the list never visibly starts at the top.
-  // Once per app open: the flag lives in the parent (above the programme
-  // switch's remount) and the pane stays mounted across tab switches
-  // (TabPanes restores the scroll position). A later mount — the other
-  // programme — starts at the top of its list instead.
+  // Landing: the schedule opens at the top of the page, never on "live now"
+  // (the once-per-app-open jump went on 2026-11-06: people landed past the
+  // Tracks / Community switch and the day tabs and never saw them; the Live
+  // now pill is the way to "now"). The flag lives in the parent (above the
+  // programme switch's remount) and the pane stays mounted across tab
+  // switches (TabPanes restores the scroll position), so a later mount is
+  // the other programme, whose list starts at its own top.
   const contentReady =
     selectedDay !== null &&
     (view === "list"
@@ -1095,7 +1087,7 @@ function ScheduleInner({
       : daySessions.length > 0);
   // Deep link (`/schedule/<id>` on app open): the list behind the page shows
   // the session's day, and once the page closes it reveals the session
-  // itself rather than landing on "live now". Consumes the landing.
+  // itself. Consumes the landing.
   const revealOnCloseRef = useRef<string | null>(null);
   useEffect(() => {
     if (!routeSession || landedRef.current) return;
@@ -1118,7 +1110,6 @@ function ScheduleInner({
       return;
     }
     landedRef.current = true;
-    if (view === "list") scrollListToNow("auto");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentReady, listVisible]);
   const prevDetailRef = useRef(detailId);
