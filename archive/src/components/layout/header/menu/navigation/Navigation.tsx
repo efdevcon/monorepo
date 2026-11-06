@@ -4,6 +4,7 @@ import ArrowCollapse from "@/assets/icons/arrow_collapse.svg";
 import ArrowDropdown from "@/assets/icons/arrow_drop_down.svg";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import { TRACKS } from "@/utils/config";
+import { EDITION_EVENT_IDS, LATEST_EDITION } from "@/utils/editions";
 import css from "./navigation.module.scss";
 
 interface NavigationProps {
@@ -19,18 +20,14 @@ export const NavigationItems = [
     type: "links",
     // logo: "/images/menu/events.svg",
     logo: "/images/menu/events.svg",
-    links: [
-      ...[7, 6, 5, 4, 3, 2, 1, 0].map((event) => ({
-        title: `Devcon ${event}`,
-        url: `/watch?event=devcon-${event}`,
-        type: "page",
-      })),
-      {
-        title: "Devconnect ARG",
-        url: "/watch?event=devconnect-arg",
-        type: "page",
-      },
-    ],
+    // Newest first by date: Devconnect ARG (2025) sits between Devcon 8 and 7.
+    links: EDITION_EVENT_IDS.flatMap((id, i) => {
+      const edition = LATEST_EDITION - i;
+      const link = { title: `Devcon ${edition}`, url: `/watch?event=${id}`, type: "page" };
+      return edition === 8
+        ? [link, { title: "Devconnect ARG", url: "/watch?event=devconnect-arg", type: "page" }]
+        : [link];
+    }),
   },
   {
     title: "Categories",

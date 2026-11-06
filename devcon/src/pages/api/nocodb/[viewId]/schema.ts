@@ -30,6 +30,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       ...(f.description ? { description: f.description } : {}),
       ...(f.options ? { options: f.options } : {}),
       ...(f.rating ? { rating: f.rating } : {}),
+      ...(f.isList ? { isList: true } : {}),
+      ...(f.section ? { section: f.section } : {}),
     }))
 
     return res.status(200).json({

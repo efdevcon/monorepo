@@ -1,10 +1,15 @@
 import { CONFIG } from "@/utils/config";
+import { isDevconEdition } from "@/utils/editions";
 
 export async function getEvents() {
   console.log("getEvents");
   const response = await fetch(`${CONFIG.API_BASE_URL}/events`);
   const events = await response.json();
-  return events.data.sort((a: any, b: any) => b.edition - a.edition);
+  // The API also lists its test events and a stray "0" record (title "0", no
+  // sessions); the archive shows the Devcon editions and Devconnect only.
+  return events.data
+    .filter((e: any) => isDevconEdition(e) || e.id === "devconnect-arg")
+    .sort((a: any, b: any) => b.edition - a.edition);
 }
 
 export async function getEvent(id: string) {
@@ -16,8 +21,9 @@ export async function getEvent(id: string) {
 
 export async function getSessions(size: number = 20, from: number = 0) {
   console.log("getSessions", size, from);
+  // Recorded sessions only: Devcon 8 talks go up as their videos are published.
   const response = await fetch(
-    `${CONFIG.API_BASE_URL}/sessions?size=${size}&from=${from}`
+    `${CONFIG.API_BASE_URL}/sessions?size=${size}&from=${from}&video=true`
   );
 
   const body = await response.json();
@@ -26,14 +32,81 @@ export async function getSessions(size: number = 20, from: number = 0) {
   return body.data.items;
 }
 
-export async function getFeaturedSessions(
-  type:
-    | "most-popular"
-    | "devcon-6"
-    | "devcon-7"
-    | "devcon-7-opening"
-    | "devcon-7-picks"
-) {
+/**
+ * The sessions the programme team marked featured in Pretalx (keynotes),
+ * once recorded, in schedule order. The API filters on featured and video;
+ * the filter here repeats it for an API build that predates those params.
+ */
+export async function getRecordedFeaturedSessions(eventId: string) {
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions?event=${eventId}&featured=true&video=true&size=1000&sort=slot_start&order=asc`
+  );
+  const body = await response.json();
+  const items: any[] = body?.data?.items ?? [];
+  return items.filter((s) => s.featured === true && s.sources_youtubeId);
+}
+
+/**
+ * Devcon 8 opening: the Main Stage (Lotus) block of Tuesday 3 November, 10:00
+ * to 12:00 Mumbai time, recorded sessions in schedule order. The API filters
+ * on room and video; the window is applied here (slot_start is a millisecond
+ * timestamp).
+ */
+const DEVCON8_OPENING = {
+  room: "main-stage-lotus",
+  from: Date.parse("2026-11-03T10:00:00+05:30"),
+  to: Date.parse("2026-11-03T12:00:00+05:30"),
+};
+
+export async function getRecordedOpeningSessions() {
+  const { room, from, to } = DEVCON8_OPENING;
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions?event=devcon8&room=${room}&video=true&size=1000&sort=slot_start&order=asc`
+  );
+  const body = await response.json();
+  const items: any[] = body?.data?.items ?? [];
+  return items.filter(
+    (s) =>
+      s.sources_youtubeId &&
+      s.slot_roomId === room &&
+      typeof s.slot_start === "number" &&
+      s.slot_start >= from &&
+      s.slot_start < to
+  );
+}
+
+/**
+ * Devcon 8 hero picks, each with its own photo in
+ * public/images/featured/devcon8/<slug>.jpg (PageHero.heroImage).
+ */
+const DEVCON8_PICKS = [
+  "the-open-secure-and-verifiable-half-to-a-brighter-future", // opening keynote
+  "post-quantum-transition", // post-quantum keynote
+  "civic-ai-for-self-governing-communities", // civic AI talk
+];
+
+export async function getDevcon8Picks() {
+  const sessions = await Promise.all(
+    DEVCON8_PICKS.map((slug) => getSessionBySlug(slug, "devcon8"))
+  );
+  return sessions.filter((s) => s && s.sources_youtubeId);
+}
+
+export type FeaturedListType =
+  | "most-popular"
+  | "devcon-6"
+  | "devcon-7"
+  | "devcon-7-opening"
+  | "devcon-7-picks"
+  | "devcon-8"
+  | "devcon-8-opening"
+  | "devcon-8-picks";
+
+export async function getFeaturedSessions(type: FeaturedListType) {
+  if (type === "devcon-8") return getRecordedFeaturedSessions("devcon8");
+  if (type === "devcon-8-opening") return getRecordedOpeningSessions();
+  if (type === "devcon-8-picks") return getDevcon8Picks();
+
   let featuredSessions: string[] = [];
 
   if (type === "most-popular") {

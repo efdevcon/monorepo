@@ -14,6 +14,16 @@ export function swagAdditionEligible(ticket: { admission?: boolean; hasCheckedIn
   return ticket.admission !== false && ticket.hasCheckedIn === true;
 }
 
+/**
+ * Sold out at the Swag Station, matched by product name: the card shows
+ * "Sold out" instead of Buy and the route refuses new vouchers.
+ */
+const SOLD_OUT = [/shirt/i];
+
+export function swagAdditionSoldOut(offer: { name: string }): boolean {
+  return SOLD_OUT.some((re) => re.test(offer.name));
+}
+
 /** One product as the card shows it. */
 export interface SwagAdditionOffer {
   /** The Pretix "(Addition)" item. */

@@ -53,6 +53,8 @@ const APP_CONFIG = {
   // App updates (ServiceWorkerUpdater.tsx, decisions in utils/silentUpdate.ts).
   // The worker never skips waiting on its own; these decide when the app asks.
   KIOSK_AUTO_UPDATE: true, // room-screen TVs switch by themselves (online, clear of a changeover), self-heal, reload nightly
+  // Every room-screen TV goes to this room's screen (/room-screens/<id>), e.g. for the closing ceremony; null = each TV shows its own room.
+  ROOM_SCREENS_REDIRECT_TO: "music-stage" as string | null,
   SILENT_UPDATE_LAUNCH: true, // a build waiting at launch is applied before the first paint matters
   SILENT_UPDATE_HIDDEN: true, // a build is applied after a minute hidden, unless a player, a sheet or typing is on the page
 

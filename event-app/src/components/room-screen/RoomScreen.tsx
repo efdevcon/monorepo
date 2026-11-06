@@ -5,16 +5,18 @@ import cn from "classnames";
 import QRCode from "qrcode";
 import { Clock3 } from "lucide-react";
 import APP_CONFIG from "@/CONFIG";
-import { useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
+import { useEvent, useRoom, useSessions, useSessionsOfAllProgrammes } from "@/data/hooks";
 import type { Session } from "@/data/models";
 import { useNowMs } from "@/hooks/useNow";
-import { formatTime, formatTimeRange, getStatus, minutesUntil } from "@/components/schedule/utils";
+import { formatTime, formatTimeRange, getStatus, minutesUntil, streamUrlForDay } from "@/components/schedule/utils";
+import { streamEmbedUrlForRoom } from "@/data/streams";
 import { dayKeyToUtcMidnightMs, eventDayKey, eventFmt, getEventTimeZone } from "@/data/eventTime";
 import { changeoverNear, nightlyReloadDue } from "@/utils/silentUpdate";
 import { setKioskChangeoverNear } from "./kioskState";
 import { getTrackTheme, trackFullLabel } from "@/components/schedule/trackTheme";
 import { roomScreenRoomIds } from "@/data/venueRooms";
 import { roomIconUrl } from "./roomIcon";
+import { applyRoomScreenFixes, liveStreamInRail } from "./roomScreenFixes";
 
 /**
  * One design unit: 1% of a 16:9 box fitted inside the viewport (1vw on a
@@ -200,13 +202,25 @@ function Message({ children }: { children: React.ReactNode }) {
 export function RoomScreen({ roomId }: { roomId: string }) {
   const nowMs = useNowMs();
   const { room, isLoading: roomLoading, isError, error } = useRoom(roomId);
+  const { event } = useEvent();
   // A place reads the whole catalogue, whatever programme a session is shown
   // in, under every id the place goes by (the Music Stage's hub programme).
   const everySession = useSessionsOfAllProgrammes();
   const sessions = useMemo(() => {
     const ids = new Set(roomScreenRoomIds(roomId));
-    return everySession.filter((s) => s.room?.id !== undefined && ids.has(s.room.id));
+    return applyRoomScreenFixes(
+      roomId,
+      everySession.filter((s) => s.room?.id !== undefined && ids.has(s.room.id))
+    );
   }, [everySession, roomId]);
+
+  // Every TV to one room's screen (CONFIG.ROOM_SCREENS_REDIRECT_TO): the TVs
+  // pick up a deploy by themselves (KIOSK_AUTO_UPDATE), so nobody touches them.
+  useEffect(() => {
+    const target = APP_CONFIG.ROOM_SCREENS_REDIRECT_TO;
+    if (!target || roomId === target) return;
+    window.location.replace(`/room-screens/${encodeURIComponent(target)}${window.location.search}`);
+  }, [roomId]);
   const { isLoading: sessionsLoading } = useSessions();
 
   const sorted = useMemo(() => [...sessions].sort((a, b) => a.start - b.start), [sessions]);
@@ -289,6 +303,25 @@ export function RoomScreen({ roomId }: { roomId: string }) {
     };
   }, [qrSessionId]);
   const appQr = qr && qr.sessionId === qrSessionId ? qr.url : null;
+  // Nothing after the session on screen: its image (set by roomScreenFixes)
+  // fills the rail instead of "Up next" over an empty box.
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const railImage =
+    laterSessions.length === 0 && currentSession?.image && currentSession.image !== failedImage
+      ? currentSession.image
+      : null;
+  // ...or, for a session marked in roomScreenFixes, the room's livestream:
+  // muted (a browser only autoplays muted video), no controls.
+  const roomStream = streamUrlForDay(room ?? undefined, nowMs, event?.startDate) ?? streamEmbedUrlForRoom(room?.id);
+  const autoplayMuted = (url: string) =>
+    `${url}${url.includes("?") ? "&" : "?"}autoplay=1&mute=1&playsinline=1&controls=0&rel=0`;
+  const railStream =
+    roomStream && laterSessions.length === 0 && sessionIsLive && liveStreamInRail(roomId, currentSession?.id)
+      ? autoplayMuted(roomStream)
+      : null;
+  // The session up next has an image (roomScreenFixes): its description
+  // gets a panel under its row while it is coming up.
+  const nextFeature = laterSessions[0]?.image && laterSessions[0].description ? laterSessions[0] : null;
 
   if (!APP_CONFIG.ROOMS_ENABLED) {
     return <div className="p-4 text-dc-muted">Room screens are not enabled</div>;
@@ -326,7 +359,13 @@ export function RoomScreen({ roomId }: { roomId: string }) {
       </header>
 
       {/* BODY: the session on screen, and the rail of what follows */}
-      <main className="relative grid min-h-0 grid-cols-[minmax(0,52.5fr)_minmax(0,35.5fr)] items-start gap-[4em] p-[4em]">
+      <main
+        className={cn(
+          "relative grid min-h-0 items-start gap-[4em] p-[4em]",
+          // Half and half while the rail plays the livestream.
+          railStream ? "grid-cols-[minmax(0,1fr)_minmax(0,1fr)]" : "grid-cols-[minmax(0,52.5fr)_minmax(0,35.5fr)]"
+        )}
+      >
         {currentSession ? (
           <section
             className="flex max-h-full min-h-0 flex-col gap-[2em] self-start overflow-hidden rounded-[1.25em] border border-dc-hairline p-[2em]"
@@ -403,13 +442,35 @@ export function RoomScreen({ roomId }: { roomId: string }) {
 
         <aside
           className="flex h-full min-h-0 flex-col gap-[1em] self-stretch"
-          style={{
-            maskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
-            WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
-          }}
+          // The fade is for a long list; a feature panel sits clear of it.
+          style={
+            nextFeature
+              ? undefined
+              : {
+                  maskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 6em), transparent)",
+                }
+          }
         >
+          {railStream ? (
+            <iframe
+              src={railStream}
+              title={currentSession?.title ?? "Livestream"}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              className="aspect-video w-full shrink-0 rounded-[0.75em] border border-dc-hairline bg-black"
+            />
+          ) : railImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={railImage}
+              alt={currentSession?.title ?? ""}
+              decoding="async"
+              onError={() => setFailedImage(railImage)}
+              className="aspect-[1200/630] w-full shrink-0 rounded-[0.75em] border border-dc-hairline object-cover"
+            />
+          )}
           {/* "Up next" heads today's sessions; a rail with only tomorrow's shows "Tomorrow" alone (Scott, 2026-10-29). */}
-          {(hasTodaySessions || laterSessions.length === 0) && (
+          {!railStream && !railImage && (hasTodaySessions || laterSessions.length === 0) && (
             <h2 className="shrink-0 text-[1.25em] font-bold leading-[normal] tracking-[-0.0125em] text-dc-fg">Up next</h2>
           )}
           {laterSessions.length > 0 ? (
@@ -426,11 +487,21 @@ export function RoomScreen({ roomId }: { roomId: string }) {
                   </ul>
                 </div>
               ))}
+              {nextFeature && (
+                <p
+                  className="line-clamp-4 shrink-0 rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] leading-[1.5] tracking-[-0.0156em] text-dc-fg"
+                  style={GLASS}
+                >
+                  {nextFeature.description}
+                </p>
+              )}
             </div>
           ) : (
-            <p className="rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] text-dc-muted" style={GLASS}>
-              No more sessions in this room today.
-            </p>
+            !railStream && !railImage && (
+              <p className="rounded-[0.75em] border border-dc-hairline px-[1.25em] py-[1em] text-[1em] text-dc-muted" style={GLASS}>
+                No more sessions in this room today.
+              </p>
+            )
           )}
         </aside>
       </main>

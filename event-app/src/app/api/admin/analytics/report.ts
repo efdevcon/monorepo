@@ -57,6 +57,12 @@ export interface DetailRow {
   hits: number;
   visits: number;
 }
+/** The session detail pages viewed on one site-local day, most viewed first. */
+export interface DaySessions {
+  /** Site-local date, YYYY-MM-DD. */
+  date: string;
+  sessions: DetailRow[];
+}
 /** Q&A opens per session, keyed by the Pretalx code the event carries (Meerkat's id). */
 export interface QaRow {
   code: string;
@@ -110,6 +116,8 @@ export interface AnalyticsReport {
   sessions: DetailRow[];
   /** Speaker detail pages (/speakers/<id>), most viewed first. */
   speakers: DetailRow[];
+  /** The session pages per day of the window, oldest first; days without a view are left out. */
+  sessionsByDay: DaySessions[];
   /** "session - qa" events by session code, most opened first. */
   qa: QaRow[];
   health: HealthReport;
@@ -154,6 +162,9 @@ export function bulkQueries(siteId: string, days: WindowDays): Query[] {
     q("Events.getAction", { ...range, flat: "1", secondaryDimension: "eventName", filter_limit: "10", filter_sort_column: "nb_events", filter_pattern: "^page - " }), // 20 crash pages by route
     q("Events.getAction", { ...range, flat: "1", secondaryDimension: "eventName", filter_limit: "10", filter_sort_column: "nb_events", filter_pattern: "^bundle-failed - " }), // 21 sync failures by dataset
     q("Events.getAction", { ...range, flat: "1", secondaryDimension: "eventName", filter_limit: "10", filter_sort_column: "nb_events", filter_pattern: "^supabase-proxy - " }), // 22 proxy fallbacks by service
+    // The same session-page report per day (one answer keyed by date), so
+    // the page can show which sessions drew people on each day of the event.
+    q("Actions.getPageUrls", { period: "day", date: `last${days}`, flat: "1", filter_limit: "12", filter_sort_column: "nb_hits", filter_pattern: "^/schedule/." }), // 23 sessions per day
   ];
 }
 
@@ -205,6 +216,15 @@ function detailRows(v: unknown, prefix: string): DetailRow[] {
     if (id) out.push({ id, hits: num(r.nb_hits), visits: num(r.nb_visits) });
   }
   return out;
+}
+
+/** Detail rows per site-local day (a `period=day` table answer, keyed by date), oldest first, empty days dropped. */
+function detailRowsByDay(v: unknown, prefix: string): DaySessions[] {
+  if (!isDict(v)) return [];
+  return Object.entries(v)
+    .map(([date, rows]) => ({ date, sessions: detailRows(rows, prefix) }))
+    .filter((d) => d.sessions.length > 0)
+    .sort((a, b) => a.date.localeCompare(b.date));
 }
 
 /** Flattened "<action> - <name>" event rows under one action, reduced to the name. */
@@ -276,6 +296,7 @@ export function shapeReport(results: readonly unknown[], days: WindowDays): Anal
   const sd = isDict(siteRaw) ? siteRaw : {};
   const sessions = detailRows(pick(16, "session pages"), "/schedule/");
   const speakers = detailRows(pick(17, "speaker pages"), "/speakers/");
+  const sessionsByDay = detailRowsByDay(pick(23, "session pages per day"), "/schedule/");
   const qa: QaRow[] = nameRows(pick(18, "Q&A opens"), "qa - ").map((r) => ({ code: r.name, events: r.events, visits: r.visits }));
   const health: HealthReport = {
     failures: eventRows(pick(19, "failure events")),
@@ -307,6 +328,7 @@ export function shapeReport(results: readonly unknown[], days: WindowDays): Anal
     referrers,
     sessions,
     speakers,
+    sessionsByDay,
     qa,
     health,
     warnings,

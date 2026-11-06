@@ -1,4 +1,5 @@
 import { permanentRedirect } from "next/navigation";
+import { eventIdFromRoute } from "@/utils/editions";
 
 export default async function ArchiveRedirect({ params, searchParams }: any) {
   const { eventId, slug } = await params;
@@ -6,7 +7,7 @@ export default async function ArchiveRedirect({ params, searchParams }: any) {
     (await searchParams) as Record<string, string>
   );
 
-  const destination = `/devcon-${eventId}/${slug}${
+  const destination = `/${eventIdFromRoute(eventId)}/${slug}${
     query.toString() ? `?${query.toString()}` : ""
   }`;
 

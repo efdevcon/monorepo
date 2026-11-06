@@ -72,7 +72,7 @@ export function SwagCard({
         // keyboard focus stays legible.
         // A row on mobile (image left, strip right); the desktop shelf card
         // stacks the image over the strip as before.
-        "flex flex-row overflow-clip rounded-[8px] text-left outline outline-dc-hairline",
+        "relative flex flex-row overflow-clip rounded-[8px] text-left outline outline-dc-hairline",
         !purchasable &&
           "cursor-pointer transition-[scale,outline-color] duration-150 ease-out enabled:hover:outline-dc-purple/40 focus-visible:outline-2 focus-visible:outline-dc-purple disabled:cursor-default motion-safe:enabled:hover:scale-[1.03] motion-safe:enabled:active:scale-[0.97] motion-reduce:transition-none",
         shelfOnDesktop && "lg:h-full lg:w-[361px] lg:shrink-0 lg:flex-col lg:rounded-[12px]"
@@ -106,13 +106,6 @@ export function SwagCard({
           <div className="absolute inset-0 flex items-center justify-center bg-dc-panel">
             <Gift className="size-10 text-dc-purple-soft" aria-hidden="true" />
           </div>
-        )}
-        {collected && (
-          // Same pill as the ticket's "Checked in" (sonner success palette).
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2 shadow-sm">
-            <Check className="size-3.5" />
-            Collected
-          </span>
         )}
       </div>
       {/* Strip (Scott, 2026-11-04): name, "Swag" label, then a "View QR"
@@ -166,6 +159,20 @@ export function SwagCard({
           </span>
         )}
       </div>
+      {collected && (
+        // Same pill as the ticket's "Checked in" (sonner success palette):
+        // bottom right of the card on the mobile row, over the photo's top
+        // left on the desktop shelf.
+        <span
+          className={cn(
+            "absolute bottom-3 right-3 inline-flex items-center gap-1 rounded-full bg-dc-green-soft px-3 py-1 text-[12px] font-semibold leading-4 text-dc-fg2 shadow-sm",
+            shelfOnDesktop && "lg:bottom-auto lg:left-3 lg:right-auto lg:top-3"
+          )}
+        >
+          <Check className="size-3.5" />
+          Collected
+        </span>
+      )}
     </Root>
   );
 }

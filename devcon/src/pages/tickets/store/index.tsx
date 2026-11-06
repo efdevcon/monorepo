@@ -134,7 +134,7 @@ const COMMUNITY_PLACEHOLDERS: CommunityPlaceholder[] = [
     meta: `Single-day access, up to ${TICKETING.pretix.dailyIndiaPassMaxPerOrder} passes per order • ID required at check-in`,
     description:
       'This ticket grants access to a single day of Devcon, with lunch & swag included. You may use this ticket for entry starting only on Nov. 4.',
-    price: '$35',
+    price: '$10',
     upiProduct: 'daily-india-pass',
     buttonLabel: 'Checkout',
     pretixItemId: TICKETING.pretix.dailyIndiaPassItemId,
@@ -170,7 +170,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of discounted tickets were distributed to students from all over India looking to explore Ethereum.',
-    price: '$25',
+    price: '$6.50',
     upiProduct: 'indian-student',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
@@ -181,7 +181,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'ID required at check-in',
     description:
       'A limited amount of tickets were distributed to students from around the world who wished to learn more about Ethereum.',
-    price: '$99',
+    price: '$25',
     buttonLabel: 'Apply now',
     href: '/form/student-application',
   },
@@ -203,6 +203,7 @@ const APPLICATION_TICKETS: ApplicationTicket[] = [
     meta: 'Adults must hold their own Devcon ticket to enter',
     description: 'This ticket grants access to all 4 days of Devcon, with lunch included.',
     price: '$19',
+    upiProduct: 'child-with-adult',
     buttonLabel: 'Get ticket',
     pretixItemId: TICKETING.pretix.childWithAdultItemId,
   },

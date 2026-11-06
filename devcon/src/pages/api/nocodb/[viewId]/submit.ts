@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
-import { getFormConfigByViewId, isFormOpen } from 'services/form-config'
+import { getFormConfigByViewId, isFormOpen, isPreviewAllowed } from 'services/form-config'
 import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumns } from 'services/nocodb'
 
 // Convention: any OTP-required form is expected to have a column literally
@@ -18,6 +18,7 @@ import { parseRepoList } from 'services/builder/repo-ref'
 import { scoreBuilder, evaluateStrongCandidate } from 'services/builder/scoring'
 import { getPastDevconEvents } from 'services/builder/poap-attendees'
 import { isApprovedSpeaker } from 'services/pretalx'
+import { isWalletTitle } from 'config/form-field-markers'
 
 // Slug of the visa-collection form. Only this form gates submissions on the
 // signed-in email having a paid Pretix order (purchaser or assigned attendee).
@@ -45,7 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const config = await getFormConfigByViewId(viewId)
 
-    if (config && !isFormOpen(config)) {
+    // A closed form still takes submissions from its preview link (`?preview=`, see isPreviewAllowed).
+    if (config && !isFormOpen(config) && !(await isPreviewAllowed(viewId, req.body?.preview))) {
       return res.status(403).json({
         success: false,
         error: 'This form is no longer accepting submissions.',
@@ -119,6 +121,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!validNames.has(key)) {
         return res.status(400).json({ success: false, error: `Unknown field: ${key}` })
       }
+    }
+
+    // Wallet connector fields ("[wallet]" label): keep only the address proven
+    // by the SIWE flow (walletProof from /api/builder/wallet/verify), never a
+    // value posted in `data`.
+    const walletField = fields.find(f => isWalletTitle(f.title))
+    if (walletField) {
+      const proof = typeof req.body?.walletProof === 'string' ? req.body.walletProof : ''
+      const provenAddress = proof ? verifyProof(proof, 'wallet') : null
+      if (provenAddress) data[walletField.column_name] = provenAddress
+      else delete data[walletField.column_name]
     }
 
     // Visa-form gate: signed-in email must have a paid Pretix order OR be an

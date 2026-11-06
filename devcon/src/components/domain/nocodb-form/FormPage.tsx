@@ -13,7 +13,7 @@ import { useBuilderConnect } from 'context/BuilderConnectContext'
 import { isGithubTitle, isWalletTitle } from 'config/form-field-markers'
 import Link from 'next/link'
 import Image from 'next/image'
-import { FileText } from 'lucide-react'
+import { Eye, FileText } from 'lucide-react'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { FormHeaderImage } from './FormHeaderImage'
 
@@ -659,6 +659,25 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
     }
   }, [])
 
+  // Preview of a closed form: `?preview=<password>` (the form's "Preview Password"
+  // in the Form config table) renders the form once the server accepts the
+  // password, and the submit route takes the same password.
+  const [preview, setPreview] = useState<{ password: string; status: 'checking' | 'ok' | 'denied' } | null>(null)
+  useEffect(() => {
+    if (!closed || !viewId) return
+    const password = new URLSearchParams(window.location.search).get('preview')
+    if (!password) return
+    setPreview({ password, status: 'checking' })
+    fetch(`/api/nocodb/${viewId}/preview/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+      .then(res => setPreview({ password, status: res.ok ? 'ok' : 'denied' }))
+      .catch(() => setPreview({ password, status: 'denied' }))
+  }, [closed, viewId])
+  const previewing = preview?.status === 'ok'
+
   useEffect(() => {
     if (!viewId) return
 
@@ -675,7 +694,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
       .finally(() => setLoading(false))
   }, [viewId])
 
-  if (loading || !viewId) {
+  if (loading || !viewId || preview?.status === 'checking') {
     return (
       <Page darkHeader darkFooter>
         <div className="min-h-[80vh] flex flex-col items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] gap-4">
@@ -699,7 +718,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
     )
   }
 
-  if (closed) {
+  if (closed && !previewing) {
     return (
       <Page darkHeader darkFooter>
         <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
@@ -808,6 +827,7 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
       const body: Record<string, unknown> = { data: submitData }
       if (walletProof) body.walletProof = walletProof
       if (referralRef.current) body.referralCode = referralRef.current
+      if (previewing) body.preview = preview!.password
 
       const res = await fetch(`/api/nocodb/${viewId}/submit/`, {
         method: 'POST',
@@ -827,94 +847,106 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
   return (
     <Page darkHeader darkFooter>
       <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-t from-[#e5ebff] from-[20%] to-[#fbfafc] py-16">
-        <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 max-w-[640px] w-full mx-4 flex flex-col items-center gap-6">
-          {requireOtp ? (
-            <OtpGate
-              title={schema.title}
-              subheading={schema.subheading}
-              description={
-                formSlug === STUDENT_APPLICATION_SLUG
-                  ? 'Enter your student email to start the application'
-                  : 'Enter your email to start the application'
-              }
-              emailPlaceholder={formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'}
-              footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}
-            >
-              {(verifiedEmail, onSignOut) => {
-                const inner = (
-                  <FormInner
-                    schema={schema}
-                    methods={methods}
-                    onSubmit={onSubmit}
-                    submitting={submitting}
-                    error={error}
-                    verifiedEmail={verifiedEmail}
-                    viewId={viewId}
-                    requireOtp={requireOtp}
-                    onSignOut={onSignOut}
-                    formSlug={formSlug}
-                  />
-                )
-
-                // EligibilityGate hits /check-eligibility/, which classifies the
-                // email against the student-application criteria (Indian student
-                // domains, etc.). Other OTP-required forms shouldn't run that
-                // check.
-                if (formSlug === STUDENT_APPLICATION_SLUG) {
-                  return (
-                    <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
-                      {bucket => (
-                        <>
-                          <FormInner
-                            schema={schema}
-                            methods={methods}
-                            onSubmit={onSubmit}
-                            submitting={submitting}
-                            error={error}
-                            verifiedEmail={verifiedEmail}
-                            viewId={viewId}
-                            requireOtp={requireOtp}
-                            onSignOut={onSignOut}
-                            bucket={bucket}
-                            formSlug={formSlug}
-                          />
-                          <EmailClassifierDebug callerEmail={verifiedEmail} />
-                        </>
-                      )}
-                    </EligibilityGate>
-                  )
-                }
-
-                // Visa form: signed-in email must have a paid Pretix order.
-                if (formSlug === VISA_FORM_SLUG) {
-                  return (
-                    <VisaTicketGate email={verifiedEmail} onSignOut={onSignOut}>
-                      {() => inner}
-                    </VisaTicketGate>
-                  )
-                }
-
-                return inner
-              }}
-            </OtpGate>
-          ) : (
-            <>
-              <FormHeaderImage />
-              <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
-                {schema.title}
-              </h2>
-              {/* schema.subheading is rendered inside FormInner so the OTP
-                  post-signin path shows it too. */}
-              <FormInner
-                schema={schema}
-                methods={methods}
-                onSubmit={onSubmit}
-                submitting={submitting}
-                error={error}
-                viewId={viewId}
-              />
-            </>
+        <div className="max-w-[640px] w-full mx-4 flex flex-col gap-4">
+          {/* Above the card: the form's header image bleeds to the card's top edge. */}
+          {previewing && (
+            <div className="flex items-start gap-2 rounded-xl border border-[#7235ed]/30 bg-[#f4effe] px-4 py-3 text-sm leading-5 text-[#1a0d33]">
+              <Eye className="w-4 h-4 mt-0.5 shrink-0 text-[#7235ed]" aria-hidden="true" />
+              <span>
+                <strong>Preview.</strong> This form is closed to the public. Submissions from this link are saved like
+                real ones.
+              </span>
+            </div>
           )}
+          <div className="bg-white border border-[rgba(34,17,68,0.1)] rounded-2xl p-8 w-full flex flex-col items-center gap-6">
+            {requireOtp ? (
+              <OtpGate
+                title={schema.title}
+                subheading={schema.subheading}
+                description={
+                  formSlug === STUDENT_APPLICATION_SLUG
+                    ? 'Enter your student email to start the application'
+                    : 'Enter your email to start the application'
+                }
+                emailPlaceholder={formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'}
+                footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}
+              >
+                {(verifiedEmail, onSignOut) => {
+                  const inner = (
+                    <FormInner
+                      schema={schema}
+                      methods={methods}
+                      onSubmit={onSubmit}
+                      submitting={submitting}
+                      error={error}
+                      verifiedEmail={verifiedEmail}
+                      viewId={viewId}
+                      requireOtp={requireOtp}
+                      onSignOut={onSignOut}
+                      formSlug={formSlug}
+                    />
+                  )
+
+                  // EligibilityGate hits /check-eligibility/, which classifies the
+                  // email against the student-application criteria (Indian student
+                  // domains, etc.). Other OTP-required forms shouldn't run that
+                  // check.
+                  if (formSlug === STUDENT_APPLICATION_SLUG) {
+                    return (
+                      <EligibilityGate email={verifiedEmail} viewId={viewId} onSignOut={onSignOut}>
+                        {bucket => (
+                          <>
+                            <FormInner
+                              schema={schema}
+                              methods={methods}
+                              onSubmit={onSubmit}
+                              submitting={submitting}
+                              error={error}
+                              verifiedEmail={verifiedEmail}
+                              viewId={viewId}
+                              requireOtp={requireOtp}
+                              onSignOut={onSignOut}
+                              bucket={bucket}
+                              formSlug={formSlug}
+                            />
+                            <EmailClassifierDebug callerEmail={verifiedEmail} />
+                          </>
+                        )}
+                      </EligibilityGate>
+                    )
+                  }
+
+                  // Visa form: signed-in email must have a paid Pretix order.
+                  if (formSlug === VISA_FORM_SLUG) {
+                    return (
+                      <VisaTicketGate email={verifiedEmail} onSignOut={onSignOut}>
+                        {() => inner}
+                      </VisaTicketGate>
+                    )
+                  }
+
+                  return inner
+                }}
+              </OtpGate>
+            ) : (
+              <>
+                <FormHeaderImage />
+                <h2 className="text-2xl font-extrabold text-[#160b2b] tracking-[-0.5px] text-center leading-[28.8px]">
+                  {schema.title}
+                </h2>
+                {/* schema.subheading is rendered inside FormInner so the OTP
+                  post-signin path shows it too. */}
+                <FormInner
+                  schema={schema}
+                  methods={methods}
+                  onSubmit={onSubmit}
+                  submitting={submitting}
+                  error={error}
+                  viewId={viewId}
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </Page>

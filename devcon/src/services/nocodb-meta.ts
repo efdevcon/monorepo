@@ -36,6 +36,13 @@ export interface FormField {
   // configured fill color (`meta.color`). Surfaced so the renderer can draw
   // the right number of stars without re-parsing NocoDB's meta shape.
   rating?: { max: number; color?: string }
+  // SingleSelect/MultiSelect-only: the form view's "show as list" toggle
+  // (NocoDB `meta.is_list`). The renderer draws radio buttons / checkboxes
+  // instead of a dropdown.
+  isList?: boolean
+  // Markdown block the renderer shows ABOVE the field as a section header
+  // (title + intro of a survey section); see splitSectionBlock().
+  section?: string
 }
 
 const SUPPORTED_TYPES = new Set([
@@ -69,6 +76,8 @@ interface FormColumnCfg {
   show: boolean
   order: number | null
   created_at?: string
+  // Per-field form options; `is_list` is the "show as list" toggle on select fields.
+  meta?: { is_list?: boolean } | string | null
 }
 
 interface FormMeta {
@@ -151,13 +160,47 @@ async function getTableMeta(tableId: string): Promise<TableMeta> {
   return data
 }
 
+/**
+ * A field's help text may open with a markdown heading. That block is the
+ * header of a survey section (title + intro), rendered ABOVE the field rather
+ * than under its label, and runs to a `---` line; whatever follows the `---`
+ * is the field's own help text. Without a `---` the whole text is the header.
+ * `##` opens a section, `###` a sub-section (the renderer sizes them).
+ */
+export function splitSectionBlock(text?: string): { section?: string; description?: string } {
+  if (!text) return {}
+  const trimmed = text.trim()
+  if (!/^#{1,6}\s/.test(trimmed)) return { description: text }
+  const lines = trimmed.split(/\r?\n/)
+  const sep = lines.findIndex(l => /^-{3,}\s*$/.test(l.trim()))
+  if (sep === -1) return { section: trimmed }
+  const section = lines.slice(0, sep).join('\n').trim()
+  const description = lines
+    .slice(sep + 1)
+    .join('\n')
+    .trim()
+  return { ...(section ? { section } : {}), ...(description ? { description } : {}) }
+}
+
+/** NocoDB's form "show as list" toggle lives on the view column's meta (an object, or a JSON string on older builds). */
+function isSelectList(uidt: string, meta: FormColumnCfg['meta']): boolean {
+  if (uidt !== 'SingleSelect' && uidt !== 'MultiSelect') return false
+  let parsed: unknown = meta
+  if (typeof parsed === 'string') {
+    try {
+      parsed = JSON.parse(parsed)
+    } catch {
+      return false
+    }
+  }
+  return !!(parsed && typeof parsed === 'object' && (parsed as { is_list?: boolean }).is_list)
+}
+
 // ── Public API ────────────────────────────────────────────────────────
 
 /** Resolve {baseId, tableId} from a view's first column — no forms-meta needed. */
 async function resolveTableViaColumns(viewId: string): Promise<{ baseId: string; tableId: string }> {
-  const cols = await nocoFetch<{ list: Array<{ fk_column_id: string }> }>(
-    `/api/v1/db/meta/views/${viewId}/columns`
-  )
+  const cols = await nocoFetch<{ list: Array<{ fk_column_id: string }> }>(`/api/v1/db/meta/views/${viewId}/columns`)
   const firstColId = cols.list?.[0]?.fk_column_id
   if (!firstColId) throw new Error(`Cannot resolve table for view ${viewId}: no columns`)
   const column = await nocoFetch<ColumnMeta>(`/api/v1/db/meta/columns/${firstColId}`)
@@ -257,7 +300,8 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
     const colDescTrim = (col.description || '').trim()
     const overrideShadowsDescription = vcLabel.length > 0 && vcLabel === colDescTrim
     const title = overrideShadowsDescription || !vc.label ? col.title : vc.label
-    const description = vc.help || vc.description || col.description || undefined
+    const { section, description } = splitSectionBlock(vc.help || vc.description || col.description || undefined)
+    const isList = isSelectList(col.uidt, vc.meta)
 
     let options: string[] | undefined
     if (col.uidt === 'SingleSelect' || col.uidt === 'MultiSelect') {
@@ -283,6 +327,8 @@ export async function getFormFields(viewId: string): Promise<FormField[]> {
       ...(description ? { description } : {}),
       ...(options ? { options } : {}),
       ...(rating ? { rating } : {}),
+      ...(isList ? { isList } : {}),
+      ...(section ? { section } : {}),
     })
   }
 

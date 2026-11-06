@@ -1,20 +1,16 @@
 import React from "react";
 import { PlaylistSlider } from "./PlaylistSlider";
-import { getFeaturedSessions } from "@/services/devcon";
+import { getFeaturedSessions, type FeaturedListType } from "@/services/devcon";
 
 interface Props {
   title: string;
-  type:
-    | "most-popular"
-    | "devcon-6"
-    | "devcon-7"
-    | "devcon-7-opening"
-    | "devcon-7-picks";
+  type: FeaturedListType;
 }
 
 export async function FeaturedList(props: Props) {
   const sessions = await getFeaturedSessions(props.type);
-  if (!sessions) return null;
+  // No row at all while a list is empty (Devcon 8 before its recordings land).
+  if (!sessions?.length) return null;
 
   return (
     <PlaylistSlider

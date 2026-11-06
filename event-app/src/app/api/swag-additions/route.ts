@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import type { SwagAdditionOffer } from "@/data/tickets/swagAdditions";
+import { swagAdditionSoldOut, type SwagAdditionOffer } from "@/data/tickets/swagAdditions";
 import { listLinks } from "../tickets/links";
 import { mirrorPicture } from "../tickets/pictures";
 import { getStoreFromEnv, getTicketsForUser, loadCatalog, loadCategories, type PretixStore } from "../tickets/pretix";
@@ -79,6 +79,7 @@ export async function POST(request: NextRequest) {
     const chosen = offers.find((o) => o.offer.itemId === body.itemId);
     if (!chosen) return fail(400, "Unknown product");
     if (chosen.offer.remaining === 0) return fail(409, `You already got the extra ${chosen.offer.name} for this ticket`);
+    if (swagAdditionSoldOut(chosen.offer)) return fail(409, `${chosen.offer.name} is sold out`);
     if (chosen.voucher) {
       const patch = voucherFixes(chosen.voucher, chosen.offer.price, chosen.offer.max);
       if (patch) await updateVoucher(store, chosen.voucher.id, patch);

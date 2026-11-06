@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import Image from 'next/image'
 import { Link } from 'components/common/link'
 import { Search } from 'lucide-react'
@@ -62,39 +62,6 @@ function EventCard({ event, dateLabel }: { event: RoadEvent; dateLabel: string }
   )
 }
 
-function PastToggle({
-  value,
-  onChange,
-  label,
-}: {
-  value: boolean
-  onChange: (v: boolean) => void
-  label: string
-}) {
-  return (
-    <label className="flex shrink-0 cursor-pointer items-center gap-3 text-sm text-[#1a0d33]">
-      <button
-        type="button"
-        role="switch"
-        aria-checked={value}
-        onClick={() => onChange(!value)}
-        className={cn(
-          'relative h-5 w-9 rounded-full transition-colors',
-          value ? 'bg-[#7235ed]' : 'bg-[rgba(34,17,68,0.15)]'
-        )}
-      >
-        <span
-          className={cn(
-            'absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform',
-            value && 'translate-x-4'
-          )}
-        />
-      </button>
-      {label}
-    </label>
-  )
-}
-
 export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   const t = useTranslations('road_to_devcon')
   const locale = useLocale()
@@ -108,15 +75,6 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   )
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<Set<EventType>>(new Set())
-  // Post-event: the whole year is behind us, so past events show by default.
-  const [showPast, setShowPast] = useState(true)
-  // Resolved on the client only, so SSR (todayISO = null) renders every event
-  // and avoids a hydration mismatch from the past-events filter.
-  const [todayISO, setTodayISO] = useState<string | null>(null)
-
-  useEffect(() => {
-    setTodayISO(new Date().toISOString().slice(0, 10))
-  }, [])
 
   const toggleType = (type: EventType) =>
     setActiveTypes(prev => {
@@ -128,7 +86,6 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
   const groups = useMemo(() => {
     const q = query.trim().toLowerCase()
     const filtered = events.filter(e => {
-      if (todayISO && !showPast && e.date < todayISO) return false
       if (activeTypes.size > 0 && !e.types.some(t => activeTypes.has(t))) return false
       if (q) {
         const haystack = `${e.title} ${e.host} ${e.city} ${e.types.join(' ')}`.toLowerCase()
@@ -137,12 +94,7 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
       return true
     })
     return groupByMonth(filtered)
-  }, [events, query, activeTypes, showPast, todayISO])
-
-  const pastCount = useMemo(
-    () => (todayISO ? events.filter(e => e.date < todayISO).length : null),
-    [events, todayISO]
-  )
+  }, [events, query, activeTypes])
 
   const hasResults = groups.length > 0
   // Only show chips for types that actually exist in the data (the form has no
@@ -226,22 +178,13 @@ export function RoadToDevconEvents({ events }: { events: RoadEvent[] }) {
               </div>
 
               <div className="min-w-0 flex-1 pb-6">
-                <div className="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-                  <div className="flex items-baseline gap-2">
-                    <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">
-                      {monthFmt.format(isoToUTCDate(group.key))}
-                    </h3>
-                    <span className="text-base text-[#594d73]">
-                      {t('events.count', { count: group.events.length })}
-                    </span>
-                  </div>
-                  {gi === 0 && (
-                    <PastToggle
-                      value={showPast}
-                      onChange={setShowPast}
-                      label={pastCount === null ? t('events.show_past') : `${t('events.show_past')} (${pastCount})`}
-                    />
-                  )}
+                <div className="flex items-baseline gap-2">
+                  <h3 className="text-xl font-extrabold leading-none text-[#160b2b]">
+                    {monthFmt.format(isoToUTCDate(group.key))}
+                  </h3>
+                  <span className="text-base text-[#594d73]">
+                    {t('events.count', { count: group.events.length })}
+                  </span>
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1250px]:grid-cols-3">

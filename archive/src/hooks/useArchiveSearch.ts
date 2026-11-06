@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { FilterParams } from "@/types/filter";
 import { CONFIG } from "@/utils/config";
+import { EDITION_EVENT_IDS } from "@/utils/editions";
 
 export const useArchiveSearch = (qs: string, params?: FilterParams) => {
   let uri = `${CONFIG.API_BASE_URL}/sessions${qs}`;
@@ -11,7 +12,11 @@ export const useArchiveSearch = (qs: string, params?: FilterParams) => {
   if (params?.sort) uri += `&sort=${params.sort}`;
   if (params?.order) uri += `&order=${params.order}`;
   if (!uri.includes("event="))
-    uri += `&event=devcon-7&event=devcon-6&event=devcon-5&event=devcon-4&event=devcon-3&event=devcon-2&event=devcon-1&event=devcon-0&event=devconnect-arg`;
+    uri +=
+      EDITION_EVENT_IDS.map((id) => `&event=${id}`).join("") +
+      "&event=devconnect-arg";
+  // Recorded sessions only: Devcon 8 talks appear as their videos are published.
+  uri += "&video=true";
 
   return useQuery({
     queryKey: ["search", uri],

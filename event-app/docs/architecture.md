@@ -48,8 +48,8 @@ now") complete the list first so they land on real heights. The speakers × sess
 per store snapshot rather than per mount. Every vertical page jump is instant, never smooth (WebKit
 rasterises everything a smooth scroll passes over). Re-tapping the active tab resets its pane (scroll
 to top); with a detail page open the tap navigates to the bare tab URL, which closes it. The schedule
-lands on "now" once per app open and never jumps on its own after that (programme switch, tab re-tap
-and day-tab taps start at the top; the Live now pill is the way back).
+never jumps to "now" on its own: app open, programme switch, tab re-tap and day-tab taps all start at
+the top (the app-open landing went on 2026-11-06; the Live now pill is the way to "now").
 
 # data architecture
 

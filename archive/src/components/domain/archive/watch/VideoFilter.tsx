@@ -10,7 +10,11 @@ import {
   CollapsedSectionHeader,
 } from "@/components/common/collapsed-section";
 import { usePathname, useSearchParams } from "next/navigation";
-import { TRACKS } from "@/utils/config";
+import { DEVCON8_TRACKS, TRACKS } from "@/utils/config";
+import { EDITION_EVENT_IDS, LATEST_EDITION } from "@/utils/editions";
+
+/** Tag filter: Devcon 8 tracks first, then the older editions' tracks, once each. */
+const TAG_FILTERS = Array.from(new Set([...DEVCON8_TRACKS, ...TRACKS]));
 
 const queryStringToFilterState = (qs: string) => {
   const params = new URLSearchParams(qs);
@@ -40,14 +44,11 @@ export const useVideoFilter = () => {
   const path = usePathname();
   const searchParams = useSearchParams();
 
-  const nrOfEditions = 7;
   const editionFilters = [
-    ...Array.from(Array(nrOfEditions + 1).keys())
-      .sort((a, b) => b - a)
-      .map((i) => ({
-        text: i.toString(),
-        value: `devcon-${i}`,
-      })),
+    ...EDITION_EVENT_IDS.map((id, i) => ({
+      text: String(LATEST_EDITION - i),
+      value: id,
+    })),
     { text: "Devconnect ARG", value: "devconnect-arg" },
   ];
   const [_, editionFilterState] = useFilter({
@@ -112,7 +113,7 @@ export const useVideoFilter = () => {
   const [___, tagsFilterState] = useFilter({
     tags: true,
     multiSelect: true,
-    filters: TRACKS.filter((i: string) => !!i).map((tag: string) => {
+    filters: TAG_FILTERS.map((tag: string) => {
       return {
         text: tag,
         value: tag,

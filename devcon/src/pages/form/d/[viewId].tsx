@@ -1,6 +1,7 @@
 import type { GetStaticPaths, GetStaticProps } from 'next'
 import { getFormConfigByViewId, isFormOpen, type NocodbFormConfig } from 'services/form-config'
 import FormPage from 'components/domain/nocodb-form/FormPage'
+import { BuilderConnectProvider } from 'context/BuilderConnectContext'
 
 interface Props {
   viewId: string
@@ -8,13 +9,16 @@ interface Props {
 }
 
 export default function DynamicFormPage({ viewId, config }: Props) {
+  // The provider holds the wallet connector's proof, as on the slug route.
   return (
-    <FormPage
-      viewId={viewId}
-      requireOtp={config?.requireOtp ?? false}
-      closed={!isFormOpen(config ?? undefined)}
-      formSlug={config?.formSlug}
-    />
+    <BuilderConnectProvider>
+      <FormPage
+        viewId={viewId}
+        requireOtp={config?.requireOtp ?? false}
+        closed={!isFormOpen(config ?? undefined)}
+        formSlug={config?.formSlug}
+      />
+    </BuilderConnectProvider>
   )
 }
 

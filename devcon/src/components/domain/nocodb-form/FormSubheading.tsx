@@ -20,6 +20,9 @@ import remarkBreaks from 'remark-breaks'
 interface FormSubheadingProps {
   text: string
   className?: string
+  // `section`: the block heads a group of fields (FormRenderer), so headings
+  // are sized as section titles instead of being flattened to the copy size.
+  variant?: 'subheading' | 'section'
 }
 
 function normalizeText(raw: string): string {
@@ -29,9 +32,16 @@ function normalizeText(raw: string): string {
   return raw.replace(/<br\s*\/?>/gi, '\n')
 }
 
-export function FormSubheading({ text, className = '' }: FormSubheadingProps) {
+export function FormSubheading({ text, className = '', variant = 'subheading' }: FormSubheadingProps) {
   if (!text) return null
   const normalized = normalizeText(text)
+  const section = variant === 'section'
+  const h2Class = section
+    ? 'text-xl font-extrabold text-[#160b2b] leading-7 mt-1 first:mt-0'
+    : 'text-base font-extrabold text-[#160b2b] mt-3 first:mt-0'
+  const h3Class = section
+    ? 'text-base font-extrabold text-[#160b2b] leading-6 mt-1 first:mt-0'
+    : 'text-base font-bold text-[#160b2b] mt-3 first:mt-0'
   return (
     <div className={`w-full text-sm text-[#1a0d33] leading-5 text-left space-y-2 ${className}`}>
       <ReactMarkdown
@@ -49,23 +59,18 @@ export function FormSubheading({ text, className = '' }: FormSubheadingProps) {
           strong: props => <strong className="font-bold text-[#160b2b]" {...props} />,
           em: props => <em className="italic" {...props} />,
           code: props => (
-            <code
-              className="px-1 py-0.5 bg-[#f2f1f4] text-[#160b2b] rounded text-[0.85em] font-mono"
-              {...props}
-            />
+            <code className="px-1 py-0.5 bg-[#f2f1f4] text-[#160b2b] rounded text-[0.85em] font-mono" {...props} />
           ),
           ul: props => <ul className="list-disc pl-5 space-y-1" {...props} />,
           ol: props => <ol className="list-decimal pl-5 space-y-1" {...props} />,
           li: props => <li className="leading-5" {...props} />,
-          h1: props => <h3 className="text-base font-extrabold text-[#160b2b] mt-3 first:mt-0" {...props} />,
-          h2: props => <h3 className="text-base font-extrabold text-[#160b2b] mt-3 first:mt-0" {...props} />,
-          h3: props => <h3 className="text-base font-bold text-[#160b2b] mt-3 first:mt-0" {...props} />,
+          h1: props => <h2 className={h2Class} {...props} />,
+          h2: props => <h2 className={h2Class} {...props} />,
+          h3: props => <h3 className={h3Class} {...props} />,
           h4: props => <h4 className="text-sm font-bold text-[#160b2b] mt-2 first:mt-0" {...props} />,
           h5: props => <h5 className="text-sm font-bold text-[#160b2b] mt-2 first:mt-0" {...props} />,
           h6: props => <h6 className="text-sm font-bold text-[#160b2b] mt-2 first:mt-0" {...props} />,
-          blockquote: props => (
-            <blockquote className="border-l-2 border-[#dddae2] pl-3 text-[#594d73]" {...props} />
-          ),
+          blockquote: props => <blockquote className="border-l-2 border-[#dddae2] pl-3 text-[#594d73]" {...props} />,
           hr: () => <hr className="border-[#dddae2]" />,
         }}
       >

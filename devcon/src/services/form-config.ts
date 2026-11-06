@@ -26,6 +26,7 @@ interface ConfigRecord {
   'Form View ID'?: string | null
   'Requires OTP'?: 'Yes' | 'No' | null
   'Is Form Open'?: boolean | number | null
+  'Preview Password'?: string | null
 }
 
 interface RecordsResponse {
@@ -33,11 +34,17 @@ interface RecordsResponse {
   pageInfo?: { totalRows: number; page: number; pageSize: number; isLastPage: boolean }
 }
 
-let cache: { data: NocodbFormConfig[]; expiresAt: number } | null = null
+// Preview passwords stay out of NocodbFormConfig: that object is returned as
+// page props by the form routes, so anything on it ships to the browser.
+let cache: { data: NocodbFormConfig[]; previewPasswords: Map<string, string>; expiresAt: number } | null = null
 const CACHE_TTL = 60 * 1000
 
 async function fetchAllConfigs(): Promise<NocodbFormConfig[]> {
-  if (cache && Date.now() < cache.expiresAt) return cache.data
+  return (await loadConfigs()).data
+}
+
+async function loadConfigs(): Promise<{ data: NocodbFormConfig[]; previewPasswords: Map<string, string> }> {
+  if (cache && Date.now() < cache.expiresAt) return cache
   if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) {
     throw new Error('NocoDB env vars not configured (NOCODB_BASE_URL, NOCODB_API_TOKEN)')
   }
@@ -55,6 +62,7 @@ async function fetchAllConfigs(): Promise<NocodbFormConfig[]> {
   const list = json.list ?? []
 
   const configs: NocodbFormConfig[] = []
+  const previewPasswords = new Map<string, string>()
   for (const r of list) {
     const slug = r['Form Slug']?.trim()
     const viewId = r['Form View ID']?.trim()
@@ -65,10 +73,12 @@ async function fetchAllConfigs(): Promise<NocodbFormConfig[]> {
       requireOtp: r['Requires OTP'] === 'Yes',
       open: !!r['Is Form Open'],
     })
+    const preview = r['Preview Password']?.trim()
+    if (preview && !previewPasswords.has(viewId)) previewPasswords.set(viewId, preview)
   }
 
-  cache = { data: configs, expiresAt: Date.now() + CACHE_TTL }
-  return configs
+  cache = { data: configs, previewPasswords, expiresAt: Date.now() + CACHE_TTL }
+  return cache
 }
 
 export async function getFormConfigBySlug(slug: string): Promise<NocodbFormConfig | undefined> {
@@ -83,6 +93,21 @@ export async function getFormConfigByViewId(viewId: string): Promise<NocodbFormC
 
 export async function getAllFormConfigs(): Promise<NocodbFormConfig[]> {
   return fetchAllConfigs()
+}
+
+/**
+ * True when `password` matches the form's "Preview Password" in the config
+ * table, which unlocks a closed form (page and submit) for whoever has the
+ * `?preview=` link. A form without one cannot be previewed.
+ */
+export async function isPreviewAllowed(viewId: string, password: unknown): Promise<boolean> {
+  if (typeof password !== 'string' || !password) return false
+  const expected = (await loadConfigs()).previewPasswords.get(viewId)
+  if (!expected || password.length !== expected.length) return false
+  // Constant-time compare without node:crypto (the pages import this module client-side for isFormOpen).
+  let diff = 0
+  for (let i = 0; i < expected.length; i++) diff |= password.charCodeAt(i) ^ expected.charCodeAt(i)
+  return diff === 0
 }
 
 /** A form is open by default if no config exists; otherwise respect the `open` flag. */
