@@ -151,8 +151,8 @@ export const AREAS = {
     category: "supporters",
     heightClass: "kiosk",
     // S3–S6, S12, S14, S16 and S21 re-seated from Scott's booth sheet, 2026-11-05 (were Nethermind, Bitget, World, Trail of Bits, Fair Food Data, EIPsInsight, GCC, GrapheneOS).
+    // S1 vacated 2026-11-06 (was ENS); its entry stays in supporters.ts.
     tenants: {
-      1: "ens",
       2: "ordocode",
       3: "circle",
       4: "dedaub",

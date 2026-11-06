@@ -159,7 +159,7 @@ test("floor legend: Levels 0–2 list their place types with the theme icon, in 
 
 test("supporters: every seated supporter has a blurb, a site and a logo file; X is https when set", () => {
   const booths = AREA_LIST.filter((a) => (a.category.id === "supporters" || a.alsoCategories.some((c) => c.id === "supporters")) && a.iconBackdrop !== null);
-  assert.ok(booths.length >= 27, "the seated booths and the hosted coffee stand (F1 is vacant)");
+  assert.ok(booths.length >= 26, "the seated booths and the hosted coffee stand (F1 and S1 are vacant)");
   for (const a of booths) {
     assert.ok(a.description.length > 20 && a.description.length <= 280, `${a.name}: blurb length`);
     assert.match(a.website ?? "", /^https:\/\//, `${a.name}: site`);
