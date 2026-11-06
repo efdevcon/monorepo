@@ -1,15 +1,14 @@
 import React from 'react'
 import MoonSymbol from './images/new/moon-symbol-cropped.svg'
-import { DevconIntro } from './DevconIntro'
+import { ThankYou } from './ThankYou'
+import { EventStats } from './EventStats'
 import { LivingConstellation } from './living-constellation'
 
 /**
- * Wrapper for the Devcon intro + confirmed speakers, which share one
- * background: the cropped moon symbol anchored top-center + radial purple
- * washes fading in from the sides. Based on Figma node 4917:522
- * (why-devcon-india-container), which held the ticket-sales video where the
- * speaker grid now sits; the Why Devcon India / keywords blocks it also held
- * render after the supporters section instead (see landing-page/index).
+ * Wrapper for the post-event thank-you, the event stats and the speaker
+ * lineup, which share one background: the cropped moon symbol anchored
+ * top-center + radial purple washes fading in from the sides. Based on Figma
+ * node 4917:522 (why-devcon-india-container).
  */
 export const WhyDevconContainer = () => (
   <div
@@ -32,7 +31,8 @@ export const WhyDevconContainer = () => (
     </div>
 
     <div className="relative">
-      <DevconIntro />
+      <ThankYou />
+      <EventStats />
       <LivingConstellation />
     </div>
   </div>

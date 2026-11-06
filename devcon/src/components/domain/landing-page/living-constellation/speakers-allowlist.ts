@@ -109,14 +109,12 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'gnosis',
     bio: 'Friederike Ernst co-founded Gnosis, which has spent a decade building Ethereum infrastructure and occasionally releasing it into the wild (Safe, CoW Protocol). A physicist by training, Friederike co-initiated the Ethereum Economic Zone and remains on speaking terms with the laws of physics.',
   }, // Friederike Ernst · Gnosis
-  // Org answer is "0xPARC, Digital Sciences Institute".
   {
-    code: 'TUKEUK',
-    title: 'Founder',
-    company: '0xPARC',
-    logo: '0xparc',
-    bio: 'gubsheep founded the 0xPARC Foundation and works on programmable cryptography. gubsheep previously created Dark Forest, the first non-cryptocurrency application of zkSNARKs, and supported applied zero-knowledge R&D at the Ethereum Foundation.',
-  }, // gubsheep
+    code: 'WLADZ7',
+    title: 'Core Contributor',
+    logo: 'protocol-guild',
+    bio: "cheeky-gorilla is a core contributor to Protocol Guild, which funds the maintainers of Ethereum's core protocol so the work the ecosystem depends on keeps happening.",
+  }, // cheeky-gorilla · Protocol Guild
   {
     code: 'MWSEWZ',
     title: 'Founder',
@@ -260,12 +258,6 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'metamask',
     bio: 'Francesco Andreoli leads developer relations at MetaMask and has been in Ethereum since 2016. Francesco works where wallets, smart accounts and AI agents meet, and builds open-source agent tooling to test the ideas.',
   }, // Francesco Andreoli
-  {
-    code: 'WLADZ7',
-    title: 'Core Contributor',
-    logo: 'protocol-guild',
-    bio: "cheeky-gorilla is a core contributor to Protocol Guild, which funds the maintainers of Ethereum's core protocol so the work the ecosystem depends on keeps happening.",
-  }, // cheeky-gorilla · Protocol Guild
   {
     code: 'G9TNL3',
     title: 'go-ethereum Developer',
@@ -423,11 +415,14 @@ export const SPEAKER_ALLOWLIST: AllowlistEntry[] = [
     logo: 'ethereum-foundation',
     bio: 'Nicolas Consigny is a researcher at the Ethereum Foundation working on wallets, privacy protocols and post-quantum cryptography. Nicolas leads Kohaku, a privacy-focused wallet initiative, and works on hash-based signatures for post-quantum smart accounts.',
   }, // Nicolas Consigny
-  // Pretalx name is just "Ameen".
+  // Was Pretalx BSBLVY (name just "Ameen", org 0xbow, X ameensol, Privacy &
+  // Consent); that record disappeared from Pretalx by 2026-11-05, so the
+  // portrait pulled earlier is kept as a manual entry.
   {
-    code: 'BSBLVY',
-    name: 'Ameen Soleimani',
+    manual: { id: 'BSBLVY', name: 'Ameen Soleimani', company: '0xbow', portrait: 'ameen.webp' },
     title: 'CTO',
+    xHandle: 'ameensol',
+    track: 'Privacy & Consent',
     logo: '0xbow',
     bio: 'Ameen Soleimani is CTO at 0xbow, the team behind Privacy Pools, working to bring privacy to the world. Ameen is a self-described onchain coordination arms dealer and wearer of many hats.',
   }, // Ameen Soleimani · 0xbow

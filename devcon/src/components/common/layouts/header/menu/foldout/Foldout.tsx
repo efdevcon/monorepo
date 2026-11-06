@@ -6,7 +6,7 @@ import { Link } from 'components/common/link'
 import useNavigationData from '../../useNavigationData'
 import { ArrowUpRight, Twitter, Instagram } from 'lucide-react'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
-import { EVENT_APP_ORIGIN } from 'config/eventApp'
+import { DEVCON_IX_ANNOUNCEMENT_URL } from 'config/devconIx'
 import { useTranslations } from 'next-intl'
 
 const Foldout = (props: any) => {
@@ -52,14 +52,17 @@ const Foldout = (props: any) => {
                 )}
 
                 <div className={css['cta-row']}>
-                  <Link
-                    to={EVENT_APP_ORIGIN}
+                  {/* Post-event: the Devcon App button points at the Devcon IX
+                      announcement instead. A plain <a>: the announcement is a
+                      static page outside the Next router (config/devconIx.ts). */}
+                  <a
+                    href={DEVCON_IX_ANNOUNCEMENT_URL}
                     className={css['cta-secondary']}
                     onClick={() => props.setFoldoutOpen(false)}
                   >
-                    {tStrip('app_cta_short')}
+                    {tStrip('dcix_short')}
                     <ArrowUpRight size={16} />
-                  </Link>
+                  </a>
 
                   <div className={css['social-icons']}>
                     {[

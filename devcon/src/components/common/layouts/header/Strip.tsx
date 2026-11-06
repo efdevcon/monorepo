@@ -1,42 +1,39 @@
 import React from 'react'
-import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { Link } from 'components/common/link'
-import { EVENT_APP_ORIGIN } from 'config/eventApp'
+import { DEVCON_IX_ANNOUNCEMENT_URL } from 'config/devconIx'
 
-// Site-wide app callout (Figma 5241:547 desktop, 5240:69234 tablet,
-// 5240:69535 mobile): the schedule is live in the Devcon app. Static copy, no
-// wave state, and shown on every page — /tickets included — so the ticketing
-// strip's route guard is gone with it. The whole bar is one link to the app;
-// "Devcon App" in the message is purple-200 (#c4aaf7). Keep id="strip":
+// Post-event announcement strip (Figma Current-work 6068:503): a 48px
+// #0c1412 bar, VT323 18px mint (#a6ffe9) text with a soft glow, message left,
+// the "> boot devcon9_" prompt right; the whole bar is one link. Keep id="strip":
 // the header, hero and mobile foldout measure it for their offsets. px
 // literals throughout: the root font-size drops to 14px ≤1024 (index.scss),
-// which shrinks rem utilities. min-h 32 + 8px padding keeps the bar at Figma's
-// 48px now that the logomark no longer props it open.
+// which shrinks rem utilities. Figma only draws 1440: below md the message
+// wraps at 16px and the action drops "View". A plain <a>: the announcement is
+// a static page outside the Next router (config/devconIx.ts).
 export const Strip = () => {
   const t = useTranslations('common.strip')
 
   return (
-    <div id="strip" className="bg-[#1a0d33] w-full">
+    <div id="strip" className="bg-[#0c1412] w-full overflow-hidden">
       <div className="section py-[8px]">
-        <Link
-          to={EVENT_APP_ORIGIN}
-          className="group flex items-center justify-between gap-[16px] min-h-[32px] text-white hover:text-white"
+        <a
+          href={DEVCON_IX_ANNOUNCEMENT_URL}
+          className="group flex items-center justify-between gap-[16px] min-h-[32px] font-terminal text-[#a6ffe9] hover:text-[#a6ffe9]"
         >
-          <p className="min-w-0 text-[12px] leading-[16px] md:text-[14px] md:leading-[20px] md:whitespace-nowrap md:overflow-hidden md:text-ellipsis">
-            {t.rich('app_message', {
-              app: chunks => <span className="font-bold text-[#c4aaf7]">{chunks}</span>,
-            })}
+          <p className="min-w-0 text-[16px] leading-[1.1] md:text-[18px] md:whitespace-nowrap md:overflow-hidden md:text-ellipsis [text-shadow:0_0_4px_rgba(166,255,233,0.4)]">
+            {t('dcix_message')}
           </p>
-          <span className="flex items-center gap-[4px] md:gap-[8px] shrink-0 transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.02]">
-            <span className="font-bold text-[12px] leading-[16px] tracking-[0.25px] md:text-[14px] md:leading-none md:tracking-normal">
-              {/* "Visit Devcon App" from tablet up, just "Devcon App" on phones */}
-              <span className="hidden md:inline">{t('app_cta')}</span>
-              <span className="md:hidden">{t('app_cta_short')}</span>
+          {/* Same prompt as the hero terminal: "> boot devcon9_" from tablet
+              up, "> boot_" on phones; the cursor blinks and holds on hover. */}
+          <span className="shrink-0 text-[16px] md:text-[18px] leading-[1.5] whitespace-nowrap [text-shadow:0_0_4px_rgba(166,255,233,0.25)] transition-transform duration-150 ease-out motion-safe:group-hover:scale-[1.02]">
+            <span aria-hidden>&gt; </span>
+            <span className="hidden md:inline">{t('dcix_cta')}</span>
+            <span className="md:hidden">{t('dcix_cta_short')}</span>
+            <span aria-hidden className="motion-safe:animate-blink group-hover:animate-none">
+              _
             </span>
-            <ArrowUpRight className="w-[12px] h-[12px] md:w-[14px] md:h-[14px]" strokeWidth={2.5} />
           </span>
-        </Link>
+        </a>
       </div>
     </div>
   )

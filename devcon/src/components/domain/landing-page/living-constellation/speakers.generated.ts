@@ -44,7 +44,6 @@ import imgSPUYRY from './assets/portraits/audrey-tang.webp'
 import imgT8KAJP from './assets/portraits/jan-kalivoda.webp'
 import imgT9HFLF from './assets/portraits/kaan-uzdogan.webp'
 import imgTKDN87 from './assets/portraits/jason-chaskin.webp'
-import imgTUKEUK from './assets/portraits/gubsheep.webp'
 import imgUKPQQY from './assets/portraits/manu-sheel-gupta.webp'
 import imgUMGQWZ from './assets/portraits/peter-szilagyi.webp'
 import imgUNL78E from './assets/portraits/shayan-eskandari.webp'
@@ -150,15 +149,7 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     image: imgBRYZ3G,
     source: 'pretalx',
   },
-  BSBLVY: {
-    id: 'BSBLVY',
-    name: 'Ameen',
-    organization: '0xbow',
-    xHandle: 'ameensol',
-    track: 'Privacy & Consent',
-    image: imgBSBLVY,
-    source: 'pretalx',
-  },
+  BSBLVY: { id: 'BSBLVY', name: 'Ameen Soleimani', organization: '0xbow', image: imgBSBLVY, source: 'manual' },
   BW7UUN: {
     id: 'BW7UUN',
     name: 'Francesco Andreoli',
@@ -182,7 +173,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     name: 'SantiagoDevRel',
     organization: 'Golem Network',
     xHandle: 'santiagodevrel',
-    track: 'Open & Verifiable Stack',
     image: imgDURU3V,
     source: 'pretalx',
   },
@@ -427,15 +417,6 @@ export const PULLED_SPEAKERS: Record<string, PulledSpeaker> = {
     xHandle: 'jchaskin22',
     track: 'Users, Builders, and Agents',
     image: imgTKDN87,
-    source: 'pretalx',
-  },
-  TUKEUK: {
-    id: 'TUKEUK',
-    name: 'gubsheep',
-    organization: '0xPARC, Digital Sciences Institute',
-    xHandle: 'gubsheep',
-    track: 'Applied Cryptography',
-    image: imgTUKEUK,
     source: 'pretalx',
   },
   UKPQQY: {

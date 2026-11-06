@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>Devcon IX · Lisbon · 11–13 October 2027</title>
+    <meta name="description" content="Devcon, the Ethereum conference for developers, thinkers and makers, comes to Lisbon. 11–13 October 2027 at CCL – Lisbon Congress Centre. Join the waitlist." />
+    <link rel="canonical" href="https://devcon.org/lisbon/" />
+    <link rel="icon" href="/lisbon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/lisbon/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Devcon" />
+    <meta property="og:url" content="https://devcon.org/lisbon/" />
+    <meta property="og:title" content="Devcon IX · Lisbon · 11–13 October 2027" />
+    <meta property="og:description" content="Devcon, the Ethereum conference for developers, thinkers and makers, comes to Lisbon. 11–13 October 2027 at CCL – Lisbon Congress Centre. Join the waitlist." />
+    <meta property="og:image" content="https://devcon.org/lisbon/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A green-phosphor CRT showing the Devcon IX logo: Lisbon, 11–13 October 2027" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Devcon IX · Lisbon · 11–13 October 2027" />
+    <meta name="twitter:description" content="Devcon, the Ethereum conference for developers, thinkers and makers, comes to Lisbon. 11–13 October 2027 at CCL – Lisbon Congress Centre. Join the waitlist." />
+    <meta name="twitter:image" content="https://devcon.org/lisbon/og.png" />
+    <script>
+      // The monitor skin (src/terminal/skins.ts) before first paint: ?skin=1|2|3|4 wins over the
+      // last pick, and graphite is the default.
+      document.documentElement.dataset.skin = 'graphite'
+      try {
+        const pick = [new URLSearchParams(location.search).get('skin'), localStorage.getItem('devcon-ix-skin-v4')]
+          .map(Number)
+          .find((n) => n >= 1 && n <= 4)
+        if (pick === 1) document.documentElement.dataset.skin = 'graphite'
+        if (pick === 2) document.documentElement.dataset.skin = 'retro'
+        if (pick === 3) document.documentElement.dataset.skin = 'white'
+        if (pick === 4) document.documentElement.dataset.skin = 'pastel'
+      } catch {}
+      // A photo skin on a landscape screen with room for it (FRAME_MEDIA): start fetching its frame now (skins.ts adds it).
+      const frames = { retro: [1100, 1609] }[document.documentElement.dataset.skin]
+      if (frames && matchMedia('(min-width: 900px) and (min-height: 600px) and (orientation: landscape)').matches) {
+        const id = document.documentElement.dataset.skin
+        const link = Object.assign(document.createElement('link'), { rel: 'preload', as: 'image', type: 'image/webp' })
+        link.setAttribute('imagesrcset', frames.map((w) => `/lisbon/skins/${id}/frame-${w}.webp ${w}w`).join(', '))
+        link.setAttribute('imagesizes', 'min(100vw, 1400px)')
+        document.head.append(link)
+      }
+    </script>
+    <script type="module" crossorigin src="/lisbon/assets/index-DiMD1Bco.js"></script>
+    <link rel="stylesheet" crossorigin href="/lisbon/assets/index-n4iOFia-.css">
+  </head>
+  <body>
+    <!-- The Lisbon moment's warmer light on the backdrop: decorative. -->
+    <div class="warm" aria-hidden="true"></div>
+    <div class="monitor">
+      <div class="bezel">
+        <div class="tube" id="tube">
+          <canvas id="crt" aria-hidden="true"></canvas>
+          <div class="glass" aria-hidden="true"></div>
+          <div class="smoke" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="standby" id="standby" aria-hidden="true">press any key to power on</p>
+        </div>
+      </div>
+      <div class="chin">
+        <div class="controls">
+          <button class="power" id="power" type="button" aria-label="Power" aria-pressed="false">
+            <!-- Icons: Lucide (ISC), power, skip-forward and rotate-ccw. -->
+            <span class="power__glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10" /><path d="M18.4 6.6a9 9 0 1 1-12.77.04" /></svg></span>
+          </button>
+          <span class="led" id="led" aria-hidden="true"></span>
+          <!-- Skip the intro while it can be skipped, replay it at the end screen. -->
+          <button class="key key--icon" id="skip" type="button" aria-label="Skip intro" title="Skip intro">
+            <span class="skip__glyph" aria-hidden="true"><svg class="icon-skip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4v16" /><path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z" /></svg><svg class="icon-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg></span>
+          </button>
+          <button class="key" id="sound" type="button" aria-pressed="true">Sound</button>
+        </div>
+        <!-- The same content for screen readers and anyone without the canvas.
+             Inside the chin (and visually hidden, so out of its layout) so the
+             Tab order runs: chin controls, this menu, the form. -->
+        <main class="visually-hidden">
+          <h1>Devcon IX Lisbon</h1>
+          <p>CCL – Lisbon Congress Centre, Lisbon, Portugal</p>
+          <p>11–13 October 2027</p>
+          <!-- Mirrors the canvas menu (minus "Open the shell"); main.ts keeps item 1 in sync. -->
+          <nav aria-label="Devcon IX menu">
+            <ul>
+              <li><button type="button" id="sr-join">Join the waitlist</button></li>
+              <li>
+                <button type="button" aria-expanded="false" aria-controls="sr-about">About Devcon IX</button>
+                <section id="sr-about" aria-label="About Devcon IX" hidden>
+                  <p>Devcon IX, Lisbon, Portugal: 11–13 October 2027 at CCL – Lisbon Congress Centre.</p>
+                </section>
+              </li>
+              <li>
+                <button type="button" aria-expanded="false" aria-controls="sr-history">Past Devcons</button>
+                <section id="sr-history" aria-label="Past Devcons" hidden><ul></ul></section>
+              </li>
+              <li><a href="https://archive.devcon.org/" target="_blank" rel="noopener">Watch the archive</a></li>
+              <li><a href="https://devcon.org" target="_blank" rel="noopener">devcon.org</a></li>
+              <li><a href="https://devcon.org/en/privacy-notice/" target="_blank" rel="noopener">Privacy</a></li>
+              <li><a href="https://devcon.org/en/code-of-conduct/" target="_blank" rel="noopener">Code of conduct</a></li>
+            </ul>
+          </nav>
+          <form id="sr-form">
+            <label for="sr-email">Email address</label>
+            <input id="sr-email" type="email" required autocomplete="email" aria-describedby="sr-privacy" />
+            <p id="sr-privacy">By joining you agree to the <a href="https://devcon.org/en/privacy-notice/">Devcon privacy notice</a>.</p>
+            <button>Join the waitlist</button>
+          </form>
+          <p id="sr-status" role="status"></p>
+        </main>
+        <!-- Silkscreened on the chin: decorative (the page has a heading). -->
+        <span class="brand" aria-hidden="true"><span class="brand__mark"></span></span>
+      </div>
+    </div>
+
+    <!-- The shortcut sheet: ? opens it, ? or Esc closes it. -->
+    <dialog class="keys" id="keys" aria-labelledby="keys-title">
+      <h2 id="keys-title">Keyboard shortcuts</h2>
+      <section>
+        <h3>Intro</h3>
+        <dl>
+          <dt><kbd>Enter</kbd></dt><dd>Start</dd>
+          <dt><kbd>Esc</kbd></dt><dd>Skip the intro</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Menu</h3>
+        <dl>
+          <dt><kbd>1</kbd>–<kbd>8</kbd></dt><dd>Pick an item</dd>
+          <dt><kbd>↑</kbd> <kbd>↓</kbd> <kbd>Enter</kbd></dt><dd>Move and choose</dd>
+          <dt>Type</dt><dd>Open a prompt</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Shell</h3>
+        <dl>
+          <dt><kbd>Tab</kbd></dt><dd>Complete a command</dd>
+          <dt><kbd>↑</kbd> <kbd>↓</kbd></dt><dd>Previous commands</dd>
+          <dt><kbd>Ctrl</kbd> <kbd>C</kbd></dt><dd>Cancel</dd>
+          <dt><kbd>Ctrl</kbd> <kbd>L</kbd></dt><dd>Clear the screen</dd>
+          <dt><kbd>Esc</kbd></dt><dd>Back to the menu</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Menu or start screen</h3>
+        <dl>
+          <dt><kbd>A</kbd> <kbd>D</kbd></dt><dd>Change the background</dd>
+          <dt><kbd>C</kbd></dt><dd>Change the colour</dd>
+        </dl>
+      </section>
+      <form method="dialog"><button type="submit">Close <kbd>Esc</kbd></button></form>
+    </dialog>
+
+    <!-- Captures typing (and raises the on-screen keyboard on phones). -->
+    <input
+      id="kbd"
+      class="kbd"
+      tabindex="-1"
+      type="text"
+      aria-label="Terminal input"
+      autocomplete="off"
+      autocapitalize="off"
+      autocorrect="off"
+      spellcheck="false"
+      enterkeyhint="send"
+    />
+
+    <noscript>
+      <p style="color: #6f6; font: 20px monospace; padding: 2rem">
+        Devcon IX Lisbon<br />CCL – Lisbon Congress Centre, Lisbon, Portugal<br />11–13 October 2027
+      </p>
+      <p style="font: 16px monospace; padding: 0 2rem">
+        <a href="https://devcon.org">devcon.org</a> · <a href="https://devcon.org/en/privacy-notice/">Privacy</a> ·
+        <a href="https://devcon.org/en/code-of-conduct/">Code of conduct</a>
+      </p>
+    </noscript>
+
+  </body>
+</html>

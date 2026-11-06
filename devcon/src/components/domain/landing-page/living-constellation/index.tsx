@@ -5,13 +5,17 @@ import { Link } from 'components/common/link'
 import { EVENT_APP_ORIGIN } from 'config/eventApp'
 import { SpeakerGrid } from './SpeakerGrid'
 import { CONSTELLATION_SPEAKERS } from './speakers-data'
-import { sectionX, sectionInner, sectionHeading, eyebrow, bodyCopy } from 'components/common/styles'
+import { sectionX, sectionInner, sectionHeading, eyebrow } from 'components/common/styles'
 import { ctaSecondary } from 'components/common/cta'
 
-// Confirmed Devcon 8 speakers: a card grid that reads at a glance (name, role,
+// Post-event: the home page shows the top of the lineup only; the full list
+// lives in the Devcon app behind the CTA.
+const TOP_SPEAKER_COUNT = 10
+
+// Devcon 8 speaker lineup: a card grid that reads at a glance (name, role,
 // organisation, track) and opens a focused card on click — see SpeakerGrid for
 // the focus / return choreography. No background of its own: it sits inside
-// the intro section (WhyDevconContainer) under the Get tickets CTA, on that
+// the intro section (WhyDevconContainer) under the event stats, on that
 // section's moon + purple washes, so only bottom padding here.
 export function LivingConstellation() {
   const t = useTranslations('home.speakers')
@@ -23,9 +27,8 @@ export function LivingConstellation() {
             <p className={eyebrow}>{t('eyebrow')}</p>
             <h2 className={sectionHeading}>{t('heading')}</h2>
           </div>
-          <SpeakerGrid speakers={CONSTELLATION_SPEAKERS} />
+          <SpeakerGrid speakers={CONSTELLATION_SPEAKERS.slice(0, TOP_SPEAKER_COUNT)} />
           <div className="flex flex-col items-center gap-[24px]">
-            <p className={`${bodyCopy} text-center text-[#1a0d33]`}>{t('added_weekly')}</p>
             <Link
               to={`${EVENT_APP_ORIGIN}/speakers`}
               className={ctaSecondary}

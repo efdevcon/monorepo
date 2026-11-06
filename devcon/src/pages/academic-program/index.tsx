@@ -4,8 +4,7 @@ import { getMessages } from 'utils/intl'
 import Image from 'next/image'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
-import { Link } from 'components/common/link'
-import { ArrowRight, Microscope, Globe, Rocket } from 'lucide-react'
+import { Microscope, Globe, Rocket } from 'lucide-react'
 import themes from '../themes.module.scss'
 import HeroBackground from '../ecosystem-program/hero-bg.png'
 import JaaliPattern from 'assets/images/pages/ecosystem-jaali-left.svg'
@@ -19,7 +18,6 @@ import Photo4 from './photo-4.png'
 import Photo5 from './photo-5.png'
 import css from '../ecosystem-program/ecosystem-program.module.scss'
 import cn from 'classnames'
-import { TicketTable, type TicketRow } from 'components/domain/tickets/TicketTable'
 
 const SCROLLER_PHOTOS = [Photo1, Photo2, Photo3, Photo4, Photo5]
 
@@ -57,6 +55,7 @@ function ApplicationsClosedCard() {
 
 export default function AcademicProgramPage() {
   const t = useTranslations('academic_program')
+
   const strong = (chunks: React.ReactNode) => <strong>{chunks}</strong>
 
   const NAV_LINKS = [
@@ -76,21 +75,6 @@ export default function AcademicProgramPage() {
     label: t(`support_tags.items.${i}`),
     color,
   }))
-
-  const APPLICATION_ROWS: TicketRow[] = [
-    {
-      name: t('other_support.rows.0.name'),
-      price: '$6.50',
-      action: 'Apply',
-      actionHref: '/form/student-application',
-    },
-    {
-      name: t('other_support.rows.1.name'),
-      price: '$25',
-      action: 'Apply',
-      actionHref: '/form/student-application',
-    },
-  ]
 
   return (
     <Page theme={themes['tickets']} withHero darkFooter>
@@ -237,35 +221,6 @@ export default function AcademicProgramPage() {
           </div>
         </section>
 
-        {/* ── Other Support (Discount applications) ─────── */}
-        <section className={cn(css['other-support'], 'expand')}>
-          <div className={css['other-support-left']}>
-            <div className={css['other-support-text']}>
-              <p className={css['section-tag']}>{t('other_support.tag')}</p>
-              <h3 className={css['heading-3']}>{t('other_support.heading')}</h3>
-              <div className={css['body']}>
-                <p style={{ marginBottom: 16 }}>{t.rich('other_support.body_intro', { strong })}</p>
-                <ul className={css['detail-list']} style={{ marginBottom: 16 }}>
-                  {t.raw('other_support.bullets').map((bullet: string, i: number) => (
-                    <li key={i}>{t.rich(`other_support.bullets.${i}`, { strong })}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <Link to="/tickets" className={css['btn-secondary']}>
-              {t('other_support.view_all_tickets')}
-              <ArrowRight size={16} strokeWidth={2} />
-            </Link>
-          </div>
-
-          <div className={css['other-support-right']}>
-            <TicketTable
-              title={t('other_support.card_title')}
-              subtitle={t('other_support.card_subtitle')}
-              rows={APPLICATION_ROWS}
-            />
-          </div>
-        </section>
       </div>
     </Page>
   )

@@ -24,7 +24,6 @@ import { Button } from 'lib/components/button'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { AddToCalendarButton } from 'components/common/AddToCalendarButton'
 
 type SocialMediaProps = {
   onShare?: () => void
@@ -160,7 +159,7 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
                 {EMAIL_DEVCON}
               </a>
 
-              <div className="mt-4 grid grid-cols-2 gap-x-4 items-start lg:block">
+              <div className="mt-4">
                 <div className={`${css['newsletter']} min-w-0`}>
                   <p className="semi-bold">{t('subscribe_heading')}</p>
                   <Link
@@ -170,13 +169,6 @@ const TopSection = ({ dark }: { dark?: boolean }) => {
                     {t('subscribe_button')}
                     <ArrowUpRight size={16} strokeWidth={2} />
                   </Link>
-                </div>
-
-                <div className="lg:mt-4 flex flex-col items-start min-w-0">
-                  <p className="semi-bold">Save the date (3–6 Nov)</p>
-                  <div className="mt-2">
-                    <AddToCalendarButton popoverPosition="top" />
-                  </div>
                 </div>
               </div>
             </div>

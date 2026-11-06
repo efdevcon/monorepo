@@ -30,12 +30,6 @@ export function EventMetadata(props: EventMetadataProps) {
       },
     },
     image: [props.image],
-    offers: {
-      '@type': 'Offer',
-      url: 'https://devcon.org/tickets',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-05-20T00:00:00+05:30',
-    },
     organizer: {
       '@type': 'Organization',
       name: 'Ethereum Foundation',

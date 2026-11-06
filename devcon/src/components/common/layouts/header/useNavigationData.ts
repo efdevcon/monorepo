@@ -1,204 +1,122 @@
 import { useTranslations } from 'next-intl'
-import { useTicketsCtaLabel } from 'hooks/useWaveStates'
 import LogoAbout from 'assets/images/pages/about.svg'
-import { HandHeart, HeartHandshake, MicVocal, Users, CirclePlay, History } from 'lucide-react'
+import { Users, CirclePlay, History } from 'lucide-react'
 import DevconGlyph from 'assets/icons/devcon-glyph.svg'
-import Dc8Glyph from 'assets/icons/dc8-glyph-small.svg'
 import { EVENT_APP_ORIGIN } from 'config/eventApp'
+import type { Link as LinkType } from 'types/Link'
 
 const useNavigationData = () => {
   const t = useTranslations('common.nav')
-  // Header pill + mobile-menu primary CTA: same Get/View tickets rule as every
-  // other ticket CTA on the site.
-  const { canBuy } = useTicketsCtaLabel()
+  // Post-event state: no ticket CTA pill in the header or the mobile menu.
+
+  // Typed explicitly so consumers (Navigation's foldoutWidth read) don't
+  // depend on which optional fields the current entries happen to set.
+  const site: LinkType[] = [
+    {
+      title: t('about'),
+      url: '#',
+      type: 'links',
+      logo: LogoAbout,
+      links: [
+        {
+          title: t('devcon'),
+          url: '#',
+          type: 'header',
+          icon: DevconGlyph,
+        },
+        {
+          title: t('about'),
+          url: '/about',
+          type: 'page',
+        },
+        // Post-event: the Attend dropdown is gone, so its schedule (still
+        // the Devcon app — external, hence the arrow-up-right indicator)
+        // and travel guide live here now; Blog closes the list.
+        {
+          title: t('schedule'),
+          url: `${EVENT_APP_ORIGIN}/schedule`,
+          type: 'link',
+        },
+        {
+          title: t('travel_guide'),
+          url: '/travel-guide',
+          type: 'page',
+        },
+        {
+          title: t('blog'),
+          url: '/blogs',
+          type: 'page',
+        },
+      ],
+    },
+    {
+      title: t('community'),
+      url: '#',
+      type: 'links',
+      links: [
+        {
+          title: t('community'),
+          url: '#',
+          type: 'header',
+          icon: Users,
+        },
+        // Post-event: Participate is gone; Road to Devcon leads Community.
+        {
+          title: t('road_to_devcon'),
+          url: '/road-to-devcon',
+          type: 'page',
+        },
+        {
+          title: t('dips'),
+          url: '/dips',
+          type: 'page',
+        },
+        {
+          title: t('forum'),
+          url: 'https://forum.devcon.org/',
+          type: 'link',
+        },
+      ],
+    },
+    {
+      title: t('archive'),
+      url: '#',
+      type: 'links',
+      links: [
+        {
+          title: t('content'),
+          url: '#',
+          type: 'header',
+          icon: CirclePlay,
+        },
+        {
+          title: t('devcon_archive'),
+          url: 'https://archive.devcon.org',
+          type: 'link',
+        },
+        {
+          title: t('history'),
+          url: '#',
+          type: 'header',
+          icon: History,
+        },
+        {
+          title: t('past_events'),
+          url: '/past-events',
+          type: 'page',
+        },
+        {
+          title: t('devconnect'),
+          url: 'https://devconnect.org',
+          type: 'link',
+        },
+      ],
+    },
+  ]
 
   return {
     top: [],
-    site: [
-      {
-        title: t('about'),
-        url: '#',
-        type: 'links',
-        logo: LogoAbout,
-        links: [
-          {
-            title: t('devcon'),
-            url: '#',
-            type: 'header',
-            icon: DevconGlyph,
-          },
-          {
-            title: t('about'),
-            url: '/about',
-            type: 'page',
-          },
-          {
-            title: t('faq'),
-            url: '/tickets/faq',
-            type: 'page',
-          },
-          {
-            title: t('blog'),
-            url: '/blogs',
-            type: 'page',
-          },
-        ],
-      },
-      {
-        title: t('attend'),
-        url: '#',
-        type: 'links',
-        links: [
-          {
-            title: t('devcon_8_india'),
-            url: '#',
-            type: 'header',
-            icon: Dc8Glyph,
-          },
-          // The schedule lives in the Devcon app — external, so the foldout
-          // draws its arrow-up-right indicator.
-          {
-            title: t('schedule'),
-            url: `${EVENT_APP_ORIGIN}/schedule`,
-            type: 'link',
-          },
-          {
-            title: t('tickets'),
-            url: '/tickets',
-            type: 'page',
-          },
-          {
-            title: t('travel_guide'),
-            url: '/travel-guide',
-            type: 'page',
-          },
-        ],
-      },
-      {
-        title: t('participate'),
-        url: '#',
-        type: 'links',
-        foldoutWidth: 464,
-        links: [
-          {
-            title: t('contribute'),
-            url: '#',
-            type: 'header',
-            icon: HeartHandshake,
-            columns: 2,
-          },
-          // Row-major order for the 2-column desktop grid:
-          // Road to Devcon | Community Hubs / Submit a DIP
-          // Volunteer applications closed — link hidden until next cycle
-          // {
-          //   title: t('volunteer_program'),
-          //   url: '/form/volunteer',
-          //   type: 'page',
-          // },
-          {
-            title: t('road_to_devcon'),
-            url: '/road-to-devcon',
-            type: 'page',
-          },
-          {
-            title: t('community_hubs'),
-            url: 'https://forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191',
-            type: 'link',
-          },
-          {
-            title: t('submit_dip'),
-            url: 'https://forum.devcon.org/t/start-here-how-to-submit-your-proposal/7090',
-            type: 'link',
-          },
-          {
-            title: t('speakers'),
-            url: '#',
-            type: 'header',
-            icon: MicVocal,
-            pairWithNext: true,
-          },
-          {
-            title: t('speak_at_devcon'),
-            url: '/speaker-applications',
-            type: 'page',
-          },
-          {
-            title: t('support'),
-            url: '#',
-            type: 'header',
-            icon: HandHeart,
-          },
-          {
-            title: t('supporters_program'),
-            url: '/supporters',
-            type: 'page',
-          },
-        ],
-      },
-      {
-        title: t('community'),
-        url: '#',
-        type: 'links',
-        links: [
-          {
-            title: t('community'),
-            url: '#',
-            type: 'header',
-            icon: Users,
-          },
-          {
-            title: t('dips'),
-            url: '/dips',
-            type: 'page',
-          },
-          {
-            title: t('forum'),
-            url: 'https://forum.devcon.org/',
-            type: 'link',
-          },
-        ],
-      },
-      {
-        title: t('archive'),
-        url: '#',
-        type: 'links',
-        links: [
-          {
-            title: t('content'),
-            url: '#',
-            type: 'header',
-            icon: CirclePlay,
-          },
-          {
-            title: t('devcon_archive'),
-            url: 'https://archive.devcon.org',
-            type: 'link',
-          },
-          {
-            title: t('history'),
-            url: '#',
-            type: 'header',
-            icon: History,
-          },
-          {
-            title: t('past_events'),
-            url: '/past-events',
-            type: 'page',
-          },
-          {
-            title: t('devconnect'),
-            url: 'https://devconnect.org',
-            type: 'link',
-          },
-        ],
-      },
-      {
-        title: canBuy ? t('get_tickets') : t('view_tickets'),
-        url: '/tickets',
-        type: 'page',
-        highlight: 'tickets',
-      },
-    ],
+    site,
     footer: {
       bottom: [],
       left: [
@@ -207,11 +125,13 @@ const useNavigationData = () => {
           url: '/about',
           type: 'page',
         },
-        {
-          title: t('faq'),
-          url: '/tickets/faq',
-          type: 'page',
-        },
+        // FAQ hidden post-event: its NocoDB content is all pre-event ticketing
+        // copy. Restore once the entries are reworked or unpublished.
+        // {
+        //   title: t('faq'),
+        //   url: '/tickets/faq',
+        //   type: 'page',
+        // },
         // {
         //   title: 'Program',
         //   url: '/programming',
@@ -266,11 +186,12 @@ const useNavigationData = () => {
           url: 'https://forum.devcon.org/t/announcing-the-devcon-8-india-community-hubs/9191',
           type: 'link',
         },
-        {
-          title: t('media_press'),
-          url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
-          type: 'link',
-        },
+        // Media & Press (press-accreditation form) hidden post-event.
+        // {
+        //   title: t('media_press'),
+        //   url: 'https://docs.google.com/forms/d/e/1FAIpQLSeTL0i6d1SKaZHC0IkobF4ZjM2It1_jefTQkG0jxdxsj-OBsQ/viewform?usp=dialog',
+        //   type: 'link',
+        // },
         {
           title: t('press_kit'),
           // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here

@@ -12,12 +12,9 @@ import About3 from 'assets/images/carousel/about/about-3.jpg'
 import About4 from 'assets/images/carousel/about/about-4.jpg'
 import HeroBackground from './past-events-hero.png'
 import { Link } from 'components/common/link'
-import { LargeCallout } from 'components/domain/about/LargeCallout'
 import { VideoCard } from 'components/common/card/VideoCard'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll-native/SwipeToScroll'
-import { Clock4, History, Users, Flag, Globe, CirclePlay, ExternalLink, ArrowRight, ArrowUpRight } from 'lucide-react'
-import { CountingNumber } from 'components/common/counting-number/CountingNumber'
-import { STAT_META } from 'components/common/india-stats/stats'
+import { Clock4, History, Users, Flag, Globe, CirclePlay, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 const videos = [
@@ -100,7 +97,6 @@ export default function AboutPage() {
     continents: string
     archived_videos: string
   }
-  const whyIndiaStats = t.raw('why_india.stats') as Array<{ desc: string }>
   const carouselAlts = t.raw('communities.carousel_alts') as string[]
 
   return (
@@ -115,19 +111,21 @@ export default function AboutPage() {
           { title: t('nav.devcon'), to: '#intro' },
           { title: t('nav.for_builders'), to: '#builders' },
           { title: t('nav.communities'), to: '#communities' },
-          { title: t('nav.why_india'), to: '#why-india' },
           { title: t('nav.get_involved'), to: '#get-involved' },
         ]}
       />
 
       <div style={{ background: 'linear-gradient(to bottom, #fbfafc 0%, #e5ebff 80%)' }}>
-        {/* Section 1: What is Devcon + By the Numbers */}
+        {/* Section 1: What is Devcon + By the Numbers. Post-event figures:
+            Devcon 8 India adds an edition, a host country and (estimated, until
+            the post-event report) ~15K attendees and ~400 archived videos. */}
         <div
           id="intro"
           className="section"
           style={{
-            paddingTop: '2rem',
-            paddingBottom: '2rem',
+            // px, not rem: the root font-size drops to 14px ≤1024 (index.scss)
+            paddingTop: 48,
+            paddingBottom: 48,
             background:
               'radial-gradient(ellipse at center bottom, rgba(255,194,153,0.3) 0%, rgba(253,222,203,0.15) 40%, transparent 80%)',
           }}
@@ -165,81 +163,15 @@ export default function AboutPage() {
               <Snapshot
                 items={[
                   { Icon: Clock4, title: snapshotLabels.devcon_0, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>2014</span> },
-                  { Icon: History, title: snapshotLabels.past_editions, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>12</span> },
-                  { Icon: Users, title: snapshotLabels.attendees, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>45K+</span> },
-                  { Icon: Flag, title: snapshotLabels.countries, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>12</span> },
+                  { Icon: History, title: snapshotLabels.past_editions, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>13</span> },
+                  { Icon: Users, title: snapshotLabels.attendees, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>60K+</span> },
+                  { Icon: Flag, title: snapshotLabels.countries, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>13</span> },
                   { Icon: Globe, title: snapshotLabels.continents, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>4</span> },
-                  { Icon: CirclePlay, title: snapshotLabels.archived_videos, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>727</span> },
+                  { Icon: CirclePlay, title: snapshotLabels.archived_videos, right: <span style={{ color: '#FF6600', fontWeight: 700 }}>1.1K+</span> },
                 ]}
               />
             </div>
           </div>
-        </div>
-
-        {/* Section 2: Why Devcon India */}
-        <div id="why-india" className="section" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-          <h2 style={{ fontWeight: 800, fontSize: 32, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 32 }}>
-            {t('why_india.heading')}
-          </h2>
-          <div className="two-columns" style={{ gap: '2rem', marginBottom: 32 }}>
-            <div className="left">
-              <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
-                {t('why_india.subheading_1')}
-              </h3>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
-                {t('why_india.body_1_para_1')}
-              </p>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>{t('why_india.body_1_para_2')}</p>
-            </div>
-            <div className="right">
-              <h3 style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px', marginBottom: 16 }}>
-                {t('why_india.subheading_2')}
-              </h3>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144', marginBottom: 16 }}>
-                {t('why_india.body_2_prefix')}
-                <strong>{t('why_india.body_2_strong')}</strong>
-                {t('why_india.body_2_suffix_para_1')}
-              </p>
-              <p style={{ fontSize: 16, lineHeight: '24px', color: '#221144' }}>
-                {t('why_india.body_2_suffix_para_2')}
-              </p>
-            </div>
-          </div>
-
-          {/* Stats callout */}
-          <div
-            className="flex flex-col md:flex-row flex-wrap justify-between gap-8 rounded-2xl border border-[rgba(34,17,68,0.1)] px-6 md:px-16 py-8 mb-12"
-            style={{
-              background: 'radial-gradient(ellipse at center bottom, rgba(236,227,253,1) 0%, rgba(245,241,254,1) 100%)',
-            }}
-          >
-            {STAT_META.map((meta, i) => (
-              <div key={i} className="flex-1 min-w-full md:min-w-[200px]">
-                <p style={{ fontWeight: 800, fontSize: 24, color: '#160b2b', letterSpacing: '-0.5px' }}>
-                  <CountingNumber
-                    number={meta.number}
-                    prefix={meta.prefix}
-                    suffix={meta.suffix}
-                    decimalPlaces={meta.decimals}
-                  />
-                </p>
-                <p style={{ fontSize: 16, lineHeight: '24px', color: '#1a0d33', marginTop: 4 }}>
-                  {whyIndiaStats[i]?.desc}
-                </p>
-                <a
-                  href={meta.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 mt-2 text-xs text-[#7235ed] underline"
-                >
-                  {meta.source} <ExternalLink size={12} />
-                </a>
-              </div>
-            ))}
-          </div>
-
-          {/* Large callout — reuse from index page */}
-          <LargeCallout />
         </div>
 
         {/* Section 3: Creating Global Communities carousel */}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import css from './VerificationModal.module.scss'
 import { TICKETING, pretixEventUrl } from 'config/ticketing'
+import { TICKETS_WRAPPED } from 'config/waves'
 
 type RedeemVoucherModalProps = {
   isOpen: boolean
@@ -40,6 +41,40 @@ export function RedeemVoucherModal({ isOpen, onClose }: RedeemVoucherModalProps)
   const trimmed = code.trim()
   const hasError = status === 'invalid' || status === 'redeemed'
   const supportEmail = TICKETING.checkout.supportEmail || 'support@devcon.org'
+
+  // Post-event: the /tickets/store/#redeem deep link (voucher emails, the
+  // FAQ) still lands here, so say that redemption has ended instead of
+  // offering a form that can only fail. No onward link — there is nothing
+  // left to buy.
+  if (TICKETS_WRAPPED) {
+    return (
+      <div className={css['overlay']} role="dialog" aria-modal="true" aria-labelledby="redeem-voucher-title">
+        <div className={css['backdrop']} onClick={onClose} aria-hidden="true" />
+        <div className={`${css['modal']} ${css['redeem-modal']}`}>
+          <button type="button" className={css['close']} onClick={onClose} aria-label="Close">
+            ×
+          </button>
+          <div className={css['redeem-body']}>
+            <h2 id="redeem-voucher-title" className={css['redeem-title']}>
+              Voucher redemption has closed
+            </h2>
+            <div className={css['redeem-copy']}>
+              <p className={css['redeem-intro']}>
+                Devcon 8 India has wrapped, so voucher codes can no longer be redeemed. Thank you for being part of it.
+              </p>
+              <p className={css['redeem-subintro']}>
+                Questions about an unused code? Email{' '}
+                <a href={`mailto:${supportEmail}`} style={{ color: '#7235ed', fontWeight: 600 }}>
+                  {supportEmail}
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

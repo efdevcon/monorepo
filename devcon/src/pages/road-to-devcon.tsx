@@ -101,11 +101,13 @@ export default function RoadToDevconPage({
       <div className="w-full relative z-10">
         <AboutSection />
 
-        <RoadToDevconEvents events={events} />
-
+        {/* Post-event: communities, then the side-event calendars, then the
+            year's events. */}
         <RoadToDevconCommunities communities={communities} />
 
         <RoadToDevconSideEvents />
+
+        <RoadToDevconEvents events={events} />
 
         <RoadToDevconPrograms />
 

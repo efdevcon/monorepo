@@ -9,6 +9,7 @@ import DevconLogo from 'assets/images/dc-8/dc8-logo.png'
 import themes from '../../themes.module.scss'
 import css from './checkout.module.scss'
 import { TICKETING } from 'config/ticketing'
+import { TICKETS_WRAPPED } from 'config/waves'
 import { isEmail } from 'utils/validators'
 
 interface ApplicableTicket {
@@ -50,7 +51,7 @@ export default function RedeemPage({ adminBypass }: { adminBypass?: boolean }) {
   const canSend = emailsValid && privacyAccepted && !sending
 
   useEffect(() => {
-    if (!router.isReady || !voucherCode) return
+    if (!router.isReady || !voucherCode || TICKETS_WRAPPED) return
 
     async function validate() {
       setLoading(true)
@@ -135,6 +136,52 @@ export default function RedeemPage({ adminBypass }: { adminBypass?: boolean }) {
       setEmailError('Failed to send email. Please try again.')
     }
     setSending(false)
+  }
+
+  // ── Post-event: redemption has closed ──
+  // Voucher emails and reminders deep-link here (?voucher=CODE). Say that the
+  // event has wrapped; no validation call, no onward link to a shop or store.
+
+  if (TICKETS_WRAPPED) {
+    return (
+      <Page theme={themes['tickets']} hideFooter darkHeader>
+        <div className={css['checkout-layout'] + ' ' + css['checkout-layout-centered']}>
+          <main className={css['main']}>
+            <Link to="/tickets" className={css['back-link']}>
+              <ArrowLeft size={20} />
+              <span>Back to Tickets</span>
+            </Link>
+            <h1 className={css['page-title']}>Voucher redemption has closed</h1>
+
+            <div className={css['section-card']}>
+              <div className={css['section-body']}>
+                <p>
+                  Devcon 8 India has wrapped, so voucher codes can no longer be redeemed
+                  {voucherCode && (
+                    <>
+                      {' '}
+                      — including <strong>{voucherCode}</strong>
+                    </>
+                  )}
+                  . Thank you for being part of it.
+                </p>
+                <p>
+                  Questions about an unused code? Email{' '}
+                  <a href="mailto:support@devcon.org" style={{ color: '#7235ed', fontWeight: 600 }}>
+                    support@devcon.org
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+
+            <div className={css['redeem-logo']}>
+              <Image src={DevconLogo} alt="Devcon 8 India" width={146} height={64} />
+            </div>
+          </main>
+        </div>
+      </Page>
+    )
   }
 
   // ── Reserve: email sent success view ──
