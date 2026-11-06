@@ -7,6 +7,3 @@ export const DEVCON_IX_ANNOUNCEMENT_URL = '/lisbon/'
 
 // Post-event photo gallery.
 export const DEVCON_8_PHOTOS_URL = 'https://devcon.photos'
-
-// Official Devcon 8 recap video (YouTube), embedded on the home page.
-export const DEVCON_8_RECAP_VIDEO_URL = 'https://www.youtube.com/watch?v=nUFLz-o1YVY'

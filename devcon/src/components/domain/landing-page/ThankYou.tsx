@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import DC8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { sectionX, sectionInner, sectionHeading, leadCopy, bodyCopy } from 'components/common/styles'
-import { DEVCON_8_RECAP_VIDEO_URL } from 'config/devconIx'
-import { getVideoId } from 'utils/video'
 
 // Vertical side labels either side of the video (desktop only) — the old
 // ticket-sales video's treatment, reusing its home.video strings.
@@ -13,9 +11,10 @@ const SIDE_LABEL =
 import { Reveal } from 'components/common/reveal/Reveal'
 
 // Post-event intro: the "Devcon returns…" copy and ticket CTAs are replaced by
-// a thank-you (devconnect.org's recap hero, shorter) and the embedded recap
-// video (config/devconIx). Sits on WhyDevconContainer's moon + purple washes
-// like the intro it replaces.
+// a thank-you (devconnect.org's recap hero, shorter) and the recap video,
+// self-hosted (public/dc8/recap.mp4, 1920×1080 H.264 cut down from the 4K
+// master, with its first frame as the poster) so there is no YouTube iframe.
+// Sits on WhyDevconContainer's moon + purple washes like the intro it replaces.
 export const ThankYou = () => {
   const t = useTranslations('home.thank_you')
   const tVideo = useTranslations('home.video')
@@ -47,13 +46,16 @@ export const ThankYou = () => {
             {tVideo('location_label')}
           </p>
           <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[#1a0d33] outline outline-1 outline-[rgba(34,17,68,0.1)] shadow-[0_8px_24px_rgba(34,17,68,0.15)]">
-            <iframe
+            <video
               className="absolute inset-0 h-full w-full"
-              src={`https://www.youtube.com/embed/${getVideoId(DEVCON_8_RECAP_VIDEO_URL)}`}
-              title={t('video_title')}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+              controls
+              playsInline
+              preload="metadata"
+              poster="/dc8/recap-poster.jpg"
+              aria-label={t('video_title')}
+            >
+              <source src="/dc8/recap.mp4" type="video/mp4" />
+            </video>
           </div>
         </Reveal>
       </div>
