@@ -61,8 +61,16 @@
 # src/middleware.ts rewrites them to /api/qr/, which reads the targets from the
 # team-managed NocoDB table (src/services/qr-redirects.ts).
 
-# The Devcon IX announcement page (lisbon/, built into public/lisbon/): Vite
-# hashes its asset names, so a changed file gets a new name. Cache for good.
+# The Devcon IX announcement page (lisbon/, built into public/lisbon/). The
+# page itself: src/middleware.ts passes /lisbon/ through untouched, and this
+# serves the static index.html for it in place (a middleware rewrite to the
+# file would surface as a 308 to /lisbon/index.html).
+[[redirects]]
+  from = "/lisbon/"
+  to = "/lisbon/index.html"
+  status = 200
+
+# Vite hashes its asset names, so a changed file gets a new name. Cache for good.
 [[headers]]
   for = "/lisbon/assets/*"
   [headers.values]

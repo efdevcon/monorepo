@@ -50,20 +50,28 @@ export async function middleware(req: NextRequest) {
   }
 
   // The Devcon IX announcement page: lisbon/ builds into public/lisbon/, static
-  // files outside the locale router. Next serves public files but does not
-  // resolve a directory to its index.html, so /lisbon/ is rewritten there in
-  // one hop (no /en/lisbon/). It has to happen here: with i18n on, Next matches
-  // next.config.js rewrites against the locale-prefixed path, so a config
-  // rewrite for /lisbon/ never fires. The page's assets have extensions and
-  // pass through below. nextUrl.pathname has the locale stripped, so
-  // /en/lisbon/ lands here too: one URL only, send those to /lisbon/.
+  // files outside the locale router. nextUrl.pathname has the locale stripped,
+  // so /en/lisbon/ lands here too: one URL only, send those (and the bare
+  // /lisbon) to /lisbon/. In production the request is then passed through
+  // untouched: Netlify serves public/lisbon/index.html for /lisbon/ itself
+  // (netlify.toml). It must not be rewritten to the file here: the runtime
+  // answers a middleware rewrite to an extension path with a visible 308 to
+  // /lisbon/index.html (see /qr/ above). Next dev does not resolve a directory
+  // to its index.html, so there the rewrite is the only way to serve it. It
+  // has to happen here either way: with i18n on, Next matches next.config.js
+  // rewrites against the locale-prefixed path, so a config rewrite for
+  // /lisbon/ never fires. The page's assets have extensions and pass through
+  // below.
   if (normalizedPathname === '/lisbon') {
-    if (req.nextUrl.locale !== 'default') {
+    if (req.nextUrl.locale !== 'default' || req.nextUrl.pathname === '/lisbon') {
       const canonical = new URL('/lisbon/', req.url)
       canonical.search = req.nextUrl.search
       return NextResponse.redirect(canonical, 308)
     }
-    return NextResponse.rewrite(new URL('/lisbon/index.html', req.url))
+    if (process.env.NODE_ENV === 'development') {
+      return NextResponse.rewrite(new URL('/lisbon/index.html', req.url))
+    }
+    return NextResponse.next()
   }
 
   if (
