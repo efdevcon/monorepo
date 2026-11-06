@@ -20,10 +20,11 @@ import Vibe10 from './images/new/vibe-10.jpg'
 import Vibe11 from './images/new/vibe-11.jpg'
 import Vibe12 from './images/new/vibe-12.jpg'
 import Vibe13 from './images/new/vibe-13.jpg'
+import Vibe14 from './images/new/vibe-14.jpg'
 
 // Devcon 8 event photos (3:2, 1200px wide — a tile is 85vw wide on phones and
 // 75svh wide from md, so 2× DPR is covered up to ~800px-tall viewports).
-const IMAGES = [Vibe01, Vibe02, Vibe03, Vibe04, Vibe05, Vibe06, Vibe07, Vibe08, Vibe09, Vibe10, Vibe11, Vibe12, Vibe13]
+const IMAGES = [Vibe01, Vibe02, Vibe03, Vibe04, Vibe05, Vibe06, Vibe07, Vibe08, Vibe09, Vibe10, Vibe11, Vibe12, Vibe13, Vibe14]
 
 /**
  * Photo marquee — Figma node 4917:713, post-event: no section label, 3:2
