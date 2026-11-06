@@ -2,8 +2,6 @@
 
 import type { Ticket } from "@/data/tickets/types";
 import { TicketProofButton } from "@/components/TicketProofButton";
-import { ENS_BOOTH_MAP_HREF } from "@/app/(page-layout)/map/venue-map/data/roomAreas";
-import { useRouter } from "@/routing";
 import { displayItemName } from "./ticketTheme";
 
 /**
@@ -21,7 +19,6 @@ export function EnsPerkCard({
   showTicketLabel?: boolean;
 }) {
   const holder = ticket.attendeeName || ticket.attendeeEmail;
-  const router = useRouter();
 
   return (
     <div className="flex items-start gap-4 rounded-[12px] bg-white p-4 outline outline-dc-hairline lg:w-[400px]">
@@ -35,17 +32,7 @@ export function EnsPerkCard({
           </p>
         )}
         <p className="mt-1 text-[14px] leading-5 text-dc-muted">
-          Free .eth name for every Devcon attendee, while they last. Come to the{" "}
-          {/* A button over the routing hook, not a Link: under the native
-              wrapper Link swaps in its own onClick (as the swag station link). */}
-          <button
-            type="button"
-            onClick={() => router.push(ENS_BOOTH_MAP_HREF)}
-            className="cursor-pointer font-bold text-dc-purple underline-offset-2 hover:underline"
-          >
-            ENS booth
-          </button>{" "}
-          to learn more.
+          Free .eth name for every Devcon attendee, while they last.
         </p>
         <TicketProofButton ticketSecret={ticket.secret} />
       </div>

@@ -14,7 +14,7 @@ import { ensPerkAccess } from "@/data/tickets/ensPerk";
 import { SwagCard } from "./SwagCard";
 import { SwagBuyButton, formatSwagPrice } from "./SwagBuyButton";
 import { useSwagAdditions } from "@/data/tickets/useSwagAdditions";
-import { swagAdditionEligible } from "@/data/tickets/swagAdditions";
+import { swagAdditionEligible, swagAdditionSoldOut } from "@/data/tickets/swagAdditions";
 import { shelfSwag } from "@/data/tickets/swagShelf";
 import { QrModal, type QrModalNav, type QrModalTarget } from "./QrModals";
 import { displayItemName } from "./ticketTheme";
@@ -345,7 +345,30 @@ export function TicketSections({
   // The Swag section always shows: with nothing on the order it says why
   // instead of leaving the shelf's column empty beside the ticket (Scott,
   // 2026-11-03). Same recipe as the schedule's and speakers' empty states
-  // (lavender disc, 20px heading, muted line).
+  // (lavender disc, 20px heading, muted line). With swag to buy it stays,
+  // as the first card of the shelf, so nobody reads the buy cards as swag
+  // they already have.
+  const noSwag = (className?: string) => (
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center gap-4 rounded-[12px] border border-dc-hairline bg-dc-panel px-6 py-8 text-center",
+        className
+      )}
+    >
+      <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
+        <Gift className="size-7 text-dc-purple" />
+      </span>
+      <div className="flex flex-col gap-1">
+        <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
+          No swag with this ticket
+        </p>
+        <p className="text-[16px] leading-6 text-dc-muted">
+          Swag you get shows up here with a QR code to collect at the Swag Station.
+        </p>
+      </div>
+    </div>
+  );
+
   const swagSection = (
     <section
       className={cn(
@@ -355,27 +378,7 @@ export function TicketSections({
     >
       <TicketSectionHeader title="Swag" />
       {shownSwag.length === 0 && buyable.length === 0 ? (
-        <div
-          className={cn(
-            "flex flex-col items-center justify-center gap-4 rounded-[12px] border border-dc-hairline bg-dc-panel px-6 py-8 text-center",
-            !multiTicket && "lg:min-h-0 lg:flex-1"
-          )}
-        >
-          <span className="flex size-16 items-center justify-center rounded-full bg-dc-lavender">
-            <Gift className="size-7 text-dc-purple" />
-          </span>
-          <div className="flex flex-col gap-1">
-            <p className="text-[20px] font-bold leading-[28.8px] tracking-[-0.5px] text-dc-fg">
-              No swag with this ticket
-            </p>
-            {/* Swag comes with the ticket checkout; once checked in, extra
-                swag to buy shows on the shelf instead of this. */}
-            <p className="text-[16px] leading-6 text-dc-muted">
-              Swag is added during ticket checkout. Items on your order show up here with a QR code to
-              collect at the Swag Station.
-            </p>
-          </div>
-        </div>
+        noSwag(!multiTicket ? "lg:min-h-0 lg:flex-1" : undefined)
       ) : (
         /* The shelf absolutely fills the wrapper so the swag images can never
            inflate the row: beside a single ticket the ticket column sets the
@@ -390,6 +393,8 @@ export function TicketSections({
           {/* A list of rows on mobile, image on the left (Scott, 2026-11-04);
               the desktop shelf is unchanged. */}
           <div className={cn(scrollerBase, "flex flex-col gap-3 lg:absolute lg:-inset-3 lg:p-3")}>
+            {/* Card-sized on the desktop shelf, like the SwagCards beside it. */}
+            {shownSwag.length === 0 && noSwag("lg:h-full lg:w-[361px] lg:shrink-0 lg:px-5")}
             {shownSwag.map((item) => (
               <SwagCard
                 key={item.secret}
@@ -406,25 +411,37 @@ export function TicketSections({
                 shelf they simply follow, full height): the same cards with the
                 price and a Buy button instead of the QR. */}
             {buyable.length > 0 && (
-              <div className={cn("flex flex-col gap-3 lg:h-full lg:shrink-0", shownSwag.length > 0 && "mt-2 lg:mt-0")}>
+              <div className="mt-2 flex flex-col gap-3 lg:mt-0 lg:h-full lg:shrink-0">
                 <p className="text-[16px] font-bold leading-6 text-dc-fg2 lg:hidden">Get more swag</p>
                 <div className="flex flex-col gap-3 lg:min-h-0 lg:flex-1 lg:flex-row">
-                  {buyable.map(({ ticket, offer }) => (
-                    <SwagCard
-                      key={`buy-${ticket.secret}-${offer.itemId}`}
-                      title={offer.name}
-                      imageUrl={offer.imageUrl}
-                      price={formatSwagPrice(offer)}
-                      note={[
-                        offer.remaining > 0 ? `up to ${offer.remaining}` : "Bought",
-                        additionTickets.length > 1 ? displayItemName(ticket.itemName) : null,
-                      ]
-                        .filter(Boolean)
-                        .join(" · ")}
-                      action={<SwagBuyButton offer={offer} ticketSecret={ticket.secret} />}
-                      shelfOnDesktop
-                    />
-                  ))}
+                  {buyable.map(({ ticket, offer }) => {
+                    // Already bought in full keeps "Bought"; otherwise sold out replaces Buy.
+                    const soldOut = offer.remaining > 0 && swagAdditionSoldOut(offer);
+                    return (
+                      <SwagCard
+                        key={`buy-${ticket.secret}-${offer.itemId}`}
+                        title={offer.name}
+                        imageUrl={offer.imageUrl}
+                        price={formatSwagPrice(offer)}
+                        note={[
+                          soldOut ? null : offer.remaining > 0 ? `up to ${offer.remaining}` : "Bought",
+                          additionTickets.length > 1 ? displayItemName(ticket.itemName) : null,
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                        action={
+                          soldOut ? (
+                            <span className="inline-flex h-9 shrink-0 items-center rounded-full border border-dc-hairline px-4 text-[14px] font-semibold text-dc-muted">
+                              Sold out
+                            </span>
+                          ) : (
+                            <SwagBuyButton offer={offer} ticketSecret={ticket.secret} />
+                          )
+                        }
+                        shelfOnDesktop
+                      />
+                    );
+                  })}
                 </div>
               </div>
             )}
