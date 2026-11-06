@@ -19,8 +19,8 @@ import { flushSync } from "react-dom";
  *
  * `revealAll()` completes the list synchronously (flushSync) for jumps that
  * must measure real positions; call it from event handlers only. `minVisible`
- * forces groups up to an index into the first render (the schedule's landing
- * group), so the initial "land on now" measures a real element.
+ * forces groups up to an index into the first render, for a caller whose
+ * first paint must show a group below the top.
  */
 export function useProgressiveReveal(
   total: number,
