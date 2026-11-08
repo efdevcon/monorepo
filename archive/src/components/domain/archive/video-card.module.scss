@@ -83,6 +83,12 @@
 .compact {
   @extend .horizontal;
 
+  // The list beside the player: no tags on the thumbnail (in the desktop
+  // row they wrapped over half of it).
+  .aspect-wrapper .labels {
+    display: none;
+  }
+
   @media (min-width: $breakpoints-lg + 1) {
     .body {
       padding-top: $gaps-gap-2;
@@ -108,6 +114,9 @@
 
     .aspect-wrapper {
       flex-basis: 200px;
+      // Keeps its 16:9 shape instead of stretching to the text's height,
+      // which cropped the session card's sides.
+      align-self: flex-start;
 
       .labels {
         right: $gaps-gap-1;

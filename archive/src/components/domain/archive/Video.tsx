@@ -17,7 +17,7 @@ import { PageHero } from "@/components/common/page-hero/PageHero";
 import { editionOf } from "@/utils/editions";
 dayjs.extend(duration);
 
-const List = ({ video, playlist, videos }: any) => {
+const List = ({ video, playlist, videos, linkFor }: any) => {
   return (
     <div className={css["list"]}>
       {videos.map((playlistVideo: any, index: number) => {
@@ -34,6 +34,7 @@ const List = ({ video, playlist, videos }: any) => {
             key={index}
             video={playlistVideo}
             className={className}
+            href={linkFor?.(playlistVideo)}
           />
         );
       })}
@@ -41,8 +42,13 @@ const List = ({ video, playlist, videos }: any) => {
   );
 };
 
-const Suggested = ({ video, relatedVideos, playlists }: any) => {
-  const [playlist, setPlaylist] = React.useState<null | any>(null);
+/**
+ * The list beside the player. `activePlaylist` opens with a playlist of the
+ * page's own (/my-interests: the attendee's recordings), `linkFor` says where
+ * its items go; otherwise a curated playlist named in ?playlist= opens.
+ */
+const Suggested = ({ video, relatedVideos, playlists, activePlaylist, linkFor }: any) => {
+  const [playlist, setPlaylist] = React.useState<null | any>(activePlaylist ?? null);
   const tabsRef = React.useRef<{ setActiveTab: (tab: string) => void } | null>(
     null
   );
@@ -81,7 +87,7 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
               )}
             </div>
 
-            <List video={video} playlist={playlist} videos={playlist.videos} />
+            <List video={video} playlist={playlist} videos={playlist.videos} linkFor={linkFor} />
           </Tab>
         )}
 
@@ -327,6 +333,8 @@ export const Video = (props: any) => {
           video={video}
           playlists={props.playlists}
           relatedVideos={props.relatedVideos}
+          activePlaylist={props.activePlaylist}
+          linkFor={props.playlistLinkFor}
         />
       </div>
     </PageHero>

@@ -34,6 +34,8 @@ interface Props {
   canSlide?: boolean;
   vertical?: boolean;
   compact?: boolean;
+  /** Where the card links instead of the video's own page (a page that keeps its own list, /my-interests). */
+  href?: string;
 }
 
 export const VideoCard = (props: Props) => {
@@ -59,7 +61,7 @@ export const VideoCard = (props: Props) => {
       className={className}
       slide={props.canSlide}
       expandLink
-      linkUrl={getWatchUrl()}
+      linkUrl={props.href ?? getWatchUrl()}
       allowDrag
     >
       {/* Need the wrapper so we can constrain the aspect div */}
