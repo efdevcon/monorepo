@@ -8,6 +8,7 @@ import { NotificationsHeroCard } from "./NotificationsHeroCard";
 // import { Tickets } from "../Tickets"; // parked, see note in Home()
 import { CommunityHubsCard } from "./CommunityHubsCard";
 import { AiPlannerCard } from "./AiPlannerCard";
+import { RecordingsCard } from "./RecordingsCard";
 import { FeaturedCard } from "./FeaturedCard";
 import { Greeting } from "./Greeting";
 import { EventInformation } from "./EventInformation";
@@ -33,6 +34,8 @@ export function Home() {
         <h1 className="sr-only">Home</h1>
         <Greeting />
         <div className="mt-8 flex flex-col gap-8 lg:gap-12">
+          {/* The recordings first: after the event, rewatching is what Home is for. */}
+          <RecordingsCard />
           {/* One slot, two steps: browser visitors get the install nudge up
               top (the bottom button stays as a second chance); installed,
               signed in and push still off, the same slot asks to turn on

@@ -54,6 +54,8 @@ const EVENTS = {
     "sheet-dismissed",
   ],
   planner: ["open-chatgpt", "open-claude", "open-grok", "copy", "copy-other-ai", "apply-opened", "applied"],
+  // Home's recordings card: open-mine = the archive list built from My Interests, open-all = the edition's recordings.
+  recordings: ["open-mine", "open-all"],
   perks: ["claim", "sheet-shown", "open-browser", "copy", "share"],
   // Swag additions (extra swag at the ticket's price), name = product name:
   // addition-buy: voucher asked for; addition-checkout: Pretix checkout opened.

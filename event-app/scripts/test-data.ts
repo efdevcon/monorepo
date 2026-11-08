@@ -31,6 +31,7 @@ import {
   type WaitingWorker,
 } from "../src/utils/serviceWorkerUpdate";
 import { whenControlled, type ServiceWorkerControl } from "../src/utils/serviceWorkerControl";
+import { archiveSessionsUrl, archiveWatchUrl } from "../src/data/archiveLinks";
 import { buyerOrdersToAssign, derivePrimary, hasAdmissionTicket, ticketChoices, ticketOrdinals, ticketPrompt } from "../src/data/tickets/primary";
 import type { Order } from "../src/data/tickets/types";
 import { createRateLimiter } from "../src/app/api/tickets/rateLimit";
@@ -1681,6 +1682,7 @@ async function main() {
   testSilentUpdates();
   testChunkLoadError();
   testAppImages();
+  testArchiveLinks();
   console.log(failed ? `\n${failed} check(s) failed` : "\nall checks passed");
   process.exit(failed ? 1 : 0);
 }
@@ -1693,6 +1695,17 @@ main();
  * every local path must exist under public/ (version params aside), and the
  * map list must cover every generated icon.
  */
+/** Home's recordings card links (src/data/archiveLinks.ts). */
+function testArchiveLinks() {
+  check("archive: edition watch link", archiveWatchUrl("devcon8") === "https://archive.devcon.org/watch/?event=devcon8");
+  check(
+    "archive: stars by code, deduped, blanks dropped",
+    archiveSessionsUrl("devcon8", ["VAH3UG", "KRA8XX", "VAH3UG", " "]) ===
+      "https://archive.devcon.org/my-interests/?event=devcon8&sessions=VAH3UG,KRA8XX"
+  );
+  check("archive: no stars falls back to the watch link", archiveSessionsUrl("devcon8", []) === archiveWatchUrl("devcon8"));
+}
+
 function testAppImages() {
   const lists: Record<string, string[]> = { TRACK_GEM_IMAGES, APP_IMAGES, MAP_IMAGES };
   for (const [name, urls] of Object.entries(lists)) {

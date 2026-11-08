@@ -51,6 +51,9 @@ export const APP_IMAGES: string[] = [
   "/home/install-app.jpg",
   "/home/tickets-banner.webp",
   "/home/community-hubs.jpg",
+  // Home's recordings card: a Devcon 8 stage photo with the Devcon Archive logo over it.
+  "/home/recordings.jpg",
+  "/home/devcon-archive-logo-white.svg",
   // AI planner brand logos (public/home/ai-planner), on the Home card's buttons.
   "/home/ai-planner/chatgpt-mark.svg",
   "/home/ai-planner/claude-mark.svg",
