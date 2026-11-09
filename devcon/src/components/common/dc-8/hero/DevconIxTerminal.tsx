@@ -20,7 +20,7 @@ type Props = { href: string; alt: string; caption: string; className?: string }
 
 /**
  * Hero terminal (Figma 6068:574): one link (terminal + a shell prompt caption,
- * "> boot devcon9_") to the Devcon IX announcement, a plain <a>: the page is a
+ * "> boot devconIX_") to the Devcon IX announcement, a plain <a>: the page is a
  * static build outside the Next router (config/devconIx.ts). The terminal takes the
  * shared 1.03 hover / 0.97 press scale whenever the link is hovered; the
  * caption gains a glow (the screen wears the same glow at rest) and its

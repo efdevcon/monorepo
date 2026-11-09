@@ -10,7 +10,7 @@ import { Reveal, RevealGroup } from 'components/common/reveal/Reveal'
 // down to the nearest 50 so the "+" holds.
 const STATS = [
   { number: 6000, suffix: '+' },
-  { number: 120, suffix: '+' },
+  { number: 100, suffix: '+' },
   { number: 350, suffix: '+' },
   { number: 400, suffix: '+' },
 ]
