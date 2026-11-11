@@ -4,7 +4,7 @@ How the team builds forms and surveys in NocoDB and publishes them on devcon.org
 
 ## The big picture
 
-- **NocoDB** is the team's database and form builder (the site you open in the browser to see tables of applications, FAQs and so on). It is organised in **bases** (one per topic, e.g. ticket applications or event logistics), each holding **tables**. A table can have a **form view**: the list of questions, their order, wording, help text and which ones are required.
+- **NocoDB** is the team's database and form builder (the site you open in the browser to see tables of applications, FAQs and so on). It is organised in **projects** (one per topic, e.g. ticket applications or event logistics), each holding **tables**. Projects were previously called **bases**, a name you will still see in older notes, API paths and the `NocoDB-Base-…` connection names below. A table can have a **form view**: the list of questions, their order, wording, help text and which ones are required.
 - **devcon.org renders those form views** at a devcon.org address, in the site's design, with features plain NocoDB forms lack: email verification, wallet connect, sections, branching questions, voice answers, preview links. Every submission lands as a row in the NocoDB table.
 - **No code is needed for a new form.** Build the table and form view in NocoDB (or ask Claude to), publish it with one config row, and edit wording in NocoDB whenever you like; devcon.org picks up changes within a minute. Developers only touch code for new field types or behaviours.
 
@@ -14,25 +14,25 @@ Claude Code can read and change NocoDB directly. There are two ways to connect i
 
 | | MCP connection | API token |
 |---|---|---|
-| What it is | Claude gets NocoDB "tools" for one base: records, tables, fields, views, forms | A key for NocoDB's web API, used from scripts |
+| What it is | Claude gets NocoDB "tools" for one project: records, tables, fields, views, forms | A key for NocoDB's web API, used from scripts |
 | Good for | Everyday work in plain language: "create a survey table", "add a question", "export the answers" | Bulk scripts, and the few things this NocoDB licence refuses over MCP (conditional form fields, webhooks) |
-| Set up | Once per base, by each person on their own computer | Once per person; the site itself also uses one |
+| Set up | Once per project, by each person on their own computer | Once per person; the site itself also uses one |
 
 Both inherit your own NocoDB permissions, so Claude can never do more than you could by hand.
 
-### Connect a base through MCP
+### Connect a project through MCP
 
-1. In NocoDB, open the base, then **Settings**, then **Model Context Protocol** (on a licensed edition: **Account Settings**, **MCP Server**, **Manual connections**).
-2. Click **New MCP Endpoint**, give it a name (your name plus the base is a good one) and create it. NocoDB shows the endpoint URL and a token once; copy both.
+1. In NocoDB, open the project, then **Settings**, then **Model Context Protocol** (on a licensed edition: **Account Settings**, **MCP Server**, **Manual connections**).
+2. Click **New MCP Endpoint**, give it a name (your name plus the project is a good one) and create it. NocoDB shows the endpoint URL and a token once; copy both.
 3. In a terminal, in the monorepo folder, run (replace the two placeholders; the host is the same address you use to open NocoDB):
 
    ```bash
-   claude mcp add NocoDB-Base-<BaseName> -- npx mcp-remote https://<NOCODB_HOST>/mcp/<ENDPOINT_ID> --header "xc-mcp-token: <TOKEN>"
+   claude mcp add NocoDB-Base-<ProjectName> -- npx mcp-remote https://<NOCODB_HOST>/mcp/<ENDPOINT_ID> --header "xc-mcp-token: <TOKEN>"
    ```
 
-4. Restart Claude Code and type `/mcp`: the server should show as connected. Then just ask, e.g. "list the tables in this base".
+4. Restart Claude Code and type `/mcp`: the server should show as connected. Then just ask, e.g. "list the tables in this project".
 
-Notes: name servers `NocoDB-Base-<BaseName>` so everyone's setup looks the same. By default the connection only exists when Claude is started in that folder; add `--scope user` to have it everywhere. The token is a secret: never paste it in chat, in a document or in the repo (not in `.mcp.json`). To remove a connection: `claude mcp remove NocoDB-Base-<BaseName>`, and delete the endpoint in NocoDB.
+Notes: name servers `NocoDB-Base-<ProjectName>` so everyone's setup looks the same (the prefix predates NocoDB's rename of bases to projects; existing connections keep it). By default the connection only exists when Claude is started in that folder; add `--scope user` to have it everywhere. The token is a secret: never paste it in chat, in a document or in the repo (not in `.mcp.json`). To remove a connection: `claude mcp remove NocoDB-Base-<ProjectName>`, and delete the endpoint in NocoDB.
 
 ### Connect through the API
 
@@ -57,7 +57,7 @@ Table and view IDs are in the browser address bar when you open them in NocoDB; 
 ## Publishing a form on devcon.org
 
 - **Instant address**: `/form/d/<VIEW_ID>` works for any form view, no setup.
-- **Nice address** (`/form/<slug>`): add a row to the **Form config** base in NocoDB (one row per form). Columns:
+- **Nice address** (`/form/<slug>`): add a row to the **Form config** table in NocoDB (one row per form). Columns:
   - `Form Slug`: the address part, e.g. `devcon-9-survey`.
   - `Form View ID`: the NocoDB form view.
   - `Requires OTP`: Yes means people verify their email before seeing the form. Their email is saved in the table's `Email` column, and coming back later loads their earlier answers: saving again updates the same row instead of adding one.
