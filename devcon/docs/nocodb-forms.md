@@ -60,8 +60,8 @@ Table and view IDs are in the browser address bar when you open them in NocoDB; 
 - **Nice address** (`/form/<slug>`): add a row to the **Form config** base in NocoDB (one row per form). Columns:
   - `Form Slug`: the address part, e.g. `devcon-9-survey`.
   - `Form View ID`: the NocoDB form view.
-  - `Requires OTP`: Yes means people verify their email before seeing the form.
-  - `Is Form Open`: off shows a "form closed" page (on both addresses), so a form can be wired up before it goes live.
+  - `Requires OTP`: Yes means people verify their email before seeing the form. Their email is saved in the table's `Email` column, and coming back later loads their earlier answers: saving again updates the same row instead of adding one.
+  - `Is Form Open`: off shows a "This form is now closed" page (on both addresses), so a form can be wired up before it goes live.
   - `Preview Password`: with a closed form, share `/form/<slug>/?preview=<password>` to let reviewers see and test it (test submissions are saved like real ones). Clear the column to revoke the link.
 - Changes to that table show on devcon.org within a minute.
 
@@ -76,8 +76,13 @@ Everything below is set in the NocoDB form view, no code:
 - **Numbered scales**: a Rating field whose label starts with `[scale: Low label | High label]` shows buttons 1 to max with the two labels under the ends. `[scale]` alone shows numbers only.
 - **Voice answers**: a long-text field whose label starts with `[voice]` gets a "Record your answer" button (takes of up to 2 minutes, transcribed and added to the text box, editable; only the text is saved, never the audio). Limit 5000 characters instead of 1000.
 - **Wallet address**: a text field whose label starts with `[wallet]` shows a Connect wallet button; the site stores only the address proven by a free signature.
+- **GitHub account**: a field whose label starts with `[github]` shows a Connect GitHub button (GitHub sign-in). With a `[wallet]` field on the same form, both sit together under "Connections".
+- **Country picker**: a field whose label starts with `Country:` shows a searchable list of countries.
+- **Signature**: a file field (Attachment) whose name contains "signature" gets a draw-to-sign pad next to the file picker.
+- **Encrypted file upload**: a file field whose label starts with `[encrypted]` is encrypted in the browser before upload, so NocoDB only ever stores the encrypted file; only the team's private keys open it (the public keys are in `src/config/encrypted-forms.ts`; ask a developer).
+- **Help text formatting**: links (`[text](https://...)`), `**bold**` and `_italic_` work in help text.
 
-Example: the Devcon 8 survey (wallet connector first, then the role question; each role, attendees included, gets its own section by condition, then closing questions for everyone).
+Example: the Devcon 8 survey (wallet connector first, then the role question; each role, attendees included, gets its own section by condition, then closing questions for everyone, two of them with voice answers).
 
 ## Developer reference
 
@@ -96,14 +101,26 @@ Both render the same `FormPage`. OTP, open/closed state and the preview password
 2. The schema route resolves view, table and fields through NocoDB's REST meta API (`nocodb-meta.ts`): `views/:viewId/columns` for order, visibility, labels and required, `views/:viewId/filters` for conditions.
 3. Submissions go to `/api/nocodb/{viewId}/submit/`, which writes the row through the NocoDB SDK. `[wallet]` fields keep only the signed address; `[voice]` audio goes to `/api/nocodb/{viewId}/transcribe/` (transcription service, per-IP throttle, open or previewed forms only).
 
+### Per-form behaviour
+
+A few forms have code of their own, keyed on their `Form Slug` (constants in `FormPage.tsx` and `submit.ts`). Renaming one of these slugs turns the behaviour off.
+
+- `student-application`: the verified email is classified (`/api/nocodb/classify-email/`, `check-eligibility`); a non-institutional address must upload proof of enrolment (`upload-proof`); eligible applicants are validated automatically.
+- `visa-collection-attendees`: the verified email must hold a paid ticket or belong to an approved speaker; the order codes are written to the row.
+- `builder-application`: GitHub and wallet are verified server-side, contributed repositories are scored, and a referral code from the link (`?mtm_campaign=`, or `ref`) is saved.
+- `youth-ticket`: links the full parental consent form next to its consent checkboxes.
+- `rtd-event-form`: editing an event that was already approved flags it as `Updated post-approval`.
+
 ### Key files
 
 - `src/services/nocodb-meta.ts`: REST meta API wrapper (form view, fields, conditions)
 - `src/services/nocodb.ts`: NocoDB SDK wrapper (row CRUD)
 - `src/services/form-config.ts`: slug, OTP, open state and preview password from the Form config table
-- `src/config/form-field-markers.ts`: the `[scale]`, `[voice]`, `[wallet]` label markers
-- `src/components/domain/nocodb-form/`: `FormPage.tsx` (shared UI), `OtpGate.tsx` (email verification), `FormRenderer.tsx` (fields), `FormSubheading.tsx` (sections), `VoiceRecorder.tsx`, `WalletConnectField.tsx`
-- `src/pages/api/nocodb/[viewId]/`: schema, submit, submission, preview, transcribe and upload routes
+- `src/config/form-field-markers.ts`: the `[scale]`, `[voice]`, `[wallet]` and `[github]` label markers (`Country:` and signature fields are detected in `FormRenderer.tsx`)
+- `src/config/encrypted-forms.ts`: the `[encrypted]` marker and the public keys uploads are encrypted to
+- `src/components/domain/nocodb-form/`: `FormPage.tsx` (shared UI), `OtpGate.tsx` (email verification), `FormRenderer.tsx` (fields), `FormSubheading.tsx` (sections), `inline-markdown.tsx` (help text), `VoiceRecorder.tsx`, `WalletConnectField.tsx`, `GithubConnectField.tsx`, `SignaturePad.tsx`
+- `src/pages/api/nocodb/[viewId]/`: schema, submit, submission (loads an email-verified person's earlier answers), preview, transcribe, upload-attachment, upload-proof and check-eligibility routes
+- `src/pages/api/nocodb/file.ts`: serves uploaded files through the site (NocoDB's signed links only; anything that could run in the browser is forced to download)
 
 ### Environment
 
