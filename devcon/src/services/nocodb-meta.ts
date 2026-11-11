@@ -152,9 +152,11 @@ async function nocoFetch<T>(path: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
-async function getTableMeta(tableId: string): Promise<TableMeta> {
+// `fresh` (a preview link, see the schema route) skips the 5-minute caches below and refreshes them,
+// so an edit in NocoDB shows on the next preview load instead of minutes later.
+async function getTableMeta(tableId: string, fresh = false): Promise<TableMeta> {
   const cached = tableCache.get(tableId)
-  if (cached && Date.now() < cached.expiresAt) return cached.data
+  if (!fresh && cached && Date.now() < cached.expiresAt) return cached.data
   const data = await nocoFetch<TableMeta>(`/api/v1/db/meta/tables/${tableId}`)
   tableCache.set(tableId, { data, expiresAt: Date.now() + CACHE_TTL })
   return data
@@ -207,9 +209,9 @@ async function resolveTableViaColumns(viewId: string): Promise<{ baseId: string;
   return { baseId: column.base_id, tableId: column.fk_model_id }
 }
 
-export async function resolveFormView(viewId: string): Promise<FormViewMeta> {
+export async function resolveFormView(viewId: string, fresh = false): Promise<FormViewMeta> {
   const cached = viewCache.get(viewId)
-  if (cached && Date.now() < cached.expiresAt) return cached.data
+  if (!fresh && cached && Date.now() < cached.expiresAt) return cached.data
 
   let form: FormMeta
   try {
@@ -228,7 +230,7 @@ export async function resolveFormView(viewId: string): Promise<FormViewMeta> {
   // Resolve tableId via a single column meta lookup (forms endpoint doesn't include fk_model_id).
   const firstColId = form.columns[0].fk_column_id
   const column = await nocoFetch<ColumnMeta>(`/api/v1/db/meta/columns/${firstColId}`)
-  const table = await getTableMeta(column.fk_model_id)
+  const table = await getTableMeta(column.fk_model_id, fresh)
 
   // View title isn't on the forms endpoint — pull it from the table's views[] list.
   const viewTitle = table.views.find(v => v.id === viewId)?.title ?? table.title
@@ -259,15 +261,15 @@ export async function resolveViewTable(viewId: string): Promise<{ baseId: string
   }
 }
 
-export async function getFormFields(viewId: string): Promise<FormField[]> {
+export async function getFormFields(viewId: string, fresh = false): Promise<FormField[]> {
   const cached = fieldsCache.get(viewId)
-  if (cached && Date.now() < cached.expiresAt) return cached.data
+  if (!fresh && cached && Date.now() < cached.expiresAt) return cached.data
 
   // Need: view-column config (order/label/help/required/show) + table columns (uidt/options/descriptions).
-  const { tableId } = await resolveFormView(viewId)
+  const { tableId } = await resolveFormView(viewId, fresh)
   const [viewColsResp, table] = await Promise.all([
     nocoFetch<{ list: FormColumnCfg[] }>(`/api/v1/db/meta/views/${viewId}/columns`),
-    getTableMeta(tableId),
+    getTableMeta(tableId, fresh),
   ])
 
   const tableColsById = new Map(table.columns.map(c => [c.id, c]))
@@ -380,9 +382,9 @@ interface ViewFilter {
 
 const rulesCache = new Map<string, { data: ConditionalRule[]; expiresAt: number }>()
 
-export async function getConditionalRules(viewId: string): Promise<ConditionalRule[]> {
+export async function getConditionalRules(viewId: string, fresh = false): Promise<ConditionalRule[]> {
   const cached = rulesCache.get(viewId)
-  if (cached && Date.now() < cached.expiresAt) return cached.data
+  if (!fresh && cached && Date.now() < cached.expiresAt) return cached.data
   if (!NOCODB_BASE_URL || !NOCODB_API_TOKEN) return []
 
   try {

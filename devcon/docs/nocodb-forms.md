@@ -62,7 +62,7 @@ Table and view IDs are in the browser address bar when you open them in NocoDB; 
   - `Form View ID`: the NocoDB form view.
   - `Requires OTP`: Yes means people verify their email before seeing the form. Their email is saved in the table's `Email` column, and coming back later loads their earlier answers: saving again updates the same row instead of adding one.
   - `Is Form Open`: off shows a "This form is now closed" page (on both addresses), so a form can be wired up before it goes live.
-  - `Preview Password`: with a closed form, share `/form/<slug>/?preview=<password>` to let reviewers see and test it (test submissions are saved like real ones). Clear the column to revoke the link.
+  - `Preview Password`: with a closed form, share `/form/<slug>/?preview=<password>` to let reviewers see and test it (test submissions are saved like real ones). Clear the column to revoke the link. The preview link always loads the latest version from NocoDB, so edits show on reload; everyone else sees them within 5 minutes.
 - Changes to that table show on devcon.org within a minute.
 
 ## Building blocks of a form

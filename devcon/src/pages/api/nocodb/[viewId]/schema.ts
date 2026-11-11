@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { resolveFormView, getFormFields, getConditionalRules } from 'services/nocodb-meta'
+import { isPreviewAllowed } from 'services/form-config'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -12,10 +13,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
+    // A preview link (X-Form-Preview = the form's preview password) reads NocoDB fresh, skipping the
+    // 5-minute caches, so whoever is editing the form sees each change on reload. Checked against the
+    // password so the public can't force uncached NocoDB calls.
+    const previewHeader = req.headers['x-form-preview']
+    const fresh = await isPreviewAllowed(viewId, Array.isArray(previewHeader) ? previewHeader[0] : previewHeader)
+    if (fresh) res.setHeader('Cache-Control', 'no-store')
+
     const [meta, fields, conditionalRules] = await Promise.all([
-      resolveFormView(viewId),
-      getFormFields(viewId),
-      getConditionalRules(viewId),
+      resolveFormView(viewId, fresh),
+      getFormFields(viewId, fresh),
+      getConditionalRules(viewId, fresh),
     ])
 
     const columns = fields.map(f => ({

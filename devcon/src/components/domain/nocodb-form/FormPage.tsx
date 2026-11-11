@@ -684,7 +684,12 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
     setLoading(true)
     setError('')
 
-    fetch(`/api/nocodb/${viewId}/schema/`)
+    // A preview link loads the form fresh from NocoDB (no 5-minute cache), so edits show on reload.
+    const previewPassword = new URLSearchParams(window.location.search).get('preview')
+    fetch(
+      `/api/nocodb/${viewId}/schema/`,
+      previewPassword ? { headers: { 'X-Form-Preview': previewPassword }, cache: 'no-store' } : undefined
+    )
       .then(async res => {
         const data = await res.json()
         if (!res.ok) throw new Error(data.error || 'Failed to load form')
