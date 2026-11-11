@@ -27,7 +27,10 @@
  *
  * Re-running --send skips anyone already emailed (emailed_at in the table), so
  * a partial run resumes on its own and attendees checked in later get theirs.
- * Results: generated-codes/memory-codes-results-<timestamp>.csv (email,tickets,status).
+ * Nothing personal is stored: the table keeps one-way values only (code hash,
+ * ticket key), names and emails are read from Pretix each run, and the results
+ * file counts sends without addresses.
+ * Results: generated-codes/memory-codes-results-<timestamp>.csv (n,tickets,status).
  */
 import 'dotenv/config'
 import * as fs from 'fs'
@@ -213,14 +216,9 @@ function db() {
   return createClient(url, key)
 }
 
-/** Stores the recipient's codes (hash + ticket key); existing rows are left as they are. */
+/** Stores the recipient's codes as one-way values only (code hash + ticket key); existing rows are left as they are. */
 async function storeCodes(client: ReturnType<typeof db>, r: Recipient): Promise<void> {
-  const rows = r.tickets.map(t => ({
-    code_hash: hashCode(t.code),
-    ticket_key: t.ticketKey,
-    email: r.email,
-    attendee_name: t.name,
-  }))
+  const rows = r.tickets.map(t => ({ code_hash: hashCode(t.code), ticket_key: t.ticketKey }))
   const { error } = await client
     .from('devcon8_memory_codes')
     .upsert(rows, { onConflict: 'code_hash', ignoreDuplicates: true })
@@ -305,7 +303,7 @@ async function main() {
     `memory-codes-results-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`
   )
   fs.mkdirSync('generated-codes', { recursive: true })
-  fs.writeFileSync(results, 'email,tickets,status\n')
+  fs.writeFileSync(results, 'n,tickets,status\n')
   const transporter = getTransporter()
   let sent = 0
   for (const [i, r] of recipients.entries()) {
@@ -320,12 +318,13 @@ async function main() {
           r.tickets.map(t => t.ticketKey)
         )
       if (error) throw new Error(`mark emailed: ${error.message}`)
-      fs.appendFileSync(results, `${r.email},${r.tickets.length},sent\n`)
+      fs.appendFileSync(results, `${i + 1},${r.tickets.length},sent\n`)
       sent++
-      console.log(`  [${i + 1}/${recipients.length}] ${r.email}: sent`)
+      console.log(`  [${i + 1}/${recipients.length}] sent`)
     } catch (err) {
-      fs.appendFileSync(results, `${r.email},${r.tickets.length},failed\n`)
-      console.error(`  [${i + 1}/${recipients.length}] ${r.email}: FAILED`, err)
+      // A re-run retries it: only sent emails are marked in the table.
+      fs.appendFileSync(results, `${i + 1},${r.tickets.length},failed\n`)
+      console.error(`  [${i + 1}/${recipients.length}] FAILED`, err)
     }
     if (i < recipients.length - 1) await sleep(300)
   }

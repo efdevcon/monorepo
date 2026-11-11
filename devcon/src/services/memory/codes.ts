@@ -7,7 +7,8 @@ import { CODE_ALPHABET, CODE_LENGTH, normalizeCode } from './memory'
  * its attendee (src/scripts/send-memory-codes.ts). A code is derived from the
  * ticket secret with MEMORY_CODE_SECRET, so the email script can rebuild it on
  * any run; only its SHA-256 is stored (devcon8_memory_codes), and the route
- * looks codes up by that hash, so it never needs the secret.
+ * looks codes up by that hash, so it never needs the secret. The table holds
+ * no personal data, only one-way values: no name, no email.
  */
 
 const TABLE = 'devcon8_memory_codes'
@@ -15,8 +16,6 @@ const TABLE = 'devcon8_memory_codes'
 export interface CodeRow {
   code_hash: string
   ticket_key: string
-  email: string
-  attendee_name: string | null
   created_at: string
   emailed_at: string | null
   claimed_at: string | null
