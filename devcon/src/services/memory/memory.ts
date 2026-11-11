@@ -43,6 +43,9 @@ export const MEMORY_CHAINS: Record<MemoryChain, { id: number; contract: Address 
 /** Devcon 8's edition in the Devcon Memories contract: its ERC-1155 token id (editions are numbered in the order they were added). */
 export const MEMORY_EDITION = 1
 
+/** The minting terms; clicking Mint accepts them (the notice under the button links here). */
+export const MEMORY_TERMS_URL = '/devcon-memories-terms/'
+
 /** The art: a still before, the spin while minting, the lit loop after. */
 export const MEMORY_MEDIA = {
   still: '/memory/still-1080.webp',

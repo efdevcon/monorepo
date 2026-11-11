@@ -14,6 +14,7 @@ import {
   slotNumber,
   slotPhase,
   MEMORY_MEDIA,
+  MEMORY_TERMS_URL,
   SLOT_SECONDS,
   type MemoryState,
 } from 'services/memory/memory'
@@ -157,6 +158,21 @@ export function MemoryClaimField({
                 {pending ? 'Minting…' : 'Mint'}
               </button>
             </div>
+          )}
+          {walletProof && (
+            // Clicking Mint is the moment the terms are accepted; they open in a new tab so the survey keeps its answers.
+            <p className="mt-2 text-xs leading-4 text-[#594d73]">
+              By minting, you agree to the{' '}
+              <a
+                href={MEMORY_TERMS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-[#7235ed] underline-offset-2 hover:underline"
+              >
+                Devcon Memory terms
+              </a>
+              .
+            </p>
           )}
           {error && <Notice tone="error">{error}</Notice>}
         </div>
