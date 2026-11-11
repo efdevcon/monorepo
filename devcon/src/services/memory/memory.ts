@@ -17,6 +17,17 @@ import type { Address, Hex } from 'viem'
 
 export type MemoryChain = 'sepolia' | 'mainnet'
 
+/**
+ * How mints are paid for:
+ * - 'sponsored': Alchemy gas sponsorship (ALCHEMY_GAS_POLICY_ID); the minter
+ *   key holds no ETH.
+ * - 'direct': plain transactions from the minter key, which pays the gas and
+ *   must hold ETH (top it up in small amounts). About half the gas per claim
+ *   and no dependency on the sponsor; batches in flight still settle after a
+ *   switch either way.
+ */
+export const MEMORY_SENDER: 'sponsored' | 'direct' = 'sponsored'
+
 /** Where memories are minted. Sepolia until the mainnet contract is deployed. */
 export const MEMORY_CHAIN: MemoryChain = 'sepolia'
 
@@ -136,7 +147,7 @@ export function memoryNftLink(m: { chainId: number; tokenId: number }): { label:
  * rather than inviting retries that cannot work yet.
  */
 export function memoryFailureMessage(reason: string | null): string {
-  if (reason && /sponsor|paymaster|policy/i.test(reason)) {
+  if (reason && /sponsor|paymaster|policy|insufficient funds/i.test(reason)) {
     return 'Minting is paused for a moment on our side. Please try again in a few minutes.'
   }
   return "That mint didn't go through. Please try again."

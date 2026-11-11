@@ -62,6 +62,18 @@ export function supabaseQueueStore(db: SupabaseClient): QueueStore {
         ...new Set((data ?? []).map((r: { call_id: string | null }) => r.call_id).filter((id): id is string => !!id)),
       ]
     },
+    async oldestQueuedAt(chainId) {
+      const { data, error } = await db
+        .from(TABLE)
+        .select('updated_at')
+        .eq('chain_id', chainId)
+        .eq('status', 'queued')
+        .order('updated_at', { ascending: true })
+        .limit(1)
+        .maybeSingle()
+      fail('oldestQueued', error)
+      return (data as { updated_at: string } | null)?.updated_at ?? null
+    },
     async rowsForCall(chainId, callId) {
       const { data, error } = await db
         .from(TABLE)

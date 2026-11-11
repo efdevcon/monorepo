@@ -1,4 +1,5 @@
 import { getAddress, type Address, type Hex } from 'viem'
+import { slotPhase, SLOT_SECONDS } from './memory'
 import type { MintRow } from './state'
 
 /**
@@ -12,6 +13,12 @@ import type { MintRow } from './state'
  * so the people waiting on their memory are what moves the queue. Safe to run
  * concurrently: claiming is atomic in the database, and the contract skips a
  * ticket that already has a token, so a resent batch never mints twice.
+ *
+ * Two savings on the sponsored operation's fixed cost: a claim waits for the
+ * next 12 s slot, so claims made in the same slot share one transaction; and
+ * batches go out on fixed nonce lanes (1 and 2, one per batch in flight)
+ * instead of a fresh random nonce key each time, which would create a new
+ * nonce slot in the EntryPoint on every send.
  */
 
 // 20 per batch: about 1.5M gas on mainnet, and still under the sponsor's 10M
@@ -19,6 +26,17 @@ import type { MintRow } from './state'
 export const MAX_BATCH = 20
 export const MAX_IN_FLIGHT = 2
 export const MAX_ATTEMPTS = 3
+/** Nonce lanes, one per batch in flight. Key 0 is left to the owner's own operations. */
+export const NONCE_LANES = [1, 2] as const
+
+/** The stored call id carries its lane ("1:<id>"); ids from before lanes have none. */
+export function laneCallId(lane: number, id: string): string {
+  return `${lane}:${id}`
+}
+export function splitCallId(callId: string): { lane: number | null; id: string } {
+  const m = callId.match(/^(\d+):(.+)$/)
+  return m ? { lane: Number(m[1]), id: m[2] } : { lane: null, id: callId }
+}
 
 export interface QueueStore {
   get(chainId: number, ticketKey: Hex): Promise<MintRow | null>
@@ -32,6 +50,8 @@ export interface QueueStore {
     recipientName: string | null
   ): Promise<MintRow | null>
   sentCallIds(chainId: number): Promise<string[]>
+  /** When the longest-waiting queued row was queued (its updated_at), or null when none is. */
+  oldestQueuedAt(chainId: number): Promise<string | null>
   rowsForCall(chainId: number, callId: string): Promise<MintRow[]>
   /** Atomically moves up to `max` queued rows to "sending" (attempts + 1) and returns them. */
   claimBatch(chainId: number, max: number): Promise<MintRow[]>
@@ -39,8 +59,8 @@ export interface QueueStore {
 }
 
 export interface Sponsor {
-  /** Sends one batch as a sponsored operation; returns its call id. */
-  send(entries: { to: Address; key: Hex }[]): Promise<string>
+  /** Sends one batch as a sponsored operation on a nonce lane; returns its call id. */
+  send(entries: { to: Address; key: Hex }[], lane: number): Promise<string>
   status(callId: string): Promise<{ status: 'pending' | 'success' | 'failure'; txHash?: Hex; blockNumber?: number }>
 }
 
@@ -50,6 +70,8 @@ export interface FlushDeps {
   chainId: number
   /** The token minted for each key, from the contract's editionOfTicket (the ERC-1155 token id; zero when none). */
   tokenOfTicket(keys: Hex[]): Promise<bigint[]>
+  /** The clock, in ms (tests set it). */
+  now?: () => number
 }
 
 /** Queues a ticket's memory. One row per ticket: asking again returns it, unless it failed, in which case it retries. */
@@ -77,10 +99,13 @@ export async function flush(deps: FlushDeps): Promise<void> {
   const { store, sponsor, chainId } = deps
 
   let inFlight = 0
+  const busyLanes = new Set<number>()
   for (const callId of await store.sentCallIds(chainId)) {
-    const result = await sponsor.status(callId)
+    const { lane, id } = splitCallId(callId)
+    const result = await sponsor.status(id)
     if (result.status === 'pending') {
       inFlight++
+      if (lane !== null) busyLanes.add(lane)
       continue
     }
     const rows = await store.rowsForCall(chainId, callId)
@@ -109,10 +134,27 @@ export async function flush(deps: FlushDeps): Promise<void> {
   }
 
   if (inFlight >= MAX_IN_FLIGHT) return
+  const lane = NONCE_LANES.find(l => !busyLanes.has(l))
+  if (lane === undefined) return
+
+  // Send once the longest-waiting claim was queued before the current slot
+  // began: claims made during a slot go together at the next one.
+  const oldest = await store.oldestQueuedAt(chainId)
+  if (!oldest) return
+  const nowMs = (deps.now ?? Date.now)()
+  const slotStart = nowMs - slotPhase(nowMs) * SLOT_SECONDS * 1000
+  if (Date.parse(oldest) >= slotStart) return
+
   const batch = await store.claimBatch(chainId, MAX_BATCH)
   if (!batch.length) return
   try {
-    const callId = await sponsor.send(batch.map(r => ({ to: getAddress(r.recipient), key: r.ticket_key })))
+    const callId = laneCallId(
+      lane,
+      await sponsor.send(
+        batch.map(r => ({ to: getAddress(r.recipient), key: r.ticket_key })),
+        lane
+      )
+    )
     await store.update(
       chainId,
       batch.map(r => r.ticket_key),

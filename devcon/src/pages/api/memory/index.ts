@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getAddress, type Hex } from 'viem'
 import { verifyProof } from 'services/builder/proof'
-import { memoryChainConfig, memorySponsor, tokenOfTicketReader } from 'services/memory/chain'
+import { memoryChainConfig, memorySender, tokenOfTicketReader } from 'services/memory/chain'
 import { findCode, markClaimed } from 'services/memory/codes'
 import { enqueue, flush } from 'services/memory/queue'
 import { rowToState } from 'services/memory/state'
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const ticketKey = codeRow.ticket_key as Hex
     const store = supabaseQueueStore(db)
-    const deps = { store, sponsor: memorySponsor(cfg), chainId: cfg.chainId, tokenOfTicket: tokenOfTicketReader(cfg) }
+    const deps = { store, sponsor: memorySender(cfg), chainId: cfg.chainId, tokenOfTicket: tokenOfTicketReader(cfg) }
     const runQueue = async () => {
       try {
         await flush(deps)

@@ -16,7 +16,15 @@ import {
 } from '../services/memory/memory'
 import { deriveCode, hashCode } from '../services/memory/codes'
 import { memoryTicketKey, rowToState, type MintRow } from '../services/memory/state'
-import { flush, enqueue, MAX_BATCH, sponsorErrorReason, type QueueStore, type Sponsor } from '../services/memory/queue'
+import {
+  flush,
+  enqueue,
+  MAX_BATCH,
+  sponsorErrorReason,
+  type QueueStore,
+  type Sponsor,
+  splitCallId,
+} from '../services/memory/queue'
 
 let failed = 0
 const check = (label: string, ok: boolean, note = '') => {
@@ -104,10 +112,25 @@ check(
   sponsorErrorReason(viemLike) === "Sponsorship failed: Policy's max count per spender exceeded."
 )
 
+check(
+  'a stored call id splits into lane and id, direct ones included',
+  JSON.stringify(splitCallId('1:tx:0xabc')) === JSON.stringify({ lane: 1, id: 'tx:0xabc' }) &&
+    splitCallId('0xold').lane === null
+)
+check(
+  'an empty minter wallet reads as a pause on our side',
+  /paused/.test(memoryFailureMessage('insufficient funds for gas * price + value'))
+)
+
 // ---- queue
+// The queue's clock: starts 2 s into a slot; tick() moves it on.
+let clockMs = (BEACON_GENESIS + 12 * 2_000_000) * 1000 + 2000
+const tick = (ms: number) => (clockMs += ms)
+const nextSlot = () => tick(12_000)
+
 function memoryStore(): QueueStore & { rows: Map<string, MintRow> } {
   const rows = new Map<string, MintRow>()
-  const now = () => new Date().toISOString()
+  const now = () => new Date(clockMs).toISOString()
   return {
     rows,
     async get(chainId, key) {
@@ -152,6 +175,10 @@ function memoryStore(): QueueStore & { rows: Map<string, MintRow> } {
     async rowsForCall(chainId, callId) {
       return [...rows.values()].filter(r => r.chain_id === chainId && r.call_id === callId && r.status === 'sent')
     },
+    async oldestQueuedAt(chainId) {
+      const queued = [...rows.values()].filter(r => r.chain_id === chainId && r.status === 'queued')
+      return queued.map(r => r.updated_at).sort()[0] ?? null
+    },
     async claimBatch(chainId, max) {
       const claimed = [...rows.values()].filter(r => r.chain_id === chainId && r.status === 'queued').slice(0, max)
       for (const r of claimed) Object.assign(r, { status: 'sending', attempts: r.attempts + 1 })
@@ -167,17 +194,17 @@ function memoryStore(): QueueStore & { rows: Map<string, MintRow> } {
 }
 
 function fakeSponsor() {
-  const sent: { id: string; entries: { to: Address; key: Hex }[] }[] = []
+  const sent: { id: string; lane: number; entries: { to: Address; key: Hex }[] }[] = []
   const status = new Map<string, { status: 'pending' | 'success' | 'failure'; txHash?: Hex; blockNumber?: number }>()
   let failNextSend = false
   const sponsor: Sponsor = {
-    async send(entries) {
+    async send(entries, lane) {
       if (failNextSend) {
         failNextSend = false
         throw new Error('bundler said no')
       }
       const id = `call-${sent.length + 1}`
-      sent.push({ id, entries })
+      sent.push({ id, lane, entries })
       status.set(id, { status: 'pending' })
       return id
     },
@@ -198,6 +225,7 @@ async function queueTests() {
     sponsor: sp.sponsor,
     chainId: CHAIN,
     tokenOfTicket: async (keys: Hex[]) => keys.map(k => tokens.get(k) ?? BigInt(0)),
+    now: () => clockMs,
   }
   const who = (i: number) => getAddress(`0x${(0x1000 + i).toString(16).padStart(40, '0')}`)
   const key = (i: number) => memoryTicketKey(`T${i}`)
@@ -212,16 +240,29 @@ async function queueTests() {
   )
   check('survey rows carry no user', r1.user_id === null)
 
+  await flush(deps)
+  check('a claim waits for the next slot', sp.sent.length === 0)
+  tick(5000)
   for (let i = 2; i <= MAX_BATCH + 5; i++) await ask(i)
   await flush(deps)
+  check('still the same slot: nothing sent', sp.sent.length === 0)
+  nextSlot()
+  await flush(deps)
   check(
-    `one flush sends one batch of at most ${MAX_BATCH}`,
+    `next slot: the slot's claims go together, at most ${MAX_BATCH} per batch`,
     sp.sent.length === 1 && sp.sent[0].entries.length === MAX_BATCH
   )
+  check('the first batch uses nonce lane 1', sp.sent[0].lane === 1)
   await flush(deps)
-  check('a second batch goes while the first is pending', sp.sent.length === 2 && sp.sent[1].entries.length === 5)
+  check(
+    'the rest goes on lane 2 while lane 1 is in flight',
+    sp.sent.length === 2 && sp.sent[1].entries.length === 5 && sp.sent[1].lane === 2
+  )
+  check('the stored call id carries its lane', store.rows.get(`${CHAIN}:${key(1)}`)!.call_id === '1:call-1')
+  await ask(90)
+  nextSlot()
   await flush(deps)
-  check('no third batch while two are in flight', sp.sent.length === 2)
+  check('no third batch while both lanes are in flight', sp.sent.length === 2)
 
   sp.status.set('call-1', { status: 'success', txHash: '0xfeed', blockNumber: 21000042 })
   sp.sent[0].entries.forEach((e, i) => tokens.set(e.key, BigInt(i + 1)))
@@ -232,10 +273,19 @@ async function queueTests() {
     done.status === 'minted' && done.tx_hash === '0xfeed' && done.token_id === 1
   )
 
+  check('lane 1 is reused once its batch landed', sp.sent.length === 3 && sp.sent[2].lane === 1)
+
   sp.status.set('call-2', { status: 'failure' })
   await flush(deps)
   const retried = store.rows.get(`${CHAIN}:${key(MAX_BATCH + 1)}`)!
-  check('failed batch is re-sent', sp.sent.length === 3 && retried.status === 'sent' && retried.attempts === 2)
+  check('a failed batch waits a slot before going again', retried.status === 'queued')
+  nextSlot()
+  await flush(deps)
+  const resent = store.rows.get(`${CHAIN}:${key(MAX_BATCH + 1)}`)!
+  check(
+    'then it is re-sent, on the free lane',
+    resent.status === 'sent' && resent.attempts === 2 && sp.sent[3].lane === 2
+  )
 
   await store.update(CHAIN, [key(2)], { status: 'failed' })
   const again = await ask(2, who(77))
