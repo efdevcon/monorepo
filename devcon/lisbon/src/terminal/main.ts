@@ -555,8 +555,8 @@ interface Edition {
   archive: string | null // its talks on the archive; null until they're up
 }
 
-/** An edition's talks: the archive's per-event filter (devcon-0 … devcon-7 so far). */
-const talks = (n: number) => `${LINKS.archive}watch/?event=devcon-${n}`
+/** An edition's talks: the archive's per-event filter (devcon-0 … devcon-7, then devcon8 and up). */
+const talks = (n: number) => `${LINKS.archive}watch/?event=${n >= 8 ? `devcon${n}` : `devcon-${n}`}`
 
 // Every Devcon so far, with a one-line hook for `history -v` and the
 // screen-reader list. Devcon IX itself comes from EVENT.
@@ -569,8 +569,7 @@ const HISTORY: Edition[] = [
   { id: 'osaka', name: 'Osaka', year: '2019', hook: 'first community outdoor stage; Kabosu visited', archive: talks(5) },
   { id: 'bogota', name: 'Bogotá', year: '2022', hook: 'first after the pandemic pause', archive: talks(6) },
   { id: 'bangkok', name: 'Bangkok', year: '2024', hook: '12,500 attendees from 135 countries', archive: talks(7) },
-  // The archive has no devcon-8 talks yet: set talks(8) once they're up.
-  { id: 'mumbai', name: 'Mumbai', year: '2026', hook: 'four days at Jio World Centre', archive: null },
+  { id: 'mumbai', name: 'Mumbai', year: '2026', hook: 'four days at Jio World Centre', archive: talks(8) },
 ]
 
 // Devconnect, for `history --all`: each listed after the Devcon it followed.
