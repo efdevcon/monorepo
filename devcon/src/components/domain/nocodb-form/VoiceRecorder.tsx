@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Loader2, Mic, Square } from 'lucide-react'
 
 /**
- * Record button for "[voice]" long-text fields (config/form-field-markers).
- * A take is recorded with MediaRecorder, converted to 16 kHz mono WAV in the
- * browser (every recorder format decodes there, and WAV is what the speech
- * model accepts everywhere), sent to /api/nocodb/{viewId}/transcribe/, and the
- * text handed to `onText`. Hidden where the browser can't record.
+ * Voice input for "[voice]" long-text fields (config/form-field-markers): a
+ * small mic button inside the text box's bottom-right corner (wrap the
+ * textarea as `children`). A take is recorded with MediaRecorder, converted
+ * to 16 kHz mono WAV in the browser (every recorder format decodes there, and
+ * WAV is what the speech model accepts everywhere), sent to
+ * /api/nocodb/{viewId}/transcribe/, and the text handed to `onText`. Where the
+ * browser can't record, only the textarea shows.
  */
 
 /** One take: 2 minutes of 16 kHz 16-bit mono WAV is ~3.8 MB, under the function payload limit. */
@@ -27,9 +29,14 @@ interface Props {
   viewId: string
   onText: (text: string) => void
   disabled?: boolean
+  /** The textarea the controls sit inside; give it right padding (pr-14) so text clears them. */
+  children: React.ReactNode
 }
 
-export function VoiceRecorder({ viewId, onText, disabled }: Props) {
+/** The textarea placeholder for voice fields: the only hint the widget needs. */
+export const VOICE_PLACEHOLDER = 'Type your answer, or tap the mic and talk it through.'
+
+export function VoiceRecorder({ viewId, onText, disabled, children }: Props) {
   const [supported, setSupported] = useState(false)
   const [status, setStatus] = useState<Status>('idle')
   const [elapsed, setElapsed] = useState(0)
@@ -145,44 +152,46 @@ export function VoiceRecorder({ viewId, onText, disabled }: Props) {
     }
   }
 
-  if (!supported) return null
+  if (!supported) return <>{children}</>
 
   return (
     <div className="flex flex-col gap-1.5">
-      {status === 'recording' ? (
-        <button
-          type="button"
-          onClick={stop}
-          className="inline-flex w-fit items-center gap-2 rounded-full bg-[#b42124] px-4 py-2 text-sm font-semibold text-white hover:bg-[#9a1c1f] transition-colors"
-        >
-          <Square className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
-          Stop · {clock(elapsed)} / {clock(VOICE_MAX_SECONDS)}
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={start}
-          disabled={disabled || status !== 'idle'}
-          className="inline-flex w-fit items-center gap-2 rounded-full border border-[#7235ed] px-4 py-2 text-sm font-semibold text-[#7235ed] hover:bg-[#f4effe] disabled:opacity-60 disabled:hover:bg-transparent transition-colors"
-        >
-          {status === 'idle' ? (
-            <Mic className="w-4 h-4" aria-hidden="true" />
+      <div className="relative">
+        {children}
+        <div className="absolute bottom-3 right-3 flex items-center gap-2">
+          {status === 'recording' ? (
+            <button
+              type="button"
+              onClick={stop}
+              aria-label={`Stop recording, ${clock(elapsed)} of ${clock(VOICE_MAX_SECONDS)}`}
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-[#b42124] px-3 text-sm font-semibold tabular-nums text-white hover:bg-[#9a1c1f] transition-colors"
+            >
+              <Square className="w-3 h-3 fill-current" aria-hidden="true" />
+              {clock(elapsed)}
+            </button>
+          ) : status === 'idle' ? (
+            <button
+              type="button"
+              onClick={start}
+              disabled={disabled}
+              aria-label="Record your answer"
+              title="Record your answer: talk it through, it turns into text you can edit"
+              className="inline-flex size-9 items-center justify-center rounded-full text-[#7235ed] hover:bg-[#f4effe] disabled:opacity-60 disabled:hover:bg-transparent transition-colors"
+            >
+              <Mic className="w-5 h-5" aria-hidden="true" />
+            </button>
           ) : (
-            <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+            <span className="inline-flex h-9 items-center gap-1.5 rounded-full bg-white/90 px-3 text-sm text-[#7235ed]">
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+              {status === 'transcribing' ? 'Turning it into text…' : 'Starting…'}
+            </span>
           )}
-          {status === 'transcribing' ? 'Turning it into text…' : status === 'starting' ? 'Starting…' : 'Record your answer'}
-        </button>
-      )}
+        </div>
+      </div>
       <span className="sr-only" aria-live="polite">
         {status === 'recording' ? 'Recording' : status === 'transcribing' ? 'Transcribing' : ''}
       </span>
-      {error ? (
-        <p className="text-sm text-red-500">{error}</p>
-      ) : (
-        status === 'idle' && (
-          <p className="text-xs text-[#594d73]">Talk it through, we&rsquo;ll turn it into text below that you can edit.</p>
-        )
-      )}
+      {error && <p className="text-sm text-red-500">{error}</p>}
     </div>
   )
 }

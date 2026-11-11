@@ -33,7 +33,7 @@ import {
   isMemoryTitle,
   stripMemoryPrefix,
 } from 'config/form-field-markers'
-import { VoiceRecorder } from './VoiceRecorder'
+import { VoiceRecorder, VOICE_PLACEHOLDER } from './VoiceRecorder'
 import { MemoryClaimField, useMemoryCode } from './MemoryClaimField'
 import { FormSubheading } from './FormSubheading'
 import { useBuilderConnect } from 'context/BuilderConnectContext'
@@ -1641,34 +1641,45 @@ export function FormRenderer({
                   <FieldLabel title={label} required={col.required} />
                   {col.description && <FieldDescription text={col.description} />}
                 </div>
-                {voice && !isReadOnly && (
-                  <VoiceRecorder
-                    viewId={viewId}
-                    onText={text => {
-                      // Each take is appended to the text box, so a long answer can be
-                      // spoken in parts; the cursor lands after it, ready to edit.
-                      const current = String(getValues(rhfKey) || '').trimEnd()
-                      const next = (current ? `${current} ${text}` : text).slice(0, max)
-                      setValue(rhfKey, next, { shouldValidate: true, shouldDirty: true })
-                      const box = document.getElementById(col.column_name)
-                      if (box instanceof HTMLTextAreaElement) {
-                        box.focus()
-                        box.setSelectionRange(next.length, next.length)
-                      }
-                    }}
-                  />
-                )}
-                <Textarea
-                  id={col.column_name}
-                  rows={5}
-                  maxLength={max}
-                  disabled={isReadOnly}
-                  className="px-4 py-3 text-base border-[#dddae2] rounded-lg min-h-[120px] resize-y"
-                  {...register(rhfKey, {
-                    required: col.required ? `${label} is required` : false,
-                    maxLength: { value: max, message: `Maximum ${max} characters` },
-                  })}
-                />
+                {(() => {
+                  const withMic = voice && !isReadOnly
+                  const box = (
+                    <Textarea
+                      id={col.column_name}
+                      rows={5}
+                      maxLength={max}
+                      disabled={isReadOnly}
+                      placeholder={withMic ? VOICE_PLACEHOLDER : undefined}
+                      className={`px-4 py-3 text-base border-[#dddae2] rounded-lg min-h-[120px] resize-y ${
+                        withMic ? 'pr-14' : ''
+                      }`}
+                      {...register(rhfKey, {
+                        required: col.required ? `${label} is required` : false,
+                        maxLength: { value: max, message: `Maximum ${max} characters` },
+                      })}
+                    />
+                  )
+                  if (!withMic) return box
+                  return (
+                    <VoiceRecorder
+                      viewId={viewId}
+                      onText={text => {
+                        // Each take is appended to the text box, so a long answer can be
+                        // spoken in parts; the cursor lands after it, ready to edit.
+                        const current = String(getValues(rhfKey) || '').trimEnd()
+                        const next = (current ? `${current} ${text}` : text).slice(0, max)
+                        setValue(rhfKey, next, { shouldValidate: true, shouldDirty: true })
+                        const textarea = document.getElementById(col.column_name)
+                        if (textarea instanceof HTMLTextAreaElement) {
+                          textarea.focus()
+                          textarea.setSelectionRange(next.length, next.length)
+                        }
+                      }}
+                    >
+                      {box}
+                    </VoiceRecorder>
+                  )
+                })()}
                 <p className={`text-xs text-right ${val.length >= max ? 'text-red-500' : 'text-[#594d73]'}`}>
                   {val.length}/{max}
                 </p>
