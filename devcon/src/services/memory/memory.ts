@@ -7,9 +7,10 @@ import type { Address, Hex } from 'viem'
  * on Ethereum by this server with sponsored gas (api/memory). Shared by the
  * route and the field; nothing here touches env or Node APIs.
  *
- * It is one edition of the Devcon Memories collection: one contract, an
- * edition per occasion (a volunteers' edition, Devcon 9...), each with its own
- * names, art and traits. Token ids carry the edition (MEMORY_EDITION_SIZE).
+ * It is one edition of the Devcon Memories collection: one ERC-1155 contract,
+ * an edition per occasion (a volunteers' edition, Devcon 9...), each a token
+ * id with its own names, art and traits, so holding one is
+ * `balanceOf(wallet, MEMORY_EDITION)`.
  * The same ticket-key scheme as the event app's perk (stashed there), so a
  * ticket gets one memory whichever way it is claimed.
  */
@@ -22,22 +23,14 @@ export const MEMORY_CHAIN: MemoryChain = 'sepolia'
 export const MEMORY_CHAINS: Record<MemoryChain, { id: number; contract: Address | null; explorer: string }> = {
   sepolia: {
     id: 11155111,
-    contract: '0x08b61EC41d039D1c8735007b57D1DA97dB533E43',
+    contract: '0x5d0fc401C8AF9D26505Bb402eC2Fa8D7F7e55dbd',
     explorer: 'https://sepolia.etherscan.io',
   },
   mainnet: { id: 1, contract: null, explorer: 'https://etherscan.io' },
 }
 
-/** Devcon 8's edition in the Devcon Memories contract (editions are numbered in the order they were added). */
+/** Devcon 8's edition in the Devcon Memories contract: its ERC-1155 token id (editions are numbered in the order they were added). */
 export const MEMORY_EDITION = 1
-
-/** Token ids per edition in the contract: edition 1's tokens are 1000001, 1000002... */
-export const MEMORY_EDITION_SIZE = 1_000_000
-
-/** A token's number within its edition, as its name shows it ("Devcon 8 Memory #12"). */
-export function memoryNumber(tokenId: number): number {
-  return tokenId % MEMORY_EDITION_SIZE
-}
 
 /** The art: a still before, the spin while minting, the lit loop after. */
 export const MEMORY_MEDIA = {

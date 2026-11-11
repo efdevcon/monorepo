@@ -48,7 +48,7 @@ export interface FlushDeps {
   store: QueueStore
   sponsor: Sponsor
   chainId: number
-  /** The contract's tokenOfTicket for each key (zero when none). */
+  /** The token minted for each key, from the contract's editionOfTicket (the ERC-1155 token id; zero when none). */
   tokenOfTicket(keys: Hex[]): Promise<bigint[]>
 }
 

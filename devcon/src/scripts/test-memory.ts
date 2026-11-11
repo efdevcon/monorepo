@@ -7,7 +7,6 @@ import { getAddress, keccak256, toBytes, type Address, type Hex } from 'viem'
 import {
   formatCode,
   memoryFailureMessage,
-  memoryNumber,
   msToNextSlot,
   normalizeCode,
   slotNumber,
@@ -92,11 +91,6 @@ const minted = rowToState({ ...base, status: 'minted', token_id: 7, tx_hash: '0x
 check(
   'minted carries the token and block',
   minted.state === 'minted' && minted.tokenId === 7 && minted.blockNumber === 21000001
-)
-check(
-  'a token shows its number within its edition',
-  memoryNumber(1000007) === 7 && memoryNumber(2000001) === 1,
-  String(memoryNumber(1000007))
 )
 const retrying = rowToState({ ...base, status: 'queued', attempts: 1, error: 'Sponsorship failed: x' })
 check('queued again after a failed send: retrying', retrying.state === 'minting' && retrying.retrying === true)

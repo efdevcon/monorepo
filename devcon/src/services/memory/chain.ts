@@ -15,7 +15,7 @@ import type { Sponsor } from './queue'
 
 export const MEMORY_ABI = parseAbi([
   'function mintBatch(uint256 editionId, address[] to, bytes32[] ticketKeys) returns (uint256 minted)',
-  'function tokenOfTicket(bytes32 ticketKey) view returns (uint256)',
+  'function editionOfTicket(bytes32 ticketKey) view returns (uint256)',
 ])
 
 const VIEM_CHAINS = { sepolia, mainnet } as const
@@ -87,6 +87,7 @@ export function memorySponsor(cfg: MemoryChainConfig): Sponsor {
   }
 }
 
+/** The token minted for each ticket key: in ERC-1155 the token id is the edition id (zero when none). */
 export function tokenOfTicketReader(cfg: MemoryChainConfig) {
   const client = createPublicClient({
     chain: VIEM_CHAINS[cfg.chain],
@@ -99,7 +100,7 @@ export function tokenOfTicketReader(cfg: MemoryChainConfig) {
       contracts: keys.map(k => ({
         address: cfg.contract,
         abi: MEMORY_ABI,
-        functionName: 'tokenOfTicket' as const,
+        functionName: 'editionOfTicket' as const,
         args: [k] as const,
       })),
     })

@@ -7,7 +7,6 @@ import { useBuilderConnect } from 'context/BuilderConnectContext'
 import {
   memoryFailureMessage,
   memoryNftLink,
-  memoryNumber,
   memoryTxUrl,
   msToNextSlot,
   normalizeCode,
@@ -121,7 +120,8 @@ export function MemoryClaimField({
   const { memory, mint, pending, error, statusError } = useMemoryClaim(claim)
 
   useEffect(() => {
-    if (memory.state === 'minted') setValue(rhfFieldName(columnName), `Memory #${memoryNumber(memory.tokenId)}`)
+    if (memory.state === 'minted')
+      setValue(rhfFieldName(columnName), memory.txHash ? `Minted (tx ${memory.txHash})` : 'Minted')
   }, [memory, columnName, setValue])
 
   return (
@@ -343,7 +343,7 @@ function Minted({ memory }: { memory: Extract<MemoryState, { state: 'minted' }> 
         <span className="flex size-4 items-center justify-center rounded-full bg-[#7235ed] text-white" aria-hidden>
           <Check className="size-3" strokeWidth={3} />
         </span>
-        Memory #{memoryNumber(memory.tokenId)} minted
+        Minted
       </p>
       <p className="mt-1 text-sm leading-5 text-[#594d73]">
         To{' '}
