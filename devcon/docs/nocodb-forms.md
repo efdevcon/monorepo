@@ -76,6 +76,7 @@ Everything below is set in the NocoDB form view, no code:
 - **Numbered scales**: a Rating field whose label starts with `[scale: Low label | High label]` shows buttons 1 to max with the two labels under the ends. `[scale]` alone shows numbers only.
 - **Voice answers**: a long-text field whose label starts with `[voice]` gets a "Record your answer" button (takes of up to 2 minutes, transcribed and added to the text box, editable; only the text is saved, never the audio). Limit 5000 characters instead of 1000.
 - **Wallet address**: a text field whose label starts with `[wallet]` shows a Connect wallet button; the site stores only the address proven by a free signature.
+- **Devcon 8 Memory**: a field whose label starts with `[memory]` shows the memory card under the form's `[wallet]` field. A checked-in attendee opens the link from their email (the code is in the link; there is no field to type it), connects and signs with their wallet, and mints the free NFT to it, one per ticket, no gas required. The card and the form's `[wallet]` field render only when the link carries a code the server knows (only checked-in tickets get one); everyone else never sees them. Codes are emailed with `pnpm send-memory-codes` (see below). The field stores "Memory #<token>" once minted.
 - **GitHub account**: a field whose label starts with `[github]` shows a Connect GitHub button (GitHub sign-in). With a `[wallet]` field on the same form, both sit together under "Connections".
 - **Country picker**: a field whose label starts with `Country:` shows a searchable list of countries.
 - **Signature**: a file field (Attachment) whose name contains "signature" gets a draw-to-sign pad next to the file picker.
@@ -120,9 +121,12 @@ A few forms have code of their own, keyed on their `Form Slug` (constants in `Fo
 - `src/config/encrypted-forms.ts`: the `[encrypted]` marker and the public keys uploads are encrypted to
 - `src/components/domain/nocodb-form/`: `FormPage.tsx` (shared UI), `OtpGate.tsx` (email verification), `FormRenderer.tsx` (fields), `FormSubheading.tsx` (sections), `inline-markdown.tsx` (help text), `VoiceRecorder.tsx`, `WalletConnectField.tsx`, `GithubConnectField.tsx`, `SignaturePad.tsx`
 - `src/pages/api/nocodb/[viewId]/`: schema, submit, submission (loads an email-verified person's earlier answers), preview, transcribe, upload-attachment, upload-proof and check-eligibility routes
+- `src/services/memory/`, `src/pages/api/memory/index.ts`, `MemoryClaimField.tsx`: the Devcon 8 Memory. The route checks the emailed code (only its hash is stored, table `devcon8_memory_codes`) and the wallet's signed proof, queues the mint in `devcon8_memory_mints` and sends batches through Alchemy's sponsored sender; the chain, contract and edition are constants in `services/memory/memory.ts` (`MEMORY_CHAIN`, `MEMORY_EDITION`). The Devcon 8 Memory is edition 1 of the Devcon Memories collection (one contract, an edition per occasion); same ticket key as the event app's perk, so a ticket gets one memory either way.
+- `src/scripts/send-memory-codes.ts`: emails each checked-in attendee their code (dry run by default; `--test-to`, then `--send`; re-runs skip whoever was emailed). `src/scripts/test-memory.ts`: codes, queue and states (`pnpm test-memory`).
 - `src/pages/api/nocodb/file.ts`: serves uploaded files through the site (NocoDB's signed links only; anything that could run in the browser is forced to download)
 
 ### Environment
 
 - `NOCODB_BASE_URL`, `NOCODB_API_TOKEN`: NocoDB address and API token, used for meta reads and row writes.
+- `ALCHEMY_API_KEY`, `ALCHEMY_GAS_POLICY_ID`, `MINTER_PRIVATE_KEY`: the Devcon 8 Memory's Alchemy app, gas sponsorship policy and minter key. Without them the memory card says memories aren't open yet. `MEMORY_CODE_SECRET`: what the email script derives codes from (local only; the site never needs it).
 - `EF_INFERENCE_AUDIO_URL`, `EF_INFERENCE_AUDIO_API_KEY`: the speech-to-text service endpoint and key for `[voice]` fields. Without them, voice fields say recording is unavailable and people type instead.

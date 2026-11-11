@@ -12,6 +12,7 @@ import { Wallet } from 'lucide-react'
 // non-builder forms never mount AppKit/wagmi.
 import { wagmiAdapter } from 'context/appkit-config'
 import { useBuilderConnect, checkAutoDiscount } from 'context/BuilderConnectContext'
+import { useWalletLabel } from 'hooks/usePrimaryEnsName'
 import { rhfFieldName } from './rhf-key'
 
 interface Props {
@@ -36,6 +37,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const { walletProof, setWalletProof, reportDiscount } = useBuilderConnect()
   const { open } = useAppKit()
   const { address, isConnected, connector } = useAccount()
+  const addressLabel = useWalletLabel(address)
   const { disconnect } = useDisconnect()
   const { signMessageAsync } = useSignMessage()
   const chainId = useChainId()
@@ -49,6 +51,9 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const autoVerify = useRef(false)
   const fieldKey = rhfFieldName(columnName)
   const stored = watch(fieldKey) as string | undefined
+  // Shown as the primary ENS name when it has one, else 0x1234…cdef; the field
+  // itself always stores the 0x address.
+  const storedLabel = useWalletLabel(stored)
 
   // Restore a previously-verified wallet after a refresh.
   useEffect(() => {
@@ -161,9 +166,6 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   }
 
   const connected = Boolean(stored && walletProof)
-  // Shortened form (0x1234…cdef) so the verified pill doesn't overflow on
-  // narrow screens; the full address is shown from `sm:` up.
-  const shortStored = stored && stored.length > 12 ? `${stored.slice(0, 6)}…${stored.slice(-4)}` : stored
 
   return (
     <div className="flex flex-col gap-2">
@@ -180,7 +182,9 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
         <div className="flex items-center gap-2 w-full px-4 py-2.5 bg-[#f9f8fa] border border-[#dddae2] rounded-lg text-sm">
           <span className="text-[#594d73] shrink-0">Connected:</span>
           <Wallet className="w-4 h-4 text-[#7235ed] shrink-0" aria-hidden="true" />
-          <span className="font-medium text-[#160b2b] truncate">{shortStored}</span>
+          <span className="font-medium text-[#160b2b] truncate" title={stored}>
+            {storedLabel}
+          </span>
           <button
             type="button"
             className="ml-auto shrink-0 font-medium text-[#7235ed] underline hover:opacity-80 transition-opacity"
@@ -196,7 +200,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
         <div className="flex flex-col gap-2 w-full">
           <div className="flex items-start gap-2 px-4 py-2.5 bg-[#fff8e6] border border-[#f0dca8] rounded-lg text-sm">
             <span className="text-[#9a6b00] leading-5">
-              Wallet connected{address ? ` (${address.slice(0, 6)}…${address.slice(-4)})` : ''}.{' '}
+              Wallet connected{addressLabel ? ` (${addressLabel})` : ''}.{' '}
               <span className="font-bold">One more step:</span> confirm ownership with a quick, free signature to add
               it to this form.
             </span>

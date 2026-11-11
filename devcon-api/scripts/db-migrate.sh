@@ -14,6 +14,10 @@
 set -euo pipefail
 
 PROJECT_REF="mealmslwugsqqyoesrxd"
+# Pinned to CLI v2: its `migration list` / `migration repair` act on the
+# linked remote project. v3 (Nov 2026) targets the local Docker stack unless
+# told otherwise, so an unpinned `npx supabase` fails the guard below.
+SUPABASE_CLI=(npx --yes supabase@2)
 FILE="${1:?usage: $0 src/supabase/migrations/<version>_<name>.sql}"
 
 if [ ! -f "$FILE" ]; then
@@ -41,7 +45,7 @@ fi
 # Remote column of `migration list` is the 2nd pipe-separated field).
 # The guard must fail CLOSED: if we can't read the remote history at all,
 # abort rather than risk re-applying SQL to production.
-LIST=$(npx supabase migration list --workdir src 2>&1) || {
+LIST=$("${SUPABASE_CLI[@]}" migration list --workdir src 2>&1) || {
   echo "error: could not read remote migration history; aborting." >&2
   echo "$LIST" >&2
   exit 1
@@ -60,7 +64,7 @@ else
   exit 1
 fi
 if [ "$APPLIED" = 1 ]; then
-  echo "error: version $VERSION is already applied on the remote (see: npx supabase migration list --workdir src)" >&2
+  echo "error: version $VERSION is already applied on the remote (see: npx supabase@2 migration list --workdir src)" >&2
   exit 1
 fi
 
@@ -81,6 +85,6 @@ if [ "$HTTP_CODE" != "200" ] && [ "$HTTP_CODE" != "201" ]; then
 fi
 
 echo "SQL applied. Recording version $VERSION in migration history ..."
-npx supabase migration repair --status applied "$VERSION" --workdir src
+"${SUPABASE_CLI[@]}" migration repair --status applied "$VERSION" --workdir src
 
 echo "Done: $(basename "$FILE")"

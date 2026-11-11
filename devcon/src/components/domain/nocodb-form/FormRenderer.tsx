@@ -30,8 +30,11 @@ import {
   parseScaleTitle,
   isVoiceTitle,
   stripVoicePrefix,
+  isMemoryTitle,
+  stripMemoryPrefix,
 } from 'config/form-field-markers'
 import { VoiceRecorder } from './VoiceRecorder'
+import { MemoryClaimField, useMemoryCode } from './MemoryClaimField'
 import { FormSubheading } from './FormSubheading'
 import { useBuilderConnect } from 'context/BuilderConnectContext'
 import { packEnvelope } from 'utils/age-envelope'
@@ -1329,6 +1332,10 @@ export function FormRenderer({
   // Auto-discount the applicant already qualifies for (builder form only; null
   // elsewhere). Rendered inside the Connections block once they connect.
   const { qualifyingDiscount } = useBuilderConnect()
+  // A form with a [memory] field shows it, and its [wallet] field, only to a
+  // visitor whose emailed link carries a known code (checked-in tickets only).
+  const hasMemory = columns.some(c => isMemoryTitle(c.title))
+  const memoryClaim = useMemoryCode(hasMemory)
 
   // Build the set of column names that should be hidden right now based on
   // conditional rules. Subscribes to all watched form values so the set
@@ -1378,6 +1385,7 @@ export function FormRenderer({
       {columns.map(col => {
         if (hiddenFields.includes(col.column_name)) return null
         if (conditionallyHidden.has(col.column_name)) return null
+        if (hasMemory && !memoryClaim && (isMemoryTitle(col.title) || isWalletTitle(col.title))) return null
         const isReadOnly = readOnlyFields.includes(col.column_name)
         // RHF parses `[...]` / `.` in field names — use a sanitized alias for
         // every register/setValue/watch/errors lookup; the original column
@@ -1477,6 +1485,23 @@ export function FormRenderer({
                 required={col.required}
                 description={col.description}
               />
+            )
+          }
+
+          // The Devcon 8 Memory card, minting to the form's [wallet] field.
+          if (isMemoryTitle(col.title) && memoryClaim) {
+            return (
+              <div key={col.column_name} className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
+                  <FieldLabel title={stripMemoryPrefix(col.title)} required={false} />
+                  {col.description && <FieldDescription text={col.description} />}
+                </div>
+                <MemoryClaimField
+                  columnName={col.column_name}
+                  walletColumnName={columns.find(c => isWalletTitle(c.title))?.column_name}
+                  claim={memoryClaim}
+                />
+              </div>
             )
           }
 

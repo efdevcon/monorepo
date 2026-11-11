@@ -40,6 +40,8 @@
     "send-early-bird-reminder": "ts-node src/scripts/send-early-bird-reminder.ts",
     "send-install-reminder": "tsx src/scripts/send-install-reminder.ts",
     "send-attendee-email-reminder": "tsx src/scripts/send-attendee-email-reminder.ts",
+    "send-memory-codes": "tsx src/scripts/send-memory-codes.ts",
+    "test-memory": "tsx src/scripts/test-memory.ts",
     "send-student-voucher-reminder": "tsx src/scripts/send-student-voucher-reminder.ts",
     "students:bulk-validate": "ts-node src/scripts/students/bulk-validate-whitelisted.ts",
     "forms:decrypt": "tsx scripts/decrypt.ts",
@@ -52,6 +54,7 @@
     "dev:lisbon": "cross-env VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite --configLoader bundle --config lisbon/vite.config.ts"
   },
   "dependencies": {
+    "@alchemy/wallet-apis": "5.3.0",
     "@anon-aadhaar/core": "^2.4.3",
     "@anon-aadhaar/react": "^2.4.3",
     "@fontsource/vt323": "^5.3.0",

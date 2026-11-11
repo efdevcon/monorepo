@@ -44,6 +44,18 @@ export const isVoiceTitle = (title: string | undefined | null): boolean => hasPr
 export const stripVoicePrefix = (title: string): string => stripPrefix(title, VOICE_PREFIX)
 
 /**
+ * The Devcon 8 Memory: a field whose title starts with "[memory]" shows the
+ * memory card (components/domain/nocodb-form/MemoryClaimField.tsx) under the
+ * form's `[wallet]` field: the code in a checked-in attendee's emailed link
+ * mints the NFT to the connected wallet (api/memory). Without a known code the
+ * form renders neither the card nor the `[wallet]` field. The field stores
+ * "Memory #<token>" once minted.
+ */
+export const MEMORY_PREFIX = '[memory]'
+export const isMemoryTitle = (title: string | undefined | null): boolean => hasPrefix(title, MEMORY_PREFIX)
+export const stripMemoryPrefix = (title: string): string => stripPrefix(title, MEMORY_PREFIX)
+
+/**
  * Numbered scale marker for Rating fields: `[scale: Low label | High label]
  * Question` renders the rating as buttons 1..N (N = the NocoDB max) with the
  * two labels under the ends, like a survey's linear scale; `[scale] Question`
