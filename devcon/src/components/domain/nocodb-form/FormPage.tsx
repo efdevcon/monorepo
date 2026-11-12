@@ -277,6 +277,8 @@ interface FormPageProps {
   // Form slug from the NocoDB form config. Used to scope behavior that's only
   // relevant to a specific form (e.g. the student-application eligibility CTA).
   formSlug?: string
+  // "Listed Emails Only" in the form config: only emails with a row in the table may answer.
+  listedOnly?: boolean
 }
 
 // Slug of the student application form in NocoDB. Only this form should render
@@ -432,6 +434,8 @@ function FormInner({
   // True when the user's existing submission has already been approved — editing
   // it will require re-review, so we warn them.
   const [approvedUpdate, setApprovedUpdate] = useState(false)
+  // Listed-only form and this email has no row: show why instead of the form.
+  const [notListed, setNotListed] = useState(false)
   const errorRef = useRef<HTMLParagraphElement>(null)
 
   // When a submission error appears, scroll it into view — on a long form the
@@ -499,8 +503,13 @@ function FormInner({
       })
         .then(res => res.json())
         .then(result => {
+          if (result.success && result.listed === false) {
+            setNotListed(true)
+            return
+          }
           if (result.success && result.data) {
-            setIsUpdate(true)
+            // A listed-only form pre-fills a row per invitee, so it's an update only once they've answered.
+            setIsUpdate(result.submitted ?? true)
             if (result.approved) setApprovedUpdate(true)
             // NocoDB stores MultiSelect as a comma-separated string; the UI
             // expects an array. Look up the column type by name to decide
@@ -542,6 +551,33 @@ function FormInner({
       <div className="flex flex-col items-center justify-center py-12 gap-4">
         <Image src={dc8Logo} alt="Loading" width={64} height={28} className="animate-pulse opacity-60" />
         <p className="text-sm text-[#594d73]">Loading your submission...</p>
+      </div>
+    )
+  }
+
+  if (notListed) {
+    return (
+      <div className="flex flex-col items-center gap-4 text-center">
+        <h3 className="text-xl font-extrabold text-[#160b2b] tracking-[-0.5px]">This email isn&apos;t on our list</h3>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          This form is only for people we&apos;ve invited. Sign in with the email address we contacted you at.
+        </p>
+        <p className="text-sm text-[#1a0d33] leading-5">
+          You signed in as <span className="font-bold break-all">{verifiedEmail}</span>. Need help? Contact{' '}
+          <a href="mailto:support@devcon.org" className="font-bold text-[#7235ed] hover:underline">
+            support@devcon.org
+          </a>
+          .
+        </p>
+        {onSignOut && (
+          <button
+            type="button"
+            onClick={onSignOut}
+            className="mt-2 px-8 py-4 bg-[#7235ed] text-white text-base font-bold rounded-full hover:bg-[#6029d1] transition-colors"
+          >
+            Use a different email
+          </button>
+        )}
       </div>
     )
   }
@@ -632,7 +668,7 @@ function FormInner({
   )
 }
 
-export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormPageProps) {
+export default function FormPage({ viewId, requireOtp, closed, formSlug, listedOnly }: FormPageProps) {
   const [schema, setSchema] = useState<SchemaResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -871,7 +907,9 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug }: FormP
                 description={
                   formSlug === STUDENT_APPLICATION_SLUG
                     ? 'Enter your student email to start the application'
-                    : 'Enter your email to start the application'
+                    : listedOnly
+                      ? 'Enter the email address we contacted you at'
+                      : 'Enter your email to start the application'
                 }
                 emailPlaceholder={formSlug === STUDENT_APPLICATION_SLUG ? 'your@student.email.com' : 'your@email.com'}
                 footer={formSlug === STUDENT_APPLICATION_SLUG ? <CriteriaEligibilityButton /> : null}

@@ -17,6 +17,7 @@ export default function DynamicFormPage({ viewId, config }: Props) {
         requireOtp={config?.requireOtp ?? false}
         closed={!isFormOpen(config ?? undefined)}
         formSlug={config?.formSlug}
+        listedOnly={config?.listedOnly}
       />
     </BuilderConnectProvider>
   )

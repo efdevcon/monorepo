@@ -18,6 +18,12 @@ export interface NocodbFormConfig {
   formViewId: string
   requireOtp: boolean
   open: boolean
+  /**
+   * Only people already listed in the form's table may submit: the table holds one row per invited email
+   * (upload the list there), a signed-in person edits their own row, and nobody can add a new one.
+   * Needs "Requires OTP" (no verified email, no row).
+   */
+  listedOnly: boolean
 }
 
 interface ConfigRecord {
@@ -27,6 +33,7 @@ interface ConfigRecord {
   'Requires OTP'?: 'Yes' | 'No' | null
   'Is Form Open'?: boolean | number | null
   'Preview Password'?: string | null
+  'Listed Emails Only'?: boolean | number | null
 }
 
 interface RecordsResponse {
@@ -72,6 +79,7 @@ async function loadConfigs(): Promise<{ data: NocodbFormConfig[]; previewPasswor
       formViewId: viewId,
       requireOtp: r['Requires OTP'] === 'Yes',
       open: !!r['Is Form Open'],
+      listedOnly: !!r['Listed Emails Only'],
     })
     const preview = r['Preview Password']?.trim()
     if (preview && !previewPasswords.has(viewId)) previewPasswords.set(viewId, preview)

@@ -60,7 +60,8 @@ Table and view IDs are in the browser address bar when you open them in NocoDB; 
 - **Nice address** (`/form/<slug>`): add a row to the **Form config** table in NocoDB (one row per form). Columns:
   - `Form Slug`: the address part, e.g. `devcon-9-survey`.
   - `Form View ID`: the NocoDB form view.
-  - `Requires OTP`: Yes means people verify their email before seeing the form. Their email is saved in the table's `Email` column, and coming back later loads their earlier answers: saving again updates the same row instead of adding one.
+  - `Requires OTP`: Yes means people verify their email before seeing the form. Their email is saved in the table's `Email` column, and coming back later loads their earlier answers: saving again updates the same row instead of adding one. Emails match regardless of capitalisation.
+  - `Listed Emails Only`: only invited people can answer. Upload the list as rows of the form's table (an `Email` column, any capitalisation); after verifying their email, a listed person edits their own row, and anyone else sees "This email isn't on our list" and can't submit (no row is ever added). Needs `Requires OTP` = Yes. Example: `devcon-8-volunteer-wallet`.
   - `Is Form Open`: off shows a "This form is now closed" page (on both addresses), so a form can be wired up before it goes live.
   - `Preview Password`: with a closed form, share `/form/<slug>/?preview=<password>` to let reviewers see and test it (test submissions are saved like real ones). Clear the column to revoke the link. The preview link always loads the latest version from NocoDB, so edits show on reload; everyone else sees them within 5 minutes.
 - Changes to that table show on devcon.org within a minute.

@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { getTableFields, findRowByEmail, getAllTableColumns } from 'services/nocodb'
+import { getFormConfigByViewId } from 'services/form-config'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -50,14 +51,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const allColumns = await getAllTableColumns(viewId)
     const emailColumn = allColumns.find(f => f.uidt === 'Email')?.column_name
 
+    // "Listed Emails Only" forms: tell the page up front whether this email is on the list (has a row),
+    // so someone who isn't sees why right away instead of when they submit.
+    // A config hiccup must not break loading answers on other forms; submit enforces the list regardless.
+    const listedOnly = !!(await getFormConfigByViewId(viewId).catch(() => undefined))?.listedOnly
+
     if (!emailColumn) {
-      return res.status(200).json({ success: true, data: null })
+      return res.status(200).json({ success: true, data: null, ...(listedOnly ? { listed: false } : {}) })
     }
 
     const row = await findRowByEmail(viewId, emailColumn, email)
 
     if (!row) {
-      return res.status(200).json({ success: true, data: null })
+      return res.status(200).json({ success: true, data: null, ...(listedOnly ? { listed: false } : {}) })
     }
 
     const filtered: Record<string, any> = {}
@@ -80,7 +86,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // the user that editing an approved submission triggers re-review.
     const approved = String(row['Status'] ?? '').toLowerCase().includes('approved')
 
-    return res.status(200).json({ success: true, data: filtered, approved })
+    // On a listed-only form every invitee already has a row, so "answered before" is the
+    // submission date the submit route writes, not the row itself.
+    const listing = listedOnly ? { listed: true, submitted: !!row['Submission Date'] } : {}
+
+    return res.status(200).json({ success: true, data: filtered, approved, ...listing })
   } catch (err) {
     console.error('[nocodb/submission]', err)
     const msg = (err as Error).message

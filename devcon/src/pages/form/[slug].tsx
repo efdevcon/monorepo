@@ -15,6 +15,7 @@ export default function SlugFormPage({ config }: Props) {
         requireOtp={config.requireOtp}
         closed={!isFormOpen(config)}
         formSlug={config.formSlug}
+        listedOnly={config.listedOnly}
       />
     </BuilderConnectProvider>
   )

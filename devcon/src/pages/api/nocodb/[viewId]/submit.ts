@@ -7,6 +7,7 @@ import { getTableFields, createRow, findRowByEmail, updateRow, getAllTableColumn
 // named "Email" on the underlying table. The server writes the OTP-verified
 // email into that column on submit — no per-form lookup needed.
 const EMAIL_COLUMN_NAME = 'Email'
+const NOT_LISTED_ERROR = "This form is only for people we've invited. Sign in with the email address we contacted you at."
 import { classifyEligibility } from 'services/email-classifier'
 import { getPaidOrdersByEmail } from 'services/pretix'
 import { getServerSession } from 'next-auth/next'
@@ -263,6 +264,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (verifiedEmail && config?.requireOtp) {
       data[EMAIL_COLUMN_NAME] = verifiedEmail
       existingRow = await findRowByEmail(viewId, EMAIL_COLUMN_NAME, verifiedEmail)
+    }
+
+    // "Listed Emails Only" forms: the table is the list of who may answer, so a person
+    // without a row (or without a verified email) is refused and no row is ever created.
+    if (config?.listedOnly && !existingRow) {
+      return res.status(403).json({
+        success: false,
+        error: NOT_LISTED_ERROR,
+        details: verifiedEmail ? `${verifiedEmail} is not on the list for this form.` : 'Email verification required.',
+      })
     }
 
     if (existingRow) {

@@ -80,15 +80,23 @@ export async function listViewRows(viewId: string, opts: PageOpts = {}): Promise
   )
 }
 
+/**
+ * The row whose email column matches `email`, ignoring case and stray spaces: "Jane.Doe@…" typed
+ * or uploaded into a table is the same inbox as the lowercased address people sign in with.
+ * NocoDB's `like` is a case-insensitive substring match, so it narrows the candidates and the
+ * exact comparison picks the row.
+ */
 export async function findRowByEmail(viewId: string, emailColumn: string, email: string): Promise<any | null> {
+  const wanted = email.trim().toLowerCase()
+  if (!wanted) return null
   const { baseId, tableId } = await resolveFormView(viewId)
   const api = getApi()
   const result = await api.dbTableRow.list('noco', baseId, tableId, {
-    where: `(${emailColumn},eq,${email})`,
-    limit: 1,
+    where: `(${emailColumn},like,${wanted})`,
+    limit: 100,
   })
-  const rows = (result as any)?.list ?? []
-  return rows.length > 0 ? rows[0] : null
+  const rows: any[] = (result as any)?.list ?? []
+  return rows.find(r => String(r[emailColumn] ?? '').trim().toLowerCase() === wanted) ?? null
 }
 
 export async function updateRow(viewId: string, rowId: number, data: Record<string, any>) {
