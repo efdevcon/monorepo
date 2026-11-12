@@ -14,6 +14,7 @@ import { wagmiAdapter } from 'context/appkit-config'
 import { useBuilderConnect, checkAutoDiscount } from 'context/BuilderConnectContext'
 import { useWalletLabel } from 'hooks/usePrimaryEnsName'
 import { rhfFieldName } from './rhf-key'
+import { renderInlineMarkdown } from './inline-markdown'
 
 interface Props {
   columnName: string
@@ -175,7 +176,9 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
             {label}
             {required && <span className="text-[#b42124] ml-0.5">*</span>}
           </label>
-          {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
+          {description ? (
+            <p className="text-sm text-[#594d73] leading-5 whitespace-pre-line">{renderInlineMarkdown(description)}</p>
+          ) : null}
         </>
       )}
       {connected ? (

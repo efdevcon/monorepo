@@ -4,6 +4,7 @@ import { Github } from 'lucide-react'
 import { getSession, signOut } from 'next-auth/react'
 import { useBuilderConnect, checkAutoDiscount } from 'context/BuilderConnectContext'
 import { rhfFieldName } from './rhf-key'
+import { renderInlineMarkdown } from './inline-markdown'
 
 interface Props {
   columnName: string
@@ -122,7 +123,9 @@ export function GithubConnectField({ columnName, label, required, description, h
             {label}
             {required && <span className="text-[#b42124] ml-0.5">*</span>}
           </label>
-          {description ? <p className="text-sm text-[#594d73] leading-5">{description}</p> : null}
+          {description ? (
+            <p className="text-sm text-[#594d73] leading-5 whitespace-pre-line">{renderInlineMarkdown(description)}</p>
+          ) : null}
         </div>
       )}
 
