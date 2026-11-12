@@ -2,7 +2,7 @@
 
 The Devcon IX announcement, served by devcon.org at **`/lisbon/`**: a graphite CRT floating on a dark gradient that boots, searches for the next venue, reveals Lisbon and ends on a menu with the waitlist. Brought in from [Scott1UP/devcon-ix](https://github.com/Scott1UP/devcon-ix) (terminal concept only; the plain-HTML and Web 1.0 concepts stayed there).
 
-> **Devcon IX Lisbon** · CCL – Lisbon Congress Centre · Lisbon, Portugal · 11–13 October 2027 · _Join the waitlist_
+> **Devcon IX Lisbon** · CCL – Lisbon Congress Centre · Lisbon, Portugal · 12–14 October 2027 · _Join the waitlist_
 
 ## How it fits in devcon.org
 
@@ -96,7 +96,7 @@ Event facts and links live in `EVENT` / `LINKS` / `META` in `src/terminal/event.
 2. **Boot.** Enter, a click or a tap plays the first sound (relay clunk, degauss) and runs: BIOS POST → LILO → a short Linux 2.0 kernel log → init `[  OK  ]` steps → `devcon login: guest` → `./devcon` (peer discovery, a replay of every past Devcon, the ninth as `??????`). Nothing names the city.
 3. **City search.** `devcon: locating next venue` tries Madrid, Tokyo, Sydney… each `[FAILED]`, until Lisbon's dots creep out and `[  OK  ]` lands with a beep (list and timings in `CITY_SEARCH`). The tab title becomes the full one.
 4. **Reveal.** An original ASCII drawing of the 25 de Abril bridge and the castle hill, LISBON in big letters, Portugal, "Grilling sardines" / "Warming pastéis de nata", when / where; it holds 4 s (any key moves on). The centre of the backdrop warms slightly.
-5. **End screen.** The Devcon diamond and wordmark, "IX · Lisbon · 11–13 October 2027", the drawing beside a numbered menu: join the waitlist, about, past Devcons, the archive, devcon.org, privacy, code of conduct, open the shell. Digits, ↑↓ + Enter, click or tap; touch rows are spaced out for bigger targets.
+5. **End screen.** The Devcon diamond and wordmark, "IX · Lisbon · 12–14 October 2027", the drawing beside a numbered menu: join the waitlist, about, past Devcons, the archive, devcon.org, privacy, code of conduct, open the shell. Digits, ↑↓ + Enter, click or tap; touch rows are spaced out for bigger targets.
 
 **Shell.** `help` lists the main commands (waitlist, privacy, about, history, mail, devcon.org, archive, coc, contact, color, sound, clear, reboot, exit); there are more (`history -v | --all | <n>`, `sponsor`, `sudo`, `man devcon`, `uname -a`…). Tab completes command names, ↑↓ recalls history, `menu` or Esc on an empty line returns to the menu. `color` and `sound` are remembered.
 
