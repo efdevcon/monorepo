@@ -817,7 +817,9 @@ function ScheduleInner({
   }, [paneActive, detailId, roomParamValue, communityParamValue, dayParam, roomsInUrl, communityInUrl, dayInUrl]);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [completedOpen, setCompletedOpen] = useState(false);
+  // Open by default since the event ended (2026-11-12): the whole programme
+  // is completed now, and a collapsed panel made the schedule look empty.
+  const [completedOpen, setCompletedOpen] = useState(true);
   const [timelineJumpSignal, setTimelineJumpSignal] = useState(0);
   const [listJumpSignal, setListJumpSignal] = useState(0);
   const [timelineStartSignal, setTimelineStartSignal] = useState(0);
@@ -934,6 +936,14 @@ function ScheduleInner({
   // Jumps complete the list first so they land exactly.
   const { visible: revealedGroups, revealAll: revealAllGroups } =
     useProgressiveReveal(visibleGroups.length, 3);
+  // The completed panel fills in the same way now that it starts open: a
+  // whole day of cards in the first render is the mount cost the reveal
+  // exists to avoid. Nothing jumps to a group inside the panel, so there is
+  // no revealAll for it.
+  const { visible: revealedCompleted } = useProgressiveReveal(
+    completedGroups.length,
+    3
+  );
 
   const jumpToNow = () => {
     // Cross days first: land on the day containing "now" (both view modes only
@@ -1407,13 +1417,18 @@ function ScheduleInner({
       )}
     >
       <GroupHeader group={group} inPanel={!!opts.inPanel} showDay={allDays && !opts.inPanel} />
-      {/* Groups past the progressive-reveal frontier, and completed groups
-          while their panel is collapsed, hold their place with a placeholder
+      {/* Groups past the progressive-reveal frontier (the main list's or the
+          completed panel's own), and completed groups while their panel is
+          collapsed, hold their place with a placeholder
           of about one card-row height each; the section and its header stay
           real so jumps and sticky headers work. 2+ sessions in a timeslot:
           2-col on desktop (collapses while the side panel narrows the main
           column). */}
-      {(opts.inPanel ? !completedOpen : visibleGroups.indexOf(group) >= revealedGroups) ? (
+      {(
+        opts.inPanel
+          ? !completedOpen || completedGroups.indexOf(group) >= revealedCompleted
+          : visibleGroups.indexOf(group) >= revealedGroups
+      ) ? (
         <GroupPlaceholder
           height={
             (group.sessions.length > 1 && !sidePanelOpen && isDesktop
