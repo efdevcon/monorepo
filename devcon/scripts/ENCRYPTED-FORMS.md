@@ -6,6 +6,8 @@ network. The matching private keys live ONLY on the operator's machine (in a
 secrets manager or comparable secure store) and on paper in a safe. Our
 server, NocoDB, and backups never see plaintext.
 
+For NocoDB forms on devcon.org in general (field markers, publishing a form, the Form config table), see [docs/nocodb-forms.md](../docs/nocodb-forms.md).
+
 ## One-time setup
 
 ### 1. Generate the primary keypair (reviewer's laptop)

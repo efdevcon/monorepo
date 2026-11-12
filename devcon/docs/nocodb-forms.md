@@ -81,7 +81,7 @@ Everything below is set in the NocoDB form view, no code:
 - **GitHub account**: a field whose label starts with `[github]` shows a Connect GitHub button (GitHub sign-in). With a `[wallet]` field on the same form, both sit together under "Connections".
 - **Country picker**: a field whose label starts with `Country:` shows a searchable list of countries.
 - **Signature**: a file field (Attachment) whose name contains "signature" gets a draw-to-sign pad next to the file picker.
-- **Encrypted file upload**: a file field whose label starts with `[encrypted]` is encrypted in the browser before upload, so NocoDB only ever stores the encrypted file; only the team's private keys open it (the public keys are in `src/config/encrypted-forms.ts`; ask a developer).
+- **Encrypted file upload**: a file field whose label starts with `[encrypted]` is encrypted in the browser before upload, so NocoDB only ever stores the encrypted file; only the team's private keys open it (the public keys are in `src/config/encrypted-forms.ts`). Setup, decrypting answers and key rotation: [ENCRYPTED-FORMS.md](../scripts/ENCRYPTED-FORMS.md).
 - **Help text formatting**: links (`[text](https://...)`), `**bold**` and `_italic_` work in help text.
 
 Example: the Devcon 8 survey (wallet connector first, then the role question; each role, attendees included, gets its own section by condition, then closing questions for everyone, two of them with voice answers).
@@ -119,7 +119,7 @@ A few forms have code of their own, keyed on their `Form Slug` (constants in `Fo
 - `src/services/nocodb.ts`: NocoDB SDK wrapper (row CRUD)
 - `src/services/form-config.ts`: slug, OTP, open state and preview password from the Form config table
 - `src/config/form-field-markers.ts`: the `[scale]`, `[voice]`, `[wallet]` and `[github]` label markers (`Country:` and signature fields are detected in `FormRenderer.tsx`)
-- `src/config/encrypted-forms.ts`: the `[encrypted]` marker and the public keys uploads are encrypted to
+- `src/config/encrypted-forms.ts`: the `[encrypted]` marker and the public keys uploads are encrypted to (operations guide: [scripts/ENCRYPTED-FORMS.md](../scripts/ENCRYPTED-FORMS.md))
 - `src/components/domain/nocodb-form/`: `FormPage.tsx` (shared UI), `OtpGate.tsx` (email verification), `FormRenderer.tsx` (fields), `FormSubheading.tsx` (sections), `inline-markdown.tsx` (help text), `VoiceRecorder.tsx`, `WalletConnectField.tsx`, `GithubConnectField.tsx`, `SignaturePad.tsx`
 - `src/pages/api/nocodb/[viewId]/`: schema, submit, submission (loads an email-verified person's earlier answers), preview, transcribe, upload-attachment, upload-proof and check-eligibility routes
 - `src/services/memory/`, `src/pages/api/memory/index.ts`, `MemoryClaimField.tsx`: the Devcon 8 Memory. The route checks the emailed code (table `devcon8_memory_codes` keeps only one-way hashes of the code and the ticket, no names or emails) and the wallet's signed proof, queues the mint in `devcon8_memory_mints` and sends it at the next 12 s slot, through Alchemy's sponsored sender or, with `MEMORY_SENDER = 'direct'`, as a plain transaction from the minter key (which then pays the gas); the chain, contract and edition are constants in `services/memory/memory.ts` (`MEMORY_CHAIN`, `MEMORY_EDITION`). The Devcon 8 Memory is edition 1 of the Devcon Memories collection (one contract, an edition per occasion); same ticket key as the event app's perk, so a ticket gets one memory either way.
