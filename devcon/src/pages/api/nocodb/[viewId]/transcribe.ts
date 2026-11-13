@@ -17,11 +17,12 @@ import { getClientIp } from 'utils/getClientIp'
 
 export const config = { api: { bodyParser: false } }
 
-// The EF server's transcription alias, so the model behind it can change
-// without a deploy (Whisper large-v3 as of 2026-11-06: Indian English and Hindi
-// come back accurate in a few seconds). The prompt is a spelling hint; without
-// it "Devcon" comes back as "DEF CON".
-const MODEL = 'ef-meeting-transcribe'
+// Pinned to a named model, not the server's alias (which can be repointed without
+// notice), so what we tell people about how their voice is processed stays true.
+// Whisper large-v3 is speech-to-text only; Indian English and Hindi come back
+// accurate in a few seconds. The prompt is a spelling hint; without it "Devcon"
+// comes back as "DEF CON".
+const MODEL = 'whisper-large-v3'
 const PROMPT = 'Devcon, Ethereum.'
 // A 2-minute take (VOICE_MAX_SECONDS) is ~3.8 MB; leave some room.
 const MAX_BYTES = 4.5 * 1024 * 1024
