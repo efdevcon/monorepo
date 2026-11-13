@@ -467,7 +467,7 @@ const LOCAL_STATUS = ['Grilling sardines', 'Warming pastéis de nata']
 // The search for the next venue, just before the reveal: red herrings that
 // fail fast, then the real city, whose dots fill in slowly. Edit freely.
 const CITY_SEARCH = {
-  misses: ['Madrid', 'Tokyo', 'Sydney', 'Rio de Janeiro', 'Cape Town', 'London'],
+  misses: ['Madrid', 'Sydney', 'Rio de Janeiro', 'Kigali', 'Johannesburg', 'Nairobi'],
   miss: [300, 350] as [number, number], // ms per failing row
   found: 1500, // ms for the real city's dots
 }
