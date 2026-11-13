@@ -1182,7 +1182,7 @@ function lettering(lines: string[], big: boolean) {
   for (const line of lines) emit(big ? shaded(line, pad) : [[pad + line, Style.Bright]])
 }
 
-/** The edition, city and dates under the logo: "IX · Lisbon · 11–13 October 2027". */
+/** The edition, city and dates under the logo: "IX · Lisbon · 12–14 October 2027". */
 const tagline = () => `${EVENT.name.replace(/^Devcon\s*/, '')} · ${EVENT.city} · ${EVENT.dateRange}`
 
 /** The Devcon logo: the diamond beside the ANSI Shadow wordmark, as on the title card. */

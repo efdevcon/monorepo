@@ -9,9 +9,9 @@ export const EVENT = {
   host: 'lisboa',
   country: 'Portugal',
   venue: 'CCL – Lisbon Congress Centre',
-  dateRange: '11–13 October 2027',
-  startISO: '2027-10-11',
-  endISO: '2027-10-13',
+  dateRange: '12–14 October 2027',
+  startISO: '2027-10-12',
+  endISO: '2027-10-14',
 } as const
 
 // Outbound links, shared by the terminal and the HTML.
