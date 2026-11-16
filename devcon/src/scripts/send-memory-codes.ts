@@ -44,7 +44,7 @@ import { formatCode } from '../services/memory/memory'
 import { memoryTicketKey } from '../services/memory/state'
 
 // ---- Campaign copy ----
-const SUBJECT = 'Your Devcon 8 Memory is ready to mint 💜'
+const SUBJECT = 'Tell us about Devcon 8 (and mint your onchain Memory) ✨'
 const SURVEY_URL = 'https://devcon.org/form/devcon-8-survey/'
 const MATOMO_PARAMS = 'mtm_campaign=devcon8-memory&mtm_source=email&mtm_medium=email'
 const mintLink = (code: string) => `${SURVEY_URL}?${MATOMO_PARAMS}&code=${formatCode(code)}`
@@ -98,9 +98,31 @@ async function getJson<T>(url: string): Promise<T> {
   return (await res.json()) as T
 }
 
+/**
+ * Admission products that still get no memory, by their English name (the same in the test and live Pretix,
+ * unlike ids): under-3 children, the email-testing product, and replacement wristbands (their holder already has
+ * a ticket, so a second memory would be a duplicate).
+ */
+const EXCLUDED_PRODUCTS = new Set(['Child (Under 3) with Adult', 'Email Testing', 'Lost Wristband', 'Lost India Wristband'])
+
 async function fetchAdmissionItemIds(): Promise<Set<number>> {
-  const data = await getJson<{ results: { id: number; admission?: boolean }[] }>(eventUrl('/items/'))
-  return new Set(data.results.filter(item => item.admission !== false).map(item => item.id))
+  type Item = { id: number; admission?: boolean; name?: string | Record<string, string> }
+  const ids = new Set<number>()
+  const excludedFound = new Set<string>()
+  // Every page: Pretix returns 50 products per page.
+  let url: string | null = eventUrl('/items/')
+  while (url) {
+    const page: { next: string | null; results: Item[] } = await getJson(url)
+    for (const item of page.results) {
+      const name = (typeof item.name === 'string' ? item.name : item.name?.en ?? '').trim()
+      if (EXCLUDED_PRODUCTS.has(name)) excludedFound.add(name)
+      else if (item.admission !== false) ids.add(item.id)
+    }
+    url = page.next
+  }
+  // A renamed product would silently stop being excluded: say so.
+  for (const name of EXCLUDED_PRODUCTS) if (!excludedFound.has(name)) console.warn(`Excluded product not found in Pretix: "${name}"`)
+  return ids
 }
 
 async function fetchPaidOrders(): Promise<PretixOrder[]> {
@@ -153,7 +175,7 @@ function buildHtml(recipient: Recipient, testBanner = false): string {
                 <a href="${mintLink(
                   t.code
                 )}" style="display: inline-block; padding: 14px 32px; font-size: 16px; font-weight: 700; color: #fffffe; background-color: #7235ed; border-radius: 9999px; text-decoration: none;">
-                  ${several ? `Mint the memory for ${t.name ?? `ticket ${i + 1}`}` : 'Mint your memory'}
+                  ${several ? `Share your feedback and mint for ${t.name ?? `ticket ${i + 1}`}` : 'Share your feedback and mint your memory'}
                 </a>
               </div>`
   return `
@@ -163,7 +185,7 @@ function buildHtml(recipient: Recipient, testBanner = false): string {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ${EMAIL_COLOR_SCHEME_META}
-  <title>Your Devcon 8 Memory</title>
+  <title>Tell us about Devcon 8</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f5f3f7; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f3f7; padding: 40px 16px;">
@@ -175,19 +197,35 @@ ${EMAIL_HEADER_ROW}
             <td style="padding: 32px;">
 ${emailEyebrow('Devcon 8 India')}
               <h2 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #1a0d33; text-align: center;">
-                Your Devcon 8 Memory
+                Hello, Devcon family!
               </h2>
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                We loved having you at Devcon 8 in Mumbai. As a thank you, everyone who checked in can mint a
-                Devcon 8 Memory: a free, symbolic commemorative NFT on Ethereum. There's no gas to pay.
+                We hope you're enjoying some time to relax after joining us in Mumbai. Whether you've flown home and
+                are getting settled, or you're still exploring the region, we hope Devcon left you glowing like Diwali
+                lights. ✨🪔
+              </p>
+              <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                We'd love to hear about your experience. Your feedback helps us make future Devcons better, and it
+                takes about 5 minutes.
               </p>
               <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                Open the link, connect your wallet and tap Mint. While you're there, tell us how Devcon 8 went:
-                the same page has our feedback survey.
+                As a thank you for being part of Devcon 8, you can also mint your Devcon 8 Memory: a free, symbolic
+                commemorative NFT on Ethereum that marks your time with us in Mumbai. Connect your wallet, sign a free
+                message, and that's it. You can mint whether you fill in the survey or not.
               </p>
 ${recipient.tickets.map(button).join('')}
               <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: #594d73;">
                 One memory per ticket. Your link is personal: please don't share it.
+              </p>
+              <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #594d73;">
+                PS: We will never ask for your seed phrase or private key, and this link only goes to devcon.org.
+              </p>
+              <p style="margin: 24px 0 0; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                Thank you for lighting up Devcon 8 with us. See you in Lisbon!
+              </p>
+              <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                With gratitude,<br />
+                The Devcon Team
               </p>
             </td>
           </tr>
@@ -195,8 +233,7 @@ ${recipient.tickets.map(button).join('')}
             <td style="padding: 24px 32px; background: #f9f8fa; border-top: 1px solid #dddae2; text-align: center;">
               <p style="margin: 0; font-size: 13px; color: #594d73; line-height: 1.5;">
                 ${testBanner ? '[TEST EMAIL, not a real campaign send]<br />' : ''}
-                You're receiving this because your Devcon 8 India ticket was checked in at the venue.<br />
-                The Devcon Team 💜
+                You're receiving this because your Devcon 8 India ticket was checked in at the venue.
               </p>
             </td>
           </tr>
