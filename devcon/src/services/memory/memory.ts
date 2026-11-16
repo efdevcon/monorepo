@@ -44,7 +44,7 @@ export const MEMORY_CHAINS: Record<MemoryChain, { id: number; contract: Address 
 export const MEMORY_EDITION = 1
 
 /** The minting terms; clicking Mint accepts them (the notice under the button links here). */
-export const MEMORY_TERMS_URL = '/devcon-memories-terms/'
+export const MEMORY_TERMS_URL = '/en/devcon-memories-terms/'
 
 /** The art: a still before, the spin while minting, the lit loop after. */
 export const MEMORY_MEDIA = {

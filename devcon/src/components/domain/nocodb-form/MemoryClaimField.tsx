@@ -169,7 +169,7 @@ export function MemoryClaimField({
                 rel="noreferrer"
                 className="font-semibold text-[#7235ed] underline-offset-2 hover:underline"
               >
-                Devcon Memory terms
+                Devcon Memory Terms &amp; Conditions
               </a>
               .
             </p>

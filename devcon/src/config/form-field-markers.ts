@@ -40,6 +40,12 @@ export const stripWalletPrefix = (title: string): string => stripPrefix(title, W
  * it stays editable. Only the text is stored.
  */
 export const VOICE_PREFIX = '[voice]'
+/**
+ * Voice answers are switched off: a "[voice]" label then renders as a plain
+ * text box (the marker is still stripped from the label) and the transcription
+ * route refuses every request. Set to true to turn them back on.
+ */
+export const VOICE_ANSWERS_ENABLED = false
 export const isVoiceTitle = (title: string | undefined | null): boolean => hasPrefix(title, VOICE_PREFIX)
 export const stripVoicePrefix = (title: string): string => stripPrefix(title, VOICE_PREFIX)
 

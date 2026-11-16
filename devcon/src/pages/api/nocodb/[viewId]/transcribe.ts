@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getFormConfigByViewId, isFormOpen, isPreviewAllowed } from 'services/form-config'
 import { getTableFields } from 'services/nocodb'
-import { isVoiceTitle } from 'config/form-field-markers'
+import { isVoiceTitle, VOICE_ANSWERS_ENABLED } from 'config/form-field-markers'
 import { getClientIp } from 'utils/getClientIp'
 
 /**
@@ -68,6 +68,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { viewId } = req.query
   if (typeof viewId !== 'string') {
     return res.status(400).json({ success: false, error: 'Invalid viewId' })
+  }
+  if (!VOICE_ANSWERS_ENABLED) {
+    return res.status(404).json({ success: false, error: 'Voice answers are turned off' })
   }
   const endpoint = process.env.EF_INFERENCE_AUDIO_URL
   const apiKey = process.env.EF_INFERENCE_AUDIO_API_KEY

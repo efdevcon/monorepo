@@ -1309,3 +1309,202 @@ export const ParentalConsentForm = () => {
     </div>
   )
 }
+
+/** Minting terms for the Devcon Memories NFTs (first edition: the Devcon 8 Memory), linked from the mint card. */
+export const DevconMemoryTerms = () => {
+  return (
+    <div className={`${css['legal']} mb-8`}>
+      <p className="font-xl bold">DEVCON 8 MEMORY NFT MINTING TERMS AND CONDITIONS</p>
+
+      <p>16 November 2026, Version 1.0</p>
+
+      <p className="font-xl bold">PLEASE READ THESE TERMS &amp; CONDITIONS BEFORE MINTING THE DEVCON 8 MEMORY NFT</p>
+
+      <p>
+        These terms and conditions are a binding agreement (the <b>“Agreement”</b>) between you (
+        <b>“You”</b>) and the Ethereum Foundation, a Swiss foundation registered in Zug, Switzerland (the{' '}
+        <b>“EF”</b>). They apply when You mint the non-fungible token known as the “Devcon 8
+        Memory” (the <b>“NFT”</b>), the first edition of the “Devcon Memories” collection
+        on Ethereum, through the Devcon 8 Feedback Survey on devcon.org.
+      </p>
+
+      <p>
+        By clicking “mint”, You acknowledge that You have read, understood, and agree to be bound by this
+        Agreement. If You do not agree, do not mint.
+      </p>
+
+      <ol>
+        <li>
+          <SectionTitle>NATURE OF THE NFT</SectionTitle>
+          <ol>
+            <li>
+              <b>Commemorative only.</b> The NFT commemorates Devcon 8 and your attendance at it. It gives You no
+              ownership interest, financial return, profit expectation, reward, dividend, governance right, access,
+              utility or any other right.
+            </li>
+            <li>
+              <b>No Consideration.</b> The NFT is minted without charge. EF pays the network transaction gas fees
+              required to execute the minting transaction. EF receives no payment, royalty, or other consideration from
+              Your mint.
+            </li>
+            <li>
+              <b>Voluntary.</b> Minting is entirely your choice. You receive an NFT only if You choose to mint it.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>ELIGIBILITY AND MINTING</SectionTitle>
+          <ol>
+            <li>
+              <b>One NFT per checked-in ticket.</b> Each checked-in Devcon 8 ticket can be used to mint one NFT. You can
+              mint only if your valid Devcon 8 ticket was checked in during the event. EF’s check-in records
+              decide whether a ticket was checked in. EF may refuse, block or limit any mint at its discretion,
+              including where it suspects duplicate, fraudulent or abusive use, where there is a problem with the ticket
+              (for example, it is invalid, refunded or cancelled), or where required by law.
+            </li>
+            <li>
+              <b>Your wallet.</b> You mint your NFT through the Devcon 8 Feedback Survey on devcon.org, using the
+              personal link emailed to your checked-in ticket, and by connecting your own wallet. The link is personal
+              to your ticket, so do not share it. You prove You control your wallet by signing a free message, which
+              costs nothing and does not move any assets. You then click “Mint” and EF sends the minting
+              transaction. You are responsible for the wallet, its keys and the address You provide. Blockchain
+              transactions cannot be reversed, and EF cannot recover an NFT sent to the wrong address or to a wallet You
+              can no longer access.
+            </li>
+            <li>
+              <b>Third-party services.</b> The minting process depends on third-party wallets, networks and
+              infrastructure that EF does not control. EF does not guarantee that the minting process will work without
+              errors or interruption.
+            </li>
+            <li>
+              <b>Youth tickets.</b> If You are under 18 years old, including if You hold a youth ticket, You may mint
+              Your NFT only if your parent or legal guardian agrees to these terms on your behalf at the time of
+              minting. EF relies on Your confirmation in section 4 and does not verify age or consent.
+            </li>
+            <li>
+              <b>Public record and privacy.</b> Minting is recorded on Ethereum, a public blockchain. Your wallet
+              address, the mint and any later transfers are visible to everyone and cannot be changed or deleted,
+              including by EF. EF also links your wallet address to your ticket to administer the mint. EF handles any
+              personal data as described in the{' '}
+              <a className="generic hover-underline" href="/en/privacy-notice/">
+                Ethereum Privacy Notice
+              </a>
+              .
+            </li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>ARTWORK LICENCE</SectionTitle>
+          <ol>
+            <li>
+              <b>Open Licence.</b> The artwork embodied in or associated with the NFT is licenced to the public under
+              the{' '}
+              <a className="generic hover-underline" href="https://creativecommons.org/licenses/by/4.0/">
+                Creative Commons CC BY 4.0 International Licence
+              </a>
+              .
+            </li>
+            <li>
+              <b>No Ownership.</b> Minting, holding, or transferring the NFT does not transfer or confer any ownership
+              right, title, or interest in or to the artwork or any other intellectual property of EF. Your rights in
+              the artwork are those the public licence gives everyone.
+            </li>
+            <li>
+              The open licence covers the artwork only. It does not give You any right to use the names
+              “Devcon” or “Ethereum Foundation”, their logos or any other trademarks, and You
+              may not use them to suggest that EF endorses You or your use.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>REPRESENTATIONS AND WARRANTIES</SectionTitle>
+          <p>
+            By minting, You represent, warrant, and covenant that (where a parent or legal guardian agrees on behalf of
+            a minor, “You” means both of them):
+          </p>
+          <ol className={css.lettered}>
+            <li>
+              You are at least eighteen (18) years old and have legal capacity to enter into this Agreement, or You are
+              under 18 and your parent or legal guardian has read and agreed to these terms on Your behalf and confirms
+              they are authorised to do so;
+            </li>
+            <li>
+              You are not: (i) the subject of any economic or trade sanctions imposed or administered by Switzerland,
+              the United States (including the OFAC SDN List), the European Union, the United Kingdom, the United
+              Nations, or any other similar regime; and/or (ii) located, organised, or resident in a comprehensively
+              sanctioned jurisdiction (currently North Korea, Crimea, Iran, Syria, Cuba, Donetsk, or Luhansk);
+            </li>
+            <li>
+              You are minting the NFT solely for personal and commemorative purposes, not as an investment and without
+              any expectation of profit; and
+            </li>
+            <li>You are not minting on behalf of, or for the benefit of anyone who would not meet (a) to (c).</li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>DISCLAIMERS AND LIABILITY</SectionTitle>
+          <ol>
+            <li>
+              THE NFT, THE MINTING PROCESS AND ANY RELATED MATERIALS ARE PROVIDED “AS IS” AND “AS
+              AVAILABLE”, WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+              WARRANTIES OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR QUIET
+              ENJOYMENT. EF DOES NOT WARRANT THAT THE NFT OR THE MINTING PROCESS WILL BE ERROR-FREE OR UNINTERRUPTED.
+            </li>
+            <li>
+              <b>No value or market.</b> EF makes no statement about any value, price or secondary market for the NFT,
+              and takes no responsibility for what others do with it after You mint it.
+            </li>
+            <li>
+              <b>Limitation of Liability.</b> To the maximum extent permitted by law, EF, its directors, officers,
+              employees, contractors, and agents shall not be liable to You for any indirect, incidental, consequential,
+              special, exemplary, or punitive damages, or for any loss of profits, data, or goodwill, arising from the
+              NFT or this Agreement, whether based in contract, tort, strict liability, or otherwise. EF’s
+              aggregate liability to You for direct damages is limited to one USD (USD 1.00). Nothing in this Agreement
+              excludes or limits liability that cannot be excluded or limited under applicable law.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>CHANGES, SUSPENSION AND TERMINATION</SectionTitle>
+          <p>
+            EF may change or terminate these terms, or suspend or end the minting process, at any time, including where
+            required by law. A change applies to mints made after it is published.
+          </p>
+        </li>
+        <li>
+          <SectionTitle>GOVERNING LAW AND JURISDICTION</SectionTitle>
+          <ol>
+            <li>This agreement is governed by Swiss substantive law, excluding its conflict-of-laws rules.</li>
+            <li>
+              Any dispute or claim arising out of or relating to this Agreement shall be resolved by arbitration in
+              accordance with the Swiss Rules of International Arbitration of the Swiss Arbitration Centre in force on
+              the date on which the Notice of Arbitration is submitted. The number of arbitrators shall be one. The seat
+              of the arbitration shall be Zurich unless the parties agree on a different seat. The arbitral proceedings
+              shall be conducted in English.
+            </li>
+          </ol>
+        </li>
+        <li>
+          <SectionTitle>MISCELLANEOUS</SectionTitle>
+          <ol>
+            <li>
+              <b>Entire Agreement.</b> This Agreement constitutes the entire agreement between You and EF with respect
+              to the NFT and supersedes all prior understandings.
+            </li>
+            <li>
+              <b>Severability.</b> If any provision is held invalid or unenforceable, the remaining provisions shall
+              remain in full force and effect.
+            </li>
+            <li>
+              <b>No Waiver.</b> Failure or delay by EF to exercise any right shall not operate as a waiver thereof.
+            </li>
+            <li>
+              <b>No Assignment.</b> You may not assign or transfer your rights or obligations under this Agreement
+              without EF’s prior written consent. This does not restrict your right to transfer the NFT itself.
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  )
+}

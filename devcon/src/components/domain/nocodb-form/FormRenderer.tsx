@@ -30,6 +30,7 @@ import {
   parseScaleTitle,
   isVoiceTitle,
   stripVoicePrefix,
+  VOICE_ANSWERS_ENABLED,
   isMemoryTitle,
   stripMemoryPrefix,
 } from 'config/form-field-markers'
@@ -1631,8 +1632,9 @@ export function FormRenderer({
           }
 
           if (col.uidt === 'LongText') {
-            const voice = isVoiceTitle(col.title)
-            const label = voice ? stripVoicePrefix(col.title) : col.title
+            const voiceMarked = isVoiceTitle(col.title)
+            const voice = voiceMarked && VOICE_ANSWERS_ENABLED
+            const label = voiceMarked ? stripVoicePrefix(col.title) : col.title
             const max = voice ? VOICE_CHAR_LIMIT : CHAR_LIMITS.LongText
             const val: string = watch(rhfKey) || ''
             return (
