@@ -810,8 +810,8 @@ export const PrivacyNotice = () => {
           We process your Data for the following purposes: (a) ticket purchase; (b) verification that you are the holder
           of the ticket; (c) administration of ticket categories, discounts, and eligibility criteria; (d) fraud
           prevention and protection against misuse of tickets or discounts; (e) processing ticket purchase confirmation
-          letter requests; and (f) Devcon registration, check-in, admittance, participation, safety, security, and
-          administration.
+          letter requests; (f) Devcon registration, check-in, admittance, participation, safety, security, and
+          administration; and (g) enabling you to mint any Devcon Memory NFT, including checking your eligibility.
         </li>
         <li>
           You are under no obligation to provide us with your Data. However, if you do not do so, you may not be able to
@@ -821,7 +821,8 @@ export const PrivacyNotice = () => {
         </li>
         <li>
           We process your Data for the performance of our contract with you insofar as such processing is necessary for
-          ticket purchase, ticket administration, and attendance at Devcon, and otherwise on the basis of our overriding
+          ticket purchase, ticket administration, attendance at Devcon, and the Devcon Memory NFTs, and otherwise on
+          the basis of our overriding
           legitimate interest in achieving the purposes set out above, in accordance with Article 6(1)(b), Article
           6(1)(f), and, where applicable, Article 6(1)(c) of the General Data Protection Regulation (
           <b>&ldquo;GDPR&rdquo;</b>).
@@ -895,6 +896,8 @@ export const PrivacyNotice = () => {
           available through the relevant Devcon or event channels.
         </li>
       </ol>
+
+      <p>Last updated: 16 November 2026</p>
     </div>
   )
 }
