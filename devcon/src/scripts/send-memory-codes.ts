@@ -299,6 +299,9 @@ const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
 /** Retries of one email when SES says the send rate is exceeded (waits 2, 4, 8, 16, 32 s). */
 const RATE_RETRIES = 5
 
+/** Emails in flight at once, each on its own reused SMTP connection. */
+const SEND_CONCURRENCY = 4
+
 /** The SES refusals the run acts on: the daily quota ends it (re-run later), the send rate is waited out. */
 function sesLimit(err: unknown): 'quota' | 'rate' | null {
   const text = err instanceof Error ? `${(err as { response?: string }).response ?? ''} ${err.message}` : String(err)
@@ -384,9 +387,13 @@ async function main() {
   )
   fs.mkdirSync('generated-codes', { recursive: true })
   fs.writeFileSync(results, 'n,tickets,status,error\n')
-  const transporter = getTransporter()
+  // A few emails at a time over reused SMTP connections; SES's per-second
+  // rate limit is waited out below, its daily quota stops every worker.
+  const transporter = getTransporter({ pool: true, maxConnections: SEND_CONCURRENCY })
   let sent = 0
-  for (const [i, r] of recipients.entries()) {
+  let next = 0
+  let quotaReached = false
+  const sendOne = async (i: number, r: Recipient) => {
     try {
       await storeCodes(client, r)
       for (let attempt = 0; ; attempt++) {
@@ -400,14 +407,7 @@ async function main() {
           await sleep(wait)
         }
       }
-      const { error } = await client
-        .from('devcon8_memory_codes')
-        .update({ emailed_at: new Date().toISOString() })
-        .in(
-          'ticket_key',
-          r.tickets.map(t => t.ticketKey)
-        )
-      if (error) throw new Error(`mark emailed: ${error.message}`)
+      await markEmailed(client, r)
       fs.appendFileSync(results, `${i + 1},${r.tickets.length},sent,\n`)
       sent++
       console.log(`  [${i + 1}/${recipients.length}] sent`)
@@ -416,16 +416,46 @@ async function main() {
       const reason = failureReason(err)
       fs.appendFileSync(results, `${i + 1},${r.tickets.length},failed,${reason}\n`)
       console.error(`  [${i + 1}/${recipients.length}] FAILED: ${reason}`)
-      if (sesLimit(err) === 'quota') {
+      if (sesLimit(err) === 'quota' && !quotaReached) {
+        quotaReached = true
         console.error(
           `\nSES daily sending quota reached: stopping. Run --send again later (the quota resets over 24 hours); it skips everyone already emailed.`
         )
-        break
       }
     }
-    if (i < recipients.length - 1) await sleep(300)
+  }
+  const worker = async () => {
+    while (!quotaReached && next < recipients.length) {
+      const i = next++
+      await sendOne(i, recipients[i])
+    }
+  }
+  try {
+    await Promise.all(Array.from({ length: SEND_CONCURRENCY }, worker))
+  } finally {
+    transporter.close()
   }
   console.log(`\nDone: ${sent}/${recipients.length} sent. Results: ${results}`)
+}
+
+/** Records the email as sent; retried, since a failure here makes a re-run email that person again. */
+async function markEmailed(client: ReturnType<typeof db>, r: Recipient): Promise<void> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const { error } = await client
+        .from('devcon8_memory_codes')
+        .update({ emailed_at: new Date().toISOString() })
+        .in(
+          'ticket_key',
+          r.tickets.map(t => t.ticketKey)
+        )
+      if (error) throw new Error(error.message)
+      return
+    } catch (err) {
+      if (attempt >= 2) throw new Error(`mark emailed: ${err instanceof Error ? err.message : String(err)}`)
+      await sleep(1000 * (attempt + 1))
+    }
+  }
 }
 
 main().catch(err => {

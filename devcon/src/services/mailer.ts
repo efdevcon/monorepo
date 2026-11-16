@@ -13,7 +13,9 @@ export const FROM_ADDRESS = process.env.SMTP_FROM || 'tickets@devcon.org'
 export const DEFAULT_FROM_NAME = 'Devcon Team 🦄'
 export const DEFAULT_FROM = `"${DEFAULT_FROM_NAME}" <${FROM_ADDRESS}>`
 
-export function getTransporter() {
+/** `pool` keeps up to `maxConnections` SMTP connections open and reuses them
+ *  (bulk scripts; close the transporter when done). Default: one connection per email. */
+export function getTransporter(options: { pool?: boolean; maxConnections?: number } = {}) {
   const smtpHost = process.env.SMTP_SERVICE || 'email-smtp.us-west-2.amazonaws.com'
   const smtpUser = process.env.SMTP_USERNAME
   const smtpPass = process.env.SMTP_PASSWORD
@@ -22,7 +24,7 @@ export function getTransporter() {
     throw new Error('SMTP credentials not configured')
   }
 
-  return nodemailer.createTransport({
+  const common = {
     host: smtpHost,
     port: 465,
     secure: true,
@@ -30,7 +32,11 @@ export function getTransporter() {
     connectionTimeout: 10000,
     greetingTimeout: 10000,
     socketTimeout: 15000,
-  })
+  }
+  if (options.pool) {
+    return nodemailer.createTransport({ ...common, pool: true, maxConnections: options.maxConnections ?? 4 })
+  }
+  return nodemailer.createTransport(common)
 }
 
 export async function sendWithRetry(
