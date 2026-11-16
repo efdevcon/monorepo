@@ -278,6 +278,27 @@ async function emailedKeys(client: ReturnType<typeof db>): Promise<Set<string>> 
 
 const sleep = (ms: number) => new Promise(r => setTimeout(r, ms))
 
+/** Retries of one email when SES says the send rate is exceeded (waits 2, 4, 8, 16, 32 s). */
+const RATE_RETRIES = 5
+
+/** The SES refusals the run acts on: the daily quota ends it (re-run later), the send rate is waited out. */
+function sesLimit(err: unknown): 'quota' | 'rate' | null {
+  const text = err instanceof Error ? `${(err as { response?: string }).response ?? ''} ${err.message}` : String(err)
+  if (/daily message quota exceeded/i.test(text)) return 'quota'
+  if (/maximum sending rate exceeded/i.test(text)) return 'rate'
+  return null
+}
+
+/** A short reason for the results file, with any email address masked. */
+function failureReason(err: unknown): string {
+  const text = err instanceof Error ? (err as { response?: string }).response || err.message : String(err)
+  return text
+    .replace(/[^\s,;<>"]+@[^\s,;<>"]+/g, '<address>')
+    .replace(/[\r\n,"]+/g, ' ')
+    .trim()
+    .slice(0, 160)
+}
+
 async function main() {
   console.log('Pretix API:', eventUrl('/'))
   console.log('Environment:', TICKETING_ENV)
@@ -340,13 +361,23 @@ async function main() {
     `memory-codes-results-${new Date().toISOString().replace(/[:.]/g, '-')}.csv`
   )
   fs.mkdirSync('generated-codes', { recursive: true })
-  fs.writeFileSync(results, 'n,tickets,status\n')
+  fs.writeFileSync(results, 'n,tickets,status,error\n')
   const transporter = getTransporter()
   let sent = 0
   for (const [i, r] of recipients.entries()) {
     try {
       await storeCodes(client, r)
-      await sendWithRetry(transporter, { from: DEFAULT_FROM, to: r.email, subject: SUBJECT, html: buildHtml(r) })
+      for (let attempt = 0; ; attempt++) {
+        try {
+          await sendWithRetry(transporter, { from: DEFAULT_FROM, to: r.email, subject: SUBJECT, html: buildHtml(r) })
+          break
+        } catch (err) {
+          if (sesLimit(err) !== 'rate' || attempt >= RATE_RETRIES) throw err
+          const wait = 2000 * 2 ** attempt
+          console.warn(`  [${i + 1}/${recipients.length}] SES send rate exceeded, retrying in ${wait / 1000} s`)
+          await sleep(wait)
+        }
+      }
       const { error } = await client
         .from('devcon8_memory_codes')
         .update({ emailed_at: new Date().toISOString() })
@@ -355,13 +386,20 @@ async function main() {
           r.tickets.map(t => t.ticketKey)
         )
       if (error) throw new Error(`mark emailed: ${error.message}`)
-      fs.appendFileSync(results, `${i + 1},${r.tickets.length},sent\n`)
+      fs.appendFileSync(results, `${i + 1},${r.tickets.length},sent,\n`)
       sent++
       console.log(`  [${i + 1}/${recipients.length}] sent`)
     } catch (err) {
       // A re-run retries it: only sent emails are marked in the table.
-      fs.appendFileSync(results, `${i + 1},${r.tickets.length},failed\n`)
-      console.error(`  [${i + 1}/${recipients.length}] FAILED`, err)
+      const reason = failureReason(err)
+      fs.appendFileSync(results, `${i + 1},${r.tickets.length},failed,${reason}\n`)
+      console.error(`  [${i + 1}/${recipients.length}] FAILED: ${reason}`)
+      if (sesLimit(err) === 'quota') {
+        console.error(
+          `\nSES daily sending quota reached: stopping. Run --send again later (the quota resets over 24 hours); it skips everyone already emailed.`
+        )
+        break
+      }
     }
     if (i < recipients.length - 1) await sleep(300)
   }
