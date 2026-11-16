@@ -29,7 +29,7 @@ export type MemoryChain = 'sepolia' | 'mainnet'
 export const MEMORY_SENDER: 'sponsored' | 'direct' = 'sponsored'
 
 /** Where memories are minted. Sepolia until the mainnet contract is deployed. */
-export const MEMORY_CHAIN: MemoryChain = 'sepolia'
+export const MEMORY_CHAIN: MemoryChain = 'mainnet'
 
 export const MEMORY_CHAINS: Record<MemoryChain, { id: number; contract: Address | null; explorer: string }> = {
   sepolia: {
@@ -37,7 +37,7 @@ export const MEMORY_CHAINS: Record<MemoryChain, { id: number; contract: Address 
     contract: '0x5d0fc401C8AF9D26505Bb402eC2Fa8D7F7e55dbd',
     explorer: 'https://sepolia.etherscan.io',
   },
-  mainnet: { id: 1, contract: null, explorer: 'https://etherscan.io' },
+  mainnet: { id: 1, contract: '0xB51228a76c17Fca32b41E4C0602F2557a4DCcE1a', explorer: 'https://etherscan.io' },
 }
 
 /** Devcon 8's edition in the Devcon Memories contract: its ERC-1155 token id (editions are numbered in the order they were added). */
