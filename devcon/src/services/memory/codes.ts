@@ -7,8 +7,9 @@ import { CODE_ALPHABET, CODE_LENGTH, normalizeCode } from './memory'
  * its attendee (src/scripts/send-memory-codes.ts). A code is derived from the
  * ticket secret with MEMORY_CODE_SECRET, so the email script can rebuild it on
  * any run; only its SHA-256 is stored (devcon8_memory_codes), and the route
- * looks codes up by that hash, so it never needs the secret. The table holds
- * no personal data, only one-way values: no name, no email.
+ * looks codes up by that hash, so it never needs the secret. No names or email
+ * addresses are stored: the code and the ticket as one-way hashes, and the
+ * address the email went to only as a keyed hash (emailHash).
  */
 
 const TABLE = 'devcon8_memory_codes'
@@ -19,6 +20,7 @@ export interface CodeRow {
   created_at: string
   emailed_at: string | null
   claimed_at: string | null
+  email_hmac: string | null
 }
 
 /** The ticket's code: HMAC-SHA256 of its secret, 50 bits as 10 Crockford base32 characters. */
@@ -31,6 +33,16 @@ export function deriveCode(codeSecret: string, ticketSecret: string): string {
     bits >>= BigInt(5)
   }
   return code
+}
+
+/**
+ * Keyed hash of the address a ticket's memory email went to (trimmed, lowercased), stored with its codes so a
+ * later email sign-in can find that person's tickets without the table holding any address. The key
+ * (MEMORY_EMAIL_SECRET) stays outside the database: the table alone can't be matched against guessed addresses,
+ * and deleting the key makes the column meaningless.
+ */
+export function emailHash(emailSecret: string, email: string): string {
+  return crypto.createHmac('sha256', emailSecret).update(`devcon-memory-email:${email.trim().toLowerCase()}`).digest('hex')
 }
 
 /** SHA-256 of the canonical code, as stored. */

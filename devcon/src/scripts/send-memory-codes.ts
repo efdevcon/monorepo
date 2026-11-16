@@ -27,10 +27,11 @@
  *
  * Re-running --send skips anyone already emailed (emailed_at in the table), so
  * a partial run resumes on its own and attendees checked in later get theirs.
- * Nothing personal is stored: the table keeps one-way values only (code hash,
- * ticket key), names and emails are read from Pretix each run, and the results
- * file counts sends without addresses.
- * Results: generated-codes/memory-codes-results-<timestamp>.csv (n,tickets,status).
+ * No names or addresses are stored: the table keeps the code hash, the ticket
+ * key and a keyed hash of the address (emailHash, MEMORY_EMAIL_SECRET), names
+ * and emails are read from Pretix each run, and the results file counts sends
+ * without addresses.
+ * Results: generated-codes/memory-codes-results-<timestamp>.csv (n,tickets,status,error).
  */
 import 'dotenv/config'
 import * as fs from 'fs'
@@ -39,12 +40,12 @@ import { createClient } from '@supabase/supabase-js'
 import { getTransporter, sendWithRetry, DEFAULT_FROM } from '../services/mailer'
 import { EMAIL_HEADER_ROW, EMAIL_COLOR_SCHEME_META, emailEyebrow } from '../services/emailLayout'
 import { TICKETING, TICKETING_ENV, getPretixApiToken } from '../config/ticketing'
-import { deriveCode, hashCode } from '../services/memory/codes'
+import { deriveCode, emailHash, hashCode } from '../services/memory/codes'
 import { formatCode } from '../services/memory/memory'
 import { memoryTicketKey } from '../services/memory/state'
 
 // ---- Campaign copy ----
-const SUBJECT = 'Tell us about Devcon 8 (and mint your onchain Memory) ✨'
+const SUBJECT = 'Tell us about your Devcon 8 experience & mint your onchain memory ✨'
 const SURVEY_URL = 'https://devcon.org/form/devcon-8-survey/'
 const MATOMO_PARAMS = 'mtm_campaign=devcon8-memory&mtm_source=email&mtm_medium=email'
 const mintLink = (code: string) => `${SURVEY_URL}?${MATOMO_PARAMS}&code=${formatCode(code)}`
@@ -61,6 +62,8 @@ const limit = argValue('--limit') ? Number(argValue('--limit')) : null
 
 const CODE_SECRET = process.env.MEMORY_CODE_SECRET
 if (!CODE_SECRET) throw new Error('MEMORY_CODE_SECRET is not set (devcon/.env)')
+// Only needed when codes are stored (--send, --as): every stored row gets its address's keyed hash.
+const EMAIL_SECRET = process.env.MEMORY_EMAIL_SECRET
 
 // ---- Pretix (read-only; same access pattern as send-attendee-email-reminder.ts) ----
 function normalizeBaseUrl(url: string): string {
@@ -206,22 +209,30 @@ ${emailEyebrow('Devcon 8 India')}
               </p>
               <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 We'd love to hear about your experience. Your feedback helps us make future Devcons better, and it
-                takes about 5 minutes.
+                only takes about 5 minutes.
+              </p>
+              <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                As a thank you for being part of Devcon 8, you can also mint your Devcon 8 Memory: a free, symbolic
+                commemorative NFT on Ethereum that marks your time with us in Mumbai.
               </p>
               <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                As a thank you for being part of Devcon 8, you can also mint your Devcon 8 Memory: a free, symbolic
-                commemorative NFT on Ethereum that marks your time with us in Mumbai. Connect your wallet, sign a free
-                message, and that's it. You can mint whether you fill in the survey or not.
+                Simply connect your wallet, sign a free message, and that's it.<br />
+                You can mint whether you complete the survey or not.
               </p>
 ${recipient.tickets.map(button).join('')}
               <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: #594d73;">
                 One memory per ticket. Your link is personal: please don't share it.
               </p>
               <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.5; color: #594d73;">
-                PS: We will never ask for your seed phrase or private key, and this link only goes to devcon.org.
+                PS: We will never ask for your seed phrase or private key. The link only points to the devcon.org
+                domain.
+              </p>
+              <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.5; color: #1a0d33;">
+                Please complete the survey by December 1.
               </p>
               <p style="margin: 24px 0 0; font-size: 16px; line-height: 1.5; color: #1a0d33;">
-                Thank you for lighting up Devcon 8 with us. See you in Lisbon!
+                Thank you for lighting up Devcon 8 with us.<br />
+                See you in Lisbon for Devcon 9!
               </p>
               <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.5; color: #1a0d33;">
                 With gratitude,<br />
@@ -255,11 +266,18 @@ function db() {
 
 /** Stores the recipient's codes as one-way values only (code hash + ticket key); existing rows are left as they are. */
 async function storeCodes(client: ReturnType<typeof db>, r: Recipient): Promise<void> {
-  const rows = r.tickets.map(t => ({ code_hash: hashCode(t.code), ticket_key: t.ticketKey }))
-  const { error } = await client
-    .from('devcon8_memory_codes')
-    .upsert(rows, { onConflict: 'code_hash', ignoreDuplicates: true })
+  const email_hmac = emailHash(EMAIL_SECRET!, r.email)
+  const rows = r.tickets.map(t => ({ code_hash: hashCode(t.code), ticket_key: t.ticketKey, email_hmac }))
+  // Existing rows only get their email hash filled in: their sent and claimed dates are not in `rows`, so they stay.
+  const { error } = await client.from('devcon8_memory_codes').upsert(rows, { onConflict: 'code_hash' })
   if (error) throw new Error(`devcon8_memory_codes store: ${error.message}`)
+}
+
+/** Before storing anything: the key is set and the email_hmac column exists (its migration is applied). */
+async function assertEmailHashReady(client: ReturnType<typeof db>): Promise<void> {
+  if (!EMAIL_SECRET) throw new Error('MEMORY_EMAIL_SECRET is not set (devcon/.env)')
+  const { error } = await client.from('devcon8_memory_codes').select('email_hmac').limit(1)
+  if (error) throw new Error(`devcon8_memory_codes.email_hmac is missing, apply its migration first: ${error.message}`)
 }
 
 async function emailedKeys(client: ReturnType<typeof db>): Promise<Set<string>> {
@@ -318,7 +336,10 @@ async function main() {
       tickets: [{ code: deriveCode(CODE_SECRET!, 'sample-ticket'), ticketKey: '', name: null }],
     }
     const recipient = source ? { ...source, email: testTo } : sample
-    if (source) await storeCodes(db(), source)
+    if (source) {
+      await assertEmailHashReady(db())
+      await storeCodes(db(), source)
+    }
     console.log(
       `*** TEST: sending ONE email to ${testTo} (${
         source ? `codes of ${testAs}, stored` : 'sample code, not stored'
@@ -349,6 +370,7 @@ async function main() {
   }
 
   const client = db()
+  await assertEmailHashReady(client)
   const done = await emailedKeys(client)
   recipients = recipients
     .map(r => ({ ...r, tickets: r.tickets.filter(t => !done.has(t.ticketKey)) }))
