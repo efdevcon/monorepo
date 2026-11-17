@@ -34,7 +34,12 @@ const STORAGE_KEY = 'builder:wallet'
 const STORAGE_TTL_MS = 55 * 60 * 1000 // restore only while the proof is still valid
 
 function WalletWidget({ columnName, label, required, description, hideHeader }: Props) {
-  const { setValue, watch } = useFormContext()
+  const {
+    setValue,
+    watch,
+    register,
+    formState: { errors },
+  } = useFormContext()
   const { walletProof, setWalletProof, reportDiscount } = useBuilderConnect()
   const { open } = useAppKit()
   const { address, isConnected, connector } = useAccount()
@@ -167,6 +172,11 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   }
 
   const connected = Boolean(stored && walletProof)
+  // react-hook-form only validates registered fields and this widget writes its
+  // value with setValue, so a required wallet needs a registered (hidden) input
+  // carrying the rule: both the address and the signed proof must be present.
+  // The submit route re-checks the proof server-side.
+  const requiredError = errors[fieldKey]?.message as string | undefined
 
   return (
     <div className="flex flex-col gap-2">
@@ -234,6 +244,19 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
           {busy ? 'Connecting…' : 'Connect wallet'}
         </button>
       )}
+      {required && (
+        <input
+          type="hidden"
+          {...register(fieldKey, {
+            validate: value => (value && walletProof ? true : 'Connect your wallet and sign the free message to continue.'),
+          })}
+        />
+      )}
+      {requiredError ? (
+        <p data-field-error className="text-sm text-red-500 scroll-mt-24">
+          {requiredError}
+        </p>
+      ) : null}
       {error ? <p className="text-sm text-red-500">{error}</p> : null}
     </div>
   )

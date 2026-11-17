@@ -133,6 +133,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const provenAddress = proof ? verifyProof(proof, 'wallet') : null
       if (provenAddress) data[walletField.column_name] = provenAddress
       else delete data[walletField.column_name]
+      if (walletField.required && !provenAddress) {
+        return res.status(400).json({ success: false, error: 'Connect your wallet and sign the message before submitting' })
+      }
     }
 
     // Visa-form gate: signed-in email must have a paid Pretix order OR be an

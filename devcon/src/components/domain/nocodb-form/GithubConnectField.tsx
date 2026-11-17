@@ -26,7 +26,13 @@ interface Props {
 const CONTRIBUTED_REPOS_COLUMN = 'Contributed Repos'
 
 export function GithubConnectField({ columnName, label, required, description, hideHeader }: Props) {
-  const { setValue, watch, getValues } = useFormContext()
+  const {
+    setValue,
+    watch,
+    getValues,
+    register,
+    formState: { errors },
+  } = useFormContext()
   const { reportDiscount } = useBuilderConnect()
   const fieldKey = rhfFieldName(columnName)
   const username = watch(fieldKey) as string | undefined
@@ -114,6 +120,9 @@ export function GithubConnectField({ columnName, label, required, description, h
   }
 
   const connected = Boolean(username)
+  // Same as the wallet widget: the value is written with setValue, so a
+  // required connector needs a registered (hidden) input carrying the rule.
+  const requiredError = errors[fieldKey]?.message as string | undefined
 
   return (
     <div className="flex flex-col gap-3">
@@ -153,6 +162,17 @@ export function GithubConnectField({ columnName, label, required, description, h
           {authing ? 'Connecting…' : 'Sign in with GitHub'}
         </button>
       )}
+      {required && (
+        <input
+          type="hidden"
+          {...register(fieldKey, { validate: value => (value ? true : 'Connect your GitHub account to continue.') })}
+        />
+      )}
+      {requiredError ? (
+        <p data-field-error className="text-sm text-red-500 scroll-mt-24">
+          {requiredError}
+        </p>
+      ) : null}
     </div>
   )
 }
