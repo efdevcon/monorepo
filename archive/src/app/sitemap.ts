@@ -2,6 +2,9 @@ import { getEvents, getSessions } from "@/services/devcon";
 import { SITE_URL } from "@/utils/site";
 import { MetadataRoute } from "next";
 
+// Hourly, like the home page: new recordings reach search engines without a deploy.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const events = await getEvents();
   const sessions = await getSessions(5000); // get all sessions, without pagination

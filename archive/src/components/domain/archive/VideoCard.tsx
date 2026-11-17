@@ -4,25 +4,15 @@ import React from "react";
 import css from "./video-card.module.scss";
 import { BasicCard } from "@/components/common/card";
 import { ArchiveVideo, Playlist } from "@/types";
-import { editionOf } from "@/utils/editions";
+import { editionLabel } from "@/utils/editions";
+import { youtubeThumbnail as thumbnail } from "@/utils/video";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 
 dayjs.extend(utc);
 
-/**
- * YouTube's 4:3 "hqdefault" carries letterbox bars that peek out of the 16:9
- * card as a grey strip; "hq720" is the 16:9 render. The fallback covers the
- * rare video without one.
- */
-const thumbnail = (youtubeId: string, size: "hq720" | "hqdefault") =>
-  `https://img.youtube.com/vi/${youtubeId}/${size}.jpg`;
-
-const editionLabel = (video: ArchiveVideo) => {
-  if (video.eventId === "devconnect-arg") return "Devconnect";
-  const edition = editionOf(video.eventId) ?? video.edition;
-  return edition != null ? `Devcon ${edition}` : "Devcon";
-};
+// The card shows YouTube's 16:9 "hq720"; the 4:3 "hqdefault" (letterbox bars
+// that peek out as a grey strip) is the fallback for the rare video without one.
 
 interface Props {
   video: ArchiveVideo;

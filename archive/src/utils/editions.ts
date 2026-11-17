@@ -29,6 +29,13 @@ export function editionOf(eventId: string | undefined): number | undefined {
   return match ? Number(match[1]) : undefined;
 }
 
+/** "Devcon 7" for a Devcon edition, "Devconnect" for Devconnect. */
+export function editionLabel(video: { eventId: string; edition?: number }): string {
+  if (video.eventId === "devconnect-arg") return "Devconnect";
+  const edition = editionOf(video.eventId) ?? video.edition;
+  return edition != null ? `Devcon ${edition}` : "Devcon";
+}
+
 /**
  * URL segment to API event id: "8" and "devcon8" both mean Devcon 8, other
  * ids ("devconnect-arg") pass through.

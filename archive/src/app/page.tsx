@@ -3,6 +3,10 @@ import { FeaturedList } from "@/components/domain/archive/playlists/Featured";
 import { Editions } from "@/components/domain/archive/Editions";
 import { getEvents } from "@/services/devcon";
 
+// Rebuilt at most hourly from the API: without it the page is the snapshot
+// taken at deploy, and recordings published (or re-uploaded) since never show.
+export const revalidate = 3600;
+
 export default async function Home() {
   const events = await getEvents();
 
