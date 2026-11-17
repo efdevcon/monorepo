@@ -15,8 +15,8 @@ import { isTeamEmail, previewableGates } from "./previewAccess";
  * only: anything a feature calls server-side keeps its own checks.
  */
 export const RELEASED = {
-  /** ENS perk card on My Devcon. Released to everyone on 2026-11-03: any ticket once checked in (data/tickets/ensPerk.ts). */
-  ensPerk: true,
+  /** ENS perk card on My Devcon (any ticket once checked in, data/tickets/ensPerk.ts). Released 2026-11-03, hidden again 2026-11-17. */
+  ensPerk: false,
   /** Testnet faucet perk card on My Devcon. Released to everyone on 2026-11-02, shown on checked-in tickets only. */
   faucetPerk: true,
   /** Venue map tab (src/app/(page-layout)/map/venue-map). Released to everyone on 2026-10-30 (Scott); the "coming soon" placeholder stays in MapPane for a rollback. */
