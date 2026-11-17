@@ -239,12 +239,15 @@ export const Video = (props: any) => {
                   <h1 className="font-xxl title">{video.title}</h1>
 
                   <div className={css["descriptors"]}>
-                    <p className={css["descriptor"]}>
-                      <span>Duration:</span>{" "}
-                      {dayjs
-                        .duration(video.duration, "seconds")
-                        .format("HH:mm:ss")}
-                    </p>
+                    {/* 0 = length not known yet (filled from YouTube by the API) */}
+                    {video.duration > 0 && (
+                      <p className={css["descriptor"]}>
+                        <span>Duration:</span>{" "}
+                        {dayjs
+                          .duration(video.duration, "seconds")
+                          .format("HH:mm:ss")}
+                      </p>
+                    )}
                     <p className={css["descriptor"]}>
                       <span>Speaker:</span>{" "}
                       {video.speakers.map((i: any) => i.name).join(", ")}

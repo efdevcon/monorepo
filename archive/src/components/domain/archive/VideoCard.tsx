@@ -74,7 +74,7 @@ export const VideoCard = (props: Props) => {
           <div className={`${css["labels"]}`}>
             <div className={`label sm black`}>{editionLabel(props.video)}</div>
             <div className={`label sm black`}>{props.video.type}</div>
-            {props.video.duration && (
+            {props.video.duration > 0 && (
               <div className={`${css["duration"]} label sm black`}>
                 {dayjs
                   .utc(props.video.duration * 1000)

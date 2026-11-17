@@ -7,6 +7,7 @@ import { templateStyles } from '@/templates/styles'
 import { GetEventDay, GetTrackId, GetTrackImage } from '@/utils/templates'
 import { API_DEFAULTS } from '@/utils/config'
 import { CommitSession } from '@/services/github'
+import { youtubeDuration } from '@/services/youtube'
 import { apikeyHandler } from '@/middleware/apikey'
 import { publicCache } from '@/middleware/cache'
 import * as store from '@/data/store'
@@ -153,15 +154,25 @@ export async function UpdateSessionSources(req: Request, res: Response) {
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   try {
+    const youtubeId: string = body.sources_youtubeId ?? data.sources_youtubeId ?? ''
+    const youtubeChanged = youtubeId !== (data.sources_youtubeId ?? '')
+    let duration: number = body.duration ?? data.duration ?? 0
+    // Uploaders send the YouTube id without the video's length: read it from
+    // YouTube when the video is new or replaced and no duration came with it.
+    // A failed lookup keeps the current value (patch semantics).
+    if (body.duration == null && youtubeId && (youtubeChanged || !duration)) {
+      duration = (await youtubeDuration(youtubeId)) ?? duration
+    }
+
     const updatedData = store.updateSession(data.id, {
       sources_ipfsHash: body.sources_ipfsHash ?? data.sources_ipfsHash ?? '',
-      sources_youtubeId: body.sources_youtubeId ?? data.sources_youtubeId ?? '',
+      sources_youtubeId: youtubeId,
       sources_swarmHash: body.sources_swarmHash ?? data.sources_swarmHash ?? '',
       sources_livepeerId: body.sources_livepeerId ?? data.sources_livepeerId ?? '',
       sources_streamethId: body.sources_streamethId ?? data.sources_streamethId ?? '',
       transcript_vtt: body.transcript_vtt ?? data.transcript_vtt ?? '',
       transcript_text: body.transcript_text ?? data.transcript_text ?? '',
-      duration: body.duration ?? data.duration ?? 0,
+      duration,
     })
     console.log('Updated session', updatedData.id)
 

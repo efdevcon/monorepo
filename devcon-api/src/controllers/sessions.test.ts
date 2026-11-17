@@ -16,6 +16,11 @@ jest.mock('../services/github', () => ({
   CommitContentFile: jest.fn().mockResolvedValue(undefined),
 }))
 
+// Nor the YouTube API: no length known unless a test says so.
+jest.mock('../services/youtube', () => ({ youtubeDuration: jest.fn().mockResolvedValue(null) }))
+import { youtubeDuration } from '../services/youtube'
+const mockedYoutubeDuration = youtubeDuration as jest.MockedFunction<typeof youtubeDuration>
+
 beforeAll(() => {
   store.initStore()
   session = store.getAllSessions().find((s: any) => s.eventId === 'devconnect-arg')
@@ -52,6 +57,28 @@ describe('PUT /sessions/sources/:id', () => {
     expect(updated.sources_youtubeId).toBe('YT_NEW')
     expect(updated.sources_swarmHash).toBe('SWARM_KEEP')
     expect(updated.duration).toBe(1234)
+  })
+
+  test('a new YouTube id without a duration takes the length from YouTube', async () => {
+    mockedYoutubeDuration.mockResolvedValueOnce(2468)
+    const res = await putSources(session.id, { sources_youtubeId: 'YT_LOOKUP' })
+    expect(res.statusCode).toBe(204)
+    expect(mockedYoutubeDuration).toHaveBeenLastCalledWith('YT_LOOKUP')
+    expect(store.getSession(session.id).duration).toBe(2468)
+  })
+
+  test('a duration in the body wins without a lookup', async () => {
+    mockedYoutubeDuration.mockClear()
+    await putSources(session.id, { sources_youtubeId: 'YT_WITH_DURATION', duration: 999 })
+    expect(mockedYoutubeDuration).not.toHaveBeenCalled()
+    expect(store.getSession(session.id).duration).toBe(999)
+  })
+
+  test('the same video with a known duration is not looked up again', async () => {
+    mockedYoutubeDuration.mockClear()
+    await putSources(session.id, { sources_youtubeId: 'YT_WITH_DURATION', sources_swarmHash: 'S' })
+    expect(mockedYoutubeDuration).not.toHaveBeenCalled()
+    expect(store.getSession(session.id).duration).toBe(999)
   })
 
   test('explicit empty string still clears a field', async () => {
