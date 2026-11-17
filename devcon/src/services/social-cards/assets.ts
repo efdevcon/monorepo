@@ -22,12 +22,13 @@ export function interFonts() {
 
 // DC8 cards are set in Poppins — Regular 400 + Medium 500 (titles on the
 // YT/OG cards, Figma 5068:1684) + SemiBold 600 (speaker-card tags, Figma
-// 5118:6111) + Bold 700.
+// 5118:6111) + Bold 700 + ExtraBold 800 (the volunteer certificate's name).
 export interface PoppinsFonts {
   regular: ArrayBuffer
   medium: ArrayBuffer
   semibold: ArrayBuffer
   bold: ArrayBuffer
+  extrabold: ArrayBuffer
 }
 let poppins: PoppinsFonts
 try {
@@ -36,6 +37,7 @@ try {
     medium: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-500.ttf'))),
     semibold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-SemiBold.ttf'))),
     bold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-Bold.ttf'))),
+    extrabold: toArrayBuffer(readFileSync(join(FONT_DIR, 'Poppins-800.ttf'))),
   }
 } catch (error) {
   throw new Error(`[social-cards] missing Poppins fonts in public/fonts: ${(error as Error).message}`)

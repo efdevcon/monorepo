@@ -16,6 +16,8 @@ import Image from 'next/image'
 import { Eye, FileText } from 'lucide-react'
 import dc8Logo from 'assets/images/dc-8/dc8-logo.png'
 import { FormHeaderImage } from './FormHeaderImage'
+import { CertificateCard } from './CertificateCard'
+import { formCertificate } from 'config/certificates'
 
 interface ConditionalRule {
   targetColumnId: string
@@ -588,6 +590,11 @@ function FormInner({
         <form onSubmit={handleFormSubmit} className="flex flex-col gap-6 w-full">
           {schema.subheading && <FormSubheading text={schema.subheading} />}
 
+          {/* Already submitted: their certificate up front, no need to submit again. */}
+          {isUpdate && verifiedEmail && formCertificate(formSlug) && (
+            <CertificateCard viewId={viewId} certificate={formCertificate(formSlug)!} />
+          )}
+
           {formSlug === RTD_EVENT_FORM_SLUG && approvedUpdate && (
             <div className="rounded-xl border border-[#f0c000]/40 bg-[#fff8e1] px-4 py-3 text-sm leading-5 text-[#5c4a00]">
               This event has already been approved. If you change it, we will have to review it again before it can be
@@ -818,6 +825,8 @@ export default function FormPage({ viewId, requireOtp, closed, formSlug, listedO
                   {schema?.successMsg ?? 'Your application has been submitted.'}
                 </p>
               )}
+
+              {formCertificate(formSlug) && <CertificateCard viewId={viewId} certificate={formCertificate(formSlug)!} />}
 
               <Link
                 href="/"
