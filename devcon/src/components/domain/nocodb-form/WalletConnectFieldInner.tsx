@@ -174,8 +174,10 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
   const connected = Boolean(stored && walletProof)
   // react-hook-form only validates registered fields and this widget writes its
   // value with setValue, so a required wallet needs a registered (hidden) input
-  // carrying the rule: both the address and the signed proof must be present.
-  // The submit route re-checks the proof server-side.
+  // carrying the rule. The stored address is the signal: it is only ever written
+  // together with the signed proof (restore, verify) and cleared with it, and
+  // checking the proof here would race the context update on restore. The
+  // submit route verifies the proof itself.
   const requiredError = errors[fieldKey]?.message as string | undefined
 
   return (
@@ -248,7 +250,7 @@ function WalletWidget({ columnName, label, required, description, hideHeader }: 
         <input
           type="hidden"
           {...register(fieldKey, {
-            validate: value => (value && walletProof ? true : 'Connect your wallet and sign the free message to continue.'),
+            validate: value => (value ? true : 'Connect your wallet and sign the free message to continue.'),
           })}
         />
       )}
