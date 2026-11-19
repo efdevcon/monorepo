@@ -4,7 +4,19 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Page from 'components/common/layouts/page'
 import type { FormField } from 'services/nocodb-meta'
-import { Check, Star, ExternalLink, Loader2, ChevronLeft, ChevronRight, Mail, ListFilter } from 'lucide-react'
+import {
+  Check,
+  Copy,
+  Star,
+  ExternalLink,
+  Loader2,
+  ChevronLeft,
+  ChevronRight,
+  Mail,
+  ListFilter,
+  Sparkles,
+  Wallet,
+} from 'lucide-react'
 import {
   CARD,
   PAGE_BG,
@@ -37,6 +49,61 @@ import {
 // review password.
 
 type SurveyRecord = Record<string, unknown>
+
+interface Contact {
+  email: string | null
+  wallet: string | null
+  memory: string | null
+}
+
+const NO_CONTACT: Contact = { email: null, wallet: null, memory: null }
+
+/** One contact detail with a copy button; the full value is shown and selectable. */
+function ContactItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  const [copied, setCopied] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  useEffect(() => {
+    setCopied(false)
+    return () => clearTimeout(timer.current)
+  }, [value])
+  const copy = () => {
+    navigator.clipboard
+      ?.writeText(value)
+      .then(() => {
+        setCopied(true)
+        clearTimeout(timer.current)
+        timer.current = setTimeout(() => setCopied(false), 1500)
+      })
+      .catch(() => {
+        // clipboard refused: the value is still selectable on the page
+      })
+  }
+  return (
+    <span className="inline-flex items-center gap-1.5 min-w-0 max-w-full text-sm text-[var(--sr-body)]">
+      <span className="shrink-0 text-[var(--sr-faint)]" title={label}>
+        {icon}
+      </span>
+      <span className="sr-only">{label}: </span>
+      <span className="min-w-0 break-all select-all">{value}</span>
+      <button
+        type="button"
+        onClick={copy}
+        className="shrink-0 p-1 rounded-md text-[var(--sr-faint)] hover:text-[var(--sr-ink)] hover:bg-[var(--sr-soft)]"
+        aria-label={copied ? `${label} copied` : `Copy ${label.toLowerCase()}`}
+        title={copied ? 'Copied' : `Copy ${label.toLowerCase()}`}
+      >
+        {copied ? (
+          <Check className="w-3.5 h-3.5" aria-hidden="true" />
+        ) : (
+          <Copy className="w-3.5 h-3.5" aria-hidden="true" />
+        )}
+      </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? `${label} copied` : ''}
+      </span>
+    </span>
+  )
+}
 
 interface Nav {
   prevId: number | null
@@ -100,6 +167,7 @@ export default function SurveyReviewPage() {
   const [nocodbUrl, setNocodbUrl] = useState<string | null>(null)
   const [hasNotes, setHasNotes] = useState(false)
   const [role, setRole] = useState('')
+  const [contact, setContact] = useState<Contact>(NO_CONTACT)
   // Id of the response whose data is on screen. While another one loads, the
   // page shows the previous data dimmed and notes can't be saved.
   const [loadedId, setLoadedId] = useState<string | null>(null)
@@ -178,6 +246,7 @@ export default function SurveyReviewPage() {
         setNocodbUrl(json.nocodbUrl ?? null)
         setHasNotes(!!json.hasNotes)
         setRole(typeof json.role === 'string' ? json.role : '')
+        setContact({ ...NO_CONTACT, ...(json.contact ?? {}) })
         const note = String(json.record?.['Admin Notes'] ?? '')
         setComment(readDrafts(viewId)[id] ?? note)
         setSavedComment(note)
@@ -282,11 +351,12 @@ export default function SurveyReviewPage() {
     )
   }
 
-  // Identity for the header: a name-like answer, else the first email answer.
+  // Identity for the header: a name-like answer, and the respondent's contact
+  // columns. Hidden while another response loads (or failed to), so a copy
+  // button never hands out the previous person's details.
   const nameField = fields.find(f => /name/i.test(f.title) && !isEmpty(record?.[f.column_name]))
-  const emailField = fields.find(f => f.uidt === 'Email' && !isEmpty(record?.[f.column_name]))
   const name = nameField ? String(record?.[nameField.column_name]) : ''
-  const email = emailField ? String(record?.[emailField.column_name]) : ''
+  const { email, wallet, memory } = stale ? NO_CONTACT : contact
   const submitted = record?.['CreatedAt'] ?? record?.['created_at']
 
   const answerable = fields.filter(f => f.uidt !== 'Checkbox')
@@ -375,15 +445,36 @@ export default function SurveyReviewPage() {
                       <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">
                         {name || `Response #${loadedId}`}
                       </h1>
-                      <p className="text-sm text-[var(--sr-muted)]">
-                        {email && (
-                          <span className="inline-flex items-center gap-1">
-                            <Mail className="w-3.5 h-3.5" aria-hidden="true" /> {email}
-                          </span>
-                        )}
-                        {email && submitted ? ' · ' : ''}
-                        {submitted ? `Submitted ${new Date(String(submitted)).toLocaleDateString()}` : ''}
-                      </p>
+                      {submitted && (
+                        <p className="text-sm text-[var(--sr-muted)]">
+                          Submitted {new Date(String(submitted)).toLocaleDateString()}
+                        </p>
+                      )}
+                      {(email || wallet || memory) && (
+                        <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+                          {email && (
+                            <ContactItem
+                              icon={<Mail className="w-4 h-4" aria-hidden="true" />}
+                              label="Email"
+                              value={email}
+                            />
+                          )}
+                          {wallet && (
+                            <ContactItem
+                              icon={<Wallet className="w-4 h-4" aria-hidden="true" />}
+                              label="Wallet"
+                              value={wallet}
+                            />
+                          )}
+                          {memory && (
+                            <ContactItem
+                              icon={<Sparkles className="w-4 h-4" aria-hidden="true" />}
+                              label="Memory"
+                              value={memory}
+                            />
+                          )}
+                        </div>
+                      )}
                       {nocodbUrl && (
                         <a
                           href={nocodbUrl}

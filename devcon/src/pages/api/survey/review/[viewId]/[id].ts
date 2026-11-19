@@ -2,7 +2,15 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getRowById, updateRow, getTableFields, getAllTableColumns } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
-import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
+import { getAddress, isAddress } from 'viem'
+import {
+  getSurveyConfig,
+  visibleFieldsFor,
+  roleOf,
+  contactOf,
+  surveyQuestions,
+  NOTES_COLUMN,
+} from 'services/survey-review'
 import { invalidateSurveyRows, surveyHandler } from 'services/survey-review-rows'
 
 // NocoDB workspace in the "Open in NocoDB" deep link (same one the builder
@@ -46,10 +54,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const hasNotes = columns.some(c => c.title === NOTES_COLUMN)
 
     // Only the questions this respondent was actually shown.
-    const visibleFields = visibleFieldsFor(config, record, allFields)
+    const visibleFields = visibleFieldsFor(config, record, surveyQuestions(config, allFields))
     const role = roleOf(config, record)
-    // Send only what the page shows: the shown questions plus id, date and
-    // note, never other columns of the table (hidden fields, internal flags).
+    // Who answered (this page is behind the reviewer password). Wallets are
+    // shown in EIP-55 form. Anything else (not an address, or mixed case with a
+    // wrong checksum, i.e. probably a typo) is shown exactly as entered.
+    const contact = contactOf(config, record)
+    if (contact.wallet && isAddress(contact.wallet, { strict: true })) contact.wallet = getAddress(contact.wallet)
+    // Send only what the page shows: the shown questions, contact details, id,
+    // date and note, never other columns of the table (internal flags).
     const keep = ['Id', 'CreatedAt', 'created_at', NOTES_COLUMN, ...visibleFields.map(f => f.column_name)]
     const shownRecord = Object.fromEntries(keep.filter(k => k in record).map(k => [k, record[k]]))
 
@@ -60,6 +73,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       record: shownRecord,
       fields: visibleFields,
       role,
+      contact,
       hasNotes,
     })
     return

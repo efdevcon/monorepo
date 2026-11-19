@@ -5,12 +5,13 @@ import { CARD } from 'components/domain/survey-review'
 import { normalizeSearchText } from 'services/survey-review-shared'
 
 // Side panel for the survey review page: every response, with role filters,
-// a word search across all answers, an "only with written comments" toggle
+// a word search across all answers and emails, an "only with written comments" toggle
 // and a sort by average rating. The filtered, sorted list also drives
 // Prev/Next and the ← → keys on the page.
 
 export interface ResponseSummary {
   id: number
+  email?: string | null
   role: string
   avgRating: number | null
   snippet: string
@@ -175,10 +176,10 @@ export function ResponseList({
 
   return (
     <aside
-      className={`${CARD} flex flex-col overflow-hidden lg:sticky lg:top-4 max-h-[60vh] lg:max-h-[calc(100vh-2rem)]`}
+      className={`${CARD} flex flex-col overflow-y-auto lg:sticky lg:top-4 max-h-[75vh] lg:max-h-[calc(100vh-2rem)]`}
       aria-label="Responses"
     >
-      <div className="flex flex-col gap-3 p-3 border-b border-[var(--sr-divider)]">
+      <div className="shrink-0 flex flex-col gap-3 p-3 border-b border-[var(--sr-divider)]">
         {overviewHref && (
           <Link
             href={overviewHref}
@@ -205,8 +206,8 @@ export function ResponseList({
             type="search"
             value={q}
             onChange={e => setQ(e.target.value)}
-            placeholder="Search all answers"
-            aria-label="Search all answers"
+            placeholder="Search answers or email"
+            aria-label="Search answers or email"
             className="flex-1 min-w-0 bg-transparent text-sm text-[var(--sr-ink)] outline-none"
           />
         </label>
@@ -221,7 +222,7 @@ export function ResponseList({
         </label>
       </div>
 
-      <div className="flex items-center justify-between gap-2 px-3 py-2 border-b border-[var(--sr-divider)]">
+      <div className="shrink-0 flex items-center justify-between gap-2 px-3 py-2 border-b border-[var(--sr-divider)]">
         <span className="text-[11px] font-semibold uppercase tracking-wide text-[var(--sr-muted)] tabular-nums">
           {responses ? `${filtered.length} shown` : 'Responses'}
         </span>
@@ -242,7 +243,7 @@ export function ResponseList({
         </label>
       </div>
 
-      <div ref={listRef} className="flex-1 overflow-y-auto">
+      <div ref={listRef} className="flex-1 min-h-[12rem] overflow-y-auto">
         {error && <p className="p-3 text-sm text-[var(--sr-bad)]">{error}</p>}
         {!responses && !error && (
           <p className="flex items-center gap-2 p-3 text-sm text-[var(--sr-muted)]">
@@ -282,6 +283,7 @@ export function ResponseList({
                 </span>
               )}
             </span>
+            {r.email && <span className="text-xs text-[var(--sr-body)] truncate">{r.email}</span>}
             <span className="text-xs text-[var(--sr-muted)] truncate">{r.snippet || 'No written comments'}</span>
           </Link>
         ))}

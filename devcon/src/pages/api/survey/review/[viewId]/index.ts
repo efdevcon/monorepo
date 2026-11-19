@@ -1,7 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getTableFields } from 'services/nocodb'
-import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
+import {
+  getSurveyConfig,
+  visibleFieldsFor,
+  roleOf,
+  contactOf,
+  surveyQuestions,
+  NOTES_COLUMN,
+} from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 import { normalizeSearchText } from 'services/survey-review-shared'
 
@@ -10,7 +17,8 @@ import { normalizeSearchText } from 'services/survey-review-shared'
 // next to it.
 // GET -> one summary per response: role, average star rating, a snippet of
 // the first written answer, and the text of every answer the respondent was
-// shown (for the word search). Only questions on the form are included.
+// shown plus their email (for the word search). Only questions on the form
+// and the contact email are included.
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
@@ -28,7 +36,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const [fields, rows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
+  const [allFields, rows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
+  const fields = surveyQuestions(config, allFields)
 
   const responses = rows
     .map(row => {
@@ -53,8 +62,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         if (f.uidt === 'LongText' && text.trim().length > 25) hasWritten = true
         if (!snippet && f.uidt === 'LongText' && text.trim().length > 3) snippet = text.trim()
       }
+      const { email } = contactOf(config, row)
+      if (email) texts.push(email) // so a reviewer can find someone by email
       return {
         id,
+        email,
         role: roleOf(config, row),
         avgRating: ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length) * 5 : null,
         snippet: snippet.slice(0, 140),

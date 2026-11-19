@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
-import { getSurveyConfig, sawField, roleOf } from 'services/survey-review'
+import { getSurveyConfig, sawField, roleOf, surveyQuestions } from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 
 // Admin "survey review" endpoint for one question across every response,
@@ -31,7 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const [fields, meta] = await Promise.all([getTableFields(viewId), resolveFormView(viewId)])
   // Only questions that are on the form can be read here (not hidden columns).
-  const questions = fields.filter(f => f.column_name !== config.roleColumn)
+  const questions = surveyQuestions(config, fields)
   const field = questions.find(f => f.column_name === column)
   if (!field) {
     res.status(404).json({ success: false, error: 'Unknown question' })
