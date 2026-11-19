@@ -145,11 +145,22 @@ export function memoryNftLink(m: { chainId: number; tokenId: number }): { label:
 }
 
 /**
+ * Stored on a mint whose batch landed without minting it: the contract skips
+ * a recipient that refuses ERC-1155 tokens (a contract or EIP-7702 wallet
+ * without onERC1155Received), so the same wallet would refuse again.
+ */
+export const MEMORY_REFUSED_REASON = 'The batch landed without a token for this ticket'
+
+/**
  * What a person reads when their mint failed. A sponsorship refusal (a policy
  * limit, the paymaster) is on our side and passes once fixed, so it says so
- * rather than inviting retries that cannot work yet.
+ * rather than inviting retries that cannot work yet; a wallet that refused the
+ * token needs another wallet, not a retry.
  */
 export function memoryFailureMessage(reason: string | null): string {
+  if (reason === MEMORY_REFUSED_REASON) {
+    return "Your wallet can't receive this NFT. Connect a different wallet above and mint again."
+  }
   if (reason && /sponsor|paymaster|policy|insufficient funds/i.test(reason)) {
     return 'Minting is paused for a moment on our side. Please try again in a few minutes.'
   }

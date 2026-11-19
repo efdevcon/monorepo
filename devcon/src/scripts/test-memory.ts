@@ -7,6 +7,7 @@ import { getAddress, keccak256, toBytes, type Address, type Hex } from 'viem'
 import {
   formatCode,
   memoryFailureMessage,
+  MEMORY_REFUSED_REASON,
   msToNextSlot,
   normalizeCode,
   slotNumber,
@@ -68,6 +69,10 @@ check(
 check(
   'anything else: try again',
   memoryFailureMessage('The batch failed onchain') === "That mint didn't go through. Please try again."
+)
+check(
+  'wallet refused the token: use another wallet, not a retry',
+  /different wallet/i.test(memoryFailureMessage(MEMORY_REFUSED_REASON))
 )
 
 // ---- row to field state

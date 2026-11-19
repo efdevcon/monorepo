@@ -1,5 +1,5 @@
 import { getAddress, type Address, type Hex } from 'viem'
-import { slotPhase, SLOT_SECONDS } from './memory'
+import { MEMORY_REFUSED_REASON, slotPhase, SLOT_SECONDS } from './memory'
 import type { MintRow } from './state'
 
 /**
@@ -127,7 +127,7 @@ export async function flush(deps: FlushDeps): Promise<void> {
             })
           : store.update(chainId, [row.ticket_key], {
               status: 'failed',
-              error: 'The batch landed without a token for this ticket',
+              error: MEMORY_REFUSED_REASON,
             })
       )
     )
