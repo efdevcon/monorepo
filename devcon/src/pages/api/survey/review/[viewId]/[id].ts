@@ -2,11 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getRowById, updateRow, listRows, getTableFields, getAllTableColumns } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
-import { getSurveyConfig, visibleFieldsFor, roleOf } from 'services/survey-review'
-
-// Optional private reviewer column on the survey table. Notes are only
-// offered when the table actually has it.
-const NOTES_COLUMN = 'Admin Notes'
+import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
 
 // NocoDB workspace in the "Open in NocoDB" deep link (same one the builder
 // review page links into).

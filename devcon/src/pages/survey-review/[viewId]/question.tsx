@@ -8,11 +8,13 @@ import { ChevronLeft, Loader2 } from 'lucide-react'
 import {
   CARD,
   PAGE_BG,
+  SurveyTheme,
   AnswerValue,
   SurveyPasswordGate,
   isUnanswered,
   parseSection,
 } from 'components/domain/survey-review'
+import { roleLabel } from 'components/domain/survey-review/ResponseList'
 import {
   readStoredPassword,
   storePassword,
@@ -42,12 +44,6 @@ function valuesOf(field: FormField, value: unknown): string[] {
   }
   return [String(value)]
 }
-
-const ROLE_SHORT: Record<string, string> = {
-  'Ecosystem / Community Org (incl. Student Groups)': 'Ecosystem / Community Org',
-  'Volunteer / Volunteer Lead': 'Volunteer',
-}
-const roleLabel = (r: string) => ROLE_SHORT[r] || r || 'No role'
 
 export default function SurveyQuestionPage() {
   const router = useRouter()
@@ -180,8 +176,8 @@ export default function SurveyQuestionPage() {
   const chip = (active: boolean) =>
     `inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-sm font-medium transition-colors ${
       active
-        ? 'bg-[#160b2b] text-white border-[#160b2b]'
-        : 'bg-white text-[#3b3450] border-[#dddae2] hover:border-[#160b2b]'
+        ? 'bg-[var(--sr-ink)] text-[var(--sr-on-strong)] border-[var(--sr-ink)]'
+        : 'bg-[var(--sr-card)] text-[var(--sr-body)] border-[var(--sr-line)] hover:border-[var(--sr-ink)]'
     }`
 
   return (
@@ -189,13 +185,14 @@ export default function SurveyQuestionPage() {
       <Head>
         <title>{field ? `Survey: ${field.title}` : 'Survey Review'}</title>
       </Head>
-      <div className={`min-h-[80vh] ${PAGE_BG} py-4 px-4`}>
+      <SurveyTheme />
+      <div className={`${PAGE_BG} py-4 px-4`}>
         <div className="max-w-[820px] mx-auto flex flex-col gap-6">
           <div className="flex flex-wrap items-center gap-3">
             {from && (
               <Link
                 href={`${base}/${from}`}
-                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[#dddae2] bg-white text-sm font-medium text-[#160b2b] hover:border-[#160b2b] transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-[var(--sr-line)] bg-[var(--sr-card)] text-sm font-medium text-[var(--sr-ink)] hover:border-[var(--sr-ink)] transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" /> Back to response
               </Link>
@@ -206,7 +203,7 @@ export default function SurveyQuestionPage() {
                 onChange={e =>
                   router.push({ pathname: router.pathname, query: { ...router.query, column: e.target.value } })
                 }
-                className="flex-1 min-w-0 h-9 px-3 border border-[#dddae2] bg-white rounded-lg text-sm text-[#160b2b]"
+                className="flex-1 min-w-0 h-9 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)]"
                 aria-label="Pick a question"
               >
                 {pickerGroups.map((g, gi) => (
@@ -220,21 +217,23 @@ export default function SurveyQuestionPage() {
                 ))}
               </select>
             )}
-            {loading && <Loader2 className="w-4 h-4 animate-spin text-[#594d73]" aria-label="Loading" />}
+            {loading && <Loader2 className="w-4 h-4 animate-spin text-[var(--sr-muted)]" aria-label="Loading" />}
           </div>
 
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && <p className="text-sm text-[var(--sr-bad)]">{error}</p>}
 
           {field && (
             <>
               <div className={`${CARD} p-6 flex flex-col gap-4`}>
                 <div className="flex flex-col gap-1">
                   {surveyTitle && (
-                    <span className="text-xs font-bold uppercase tracking-wide text-[#7235ed]">{surveyTitle}</span>
+                    <span className="text-xs font-bold uppercase tracking-wide text-[var(--sr-accent)]">
+                      {surveyTitle}
+                    </span>
                   )}
-                  <h1 className="text-2xl font-extrabold text-[#160b2b]">{field.title}</h1>
-                  <p className="text-sm text-[#594d73]">
-                    <b className="text-[#160b2b]">{answered.length}</b> answered · {pool.length - answered.length}{' '}
+                  <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">{field.title}</h1>
+                  <p className="text-sm text-[var(--sr-muted)]">
+                    <b className="text-[var(--sr-ink)]">{answered.length}</b> answered · {pool.length - answered.length}{' '}
                     didn&apos;t answer · {role === 'all' ? 'all roles that were asked' : `${roleLabel(role)} only`}
                   </p>
                 </div>
@@ -261,24 +260,26 @@ export default function SurveyQuestionPage() {
                         onClick={() => setPicked(picked === v ? null : v)}
                         aria-pressed={picked === v}
                         className={`grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(80px,220px)_minmax(0,1fr)_80px] items-center gap-x-3 gap-y-1 px-2 py-1 rounded-lg border text-left transition-colors ${
-                          picked === v ? 'border-[#decffb] bg-[#f3f0ff]' : 'border-transparent hover:bg-[#f9f8fa]'
+                          picked === v
+                            ? 'border-[var(--sr-accent-line)] bg-[var(--sr-accent-bg)]'
+                            : 'border-transparent hover:bg-[var(--sr-soft)]'
                         }`}
                       >
-                        <span className="text-sm text-[#3b3450] truncate" title={v}>
+                        <span className="text-sm text-[var(--sr-body)] truncate" title={v}>
                           {field.uidt === 'Rating' ? `${'★'.repeat(Number(v))} ${v}` : v}
                         </span>
-                        <span className="order-3 sm:order-none col-span-2 sm:col-span-1 block h-3 rounded-full bg-[#f1eff4] overflow-hidden">
+                        <span className="order-3 sm:order-none col-span-2 sm:col-span-1 block h-3 rounded-full bg-[var(--sr-chip)] overflow-hidden">
                           <span
-                            className="block h-full rounded-full bg-[#7235ed]"
+                            className="block h-full rounded-full bg-[var(--sr-accent)]"
                             style={{ width: `${(n / maxCount) * 100}%`, minWidth: n ? 2 : 0 }}
                           />
                         </span>
-                        <span className="text-xs text-[#594d73] text-right tabular-nums whitespace-nowrap">
+                        <span className="text-xs text-[var(--sr-muted)] text-right tabular-nums whitespace-nowrap">
                           {n} · {Math.round((n / answered.length) * 100)}%
                         </span>
                       </button>
                     ))}
-                    <p className="text-xs text-[#9b93ad] mt-1">
+                    <p className="text-xs text-[var(--sr-faint)] mt-1">
                       {average != null ? `Average ${average.toFixed(1)}/${field.rating?.max ?? 5}. ` : ''}Click a bar to
                       show only those answers{field.uidt === 'MultiSelect' ? ' (people could pick several)' : ''}.
                     </p>
@@ -293,18 +294,18 @@ export default function SurveyQuestionPage() {
                   onChange={e => setSearch(e.target.value)}
                   placeholder="Search these answers"
                   aria-label="Search these answers"
-                  className="h-10 px-3 border border-[#dddae2] bg-white rounded-lg text-sm"
+                  className="h-10 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm"
                 />
               )}
 
-              <div className="flex items-center gap-3 text-sm text-[#594d73]">
+              <div className="flex items-center gap-3 text-sm text-[var(--sr-muted)]">
                 {picked !== null ? (
                   <>
                     Showing {shown.length} answering &ldquo;{picked}&rdquo;
                     <button
                       type="button"
                       onClick={() => setPicked(null)}
-                      className="px-2.5 py-0.5 rounded-full border border-[#dddae2] bg-white text-xs hover:border-[#160b2b]"
+                      className="px-2.5 py-0.5 rounded-full border border-[var(--sr-line)] bg-[var(--sr-card)] text-xs hover:border-[var(--sr-ink)]"
                     >
                       Show all
                     </button>
@@ -317,13 +318,13 @@ export default function SurveyQuestionPage() {
               <div className="flex flex-col gap-3">
                 {shown.map(a => (
                   <div key={a.id} className={`${CARD} px-5 py-4 flex flex-col gap-2`}>
-                    <div className="flex items-center justify-between gap-3 text-sm text-[#594d73]">
+                    <div className="flex items-center justify-between gap-3 text-sm text-[var(--sr-muted)]">
                       <span>
-                        <b className="text-[#160b2b] tabular-nums">#{a.id}</b> {roleLabel(a.role)}
+                        <b className="text-[var(--sr-ink)] tabular-nums">#{a.id}</b> {roleLabel(a.role)}
                       </span>
                       <Link
                         href={`${base}/${a.id}`}
-                        className="px-3 py-1 rounded-full border border-[#dddae2] text-xs font-medium text-[#160b2b] hover:border-[#160b2b] transition-colors"
+                        className="px-3 py-1 rounded-full border border-[var(--sr-line)] text-xs font-medium text-[var(--sr-ink)] hover:border-[var(--sr-ink)] transition-colors"
                       >
                         Open response ›
                       </Link>
@@ -331,7 +332,7 @@ export default function SurveyQuestionPage() {
                     <AnswerValue field={field} value={a.value} />
                   </div>
                 ))}
-                {shown.length === 0 && !loading && <p className="text-sm text-[#594d73]">No answers match.</p>}
+                {shown.length === 0 && !loading && <p className="text-sm text-[var(--sr-muted)]">No answers match.</p>}
               </div>
             </>
           )}

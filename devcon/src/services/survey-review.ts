@@ -5,6 +5,10 @@ import type { FormField } from 'services/nocodb-meta'
 
 export type SurveyRow = Record<string, unknown>
 
+// Optional private reviewer column on a survey table. Notes are only offered
+// when the table actually has it.
+export const NOTES_COLUMN = 'Admin Notes'
+
 export interface SurveyConfig {
   // Column holding the respondent's role, shown in the header.
   roleColumn?: string
