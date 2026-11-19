@@ -26,7 +26,9 @@ import {
 // Everyone's answer to one survey question: a breakdown for ratings and
 // choices (click a bar to filter), then each answer with a link to the full
 // response. Opened from the "All answers" link beside a question on
-// pages/survey-review/[viewId]/[id].tsx. Gated by the builder review password.
+// pages/survey-review/[viewId]/[id].tsx, or from an answer clicked on the
+// Overview (?answer=No opens with that answer picked). Gated by the builder
+// review password.
 
 interface Answer {
   id: number
@@ -55,6 +57,8 @@ export default function SurveyQuestionPage() {
   const initialSearch = typeof router.query.q === 'string' ? router.query.q : ''
   // Optional role to open with, e.g. the role filter that was active on the Overview.
   const initialRole = typeof router.query.role === 'string' ? router.query.role : null
+  // Optional answer to open with, e.g. "No" clicked on the Overview page.
+  const initialAnswer = typeof router.query.answer === 'string' ? router.query.answer : null
 
   const [secret, setSecret] = useState<string | null>(null)
   const [field, setField] = useState<FormField | null>(null)
@@ -107,8 +111,8 @@ export default function SurveyQuestionPage() {
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
         setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
         setSurveyTitle(json.survey?.title ?? '')
-        // Each question starts unfiltered (apart from a search passed in the link).
-        setPicked(null)
+        // Each question starts unfiltered (apart from what the link passes in).
+        setPicked(initialAnswer)
         setRole(initialRole)
         setSearch(initialSearch)
       } catch (e) {
@@ -117,7 +121,7 @@ export default function SurveyQuestionPage() {
         if (isCurrent()) setLoading(false)
       }
     },
-    [viewId, column, initialSearch, initialRole]
+    [viewId, column, initialSearch, initialRole, initialAnswer]
   )
 
   useEffect(() => {
@@ -219,13 +223,14 @@ export default function SurveyQuestionPage() {
               <select
                 value={column}
                 onChange={e => {
-                  // A search from the Overview belongs to the old question: drop it.
+                  // A search or answer from the Overview belongs to the old question: drop it.
                   const query: Record<string, string | string[] | undefined> = {
                     ...router.query,
                     column: e.target.value,
                   }
                   delete query.q
                   delete query.role
+                  delete query.answer
                   router.push({ pathname: router.pathname, query })
                 }}
                 className="flex-1 min-w-0 h-9 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)]"

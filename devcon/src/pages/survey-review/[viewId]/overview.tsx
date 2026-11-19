@@ -45,15 +45,29 @@ function Bar({ value, of }: { value: number; of: number }) {
   )
 }
 
-function OptionBars({ options, answered, moreHref }: { options: OptionCount[]; answered: number; moreHref: string }) {
+/** Each answer links to the question's page showing only the people who gave it. */
+function OptionBars({
+  options,
+  answered,
+  moreHref,
+  answerHref,
+}: {
+  options: OptionCount[]
+  answered: number
+  moreHref: string
+  answerHref: (answer: string) => string
+}) {
   const max = Math.max(1, ...options.map(o => o.count))
   const shown = options.slice(0, TOP_OPTIONS)
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-0.5">
       {shown.map(o => (
-        <div
+        <Link
           key={o.value}
-          className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(80px,220px)_minmax(0,1fr)_76px] items-center gap-x-3 gap-y-1"
+          href={answerHref(o.value)}
+          title={`Show the ${o.count} ${o.count === 1 ? 'person' : 'people'} who answered "${o.value}"`}
+          aria-label={`${o.value}: ${o.count} (${pct(o.count, answered)}%). Show the people who answered this.`}
+          className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(80px,220px)_minmax(0,1fr)_76px] items-center gap-x-3 gap-y-1 py-1 px-2 -mx-2 rounded-lg hover:bg-[var(--sr-soft)] transition-colors"
         >
           <span className="text-sm text-[var(--sr-body)] truncate" title={o.value}>
             {o.value}
@@ -64,7 +78,7 @@ function OptionBars({ options, answered, moreHref }: { options: OptionCount[]; a
           <span className="text-xs text-[var(--sr-muted)] text-right tabular-nums whitespace-nowrap">
             {o.count} · {pct(o.count, answered)}%
           </span>
-        </div>
+        </Link>
       ))}
       {options.length > TOP_OPTIONS && (
         <Link href={moreHref} className="text-xs text-[var(--sr-accent)] hover:underline w-fit">
@@ -98,13 +112,24 @@ function RatingRow({ stat, href }: { stat: RatingStat; href: string }) {
   )
 }
 
-function HeadlineCard({ label, value, sub }: { label: string; value: string; sub: string }) {
-  return (
-    <div className={`${CARD} p-5 flex flex-col gap-1 min-w-0`}>
+function HeadlineCard({ label, value, sub, href }: { label: string; value: string; sub: string; href?: string }) {
+  const body = (
+    <>
       <span className="text-xs font-semibold text-[var(--sr-muted)] leading-snug">{label}</span>
       <span className="text-3xl font-extrabold text-[var(--sr-ink)] tabular-nums">{value}</span>
       <span className="text-xs text-[var(--sr-faint)]">{sub}</span>
-    </div>
+    </>
+  )
+  // A question's card opens its answers.
+  return href ? (
+    <Link
+      href={href}
+      className={`${CARD} p-5 flex flex-col gap-1 min-w-0 hover:border-[var(--sr-accent-line)] transition-colors`}
+    >
+      {body}
+    </Link>
+  ) : (
+    <div className={`${CARD} p-5 flex flex-col gap-1 min-w-0`}>{body}</div>
   )
 }
 
@@ -141,9 +166,10 @@ export default function SurveyOverviewPage() {
   const base = viewId ? `/en/survey-review/${viewId}` : ''
   // Links to a question carry the role the stats on screen are for, so the
   // answers listed there match the counts shown here.
-  const questionHref = (column: string, q?: string) => {
+  const questionHref = (column: string, q?: string, answer?: string) => {
     const params = new URLSearchParams({ column })
     if (q) params.set('q', q)
+    if (answer !== undefined) params.set('answer', answer)
     if (shownRole !== null) params.set('role', shownRole)
     if (from) params.set('from', from)
     return `${base}/question?${params.toString()}`
@@ -307,7 +333,19 @@ export default function SurveyOverviewPage() {
                   />
                   {overview.highlights.map(h => {
                     const { value, sub } = headlineFor(h)
-                    return <HeadlineCard key={h.column} label={h.title} value={value} sub={sub} />
+                    return (
+                      <HeadlineCard
+                        key={h.column}
+                        label={h.title}
+                        value={value}
+                        sub={sub}
+                        href={
+                          h.kind === 'choice' && h.options[0]
+                            ? questionHref(h.column, undefined, h.options[0].value)
+                            : questionHref(h.column)
+                        }
+                      />
+                    )
                   })}
                 </div>
 
@@ -368,7 +406,12 @@ export default function SurveyOverviewPage() {
                           )}
 
                           {q.kind === 'choice' && q.answered > 0 && (
-                            <OptionBars options={q.options} answered={q.answered} moreHref={questionHref(q.column)} />
+                            <OptionBars
+                              options={q.options}
+                              answered={q.answered}
+                              moreHref={questionHref(q.column)}
+                              answerHref={answer => questionHref(q.column, undefined, answer)}
+                            />
                           )}
 
                           {q.kind === 'number' && (
