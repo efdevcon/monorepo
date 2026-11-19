@@ -1,4 +1,4 @@
-import type { FormField } from 'services/nocodb-meta'
+import type { ConditionalRule, FormField } from 'services/nocodb-meta'
 import { stripEncryptedPrefix } from 'config/encrypted-forms'
 import {
   isMemoryTitle,
@@ -232,4 +232,26 @@ function mintOnlyTest(config: SurveyConfig, fields: FormField[]): (row: SurveyRo
     if (memory === null || memory === undefined || String(memory).trim() === '') return false
     return !questions.some(f => isAnswered(f, row[f.column_name]))
   }
+}
+
+const TEXT_TYPES = new Set(['LongText', 'SingleLineText', 'RichText'])
+
+/**
+ * Written follow-ups to a question: the text questions right after it on the
+ * form (no other kind of question in between) that the form shows depending
+ * on its answer (a NocoDB show/hide rule on it, e.g. "Why not?" only after
+ * "No") or that are named after it ("ATT General" → "ATT General Why").
+ * Requiring them to sit right after the question keeps out rules that open a
+ * whole section, and a deeper follow-up of a follow-up. `questions` should
+ * come from surveyQuestions.
+ */
+export function followUpsFor(field: FormField, questions: FormField[], rules: ConditionalRule[]): FormField[] {
+  if (TEXT_TYPES.has(field.uidt)) return []
+  const ruled = new Set(rules.filter(r => r.enabled && r.sourceColumnId === field.id).map(r => r.targetColumnId))
+  const out: FormField[] = []
+  for (const f of questions.slice(questions.findIndex(q => q.column_name === field.column_name) + 1)) {
+    if (!TEXT_TYPES.has(f.uidt)) break
+    if (ruled.has(f.id) || f.column_name.startsWith(field.column_name + ' ')) out.push(f)
+  }
+  return out
 }

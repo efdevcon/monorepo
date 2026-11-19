@@ -34,6 +34,8 @@ interface Answer {
   id: number
   role: string
   value: unknown
+  // What this person wrote in the question's written follow-ups ("Why?").
+  followUps?: { column: string; text: string }[]
 }
 
 const CHOICE_TYPES = new Set(['Rating', 'SingleSelect', 'MultiSelect', 'Checkbox', 'Number'])
@@ -65,6 +67,9 @@ export default function SurveyQuestionPage() {
   const [questions, setQuestions] = useState<FormField[]>([])
   const [answers, setAnswers] = useState<Answer[]>([])
   const [mintOnlyRoles, setMintOnlyRoles] = useState<string[]>([])
+  // Titles of the question's written follow-ups, by column.
+  const [followUpTitles, setFollowUpTitles] = useState<Record<string, string>>({})
+  const [onlyWritten, setOnlyWritten] = useState(false)
   const [surveyTitle, setSurveyTitle] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -110,6 +115,15 @@ export default function SurveyQuestionPage() {
         setQuestions(Array.isArray(json.questions) ? json.questions : [])
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
         setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
+        setFollowUpTitles(
+          Object.fromEntries(
+            (Array.isArray(json.followUps) ? json.followUps : []).map((f: { column: string; title: string }) => [
+              f.column,
+              f.title,
+            ])
+          )
+        )
+        setOnlyWritten(false)
         setSurveyTitle(json.survey?.title ?? '')
         // Each question starts unfiltered (apart from what the link passes in).
         setPicked(initialAnswer)
@@ -187,6 +201,7 @@ export default function SurveyQuestionPage() {
   const shown = field
     ? answered
         .filter(a => picked === null || valuesOf(field, a.value).includes(picked))
+        .filter(a => !onlyWritten || (a.followUps?.length ?? 0) > 0)
         .filter(a => {
           if (!q) return true
           const text = normalizeSearchText(String(a.value ?? ''))
@@ -328,7 +343,7 @@ export default function SurveyQuestionPage() {
                 />
               )}
 
-              <div className="flex items-center gap-3 text-sm text-[var(--sr-muted)]">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--sr-muted)]">
                 {picked !== null ? (
                   <>
                     Showing {shown.length} answering &ldquo;{picked}&rdquo;
@@ -348,6 +363,17 @@ export default function SurveyQuestionPage() {
                     · {mintOnlyLabel(mintOnlyHidden)}
                   </span>
                 )}
+                {Object.keys(followUpTitles).length > 0 && (
+                  <label className="flex items-center gap-2 text-xs text-[var(--sr-muted)] cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={onlyWritten}
+                      onChange={e => setOnlyWritten(e.target.checked)}
+                      className="accent-[var(--sr-accent)]"
+                    />
+                    Only with a written explanation
+                  </label>
+                )}
               </div>
 
               <div className="flex flex-col gap-3">
@@ -365,6 +391,16 @@ export default function SurveyQuestionPage() {
                       </Link>
                     </div>
                     <AnswerValue field={field} value={a.value} />
+                    {a.followUps?.map(f => (
+                      <div key={f.column} className="flex flex-col gap-1 p-3 rounded-lg bg-[var(--sr-soft)]">
+                        <span className="text-xs font-semibold text-[var(--sr-muted)]">
+                          {followUpTitles[f.column] ?? f.column}
+                        </span>
+                        <p className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line [overflow-wrap:anywhere]">
+                          {f.text}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 ))}
                 {shown.length === 0 && !loading && <p className="text-sm text-[var(--sr-muted)]">No answers match.</p>}
