@@ -168,6 +168,7 @@ export default function SurveyReviewPage() {
   const [hasNotes, setHasNotes] = useState(false)
   const [role, setRole] = useState('')
   const [contact, setContact] = useState<Contact>(NO_CONTACT)
+  const [mintOnly, setMintOnly] = useState(false)
   // Id of the response whose data is on screen. While another one loads, the
   // page shows the previous data dimmed and notes can't be saved.
   const [loadedId, setLoadedId] = useState<string | null>(null)
@@ -184,7 +185,7 @@ export default function SurveyReviewPage() {
 
   const base = viewId ? `/en/survey-review/${viewId}` : ''
 
-  const { responses, error: listError, markNote } = useSurveyResponses(viewId, secret)
+  const { responses, mintOnlyRoles, error: listError, markNote } = useSurveyResponses(viewId, secret)
   const [filters, setFilters] = useListFilters(viewId)
   const filtered = useMemo(() => (responses ? filterResponses(responses, filters) : []), [responses, filters])
   const currentId = id ? Number(id) : null
@@ -247,6 +248,7 @@ export default function SurveyReviewPage() {
         setHasNotes(!!json.hasNotes)
         setRole(typeof json.role === 'string' ? json.role : '')
         setContact({ ...NO_CONTACT, ...(json.contact ?? {}) })
+        setMintOnly(!!json.mintOnly)
         const note = String(json.record?.['Admin Notes'] ?? '')
         setComment(readDrafts(viewId)[id] ?? note)
         setSavedComment(note)
@@ -387,6 +389,7 @@ export default function SurveyReviewPage() {
       <div className={`${PAGE_BG} py-4 px-4`}>
         <div className="max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-6 items-start">
           <ResponseList
+            mintOnlyRoles={mintOnlyRoles}
             responses={responses}
             filtered={filtered}
             error={listError}
@@ -411,7 +414,9 @@ export default function SurveyReviewPage() {
                     <span className="text-sm text-[var(--sr-muted)]">
                       {activeNav.position > 0
                         ? `Response ${activeNav.position} of ${activeNav.total}`
-                        : `Not in the current filter (${activeNav.total} shown)`}
+                        : mintOnly && !stale
+                          ? 'Mint-only submission, not in the list'
+                          : `Not in the current filter (${activeNav.total} shown)`}
                       <span className="hidden sm:inline text-[var(--sr-faint)]"> · use ← → keys</span>
                       {loading && (
                         <span className="inline-flex items-center gap-1.5 ml-2 align-[-4px] px-2.5 py-1 rounded-full bg-[var(--sr-accent)] text-[var(--sr-on-strong)] text-xs font-bold">
@@ -474,6 +479,12 @@ export default function SurveyReviewPage() {
                             />
                           )}
                         </div>
+                      )}
+                      {mintOnly && !stale && (
+                        <p className="mt-1 px-3 py-2 rounded-lg bg-[var(--sr-soft)] text-sm text-[var(--sr-muted)]">
+                          Mint-only submission: a Devcon 8 Memory was claimed but no survey question was answered. It is
+                          left out of the response list and the stats.
+                        </p>
                       )}
                       {nocodbUrl && (
                         <a

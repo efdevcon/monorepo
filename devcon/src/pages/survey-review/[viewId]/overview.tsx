@@ -6,7 +6,7 @@ import Page from 'components/common/layouts/page'
 import { ChevronLeft, ListFilter, Loader2, Star } from 'lucide-react'
 import { CARD, PAGE_BG, SurveyTheme, SurveyPasswordGate } from 'components/domain/survey-review'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
-import { LOW_AVERAGE } from 'services/survey-review-shared'
+import { LOW_AVERAGE, MINT_ONLY_HINT, mintOnlyLabel } from 'services/survey-review-shared'
 import type { OverviewStats, QuestionStat, RatingStat, OptionCount } from 'services/survey-review-stats'
 import {
   readStoredPassword,
@@ -128,6 +128,7 @@ export default function SurveyOverviewPage() {
   const [secret, setSecret] = useState<string | null>(null)
   const [overview, setOverview] = useState<OverviewStats | null>(null)
   const [surveyTitle, setSurveyTitle] = useState('')
+  const [mintOnlyHidden, setMintOnlyHidden] = useState(0)
   // null = all roles. '' is a real value: responses with no role.
   const [role, setRole] = useState<string | null>(null)
   // The role the stats on screen were computed for (lags `role` while loading).
@@ -182,6 +183,7 @@ export default function SurveyOverviewPage() {
           return
         }
         setOverview(json.overview)
+        setMintOnlyHidden(Number(json.mintOnlyHidden) || 0)
         setShownRole(forRole)
         setSurveyTitle(json.survey?.title ?? '')
       } catch (e) {
@@ -259,6 +261,12 @@ export default function SurveyOverviewPage() {
                   <p className="text-sm text-[var(--sr-muted)]">
                     Live from NocoDB · {shownRole === null ? 'all roles' : `${roleLabel(shownRole)} only`}. Each
                     question counts only the people who were asked it.
+                    {mintOnlyHidden > 0 && (
+                      <>
+                        {' '}
+                        <span title={MINT_ONLY_HINT}>{mintOnlyLabel(mintOnlyHidden)}.</span>
+                      </>
+                    )}
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by role">

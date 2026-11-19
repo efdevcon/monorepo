@@ -190,3 +190,46 @@ export function contactOf(config: SurveyConfig, row: SurveyRow, fields: FormFiel
   }
   return { email: read(c.email), wallet: read(c.wallet), memory: read(c.memory) }
 }
+
+function isAnswered(f: FormField, v: unknown): boolean {
+  if (v === null || v === undefined) return false
+  if (f.uidt === 'Checkbox') return v === true || v === 1 || v === '1' || v === 'true'
+  if (f.uidt === 'Rating') return Number(v) > 0 // 0 stars = skipped
+  if (typeof v === 'string') return v.trim() !== ''
+  if (Array.isArray(v)) return v.length > 0
+  return true
+}
+
+/**
+ * Splits off "mint-only" submissions: a Devcon 8 Memory claimed in the form
+ * but no survey question answered (role and contact columns don't count).
+ * They aren't survey responses, so the list, Overview and answer lists leave
+ * them out and show how many were hidden.
+ */
+export function withoutMintOnly(
+  config: SurveyConfig,
+  fields: FormField[],
+  rows: SurveyRow[]
+): { rows: SurveyRow[]; hidden: SurveyRow[] } {
+  const test = mintOnlyTest(config, fields)
+  const kept: SurveyRow[] = []
+  const hidden: SurveyRow[] = []
+  for (const row of rows) (test(row) ? hidden : kept).push(row)
+  return { rows: kept, hidden }
+}
+
+export function isMintOnly(config: SurveyConfig, row: SurveyRow, fields: FormField[]): boolean {
+  return mintOnlyTest(config, fields)(row)
+}
+
+// Every question counts, not only the ones this respondent's role was shown:
+// that only ever errs towards keeping a submission in the list.
+function mintOnlyTest(config: SurveyConfig, fields: FormField[]): (row: SurveyRow) => boolean {
+  const questions = surveyQuestions(config, fields)
+  const memoryColumn = contactColumnsFor(config, fields).memory
+  return row => {
+    const memory = memoryColumn ? row[memoryColumn] : null
+    if (memory === null || memory === undefined || String(memory).trim() === '') return false
+    return !questions.some(f => isAnswered(f, row[f.column_name]))
+  }
+}

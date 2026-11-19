@@ -7,6 +7,7 @@ import {
   roleOf,
   contactOf,
   surveyQuestions,
+  withoutMintOnly,
   NOTES_COLUMN,
 } from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
@@ -36,8 +37,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const [allFields, rows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
+  const [allFields, allRows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
   const fields = surveyQuestions(config, allFields)
+  const { rows, hidden } = withoutMintOnly(config, allFields, allRows)
 
   const responses = rows
     .map(row => {
@@ -79,7 +81,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     .filter(r => Number.isFinite(r.id))
     .sort((a, b) => a.id - b.id)
 
-  res.status(200).json({ success: true, responses })
+  // One role per hidden mint-only submission, so the panel can count them for
+  // the role filter it shows.
+  const mintOnlyRoles = hidden.map(row => roleOf(config, row))
+  res.status(200).json({ success: true, responses, mintOnlyRoles })
 }
 
 export default surveyHandler(handler)

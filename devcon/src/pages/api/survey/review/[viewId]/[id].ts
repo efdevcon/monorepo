@@ -8,6 +8,7 @@ import {
   visibleFieldsFor,
   roleOf,
   contactOf,
+  isMintOnly,
   surveyQuestions,
   NOTES_COLUMN,
 } from 'services/survey-review'
@@ -74,6 +75,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       fields: visibleFields,
       role,
       contact,
+      mintOnly: isMintOnly(config, record, allFields),
       hasNotes,
     })
     return

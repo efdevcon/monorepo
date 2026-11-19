@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
-import { getSurveyConfig, sawField, roleOf, surveyQuestions } from 'services/survey-review'
+import { getSurveyConfig, sawField, roleOf, surveyQuestions, withoutMintOnly } from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 
 // Admin "survey review" endpoint for one question across every response,
@@ -38,7 +38,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const rows = await getSurveyRows(viewId)
+  const { rows, hidden } = withoutMintOnly(config, fields, await getSurveyRows(viewId))
   const answers = rows
     .filter(row => sawField(config, row, field))
     .map(row => ({ id: Number(row['Id']), role: roleOf(config, row), value: row[field.column_name] ?? null }))
@@ -51,6 +51,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     field,
     questions,
     answers,
+    // Roles of the hidden mint-only submissions that were asked this question.
+    mintOnlyRoles: hidden.filter(row => sawField(config, row, field)).map(row => roleOf(config, row)),
   })
 }
 

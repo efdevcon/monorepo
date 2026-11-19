@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { BarChart3, ChevronRight, Loader2, Search, Star } from 'lucide-react'
 import { CARD } from 'components/domain/survey-review'
-import { normalizeSearchText } from 'services/survey-review-shared'
+import { MINT_ONLY_HINT, mintOnlyLabel, normalizeSearchText } from 'services/survey-review-shared'
 
 // Side panel for the survey review page: every response, with role filters,
 // a word search across all answers and emails, an "only with written comments" toggle
@@ -21,6 +21,8 @@ export interface ResponseSummary {
 }
 
 export type ListSort = 'id' | 'low' | 'high'
+
+const NO_ROLES: string[] = []
 
 export interface ListFilters {
   role: string
@@ -48,6 +50,7 @@ export const roleLabel = (r: string) => ROLE_SHORT[r] || r || 'No role'
 /** Loads the response list once per page visit; `markNote` keeps the note dots current after a save. */
 export function useSurveyResponses(viewId: string | undefined, secret: string | null) {
   const [responses, setResponses] = useState<ResponseSummary[] | null>(null)
+  const [mintOnlyRoles, setMintOnlyRoles] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -59,7 +62,10 @@ export function useSurveyResponses(viewId: string | undefined, secret: string | 
         const json = await res.json()
         if (cancelled) return
         if (!res.ok || !json.success) setError(json.error || `Could not load the response list (${res.status})`)
-        else setResponses(Array.isArray(json.responses) ? json.responses : [])
+        else {
+          setResponses(Array.isArray(json.responses) ? json.responses : [])
+          setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
+        }
       })
       .catch((e: Error) => {
         if (!cancelled) setError(e.message)
@@ -73,7 +79,7 @@ export function useSurveyResponses(viewId: string | undefined, secret: string | 
     setResponses(rs => (rs ? rs.map(r => (r.id === id ? { ...r, hasNote } : r)) : rs))
   }, [])
 
-  return { responses, error, markNote }
+  return { responses, mintOnlyRoles, error, markNote }
 }
 
 /** Filters kept for the browser tab, so they survive opening a question page and coming back. */
@@ -127,6 +133,7 @@ export function filterResponses(responses: ResponseSummary[], f: ListFilters): R
 interface ResponseListProps {
   responses: ResponseSummary[] | null
   filtered: ResponseSummary[]
+  mintOnlyRoles?: string[]
   error: string | null
   filters: ListFilters
   onFilters: (patch: Partial<ListFilters>) => void
@@ -138,6 +145,7 @@ interface ResponseListProps {
 export function ResponseList({
   responses,
   filtered,
+  mintOnlyRoles = NO_ROLES,
   error,
   filters,
   onFilters,
@@ -167,6 +175,8 @@ export function ResponseList({
     if (i.top < l.top) list.scrollTop += i.top - l.top
     else if (i.bottom > l.bottom) list.scrollTop += i.bottom - l.bottom
   }, [currentId, filtered.length])
+
+  const mintOnlyHidden = mintOnlyRoles.filter(r => filters.role === 'all' || r === filters.role).length
 
   const roles = useMemo(() => {
     const counts = new Map<string, number>()
@@ -250,6 +260,14 @@ export function ResponseList({
         </label>
       </div>
 
+      {mintOnlyHidden > 0 && (
+        <p
+          className="shrink-0 px-3 py-1.5 border-b border-[var(--sr-divider)] text-[11px] text-[var(--sr-muted)]"
+          title={MINT_ONLY_HINT}
+        >
+          {mintOnlyLabel(mintOnlyHidden)}
+        </p>
+      )}
       <div ref={listRef} className="flex-1 min-h-[12rem] overflow-y-auto">
         {error && <p className="p-3 text-sm text-[var(--sr-bad)]">{error}</p>}
         {!responses && !error && (

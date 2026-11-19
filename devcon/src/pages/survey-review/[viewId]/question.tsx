@@ -14,7 +14,7 @@ import {
   isUnanswered,
   parseSection,
 } from 'components/domain/survey-review'
-import { containsWords, normalizeSearchText } from 'services/survey-review-shared'
+import { MINT_ONLY_HINT, containsWords, mintOnlyLabel, normalizeSearchText } from 'services/survey-review-shared'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
 import {
   readStoredPassword,
@@ -60,6 +60,7 @@ export default function SurveyQuestionPage() {
   const [field, setField] = useState<FormField | null>(null)
   const [questions, setQuestions] = useState<FormField[]>([])
   const [answers, setAnswers] = useState<Answer[]>([])
+  const [mintOnlyRoles, setMintOnlyRoles] = useState<string[]>([])
   const [surveyTitle, setSurveyTitle] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -104,6 +105,7 @@ export default function SurveyQuestionPage() {
         setField(json.field)
         setQuestions(Array.isArray(json.questions) ? json.questions : [])
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
+        setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
         setSurveyTitle(json.survey?.title ?? '')
         // Each question starts unfiltered (apart from a search passed in the link).
         setPicked(null)
@@ -153,6 +155,7 @@ export default function SurveyQuestionPage() {
   }
 
   const pool = answers.filter(a => role === null || a.role === role)
+  const mintOnlyHidden = mintOnlyRoles.filter(r => role === null || r === role).length
   const answered = field ? pool.filter(a => field.uidt === 'Checkbox' || !isUnanswered(field, a.value)) : []
   const counted = !!field && CHOICE_TYPES.has(field.uidt)
 
@@ -334,6 +337,11 @@ export default function SurveyQuestionPage() {
                   </>
                 ) : (
                   <>Showing {shown.length}</>
+                )}
+                {mintOnlyHidden > 0 && (
+                  <span className="text-xs" title={MINT_ONLY_HINT}>
+                    · {mintOnlyLabel(mintOnlyHidden)}
+                  </span>
                 )}
               </div>
 
