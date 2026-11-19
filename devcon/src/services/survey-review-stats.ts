@@ -1,5 +1,6 @@
 import type { FormField } from 'services/nocodb-meta'
 import { type SurveyConfig, type SurveyRow, sawField, roleOf } from 'services/survey-review'
+import { LOW_AVERAGE, normalizeSearchText } from 'services/survey-review-shared'
 
 // Overview statistics for the survey review Overview page: averages, answer
 // breakdowns, common words and the comments from the least satisfied
@@ -74,8 +75,6 @@ export interface OverviewStats {
 const MIN_ANSWERS_FOR_RANKING = 3
 const MAX_TERMS = 8
 const MAX_COMMENTS = 3
-// Comments are only shown from respondents whose average star rating is below this.
-export const LOW_AVERAGE = 4
 
 // Common English words plus survey filler, left out of "common words".
 const STOPWORDS = new Set(
@@ -107,21 +106,28 @@ function valuesOf(field: FormField, v: unknown): string[] {
 
 const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : null)
 
-/** Each respondent's average star rating (0–5 scale) across the ratings they gave. */
-export function respondentAverage(row: SurveyRow, fields: FormField[]): number | null {
+/**
+ * Each respondent's average star rating (0–5 scale) across the star questions
+ * they were shown and answered (same rule as the side panel's average).
+ */
+export function respondentAverage(config: SurveyConfig, row: SurveyRow, fields: FormField[]): number | null {
   const scores = fields
-    .filter(f => f.uidt === 'Rating' && Number(row[f.column_name]) > 0)
+    .filter(f => f.uidt === 'Rating' && sawField(config, row, f) && Number(row[f.column_name]) > 0)
     .map(f => (Number(row[f.column_name]) / (f.rating?.max ?? 5)) * 5)
   return mean(scores)
 }
 
-function tokens(text: string): string[] {
-  return text
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s'-]/gu, ' ')
-    .split(/\s+/)
+/**
+ * The words of an answer, normalised the same way as the answer search, with
+ * null in place of words that don't count (stopwords, short words, numbers).
+ * Keeping the gaps means a phrase is only ever two words that are next to each
+ * other in the answer, so searching for it finds that answer.
+ */
+function tokens(text: string): (string | null)[] {
+  return normalizeSearchText(text)
+    .split(' ')
     .map(t => t.replace(/^['-]+|['-]+$/g, ''))
-    .filter(t => t.length > 2 && !STOPWORDS.has(t) && !t.includes("'") && !/^\d+$/.test(t))
+    .map(t => (t.length > 2 && !STOPWORDS.has(t) && !t.includes("'") && !/^\d+$/.test(t) ? t : null))
 }
 
 /**
@@ -134,11 +140,12 @@ export function commonTerms(texts: string[], limit = MAX_TERMS): Term[] {
   const pairs = new Map<string, number>()
   for (const text of texts) {
     const toks = tokens(text)
-    new Set(toks).forEach(t => words.set(t, (words.get(t) || 0) + 1))
+    new Set(toks.filter((t): t is string => t !== null)).forEach(t => words.set(t, (words.get(t) || 0) + 1))
     const seen = new Set<string>()
     for (let i = 0; i < toks.length - 1; i++) {
-      if (toks[i] === toks[i + 1]) continue
-      seen.add(`${toks[i]} ${toks[i + 1]}`)
+      const [a, b] = [toks[i], toks[i + 1]]
+      if (a === null || b === null || a === b) continue
+      seen.add(`${a} ${b}`)
     }
     seen.forEach(p => pairs.set(p, (pairs.get(p) || 0) + 1))
   }
@@ -183,7 +190,11 @@ function questionStat(
   }
 
   if (['Number', 'Decimal'].includes(field.uidt)) {
-    const nums = asked.map(p => Number(p.row[field.column_name])).filter(n => Number.isFinite(n) && n !== 0)
+    // Blank means unanswered; 0 is a real answer here (unlike star ratings).
+    const nums = asked
+      .filter(p => !isBlank(p.row[field.column_name]))
+      .map(p => Number(p.row[field.column_name]))
+      .filter(n => Number.isFinite(n))
     return { ...base, kind: 'number', answered: nums.length, average: mean(nums) }
   }
 
@@ -232,8 +243,8 @@ export function buildOverview(
 
   const questions = fields.filter(f => f.column_name !== config.roleColumn)
   const pool = rows
-    .filter(r => !roleFilter || roleOf(config, r) === roleFilter)
-    .map(row => ({ row, avg: respondentAverage(row, questions) }))
+    .filter(r => roleFilter === null || roleOf(config, r) === roleFilter) // '' = no role
+    .map(row => ({ row, avg: respondentAverage(config, row, questions) }))
 
   const stats = new Map<string, QuestionStat>()
   const sections: SectionStats[] = []

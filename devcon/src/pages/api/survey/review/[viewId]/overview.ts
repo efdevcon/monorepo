@@ -26,13 +26,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(404).json({ success: false, error: 'Unknown survey' })
     return
   }
-  const role = Array.isArray(req.query.role) ? req.query.role[0] : req.query.role
+  // No ?role → all roles. ?role= (empty) → responses with no role.
+  const rawRole = Array.isArray(req.query.role) ? req.query.role[0] : req.query.role
+  const role = typeof rawRole === 'string' ? rawRole : null
 
   const [fields, rows, meta] = await Promise.all([getTableFields(viewId), listRows(viewId), resolveFormView(viewId)])
 
   res.status(200).json({
     success: true,
     survey: { title: meta.formHeading || meta.viewTitle },
-    overview: buildOverview(config, fields, rows, role || null),
+    overview: buildOverview(config, fields, rows, role),
   })
 }

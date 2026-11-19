@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -6,13 +6,8 @@ import Page from 'components/common/layouts/page'
 import { ChevronLeft, ListFilter, Loader2, Star } from 'lucide-react'
 import { CARD, PAGE_BG, SurveyTheme, SurveyPasswordGate } from 'components/domain/survey-review'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
-import {
-  LOW_AVERAGE,
-  type OverviewStats,
-  type QuestionStat,
-  type RatingStat,
-  type OptionCount,
-} from 'services/survey-review-stats'
+import { LOW_AVERAGE } from 'services/survey-review-shared'
+import type { OverviewStats, QuestionStat, RatingStat, OptionCount } from 'services/survey-review-stats'
 import {
   readStoredPassword,
   storePassword,
@@ -133,7 +128,11 @@ export default function SurveyOverviewPage() {
   const [secret, setSecret] = useState<string | null>(null)
   const [overview, setOverview] = useState<OverviewStats | null>(null)
   const [surveyTitle, setSurveyTitle] = useState('')
-  const [role, setRole] = useState('')
+  // null = all roles. '' is a real value: responses with no role.
+  const [role, setRole] = useState<string | null>(null)
+  // The role the stats on screen were computed for (lags `role` while loading).
+  const [shownRole, setShownRole] = useState<string | null>(null)
+  const loadSeq = useRef(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [allRatings, setAllRatings] = useState(false)
@@ -150,16 +149,21 @@ export default function SurveyOverviewPage() {
   }, [])
 
   const load = useCallback(
-    async (key: string, forRole: string) => {
+    async (key: string, forRole: string | null) => {
       if (!viewId) return
+      // Only the latest request may update the page: quick role clicks can
+      // return out of order.
+      const seq = ++loadSeq.current
+      const isCurrent = () => seq === loadSeq.current
       setLoading(true)
       setError(null)
       try {
-        const qs = forRole ? `?role=${encodeURIComponent(forRole)}` : ''
+        const qs = forRole === null ? '' : `?role=${encodeURIComponent(forRole)}`
         const res = await fetch(`/api/survey/review/${viewId}/overview${qs}`, {
           headers: { 'x-admin-key': key },
           cache: 'no-store',
         })
+        if (!isCurrent()) return
         if (res.status === 401) {
           clearStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
           setSecret(null)
@@ -167,16 +171,18 @@ export default function SurveyOverviewPage() {
           return
         }
         const json = await res.json()
+        if (!isCurrent()) return
         if (!res.ok || !json.success) {
           setError(json.error || `Failed to load (${res.status})`)
           return
         }
         setOverview(json.overview)
+        setShownRole(forRole)
         setSurveyTitle(json.survey?.title ?? '')
       } catch (e) {
-        setError((e as Error).message)
+        if (isCurrent()) setError((e as Error).message)
       } finally {
-        setLoading(false)
+        if (isCurrent()) setLoading(false)
       }
     },
     [viewId]
@@ -246,12 +252,12 @@ export default function SurveyOverviewPage() {
                   )}
                   <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">Overview</h1>
                   <p className="text-sm text-[var(--sr-muted)]">
-                    Live from NocoDB · {role ? `${roleLabel(role)} only` : 'all roles'}. Each question counts only the
-                    people who were asked it.
+                    Live from NocoDB · {shownRole === null ? 'all roles' : `${roleLabel(shownRole)} only`}. Each
+                    question counts only the people who were asked it.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by role">
-                  <button type="button" className={chip(!role)} onClick={() => setRole('')}>
+                  <button type="button" className={chip(role === null)} onClick={() => setRole(null)}>
                     All roles <span className="opacity-60 tabular-nums">{allCount}</span>
                   </button>
                   {overview.roleCounts.map(r => (
@@ -268,141 +274,146 @@ export default function SurveyOverviewPage() {
               </div>
 
               <div
-                className={`grid grid-cols-2 ${
-                  HEADLINE_COLS[Math.min(5, 2 + overview.highlights.length)]
-                } gap-4 max-lg:[&>*:last-child:nth-child(odd)]:col-span-2`}
+                className={`flex flex-col gap-6 transition-opacity ${loading ? 'opacity-50' : ''}`}
+                aria-busy={loading}
               >
-                <HeadlineCard
-                  label="Responses"
-                  value={String(overview.total)}
-                  sub={role ? roleLabel(role) : 'all roles'}
-                />
-                <HeadlineCard
-                  label="Average rating"
-                  value={overview.averageRating != null ? `${overview.averageRating.toFixed(1)}/5` : '–'}
-                  sub="each person's average across their star ratings"
-                />
-                {overview.highlights.map(h => {
-                  const { value, sub } = headlineFor(h)
-                  return <HeadlineCard key={h.column} label={h.title} value={value} sub={sub} />
-                })}
-              </div>
-
-              {ratings.length > 0 && (
-                <div className={`${CARD} p-6 flex flex-col gap-2`}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--sr-muted)]">
-                      Star ratings, lowest first
-                    </h2>
-                    <span className="text-xs text-[var(--sr-faint)]">average · people who answered</span>
-                  </div>
-                  <div className="flex flex-col">
-                    {ratings.map(r => (
-                      <RatingRow key={r.column} stat={r} href={questionHref(r.column)} />
-                    ))}
-                  </div>
-                  {overview.ratingsLowestFirst.length > TOP_RATINGS && (
-                    <button
-                      type="button"
-                      onClick={() => setAllRatings(v => !v)}
-                      className="text-sm text-[var(--sr-accent)] hover:underline w-fit"
-                    >
-                      {allRatings ? 'Show fewer' : `Show all ${overview.ratingsLowestFirst.length} star questions`}
-                    </button>
-                  )}
+                <div
+                  className={`grid grid-cols-2 ${
+                    HEADLINE_COLS[Math.min(5, 2 + overview.highlights.length)]
+                  } gap-4 max-lg:[&>*:last-child:nth-child(odd)]:col-span-2`}
+                >
+                  <HeadlineCard
+                    label="Responses"
+                    value={String(overview.total)}
+                    sub={shownRole === null ? 'all roles' : roleLabel(shownRole)}
+                  />
+                  <HeadlineCard
+                    label="Average rating"
+                    value={overview.averageRating != null ? `${overview.averageRating.toFixed(1)}/5` : '–'}
+                    sub="each person's average across their star ratings"
+                  />
+                  {overview.highlights.map(h => {
+                    const { value, sub } = headlineFor(h)
+                    return <HeadlineCard key={h.column} label={h.title} value={value} sub={sub} />
+                  })}
                 </div>
-              )}
 
-              {overview.sections.map((sec, si) => (
-                <div key={`${sec.title}-${si}`} className={`${CARD} p-6 flex flex-col gap-4`}>
-                  <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--sr-muted)]">{sec.title}</h2>
-                  <div className="flex flex-col divide-y divide-[var(--sr-divider)]">
-                    {sec.questions.map(q => (
-                      <div key={q.column} className="flex flex-col gap-2 py-4 first:pt-0 last:pb-0 min-w-0">
-                        <div className="flex items-start justify-between gap-3">
-                          <p className="text-sm font-bold text-[var(--sr-ink)]">{q.title}</p>
-                          <Link
-                            href={questionHref(q.column)}
-                            className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[var(--sr-line)] text-xs font-medium text-[var(--sr-muted)] hover:text-[var(--sr-accent)] hover:border-[var(--sr-accent-line)] hover:bg-[var(--sr-accent-bg)] transition-colors"
-                          >
-                            <ListFilter className="w-3 h-3" aria-hidden="true" /> All answers
-                          </Link>
-                        </div>
-                        <p className="text-xs text-[var(--sr-faint)] -mt-1 tabular-nums">
-                          {q.answered} of {q.asked} answered
-                        </p>
+                {ratings.length > 0 && (
+                  <div className={`${CARD} p-6 flex flex-col gap-2`}>
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--sr-muted)]">
+                        Star ratings, lowest first
+                      </h2>
+                      <span className="text-xs text-[var(--sr-faint)]">average · people who answered</span>
+                    </div>
+                    <div className="flex flex-col">
+                      {ratings.map(r => (
+                        <RatingRow key={r.column} stat={r} href={questionHref(r.column)} />
+                      ))}
+                    </div>
+                    {overview.ratingsLowestFirst.length > TOP_RATINGS && (
+                      <button
+                        type="button"
+                        onClick={() => setAllRatings(v => !v)}
+                        className="text-sm text-[var(--sr-accent)] hover:underline w-fit"
+                      >
+                        {allRatings ? 'Show fewer' : `Show all ${overview.ratingsLowestFirst.length} star questions`}
+                      </button>
+                    )}
+                  </div>
+                )}
 
-                        {q.kind === 'rating' && (
-                          <div className="flex items-center gap-3">
-                            <span className="inline-flex items-center gap-1 text-sm font-bold text-[var(--sr-ink)] tabular-nums">
-                              <Star className="w-4 h-4 fill-current text-[var(--sr-star)]" aria-hidden="true" />
-                              {q.average?.toFixed(1) ?? '–'}/{q.max}
-                            </span>
-                            <span className="flex-1 max-w-[320px]">
-                              <Bar value={q.average ?? 0} of={q.max} />
-                            </span>
+                {overview.sections.map((sec, si) => (
+                  <div key={`${sec.title}-${si}`} className={`${CARD} p-6 flex flex-col gap-4`}>
+                    <h2 className="text-sm font-bold uppercase tracking-wide text-[var(--sr-muted)]">{sec.title}</h2>
+                    <div className="flex flex-col divide-y divide-[var(--sr-divider)]">
+                      {sec.questions.map(q => (
+                        <div key={q.column} className="flex flex-col gap-2 py-4 first:pt-0 last:pb-0 min-w-0">
+                          <div className="flex items-start justify-between gap-3">
+                            <p className="text-sm font-bold text-[var(--sr-ink)]">{q.title}</p>
+                            <Link
+                              href={questionHref(q.column)}
+                              className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[var(--sr-line)] text-xs font-medium text-[var(--sr-muted)] hover:text-[var(--sr-accent)] hover:border-[var(--sr-accent-line)] hover:bg-[var(--sr-accent-bg)] transition-colors"
+                            >
+                              <ListFilter className="w-3 h-3" aria-hidden="true" /> All answers
+                            </Link>
                           </div>
-                        )}
-
-                        {q.kind === 'choice' && q.answered > 0 && (
-                          <OptionBars options={q.options} answered={q.answered} moreHref={questionHref(q.column)} />
-                        )}
-
-                        {q.kind === 'number' && (
-                          <p className="text-sm text-[var(--sr-body)]">
-                            Average <b className="text-[var(--sr-ink)]">{q.average?.toFixed(1) ?? '–'}</b>
+                          <p className="text-xs text-[var(--sr-faint)] -mt-1 tabular-nums">
+                            {q.answered} of {q.asked} answered
                           </p>
-                        )}
 
-                        {q.kind === 'text' && q.answered > 0 && (
-                          <div className="flex flex-col gap-3">
-                            {q.terms.length > 0 && (
-                              <div className="flex flex-col gap-1.5">
-                                <span className="text-xs text-[var(--sr-muted)]">Most mentioned</span>
-                                <div className="flex flex-wrap gap-1.5">
-                                  {q.terms.map(t => (
+                          {q.kind === 'rating' && (
+                            <div className="flex items-center gap-3">
+                              <span className="inline-flex items-center gap-1 text-sm font-bold text-[var(--sr-ink)] tabular-nums">
+                                <Star className="w-4 h-4 fill-current text-[var(--sr-star)]" aria-hidden="true" />
+                                {q.average?.toFixed(1) ?? '–'}/{q.max}
+                              </span>
+                              <span className="flex-1 max-w-[320px]">
+                                <Bar value={q.average ?? 0} of={q.max} />
+                              </span>
+                            </div>
+                          )}
+
+                          {q.kind === 'choice' && q.answered > 0 && (
+                            <OptionBars options={q.options} answered={q.answered} moreHref={questionHref(q.column)} />
+                          )}
+
+                          {q.kind === 'number' && (
+                            <p className="text-sm text-[var(--sr-body)]">
+                              Average <b className="text-[var(--sr-ink)]">{q.average?.toFixed(1) ?? '–'}</b>
+                            </p>
+                          )}
+
+                          {q.kind === 'text' && q.answered > 0 && (
+                            <div className="flex flex-col gap-3">
+                              {q.terms.length > 0 && (
+                                <div className="flex flex-col gap-1.5">
+                                  <span className="text-xs text-[var(--sr-muted)]">Most mentioned</span>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {q.terms.map(t => (
+                                      <Link
+                                        key={t.term}
+                                        href={questionHref(q.column, t.term)}
+                                        title={`Show the answers that mention “${t.term}”`}
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[var(--sr-chip)] text-sm text-[var(--sr-body)] hover:bg-[var(--sr-accent-bg)] hover:text-[var(--sr-accent)] transition-colors"
+                                      >
+                                        {t.term} <span className="text-xs opacity-60 tabular-nums">{t.count}</span>
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {q.lowest.length > 0 && (
+                                <div className="flex flex-col gap-1.5">
+                                  <span className="text-xs text-[var(--sr-muted)]">
+                                    From less satisfied respondents (average rating under {LOW_AVERAGE} stars), lowest
+                                    first
+                                  </span>
+                                  {q.lowest.map(c => (
                                     <Link
-                                      key={t.term}
-                                      href={questionHref(q.column, t.term)}
-                                      title={`Show the answers that mention “${t.term}”`}
-                                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[var(--sr-chip)] text-sm text-[var(--sr-body)] hover:bg-[var(--sr-accent-bg)] hover:text-[var(--sr-accent)] transition-colors"
+                                      key={c.id}
+                                      href={`${base}/${c.id}`}
+                                      className="flex flex-col gap-1 p-3 rounded-lg border border-[var(--sr-divider)] bg-[var(--sr-soft)] hover:border-[var(--sr-line)] transition-colors"
                                     >
-                                      {t.term} <span className="text-xs opacity-60 tabular-nums">{t.count}</span>
+                                      <span className="text-xs text-[var(--sr-muted)] tabular-nums">
+                                        #{c.id}
+                                        {c.avgRating != null && ` · ★ ${c.avgRating.toFixed(1)} average`}
+                                      </span>
+                                      <span className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line [overflow-wrap:anywhere]">
+                                        {c.text}
+                                      </span>
                                     </Link>
                                   ))}
                                 </div>
-                              </div>
-                            )}
-                            {q.lowest.length > 0 && (
-                              <div className="flex flex-col gap-1.5">
-                                <span className="text-xs text-[var(--sr-muted)]">
-                                  From less satisfied respondents (average rating under {LOW_AVERAGE} stars), lowest
-                                  first
-                                </span>
-                                {q.lowest.map(c => (
-                                  <Link
-                                    key={c.id}
-                                    href={`${base}/${c.id}`}
-                                    className="flex flex-col gap-1 p-3 rounded-lg border border-[var(--sr-divider)] bg-[var(--sr-soft)] hover:border-[var(--sr-line)] transition-colors"
-                                  >
-                                    <span className="text-xs text-[var(--sr-muted)] tabular-nums">
-                                      #{c.id}
-                                      {c.avgRating != null && ` · ★ ${c.avgRating.toFixed(1)} average`}
-                                    </span>
-                                    <span className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line [overflow-wrap:anywhere]">
-                                      {c.text}
-                                    </span>
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </>
           )}
         </div>

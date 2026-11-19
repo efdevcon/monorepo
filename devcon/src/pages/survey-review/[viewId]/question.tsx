@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -14,6 +14,7 @@ import {
   isUnanswered,
   parseSection,
 } from 'components/domain/survey-review'
+import { normalizeSearchText } from 'services/survey-review-shared'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
 import {
   readStoredPassword,
@@ -60,7 +61,8 @@ export default function SurveyQuestionPage() {
   const [surveyTitle, setSurveyTitle] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [role, setRole] = useState('all')
+  const [role, setRole] = useState<string | null>(null) // null = all roles
+  const loadSeq = useRef(0)
   const [picked, setPicked] = useState<string | null>(null)
   const [search, setSearch] = useState('')
 
@@ -74,6 +76,9 @@ export default function SurveyQuestionPage() {
   const load = useCallback(
     async (key: string) => {
       if (!viewId || !column) return
+      // Only the latest request may update the page (quick picker changes).
+      const seq = ++loadSeq.current
+      const isCurrent = () => seq === loadSeq.current
       setLoading(true)
       setError(null)
       try {
@@ -81,6 +86,7 @@ export default function SurveyQuestionPage() {
           headers: { 'x-admin-key': key },
           cache: 'no-store',
         })
+        if (!isCurrent()) return
         if (res.status === 401) {
           clearStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
           setSecret(null)
@@ -88,6 +94,7 @@ export default function SurveyQuestionPage() {
           return
         }
         const json = await res.json()
+        if (!isCurrent()) return
         if (!res.ok || !json.success) {
           setError(json.error || `Failed to load (${res.status})`)
           return
@@ -96,12 +103,14 @@ export default function SurveyQuestionPage() {
         setQuestions(Array.isArray(json.questions) ? json.questions : [])
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
         setSurveyTitle(json.survey?.title ?? '')
+        // Each question starts unfiltered (apart from a search passed in the link).
         setPicked(null)
+        setRole(null)
         setSearch(initialSearch)
       } catch (e) {
-        setError((e as Error).message)
+        if (isCurrent()) setError((e as Error).message)
       } finally {
-        setLoading(false)
+        if (isCurrent()) setLoading(false)
       }
     },
     [viewId, column, initialSearch]
@@ -141,7 +150,7 @@ export default function SurveyQuestionPage() {
     )
   }
 
-  const pool = answers.filter(a => role === 'all' || a.role === role)
+  const pool = answers.filter(a => role === null || a.role === role)
   const answered = field ? pool.filter(a => field.uidt === 'Checkbox' || !isUnanswered(field, a.value)) : []
   const counted = !!field && CHOICE_TYPES.has(field.uidt)
 
@@ -161,17 +170,12 @@ export default function SurveyQuestionPage() {
   }
   const maxCount = Math.max(1, ...breakdown.map(([, n]) => n))
 
-  const q = search.trim().toLowerCase()
+  // Search applies to written questions only (the only ones with a search box).
+  const q = counted ? '' : normalizeSearchText(search)
   const shown = field
     ? answered
         .filter(a => picked === null || valuesOf(field, a.value).includes(picked))
-        .filter(
-          a =>
-            !q ||
-            String(a.value ?? '')
-              .toLowerCase()
-              .includes(q)
-        )
+        .filter(a => !q || normalizeSearchText(String(a.value ?? '')).includes(q))
         .sort((a, b) => (field.uidt === 'Rating' ? Number(a.value) - Number(b.value) : 0) || a.id - b.id)
     : []
 
@@ -202,9 +206,15 @@ export default function SurveyQuestionPage() {
             {questions.length > 0 && (
               <select
                 value={column}
-                onChange={e =>
-                  router.push({ pathname: router.pathname, query: { ...router.query, column: e.target.value } })
-                }
+                onChange={e => {
+                  // A search from the Overview belongs to the old question: drop it.
+                  const query: Record<string, string | string[] | undefined> = {
+                    ...router.query,
+                    column: e.target.value,
+                  }
+                  delete query.q
+                  router.push({ pathname: router.pathname, query })
+                }}
                 className="flex-1 min-w-0 h-9 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)]"
                 aria-label="Pick a question"
               >
@@ -236,13 +246,13 @@ export default function SurveyQuestionPage() {
                   <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">{field.title}</h1>
                   <p className="text-sm text-[var(--sr-muted)]">
                     <b className="text-[var(--sr-ink)]">{answered.length}</b> answered · {pool.length - answered.length}{' '}
-                    didn&apos;t answer · {role === 'all' ? 'all roles that were asked' : `${roleLabel(role)} only`}
+                    didn&apos;t answer · {role === null ? 'all roles that were asked' : `${roleLabel(role)} only`}
                   </p>
                 </div>
 
-                {roles.length > 1 && (
+                {(roles.length > 1 || role !== null) && (
                   <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by role">
-                    <button type="button" className={chip(role === 'all')} onClick={() => setRole('all')}>
+                    <button type="button" className={chip(role === null)} onClick={() => setRole(null)}>
                       All roles <span className="opacity-60">{answers.length}</span>
                     </button>
                     {roles.map(([r, n]) => (

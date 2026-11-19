@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -78,7 +78,11 @@ export default function SurveyReviewPage() {
   const [nocodbUrl, setNocodbUrl] = useState<string | null>(null)
   const [hasNotes, setHasNotes] = useState(false)
   const [role, setRole] = useState('')
-  const [nav, setNav] = useState<Nav>(EMPTY_NAV)
+  // Id of the response whose data is on screen. While another one loads, the
+  // page shows the previous data dimmed and notes can't be saved.
+  const [loadedId, setLoadedId] = useState<string | null>(null)
+  const loadedIdRef = useRef<string | null>(null)
+  const loadSeq = useRef(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [hideUnanswered, setHideUnanswered] = useState(false)
@@ -93,9 +97,9 @@ export default function SurveyReviewPage() {
   const filtered = useMemo(() => (responses ? filterResponses(responses, filters) : []), [responses, filters])
   const currentId = id ? Number(id) : null
 
-  // Prev/Next follow the filtered list once it has loaded; until then they use
-  // the server's order. When this response is filtered out, position is 0 and
-  // Next goes to the first match.
+  // Prev/Next follow the side panel's filtered, sorted list (disabled until it
+  // loads). When this response is filtered out, position is 0 and Next goes to
+  // the first match.
   const listNav = useMemo<Nav | null>(() => {
     if (!responses) return null
     const idx = filtered.findIndex(r => r.id === currentId)
@@ -107,7 +111,8 @@ export default function SurveyReviewPage() {
       total: filtered.length,
     }
   }, [responses, filtered, currentId])
-  const activeNav = listNav ?? nav
+  const activeNav = listNav ?? EMPTY_NAV
+  const stale = loading || loadedId !== id
 
   useEffect(() => {
     const s = readStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
@@ -117,6 +122,10 @@ export default function SurveyReviewPage() {
   const load = useCallback(
     async (key: string) => {
       if (!viewId || !id) return
+      // Only the latest request may update the page: with quick Prev/Next
+      // clicks an older response can arrive after a newer one.
+      const seq = ++loadSeq.current
+      const isCurrent = () => seq === loadSeq.current
       setLoading(true)
       setError(null)
       try {
@@ -124,6 +133,7 @@ export default function SurveyReviewPage() {
           headers: { 'x-admin-key': key },
           cache: 'no-store',
         })
+        if (!isCurrent()) return
         if (res.status === 401) {
           clearStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)
           setSecret(null)
@@ -131,24 +141,26 @@ export default function SurveyReviewPage() {
           return
         }
         const json = await res.json()
+        if (!isCurrent()) return
         if (!res.ok || !json.success) {
           setError(json.error || `Failed to load (${res.status})`)
           return
         }
         setRecord(json.record)
+        setLoadedId(id)
+        loadedIdRef.current = id
         setFields(Array.isArray(json.fields) ? json.fields : [])
         setSurvey(json.survey ?? null)
         setNocodbUrl(json.nocodbUrl ?? null)
         setHasNotes(!!json.hasNotes)
         setRole(typeof json.role === 'string' ? json.role : '')
-        setNav(json.nav ?? EMPTY_NAV)
         const note = String(json.record?.['Admin Notes'] ?? '')
         setComment(note)
         setSavedComment(note)
       } catch (e) {
-        setError((e as Error).message)
+        if (isCurrent()) setError((e as Error).message)
       } finally {
-        setLoading(false)
+        if (isCurrent()) setLoading(false)
       }
     },
     [viewId, id]
@@ -174,11 +186,13 @@ export default function SurveyReviewPage() {
   }, [activeNav.prevId, activeNav.nextId, router, base])
 
   async function saveComment() {
-    if (!viewId || !id || !secret) return
+    // Save only to the response that is actually on screen.
+    const target = loadedId
+    if (!viewId || !secret || !target || stale) return
     setSavingComment(true)
     setError(null)
     try {
-      const res = await fetch(`/api/survey/review/${viewId}/${id}`, {
+      const res = await fetch(`/api/survey/review/${viewId}/${target}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-admin-key': secret },
         body: JSON.stringify({ comment }),
@@ -188,8 +202,9 @@ export default function SurveyReviewPage() {
         setError(json.error || 'Could not save note')
         return
       }
-      setSavedComment(comment)
-      markNote(Number(id), comment.trim() !== '')
+      markNote(Number(target), comment.trim() !== '')
+      // If the reviewer has moved on meanwhile, the next load sets the note state.
+      if (target === loadedIdRef.current) setSavedComment(comment)
     } catch (e) {
       setError((e as Error).message)
     } finally {
@@ -287,124 +302,132 @@ export default function SurveyReviewPage() {
                   </div>
                 )}
 
-                {/* Header */}
-                <div className={`${CARD} p-6 flex flex-col gap-4`}>
-                  <div className="flex flex-col gap-1">
-                    {survey && (
-                      <span className="text-xs font-bold uppercase tracking-wide text-[var(--sr-accent)]">
-                        {survey.title}
-                      </span>
-                    )}
-                    <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">{name || `Response #${id}`}</h1>
-                    <p className="text-sm text-[var(--sr-muted)]">
-                      {email && (
-                        <span className="inline-flex items-center gap-1">
-                          <Mail className="w-3.5 h-3.5" aria-hidden="true" /> {email}
+                <div
+                  className={`flex flex-col gap-6 transition-opacity ${stale ? 'opacity-50' : ''}`}
+                  aria-busy={stale}
+                >
+                  {/* Header */}
+                  <div className={`${CARD} p-6 flex flex-col gap-4`}>
+                    <div className="flex flex-col gap-1">
+                      {survey && (
+                        <span className="text-xs font-bold uppercase tracking-wide text-[var(--sr-accent)]">
+                          {survey.title}
                         </span>
                       )}
-                      {email && submitted ? ' · ' : ''}
-                      {submitted ? `Submitted ${new Date(String(submitted)).toLocaleDateString()}` : ''}
-                    </p>
-                    {nocodbUrl && (
-                      <a
-                        href={nocodbUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-1 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[var(--sr-accent)] hover:underline"
-                      >
-                        <ExternalLink className="w-4 h-4" aria-hidden="true" /> Open in NocoDB
-                      </a>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {role && (
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-[var(--sr-ink)] text-[var(--sr-on-strong)] text-sm font-bold">
-                        {role}
-                      </span>
-                    )}
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--sr-accent-bg)] text-[var(--sr-accent)] border border-[var(--sr-accent-line)] text-sm font-bold">
-                      {answeredCount} of {answerable.length} answered
-                    </span>
-                    {avgRating != null && (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--sr-gold-bg)] text-[var(--sr-gold)] border border-[var(--sr-gold-line)] text-sm font-bold">
-                        <Star className="w-4 h-4 fill-current" aria-hidden="true" /> Avg rating {avgRating.toFixed(1)}/5
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {hasNotes && (
-                  <div className={`${CARD} p-6`}>
-                    <Section title="Admin notes">
-                      <textarea
-                        value={comment}
-                        onChange={e => setComment(e.target.value)}
-                        placeholder="Add a private note about this response (visible to reviewers only)…"
-                        rows={3}
-                        className="w-full px-3 py-2 border border-[var(--sr-line)] bg-[var(--sr-soft)] focus:bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sr-accent-ring)]"
-                      />
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={saveComment}
-                          disabled={savingComment || comment === savedComment}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--sr-ink)] text-[var(--sr-on-strong)] text-sm font-semibold hover:bg-[var(--sr-ink-hover)] disabled:opacity-50 transition-colors"
-                        >
-                          {savingComment && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
-                          Save note
-                        </button>
-                        {comment !== savedComment ? (
-                          <span className="text-xs text-[var(--sr-warn)]">Unsaved changes</span>
-                        ) : savedComment ? (
-                          <span className="inline-flex items-center gap-1 text-xs text-[var(--sr-good)]">
-                            <Check className="w-3.5 h-3.5" aria-hidden="true" /> Saved
+                      <h1 className="text-2xl font-extrabold text-[var(--sr-ink)]">
+                        {name || `Response #${loadedId}`}
+                      </h1>
+                      <p className="text-sm text-[var(--sr-muted)]">
+                        {email && (
+                          <span className="inline-flex items-center gap-1">
+                            <Mail className="w-3.5 h-3.5" aria-hidden="true" /> {email}
                           </span>
-                        ) : null}
-                      </div>
-                    </Section>
+                        )}
+                        {email && submitted ? ' · ' : ''}
+                        {submitted ? `Submitted ${new Date(String(submitted)).toLocaleDateString()}` : ''}
+                      </p>
+                      {nocodbUrl && (
+                        <a
+                          href={nocodbUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[var(--sr-accent)] hover:underline"
+                        >
+                          <ExternalLink className="w-4 h-4" aria-hidden="true" /> Open in NocoDB
+                        </a>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {role && (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-[var(--sr-ink)] text-[var(--sr-on-strong)] text-sm font-bold">
+                          {role}
+                        </span>
+                      )}
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--sr-accent-bg)] text-[var(--sr-accent)] border border-[var(--sr-accent-line)] text-sm font-bold">
+                        {answeredCount} of {answerable.length} answered
+                      </span>
+                      {avgRating != null && (
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--sr-gold-bg)] text-[var(--sr-gold)] border border-[var(--sr-gold-line)] text-sm font-bold">
+                          <Star className="w-4 h-4 fill-current" aria-hidden="true" /> Avg rating {avgRating.toFixed(1)}
+                          /5
+                        </span>
+                      )}
+                    </div>
                   </div>
-                )}
 
-                <label className="flex items-center gap-2 text-sm text-[var(--sr-muted)] w-fit cursor-pointer select-none">
-                  <input
-                    type="checkbox"
-                    checked={hideUnanswered}
-                    onChange={e => setHideUnanswered(e.target.checked)}
-                    className="accent-[var(--sr-accent)]"
-                  />
-                  Hide unanswered questions
-                </label>
-
-                {groups.map((g, gi) => {
-                  const visible = hideUnanswered
-                    ? g.fields.filter(f => f.uidt === 'Checkbox' || !isUnanswered(f, record[f.column_name]))
-                    : g.fields
-                  if (visible.length === 0) return null
-                  return (
-                    <div key={`${g.title}-${gi}`} className={`${CARD} p-6`}>
-                      <Section title={g.title}>
-                        {g.intro && <p className="text-xs text-[var(--sr-muted)] leading-5 -mt-1">{g.intro}</p>}
-                        <div className="flex flex-col divide-y divide-[var(--sr-divider)]">
-                          {visible.map(f => (
-                            <div key={f.id} className="flex flex-col gap-1.5 py-3 first:pt-0 last:pb-0">
-                              <div className="flex items-start justify-between gap-3">
-                                <p className="text-sm font-bold text-[var(--sr-ink)]">{f.title}</p>
-                                <Link
-                                  href={`${base}/question?column=${encodeURIComponent(f.column_name)}&from=${id}`}
-                                  className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[var(--sr-line)] text-xs font-medium text-[var(--sr-muted)] hover:text-[var(--sr-accent)] hover:border-[var(--sr-accent-line)] hover:bg-[var(--sr-accent-bg)] transition-colors"
-                                  title="See everyone's answer to this question"
-                                >
-                                  <ListFilter className="w-3 h-3" aria-hidden="true" /> All answers
-                                </Link>
-                              </div>
-                              <AnswerValue field={f} value={record[f.column_name]} />
-                            </div>
-                          ))}
+                  {hasNotes && (
+                    <div className={`${CARD} p-6`}>
+                      <Section title="Admin notes">
+                        <textarea
+                          value={comment}
+                          onChange={e => setComment(e.target.value)}
+                          placeholder="Add a private note about this response (visible to reviewers only)…"
+                          rows={3}
+                          className="w-full px-3 py-2 border border-[var(--sr-line)] bg-[var(--sr-soft)] focus:bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sr-accent-ring)]"
+                        />
+                        <div className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={saveComment}
+                            disabled={stale || savingComment || comment === savedComment}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--sr-ink)] text-[var(--sr-on-strong)] text-sm font-semibold hover:bg-[var(--sr-ink-hover)] disabled:opacity-50 transition-colors"
+                          >
+                            {savingComment && <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />}
+                            Save note
+                          </button>
+                          {comment !== savedComment ? (
+                            <span className="text-xs text-[var(--sr-warn)]">Unsaved changes</span>
+                          ) : savedComment ? (
+                            <span className="inline-flex items-center gap-1 text-xs text-[var(--sr-good)]">
+                              <Check className="w-3.5 h-3.5" aria-hidden="true" /> Saved
+                            </span>
+                          ) : null}
                         </div>
                       </Section>
                     </div>
-                  )
-                })}
+                  )}
+
+                  <label className="flex items-center gap-2 text-sm text-[var(--sr-muted)] w-fit cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={hideUnanswered}
+                      onChange={e => setHideUnanswered(e.target.checked)}
+                      className="accent-[var(--sr-accent)]"
+                    />
+                    Hide unanswered questions
+                  </label>
+
+                  {groups.map((g, gi) => {
+                    const visible = hideUnanswered
+                      ? g.fields.filter(f => f.uidt === 'Checkbox' || !isUnanswered(f, record[f.column_name]))
+                      : g.fields
+                    if (visible.length === 0) return null
+                    return (
+                      <div key={`${g.title}-${gi}`} className={`${CARD} p-6`}>
+                        <Section title={g.title}>
+                          {g.intro && <p className="text-xs text-[var(--sr-muted)] leading-5 -mt-1">{g.intro}</p>}
+                          <div className="flex flex-col divide-y divide-[var(--sr-divider)]">
+                            {visible.map(f => (
+                              <div key={f.id} className="flex flex-col gap-1.5 py-3 first:pt-0 last:pb-0">
+                                <div className="flex items-start justify-between gap-3">
+                                  <p className="text-sm font-bold text-[var(--sr-ink)]">{f.title}</p>
+                                  <Link
+                                    href={`${base}/question?column=${encodeURIComponent(f.column_name)}&from=${id}`}
+                                    className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[var(--sr-line)] text-xs font-medium text-[var(--sr-muted)] hover:text-[var(--sr-accent)] hover:border-[var(--sr-accent-line)] hover:bg-[var(--sr-accent-bg)] transition-colors"
+                                    title="See everyone's answer to this question"
+                                  >
+                                    <ListFilter className="w-3 h-3" aria-hidden="true" /> All answers
+                                  </Link>
+                                </div>
+                                <AnswerValue field={f} value={record[f.column_name]} />
+                              </div>
+                            ))}
+                          </div>
+                        </Section>
+                      </div>
+                    )
+                  })}
+                </div>
               </>
             )}
           </div>

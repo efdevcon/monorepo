@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
-import { getRowById, updateRow, listRows, getTableFields, getAllTableColumns } from 'services/nocodb'
+import { getRowById, updateRow, getTableFields, getAllTableColumns } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
 import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
 
@@ -10,7 +10,8 @@ const NOCODB_WORKSPACE = 'wx5thjwz'
 
 // Admin "survey review" endpoint, gated by BUILDER_REVIEW_PASSWORD (sent as
 // x-admin-key), the same credential as the builder review page.
-// GET  -> the response row, the form's questions in form order, and prev/next.
+// GET  -> the response row and the questions this respondent was shown, in form
+//         order. Prev/next comes from the side panel's list (GET /api/survey/review/[viewId]).
 // POST -> { comment } saves the private Admin Notes column.
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
@@ -47,28 +48,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const visibleFields = visibleFieldsFor(config, record, allFields)
     const role = roleOf(config, record)
 
-    let nav: { prevId: number | null; nextId: number | null; position: number; total: number } = {
-      prevId: null,
-      nextId: null,
-      position: 0,
-      total: 0,
-    }
-    try {
-      const ids = (await listRows(viewId))
-        .map(r => Number(r['Id']))
-        .filter(Number.isFinite)
-        .sort((a, b) => a - b)
-      const idx = ids.indexOf(id)
-      nav = {
-        prevId: idx > 0 ? ids[idx - 1] : null,
-        nextId: idx >= 0 && idx < ids.length - 1 ? ids[idx + 1] : null,
-        position: idx >= 0 ? idx + 1 : 0,
-        total: ids.length,
-      }
-    } catch (err) {
-      console.warn('[survey/review] nav lookup failed:', err)
-    }
-
     res.status(200).json({
       success: true,
       survey: { title: meta.formHeading || meta.viewTitle, viewTitle: meta.viewTitle },
@@ -77,7 +56,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       fields: visibleFields,
       role,
       hasNotes,
-      nav,
     })
     return
   }
