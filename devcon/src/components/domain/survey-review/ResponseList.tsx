@@ -4,8 +4,9 @@ import { Loader2, Search, Star } from 'lucide-react'
 import { CARD } from 'components/domain/survey-review'
 
 // Side panel for the survey review page: every response, with role filters,
-// a word search across all answers and an "only with written comments"
-// toggle. The filters also drive Prev/Next and the ← → keys on the page.
+// a word search across all answers, an "only with written comments" toggle
+// and a sort by average rating. The filtered, sorted list also drives
+// Prev/Next and the ← → keys on the page.
 
 export interface ResponseSummary {
   id: number
@@ -17,13 +18,22 @@ export interface ResponseSummary {
   text: string
 }
 
+export type ListSort = 'id' | 'low' | 'high'
+
 export interface ListFilters {
   role: string
   q: string
   written: boolean
+  sort: ListSort
 }
 
-const DEFAULT_FILTERS: ListFilters = { role: 'all', q: '', written: false }
+const DEFAULT_FILTERS: ListFilters = { role: 'all', q: '', written: false, sort: 'id' }
+
+const SORT_LABELS: Record<ListSort, string> = {
+  id: 'Response #',
+  low: 'Lowest rating first',
+  high: 'Highest rating first',
+}
 
 const ROLE_SHORT: Record<string, string> = {
   'Ecosystem / Community Org (incl. Student Groups)': 'Ecosystem / Community Org',
@@ -98,9 +108,18 @@ export function useListFilters(viewId: string | undefined): [ListFilters, (patch
 
 export function filterResponses(responses: ResponseSummary[], f: ListFilters): ResponseSummary[] {
   const q = f.q.trim().toLowerCase()
-  return responses.filter(
+  const shown = responses.filter(
     r => (f.role === 'all' || r.role === f.role) && (!f.written || r.hasWritten) && (!q || r.text.includes(q))
   )
+  if (f.sort === 'id') return shown
+  // By average rating; responses without any rating go last either way.
+  const dir = f.sort === 'low' ? 1 : -1
+  return [...shown].sort((a, b) => {
+    if (a.avgRating == null || b.avgRating == null) {
+      return (a.avgRating == null ? 1 : 0) - (b.avgRating == null ? 1 : 0) || a.id - b.id
+    }
+    return (a.avgRating - b.avgRating) * dir || a.id - b.id
+  })
 }
 
 interface ResponseListProps {
@@ -189,9 +208,25 @@ export function ResponseList({
         </label>
       </div>
 
-      <div className="flex justify-between px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-[var(--sr-muted)] border-b border-[var(--sr-divider)]">
-        <span>Responses</span>
-        <span className="tabular-nums">{responses ? `${filtered.length} shown` : ''}</span>
+      <div className="flex items-center justify-between gap-2 px-3 py-2 border-b border-[var(--sr-divider)]">
+        <span className="text-[11px] font-semibold uppercase tracking-wide text-[var(--sr-muted)] tabular-nums">
+          {responses ? `${filtered.length} shown` : 'Responses'}
+        </span>
+        <label className="flex items-center gap-1.5 text-xs text-[var(--sr-muted)]">
+          Sort
+          <select
+            value={filters.sort}
+            onChange={e => onFilters({ sort: e.target.value as ListSort })}
+            className="h-7 px-1.5 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-md text-xs text-[var(--sr-ink)]"
+            aria-label="Sort responses"
+          >
+            {(Object.keys(SORT_LABELS) as ListSort[]).map(k => (
+              <option key={k} value={k}>
+                {SORT_LABELS[k]}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div ref={listRef} className="flex-1 overflow-y-auto">
