@@ -138,10 +138,15 @@ export default function SurveyOverviewPage() {
   const [allRatings, setAllRatings] = useState(false)
 
   const base = viewId ? `/en/survey-review/${viewId}` : ''
-  const questionHref = (column: string, q?: string) =>
-    `${base}/question?column=${encodeURIComponent(column)}${q ? `&q=${encodeURIComponent(q)}` : ''}${
-      from ? `&from=${from}` : ''
-    }`
+  // Links to a question carry the role the stats on screen are for, so the
+  // answers listed there match the counts shown here.
+  const questionHref = (column: string, q?: string) => {
+    const params = new URLSearchParams({ column })
+    if (q) params.set('q', q)
+    if (shownRole !== null) params.set('role', shownRole)
+    if (from) params.set('from', from)
+    return `${base}/question?${params.toString()}`
+  }
 
   useEffect(() => {
     const s = readStoredPassword(BUILDER_REVIEW_PASSWORD_KEY)

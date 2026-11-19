@@ -96,7 +96,14 @@ export async function findRowByEmail(viewId: string, emailColumn: string, email:
     limit: 100,
   })
   const rows: any[] = (result as any)?.list ?? []
-  return rows.find(r => String(r[emailColumn] ?? '').trim().toLowerCase() === wanted) ?? null
+  return (
+    rows.find(
+      r =>
+        String(r[emailColumn] ?? '')
+          .trim()
+          .toLowerCase() === wanted
+    ) ?? null
+  )
 }
 
 export async function updateRow(viewId: string, rowId: number, data: Record<string, any>) {
@@ -115,27 +122,24 @@ export async function getRowById(viewId: string, rowId: number): Promise<any | n
   }
 }
 
-// List all rows for a view (paginated under the hood). Builder applications are
-// low-volume, so we page through to a sane cap and return them all.
+// List all rows for a view (paginated under the hood). Builder applications and
+// survey responses are low-volume, so we page through to a sane cap and return
+// them all. Uses `paginate`, which advances by rows actually received: NocoDB
+// clamps `limit` to 100 by default, so asking for bigger pages and stopping on
+// a short one would silently return only the first 100 rows. Pass a `sort`
+// (e.g. 'Id') for stable paging when rows can be added between page fetches.
 export async function listRows(viewId: string, opts: { sort?: string } = {}): Promise<any[]> {
   const { baseId, tableId } = await resolveFormView(viewId)
   const api = getApi()
-  const pageSize = 200
-  const out: any[] = []
-  let offset = 0
-  for (let page = 0; page < 50; page++) {
-    const result = await api.dbTableRow.list('noco', baseId, tableId, {
-      limit: pageSize,
-      offset,
-      ...(opts.sort ? { sort: opts.sort } : {}),
-    })
-    const rows = (result as any)?.list ?? []
-    out.push(...rows)
-    const info = (result as any)?.pageInfo
-    if (rows.length < pageSize || info?.isLastPage) break
-    offset += pageSize
-  }
-  return out
+  return paginate<any>(
+    (limit, offset) =>
+      api.dbTableRow.list('noco', baseId, tableId, {
+        limit,
+        offset,
+        ...(opts.sort ? { sort: opts.sort } : {}),
+      }) as Promise<PageResult<any>>,
+    { pageSize: 100, maxRows: 10000 }
+  )
 }
 
 /**

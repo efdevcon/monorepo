@@ -12,9 +12,12 @@ export const NOTES_COLUMN = 'Admin Notes'
 export interface SurveyConfig {
   // Column holding the respondent's role, shown in the header.
   roleColumn?: string
-  // Question groups this respondent was shown. A group is the upper-case
-  // prefix of a column name ("VOL Rating" is in group "VOL"); columns without
-  // one (Email, Role, …) are always shown. Return null to show every group.
+  // Column-name prefixes that mark a question group ("VOL Rating" is in group
+  // "VOL"). Only these count as groups, so an ordinary question that happens
+  // to start with a capitalised word ("OK to contact you?") is never hidden.
+  groupPrefixes?: string[]
+  // Question groups this respondent was shown. Columns outside every group
+  // (Email, Role, …) are always shown. Return null to show every group.
   visibleGroups?: (row: SurveyRow) => string[] | null
   // Questions shown as headline cards on the Overview page (column names).
   // Missing columns are skipped.
@@ -27,6 +30,7 @@ export interface SurveyConfig {
 // questions.
 const DEVCON8_FEEDBACK: SurveyConfig = {
   roleColumn: 'Role',
+  groupPrefixes: ['ATT', 'VOL', 'LEAD', 'SPK', 'MC', 'ECO', 'SUP', 'MEDIA', 'HUB', 'CLS', 'OPTIN', 'END'],
   // Overall rating (attendees), would-recommend and would-attend-again.
   highlights: ['ATT General', 'END Nps', 'END Attend'],
   visibleGroups: row => {
@@ -62,17 +66,17 @@ export function getSurveyConfig(viewId: string | undefined): SurveyConfig | unde
   return viewId ? SURVEYS.get(viewId) : undefined
 }
 
-/** The group a column belongs to: its upper-case first word, if it has one. */
-export function columnGroup(columnName: string): string | null {
+/** The group a column belongs to: its first word, if that is one of the survey's group prefixes. */
+export function columnGroup(config: SurveyConfig, columnName: string): string | null {
   const first = columnName.split(' ')[0]
-  return columnName.includes(' ') && /^[A-Z0-9]+$/.test(first) ? first : null
+  return columnName.includes(' ') && (config.groupPrefixes ?? []).includes(first) ? first : null
 }
 
 /** Whether this respondent was shown the given question. */
 export function sawField(config: SurveyConfig, row: SurveyRow, field: FormField): boolean {
   const groups = config.visibleGroups?.(row) ?? null
   if (!groups) return true
-  const g = columnGroup(field.column_name)
+  const g = columnGroup(config, field.column_name)
   return g === null || groups.includes(g)
 }
 

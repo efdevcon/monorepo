@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
-import { listRows, getTableFields } from 'services/nocodb'
+import { getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
 import { getSurveyConfig, sawField, roleOf } from 'services/survey-review'
+import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 
 // Admin "survey review" endpoint for one question across every response,
 // gated by BUILDER_REVIEW_PASSWORD (sent as x-admin-key) like the per-response
@@ -10,7 +11,7 @@ import { getSurveyConfig, sawField, roleOf } from 'services/survey-review'
 // GET ?column=<column name> -> the question, the form's question list (for
 // the picker), and one entry per respondent who was shown the question.
 // Respondents who were never shown it (other roles) are left out.
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
 
@@ -37,7 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return
   }
 
-  const rows = await listRows(viewId)
+  const rows = await getSurveyRows(viewId)
   const answers = rows
     .filter(row => sawField(config, row, field))
     .map(row => ({ id: Number(row['Id']), role: roleOf(config, row), value: row[field.column_name] ?? null }))
@@ -52,3 +53,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     answers,
   })
 }
+
+export default surveyHandler(handler)

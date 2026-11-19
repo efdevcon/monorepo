@@ -14,7 +14,7 @@ import {
   isUnanswered,
   parseSection,
 } from 'components/domain/survey-review'
-import { normalizeSearchText } from 'services/survey-review-shared'
+import { containsWords, normalizeSearchText } from 'services/survey-review-shared'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
 import {
   readStoredPassword,
@@ -53,6 +53,8 @@ export default function SurveyQuestionPage() {
   const from = typeof router.query.from === 'string' ? router.query.from : undefined
   // Optional search to open with, e.g. a common word clicked on the Overview page.
   const initialSearch = typeof router.query.q === 'string' ? router.query.q : ''
+  // Optional role to open with, e.g. the role filter that was active on the Overview.
+  const initialRole = typeof router.query.role === 'string' ? router.query.role : null
 
   const [secret, setSecret] = useState<string | null>(null)
   const [field, setField] = useState<FormField | null>(null)
@@ -105,7 +107,7 @@ export default function SurveyQuestionPage() {
         setSurveyTitle(json.survey?.title ?? '')
         // Each question starts unfiltered (apart from a search passed in the link).
         setPicked(null)
-        setRole(null)
+        setRole(initialRole)
         setSearch(initialSearch)
       } catch (e) {
         if (isCurrent()) setError((e as Error).message)
@@ -113,7 +115,7 @@ export default function SurveyQuestionPage() {
         if (isCurrent()) setLoading(false)
       }
     },
-    [viewId, column, initialSearch]
+    [viewId, column, initialSearch, initialRole]
   )
 
   useEffect(() => {
@@ -172,10 +174,17 @@ export default function SurveyQuestionPage() {
 
   // Search applies to written questions only (the only ones with a search box).
   const q = counted ? '' : normalizeSearchText(search)
+  // A word clicked on the Overview is matched as a whole word, like its count
+  // ("food" not "seafood"); anything typed is matched anywhere in the answer.
+  const wholeWords = q !== '' && search === initialSearch
   const shown = field
     ? answered
         .filter(a => picked === null || valuesOf(field, a.value).includes(picked))
-        .filter(a => !q || normalizeSearchText(String(a.value ?? '')).includes(q))
+        .filter(a => {
+          if (!q) return true
+          const text = normalizeSearchText(String(a.value ?? ''))
+          return wholeWords ? containsWords(text, q) : text.includes(q)
+        })
         .sort((a, b) => (field.uidt === 'Rating' ? Number(a.value) - Number(b.value) : 0) || a.id - b.id)
     : []
 
@@ -213,6 +222,7 @@ export default function SurveyQuestionPage() {
                     column: e.target.value,
                   }
                   delete query.q
+                  delete query.role
                   router.push({ pathname: router.pathname, query })
                 }}
                 className="flex-1 min-w-0 h-9 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)]"

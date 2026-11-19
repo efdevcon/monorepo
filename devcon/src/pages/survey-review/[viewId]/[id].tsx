@@ -47,6 +47,28 @@ interface Nav {
 
 const EMPTY_NAV: Nav = { prevId: null, nextId: null, position: 0, total: 0 }
 
+// Unsaved note drafts, per response, kept in sessionStorage so they survive
+// moving to another response, a question page or the Overview and back.
+type Drafts = Record<string, string>
+const draftsKey = (viewId: string) => `survey-review-drafts:${viewId}`
+
+function readDrafts(viewId: string): Drafts {
+  try {
+    return JSON.parse(sessionStorage.getItem(draftsKey(viewId)) || '{}') as Drafts
+  } catch {
+    return {}
+  }
+}
+
+function writeDrafts(viewId: string, drafts: Drafts) {
+  try {
+    if (Object.keys(drafts).length) sessionStorage.setItem(draftsKey(viewId), JSON.stringify(drafts))
+    else sessionStorage.removeItem(draftsKey(viewId))
+  } catch {
+    // storage unavailable: drafts last only until the page changes
+  }
+}
+
 function NavButton({ href, children }: { href: string | null; children: React.ReactNode }) {
   if (!href) {
     return (
@@ -82,6 +104,8 @@ export default function SurveyReviewPage() {
   // page shows the previous data dimmed and notes can't be saved.
   const [loadedId, setLoadedId] = useState<string | null>(null)
   const loadedIdRef = useRef<string | null>(null)
+  // Number of responses with an unsaved note draft (see readDrafts).
+  const [draftCount, setDraftCount] = useState(0)
   const loadSeq = useRef(0)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -155,7 +179,7 @@ export default function SurveyReviewPage() {
         setHasNotes(!!json.hasNotes)
         setRole(typeof json.role === 'string' ? json.role : '')
         const note = String(json.record?.['Admin Notes'] ?? '')
-        setComment(note)
+        setComment(readDrafts(viewId)[id] ?? note)
         setSavedComment(note)
       } catch (e) {
         if (isCurrent()) setError((e as Error).message)
@@ -170,11 +194,30 @@ export default function SurveyReviewPage() {
     if (secret && viewId && id) load(secret)
   }, [secret, viewId, id, load])
 
-  // ← → keys move between responses (ignored while typing).
+  useEffect(() => {
+    if (viewId) setDraftCount(Object.keys(readDrafts(viewId)).length)
+  }, [viewId])
+
+  // Warn before closing the tab or leaving the site while any response has an
+  // unsaved note (drafts survive moving around the review pages, not closing).
+  const unsaved = draftCount > 0
+  useEffect(() => {
+    if (!unsaved) return
+    const warn = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', warn)
+    return () => window.removeEventListener('beforeunload', warn)
+  }, [unsaved])
+
+  // ← → keys move between responses (ignored while typing or in a menu, and
+  // with modifier keys so browser shortcuts like Alt+← keep working).
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       const t = e.target as HTMLElement | null
-      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return
+      if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return
+      if (t && (['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName) || t.isContentEditable)) return
       // scroll: false keeps the reader's place when moving between responses.
       if (e.key === 'ArrowLeft' && activeNav.prevId != null)
         router.push(`${base}/${activeNav.prevId}`, undefined, { scroll: false })
@@ -184,6 +227,16 @@ export default function SurveyReviewPage() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [activeNav.prevId, activeNav.nextId, router, base])
+
+  function updateDraft(text: string) {
+    const target = loadedIdRef.current
+    if (!viewId || !target) return
+    const drafts = readDrafts(viewId)
+    if (text === savedComment) delete drafts[target]
+    else drafts[target] = text
+    writeDrafts(viewId, drafts)
+    setDraftCount(Object.keys(drafts).length)
+  }
 
   async function saveComment() {
     // Save only to the response that is actually on screen.
@@ -203,6 +256,11 @@ export default function SurveyReviewPage() {
         return
       }
       markNote(Number(target), comment.trim() !== '')
+      // Drop the draft only if nothing was typed while saving.
+      const drafts = readDrafts(viewId)
+      if (drafts[target] === comment) delete drafts[target]
+      writeDrafts(viewId, drafts)
+      setDraftCount(Object.keys(drafts).length)
       // If the reviewer has moved on meanwhile, the next load sets the note state.
       if (target === loadedIdRef.current) setSavedComment(comment)
     } catch (e) {
@@ -360,7 +418,10 @@ export default function SurveyReviewPage() {
                       <Section title="Admin notes">
                         <textarea
                           value={comment}
-                          onChange={e => setComment(e.target.value)}
+                          onChange={e => {
+                            setComment(e.target.value)
+                            updateDraft(e.target.value)
+                          }}
                           placeholder="Add a private note about this response (visible to reviewers only)…"
                           rows={3}
                           className="w-full px-3 py-2 border border-[var(--sr-line)] bg-[var(--sr-soft)] focus:bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)] leading-5 resize-y focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sr-accent-ring)]"

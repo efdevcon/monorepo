@@ -3,6 +3,7 @@ import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getRowById, updateRow, getTableFields, getAllTableColumns } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
 import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
+import { invalidateSurveyRows, surveyHandler } from 'services/survey-review-rows'
 
 // NocoDB workspace in the "Open in NocoDB" deep link (same one the builder
 // review page links into).
@@ -13,7 +14,7 @@ const NOCODB_WORKSPACE = 'wx5thjwz'
 // GET  -> the response row and the questions this respondent was shown, in form
 //         order. Prev/next comes from the side panel's list (GET /api/survey/review/[viewId]).
 // POST -> { comment } saves the private Admin Notes column.
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
 
@@ -47,12 +48,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Only the questions this respondent was actually shown.
     const visibleFields = visibleFieldsFor(config, record, allFields)
     const role = roleOf(config, record)
+    // Send only what the page shows: the shown questions plus id, date and
+    // note, never other columns of the table (hidden fields, internal flags).
+    const keep = ['Id', 'CreatedAt', 'created_at', NOTES_COLUMN, ...visibleFields.map(f => f.column_name)]
+    const shownRecord = Object.fromEntries(keep.filter(k => k in record).map(k => [k, record[k]]))
 
     res.status(200).json({
       success: true,
       survey: { title: meta.formHeading || meta.viewTitle, viewTitle: meta.viewTitle },
       nocodbUrl: `https://form.devcon.org/${NOCODB_WORKSPACE}/${meta.baseId}/${meta.tableId}?rowId=${id}`,
-      record,
+      record: shownRecord,
       fields: visibleFields,
       role,
       hasNotes,
@@ -77,6 +82,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return
     }
     await updateRow(viewId, id, { [NOTES_COLUMN]: comment })
+    invalidateSurveyRows(viewId) // the side panel's note dots read the cached rows
     res.status(200).json({ success: true, comment })
     return
   }
@@ -84,3 +90,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   res.setHeader('Allow', 'GET, POST')
   res.status(405).json({ success: false, error: 'Method not allowed' })
 }
+
+export default surveyHandler(handler)

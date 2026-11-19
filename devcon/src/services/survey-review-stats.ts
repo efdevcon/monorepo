@@ -118,15 +118,15 @@ export function respondentAverage(config: SurveyConfig, row: SurveyRow, fields: 
 }
 
 /**
- * The words of an answer, normalised the same way as the answer search, with
- * null in place of words that don't count (stopwords, short words, numbers).
- * Keeping the gaps means a phrase is only ever two words that are next to each
- * other in the answer, so searching for it finds that answer.
+ * The words of an answer exactly as the answer search sees them
+ * (normalizeSearchText), with null in place of words that don't count
+ * (stopwords, short words, contractions, numbers). Keeping the gaps means a
+ * phrase is only ever two words next to each other, so a word link on the
+ * Overview always finds the answers it was counted in.
  */
 function tokens(text: string): (string | null)[] {
   return normalizeSearchText(text)
     .split(' ')
-    .map(t => t.replace(/^['-]+|['-]+$/g, ''))
     .map(t => (t.length > 2 && !STOPWORDS.has(t) && !t.includes("'") && !/^\d+$/.test(t) ? t : null))
 }
 

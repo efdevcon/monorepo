@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { BarChart3, ChevronRight, Loader2, Search, Star } from 'lucide-react'
 import { CARD } from 'components/domain/survey-review'
+import { normalizeSearchText } from 'services/survey-review-shared'
 
 // Side panel for the survey review page: every response, with role filters,
 // a word search across all answers, an "only with written comments" toggle
@@ -107,7 +108,7 @@ export function useListFilters(viewId: string | undefined): [ListFilters, (patch
 }
 
 export function filterResponses(responses: ResponseSummary[], f: ListFilters): ResponseSummary[] {
-  const q = f.q.trim().toLowerCase()
+  const q = normalizeSearchText(f.q) // r.text is normalised the same way on the server
   const shown = responses.filter(
     r => (f.role === 'all' || r.role === f.role) && (!f.written || r.hasWritten) && (!q || r.text.includes(q))
   )

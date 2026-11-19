@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
-import { listRows, getTableFields } from 'services/nocodb'
+import { getTableFields } from 'services/nocodb'
 import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
+import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
+import { normalizeSearchText } from 'services/survey-review-shared'
 
 // Admin "survey review" endpoint listing every response for the side panel,
 // gated by BUILDER_REVIEW_PASSWORD (sent as x-admin-key) like the endpoints
@@ -9,7 +11,7 @@ import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'service
 // GET -> one summary per response: role, average star rating, a snippet of
 // the first written answer, and the text of every answer the respondent was
 // shown (for the word search). Only questions on the form are included.
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
 
@@ -26,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return
   }
 
-  const [fields, rows] = await Promise.all([getTableFields(viewId), listRows(viewId)])
+  const [fields, rows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
 
   const responses = rows
     .map(row => {
@@ -44,6 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           if (n > 0) ratings.push(n / (f.rating?.max ?? 5))
           continue
         }
+        if (f.uidt === 'Checkbox') continue // true/false isn't searchable text
         const text = Array.isArray(v) ? v.join(', ') : typeof v === 'object' ? '' : String(v)
         if (!text) continue
         texts.push(text)
@@ -57,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         snippet: snippet.slice(0, 140),
         hasWritten,
         hasNote: String(row[NOTES_COLUMN] ?? '').trim() !== '',
-        text: texts.join('\n').toLowerCase(),
+        text: texts.map(normalizeSearchText).join('\n'), // matched by the side panel search
       }
     })
     .filter(r => Number.isFinite(r.id))
@@ -65,3 +68,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   res.status(200).json({ success: true, responses })
 }
+
+export default surveyHandler(handler)

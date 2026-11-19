@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
-import { listRows, getTableFields } from 'services/nocodb'
+import { getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
 import { getSurveyConfig } from 'services/survey-review'
+import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 import { buildOverview } from 'services/survey-review-stats'
 
 // Admin "survey review" endpoint for the Overview page, gated by
@@ -10,7 +11,7 @@ import { buildOverview } from 'services/survey-review-stats'
 // GET ?role=<role> -> headline numbers, average ratings (lowest first), answer
 // breakdowns, and for written questions the common words and the comments of
 // the least satisfied respondents. Computed live from NocoDB on each request.
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
 
@@ -30,7 +31,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const rawRole = Array.isArray(req.query.role) ? req.query.role[0] : req.query.role
   const role = typeof rawRole === 'string' ? rawRole : null
 
-  const [fields, rows, meta] = await Promise.all([getTableFields(viewId), listRows(viewId), resolveFormView(viewId)])
+  const [fields, rows, meta] = await Promise.all([
+    getTableFields(viewId),
+    getSurveyRows(viewId),
+    resolveFormView(viewId),
+  ])
 
   res.status(200).json({
     success: true,
@@ -38,3 +43,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     overview: buildOverview(config, fields, rows, role),
   })
 }
+
+export default surveyHandler(handler)
