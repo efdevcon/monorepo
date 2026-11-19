@@ -15,10 +15,10 @@ import { normalizeSearchText } from 'services/survey-review-shared'
 // Admin "survey review" endpoint listing every response for the side panel,
 // gated by BUILDER_REVIEW_PASSWORD (sent as x-admin-key) like the endpoints
 // next to it.
-// GET -> one summary per response: role, average star rating, a snippet of
-// the first written answer, and the text of every answer the respondent was
-// shown plus their email (for the word search). Only questions on the form
-// and the contact email are included.
+// GET -> one summary per response: role, email, average star rating, a
+// snippet of the first written answer, and the text of every answer the
+// respondent was shown plus their email and wallet (for the word search). Only
+// questions on the form and the contact columns are included.
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
@@ -62,8 +62,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         if (f.uidt === 'LongText' && text.trim().length > 25) hasWritten = true
         if (!snippet && f.uidt === 'LongText' && text.trim().length > 3) snippet = text.trim()
       }
-      const { email } = contactOf(config, row)
-      if (email) texts.push(email) // so a reviewer can find someone by email
+      const { email, wallet } = contactOf(config, row, allFields)
+      if (email) texts.push(email) // so a reviewer can find someone by email or wallet
+      if (wallet) texts.push(wallet)
       return {
         id,
         email,

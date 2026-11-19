@@ -156,9 +156,16 @@ export function ResponseList({
     return () => clearTimeout(t)
   }, [q, filters.q, onFilters])
 
-  // Keep the open response visible in the list.
+  // Keep the open response visible in the list. Only the list scrolls (not the
+  // panel or the page, as scrollIntoView would).
   useEffect(() => {
-    listRef.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' })
+    const list = listRef.current
+    const item = list?.querySelector<HTMLElement>('[aria-current="page"]')
+    if (!list || !item) return
+    const l = list.getBoundingClientRect()
+    const i = item.getBoundingClientRect()
+    if (i.top < l.top) list.scrollTop += i.top - l.top
+    else if (i.bottom > l.bottom) list.scrollTop += i.bottom - l.bottom
   }, [currentId, filtered.length])
 
   const roles = useMemo(() => {

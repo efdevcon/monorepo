@@ -1,6 +1,8 @@
 import type { FormField } from 'services/nocodb-meta'
 import { stripEncryptedPrefix } from 'config/encrypted-forms'
 import {
+  isMemoryTitle,
+  isWalletTitle,
   parseScaleTitle,
   stripGithubPrefix,
   stripMemoryPrefix,
@@ -28,7 +30,11 @@ export interface SurveyConfig {
   // (Email, Role, …) are always shown. Return null to show every group.
   visibleGroups?: (row: SurveyRow) => string[] | null
   // Who answered: columns shown at the top of each response (and searchable in
-  // the side panel) instead of as questions. Not used on the Overview.
+  // the side panel) instead of as questions, and left out of the Overview.
+  // Form fields marked [wallet] / [memory] or of type Email are recognised on
+  // their own (see contactColumnsFor); these names cover columns that aren't
+  // on the form. Contact columns are read even when hidden on the form: the
+  // review pages are behind the reviewer password.
   contactColumns?: { email?: string; wallet?: string; memory?: string }
   // Questions shown as headline cards on the Overview page (column names).
   // Missing columns are skipped.
@@ -126,18 +132,47 @@ export function cleanQuestionTitle(title: string): string {
   return t ? t + scale : title
 }
 
-function contactColumnNames(config: SurveyConfig): string[] {
+type ContactColumns = { email?: string; wallet?: string; memory?: string }
+
+/**
+ * The columns holding the respondent's email, wallet and Memory. A configured
+ * column that is on the form wins; otherwise the form field the form renderer
+ * itself treats as such ([wallet] / [memory] title marker, Email type);
+ * otherwise the configured name (a column that isn't on the form).
+ */
+export function contactColumnsFor(config: SurveyConfig, fields: FormField[]): ContactColumns {
   const c = config.contactColumns ?? {}
-  return [c.email, c.wallet, c.memory].filter((x): x is string => !!x)
+  const onForm = (col?: string) => (col && fields.some(f => f.column_name === col) ? col : undefined)
+  const marked = (test: (f: FormField) => boolean) => fields.find(test)?.column_name
+  return {
+    email: onForm(c.email) ?? marked(f => f.uidt === 'Email') ?? c.email,
+    wallet: onForm(c.wallet) ?? marked(f => isWalletTitle(f.title)) ?? c.wallet,
+    memory: onForm(c.memory) ?? marked(f => isMemoryTitle(f.title)) ?? c.memory,
+  }
 }
 
 /**
  * The survey's questions for the review pages: readable titles, and without
- * the role and contact columns (those are shown separately).
+ * the role and contact columns (those are shown separately). A section header
+ * on a removed field moves to the next question when that one has none (a
+ * section runs until the next header, so that question is in it).
  */
 export function surveyQuestions(config: SurveyConfig, fields: FormField[]): FormField[] {
-  const skip = new Set([config.roleColumn, ...contactColumnNames(config)].filter(Boolean))
-  return fields.filter(f => !skip.has(f.column_name)).map(f => ({ ...f, title: cleanQuestionTitle(f.title) }))
+  const c = contactColumnsFor(config, fields)
+  const skip = new Set([config.roleColumn, c.email, c.wallet, c.memory].filter(Boolean))
+  const out: FormField[] = []
+  let section: string | undefined
+  for (const f of fields) {
+    if (skip.has(f.column_name)) {
+      section = f.section ?? section
+      continue
+    }
+    const q: FormField = { ...f, title: cleanQuestionTitle(f.title) }
+    if (!q.section && section) q.section = section
+    out.push(q)
+    section = undefined
+  }
+  return out
 }
 
 export interface SurveyContact {
@@ -146,9 +181,9 @@ export interface SurveyContact {
   memory: string | null
 }
 
-/** The respondent's contact columns (see contactColumns), blank values as null. */
-export function contactOf(config: SurveyConfig, row: SurveyRow): SurveyContact {
-  const c = config.contactColumns ?? {}
+/** The respondent's email, wallet and Memory (see contactColumnsFor), blank values as null. */
+export function contactOf(config: SurveyConfig, row: SurveyRow, fields: FormField[]): SurveyContact {
+  const c = contactColumnsFor(config, fields)
   const read = (col?: string) => {
     const v = col ? row[col] : null
     return v === null || v === undefined || String(v).trim() === '' ? null : String(v).trim()

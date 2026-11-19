@@ -59,7 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     // Who answered (this page is behind the reviewer password). Wallets are
     // shown in EIP-55 form. Anything else (not an address, or mixed case with a
     // wrong checksum, i.e. probably a typo) is shown exactly as entered.
-    const contact = contactOf(config, record)
+    const contact = contactOf(config, record, allFields)
     if (contact.wallet && isAddress(contact.wallet, { strict: true })) contact.wallet = getAddress(contact.wallet)
     // Send only what the page shows: the shown questions, contact details, id,
     // date and note, never other columns of the table (internal flags).
