@@ -251,6 +251,7 @@ export default function SurveyReviewPage() {
             onFilters={setFilters}
             currentId={currentId}
             hrefFor={rid => `${base}/${rid}`}
+            overviewHref={`${base}/overview${id ? `?from=${id}` : ''}`}
           />
           <div className="min-w-0 max-w-[820px] w-full flex flex-col gap-6">
             {loading && !record && (

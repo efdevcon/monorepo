@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, Search, Star } from 'lucide-react'
+import { BarChart3, ChevronRight, Loader2, Search, Star } from 'lucide-react'
 import { CARD } from 'components/domain/survey-review'
 
 // Side panel for the survey review page: every response, with role filters,
@@ -130,6 +130,7 @@ interface ResponseListProps {
   onFilters: (patch: Partial<ListFilters>) => void
   currentId: number | null
   hrefFor: (id: number) => string
+  overviewHref?: string
 }
 
 export function ResponseList({
@@ -140,6 +141,7 @@ export function ResponseList({
   onFilters,
   currentId,
   hrefFor,
+  overviewHref,
 }: ResponseListProps) {
   const [q, setQ] = useState(filters.q)
   const listRef = useRef<HTMLDivElement>(null)
@@ -176,6 +178,16 @@ export function ResponseList({
       aria-label="Responses"
     >
       <div className="flex flex-col gap-3 p-3 border-b border-[var(--sr-divider)]">
+        {overviewHref && (
+          <Link
+            href={overviewHref}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--sr-accent-bg)] border border-[var(--sr-accent-line)] text-sm font-semibold text-[var(--sr-accent)] hover:border-[var(--sr-accent)] transition-colors"
+          >
+            <BarChart3 className="w-4 h-4" aria-hidden="true" />
+            <span className="flex-1">Overview & stats</span>
+            <ChevronRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        )}
         <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter by role">
           <button type="button" className={chip(filters.role === 'all')} onClick={() => onFilters({ role: 'all' })}>
             All <span className="opacity-60 tabular-nums">{responses?.length ?? ''}</span>

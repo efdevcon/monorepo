@@ -211,7 +211,11 @@ export function AnswerValue({ field, value }: { field: FormField; value: unknown
           </pre>
         )
       }
-      return <p className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line">{String(value)}</p>
+      return (
+        <p className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line [overflow-wrap:anywhere]">
+          {String(value)}
+        </p>
+      )
   }
 }
 

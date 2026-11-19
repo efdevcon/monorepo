@@ -16,6 +16,9 @@ export interface SurveyConfig {
   // prefix of a column name ("VOL Rating" is in group "VOL"); columns without
   // one (Email, Role, …) are always shown. Return null to show every group.
   visibleGroups?: (row: SurveyRow) => string[] | null
+  // Questions shown as headline cards on the Overview page (column names).
+  // Missing columns are skipped.
+  highlights?: string[]
 }
 
 // Devcon 8 Feedback Survey: respondents pick a role and only see that role's
@@ -24,6 +27,8 @@ export interface SurveyConfig {
 // questions.
 const DEVCON8_FEEDBACK: SurveyConfig = {
   roleColumn: 'Role',
+  // Overall rating (attendees), would-recommend and would-attend-again.
+  highlights: ['ATT General', 'END Nps', 'END Attend'],
   visibleGroups: row => {
     const role = String(row['Role'] ?? '').trim()
     const optedIn = row['OPTIN Venue'] === 'Yes'

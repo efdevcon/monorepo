@@ -50,6 +50,8 @@ export default function SurveyQuestionPage() {
   const viewId = typeof router.query.viewId === 'string' ? router.query.viewId : undefined
   const column = typeof router.query.column === 'string' ? router.query.column : undefined
   const from = typeof router.query.from === 'string' ? router.query.from : undefined
+  // Optional search to open with, e.g. a common word clicked on the Overview page.
+  const initialSearch = typeof router.query.q === 'string' ? router.query.q : ''
 
   const [secret, setSecret] = useState<string | null>(null)
   const [field, setField] = useState<FormField | null>(null)
@@ -95,14 +97,14 @@ export default function SurveyQuestionPage() {
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
         setSurveyTitle(json.survey?.title ?? '')
         setPicked(null)
-        setSearch('')
+        setSearch(initialSearch)
       } catch (e) {
         setError((e as Error).message)
       } finally {
         setLoading(false)
       }
     },
-    [viewId, column]
+    [viewId, column, initialSearch]
   )
 
   useEffect(() => {
