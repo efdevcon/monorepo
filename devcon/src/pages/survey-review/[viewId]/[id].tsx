@@ -359,7 +359,7 @@ export default function SurveyReviewPage() {
   const nameField = fields.find(f => /name/i.test(f.title) && !isEmpty(record?.[f.column_name]))
   const name = nameField ? String(record?.[nameField.column_name]) : ''
   const { email, wallet, memory } = stale ? NO_CONTACT : contact
-  const submitted = record?.['CreatedAt'] ?? record?.['created_at']
+  const submitted = String(record?.['CreatedAt'] ?? record?.['created_at'] ?? '')
 
   const answerable = fields.filter(f => f.uidt !== 'Checkbox')
   const answeredCount = answerable.filter(f => !isUnanswered(f, record?.[f.column_name])).length
@@ -452,7 +452,7 @@ export default function SurveyReviewPage() {
                       </h1>
                       {submitted && (
                         <p className="text-sm text-[var(--sr-muted)]">
-                          Submitted {new Date(String(submitted)).toLocaleDateString()}
+                          Submitted {new Date(submitted).toLocaleDateString()}
                         </p>
                       )}
                       {(email || wallet || memory) && (
