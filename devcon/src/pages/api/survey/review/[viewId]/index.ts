@@ -1,16 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getTableFields } from 'services/nocodb'
-import { getSurveyConfig, visibleFieldsFor, roleOf, NOTES_COLUMN } from 'services/survey-review'
+import {
+  getSurveyConfig,
+  visibleFieldsFor,
+  roleOf,
+  contactOf,
+  surveyQuestions,
+  withoutMintOnly,
+  NOTES_COLUMN,
+} from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 import { normalizeSearchText } from 'services/survey-review-shared'
 
 // Admin "survey review" endpoint listing every response for the side panel,
 // gated by BUILDER_REVIEW_PASSWORD (sent as x-admin-key) like the endpoints
 // next to it.
-// GET -> one summary per response: role, average star rating, a snippet of
-// the first written answer, and the text of every answer the respondent was
-// shown (for the word search). Only questions on the form are included.
+// GET -> one summary per response: role, email, average star rating, a
+// snippet of the first written answer, and the text of every answer the
+// respondent was shown plus their email and wallet (for the word search). Only
+// questions on the form and the contact columns are included.
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader('Cache-Control', 'no-store, max-age=0')
   if (!checkBuilderReviewAuth(req, res)) return
@@ -28,7 +37,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  const [fields, rows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
+  const [allFields, allRows] = await Promise.all([getTableFields(viewId), getSurveyRows(viewId, { fresh: true })])
+  const fields = surveyQuestions(config, allFields)
+  const { rows, hidden } = withoutMintOnly(config, allFields, allRows)
 
   const responses = rows
     .map(row => {
@@ -53,8 +64,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         if (f.uidt === 'LongText' && text.trim().length > 25) hasWritten = true
         if (!snippet && f.uidt === 'LongText' && text.trim().length > 3) snippet = text.trim()
       }
+      const { email, wallet } = contactOf(config, row, allFields)
+      if (email) texts.push(email) // so a reviewer can find someone by email or wallet
+      if (wallet) texts.push(wallet)
       return {
         id,
+        email,
         role: roleOf(config, row),
         avgRating: ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length) * 5 : null,
         snippet: snippet.slice(0, 140),
@@ -66,7 +81,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     .filter(r => Number.isFinite(r.id))
     .sort((a, b) => a.id - b.id)
 
-  res.status(200).json({ success: true, responses })
+  // One role per hidden mint-only submission, so the panel can count them for
+  // the role filter it shows.
+  const mintOnlyRoles = hidden.map(row => roleOf(config, row))
+  res.status(200).json({ success: true, responses, mintOnlyRoles })
 }
 
 export default surveyHandler(handler)

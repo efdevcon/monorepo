@@ -1,5 +1,5 @@
 import type { FormField } from 'services/nocodb-meta'
-import { type SurveyConfig, type SurveyRow, sawField, roleOf } from 'services/survey-review'
+import { type SurveyConfig, type SurveyRow, sawField, roleOf, surveyQuestions } from 'services/survey-review'
 import { LOW_AVERAGE, normalizeSearchText } from 'services/survey-review-shared'
 
 // Overview statistics for the survey review Overview page: averages, answer
@@ -241,7 +241,8 @@ export function buildOverview(
   })
   const roleCounts = [...counts.entries()].map(([value, count]) => ({ value, count })).sort((a, b) => b.count - a.count)
 
-  const questions = fields.filter(f => f.column_name !== config.roleColumn)
+  // Contact columns (email, wallet, memory) are never part of the stats.
+  const questions = surveyQuestions(config, fields)
   const pool = rows
     .filter(r => roleFilter === null || roleOf(config, r) === roleFilter) // '' = no role
     .map(row => ({ row, avg: respondentAverage(config, row, questions) }))

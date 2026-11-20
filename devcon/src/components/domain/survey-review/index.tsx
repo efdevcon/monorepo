@@ -32,9 +32,13 @@ const DARK_VARS = `
   --sr-good: #6fd69a; --sr-good-bg: #13301f; --sr-good-line: #22573a; --sr-warn: #f0b765; --sr-bad: #f08c8e;
   --sr-gold: #f0c860; --sr-gold-bg: #33280f; --sr-gold-line: #5c4a19; --sr-star: #f5c33b;
   color-scheme: dark;`
+// devcon's global stylesheet resets every element with "* { border: 0 }", which also sets the border
+// style to none, so Tailwind's border classes (which only set width and color) draw nothing. These
+// pages put the style back.
 const THEME_CSS = `
 .sr-theme {${LIGHT_VARS}
 }
+.sr-theme, .sr-theme *, .sr-theme ::before, .sr-theme ::after { border-style: solid; }
 :root[data-sr-theme='dark'] .sr-theme {${DARK_VARS}
 }
 @media (prefers-color-scheme: dark) {

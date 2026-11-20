@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { checkBuilderReviewAuth } from 'utils/adminAuth'
 import { getTableFields } from 'services/nocodb'
 import { resolveFormView } from 'services/nocodb-meta'
-import { getSurveyConfig } from 'services/survey-review'
+import { getSurveyConfig, roleOf, withoutMintOnly } from 'services/survey-review'
 import { getSurveyRows, surveyHandler } from 'services/survey-review-rows'
 import { buildOverview } from 'services/survey-review-stats'
 
@@ -31,16 +31,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const rawRole = Array.isArray(req.query.role) ? req.query.role[0] : req.query.role
   const role = typeof rawRole === 'string' ? rawRole : null
 
-  const [fields, rows, meta] = await Promise.all([
+  const [fields, allRows, meta] = await Promise.all([
     getTableFields(viewId),
     getSurveyRows(viewId),
     resolveFormView(viewId),
   ])
 
+  const { rows, hidden } = withoutMintOnly(config, fields, allRows)
+  const mintOnly = hidden.filter(r => role === null || roleOf(config, r) === role).length
   res.status(200).json({
     success: true,
     survey: { title: meta.formHeading || meta.viewTitle },
     overview: buildOverview(config, fields, rows, role),
+    mintOnlyHidden: mintOnly,
   })
 }
 

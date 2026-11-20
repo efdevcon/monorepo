@@ -14,7 +14,7 @@ import {
   isUnanswered,
   parseSection,
 } from 'components/domain/survey-review'
-import { containsWords, normalizeSearchText } from 'services/survey-review-shared'
+import { MINT_ONLY_HINT, containsWords, mintOnlyLabel, normalizeSearchText } from 'services/survey-review-shared'
 import { roleLabel } from 'components/domain/survey-review/ResponseList'
 import {
   readStoredPassword,
@@ -26,12 +26,16 @@ import {
 // Everyone's answer to one survey question: a breakdown for ratings and
 // choices (click a bar to filter), then each answer with a link to the full
 // response. Opened from the "All answers" link beside a question on
-// pages/survey-review/[viewId]/[id].tsx. Gated by the builder review password.
+// pages/survey-review/[viewId]/[id].tsx, or from an answer clicked on the
+// Overview (?answer=No opens with that answer picked). Gated by the builder
+// review password.
 
 interface Answer {
   id: number
   role: string
   value: unknown
+  // What this person wrote in the question's written follow-ups ("Why?").
+  followUps?: { column: string; text: string }[]
 }
 
 const CHOICE_TYPES = new Set(['Rating', 'SingleSelect', 'MultiSelect', 'Checkbox', 'Number'])
@@ -55,11 +59,17 @@ export default function SurveyQuestionPage() {
   const initialSearch = typeof router.query.q === 'string' ? router.query.q : ''
   // Optional role to open with, e.g. the role filter that was active on the Overview.
   const initialRole = typeof router.query.role === 'string' ? router.query.role : null
+  // Optional answer to open with, e.g. "No" clicked on the Overview page.
+  const initialAnswer = typeof router.query.answer === 'string' ? router.query.answer : null
 
   const [secret, setSecret] = useState<string | null>(null)
   const [field, setField] = useState<FormField | null>(null)
   const [questions, setQuestions] = useState<FormField[]>([])
   const [answers, setAnswers] = useState<Answer[]>([])
+  const [mintOnlyRoles, setMintOnlyRoles] = useState<string[]>([])
+  // Titles of the question's written follow-ups, by column.
+  const [followUpTitles, setFollowUpTitles] = useState<Record<string, string>>({})
+  const [onlyWritten, setOnlyWritten] = useState(false)
   const [surveyTitle, setSurveyTitle] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -104,9 +114,19 @@ export default function SurveyQuestionPage() {
         setField(json.field)
         setQuestions(Array.isArray(json.questions) ? json.questions : [])
         setAnswers(Array.isArray(json.answers) ? json.answers : [])
+        setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
+        setFollowUpTitles(
+          Object.fromEntries(
+            (Array.isArray(json.followUps) ? json.followUps : []).map((f: { column: string; title: string }) => [
+              f.column,
+              f.title,
+            ])
+          )
+        )
+        setOnlyWritten(false)
         setSurveyTitle(json.survey?.title ?? '')
-        // Each question starts unfiltered (apart from a search passed in the link).
-        setPicked(null)
+        // Each question starts unfiltered (apart from what the link passes in).
+        setPicked(initialAnswer)
         setRole(initialRole)
         setSearch(initialSearch)
       } catch (e) {
@@ -115,7 +135,7 @@ export default function SurveyQuestionPage() {
         if (isCurrent()) setLoading(false)
       }
     },
-    [viewId, column, initialSearch, initialRole]
+    [viewId, column, initialSearch, initialRole, initialAnswer]
   )
 
   useEffect(() => {
@@ -153,6 +173,7 @@ export default function SurveyQuestionPage() {
   }
 
   const pool = answers.filter(a => role === null || a.role === role)
+  const mintOnlyHidden = mintOnlyRoles.filter(r => role === null || r === role).length
   const answered = field ? pool.filter(a => field.uidt === 'Checkbox' || !isUnanswered(field, a.value)) : []
   const counted = !!field && CHOICE_TYPES.has(field.uidt)
 
@@ -180,6 +201,7 @@ export default function SurveyQuestionPage() {
   const shown = field
     ? answered
         .filter(a => picked === null || valuesOf(field, a.value).includes(picked))
+        .filter(a => !onlyWritten || (a.followUps?.length ?? 0) > 0)
         .filter(a => {
           if (!q) return true
           const text = normalizeSearchText(String(a.value ?? ''))
@@ -216,13 +238,14 @@ export default function SurveyQuestionPage() {
               <select
                 value={column}
                 onChange={e => {
-                  // A search from the Overview belongs to the old question: drop it.
+                  // A search or answer from the Overview belongs to the old question: drop it.
                   const query: Record<string, string | string[] | undefined> = {
                     ...router.query,
                     column: e.target.value,
                   }
                   delete query.q
                   delete query.role
+                  delete query.answer
                   router.push({ pathname: router.pathname, query })
                 }}
                 className="flex-1 min-w-0 h-9 px-3 border border-[var(--sr-line)] bg-[var(--sr-card)] rounded-lg text-sm text-[var(--sr-ink)]"
@@ -320,7 +343,7 @@ export default function SurveyQuestionPage() {
                 />
               )}
 
-              <div className="flex items-center gap-3 text-sm text-[var(--sr-muted)]">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[var(--sr-muted)]">
                 {picked !== null ? (
                   <>
                     Showing {shown.length} answering &ldquo;{picked}&rdquo;
@@ -334,6 +357,22 @@ export default function SurveyQuestionPage() {
                   </>
                 ) : (
                   <>Showing {shown.length}</>
+                )}
+                {mintOnlyHidden > 0 && (
+                  <span className="text-xs" title={MINT_ONLY_HINT}>
+                    · {mintOnlyLabel(mintOnlyHidden)}
+                  </span>
+                )}
+                {Object.keys(followUpTitles).length > 0 && (
+                  <label className="flex items-center gap-2 text-xs text-[var(--sr-muted)] cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={onlyWritten}
+                      onChange={e => setOnlyWritten(e.target.checked)}
+                      className="accent-[var(--sr-accent)]"
+                    />
+                    Only with a written explanation
+                  </label>
                 )}
               </div>
 
@@ -352,6 +391,16 @@ export default function SurveyQuestionPage() {
                       </Link>
                     </div>
                     <AnswerValue field={field} value={a.value} />
+                    {a.followUps?.map(f => (
+                      <div key={f.column} className="flex flex-col gap-1 p-3 rounded-lg bg-[var(--sr-soft)]">
+                        <span className="text-xs font-semibold text-[var(--sr-muted)]">
+                          {followUpTitles[f.column] ?? f.column}
+                        </span>
+                        <p className="text-sm text-[var(--sr-body)] leading-6 whitespace-pre-line [overflow-wrap:anywhere]">
+                          {f.text}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 ))}
                 {shown.length === 0 && !loading && <p className="text-sm text-[var(--sr-muted)]">No answers match.</p>}

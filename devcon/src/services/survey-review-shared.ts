@@ -31,3 +31,8 @@ export function normalizeSearchText(text: string): string {
 export function containsWords(normalizedText: string, normalizedWords: string): boolean {
   return normalizedWords !== '' && ` ${normalizedText} `.includes(` ${normalizedWords} `)
 }
+
+/** "2 mint-only submissions hidden": see withoutMintOnly in services/survey-review. */
+export const mintOnlyLabel = (n: number) => `${n} mint-only submission${n === 1 ? '' : 's'} hidden`
+export const MINT_ONLY_HINT =
+  'Submissions where a Devcon 8 Memory was claimed but no survey question was answered. They are left out of the responses and stats.'

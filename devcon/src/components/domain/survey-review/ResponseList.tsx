@@ -2,15 +2,16 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { BarChart3, ChevronRight, Loader2, Search, Star } from 'lucide-react'
 import { CARD } from 'components/domain/survey-review'
-import { normalizeSearchText } from 'services/survey-review-shared'
+import { MINT_ONLY_HINT, mintOnlyLabel, normalizeSearchText } from 'services/survey-review-shared'
 
 // Side panel for the survey review page: every response, with role filters,
-// a word search across all answers, an "only with written comments" toggle
+// a word search across all answers and emails, an "only with written comments" toggle
 // and a sort by average rating. The filtered, sorted list also drives
 // Prev/Next and the ← → keys on the page.
 
 export interface ResponseSummary {
   id: number
+  email?: string | null
   role: string
   avgRating: number | null
   snippet: string
@@ -20,6 +21,8 @@ export interface ResponseSummary {
 }
 
 export type ListSort = 'id' | 'low' | 'high'
+
+const NO_ROLES: string[] = []
 
 export interface ListFilters {
   role: string
@@ -47,6 +50,7 @@ export const roleLabel = (r: string) => ROLE_SHORT[r] || r || 'No role'
 /** Loads the response list once per page visit; `markNote` keeps the note dots current after a save. */
 export function useSurveyResponses(viewId: string | undefined, secret: string | null) {
   const [responses, setResponses] = useState<ResponseSummary[] | null>(null)
+  const [mintOnlyRoles, setMintOnlyRoles] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -58,7 +62,10 @@ export function useSurveyResponses(viewId: string | undefined, secret: string | 
         const json = await res.json()
         if (cancelled) return
         if (!res.ok || !json.success) setError(json.error || `Could not load the response list (${res.status})`)
-        else setResponses(Array.isArray(json.responses) ? json.responses : [])
+        else {
+          setResponses(Array.isArray(json.responses) ? json.responses : [])
+          setMintOnlyRoles(Array.isArray(json.mintOnlyRoles) ? json.mintOnlyRoles : [])
+        }
       })
       .catch((e: Error) => {
         if (!cancelled) setError(e.message)
@@ -72,7 +79,7 @@ export function useSurveyResponses(viewId: string | undefined, secret: string | 
     setResponses(rs => (rs ? rs.map(r => (r.id === id ? { ...r, hasNote } : r)) : rs))
   }, [])
 
-  return { responses, error, markNote }
+  return { responses, mintOnlyRoles, error, markNote }
 }
 
 /** Filters kept for the browser tab, so they survive opening a question page and coming back. */
@@ -126,6 +133,7 @@ export function filterResponses(responses: ResponseSummary[], f: ListFilters): R
 interface ResponseListProps {
   responses: ResponseSummary[] | null
   filtered: ResponseSummary[]
+  mintOnlyRoles?: string[]
   error: string | null
   filters: ListFilters
   onFilters: (patch: Partial<ListFilters>) => void
@@ -137,6 +145,7 @@ interface ResponseListProps {
 export function ResponseList({
   responses,
   filtered,
+  mintOnlyRoles = NO_ROLES,
   error,
   filters,
   onFilters,
@@ -155,10 +164,19 @@ export function ResponseList({
     return () => clearTimeout(t)
   }, [q, filters.q, onFilters])
 
-  // Keep the open response visible in the list.
+  // Keep the open response visible in the list. Only the list scrolls (not the
+  // panel or the page, as scrollIntoView would).
   useEffect(() => {
-    listRef.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' })
+    const list = listRef.current
+    const item = list?.querySelector<HTMLElement>('[aria-current="page"]')
+    if (!list || !item) return
+    const l = list.getBoundingClientRect()
+    const i = item.getBoundingClientRect()
+    if (i.top < l.top) list.scrollTop += i.top - l.top
+    else if (i.bottom > l.bottom) list.scrollTop += i.bottom - l.bottom
   }, [currentId, filtered.length])
+
+  const mintOnlyHidden = mintOnlyRoles.filter(r => filters.role === 'all' || r === filters.role).length
 
   const roles = useMemo(() => {
     const counts = new Map<string, number>()
@@ -175,10 +193,10 @@ export function ResponseList({
 
   return (
     <aside
-      className={`${CARD} flex flex-col overflow-hidden lg:sticky lg:top-4 max-h-[60vh] lg:max-h-[calc(100vh-2rem)]`}
+      className={`${CARD} flex flex-col overflow-y-auto lg:sticky lg:top-4 max-h-[75vh] lg:max-h-[calc(100vh-2rem)]`}
       aria-label="Responses"
     >
-      <div className="flex flex-col gap-3 p-3 border-b border-[var(--sr-divider)]">
+      <div className="shrink-0 flex flex-col gap-3 p-3 border-b border-[var(--sr-divider)]">
         {overviewHref && (
           <Link
             href={overviewHref}
@@ -205,8 +223,8 @@ export function ResponseList({
             type="search"
             value={q}
             onChange={e => setQ(e.target.value)}
-            placeholder="Search all answers"
-            aria-label="Search all answers"
+            placeholder="Search answers or email"
+            aria-label="Search answers or email"
             className="flex-1 min-w-0 bg-transparent text-sm text-[var(--sr-ink)] outline-none"
           />
         </label>
@@ -221,7 +239,7 @@ export function ResponseList({
         </label>
       </div>
 
-      <div className="flex items-center justify-between gap-2 px-3 py-2 border-b border-[var(--sr-divider)]">
+      <div className="shrink-0 flex items-center justify-between gap-2 px-3 py-2 border-b border-[var(--sr-divider)]">
         <span className="text-[11px] font-semibold uppercase tracking-wide text-[var(--sr-muted)] tabular-nums">
           {responses ? `${filtered.length} shown` : 'Responses'}
         </span>
@@ -242,7 +260,15 @@ export function ResponseList({
         </label>
       </div>
 
-      <div ref={listRef} className="flex-1 overflow-y-auto">
+      {mintOnlyHidden > 0 && (
+        <p
+          className="shrink-0 px-3 py-1.5 border-b border-[var(--sr-divider)] text-[11px] text-[var(--sr-muted)]"
+          title={MINT_ONLY_HINT}
+        >
+          {mintOnlyLabel(mintOnlyHidden)}
+        </p>
+      )}
+      <div ref={listRef} className="flex-1 min-h-[12rem] overflow-y-auto">
         {error && <p className="p-3 text-sm text-[var(--sr-bad)]">{error}</p>}
         {!responses && !error && (
           <p className="flex items-center gap-2 p-3 text-sm text-[var(--sr-muted)]">
@@ -282,6 +308,7 @@ export function ResponseList({
                 </span>
               )}
             </span>
+            {r.email && <span className="text-xs text-[var(--sr-body)] truncate">{r.email}</span>}
             <span className="text-xs text-[var(--sr-muted)] truncate">{r.snippet || 'No written comments'}</span>
           </Link>
         ))}
