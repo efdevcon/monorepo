@@ -8,7 +8,8 @@ import {
   resolveIpfsVideo,
 } from "@/utils/ipfs";
 
-type Status = "starting" | "loading" | "ready" | "error" | "unsupported";
+export type IpfsPlayerStatus = "starting" | "loading" | "ready" | "error" | "unsupported";
+type Status = IpfsPlayerStatus;
 
 /**
  * Within this ratio difference the video fills its box (object-fit: cover,
@@ -42,8 +43,21 @@ const MESSAGES: Record<Status, string> = {
  * master.m3u8 at its root), which plays through hls.js — or natively where
  * Media Source Extensions are missing (older iOS).
  */
-export const IpfsPlayer = ({ cid, title }: { cid: string; title?: string }) => {
+export const IpfsPlayer = ({
+  cid,
+  title,
+  onStatusChange,
+}: {
+  cid: string;
+  title?: string;
+  /** Lets the page show the playback state elsewhere (e.g. "Verified from IPFS"). */
+  onStatusChange?: (status: IpfsPlayerStatus) => void;
+}) => {
   const [status, setStatus] = useState<Status>("starting");
+
+  useEffect(() => {
+    onStatusChange?.(status);
+  }, [status, onStatusChange]);
   const [fit, setFit] = useState<"cover" | "contain">("contain");
   const videoRef = useRef<HTMLVideoElement>(null);
 

@@ -9,7 +9,7 @@ import { VideoCard } from "@/components/domain/archive/VideoCard";
 import GoogleSlides from "@/assets/icons/google_slides.svg";
 import { Link } from "@/components/common/link";
 import { Avatar } from "./Avatar";
-import { Banner, IpfsPlayer } from "@/components/domain/ipfs";
+import { IpfsPlayer, IpfsSourceInfo, type IpfsPlayerStatus } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
@@ -157,6 +157,7 @@ const Labels = ({ tags, playlists }: any) => {
 
 export const Video = (props: any) => {
   const [activeTab, setActiveTab] = useState("");
+  const [ipfsStatus, setIpfsStatus] = useState<IpfsPlayerStatus>("starting");
   const video = props.video;
   const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
@@ -165,7 +166,19 @@ export const Video = (props: any) => {
       <div className={`${css["container"]}`}>
         <div className={css["video"]}>
           <div className={css["player"]}>
-            <Tabs onSelectTab={setActiveTab} useQuerystring>
+            <Tabs
+              onSelectTab={setActiveTab}
+              useQuerystring
+              aside={
+                activeTab === "IPFS" &&
+                props.video.sources_ipfsHash && (
+                  <IpfsSourceInfo
+                    cid={props.video.sources_ipfsHash}
+                    status={ipfsStatus}
+                  />
+                )
+              }
+            >
               <Tab title="YouTube">
                 <div className="aspect">
                   {props.video.sources_youtubeId && (
@@ -193,6 +206,7 @@ export const Video = (props: any) => {
                     <IpfsPlayer
                       cid={props.video.sources_ipfsHash}
                       title={props.video.title}
+                      onStatusChange={setIpfsStatus}
                     />
                   </div>
                 </Tab>
@@ -215,23 +229,6 @@ export const Video = (props: any) => {
           </div>
 
           <div className={css["tabs-video"]}>
-            {activeTab === "IPFS" && (
-              <Banner
-                type="IPFS"
-                className={css["banner"]}
-                cta="Access on IPFS"
-                hash={props.video.sources_ipfsHash}
-                learnMore
-              />
-            )}
-            {activeTab === "Swarm" && (
-              <Banner
-                type="Swarm"
-                className={css["banner"]}
-                cta="Access on Swarm"
-                hash={props.video.sources_swarmHash}
-              />
-            )}
             <Tabs>
               <Tab title="Details">
                 <div className={css["content"]}>

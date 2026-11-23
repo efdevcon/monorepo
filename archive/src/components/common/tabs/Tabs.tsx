@@ -10,6 +10,7 @@ interface TabsProps {
   useQuerystring?: boolean;
   tabContentClassName?: string;
   onSelectTab?: (tab: string) => void;
+  aside?: ReactNode;
 }
 
 const isValidTab = (children: ReactNode, tab: string) => {
@@ -19,7 +20,6 @@ const isValidTab = (children: ReactNode, tab: string) => {
 };
 
 const findFirstValidTab = (children: ReactNode): any => {
-  // Children can be invalid (happens when a child is rendered conditionally), so we'll loop until we find the first valid child
   return React.Children.toArray(children).find((child) => !!child);
 };
 
@@ -32,7 +32,6 @@ export const Tabs = React.forwardRef((props: TabsProps, ref: any) => {
     : "";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
-  // Sync active tab on mount if query string is defined
   React.useLayoutEffect(() => {
     if (
       tabFromQueryString &&
@@ -64,25 +63,28 @@ export const Tabs = React.forwardRef((props: TabsProps, ref: any) => {
 
   return (
     <>
-      <ul className={css["tabs"]}>
-        {props.children &&
-          props.children.map((child: any) => {
-            if (!child) return null;
+      <div className={css["tab-bar"]}>
+        <ul className={css["tabs"]}>
+          {props.children &&
+            props.children.map((child: any) => {
+              if (!child) return null;
 
-            const childProps = child.props;
-            const className = childProps.title === activeTab ? "active" : "";
+              const childProps = child.props;
+              const className = childProps.title === activeTab ? "active" : "";
 
-            return (
-              <li
-                key={childProps.title}
-                className={css[className]}
-                onClick={() => onSelectTab(childProps.title)}
-              >
-                {childProps.title}
-              </li>
-            );
-          })}
-      </ul>
+              return (
+                <li
+                  key={childProps.title}
+                  className={css[className]}
+                  onClick={() => onSelectTab(childProps.title)}
+                >
+                  {childProps.title}
+                </li>
+              );
+            })}
+        </ul>
+        {props.aside && <div className={css["aside"]}>{props.aside}</div>}
+      </div>
 
       <div className={tabContentClassName}>
         {props.children &&

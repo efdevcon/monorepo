@@ -1,10 +1,30 @@
 @use 'src/assets/css/partials/index' as *;
 
+.tab-bar {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: $gaps-gap-4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.aside {
+  display: flex;
+  align-items: center;
+  padding: $gaps-gap-2 $gaps-gap-4;
+  margin-left: auto;
+
+  @media (max-width: $breakpoints-sm) {
+    margin-left: 0;
+  }
+}
+
 .tabs {
   display: flex;
   flex-shrink: 0;
   list-style-type: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   li {
     padding: $gaps-gap-6;
