@@ -9,7 +9,7 @@ import { VideoCard } from "@/components/domain/archive/VideoCard";
 import GoogleSlides from "@/assets/icons/google_slides.svg";
 import { Link } from "@/components/common/link";
 import { Avatar } from "./Avatar";
-import { Banner } from "@/components/domain/ipfs";
+import { Banner, IpfsPlayer } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
@@ -190,11 +190,10 @@ export const Video = (props: any) => {
               {props.video.sources_ipfsHash && (
                 <Tab title="IPFS">
                   <div className="aspect">
-                    <video controls autoPlay={false}>
-                      <source
-                        src={`https://cloudflare-ipfs.com/ipfs/${props.video.sources_ipfsHash}`}
-                      />
-                    </video>
+                    <IpfsPlayer
+                      cid={props.video.sources_ipfsHash}
+                      title={props.video.title}
+                    />
                   </div>
                 </Tab>
               )}

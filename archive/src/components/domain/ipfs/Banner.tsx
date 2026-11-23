@@ -5,8 +5,8 @@ import CopyIcon from "@/assets/icons/copy.svg";
 import { Link } from "@/components/common/link";
 import { Modal, ModalSlide } from "@/components/common/modal";
 import css from "./banner.module.scss";
-import { Tooltip } from "@/components/common/tooltip";
 import { TruncateMiddle } from "@/utils/format";
+import { ipfsGatewayUrl } from "@/utils/ipfs";
 
 interface Props {
   type: "IPFS" | "Swarm";
@@ -28,7 +28,7 @@ export const Banner = (props: Props) => {
 
   let ctaLink = "";
   if (props.type === "IPFS") {
-    ctaLink = `https://cloudflare-ipfs.com/ipfs/${props.hash}`;
+    ctaLink = ipfsGatewayUrl(props.hash);
   }
   if (props.type === "Swarm") {
     ctaLink = `https://gateway.ethswarm.org/access/${props.hash}`;
@@ -54,30 +54,32 @@ export const Banner = (props: Props) => {
           </p>
           <p className={css["truncated"]}>{TruncateMiddle(props.hash)}</p>
           <p className={css["hash"]}>{props.hash}</p>
-          <p>
-            <Tooltip
-              arrow={true}
-              visible={copied}
-              content={<p>Copied hash to clipboard</p>}
-            >
-              <span
-                className={css["copy-icon"]}
-                role="button"
-                aria-label="Copy hash to clipboard"
-                onClick={() => {
-                  if (window?.navigator?.clipboard) {
-                    navigator.clipboard.writeText(props.hash || "");
-                    setCopied(true);
+          <p className="relative">
+            <span
+              className={css["copy-icon"]}
+              role="button"
+              aria-label="Copy hash to clipboard"
+              onClick={() => {
+                if (window?.navigator?.clipboard) {
+                  navigator.clipboard.writeText(props.hash || "");
+                  setCopied(true);
 
-                    setTimeout(() => {
-                      setCopied(false);
-                    }, 800);
-                  }
-                }}
-              >
-                <CopyIcon />
-              </span>
-            </Tooltip>
+                  setTimeout(() => {
+                    setCopied(false);
+                  }, 800);
+                }
+              }}
+            >
+              <CopyIcon />
+            </span>
+            <span
+              role="status"
+              className={`absolute bottom-full right-0 mb-2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs text-white transition-opacity ${
+                copied ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              {copied ? "Copied hash to clipboard" : ""}
+            </span>
           </p>
         </div>
 
@@ -104,7 +106,7 @@ export const Banner = (props: Props) => {
                   more about Ethereum regardless of intermediaries.
                 </p>
                 <p>
-                  <Link href="https://docs.ipfs.io/" indicateExternal>
+                  <Link href="https://docs.ipfs.tech/" indicateExternal>
                     Learn more about IPFS
                   </Link>
                 </p>
@@ -168,7 +170,7 @@ export const Banner = (props: Props) => {
               <p>
                 <Link
                   className="hover-underline"
-                  href="https://docs.ipfs.io/install/ipfs-desktop/"
+                  href="https://docs.ipfs.tech/install/ipfs-desktop/"
                 >
                   IPFS Desktop Application
                 </Link>{" "}
@@ -183,14 +185,14 @@ export const Banner = (props: Props) => {
                 •{" "}
                 <Link
                   className="hover-underline"
-                  href="https://docs.ipfs.io/install/ipfs-companion/"
+                  href="https://docs.ipfs.tech/install/ipfs-companion/"
                 >
                   IPFS Companion
                 </Link>
               </p>
 
               <Link
-                href="https://docs.ipfs.io/how-to/pin-files/"
+                href="https://docs.ipfs.tech/how-to/pin-files/"
                 className={`${css["learn-more-link"]}`}
               >
                 Learn more about pinning 🡥
@@ -238,7 +240,7 @@ export const Banner = (props: Props) => {
               </p>
 
               <Link
-                href="https://docs.ipfs.io/how-to/work-with-pinning-services/"
+                href="https://docs.ipfs.tech/how-to/work-with-pinning-services/"
                 className={`${css["learn-more-link"]}`}
               >
                 Learn more about Pinning Remotely 🡥
