@@ -70,18 +70,30 @@
 
 .modal-content {
   @include fonts-lg;
+  max-width: 560px;
 
-  .lead {
-    @include fonts-xl;
+  > p:not(:last-child) {
+    margin-bottom: $gaps-gap-4;
   }
 
-  > p {
-    &:not(:last-child) {
-      margin-bottom: $gaps-gap-6;
+  .command {
+    display: block;
+    margin-bottom: $gaps-gap-6;
+    padding: $gaps-gap-2 $gaps-gap-4;
+    background: $colors-monochrome-3;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    overflow-wrap: anywhere;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gaps-gap-6;
+    font-weight: 600;
+
+    a:hover {
+      text-decoration: underline;
     }
-  }
-
-  .learn-more-link {
-    text-decoration: underline;
   }
 }
