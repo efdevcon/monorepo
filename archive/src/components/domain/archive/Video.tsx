@@ -158,7 +158,6 @@ export const Video = (props: any) => {
   const [activeTab, setActiveTab] = useState("");
   const [ipfsStatus, setIpfsStatus] = useState<IpfsPlayerStatus>("starting");
   const video = props.video;
-  const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
   return (
     <PageHero>
@@ -210,24 +209,10 @@ export const Video = (props: any) => {
                   </div>
                 </Tab>
               )}
-
-              {/* {props.video.ethernaPermalink && (
-                  <Tab title="Swarm">
-                    <div className="aspect">
-                      <iframe
-                        src={props.video.ethernaPermalink}
-                        title="Etherna video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  </Tab>
-                )} */}
             </Tabs>
           </div>
 
-          <div className={css["tabs-video"]}>
+          <div>
             <div className={css["content"]}>
               <h1 className="font-xxl title">{video.title}</h1>
 

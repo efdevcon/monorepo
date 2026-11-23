@@ -27,7 +27,6 @@ export interface ArchiveVideo {
   imageUrl?: string;
   ipfsHash?: string;
   ethernaIndex?: string;
-  ethernaPermalink?: string;
   duration: number;
   expertise: string;
   type: string;
