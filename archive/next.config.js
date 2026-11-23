@@ -2,7 +2,6 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  optimizeFonts: true,
   poweredByHeader: false,
   trailingSlash: true,
   transpilePackages: ["lib"],
