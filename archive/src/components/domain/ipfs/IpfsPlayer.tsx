@@ -124,14 +124,14 @@ export const IpfsPlayer = ({
   const failed = status === "error" || status === "unsupported";
 
   return (
-    <div className="relative w-full h-full bg-black">
+    <div className={`relative w-full h-full ${status === "ready" ? "" : "bg-black"}`}>
       <video
         ref={videoRef}
         controls
         preload="metadata"
         playsInline
         aria-label={title ? `${title} (IPFS)` : "IPFS video"}
-        className={`w-full h-full ${fit === "cover" ? "object-cover" : "object-contain"}`}
+        className={`block w-full h-full ${fit === "cover" ? "object-cover" : "object-contain"}`}
         onLoadedMetadata={(e) => {
           setFit(fitFor(e.currentTarget));
           setStatus("ready");
@@ -145,11 +145,11 @@ export const IpfsPlayer = ({
       />
 
       {overlay && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-white bg-black/70 pointer-events-none">
+        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/70 p-6 text-center text-white">
           {!failed && (
-            <span className="inline-block w-6 h-6 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+            <span className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-white/30 border-t-white" />
           )}
-          <p className="text-sm max-w-md">{overlay}</p>
+          <p className="max-w-md text-sm">{overlay}</p>
           {failed && (
             <Link
               href={ipfsGatewayUrl(cid)}

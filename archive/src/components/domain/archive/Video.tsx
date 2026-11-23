@@ -6,7 +6,6 @@ import css from "./video.module.scss";
 import { Tabs } from "@/components/common/tabs";
 import { Tab } from "@/components/common/tabs/Tabs";
 import { VideoCard } from "@/components/domain/archive/VideoCard";
-import GoogleSlides from "@/assets/icons/google_slides.svg";
 import { Link } from "@/components/common/link";
 import { Avatar } from "./Avatar";
 import { IpfsPlayer, IpfsSourceInfo, type IpfsPlayerStatus } from "@/components/domain/ipfs";
@@ -229,102 +228,71 @@ export const Video = (props: any) => {
           </div>
 
           <div className={css["tabs-video"]}>
-            <Tabs>
-              <Tab title="Details">
-                <div className={css["content"]}>
-                  <h1 className="font-xxl title">{video.title}</h1>
+            <div className={css["content"]}>
+              <h1 className="font-xxl title">{video.title}</h1>
 
-                  <div className={css["descriptors"]}>
-                    {/* 0 = length not known yet (filled from YouTube by the API) */}
-                    {video.duration > 0 && (
-                      <p className={css["descriptor"]}>
-                        <span>Duration:</span>{" "}
-                        {dayjs
-                          .duration(video.duration, "seconds")
-                          .format("HH:mm:ss")}
-                      </p>
-                    )}
-                    <p className={css["descriptor"]}>
-                      <span>Speaker:</span>{" "}
-                      {video.speakers.map((i: any) => i.name).join(", ")}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Type:</span> {video.type}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Expertise:</span> {video.expertise}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Event:</span>{" "}
-                      {video.eventId === "devconnect-arg"
-                        ? "Devconnect ARG"
-                        : `Devcon ${editionOf(video.eventId) ?? video.edition ?? ""}`}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Date:</span>{" "}
-                      {dayjs(video.slot_start).format("MMM YYYY")}
-                    </p>
-                  </div>
-
-                  <div className={css["description"]}>
-                    <div className={css["text"]}>{video.description}</div>
-                  </div>
-                </div>
-
-                <Labels tags={video.tags} playlists={props.playlists} />
-
-                {video.slidesUrl && (
-                  <div className={css["resources"]}>
-                    <span
-                      className={`${css["title"]} font-sm bold text-uppercase`}
-                    >
-                      Resources
-                    </span>
-
-                    <div className={css["list"]}>
-                      {video.slidesUrl && (
-                        <a
-                          className={css["link"]}
-                          href={video.slidesUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className={css["type"]}>
-                            <GoogleSlides />
-                          </span>
-                          Presentation Slides
-                        </a>
-                      )}
-                    </div>
-                  </div>
+              <div className={css["descriptors"]}>
+                {/* 0 = length not known yet (filled from YouTube by the API) */}
+                {video.duration > 0 && (
+                  <p className={css["descriptor"]}>
+                    <span>Duration:</span>{" "}
+                    {dayjs
+                      .duration(video.duration, "seconds")
+                      .format("HH:mm:ss")}
+                  </p>
                 )}
+                <p className={css["descriptor"]}>
+                  <span>Speaker:</span>{" "}
+                  {video.speakers.map((i: any) => i.name).join(", ")}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Type:</span> {video.type}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Expertise:</span> {video.expertise}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Event:</span>{" "}
+                  {video.eventId === "devconnect-arg"
+                    ? "Devconnect ARG"
+                    : `Devcon ${editionOf(video.eventId) ?? video.edition ?? ""}`}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Date:</span>{" "}
+                  {dayjs(video.slot_start).format("MMM YYYY")}
+                </p>
+              </div>
 
-                {video.profiles?.length > 0 && (
-                  <div className={css["speakers"]}>
-                    <span
-                      className={`${css["title"]} font-sm bold text-uppercase`}
-                    >
-                      About the speakers
-                    </span>
-                    {video.profiles.map((i: UserProfile) => {
-                      return (
-                        <div key={i.name} className={css["speaker"]}>
-                          <Avatar profile={i} className={css["thumbnail"]} />
-                          <div className={css["text"]}>
-                            <div className={css["title"]}>
-                              <p className="bold">{i.name}</p>
-                              {i.role && <p className="font-xs"> {i.role}</p>}
-                            </div>
-                            <p className="font-sm">{i.description}</p>
-                          </div>
+              <div className={css["description"]}>
+                <div className={css["text"]}>{video.description}</div>
+              </div>
+            </div>
+
+            <Labels tags={video.tags} playlists={props.playlists} />
+
+            {video.profiles?.length > 0 && (
+              <div className={css["speakers"]}>
+                <span
+                  className={`${css["title"]} font-sm bold text-uppercase`}
+                >
+                  About the speakers
+                </span>
+                {video.profiles.map((i: UserProfile) => {
+                  return (
+                    <div key={i.name} className={css["speaker"]}>
+                      <Avatar profile={i} className={css["thumbnail"]} />
+                      <div className={css["text"]}>
+                        <div className={css["title"]}>
+                          <p className="bold">{i.name}</p>
+                          {i.role && <p className="font-xs"> {i.role}</p>}
                         </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </Tab>
-              {video.resources && <Tab title="Resources">Resources</Tab>}
-            </Tabs>
+                        <p className="font-sm">{i.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 

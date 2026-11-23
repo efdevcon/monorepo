@@ -22,7 +22,6 @@ export interface ArchiveVideo {
   title: string;
   relatedVideos: ArchiveVideo[];
   description: string;
-  slidesUrl?: string;
   youtubeUrl: string;
   image?: any;
   imageUrl?: string;
