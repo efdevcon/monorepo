@@ -65,9 +65,14 @@ export const IpfsSourceInfo = ({
             Content is addressed by its hash (CID) instead of by a server.
           </p>
           <p>
-            This player fetches the video from IPFS peers directly in your
-            browser and checks every piece against that hash, so you watch
-            exactly what was published, without trusting a gateway.
+            This player fetches the video over IPFS, from Devcon&apos;s nodes
+            first and other IPFS peers if needed, and checks every piece
+            against that hash in your browser, so you watch exactly what was
+            published without trusting whoever served it.
+          </p>
+          <p>
+            Fetching from the public network shares your IP address and this
+            video&apos;s CID with the peers and routing services involved.
           </p>
           <p className="bold">Help keep it available</p>
           <p>Pin this video on your own IPFS node:</p>
