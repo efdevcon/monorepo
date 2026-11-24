@@ -58,6 +58,11 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(self.clients.claim());
 });
 
+// A page loaded without a controller (e.g. after Shift+Reload) asks to be claimed.
+self.addEventListener("message", (event) => {
+  if (event.data === "claim") event.waitUntil(self.clients.claim());
+});
+
 const fetchOptions = { contentTypeParser: sniffVideoType };
 
 let ownFetchPromise: Promise<VerifiedFetch> | null = null;
