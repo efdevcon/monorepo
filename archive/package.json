@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/build-sw.mjs && next dev",
-    "build": "node scripts/build-sw.mjs && next build",
+    "build": "pnpm typecheck:sw && node scripts/build-sw.mjs && next build",
+    "typecheck:sw": "tsc --noEmit --strict --skipLibCheck --isolatedModules --target es2022 --lib webworker,es2022 --module esnext --moduleResolution bundler src/sw/ipfs-sw.ts",
     "start": "next start",
     "lint": "next lint"
   },
