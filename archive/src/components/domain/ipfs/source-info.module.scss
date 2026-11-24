@@ -13,6 +13,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  margin-right: auto;
   opacity: 0.7;
 
   &.verified {
@@ -51,6 +52,11 @@
     outline: 2px solid currentColor;
     outline-offset: 1px;
   }
+
+  @media (pointer: coarse) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .divider {
@@ -59,9 +65,31 @@
   background: rgba(0, 0, 0, 0.15);
 }
 
+// Phones: only the info button next to the tabs; the gateway link is in the
+// info dialog. The status stays for screen readers.
+@media (max-width: $breakpoints-sm) {
+  .source-info > .status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .divider,
+  .gateway {
+    display: none;
+  }
+}
+
 .gateway {
   font-weight: 600;
   white-space: nowrap;
+
+  @media (pointer: coarse) {
+    padding: 10px 0;
+  }
 
   &:hover {
     text-decoration: underline;

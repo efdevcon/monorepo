@@ -127,7 +127,7 @@ export const IpfsPlayer = ({
     <div className={`relative w-full h-full ${status === "ready" ? "" : "bg-black"}`}>
       <video
         ref={videoRef}
-        controls
+        controls={status === "ready"}
         preload="metadata"
         playsInline
         aria-label={title ? `${title} (IPFS)` : "IPFS video"}

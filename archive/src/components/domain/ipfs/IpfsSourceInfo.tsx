@@ -84,6 +84,7 @@ export const IpfsSourceInfo = ({
             <Link href="https://docs.ipfs.tech/how-to/pin-files/">
               How pinning works ↗
             </Link>
+            <Link href={ipfsGatewayUrl(cid)}>Open in gateway ↗</Link>
           </p>
         </div>
       </Modal>
