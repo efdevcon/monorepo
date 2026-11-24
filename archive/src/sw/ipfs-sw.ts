@@ -239,6 +239,7 @@ async function attempt(
 function withSource(response: Response, source: "devcon" | "network"): Response {
   const headers = new Headers(response.headers);
   headers.set("x-ipfs-source", source);
+  headers.set("content-security-policy", "sandbox");
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
