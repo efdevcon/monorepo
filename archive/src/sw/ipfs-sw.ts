@@ -45,8 +45,8 @@ const PUBLIC_GATEWAYS = ["https://trustless-gateway.link"];
 
 /** Stage 1 gets this long for first bytes before we fall back. */
 const OWN_FIRST_BYTE_TIMEOUT_MS = 10_000;
-/** Stage 2 gets this long for first bytes before giving up. */
-const NETWORK_FIRST_BYTE_TIMEOUT_MS = 90_000;
+/** Stage 2 gets this long for first bytes. */
+const NETWORK_FIRST_BYTE_TIMEOUT_MS = 20_000;
 /** How long a root CID that failed stage 1 goes straight to stage 2. */
 const SKIP_OWN_FOR_MS = 5 * 60_000;
 
