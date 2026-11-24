@@ -50,8 +50,26 @@ const NETWORK_FIRST_BYTE_TIMEOUT_MS = 20_000;
 /** How long a root CID that failed stage 1 goes straight to stage 2. */
 const SKIP_OWN_FOR_MS = 5 * 60_000;
 
-self.addEventListener("install", () => {
+type InstallEventWithRoutes = ExtendableEvent & {
+  addRoutes?: (rules: unknown) => Promise<void>;
+};
+
+self.addEventListener("install", (event) => {
   self.skipWaiting();
+
+  const { addRoutes } = event as InstallEventWithRoutes;
+  const URLPatternCtor = (self as unknown as { URLPattern?: new (init: { pathname: string }) => unknown })
+    .URLPattern;
+  if (addRoutes && URLPatternCtor) {
+    event.waitUntil(
+      addRoutes
+        .call(event, {
+          condition: { not: { urlPattern: new URLPatternCtor({ pathname: "/ipfs/*" }) } },
+          source: "network",
+        })
+        .catch(() => {})
+    );
+  }
 });
 
 self.addEventListener("activate", (event) => {
@@ -159,6 +177,7 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
   if (!url.pathname.startsWith("/ipfs/")) return;
   if (request.method !== "GET" && request.method !== "HEAD") return;
+  if (request.mode === "navigate") return;
 
   event.respondWith(handleIpfs(request, url));
 });
