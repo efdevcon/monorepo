@@ -63,11 +63,20 @@ export function ensureIpfsServiceWorker(): Promise<boolean> {
       await navigator.serviceWorker.register(IPFS_SW_URL, { scope: "/" });
       if (navigator.serviceWorker.controller) return true;
 
-      // First visit: the worker activates and claims the page (clients.claim()).
-      await new Promise<void>((resolve) => {
+      // First visit: the worker claims the page when it activates. After a hard
+      // reload it is already active and won't activate again, so ask it to
+      // claim this page explicitly.
+      const claimed = new Promise<void>((resolve) => {
         navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), { once: true });
       });
-      return true;
+      const ready = await navigator.serviceWorker.ready;
+      if (!navigator.serviceWorker.controller) {
+        ready.active?.postMessage("claim");
+        await Promise.race([claimed, new Promise((r) => setTimeout(r, 5_000))]);
+      }
+      if (navigator.serviceWorker.controller) return true;
+      registration = null;
+      return false;
     } catch (err) {
       console.warn("IPFS service worker unavailable", err);
       registration = null;
