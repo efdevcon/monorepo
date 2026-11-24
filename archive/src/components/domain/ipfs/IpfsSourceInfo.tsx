@@ -15,6 +15,7 @@ const STATUS_LABEL: Record<IpfsPlayerStatus, string> = {
   ready: "Verified from IPFS",
   error: "Unavailable on IPFS",
   unsupported: "Verified playback unsupported",
+  incompatible: "Format not supported",
 };
 
 /**
