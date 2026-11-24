@@ -5,7 +5,7 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const watch = process.argv.includes("--watch");
 const dev = watch || process.env.NODE_ENV === "development";
 
-// Devcon IPFS nodes, comma-separated base URLs (e.g. "https://ipfs-1.devcon.org,https://ipfs-2.devcon.org").
+// Devcon IPFS nodes, comma-separated base URLs (e.g. "https://a.ipfs.devcon.org,https://b.ipfs.devcon.org").
 // Gateways serve blocks (stage 1); routers answer /routing/v1 and default to the same hosts.
 // Unset → the worker skips stage 1 and goes straight to the public network.
 const list = (value) => (value ?? "").split(",").map((s) => s.trim().replace(/\/$/, "")).filter(Boolean);

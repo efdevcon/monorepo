@@ -32,7 +32,7 @@ declare const self: ServiceWorkerGlobalScope;
 
 /** Injected at build time (scripts/build-sw.mjs). */
 declare const DEVCON_IPFS_CONFIG: {
-  /** Our trustless gateways (stage 1), e.g. https://ipfs-1.devcon.org */
+  /** Our trustless gateways (stage 1), e.g. https://a.ipfs.devcon.org */
   gateways: string[];
   /** Our /routing/v1 endpoints (stage 2, alongside public routers). */
   routers: string[];
