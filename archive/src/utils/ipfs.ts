@@ -38,7 +38,7 @@ export async function resolveIpfsVideo(cid: string): Promise<IpfsVideoSource> {
       const text = await res.text();
       if (text.trimStart().startsWith("#EXTM3U")) return { kind: "hls", url: master };
     }
-    if (res.status === 504) return { kind: "unavailable" };
+    if (res.status >= 500) return { kind: "unavailable" };
   } catch {
     return { kind: "unavailable" };
   }
