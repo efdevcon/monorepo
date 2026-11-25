@@ -69,11 +69,14 @@ export function ensureIpfsServiceWorker(): Promise<boolean> {
       const claimed = new Promise<void>((resolve) => {
         navigator.serviceWorker.addEventListener("controllerchange", () => resolve(), { once: true });
       });
-      const ready = await navigator.serviceWorker.ready;
-      if (!navigator.serviceWorker.controller) {
-        ready.active?.postMessage("claim");
-        await Promise.race([claimed, new Promise((r) => setTimeout(r, 5_000))]);
-      }
+      const takeControl = (async () => {
+        const ready = await navigator.serviceWorker.ready;
+        if (!navigator.serviceWorker.controller) {
+          ready.active?.postMessage("claim");
+          await claimed;
+        }
+      })();
+      await Promise.race([takeControl, new Promise((r) => setTimeout(r, 5_000))]);
       if (navigator.serviceWorker.controller) return true;
       registration = null;
       return false;
