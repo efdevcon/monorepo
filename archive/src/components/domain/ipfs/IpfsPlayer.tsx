@@ -172,7 +172,7 @@ export const IpfsPlayer = ({
 
   const chooseQuality = (level: number) => {
     setQuality(level);
-    if (hlsRef.current) hlsRef.current.currentLevel = level;
+    if (hlsRef.current) hlsRef.current.nextLevel = level;
   };
 
   return (
