@@ -48,7 +48,7 @@ const MESSAGES: Record<Status, string> = {
   ready: "",
   error: "This video couldn't be retrieved from the IPFS network right now. It may not be pinned by any reachable peer.",
   unsupported: "Your browser can't run the verified IPFS player (service workers are unavailable).",
-  incompatible: "Your browser can't play this video's format (AV1 video with Opus audio). Try the YouTube tab, or a newer browser.",
+  incompatible: "Your browser can't play this video's format. Try the YouTube tab, or a newer browser.",
 };
 
 /**
