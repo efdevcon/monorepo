@@ -1,0 +1,127 @@
+@use 'src/assets/css/partials/index' as *;
+
+.source-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $gaps-gap-2;
+  font-size: 0.8125rem;
+  color: $colors-monochrome-8;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  opacity: 0.7;
+
+  &.verified {
+    opacity: 1;
+    font-weight: 600;
+    color: $colors-state-success;
+
+    svg {
+      --color-icon: #{$colors-state-success};
+    }
+  }
+}
+
+// Its own control: an icon button with a generous hit area, not nested in a link.
+.info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: inherit;
+  cursor: pointer;
+
+  svg {
+    --color-icon: currentColor;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+  }
+
+  @media (pointer: coarse) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+// Phones: only the info button next to the tabs; the gateway link is in the
+// info dialog. The status stays for screen readers.
+@media (max-width: $breakpoints-sm) {
+  .source-info > .status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .divider,
+  .gateway {
+    display: none;
+  }
+}
+
+.gateway {
+  font-weight: 600;
+  white-space: nowrap;
+
+  @media (pointer: coarse) {
+    padding: 10px 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.modal-content {
+  @include fonts-lg;
+  max-width: 560px;
+
+  > p:not(:last-child) {
+    margin-bottom: $gaps-gap-4;
+  }
+
+  .command {
+    display: block;
+    margin-bottom: $gaps-gap-6;
+    padding: $gaps-gap-2 $gaps-gap-4;
+    background: $colors-monochrome-3;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+    overflow-wrap: anywhere;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gaps-gap-6;
+    font-weight: 600;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

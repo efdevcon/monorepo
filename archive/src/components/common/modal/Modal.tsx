@@ -108,7 +108,7 @@ const ModalContent = (props: ModalProps) => {
 
         {title && (
           <div className={css["header"]}>
-            <h4 className="text-uppercase title">{title} —</h4>
+            <h4 className="text-uppercase title">{title}</h4>
           </div>
         )}
 

@@ -2,10 +2,17 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  optimizeFonts: true,
   poweredByHeader: false,
   trailingSlash: true,
   transpilePackages: ["lib"],
+  headers() {
+    return [
+      {
+        source: "/ipfs-sw.js",
+        headers: [{ key: "Cache-Control", value: "no-cache" }],
+      },
+    ];
+  },
   redirects() {
     // Generic page redirects from Gatsby archive are managed here.
     // Session specific redirects are managed as dynamic routes to avoid performance issues.

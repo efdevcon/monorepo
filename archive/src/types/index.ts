@@ -22,13 +22,11 @@ export interface ArchiveVideo {
   title: string;
   relatedVideos: ArchiveVideo[];
   description: string;
-  slidesUrl?: string;
   youtubeUrl: string;
   image?: any;
   imageUrl?: string;
   ipfsHash?: string;
   ethernaIndex?: string;
-  ethernaPermalink?: string;
   duration: number;
   expertise: string;
   type: string;

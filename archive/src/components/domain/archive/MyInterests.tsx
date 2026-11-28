@@ -13,7 +13,7 @@ import { LATEST_EDITION, editionEventId, editionOf } from "@/utils/editions";
 
 /** What the video page and the list cards use, so the list call skips transcripts. */
 const FIELDS =
-  "id,sourceId,eventId,title,type,duration,description,speakers,expertise,tags,sources_youtubeId,sources_ipfsHash,sources_swarmHash,slot_start";
+  "id,sourceId,eventId,title,type,duration,description,speakers,expertise,tags,sources_youtubeId,sources_ipfsHash,slot_start";
 
 /**
  * /my-interests?event=devcon8&sessions=CODE,CODE[&v=id]: the attendee's

@@ -6,10 +6,9 @@ import css from "./video.module.scss";
 import { Tabs } from "@/components/common/tabs";
 import { Tab } from "@/components/common/tabs/Tabs";
 import { VideoCard } from "@/components/domain/archive/VideoCard";
-import GoogleSlides from "@/assets/icons/google_slides.svg";
 import { Link } from "@/components/common/link";
 import { Avatar } from "./Avatar";
-import { Banner } from "@/components/domain/ipfs";
+import { IpfsPlayer, IpfsSourceInfo, type IpfsPlayerStatus } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
@@ -157,15 +156,27 @@ const Labels = ({ tags, playlists }: any) => {
 
 export const Video = (props: any) => {
   const [activeTab, setActiveTab] = useState("");
+  const [ipfsStatus, setIpfsStatus] = useState<IpfsPlayerStatus>("starting");
   const video = props.video;
-  const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
   return (
     <PageHero>
       <div className={`${css["container"]}`}>
         <div className={css["video"]}>
           <div className={css["player"]}>
-            <Tabs onSelectTab={setActiveTab} useQuerystring>
+            <Tabs
+              onSelectTab={setActiveTab}
+              useQuerystring
+              aside={
+                activeTab === "IPFS" &&
+                props.video.sources_ipfsHash && (
+                  <IpfsSourceInfo
+                    cid={props.video.sources_ipfsHash}
+                    status={ipfsStatus}
+                  />
+                )
+              }
+            >
               <Tab title="YouTube">
                 <div className="aspect">
                   {props.video.sources_youtubeId && (
@@ -190,145 +201,83 @@ export const Video = (props: any) => {
               {props.video.sources_ipfsHash && (
                 <Tab title="IPFS">
                   <div className="aspect">
-                    <video controls autoPlay={false}>
-                      <source
-                        src={`https://cloudflare-ipfs.com/ipfs/${props.video.sources_ipfsHash}`}
-                      />
-                    </video>
+                    <IpfsPlayer
+                      cid={props.video.sources_ipfsHash}
+                      title={props.video.title}
+                      onStatusChange={setIpfsStatus}
+                    />
                   </div>
                 </Tab>
               )}
-
-              {/* {props.video.ethernaPermalink && (
-                  <Tab title="Swarm">
-                    <div className="aspect">
-                      <iframe
-                        src={props.video.ethernaPermalink}
-                        title="Etherna video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  </Tab>
-                )} */}
             </Tabs>
           </div>
 
-          <div className={css["tabs-video"]}>
-            {activeTab === "IPFS" && (
-              <Banner
-                type="IPFS"
-                className={css["banner"]}
-                cta="Access on IPFS"
-                hash={props.video.sources_ipfsHash}
-                learnMore
-              />
-            )}
-            {activeTab === "Swarm" && (
-              <Banner
-                type="Swarm"
-                className={css["banner"]}
-                cta="Access on Swarm"
-                hash={props.video.sources_swarmHash}
-              />
-            )}
-            <Tabs>
-              <Tab title="Details">
-                <div className={css["content"]}>
-                  <h1 className="font-xxl title">{video.title}</h1>
+          <div>
+            <div className={css["content"]}>
+              <h1 className="font-xxl title">{video.title}</h1>
 
-                  <div className={css["descriptors"]}>
-                    {/* 0 = length not known yet (filled from YouTube by the API) */}
-                    {video.duration > 0 && (
-                      <p className={css["descriptor"]}>
-                        <span>Duration:</span>{" "}
-                        {dayjs
-                          .duration(video.duration, "seconds")
-                          .format("HH:mm:ss")}
-                      </p>
-                    )}
-                    <p className={css["descriptor"]}>
-                      <span>Speaker:</span>{" "}
-                      {video.speakers.map((i: any) => i.name).join(", ")}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Type:</span> {video.type}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Expertise:</span> {video.expertise}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Event:</span>{" "}
-                      {video.eventId === "devconnect-arg"
-                        ? "Devconnect ARG"
-                        : `Devcon ${editionOf(video.eventId) ?? video.edition ?? ""}`}
-                    </p>
-                    <p className={css["descriptor"]}>
-                      <span>Date:</span>{" "}
-                      {dayjs(video.slot_start).format("MMM YYYY")}
-                    </p>
-                  </div>
-
-                  <div className={css["description"]}>
-                    <div className={css["text"]}>{video.description}</div>
-                  </div>
-                </div>
-
-                <Labels tags={video.tags} playlists={props.playlists} />
-
-                {video.slidesUrl && (
-                  <div className={css["resources"]}>
-                    <span
-                      className={`${css["title"]} font-sm bold text-uppercase`}
-                    >
-                      Resources
-                    </span>
-
-                    <div className={css["list"]}>
-                      {video.slidesUrl && (
-                        <a
-                          className={css["link"]}
-                          href={video.slidesUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className={css["type"]}>
-                            <GoogleSlides />
-                          </span>
-                          Presentation Slides
-                        </a>
-                      )}
-                    </div>
-                  </div>
+              <div className={css["descriptors"]}>
+                {/* 0 = length not known yet (filled from YouTube by the API) */}
+                {video.duration > 0 && (
+                  <p className={css["descriptor"]}>
+                    <span>Duration:</span>{" "}
+                    {dayjs
+                      .duration(video.duration, "seconds")
+                      .format("HH:mm:ss")}
+                  </p>
                 )}
+                <p className={css["descriptor"]}>
+                  <span>Speaker:</span>{" "}
+                  {video.speakers.map((i: any) => i.name).join(", ")}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Type:</span> {video.type}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Expertise:</span> {video.expertise}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Event:</span>{" "}
+                  {video.eventId === "devconnect-arg"
+                    ? "Devconnect ARG"
+                    : `Devcon ${editionOf(video.eventId) ?? video.edition ?? ""}`}
+                </p>
+                <p className={css["descriptor"]}>
+                  <span>Date:</span>{" "}
+                  {dayjs(video.slot_start).format("MMM YYYY")}
+                </p>
+              </div>
 
-                {video.profiles?.length > 0 && (
-                  <div className={css["speakers"]}>
-                    <span
-                      className={`${css["title"]} font-sm bold text-uppercase`}
-                    >
-                      About the speakers
-                    </span>
-                    {video.profiles.map((i: UserProfile) => {
-                      return (
-                        <div key={i.name} className={css["speaker"]}>
-                          <Avatar profile={i} className={css["thumbnail"]} />
-                          <div className={css["text"]}>
-                            <div className={css["title"]}>
-                              <p className="bold">{i.name}</p>
-                              {i.role && <p className="font-xs"> {i.role}</p>}
-                            </div>
-                            <p className="font-sm">{i.description}</p>
-                          </div>
+              <div className={css["description"]}>
+                <div className={css["text"]}>{video.description}</div>
+              </div>
+            </div>
+
+            <Labels tags={video.tags} playlists={props.playlists} />
+
+            {video.profiles?.length > 0 && (
+              <div className={css["speakers"]}>
+                <span
+                  className={`${css["title"]} font-sm bold text-uppercase`}
+                >
+                  About the speakers
+                </span>
+                {video.profiles.map((i: UserProfile) => {
+                  return (
+                    <div key={i.name} className={css["speaker"]}>
+                      <Avatar profile={i} className={css["thumbnail"]} />
+                      <div className={css["text"]}>
+                        <div className={css["title"]}>
+                          <p className="bold">{i.name}</p>
+                          {i.role && <p className="font-xs"> {i.role}</p>}
                         </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </Tab>
-              {video.resources && <Tab title="Resources">Resources</Tab>}
-            </Tabs>
+                        <p className="font-sm">{i.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 

@@ -1,1 +1,2 @@
-export { Banner } from './Banner'
+export { IpfsPlayer, type IpfsPlayerStatus } from './IpfsPlayer'
+export { IpfsSourceInfo } from './IpfsSourceInfo'
